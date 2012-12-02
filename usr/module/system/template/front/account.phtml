@@ -1,0 +1,20 @@
+
+<div class="span3">
+<ul class="nav nav-list bs-docs-sidenav">
+    <li class="active"><a><?php _e('View account'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'edit')); ?>"><?php _e('Edit account'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'email')); ?>" title="<?php _e('Change email'); ?>"><?php _e('Change email'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'password')); ?>" title="<?php _e('Change password'); ?>"><?php _e('Change password'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'login', 'action' => 'logout')); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+</ul>
+</div>
+
+<div class="span9">
+    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <dl class="dl-horizontal">
+    <?php foreach ($user as $label => $value) { ?>
+        <dt><?php echo $this->escape($label); ?></dt>
+        <dd><?php echo $this->escape($value); ?></dd>
+    <?php } ?>
+    </dl>
+</div>

@@ -1,0 +1,7 @@
+<h3 class="page-header"><?php echo $this->escape($block['caption']); ?></h3>
+<p><?php echo $block['content']; ?></p>
+<hr />
+<h3><?php _e('The options: '); ?></h3>
+<?php foreach ($block['options'] as $key => $value) { ?>
+<div><span><?php echo $this->escape($key); ?></span><span><?php echo $this->escape($value); ?></span></div>
+<?php } ?>

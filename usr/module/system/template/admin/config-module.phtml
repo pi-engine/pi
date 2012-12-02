@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="span3">
+        <div class="sub-nav">
+            <?php
+            $items = array();
+            foreach ($modules as $key => $module) {
+                $item = array(
+                    'href'  => $this->url('', array('action' => 'module', 'name' => $key)),
+                    'label' => $module['title'],
+                );
+                if ($name == $key) {
+                    $item['active'] = 1;
+                }
+                $items[] = $item;
+            }
+            echo $this->navMenu($items);
+            ?>
+        </div>
+    </div>
+    <div class="span9">
+        <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+        <?php if (empty($name)) { ?>
+            <div class="alert alert-info"><?php _e('Select a module on the left to set up configurations.'); ?></div>
+        <?php } elseif (empty($form)) { ?>
+            <div class="alert alert-info"><?php _e('No configuration available.'); ?></div>
+        <?php } else { ?>
+        <?php include $this->templateComponent('form'); ?>
+        <?php } ?>
+    </div>
+</div>

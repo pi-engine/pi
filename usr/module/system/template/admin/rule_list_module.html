@@ -1,0 +1,10 @@
+<ul><{_ text="Module Resources"}>
+<{foreach item=resource key=sect from=$sections}>
+    <li style="padding: 5px 0;">
+        <{$resource.title}> (<{$resource.count}>)
+        <{if $resource.url}>
+            <a href="<{$resource.url}>" title="<{$resource.title}>"><{_ text="Access permissions"}></a>
+        <{/if}>
+    </li>
+<{/foreach}>
+</ul>

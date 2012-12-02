@@ -1,0 +1,121 @@
+<?php
+// Load translation data
+$this->i18nTheme('main');
+
+$this->jQuery();
+$this->bootstrap(array(
+    'js/bootstrap.min.js',
+    'css/font-awesome.min.css'
+));
+$this->css(array(
+    $this->assetTheme('css/style.css'),
+    $this->assetTheme('css/admin.css')
+));
+
+$module = Pi::service('module')->current();
+?>
+<!DOCTYPE HTML>
+<html lang="<?php echo $locale ?>">
+<head>
+    <!-- Charset -->
+    <meta charset="<?php echo $charset; ?>">
+
+    <!-- Title -->
+    <?php echo $this->headTitle(); ?>
+</head>
+<body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
+    <div class="header clearfix">
+        <div class="container clearfix">
+            <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="header-logo"><?php echo $this->escape($sitename); ?></a>
+
+            <span class="pull-right" style="margin: 20px 10px;">
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank"><?php _e('Go to front'); ?> <i class="icon-circle-arrow-right"></i> </a>
+            </span>
+
+            <div class="pull-right" style="margin: 20px 5px;">
+            <?php echo $this->widget('system-user-bar'); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="global-nav container">
+
+        <!-- Global navigation starts -->
+        <?php $navigation = $this->nav('admin'); ?>
+        <?php if ($navigation) { ?>
+            <!-- Global menu starts -->
+            <?php $this->css($this->assetTheme('css/menu.css')); ?>
+            <div class="menu">
+                <?php echo $navigation->menu()->setUlClass('menu-horizontal'); ?>
+            </div>
+            <!-- Global menu ends -->
+
+            <!-- Global breadcrumbs starts -->
+            <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">&gt;</span>')->render(); ?>
+            <?php if ($breadcrumbs) { ?>
+            <div class="breadcrumb">
+                <?php echo $breadcrumbs; ?>
+            </div>
+            <?php } ?>
+            <!-- Global breadcrumbs ends -->
+
+        <?php } ?>
+        <!-- Global navigation ends -->
+    </div>
+
+    <div class="wrapper">
+        <?php if (!empty($subMenu)) { ?>
+            <div class="menu">
+                <?php echo $subMenu; ?>
+            </div>
+        <?php } ?>
+    <div class="container">
+
+        <?php if ($module && 'system' != $module) { ?>
+        <!-- Module navigation starts -->
+        <?php $navigation = $this->navigation($module . '-admin'); ?>
+        <?php if ($navigation) { ?>
+            <?php /*$menu = $navigation->menu()->setUlClass('menu-horizontal')->render();*/ ?>
+            <?php $menu = $navigation->menu()->setUlClass('nav nav-tabs')->render(); ?>
+           <?php if ($menu) { ?>
+            <div class="menu">
+                <?php echo $menu; ?>
+            </div>
+            <?php } ?>
+            <?php
+            /*
+            <div class="breadcrumb">
+                <?php echo $navigation->breadcrumbs()->setSeparator('<span class="divider">/</span>')->render(); ?>
+            </div>
+            */
+            ?>
+        <?php } ?>
+        <!-- Module navigation ends -->
+        <?php } ?>
+
+
+        <!-- Module content starts -->
+        <?php if (!empty($content)) { ?>
+            <div class="pi-zone-module<?php if (!empty($sideMenu)) { echo ' overhidden'; } ?>"><?php echo $content; ?></div>
+        <?php } ?>
+        <!-- Module content ends -->
+    </div>
+    </div>
+
+    <!-- Footer starts -->
+    <div class="footer">
+        <div class="horizontal-rule"></div>
+        <div class="container">
+            &copy; <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>"><?php echo $this->escape($sitename); ?></a> | Powered by <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a> | Design of <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a>
+        </div>
+
+        <!-- Show execution time -->
+        <?php $time = microtime(true) - Pi::startTime(); ?>
+        <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
+        <!-- Show execution time -->
+
+    </div>
+    <!-- Footer ends -->
+
+</body>
+</html>

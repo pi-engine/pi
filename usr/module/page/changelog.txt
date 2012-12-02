@@ -1,0 +1,25 @@
+Page module changelog
+
+
+September 28th, 2012
+=============================
+1. Versioned at 1.0.0-beta.4
+2. Modified navigation
+
+September 10th, 2012
+=============================
+1. Demo for adding table 'stats', not used yet
+2. Demo for dropping not used table 'stats'
+3. Changed time field to time_created
+4. Added field time_updated
+5. Added field clicks
+6. Added click counting on view page
+
+
+August 25th, 2012
+=============================
+1 Created page module
+
+
+
+Taiwen Jiang

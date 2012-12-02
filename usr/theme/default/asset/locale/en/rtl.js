@@ -1,0 +1,1 @@
+/* For locale asset test */

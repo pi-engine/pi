@@ -1,0 +1,24 @@
+<h2><{$title}></h2>
+
+<{foreach item=resList key=section from=$resources}>
+    <ul><{$resList.section}>
+        <{if $resList.url}>
+            <a href="<{$resList.url}>" title="<{_ text='Access permissions'}>"><{_ text='Access permissions'}></a>
+        <{/if}>
+        <{foreach item=resource key=resourceId from=$resList.resources}>
+            <li>
+                <{$resource.indent}> <{$resource.title}> (<{$resource.name}>)
+                <{if $resource.url}>
+                    <a href="<{$resource.url}>" title="<{_ text='Access permissions'}>"><{_ text='Access permissions'}></a>
+                <{/if}>
+                <{if $resource.privileges}>
+                    <ul>
+                    <{foreach item=privilege key=privilegeId from=$resource.privileges}>
+                    <li><{$privilege.title}> (<{$privilege.name}>)</li>
+                    <{/foreach}>
+                    </ul>
+                <{/if}>
+            </li>
+        <{/foreach}>
+    </ul>
+<{/foreach}>

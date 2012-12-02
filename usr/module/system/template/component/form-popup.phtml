@@ -1,0 +1,86 @@
+<?php
+$this->jQuery();
+$this->bootstrap('js/bootstrap.min.js');
+?>
+<?php
+    $form->setAttributes(array(
+        'class' => 'form-horizontal',
+        'id'    => 'popup-form',
+        'style' => 'margin: 0;'
+    ));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+?>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><?php echo $this->escape($title); ?></h3>
+</div>
+<div class="modal-body">
+<?php $elements = $form->elementList();
+foreach ($elements['active'] as $element) { ?>
+    <div class="control-group" data-name="<?php echo $element -> getName(); ?>">
+            <?php if ($element->getAttribute('type') != 'checkbox') { ?>
+            <?php
+                $element->setLabelAttributes(array('class' => 'control-label'));
+                echo $this->formLabel($element);
+            ?>
+            <?php if ($element->getAttribute('description')) { ?>
+                <span class="what-this" data-original-title="<?php echo $this->formDescription($element); ?>">?</span>
+            <?php } ?>
+            <?php } ?>
+            <div class="controls">
+            <?php echo $this->formElement($element); ?>
+            <span class="help-block"></span>
+            </div>
+
+    </div>
+    <?php }
+        foreach ($elements['hidden'] as $element) {
+            echo $this->formElement($element);
+        }
+    ?>
+    </div>
+    <div class="modal-footer">
+    <img src="<?php echo $this->assetTheme('image/wait.gif'); ?>" class="hide">
+    <?php
+        $elements['submit']->setAttribute('class', 'btn btn-primary');
+        echo $this->formElement($elements['submit']);
+    ?>
+    </div>
+<?php echo $this->form()->closeTag(); ?>
+<script>
+jQuery(".what-this").tooltip();
+var formModule = (function ($) {
+    var formModule = {},
+    form = $("#popup-form"),
+    imgWait=form.find("img.hide");
+    var items = form.find(".control-group").removeClass("error").find(".help-block").html("").end();
+    form.submit(function (e) {
+    	imgWait.removeClass("hide");
+        e.preventDefault();
+        $.post(form.attr("action"), form.serialize()).done(function (result) {
+            result = $.parseJSON(result);
+            if (result.status == 1) {
+                formModule.success(result);
+            } else {
+                var msg = result.message;
+                for (var i in msg) {
+                    if (msg.hasOwnProperty(i)) {
+                        items.filter("[data-name=" + i + "]").addClass("error").find(".help-block").html(msg[i][0]);
+                    }
+                }
+                formModule.fail()
+            }
+            imgWait.addClass("hide");
+        });
+    });
+    /* two port
+     * success: This event fires immediately when form submit success
+     * fail:  This event fires immediately when form submit has wrong
+     */
+    formModule.success = function () {};
+    formModule.fail = function () {};
+    return formModule;
+})(jQuery)
+</script>
+

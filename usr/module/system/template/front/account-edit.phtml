@@ -1,0 +1,14 @@
+
+<div class="span3">
+<ul class="nav nav-list bs-docs-sidenav">
+    <li><a href="<?php echo $this->url('', array('controller' => 'account')); ?>"><?php _e('View account'); ?></a>
+    <li class="active"><a><?php _e('Edit account'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'email')); ?>" ><?php _e('Change email'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'password')); ?>" ><?php _e('Change password'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'login', 'action' => 'logout')); ?>"><?php _e('Logout'); ?></a>
+</ul>
+</div>
+<div class="span9">
+    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <?php include $this->templateComponent('form'); ?>
+</div>

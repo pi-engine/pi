@@ -1,0 +1,41 @@
+<?php
+$config = $block;
+$navigation = $this->navigation($config['navigation']);
+if (!$navigation) {
+    return;
+}
+if ($config['menu_show']) {
+    $menu = $navigation->menu();
+    $options = array();
+    if ($config['menu_ul_class']) {
+        $options['ulClass'] = $config['menu_ul_class'];
+    }
+    if ($config['menu_min_depth']) {
+        $options['minDepth'] = $config['menu_min_depth'];
+    }
+    if ($config['menu_max_depth']) {
+        $options['maxDepth'] = $config['menu_max_depth'];
+    }
+    $content = $menu->renderMenu(null, $options);
+    if ($content) {
+        ?>
+        <div class="menu"><?php echo $content; ?></div>
+        <?php
+    }
+}
+if ($config['breadcrumb_show']) {
+    $breadcrumb = $navigation->breadcrumbs();
+    if ($config['breadcrumb_separator']) {
+        $breadcrumb->setSeparator('<span class="divider">' . $config['breadcrumb_separator'] . '</span>');
+    }
+    if ($config['breadcrumb_link_last']) {
+        $breadcrumb->setLinkLast($config['breadcrumb_link_last']);
+    }
+    $content = $breadcrumb->render();
+    if ($content) {
+        ?>
+        <div class="breadcrumb"><?php echo $content; ?></div>
+        <?php
+    }
+}
+?>

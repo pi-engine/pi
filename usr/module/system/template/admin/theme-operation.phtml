@@ -1,0 +1,12 @@
+
+<h2><?php echo $title; ?></h2>
+
+<div><?php echo $message; ?></div>
+
+<div>
+    <?php
+    $url = $this->url('', array('action' => 'index'));
+    $link = '<a href="' . $url . '" title="' . __('Go to theme list page') . '">' . __('theme list page') . '</a>';
+    echo sprintf(__('Go back to %s.'), $link);
+    ?>
+</div>

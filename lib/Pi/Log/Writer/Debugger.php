@@ -1,0 +1,461 @@
+<?php
+/**
+ * Pi Debugger Writer
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
+ * @license         http://www.xoopsengine.org/license New BSD License
+ * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @package         Pi\Log
+ * @since           3.0
+ * @version         $Id$
+ */
+
+namespace Pi\Log\Writer;
+
+use Pi;
+use Zend\Log\Formatter\FormatterInterface;
+use Pi\Log\Formatter\Debugger as DebuggerFormatter;
+use Pi\Log\Formatter\DbProfiler as DbFormatter;
+use Pi\Log\Formatter\Profiler as ProfilerFormatter;
+use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
+use Zend\Log\Writer\AbstractWriter;
+
+class Debugger extends AbstractWriter
+{
+    protected $profilerFormatter;
+    protected $dbProfilerFormatter;
+    protected $systemInfoFormatter;
+
+    protected $logger = array(
+        'log'       => array(),
+        'profiler'  => array(),
+        'db'        => array(),
+        'system'    => array(),
+    );
+
+    /**
+     * get formatter for loggder writer
+     *
+     * @param  Formatter $formatter
+     * @return self
+     */
+    public function formatter()
+    {
+        if (!$this->formatter) {
+            $this->formatter = new DebuggerFormatter;
+        }
+        return $this->formatter;
+    }
+
+    /**
+     * get formatter for profiler writer
+     *
+     * @param  Formatter $formatter
+     * @return self
+     */
+    public function profilerFormatter()
+    {
+        if (!$this->profilerFormatter) {
+            $this->profilerFormatter = new ProfilerFormatter;
+        }
+        return $this->profilerFormatter;
+    }
+
+    /**
+     * get formatter for DB profiler writer
+     *
+     * @param  Formatter $formatter
+     * @return self
+     */
+    public function dbProfilerFormatter()
+    {
+        if (!$this->dbProfilerFormatter) {
+            $this->dbProfilerFormatter = new DbFormatter;
+        }
+        return $this->dbProfilerFormatter;
+    }
+
+    /**
+     * get formatter for system info writer
+     *
+     * @param  Formatter $formatter
+     * @return self
+     */
+    public function systemInfoFormatter()
+    {
+        if (!$this->systemInfoFormatter) {
+            $this->systemInfoFormatter = new SystemInfoFormatter;
+        }
+        return $this->systemInfoFormatter;
+    }
+
+    /**
+     * Write a message to logger.
+     *
+     * @param array $event event data
+     * @return void
+     */
+    protected function doWrite(array $event)
+    {
+        $message = $event;
+        if ($this->formatter() instanceof FormatterInterface) {
+            $message = $this->formatter()->format($event);
+        }
+
+        $this->logger['log'][] = $message;
+    }
+
+    /**
+     * Write a message to profiler
+     *
+     * @param array $event event data
+     * @return void
+     */
+    public function doProfiler(array $event)
+    {
+        $message = $this->profilerFormatter()->format($event);
+
+        $this->logger['profiler'][] = $message;
+    }
+
+    /**
+     * Write a message to DB profiler
+     *
+     * @param array $event event data
+     * @return void
+     */
+    public function doDb(array $event)
+    {
+        $message = $this->dbProfilerFormatter()->format($event);
+        $this->logger['db'][] = $message;
+    }
+
+    public function systemInfo()
+    {
+        $system = array();
+
+        // Execution time
+        $system['Execution time'] = sprintf('%.4f', microtime(true) - Pi::startTime()) . ' s';
+
+        // Included file count
+        $files_included = get_included_files();
+        $system['Included files'] = count ($files_included) . ' files';
+
+        // Memory usage
+        $memory = 0;
+        if (function_exists('memory_get_usage')) {
+            $memory = memory_get_usage();
+            if (function_exists('memory_get_peak_usage')) {
+                $memory .= '; peak: ' . memory_get_peak_usage();
+            }
+            $memory .= ' bytes';
+        } else {
+            // Windows system
+            if (strpos(strtolower(PHP_OS), 'win') !== false) {
+                $out = array();
+                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $out);
+                $memory = substr($out[5], strpos($out[5], ':') + 1);
+            }
+        }
+        $system['Memory usage'] = $memory ?: 'Not detected';
+
+        // Sstem environments
+        $system['OS'] = PHP_OS ?: 'Not detected';
+        $system['Web Server'] = $_SERVER['SERVER_SOFTWARE']; //PHP_SAPI ?: 'Not detected';
+        $system['PHP Version'] = PHP_VERSION;
+
+        // MySQL version
+        $pdo = Pi::db()->getAdapter()->getDriver()->getConnection()->connect()->getResource();
+        $server_version = $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
+        $client_version = $pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION);
+        $system['MySQL Version'] = sprintf('Server: %s; Client: %s', $server_version, $client_version);
+
+        // Application versions
+        $system['Pi Version'] = Pi::VERSION;
+        $system['Zend Version'] = \Zend\Version\Version::VERSION;
+        $system['Persist Engine'] = Pi::persist()->getType();
+        if (Pi::service()->hasService('cache')) {
+            $class = get_class(Pi::service('cache')->storage());
+            $system['Cache Storage'] = $class;
+        }
+        if (Pi::service()->hasService('module')) {
+            $system['Module'] = Pi::service('module')->current();
+        }
+        if (Pi::service()->hasService('theme')) {
+            $system['Theme'] = Pi::service('theme')->current();
+        }
+
+        // Affecting PHP's Behaviour
+        // See: http://www.php.net/manual/en/refs.basic.php.php
+        $extensions = array();
+        // APC
+        $APCEnabled = ini_get('apc.enabled');
+        if (PHP_SAPI == 'cli') {
+            $APCEnabled = $APCEnabled && (bool) ini_get('apc.enable_cli');
+        }
+        if ($APCEnabled) {
+            $extensions[] = 'APC: ' . phpversion('apc');
+        }
+        // APD
+        if (function_exists('apd_set_pprof_trace')) {
+            $extensions[] = 'APD: ' . \APD_VERSION;
+        }
+        // XHProf
+        if (function_exists('xhprof_enable')) {
+            $extensions[] = 'XHProf';
+        }
+        // Xdebug
+        if (extension_loaded('xdebug')) {
+            $extensions[] = 'Xdebug';
+        }
+        // Intl
+        if (extension_loaded('intl')) {
+            $extensions[] = 'Intl';
+        }
+        // cURL
+        if (function_exists('curl_exec')) {
+            $extensions[] = 'cURL';
+        }
+
+        if ($extensions) {
+            $system['Extensions'] = implode('; ', $extensions);
+        }
+
+        foreach ($system as $key => $value) {
+            $event = array(
+                'name'  => $key,
+                'value' => $value,
+            );
+            $this->logger['system'][] = $this->systemInfoFormatter()->format($event);
+        }
+    }
+
+    public function render()
+    {
+        $this->systemInfo();
+
+        // Use heredoc for log contents
+        $log =
+<<<'EOT'
+<div id="pi-logger-output">
+    <div id="pi-logger-tabs">
+EOT;
+        foreach (array_keys($this->logger) as $category) {
+            $count = count($this->logger[$category]);
+            $log .= PHP_EOL .
+<<<"EOT"
+        <span id="pi-logger-tab-{$category}"><a href="javascript:xoopsLoggerToggleCategoryDisplay('{$category}')">{$category}({$count})</a></span> |
+EOT;
+        }
+
+        $log .= PHP_EOL .
+<<<'EOT'
+        <span id="pi-logger-tab-all"><a href="javascript:xoopsLoggerToggleCategoryDisplay('all')">all</a></span>
+    </div>
+    <div id="pi-logger-categories">
+EOT;
+
+        foreach ($this->logger as $category => $events) {
+            $eventString = implode(PHP_EOL, $events);
+            $log .= PHP_EOL .
+<<<"EOT"
+        <div id="pi-logger-category-{$category}" class="pi-events">
+            <div class="pi-category">{$category}</div>
+            <!-- Event list starts -->
+            {$eventString}
+            <!-- Event list ends -->
+        </div>
+EOT;
+        }
+        $log .= PHP_EOL .
+<<<'EOT'
+    </div>
+</div>
+EOT;
+
+        // Use nowdoc for CSS contents
+        $scripts_css =
+<<<'EOT'
+<style type="text/css">
+    #pi-logger-output {
+        font-family: monospace;
+        font-size: 90%;
+        padding: 10px;
+    }
+
+    #pi-logger-output #pi-logger-tabs {
+        border-top: 1px solid;
+    }
+
+    #pi-logger-output #pi-logger-categories {
+        display: none;
+    }
+
+    #pi-logger-output a,
+    #pi-logger-output a:visited {
+        font-weight: normal;
+        color: inherit;
+    }
+
+    #pi-logger-output div.pi-events {
+        clear: both;
+    }
+
+    #pi-logger-output div.pi-category {
+        font-weight: bold;
+        padding: 10px 0 5px 0;
+    }
+
+    #pi-logger-output div.pi-event {
+        clear: both;
+    }
+
+    #pi-logger-output div.pi-event .time {
+        font-weight: bold;
+    }
+
+    #pi-logger-output div.pi-event .message {
+        margin-left: 50px;
+        font-weight: normal;
+    }
+
+    #pi-logger-output #pi-logger-errors .pi-event .message {
+        color: red;
+    }
+
+    #pi-logger-output .pi-event .error,
+    #pi-logger-output .pi-event .err {
+        color: #FF0000;
+        font-weight: bold;
+    }
+
+    #pi-logger-output .pi-event .exception {
+        color: #FF0000;
+    }
+
+    #pi-logger-output .pi-event .warning,
+    #pi-logger-output .pi-event .warn {
+        color: #D2691E;
+    }
+
+    #pi-logger-output .pi-event .notice {
+        color: #A0522D;
+    }
+
+    #pi-logger-output .pi-event .message span {
+        padding-left: 5px;
+    }
+
+    #pi-logger-output .pi-event .message .label {
+        width: 150px;
+        text-align: right;
+        float: left;
+        font-weight: bold;
+        padding: 2px 5px;
+    }
+
+    #pi-logger-output .pi-event .message .text {
+        display: block;
+        float: left;
+        padding: 2px 5px;
+    }
+</style>
+EOT;
+
+        $cookiePath = ($baseUrl = Pi::host()->get('baseUrl')) ? rtrim($baseUrl, '/') . '/' : '/';
+        // Use heredoc for JavaScript contents
+        $scripts_js =
+<<<"EOT"
+<script type="text/javascript">
+    var cookiePath = "{$cookiePath}";
+    var cookieName = "pi-logger";
+    function xoopsLoggerCreateCookie(name,value) {
+        value = value ? "+" : "-";
+        document.cookie = cookieName+"=["+name+value+"]; path=" + cookiePath;
+    }
+    function xoopsLoggerReadCookie() {
+        var ret = new Array("", 0);
+        var nameEQ = cookieName + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) {
+                var valid = c.substring(c.indexOf("[")+1, c.indexOf("]"));
+                ret[0] = valid.substring(0,valid.length-1);
+                var str = valid.substring(valid.length-1,valid.length);
+                ret[1] = (str == "+") ? 1 : 0;
+                return ret;
+            }
+        }
+        return ret;
+    }
+
+    // Toggle display for a category and set corresponding cookies
+    function xoopsLoggerToggleCategoryDisplay(name) {
+        var data = xoopsLoggerReadCookie();
+        var loggerview  = (name == data[0]) ? (data[1] ? 0 : 1) : 1;
+        return xoopsLoggerSetCategoryDisplay(name, loggerview);
+    }
+
+    // Set display for a specified category
+    function xoopsLoggerSetCategoryDisplay(name, loggerview) {
+        var logElement = document.getElementById("pi-logger-categories");
+        if (!logElement) return;
+        var old = xoopsLoggerReadCookie();
+        var oldElt = document.getElementById("pi-logger-tab-" + old[0]);
+        if (oldElt) {
+            oldElt.style.textDecoration = "none";
+        }
+        var i, elt;
+        for (i=0; i!=logElement.childNodes.length; i++) {
+            elt = logElement.childNodes[i];
+            if (!elt.tagName || elt.tagName.toLowerCase() != 'div' || !elt.id) continue;
+            var elestyle = elt.style;
+            if (name == 'all' || elt.id == "pi-logger-category-" + name) {
+                if (loggerview) {
+                    elestyle.display = "block";
+                    document.getElementById("pi-logger-tab-" + name).style.textDecoration = "underline";
+                } else {
+                    elestyle.display = "none";
+                    document.getElementById("pi-logger-tab-" + name).style.textDecoration = "none";
+                }
+            } else {
+                elestyle.display = "none";
+            }
+        }
+        logElement.style.display = "block";
+        xoopsLoggerCreateCookie(name, loggerview);
+    }
+
+    // Not used
+    function xoopsLoggerToggleElementDisplay(id) {
+        var elestyle = document.getElementById(id).style;
+        if (elestyle.display == "none") {
+            elestyle.display = "block";
+        } else {
+            elestyle.display = "none";
+        }
+    }
+
+    // Set logger view for categories
+    function xoopsLoggerSetView(data) {
+        return xoopsLoggerSetCategoryDisplay(data[0], data[1]);
+    }
+
+    // Set logger output view
+    var data = xoopsLoggerReadCookie();
+    xoopsLoggerSetView(data);
+</script>
+EOT;
+
+        echo PHP_EOL . $scripts_css . PHP_EOL. $log . PHP_EOL . $scripts_js;
+    }
+}

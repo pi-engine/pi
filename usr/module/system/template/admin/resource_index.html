@@ -1,0 +1,9 @@
+<ul><{_ text=Resources}>
+<{foreach item=section key=sect from=$sections}>
+    <li style="padding: 5px 0;">
+    <{$section.title}>
+    <{if $section.count}> (<{$section.count}>) <{/if}>
+    <{if $section.url}><a href="<{$section.url}>" title="<{$section.title}>"><{_ text=Expand}></a><{/if}>
+    </li>
+<{/foreach}>
+</ul>

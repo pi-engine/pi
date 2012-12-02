@@ -1,0 +1,66 @@
+#pi-block-widget-rediantuijian {
+    margin-bottom: 15px;
+    width: 620px;
+    height: 227px;
+    border: 1px solid #e6e6e6;
+    border-top: none;
+}
+#pi-block-widget-rediantuijian .block-header {
+    position: absolute;
+    z-index: 100;
+    background: #f5f5f5;
+    border-bottom: none;
+    height: 34px;
+    line-height: 34px;
+    padding-right: 14px;
+}
+#pi-block-widget-rediantuijian .block-header-title {
+    font:normal 16px/34px sans-serif;
+    font-weight: bold;
+    margin-left: 14px;
+}
+#pi-block-widget-rediantuijian .block-body {
+    padding: 0;
+}
+.jcarousel-skin .jcarousel-container {
+    padding: 45px 60px 20px;
+    background-color: #F5F5F5;
+}
+.jcarousel-skin .jcarousel-clip {
+    width: 480px;
+    height: 162px;
+    overflow: hidden;
+}
+.jcarousel-skin .jcarousel-item {
+    margin-left: 15px;
+    width: 150px;
+    height: 162px;
+}
+
+.jcarousel-item div {
+    margin-top: 8px !important;
+    width: 150px;
+    height: 34px;
+    line-height: 17px;
+    font-size: 13px;
+    overflow: hidden;    
+    word-wrap: break-word;
+}
+
+.jcarousel-skin .jcarousel-prev-horizontal, .jcarousel-skin .jcarousel-next-horizontal {
+    position: absolute;
+    top: 90px;
+    width: 30px;
+    height: 40px;
+    cursor: pointer;
+    background: transparent url(prev-next-horizontal.png) no-repeat 0 0;
+}
+
+.jcarousel-skin .jcarousel-prev-horizontal {
+    left: 15px;
+    background-position: 0 0;
+}
+.jcarousel-skin .jcarousel-next-horizontal {
+    right: 15px;
+    background-position: 0 -39px;
+}

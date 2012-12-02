@@ -1,0 +1,26 @@
+System module changelog
+
+
+October 8th, 2012
+=============================
+1. Upgraded to version 3.0.0-beta.4
+2. Implemented feed schema
+3. Added foot scripts to system general config
+4. Added asset versioning to system general config
+5. Implemented block subline and tabbed block
+
+September 28th, 2012
+=============================
+1. Versioned at 3.0.0-beta.3
+2. Modified navigation structure
+3. Modified module summary mechanism by removing monitor table
+
+
+September 11th, 2012
+=============================
+1. Upgraded to 3.0.0-beta.2
+2. Added route "jump"
+3. Added controller plugin "Jump"
+
+
+Taiwen Jiang

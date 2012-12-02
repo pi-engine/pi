@@ -1,0 +1,170 @@
+Pi Engine Changelog
+
+December 1st, 2012
+=============================
+1. EEFOCUS launches its first Pi powered production service http://eefocus.com/article
+2. Xoops Engine name is being migrated to Pi
+
+
+November 21st, 2012
+=============================
+1. Upgraded ZF2 to 2.0.4
+2. Added convenient methods to 404/denied/exception pages
+3. Added member management
+4. Improved cache mechanism by changing options on-fly
+
+
+October 30th, 2012
+=============================
+1. Added Xoops Engine Upload class with custom rename strategy support
+2. Refactored block management, moved block edit to widget module
+3. Added CaptureTo to HeadScript/HeadStyle/FootScript to avoid duplicated contents
+4. Added gzip compression to response output
+5. Added filesystem manipulation service based on Symphony\Filesystem
+6. Completed custom module assets in themes
+
+
+October 23rd, 2012
+=============================
+1. Changed backend menu to paired menus as following
+
+    =============================================================
+    | Tab | Tab | Tab | Tab | Tab | Tab | Tab | Tab | Tab | Tab |
+    -------------     -------------------------------------------
+    | Sub Tab | Sub Tab | Sub Tab | Sub Tab | Sub Tab | Sub Tab |
+    =============================================================
+
+    ===================
+    | Third Tab       |
+    -------------------
+    | Third Tab       |
+    -------------------
+    | Third Tab       |
+    -------------------
+    | Third Tab       |
+    ===================
+
+
+October 8th, 2012
+=============================
+1. Restored "/doc" in dev branch
+2. Changed application.standard.php to more informative application.front.php
+3. Implemented feed controllers
+4. Implemented site-wide foot scripts, useful for third-party analytics
+5. Implemented asset versioning to flush browser caches
+6. Upgraded ZF2 to 2.0.3dev
+7. Implemented Backbone in vendor
+8. Added widget module for custom blocks
+
+
+August 25th, 2011
+=============================
+1 Added new installer in '/setup'
+2 Added footScript section to layout
+3 Added Redis to system persist
+4 Added Markup component
+5 Added FTP
+6 Upgraded Zend Framework to 1.11.9
+7 Implemented gettext as primary translation engine
+8 Changed license to New BSD License
+
+
+April 20th, 2011
+=============================
+1 Added namespace for app (in /usr/apps/) as "App" and module (in www/modules) as "Module"
+2 Built WYSIWYG editor factory, integrated CKEditor and jQuery based ClEditor
+3 Built security handler and resource, added XSS filter, IP protection, super globals contamination, etc.
+4 Upgraded Zend Framework to 1.11.5
+5 Block is refactored with Xoops/Zend_Form, more controllable with style, title switch, link, etc.
+6 Added block compound, suggested by ezsky/dongbeta etc.
+7 Formulated theme schema with global namespace
+8 Changed .ini file to .ini.php for content protection, suggested by huzhenghui/ezsky/dongbeta, etc.
+9 Added QA mode: only display debug information to specified IPs, suggested by huzhenghui
+
+
+January 10th, 2011
+=============================
+1 Improved and simplified captcha mechanism
+2 Improved bootstrap to allow resource loading on-fly
+3 Added encrypt/decrypt based on 'phpseclib' package
+4 Added autoloader for legacy classes
+5 Changed class \Kernel\Service\Log name to \Kernel\Service\Logger and corresponding engine loggers to avoid conflicts between method logger::log and class name (construction method)
+6 Changed /var/caches to /var/cache, /var/configs to /var/etc, /var/data to /var/log; moved /lib/applications to separate directory /usr
+
+
+November 15th, 2010
+=============================
+1 Added multi-engine support and implemented the alternative engines "Lite", "Perfect" for non-db/non-page-cache mode
+2 Added applet mechanism for non-db widget
+3 Added ini module configs for non-db mode
+4 Added namespace for module/app (scheduled)
+5 Moved application entry files into folder htdocs/Application; Changed mainfile.php to Application/Boot.php, leaving mainfile.php to legacy applications
+
+
+November 9th, 2010
+=============================
+1 Changed namespace for Xoops_Engine to allow for multiple engines
+2 Added persist for class loader
+3 Added extended/custom pluginloader to allow for persist cache
+4 Added memcache support for session save handler
+5 Upgraded Zend Framework to 1.11.0
+6 Upgraded Smarty to 3.0 Final
+7 Refactored XOOPS/Engine APIs
+8 Refactored autoloader to allow classMap, namespace, prefix, module, plugin and adding third-party library on-fly
+
+
+October 30th, 2010
+=============================
+1 Changed Smarty plugin files name to lowercase for Smarty 3
+2 Added persistent data service, providing three storages: APC, memcached, file
+
+
+October 26th, 2010
+=============================
+1 Changed cache path from caches/xoops_cache to caches/xoops
+2 Added cache for bootstrap config
+3 Disabled pluginCache which did not help
+3 Changed hosts.ini, xoops.ini to use PHP native ini format to save time against Xoops::processKey
+
+
+October 20th, 2010
+=============================
+1 Implementation of Xoops Plugin Engine
+
+
+September 30th, 2010
+=============================
+1 Adopted Smarty3
+
+
+August someday, 2010
+The third internal preview package
+=============================
+1 Zend framework 1.10.7
+2 Table and element builder
+3 Form compound element
+4 Autoloader refactor, removed loadClass
+5 Config/Preference refactor, using Zend_Form
+6 Theme installer, inheritance and deployment
+7 Module clone and multi-installation
+8 Comment plugin implementation
+9 Pagination improvement with customizable parameter name
+
+July 28th, 2010
+The second internal preview package
+=============================
+1 User module completeness (80%)
+2 Pagination implementation
+3 Unified authentication with enforced hash policy
+4 Zend form implementation
+5 Path configuration for upload as a writable folder with web access
+
+
+July 1st, 2010
+The first internal preview package
+=============================
+Xoops Engine new architecture with modules of system, default, search (incomplete), MVC (demo) and user (started)
+
+
+Taiwen Jiang
+Xoops Engine Developer

@@ -1,0 +1,10 @@
+Widget module changelog
+
+
+October 10th, 2012
+=============================
+1. Initiative of widget mangement module
+
+
+
+Taiwen Jiang

@@ -1,0 +1,23 @@
+<div class="dropdown">
+
+<?php
+    if (!$block['id']) { ?>
+    <a href="<?php $this->url('user', array('controller' => 'login')); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
+<?php
+    } else {
+        $name = $block['name'] ?: $block['identity'];
+?>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="icon-user"></i>
+        <?php echo $this->escape($name); ?>
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="<?php echo $this->url('user', array('controller' => 'account')); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
+        <li><a href="<?php echo $this->url('user', array('controller' => 'login', 'action' => 'logout')); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+    </ul>
+<?php
+    }
+?>
+</div>
+<script>$('.dropdown-toggle').dropdown();</script>

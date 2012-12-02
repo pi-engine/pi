@@ -1,0 +1,63 @@
+<?php
+// Load translation data
+$this->i18nTheme('main');
+
+// Load Bootstrap css by Twitter Team
+$this->bootstrap();
+// Load style.css
+$this->css($this->assetTheme('css/style.css'));
+?>
+<!DOCTYPE HTML>
+<html lang="<?php echo $locale ?>">
+<head>
+    <!-- Charset -->
+    <meta charset="<?php echo $charset; ?>">
+
+    <!-- Title -->
+    <?php echo $this->headTitle(); ?>
+</head>
+<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
+    <div class="header clearfix">
+        <div class="container clearfix">
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>" class="header-logo"><?php echo $this->escapeHtml($sitename); ?></a>
+        </div>
+    </div>
+
+    <div class="wrapper">
+    <div class="container">
+        <!-- Module content starts -->
+        <?php if (!empty($content)) { ?>
+            <div class="pi-zone-module row-fluid"><?php echo $content; ?></div>
+        <?php } ?>
+        <!-- Module content ends -->
+    </div>
+    </div>
+
+    <!-- Footer starts -->
+    <div class="footer">
+        <div class="horizontal-rule"></div>
+        <div class="container">
+            <!-- Official statement starts -->
+            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a>  |
+            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a>  |
+            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a>  |
+            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a>  |
+            <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
+            <!-- Official statement ends -->
+            &copy; <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>"><?php echo $this->escapeHtml($sitename); ?></a> | Powered by <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a> | Design of <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a>
+
+        </div>
+
+        <!-- Show execution time -->
+        <?php $time = microtime(true) - Pi::startTime(); ?>
+        <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
+        <!-- Show execution time -->
+
+    </div>
+    <!-- Footer ends -->
+
+</body>
+</html>

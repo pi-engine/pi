@@ -1,0 +1,74 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->js(array(
+        $this->assetModule('script/cache.js'),
+    ));
+?>
+<style>
+.event-itmes {
+    font-size: 14px;
+    line-height: 24px;
+}
+.event-itmes th {
+    text-align: left;
+    font: bold 16px/28px arial;
+}
+.disable {
+    color: #888a8b;
+}
+</style>
+
+<ul class="tabmenu">
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Check events'); ?>"><?php _e('Events'); ?></a>
+    <li class="tabmenu-active"><?php _e('Listeners'); ?>
+</ul>
+<ul class="submenu1">
+<?php foreach ($modules as $module) { ?>
+    <?php if ($name == $module->name) { ?>
+    <li class="active"><?php echo $this->escape($module->title); ?></li>
+    <?php } else { ?>
+    <li><a href="<?php echo $this->url('', array('action' => 'listener', 'name' => $module->name)); ?>" title="<?php echo $this->escape($module->title); ?>"><?php echo $this->escape($module->title); ?></a></li>
+    <?php } ?>
+<?php } ?>
+</ul>
+<div class="submain">
+<table class="event-itmes" id="event-list">
+   <thead>
+         <th style="width: 240px;">listeners
+         <th style="width: 240px;">Events
+         <th>Operation
+   </thead>
+   <tbody>
+     <?php foreach ($listeners as $id => $listener) { ?>
+    <tr class="<?php echo $event['active']?"":"disable";  ?>">
+        <td><?php echo $listener['title']; ?></td>
+        <td><?php echo $listener['event']; ?></td>
+        <td><button class="pi-ui-btn1" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></td>
+    <?php } ?>
+   </tbody>
+
+</table>
+</div>
+<script>
+(function($){
+    $("#event-list").on("click","button",function(){
+       var $this=$(this);
+       beautAlert.done("<?php _e('Being updated.'); ?>","wait");
+       $.getJSON($this.attr("data-link")).done(function(result){
+          if(result.status==1){
+             if($this.attr("data-action")=="0"){
+                 $this.html("<?php _e('Disable'); ?>");
+                 $this.attr("data-action","1").parents("tr").removeClass("disable");
+             }else {
+                 $this.html("<?php _e('Enable'); ?>");
+                 $this.attr("data-action","0").parents("tr").addClass("disable");
+             }
+              beautAlert.done(result.message,"succ");
+          }else{
+             beautAlert.done(result.message,"fail");
+          }
+       });
+    });
+})(jQuery)
+</script>

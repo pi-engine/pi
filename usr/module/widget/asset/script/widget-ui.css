@@ -1,0 +1,63 @@
+/*carousel*/
+.upload-carousel-item, 
+.upload-carousel-btn {
+    display: inline-block;
+    vertical-align: top;
+}
+.upload-carousel-btn {
+    height: 120px;
+    border: 2px dashed #ccc;
+    width: 180px;
+    margin-bottom: 10px;
+}
+.upload-carousel-btn .icon-plus {
+    font-size: 45px;
+    color: #999;
+}
+.upload-carousel-add {
+    text-align: center;
+    margin-top: 50px;
+}
+.fileinput-button {
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+.fileinput-button input {
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    filter: alpha(opacity=0);
+}
+.upload-carousel-item {
+    border: 2px solid #ccc;
+    padding: 2px;
+    background: #fff;
+    margin: 0 10px 10px 0;
+    font-size: 10px;
+    width: 200px;
+    position: relative;
+}
+.upload-carousel-item .form-horizontal .control-label {
+    width: 40px;
+    font-size: 12px;
+}
+.upload-carousel-item .form-horizontal .controls {
+    margin-left: 45px;
+}
+.upload-carousel-item .form-horizontal .control-group {
+    margin-bottom: 8px;
+}
+.upload-carousel-item .icon-remove-sign {
+    position: absolute;
+    right: 0;
+    font-size: 16px;
+    color: #555;
+    top: -6px;
+    cursor: pointer;
+}
+.upload-carousel-sort {
+    border-style: dashed;
+    height: 280px;
+}

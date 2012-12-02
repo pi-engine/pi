@@ -1,0 +1,92 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->backbone();
+?>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<div>
+<ul class="module-lists" id="js-module">
+    <?php foreach ($modules as $directory => $module) { ?>
+    <li class="box-hover" data-name="<?php echo $directory; ?>"
+        data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>">
+         <div class="img-text-wrapper">
+               <img class="pull-left" src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>" width="120px" />
+              <div>
+                   <h4><span class="mr20"><?php echo $this->escape($module['meta']['title']); ?></span><?php echo $module['meta']['version']; ?></h4>
+                 <dl class="dl-horizontal">
+                    <dt><?php _e('Directory:'); ?>
+                    <dd><?php echo $directory; ?>
+                    <dt><?php _e('Author:'); ?>
+                    <dd>
+                        <a href="<?php echo  $module['author']['website']; ?>" target="_blank" class="link mr20"><?php echo $this->escape($module['author']['name']);  ?></a>
+                        <?php echo $module['author']['email'];  ?>
+                    <?php if (!empty($module['meta']['demo'])) { ?>
+                    <dt><?php _e('Demo:'); ?></dt><dd><a href="" target="_blank" class="link"><?php _e('In action'); ?></a>
+                    <?php } ?>
+                     <dt><?php _e('Description:'); ?></dt>
+                     <dd>
+                       <div class="pull-right btn-group" style="margin: 0 20px 0 20px;">
+                         <span  class="btn module-check">
+                             <i class="icon-check"></i>
+                             <?php _e('Check'); ?>
+                         </span>
+                        <span class="btn module-install">
+                            <i class="icon-plus"></i>
+                            <?php _e('Install'); ?>
+                        </span>
+                     </div>
+                     <?php echo $this->escape($module['meta']['description']);  ?>
+                 </dl>
+              </div>
+         </div>
+    <?php } ?>
+</ul>
+</div>
+<script>
+(function($){
+    var checkUrl="<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>",
+        bh=$(".box-hover");
+    var modal=$("<div>",{"class":"modal hide fade"}).appendTo(document.body);
+        modal.on("hidden",function(){
+            bh.removeClass("handle");
+        });
+    var ModuleList= Backbone.View.extend({
+        events:{
+          "click .module-install":"install",
+          "click .module-check"    :"check"
+        },
+        initialize:function(){
+           this.moduleCheck=$(".module-check");
+        },
+        install:function(){
+            this.toggleHand();
+            $.get(this.$el.attr("data-install")).done(function(result){
+                modal.html(result).modal("show");
+                formModule.success=this.submite.bind(this);
+            }.bind(this));
+        },
+        check:function(){
+            $.post(checkUrl,{name:this.$el.attr("data-name")})
+        },
+        toggleHand:function(){
+            this.$el.toggleClass("handle");
+        },
+        submite:function(result){
+            var el=this.$el;
+            modal.modal("hide");
+            if(result.clonable==0){
+                el.fadeOut("150",function(){
+                    el.remove();
+                });
+            }
+            alert(result.message);
+        }
+    });
+    bh.each(function(){
+         new ModuleList({
+             el: $(this)
+         });
+    });
+})(jQuery)
+
+</script>

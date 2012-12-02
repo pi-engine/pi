@@ -1,0 +1,20 @@
+
+<div class="row-fluid">
+
+<div class="span2">
+<ul class="nav nav-list vertical-menu">
+    <?php
+    foreach ($modules as $data) {
+    ?>
+        <li<?php if ($data['name'] == $name) { echo ' class="active"'; } ?>>
+            <a href="<?php echo $this->url('', array('action' => 'index', 'name' => $data['name'])); ?>" title="<?php echo $this->escape($data['title']); ?>"><?php echo $this->escape($data['title']); ?></a>
+        </li>
+    <?php } ?>
+</ul>
+</div>
+
+<div class="span10">
+    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <?php include $this->templateComponent('form'); ?>
+</div>
+</div>

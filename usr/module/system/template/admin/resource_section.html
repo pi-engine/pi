@@ -1,0 +1,14 @@
+<ul><{$title}>
+    <{foreach item=resource key=resourceId from=$resources}>
+        <li>
+            <{$resource.indent}> <{$resource.title}> (<{$resource.module}>:<{$resource.name}>) 
+            <{if $resource.privileges}>
+                <ul>
+                <{foreach item=privilege key=privilegeId from=$resource.privileges}>
+                <li><{$privilege.title}> (<{$privilege.name}>)</li>
+                <{/foreach}>
+                </ul>
+            <{/if}>
+        </li>
+    <{/foreach}>    
+</ul>

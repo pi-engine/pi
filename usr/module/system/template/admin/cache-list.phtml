@@ -1,0 +1,66 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->js(array(
+        $this->assetModule('script/cache.js'),
+    ));
+?>
+<style>
+.cache-itmes li {
+    margin-bottom: 2px;
+}
+.cache-itmes span{
+    display: inline-block;
+    width: 165px;
+    *display: inline;
+    *zoom: 1;
+}
+.cache-itmes ul {
+    padding-left: 15px;
+}
+.cache-itmes ul span {
+    width: 150px;
+}
+.flush-all {
+    margin: 10px 0 0 165px;
+}
+</style>
+
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<ul class="cache-itmes" id="cache-list">
+    <?php foreach ($list as $name => $label) { ?>
+    <li><span><?php echo $this->escape($label); ?></span><input type="button" value="<?php _e('Flush'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => $name)); ?>" />
+    <?php } ?>
+    <?php if (!empty($page)) { ?>
+    <li><span><?php echo $this->escape($page['title']); ?></span><input type="button" value="<?php _e('Flush'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page')); ?>" />
+        <ul>
+            <?php foreach ($page['modules'] as $name) { ?>
+            <li><span><?php echo $name; ?></span><input type="button" value="<?php _e('Flush'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page', 'item' => $name)); ?>"/>
+            <?php } ?>
+        </ul>
+    </li>
+    <?php } ?>
+    <li><span><?php _e('Registry'); ?></span><input type="button" value="<?php _e('Flush'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>" />
+        <ul>
+            <?php foreach ($registry as $name) { ?>
+            <li><span><?php echo $name; ?></span><input type="button" value="<?php _e('Flush'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"/>
+            <?php } ?>
+        </ul>
+    </li>
+    <li><input type="button" value="<?php _e('Flush all'); ?>" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'all')); ?>" class="flush-all"/>
+</ul>
+<script>
+(function($){
+    $("#cache-list").on("click","input",function(){
+       beautAlert.done("<?php _e('Cache flush in process'); ?>","wait");
+       $.getJSON($(this).attr("data-link")).done(function(result){
+          if(result.status==1){
+             beautAlert.done(result.message,"succ");
+          }else{
+             beautAlert.done(result.message,"fail");
+          }
+       });
+    });
+})(jQuery)
+</script>

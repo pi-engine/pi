@@ -1,0 +1,8 @@
+
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<ul>
+    <?php foreach ($user as $label => $value) { ?>
+        <li><span class="label"><?php echo $this->escape($label); ?></span><span class="text"><?php echo $this->escape($value); ?></span></li>
+   <?php } ?>
+</ul>

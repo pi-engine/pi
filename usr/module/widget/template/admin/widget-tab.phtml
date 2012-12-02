@@ -1,0 +1,184 @@
+<?php
+    $this->css($this->assetModule('script/widget-admin.css'));
+    $this->jQuery('ui/jquery-ui.custom.min.js');
+    $this->Backbone();
+?>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<?php
+    if (!empty($success)) {
+        $message = $success;
+        $class = ' alert-success';
+    } elseif (!empty($error)) {
+        $message = $success;
+        $class = ' alert-error';
+    } elseif (!empty($message)) {
+        $class = ' alert-error';
+    }
+?>
+<?php if (!empty($message)) { ?>
+<div class="alert<?php echo $class; ?>">
+    <button data-dismiss="alert" class="close" type="button">
+        ×
+    </button>
+    <?php echo $message; ?>
+</div>
+
+<script>$(".alert").alert();</script>
+<?php } ?>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+
+echo $this->formRow($form->get('title'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('description'));
+
+$elements = $form->elementList();
+foreach ($elements['hidden'] as $element) {
+    echo $this->formElement($element);
+}
+?>
+<div class="widget-tab-box" id="js-tab-form">
+  <div class="widget-tab-form">
+
+  </div>
+  <div class="widget-tab-module">
+      <ul>
+          <?php foreach($modules as $module) { ?>
+           <li class="widget-module-item" data-name="<?php echo $module['name']; ?>">
+               <div class="widget-module-div" style="cursor:pointer;">
+                   <i class="icon-caret-right"></i>
+                   <i class="icon-caret-down"></i>
+                   <?php echo $module['title']; ?>
+               </div>
+               <ul>
+               </ul>
+          <?php } ?>
+      </ul>
+  </div>
+</div>
+<script id="temp-block" type="text/template">
+    <i class="icon-remove-sign"></i>
+    <div class="control-group">
+        <label class="control-label"><?php _e('Caption'); ?></label>
+        <div class="controls">
+            <input type="text"   value="<%= caption %>" name="caption">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><?php _e('Link'); ?></label>
+        <div class="controls">
+            <input type="text"  value="<%= link %>" name="link">
+        </div>
+    </div>
+</script>
+
+<?php
+echo $this->formRow($form->get('submit'));
+echo $this->form()->closeTag();
+?>
+<script>
+    var page={
+        form:$("form#block"),
+        init:function(){
+            this.form.submit(function(e){
+                var content=[];
+                page.form.find(".widget-tab-item").each(function(){
+                    var el=$(this);
+                    content.push({
+                        caption:$.trim(el.find("[name=caption]").val()),
+                        link:$.trim(el.find("[name=link]").val()),
+                        id:el.attr("data-id")
+                    });
+                });
+                page.form.find("[name=content]").val(JSON.stringify(content));
+            });
+            this.form.find(".widget-tab-form").sortable({
+                revert:300,
+                tolerance:"pointer"
+            });
+        }
+    }
+    var BlocksCollection=new Backbone.Collection(<?php echo $content ?: '[]'; ?>);
+    var SelectedItemView=Backbone.View.extend({
+        className:"widget-tab-item form-horizontal clearfix",
+        template:_.template($("#temp-block").html()),
+        events:{
+            "click .icon-remove-sign":"removeEl",
+        },
+        initialize:function(){
+           this.model.on("destroy",this.remove,this);
+           this.$el.attr("data-id",this.model.get("id"));
+        },
+        render:function(){
+            this.model.id=null;
+            this.$el.html(this.template(this.model.toJSON()));
+            return this.el;
+        },
+        removeEl:function(){
+            this.model.destroy();
+            tabView.$("[data-id="+this.model.get("id")+"]").removeClass("selected");
+        }
+    });
+    var TabView=Backbone.View.extend({
+       el:$("#js-tab-form"),
+       events:{
+           "click .widget-module-div":"loadBlock",
+           "click [data-id]":"addClick"
+       },
+       initialize:function(){
+           this.box=this.$(".widget-tab-form");
+           this.render();
+           BlocksCollection.on("add",this.addOne,this);
+       },
+       loadBlock:function(e){
+           var tar=$(e.currentTarget).parent(".widget-module-item"),
+               ul=tar.find("ul");
+           if(!tar.attr("load")){
+               $.getJSON("<?php echo $this->url('', array('action' => 'blocklist', 'name' => ''));?>"+tar.attr("data-name")).done(function(result){
+                    tar.attr("load",1);
+                    if(result.status==1){
+                        var t='<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
+                        if(result.data.length){
+                            ul.html(_.template(t,result.data,{variable:"data"}));
+                            BlocksCollection.each(function(m){
+                                ul.find("[data-id="+m.get("id")+"]").addClass("selected");
+                            });
+                        }else{
+                            ul.html('<span class="label label-info"><?php _e('No Blocks'); ?></span>');
+                        }
+                    }
+               });
+           }
+           tar.toggleClass("active");
+       },
+       addClick:function(e){
+            var tar=$(e.currentTarget);
+            if(tar.hasClass("selected")){
+               BlocksCollection.remove(tar.attr("data-id"));
+               tar.removeClass("selected");
+            }else{
+               BlocksCollection.add({
+                   caption: $.trim(tar.text()),
+                   id: tar.attr("data-id"),
+                   link:""
+               });
+               tar.addClass("selected");
+            }
+       },
+       render: function () {
+        var m = BlocksCollection.models;
+            for (var i = 0, l = m.length; i < l; i++) {
+                this.addOne(m[i]);
+            }
+       },
+       addOne:function(m){
+           this.box.append(new SelectedItemView({
+               model: m
+           }).render());
+       }
+    });
+    tabView=new TabView;
+    page.init();
+</script>

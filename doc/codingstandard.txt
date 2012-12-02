@@ -1,0 +1,9 @@
+
+1. Versioning - Semantic Versioning Specification http://semver.org/
+2. PHP - PSR compliant, to be published
+3. HTML/CSS - Google HTML/CSS Style Guide http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
+4. JavaScript - Google JavaScript Style Guide http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+5. All code must be strictly compliant to its corresponding standards, no warning/notice messages allowed
+
+Taiwen Jiang
+September 10th, 2012

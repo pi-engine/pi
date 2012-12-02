@@ -1,0 +1,73 @@
+<?php
+/**
+ * Pi Engine host specifications
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
+ * @license         http://www.xoopsengine.org/license New BSD License
+ * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @version         $Id$
+ */
+
+//Host definition file
+//Paths/URLs to system folders
+//URIs without a leading slash are considered relative to the current Pi Engine host location
+//URIs with a leading slash are considered semi-relative (you must setup proper rewriting rules in your server conf)
+
+return array(
+    // URIs to resources
+    // If URI is a relative one then www root URI will be prepended
+    'uri'       => array(
+        // WWW root URI
+        'www'       => '%www_uri%',
+        // URI to access uploads directory
+        'upload'    => '%upload_uri%',
+        // URI to access assets directory
+        'asset'     => '%asset_uri%',
+        // URI to access static files directory
+        'static'    => '%static_uri%',
+    ),
+
+    // Paths to resources
+    // If path is a relative one then www root path will be prepended
+    'path'      => array(
+        // WWW root path
+        //'www'       => '%www_path%',
+        // Library directory
+        //'lib'       => '%lib_path%',
+        // User extension directory
+        'usr'       => '%usr_path%',
+        // User data directory
+        'var'       => '%var_path%',
+        // Application module directory
+        'module'    => '%module_path%',
+        // Theme directory
+        'theme'     => '%theme_path%',
+
+        // Path to uploads directory
+        'upload'    => '%upload_path%',
+        // Path to assets directory
+        'asset'     => '%asset_path%',
+        // Path to static files directory
+        'static'    => '%static_path%',
+
+        // Path to vendor library directory
+        // Optional, default as lib/vendor
+        'vendor'    => '%vendor_path%',
+
+        // Dependent paths
+        // Note: optional, will be located in var if not specified
+        // Path to global configuration directory
+        'config'    => '%config_path%',
+        // Path to cache files directory
+        'cache'     => '%cache_path%',
+        // Path to logs directory
+        'log'       => '%log_path%',
+    )
+);

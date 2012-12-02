@@ -1,0 +1,106 @@
+<?php
+
+/*
+
+ Block parameters;
+    title   - Block title
+    class   - Custom class name for stylesheet, optional
+    subline - Subline, HTML, optional
+    content - block contents:
+            string  - regular content
+            array   - compound content:
+                []  => Element Title (or tab title)
+                       Element content
+
+ Regular block: header + body
+ |=============================================================================|
+ | Block Title                                                                 |
+ |-----------------------------------------------------------------------------|
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ |=============================================================================|
+
+ Block w/o title
+ |=============================================================================|
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ |=============================================================================|
+
+ Block with subline
+ |=============================================================================|
+ | Block Title                             (Subline: link | link | link | more)|
+ |-----------------------------------------------------------------------------|
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ | Block conet ...                                                             |
+ |=============================================================================|
+
+ Block with tabs
+ |=============================================================================|
+ | Block Title                                   | tab | tab | tab | tab | tab |
+ |-----------------------------------------------|     |-----------------------|
+ | Block conet of first tab ...                                                |
+ | Block conet of first tab ...                                                |
+ | Block conet of first tab ...                                                |
+ |=============================================================================|
+
+ */
+?>
+
+<?php
+// For tabbed block
+if (is_array($block['content'])) {
+    $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
+}
+?>
+
+<?php /* Assign global ID, add custom stylesheet class if available */ ?>
+<div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="block-container<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
+    <?php /* Display block header section only if title, or subline or tab availabe */ ?>
+    <?php if (!empty($block['title']) || !empty($block['subline']) || is_array($block['content'])) { ?>
+    <div class="block-header-bg"></div>
+    <div class="clearfix block-header">
+        <?php /* Float position for subline and tab */ ?>
+        <?php $float = empty($block['title']) ? '' : 'pull-right'; ?>
+
+        <?php /* Display tab if available, i.e. content is an array */ ?>
+        <?php if(is_array($block['content'])) { ?>
+            <ul class="<?php echo $float; ?> block-tab">
+                <?php
+                $i = 0;
+                foreach ($block['content'] as $tab) {
+                ?>
+                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>javascript:void(0)<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $this->escape($tab['caption']); ?></a>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+
+        <?php /* Display subline if available */ ?>
+        <?php if(!empty($block['subline'])) { ?>
+            <div class="<?php echo $float; ?> block-subline"><?php echo $block['subline']; ?></div>
+        <?php } ?>
+
+        <?php /* Display title if available */ ?>
+        <span class="block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></span>
+    </div>
+    <?php } ?>
+
+    <?php /* Display tab contents if available, i.e. content is an array */ ?>
+    <?php if(!empty($block['content']) && is_array($block['content'])) { ?>
+    <div class="clearfix block-body tab-content">
+        <?php $i = 0;
+        foreach ($block['content'] as $tab) {
+        ?>
+        <div class="tab-pane<?php echo $i ? '' : ' active'; ?>" id="block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $tab['content']; ?></a></div>
+        <?php } ?>
+    </div>
+    <?php /* Display regular content */ ?>
+    <?php } else { ?>
+    <div class="clearfix block-body">
+        <?php echo $block['content']; ?>
+    </div>
+    <?php } ?>
+</div>

@@ -1,0 +1,7 @@
+.page-title {
+    background-color: YELLOW;
+    border: 1px dashed #000;
+    font-weight: bold;
+    margin: 3px;
+    padding: 3px;
+}

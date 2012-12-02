@@ -1,0 +1,41 @@
+Changelog
+
+November 2nd, Liao Wei
+=========================
+1. Upgraded to 2.2.1
+2. Split Font Awesome
+3. Split js files
+4. Added datepicker
+
+
+Oct 18th, Liao Wei
+=========================
+1. Replace bootstrap's native sprite image with Font-Awesome glyph font icons to support on-fly change of size, color, etc. for icons.
+    Sources:
+        bootstrap: http://twitter.github.com/bootstrap/getting-started.html
+        Font-Awesome:http://fortawesome.github.com/Font-Awesome/
+    Integration methods:
+        One single bootstrap file compiled with LESS, the method Xoops Engine uses:
+            1. Copy the Font Awesome font directory into your project.
+            2. Copy font-awesome.less into your bootstrap/less directory.
+            3. Open bootstrap.less and replace <code>@import "sprites.less";</code> with <code>@import "font-awesome.less";</code>
+            4. Open your project's font-awesome.less and edit the font url to ensure it points to the right place.
+                <code>
+                @font-face {
+                    font-family: 'FontAwesome';
+                    src: url('../font/fontawesome-webfont.eot');
+                    src: url('../font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+                    url('../font/fontawesome-webfont.woff') format('woff'),
+                    url('../font/fontawesome-webfont.ttf') format('truetype'),
+                    url('../font/fontawesome-webfont.svg#FontAwesome') format('svg');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+                </code>
+            5. Re-compile your LESS if using a static compiler.
+        Bootstrap with separate font-awesome CSS
+            <code>
+                <link rel="stylesheet" href="../css/bootstrap.css">
+                <link rel="stylesheet" href="../css/font-awesome.css">
+            </code>
+

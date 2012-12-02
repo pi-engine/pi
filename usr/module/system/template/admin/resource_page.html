@@ -1,0 +1,29 @@
+<ul><{$title}>
+<{foreach item=list key=id from=$resources}>
+    <li style="padding: 5px 0;">
+    <strong><{$list.title}></strong>
+    <a href="<{adminUrl module=system controller=resource action=edit id=$id}>" title="<{$list.title}>"><{_ text=Edit}></a>
+    <{if $list.delete}>
+        <a href="<{adminUrl module=system controller=resource action=delete id=$id}>" title="<{$list.title}>"><{_ text=Delete}></a>
+    <{/if}>
+    <a href="<{adminUrl module=system controller=resource action=add parent=$id}>" title="<{$list.title}>"><{_ text="Add resource"}></a>
+    <{if $list.resources}>
+    <ul>
+    <{foreach item=resource key=id from=$list.resources}>
+        <li>
+            <{$resource.indent}> <{$resource.title}> (<{$resource.name}>)
+            <a href="<{adminUrl module=system controller=resource action=edit id=$id}>" title="<{$resource.title}>"><{_ text=Edit}></a>
+            <{if $resource.delete}>
+                <a href="<{adminUrl module=system controller=resource action=delete id=$id}>" title="<{$resource.title}>"><{_ text=Delete}></a>
+            <{/if}>
+            <a href="<{adminUrl module=system controller=resource action=add parent=$id}>" title="<{$resource.title}>"><{_ text="Add resource"}></a>
+        </li>
+    <{/foreach}>
+    </ul>
+    <{/if}>
+<{/foreach}>
+</ul>
+
+<p>
+    <a href="<{adminUrl module=system controller=resource action=add section=$section}>" title="<{_ text='Add resource'}>"><{_ text='Add resource'}></a>
+</p>

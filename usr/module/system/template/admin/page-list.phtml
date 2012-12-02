@@ -1,0 +1,142 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->backbone();
+?>
+<div class="row">
+    <div class="span3">
+        <div class="sub-nav">
+            <?php
+            $items = array();
+            foreach ($modules as $key => $label) {
+                $item = array(
+                    'href'  => $this->url('', array('action' => 'index', 'name' => $key)),
+                    'label' => $label,
+                );
+                if ($name == $key) {
+                    $item['active'] = 1;
+                }
+                $items[] = $item;
+            }
+            echo $this->navMenu($items);
+            ?>
+        </div>
+    </div>
+    <div class="span9" id="js-page">
+        <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+        <?php
+        foreach ($pagesBySection as $key => $section) {
+            if (empty($section['pages'])) {
+                continue;
+            }
+        ?>
+        <div class="legend clearfix">
+            <?php if ($key == 'front') { ?>
+                <button class="pull-right btn btn-primary add-item"><?php _e('Setup a page'); ?></button>
+            <?php } ?>
+            <?php echo $this->escape($section['title']); ?>
+        </div>
+        <ul class="<?php if ($key == 'front') { ?>front<?php } ?>">
+        <?php foreach ($section['pages'] as $page) { ?>
+            <li class="box-hover" data-id="<?php echo $page['id']; ?>">
+                <div class="pull-right btn-group">
+                  <?php if ($page['custom']) { ?>
+                    <button class="btn delete-item"><?php _e('Delete'); ?></button>
+                <?php } ?>
+               <?php if ($page['block']) { ?>
+                    <a class="btn" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
+                <?php } ?>
+
+                 <?php if ($page['id']) { ?>
+                    <button class="btn edit-item"><?php _e('Edit'); ?></button>
+                <?php } ?>
+
+                </div>
+                <span><?php echo $this->escape($page['title']); ?></span>
+            </li>
+        <?php } ?>
+        </ul>
+        <?php } ?>
+    </div>
+</div>
+<script id="temp-item" type="text/template">
+   <li class="box-hover" data-id="<%= id %>">
+    <div class="pull-right btn-group">
+        <button class="btn edit-item"><?php _e('Edit'); ?></button>
+        <button class="btn delete-item"><?php _e('Delete'); ?></button>
+        <a target="_blank"  href="<?php echo $this->url('', array('action' => 'block', 'page' => '')); ?><%= id %>" class="btn"><?php _e('Dress up'); ?></a>
+    </div>
+    <span><%= title %></span>
+   </li>
+</script>
+<script>
+(function ($) {
+    var modal = $("<div>", {
+        "class": "modal hide fade"
+    }).appendTo(document.body);
+    modal.on("hide", function () {
+        pageView.$(".box-hover").removeClass("handle");
+    });
+    var PageItemView = Backbone.View.extend({
+        events: {
+            "click .edit-item": "dialog",
+            "click .delete-item": "deleteItem"
+        },
+        deleteItem: function () {
+            var el = this.$el;
+            this.toggleHandle();
+            if (confirm('<?php _e("Are you sure to delete the page?") ?>')) {
+                $.get("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function (result) {
+                    if (result == 1) {
+                        el.fadeOut(150, function () {
+                            el.remove();
+                        });
+                    }
+                });
+            }
+            this.toggleHandle();
+        },
+        dialog: function () {
+            this.toggleHandle();
+            $.get("<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>" + this.$el.attr("data-id")).done(function (result) {
+                modal.html(result);
+                modal.modal('show');
+                formModule.success = function () {
+                    modal.modal('hide');
+                }
+            });
+        },
+        toggleHandle: function () {
+            this.$el.toggleClass("handle");
+        }
+    });
+    var pageView = new(Backbone.View.extend({
+        el: $("#js-page"),
+        events: {
+            "click .add-item": "dialog"
+        },
+        initialize: function () {
+            this.$(".box-hover").each(function () {
+                new PageItemView({
+                    el: $(this)
+                });
+            });
+        },
+        dialog: function () {
+            var self = this;
+            $.get("<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>").done(function (result) {
+                modal.html(result);
+                modal.modal('show');
+                formModule.success = function (result) {
+                    modal.modal('hide');
+                    var item = $(_.template($("#temp-item").html(), result.page));
+                    self.$(".front").append(item);
+                    new PageItemView({
+                        el: item
+                    });
+                }
+            });
+        }
+    }));
+})(jQuery)
+</script>

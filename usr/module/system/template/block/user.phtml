@@ -1,0 +1,6 @@
+<h4><?php echo $this->escape($block['identity']); ?></h4>
+
+<ul>
+    <li><a href="<?php echo $this->url('user', array('module' => 'system', 'controller' => 'account')); ?>" title="<?php echo __('Profile'); ?>"><?php echo __('Profile'); ?></a>
+    <li><a href="<?php echo $this->url('user', array('module' => 'system', 'controller' => 'login', 'action' => 'logout')); ?>" title="<?php echo __('Logout'); ?>"><?php echo __('Logout'); ?></a>
+</ul>

@@ -1,0 +1,16 @@
+<ul><{_ text=Resources}>
+<{foreach item=section key=sect from=$sections}>
+    <li style="padding: 5px 0;">
+    <{$section.title}>
+    <{if $section.resources}>
+        <ul>
+        <{foreach item=resource key=dirname from=$section.resources}>
+        <li><{$resource.title}> (<{if $dirname}><{$dirname}>:<{/if}><{$resource.count}>)
+            <a href="<{$resource.url}>" title="<{$resource.title}>"><{_ text=Manage}></a>
+        </li>
+        <{/foreach}>
+        </ul>
+    <{/if}>
+    </li>
+<{/foreach}>
+</ul>

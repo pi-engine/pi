@@ -1,0 +1,450 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery('ui/jquery-ui.custom.min.js');
+    $this->backbone();
+?>
+<style>
+table {
+    width: 100%;
+}
+table td {
+    vertical-align: top;
+}
+.nav {
+    position: relative;
+    z-index: 2;
+}
+#widget-wrap {
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: #464646;
+    border-radius: 2px;
+    background: #FCFCFC;
+}
+#drag-main td {
+   background: #fcfcfc;
+   border: 1px solid #DFDFDF;
+   box-shadow: 0 1px 0 #fff inset;
+   min-width: 180px;
+}
+
+#pi-zone-1-edit,
+#pi-zone-2-edit,
+#pi-zone-3-edit,
+#pi-zone-4-edit,
+#pi-zone-5-edit,
+#pi-zone-6-edit,
+#pi-zone-7-edit,
+#pi-zone-8-edit {
+   min-height: 200px;
+}
+#pi-content-fixed {
+    clear: both;
+    border: 1px solid #ccc;
+    opacity: .8;
+    cursor: no-drop;
+    filter: alpha(opacity=80);
+    background: #EEEEEE;
+    height: 100px;
+    font:bold 16px/100px sans-serif;
+    text-align: center;
+    *width: 572px;
+}
+.widget-title {
+    font-size: 16px;
+    margin: 0 0 0 8px;
+}
+.box-bordered {
+    border: 1px solid #dfdfdf;
+}
+.box-bordered-header,
+.module-block-title,
+.pi-zone-num {
+    background-color: #F1F1F1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
+    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
+    background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
+}
+.box-bordered-header {
+    cursor: pointer;
+    font-size: 15px;
+    text-shadow: 0 1px 0 #fff;
+}
+.box-bordered-header:hover {
+    color: #000;
+}
+.box-bordered-body {
+    display: none;
+    margin: 0;
+}
+.module-block,
+.widget-clone {
+    color: #222;
+    margin-top: 10px;
+    border-radius: 2px;
+    position: relative;
+}
+.module-block:first-child,
+.widget-clone:first-child {
+    margin-top: 0;
+}
+.module-block-title {
+    box-shadow: 0 1px 0 #fff;
+    border: 1px solid #DFDFDF;
+    font-size: 14px;
+    padding: 0 5px 0 10px;
+    cursor: move;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+.module-block-desc {
+    display: none;
+    color: #333;
+    text-indent: 11px;
+    position: absolute;
+    width:100%;
+    z-index: 100;
+    background: #F5F5F5;
+    border: 1px solid #DFDFDF;
+    word-wrap: break-word;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.module-block:hover .module-block-desc,
+.widget-clone:hover .module-block-desc {
+    display: block;
+}
+#drag-main {
+    -moz-user-select: none ;
+    -khtml-user-select: none;
+    -webkit-user-select: none ;
+    user-select: none ;
+}
+.drag-btn-wrap {
+    clear: both;
+    float: right;
+    margin-bottom: 10px;
+}
+.pi-zone-num {
+    text-align: center;
+    font: bold 24px sans-serif;
+    margin: 0 0 10px 0;
+    color: #888;
+    border-bottom: 1px solid #ccc;
+    padding-top: 10px;
+}
+/*jquery ui*/
+.ui-draggable-dragging {
+    z-index: 1001;
+}
+.ui-draggable-disabled {
+   background: rgba(240,240,240,.6);
+}
+.ui-draggable-disabled .module-block-title {
+    cursor: no-drop;
+}
+.widget-clone {
+    margin: 0 10px 10px;
+}
+.clone-drag {
+    cursor: move;
+}
+.widget-placeholder {
+    border: 1px dashed #333;
+    margin: 0 auto 10px;
+}
+.main-left .widget,
+.main-right .widget,
+.main-center .widget {
+    margin: 0 auto 10px;
+}
+.ui-state-highlight,
+.ui-placeholder {
+    border: 1px dashed #111;
+    height: 21px;
+    margin: 0 10px 10px;
+}
+.ui-placeholder {
+    display: none;
+}
+.ui-state-hover .ui-placeholder {
+    display: block;
+}
+.ui-resizable {
+    position: relative;
+}
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block;
+}
+.ui-draggable-dragging {
+    width: 180px;
+}
+.theme-wrap {
+    margin: 30px 0 10px 0;
+}
+</style>
+
+<div class="row-fluid">
+    <div class="span2">
+        <div class="legend"><?php echo $title; ?></div>
+        <div id="widget-wrap" unselectable="on" onselectstart="return false;">
+            <h2 class="widget-title"><?php _e('Modules'); ?></h2>
+        </div>
+    </div>
+    <div class="span8 drag-main" id="js-page">
+        <div id="drag-main" class="clearfix">
+            <?php echo $xoops_zone; ?>
+        </div>
+    </div>
+    <div class="span2" id="js-theme">
+        <button class="btn btn-large btn-block btn-primary submit-theme"><?php _e('Submit'); ?></button>
+        <button class="btn btn-large btn-block load-theme"><img src="<?php echo $this->assetModule('image/wait.gif', null, false); ?>" class="hide mr10"><?php _e('Available Themes'); ?></button>
+        <div class="hide theme-wrap">
+            <span class="btn btn-large btn-block">︿</span>
+            <div>
+                <ul class="nav nav-pills nav-stacked" >
+
+                </ul>
+            </div>
+            <span class="btn btn-large btn-block">﹀</span>
+        </div>
+    </div>
+</div>
+
+<script id="module-temp" type="text/template">
+         <div class="box-bordered-header" >
+             <div class="pull-right">
+                 <img src="<?php echo $this->assetModule('image/wait.gif'); ?>" class="hide mr10">
+                 <b class="caret caret-big"></b>
+             </div>
+             <%= _.escape(title) %>
+         </div>
+         <ul class="box-bordered-body">
+         </ul>
+</script>
+<script id="module-block-temp" type="text/template">
+    <li data-id="<%= id %>" id="module-block<%= id %>" class="module-block">
+        <div class="module-block-title"><%= title %></div>
+        <% if(description) { %>
+        <div class="module-block-desc"><%= description%></div>
+        <% } %>
+    </li>
+</script>
+<script id="page-area-temp" type="text/template">
+    <div class="widget-clone" id="module-block<%= id %>-clone" data-id="<%= id %>">
+    <div class="module-block-title" title="<%= title %>"><span class="close">×</span><%= title %></div>
+    <% if(description) { %>
+        <div class="module-block-desc"><%= description %></div>
+    <% } %>
+    </div>
+</script>
+<script id="temp-theme" type="text/template">
+    <% _.each(data,function(item){ %>
+        <li data-name="<%= item.name %>" class="set-theme-item<% if(item.name=='<?php echo $currentTheme; ?>') { %> active<% } %>">
+            <a href="javascript:void(0)"><%= item.title %></a>
+        </li>
+    <% }) %>
+</script>
+
+<script>
+(function($){
+/*module*/
+/*module model*/
+var modules= new Backbone.Collection(<?php echo json_encode($modules); ?>);
+/*module view*/
+var ModuleListItemView = Backbone.View.extend({
+    template: _.template($("#module-temp").html()),
+    templateBlock:_.template($("#module-block-temp").html()),
+    className:"box-bordered",
+    events:{
+        "click .box-bordered-header":"loadBlock"
+    },
+    initialize:function(){
+    },
+    render:function(){
+       this.$el.html(this.template(this.model.toJSON()));
+       return this;
+    },
+    loadBlock:function(){
+        var h=this.$(".box-bordered-header"),
+            b=this.$(".box-bordered-body"),
+            img=h.find(".hide"),
+            tb=this.templateBlock,
+            self=this;
+        h.toggleClass("active");
+        if(!h.attr("data-loaded")){
+            img.removeClass("hide");
+            $.getJSON("<?php echo $this -> url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '')); ?>"+this.model.get("name")).done(function(result){
+                var data=result.data;
+                if(data.length){
+                    for(var i=0,l=data.length;i<l;i++){
+                        b.append($(tb(data[i])).data("info",data[i]));
+                    }
+                }else{
+                    b.append('<span class="label label-info"><?php _e('No Block'); ?></span>');
+                }
+                img.addClass("hide");
+                self.dragBlock(b.find(".module-block"));
+                b.slideToggle("300");
+            });
+            h.attr("data-loaded",1);
+
+        }else{
+            b.slideToggle("300");
+        }
+    },
+    dragBlock:function(el){
+       el.draggable({
+                helper : "clone",
+                handle : ".module-block-title"
+       });
+       el.each(function(){
+          var $this=$(this);
+          if($("[id*=pi-zone-]").find(".widget-clone[data-id="+$this.attr("data-id")+"]").length) {
+            $this.draggable("option", "disabled", true);
+          }
+       });
+    }
+});
+var ModuleListView=Backbone.View.extend({
+    el:$("#widget-wrap"),
+    initialize:function(){
+        this.render();
+    },
+    render:function(){
+         var m=modules.models;
+         for(var i=0,l=m.length;i<l;i++){
+             this.$el.append(new ModuleListItemView({model:m[i]}).render().el);
+         }
+    }
+});
+new ModuleListView;
+
+/*page*/
+var blocks=<?php echo json_encode($blocks); ?>;
+var PageItemView=Backbone.View.extend({
+     template:_.template($("#page-area-temp").html()),
+     initialize:function(){
+         this.render();
+     },
+     render:function(){
+       var m=this.model,
+           el=this.$el;
+       for(var i=0,l=m.length;i<l;i++){
+           el.append(this.template(m[i]));
+       }
+       return this;
+    }
+});
+var ThemeListView = Backbone.View.extend({
+    template: $("#temp-theme").html(),
+    el: $("#js-theme"),
+    events: {
+        "click .load-theme": "loadTheme",
+        "click .submit-theme": "submitTheme",
+        "click .set-theme-item":"setTheme"
+    },
+    initialize: function () {
+
+    },
+    loadTheme: function () {
+        var w = this.$(".theme-wrap"),
+            self=this,
+            u = w.find("ul");
+        w.fadeToggle("200");
+        if (!w.attr("data-load")) {
+            var img = this.$("img.hide").removeClass("hide");
+            $.getJSON("<?php echo $this->url('', array('action' => 'themelist')); ?>").done(function (result) {
+                u.html(_.template(self.template, _.toArray(result),{variable:'data'}));
+                img.addClass("hide");
+            });
+            w.attr("data-load", 1);
+        }
+    },
+    submitTheme: function () {
+        var data = {
+            page: parseInt(<?php echo $page['id']; ?>),
+            blocks: {}
+        }, b = $("[id*=pi-zone-]"),
+            ret;
+        for (var i = 0; i < 8; i++) {
+            ret = [];
+            b.eq(i).find(".widget-clone").each(function () {
+                ret.push(parseInt($(this).attr("data-id")));
+            });
+            if (ret.length) {
+                data.blocks[i] = ret;
+            }
+        }
+        $.post("<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'save')); ?>", data).done(function (result) {
+            alert("<?php _e('Data saved successfully.'); ?>");
+        });
+    },
+    setTheme:function(e){
+        this.$(".set-theme-item").removeClass("active");
+        var tar=$(e.currentTarget);
+        tar.addClass("active");
+        $.getJSON("<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => ''))?>"+tar.attr("data-name")).done(function(result){
+            var org=[""];
+                for(var i=1;i<9;i++){
+                       org.push($("#pi-zone-"+i+"-edit").find(".ui-placeholder,.pi-zone-num").remove().end().html());
+                }
+                $("#drag-main").html(result.content.content);
+                for(var i=1;i<9;i++){
+                       $("#pi-zone-"+i+"-edit").html(org[i]);
+                }
+              initPageEvent();
+        });
+    }
+});
+var initPageEvent=function(){
+     var drag=$("[id*=pi-zone-]");
+        drag.droppable({
+            accept : "#widget-wrap .module-block",
+            hoverClass : "ui-state-hover",
+            drop : function(event, ui) {
+                var h = ui.draggable,
+                    m = h.data("info");
+                h.draggable("option", "disabled", true);
+                $(_.template($("#page-area-temp").html(),{
+                    title:m.title,
+                    id:m.id,
+                    description:m.description
+                })).insertBefore($(this).find(".ui-placeholder"));
+            }
+        }).append("<div class='ui-placeholder'></div>");
+        drag.each(function(){
+           var $this=$(this);
+           $this.css("min-height",$this.parent().height());
+           $this.prepend("<div class='pi-zone-num'>"+$this.attr("id").replace(/[a-z-]/g,"")+"</div>");
+        });
+        drag.sortable({
+            placeholder : "ui-state-highlight",
+            connectWith : drag,
+            items : ".widget-clone",
+            revert : 300
+        });
+        drag.on("click",".close",function(e){
+            var tar = $(e.target), p = tar.parents(".widget-clone");
+            p.fadeOut(100, function() {
+                p.remove();
+                $("#" + p.attr("id").replace(/\-clone$/, "")).draggable("option", "disabled", false);
+            });
+        });
+}
+
+for(var i in blocks){
+    if(blocks.hasOwnProperty(i)){
+        new PageItemView({el:$("#pi-zone-"+(parseInt(i)+1)+"-edit"),model:_.toArray(blocks[i])});
+    }
+}
+initPageEvent();
+new ThemeListView;
+})(jQuery)
+</script>

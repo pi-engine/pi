@@ -1,0 +1,46 @@
+<?php
+    $this->css($this->assetModule('script/widget-admin.css', 'widget'));
+    $this->jQuery('ui/jquery-ui.custom.min.js');
+?>
+<div id="js-widget">
+    <div class="legend"><?php _e('Installed widgets'); ?></div>
+    <ul class="widget-list" data-list="add">
+        <?php  foreach ($widgets['active'] as $id => $widget) {  ?>
+        <li data-name="<?php echo $widget['name']; ?>">
+            <div class="widget-hd"><strong><?php echo $this->escape($widget['block']['title']); ?></strong></div>
+            <div class="widget-description">
+                <?php echo $this->escape($widget['block']['description']); ?>
+            </div>
+        <?php } ?>
+    </ul>
+    <div class="legend"><?php _e('Available widgets'); ?></div>
+    <ul class="widget-list" data-list="delete">
+        <?php foreach ($widgets['available'] as $id => $block) { ?>
+        <li data-name="<?php echo $block['name']; ?>">
+            <div class="widget-hd"><strong><?php echo $this->escape($block['title']); ?></strong></div>
+            <div class="widget-description">
+                <?php echo $this->escape($block['description']); ?>
+            </div>
+        <?php } ?>
+    </ul>
+</div>
+<script>
+(function($){
+   var wl = $(".widget-list");
+   wl.sortable({
+          connectWith : wl,
+          revert : 300,
+          placeholder:"widget-placeholder",
+          handle:".widget-hd",
+          receive:function(e,ui){
+              var s=ui.sender,
+                  name=ui.item.attr("data-name");
+              if(s.attr("data-list")=="add"){
+                  $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>"+name);
+              }else{
+                  $.getJSON("<?php echo $this->url('', array('action' => 'add', 'name' => '')); ?>"+name);
+              }
+          }
+    })
+})(jQuery)
+</script>

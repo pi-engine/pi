@@ -1,0 +1,10 @@
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<p>
+    <span class="text-info" style="margin-right: 10px;"><?php _e('Page content type:'); ?></span>
+    <a class="btn<?php if ('text' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="text" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'text')); ?>" title="<?php _e('Only plaintext content is allowed.'); ?>"><?php echo __('Text'); ?></a>
+    <a class="btn<?php if ('html' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="html" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'html')); ?>" title="<?php _e('HTML tags allowed in content.'); ?>"><?php echo __('HTML'); ?></a>
+    <a class="btn<?php if ('markdown' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="markdown" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'markdown')); ?>" title="<?php _e('Markdown syntax allowed in content.'); ?>"><?php echo __('Markdown'); ?></a>
+</p>
+
+<?php include $this->templateComponent('form'); ?>
