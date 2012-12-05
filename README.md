@@ -11,7 +11,7 @@ To get started, checkout http://www.xoopsengine.org!
 Quick start
 -----------
 
-Clone the repo, `git clone git://github.com/taiwen/framework.git`, or [download the latest release](https://github.com/taiwen/framework/zipball/master).
+Clone the repo, `git clone git://github.com/taiwen/pi.git`, or [download the latest release](https://github.com/taiwen/pi/zipball/master).
 
 
 
@@ -39,7 +39,7 @@ Bug tracker
 
 To report a bug, please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-https://github.com/taiwen/framework/issues
+https://github.com/taiwen/pi/issues
 
 
 
@@ -127,6 +127,7 @@ Authors
 + Liao Wei
 + Simon Zhang
 + Liu Chuang
++ Danyi Feng
 
 **Longquan Monastery Team**
 + Liu Hao
