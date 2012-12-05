@@ -42,16 +42,16 @@ abstract class AbstractController
 
             // Physical path to host configuration file
             // For performance consideration it is recommended to be specified if there is only one host; Otherwise it will be automatically looked up in central host specifications
-            define('XOOPS_PATH_HOST', $vars['config']['path'] . '/host.php');
+            define('PI_PATH_HOST', $vars['config']['path'] . '/host.php');
 
             // Physical path to www directory WITHOUT trailing slash
-            define('XOOPS_PATH_WWW', $vars['www']['path']);
+            define('PI_PATH_WWW', $vars['www']['path']);
 
             // Physical path to default library directory WITHOUT trailing slash
-            define('XOOPS_PATH_LIB', $vars['lib']['path']);
+            define('PI_PATH_LIB', $vars['lib']['path']);
             /**#@-*/
 
-            include XOOPS_PATH_LIB . '/Pi.php';
+            include PI_PATH_LIB . '/Pi.php';
 
 
             $locale = $this->wizard->getLocale();

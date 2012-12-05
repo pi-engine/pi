@@ -15,7 +15,7 @@ Oct 18th, Liao Wei
         bootstrap: http://twitter.github.com/bootstrap/getting-started.html
         Font-Awesome:http://fortawesome.github.com/Font-Awesome/
     Integration methods:
-        One single bootstrap file compiled with LESS, the method Xoops Engine uses:
+        One single bootstrap file compiled with LESS, the method Pi Engine uses:
             1. Copy the Font Awesome font directory into your project.
             2. Copy font-awesome.less into your bootstrap/less directory.
             3. Open bootstrap.less and replace <code>@import "sprites.less";</code> with <code>@import "font-awesome.less";</code>

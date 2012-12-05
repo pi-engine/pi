@@ -1,9 +1,10 @@
 Pi Engine Changelog
 
-December 1st, 2012
+
+December 4th, 2012
 =============================
-1. EEFOCUS launches its first Pi powered production service http://eefocus.com/article
-2. Xoops Engine name is being migrated to Pi
+1. Upgraded ZF2 to 2.0.5
+2. Changed project name to Pi Engine
 
 
 November 21st, 2012
@@ -167,4 +168,4 @@ Xoops Engine new architecture with modules of system, default, search (incomplet
 
 
 Taiwen Jiang
-Xoops Engine Developer
+Xoops/Pi Engine Developer

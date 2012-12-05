@@ -68,7 +68,7 @@ class Image extends ZendImage
     {
         if (!isset($this->session) || (null === $this->session)) {
             $id = $this->getId();
-            $this->session = Pi::service('session')->container('Xoops_Captcha_' . $id);
+            $this->session = Pi::service('session')->container('Pi_Captcha_' . $id);
             $this->session->setExpirationHops(1, null, true);
             $this->session->setExpirationSeconds($this->getTimeout());
         }

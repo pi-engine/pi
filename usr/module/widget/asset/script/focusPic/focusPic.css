@@ -42,6 +42,7 @@
     margin: 0;
     font-size: 14px;
     color: #fff;
+    width: 250px;
 }
 .carousel-caption {
     position: absolute;

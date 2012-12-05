@@ -6,7 +6,7 @@
     in the statement below)
 
     ```sh
-    % git clone https://github.com/taiwen/framework.git
+    % git clone https://github.com/taiwen/pi.git
     % cd framework
     ```
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine Editor Default
+ * Widget information classification
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,29 +11,21 @@
  *
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author          Chuang Liu <liuchuang@eefocus.org.cn>
  * @since           3.0
- * @package         Pi\Editor
+ * @package         Module\Widget
  * @version         $Id$
  */
 
-
-namespace Pi\Editor\Pi;
-
-use Pi\Editor\AbstractRenderer;
-//use Zend\View\Renderer\RendererInterface as Renderer;
-use Zend\Form\ElementInterface;
-
-class Renderer extends AbstractRenderer
-{
-    /**
-     * Renders editor contents
-     *
-     * @param  ElementInterface $element
-     * @return string
-     */
-    public function render(ElementInterface $element)
-    {
-        return $this->view->formTextarea($element);
-    }
-}
+// Widget meta
+return array(
+    'title'         => __('资讯分类'),
+    'description'   => __('Block to display static information classification'),
+    'template'      => 'infoclassification',
+    'config'        => array(
+    ),
+    'access'        => array(
+        'guest'     => 0,
+        'member'    => 1,
+    ),
+);

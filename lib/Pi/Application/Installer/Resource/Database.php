@@ -37,15 +37,15 @@ use Pi\Application\Installer\SqlSchema;
  *      PRIMARY KEY  (`id`)
  *  ) ENGINE=InnoDB;
  * </code>
- * Translated format: global prefix 'xoops_', module demo prefix 'demo_', system prefix 'core_'
+ * Translated format: global prefix 'pi_', module demo prefix 'demo_', system prefix 'core_'
  * <code>
- *  CREATE TABLE `xoops_demo_test` (
+ *  CREATE TABLE `pi_demo_test` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
  *      `message` varchar(255)            NOT NULL default '',
  *      PRIMARY KEY  (`id`)
  *  ) ENGINE=InnoDB;
  *
- *  CREATE TABLE `xoops_core_systable` (
+ *  CREATE TABLE `pi_core_systable` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
  *      `message` varchar(255)            NOT NULL default '',
  *      PRIMARY KEY  (`id`)

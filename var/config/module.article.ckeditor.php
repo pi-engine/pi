@@ -1,7 +1,7 @@
 <?php
 // CKEditor config
-
-$url = Pi::url('') . '/script/editor/ckeditor/plugins/articlepagebreak/assets/articlepagebreak.css';
+$baseUrl = Pi::url('');
+$url = $baseUrl.'/script/editor/ckeditor/plugins/articlepagebreak/assets/articlepagebreak.css';
 return array(
     'attributes'    => array(
     ),

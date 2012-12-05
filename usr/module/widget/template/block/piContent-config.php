@@ -22,7 +22,7 @@ return array(
     'title'         => __('Pi Engine top contents'),
     'description'   => __('Block to display Pi Engine top and hot contents'),
     //'template'      => 'pi-content',
-    'render'        => array('XoopsContent', 'test'),
+    'render'        => array('PiContent', 'test'),
     'config'        => array(
         // text option
         'subline' => array(

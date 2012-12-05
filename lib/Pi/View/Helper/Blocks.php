@@ -122,6 +122,9 @@ class Blocks extends AbstractHelper
     public function load($zone = null)
     {
         if (null === $this->blocks) {
+            // Profiling
+            Pi::service('log')->start('BLOCKS');
+
             $layoutBlocks = array();
 
             // Read block IDs
@@ -168,6 +171,9 @@ class Blocks extends AbstractHelper
                 }
             }
             $this->blocks = $layoutBlocks;
+
+            // Profiling
+            Pi::service('log')->end('BLOCKS');
         }
 
         $blocks = (null === $zone) ? $this->blocks : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : array());

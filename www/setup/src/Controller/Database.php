@@ -147,7 +147,7 @@ class Database extends AbstractController
 
     public function indexAction()
     {
-        //define('XOOPS_BOOT_SKIP', true);
+        //define('PI_BOOT_SKIP', true);
         //include dirname($this->wizard->getRoot()) . '/boot.php';
         //echo Pi::path('config');
         $this->loadForm();

@@ -83,14 +83,14 @@ class Pi
      * @var string
      * @access public
      */
-    const PATH_LIB = XOOPS_PATH_LIB;
+    const PATH_LIB = PI_PATH_LIB;
 
     /**
      * Path to www root
      * @var string
      * @access public
      */
-    const PATH_WWW = XOOPS_PATH_WWW;
+    const PATH_WWW = PI_PATH_WWW;
 
     /**
      * Reference to application host
@@ -186,10 +186,10 @@ class Pi
          * Initialize Host
          */
         $config = array();
-        $config['host']['path']['lib'] = constant('XOOPS_PATH_LIB');
-        $config['host']['path']['www'] = constant('XOOPS_PATH_WWW');
-        if (constant('XOOPS_PATH_HOST')) {
-            $config['file'] = constant('XOOPS_PATH_HOST');
+        $config['host']['path']['lib'] = constant('PI_PATH_LIB');
+        $config['host']['path']['www'] = constant('PI_PATH_WWW');
+        if (constant('PI_PATH_HOST')) {
+            $config['file'] = constant('PI_PATH_HOST');
         }
         static::host($config);
         /**#@-*/

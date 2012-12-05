@@ -14,11 +14,11 @@ $this->js($this->assetModule('script/jcarousel/jcarousel-min.js','widget'));
                 $str= !empty($item['link']) ? $item['link'] : 'javascript:void(0)'; 
         ?>
         <li class="item"> 
-            <a href="<?php echo $str; ?>">
-                <img src="<?php echo $item['image']; ?>" style="height:115px;width:150px;" >
+            <a target="_blank" href="<?php echo $str; ?>">
+                <img src="<?php echo $item['image']; ?>" style="height:114px;width:152px;" >
             </a>
             <div style="text-align:center;margin-top:5px;">
-                <a href="<?php echo $str; ?>" title="<?php echo $item['caption']; ?>" class="link"><?php echo $item['caption']; ?></a>
+                <a target="_blank" href="<?php echo $str; ?>" title="<?php echo $item['caption']; ?>" class="link"><?php echo $item['caption']; ?></a>
             </div>   
         <?php } ?>   
     </ul>  

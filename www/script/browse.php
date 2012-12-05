@@ -28,11 +28,11 @@
  *
  * Note: No evidence is collected for so-called better performance yet.
  */
-//define("XOOPS_HEADER_TYPE", 'SENDFILE');
+//define("PI_HEADER_TYPE", 'SENDFILE');
 /*#@-*/
 
 // Skip engine bootup
-define('XOOPS_BOOT_SKIP', 1);
+define('PI_BOOT_SKIP', 1);
 // Disable error_reporting
 define('APPLICATION_ENV', 'production');
 
@@ -141,13 +141,13 @@ header('Content-type: ' . $content_type);
  */
 /** #@- */
 
-if (defined('XOOPS_HEADER_TYPE')) {
+if (defined('PI_HEADER_TYPE')) {
     // For nginx X-Accel-Redirect
-    if ('ACCEL_REDIRECT' === XOOPS_HEADER_TYPE) {
+    if ('ACCEL_REDIRECT' === PI_HEADER_TYPE) {
         header('X-Accel-Redirect: ' . $path);
         return;
     // For apache X-Sendfile
-    } elseif ('SENDFILE' === XOOPS_HEADER_TYPE) {
+    } elseif ('SENDFILE' === PI_HEADER_TYPE) {
         header('X-Sendfile: ' . $path);
         return;
     }

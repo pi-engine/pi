@@ -1,6 +1,6 @@
 <?php
 /**
- * Security check for Pi Engine
+ * Pi module installer resoure
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,25 +12,28 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
- * @package         Security
+ * @since           3.0
+ * @package         Module\Page
+ * @subpackage      Installer
  * @version         $Id$
  */
 
-namespace Pi\Security;
+namespace Module\Page\Installer\Resource;
 
-abstract class AbstractSecurity
+use Pi;
+use Pi\Application\Installer\Resource\Page as BasicPage;
+
+class Page extends BasicPage
 {
-    const MESSAGE = "DEFINE SPECIFIC MESSAGE";
-
     /**
-     * Check security settings
+     * Overwrite regular page updater to avoid page deletion
      *
-     * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
+     * @return boolean
      */
-    public static function check($options = null)
+    public function updateAction()
     {
-        throw new Exception('Access the abstract method is not allowed.');
-        return null;
+        $module = $this->event->getParam('module');
+        Pi::service('registry')->page->clear($module);
+        return true;
     }
 }

@@ -39,10 +39,24 @@ class CacheController extends ActionController
 
         $cacheList = array(
             'stat'          => __('File status cache'),
+            'apc'           => __('APC file cache'),
             'folder'        => __('System cache file folder'),
             'persist'       => __('System persistent data'),
             'application'   => __('Application cache'),
         );
+        if (!function_exists('apc_clear_cache')) {
+            unset($cacheList['apc']);
+        } elseif (class_exists('\\APCIterator')) {
+            $apcIterator = new \APCIterator('file');
+            $size = $apcIterator->getTotalSize();
+            foreach (array('','K','M','G') as $i => $k) {
+                if ($size < 1024) break;
+                $size /= 1024;
+            }
+            $totalSize = sprintf("%5.1f %s", $size, $k);
+            $totalCount = $apcIterator->getTotalCount();
+            $cacheList['apc'] .= ' (' . $totalCount . '-' . $totalSize . ')';
+        }
         $cacheStorageClass = get_class(Pi::service('cache')->storage());
         $cacheStorageName = substr($cacheStorageClass, strrpos($cacheStorageClass, '\\') + 1);
         $cacheList['application'] = sprintf(__('Application cache [%s]'), $cacheStorageName);
@@ -87,6 +101,9 @@ class CacheController extends ActionController
             case 'folder':
                 $this->flushFolder();
                 break;
+            case 'apc':
+                $this->flushApc();
+                break;
             case 'persist':
                 Pi::persist()->flush();
                 break;
@@ -105,6 +122,7 @@ class CacheController extends ActionController
                 break;
             case 'all':
                 clearstatcache(true);
+                $this->flushApc();
                 $this->flushFolder();
                 Pi::persist()->flush();
                 Pi::service('registry')->flush();
@@ -119,6 +137,16 @@ class CacheController extends ActionController
             'message'   => __('Cache is flushed successfully.'),
         );
         //$this->redirect()->toRoute('', array('action' => 'index', 'type' => $type));
+    }
+
+    protected function flushApc()
+    {
+        if (!function_exists('apc_clear_cache')) {
+            return;
+        }
+        apc_clear_cache();
+
+        return;
     }
 
     protected function flushFolder()

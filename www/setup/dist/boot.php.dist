@@ -19,16 +19,16 @@
  */
 // Physical path to host configuration file
 // For performance consideration it is recommended to be specified if there is only one host; Otherwise it will be automatically looked up in central host specifications
-define('XOOPS_PATH_HOST', '%host%');
+define('PI_PATH_HOST', '%host%');
 
 // Physical path to www directory WITHOUT trailing slash
-define('XOOPS_PATH_WWW', str_replace('\\', '/', __DIR__));
+define('PI_PATH_WWW', str_replace('\\', '/', __DIR__));
 
 // Physical path to default library directory WITHOUT trailing slash
-define('XOOPS_PATH_LIB', '%lib%');
+define('PI_PATH_LIB', '%lib%');
 /**#@-*/
 
-include XOOPS_PATH_LIB . '/Pi.php';
-if (!defined('XOOPS_BOOT_SKIP')) {
+include PI_PATH_LIB . '/Pi.php';
+if (!defined('PI_BOOT_SKIP')) {
     return Pi::boot();
 }

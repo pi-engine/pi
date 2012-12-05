@@ -3,7 +3,7 @@
  * Connect to Pi Engine system
  */
 // Skip engine bootup
-define('XOOPS_BOOT_SKIP', 1);
+define('PI_BOOT_SKIP', 1);
 // Disable error_reporting
 define('APPLICATION_ENV', 'production');
 

@@ -350,11 +350,11 @@ SCRIPT;
             ),
             'path_upload'   => array(
                 _t('Upload directory'),
-                _t('Physical path to upload directory without trailing slash. A relative path will be allocated in XOOPS root directory; PHP disabled.'),
+                _t('Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'),
             ),
             'url_upload'    => array(
                 _t('URL of upload root'),
-                _t('URL that will be used to access upload directory. XOOPS root URL will be prepended if relative URL is used.'),
+                _t('URL that will be used to access upload directory. PI root URL will be prepended if relative URL is used.'),
             ),
             'path_static'   => array(
                 _t('Static file directory'),

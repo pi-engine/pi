@@ -1,4 +1,4 @@
-# Set Xoops/Pi application environment, valid values: production, debug, development
+# Set Pi application environment, valid values: production, debug, development
 #SetEnv APPLICATION_ENV production
 
 # Enable runtime rewriting engine

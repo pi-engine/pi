@@ -13,7 +13,7 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @since           3.0
- * @package         Xoops_Editor
+ * @package         Pi\Editor
  * @version         $Id$
  */
 

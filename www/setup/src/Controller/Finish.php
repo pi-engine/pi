@@ -51,10 +51,10 @@ class Finish extends AbstractController
         }
         $content = str_replace('%host%', $vars['config']['path'] . '/host.php', $content);
         /*
-        $content = preg_replace('/(define\()([\'"])(XOOPS_PATH_LIB)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'XOOPS_PATH_LIB\', \'' . $vars['lib']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(XOOPS_PATH_WWW)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'XOOPS_PATH_WWW\', \'' . $vars['www']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(XOOPS_PATH_VAR)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'XOOPS_PATH_VAR\', \'' . $vars['var']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(XOOPS_PATH_HOST)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'XOOPS_PATH_HOST\', \'' . $vars['config']['path'] . '/host.php\')', $content);
+        $content = preg_replace('/(define\()([\'"])(PI_PATH_LIB)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_LIB\', \'' . $vars['lib']['path'] . '\')', $content);
+        $content = preg_replace('/(define\()([\'"])(PI_PATH_WWW)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_WWW\', \'' . $vars['www']['path'] . '\')', $content);
+        $content = preg_replace('/(define\()([\'"])(PI_PATH_VAR)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_VAR\', \'' . $vars['var']['path'] . '\')', $content);
+        $content = preg_replace('/(define\()([\'"])(PI_PATH_HOST)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_HOST\', \'' . $vars['config']['path'] . '/host.php\')', $content);
         */
         $configs[] = array('file' => $file, 'content' => $content);
         /**#@-*/

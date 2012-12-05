@@ -251,13 +251,13 @@ EOT;
             $count = count($this->logger[$category]);
             $log .= PHP_EOL .
 <<<"EOT"
-        <span id="pi-logger-tab-{$category}"><a href="javascript:xoopsLoggerToggleCategoryDisplay('{$category}')">{$category}({$count})</a></span> |
+        <span id="pi-logger-tab-{$category}"><a href="javascript:piLoggerToggleCategoryDisplay('{$category}')">{$category}({$count})</a></span> |
 EOT;
         }
 
         $log .= PHP_EOL .
 <<<'EOT'
-        <span id="pi-logger-tab-all"><a href="javascript:xoopsLoggerToggleCategoryDisplay('all')">all</a></span>
+        <span id="pi-logger-tab-all"><a href="javascript:piLoggerToggleCategoryDisplay('all')">all</a></span>
     </div>
     <div id="pi-logger-categories">
 EOT;
@@ -376,11 +376,11 @@ EOT;
 <script type="text/javascript">
     var cookiePath = "{$cookiePath}";
     var cookieName = "pi-logger";
-    function xoopsLoggerCreateCookie(name,value) {
+    function piLoggerCreateCookie(name,value) {
         value = value ? "+" : "-";
         document.cookie = cookieName+"=["+name+value+"]; path=" + cookiePath;
     }
-    function xoopsLoggerReadCookie() {
+    function piLoggerReadCookie() {
         var ret = new Array("", 0);
         var nameEQ = cookieName + "=";
         var ca = document.cookie.split(';');
@@ -399,17 +399,17 @@ EOT;
     }
 
     // Toggle display for a category and set corresponding cookies
-    function xoopsLoggerToggleCategoryDisplay(name) {
-        var data = xoopsLoggerReadCookie();
+    function piLoggerToggleCategoryDisplay(name) {
+        var data = piLoggerReadCookie();
         var loggerview  = (name == data[0]) ? (data[1] ? 0 : 1) : 1;
-        return xoopsLoggerSetCategoryDisplay(name, loggerview);
+        return piLoggerSetCategoryDisplay(name, loggerview);
     }
 
     // Set display for a specified category
-    function xoopsLoggerSetCategoryDisplay(name, loggerview) {
+    function piLoggerSetCategoryDisplay(name, loggerview) {
         var logElement = document.getElementById("pi-logger-categories");
         if (!logElement) return;
-        var old = xoopsLoggerReadCookie();
+        var old = piLoggerReadCookie();
         var oldElt = document.getElementById("pi-logger-tab-" + old[0]);
         if (oldElt) {
             oldElt.style.textDecoration = "none";
@@ -432,11 +432,11 @@ EOT;
             }
         }
         logElement.style.display = "block";
-        xoopsLoggerCreateCookie(name, loggerview);
+        piLoggerCreateCookie(name, loggerview);
     }
 
     // Not used
-    function xoopsLoggerToggleElementDisplay(id) {
+    function piLoggerToggleElementDisplay(id) {
         var elestyle = document.getElementById(id).style;
         if (elestyle.display == "none") {
             elestyle.display = "block";
@@ -446,13 +446,13 @@ EOT;
     }
 
     // Set logger view for categories
-    function xoopsLoggerSetView(data) {
-        return xoopsLoggerSetCategoryDisplay(data[0], data[1]);
+    function piLoggerSetView(data) {
+        return piLoggerSetCategoryDisplay(data[0], data[1]);
     }
 
     // Set logger output view
-    var data = xoopsLoggerReadCookie();
-    xoopsLoggerSetView(data);
+    var data = piLoggerReadCookie();
+    piLoggerSetView(data);
 </script>
 EOT;
 

@@ -21,7 +21,7 @@ namespace Module\Widget\Render;
 
 use Pi;
 
-class XoopsContent
+class PiContent
 {
     public static function render($options, $module = null)
     {

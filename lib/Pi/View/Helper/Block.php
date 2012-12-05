@@ -155,14 +155,25 @@ class Block extends AbstractHelper
                 'namespace' => $block['module'] ?: 'system',
             );
             $blockData = Pi::service('cache')->getItem($cacheKey, $cacheOptions);
+            if (null !== $blockData) {
+                $blockData = json_decode($blockData, true);
+            }
         }
         if (null === $blockData) {
+
+            // Profiling
+            Pi::service('log')->start('BLOCK: ' . $blockRow->title);
+
             $blockData = $this->buildBlock($blockRow, $options);
+
+            // Profiling
+            Pi::service('log')->end('BLOCK: ' . $blockRow->title);
+
             if (false === $blockData) {
                 return false;
             }
             if ($cacheOptions) {
-                Pi::service('cache')->setItem($cacheKey, $blockData, $cacheOptions);
+                Pi::service('cache')->setItem($cacheKey, json_encode($blockData), $cacheOptions);
             }
         } else {
             if (Pi::service()->hasService('log')) {

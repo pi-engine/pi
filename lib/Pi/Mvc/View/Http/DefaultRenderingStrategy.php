@@ -20,6 +20,7 @@
 
 namespace Pi\Mvc\View\Http;
 
+use Pi;
 use Zend\Mvc\View\Http\DefaultRenderingStrategy as ZendDefaultRenderingStrategy;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ModelInterface as ViewModel;
@@ -87,6 +88,9 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
             return;
         }
 
+        // Profiling
+        Pi::service('log')->start('RENDER');
+
         // Set up AJAX layout
         if ($request->isXmlHttpRequest()) {
             $viewModel->setTemplate($this->getAjaxLayoutTemplate());
@@ -105,6 +109,9 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
         $view->setRequest($request);
         $view->setResponse($response);
         $view->render($viewModel);
+
+        // Profiling
+        Pi::service('log')->end('RENDER');
 
         return $response;
     }

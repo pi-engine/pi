@@ -429,7 +429,7 @@ $config['item'] = array(
         'title'         => 'Username backlist',
         'description'   => 'Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.',
         'edit'          => 'textarea',
-        'value'         => 'webmaster|^xoops|^admin',
+        'value'         => 'webmaster|^pi|^admin',
         'category'      => 'user',
     ),
 
@@ -437,7 +437,7 @@ $config['item'] = array(
         'title'         => 'Email backlist',
         'description'   => 'Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.',
         'edit'          => 'textarea',
-        'value'         => 'xoops.org$',
+        'value'         => 'pi.org$',
         'category'      => 'user',
     ),
 

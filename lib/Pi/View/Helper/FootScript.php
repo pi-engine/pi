@@ -41,7 +41,7 @@ class FootScript extends HeadScript
      * Registry key for placeholder
      * @var string
      */
-    protected $regKey = 'Xoops_View_Helper_FootScript';
+    protected $regKey = 'Pi_View_Helper_FootScript';
 
     /**
      * Create script HTML

@@ -84,7 +84,7 @@ class Profiler
      * @param    string  $name   name of the timer
      * @return Profiler
      */
-    public function start($name = 'XOOPS')
+    public function start($name = 'PI')
     {
         if (!empty($this->timers[$name])) {
             $this->end($name);
@@ -107,7 +107,7 @@ class Profiler
      * @param string $name
      * @return Profiler
      */
-    public function end($name = 'XOOPS')
+    public function end($name = 'PI')
     {
         if (empty($this->timers[$name])) {
             $this->start($name);
@@ -131,7 +131,7 @@ class Profiler
      * @param string $name
      * @return Profiler
      */
-    protected function write($name = 'XOOPS')
+    protected function write($name = 'PI')
     {
         $this->end($name);
 

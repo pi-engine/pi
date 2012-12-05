@@ -90,7 +90,7 @@ class Session extends AbstractService
      * @param string $name
      * @return Container
      */
-    public function container($name = 'XOOPS')
+    public function container($name = 'PI')
     {
         $container = new Container($name, $this->manager());
         return $container;

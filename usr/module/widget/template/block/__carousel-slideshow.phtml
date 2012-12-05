@@ -21,7 +21,7 @@ $render = function ($item) use ($_this)
 
     $content = '';
     if (!empty($item['link'])) {
-        $content .= '<a href="' . $item['link'] . '" title="' . $caption .'">' . $image . '</a>';
+        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption .'">' . $image . '</a>';
     } else {
         $content .= $image;
     }
