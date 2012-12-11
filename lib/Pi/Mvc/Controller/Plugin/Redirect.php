@@ -24,6 +24,20 @@ use Zend\Http\Response;
 
 class Redirect extends ZendRedirect
 {
+    protected $responseCode;
+
+    /**
+     * Set response status code
+     *
+     * @param int $code
+     * @return Redirect
+     */
+    public function setStatusCode($code)
+    {
+        $this->responseCode = $code;
+        return $this;
+    }
+
     /**
      * Generates a URL based on a route
      *
@@ -49,6 +63,10 @@ class Redirect extends ZendRedirect
         $this->controller->view()->setTemplate(false);
 
         $response = parent::toRoute($route, $params, $options, $reuseMatchedParams);
+        if ($this->responseCode) {
+            $response->setStatusCode($this->responseCode);
+            $this->responseCode = null;
+        }
         $response->send();
         return $response;
         //exit();
@@ -64,6 +82,10 @@ class Redirect extends ZendRedirect
     {
         $this->controller->view()->setTemplate(false);
         $response = parent::toUrl($url);
+        if ($this->responseCode) {
+            $response->setStatusCode($this->responseCode);
+            $this->responseCode = null;
+        }
         $response->send();
         return $response;
     }

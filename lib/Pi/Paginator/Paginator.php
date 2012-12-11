@@ -35,6 +35,7 @@ use Zend\Paginator\Adapter\AdapterInterface;
 use Zend\Paginator\ScrollingStyle\ScrollingStyleInterface;
 use Zend\Stdlib\ArrayUtils;
 use Zend\View;
+use Zend\Paginator\Exception;
 
 // Solely for other API calls, shit!!!
 use Zend\Paginator\Paginator as Pagit;

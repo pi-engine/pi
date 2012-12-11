@@ -21,7 +21,6 @@
 namespace Pi\Editor\Pi;
 
 use Pi\Editor\AbstractRenderer;
-//use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\Form\ElementInterface;
 
 class Renderer extends AbstractRenderer

@@ -142,11 +142,16 @@ class Cache extends AbstractResource
      */
     public function savePage(MvcEvent $e)
     {
+        // Skip cache if error occured
+        if ($e->isError()) {
+            return;
+        }
         if (!$this->renderCache()->isOpened()) {
             return;
         }
         $response = $e->getResponse();
-        if (!$response instanceof Response) {
+        // Skip if response not OK
+        if (!$response instanceof Response || !$response->isOk()) {
             return;
         }
 
@@ -215,9 +220,19 @@ class Cache extends AbstractResource
      */
     public function saveAction(MvcEvent $e)
     {
+        // Skip cache if error occured
+        if ($e->isError()) {
+            return;
+        }
         if (!$this->renderCache()->isOpened()) {
             return;
         }
+        $response = $e->getResponse();
+        // Skip if response not OK
+        if ($response instanceof Response && !$response->isOk()) {
+            return;
+        }
+
         $response = $e->getResult();
         if ($response instanceof ViewModel) {
             $content = (array) $response->getVariables();

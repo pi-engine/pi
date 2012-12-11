@@ -57,7 +57,7 @@ class Themelist extends AbstractRegistry
     public function create($type = '')
     {
         $this->clear();
-        $this->read($type, $active);
+        $this->read($type);
         return true;
     }
 
