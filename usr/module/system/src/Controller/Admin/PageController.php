@@ -478,7 +478,7 @@ class PageController extends ActionController
             if (empty($data['block'])) {
                 continue;
             }
-            $blocks[$data['zone']][$id] = $data['block'];
+            $blocks[$data['zone']][] = $data['block'];
         }
 
         $model = Pi::model('block');
