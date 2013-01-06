@@ -50,15 +50,15 @@ foreach ($elements['active'] as $element) { ?>
 <?php echo $this->form()->closeTag(); ?>
 <script>
 jQuery(".what-this").tooltip();
-var formModule = (function ($) {
+var formModule = (function($) {
     var formModule = {},
     form = $("#popup-form"),
     imgWait=form.find("img.hide");
     var items = form.find(".control-group").removeClass("error").find(".help-block").html("").end();
-    form.submit(function (e) {
+    form.submit(function(e) {
     	imgWait.removeClass("hide");
         e.preventDefault();
-        $.post(form.attr("action"), form.serialize()).done(function (result) {
+        $.post(form.attr("action"), form.serialize()).done(function(result) {
             result = $.parseJSON(result);
             if (result.status == 1) {
                 formModule.success(result);
@@ -78,8 +78,8 @@ var formModule = (function ($) {
      * success: This event fires immediately when form submit success
      * fail:  This event fires immediately when form submit has wrong
      */
-    formModule.success = function () {};
-    formModule.fail = function () {};
+    formModule.success = function() {};
+    formModule.fail = function() {};
     return formModule;
 })(jQuery)
 </script>

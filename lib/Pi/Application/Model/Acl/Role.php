@@ -39,9 +39,10 @@ class Role extends Model
      */
     public function getAncestors($role)
     {
-        $model = Pi::model('acl_inherit');
-        $table = $model->getTable();
         $parents = array();
+        $model = Pi::model('acl_inherit');
+        /*
+        $table = $model->getTable();
         $select = new Select;
         $select->columns(array('grand' => 'parent'))
                 ->from(array('r' => $table))
@@ -53,12 +54,34 @@ class Role extends Model
         if (empty($result)) {
             return $parents;
         }
-        foreach ($result as $row) {
-            $parents[] = $row['parent'];
-            $parents[] = $row['grand'];
-            $sub = $this->getAncestors($row['parent']);
+        */
+        $rowset = $model->select(array('child' => $role));
+
+        foreach ($rowset as $row) {
+            $parents[] = $row->parent;
+            $sub = $this->getAncestors($row->parent);
             $parents = array_unique(array_merge($parents, $sub));
         }
         return $parents;
+    }
+
+    /**
+     * Gets all children of a role
+     *
+     * @param string $role
+     * @return array
+     */
+    public function getChildren($role)
+    {
+        $children = array();
+        $model = Pi::model('acl_inherit');
+        $rowset = $model->select(array('parent' => $role));
+
+        foreach ($rowset as $row) {
+            $children[] = $row->parent;
+            $sub = $this->getChildren($row->child);
+            $children = array_unique(array_merge($children, $sub));
+        }
+        return $children;
     }
 }

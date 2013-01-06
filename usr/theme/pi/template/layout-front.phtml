@@ -1,0 +1,182 @@
+<?php
+// Load translation data
+$this->i18nTheme('main');
+
+// Load Bootstrap css by Twitter Team
+$this->bootstrap();
+
+// Load style.css
+// Load front.css
+$this->css(array(
+    $this->assetTheme('css/style.css'),
+    $this->assetTheme('css/front.css'),
+));
+/**#@+
+ * For demonstration
+ */
+/*
+// Load jQuerty
+$this->jQuery();
+// Load locale css/js, optional
+$this->css($this->assetLocale('rtl.css'));
+$this->js($this->assetLocale('rtl.js'));
+*/
+/**#@-*/
+?>
+<!DOCTYPE HTML>
+<html lang="<?php echo $locale; ?>">
+<head>
+    <!-- Charset -->
+    <meta charset="<?php echo $charset; ?>">
+
+    <!-- Title -->
+    <?php echo $this->headTitle(); ?>
+
+</head>
+
+<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
+    <div class="header clearfix">
+        <div class="container clearfix">
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="header-logo"><?php echo $this->escape($sitename); ?></a>
+        </div>
+    </div>
+
+    <div class="global-nav container">
+
+        <!-- Global navigation starts -->
+        <?php $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/); ?>
+        <?php if ($navigation) { ?>
+
+            <!-- Global menu starts -->
+            <?php $this->css($this->assetTheme('css/menu.css')); ?>
+            <div class="menu">
+                <?php echo $navigation->menu()->setUlClass('menu-horizontal'); ?>
+            </div>
+            <!-- Global menu ends -->
+
+            <!-- Global breadcrumbs starts -->
+            <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">&gt;</span>')->render(); ?>
+            <?php if ($breadcrumbs) { ?>
+            <div class="breadcrumb">
+                <?php echo $breadcrumbs; ?>
+            </div>
+            <?php } ?>
+            <!-- Global breadcrumbs ends -->
+
+        <?php } ?>
+        <!-- Global navigation ends -->
+    </div>
+
+    <div class="wrapper">
+    <div class="container">
+
+        <!-- Blocks starts -->
+        <?php
+            $blocks = $this->blocks();
+            $blockTempalte = $this->template('block');
+        ?>
+        <div class="row">
+        <?php if (isset($blocks['1'])) {?>
+        <div class="span3 pi-zone-1">
+            <?php foreach ($blocks['1'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+        </div>
+
+        <?php } ?>
+         <div class="<?php echo (isset($blocks['1']) && isset($blocks['7'])) ? 'span6' : 'span9'; ?>">
+            <?php if(isset($blocks['2'])) {
+            ?>
+            <div class="pi-zone-2">
+                <?php foreach ($blocks['2'] as $key => $block) {
+                    include $blockTempalte;
+                } ?>
+            </div>
+            <?php } ?>
+            <?php if(isset($blocks['3'])) {
+            ?>
+            <div class="pi-zone-3">
+                <?php foreach ($blocks['3'] as $key => $block) {
+                    include $blockTempalte;
+                } ?>
+            </div>
+            <?php } ?>
+            <?php if (isset($blocks['4'])) {
+            ?>
+            <div class="pi-zone-4">
+            <?php foreach ($blocks['4'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+            </div>
+            <?php } ?>
+
+            <!-- Module content starts -->
+            <?php if (!empty($content)) { ?>
+                <div class="pi-zone-module row-fluid"><?php echo $content; ?></div>
+            <?php } ?>
+            <!-- Module content ends -->
+
+            <?php if (isset($blocks['5'])) {
+            ?>
+            <div class="pi-zone-5">
+                <?php foreach ($blocks['5'] as $key => $block) {
+                    include $blockTempalte;
+                } ?>
+            </div>
+            <?php } ?>
+            <?php if (isset($blocks['6'])) {
+            ?>
+            <div class="pi-zone-6">
+                <?php foreach ($blocks['6'] as $key => $block) {
+                    include $blockTempalte;
+                } ?>
+            </div>
+            <?php } ?>
+        </div>
+        <?php if (isset($blocks['7'])) { ?>
+        <div class="span3 pi-zone-7">
+            <?php foreach ($blocks['7'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+        </div>
+        <?php } ?>
+        </div>
+        <?php if (isset($blocks['8'])) {?>
+        <div class="pi-zone-8">
+            <?php foreach ($blocks['8'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+        </div>
+        <?php } ?>
+        <!-- Blocks ends -->
+    </div>
+    </div>
+
+    <!-- Footer starts -->
+    <div class="footer">
+        <div class="horizontal-rule"></div>
+        <div class="container">
+            <!-- Official statement starts -->
+            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a>  |
+            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a>  |
+            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a>  |
+            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a>  |
+            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a>  |
+            <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
+            <!-- Official statement ends -->
+            &copy; <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>"><?php echo $this->escape($sitename); ?></a> | Powered by <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a> | Design of <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a>
+
+        </div>
+
+        <!-- Show execution time -->
+        <?php $time = microtime(true) - Pi::startTime(); ?>
+        <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
+        <!-- Show execution time -->
+
+    </div>
+    <!-- Footer ends -->
+
+</body>
+</html>

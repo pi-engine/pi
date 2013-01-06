@@ -1,0 +1,111 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->backbone();
+?>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
+    <li class="disabled"><a><?php _e('Repository'); ?></a>
+</ul>
+
+    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <div>
+        <a class="btn<?php if ('_front' == $section) { echo ' btn-primary'; } ?>" href="<?php echo $this->url('', array('action' => 'index', 'section' => '_front')); ?>"><?php _e('Front'); ?></a>
+        <a class="btn<?php if ('_admin' == $section) { echo ' btn-primary'; } ?>" href="<?php echo $this->url('', array('action' => 'index', 'section' => '_admin')); ?>"><?php _e('Admin'); ?></a>
+    </div>
+    <div id="js-page">
+
+        <?php if ($theme) { ?>
+        <div class="theme-active clearfix">
+            <div class="legend"><?php _e('Theme in use'); ?></div>
+            <div class="clearfix">
+                 <a class="pull-left mr20">
+                    <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo $this->escape($theme['title']); ?>" width="300" />
+                </a>
+                <div class="overhidden">
+                    <h4><span class="mr20"><?php echo $this->escape($theme['title']); ?></span><?php echo $theme['version']; ?></h4>
+                    <p style="margin-bottom:15px;">
+                        <?php echo $this->escape($theme['description']); ?>
+                    </p>
+                     <?php if ('_front' == $section) { ?>
+                         <button class="btn btn-primary apply-all" data-original-title="<?php _e('Force all modules to use this theme by clearing module themes'); ?>"  data-link="<?php echo $this->url('', array('action' => 'apply', 'section' => '_all', 'theme' => $theme['name'])); ?>">
+                         <?php _e('Apply to all modules'); ?></button>
+                     <?php } elseif (isset($theme['specified']) && false === $theme['specified']) { ?>
+                         <p><?php _e('No theme is specified for this module and global theme is used for this module. Keep this theme or sepcify one from below available themes.'); ?></p>
+                     <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="theme-installed">
+        <?php } ?>
+        <div class="legend"><?php _e('Themes available to use'); ?></div>
+        <div class="theme-list">
+        </div>
+        </div>
+    </div>
+
+<script type="text/template" id="temp-theme">
+   <a href=""><img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>" class="mb10" /></a>
+   <div class="mb5">
+       <strong class="mr10"><%= _.escape(title) %></strong>
+       <%= version %>
+   </div>
+   <div>
+       <span class="ulink theme-apply"><?php _e('Apply'); ?></span><span class="divider">|</span><span class="ulink theme-detail"><?php _e('Detail'); ?></span>
+   </div>
+   <p class="hide theme-description">
+       <%= description %>
+   </p>
+</script>
+<script>
+var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
+var ThemeItemView = Backbone.View.extend({
+    className: "w300 theme-item",
+    template: _.template($("#temp-theme").html()),
+    events: {
+        "click .theme-apply": "apply",
+        "click .theme-detail": "toggleDetail"
+    },
+    render: function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this.el;
+    },
+    apply: function() {
+        $.getJSON("<?php echo $this->url('', array('action' => 'apply', 'section' => $section, 'theme' => '')); ?>" + this.model.get("name")).done(function(result) {
+            if (result.status == 1) {
+                location.href = location.href;
+            }
+        });
+    },
+    toggleDetail: function() {
+        this.$(".theme-description").toggleClass("hide");
+    }
+});
+var ThemeListView = Backbone.View.extend({
+    el: $("#js-page"),
+    events: {
+        "click .apply-all": "applyAll"
+    },
+    initialize: function() {
+        this.render();
+    },
+    render: function() {
+        var el = this.$(".theme-list"),
+            m = themeCollection.models;
+        for (var i = 0, l = m.length; i < l; i++) {
+            el.append(new ThemeItemView({
+                model: m[i]
+            }).render());
+        }
+    },
+    applyAll: function(e) {
+        var tar = $(e.target);
+        $.getJSON(tar.attr("data-link")).done(function(result) {
+            alert(result.message);
+        });
+    }
+});
+new ThemeListView;
+</script>

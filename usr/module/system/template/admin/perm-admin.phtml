@@ -1,0 +1,175 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->Backbone();
+    $this->js($this->assetModule('script/system-msg.js', 'system'));
+?>
+<ul class="nav nav-tabs">
+    <li><a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'front')); ?>"><?php _e('Front'); ?></a>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'admin')); ?>"><?php _e('Admin'); ?></a>
+</ul>
+<div class="page-perm row-fluid">
+    <div class="span2 well well-small">
+        <ul class="nav nav-list">
+            <?php foreach ($roles as $key => $value) { ?>
+            <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
+                <a href="<?php echo $this->url('',array('controller' => 'perm', 'action' => 'admin', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
+            <?php } ?>
+        </ul>
+    </div>
+
+    <div class="span10">
+        <h3 class="page-header"><?php _e('Module operation access'); ?></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 35%;"><?php _e('Modules'); ?>
+                    <th style="width: 35%;"><?php _e('Action'); ?>
+                    <th style="width: 30%;"><?php _e('Status'); ?>
+            <tbody id="js-modules-admin">
+        </table>
+        <h3 class="page-header"><?php _e('Module management access'); ?></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 35%;"><?php _e('Modules'); ?>
+                    <th style="width: 35%;"><?php _e('Action'); ?>
+                    <th style="width: 30%;"><?php _e('Status'); ?>
+            <tbody id="js-modules-manage">
+        </table>
+    </div>
+
+
+</div>
+<script id="temp-module" type="text/template">
+    <td><%= title %>
+    <td>
+        <div class="btn-group">
+            <button class="btn">
+            <%
+            if (direct) {
+                if (direct > 0) {
+                    print("<?php _e('Allow'); ?>");
+                } else {
+                    print("<?php _e('Deny'); ?>");
+                }
+            }else{
+                print("<?php _e('Inherit'); ?>");
+            }
+            %>
+            </button>
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <% if (direct) { %>
+                    <% if (direct > 0) { %>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                    <% } else {  %>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                    <% } %>
+                <% } else { %>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    <li>
+                        <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                <% } %>
+            </ul>
+        </div>
+    <td>
+        <% if (perm > 0) { %>
+        <span class="label label-success"><?php _e('Allowed'); ?></span>
+        <% } else { %>
+        <span class="label label-important"><?php _e('Denied'); ?></span>
+        <% } %>
+</script>
+
+
+<script>
+(function() {
+    var ModuleItemView = Backbone.View.extend({
+        tagName: 'tr',
+        template: $('#temp-module').html(),
+        events: {
+            'click .js-action':'assignAction'
+        },
+        initialize: function() {
+            this.model.on('change', this.render, this);
+        },
+        assignAction: function(e) {
+            var action = $(e.currentTarget).attr('data-action'),
+                prev = this.model.previousAttributes(),
+                self = this,
+                obj;
+            if (action == 'allow') {
+                obj = {
+                    direct: 1,
+                    perm: 1
+                }
+            } else if (action == 'deny') {
+                obj = {
+                    direct: -1,
+                    perm: -1
+                }
+            } else {
+                obj = {
+                    direct: 0
+                }
+            }
+            this.model.set(obj);
+            $.post('<?php echo $this->url('', array('controller' => 'perm', 'action' => 'assign', 'role' => $role)); ?>', this.model.previousAttributes()).done(function(res) {
+                res = $.parseJSON(res);
+                self.model.set(res.data);
+            }).error(function() {
+                systemMessage.fail("<?php _e('An error occurred, please try again later.'); ?>");
+                self.model.set(prev);
+            });
+        },
+        render: function() {
+            this.$el.html(_.template(this.template, this.model.toJSON()));
+            return this;
+        }
+    });
+    var ModuleAdminView = Backbone.View.extend({
+        el: $("#js-modules-admin"),
+        initialize: function() {
+            this.render();
+        },
+        render: function() {
+            var c = this.collection.models;
+            for (var i = 0, l = c.length; i < l; i++) {
+                this.$el.append(new ModuleItemView({
+                    model: c[i]
+                }).render().el);
+            }
+        }
+   });
+    var ModuleManageView = Backbone.View.extend({
+        el: $("#js-modules-manage"),
+        initialize: function() {
+            this.render();
+        },
+        render: function() {
+            var c = this.collection.models;
+            for (var i = 0, l = c.length; i < l; i++) {
+                this.$el.append(new ModuleItemView({
+                    model: c[i]
+                }).render().el);
+            }
+        }
+   });
+
+   new ModuleAdminView({
+       collection: new Backbone.Collection(<?php echo json_encode($modules['admin']); ?>)
+   });
+   new ModuleManageView({
+       collection: new Backbone.Collection(<?php echo json_encode($modules['manage']); ?>)
+   });
+})(jQuery)
+</script>

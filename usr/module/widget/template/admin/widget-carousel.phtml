@@ -85,18 +85,18 @@ echo $this->form()->closeTag();
     </div>
 </script>
 <script>
-var page={
-    form:$("form#block"),
-    init:function(){
-        this.form.submit(function(){
-            var content=[];
-            page.form.find(".upload-carousel-item").each(function(){
-                var el=$(this);
+var page = {
+    form: $("form#block"),
+    init: function() {
+        this.form.submit(function() {
+            var content = [];
+            page.form.find(".upload-carousel-item").each(function() {
+                var el = $(this);
                  content.push({
-                    "caption":el.find("[name=caption]").val(),
-                    "image":el.find("img").attr("src").replace("<?php echo $imageRoot; ?>", ''),
-                    "link":el.find("[name=link]").val(),
-                    "desc":el.find("[name=desc]").val()
+                    "caption": el.find("[name=caption]").val(),
+                    "image": el.find("img").attr("src").replace("<?php echo $imageRoot; ?>", ''),
+                    "link": el.find("[name=link]").val(),
+                    "desc": el.find("[name=desc]").val()
                  });
             });
             page.form.find("[name=content]").val(JSON.stringify(content));
@@ -133,15 +133,15 @@ var carouselListView = Backbone.View.extend({
         this.sortable();
     },
     fileupload: function () {
-        var obj={
+        var obj = {
           url: "<?php echo $this->url('', array('action' => 'upload')); ?>",
-          formData:function(){
+          formData: function() {
               return [];
           }
         };
         if ($.support.xhrFileUpload) { //html5 upload
-            this.$("[name=image]").fileupload(_.extend(obj,{
-                done:function(e,data){
+            this.$("[name=image]").fileupload(_.extend(obj, {
+                done: function(e, data) {
                      var resp = $.parseJSON(data.jqXHR.responseText);
                         if (resp.status == 1) {
                              carouselCollection.add({
@@ -153,9 +153,9 @@ var carouselListView = Backbone.View.extend({
                 }
             }));
         } else { //ie upload
-           this.$("[name=image]").fileupload(_.extend(obj,{
-               forceIframeTransport:true,
-               done:function(e,data){
+           this.$("[name=image]").fileupload(_.extend(obj, {
+               forceIframeTransport: true,
+               done: function(e, data) {
                      var resp = $.parseJSON($.trim(data.result.contents().find('body').html()));
                          if (resp.status == 1) {
                                 carouselCollection.add({
@@ -168,12 +168,12 @@ var carouselListView = Backbone.View.extend({
            }));
         }
     },
-    sortable:function(){
+    sortable: function() {
        this.$el.sortable({
-           items:".upload-carousel-item",
-           revert:300,
-           placeholder:"upload-carousel-item upload-carousel-sort",
-           tolerance:"pointer"
+           items: ".upload-carousel-item",
+           revert: 300,
+           placeholder: "upload-carousel-item upload-carousel-sort",
+           tolerance: "pointer"
        });
     },
     render: function () {

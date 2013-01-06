@@ -20,24 +20,23 @@
 </style>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div class="row" id="js-page">
-        <div class="root-tree" id="js-root-tree">
-             <div class="root-ul">
-             </div>
-             <div class="form-inline" style="margin-top:50px;">
-                <?php if (!empty($readonly)) { ?>
-                <button class="btn menu-submit disabled"><?php _e('View only'); ?></button>
-                <?php } else { ?>
-                <input type="text" placeholder="Label" class="js-label">
-                <button type="submit" class="btn add-menu"><?php _e('Add to menu'); ?></button>
-                <button class="btn btn-primary menu-submit"><?php _e('Save menu'); ?></button>
-                <?php } ?>
-             </div>
+    <div class="root-tree" id="js-root-tree">
+        <div class="root-ul">
+        </div>
+        <div class="form-inline" style="margin-top:50px;">
+            <?php if (!empty($readonly)) { ?>
+            <button class="btn menu-submit disabled"><?php _e('View only'); ?></button>
+            <?php } else { ?>
+            <input type="text" placeholder="Label" class="js-label">
+            <button type="submit" class="btn add-menu"><?php _e('Add to menu'); ?></button>
+            <button class="btn btn-primary menu-submit"><?php _e('Save menu'); ?></button>
+            <?php } ?>
         </div>
     </div>
 </div>
 <script type="text/template" id="tree-template">
    <div class="tree-item menu-item-depth<%= depth %>">
-    <div class="tree-item-header" style="cursor:move;">
+    <div class="tree-item-header" style="cursor: move;">
         <span class="pull-right mr10">
             <button class="close invisible">×</button>
             <span class="toggle-custom">
@@ -48,7 +47,7 @@
         <span class="tree-view"><%= label %></span>
         <input type="text" value="<%= label %>" class="tree-edit">
     </div>
-    <div class="tree-item-body" style="display:none;">
+    <div class="tree-item-body" style="display: none;">
         <div class="legend"><?php _e('Page link by direct URI'); ?></div>
         <div class="clearfix">
             <input type="text" value="<%= uri %>" placeholder="URL" name="uri">
@@ -65,14 +64,14 @@
                         <input type="text" value="<%= label %>" class="span2" placeholder="Label" name="label">
                         <select class="span2" name="target">
                             <option value="" <% if (!target) { %>selected<% } %>><?php _e('None'); ?>
-                            <option value="_blank" <% if (target=="_blank") { %>selected<% } %>><?php _e('Open in a new window'); ?>
+                            <option value="_blank" <% if (target == "_blank") { %>selected<% } %>><?php _e('Open in a new window'); ?>
                         </select>
                 <input type="text" value="" class="span2" placeholder="Permission resource" name="resource">
                 <label class="checkbox"><input type="checkbox" name="visible" <% if (visible) { %>checked<% } %>><?php _e('To display in menu.'); ?></label>
         </div>
         <?php if (!empty($readonly)) { ?>
         <div>
-            <span class="label label-important" style="cursor:pointer;"><?php _e('Save'); ?></span>
+            <span class="label label-important" style="cursor: pointer;"><?php _e('Save'); ?></span>
             <span class="divider">|</span>
             <span class="link cancel"><?php _e('Cancel'); ?></span>
         </div>
@@ -84,13 +83,13 @@
 </script>
 <script>
 
-(function($){
-/*help fn*/
+(function($) {
+/* help fn */
 var data1 = <?php echo json_encode($pages) ?> ,
     root = $("#js-root-tree"),
-    getChild = function (el) {
+    getChild = function(el) {
         /*it is so difficulty*/
-        var loop = function (el) {
+        var loop = function(el) {
             var model = getM(el),
                 ch = trees.where({
                     pid: model.get("id")
@@ -99,7 +98,7 @@ var data1 = <?php echo json_encode($pages) ?> ,
                 loop1(root.find("[data-cid=" + ch[i].cid + "]"));
             }
         },
-        loop1 = function (el) {
+        loop1 = function(el) {
             var model = getM(el),
                 ch = trees.where({
                     pid: model.get("id")
@@ -115,12 +114,12 @@ var data1 = <?php echo json_encode($pages) ?> ,
         els.length = index;
         return els;
     },
-    getM = function (el) {
+    getM = function(el) {
         return trees.getByCid(el.attr("data-cid"));
     };
 /*model*/
 var Tree = Backbone.Model.extend({
-    idAttribute:"_id",
+    idAttribute: "_id",
     defaults: {
         id: 0,
         depth: 0,
@@ -135,8 +134,8 @@ var Tree = Backbone.Model.extend({
         action: "",
         visible: 0
     },
-    initialize: function () {},
-    validate: function (attrs) {
+    initialize: function() {},
+    validate: function(attrs) {
         if (!attrs.label) {
             return "<?php _e('Label can not be empty'); ?>";
         }
@@ -145,7 +144,7 @@ var Tree = Backbone.Model.extend({
 /*Collection*/
 var TreeCollection = Backbone.Collection.extend({
     model: Tree,
-    initialize: function () {}
+    initialize: function() {}
 });
 var trees = new TreeCollection(data1);
 /*view*/
@@ -157,7 +156,7 @@ var TreeListItemView = Backbone.View.extend({
         "click .label-important": "saveInfo",
         "click .close": "clear"
     },
-    initialize: function () {
+    initialize: function() {
         this.$el.attr({
             "data-cid": this.model.cid
         });
@@ -165,18 +164,18 @@ var TreeListItemView = Backbone.View.extend({
         this.model.on("change:depth", this.render, this);
         this.model.on("destroy", this.remove, this);
     },
-    render: function () {
+    render: function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
-    toggleInfo: function () {
+    toggleInfo: function() {
         this.$el.toggleClass("editing");
         this.$(".tree-item-body").slideToggle(400);
     },
-    saveInfo: function () {
+    saveInfo: function() {
         var $ = this.$.bind(this),
             model = this.model,
-            fn = function (flag) {
+            fn = function(flag) {
                 model.set({
                     "uri": $("input[name=uri]").val(),
                     "route": $("input[name=route]").val(),
@@ -195,7 +194,7 @@ var TreeListItemView = Backbone.View.extend({
         if (model.isValid()) {
             this.toggleInfo();
             if (model.hasChanged("label")) {
-                setTimeout(function () {
+                setTimeout(function() {
                     this.render();
                 }.bind(this), 400);
             }
@@ -203,15 +202,15 @@ var TreeListItemView = Backbone.View.extend({
             fn(false);
         }
     },
-    fail: function (model, error) {
+    fail: function(model, error) {
         alert(error);
     },
-    clear: function () {
+    clear: function() {
         var c = getChild(this.$el);
         if (c.length) {
             if (confirm("<?php _e("Delete this node will delete all of this sub links"); ?>")) {
                 this.model.destroy();
-                c.each(function () {
+                c.each(function() {
                     getM($(this)).destroy();
                 });
             }
@@ -227,26 +226,26 @@ var TreeListView = Backbone.View.extend({
         "click .add-menu": "create",
         "click .menu-submit": "saveMenu"
     },
-    initialize: function () {
+    initialize: function() {
         trees.on("add", this.addOne, this);
         this.root = this.$(".root-ul");
         this.render();
         this.initSortables();
     },
-    initSortables: function () {
+    initSortables: function() {
         var self = this,
             $ = self.$.bind(self),
-            getDepth = function (el) {
+            getDepth = function(el) {
                 return getM(el).get("depth");
             },
-            hasChild = function (el) {
+            hasChild = function(el) {
                 return trees.where({
                     pid: getM(el).get("id")
                 }).length;
             },
-            MaxDepth = function (els) {
+            MaxDepth = function(els) {
                 var max = 0;
-                els.each(function () {
+                els.each(function() {
                     max = Math.max(max, $(this).find(">")[0].className.replace(/^.*menu-item-depth(\d).*$/, "$1"));
                 });
                 return max;
@@ -256,7 +255,7 @@ var TreeListView = Backbone.View.extend({
             delay: 100,
             handle: ".tree-item-header",
             placeholder: "tree-sortable-placeholder",
-            start: function (e, ui) {
+            start: function(e, ui) {
                 var c = getChild(ui.item),
                     l = c.length,
                     w = ui.item.find(".tree-item-header").outerWidth() + MaxDepth(c) * 30,
@@ -268,7 +267,7 @@ var TreeListView = Backbone.View.extend({
                 ui.item.find(".menu-item-transport").append(c);
                 self.root.sortable("refresh");
             },
-            stop: function (e, ui) {
+            stop: function(e, ui) {
                 var it = ui.item,
                     child = getChild(it),
                     p = ui.placeholder,
@@ -279,7 +278,7 @@ var TreeListView = Backbone.View.extend({
                 if (d == 0) {
                     pid = 0;
                 } else {
-                    it.prevAll().each(function () {
+                    it.prevAll().each(function() {
                         var m = getM($(this));
                         if (m.get("depth") == d - 1) {
                             pid = m.get("id")
@@ -288,7 +287,7 @@ var TreeListView = Backbone.View.extend({
                     });
                 };
                 if (child.length) {
-                    child.insertAfter(it).each(function () {
+                    child.insertAfter(it).each(function() {
                         var m = getM($(this));
                         m.set({
                             depth: m.get("depth") + diff,
@@ -300,7 +299,7 @@ var TreeListView = Backbone.View.extend({
                     pid: pid
                 });
             },
-            sort: function (e, ui) {
+            sort: function(e, ui) {
                 var p = ui.placeholder,
                     it = ui.item,
                     before = p.prev();
@@ -332,7 +331,7 @@ var TreeListView = Backbone.View.extend({
             }
         });
     },
-    render: function () {
+    render: function() {
         var ms = trees.models,
             root = this.root;
         for (var i = 0, l = ms.length; i < l; i++) {
@@ -341,7 +340,7 @@ var TreeListView = Backbone.View.extend({
             }).render().el);
         }
     },
-    create: function () {
+    create: function() {
         var input = this.$(".js-label"),
             val = $.trim(input.val());
         if (val) {
@@ -352,22 +351,22 @@ var TreeListView = Backbone.View.extend({
         }
         input.val("");
     },
-    addOne: function (tree) {
+    addOne: function(tree) {
         this.root.append(new TreeListItemView({
             model: tree
         }).render().el);
     },
-    saveMenu: function () {
+    saveMenu: function() {
         var vs = this.root.find(">"),
             ret = [];
-        vs.each(function () {
+        vs.each(function() {
             ret.push(trees.getByCid($(this).attr("data-cid")).attributes);
         });
         console.log(ret);
         $.post("<?php echo $this->url('', array('action' => 'update')); ?>", {
             name: "<?php echo $navigation; ?>",
             pages: ret
-        }).done(function (result) {
+        }).done(function(result) {
             result = $.parseJSON(result);
             if (result.status == 1) {
                 alert(result.message);

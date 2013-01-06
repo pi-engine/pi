@@ -53,7 +53,7 @@ CREATE TABLE `{core.acl_resource}` (
   `depth`           smallint(3)     unsigned    NOT NULL default '0',
   `section`         varchar(64)     NOT NULL    default '', # page resource: admin, front; other resource: module, block
   `name`            varchar(64)     NOT NULL    default '', # pattern: generated - module[:controller]; or custom - module-resource
-  `item`            varchar(64)     NOT NULL    default '',
+# `item`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `type`            varchar(64)     NOT NULL    default '', # potential values: system - created by module installation; page - created by page creation; custom - created manually
@@ -61,7 +61,7 @@ CREATE TABLE `{core.acl_resource}` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `left` (`left`),
   UNIQUE KEY `right` (`right`),
-  UNIQUE KEY `pair` (`section`, `module`, `name`, `item`)
+  UNIQUE KEY `pair` (`section`, `module`, `name`)
 );
 
 # ACL roles
@@ -74,6 +74,9 @@ CREATE TABLE `{core.acl_role}` (
   `active`          tinyint(1)      unsigned    NOT NULL default '1',       # Active for usage
   `custom`          tinyint(1)      unsigned    NOT NULL default '0',       # Added manually?
   `module`          varchar(64)     NOT NULL    default '',                 # Applicable wide
+
+  # Added in Pi
+  `section`         varchar(64)     NOT NULL    default 'front', # admin, front
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
@@ -108,11 +111,12 @@ CREATE TABLE `{core.audit}` (
   `controller`      varchar(64)     NOT NULL    default '',
   `action`          varchar(64)     NOT NULL    default '',
   `method`          varchar(64)     NOT NULL    default '',
-  `message`         varchar(255)    NOT NULL    default '',
+  `message`         text,
   `extra`           text,
   `time`            int(10)         unsigned NOT NULL   default '0',
+
   PRIMARY KEY  (`id`)
-) ENGINE=ARCHIVE;
+);
 
 # ------------------------------------------------------
 # Block
@@ -513,8 +517,19 @@ CREATE TABLE `{core.user_repo}` (
   UNIQUE KEY `user_content` (`user`, `module`, `type`)
 );
 
-# user-role links
+# user-role links for regular
 CREATE TABLE `{core.user_role}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `user`            int(10)         unsigned    NOT NULL,
+  `role`            varchar(64)     NOT NULL    default '',
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `user` (`user`)
+);
+
+
+# user-role links for staff
+CREATE TABLE `{core.user_staff}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `user`            int(10)         unsigned    NOT NULL,
   `role`            varchar(64)     NOT NULL    default '',

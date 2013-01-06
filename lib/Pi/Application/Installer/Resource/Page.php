@@ -19,7 +19,9 @@
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
+//use Pi\Acl\Acl as Acl;
 
 /**
  * Page configuration specs
@@ -132,7 +134,7 @@ use Pi;
  */
 class Page extends AbstractResource
 {
-    protected function normalizeConfig($config)
+    protected function canonizePage($config)
     {
         $moduleTitle = $this->event->getParam('title');
         if (!isset($config['front'])) {
@@ -156,10 +158,9 @@ class Page extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        //$moduleConfig = $this->event->getParam('config');
         $moduleTitle = $this->event->getParam('title');
         Pi::service('registry')->page->clear($module);
-        $pages = $this->normalizeConfig($this->config);
+        $pages = $this->canonizePage($this->config);
 
         foreach (array_keys($pages) as $section) {
             // Skip the section if disabled
@@ -180,6 +181,7 @@ class Page extends AbstractResource
                 }
                 $pageList[$pageName] = $page;
             }
+            // Set up module pseudo page
             if (!isset($pageList[$module])) {
                 $pageList[$module] = array(
                     'section'   => $section,
@@ -194,20 +196,21 @@ class Page extends AbstractResource
             $pages[$section] = $pageList;
         };
 
-        if (!empty($pages['front']) && !isset($pages['front'][$module]['access'])) {
-            $pages['front'][$module]['access'] = array(
-                'guest'     => 1,
-                'member'    => 1
+        // Set module access for front
+        if (!empty($pages['front']) && !isset($pages['front'][$module]['permission']['access'])) {
+            $pages['front'][$module]['permission']['access'] = array(
+                'member'    => 1,
+                'guest'     => 1
             );
         }
-        if (!empty($pages['admin']) && !isset($pages['admin'][$module]['access'])) {
-            $pages['admin'][$module]['access'] = array(
-                'guest'     => 0,
-                'moderator' => 1,
+        // Set module access for admin
+        if (!empty($pages['admin']) && !isset($pages['admin'][$module]['permission']['access'])) {
+            $pages['admin'][$module]['permission']['access'] = array(
+                'staff'     => 1
             );
         }
         foreach ($pages as $section => $pageList) {
-            foreach ($pageList as $page) {
+            foreach ($pageList as $name => $page) {
                 $message = array();
                 $status = $this->insertPage($page, $message);
                 if (false === $status) {
@@ -235,7 +238,7 @@ class Page extends AbstractResource
             $pages = array();
             $diablePage = true;
         } else {
-            $pages = $this->normalizeConfig($this->config);
+            $pages = $this->canonizePage($this->config);
             $diablePage = false;
         }
 

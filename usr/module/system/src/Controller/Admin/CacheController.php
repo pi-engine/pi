@@ -83,7 +83,7 @@ class CacheController extends ActionController
         $this->view()->assign('list', $cacheList);
         $this->view()->assign('registry', $registryList);
         $this->view()->assign('title', __('Cache list'));
-        $this->view()->setTemplate('cache-list');
+        //$this->view()->setTemplate('cache-list');
     }
 
     /**

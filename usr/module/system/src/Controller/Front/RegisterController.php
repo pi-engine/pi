@@ -75,7 +75,16 @@ class RegisterController extends ActionController
             'email'         => $values['email'],
             'credential'    => $values['credential'],
             'active'        => 1,
+            'role'          => Acl::MEMBER,
         );
+        $result = Pi::service('api')->system(array('member', 'add'), $data);
+        if (!$result['id']) {
+            $this->view()->assign('message', __('The account is not created in database, please try again.'));
+            $this->renderForm($form);
+            return;
+        }
+
+        /*
         $userRow = Pi::model('user')->createRow($data);
         $userRow->prepare()->save();
         if (!$userRow->id) {
@@ -89,6 +98,7 @@ class RegisterController extends ActionController
             'role'  => Acl::MEMBER,
         ));
         $roleRow->save();
+        */
 
         $this->view()->setTemplate('register-success');
         $this->view()->assign('title', __('Register'));

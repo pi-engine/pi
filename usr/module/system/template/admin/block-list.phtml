@@ -3,28 +3,13 @@
     $this->jQuery();
     $this->backbone();
 ?>
-<div class="row">
-    <div class="span3">
-        <div class="sub-nav">
-        <?php
-        $items = array();
-        foreach ($modules as $key => $data) {
-            $item = array(
-                'href'  => $this->url('', array('action' => 'index', 'name' => $data['name'])),
-                'label' => $data['title'],
-            );
-            if ($name == $data['name']) {
-                $item['active'] = 1;
-            }
-            $items[] = $item;
-        }
-        echo $this->navMenu($items);
-        ?>
-        </div>
-    </div>
-
-    <div class="span9" id="js-page">
+<div id="js-page" class="span12">
     <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <!--
+    <div class="list-search">
+       <input type="text" class="input-medium search-query" placeholder="<?php _e('Search in blocks') ; ?>">
+    </div>
+    -->
     <?php if ('widget' == $name) { ?>
     <div class="alert alert-info">
         <a href="<?php echo $this->url('', array('module' => 'widget')); ?>" title="<?php _e('Add more widgets'); ?>"><?php _e('Add more widgets'); ?></a>
@@ -53,7 +38,6 @@
         </div>
     </div>
     <?php } ?>
-    </div>
 </div>
 <div id="distribute-diag" class="popover animate">
 
@@ -63,19 +47,19 @@
  <div class="popover-inner">
     <h3 class="popover-title"><button class="close" type="button">×</button><?php _e('Distributed on pages:'); ?></h3>
     <div class="popover-content">
-        <% if(data.length){ %>
+        <% if (data.length) { %>
         <ul style="margin-left:10px;">
-            <% _.each(data,function(item){%>
+            <% _.each(data, function(item) { %>
             <li>
                 <strong><%= item.title %></strong>
                 <ul>
-                    <% _.each(item.pages,function(page){ %>
-                    <li><a target="_blank" href="<%= page.url%>"><%= page.title%></a>
+                    <% _.each(item.pages,function(page) { %>
+                    <li><a target="_blank" href="<%= page.url %>"><%= page.title %></a>
                     <% }); %>
                 </ul>
-            <% });%>
+            <% }); %>
         </ul>
-        <% }else{ %>
+        <% } else { %>
         <span class="label label-info"><?php _e('No page uses this block yet.'); ?></span>
         <% } %>
      <p>
@@ -86,22 +70,22 @@
 </script>
 
 <script>
-(function($){
+(function($) {
 var diag = new(Backbone.View.extend({
     el: $("#distribute-diag"),
     events: {
         "click .close": "close"
     },
-    close: function () {
+    close: function() {
         this.$el.css("left", - 9999);
     },
-    render: function (m) {
+    render: function(m) {
         this.$el.html(_.template($("#temp-popover").html(), m, {
             variable: 'data'
         }));
     },
-    setPosition: function (tar) {
-        var tip=this.$el,
+    setPosition: function(tar) {
+        var tip = this.$el,
             of = tar.offset(),
             top = of.top,
             left = of.left,
@@ -127,18 +111,18 @@ var diag = new(Backbone.View.extend({
         }
     }
 }));
-var DoneBlockView= Backbone.View.extend({
+var DoneBlockView = Backbone.View.extend({
      events: {
         "click .delete-item": "deleteItem",
         "click .distribute": "distribute"
      },
-     deleteItem:function(){
-         var el=this.$el;
+     deleteItem: function() {
+         var el = this.$el;
          this.toggleHandle();
-         if(confirm("<?php _e("Are you sure to delete the block?") ?>")){
-             $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>'+el.attr("data-id")).done(function(result){
+         if (confirm("<?php _e("Are you sure to delete the block?") ?>")) {
+             $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + el.attr("data-id")).done(function(result) {
                    if (result == 1) {
-                       el.fadeOut(150,function(){
+                       el.fadeOut(150, function() {
                            el.remove();
                        })
                    }
@@ -146,28 +130,26 @@ var DoneBlockView= Backbone.View.extend({
          }
          this.toggleHandle();
      },
-     distribute:function(){
-         var el=this.$el,
-             diagEl=diag.$el.addClass("bg-loading");
-         $.getJSON("<?php echo $this->url('', array('action' => 'page', 'id' => '')); ?>"+el.attr("data-id")).done(function(result){
+     distribute: function() {
+         var el = this.$el,
+             diagEl = diag.$el.addClass("bg-loading");
+         $.getJSON("<?php echo $this->url('', array('action' => 'page', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
               diag.render(_.toArray(result));
               diagEl.removeClass("bg-loading");
               diag.setPosition(el.find(".distribute"));
          });
      },
-     toggleHandle:function(){
+     toggleHandle: function() {
           this.$el.toggleClass("handle");
       }
 
 });
-$(".box-hover").each(function(){
+$(".box-hover").each(function() {
     new DoneBlockView({
         el: $(this)
     })
 });
-$("a[rel=tooltip]").tooltip({
-    placement:"bottom"
-});
+
 })(jQuery)
 
 </script>

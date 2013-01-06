@@ -45,10 +45,11 @@ return array(
     ),
     // Admin section
     'admin' => array(
-        // System admin generic access
+        // System dashboard access
         array(
-            'controller'    => 'index',
+            'controller'    => 'dashboard',
             'permission'    => array(
+                // Defined in acl.php
                 'parent'        => 'admin',
             ),
         ),
@@ -56,79 +57,105 @@ return array(
         array(
             'controller'    => 'readme',
             'permission'    => array(
+                // Defined in acl.php
                 'parent'        => 'admin',
             ),
         ),
 
-        // System specs
-        // preferences
+        // System managed components
+        // config
         array(
-            'controller'    => 'preference',
+            'controller'    => 'config',
             'permission'    => array(
-                'parent'        => 'preference',
+                // Defined in acl.php
+                'parent'        => 'config',
             ),
         ),
-        // appearance
+        // block
         array(
             'controller'    => 'block',
             'permission'    => array(
-                'parent'        => 'appearance',
+                'parent'        => 'block',
             ),
         ),
+        // page
         array(
-            'controller'    => 'theme',
+            'controller'    => 'page',
             'permission'    => array(
-                'parent'        => 'appearance',
+                'parent'        => 'page',
             ),
         ),
-        // permissions
+        // event
         array(
-            'controller'    => 'role',
+            'controller'    => 'event',
             'permission'    => array(
-                'parent'        => 'permission',
+                'parent'        => 'event',
             ),
         ),
+        // perm
         array(
-            'controller'    => 'resource',
+            'controller'    => 'perm',
             'permission'    => array(
-                'parent'        => 'permission',
+                'parent'        => 'perm',
             ),
         ),
-        array(
-            'parent'        => 'permission',
-            'controller'    => 'rule',
-            'permission'    => array(
-                'parent'        => 'admin',
-            ),
-        ),
-        // modules
+
+        // Operations
+        // module
         array(
             'controller'    => 'module',
             'permission'    => array(
                 'parent'        => 'module',
             ),
         ),
-        // maintenance
+        // theme
+        array(
+            'controller'    => 'theme',
+            'permission'    => array(
+                'parent'        => 'theme',
+            ),
+        ),
+        // navigation
+        array(
+            'controller'    => 'navigation',
+            'permission'    => array(
+                'parent'        => 'navigation',
+            ),
+        ),
+        // role
+        array(
+            'parent'        => 'member',
+            'controller'    => 'role',
+            'permission'    => array(
+                'parent'        => 'role',
+            ),
+        ),
+        // membership
+        array(
+            'parent'        => 'member',
+            'controller'    => 'member',
+            'permission'    => array(
+                'parent'        => 'member',
+            ),
+        ),
+        // Maintenance operaions
+        // asset
         array(
             'controller'    => 'asset',
             'permission'    => array(
                 'parent'        => 'maintenance',
             ),
         ),
+        // audit
         array(
             'controller'    => 'audit',
             'permission'    => array(
                 'parent'        => 'maintenance',
             ),
         ),
+        // cache
         array(
             'controller'    => 'cache',
-            'permission'    => array(
-                'parent'        => 'maintenance',
-            ),
-        ),
-        array(
-            'controller'    => 'event',
             'permission'    => array(
                 'parent'        => 'maintenance',
             ),

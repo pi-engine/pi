@@ -21,7 +21,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Module\System\Controller\ComponentController  as ActionController;
 use Module\System\Form\ConfigForm;
 
 /**
@@ -34,80 +34,16 @@ use Module\System\Form\ConfigForm;
 class ConfigController extends ActionController
 {
     /**
-     * System config category list
-     */
-    public function indexAction()
-    {
-        Pi::service('i18n')->load('module/system:config');
-        $messageSuccessful = '';
-
-        if ($this->request->isPost()) {
-            $category = $this->params()->fromPost('category');
-        } else {
-            $category = $this->params('category', 'general');
-        }
-
-        $modelCategory = Pi::model('config_category');
-        $select = $modelCategory->select()->where(array('module' => 'system'))->order(array('order ASC', 'id ASC'));
-        $rowset = $modelCategory->selectWith($select);
-        $categories = array();
-        foreach ($rowset as $row) {
-            $categories[$row->name] = $row;
-        }
-
-        $model = Pi::model('config');
-        $where = array('module' => 'system', 'category' => $category, 'visible' => 1);
-        $select = $model->select()->where($where)->order(array('order ASC'));
-        $rowset = $model->selectWith($select);
-        $configs = array();
-        foreach ($rowset as $row) {
-            $configs[] = $row;
-        }
-
-        $form = $this->getForm($configs, 'system');
-        $form->add(array(
-            'name'          => 'category',
-            'attributes'    => array(
-                'type'  => 'hidden',
-                'value' => $category,
-            ),
-        ));
-
-        if ($this->request->isPost()) {
-            $post = $this->request->getPost();
-            $form->setData($post);
-            if ($form->isValid()) {
-                $values = $form->getData();
-                foreach ($configs as $row) {
-                    $row->value = $values[$row->name];
-                    $row->save();
-                }
-                Pi::service('registry')->config->clear('system');
-                $messageSuccessful = __('Configuration data saved successfully.');
-            }
-        }
-
-        $this->view()->assign('form', $form);
-        $this->view()->assign('success', $messageSuccessful);
-        $this->view()->assign('category', $category);
-        $this->view()->assign('categories', $categories);
-
-        $title = sprintf(__('System configuration: %s'), $categories[$category]->title);
-        $this->view()->assign('title', $title);
-        $this->view()->setTemplate('config-system');
-    }
-
-    /**
      * Module configuration edit
      */
-    public function moduleAction()
+    public function indexAction()
     {
         $messageSuccessful = '';
 
         if ($this->request->isPost()) {
             $module = $this->params()->fromPost('name');
         } else {
-            $module = $this->params('name', '');
+            $module = $this->params('name', 'system');
         }
 
         if ($module) {
@@ -177,6 +113,7 @@ class ConfigController extends ActionController
             $configCounts[$row->module] = $row->count;
         }
 
+        /*
         $modules = Pi::service('registry')->modulelist->read(array('active' => 1));
         unset($modules['system']);
         foreach (array_keys($modules) as $key) {
@@ -185,11 +122,11 @@ class ConfigController extends ActionController
             }
         }
         $this->view()->assign('modules', $modules);
+        */
         $this->view()->assign('name', $module);
 
-        $title = sprintf(__('Module configuration: %s'), $modules[$module]['title']);
-        $this->view()->assign('title', $title);
-        $this->view()->setTemplate('config-module');
+        $this->view()->assign('title', __('Module configurations'));
+        //$this->view()->setTemplate('config-module');
     }
 
     protected function getForm($configs, $module)

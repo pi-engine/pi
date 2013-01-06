@@ -1,9 +1,6 @@
 <?php
     $this->css($this->assetModule('script/system-ui.css','system'));
     $this->jQuery();
-    $this->js(array(
-        $this->assetModule('script/cache.js','system')
-    ));
 ?>
 <style>
     .box-hover .pull-right {
@@ -58,65 +55,65 @@
 
 </div>
 <script>
-(function($){
-    var PageItem=Controller({
+(function($) {
+    var PageItem = Controller({
         events: {
-            "click .page-delete":"remove",
-            "click .page-active":"active"
+            "click .page-delete": "remove",
+            "click .page-active": "active"
         },
-        remove:function(){
-            var el=this.el;
+        remove: function() {
+            var el = this.el;
             this.toggleClass();
-            if(confirm("<?php _e("Are you sure to delete the page?") ?>")){
-                $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>"+el.attr("data-id")).done(function(result){
-                    if(result.status==1){
-                        el.fadeOut(150,function(){
+            if (confirm("<?php _e("Are you sure to delete the page?"); ?>")) {
+                $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
+                    if (result.status == 1) {
+                        el.fadeOut(150, function() {
                             el.remove();
                         });
-                        beautAlert.done(result.message,"succ");
+                        beautAlert.done(result.message, "succ");
                     }
                 });
             }
             this.toggleClass();
         },
-        active:function(){
-            $.getJSON("<?php echo $this->url('', array('action' => 'activate', 'id' => '')); ?>"+this.el.attr("data-id")).done(function(result){
-                if(result.status==1){
+        active: function() {
+            $.getJSON("<?php echo $this->url('', array('action' => 'activate', 'id' => '')); ?>" + this.el.attr("data-id")).done(function(result) {
+                if (result.status == 1) {
                     this.toggleAction();
-                    beautAlert.done(result.message,"succ");
+                    beautAlert.done(result.message, "succ");
                 }
             }.bind(this));
         },
-        toggleClass:function(){
+        toggleClass: function() {
             this.el.toggleClass("handle");
         },
-        toggleAction:function(){
-            var el=this.el;
-                if(el.attr("data-action")=="disable"){
-                    el.attr("data-action","enable").removeClass("box-disable").find(".page-active").html("<?php _e('Deactivate'); ?>");
+        toggleAction: function() {
+            var el = this.el;
+                if (el.attr("data-action") == "disable") {
+                    el.attr("data-action", "enable").removeClass("box-disable").find(".page-active").html("<?php _e('Deactivate'); ?>");
                     el.appendTo(pageItems1.activePages);
-                }else{
-                    el.attr("data-action","disable").addClass("box-disable").find(".page-active").html("<?php _e('Activate'); ?>");
+                } else {
+                    el.attr("data-action", "disable").addClass("box-disable").find(".page-active").html("<?php _e('Activate'); ?>");
                     el.appendTo(pageItems1.inactivePages);
                 }
         }
     });
-    var PageItems=Controller({
-        elements:{
-            ".box-hover":"items",
-            ".active-pages":"activePages",
-            ".inactive-pages":"inactivePages"
+    var PageItems = Controller({
+        elements: {
+            ".box-hover": "items",
+            ".active-pages": "activePages",
+            ".inactive-pages": "inactivePages"
         },
-        init:function(){
-            this.items.each(function(){
+        init: function() {
+            this.items.each(function() {
                 new PageItem({
-                    el:$(this)
+                    el: $(this)
                 });
             });
         }
     });
-    var pageItems1=new PageItems({
-        el:$("#js-page")
+    var pageItems1 = new PageItems({
+        el: $("#js-page")
     });
 })(jQuery)
 </script>

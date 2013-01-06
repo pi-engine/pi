@@ -128,12 +128,17 @@ class MemberFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'          => 'id',
+            'name'          => 'role',
+        ));
+
+        $this->add(array(
+            'name'          => 'role_staff',
             'required'      => false,
         ));
 
         $this->add(array(
-            'name'          => 'role',
+            'name'          => 'id',
+            'required'      => false,
         ));
 
         $this->add(array(

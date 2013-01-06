@@ -19,8 +19,9 @@
  */
 
 namespace Module\System\Controller\Module;
-use Pi\Mvc\Controller\ActionController;
+
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Dashboard action controller
@@ -34,11 +35,27 @@ class DashboardController extends ActionController
      */
     public function indexAction()
     {
+        $mode = $this->params('mode');
         $module = $this->params('module');
         $user   = Pi::registry('user')->id;
 
-        // Fetch all active modules
+        // Set run mode
+        if (!empty($mode)) {
+            Pi::service('session')->backoffice->exchangeArray(array(
+                'mode'      => 'operation' == $mode ? 'operation' : 'manage',
+                'component' => '',
+                'module'    => '',
+            ));
+        }
+
+        // Fetch all permitted modules
         $modules = Pi::service('registry')->modulelist->read('active');
+        $modulesPermitted = Pi::service('registry')->moduleperm->read('admin');
+        foreach (array_keys($modules) as $name) {
+            if (null !== $modulesPermitted && !in_array($name, $modulesPermitted)) {
+                unset($modules[$name]);
+            }
+        }
 
         // Get personal sorted module list
         $moduleList = array();
@@ -59,6 +76,9 @@ class DashboardController extends ActionController
 
         // Append not sorted modules
         foreach (array_keys($modules) as $name) {
+            if (!isset($modules[$name])) {
+                continue;
+            }
             if (isset($moduleList[$name])) {
                 continue;
             }

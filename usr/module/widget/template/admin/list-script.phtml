@@ -25,20 +25,20 @@
     </ul>
 </div>
 <script>
-(function($){
+(function($) {
    var wl = $(".widget-list");
    wl.sortable({
-          connectWith : wl,
-          revert : 300,
-          placeholder:"widget-placeholder",
-          handle:".widget-hd",
-          receive:function(e,ui){
-              var s=ui.sender,
-                  name=ui.item.attr("data-name");
-              if(s.attr("data-list")=="add"){
-                  $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>"+name);
-              }else{
-                  $.getJSON("<?php echo $this->url('', array('action' => 'add', 'name' => '')); ?>"+name);
+          connectWith: wl,
+          revert: 300,
+          placeholder: "widget-placeholder",
+          handle: ".widget-hd",
+          receive: function(e, ui) {
+              var s = ui.sender,
+                  name = ui.item.attr("data-name");
+              if (s.attr("data-list") == "add") {
+                  $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>" + name);
+              } else {
+                  $.getJSON("<?php echo $this->url('', array('action' => 'add', 'name' => '')); ?>" + name);
               }
           }
     })

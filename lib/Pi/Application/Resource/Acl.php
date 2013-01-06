@@ -34,7 +34,7 @@ class Acl extends AbstractResource
     public function boot()
     {
         // Load user role
-        Pi::registry('user')->loadRole();
+        //Pi::registry('user')->loadRole();
         // Load global ACL handler
         $this->loadAcl();
         // Check access permission before any other action is performed
@@ -45,35 +45,48 @@ class Acl extends AbstractResource
     {
         $this->engine->loadResource('authentication');
         $this->aclHandler = new AclManager($this->engine->section(), isset($this->options['default']) ? $this->options['default'] : null);
-        $this->aclHandler->setRole(Pi::registry('user')->role);
+        $this->aclHandler->setRole(Pi::registry('user')->role());
         Pi::registry('acl', $this->aclHandler);
     }
 
     public function checkAccess(MvcEvent $e)
     {
-        $route = $e->getRouteMatch();
-        $resource = array(
-            'module'        => $route->getParam('module'),
-            'controller'    => $route->getParam('controller'),
-            'action'        => $route->getparam('action')
+        $denied = false;
+        $section = $this->engine->section();
+        $routeMatch = $e->getRouteMatch();
+        $route = array(
+            'module'        => $routeMatch->getParam('module'),
+            'controller'    => $routeMatch->getParam('controller'),
+            'action'        => $routeMatch->getparam('action')
         );
+        $this->aclHandler->setModule($route['module']);
 
-        // All non-admin actions in system module are public
-        if ($resource['module'] == 'system' && $this->engine->section() != 'admin') {
-            return true;
-        }
-
-        if (!$this->aclHandler->checkAccess($resource)) {
-            /**#@+
-             * Custom hack for EEFOCUS
-             */
-            if (!Pi::registry('user')->isGuest()) {
-                if (in_array($resource['module'], array('article', 'widget'))) {
-                    return true;
+        // Check for admin dashboard access, which requires loosen permissions
+        if ('admin' == $section && 'system' == $route['module'] && ('dashboard' == $route['controller'] || 'index' == $route['controller'])) {
+            // Denied if system dashboard is not allowed
+            $resource = array(
+                'name'  => 'admin',
+            );
+            if (!$this->aclHandler->checkAccess($resource)) {
+                $denied = true;
+            }
+        } else {
+            // Get allowed modules
+            $modulesAllowed = Pi::service('registry')->moduleperm->read($section);
+            // Denied if module is not allowed
+            if (null !== $modulesAllowed && !in_array($route['module'], $modulesAllowed)) {
+                $denied = true;
+            // Denied if action page is not allowed if check on page is enabled
+            } elseif (!empty($this->options['check_page'])) {
+                $resource = $route;
+                if (!$this->aclHandler->checkAccess($resource)) {
+                    $denied = true;
                 }
             }
-            /**#@-*/
+        }
 
+        // Jump to denied page upon denial
+        if ($denied) {
             $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
             $e->getResponse()->setStatusCode($statusCode);
             $e->setError('__denied__');

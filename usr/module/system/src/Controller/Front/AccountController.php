@@ -52,7 +52,7 @@ class AccountController extends ActionController
             __('Identity')  => $row->identity,
             __('Email')     => $row->email,
             __('Name')      => $row->name,
-            __('Role')      => $roleRow->title,
+            __('Role')      => __($roleRow->title),
         );
 
         $title = __('User account');

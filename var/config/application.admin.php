@@ -19,12 +19,30 @@ $config = include __DIR__ . '/application.front.php';
 // Translations
 $config['resource']['i18n']['translator']['global'][] = 'usr:admin';
 $config['resource']['i18n']['translator']['module'][] = 'admin';
+
 // Permission ACL
 $config['resource']['acl'] = array(
     // Default access perm in case not defined
-    'default'   => false,
+    'default'       => false,
+    // If check page access
+    'check_page'    => true,
 );
+
 // Caching
 $config['resource']['cache'] = false;
+// Audit
+/*
+ * Options for recording:
+ * skipError - skip error action
+ * users - specific users to be logged
+ * ips - specific IPs to be logged
+ * roles - specific roles to be logged
+ * pages - specific pages to be logged
+ * methods - specific request methods to be logged
+ */
+$config['resource']['audit'] = array(
+    'skipError' => true,
+    'methods'   => array('POST'),
+);
 
 return $config;

@@ -19,6 +19,7 @@
  */
 
 namespace Pi\Application\Model\Acl;
+
 use Pi;
 use Pi\Application\Model\Model;
 use Zend\Db\Sql\Predicate\Predicate;
@@ -66,14 +67,14 @@ class Rule extends Model
     }
 
     /**
-     * Get resources to which a group of roles is allowed/denied to access a given resource privilege
+     * Get resources to which a group of roles is allowed to access a given resource privilege
      *
-     * @param array     $roles
-     * @param array|Where    $where
-     * @param boolean   $allowed allowed or denied
+     * @param array         $roles
+     * @param array|Where   $where
+     * @param bool          $default Default permission in case not defined
      * @return array of resources
      */
-    public function getResources($roles, $where = null, $allowed = true)
+    public function getResources($roles, $where = null, $default = false)
     {
         if (!$where instanceof Predicate) {
             $where = Pi::db()->where((array) $where);
@@ -85,22 +86,38 @@ class Rule extends Model
         } else {
             $predicate->equalTo('role', array_shift($roles));
         }
-        $select = $this->select()->where($where)->columns(array(
-            'resource',
-            'denied' => Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')')
-        ));
-        $select->group('resource');
+        $predicate->equalTo('deny', 0);
+        $columns = array(
+            'item' => Pi::db()->expression('DISTINCT resource')
+        );
+        //$columns = array('resource', 'deny');
+        /*
+        if ($default) {
+            $columns['denied'] = Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')');
+        }
+        */
+        $select = $this->select()->where($where)->columns($columns);
+        //$select->group('resource');
+        //$select->having('deny = 0');
+        /*
+        if ($default) {
+            $select->having('denied = 0', 'OR');
+        }
+        */
+
+        /*
         // allowed
         if (!empty($allowed)) {
-            $select->having('denied = 0');
+            $select->having('deny = 0');
         // denied
         } else {
             $select->having('denied > 0');
         }
+        */
         $resources = array();
         $rowset = $this->selectWith($select);
         foreach ($rowset as $row) {
-            $resources[] = $row->resource;
+            $resources[] = $row->item;
         }
         return $resources;
     }
@@ -112,13 +129,31 @@ class Rule extends Model
      * @param bool          $default Default permission in case not defined
      * @return boolean
      */
-    public function isAllowed($where = null, $default = false)
+    public function isAllowed($where = null, $default = null)
     {
         if (!$where instanceof Where) {
             $where = Pi::db()->where($where);
         }
         $where->equalTo('section', $this->getSection());
 
+        // Check if permitted
+        $wherePermitted = clone $where;
+        $wherePermitted->equalTo('deny', 0);
+        $select = $this->select()->Where($wherePermitted)->limit(1);
+        $rowset = $this->selectWith($select);
+        // Permitted if deny = 0 detected
+        if ($rowset->count()) {
+            $permission = true;
+        // Denied if deny = 1 detected, otherwise, default
+        } else {
+            // Check if denied
+            $where->equalTo('deny', 1);
+            $select = $this->select()->Where($where)->limit(1);
+            $rowset = $this->selectWith($select);
+            $permission = $rowset->count() ? false : $default;
+        }
+
+        /*
         // For default as permitted: denied if deny is detected, otherwise permitted
         if ($default) {
             $where->equalTo('deny', 1);
@@ -135,6 +170,7 @@ class Rule extends Model
             $row = $this->selectWith($select)->current();
             $permission = ($row->denied || !$row->count) ? false : true;
         }
+        */
 
         /*
         $columns = array('denied' => Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')'));

@@ -56,8 +56,9 @@ class AuditController extends ActionController
             ),
         ));
 
-        $this->view()->assign('items', $rowset);
+        $this->view()->assign('count', $limit);
+        $this->view()->assign('items', $rowset->toArray());
         $this->view()->assign('paginator', $paginator);
-        $this->view()->setTemplate('audit-list');
+        //$this->view()->setTemplate('audit-list');
     }
 }

@@ -1,0 +1,176 @@
+
+/* Block zones */
+/*
+ |<------------------         center       ------------------>|
+
+ --------------------------------------------------------------------------------
+ |        |                                                            |        |
+ |        |                               2                            |        |
+ |        |                                                            |        |
+ |        |------------------------------------------------------------|        |
+ |        |                               |                            |        |
+ |        |                3              |             4              |        |
+ |        |                               |                            |        |
+ |   1    |------------------------------------------------------------|   7    |
+ |        |                                                            |        |
+ |        |                            content                         |        |
+ |        |                                                            |        |
+ |        |------------------------------------------------------------|        |
+ |        |                               |                            |        |
+ |        |                5              |             6              |        |
+ |        |                               |                            |        |
+ |--------|------------------------------------------------------------|--------|
+ |                                                                              |
+ |                                        8                                     |
+ |                                                                              |
+ --------------------------------------------------------------------------------
+
+ |<------------------         center       ------------------>|
+ */
+
+/* Zones */
+.pi-zone-1,
+.pi-zone-7 {
+
+}
+.pi-zone-2 {
+}
+.pi-zone-3,
+.pi-zone-5 {
+    float: left;
+    width: 49.5%;
+}
+.pi-zone-4,
+.pi-zone-6 {
+   float: right;
+   width: 49.5%;
+}
+.pi-zone-8 {
+}
+
+.pi-zone-module {
+    padding: 5px;
+}
+
+/* Block */
+.block-container {
+    margin-bottom: 15px;
+}
+.block-header {
+    background: #f5f5f5;
+    border: 1px solid #e6e6e6;
+    border-bottom-color: #b4c8da;
+    border-top: none;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 14px;
+}
+.block-header-bg {
+    content: "";
+    height: 2px;
+    width: 100%;
+    display: block;
+    background-color: #195d9f;
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#0096d2,EndColorStr=#195d9f);
+    background-image: -moz-linear-gradient(left,#0096d2,#195d9f);
+    background-image: -webkit-linear-gradient(left,#0096d2,#195d9f);
+    background-image: -o-linear-gradient(left,#0096d2,#195d9f);
+}
+
+.block-header-title {
+    font-size: 18px;
+    font-family:"Microsoft YaHei";
+    color: #333;
+}
+.block-subline {
+    color: #808080;
+}
+.block-subline a {
+    color: #808080;
+}
+.block-tab {
+    margin: 8px 0 0;
+    font-size: 12px;
+
+}
+.block-tab li {
+    float: left;
+    height: 25px;
+    line-height: 24px;
+    padding:0 8px;
+    border: 1px solid transparent;
+    border-top-width: 2px;
+    border-bottom:none;
+}
+.block-tab .active {
+   background: #fff;
+   border-top: 2px solid #d01628;
+   border-left: 1px solid #b4c8da;
+   border-right: 1px solid #b4c8da;
+}
+.block-body {
+    padding: 12px 8px 0 10px;
+    border: 1px solid #e6e6e6;
+    border-top: none;
+}
+.block-body ul {
+    margin: 0;
+}
+
+.block-body input,
+.block-body textarea,
+.block-body uneditable-input {
+    max-width: 80%;
+}
+
+
+
+/* Article module */
+/*
+.article-header {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+.article-header .headline {
+
+}
+.article-header .byline {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.article-header .subline {
+
+}
+.article-body {
+    font-size: 14px;
+}
+.article-body .page-subject {
+
+}
+.article-body a {
+    text-decoration: underline;
+    color: #1E50A2;
+}
+.article-body a:hover {
+    color: #BA2636;
+}
+
+.summary {
+    text-align: justify;
+    background: #fff;
+    margin: 15px 0 0;
+    padding: 10px 5px;
+    line-height: 23px;
+    font-size: 14px;
+    text-indent: 2em;
+    border: 1px solid #dcdddd;
+}
+*/
+
+/*common*/
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

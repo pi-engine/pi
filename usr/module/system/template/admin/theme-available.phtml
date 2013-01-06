@@ -3,12 +3,15 @@
     $this->jQuery();
     $this->Backbone();
 ?>
+
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>"><?php _e('Theme application'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a>
     <li><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
     <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
-    <li><a><?php _e('Repository'); ?></a>
+    <li class="disabled"><a><?php _e('Repository'); ?></a>
 </ul>
+
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div class="theme-items" id="js-theme">
 </div>
 <script id="temp-theme" type="text/template">
@@ -29,31 +32,31 @@ var ThemeItemView = Backbone.View.extend({
     template: _.template($("#temp-theme").html()),
     events: {
         "click .theme-check": "check",
-        "click .theme-install":"install"
+        "click .theme-install": "install"
     },
-    initialize:function(){
-        this.model.on("destroy",this.remove,this);
-        this.model.id="name";
+    initialize: function() {
+        this.model.on("destroy", this.remove, this);
+        this.model.id = "name";
     },
-    render: function () {
+    render: function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this.el;
     },
-    check: function () {
-        
+    check: function() {
+
     },
-    install:function(){
+    install:function() {
        this.model.destroy({
-           url:"<?php echo $this->url('', array('action' => 'install', 'name' => '')); ?>"+this.model.get("name")
+           url:"<?php echo $this->url('', array('action' => 'install', 'name' => '')); ?>" + this.model.get("name")
        });
     }
 });
 var ThemeListView = Backbone.View.extend({
     el: $("#js-theme"),
-    initialize: function () {
+    initialize: function() {
         this.render();
     },
-    render: function () {
+    render: function() {
         var el = this.$el,
             m = themeCollection.models;
         for (var i = 0, l = m.length; i < l; i++) {

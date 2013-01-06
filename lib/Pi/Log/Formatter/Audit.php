@@ -26,7 +26,7 @@ class Audit implements FormatterInterface
      * Audit table map
      *
      * @see module/system/sql/mysql.system.sql
-     * @var type
+     * @var array
      */
     protected $columns = array(
         'timestamp'     => 'time',

@@ -52,6 +52,9 @@ class ThemeController extends ActionController
             $theme['name'] = $key;
         }
 
+        $themeName = '';
+        $moduleTheme = '';
+        /*
         // Get module list
         $modules = array();
         $moduleSet = Pi::model('module')->select(array('active' => 1));
@@ -59,7 +62,7 @@ class ThemeController extends ActionController
             $modules[$row->name] = $row->title;
         }
 
-        $themeName = '';
+
         $moduleTheme = '';
         if (isset($modules[$section])) {
             $subject = $modules[$section];
@@ -72,26 +75,26 @@ class ThemeController extends ActionController
             } else {
                 $moduleTheme = $themeName;
             }
-        } elseif ('_admin' == $section) {
+        } else
+        */
+        if ('_admin' == $section) {
             $subject = __('admin');
             $themeName = Pi::config('theme_admin');
         } else {
-            $subject = __('global');
+            $subject = __('front');
             $themeName = Pi::config('theme');
         }
         $data = isset($themes[$themeName]) ? $themes[$themeName] : $themes['default'];
-        if (false === $moduleTheme) {
-            $data['specified'] = false;
-        } elseif (isset($themes[$themeName])) {
+        if (isset($themes[$themeName])) {
             unset($themes[$themeName]);
         }
 
         $this->view()->assign('theme', $data);
         $this->view()->assign('section', $section);
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('modules', $modules);
+        //$this->view()->assign('modules', $modules);
         $this->view()->assign('title', sprintf(__('Select theme for %s'), $subject));
-        $this->view()->setTemplate('theme-select');
+        //$this->view()->setTemplate('theme-select');
     }
 
     /**
@@ -148,7 +151,7 @@ class ThemeController extends ActionController
             $theme['name'] = $key;
         }
         $this->view()->assign('themes', $themes);
-        $this->view()->setTemplate('theme-list');
+        //$this->view()->setTemplate('theme-installed');
         $this->view()->assign('title', __('Installed themes'));
     }
 

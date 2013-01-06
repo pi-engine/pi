@@ -76,6 +76,7 @@ class Block extends AbstractRegistry
         if (null !== $role && $role != AclManager::ADMIN && !empty($blocksId)) {
             $acl = new AclManager('block');
             $where = Pi::db()->where(array('resource' => array_keys($blocksId)));
+            /*
             // Get allowed blocks directly if default permssion as denied
             if (!$acl->getDefault()) {
                 $blocksAllowed = $acl->getResources($where);
@@ -84,6 +85,8 @@ class Block extends AbstractRegistry
                 $blocksDenied = $acl->getResources($where, false);
                 $blocksAllowed = array_diff(array_keys($blocksId), $blocksDenied);
             }
+            */
+            $blocksAllowed = $acl->getResources($where);
         }
 
         // Reorganize blocks by page and zone

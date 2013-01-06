@@ -1,22 +1,18 @@
 body {
     min-width: 900px;
 }
-.header .header-logo {
-    margin-left: 10px;
-}
 .container {
     width: 100%;
 }
 .global-nav .menu {
     padding-left: 10px;
 }
-/* Sub menu */
-.sub-nav .menu {
-    /* To be defined */
-}
-/* Sub breadcrumbs */
-.sub-nav .breadcrumb {
-    /* Inherited from Bootstrap */
+.page-header {
+    font-size: 26px;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    line-height: 28px;
+    height: 28px;
 }
 /* Box with border */
 .box-bordered {
@@ -49,12 +45,3 @@ body {
 }
 
 /*admin common*/
-.mb10 {
-    margin-bottom: 10px;
-}
-.mr10 {
-    margin-right: 10px;
-}
-.mr20 {
-    margin-right: 20px;
-}

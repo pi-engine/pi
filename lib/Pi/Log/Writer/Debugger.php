@@ -21,6 +21,7 @@ namespace Pi\Log\Writer;
 
 use Pi;
 use Zend\Log\Formatter\FormatterInterface;
+use Pi\Log\Logger;
 use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\DbProfiler as DbFormatter;
 use Pi\Log\Formatter\Profiler as ProfilerFormatter;
@@ -35,6 +36,7 @@ class Debugger extends AbstractWriter
 
     protected $logger = array(
         'log'       => array(),
+        'debug'     => array(),
         'profiler'  => array(),
         'db'        => array(),
         'system'    => array(),
@@ -104,12 +106,19 @@ class Debugger extends AbstractWriter
      */
     protected function doWrite(array $event)
     {
+        if ($event['priority'] > Logger::DEBUG) {
+            return;
+        }
         $message = $event;
         if ($this->formatter() instanceof FormatterInterface) {
             $message = $this->formatter()->format($event);
         }
 
-        $this->logger['log'][] = $message;
+        if ($event['priority'] == Logger::DEBUG) {
+            $this->logger['debug'][] = $message;
+        } else {
+            $this->logger['log'][] = $message;
+        }
     }
 
     /**

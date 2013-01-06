@@ -21,11 +21,8 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
-//use Module\System\Form\BlockCustomForm as CustomForm;
-//use Module\System\Form\BlockCustomFilter as CustomFilter;
+use Module\System\Controller\ComponentController  as ActionController;
 use Module\System\Form\BlockModuleForm as ModuleForm;
-//use Module\System\Form\BlockNavForm as NavForm;
 
 /**
  * Feature list:
@@ -110,7 +107,7 @@ class BlockController extends ActionController
         }
         */
 
-        $this->view()->assign('modules', $this->getModules());
+        //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('blocks', $blocks);
         $this->view()->assign('name', $name);
         $this->view()->assign('title', __('Block list'));
@@ -195,7 +192,7 @@ class BlockController extends ActionController
         $title = sprintf(__('Block clone from: %s'), $rootRow->title);
 
         $this->view()->assign('title', $title);
-        $this->view()->assign('modules', $this->getModules());
+        //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('name', $rootRow->module);
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);
@@ -267,7 +264,7 @@ class BlockController extends ActionController
         $title = sprintf(__('Block edit: %s'), $blockRow->title);
 
         $this->view()->assign('title', $title);
-        $this->view()->assign('modules', $this->getModules());
+        //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('name', $blockRow->module);
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);

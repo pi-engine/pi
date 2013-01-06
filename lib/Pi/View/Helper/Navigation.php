@@ -49,7 +49,7 @@ class Navigation extends NavigationHelper
     /**
      * Load a navigation
      *
-     * @param string    $name       navigation name
+     * @param string|array    $name       navigation name or config
      * @param array     $options
      * @return  Navigation
      */
@@ -60,60 +60,41 @@ class Navigation extends NavigationHelper
         }
 
         //  Sets the default router for MVC pages
-        $router = Pi::engine()->application()->getRouter();
-        $routeMatch = Pi::engine()->application()->getRouteMatch();
-        MvcPage::setDefaultRouter($router);
-        MvcPage::setDefaultRouteMatch($routeMatch);
+        //$router = Pi::engine()->application()->getRouter();
+        //$routeMatch = Pi::engine()->application()->getRouteMatch();
+        //MvcPage::setDefaultRouter($router);
+        //MvcPage::setDefaultRouteMatch($routeMatch);
 
-        if (isset($options['cache_ttl'])) {
-            $cacheNamespace = 'nav';
-            $cacheTtl       = $options['cache_ttl'] ?: 86400;
-            if (!empty($options['cache_id'])) {
-                $cacheKey = $options['cache_id'];
+        if (is_string($name)) {
+            if (isset($options['cache_ttl'])) {
+                $cacheNamespace = 'nav';
+                $cacheTtl       = $options['cache_ttl'] ?: 86400;
+                if (!empty($options['cache_id'])) {
+                    $cacheKey = $options['cache_id'];
+                } else {
+                    $routeMatch = Pi::engine()->application()->getRouteMatch();
+                    $cacheKey = implode('-', array($name, $routeMatch->getParam('module'), $routeMatch->getParam('controller'), $routeMatch->getParam('action')));
+                    $cacheLevel = isset($options['cache_level']) ? $options['cache_level'] : '';
+                    $cacheKey = Pi::service('cache')->canonizeKey($cacheKey, $cacheLevel);
+                }
+                $cache          = clone Pi::service('cache')->storage();
+                Pi::service('cache')->setNamespace($cacheNamespace, $cache);
+                $this->cache = (object) array(
+                    'storage'   => $cache,
+                    'key'       => $cacheKey,
+                    'ttl'       => $cacheTtl,
+                );
             } else {
-                $cacheKey = implode('-', array($name, $routeMatch->getParam('module'), $routeMatch->getParam('controller'), $routeMatch->getParam('action')));
-                $cacheLevel = isset($options['cache_level']) ? $options['cache_level'] : '';
-                $cacheKey = Pi::service('cache')->canonizeKey($cacheKey, $cacheLevel);
+                $this->cache = null;
             }
-            $cache          = clone Pi::service('cache')->storage();
-            Pi::service('cache')->setNamespace($cacheNamespace, $cache);
-            $this->cache = (object) array(
-                'storage'   => $cache,
-                'key'       => $cacheKey,
-                'ttl'       => $cacheTtl,
-            );
-        } else {
-            $this->cache = null;
-        }
-
-        /*
-        //$template = empty($options['template']) ? 'navigation.phtml' : $options['template'];
-        $cache = array();
-
-        if (isset($options['cache_ttl'])) {
-            $cacheKey           = 'nav_' . $name . (empty($options['cache_id']) ? '' : '_' . $options['cache_id']);
-            $cacheStorage       = Pi::service('cache')->storage();
-            $cache['ttl']       = empty($options['cache_ttl']) ? 86400 : $options['cache_ttl'];
-            $cache['namespace'] = 'nav';
-            $navConfig          = $cache['stroage']->getItem($cacheKey, $cache);
-        }
-
-        if (empty($navConfig)) {
-            //$module = Pi::engine()->application()->getRouteMatch()->getParam('module');
             $module = Pi::service('module')->current();
             $navConfig = Pi::service('registry')->navigation->read($name, $module);
-            if (!empty($cache)) {
-                $cacheStorage->setItem($cacheKey, $navConfig, $cache);
-            }
         } else {
-            Pi::service('log')->debug(sprintf('Navigation "%s" is cached.', $name));
+            $navConfig = $name;
         }
-        */
 
-        $module = Pi::service('module')->current();
-        $navConfig = Pi::service('registry')->navigation->read($name, $module);
 
-        $this->setContainer(new Container($navConfig));
+        $this->setContainer($navConfig);
 
         return $this;
     }
@@ -203,10 +184,28 @@ class Navigation extends NavigationHelper
         if (!isset($this->injected[$class])) {
             $this->inject($helper);
             $this->injected[$class] = true;
-        }
+        } elseif ($this->getInjectContainer() && !$helper->hasContainer()) {
+            $helper->setContainer($this->getContainer());
+        }            
 
         $helper->setView($this->view);
 
         return $helper;
+    }
+
+    public function setContainer($container = null)
+    {
+        //  Sets the default router for MVC pages
+        $router = Pi::engine()->application()->getRouter();
+        $routeMatch = Pi::engine()->application()->getRouteMatch();
+        MvcPage::setDefaultRouter($router);
+        MvcPage::setDefaultRouteMatch($routeMatch);
+
+        if (is_array($container)) {
+            $container = new Container($container);
+        }
+
+        parent::setContainer($container);
+        return $this;
     }
 }

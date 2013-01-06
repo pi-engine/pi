@@ -105,6 +105,7 @@ class User
         if ($user && $user->active) {
             $this->assign($user);
         }
+        $this->role = null;
 
         return $this;
     }
@@ -127,9 +128,13 @@ class User
                 $val = $data[$col];
             }
         }
+
         // Set role
-        $role = isset($data['role']) ? $data['role'] : true;
-        $this->role($role);
+        if (isset($data['role'])) {
+            $this->role($data['role']);
+        } else {
+            $this->role = null;
+        }
 
         return $this;
     }
@@ -147,7 +152,7 @@ class User
             return $this;
         }
 
-        if (true === $role) {
+        if (null === $this->role) {
             $this->loadRole();
         }
 
@@ -157,8 +162,8 @@ class User
     public function loadRole()
     {
         if ($this->account->id) {
-            $model = Pi::model('user_role');
-            $role = $model->select(array('user' => $this->account->id))->current();
+            $model = ('admin' == Pi::engine()->section()) ? Pi::model('user_staff') : Pi::model('user_role');
+            $role = $model->find($this->account->id, 'user');
             $this->role = $role ? $role->role : Acl::GUEST;
         } else {
             $this->role = Acl::GUEST;
@@ -180,13 +185,55 @@ class User
         return $this->profile;
     }
 
+    /**
+     * Check if current user is a guest
+     *
+     * @return bool
+     */
     public function isGuest()
     {
-        return empty($this->account->identity) ? true : false;
+        return $this->account->id ? false : true;
     }
 
+    /**
+     * Check if current user is a top admin
+     *
+     * @return bool
+     */
     public function isAdmin()
     {
         return $this->role() == Acl::ADMIN ? true : false;
+    }
+
+    /**
+     * Check if current user is a regular member
+     *
+     * @return bool
+     */
+    public function isMember()
+    {
+        return $this->hasRole(Acl::MEMBER)  ? true : false;
+    }
+
+    /**
+     * Check if current user is a staff
+     *
+     * @return bool
+     */
+    public function isStaff()
+    {
+        return $this->hasRole(Acl::STAFF)  ? true : false;
+    }
+
+    /**
+     * Check if current user has a role in its role ancestors
+     *
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        $roles = Pi::service('registry')->role->read($this->role());
+        return in_array($role, $roles) ? true : false;
     }
 }

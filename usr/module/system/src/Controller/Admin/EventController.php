@@ -21,7 +21,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Module\System\Controller\ComponentController  as ActionController;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -52,10 +52,9 @@ class EventController extends ActionController
                 'active'    => $row->active,
                 'listeners' => array(),
             );
-            $eventNames[] = $row->name;
         }
-        if ($eventNames) {
-            $rowset = Pi::model('event_listener')->select(array('event_module' => $name, 'event_name' => $eventNames));
+        if ($events) {
+            $rowset = Pi::model('event_listener')->select(array('event_module' => $name, 'event_name' => array_keys($events)));
             foreach ($rowset as $row) {
                 $events[$row->event_name]['listeners'][] = array(
                     'id'        => $row->id,
@@ -67,6 +66,20 @@ class EventController extends ActionController
             }
         }
 
+        // Listeners of the module
+        $select = Pi::model('event_listener')->select()->where(array('module' => $name))->order(array('event_module', 'event_name'));
+        $rowset = Pi::model('event_listener')->selectWith($select);
+        $listeners = array();
+        foreach ($rowset as $row) {
+            $listeners[$row->id] = array(
+                'id'        => $row->id,
+                'active'    => $row->active,
+                'title'     => sprintf('%s::%s', $row->class, $row->method),
+                'event'     => sprintf('%s-%s', $row->event_module, $row->event_name),
+            );
+        }
+
+        /*
         // Get module list
         $modules = array();
         $select = Pi::model('event')->select()->columns(array('module' => new Expression('DISTINCT module')));
@@ -78,13 +91,15 @@ class EventController extends ActionController
         if ($moduleList) {
             $modules = Pi::model('module')->select(array('active' => 1, 'name' => $moduleList));
         }
+        $this->view()->assign('modules', $modules);
+        */
 
         $this->view()->assign('events', $events);
+        $this->view()->assign('listeners', $listeners);
         $this->view()->assign('name', $name);
-        $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', sprintf(__('Events of module %s'), $name));
+        //$this->view()->assign('title', sprintf(__('Events of module %s'), $name));
 
-        $this->view()->setTemplate('event-list');
+        //$this->view()->setTemplate('event-list');
     }
 
     /**
@@ -107,6 +122,7 @@ class EventController extends ActionController
                 'event'     => sprintf('%s-%s', $row->event_module, $row->event_name),
             );
         }
+
         // Get module list
         $modules = array();
         $select = Pi::model('event_listener')->select()->columns(array('module' => new Expression('DISTINCT module')));

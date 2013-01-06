@@ -19,8 +19,8 @@
  */
 
 namespace Pi\Application\Installer\Resource;
-use Pi;
 
+use Pi;
 
 /**
  * ACL configuration specs
@@ -29,18 +29,23 @@ use Pi;
  *      'roles' => array(
  *          'roleName'  => array(
  *              'title'     => 'Title',
- *              'parents'   => array('parent')
+ *              'parents'   => array('parent'),
+ *          ),
+ *          'roleNameStaff' => array(
+ *              'title'     => 'Title',
+ *              'parents'   => array('parent'),
+ *              'section'   => 'admin',         // Default as front if not specified
  *          ),
  *          ...
  *      ),
  *      'resources' => array(
- *          // module-wide resources
- *          'module'    => array(
+ *          // Front resources
+ *          'front'    => array(
  *              'category'  => array(
  *                  //'name'          => 'category',
  *                  'title'         => 'Category Title',
  *                  'parent'        => 'parentCategory'
- *                  'rules'         => array(
+ *                  'access'        => array(
  *                      'guest'     => 1,
  *                      'member'    => 1
  *                  ),
@@ -50,13 +55,13 @@ use Pi;
  *                      ),
  *                      'post'      => array(
  *                          'title' => 'Post articles',
- *                          'rules' => array(
+ *                          'access' => array(
  *                              'guest'     => 0,
  *                          ),
  *                      ),
  *                      'delete'    => array(
  *                          'title' => 'Post articles',
- *                          'rules' => array(
+ *                          'access' => array(
  *                              'guest'     => 0,
  *                              'member'    => 0,
  *                          ),
@@ -65,10 +70,10 @@ use Pi;
  *              ),
  *              ...
  *          ),
- *          'front' => array(
+ *          'admin' => array(
  *              ...
  *          ),
- *          'admin' => array(
+ *          'custom' => array(
  *              ...
  *          ),
  *      ),
@@ -77,12 +82,87 @@ use Pi;
 
 class Acl extends AbstractResource
 {
+    protected function canonizeResource($resource)
+    {
+        $columns = array(
+            'section', 'name', 'item', 'title', 'module', 'type'
+        );
+        $data = array();
+        foreach ($columns as $col) {
+            if (isset($resource[$col])) {
+                $data[$col] = $resource[$col];
+            }
+        }
+        return $data;
+    }
+
     public function installAction()
     {
+        $module = $this->event->getParam('module');
+        // Create module access permissions
+        if ('system' == $module) {
+            $modulePerms = array(
+                'front' => array(
+                    'guest'     => 1,
+                    'member'    => 1,
+                ),
+                'admin' => array(
+                    'manager'   => 1,
+                    'staff'     => 0,
+                ),
+                /*
+                'operation' => array(
+                    'manager'   => 1,
+                    'staff'     => 0,
+                ),
+                */
+                'manage' => array(
+                    'manager'   => 1,
+                    'staff'     => 0,
+                )
+            );
+        } else {
+            $modulePerms = array(
+                'front' => array(
+                    'guest'     => 1,
+                    'member'    => 1,
+                ),
+                'admin' => array(
+                    'staff'     => 0,
+                    'editor'    => 1,
+                ),
+                /*
+                'operation' => array(
+                    'editor'    => 1,
+                    'staff'     => 0,
+                ),
+                */
+                'manage' => array(
+                    'moderator' => 1,
+                    'staff'     => 0,
+                )
+            );
+        }
+        $modelRule = Pi::model('acl_rule');
+        foreach ($modulePerms as $section => $access) {
+            foreach ($access as $role => $rule) {
+                $data = array(
+                    'role'      => $role,
+                    'resource'  => $module,
+                    'section'   => 'module-' . $section,
+                    'module'    => $module,
+                    'deny'      => empty($rule) ? 1 : 0,
+                );
+                $row = $modelRule->createRow($data);
+                $row->save();
+            }
+        }
+
+        Pi::service('registry')->moduleperm->flush();
+
         if (empty($this->config)) {
             return true;
         }
-        $module = $this->event->getParam('module');
 
         if (!empty($this->config['roles'])) {
             $inheritance = array();
@@ -121,7 +201,6 @@ class Acl extends AbstractResource
             }
         }
 
-
         $resources = isset($this->config['resources']) ? $this->config['resources'] : array();
         foreach ($resources as $section => $resourceList) {
             foreach ($resourceList as $name => $resource) {
@@ -143,6 +222,7 @@ class Acl extends AbstractResource
 
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
+
         return true;
     }
 
@@ -235,9 +315,9 @@ class Acl extends AbstractResource
             'module'    => $module,
             'type'      => 'system',
         ));
+        // Find existent resources
         $resources_exist = array();
         foreach ($rowset as $row) {
-            //$key = $row->section . ':' . $row->module . ':' . $row->name;
             $resources_exist[$row->section][$row->name] = $row->toArray();
         }
 
@@ -246,7 +326,7 @@ class Acl extends AbstractResource
                 $resource['module'] = empty($resource['module']) ? $module : $resource['module'];
                 $resource['section'] = $section;
                 $resource['type'] = 'system';
-                //$key = $section . ':' . $resource['module'] . ':' . $resource['name'];
+                // Update existent resource
                 if (isset($resources_exist[$section][$name])) {
                     $resource['id'] = $resources_exist[$section][$name]['id'];
                     $message = array();
@@ -262,6 +342,7 @@ class Acl extends AbstractResource
                     continue;
                 }
                 $message = array();
+                // Add new resource
                 $status = $this->insertResource($resource, $message);
                 if (!$status) {
                     $message[] = sprintf('Resource "%s" is not created.', $resource['name']);
@@ -273,6 +354,7 @@ class Acl extends AbstractResource
             }
         }
 
+        // Remove not deprecated resources
         foreach ($resources_exist as $section => $resourceList) {
             foreach ($resourceList as $name => $resource) {
                 $message = array();
@@ -323,7 +405,9 @@ class Acl extends AbstractResource
                 Pi::model($modelName)->delete($where);
             }
         }
+        Pi::model('acl_rule')->delete(array('module' => $module));
 
+        Pi::service('registry')->moduleperm->flush();
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
         return;
@@ -367,20 +451,6 @@ class Acl extends AbstractResource
         return $row->id ? true : false;
     }
 
-    protected function canonizeResource($resource)
-    {
-        $columns = array(
-            'section', 'name', 'item', 'title', 'module', 'type'
-        );
-        $data = array();
-        foreach ($columns as $col) {
-            if (isset($resource[$col])) {
-                $data[$col] = $resource[$col];
-            }
-        }
-        return $data;
-    }
-
     protected function insertResource($resource, &$message)
     {
         $modelResource = Pi::model('acl_resource');
@@ -388,6 +458,7 @@ class Acl extends AbstractResource
         $modelPrivilege = Pi::model('acl_privilege');
 
         $data = $this->canonizeResource($resource);
+        // Get parent resource
         if (!empty($resource['parent'])) {
             if (is_string($resource['parent'])) {
                 $where = array(
@@ -432,13 +503,14 @@ class Acl extends AbstractResource
                 }
                 if (isset($privilege['access'])) {
                     foreach ($privilege['access'] as $role => $rule) {
-                        $data = array();
-                        $data['role'] = $role;
+                        $data = array(
+                            'role'      => $role,
+                            'resource'  => $resourceId,
+                            'section'   => $resource['section'],
+                            'module'    => $resource['module'],
+                            'deny'      => empty($rule) ? 1 : 0,
+                        );
                         $data['privilege'] = $name;
-                        $data['resource'] = $resourceId;
-                        $data['section'] = $resource['section'];
-                        $data['module'] = $resource['module'];
-                        $data['deny'] = empty($rule) ? 1 : 0;
                         $row = $modelRule->createRow($data);
                         $row->save();
                         if (!$row->id) {
@@ -451,12 +523,13 @@ class Acl extends AbstractResource
         // Insert access rules
         } elseif (isset($resource['access'])) {
             foreach ($resource['access'] as $role => $rule) {
-                $data = array();
-                $data['role'] = $role;
-                $data['resource'] = $resourceId;
-                $data['section'] = $resource['section'];
-                $data['module'] = $resource['module'];
-                $data['deny'] = empty($rule) ? 1 : 0;
+                $data = array(
+                    'role'      => $role,
+                    'resource'  => $resourceId,
+                    'section'   => $resource['section'],
+                    'module'    => $resource['module'],
+                    'deny'      => empty($rule) ? 1 : 0,
+                );
                 $row = $modelRule->createRow($data);
                 $row->save();
                 if (!$row->id) {
@@ -515,13 +588,14 @@ class Acl extends AbstractResource
             }
             if (isset($privilege['access'])) {
                 foreach ($privilege['access'] as $role => $rule) {
-                    $data = array();
-                    $data['role'] = $role;
+                    $data = array(
+                        'role'      => $role,
+                        'resource'  => $resourceId,
+                        'section'   => $resource['section'],
+                        'module'    => $resource['module'],
+                        'deny'      => empty($rule) ? 1 : 0,
+                    );
                     $data['privilege'] = $name;
-                    $data['resource'] = $resourceId;
-                    $data['section'] = $resource['section'];
-                    $data['module'] = $resource['module'];
-                    $data['deny'] = empty($rule) ? 1 : 0;
                     $row = $modelRule->createRow($data);
                     $row->save();
                     if (!$row->id) {

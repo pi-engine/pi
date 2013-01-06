@@ -24,7 +24,12 @@
  *      'roles' => array(
  *          'roleName'  => array(
  *              'title'     => 'Title',
- *              'parents'   => array('parent')
+ *              'parents'   => array('parent'),
+ *          ),
+ *          'roleNameStaff' => array(
+ *              'title'     => 'Title',
+ *              'parents'   => array('parent'),
+ *              'section'   => 'admin',         // Default as front if not specified
  *          ),
  *          ...
  *      ),
@@ -36,7 +41,7 @@
  *                  'title'         => 'Category Title',
  *                  'parent'        => 'parentCategory'
  *                  // Access rules
- *                  'rules'         => array(
+ *                  'access'        => array(
  *                      'guest'     => 1,
  *                      'member'    => 1
  *                  ),
@@ -46,14 +51,14 @@
  *                          'title' => 'Read articles',
  *                      ),
  *                      'post'      => array(
- *                          'title' => 'Post articles',
- *                          'rules' => array(
+ *                          'title'     => 'Post articles',
+ *                          'access'    => array(
  *                              'guest'     => 0,
  *                          ),
  *                      ),
  *                      'delete'    => array(
- *                          'title' => 'Post articles',
- *                          'rules' => array(
+ *                          'title'     => 'Post articles',
+ *                          'access'    => array(
  *                              'guest'     => 0,
  *                              'member'    => 0,
  *                          ),
@@ -79,14 +84,14 @@
  *                  'controller'    => 'controllerName',
  *                  'title'         => 'Title',
  *                  'parent'        => 'parentName'
- *                  'rules'         => array(
+ *                  'access'         => array(
  *                      'roleA' => 1,
  *                      'roleB' => 0
  *                  ),
  *                  'privileges'    => array(
  *                      'nameA'     => array(
  *                          'title' => 'privilegeName',
- *                          'rules' => array(
+ *                          'access' => array(
  *                              'roleA' => 1,
  *                              'roleB' => 0
  *                          ),
@@ -103,22 +108,61 @@
 // System settings, don't change
 return array(
     'roles' => array(
-        // System administrator or webmaster
-        'admin'     => array('title'    => __('Administrator')),
-        // User
-        'member'    => array('title'    => __('Member')),
-        // Visitor
-        'guest'     => array('title'    => __('Guest')),
-        // Inactive user
-        'inactive'  => array('title'    => __('Pending user')),
-        // Banned user
-        'banned'    => array('title'    => __('Banned account')),
+        /**#@+
+         * Admin section
+         */
+        // System administrator or webmaster with ultra permissions
+        'admin'     => array(
+            'title'     => __('Administrator'),
+            'section'   => 'admin',
+        ),
+        // Admin area user
+        'staff'     => array(
+            'title'     => __('Staff'),
+            'section'   => 'admin',
+        ),
         // Module/section moderator or administrator
         'moderator' => array(
             'title'     => __('Moderator'),
-            'parents'   => array('member')
+            'parents'   => array('staff'),
+            'section'   => 'admin',
         ),
+        // Content editor
+        'editor' => array(
+            'title'     => __('Editor'),
+            'parents'   => array('staff'),
+            'section'   => 'admin',
+        ),
+        // Module manager for content and moderation
+        'manager' => array(
+            'title'     => __('Manager'),
+            'parents'   => array('moderator', 'editor'),
+            'section'   => 'admin',
+        ),
+        /**#@-*/
+
+        /**#@+
+         * Front section
+         */
+        // User
+        'member'    => array(
+            'title' => __('Member')
+        ),
+        // Visitor
+        'guest'     => array(
+            'title' => __('Guest')
+        ),
+        // Inactive user
+        'inactive'  => array(
+            'title' => __('Pending')
+        ),
+        // Banned user
+        'banned'    => array(
+            'title' => __('Banned')
+        ),
+        /**#@-*/
     ),
+
     'resources' => array(
         // Front section
         'front' => array(
@@ -149,6 +193,7 @@ return array(
                     'member'    => 1,
                 ),
             ),
+            /*
             // global moderate
             'moderate'  => array(
                 'module'        => 'system',
@@ -158,48 +203,118 @@ return array(
                     'moderator' => 1,
                 ),
             ),
+            */
         ),
         // Admin section
         'admin' => array(
-            // Basic admin resource
+            // Generic admin resource
             'admin'     => array(
-                'title'         => __('Global admin resource')
+                'title'         => __('Generic admin resource'),
+                'access'        => array(
+                    'staff'     => 1,
+                ),
             ),
 
-            // System specs
-            // configurations
+            // Managed components
+            // Configurations
             'config'    => array(
-                'title'         => __('Configuration management')
+                'title'         => __('Configuration management'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'moderator' => 1,
+                ),
             ),
-            // modules
+            // Block content and permission
+            'block'     => array(
+                'title'         => __('Block management'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'moderator' => 1,
+                ),
+            ),
+            // Page dress up, cache and permission
+            'page'     => array(
+                'title'         => __('Page management'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'moderator' => 1,
+                ),
+            ),
+            // Event hooks
+            'event'     => array(
+                'title'         => __('Event/hook management'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'moderator' => 1,
+                ),
+            ),
+
+            // System operations
+            // Modules
             'module'    => array(
-                'title'         => __('Module management')
+                'title'         => __('Module operation'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'manager'   => 1,
+                ),
             ),
-            // appearance
-            'appearance'    => array(
-                'title'         => __('Appearance management')
+            // Themes
+            'theme'    => array(
+                'title'         => __('Theme operation'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'editor'    => 1,
+                ),
             ),
-            // permissions
-            'permission'    => array(
-                'title'         => __('Permission management')
+            // Navigations
+            'navigation'    => array(
+                'title'         => __('Navigaton operation'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'editor'    => 1,
+                ),
+            ),
+            // Roles
+            'role'    => array(
+                'title'         => __('Role operation'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'admin'     => 1,
+                ),
+            ),
+            // Permissions
+            'perm'    => array(
+                'title'         => __('Permission assignment'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'admin'     => 1,
+                ),
+            ),
+            // Members
+            'member'    => array(
+                'title'         => __('Member operation'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'admin'     => 1,
+                ),
             ),
             // maintenance
             'maintenance'   => array(
-                'title'         => __('Maintenance')
+                'title'         => __('Maintenance'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'manager'   => 1,
+                ),
             ),
         ),
+
+        /*
         // Module resources
         'module'    => array(
             // test
-            array(
-                'name'          => 'test',
+            'test'  => array(
+                //'name'          => 'test',
                 'title'         => __('Test resource'),
-                /*
-                'access'    => array(
-                    'guest'     => 1,
-                    'member'    => 1,
-                ),
-                */
                 'privileges'    => array(
                     'read'  => array(
                         'title' => __('Read privilege'),
@@ -225,8 +340,8 @@ return array(
                 )
             ),
             // second test
-            array(
-                'name'          => 'test2',
+            'test2'  => array(
+                //'name'          => 'test2',
                 'title'         => __('Test resource 2'),
                 'privileges'    => array(
                     'read'  => array(
@@ -252,5 +367,6 @@ return array(
                 )
             ),
         ),
+        */
     ),
 );

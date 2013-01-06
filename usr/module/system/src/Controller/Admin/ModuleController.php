@@ -73,10 +73,11 @@ class ModuleController extends ActionController
             } else {
                 $data['update'] = date('Y-m-d H:i:s', $data['update']);
             }
+            $data['active'] = isset($active[$name]) ? true : false;
         }
         $this->view()->assign('modules', $modules);
-        $this->view()->setTemplate('module-list');
-        $this->view()->assign('title', __('Module list'));
+        //$this->view()->setTemplate('module-list');
+        $this->view()->assign('title', __('Installed modules'));
     }
 
     /**
@@ -112,7 +113,7 @@ class ModuleController extends ActionController
         }
 
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', __('Module ready for installation'));
+        $this->view()->assign('title', __('Modules ready for installation'));
     }
 
     /**

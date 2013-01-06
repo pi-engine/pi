@@ -1,0 +1,22 @@
+<?php
+$this->bootstrap();
+$this->css($this->assetTheme('css/style.css'));
+?>
+<!DOCTYPE HTML>
+<html lang="<?php echo $locale; ?>">
+<head>
+    <!-- Charset -->
+    <meta charset="<?php echo $charset; ?>">
+
+    <!-- Title -->
+    <?php echo $this->headTitle(); ?>
+
+</head>
+<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
+
+        <div class="wrapper container">
+        <?php if (!empty($content)) { ?><div class="pi-zone-module"><?php echo $content; ?></div><?php } ?>
+        </div>
+
+</body>
+</html>

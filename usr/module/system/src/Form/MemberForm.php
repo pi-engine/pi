@@ -27,12 +27,13 @@ use Pi\Application\Db\User\RowGateway\Account;
 class MemberForm extends BaseForm
 {
     protected $user = array(
-        'id'        => '',
-        'identity'  => '',
-        'name'      => '',
-        'email'     => '',
-        'active'    => '1',
-        'role'      => 'member',
+        'id'            => '',
+        'identity'      => '',
+        'name'          => '',
+        'email'         => '',
+        'active'        => '1',
+        'role'          => 'member',
+        'role_staff'    => '',
     );
 
     /**
@@ -108,10 +109,22 @@ class MemberForm extends BaseForm
             'name'          => 'role',
             'type'          => 'role',
             'options'       => array(
-                'label' => __('Role'),
+                'label'     => __('User role'),
             ),
             'attributes'    => array(
                 'value' => $this->user['role'],
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'role_staff',
+            'type'          => 'role',
+            'options'       => array(
+                'label'     => __('Management role'),
+                'section'   => 'admin',
+            ),
+            'attributes'    => array(
+                'value' => $this->user['role_staff'],
             ),
         ));
 

@@ -24,6 +24,36 @@ use Zend\Mvc\Controller\Plugin\Params as ZendParams;
 class Params extends ZendParams
 {
     protected $putParams;
+    protected $variablesOrder = array(
+        'query', 'request'
+    );
+
+    /**
+     * Grabs a param from route match by default.
+     *
+     * @param string $param
+     * @param mixed $default
+     * @return mixed
+     */
+    public function __invoke($param = null, $default = null)
+    {
+        $result = parent::__invoke($param, null);
+        if ($result !== null) {
+            return $result;
+        }
+        
+        $value = $default;
+        foreach ($this->variablesOrder as $method) {
+            if (method_exists($this, 'from' . $method)) {
+                $val = $this->{'from' . $method}($param);
+                if (null !== $val) {
+                    $value = $val;
+                    break;
+                }
+            }
+        }
+        return $value;
+    }
 
     /**
      * Return all put parameters or a single put parameter.

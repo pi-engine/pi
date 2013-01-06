@@ -1,0 +1,65 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    //$this->js($this->assetModule('script/system-msg.js', 'system'));
+?>
+
+<ul class="nav nav-tabs">
+    <li><a href="<?php echo $this->url('', array('controller' => 'cache', 'action' => 'index')); ?>" title="<?php _e('Cache flush'); ?>"><?php _e('Cache flush'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'asset', 'action' => 'index')); ?>" title="<?php _e('Asset publish'); ?>"><?php _e('Asset publish'); ?></a>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a>
+</ul>
+
+<h2 class="page-header"><?php _e('Audit list') ?></h2>
+
+<table>
+    <thead>
+        <td width="2%"><?php _e('ID') ?></td>
+        <td width="12%"><?php _e('time') ?></td>
+        <td width="5%"><?php _e('User') ?></td>
+        <td width="5%"><?php _e('IP') ?></td>
+        <td width="2%"><?php _e('Section') ?></td>
+        <td width="8%"><?php _e('Module') ?></td>
+        <td width="8%"><?php _e('Controller') ?></td>
+        <td width="8%"><?php _e('Action') ?></td>
+        <td width="2%"><?php _e('Method') ?></td>
+        <td width="30%"><?php _e('Message') ?></td>
+        <td><?php _e('extra') ?></td>
+    </thead>
+    <?php foreach ($items as $row) { ?>
+    <tr>
+        <td><?php echo $row['id']; ?></td>
+        <td><?php echo date('y-m-d H:i:s', $row['time']); ?></td>
+        <td><?php echo $row['user']; ?></td>
+        <td><?php echo $row['ip']; ?></td>
+        <td><?php echo $row['section']; ?></td>
+        <td><?php echo $row['module']; ?></td>
+        <td><?php echo $row['controller']; ?></td>
+        <td><?php echo $row['action']; ?></td>
+        <td><?php echo $row['method']; ?></td>
+        <td><?php echo $row['message']; ?></td>
+        <td><?php echo $row['extra']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+
+<?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+
+<div style="padding: 10px">
+<form method='GET'>
+    <?php _e('Count of items to display: '); ?><select id='audit-count' audit-url='<?php echo $this->url('admin', array('controller' => 'audit', 'count' => '')) ?>'>
+        <option value='10' <?php echo (!isset($count) or (10 === $count) ? 'selected' : '')?>><?php _e('10') ?></option>
+        <option value='20' <?php echo (20 === $count ? 'selected' : '') ?>><?php _e('20') ?></option>
+        <option value='50' <?php echo (50 === $count ? 'selected' : '') ?>><?php _e('50') ?></option>
+    </select>
+</form>
+</div>
+
+<script>
+(function($) {
+    $("#audit-count").change(function() {
+        var $this = $(this);
+        location.href = $this.attr('audit-url') + $this.val();
+    })
+})(jQuery)
+</script>

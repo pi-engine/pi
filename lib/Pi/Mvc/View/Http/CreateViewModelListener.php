@@ -74,11 +74,16 @@ class CreateViewModelListener implements ListenerAggregateInterface
     public function createViewModelFromArray(MvcEvent $e)
     {
         $result = $e->getResult();
+        if (!is_array($result)) {
+            return;
+        }
+        /*
         if (!ArrayUtils::hasStringKeys($result, true)) {
             return;
         }
+        */
 
-        switch ($this->type ) {
+        switch ($this->type) {
             case 'feed':
                 $model = new FeedModel($result);
                 break;
@@ -91,6 +96,9 @@ class CreateViewModelListener implements ListenerAggregateInterface
                 $model->setTerminal(true);
                 break;
             default:
+                if (!ArrayUtils::hasStringKeys($result, true)) {
+                    return;
+                }
                 $model = new ViewModel($result);
                 break;
         }

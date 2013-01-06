@@ -1,0 +1,231 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->Backbone();
+?>
+<style>
+span.link {
+    visibility: hidden;
+}
+.box-hover:hover span.link {
+    visibility: visible;
+}
+.box-hover:hover .m-check {
+     visibility: visible;
+}
+.img-text-wrapper img {
+    margin: 6px 15px 0 0;
+}
+input.m-title-input {
+    display: none;
+    line-height: 18px;
+    margin: 0;
+    padding: 2px 6px;
+}
+.editing .m-title {
+    display: none;
+}
+.editing .m-title-input {
+    display: block;
+}
+.alert {
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+</style>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
+    <li class="disabled"><a><?php _e('Repository'); ?></a>
+</ul>
+
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<div class="module-wrap" id="js-module">
+<?php
+/*
+<div class="clearfix">
+    <span class="check-all" data-link="<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>" data-title="<?php _e('Check update for all'); ?>"><span class="ui-btn-check"></span>
+    </span>
+</div>
+*/
+?>
+    <ul class="module-list">
+    </ul>
+</div>
+<script id="temp-module" type="text/template">
+<div class="img-text-wrapper">
+    <a class="<% if (active == 0) { %> box-disable<% } %>"<% if ('system' != name && active == 1) {  %> href="<?php echo $this->url('', array('module' => '')); ?><%= name %>"<% } %>>
+        <img src="<%= logo %>" alt="<%= _.escape(title) %>" style="width:120px;" />
+    </a>
+    <div>
+    <div class="clearfix">
+        <span class="pull-left" style="width: 340px;">
+            <strong class="m-title">
+                <%= _.escape(title) %>
+            </strong>
+            <input type="text" class="m-title-input" value="<%= _.escape(title) %>" />
+        </span>
+        <span class="pull-left link m-rename"><?php _e('Rename'); ?></span><i class="icon-edit"></i>
+    </div>
+    <dl class="dl-horizontal mb10">
+        <dt class="m-detail-title"><?php _e('Version:'); ?>
+        <dd><span class="w200"><%= version %></span><span class="link m-check"><?php _e('Check'); ?></span><i class="icon-check"></i>
+        <dt class="m-detail-title"><?php _e('Last Update:'); ?>
+        <dd>
+            <span class="w200"><%= update %></span>
+            <% if (active == 1) { %><span class="link m-update"><?php _e('Update'); ?></span><i class="icon-refresh"></i><% } %>
+        <dt class="m-detail-title"><?php _e('Description:'); ?>
+        <dd><%= _.escape(description) %>
+    </dl>
+    <div>
+        <% if ('system' != name) {  %>
+        <div class="pull-right btn-group" style="margin:-10px 20px 0 0;">
+            <% if (active == 1) { %>
+            <span class="btn m-disable">
+                <i class="icon-ban-circle"></i>
+                <?php _e(' Disable'); ?>
+            </span>
+            <% } else { %>
+            <span class="btn m-enable">
+                <i class="icon-ok"></i>
+                <?php _e(' Enable'); ?>
+            </span>
+            <% } %>
+            <span class="btn m-uninstall">
+                <i class="icon-trash"></i>
+                <?php _e(' Uninstall'); ?>
+            </span>
+        </div>
+        <% } %>
+        <div>
+            <a class="link m-detail" href="javascript:void(0)"><?php _e('Detail'); ?> <i class="icon-info-sign"></i></a>
+            <% if ('system' != name && active == 1) {  %>
+            <span class="divider">|</span>
+            <a href="<?php echo $this->url('', array('controller' => 'config', 'action' => 'module', 'name' => '')); ?><%= name %>"  class="link" target="module-admin"><?php _e('Config'); ?></a>
+            <span class="divider">|</span>
+            <a href="<?php echo $this->url('', array('module' => '')); ?><%= name %>"><?php _e('Manage'); ?></a>
+            <% } %>
+            <dl class="well dl-horizontal hide" style="margin: 5px 30px 0 0;">
+                <dt><?php _e('Name:'); ?>
+                <dd><%= name %>
+                <dt><?php _e('Directory:'); ?>
+                <dd><%= directory %>
+                <dt><?php _e('Author:'); ?>
+                <dd>
+                   <a href="<%= author.website %>" target="_blank" class="link mr20"><%= author.name %></a>
+                   <%= author.email %>
+            </dl>
+        </div>
+        </div>
+     </div>
+</div>
+</script>
+<script>
+var moduleCollection = new Backbone.Collection(<?php echo json_encode(array_values($modules)); ?>);
+var ModuleItemView = Backbone.View.extend({
+    tagName: "li",
+    className: "box-hover",
+    template: _.template($("#temp-module").html()),
+    events: {
+        "click .m-detail": "toggleDetail",
+        "click .m-rename": "toggleRename",
+        "keypress .m-title-input": "blurOnEnter",
+        "blur .m-title-input": "renameOk",
+        "click .m-check": "checkUpdate",
+        "click .m-update": "update",
+        "click .m-disable": "disable",
+        "click .m-enable": "enable",
+        "click .m-uninstall": "uninstall"
+    },
+    initialize: function() {
+        this.model.on("destroy", this.remove, this);
+        this.model.on("change", this.render, this);
+    },
+    render: function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this.el;
+    },
+    toggleDetail: function() {
+        this.$(".well").toggleClass("hide");
+    },
+    toggleRename: function() {
+        this.$el.toggleClass("editing");
+    },
+    renameOk: function(e) {
+        this.$el.removeClass("editing");
+        var val = $.trim(this.$(".m-title-input").val());
+        if (val && val != this.model.get("title")) {
+            this.model.save({
+                title: val
+            }, {
+                url: "<?php echo $this->url('', array('action' => 'rename')); ?>",
+                wait: true
+            });
+        }
+    },
+    blurOnEnter: function(e) {
+        if (e.keyCode === 13) {
+            return e.target.blur();
+        }
+    },
+    checkUpdate: function() {},
+    update: function() {
+        this.model.fetch({
+            url: "<?php echo $this->url('', array('action' => 'update', 'id'=>'')); ?>" + this.model.id,
+            success: function(model, resp) {
+                alert(resp.message);
+            }
+        });
+    },
+    disable: function() {
+        this.toggleHand();
+        if (confirm("<?php _e('Are you sure to disable this module')?>")) {
+            this.model.save({
+                "active": 0
+             }, {
+                url:"<?php echo $this->url('', array('action' => 'enable')); ?>",
+                wait: true
+            });
+        }
+        this.toggleHand();
+    },
+    enable: function() {
+        this.model.save({
+            "active": 1
+         }, {
+            url: "<?php echo $this->url('', array('action' => 'enable')); ?>",
+            wait: true
+        });
+    },
+    uninstall: function() {
+        this.toggleHand();
+        if (confirm("<?php _e('Are you sure to uninstall this module'); ?>")) {
+            this.model.destroy({
+                url: "<?php echo $this->url('', array('action' => 'uninstall', 'id' => '')); ?>" + this.model.id
+            });
+        }
+        this.toggleHand();
+    },
+    toggleHand: function() {
+        this.$el.toggleClass("handle");
+    }
+});
+var ModuleListView = Backbone.View.extend({
+    el: $("#js-module"),
+    initialize: function() {
+        this.box = this.$(".module-list");
+        this.render();
+    },
+    render: function() {
+        var el = this.box,
+            m = moduleCollection.models;
+        for (var i = 0, l = m.length; i < l; i++) {
+            el.append(new ModuleItemView({
+                model: m[i]
+            }).render());
+        }
+    }
+});
+new ModuleListView;
+</script>

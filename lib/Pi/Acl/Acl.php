@@ -44,11 +44,15 @@ class Acl
      */
     const MEMBER    = 'member';
     /**
+     * Staff role
+     */
+    const STAFF     = 'staff';
+    /**
      * Guest or visitor role
      */
     const GUEST     = 'guest';
     /**
-     * Moderator role
+     * Moderator staff role
      */
     const MODERATOR = 'moderator';
     /**
@@ -229,7 +233,7 @@ class Acl
     public function getRole()
     {
         if (null === $this->role) {
-            $this->role = Pi::registry('user') ? Pi::registry('user')->role : null;
+            $this->role = Pi::registry('user') ? Pi::registry('user')->role : static::GUEST;
         }
         return $this->role;
     }
@@ -238,7 +242,7 @@ class Acl
      * Check access to a resource privilege for a given role
      *
      * @param string $role
-     * @param string|array|object  $resource  resource name or array($resource, $item), or array('module' => $module, 'controller' => $controller, 'action' => $action)
+     * @param string|array|object  $resource  resource name or array('name' => $name, 'type' => $type), or array('module' => $module, 'controller' => $controller, 'action' => $action)
      * @param string $privilege privilege name
      * @return boolean
      */
@@ -246,9 +250,11 @@ class Acl
     {
         if ($role == static::ADMIN) return true;
 
+        $moduleRule = $this->getModel('rule');
+        //$resources = $this->loadResources($resource);
         $where = array();
 
-        $resources = $this->loadResources($resource);
+        /*
         if (empty($resources)) {
             return $this->getDefault();
         } elseif (count($resources) == 1) {
@@ -256,20 +262,29 @@ class Acl
         } else {
             $where['resource'] = $resources;
         }
+        */
+
         if (null !== $privilege) {
             $where['privilege'] = $privilege;
         }
 
-
         $roles = $this->loadRoles($role);
-        if (count($roles) == 1) {
-            $where['role'] = $roles[0];
-        } else {
-            $where['role'] = $roles;
-        }
+        $where['role'] = $roles;
 
-        $moduleRule = $this->getModel('rule');
-        $allowed = (bool) $moduleRule->isAllowed($where, $this->getDefault());
+        $allowed = null;
+        // Look up in all parent resources
+        $resources = $this->loadResources($resource);
+        array_unshift($resources, $resource);
+        while ($resources) {
+            $where['resource'] = array_pop($resources);
+            $allowed = $moduleRule->isAllowed($where);
+            //d($allowed === null ? 'null' : intval($allowed));
+            if (null !== $allowed) {
+                break;
+            }
+        }
+        // Return default permission is not defined
+        $allowed = (null !== $allowed) ? $allowed : $this->getDefault();
 
         return $allowed;
     }
@@ -277,7 +292,7 @@ class Acl
     /**
      * Check access to a resource privilege for a given role
      *
-     * @param string|array|object  $resource  resource name or array($resource, $item), or array('module' => $module, 'controller' => $controller, 'action' => $action)
+     * @param string|array|object  $resource  resource name or array('name' => $name, 'type' => $type), or array('module' => $module, 'controller' => $controller, 'action' => $action)
      * @param string    $privilege privilege name
      * @return boolean
      */
@@ -287,38 +302,16 @@ class Acl
     }
 
     /**
-     * Get resources to which a group of roles is allowed/denied to access a given resource privilege
+     * Get resources to which a group of roles is allowed to access a given resource privilege
      *
      * @param array|Where    $where
-     * @param boolean   $allowed allowed or denied
-     * @return array of resources
+     * @return array of resource IDs
      */
-    public function getResources($where = null, $allowed = true)
+    public function getResources($where = null)
     {
         if ($this->getRole() == static::ADMIN) return null;
         $roles = $this->loadRoles();
-        return $this->getModel('rule')->getResources($roles, $where, $allowed);
-    }
-
-    /**
-     * Get items of a specific resource to which a group of roles is allowed/denied to access a given privilege
-     *
-     * @param string    $resource
-     * @param array|Where $clause
-     * @param boolean   $allowed allowed or denied
-     * @return array of items
-     */
-    public function getItems($resource, $where = null, $allowed = true)
-    {
-        if ($this->getRole() == static::ADMIN) return null;
-        $roles = $this->loadRoles();
-        if (!$where instanceof Where) {
-            $where['resource'] = $resource;
-            $where = new Where($where);
-        } else {
-            $where->equalTo('resource', $resource);
-        }
-        return $this->getModel('rule')->getResources($roles, $where, $allowed);
+        return $this->getModel('rule')->getResources($roles, $where, $this->getDefault());
     }
 
     /**
@@ -331,6 +324,7 @@ class Acl
     {
         if (null !== $role && $role != $this->getRole()) {
             $roles = Pi::service('registry')->role->read($role);
+
             array_push($roles, $role);
             return $roles;
         }
@@ -344,19 +338,20 @@ class Acl
     /**
      * Load ancestors of a resource from database
      *
-     * @param string|array|Node  $resource  resource name or array($resource, $item),
+     * @param string|array|Node  $resource  resource name or array('name' => $name, 'type' => $type)
      *                                          or array('module' => $module, 'controller' => $controller, 'action' => $action)
      *                                          or {@link Node}
      * @return array of resources
      */
     public function loadResources($resource)
     {
-        // Dispatch resource
+        $resources = array();
+        // Routed resource with module-controller-action
         if (is_array($resource) && isset($resource['module'])) {
             $module = $resource['module'];
             $controller = $resource['controller'];
             $action = $resource['action'];
-            $resourceList = Pi::service('registry')->resource->read($this->getSection(), $module);
+            $resourceList = Pi::service('registry')->resource->read($this->getSection(), $module, 'page');
             $pageList = array_flip(Pi::service('registry')->page->read($this->getSection(), $module));
             $resources = array();
             foreach ($resourceList as $page => $list) {
@@ -366,6 +361,7 @@ class Acl
             }
             // Page resource
             $key = sprintf('%s-%s-%s', $module, $controller, $action);
+
             if (isset($resources[$key])) {
                 return $resources[$key];
             }
@@ -376,30 +372,20 @@ class Acl
             if (isset($resources[$module])) {
                 return $resources[$module];
             }
-            return array();
+            return $resources;
         }
 
         // Appliction resource
-        $resources = array();
-        $modelResource = $this->getModel('resource');
-        if (!$resource instanceof Node) {
-            $where = array('section' => $this->getSection());
-            if ($this->getModule()) {
-                $where['module'] = $this->getModule();
-            }
-            if (is_array($resource)) {
-                $where['name'] = $resource[0];
-                $where['item'] = $resource[1];
-            } else {
-                $where['name'] = $resource;
-            }
-            $result = $modelResource->select($where);
-            if (!$result->count()) {
-                return $resources;
-            }
-            $resource = $result->current();
+        if (is_array($resource)) {
+            $type = isset($resource['type']) ? $resource['type'] : 'system';
+            $name = $resource['name'];
+        } else {
+            $type = 'system';
+            $name = $resource;
         }
-        $resources = $modelResource->getAncestors($resource, 'id');
+
+        $resourceList = Pi::service('registry')->resource->read($this->getSection(), $this->getModule(), $type);
+        $resources = isset($resourceList[$name]) ? $resourceList[$name] : array();
         return $resources;
     }
 }

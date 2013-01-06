@@ -105,7 +105,7 @@ abstract class AbstractRegistry
                 $namespace = $meta['module'];
                 $this->namespaceMeta = array('module');
             } else {
-                throw new \Exception('Custom namespace is required.');
+                throw new \Exception('Custom namespace is required for registry ' . get_class($this));
             }
             /*
             $namespace = $this->getNamespace($namespace);
@@ -197,12 +197,12 @@ abstract class AbstractRegistry
      */
     protected function loadData($meta = array())
     {
-        $isCached = true;
+        //$isCached = true;
         $this->setNamespace($meta);
         if (null === ($data = $this->loadCacheData($meta))) {
             $data = $this->loadDynamic($meta);
             $this->saveCache($data, $meta);
-            $isCached = false;
+            //$isCached = false;
         }
 
         /*

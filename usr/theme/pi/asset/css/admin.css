@@ -1,0 +1,60 @@
+body {
+    min-width: 900px;
+}
+.header .header-logo {
+    margin-left: 10px;
+}
+.container {
+    width: 100%;
+}
+.global-nav .menu {
+    padding-left: 10px;
+}
+/* Sub menu */
+.sub-nav .menu {
+    /* To be defined */
+}
+/* Sub breadcrumbs */
+.sub-nav .breadcrumb {
+    /* Inherited from Bootstrap */
+}
+/* Box with border */
+.box-bordered {
+    border: 1px solid #E1E4E5;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.box-bordered-header {
+    font-size: 16px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: #e8eef5;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f6f9fb,endColorstr=#e8eef5);
+    background-image: -moz-linear-gradient(top,#f6f9fb,#e8eef5);
+    background-image: -webkit-linear-gradient(top,#f6f9fb,#e8eef5);
+    background-image: -o-linear-gradient(top,#f6f9fb,#e8eef5);
+    padding: 5px 10px;
+}
+.box-bordered-body {
+    padding: 10px;
+}
+.pi-zone-module {
+   margin: 0 20px;
+}
+.dl-horizontal dt {
+	width: 120px;
+}
+.dl-horizontal dd {
+	margin-left: 140px;
+}
+
+/*admin common*/
+.mb10 {
+    margin-bottom: 10px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mr20 {
+    margin-right: 20px;
+}

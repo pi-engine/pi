@@ -28,8 +28,9 @@ class Resource extends AbstractRegistry
         $ancestors = array();
         $model = Pi::model('acl_resource')->setSection($options['section']);
         $where = array('section' => $options['section']);
-        if (!is_null($options['module'])) {
-            $where['module'] = $options['module'];
+        $where['module'] = $options['module'];
+        if (null !== $options['type']) {
+            $where['type'] = $options['type'];
         }
         $rowset = $model->select($where);
         if (!$rowset->count()) {
@@ -41,32 +42,31 @@ class Resource extends AbstractRegistry
         return $ancestors;
     }
 
-    public function read($section, $module = null)
+    /**
+     * Get all resources with specific section, module and type
+     *
+     * @param string $section   front, admin, module
+     * @param string $module
+     * @param string $type      system, page or other custom types by module
+     * @return array
+     */
+    public function read($section, $module, $type = null)
     {
-        $options = compact('section', 'module');
+        $options = compact('section', 'module', 'type');
         return $this->loadData($options);
     }
 
-    public function create($section, $module = null)
+    public function create($section, $module, $type = null)
     {
-        $options = compact('section', 'module');
-        $this->read($module, $section);
+        $this->clear($module);
+        $this->read($module, $section, $type);
         return true;
-    }
-
-    public function setNamespace($meta)
-    {
-        if (is_string($meta)) {
-            $namespace = $meta;
-        } else {
-            $namespace = $meta['section'];
-        }
-        return parent::setNamespace($namespace);
     }
 
     public function flush()
     {
-        $this->flushBySections();
+        $this->clear('');
+        $this->flushByModules();
         return $this;
     }
 }

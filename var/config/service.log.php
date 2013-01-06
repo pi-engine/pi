@@ -28,11 +28,13 @@ $config['development'] = array(
             // Write logs to audit table
             'audit' => array(
                 // Roles of users to be logged
-                'role'  => array(),
+                'role'      => array(),
                 // User IDs to be logged
-                'user'  => array(),
+                'user'      => array(),
                 // User IPs to be logged
-                'ip'    => array(),
+                'ip'        => array(),
+                // Request methods to be logged
+                'method'    => array('POST'),
             ),
         ),
     ),
@@ -91,6 +93,8 @@ $config['production'] = array(
                 'user'  => array(),
                 // User IPs to be logged
                 'ip'    => array(),
+                // Request methods to be logged
+                'method'    => array('POST'),
             ),
         ),
     ),

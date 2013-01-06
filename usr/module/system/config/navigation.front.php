@@ -71,8 +71,7 @@ return array(
         'route'         => 'admin',
         'resource'      => array(
             'module'    => 'system',
-            'resource'  => 'moderate',
-            'section'   => 'front',
+            'resource'  => 'member',
         ),
         //'visible'       => 0,
     ),

@@ -32,19 +32,19 @@ return array(
             'section'   => 'admin',
             'title'     => 'Admin navigation',
         ),
-        /*
-        // Placeholder for front module list
-        'modules'     => array(
-            'name'      => 'modules',
-            'section'   => 'front',
-            'title'    => 'Front module list',
+        // Managed components
+        'component' => array(
+            'name'      => 'component',
+            'section'   => 'admin',
+            'title'     => 'Managed components',
         ),
-        */
     ),
     'item' => array(
         // Front navigation items
         'front' => include __DIR__ . '/navigation.front.php',
         // Admin navigation items
         'admin' => include __DIR__ . '/navigation.admin.php',
+        // Managed component items
+        'component' => include __DIR__ . '/navigation.component.php',
     )
 );

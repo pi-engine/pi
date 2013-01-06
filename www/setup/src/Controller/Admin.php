@@ -167,22 +167,48 @@ class Admin extends AbstractController
             // Update global contact email
             $configModel = Pi::model('config');
             $configModel->update(array('value' => $vars['adminmail']), array('name' => 'adminmail'));
-            // Create admin user account
-            $userRow = Pi::model('user_account')->createRow(array(
+
+            // Create root admin user
+            $userData = array(
                 'identity'      => $vars['adminname'],
                 'credential'    => $vars['adminpass'],
                 'email'         => $vars['adminmail'],
                 'active'        => 1,
-            ));
-            $userRow->prepare()->save();
-            if ($userRow->id) {
-                $this->status = 1;
-                // Create user role
-                $roleRow = Pi::model('user_role')->createRow(array(
-                    'user'  => $userRow->id,
-                    'role'  => Acl::ADMIN,
-                ));
-                $roleRow->save();
+                'role'          => Acl::MEMBER,
+                'role_staff'    => Acl::ADMIN,
+            );
+            $result = Pi::service('api')->system(array('member', 'add'), $userData);
+            $this->status = $result['status'];
+
+            // Create system accounts
+            $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
+            $accounts = array(
+                'manager'   => array(
+                    'name'          => __('Manager'),
+                    'role_staff'    => 'manager',
+                ),
+                'moderator'   => array(
+                    'name'          => __('Moderator'),
+                    'role_staff'    => 'moderator',
+                ),
+                'editor'   => array(
+                    'name'          => __('Editor'),
+                    'role_staff'    => 'editor',
+                ),
+                'staff'   => array(
+                    'name'          => __('Staff'),
+                    'role_staff'    => 'staff',
+                ),
+                'member'   => array(
+                    'name'          => __('Member'),
+                    'role_staff'    => '',
+                ),
+            );
+            foreach ($accounts as $identity => $data) {
+                $data['identity']   = $identity;
+                $data['email']      = $identity . '@' . $hostname;
+                $data = array_merge($userData, $data);
+                Pi::service('api')->system(array('member', 'add'), $data);
             }
         }
 

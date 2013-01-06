@@ -1,9 +1,7 @@
 <?php
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
-    $this->js(array(
-        $this->assetModule('script/cache.js'),
-    ));
+    $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <style>
 .event-itmes {
@@ -51,24 +49,24 @@
 </table>
 </div>
 <script>
-(function($){
-    $("#event-list").on("click","button",function(){
-       var $this=$(this);
-       beautAlert.done("<?php _e('Being updated.'); ?>","wait");
-       $.getJSON($this.attr("data-link")).done(function(result){
-          if(result.status==1){
-             if($this.attr("data-action")=="0"){
-                 $this.html("<?php _e('Disable'); ?>");
-                 $this.attr("data-action","1").parents("tr").removeClass("disable");
-             }else {
-                 $this.html("<?php _e('Enable'); ?>");
-                 $this.attr("data-action","0").parents("tr").addClass("disable");
-             }
-              beautAlert.done(result.message,"succ");
-          }else{
-             beautAlert.done(result.message,"fail");
-          }
-       });
+(function($) {
+    $("#event-list").on("click", "button", function() {
+        var $this = $(this);
+        beautAlert.done("<?php _e('Being updated.'); ?>", "wait");
+        $.getJSON($this.attr("data-link")).done(function(result) {
+            if (result.status == 1) {
+                if ($this.attr("data-action") == "0") {
+                    $this.html("<?php _e('Disable'); ?>");
+                    $this.attr("data-action", "1").parents("tr").removeClass("disable");
+                } else {
+                    $this.html("<?php _e('Enable'); ?>");
+                    $this.attr("data-action", "0").parents("tr").addClass("disable");
+                }
+                beautAlert.done(result.message, "succ");
+            } else {
+                beautAlert.done(result.message, "fail");
+            }
+        });
     });
 })(jQuery)
 </script>

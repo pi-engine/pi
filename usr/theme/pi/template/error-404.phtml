@@ -1,0 +1,66 @@
+<div class="alert alert-error">
+
+    <h2 class="page-header"><?php _e('A 404 error occurred'); ?></h2>
+    <p><?php echo $this->escape($message); ?></p>
+
+</div>
+
+<?php if ('production' == Pi::environment()) return; ?>
+
+    <?php if (!empty($reason)): ?>
+    <h3 class="page-header">Additional information:</h3>
+
+    <?php
+    $reasonMessage= '';
+    switch ($reason) {
+        case 'error-controller-cannot-dispatch':
+            $reasonMessage = __('The requested controller was unable to dispatch the request.');
+            break;
+        case 'error-controller-not-found':
+            $reasonMessage = __('The requested controller could not be mapped to an existing controller class.');
+            break;
+        case 'error-controller-invalid':
+            $reasonMessage = __('The requested controller was not dispatchable.');
+            break;
+        case 'error-router-no-match':
+            $reasonMessage = __('The requested URL could not be matched by routing.');
+            break;
+        default:
+            $reasonMessage = __('We cannot determine at this time why a 404 was generated.');
+            break;
+    }
+    ?>
+
+    <p><?php echo $reasonMessage; ?></p>
+
+    <?php endif ?>
+
+
+    <?php if (isset($this->controller) && $this->controller): ?>
+
+    <dl>
+        <dt>Controller:</dt>
+        <dd><?php echo $this->escape($this->controller);
+            if (isset($this->controller_class)
+                && $this->controller_class
+                && $this->controller_class != $this->controller
+            ) {
+                echo ' (resolves to'  . $this->escape($this->controller_class) . ')';
+            }
+            ?>
+        </dd>
+
+    <?php endif ?>
+
+    <?php if (isset($this->exception) && $this->exception): ?>
+
+    <h3 class="page-header">Exception:</h3>
+    <p><?php echo $this->escape(Pi\Security::sanitizePath($this->exception->getMessage())); ?></p>
+
+    <h4 class="page-header">Stack trace</h4>
+    <pre>
+    <?php echo Pi\Security::sanitizePath($this->exception->getTraceAsString()); ?>
+    </pre>
+
+    <?php endif ?>
+</div>

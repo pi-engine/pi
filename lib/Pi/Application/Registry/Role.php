@@ -33,6 +33,7 @@ class Role extends AbstractRegistry
 
     public function read($role)
     {
+        //$this->cache = false;
         $options = compact('role');
         return $this->loadData($options);
     }

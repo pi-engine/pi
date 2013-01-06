@@ -21,7 +21,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Module\System\Controller\ComponentController  as ActionController;
 use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageAddFilter as AddFilter;
 use Module\System\Form\PageEditForm as EditForm;
@@ -91,16 +91,18 @@ class PageController extends ActionController
             );
         }
 
+        /*
         // Get module list
         $moduleSet = Pi::model('module')->select(array('active' => 1));
         foreach ($moduleSet as $row) {
             $modules[$row->name] = $row->title;
         }
+        $this->view()->assign('modules', $modules);
+        */
 
         $this->view()->assign('pagesBySection', $sections);
         $this->view()->assign('name', $name);
-        $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', sprintf(__('Pages list of %s'), $modules[$name]));
+        $this->view()->assign('title', __('Pages list'));
 
         $this->view()->setTemplate('page-list');
     }

@@ -1,0 +1,107 @@
+<?php
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+    $this->js($this->assetModule('script/system-msg.js', 'system'));
+?>
+<style>
+.event-items {
+    font-size: 14px;
+}
+.event-items span {
+    display: inline-block;
+    width: 420px;
+    *display: inline;
+    *zoom: 1;
+}
+.listener-items span {
+    width: 400px;
+}
+.event-item {
+    margin-bottom: 15px;
+}
+.listener-items {
+    margin: 5px 0 0 20px;
+    font-size: 12px;
+}
+.listener-item {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E6E6E6;
+}
+.disable >span {
+    color: #888a8b;
+}
+.event-item-hd {
+    border-bottom: 1px solid #888;
+    padding-bottom: 10px;
+}
+</style>
+
+<h2 class="page-header"><?php _e('Events'); ?></h2>
+
+<ul class="event-items submain" id="event-list">
+    <?php foreach ($events as $name => $event) { ?>
+    <li class="event-item <?php echo $event['active'] ? '' : 'disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($event['title']) . ' (' . $name . ')'; ?></span><button class="pi-ui-btn" data-action="<?php echo $event['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'event', 'id' => $event['id'])); ?>"><?php $event['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
+    <?php if ($event['listeners']) { ?>
+    <ul class="listener-items">
+            <?php _e('Listeners:'); ?>
+            <?php foreach ($event['listeners'] as $listener) { ?>
+            <li class="listener-item <?php echo $listener['active'] ? '' : 'disable'; ?>"><span><?php echo sprintf('%s-%s::%s', $listener['module'], $listener['class'], $listener['method']) ; ?></span><button class="pi-ui-btn1" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button>
+            <?php } ?>
+    </ul>
+    <?php } ?>
+    </li>
+    <?php } ?>
+</ul>
+
+
+<h2 class="page-header"><?php _e('Listeners'); ?></h2>
+
+<ul class="event-items submain" id="listener-list">
+    <?php foreach ($listeners as $id => $listener) { ?>
+    <li class="event-item<?php echo $listener['active'] ? '' : ' disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($listener['title']) . ' (' . $listener['event'] . ')'; ?></span><button class="pi-ui-btn" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
+    </li>
+    <?php } ?>
+</ul>
+
+<script>
+(function($) {
+    $("#event-list").on("click", "button", function() {
+        var $this = $(this);
+        beautAlert.done("<?php _e('Being updated.'); ?>", "wait");
+        $.getJSON($this.attr("data-link")).done(function(result) {
+            if (result.status == 1) {
+                if ($this.attr("data-action") == "0") {
+                    $this.html("<?php _e('Disable'); ?>");
+                    $this.attr("data-action", "1").parent().removeClass("disable");
+                } else {
+                    $this.html("<?php _e('Enable'); ?>");
+                    $this.attr("data-action", "0").parent().addClass("disable");
+                }
+                beautAlert.done(result.message, "succ");
+            } else {
+                beautAlert.done(result.message, "fail");
+            }
+        });
+    });
+})(jQuery);
+(function($) {
+    $("#listener-list").on("click", "button", function() {
+        var $this = $(this);
+        beautAlert.done("<?php _e('Being updated.'); ?>", "wait");
+        $.getJSON($this.attr("data-link")).done(function(result) {
+            if (result.status == 1) {
+                if ($this.attr("data-action") == "0") {
+                    $this.html("<?php _e('Disable'); ?>");
+                    $this.attr("data-action", "1").parents("tr").removeClass("disable");
+                } else {
+                    $this.html("<?php _e('Enable'); ?>");
+                    $this.attr("data-action", "0").parents("tr").addClass("disable");
+                }
+                beautAlert.done(result.message, "succ");
+            } else {
+                beautAlert.done(result.message, "fail");
+            }
+        });
+    });
+})(jQuery)
+</script>

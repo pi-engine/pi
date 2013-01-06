@@ -60,16 +60,16 @@ class Page extends AbstractRegistry
 
     public function clear($namespace = '')
     {
-        Pi::service('registry')->cache->flush();
-        Pi::service('registry')->block->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::service('registry')->cache->flush($namespace);
+        Pi::service('registry')->block->flush($namespace);
+        Pi::service('registry')->resource->flush($namespace);
         return $this;
     }
 
     public function flush()
     {
-        $this->clear();
-        parent::flush();
+        $this->clear('');
+        $this->flushByModules();
         return $this;
     }
 }

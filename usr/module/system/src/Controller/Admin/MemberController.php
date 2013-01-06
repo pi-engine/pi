@@ -41,32 +41,32 @@ class MemberController extends ActionController
         'name', 'identity', 'email'
     );
 
-    protected function checkAccess()
+    protected function getRoles()
     {
-        if (Pi::registry('user')->isAdmin()) {
-            return true;
+        $roles = array(
+            ''  => __('All'),
+        );
+        $model = Pi::model('acl_role');
+        $rowset = $model->select(array());
+        foreach ($rowset as $row) {
+            $roles[$row->name] = __($row->title);
         }
-        $this->jumpToDenied('You are not allowed to access the operation.');
-        return false;
+
+        return $roles;
     }
 
     public function indexAction()
     {
-        if (!$this->checkAccess()) {
-            return;
-        }
-        $role = $this->params('role', null);
+        //$role = $this->params('role', null);
         $active = $this->params('active', null);
         $page = $this->params('p', 1);
-
         $limit = 50;
-        $model = Pi::model('user_role');
-
         $offset = (int) ($page - 1) * $limit;
+
+        $roles = $this->getRoles();
+
+        $model = Pi::model('user');
         $where = array();
-        if (null !== $role) {
-            $where['role'] = (string) $role;
-        }
         if (null !== $active) {
             $where['active'] = (int) $active;
         }
@@ -74,21 +74,46 @@ class MemberController extends ActionController
         $rowset = $model->selectWith($select);
         $users = array();
         foreach ($rowset as $row) {
-            $users[$row->user] = array(
-                'id'    => $row->user,
-                'role'  => $row->role,
+            $users[$row->id] = array(
+                'id'        => $row->id,
+                'identity'  => $row->identity,
+                'name'      => $row->name,
+                'email'     => $row->email,
+                'active'    => $row->active,
             );
         }
-        $rowset = Pi::model('user')->select(array('id' => array_keys($users)));
-        foreach ($rowset as $row) {
-            $users[$row->id]['identity'] = $row->identity;
-            $users[$row->id]['name'] = $row->name;
-            $users[$row->id]['email'] = $row->email;
-            $users[$row->id]['active'] = $row->active;
-        }
-
         $select = $model->select()->columns(array('count' => new Expression('count(*)')))->where($where);
         $count = $model->selectWith($select)->current()->count;
+
+        $roleList = array();
+        $model = Pi::model('user_role');
+        $rowset = $model->select(array('user' => array_keys($users)));
+        foreach ($rowset as $row) {
+            $users[$row->user]['role'] = $row->role;
+            $roleList[$row->role] = '';
+        }
+
+        $model = Pi::model('user_staff');
+        $rowset = $model->select(array('user' => array_keys($users)));
+        foreach ($rowset as $row) {
+            $users[$row->user]['role_staff'] = $row->role;
+            $roleList[$row->role] = '';
+        }
+
+        foreach (array_keys($roleList) as $name) {
+            $roleList[$name] = $roles[$name];
+        }
+        /*
+        $model = Pi::model('acl_role');
+        $rowset = $model->select(array('name' => array_keys($roleList)));
+        foreach ($rowset as $row) {
+            $roleList[$row->name] = __($row->title);
+        }
+        */
+        foreach ($users as $id => &$user) {
+            $user['role'] = $roleList[$user['role']];
+            $user['role_staff'] = $roleList[$user['role_staff']];
+        }
 
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
@@ -103,28 +128,122 @@ class MemberController extends ActionController
                 'module'        => $this->getModule(),
                 'controller'    => 'member',
                 'action'        => 'index',
+                //'role'          => $role,
+            ),
+        ));
+        $this->view()->assign('paginator', $paginator);
+
+        $title = __('Member list');
+        $this->view()->assign('title', $title);
+        $this->view()->assign('users', $users);
+        $this->view()->assign('role', $role);
+        $this->view()->assign('roles', $roles);
+    }
+
+    public function roleAction()
+    {
+        $role = $this->params('role', null);
+        if (!$role) {
+            $this->redirect()->toRoute('', array('action' => 'index'));
+            return;
+        }
+
+        $active = $this->params('active', null);
+        $page = $this->params('p', 1);
+        $limit = 50;
+        $offset = (int) ($page - 1) * $limit;
+
+        $roles = $this->getRoles();
+
+        $row = Pi::model('acl_role')->find($role, 'name');
+        $roleTitle = __($row->title);
+
+        $isFront = true;
+        if ('front' == $row->section) {
+            $model = Pi::model('user_role');
+        } else {
+            $model = Pi::model('user_staff');
+            $isFront = false;
+        }
+        $where = array();
+        if (null !== $role) {
+            $where['role'] = $role;
+        }
+        $select = $model->select()->where($where)->order('user')->offset($offset)->limit($limit);
+        $rowset = $model->selectWith($select);
+        $users = array();
+        foreach ($rowset as $row) {
+            $users[$row->user] = array(
+                'role'  => $row->role,
+            );
+        }
+        $select = $model->select()->columns(array('count' => new Expression('count(*)')))->where($where);
+        $count = $model->selectWith($select)->current()->count;
+
+        if ($users) {
+            $roleList = array();
+            $rowset = Pi::model('user')->select(array('id' => array_keys($users)));
+            $roleType = $isFront ? 'role' : 'role_staff';
+            foreach ($rowset as $row) {
+                $userRole = $users[$row->id]['role'];
+                $users[$row->id] = array(
+                    'id'        => $row->id,
+                    'identity'  => $row->identity,
+                    'name'      => $row->name,
+                    'email'     => $row->email,
+                    'active'    => $row->active,
+                    $roleType   => $userRole,
+                );
+                $roleList[$userRole] = '';
+            }
+
+            $model = $isFront ? Pi::model('user_staff') : Pi::model('user_role');
+            $rowset = $model->select(array('user' => array_keys($users)));
+            $roleType = $isFront ? 'role_staff' : 'role';
+            foreach ($rowset as $row) {
+                $users[$row->user][$roleType] = $row->role;
+                $roleList[$row->role] = '';
+            }
+
+            foreach (array_keys($roleList) as $name) {
+                $roleList[$name] = $roles[$name];
+            }
+
+            foreach ($users as $id => &$user) {
+                $user['role'] = $roleList[$user['role']];
+                $user['role_staff'] = $roleList[$user['role_staff']];
+            }
+        }
+
+        $paginator = Paginator::factory(intval($count));
+        $paginator->setItemCountPerPage($limit);
+        $paginator->setCurrentPageNumber($page);
+        $paginator->setUrlOptions(array(
+            // Use router to build URL for each page
+            'pageParam'     => 'p',
+            'totalParam'    => 't',
+            'router'        => $this->getEvent()->getRouter(),
+            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params'        => array(
+                'module'        => $this->getModule(),
+                'controller'    => 'member',
+                'action'        => 'role',
                 'role'          => $role,
             ),
         ));
         $this->view()->assign('paginator', $paginator);
 
-        if ($role) {
-            $title = sprintf(__('Member list of role "%s"'), $role);
-        } else {
-            $title = __('Member list');
-        }
+        $title = sprintf(__('Member list of role "%s"'), $roleTitle);
         $this->view()->assign('title', $title);
 
         $this->view()->assign('users', $users);
         $this->view()->assign('role', $role);
+        $this->view()->assign('roles', $roles);
+        $this->view()->setTemplate('member-index');
     }
 
     public function addAction()
     {
-        if (!$this->checkAccess()) {
-            return;
-        }
-
         $form = new MemberForm('member');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -157,9 +276,6 @@ class MemberController extends ActionController
 
     public function editAction()
     {
-        if (!$this->checkAccess()) {
-            return;
-        }
         $id = $this->params('id');
         $row = Pi::model('user')->find($id);
         if (!$row) {
@@ -167,7 +283,13 @@ class MemberController extends ActionController
         }
         $user = $row->toArray();
         $role = Pi::model('user_role')->find($row->id, 'user');
-        $user['role'] = $role->role;
+        if ($role) {
+            $user['role'] = $role->role;
+        }
+        $roleStaff = Pi::model('user_staff')->find($row->id, 'user');
+        if ($roleStaff) {
+            $user['role_staff'] = $roleStaff->role;
+        }
 
         $form = new MemberForm('member', $user);
         if ($this->request->isPost()) {
@@ -181,7 +303,6 @@ class MemberController extends ActionController
                 $result = Pi::service('api')->system(array('member', 'update'), $values);
                 if ($result['status']) {
                     $message = __('User data saved successfully.');
-
                     $this->jump(array('action' => 'index'));
                     return;
                 } else {
@@ -204,9 +325,6 @@ class MemberController extends ActionController
 
     public function passwordAction()
     {
-        if (!$this->checkAccess()) {
-            return;
-        }
         $id = $this->params('id');
         $row = Pi::model('user')->find($id);
         if (!$row) {
@@ -255,9 +373,6 @@ class MemberController extends ActionController
 
     public function deleteAction()
     {
-        if (!$this->checkAccess()) {
-            return;
-        }
         $id = $this->params('id');
         if ($id == 1) {
             $this->jump(array('action' => 'index'), __('The user is protected from deletion.'));

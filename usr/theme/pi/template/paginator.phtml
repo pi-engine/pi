@@ -1,0 +1,30 @@
+<?php if ($this->pageCount <= 1) { return; } ?>
+
+<!--
+See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
+-->
+
+<div class="pagination<?php if (!empty($class)) { echo ' ' . $class; } ?>">
+    <ul>
+    <!-- First page link -->
+    <?php if ($this->previous) { ?>
+    <li><a href="<?php echo $this->first->url; ?>"><?php _e('First'); ?></a>
+    <?php } ?>
+    <!-- Previous page link -->
+    <?php if ($this->previous) { ?>
+    <li><a href="<?php echo $this->previous->url; ?>"><?php _e('&lt; Previous'); ?></a>
+    <?php } ?>
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>"><a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
+    <?php endforeach; ?>
+    <?php if ($this->next) { ?>
+    <!-- Next page link -->
+    <li><a href="<?php echo $this->next->url; ?>"><?php _e('Next &gt;'); ?></a>
+    <?php } ?>
+    <!-- Last page link -->
+    <?php if ($this->next) { ?>
+     <li><a href="<?php echo $this->last->url; ?>"><?php _e('Last'); ?></a>
+    <?php } ?>
+    </ul>
+</div>

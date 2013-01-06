@@ -79,73 +79,73 @@ echo $this->formRow($form->get('submit'));
 echo $this->form()->closeTag();
 ?>
 <script>
-    var page={
-        form:$("form#block"),
-        init:function(){
-            this.form.submit(function(e){
-                var content=[];
-                page.form.find(".widget-tab-item").each(function(){
-                    var el=$(this);
+    var page = {
+        form: $("form#block"),
+        init: function() {
+            this.form.submit(function(e) {
+                var content = [];
+                page.form.find(".widget-tab-item").each(function() {
+                    var el = $(this);
                     content.push({
-                        caption:$.trim(el.find("[name=caption]").val()),
-                        link:$.trim(el.find("[name=link]").val()),
-                        id:el.attr("data-id")
+                        caption: $.trim(el.find("[name=caption]").val()),
+                        link: $.trim(el.find("[name=link]").val()),
+                        id: el.attr("data-id")
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
             });
             this.form.find(".widget-tab-form").sortable({
-                revert:300,
-                tolerance:"pointer"
+                revert: 300,
+                tolerance: "pointer"
             });
         }
     }
-    var BlocksCollection=new Backbone.Collection(<?php echo $content ?: '[]'; ?>);
-    var SelectedItemView=Backbone.View.extend({
-        className:"widget-tab-item form-horizontal clearfix",
-        template:_.template($("#temp-block").html()),
-        events:{
-            "click .icon-remove-sign":"removeEl",
+    var BlocksCollection = new Backbone.Collection(<?php echo $content ?: '[]'; ?>);
+    var SelectedItemView = Backbone.View.extend({
+        className: "widget-tab-item form-horizontal clearfix",
+        template: _.template($("#temp-block").html()),
+        events: {
+            "click .icon-remove-sign": "removeEl",
         },
-        initialize:function(){
-           this.model.on("destroy",this.remove,this);
-           this.$el.attr("data-id",this.model.get("id"));
+        initialize: function() {
+           this.model.on("destroy", this.remove, this);
+           this.$el.attr("data-id", this.model.get("id"));
         },
-        render:function(){
-            this.model.id=null;
+        render: function() {
+            this.model.id = null;
             this.$el.html(this.template(this.model.toJSON()));
             return this.el;
         },
-        removeEl:function(){
+        removeEl: function() {
             this.model.destroy();
-            tabView.$("[data-id="+this.model.get("id")+"]").removeClass("selected");
+            tabView.$("[data-id=" + this.model.get("id") + "]").removeClass("selected");
         }
     });
-    var TabView=Backbone.View.extend({
-       el:$("#js-tab-form"),
-       events:{
-           "click .widget-module-div":"loadBlock",
-           "click [data-id]":"addClick"
+    var TabView = Backbone.View.extend({
+       el: $("#js-tab-form"),
+       events: {
+           "click .widget-module-div": "loadBlock",
+           "click [data-id]": "addClick"
        },
-       initialize:function(){
-           this.box=this.$(".widget-tab-form");
+       initialize: function() {
+           this.box = this.$(".widget-tab-form");
            this.render();
-           BlocksCollection.on("add",this.addOne,this);
+           BlocksCollection.on("add", this.addOne, this);
        },
-       loadBlock:function(e){
-           var tar=$(e.currentTarget).parent(".widget-module-item"),
-               ul=tar.find("ul");
-           if(!tar.attr("load")){
-               $.getJSON("<?php echo $this->url('', array('action' => 'blocklist', 'name' => ''));?>"+tar.attr("data-name")).done(function(result){
+       loadBlock: function(e) {
+           var tar = $(e.currentTarget).parent(".widget-module-item"),
+               ul = tar.find("ul");
+           if (!tar.attr("load")) {
+               $.getJSON("<?php echo $this->url('', array('action' => 'blocklist', 'name' => '')); ?>" + tar.attr("data-name")).done(function(result) {
                     tar.attr("load",1);
-                    if(result.status==1){
-                        var t='<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
-                        if(result.data.length){
-                            ul.html(_.template(t,result.data,{variable:"data"}));
-                            BlocksCollection.each(function(m){
-                                ul.find("[data-id="+m.get("id")+"]").addClass("selected");
+                    if (result.status == 1) {
+                        var t = '<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
+                        if (result.data.length) {
+                            ul.html(_.template(t, result.data, {variable: "data"}));
+                            BlocksCollection.each(function(m) {
+                                ul.find("[data-id=" + m.get("id") + "]").addClass("selected");
                             });
-                        }else{
+                        } else {
                             ul.html('<span class="label label-info"><?php _e('No Blocks'); ?></span>');
                         }
                     }
@@ -153,16 +153,16 @@ echo $this->form()->closeTag();
            }
            tar.toggleClass("active");
        },
-       addClick:function(e){
-            var tar=$(e.currentTarget);
-            if(tar.hasClass("selected")){
+       addClick: function(e) {
+            var tar = $(e.currentTarget);
+            if (tar.hasClass("selected")) {
                BlocksCollection.remove(tar.attr("data-id"));
                tar.removeClass("selected");
-            }else{
+            } else {
                BlocksCollection.add({
                    caption: $.trim(tar.text()),
                    id: tar.attr("data-id"),
-                   link:""
+                   link: ""
                });
                tar.addClass("selected");
             }
@@ -173,12 +173,12 @@ echo $this->form()->closeTag();
                 this.addOne(m[i]);
             }
        },
-       addOne:function(m){
+       addOne: function(m) {
            this.box.append(new SelectedItemView({
                model: m
            }).render());
        }
     });
-    tabView=new TabView;
+    tabView = new TabView;
     page.init();
 </script>

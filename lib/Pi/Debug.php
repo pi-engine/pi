@@ -26,7 +26,9 @@ namespace Pi
         public static function enable($flag)
         {
             static::$inProcess = $flag;
-            echo static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
+            //echo static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
+            $message = static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
+            \Pi::service('log')->debug($message);
         }
 
         /**
@@ -58,7 +60,9 @@ namespace Pi
          */
         public static function e($data)
         {
-            echo static::render($data);
+            //echo static::render($data);
+            $message = static::render($data);
+            \Pi::service('log')->debug($message);
         }
 
         /**
@@ -79,7 +83,9 @@ namespace Pi
          */
         public static function display($data)
         {
-            echo static::render($data);
+            //echo static::render($data);
+            $message = static::render($data);
+            \Pi::service('log')->debug($message);
         }
 
         /**
@@ -159,7 +165,8 @@ namespace Pi
             }
 
             if ($display) {
-                echo $bt;
+                //echo $bt;
+                \Pi::service('log')->debug($bt);
             } else {
                 return $bt;
             }
@@ -194,7 +201,8 @@ namespace Pi
             }
 
             if ($echo) {
-                echo($output);
+                //echo($output);
+                \Pi::service('log')->debug($output);
             }
             return $output;
         }
@@ -238,7 +246,9 @@ namespace
      */
     function d($data = '')
     {
-        echo Debug::render($data, 1);
+        //echo Debug::render($data, 1);
+        $output = Debug::render($data, 1);
+        Pi::service('log')->debug($output);
     }
 
     /**
@@ -256,7 +266,9 @@ namespace
      */
     function dc($data = '')
     {
-        echo Debug::conditional($data, 2);
+        //echo Debug::conditional($data, 2);
+        $output = Debug::conditional($data, 2);
+        Pi::service('log')->debug($output);
     }
 
     /**

@@ -1,0 +1,21 @@
+<div class="alert alert-warning">
+    <h2 class="page-header"><?php _e('Access denied'); ?></h2>
+    <p>
+    <?php
+    // Display custom message
+    if (!empty($message)) {
+        echo $this->escape($message);
+
+    // Prompt to login for guests
+    } elseif (401 == (int) $code) {
+        $url = $this->url('user', array('controller' => 'login'));
+        $login = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
+        echo sprintf(__('You are not allowed to access the page, please %s and try again.'), $login);
+
+    // Point to website user guide otherwise
+    } else {
+        echo __('You are not allowed to access the page.');
+    }
+    ?>
+    </p>
+</div>

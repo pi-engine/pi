@@ -32,7 +32,7 @@ class Member extends AbstractApi
         'identity', 'name', 'email', 'active', 'credential', 'salt'
     );
     protected $roleColumns = array(
-        'user', 'role'
+        'user', 'role', 'role_staff',
     );
 
     protected function canonize($user)
@@ -73,12 +73,11 @@ class Member extends AbstractApi
             $return['message'] = sprintf('User account "%s" is not created.', $user['identity']);
             return $return;
         }
-        $role['user'] = $row->id;
-        $roleRow = Pi::model('user_role')->createRow($role);
-        $roleRow->save();
-        if (!$roleRow->id) {
-            $return['message'] = sprintf('User role "%s" is not created.', $user['identity']);
-            return $return;
+        if (!empty($role['role'])) {
+            $this->setUserRole($row->id, $role['role']);
+        }
+        if (!empty($role['role_staff'])) {
+            $this->setStaffRole($row->id, $role['role_staff']);
         }
 
         $return['status'] = 1;
@@ -114,18 +113,12 @@ class Member extends AbstractApi
             return $return;
         }
 
-        $role['user'] = $row->id;
-        $roleRow = Pi::model('user_role')->find($role['user'], 'user');
-        if (!$roleRow) {
-            $roleRow = Pi::model('user_role')->createRow($role);
-        } else {
-            $roleRow->assign($role);
+        if (isset($role['role'])) {
+            $this->setUserRole($row->id, $role['role']);
         }
-        try {
-            $roleRow->save();
-        } catch (\Exception $e) {
-            $return['message'] = sprintf('User role "%s" is not saved.', $user['identity']);
-            return $return;
+
+        if (isset($role['role_staff'])) {
+            $this->setStaffRole($row->id, $role['role_staff']);
         }
 
         $return['status'] = 1;
@@ -171,6 +164,7 @@ class Member extends AbstractApi
         // delete role
         try {
             Pi::model('user_role')->delete(array('user' => $id));
+            Pi::model('user_staff')->delete(array('user' => $id));
         } catch (\Exception $e) {
             $return['message'] = 'User role is not deleted: ' . $e->getMessage();
             return $return;
@@ -180,4 +174,43 @@ class Member extends AbstractApi
 
         return $return;
     }
+
+    public function setUserRole($user, $role)
+    {
+        return $this->setRole($user, $role, 'user');
+    }
+
+    public function setStaffRole($user, $role)
+    {
+        return $this->setRole($user, $role, 'staff');
+    }
+
+    protected function setRole($user, $role, $type = 'user')
+    {
+        $model = ('staff' == $type) ? Pi::model('user_staff') : Pi::model('user_role');
+        if (empty($role)) {
+            $model->delete(array('user' => $user));
+            return true;
+        }
+        $roleRow = $model->find($user, 'user');
+        if (!$roleRow) {
+            $roleRow = $model->createRow(array(
+                'user'  => $user,
+                'role'  => $role,
+            ));
+        } else {
+            $roleRow->assign(array(
+                'user'  => $user,
+                'role'  => $role,
+            ));
+        }
+
+        try {
+            $roleRow->save();
+        } catch (\Exception $e) {
+            return false;
+        }
+        return true;
+   }
+
 }

@@ -19,7 +19,7 @@
 
 return array(
     'resources' => array(
-        'module'    => array(
+        'front'    => array(
             // test
             array(
                 'name'          => 'test',

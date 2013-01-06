@@ -31,13 +31,17 @@ class Role extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $this->valueOptions = array(
-                'member'    => __('Member'),
-                'admin'     => __('Administrator'),
-                'chief'     => __('Chief editor'),
-                'editor'    => __('Editor'),
-                'intern'    => __('Intern'),
+            // Roles from section front or admin
+            $section = $this->getOption('section') ?: 'front';
+            $rowset = Pi::model('acl_role')->select(array('section' => $section));
+            $roles = array(
+                ''  => __('None'),
             );
+            foreach ($rowset as $row) {
+                $roles[$row->name] = __($row->title);
+            }
+            $this->valueOptions = $roles;
+
         }
 
         return $this->valueOptions;

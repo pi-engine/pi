@@ -27,7 +27,7 @@ class Modulelist extends AbstractRegistry
     /**
      * Load raw data
      *
-     * @param   array   $options potential values for type: installed, active, inactive, install
+     * @param   array   $options potential values for type: active, inactive
      * @return  array    keys: dirname, name, (mid), weight, image, author, version
      */
     protected function loadDynamic($options)
@@ -35,10 +35,10 @@ class Modulelist extends AbstractRegistry
         $modules = array();
         $modelModule = Pi::model('module');
         $where = array();
-        if ($options['type'] == 'active') {
-            $where = array('active' => 1);
-        } elseif ($options['type'] == 'inactive') {
+        if ($options['type'] == 'inactive') {
             $where = array('active' => 0);
+        } else {
+            $where = array('active' => 1);
         }
         $rowset = $modelModule->select($where);
         foreach ($rowset as $module) {
@@ -47,37 +47,44 @@ class Modulelist extends AbstractRegistry
                 'id'            => $module->id,
                 'name'          => $module->name,
                 'title'         => $module->title,
-                'active'        => $module->active,
+                //'active'        => $module->active,
                 'version'       => $module->version,
                 'directory'     => $module->directory,
                 'update'        => $module->update,
                 'logo'          => $info['logo'],
             );
         }
+
+        asort($modules);
+        if (isset($modules['system'])) {
+            $systemModule = array('system' => $modules['system']);
+            unset($modules['system']);
+            $modules = array_merge($systemModule, $modules);
+        }
+
         return $modules;
     }
 
-    /*
-    protected function loadData(&$options = array())
+    /**
+     * Get module list
+     *
+     * @param string $type      default as active
+     *                              active: all active modules
+     *                              inactive: all inactive modules
+     * @return type
+     */
+    public function read($type = 'active')
     {
-        if (false === ($data = $this->loadCache($options))) {
-            $data = $this->loadDynamic($options);
-            $this->saveCache($data, $options);
-        }
-        return $data;
-    }
-    */
+        //$this->cache = false;
+        $options = compact('type');
 
-    public function read($type = null/*, $section = null, $role = null*/)
-    {
-        $options = compact('type'/*, 'section', 'role'*/);
         return $this->loadData($options);
     }
 
-    public function create($type = null/*, $section = null, $role = null*/)
+    public function create($type = 'active')
     {
         $this->clear('');
-        $this->read($type/*, $section, $role*/);
+        $this->read($type);
         return true;
     }
 

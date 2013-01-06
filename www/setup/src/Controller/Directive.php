@@ -156,7 +156,7 @@ class Directive extends AbstractController
          */
         // List of configs
         $config = array(
-            'identifier'    => 'xo' . substr(md5($vars['www']['url']), 0, 4),
+            'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
             'salt'          => md5(uniqid(mt_rand(), true)),
             'storage'       => $wizard->getPersist('persist'),
             'namespace'     => substr(md5($vars['www']['url']), 0, 4),

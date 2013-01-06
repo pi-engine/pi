@@ -76,6 +76,7 @@ class Audit extends AbstractWriter
         if ($event['priority'] != Logger::AUDIT) {
             return;
         }
+
         $this->events[] = $event;
     }
 
@@ -101,6 +102,18 @@ class Audit extends AbstractWriter
     /**
      * Get extra information: Application user information, User-Agent, access page, URI, etc.
      *
+     * <url> Columns to record
+     *      <li>`section`: varchar(64), front or admin</li>
+     *      <li>`module`: varchar(64)</li>
+     *      <li>`controller`: varchar(64)</li>
+     *      <li>`action`: varchar(64)</li>
+     *      <li>`time`: int(10), time of the event</li>
+     *      <li>`user`: varchar(64), username</li>
+     *      <li>`ip`: varchar(15), IP of the operator</li>
+     *      <li>`message`: text, custom information</li>
+     *      <li>`extra`: text, extra information</li>
+     * </ul>
+     *
      * @return array
      */
     protected function getExtra()
@@ -108,17 +121,16 @@ class Audit extends AbstractWriter
         if (null !== $this->extra) {
             return $this->extra;
         }
+        $this->extra = false;
         $data = array();
         if (!empty($this->options['role'])) {
             if (!in_array(Pi::registry('user')->role, $this->options['role'])) {
-                $this->extra = false;
                 return $this->extra;
             }
         }
         $data['user'] = Pi::registry('user') ? Pi::registry('user')->id : 0;
         if (!empty($this->options['user'])) {
             if (!in_array($data['user'], $this->options['user'])) {
-                $this->extra = false;
                 return $this->extra;
             }
         }
@@ -138,7 +150,6 @@ class Audit extends AbstractWriter
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.*', $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.' . $segs[3], $this->options['ip'])
             ) {
-                $this->extra = false;
                 return $this->extra;
             }
         }
@@ -147,7 +158,6 @@ class Audit extends AbstractWriter
         $data['method'] = $request->getMethod();
         if (!empty($this->options['method'])) {
             if (!in_array($data['method'], $this->options['method'])) {
-                $this->extra = false;
                 return $this->extra;
             }
         }
@@ -156,7 +166,7 @@ class Audit extends AbstractWriter
         if (!$event) {
             return $this->extra;
         }
-        $routeMatch = Pi::engine()->application()->getMvcEvent()->getRouteMatch();
+        $routeMatch = $event->getRouteMatch();
         if ($routeMatch) {
             $data['module'] = $routeMatch->getParam('module');
             $data['controller'] = $routeMatch->getParam('controller');
@@ -166,7 +176,6 @@ class Audit extends AbstractWriter
                     && !in_array($data['module'] . '-' . $data['controller'], $this->options['page'])
                     && !in_array($data['module'] . '-' . $data['controller'] . '-' . $data['action'], $this->options['page'])
                 ) {
-                    $this->extra = false;
                     return $this->extra;
                 }
             }

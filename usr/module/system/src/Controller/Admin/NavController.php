@@ -53,9 +53,40 @@ class NavController extends ActionController
     );
 
     /**
-     * List of navigations to manage
+     * Set up front/admin global navigations
      */
     public function indexAction()
+    {
+        $modules = Pi::service('registry')->module->read();
+        $modules[''] = array('title' => __('Custom'));
+
+        $navGlobal = array(
+            'front' => Pi::config('nav_front', ''),
+            'admin' => Pi::config('nav_admin', ''),
+        );
+        $navList = array(
+            'front' => array(),
+            'admin' => array(),
+        );
+        $rowset = Pi::model('navigation')->select(array('module <> ?' => 'system', 'active' => 1));
+        foreach ($rowset as $row) {
+            if ($row->module) {
+                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules[$row->module]['title'];
+            } else {
+                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules['']['title'];
+            }
+        }
+
+        $this->view()->assign('navGlobal', $navGlobal);
+        $this->view()->assign('navList', $navList);
+        $this->view()->assign('title', __('Navigation setup'));
+        //$this->view()->setTemplate('nav-select');
+    }
+
+    /**
+     * List of navigations to manage
+     */
+    public function listAction()
     {
         $modules = Pi::service('registry')->module->read();
         $modules[''] = array('title' => __('Custom'));
@@ -92,39 +123,8 @@ class NavController extends ActionController
         $this->view()->assign('navCustom', $navCustom);
         $this->view()->assign('navModule', $navModule);
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', __('Front navigation list'));
-        $this->view()->setTemplate('nav-list');
-    }
-
-    /**
-     * Set up front/admin global navigations
-     */
-    public function selectAction()
-    {
-        $modules = Pi::service('registry')->module->read();
-        $modules[''] = array('title' => __('Custom'));
-
-        $navGlobal = array(
-            'front' => Pi::config('nav_front', ''),
-            'admin' => Pi::config('nav_admin', ''),
-        );
-        $navList = array(
-            'front' => array(),
-            'admin' => array(),
-        );
-        $rowset = Pi::model('navigation')->select(array('module <> ?' => 'system', 'active' => 1));
-        foreach ($rowset as $row) {
-            if ($row->module) {
-                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules[$row->module]['title'];
-            } else {
-                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules['']['title'];
-            }
-        }
-
-        $this->view()->assign('navGlobal', $navGlobal);
-        $this->view()->assign('navList', $navList);
-        $this->view()->assign('title', __('Navigation setup'));
-        $this->view()->setTemplate('nav-select');
+        $this->view()->assign('title', __('Navigation list'));
+        //$this->view()->setTemplate('nav-list');
     }
 
     /**

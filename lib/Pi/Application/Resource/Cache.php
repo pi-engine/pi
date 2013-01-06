@@ -24,7 +24,6 @@ use Pi;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ViewModel;
-//use Pi\Mvc\CacheEvent;
 
 /**
  * Cache for view content rendering in specific contexts: page, action, block
@@ -50,10 +49,6 @@ class Cache extends AbstractResource
      * @var string
      */
     protected $namespace = 'render';
-
-    //protected $cacheEvent;
-    //protected $pageCache;
-    //protected $actionCache;
 
     /**
      * @return void
@@ -126,12 +121,6 @@ class Cache extends AbstractResource
         } else {
             $renderCache->isOpened(true);
         }
-        /*
-        else {
-            //$this->cacheEvent = $cacheEvent;
-            $this->pageCache = $cacheEvent;
-        }
-        */
     }
 
     /**
@@ -189,7 +178,6 @@ class Cache extends AbstractResource
         $renderCache->meta('key', $cacheKey)
                    ->meta('namespace', $e->getRouteMatch()->getParam('module'))
                    ->meta('ttl', $cacheMeta['ttl']);
-        //$viewModel->setOption('cache', $cacheEvent);
         // Skip following dispatch events and render dispatch and set cached content directly if content is cached
         if ($renderCache->isCached()) {
             $content = $renderCache->cachedContent();
@@ -205,11 +193,6 @@ class Cache extends AbstractResource
         } else {
             $renderCache->isOpened(true);
         }
-        /*
-        else {
-            $this->actionCache = $cacheEvent;
-        }
-        */
     }
 
     /**
@@ -279,11 +262,6 @@ class Cache extends AbstractResource
         } else {
             return $cacheInfo;
         }
-        /*
-        if (empty($cacheInfo['level'])) {
-            $cacheInfo['level'] = $this->getLayout()->cacheLevel();
-        }
-        */
         return $cacheInfo;
     }
 

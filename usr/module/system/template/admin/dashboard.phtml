@@ -1,7 +1,7 @@
 <?php
-$this->css($this->assetModule('script/system-ui.css'));
-$this->jQuery('ui/jquery-ui.custom.min.js');
-$this->backbone();
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery('ui/jquery-ui.custom.min.js');
+    $this->backbone();
 ?>
 
 <style>
@@ -214,7 +214,7 @@ $this->backbone();
 </script>
 
 <script>
-(function($){
+(function($) {
      if (localStorage) {
          if (!localStorage.getItem("system-info")) {
              $("#system-info").addClass("fold");
@@ -226,15 +226,15 @@ $this->backbone();
      var a = $(".entries-items");
      a.sortable({
          revert: 300,
-         update: _.bind(function () {
+         update: _.bind(function() {
              var ret = [];
-             a.find("a").each(function () {
+             a.find("a").each(function() {
                  ret.push(this.getAttribute("data-name"));
              });
              $.post("<?php echo $this->url('', array('action' => 'entry')); ?>", {
                  content: ret
              });
-         },this)
+         }, this)
      });
      function sortSummary() {
          var obj = {};
@@ -244,9 +244,9 @@ $this->backbone();
              content: obj
          });
      }
-     var summaryActiveCollection = new Backbone.Collection( <?php echo json_encode(array_values($summaryList['active'])); ?> );
-     var summaryInactiveCollection = new Backbone.Collection( <?php echo json_encode(array_values($summaryList['inactive'])); ?> );
-     var linksCollection = new Backbone.Collection( <?php echo json_encode($links); ?> );
+     var summaryActiveCollection = new Backbone.Collection(<?php echo json_encode(array_values($summaryList['active'])); ?>);
+     var summaryInactiveCollection = new Backbone.Collection(<?php echo json_encode(array_values($summaryList['inactive'])); ?>);
+     var linksCollection = new Backbone.Collection(<?php echo json_encode($links); ?>);
      var summaryInactiveListItemView = Backbone.View.extend({
          template: _.template($("#temp-info-item-add").html()),
          tagName: "li",
@@ -254,22 +254,22 @@ $this->backbone();
          events: {
              "click .close": "destroy"
          },
-         initialize: function () {
+         initialize: function() {
              this.model.on("destroy", this.remove, this);
          },
-         destroy: function () {
+         destroy: function() {
              var m = this.model,
                  self = this;
              $.post("<?php echo $this->url('', array('action' => 'getSummary')); ?>", {
                  name: m.get("name")
-             }).done(function (result) {
+             }).done(function(result) {
                  m.set("content", result);
                  summaryActiveCollection.add(self.model.clone());
                  sortSummary();
              });
              this.model.destroy();
          },
-         render: function () {
+         render: function() {
              this.$el.html(this.template(this.model.toJSON()));
              return this.el;
          }
@@ -281,15 +281,15 @@ $this->backbone();
          events: {
              "click .close": "destroy"
          },
-         initialize: function () {
+         initialize: function() {
              this.$el.attr("data-cid", this.model.cid);
              this.model.on("destroy", this.remove, this);
          },
-         destroy: function () {
+         destroy: function() {
              summaryInactiveCollection.add(this.model.clone());
              this.model.destroy();
          },
-         render: function () {
+         render: function() {
              this.$el.html(this.template(this.model.toJSON()));
              return this.el;
          }
@@ -299,7 +299,7 @@ $this->backbone();
          events: {
              "click .info-add": "toggleActive"
          },
-         initialize: function () {
+         initialize: function() {
              this.inActiveEl = this.$(".info-items-add");
              this.activeEl = this.$(".info-items");
              summaryInactiveCollection.on("add", this.addInActive, this);
@@ -309,19 +309,19 @@ $this->backbone();
              this.activeEl.sortable({
                  revert: 300,
                  handle: ".box-bordered-header",
-                 update: _.bind(function (e, ui) {
+                 update: _.bind(function(e, ui) {
                      var index = 1;
-                     this.activeEl.find(">*").each(function () {
+                     this.activeEl.find(">*").each(function() {
                          summaryActiveCollection.getByCid($(this).attr("data-cid")).set("index", index++);
                      });
-                     summaryActiveCollection.models.sort(function (m1, m2) {
+                     summaryActiveCollection.models.sort(function(m1, m2) {
                          return m1.get("index") - m2.get("index");
                      });
                      sortSummary();
                  }, this)
              });
          },
-         toggleActive: function () {
+         toggleActive: function() {
              var el1 = this.inActiveEl,
                  el2 = this.$(".info-add");
              if (el1.css("display") == "none") {
@@ -332,7 +332,7 @@ $this->backbone();
                  el2.find("i")[0].className = "icon-plus icon-white";
              }
          },
-         render: function () {
+         render: function() {
              var el2 = this.activeEl,
                  m1 = summaryInactiveCollection.models,
                  m2 = summaryActiveCollection.models;
@@ -345,12 +345,12 @@ $this->backbone();
                  }).render());
              }
          },
-         addInActive: function (m) {
+         addInActive: function(m) {
              this.inActiveEl.append(new summaryInactiveListItemView({
                  model: m
              }).render());
          },
-         addActive: function (m) {
+         addActive: function(m) {
              this.activeEl.append(new summaryActiveListItemView({
                  model: m
              }).render());
@@ -366,14 +366,14 @@ $this->backbone();
          events: {
              "click .close": "destroy"
          },
-         initialize: function () {
+         initialize: function() {
              this.$el.attr("data-cid", this.model.cid);
              this.model.on("destroy", this.remove, this);
          },
-         destroy: function () {
+         destroy: function() {
              this.model.destroy();
          },
-         render: function () {
+         render: function() {
              this.$el.html(this.template(this.model.toJSON()));
              return this.el;
          }
@@ -384,37 +384,37 @@ $this->backbone();
              "click .link-add": "toggleForm",
              "click input[type=submit]": "submitAdd"
          },
-         initialize: function () {
+         initialize: function() {
              this.linksEl = this.$(".quick-links");
              this.render();
              linksCollection.on("add", this.addOne, this);
              linksCollection.on("remove", this.updateLink, this);
              this.linksEl.sortable({
                  revert: 300,
-                 update: _.bind(function () {
+                 update: _.bind(function() {
                      var index = 1;
-                     this.linksEl.find(">li").each(function () {
+                     this.linksEl.find(">li").each(function() {
                          linksCollection.getByCid($(this).attr("data-cid")).set("index", index++);
                      });
-                     linksCollection.models.sort(function (m1, m2) {
+                     linksCollection.models.sort(function(m1, m2) {
                          return m1.get("index") - m2.get("index");
                      });
                      this.updateLink();
                  }, this)
              });
          },
-         render: function () {
+         render: function() {
              var m = linksCollection.models;
              for (var i = 0, l = m.length; i < l; i++) {
                  this.addOne(m[i]);
              }
          },
-         addOne: function (m) {
+         addOne: function(m) {
              this.linksEl.append(new LinksItemView({
                  model: m
              }).render());
          },
-         submitAdd: function (e) {
+         submitAdd: function(e) {
              e.preventDefault();
              var v1 = $.trim(this.$(".add-link-name").val()),
                  v2 = $.trim(this.$(".add-link-url").val());
@@ -426,7 +426,7 @@ $this->backbone();
              this.$("form")[0].reset();
              this.updateLink();
          },
-         toggleForm: function () {
+         toggleForm: function() {
              var el1 = this.$(".add-link-form"),
                  el2 = this.$(".link-add");
              if (el1.css("display") == "none") {
@@ -437,7 +437,7 @@ $this->backbone();
                  el2.find("i")[0].className = "icon-plus icon-white";
              }
          },
-         updateLink: function () {
+         updateLink: function() {
              $.post("<?php echo $this->url('', array('action' => 'link')); ?>", {
                  content: linksCollection.toJSON()
              });
@@ -447,7 +447,7 @@ $this->backbone();
      new LinksListView;
      var RightView = Backbone.View.extend({
          el: $("#js-right"),
-         initialize: function () {
+         initialize: function() {
              var _$ = _.bind(this.$, this);
              this.boxMemo = _$(".box-memo");
              this.memoEdit = _$(".memo-edit");
@@ -455,9 +455,9 @@ $this->backbone();
              this.memoEditConent = _$(".memo-edit-conent");
              this.memoInner = _$("#memo-inner");
              this.addLinkFormWrap = _$(".add-link-form");
-             this.boxMemo.on("click", ".accordion-toggle", function () {
+             this.boxMemo.on("click", ".accordion-toggle", function() {
                  var p = $(this).parents(".box-memo"),
-                     storage = function (key, action) {
+                     storage = function(key, action) {
                          if (action == "set") {
                              localStorage && localStorage.setItem(key, 1);
                          } else if (action == "remove") {
@@ -465,24 +465,24 @@ $this->backbone();
                          }
                      };
                  if (p.hasClass("fold")) {
-                     p.find(".box-bordered-body").slideDown("300", function () {
+                     p.find(".box-bordered-body").slideDown("300", function() {
                          p.removeClass("fold")
                      });
                      storage(p.attr("id"), "set");
                  } else {
-                     p.find(".box-bordered-body").slideUp("300", function () {
+                     p.find(".box-bordered-body").slideUp("300", function() {
                          p.addClass("fold")
                      });
                      storage(p.attr("id"), "remove");
                  }
              });
-             this.memoEdit.submit(function (e) {
+             this.memoEdit.submit(function(e) {
                  e.preventDefault();
                  var v = $.trim(this.memoEditConent.val());
                  if (v) {
                      $.post("<?php echo $this->url('', array('action' => 'memo')); ?>", {
                          content: v
-                     }).done(_.bind(function (result) {
+                     }).done(_.bind(function(result) {
                          result = $.parseJSON(result);
                          this.$(".memo-content").find(">div").html(result.content).end().find(">span").html(result.time);
                          this.memoEdit[0].reset();
@@ -490,7 +490,7 @@ $this->backbone();
                  }
                  this.memoInner.css("marginTop", - this.memoEdit.outerHeight(true));
              }.bind(this));
-             this.memoAdd.click(_.bind(function (e) {
+             this.memoAdd.click(_.bind(function(e) {
                  e.stopPropagation();
                  if (this.$(".memo-wrap").css("display") != "none") {
                      if (parseInt(this.memoInner.css("marginTop")) == 0) {
@@ -504,14 +504,14 @@ $this->backbone();
              }, this));
          }
      });
-   var rw=new RightView;
-   setTimeout(function(){
-        rw.memoInner.css("transition","margin .6s cubic-bezier(.25,.25,.1,1)");
-   },10);
-   <?php if(!empty($memo)) { ?>
-        if(!$("#personal-memo").hasClass("fold")){
-            rw.memoInner.css("marginTop",-rw.memoEdit.outerHeight(true));
-         }
+   var rw = new RightView;
+   setTimeout(function() {
+        rw.memoInner.css("transition", "margin .6s cubic-bezier(.25,.25,.1,1)");
+   }, 10);
+   <?php if (!empty($memo)) { ?>
+        if (!$("#personal-memo").hasClass("fold")) {
+            rw.memoInner.css("marginTop", -rw.memoEdit.outerHeight(true));
+        }
    <?php } ?>
 })(jQuery)
 </script>

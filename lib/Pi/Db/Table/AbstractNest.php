@@ -576,7 +576,7 @@ abstract class AbstractNest extends AbstractTableGateway
     }
 
     /**
-     * Get ancestor nodes
+     * Get ancestor nodes, top to down
      *
      * @param   mixed   $objective  target node ID or Node
      * @param   array   $cols

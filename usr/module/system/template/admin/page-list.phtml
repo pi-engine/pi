@@ -3,26 +3,7 @@
     $this->jQuery();
     $this->backbone();
 ?>
-<div class="row">
-    <div class="span3">
-        <div class="sub-nav">
-            <?php
-            $items = array();
-            foreach ($modules as $key => $label) {
-                $item = array(
-                    'href'  => $this->url('', array('action' => 'index', 'name' => $key)),
-                    'label' => $label,
-                );
-                if ($name == $key) {
-                    $item['active'] = 1;
-                }
-                $items[] = $item;
-            }
-            echo $this->navMenu($items);
-            ?>
-        </div>
-    </div>
-    <div class="span9" id="js-page">
+<div id="js-page" class="span12">
         <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
         <?php
         foreach ($pagesBySection as $key => $section) {
@@ -57,7 +38,6 @@
         <?php } ?>
         </ul>
         <?php } ?>
-    </div>
 </div>
 <script id="temp-item" type="text/template">
    <li class="box-hover" data-id="<%= id %>">
@@ -70,11 +50,11 @@
    </li>
 </script>
 <script>
-(function ($) {
+(function($) {
     var modal = $("<div>", {
         "class": "modal hide fade"
     }).appendTo(document.body);
-    modal.on("hide", function () {
+    modal.on("hide", function() {
         pageView.$(".box-hover").removeClass("handle");
     });
     var PageItemView = Backbone.View.extend({
@@ -82,13 +62,13 @@
             "click .edit-item": "dialog",
             "click .delete-item": "deleteItem"
         },
-        deleteItem: function () {
+        deleteItem: function() {
             var el = this.$el;
             this.toggleHandle();
             if (confirm('<?php _e("Are you sure to delete the page?") ?>')) {
-                $.get("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function (result) {
+                $.get("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
                     if (result == 1) {
-                        el.fadeOut(150, function () {
+                        el.fadeOut(150, function() {
                             el.remove();
                         });
                     }
@@ -96,17 +76,17 @@
             }
             this.toggleHandle();
         },
-        dialog: function () {
+        dialog: function() {
             this.toggleHandle();
-            $.get("<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>" + this.$el.attr("data-id")).done(function (result) {
+            $.get("<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>" + this.$el.attr("data-id")).done(function(result) {
                 modal.html(result);
                 modal.modal('show');
-                formModule.success = function () {
+                formModule.success = function() {
                     modal.modal('hide');
                 }
             });
         },
-        toggleHandle: function () {
+        toggleHandle: function() {
             this.$el.toggleClass("handle");
         }
     });
@@ -115,19 +95,19 @@
         events: {
             "click .add-item": "dialog"
         },
-        initialize: function () {
-            this.$(".box-hover").each(function () {
+        initialize: function() {
+            this.$(".box-hover").each(function() {
                 new PageItemView({
                     el: $(this)
                 });
             });
         },
-        dialog: function () {
+        dialog: function() {
             var self = this;
-            $.get("<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>").done(function (result) {
+            $.get("<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>").done(function(result) {
                 modal.html(result);
                 modal.modal('show');
-                formModule.success = function (result) {
+                formModule.success = function(result) {
                     modal.modal('hide');
                     var item = $(_.template($("#temp-item").html(), result.page));
                     self.$(".front").append(item);

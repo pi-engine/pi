@@ -52,7 +52,7 @@ class AssetController extends ActionController
         $this->view()->assign('modules', $modules);
         $this->view()->assign('themes', $themes);
         $this->view()->assign('title', __('Asset component list'));
-        $this->view()->setTemplate('asset-list');
+        //$this->view()->setTemplate('asset-list');
     }
 
     /**

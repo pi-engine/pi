@@ -58,12 +58,13 @@ return array(
         // Instantiate use handler
         'user'      => array(),
         // Instantiate ACL manager and register listeners
-        /*
         'acl'       => array(
             // Default access perm in case not defined
-            'default'   => true,
+            'default'       => true,
+            // If check page access
+            'check_page'    => false,
         ),
-        */
+
         // Instantiate page/action cache manager
         'cache'     => array(
             // Enable page caching, default as false

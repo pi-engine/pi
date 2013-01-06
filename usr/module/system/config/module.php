@@ -29,7 +29,7 @@ return array(
         // Description, for admin, optional
         'description'   => __('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.0.0-rc.2',
+        'version'       => '3.0.2',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -53,7 +53,7 @@ return array(
         // Website link, optional
         'website'   => 'http://www.xoopsengine.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Zend Framework Team; Pi Engine Team; EEFOCUS Team.'
+        'credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
     // Maintenance actions
     'maintenance'   => array(

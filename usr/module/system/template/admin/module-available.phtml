@@ -3,6 +3,13 @@
     $this->jQuery();
     $this->backbone();
 ?>
+
+<ul class="nav nav-tabs">
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
+    <li class="disabled"><a><?php _e('Repository'); ?></a>
+</ul>
+
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div>
 <ul class="module-lists" id="js-module">
@@ -43,46 +50,46 @@
 </ul>
 </div>
 <script>
-(function($){
-    var checkUrl="<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>",
-        bh=$(".box-hover");
-    var modal=$("<div>",{"class":"modal hide fade"}).appendTo(document.body);
-        modal.on("hidden",function(){
+(function($) {
+    var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>",
+        bh = $(".box-hover");
+    var modal = $("<div>", {"class": "modal hide fade"}).appendTo(document.body);
+        modal.on("hidden", function() {
             bh.removeClass("handle");
         });
-    var ModuleList= Backbone.View.extend({
-        events:{
-          "click .module-install":"install",
-          "click .module-check"    :"check"
+    var ModuleList = Backbone.View.extend({
+        events: {
+          "click .module-install": "install",
+          "click .module-check": "check"
         },
-        initialize:function(){
-           this.moduleCheck=$(".module-check");
+        initialize: function() {
+           this.moduleCheck = $(".module-check");
         },
-        install:function(){
+        install: function() {
             this.toggleHand();
-            $.get(this.$el.attr("data-install")).done(function(result){
+            $.get(this.$el.attr("data-install")).done(function(result) {
                 modal.html(result).modal("show");
-                formModule.success=this.submite.bind(this);
+                formModule.success = this.submite.bind(this);
             }.bind(this));
         },
-        check:function(){
-            $.post(checkUrl,{name:this.$el.attr("data-name")})
+        check: function() {
+            $.post(checkUrl, {name: this.$el.attr("data-name")})
         },
-        toggleHand:function(){
+        toggleHand: function() {
             this.$el.toggleClass("handle");
         },
-        submite:function(result){
-            var el=this.$el;
+        submite: function(result) {
+            var el = this.$el;
             modal.modal("hide");
-            if(result.clonable==0){
-                el.fadeOut("150",function(){
+            if (result.clonable == 0) {
+                el.fadeOut("150", function() {
                     el.remove();
                 });
             }
             alert(result.message);
         }
     });
-    bh.each(function(){
+    bh.each(function() {
          new ModuleList({
              el: $(this)
          });
