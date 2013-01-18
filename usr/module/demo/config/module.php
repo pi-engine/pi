@@ -82,6 +82,8 @@ return array(
             ),
             // Module configs
             'config'    => 'config.php',
+            // ACL specs
+            'acl'       => 'acl.php',
             // Block definition
             'block'     => 'block.php',
             // Bootstrap, priority
@@ -92,8 +94,6 @@ return array(
             'search'    => array('callback' => array('search', 'index')),
             // View pages
             'page'      => 'page.php',
-            // ACL specs
-            'acl'       => 'acl.php',
             // Navigation definition
             'navigation'    => 'navigation.php',
             // Routes, first in last out; bigger priority earlier out

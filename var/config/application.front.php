@@ -65,15 +65,15 @@ return array(
             'check_page'    => false,
         ),
 
-        // Instantiate page/action cache manager
-        'cache'     => array(
+        // Instantiate render cache manager
+        'render'     => array(
             // Enable page caching, default as false
             'page'      => true,
             // Enable action caching, default as false
             'action'    => false,
+            /*
             // Cache storage
             'storage'   => 'filesystem',
-            /*
             'storage'   => array(
                 'adapter'   => array(
                     'name'  => 'filesystem',

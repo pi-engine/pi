@@ -21,7 +21,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-//use Pi\Acl\Acl as Acl;
+use Pi\Acl\Acl as AclHandler;
 
 /**
  * Page configuration specs
@@ -415,6 +415,8 @@ class Page extends AbstractResource
         // Set rules of accessing the resource by each role
         if (isset($page['permission']['access'])) {
             foreach ($page['permission']['access'] as $role => $rule) {
+                AclHandler::addRule($rule, $role, $resource['section'], $resourceId, $module);
+                /*
                 $data = array();
                 $data['role'] = $role;
                 $data['resource'] = $resourceId;
@@ -427,6 +429,7 @@ class Page extends AbstractResource
                     $message[] = sprintf('Rule "%s" is not saved', implode('-', array_values($data)));
                     return false;
                 }
+                */
             }
         }
 

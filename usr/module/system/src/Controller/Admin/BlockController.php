@@ -74,7 +74,7 @@ class BlockController extends ActionController
         $rowset = $model->selectWith($select);
         $blocks = array();
         foreach ($rowset as $row) {
-            $blocks[$row->id] = array(
+            $blocks[$row->title] = array(
                 'id'            => $row->id,
                 'name'          => $row->name,
                 'title'         => $row->title,
@@ -86,6 +86,7 @@ class BlockController extends ActionController
                 'clonable'      => $row->render ? true : false,
             );
         }
+        ksort($blocks);
         /*
         $select = $model->select()->group('module')->columns(array('count' => new Expression('count(*)'), 'module'));
         $rowset = $model->selectWith($select);
@@ -108,7 +109,7 @@ class BlockController extends ActionController
         */
 
         //$this->view()->assign('modules', $this->getModules());
-        $this->view()->assign('blocks', $blocks);
+        $this->view()->assign('blocks', array_values($blocks));
         $this->view()->assign('name', $name);
         $this->view()->assign('title', __('Block list'));
         //$this->view()->assign('message', $message);

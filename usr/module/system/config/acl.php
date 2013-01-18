@@ -209,7 +209,7 @@ return array(
         'admin' => array(
             // Generic admin resource
             'admin'     => array(
-                'title'         => __('Generic admin resource'),
+                'title'         => __('Global admin permission'),
                 'access'        => array(
                     'staff'     => 1,
                 ),
@@ -218,7 +218,7 @@ return array(
             // Managed components
             // Configurations
             'config'    => array(
-                'title'         => __('Configuration management'),
+                'title'         => __('Component: configurations'),
                 'access'        => array(
                     'staff'     => 0,
                     'moderator' => 1,
@@ -226,7 +226,7 @@ return array(
             ),
             // Block content and permission
             'block'     => array(
-                'title'         => __('Block management'),
+                'title'         => __('Component: blocks'),
                 'access'        => array(
                     'staff'     => 0,
                     'moderator' => 1,
@@ -234,15 +234,23 @@ return array(
             ),
             // Page dress up, cache and permission
             'page'     => array(
-                'title'         => __('Page management'),
+                'title'         => __('Component: pages'),
                 'access'        => array(
                     'staff'     => 0,
                     'moderator' => 1,
                 ),
             ),
+            // Resource permissions
+            'resource'  => array(
+                'title'         => __('Component: resources'),
+                'access'        => array(
+                    'staff'     => 0,
+                    'admin'     => 1,
+                ),
+            ),
             // Event hooks
             'event'     => array(
-                'title'         => __('Event/hook management'),
+                'title'         => __('Component: events/hooks'),
                 'access'        => array(
                     'staff'     => 0,
                     'moderator' => 1,
@@ -252,7 +260,7 @@ return array(
             // System operations
             // Modules
             'module'    => array(
-                'title'         => __('Module operation'),
+                'title'         => __('Operation: modules'),
                 'access'        => array(
                     'staff'     => 0,
                     'manager'   => 1,
@@ -260,7 +268,7 @@ return array(
             ),
             // Themes
             'theme'    => array(
-                'title'         => __('Theme operation'),
+                'title'         => __('Operation: themes'),
                 'access'        => array(
                     'staff'     => 0,
                     'editor'    => 1,
@@ -268,7 +276,7 @@ return array(
             ),
             // Navigations
             'navigation'    => array(
-                'title'         => __('Navigaton operation'),
+                'title'         => __('Operation: navigatons'),
                 'access'        => array(
                     'staff'     => 0,
                     'editor'    => 1,
@@ -276,7 +284,7 @@ return array(
             ),
             // Roles
             'role'    => array(
-                'title'         => __('Role operation'),
+                'title'         => __('Operation: roles'),
                 'access'        => array(
                     'staff'     => 0,
                     'admin'     => 1,
@@ -284,7 +292,7 @@ return array(
             ),
             // Permissions
             'perm'    => array(
-                'title'         => __('Permission assignment'),
+                'title'         => __('Operation: permissions'),
                 'access'        => array(
                     'staff'     => 0,
                     'admin'     => 1,
@@ -292,7 +300,7 @@ return array(
             ),
             // Members
             'member'    => array(
-                'title'         => __('Member operation'),
+                'title'         => __('Operation: members'),
                 'access'        => array(
                     'staff'     => 0,
                     'admin'     => 1,
@@ -300,7 +308,7 @@ return array(
             ),
             // maintenance
             'maintenance'   => array(
-                'title'         => __('Maintenance'),
+                'title'         => __('Operation: maintenance'),
                 'access'        => array(
                     'staff'     => 0,
                     'manager'   => 1,

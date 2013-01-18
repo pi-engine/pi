@@ -121,70 +121,17 @@ class Install extends BasicInstall
                 $model->insert($data);
             }
         }
-        /*
-        // Add tabbed block compound
-        $tabbedBlock = array(
-            'type'          => 'tab',
-            'name'          => __('block-tab'),
-            'title'         => __('Infomation tabs'),
-            'description'   => __('Tabbed block compound'),
-            'content'       => json_encode(array(
-                array(
-                    'name'  => 'system-site-info',
-                ),
-                array(
-                    'name'  => 'system-login',
-                ),
-                array(
-                    'name'  => 'system-user',
-                ),
-            )),
-        );
-        $rowTab = Pi::model('block')->createRow($tabbedBlock);
-        $rowTab->save();
-        // Build ACL rules
-        $dataRule = array(
-            'resource'  => $rowTab->id,
-            'section'   => 'block',
-            'deny'      => 0,
-        );
-        $roles = array('guest', 'member');
-        foreach ($roles as $role) {
-            $dataRule['role'] = $role;
-            Pi::model('acl_rule')->insert($dataRule);
-        }
-        // Put on homepage
-        foreach ($pages as $page) {
-            $data = array(
-                'page'      => $page['id'],
-                'block'     => $rowTab->id,
-                'zone'      => 1,
-                'order'     => ++$i
-            );
-            $model->insert($data);
-        }
-        */
 
         // Add system messages
-        $type       = 'admin-message';
-        $messages   = array(
-            array(
-                'content'   => 'System installed.',
-                'time'      => time(),
-            ),
-            array(
-                'content'   => 'Go to configuration page to set up sytem settings.',
-                'time'      => time(),
-            ),
-            array(
-                'content'   => 'Go to module page to install basic modules like "page".',
-                'time'      => time(),
-            ),
+        $type       = 'admin-welcome';
+        $message    = array(
+            'content'   => __('Welcome to Pi powered system.'),
+            'time'      => time(),
         );
         $row = Pi::model('user_repo')->createRow(array(
             'module'    => $module,
             'type'      => $type,
-            'content'   => $messages,
+            'content'   => $message,
         ));
         $row->save();
 

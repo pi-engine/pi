@@ -21,6 +21,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
+use Pi\Acl\Acl as AclHandler;
 
 /**
  * ACL configuration specs
@@ -146,6 +147,8 @@ class Acl extends AbstractResource
         $modelRule = Pi::model('acl_rule');
         foreach ($modulePerms as $section => $access) {
             foreach ($access as $role => $rule) {
+                AclHandler::addRule($rule, $role, 'module-' . $section, $module, $module);
+                /*
                 $data = array(
                     'role'      => $role,
                     'resource'  => $module,
@@ -155,6 +158,7 @@ class Acl extends AbstractResource
                 );
                 $row = $modelRule->createRow($data);
                 $row->save();
+                */
             }
         }
 
@@ -323,6 +327,7 @@ class Acl extends AbstractResource
 
         foreach ($resources_new as $section => $resourceList) {
             foreach ($resourceList as $name => $resource) {
+                $resource['name'] = $name;
                 $resource['module'] = empty($resource['module']) ? $module : $resource['module'];
                 $resource['section'] = $section;
                 $resource['type'] = 'system';
@@ -503,6 +508,8 @@ class Acl extends AbstractResource
                 }
                 if (isset($privilege['access'])) {
                     foreach ($privilege['access'] as $role => $rule) {
+                        AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId, $name);
+                        /*
                         $data = array(
                             'role'      => $role,
                             'resource'  => $resourceId,
@@ -517,12 +524,15 @@ class Acl extends AbstractResource
                             $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
                             return false;
                         }
+                        */
                     }
                 }
             }
         // Insert access rules
         } elseif (isset($resource['access'])) {
             foreach ($resource['access'] as $role => $rule) {
+                AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId);
+                /*
                 $data = array(
                     'role'      => $role,
                     'resource'  => $resourceId,
@@ -536,6 +546,7 @@ class Acl extends AbstractResource
                     $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
                     return false;
                 }
+                */
             }
         }
 
@@ -588,6 +599,8 @@ class Acl extends AbstractResource
             }
             if (isset($privilege['access'])) {
                 foreach ($privilege['access'] as $role => $rule) {
+                    AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId, $name);
+                    /*
                     $data = array(
                         'role'      => $role,
                         'resource'  => $resourceId,
@@ -602,6 +615,7 @@ class Acl extends AbstractResource
                         $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
                         return false;
                     }
+                    */
                 }
             }
         }

@@ -59,27 +59,20 @@ class NavController extends ActionController
     {
         $modules = Pi::service('registry')->module->read();
         $modules[''] = array('title' => __('Custom'));
-
-        $navGlobal = array(
-            'front' => Pi::config('nav_front', ''),
-            'admin' => Pi::config('nav_admin', ''),
-        );
-        $navList = array(
-            'front' => array(),
-            'admin' => array(),
-        );
-        $rowset = Pi::model('navigation')->select(array('module <> ?' => 'system', 'active' => 1));
+        
+        $navList = array();
+        $navGlobal = Pi::model('config')->select(array(
+            'module'    => 'system',
+            'name'      => 'nav_front',
+        ))->current()->value;
+        $rowset = Pi::model('navigation')->select(array('section' => 'front', 'active' => 1));
         foreach ($rowset as $row) {
-            if ($row->module) {
-                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules[$row->module]['title'];
-            } else {
-                $navList[$row->section][$row->name] = $row->title . ' - ' . $modules['']['title'];
-            }
+            $navList[] = $row->toArray();
         }
 
+        $this->view()->assign('navList', array_values($navList));
+        $this->view()->assign('title', __('Navigation list'));
         $this->view()->assign('navGlobal', $navGlobal);
-        $this->view()->assign('navList', $navList);
-        $this->view()->assign('title', __('Navigation setup'));
         //$this->view()->setTemplate('nav-select');
     }
 
@@ -105,6 +98,7 @@ class NavController extends ActionController
         );
 
         $rowset = Pi::model('navigation')->select(array('module <> ?' => 'system', 'active' => 1));
+       
         foreach ($rowset as $row) {
             if ($row->module) {
                 $navModule[$row->section][$row->module][] = array(
@@ -184,10 +178,7 @@ class NavController extends ActionController
                 $row->save();
                 if ($row->id) {
                     $message = __('Navigation saved successfully.');
-                    $nav = array(
-                        'title'     => $row->title,
-                        'name'      => $row->name
-                    );
+                    $nav = $row->toArray();
                 } else {
                     $status = 0;
                     $message = __('Navigation data not saved.');
@@ -243,10 +234,7 @@ class NavController extends ActionController
                     $message = __('Navigation saved successfully.');
                     $this->cloneNode($parent, $row->name);
 
-                    $nav = array(
-                        'title'     => $row->title,
-                        'name'      => $row->name
-                    );
+                    $nav = $row->toArray();
                 } else {
                     $status = 0;
                     $message = __('Navigation data not saved.');
@@ -383,6 +371,8 @@ class NavController extends ActionController
             $title = __('Navigation data edit: %s');
         }
         $navigation = Pi::model('navigation')->find($nav, 'name');
+        $nav = $navigation->toArray();
+        
         $title = sprintf($title, $navigation->title);
         $this->view()->assign('readonly', $readonly);
         $this->view()->assign('navigation', $nav);

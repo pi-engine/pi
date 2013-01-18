@@ -90,10 +90,10 @@ class LoginForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'  => 'from',
+            'name'  => 'redirect',
             'type'  => 'hidden',
             'attributes'    => array(
-                'value' => urlencode(Pi::engine()->application()->getRequest()->getRequestUri()),
+                'value' => urlencode(Pi::engine()->application()->getRequest()->getServer('HTTP_REFERER')),
             ),
         ));
 

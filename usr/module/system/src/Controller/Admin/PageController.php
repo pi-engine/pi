@@ -85,9 +85,10 @@ class PageController extends ActionController
                 'id'        => $row->id,
                 'title'     => $title,
                 'key'       => $key,
-                //'desc'      => $desc,
+                'section'   => $row->section,
                 'custom'    => $row->custom,
                 'block'     => $row->block,
+                //'link'      => '',
             );
         }
 
@@ -510,7 +511,7 @@ class PageController extends ActionController
         $this->view()->assign('modules', $modules);
         $this->view()->assign('name', $name);
         $this->view()->assign('pi_zone', $this->getZoneTemplate());
-        $this->view()->assign('title', sprintf(__('Blocks of page %s'), $pageData['title']));
+        $this->view()->assign('title', sprintf(__('%s blocks'), $pageData['title']));
         $this->view()->setTemplate('page-block');
     }
 

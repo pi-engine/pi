@@ -71,10 +71,10 @@ class Rule extends Model
      *
      * @param array         $roles
      * @param array|Where   $where
-     * @param bool          $default Default permission in case not defined
+     * @param bool          $allowed
      * @return array of resources
      */
-    public function getResources($roles, $where = null, $default = false)
+    public function getResources($roles, $where = null, $allowed = true)
     {
         if (!$where instanceof Predicate) {
             $where = Pi::db()->where((array) $where);
@@ -86,34 +86,11 @@ class Rule extends Model
         } else {
             $predicate->equalTo('role', array_shift($roles));
         }
-        $predicate->equalTo('deny', 0);
+        $predicate->equalTo('deny', $allowed ? 0 : 1);
         $columns = array(
             'item' => Pi::db()->expression('DISTINCT resource')
         );
-        //$columns = array('resource', 'deny');
-        /*
-        if ($default) {
-            $columns['denied'] = Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')');
-        }
-        */
         $select = $this->select()->where($where)->columns($columns);
-        //$select->group('resource');
-        //$select->having('deny = 0');
-        /*
-        if ($default) {
-            $select->having('denied = 0', 'OR');
-        }
-        */
-
-        /*
-        // allowed
-        if (!empty($allowed)) {
-            $select->having('deny = 0');
-        // denied
-        } else {
-            $select->having('denied > 0');
-        }
-        */
         $resources = array();
         $rowset = $this->selectWith($select);
         foreach ($rowset as $row) {
@@ -152,43 +129,6 @@ class Rule extends Model
             $rowset = $this->selectWith($select);
             $permission = $rowset->count() ? false : $default;
         }
-
-        /*
-        // For default as permitted: denied if deny is detected, otherwise permitted
-        if ($default) {
-            $where->equalTo('deny', 1);
-            $select = $this->select()->Where($where)->limit(1);
-            $rowset = $this->selectWith($select);
-            $permission = $rowset->count() ? false : true;
-        // For default as denied: denied if deny is detected or no rule is found, otherwise permitted
-        } else {
-            $columns = array(
-                'denied'    => Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')'),
-                'count'     => Pi::db()->expression('count(*)'),
-            );
-            $select = $this->select()->Where($where)->columns($columns);
-            $row = $this->selectWith($select)->current();
-            $permission = ($row->denied || !$row->count) ? false : true;
-        }
-        */
-
-        /*
-        $columns = array('denied' => Pi::db()->expression('SUM(' . $this->quoteIdentifier('deny') . ')'));
-        if (!$default) {
-            $columns['count'] = Pi::db()->expression('count(*)');
-        }
-        $select = $this->select()->Where($where)->columns($columns);
-        $row = $this->selectWith($select)->current();
-
-        $permission = true;
-        // Denied if at least one deny is detected
-        if ($row->denied) {
-            $permission = false;
-        // Denied if default as false and no rule is detected
-        } elseif (!$default && !$row->count) {
-            $permission = false;
-        }
-        */
 
         return $permission;
     }

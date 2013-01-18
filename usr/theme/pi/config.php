@@ -46,7 +46,7 @@ return array(
     // Version
     'version'       => '1.0.0-beta.1',
     // Type of layouts available in the theme
-    'type'          => 'both', // Potential value: 'both', 'admin', 'front', default as 'both'
+    'type'          => 'front', // Potential value: 'both', 'admin', 'front', default as 'both'
     /**#@-**/
 
     // Title of the theme

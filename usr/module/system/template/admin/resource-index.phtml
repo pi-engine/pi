@@ -5,16 +5,16 @@
 ?>
 <ul class="nav nav-tabs">
     <li class="<?php if ($section == 'front') { echo 'active'; } ?>">
-        <a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'index', 'section' => 'front', 'name' => $name)); ?>"><?php _e('Front'); ?></a>
+        <a href="<?php echo $this->url('', array('action' => 'index', 'section' => 'front', 'name' => $name)); ?>"><?php _e('Front'); ?></a>
     <li class="<?php if ($section == 'admin') { echo 'active'; } ?>">
-        <a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'index', 'section' => 'admin', 'name' => $name)); ?>"><?php _e('Admin'); ?></a>
+        <a href="<?php echo $this->url('', array('action' => 'index', 'section' => 'admin', 'name' => $name)); ?>"><?php _e('Admin'); ?></a>
 </ul>
 <div class="page-perm row-fluid">
     <div class="span2 well well-small">
         <ul class="nav nav-list">
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
-                <a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'index', 'section' => $section, 'role' => $key, 'name' => $name)); ?>"><?php echo $value; ?></a>
+                <a href="<?php echo $this->url('', array('action' => 'index', 'section' => $section, 'role' => $key, 'name' => $name)); ?>"><?php echo $value; ?></a>
             <?php } ?>
         </ul>
     </div>
@@ -37,12 +37,12 @@
             <%
             if (direct) {
                 if (direct > 0) {
-                    print("<?php _e('Allow'); ?>");
+                    print("<?php _e('Allowed'); ?>");
                 } else {
-                    print("<?php _e('Deny'); ?>");
+                    print("<?php _e('Denied'); ?>");
                 }
             } else {
-                print("<?php _e('Inherit'); ?>");
+                print("<?php _e('Inherited'); ?>");
             }
             %>
             </button>
@@ -65,8 +65,10 @@
                 <% } else { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    <% if (perm < 1) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    <% } %>
                 <% } %>
             </ul>
         </div>
@@ -108,7 +110,7 @@
                 }
             }
             this.model.set(obj);
-            $.post('<?php echo $this->url('', array('controller' => 'perm', 'action' => 'assign', 'role' => $role)); ?>', this.model.previousAttributes()).done(function(res) {
+            $.post('<?php echo $this->url('', array('action' => 'assign', 'role' => $role)); ?>', this.model.previousAttributes()).done(function(res) {
                 res = $.parseJSON(res);
                 self.model.set(res.data);
             }).error(function() {

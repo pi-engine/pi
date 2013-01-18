@@ -1,0 +1,62 @@
+<?php
+    $this->bootstrap();
+    $this->css(array(
+        $this->assetModule('script/system-ui.css')
+    ));
+?>
+<div class="page-header">
+    <h2><?php echo $this->escape($title); ?></h2>
+</div>
+<div class="row-fluid">
+    <div class="span8">
+        <div class="widget">
+             <div class="widget-header">
+                 <strong><?php _e('Summary')?></strong>
+             </div>
+             <div class="widget-body">
+             </div>
+        </div>
+        <div class="widget">
+             <div class="widget-header">
+                 <strong><?php _e('About')?></strong>
+             </div>
+             <div class="widget-body">
+                 <fieldset>
+                     <legend><?php _e('Module information'); ?></legend>
+                     <dl class="dl-horizontal">
+                         <dt><?php _e('Title:'); ?>
+                         <dd><?php echo $this->escape($data['title']); ?>
+                         <dt><?php _e('Directory:'); ?>
+                         <dd><?php echo $this->escape($data['directory']); ?>
+                         <dt><?php _e('Version:'); ?>
+                         <dd><?php echo $this->escape($data['version']); ?>
+                         <dt><?php _e('Update:'); ?>
+                         <dd><?php echo $this->escape($data['update']); ?>
+                         <dt><?php _e('Description:'); ?>
+                         <dd><?php echo $this->escape($data['description']); ?>
+                         <dt><?php _e('License:'); ?>
+                         <dd><?php echo $this->escape($data['license']); ?>
+                         <?php if($data['demo']) { ?>
+                         <dt><?php _e('Demo:'); ?>
+                         <dd><?php echo $this->escape($data['demo']); ?>
+                         <?php } ?>
+                     </dl>
+                 </fieldset>
+                 <fieldset>
+                     <legend><?php _e('Author information'); ?></legend>
+                     <dl class="dl-horizontal">
+                         <dt><?php _e('Name:'); ?>
+                         <dd><?php echo $data['author']['name']; ?>
+                         <dt><?php _e('Email:'); ?>
+                         <dd><?php echo $data['author']['email']; ?>
+                         <dt><?php _e('Website:'); ?>
+                         <dd><?php echo $data['author']['website']; ?>
+                         <dt><?php _e('Credits:'); ?>
+                         <dd><?php echo $data['author']['credits']; ?>    
+                     </dl>
+                 </fieldset>
+             </div>
+        </div>
+    <div class="span4"></div>     
+</div>
+

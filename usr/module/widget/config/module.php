@@ -28,7 +28,7 @@ return array(
         // Description, for admin, optional
         'description'   => 'Management of custom blocks/widgets.',
         // Version number, required
-        'version'       => '1.0.0-alpha',
+        'version'       => '1.0.0-rc',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -61,6 +61,10 @@ return array(
                     'widget'          => 'table',
                 )
             ),
+            // ACL specs
+            'acl'           => 'acl.php',
+            // View pages
+            'page'          => 'page.php',
             // Navigation definition
             'navigation'    => 'navigation.php',
         )

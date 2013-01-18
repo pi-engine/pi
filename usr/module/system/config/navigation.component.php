@@ -49,12 +49,12 @@ return array(
     ),
 
     'perm' => array(
-        'label'         => 'Permissions',
+        'label'         => 'Resources',
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'perm',
+        'controller'    => 'resource',
         'resource'      => array(
-            'resource'  => 'perm',
+            'resource'  => 'resource',
         ),
     ),
 

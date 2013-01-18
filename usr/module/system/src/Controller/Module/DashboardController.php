@@ -28,17 +28,84 @@ use Pi\Mvc\Controller\ActionController;
  */
 class DashboardController extends ActionController
 {
+    public function modeAction()
+    {
+        $mode = $this->params('mode', 'admin');
+        // Set run mode
+        if (!empty($mode)) {
+            Pi::service('session')->backoffice->exchangeArray(array(
+                'mode'      => $mode,
+                'changed'   => 1,
+                //'component' => '',
+                //'module'    => '',
+            ));
+        }
+
+        $modules = Pi::service('registry')->modulelist->read();
+        $moduleList = array_keys($modules);
+        $allowed = Pi::service('registry')->moduleperm->read($mode);
+        if (null === $allowed || !is_array($allowed)) {
+            $allowed = $moduleList;
+        } else {
+            $allowed = array_intersect($moduleList, $allowed);
+        }
+        if (!$allowed) {
+            $this->redirect('', array('action' => 'system'));
+            return;
+        }
+
+        $name = array_shift($allowed);
+        $link = '';
+        switch ($mode) {
+            case 'admin':
+                $link = $this->url('admin', array(
+                    'module'        => $name,
+                    'controller'    => 'dashboard',
+                    //'mode'          => $mode,
+                ));
+                break;
+            case 'manage':
+                $controller = '';
+                $navConfig = Pi::service('registry')->navigation->read('system-component');
+                foreach ($navConfig as $key => $item) {
+                    if (!isset($item['visible']) || $item['visible']) {
+                        $controller = $item['controller'];
+                        break;
+                    }
+                }
+                if ($controller) {
+                    $link = $this->url('admin', array(
+                        'module'        => 'system',
+                        'controller'    => $controller,
+                        'name'          => $name,
+                    ));
+                }
+                break;
+            case 'deployment':
+            default:
+                break;
+        }
+        if (!$link) {
+            $this->redirect('', array('action' => 'system'));
+            return;
+        }
+        //d($link);exit;
+        $this->redirect()->toUrl($link);
+        return;
+    }
+
     /**
-     * Default action if none provided
+     * Default action for site admin entry
      *
      * @return ViewModel
      */
-    public function indexAction()
+    public function systemAction()
     {
-        $mode = $this->params('mode');
         $module = $this->params('module');
         $user   = Pi::registry('user')->id;
+        //$mode = $this->params('mode', '');
 
+        /*
         // Set run mode
         if (!empty($mode)) {
             Pi::service('session')->backoffice->exchangeArray(array(
@@ -47,6 +114,13 @@ class DashboardController extends ActionController
                 'module'    => '',
             ));
         }
+        */
+        Pi::service('session')->backoffice->exchangeArray(array(
+            'mode'      => '',
+            'changed'   => 1,
+            'component' => '',
+            'module'    => '',
+        ));
 
         // Fetch all permitted modules
         $modules = Pi::service('registry')->modulelist->read('active');
@@ -55,38 +129,6 @@ class DashboardController extends ActionController
             if (null !== $modulesPermitted && !in_array($name, $modulesPermitted)) {
                 unset($modules[$name]);
             }
-        }
-
-        // Get personal sorted module list
-        $moduleList = array();
-        $row = Pi::model('user_repo')->select((array('user' => $user, 'module' => 'system', 'type' => 'module-admin')))->current();
-        if ($row) {
-            $list = (array) $row->content;
-            foreach ($list as $name) {
-                if (!isset($modules[$name])) {
-                    continue;
-                }
-                $moduleList[$name] = array(
-                    'title'     => $modules[$name]['title'],
-                    'name'      => $name,
-                    'logo'      => $modules[$name]['logo'],
-                );
-            }
-        }
-
-        // Append not sorted modules
-        foreach (array_keys($modules) as $name) {
-            if (!isset($modules[$name])) {
-                continue;
-            }
-            if (isset($moduleList[$name])) {
-                continue;
-            }
-            $moduleList[$name] = array(
-                'title'     => $modules[$name]['title'],
-                'name'      => $name,
-                'logo'      => $modules[$name]['logo'],
-            );
         }
 
         // Get module summary callbacks
@@ -144,6 +186,7 @@ class DashboardController extends ActionController
             $links = (array) $row->content;
         }
 
+        /*
         // Get personal memo
         $memo = array();
         $row = Pi::model('user_repo')->select((array('user' => $user, 'module' => 'system', 'type' => 'admin-memo')))->current();
@@ -154,47 +197,76 @@ class DashboardController extends ActionController
                 'content'   => Pi::service('markup')->render($content['content'], 'text'),
             );
         }
+        */
 
         // Get system message, only admins have access
-        $messages = array();
-        $row = Pi::model('user_repo')->select((array('module' => $module, 'type' => 'admin-message')))->current();
-        if ($row) {
-            $messages = (array) $row->content;
+        $message = array();
+        $row = Pi::model('user_repo')->select((array('module' => 'system', 'type' => 'admin-message')))->current();
+        if (!$row || !$row->content) {
+            $row = Pi::model('user_repo')->select((array('module' => 'system', 'type' => 'admin-welcome')))->current();
         }
-        // Just for test
-        if (!$messages) {
-            $messages = array(
-                array(
-                    'content'   => __('The first system message for test.'),
-                    'time'      => time() - 1000,
-                ),
-                array(
-                    'content'   => __('The second system message for test.'),
-                    'time'      => time(),
-                ),
-            );
-        }
-        foreach ($messages as &$message) {
-            $message['time'] = date('Y/m/d H:i:s', $message['time']);
-            $message['content'] = Pi::service('markup')->render($message['content'], 'text');
+        $content = $row->content;
+        $message = array(
+            'time'      => date('Y/m/d H:i:s', $content['time']),
+            'content'   => Pi::service('markup')->render($content['content'], 'text'),
+        );
+        $messagePerm = false;
+        if (Pi::registry('user')->isAdmin()) {
+            $messagePerm = true;
         }
 
-        $this->view()->assign('module', $module);
-        $this->view()->assign('modules', $moduleList);
+        //$this->view()->assign('module', $module);
+        //$this->view()->assign('modules', $moduleList);
         $this->view()->assign('summaryList', $summaryList);
         //$this->view()->assign('monitors', $monitorsEnabled);
         $this->view()->assign('links', $links);
-        $this->view()->assign('messages', $messages);
-        $this->view()->assign('memo', $memo);
+        $this->view()->assign('message', $message);
+        $this->view()->assign('messagePerm', $messagePerm);
+        //$this->view()->assign('memo', $memo);
 
-        if ($module == 'system') {
-            $subject = Pi::config('sitename');
-        } else {
-            $subject = $modules[$module]['title'];
+        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->setTemplate('dashboard-system', 'system');
+    }
+
+    /**
+     * Entry page for module admin
+     */
+    public function indexAction()
+    {
+        $module = $this->params('module');
+        if (!$module) {
+            $this->redirect('', array('action' => 'system'));
+            return;
         }
-        $title = sprintf(__('Dashboard for %s'), $subject);
-        $this->view()->assign('title', $title);
-        $this->view()->setTemplate('dashboard', 'system');
+
+        $directory = Pi::service('module')->directory($module);
+        $callback = sprintf('Module\\%s\\Dashboard::summary', ucfirst($directory));
+        $summary = '';
+        if (is_callable($callback)) {
+            $summary = call_user_func($callback, $module);
+        }
+
+        $modules = Pi::service('registry')->modulelist->read();
+        $data = $modules[$module];
+        $meta = Pi::service('module')->loadMeta($directory, 'meta');
+        $author = Pi::service('module')->loadMeta($directory, 'author');
+        $data['description'] = $meta['description'];
+        $data['author'] = $author;
+        if (empty($meta['logo'])) {
+            $data['logo'] = Pi::url('static/image/module.png');
+        } else {
+            $data['logo'] = Pi::service('asset')->getModuleAsset($meta['logo'], $module, false);
+        }
+        if (empty($data['update'])) {
+            $data['update'] = __('Never updated.');
+        } else {
+            $data['update'] = date('Y-m-d H:i:s', $data['update']);
+        }
+
+        $this->view()->assign('summary', $summary);
+        $this->view()->assign('data', $data);
+        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->setTemplate('dashboard-module', 'system');
     }
 
     /**
@@ -254,6 +326,51 @@ class DashboardController extends ActionController
     }
 
     /**
+     * AJAX method for system message
+     *
+     * @return int
+     */
+    public function messageAction()
+    {
+        $type = 'admin-message';
+
+        $data = array();
+        $content = $this->params()->fromPost('content');
+        if ($content) {
+            $data = array(
+                'content'   => $content,
+                'time'      => time(),
+            );
+        }
+        $row = Pi::model('user_repo')->select((array('module' => 'system', 'type' => $type)))->current();
+
+        if (Pi::registry('user')->isAdmin()) {
+            if ($row) {
+                $row->content = $data;
+            } else {
+                $row = Pi::model('user_repo')->createRow(array(
+                    'module'    => 'system',
+                    'type'      => $type,
+                    'content'   => $data,
+                ));
+            }
+            $row->save();
+        }
+
+        if (!$data) {
+            $row = Pi::model('user_repo')->select((array('module' => 'system', 'type' => 'admin-welcome')))->current();
+            $data = $row->content;
+        }
+
+        $message = array(
+            'time'      => date('Y/m/d H:i:s', $data['time']),
+            'content'   => Pi::service('markup')->render($data['content'], 'text'),
+        );
+
+        return $message;
+    }
+
+    /**
      * AJAX method for personal memo
      *
      * @return int
@@ -284,7 +401,7 @@ class DashboardController extends ActionController
 
         $memo = array(
             'time'      => date('Y/m/d H:i:s', $data['time']),
-            'content'   => Pi\Security::escape($data['content']),
+            'content'   => $data['content'],
         );
 
         return $memo;

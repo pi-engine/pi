@@ -26,12 +26,19 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'index',
+                'resource'      => array(
+                    'resource'  => 'script',
+                ),
             ),
             'static'     => array(
                 'label'         => 'Static widgets',
                 'route'         => 'admin',
                 'controller'    => 'static',
                 'action'        => 'index',
+                'resource'      => array(
+                    'resource'  => 'static',
+                ),
+
                 'pages'         => array(
                     'add'   => array(
                         'label'         => 'Add',
@@ -54,6 +61,10 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'carousel',
                 'action'        => 'index',
+                'resource'      => array(
+                    'resource'  => 'carousel',
+                ),
+
                 'pages'         => array(
                     'add'   => array(
                         'label'         => 'Add',
@@ -76,6 +87,10 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'tab',
                 'action'        => 'index',
+                'resource'      => array(
+                    'resource'  => 'tab',
+                ),
+
                 'pages'         => array(
                     'add'   => array(
                         'label'         => 'Add',

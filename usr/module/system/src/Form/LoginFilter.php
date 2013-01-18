@@ -52,5 +52,9 @@ class LoginFilter extends InputFilter
                 'name'  => 'rememberme',
             ));
         }
+
+        $this->add(array(
+            'name'  => 'redirect',
+        ));
     }
 }

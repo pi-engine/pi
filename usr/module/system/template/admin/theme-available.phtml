@@ -1,4 +1,5 @@
 <?php
+    $this->bootstrap();
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
     $this->Backbone();
@@ -10,33 +11,48 @@
     <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
     <li class="disabled"><a><?php _e('Repository'); ?></a>
 </ul>
-
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<div class="theme-items" id="js-theme">
+<div class="page-header">
+    <h2><?php echo $title; ?></h2> 
+</div>    
+<div class="theme-list" id="js-theme">
 </div>
 <script id="temp-theme" type="text/template">
-   <a href=""><img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>" class="mb10" /></a>
-   <div class="mb5">
-       <strong class="mr10"><%= _.escape(title) %></strong>
-       <%= version %>
-   </div>
-   <div class="clearfix">
-       <span class="pull-right"><span class="ulink theme-install"><?php _e('Install'); ?></span></span>
-       <span class="ulink theme-Check"><?php _e('Check'); ?></span>
+    <a href="" class="theme-screenshot">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>">
+    </a>
+    <div class="caption">
+        <h5>
+            <span class="pull-right label"><%= type %></span>
+            <%- title %>
+        </h5>
+        <div class="clearfix theme-actions" style="margin-left: -5px;">
+            <span class="pull-right btn theme-install"><?php _e('Install'); ?></span>
+            <span class="no-select btn btn-link theme-btn theme-detail"><?php _e('Detail'); ?></span><span class="muted">|</span>
+            <span class="btn btn-link theme-btn theme-Check"><?php _e('Check'); ?></span>
+        </div>
+        <dl class="hide">
+            <dt><?php _e('Version'); ?>
+            <dd><%= version %>
+            <dt><?php _e('Type'); ?>
+            <dd><%= type %>
+            <dt><?php _e('Description'); ?>
+            <dd><%= description %>
+        <dl>  
    </div>
 </script>
 <script>
 var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
 var ThemeItemView = Backbone.View.extend({
-    className: "w300 theme-item",
-    template: _.template($("#temp-theme").html()),
+    className: 'thumbnail theme-item',
+    template: _.template($('#temp-theme').html()),
     events: {
-        "click .theme-check": "check",
-        "click .theme-install": "install"
+        'click .theme-check': 'check',
+        'click .theme-install': 'install',
+        'click .theme-detail': 'toggleDetail'
     },
     initialize: function() {
-        this.model.on("destroy", this.remove, this);
-        this.model.id = "name";
+        this.model.on('destroy', this.remove, this);
+        this.model.id = 'name';
     },
     render: function() {
         this.$el.html(this.template(this.model.toJSON()));
@@ -47,12 +63,15 @@ var ThemeItemView = Backbone.View.extend({
     },
     install:function() {
        this.model.destroy({
-           url:"<?php echo $this->url('', array('action' => 'install', 'name' => '')); ?>" + this.model.get("name")
+           url:'<?php echo $this->url('', array('action' => 'install', 'name' => '')); ?>' + this.model.get('name')
        });
+    },
+    toggleDetail: function() {
+        this.$('dl').toggleClass('hide');
     }
 });
 var ThemeListView = Backbone.View.extend({
-    el: $("#js-theme"),
+    el: $('#js-theme'),
     initialize: function() {
         this.render();
     },
@@ -68,3 +87,6 @@ var ThemeListView = Backbone.View.extend({
 });
 new ThemeListView;
 </script>
+<?php
+    d($themes); 
+?>

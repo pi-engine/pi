@@ -4,46 +4,46 @@
     $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <style>
-.asset-itmes li {
-    margin-bottom: 2px;
-}
-.asset-itmes span{
-    display: inline-block;
-    width: 165px;
-    *display: inline;
-    *zoom: 1;
-}
-.asset-itmes ul {
-    padding-left: 15px;
-}
-.asset-itmes ul span {
-    width: 150px;
-}
-</style>
 
+</style>
 <ul class="nav nav-tabs">
     <li><a href="<?php echo $this->url('', array('controller' => 'cache', 'action' => 'index')); ?>" title="<?php _e('Cache flush'); ?>"><?php _e('Cache flush'); ?></a>
     <li class="active"><a href="<?php echo $this->url('', array('controller' => 'asset', 'action' => 'index')); ?>" title="<?php _e('Asset publish'); ?>"><?php _e('Asset publish'); ?></a>
     <li><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a>
 </ul>
-
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-
-<ul class="asset-itmes" id="asset-list">
-    <h3><?php _e('Modules'); ?></h3>
-    <?php foreach ($modules as $name => $label) { ?>
-    <li><span><?php echo $this->escape($label); ?></span><input type="button" value="<?php _e('Publish'); ?>" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>" />
-    <?php } ?>
-    <h3><?php _e('Themes'); ?></h3>
-    <?php foreach ($themes as $name => $label) { ?>
-    <li><span><?php echo $this->escape($label); ?></span><input type="button" value="<?php _e('Publish'); ?>" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>" />
-    <?php } ?>
-    <p><input type="button" value="<?php _e('Re-publish all'); ?>" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>" />
-</ul>
-
+<div id="asset-list">
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width: 250px;"><?php _e('Title'); ?>
+                <th><?php _e('Action'); ?>
+        <tbody>
+            <tr>
+                <td>
+                <td>
+                    <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php _e('Re-publish all'); ?></span>
+            <tr>
+                <td colspan="2"><?php _e('Modules'); ?>
+            <?php foreach ($modules as $name => $label) { ?>
+            <tr>
+                <td class="td-indent"><?php echo $this->escape($label); ?>
+                <td>
+                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>
+            <?php } ?>
+            <tr>
+                <td colspan="2"><?php _e('Themes'); ?>
+            <?php foreach ($themes as $name => $label) { ?>
+            <tr>
+                <td class="td-indent"><?php echo $this->escape($label); ?>
+                <td>
+                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>
+            <?php } ?>       
+    </table>
+</div>
 <script>
 (function($) {
-    $("#asset-list").on("click", "input", function() {
+    $("#asset-list").on("click", ".btn", function() {
        systemMessage.wait("<?php _e('Asset publish in process'); ?>");
        $.getJSON($(this).attr("data-link")).done(function(result) {
           if (result.status == 1) {

@@ -91,13 +91,15 @@ class Navigation extends AbstractRegistry
             return $this->loadAdmin($options);
         }
 
-        $nav = Pi::model('navigation')->find($name, 'name');
-        if (!$nav) {
-            $this->section = 'front';
-            //$this->route = 'default';
-        } else {
-            $this->section = $nav->section;
-            //$this->route = ('admin' == $nav->section) ? 'admin' : 'default';
+        if (empty($options['section'])) {
+            $nav = Pi::model('navigation')->find($name, 'name');
+            if (!$nav) {
+                $this->section = 'front';
+                //$this->route = 'default';
+            } else {
+                $this->section = $nav->section;
+                //$this->route = ('admin' == $nav->section) ? 'admin' : 'default';
+            }
         }
 
         return $this->loadNavigation($options);
@@ -109,6 +111,9 @@ class Navigation extends AbstractRegistry
         $locale = $options['locale'];
         //$module = $options['module'];
         $this->role = $options['role'];
+        if (!empty($options['section'])) {
+            $this->section = $options['section'];
+        }
 
         $row = Pi::model('navigation_node')->find($name, 'navigation');
         if (!$row) {
@@ -122,6 +127,7 @@ class Navigation extends AbstractRegistry
         } else {
             $domain = 'usr:navigation';
         }
+
         $navigation = $this->translateConfig($row->data, $domain, $locale);
 
         return $navigation;
@@ -129,8 +135,9 @@ class Navigation extends AbstractRegistry
 
     protected function loadFront($options)
     {
-        $this->section = 'front';
+        //$this->section = 'front';
         //$this->route = 'default';
+        $options['section'] = 'front';
         $options['name'] = 'system-front';
 
         $navigation = $this->loadNavigation($options);
@@ -148,7 +155,7 @@ class Navigation extends AbstractRegistry
      */
     protected function loadAdmin($options)
     {
-        $this->section = 'admin';
+        $options['section'] = 'admin';
         //$this->route = 'admin';
         $options['name'] = 'system-admin';
 
@@ -157,10 +164,13 @@ class Navigation extends AbstractRegistry
         return $navigation;
     }
 
-    public function read($name = null, $module = null, $role = null, $locale = '')
+    public function read($name = null, $module = null, $section = null, $role = null, $locale = '')
     {
         //$this->cache = false;
-        $options = compact('name', 'module', 'role', 'locale');
+        if (null === $role) {
+            $role = Pi::registry('user')->role;
+        }
+        $options = compact('name', 'module', 'section', 'role', 'locale');
         $data = $this->loadData($options);
 
         return $data;
@@ -460,7 +470,7 @@ class Navigation extends AbstractRegistry
         }
     }
 
-    private function isAllowed($page)
+    public function isAllowed($page)
     {
         if (!empty($page['resource'])) {
             return $this->isAllowedResource($page['resource']);
@@ -468,7 +478,7 @@ class Navigation extends AbstractRegistry
         return true;
     }
 
-    private function isAllowedResource($params)
+    protected function isAllowedResource($params)
     {
         $module = null;
         $section = empty($params['section']) ? $this->section : $params['section'];

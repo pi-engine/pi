@@ -21,8 +21,7 @@ return array(
     'resources' => array(
         'front'    => array(
             // test
-            array(
-                'name'          => 'test',
+            'test'  => array(
                 'title'         => __('Test resource'),
                 'privileges'    => array(
                     'read'  => array(

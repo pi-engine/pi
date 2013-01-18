@@ -141,11 +141,12 @@ class LoginController extends ActionController
             unset($sessionLogin);
         }
 
-        if (empty($post['from'])) {
+        if (empty($values['redirect'])) {
             $redirect = array('route' => 'home');
         } else {
-            $redirect = urldecode($post['from']);
+            $redirect = urldecode($values['redirect']);
         }
+
         $this->jump($redirect, __('You have logged in successfully.'), 2);
 
         //$this->view()->setTemplate('login-success');

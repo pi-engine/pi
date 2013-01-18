@@ -71,10 +71,13 @@ class Jump extends AbstractPlugin
             $urlPlugin = $controller->plugin('url');
             $url = $urlPlugin->fromRoute($route, $params);
         } else {
-            if (!preg_match('/^(http[s]?:\/\/|\/\/)/i', $url)) {
-                $url = Pi::url('www') . '/' . ltrim($url, '/');
-            } elseif (!$allowExternal) {
-                $url = Pi::url('www');
+            $url = $params;
+            if (preg_match('/^(http[s]?:\/\/|\/\/)/i', $url)) {
+                if (!$allowExternal && '' !== stristr($url, Pi::url('www'), true)) {
+                    $url = Pi::url('www');
+                }
+            } elseif ('/' != $url[0]) {
+                $url = Pi::url('www') . '/' . $url;
             }
         }
 

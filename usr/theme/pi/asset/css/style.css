@@ -5,18 +5,6 @@ body :focus {
 ul, ol, li {
     list-style: none;
 }
-h1 {
-    font-size: 30px;
-    line-height: 36px;
-}
-h2 {
-    font-size: 24px;
-    line-height: 34px;
-}
-h3 {
-    font-size: 20px;
-    line-height: 34px;
-}
 p {
     margin: 10px 0;
 }
@@ -51,11 +39,11 @@ label, input, button, select, textarea {
     box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 0px 10px rgba(0,0,0,0.1);
     margin-bottom: 10px;
 }
-.header .header-logo {
+.header-logo {
     float: left;
-    font: bold 44px sans-serif, Arial;
+    font: bold 40px sans-serif, Arial;
 }
-.header .header-logo:hover {
+.header-logo:hover {
     text-decoration: none;
     color: #0088CC;
 }

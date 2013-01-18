@@ -22,6 +22,7 @@ namespace Module\System\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
+use Pi\Acl\Acl as AclHandler;
 
 class Block extends AbstractApi
 {
@@ -125,6 +126,9 @@ class Block extends AbstractApi
         );
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
+            $rule = isset($access[$role]) ? $access[$role] : 1;
+            AclHandler::addRule($rule, $role, 'block', $rowBlock->id, $module);
+            /*
             $dataRule['role'] = $role;
             if (isset($access[$role])) {
                 $dataRule['deny'] = empty($access[$role]) ? 1 : 0;
@@ -136,6 +140,7 @@ class Block extends AbstractApi
                 $return['message'] = 'ACL rule is not created';
                 return $return;
             }
+            */
         }
         $return['status'] = 1;
         $return['id'] = $rowBlock->id;

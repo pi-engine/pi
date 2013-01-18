@@ -26,10 +26,14 @@ $config['resource']['acl'] = array(
     'default'       => false,
     // If check page access
     'check_page'    => true,
+    // Managed components
+    'component'     => array('block', 'config', 'page', 'resource', 'event'),
+    // Admin entries
+    'entry'         => array('index', 'dashboard'),
 );
 
-// Caching
-$config['resource']['cache'] = false;
+// Render caching
+$config['resource']['render'] = false;
 // Audit
 /*
  * Options for recording:
@@ -44,5 +48,8 @@ $config['resource']['audit'] = array(
     'skipError' => true,
     'methods'   => array('POST'),
 );
+
+// Admin mode detection
+$config['resource']['adminmode'] = array();
 
 return $config;

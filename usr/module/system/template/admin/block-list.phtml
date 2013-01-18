@@ -3,153 +3,111 @@
     $this->jQuery();
     $this->backbone();
 ?>
-<div id="js-page" class="span12">
-    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-    <!--
-    <div class="list-search">
-       <input type="text" class="input-medium search-query" placeholder="<?php _e('Search in blocks') ; ?>">
-    </div>
-    -->
-    <?php if ('widget' == $name) { ?>
-    <div class="alert alert-info">
-        <a href="<?php echo $this->url('', array('module' => 'widget')); ?>" title="<?php _e('Add more widgets'); ?>"><?php _e('Add more widgets'); ?></a>
-    </div>
-    <?php } elseif (empty($blocks)) { ?>
+<div id="block-list-page" class="block-list-page">
+    <?php if(empty($blocks)) { ?>
     <div class="alert alert-info">
         <?php _e('No block available.'); ?>
     </div>
-    <?php } ?>
-    <?php
-    foreach ((array) $blocks as $id => $block) {
-    ?>
-    <div class="box-hover" data-id="<?php echo $block['id']; ?>">
-         <div class="pull-right btn-group" style="margin:20px 10px 0 0;">
-            <a class="btn add-item"  href="<?php echo $this->url('', array('action' => 'edit', 'id' => $block['id'], 'name' => $block['module'])); ?>"><?php _e('Manage'); ?></a>
-            <?php if ($block['cloned']) { ?>
-            <button class="btn delete-item"><?php _e('Delete'); ?></button>
-            <?php } elseif ($block['clonable']) { ?>
-            <a class="btn add-item" href="<?php echo $this->url('', array('action' => 'clone', 'root' => $block['root'], 'name' => $block['module'])); ?>"><?php _e('Clone'); ?></a>
-            <?php } ?>
-            <span class="btn distribute"  data-name="<?php echo $this->escape($block['title']); ?>" data-link="" title="<?php _e('Distributed pages'); ?>"><?php _e('Distributed pages'); ?></span>
-        </div>
-        <div>
-             <strong><?php echo $this->escape($block['title']); ?></strong> <?php if ($block['name']) { ?> [<?php echo $block['name']; ?>]<?php } ?>
-             <p><?php echo $this->escape($block['description']); ?></p>
-        </div>
-    </div>
-    <?php } ?>
-</div>
-<div id="distribute-diag" class="popover animate">
+    <?php } else { ?>
+    <input type="text" placeholder="<?php _e('Search in block title'); ?>" class="js-search">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><?php _e('Title'); ?>
+                <th><?php _e('Description'); ?>
+                <th><?php _e('Related pages'); ?>
+                <th><?php _e('Action'); ?>
+        <tbody>
+            <?php foreach ($blocks as $block) { ?>
+            <tr data-id="<?php echo $block['id']; ?>">
+                <td>
+                    <span class="block-title"><?php echo $this->escape($block['title']); ?></span>
 
+                <td>
+                    <?php echo $this->escape($block['description']); ?>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            <?php _e('pages'); ?>
+                            <span  class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                    </div>
+                <td>
+                    <div class="btn-group btns-indent">
+                        <a class="btn btn-link"  href="<?php echo $this->url('', array('action' => 'edit', 'id' => $block['id'], 'name' => $block['module'])); ?>"><?php _e('Edit'); ?></a>
+                        <?php if ($block['cloned']) { ?>
+                        <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
+                        <?php } elseif ($block['clonable']) { ?>
+                        <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'clone', 'root' => $block['root'], 'name' => $block['module'])); ?>"><?php _e('Clone'); ?></a>
+                        <?php } ?>
+                    </div>
+            <?php } ?>
+    </table>
+    <?php } ?>
 </div>
 <script id="temp-popover" type="text/template">
- <span class="arrow"></span>
- <div class="popover-inner">
-    <h3 class="popover-title"><button class="close" type="button">×</button><?php _e('Distributed on pages:'); ?></h3>
-    <div class="popover-content">
-        <% if (data.length) { %>
-        <ul style="margin-left:10px;">
-            <% _.each(data, function(item) { %>
-            <li>
-                <strong><%= item.title %></strong>
-                <ul>
-                    <% _.each(item.pages,function(page) { %>
-                    <li><a target="_blank" href="<%= page.url %>"><%= page.title %></a>
-                    <% }); %>
-                </ul>
+    <% if(data.length) { %>
+    <% _.each(data, function(item) { %>
+    <li>
+        <strong><%= item.title %></strong>
+        <ul>
+            <% _.each(item.pages,function(page) { %>
+            <li><a href="<%= page.url %>"><%= page.title %></a>
             <% }); %>
         </ul>
-        <% } else { %>
-        <span class="label label-info"><?php _e('No page uses this block yet.'); ?></span>
-        <% } %>
-     <p>
-       <a href="<?php echo $this->url('', array('controller' => 'page')); ?>" class="link" target="_blank"><?php _e('Set up other pages'); ?></a>
-     </p>
-    </div>
-  </div>
+    </li>
+    <% }); %>
+    <% } else { %>
+    <li class="label label-info"><?php _e('No page uses this block yet.'); ?></li>
+    <% } %>
 </script>
-
 <script>
-(function($) {
-var diag = new(Backbone.View.extend({
-    el: $("#distribute-diag"),
-    events: {
-        "click .close": "close"
-    },
-    close: function() {
-        this.$el.css("left", - 9999);
-    },
-    render: function(m) {
-        this.$el.html(_.template($("#temp-popover").html(), m, {
-            variable: 'data'
-        }));
-    },
-    setPosition: function(tar) {
-        var tip = this.$el,
-            of = tar.offset(),
-            top = of.top,
-            left = of.left,
-            w = $(window).outerWidth(),
-            tw = tip.outerWidth(),
-            th = tip.outerHeight();
-        top -= (th - tar.outerHeight()) / 2;
-        left += tar.outerWidth();
-        if (left + tw > w) {
-            tip.removeClass("right").addClass("left");
-            tip.css({
-                "left": "auto",
-                "top": top,
-                "right": w - left + tar.outerWidth()
+(function($){
+    var page = {
+        el: $('#block-list-page'),
+        $: function(selector) {
+            return this.el.find(selector);
+        },
+        init: function() {
+            this.$('a[data-toggle]').click(_.bind(this.pageAction, this));
+            this.$('.js-search').keyup(_.bind(this.search, this));
+            this.$('.js-delete').click(_.bind(this.deleteAction, this))
+        },
+        deleteAction: function(e) {
+            var tar = $(e.target);
+            if (confirm('<?php _e('Are you sure to delete this block? '); ?>')) {
+                $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
+                    res == 1 && tar.parents('tr').remove();
+                });
+            }
+        },
+        pageAction: function(e) {
+            var tar = $(e.target);
+            if (!tar.attr('data-load')) {
+                $.getJSON('<?php echo $this->url('', array('action' => 'page', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
+                    res = _.toArray(res);
+                    tar.siblings('ul').html(_.template($("#temp-popover").html(), res, { variable: 'data' }));
+                    tar.attr('data-load', 1);
+                });
+            }
+        },
+        search: function(e) {
+            var v = $.trim($(e.target).val());
+            this.$('.block-title').each(function() {
+                var $this = $(this);
+                console.log($this.html().indexOf(v));
+                if ($this.html().toLowerCase().indexOf(v.toLowerCase()) == -1) {
+                    $this.parents('tr').hide();
+                } else {
+                    $this.parents('tr').show();
+                }
             });
-        } else {
-            tip.removeClass("left").addClass("right");
-            tip.css({
-                "right": "auto",
-                "top": top,
-                "left": left
-            });
+        },
+        getId: function(tar) {
+            return tar.parents('tr').attr('data-id');
         }
     }
-}));
-var DoneBlockView = Backbone.View.extend({
-     events: {
-        "click .delete-item": "deleteItem",
-        "click .distribute": "distribute"
-     },
-     deleteItem: function() {
-         var el = this.$el;
-         this.toggleHandle();
-         if (confirm("<?php _e("Are you sure to delete the block?") ?>")) {
-             $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + el.attr("data-id")).done(function(result) {
-                   if (result == 1) {
-                       el.fadeOut(150, function() {
-                           el.remove();
-                       })
-                   }
-             });
-         }
-         this.toggleHandle();
-     },
-     distribute: function() {
-         var el = this.$el,
-             diagEl = diag.$el.addClass("bg-loading");
-         $.getJSON("<?php echo $this->url('', array('action' => 'page', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
-              diag.render(_.toArray(result));
-              diagEl.removeClass("bg-loading");
-              diag.setPosition(el.find(".distribute"));
-         });
-     },
-     toggleHandle: function() {
-          this.$el.toggleClass("handle");
-      }
-
-});
-$(".box-hover").each(function() {
-    new DoneBlockView({
-        el: $(this)
-    })
-});
-
+    page.init();
 })(jQuery)
-
 </script>

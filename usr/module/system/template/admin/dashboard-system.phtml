@@ -1,0 +1,346 @@
+<?php
+    $this->jQuery('ui/jquery-ui.custom.min.js');
+    $this->bootstrap(array(
+        'js/bootstrap.min.js',
+        'css/font-awesome.min.css'
+    ));
+    $this->css(array(
+        $this->assetTheme('css/admin.css'),
+        $this->assetModule('script/system-ui.css')
+    ));
+    $this->backbone();
+?>
+<style>
+    .notice-show-text {
+        margin-bottom: 10px;
+    }
+    .notice-show-time {
+        margin-left: 20px;
+    }
+    .notice-show-action {
+        margin-top: 10px;
+    }
+    .notice-edit {
+        display: none;
+    }
+    .notice-editing .notice-edit {
+        display: block;
+    }
+    .notice-editing .notice-show {
+        display: none;
+    }
+    .quick-link .js-all-save {
+        display: none;
+    }
+    .quick-link .widget-header,
+    .module-summary .widget-header {
+        line-height: 28px;
+    }
+    .quick-link i {
+        visibility: hidden;
+    }
+    .quick-link-form {
+        display: none;
+    }
+    .quick-link-item {
+        display: inline-block;
+        vertical-align: top;
+        width: 200px;
+        border: 1px solid transparent;
+        margin:0 10px 10px 0;
+        min-height: auto;
+        height: 24px;
+        line-height: 24px;
+        background: #fff;
+    }
+    .quick-link-add {
+        display: none;
+        vertical-align: top;
+        text-align: center;
+        width: 130px;
+        border: 1px dashed #ccc;
+        height: 24px;
+        line-height: 24px;
+        cursor: pointer;
+    }
+    .quick-link-edit .js-all-save {
+        display: inline-block;
+    }
+    .quick-link-edit .quick-link-item a:hover {
+        text-decoration: none;
+    }
+    .quick-link-edit .js-all-edit {
+        display: none;
+    }
+    .quick-link-edit i,
+    .quick-link .icon-plus {
+        visibility: visible;
+    }
+    .quick-link-edit .quick-link-item {
+        border: 1px dashed #ccc;
+        cursor: move;
+    }
+    .quick-link-edit .quick-link-add {
+        display: inline-block;
+    }
+    .quick-link-item i {
+        cursor: pointer;
+    }
+    .icon-quick-link-add {
+        font-size: 16px;
+        color: #808080;
+    }
+</style>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<div class="row-fluid">
+    <div class="span8">
+        <div class="widget notice" id="js-notice">
+            <div class="media widget-body">
+                <i class="pull-left icon-volume-up" style="font-size: 16px;"></i>
+                <div class="media-body">
+                    <div class="notice-show">
+                        <div>
+                            <span class="notice-show-text"><?php echo $message['content']; ?></span>
+                            <span class="muted notice-show-time"><?php echo $message['time']; ?></span>
+                        </div>
+                        <?php if ($messagePerm) { ?>
+                        <div class="notice-show-action">
+                            <a href="javascript:void(0)" class="notice-show-action-edit">
+                                <i class="icon-pencil"></i>
+                                <?php _e('Edit'); ?>
+                            </a>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <div class="notice-edit">
+                        <textarea class="span8" placeholder="<?php _e('notice'); ?>"></textarea>
+                        <div class="muted" style="margin-bottom: 5px;"><?php _e('Add a site announcement.'); ?></div>
+                        <div>
+                            <span class="btn js-save"><?php _e('Save'); ?></span>
+                            <span class="btn btn-link js-cancel"><?php _e('Cancel'); ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget quick-link" id="js-quick-link">
+            <div class="clearfix widget-header">
+                <div class="pull-right">
+                    <span class="btn js-all-edit"><?php _e('Edit'); ?></span>
+                    <span class="btn js-all-save" data-placement="top" data-original-title="<?php _e('Click the button to switch to view mode.'); ?>"><?php _e('Save'); ?></span>
+                </div>
+                <strong><?php _e('Quick links')?></strong>
+            </div>
+            <div class="widget-body">
+                <div class="well form-horizontal quick-link-form">
+
+                </div>
+                <div class="quick-link-box">
+                    <div class="quick-link-add">
+                        <i class="icon-plus icon-quick-link-add"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget module-summary">
+            <div class="clearfix widget-header">
+                <div class="pull-right">
+                    <span class="btn"><?php _e('Edit'); ?></span>
+                    <span class="btn"><?php _e('Save'); ?></span>
+                </div>
+                <strong><?php _e('Module summary')?></strong>
+            </div>
+            <div class="widget-body">
+
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="widget">
+            <div class="widget-header">
+                <strong><?php _e('Powered by Pi'); ?></strong>
+            </div>
+            <div class="widget-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script id="temp-link" type="text/template">
+    <div class="ellipsis span10">
+        <a href="<%= url %>" title="<%= title %>" style="margin-left:10px;"><%= title %></a>
+    </div>
+    <div class="span2">
+        <i class="icon-pencil js-edit" style="padding-right: 1px;" title="<?php _e('Edit'); ?>"></i>
+        <i class="icon-remove js-remove" title="<?php _e('Remove'); ?>" style="padding-left: 1px;"></i>
+    </div>
+</script>
+<script id="temp-form" type="text/template">
+    <div class="control-group">
+        <label class="control-label"><?php _e('Title'); ?></label>
+        <div class="controls">
+            <input type="text" name="title" value="<%= form.title %>">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><?php _e('URL'); ?></label>
+        <div class="controls">
+            <input type="text" name="url" value="<%= form.url %>">
+        </div>
+    </div>
+    <div class="controls">
+        <span class="btn js-quick-form-save" data-action="<%= form.action %>"><?php _e('Save'); ?></span>
+        <span class="btn btn-link btn-quick-form-cancel"><?php _e('Cancel'); ?></span>
+    </div>
+</script>
+<script>
+(function($){
+    var NoticeView = Backbone.View.extend({
+        el: $('#js-notice'),
+        events: {
+            'click .notice-show-action-edit': 'editModel',
+            'click .js-cancel': 'cancel',
+            'click .js-save': 'messageAction'
+        },
+        initialize: function() {
+
+        },
+        editModel: function() {
+            this.$el.addClass('notice-editing');
+            this.$('textarea').focus().val(this.$('.notice-show-text').html());
+        },
+        cancel: function() {
+            this.$el.removeClass('notice-editing');
+        },
+        messageAction: function() {
+            var v = $.trim(this.$('textarea').val());
+            $.post('<?php echo $this->url('', array('action' => 'message')); ?>',{
+                content: v
+            }).done(_.bind(function(data){
+                data = $.parseJSON(data);
+                this.$('.notice-show-text').html(data.content);
+                this.$('.notice-show-time').html(data.time);
+            }, this));
+            this.cancel();
+        }
+    });
+    var LinkItemView = Backbone.View.extend({
+        className: 'row-fluid quick-link-item',
+        template: $('#temp-link').html(),
+        events: {
+            'click .js-edit': 'editAction',
+            'click .js-remove': 'removeAction'
+        },
+        initialize: function() {
+            this.model.on('destroy', this.remove, this);
+            this.model.on('change', this.render, this);
+            this.$el.data('model', this.model.toJSON());
+        },
+        editAction: function() {
+            var c = this.model.collection;
+            c.current = this.model;
+            c.trigger('showForm');
+        },
+        removeAction: function() {
+            this.model.destroy();
+        },
+        render: function() {
+            this.$el.html(_.template(this.template, this.model.toJSON()));
+            return this;
+        }
+    });
+    var LinkListView = Backbone.View.extend({
+        el: $('#js-quick-link'),
+        formTemplate: $('#temp-form').html(),
+        events: {
+            'click .js-all-edit': 'editModel',
+            'click .quick-link-add': 'changeCurrent',
+            'click .js-quick-form-save': 'addOrEditSaveAction',
+            'click .btn-quick-form-cancel': 'hideAddForm',
+            'click .js-all-save': 'saveLinks'
+        },
+        initialize: function() {
+            this.linkAddBtn = this.$('.quick-link-add');
+            this.form = this.$('.quick-link-form');
+            this.renderLinks();
+            this.collection.on('add', this.addOne, this);
+            this.collection.on('remove', this.updateLink, this);
+            this.collection.on('showForm', this.showAddForm, this);
+            this.$('.js-all-save').tooltip();
+            this.sortLinks();
+        },
+        renderLinks: function() {
+            var m = this.collection.models;
+            for (var i = 0, l = m.length; i < l; i++) {
+                this.addOne(m[i]);
+            }
+        },
+        editModel: function() {
+            this.$el.addClass('quick-link-edit');
+            this.$('.quick-link-box').sortable( "option", "disabled", false);
+        },
+        sortLinks: function() {
+            this.$('.quick-link-box').sortable({
+                items: ".quick-link-item",
+                disabled: true
+            });
+        },
+        addOne: function(model) {
+            $(new LinkItemView({
+                model: model
+            }).render().el).insertBefore(this.linkAddBtn);
+        },
+        changeCurrent: function() {
+            this.collection.current = new Backbone.Model({
+                action: 'add'
+            });
+            this.showAddForm();
+        },
+        showAddForm: function() {
+            this.form.html(_.template(this.formTemplate, this.collection.current.toJSON(), {variable: 'form'})).css('display', 'block');
+        },
+        hideAddForm: function() {
+            this.form.css('display', 'none');
+        },
+        addOrEditSaveAction: function(e) {
+            var action = $(e.currentTarget).attr('data-action'),
+                title = $.trim(this.$('[name=title]').val()),
+                url = $.trim(this.$('[name=url]').val()),
+                obj = {
+                    title: title,
+                    url: url
+                };
+            if (title && url) {
+                if (action == 'add') {
+                    this.collection.add(obj);
+                    this.changeCurrent();
+                } else {
+                    this.collection.current.set(obj);
+                    this.hideAddForm();
+                }
+            }
+        },
+        saveLinks: function() {
+            var data = [];
+            this.$('.quick-link-item').each(function() {
+                data.push($(this).data('model'))
+            })
+            this.$el.removeClass('quick-link-edit');
+            this.hideAddForm();
+
+            $.post("<?php echo $this->url('', array('action' => 'link')); ?>", {
+                content: data
+            });
+        }
+    });
+    new NoticeView;
+    $links = <?php echo json_encode($links) ?>;
+    if (!_.isObject($links[0])) {
+        $links = [];
+    }
+    new LinkListView({
+        collection:  new Backbone.Collection($links)
+    });
+})(jQuery)
+</script>
+

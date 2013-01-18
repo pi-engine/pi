@@ -1,7 +1,9 @@
 <?php
+    $this->bootstrap();
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
     $this->Backbone();
+    $this->js($this->assetModule('script/system-msg.js'));
 ?>
 <ul class="nav nav-tabs">
     <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a>
@@ -9,34 +11,52 @@
     <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
     <li class="disabled"><a><?php _e('Repository'); ?></a>
 </ul>
-
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<div class="theme-items" id="js-theme">
+<div class="page-header">
+    <h2><?php echo $title; ?></h2>
+</div>
+<div class="theme-list" id="js-theme">
 </div>
 <script id="temp-theme" type="text/template">
-   <a href=""><img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>" class="mb10" /></a>
-   <div class="mb5">
-       <strong class="mr10"><%= _.escape(title) %></strong>
-       <%= version %>
-   </div>
-   <div class="clearfix">
-       <% if(name!="default") { %><span class="pull-right"><span class="ulink theme-uninstall"><?php _e('Uninstall'); ?></span></span> <% } %>
-       <span class="ulink theme-Check"><?php _e('Check'); ?></span><span class="divider">|</span><span class="ulink theme-update"><?php _e('Update'); ?></span>
+    <a href="" class="theme-screenshot">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>">
+    </a>
+    <div class="caption">
+        <h5 class="clearfix">
+            <span class="pull-right label"><%= type %></span>
+            <%- title %>
+        </h5>
+        <div class="clearfix theme-actions" style="margin-left: -5px;">
+            <% if(name!="default") { %>
+            <span class="pull-right btn theme-uninstall"><?php _e('Uninstall'); ?></span>
+            <% } %>
+            <span class="no-select btn btn-link theme-detail theme-btn"><?php _e('Detail'); ?></span><span class="muted">|</span>
+            <span class="btn btn-link theme-Check theme-btn"><?php _e('Check'); ?></span><span class="muted">|</span>
+            <span class="btn btn-link theme-update theme-btn"><?php _e('Update'); ?></span>
+        </div>
+        <dl class="hide">
+            <dt><?php _e('Version'); ?>
+            <dd><%= version %>
+            <dt><?php _e('Type'); ?>
+            <dd><%= type %>
+            <dt><?php _e('Description'); ?>
+            <dd><%= description %>
+        <dl>  
    </div>
 </script>
 <script>
 var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
 var ThemeItemView = Backbone.View.extend({
-    className: "w300 theme-item",
-    template: _.template($("#temp-theme").html()),
+    className: 'thumbnail theme-item',
+    template: _.template($('#temp-theme').html()),
     events: {
-        "click .theme-check": "check",
-        "click .theme-update": "update",
-        "click .theme-uninstall": "uninstall"
+        'click .theme-check': 'check',
+        'click .theme-update': 'update',
+        'click .theme-uninstall': 'uninstall',
+        'click .theme-detail': 'toggleDetail'
     },
     initialize: function() {
-        this.model.on("destroy", this.remove, this);
-        this.model.on("change", this.render, this);
+        this.model.on('destroy', this.remove, this);
+        this.model.on('change', this.render, this);
     },
     render: function() {
         this.$el.html(this.template(this.model.toJSON()));
@@ -47,22 +67,28 @@ var ThemeItemView = Backbone.View.extend({
     },
     update:function() {
         this.model.fetch({
-            url:"<?php echo $this->url('', array('action' => 'update', 'name' => '')); ?>" + this.model.get("name"),
+            url:'<?php echo $this->url('', array('action' => 'update', 'name' => '')); ?>' + this.model.get('name'),
             success: function() {
-                alert("<?php _e('Update ok!')?>");
-            }
+                systemMessage.succ('<?php _e('theme Update ok!')?>');
+            },
+            error: function() {
+                systemMessage.fail();
+            } 
         });
     },
     uninstall: function() {
-        if (confirm("<?php _e('Are you sure to uninstall this theme ? ') ?>")) {
+        if (confirm('<?php _e('Are you sure to uninstall this theme ? ') ?>')) {
             this.model.destroy({
-               url:"<?php echo $this->url('', array('action' => 'uninstall', 'name' => '')); ?>" + this.model.get("name")
+               url:'<?php echo $this->url('', array('action' => 'uninstall', 'name' => '')); ?>' + this.model.get('name')
             });
         }
+    },
+    toggleDetail: function() {
+        this.$('dl').toggleClass('hide');
     }
 });
 var ThemeListView = Backbone.View.extend({
-    el: $("#js-theme"),
+    el: $('#js-theme'),
     initialize: function() {
         this.render();
     },
@@ -78,3 +104,6 @@ var ThemeListView = Backbone.View.extend({
 });
 new ThemeListView;
 </script>
+<?php
+d($themes) 
+?>

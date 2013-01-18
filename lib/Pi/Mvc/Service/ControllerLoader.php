@@ -61,6 +61,9 @@ class ControllerLoader implements EventManagerAwareInterface, ServiceManagerAwar
             );
         }
 
+        if (!Pi::service('module')->isActive($params['module'])) {
+            throw new ServiceNotCreatedException('Module is not found.');
+        }
         $directory = Pi::service('module')->directory($params['module']);
 
         // Look up controller class in module folder

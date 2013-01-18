@@ -38,6 +38,11 @@ class Resource extends AbstractRegistry
         }
         foreach ($rowset as $row) {
             $ancestors[$row->name] = $model->getAncestors($row, 'id');
+            /*
+            if (!empty($options['self'])) {
+                $ancestors[$row->name][] = $row->id;
+            }
+            */
         }
         return $ancestors;
     }
@@ -48,10 +53,12 @@ class Resource extends AbstractRegistry
      * @param string $section   front, admin, module
      * @param string $module
      * @param string $type      system, page or other custom types by module
+     * @param bool $self    Including self
      * @return array
      */
     public function read($section, $module, $type = null)
     {
+        //$this->cache = false;
         $options = compact('section', 'module', 'type');
         return $this->loadData($options);
     }

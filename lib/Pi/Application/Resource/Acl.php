@@ -51,7 +51,7 @@ class Acl extends AbstractResource
 
     public function checkAccess(MvcEvent $e)
     {
-        $denied = false;
+        $denied = null;
         $section = $this->engine->section();
         $routeMatch = $e->getRouteMatch();
         $route = array(
@@ -61,24 +61,49 @@ class Acl extends AbstractResource
         );
         $this->aclHandler->setModule($route['module']);
 
-        // Check for admin dashboard access, which requires loosen permissions
-        if ('admin' == $section && 'system' == $route['module'] && ('dashboard' == $route['controller'] || 'index' == $route['controller'])) {
-            // Denied if system dashboard is not allowed
-            $resource = array(
-                'name'  => 'admin',
-            );
-            if (!$this->aclHandler->checkAccess($resource)) {
-                $denied = true;
+        // Check for admin access, which requires loosen permissions
+        if ('admin' == $section && 'system' == $route['module']) {
+            //$denied = false;
+            // Check for admin entries
+            if (in_array($route['controller'], $this->options['entry'])) {
+                $resource = array(
+                    'name'  => 'admin',
+                );
+                $denied = $this->aclHandler->checkAccess($resource) ? false : true;
+            // Check for managed components
+            } elseif (in_array($route['controller'], $this->options['component'])) {
+                $resource = array(
+                    'name'  => $route['controller'],
+                );
+                if (!$this->aclHandler->checkAccess($resource)) {
+                    $denied = true;
+                } else {
+                    $denied = false;
+                    // Get allowed modules
+                    $modulesAllowed = Pi::service('registry')->moduleperm->read('manage');
+                    $moduleName = $routeMatch->getParam('name');
+                    // Denied if module is not allowed
+                    if (null !== $modulesAllowed && !in_array($moduleName, $modulesAllowed)) {
+                        $denied = true;
+                    }
+                }
             }
-        } else {
+        }
+
+        // Check for module and page access
+        if (null === $denied) {
+            $denied = false;
+
             // Get allowed modules
             $modulesAllowed = Pi::service('registry')->moduleperm->read($section);
+
             // Denied if module is not allowed
             if (null !== $modulesAllowed && !in_array($route['module'], $modulesAllowed)) {
                 $denied = true;
             // Denied if action page is not allowed if check on page is enabled
-            } elseif (!empty($this->options['check_page'])) {
+            } elseif (!empty($this->options['check_page']) && 'dashboard' != $route['controller']) {
                 $resource = $route;
+                //$this->aclHandler->setDefault(false);
                 if (!$this->aclHandler->checkAccess($resource)) {
                     $denied = true;
                 }

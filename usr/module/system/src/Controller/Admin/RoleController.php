@@ -252,6 +252,13 @@ class RoleController extends ActionController
             ));
             try {
                 $row->save();
+                $parents = Pi::model('acl_role')->getAncestors($parent);
+                if ($parents) {
+                    Pi::model('acl_inherit')->delete(array(
+                        'child'     => $child,
+                        'parent'    => $parents,
+                    ));
+                }
                 $message = __('Role inherited successfully.');
             } catch (\Exception $e) {
                 $status = 0;
@@ -320,7 +327,7 @@ class RoleController extends ActionController
         $row = Pi::model('acl_role')->find($id);
         $row->title = $title;
         $row->save();
-        
+
         return 1;
     }
 

@@ -273,11 +273,28 @@ namespace
 
     /**
      * Enable for conditional debug
+     *
      * @param bool $flag
      */
     function denable($flag = true)
     {
         Debug::enable($flag);
+    }
+
+    /**
+     * Enable conditional debug
+     */
+    function de()
+    {
+        Debug::enable(true);
+    }
+
+    /**
+     * Disable conditional debug
+     */
+    function df()
+    {
+        Debug::enable(false);
     }
 }
 /**#@-*/

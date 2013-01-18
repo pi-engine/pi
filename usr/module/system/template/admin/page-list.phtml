@@ -2,121 +2,92 @@
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
     $this->backbone();
-?>
-<div id="js-page" class="span12">
-        <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-        <?php
-        foreach ($pagesBySection as $key => $section) {
-            if (empty($section['pages'])) {
-                continue;
-            }
-        ?>
-        <div class="legend clearfix">
-            <?php if ($key == 'front') { ?>
-                <button class="pull-right btn btn-primary add-item"><?php _e('Setup a page'); ?></button>
+?> 
+<div id="page-list-page" class="page-list-page">
+
+    <?php foreach ($pagesBySection as $key => $section) { ?>
+    <fieldset>
+        <legend><?php echo $key; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php _e('Setup a page'); ?></button><?php } ?></legend>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 40%;"><?php _e('Title'); ?>
+                <th><?php _e('Action'); ?>
+        <tbody>
+            <?php foreach ($section['pages'] as $page) { ?>
+            <tr data-id="<?php echo $page['id']; ?>">
+                <td>
+                    <?php echo $this->escape($page['title']); ?>
+                <td>
+                    <div class="btn-group">
+                        <?php if ($page['id']) { ?>
+                            <a class="btn js-edit"><?php _e('Edit'); ?></a>
+                        <?php } ?>
+                        <?php if ($page['block']) { ?>
+                            <a class="btn" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
+                        <?php } ?>
+                        <?php if ($page['custom']) { ?>
+                            <a class="btn js-delete"><?php _e('Delete'); ?></a>
+                        <?php } ?>
+                    </div>
             <?php } ?>
-            <?php echo $this->escape($section['title']); ?>
-        </div>
-        <ul class="<?php if ($key == 'front') { ?>front<?php } ?>">
-        <?php foreach ($section['pages'] as $page) { ?>
-            <li class="box-hover" data-id="<?php echo $page['id']; ?>">
-                <div class="pull-right btn-group">
-                  <?php if ($page['custom']) { ?>
-                    <button class="btn delete-item"><?php _e('Delete'); ?></button>
-                <?php } ?>
-               <?php if ($page['block']) { ?>
-                    <a class="btn" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
-                <?php } ?>
+        </table>
+    </fieldset>
+    <?php } ?>
 
-                 <?php if ($page['id']) { ?>
-                    <button class="btn edit-item"><?php _e('Edit'); ?></button>
-                <?php } ?>
-
-                </div>
-                <span><?php echo $this->escape($page['title']); ?></span>
-            </li>
-        <?php } ?>
-        </ul>
-        <?php } ?>
 </div>
-<script id="temp-item" type="text/template">
-   <li class="box-hover" data-id="<%= id %>">
-    <div class="pull-right btn-group">
-        <button class="btn edit-item"><?php _e('Edit'); ?></button>
-        <button class="btn delete-item"><?php _e('Delete'); ?></button>
-        <a target="_blank"  href="<?php echo $this->url('', array('action' => 'block', 'page' => '')); ?><%= id %>" class="btn"><?php _e('Dress up'); ?></a>
-    </div>
-    <span><%= title %></span>
-   </li>
-</script>
 <script>
 (function($) {
-    var modal = $("<div>", {
-        "class": "modal hide fade"
-    }).appendTo(document.body);
-    modal.on("hide", function() {
-        pageView.$(".box-hover").removeClass("handle");
-    });
-    var PageItemView = Backbone.View.extend({
-        events: {
-            "click .edit-item": "dialog",
-            "click .delete-item": "deleteItem"
+    var page = {
+        modal: $("<div>", { "class": "modal hide fade" }).appendTo(document.body),
+        el: $('#page-list-page'),
+        $: function(selector) {
+            return this.el.find(selector);
         },
-        deleteItem: function() {
-            var el = this.$el;
-            this.toggleHandle();
+        init: function() {
+            _.bindAll(this);
+            this.$('.js-edit').click(this.showEditModal);
+            this.$('.js-delete').click(this.deleteAction);
+            this.$('.js-add').click(this.addAction);
+        },
+        showEditModal: function(e) {
+            var self = this;
+            $.get('<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>' + this.getId($(e.target))).done(function(res) {
+                self.modal.html(res);
+                self.modal.modal('show');
+                formModule.success =  function() {
+                    self.modal.modal('hide');
+                };
+            });
+        },
+        addAction: function() {
+            var self = this;
+            $.get('<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>').done(function(res) {
+                self.modal.html(res);
+                self.modal.modal('show');
+                formModule.success = function() {
+                    self.modal.modal('hide');
+                    location.href = location.href;
+                };
+            });
+        },
+        deleteAction: function(e) {
+            var tar = $(e.target),
+                p = tar.parents('tr');
             if (confirm('<?php _e("Are you sure to delete the page?") ?>')) {
-                $.get("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
-                    if (result == 1) {
-                        el.fadeOut(150, function() {
-                            el.remove();
+                $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
+                    if (res == 1) {
+                        p.fadeOut(150, function() {
+                            p.remove();
                         });
                     }
                 });
             }
-            this.toggleHandle();
         },
-        dialog: function() {
-            this.toggleHandle();
-            $.get("<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>" + this.$el.attr("data-id")).done(function(result) {
-                modal.html(result);
-                modal.modal('show');
-                formModule.success = function() {
-                    modal.modal('hide');
-                }
-            });
-        },
-        toggleHandle: function() {
-            this.$el.toggleClass("handle");
+        getId: function(tar) {
+            return tar.parents('tr').attr('data-id');
         }
-    });
-    var pageView = new(Backbone.View.extend({
-        el: $("#js-page"),
-        events: {
-            "click .add-item": "dialog"
-        },
-        initialize: function() {
-            this.$(".box-hover").each(function() {
-                new PageItemView({
-                    el: $(this)
-                });
-            });
-        },
-        dialog: function() {
-            var self = this;
-            $.get("<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>").done(function(result) {
-                modal.html(result);
-                modal.modal('show');
-                formModule.success = function(result) {
-                    modal.modal('hide');
-                    var item = $(_.template($("#temp-item").html(), result.page));
-                    self.$(".front").append(item);
-                    new PageItemView({
-                        el: item
-                    });
-                }
-            });
-        }
-    }));
+    }
+    page.init();
 })(jQuery)
 </script>

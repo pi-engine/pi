@@ -155,12 +155,14 @@ class Audit extends AbstractWriter
         }
 
         $request = Pi::engine()->application()->getRequest();
+        /*
         $data['method'] = $request->getMethod();
         if (!empty($this->options['method'])) {
             if (!in_array($data['method'], $this->options['method'])) {
                 return $this->extra;
             }
         }
+        */
 
         $event = Pi::engine()->application()->getMvcEvent();
         if (!$event) {

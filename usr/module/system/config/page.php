@@ -92,11 +92,11 @@ return array(
                 'parent'        => 'event',
             ),
         ),
-        // perm
+        // resource permissions
         array(
-            'controller'    => 'perm',
+            'controller'    => 'resource',
             'permission'    => array(
-                'parent'        => 'perm',
+                'parent'        => 'resource',
             ),
         ),
 
@@ -117,14 +117,23 @@ return array(
         ),
         // navigation
         array(
-            'controller'    => 'navigation',
+            'controller'    => 'nav',
             'permission'    => array(
                 'parent'        => 'navigation',
             ),
         ),
+        // System permissions
+        array(
+            'controller'    => 'perm',
+            //'action'        => 'index',
+            'permission'    => array(
+                'parent'        => 'perm',
+            ),
+        ),
+
         // role
         array(
-            'parent'        => 'member',
+            //'parent'        => 'member',
             'controller'    => 'role',
             'permission'    => array(
                 'parent'        => 'role',
@@ -132,7 +141,7 @@ return array(
         ),
         // membership
         array(
-            'parent'        => 'member',
+            //'parent'        => 'member',
             'controller'    => 'member',
             'permission'    => array(
                 'parent'        => 'member',

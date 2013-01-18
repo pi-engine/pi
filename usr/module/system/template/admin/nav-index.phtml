@@ -1,58 +1,139 @@
 <?php
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
+    $this->backbone();
 ?>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Navigation in action'); ?>"><?php _e('Navigation in action'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'list')); ?>" title="<?php _e('Navigation list'); ?>"><?php _e('Navigation list'); ?></a>
-</ul>
-
-
-        <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-        <form action="<?php echo $this->url('', array('action' => 'apply')); ?>" method="post" id="nav-form">
-            <div class="legend"><?php _e('Select for front global navigation'); ?></div>
-            <label class="radio">
-                   <input type="radio" name="nav_front" value="front"  <?php if ($navGlobal['front'] == 'front') { ?> checked<?php } ?>>
-                   <?php _e('System front navigation'); ?>
-            </label>
-            <?php  foreach ($navList['front'] as $name => $title) { ?>
-                <label class="radio">
-                    <input type="radio" name="nav_front" value="<?php echo $name; ?>"  <?php if ($navGlobal['front'] == $name) { ?> checked<?php } ?> >
-                    <?php echo $this->escape($title); ?>
-                </label>
-            <?php } ?>
-            <label class="radio">
-                <input type="radio" name="nav_front" value=""  <?php if ($navGlobal['front'] == '') { ?> checked<?php } ?>><?php _e('None to use.'); ?>
-            </label>
-            <div class="legend"><?php _e('Select for admin global navigation'); ?></div>
-            <label class="radio">
-                   <input type="radio" name="nav_admin" value="admin"  <?php if ($navGlobal['admin'] == 'admin') { ?> checked<?php } ?>>
-                   <?php _e('System admin navigation'); ?>
-            </label>
-            <?php  foreach ($navList['admin'] as $name => $title) { ?>
-                <label class="radio">
-                    <input type="radio" name="nav_admin" value="<?php echo $name; ?>"  <?php if ($navGlobal['admin'] == $name) { ?> checked<?php } ?> >
-                    <?php echo $this->escape($title); ?>
-                </label>
-            <?php } ?>
-            <label class="radio">
-                <input type="radio" name="nav_admin" value=""  <?php if ($navGlobal['admin'] == '') { ?> checked<?php } ?>><?php _e('None to use.'); ?>
-            </label>
-        <input type="submit" value="<?php _e('Submit'); ?>" class="btn btn-primary">
-        </form>
-
+<div id="page-nav">
+    <div class="page-header">
+        <h2><?php echo $this->escape($title); ?></h2>
+    </div>
+    <span class="btn btn-primary js-add" style="margin-bottom: 10px;"><?php _e('Add a custom navigation'); ?></span>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 250px;"><?php _e('Title'); ?>
+                <th style="width: 200px;"><?php _e('Setup'); ?>
+                <th style="width: 200px;"><?php _e('Related'); ?>
+                <th><?php _e('Action'); ?>
+        <tbody>
+            <tr class="none-set">
+                <td>
+                <td colspan="3">
+                    <span class="btn <?php if (!$navGlobal) { echo 'btn-primary active'; } else { echo 'js-apply'; } ?>"><?php _e('None to use'); ?></span>
+    </table>
+</div>
+<script id="temp-nav" type="text/template">
+    <td>
+        <%- title %>
+    <td>
+        <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php _e('Set global'); ?></span>
+    <td>
+        <% if(module) { %>
+        <%= module %>
+        <% } else { %>
+        <?php _e('Custom'); ?>
+        <% } %>
+    <td>
+        <div class="btn-group btns-indent">
+            <% if(module) { %>
+            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php _e('View'); ?></a>
+            <span class="btn btn-link js-clone"><?php _e('Clone'); ?></span>
+            <% } else { %>
+            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php _e('Edit'); ?></a>
+            <span class="btn btn-link js-delete"><?php _e('Delete'); ?></span>
+            <% } %>    
+        </div>
+</script>
 <script>
-(function($) {
-       var f = $("#nav-form");
-       f.submit(function(e) {
-           e.preventDefault();
-            $.post(f.attr("action"),f.serialize()).done(function(result) {
-                result=$.parseJSON(result);
-                if (result.status == 1) {
-                    location.href = location.href;
+(function($){
+    var modal = $('<div>',{'class':'modal hide fade'}).appendTo(document.body);
+    var NavItemView = Backbone.View.extend({
+        tagName: 'tr',
+        template: $('#temp-nav').html(),
+        events: {
+            'click .js-clone': 'cloneAction',
+            'click .js-delete': 'deleteAction'
+        },
+        initialize: function() {
+            this.model.on('destroy', this.remove, this);    
+        },
+        cloneAction: function() {
+            var self = this;
+            $.get('<?php echo $this->url('', array('action' => 'clone', 'name' => '')); ?>' + this.model.get('name')).done(function(res) {
+                modal.html(res).modal('show');
+                formModule.success = function(res) {
+                    modal.modal('hide');
+                    self.model.collection.add(res.navigation);            
                 }
             });
-       });
+        },
+        deleteAction: function() {
+            if (confirm('<?php _e('Are you sure to delete this navigation') ?>')) {
+                this.model.destroy({
+                    url: '<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>' + this.model.get('name')
+                });    
+            }    
+        },
+        render: function() {
+            this.$el.html(_.template(this.template,this.model.toJSON()));
+            if (this.$('.active').length) {
+                this.$('.js-delete').addClass('hide')    
+            }
+            return this;
+        }    
+    });
+    var NavListView = Backbone.View.extend({
+        el: $('#page-nav'),
+        events: {
+            'click .js-apply': 'applyAction',
+            'click .js-add': 'addAction'            
+        },
+        initialize: function() {
+            this.noset = this.$('.none-set');
+            this.render();
+            this.collection.on('add', this.addOne, this);
+        },
+        applyAction: function(e) {
+            var el = $(e.currentTarget),
+                name = el.attr('data-name');
+            $.post('<?php echo $this->url('', array('action' => 'apply')); ?>', {
+                nav_front: name || ''    
+            }).done(_.bind(function() {
+                this.$('.btn.active').removeClass('btn-primary active').addClass('js-apply');
+                this.$('.js-delete.hide').removeClass('hide');
+                el.addClass('btn-primary active').removeClass('js-apply');
+                el.parents('tr').find('.js-delete').addClass('hide');          
+            }, this));    
+        },
+        addAction: function() {
+            var self = this;
+            $.get('<?php echo $this->url('', array('action' => 'add')); ?>').done(function(res) {
+                modal.html(res).modal('show');
+                formModule.success = function(res) {
+                    modal.modal('hide');
+                    self.collection.add(res.navigation);            
+                }    
+            });    
+        },
+        render: function() {
+            var c = this.collection.models;
+            for (var i = 0, l = c.length; i < l; i++) {
+                this.addOne(c[i]);    
+            }
+        },
+        addOne: function(model) {
+            new NavItemView({
+                model: model    
+            }).render().$el.insertBefore(this.noset);
+        }
+    });
+    new NavListView({
+        collection: new Backbone.Collection(<?php echo json_encode($navList); ?>)
+    });     
 })(jQuery)
 </script>
+<?php
+    d($navGlobal);
+    d($navList);
+    d($name);
+?>

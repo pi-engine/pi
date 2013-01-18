@@ -51,12 +51,12 @@
             <%
             if (direct) {
                 if (direct > 0) {
-                    print("<?php _e('Allow'); ?>");
+                    print("<?php _e('Allowed'); ?>");
                 } else {
-                    print("<?php _e('Deny'); ?>");
+                    print("<?php _e('Denied'); ?>");
                 }
             } else {
-                print("<?php _e('Inherit'); ?>");
+                print("<?php _e('Inherited'); ?>");
             }
             %>
             </button>
@@ -79,8 +79,10 @@
                 <% } else { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    <% if (perm < 1) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    <% } %>
                 <% } %>
             </ul>
         </div>

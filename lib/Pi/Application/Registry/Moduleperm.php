@@ -47,7 +47,7 @@ class Moduleperm extends AbstractRegistry
      *                              manage: all active and allowed for admin managed components
      *
      * @param string $role
-     * @return type
+     * @return array
      */
     public function read($type = 'front', $role = null)
     {

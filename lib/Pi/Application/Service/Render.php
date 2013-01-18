@@ -38,6 +38,13 @@ class Render extends AbstractService
     protected $storage;
 
     /**
+     * Rendering type, potential values: page, action, block
+     *
+     * @var string
+     */
+    protected $type = 'page';
+
+    /**
      * Content is allowed to cache
      *
      * @var boolean
@@ -86,14 +93,14 @@ class Render extends AbstractService
     }
 
     /**
-     * Canonize cache key by prepending theme name
+     * Canonize cache key by prepending theme name and rendering type
      *
      * @param string $key
      * @return string
      */
     protected function canonizeKey($key)
     {
-        return Pi::service('theme')->current() . '_' . $key;
+        return Pi::service('theme')->current() . '_' . $this->getType() . '_' . $key;
     }
 
     /**
@@ -118,9 +125,9 @@ class Render extends AbstractService
     public function getStorage()
     {
         if (!$this->storage instanceof AbstractAdapter) {
-            $frontConfig = Pi::config()->load('application.front.php');
-            if (!empty($frontConfig['resource']['cache']['storage'])) {
-                $storage = Pi::service('cache')->loadStorage($frontConfig['resource']['cache']['storage']);
+            //$frontConfig = Pi::config()->load('application.front.php');
+            if (!empty($this->options['storage'])) {
+                $storage = Pi::service('cache')->loadStorage($this->options['storage']);
             } else {
                 $storage = Pi::service('cache')->storage();
             }
@@ -128,6 +135,29 @@ class Render extends AbstractService
         }
 
         return $this->storage;
+    }
+
+    /**
+     * Set rendering type
+     *
+     * @param string $type
+     * @return Render
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get rendering type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -249,7 +279,7 @@ class Render extends AbstractService
     /**
      * Flush render cache: a specific item, specified namespace or all
      *
-     * @param string|null $namespace
+     * @param string|null $namespace    Namespace for cache storage, usually module name
      * @param string|null $key
      * @return Render
      */
@@ -267,7 +297,7 @@ class Render extends AbstractService
             return $this;
         }
 
-        // Flush all
+        // Flush all by modules
         $modules = Pi::service('module')->meta();
         foreach (array_keys($modules) as $module) {
             Pi::service('cache')->clearByNamespace($module, $this->getStorage());

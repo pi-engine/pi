@@ -49,8 +49,8 @@ class Navigation extends NavigationHelper
     /**
      * Load a navigation
      *
-     * @param string|array    $name       navigation name or config
-     * @param array     $options
+     * @param string|array    $name Navigation name or config
+     * @param array     $options    Options for navigation and caching
      * @return  Navigation
      */
     public function __invoke($name = null, $options = array())
@@ -88,7 +88,8 @@ class Navigation extends NavigationHelper
                 $this->cache = null;
             }
             $module = Pi::service('module')->current();
-            $navConfig = Pi::service('registry')->navigation->read($name, $module);
+            $section = isset($options['section']) ? $options['section'] : null;
+            $navConfig = Pi::service('registry')->navigation->read($name, $module, $section);
         } else {
             $navConfig = $name;
         }
@@ -186,7 +187,7 @@ class Navigation extends NavigationHelper
             $this->injected[$class] = true;
         } elseif ($this->getInjectContainer() && !$helper->hasContainer()) {
             $helper->setContainer($this->getContainer());
-        }            
+        }
 
         $helper->setView($this->view);
 

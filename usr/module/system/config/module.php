@@ -29,7 +29,7 @@ return array(
         // Description, for admin, optional
         'description'   => __('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.0.2',
+        'version'       => '3.0.3',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -66,14 +66,14 @@ return array(
             ),
             // System config
             'config'    => 'config.php',
+            // ACL specs
+            'acl'       => 'acl.php',
             // Block definition
             'block'     => 'block.php',
             // Event specs
             'event'     => 'event.php',
             // View pages
             'page'      => 'page.php',
-            // ACL specs
-            'acl'       => 'acl.php',
             // Navigation definition
             'navigation'    => 'navigation.php',
             // Routes, first in last out; bigger priority earlier out

@@ -1,99 +1,104 @@
 <?php
+    $this->bootstrap();
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
     $this->backbone();
+    $this->js($this->assetModule('script/system-msg.js'));
 ?>
-
+<style>
+.avail-module-item .link {
+    visibility: hidden;
+}
+.avail-module-item:hover .link {
+    visibility: visible;
+}
+</style>
 <ul class="nav nav-tabs">
     <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
     <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
     <li class="disabled"><a><?php _e('Repository'); ?></a>
 </ul>
 
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<div>
-<ul class="module-lists" id="js-module">
-    <?php foreach ($modules as $directory => $module) { ?>
-    <li class="box-hover" data-name="<?php echo $directory; ?>"
-        data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>">
-         <div class="img-text-wrapper">
-               <img class="pull-left" src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>" width="120px" />
-              <div>
-                   <h4><span class="mr20"><?php echo $this->escape($module['meta']['title']); ?></span><?php echo $module['meta']['version']; ?></h4>
-                 <dl class="dl-horizontal">
-                    <dt><?php _e('Directory:'); ?>
-                    <dd><?php echo $directory; ?>
-                    <dt><?php _e('Author:'); ?>
-                    <dd>
-                        <a href="<?php echo  $module['author']['website']; ?>" target="_blank" class="link mr20"><?php echo $this->escape($module['author']['name']);  ?></a>
-                        <?php echo $module['author']['email'];  ?>
-                    <?php if (!empty($module['meta']['demo'])) { ?>
-                    <dt><?php _e('Demo:'); ?></dt><dd><a href="" target="_blank" class="link"><?php _e('In action'); ?></a>
-                    <?php } ?>
-                     <dt><?php _e('Description:'); ?></dt>
-                     <dd>
-                       <div class="pull-right btn-group" style="margin: 0 20px 0 20px;">
-                         <span  class="btn module-check">
-                             <i class="icon-check"></i>
-                             <?php _e('Check'); ?>
-                         </span>
-                        <span class="btn module-install">
-                            <i class="icon-plus"></i>
-                            <?php _e('Install'); ?>
-                        </span>
-                     </div>
-                     <?php echo $this->escape($module['meta']['description']);  ?>
-                 </dl>
-              </div>
-         </div>
-    <?php } ?>
-</ul>
+<div class="avail-module-page" id="js-module">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 10%;"><?php _e('Icon'); ?>
+                <th style="width: 15%;"><?php _e('Title'); ?>
+                <th style="width: 15%;"><?php _e('Version'); ?>
+                <th style="width: 30%;"><?php _e('Description'); ?>
+                <th><?php _e('Action'); ?>
+        <tbody> 
+            <?php foreach ($modules as $directory => $module) { ?>
+            <tr class="avail-module-item" data-name="<?php echo $directory; ?>" data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>">
+                <td>
+                    <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
+                <td>
+                    <strong><?php echo $this->escape($module['meta']['title']); ?></strong>
+                <td>
+                    <div class="ellipsis" title="<?php echo $module['meta']['version']; ?>"><?php echo $module['meta']['version']; ?></div>
+                    <span class="link module-check"><?php _e('Check'); ?></span>
+                <td>
+                    <div><?php echo $this->escape($module['meta']['description']); ?></div>
+                    <span class="no-select link module-detail" data-placement="top" style="visibility: visible;"><?php _e('Detail'); ?></span>
+                    <div class="hide well well-small module-detail-html">
+                        <dl class="dl-horizontal">
+                            <dt><?php _e('Directory:'); ?>
+                            <dd><?php echo $directory; ?>
+                            <dt><?php _e('Author:'); ?>
+                            <dd>
+                               <a href="<?php echo  $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
+                               <?php echo $module['author']['email'];  ?>
+                             <?php if($module['meta']['demo']) { ?>
+                             <dt><?php _e('Demo:'); ?>
+                             <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a>
+                             <?php } ?>
+                        </dl> 
+                    </div>    
+                <td>
+                    <span class="btn module-install"><?php _e('Install'); ?></span>
+            <?php } ?>                                   
+    </table>    
 </div>
 <script>
 (function($) {
-    var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>",
-        bh = $(".box-hover");
-    var modal = $("<div>", {"class": "modal hide fade"}).appendTo(document.body);
-        modal.on("hidden", function() {
-            bh.removeClass("handle");
-        });
-    var ModuleList = Backbone.View.extend({
-        events: {
-          "click .module-install": "install",
-          "click .module-check": "check"
+    //var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>";
+    var systemError = function() {
+        systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');    
+    };
+    var page = {
+        el: $('#js-module'),
+        modal: $('<div class="modal hide fade">').appendTo(document.body),
+        $: function(selector) {
+            return this.el.find(selector);
         },
-        initialize: function() {
-           this.moduleCheck = $(".module-check");
+        init: function() {
+            _.bindAll(this);
+            this.$('.module-install').click(this.installAction);
+            this.$('.module-detail').click(this.toggleDetail);
         },
-        install: function() {
-            this.toggleHand();
-            $.get(this.$el.attr("data-install")).done(function(result) {
-                modal.html(result).modal("show");
-                formModule.success = this.submite.bind(this);
-            }.bind(this));
+        installAction: function(e) {
+            var p = $(e.target).parents('tr'),
+                self =this;
+            $.get(p.attr('data-install')).done(function(res) {
+                self.modal.html(res).modal('show');
+                formModule.success = function(res) {
+                    self.installSucc(res, p);
+                };
+            }).fail(systemError);
         },
-        check: function() {
-            $.post(checkUrl, {name: this.$el.attr("data-name")})
+        toggleDetail: function(e) {
+            $(e.target).parents('tr').find('.module-detail-html').toggleClass('hide');            
         },
-        toggleHand: function() {
-            this.$el.toggleClass("handle");
-        },
-        submite: function(result) {
-            var el = this.$el;
-            modal.modal("hide");
-            if (result.clonable == 0) {
-                el.fadeOut("150", function() {
-                    el.remove();
-                });
-            }
-            alert(result.message);
+        installSucc: function(res,tar) {
+            this.modal.modal('hide');
+            systemMessage.succ(res.message);
+            if (!res.clonable) {
+                tar.remove();        
+            } 
         }
-    });
-    bh.each(function() {
-         new ModuleList({
-             el: $(this)
-         });
-    });
+    }
+    page.init();
 })(jQuery)
 
 </script>

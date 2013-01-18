@@ -73,6 +73,7 @@ class PermController extends ActionController
                 'direct'    => 0,
             );
         }
+        ksort($resources);
 
         if ($resources) {
             $rowset = Pi::model('acl_rule')->select(array('role' => $role, 'section' => $section, 'resource' => array_keys($resources), 'module' => $module));
@@ -110,48 +111,20 @@ class PermController extends ActionController
         $section = $this->params('section');
         $module = $this->params('name');
 
-        $where = array(
-            'section'   => $section,
-            'role'      => $role,
-            'resource'  => $resource,
-            'module'    => $module,
-        );
-        $rowRule = Pi::model('acl_rule')->select($where)->current();
-
         // Remove permission
         if (empty($direct)) {
-            if ($rowRule) {
-                $rowRule->delete();
-            }
-
-            //$aclHandler = new AclHandler($section);
-            //$aclHandler->setModule($module)->setRole($role);
-            //$perm = $aclHandler->checkAccess($resource) ? 1 : -1;
+            AclHandler::removeRule($role, $section, $module, $resource);
         } else {
-            $deny = ($perm > 0) ? 0 : 1;
-            if ($rowRule) {
-                $rowRule->deny = $deny;
-            } else {
-                $rowRule = Pi::model('acl_rule')->createRow(array(
-                    'section'   => $section,
-                    'role'      => $role,
-                    'resource'  => $resource,
-                    'deny'      => $deny,
-                    'module'    => $module,
-                ));
-            }
-            try {
-                $rowRule->save();
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
+            AclHandler::setRule($perm, $role, $section, $module, $resource);
         }
+
         Pi::service('registry')->moduleperm->flush();
 
         $aclHandler = new AclHandler($section);
         $aclHandler->setModule($module)->setRole($role);
         if (in_array($section, array('admin', 'module-admin', 'module-manage'))) {
             $aclHandler->setDefault(false);
+            Pi::service('registry')->navigation->flush();
         } else {
             $aclHandler->setDefault(true);
         }
@@ -230,7 +203,7 @@ class PermController extends ActionController
                 'name'          => $name,
                 'resource'      => $row->id,
                 'title'         => $row->title,
-                'perm'          => -1,
+                'perm'          => 1,
                 'direct'        => 0,
             );
         }
@@ -249,9 +222,9 @@ class PermController extends ActionController
                 $acl = new AclHandler('block');
                 $acl->setRole($role);
                 $where = Pi::db()->where(array('resource' => $remaining));
-                $blocksAllowed = $acl->getResources($where);
-                foreach ($blocksAllowed as $id) {
-                    $blocks[$id]['perm'] = 1;
+                $blocksDenied = $acl->getResources($where, false);
+                foreach ($blocksDenied as $id) {
+                    $blocks[$id]['perm'] = -1;
                 }
             }
         }
@@ -306,7 +279,7 @@ class PermController extends ActionController
         //$this->view()->assign('name', $module);
         $this->view()->assign('role', $role);
         $this->view()->assign('section', $section);
-        $this->view()->assign('title', __('Module permissions'));
+        $this->view()->assign('title', __('System permissions'));
         $this->view()->assign('roles', $roles);
         $this->view()->assign('modules', $moduleList);
     }

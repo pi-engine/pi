@@ -239,6 +239,101 @@ class Acl
     }
 
     /**
+     * Add a rule to database
+     *
+     * @param bool|int $allowed
+     * @param string $role
+     * @param string $section
+     * @param string $module
+     * @param string|int $resource
+     * @param string|null $privilege
+     * @return bool
+     */
+    public static function addRule($allowed, $role, $section, $module, $resource, $privilege = null)
+    {
+        $deny = ($allowed > 0) ? 0 : 1;
+        $rule = array(
+            'section'   => $section,
+            'role'      => $role,
+            'resource'  => $resource,
+            'deny'      => $deny,
+            'module'    => $module,
+        );
+        if (null !== $privilege) {
+            $rule['privilege'] = $privilege;
+        }
+        $rowRule = Pi::model('acl_rule')->createRow($rule);
+        $rowRule->save();
+
+        return true;
+    }
+
+    /**
+     * Remove a rule to database
+     *
+     * @param string $role
+     * @param string $section
+     * @param string $module
+     * @param string|int $resource
+     * @param string|null $privilege
+     * @return bool
+     */
+    public static function removeRule($role, $section, $module, $resource, $privilege = null)
+    {
+        $rule = array(
+            'section'   => $section,
+            'role'      => $role,
+            'resource'  => $resource,
+            'module'    => $module,
+        );
+        if (null !== $privilege) {
+            $rule['privilege'] = $privilege;
+        }
+        $rowRule = Pi::model('acl_rule')->select($rule)->current();
+        if ($rowRule) {
+            $rowRule->delete();
+        }
+
+        return true;
+    }
+
+    /**
+     * Set a rule to database
+     *
+     * @param bool|int $allowed
+     * @param string $role
+     * @param string $section
+     * @param string $module
+     * @param string|int $resource
+     * @param string|null $privilege
+     * @return bool
+     */
+    public static function setRule($allowed, $role, $section, $module, $resource, $privilege = null)
+    {
+        $deny = ($allowed > 0) ? 0 : 1;
+        $rule = array(
+            'section'   => $section,
+            'role'      => $role,
+            'resource'  => $resource,
+            'module'    => $module,
+        );
+        if (null !== $privilege) {
+            $rule['privilege'] = $privilege;
+        }
+        $rowRule = Pi::model('acl_rule')->select($rule)->current();
+        if ($rowRule) {
+            $rowRule->deny = $deny;
+            $rowRule->save();
+        } else {
+            $rowRule = Pi::model('acl_rule')->createRow($rule);
+            $rowRule->deny = $deny;
+            $rowRule->save();
+        }
+
+        return true;
+    }
+
+    /**
      * Check access to a resource privilege for a given role
      *
      * @param string $role
@@ -274,7 +369,19 @@ class Acl
         $allowed = null;
         // Look up in all parent resources
         $resources = $this->loadResources($resource);
-        array_unshift($resources, $resource);
+        /*
+        if (is_string($resource) ) {
+            $current = $resource;
+        } elseif (is_array($resource) && !empty($resource['name'])) {
+            $current = $resource['name'];
+        } else {
+            $current = null;
+        }
+        if ($current) {
+            array_unshift($resources, $current);
+        }
+        */
+
         while ($resources) {
             $where['resource'] = array_pop($resources);
             $allowed = $moduleRule->isAllowed($where);
@@ -304,14 +411,15 @@ class Acl
     /**
      * Get resources to which a group of roles is allowed to access a given resource privilege
      *
-     * @param array|Where    $where
+     * @param array|Where   $where
+     * @param bool          $allowed
      * @return array of resource IDs
      */
-    public function getResources($where = null)
+    public function getResources($where = null, $allowed = true)
     {
         if ($this->getRole() == static::ADMIN) return null;
         $roles = $this->loadRoles();
-        return $this->getModel('rule')->getResources($roles, $where, $this->getDefault());
+        return $this->getModel('rule')->getResources($roles, $where, $allowed);
     }
 
     /**
@@ -324,7 +432,6 @@ class Acl
     {
         if (null !== $role && $role != $this->getRole()) {
             $roles = Pi::service('registry')->role->read($role);
-
             array_push($roles, $role);
             return $roles;
         }
@@ -353,6 +460,7 @@ class Acl
             $action = $resource['action'];
             $resourceList = Pi::service('registry')->resource->read($this->getSection(), $module, 'page');
             $pageList = array_flip(Pi::service('registry')->page->read($this->getSection(), $module));
+
             $resources = array();
             foreach ($resourceList as $page => $list) {
                 // Generated from page or named
@@ -376,16 +484,25 @@ class Acl
         }
 
         // Appliction resource
+        if (is_numeric($resource)) {
+            $resources = array($resource);
+            return $resources;
+        }
+        $type = 'system';
         if (is_array($resource)) {
             $type = isset($resource['type']) ? $resource['type'] : 'system';
             $name = $resource['name'];
         } else {
-            $type = 'system';
             $name = $resource;
         }
 
         $resourceList = Pi::service('registry')->resource->read($this->getSection(), $this->getModule(), $type);
-        $resources = isset($resourceList[$name]) ? $resourceList[$name] : array();
+        if (isset($resourceList[$name])) {
+            $resources = $resourceList[$name];
+        } else {
+            $resources = array($name);
+        }
+        //$resources = isset($resourceList[$name]) ? $resourceList[$name] : array();
         return $resources;
     }
 }

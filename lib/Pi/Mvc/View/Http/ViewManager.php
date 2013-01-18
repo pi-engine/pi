@@ -297,9 +297,9 @@ class ViewManager extends ZendViewManager
                 $listener->setType('feed');
             }
         }
-        // Disable error reporting for AJAX, Feed and Flash
+        // Disable error debugging for AJAX, Feed and Flash
         if ($strategy || $request->isXmlHttpRequest() || $request->isFlashRequest()) {
-            Pi::service('log')->active(false);
+            Pi::service('log')->debugger(false);
         }
 
         if (!$strategy) {

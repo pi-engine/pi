@@ -12,9 +12,8 @@
 
 <h2 class="page-header"><?php _e('Audit list') ?></h2>
 
-<table>
+<table class="table table-hover">
     <thead>
-        <td width="2%"><?php _e('ID') ?></td>
         <td width="12%"><?php _e('time') ?></td>
         <td width="5%"><?php _e('User') ?></td>
         <td width="5%"><?php _e('IP') ?></td>
@@ -28,7 +27,6 @@
     </thead>
     <?php foreach ($items as $row) { ?>
     <tr>
-        <td><?php echo $row['id']; ?></td>
         <td><?php echo date('y-m-d H:i:s', $row['time']); ?></td>
         <td><?php echo $row['user']; ?></td>
         <td><?php echo $row['ip']; ?></td>
