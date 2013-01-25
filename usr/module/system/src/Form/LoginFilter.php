@@ -54,7 +54,8 @@ class LoginFilter extends InputFilter
         }
 
         $this->add(array(
-            'name'  => 'redirect',
+            'name'      => 'redirect',
+            'required'  => false,
         ));
     }
 }

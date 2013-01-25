@@ -20,10 +20,75 @@
 namespace Pi\Session;
 use Zend\Session\SessionManager as ZendSessionManager;
 use Zend\Session\Container;
+use Zend\Session\Storage\SessionStorage;
+use Zend\Session\SaveHandler\SaveHandlerInterface;
+
 
 class SessionManager extends ZendSessionManager
 {
     protected $containers = array();
+
+    /**
+     * Start session
+     *
+     * if No session currently exists, attempt to start it. Calls
+     * {@link isValid()} once session_start() is called, and raises an
+     * exception if validation fails.
+     *
+     * @param bool $preserveStorage        If set to true, current session storage will not be overwritten by the
+     *                                     contents of $_SESSION.
+     * @return void
+     * @throws Exception\RuntimeException
+     */
+    public function start($preserveStorage = false)
+    {
+        if ($this->sessionExists()) {
+            return;
+        }
+
+        $saveHandler = $this->getSaveHandler();
+        if ($saveHandler instanceof SaveHandlerInterface) {
+            // register the session handler with ext/session
+            $this->registerSaveHandler($saveHandler);
+        }
+
+        session_start();
+        /*
+        if (!$this->isValid()) {
+            throw new Exception\RuntimeException('Session validation failed');
+        }
+        */
+        $storage = $this->getStorage();
+
+        // Since session is starting, we need to potentially repopulate our
+        // session storage
+        if ($storage instanceof SessionStorage && $_SESSION !== $storage) {
+            if (!$preserveStorage) {
+                $storage->fromArray($_SESSION);
+            }
+            $_SESSION = $storage;
+        }
+
+        if (!$this->isValid()) {
+            throw new \RuntimeException('Session validation failed');
+        }
+    }
+
+    /**
+     * Write session to save handler and close
+     *
+     * Once done, the Storage object will be marked as isImmutable.
+     *
+     * @return void
+     */
+    public function writeClose()
+    {
+        $validator = $this->getConfig()->getOption('validator');
+        if ($validator) {
+            $this->getStorage()->setMetaData('_VALID', $validator);
+        }
+        parent::writeClose();
+    }
 
     public function container($name = 'Default')
     {

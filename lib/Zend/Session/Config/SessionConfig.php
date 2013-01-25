@@ -92,6 +92,9 @@ class SessionConfig extends StandardConfig
                 break;
         }
 
+        if (!is_scalar($storageValue)) {
+            return;
+        }
         ini_set($key, $storageValue);
         return $this;
     }

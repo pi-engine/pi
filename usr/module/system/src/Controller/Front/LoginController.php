@@ -46,6 +46,8 @@ class LoginController extends ActionController
 
         // Display login form
         $form = $this->getForm();
+        $redirect = $this->request->getServer('HTTP_REFERER') ?: '';
+        $form->setData(array('redirect' => urlencode($redirect)));
         $this->renderForm($form);
     }
 
@@ -83,7 +85,7 @@ class LoginController extends ActionController
     public function processAction()
     {
         if (Pi::config('login_disable', 'user')) {
-            $this->jump(array('route' => 'home'), __('Login is closed. Please go back later.'), 5);
+            $this->jump(array('route' => 'home'), __('Login is closed. Please try later.'), 5);
             return;
         }
 

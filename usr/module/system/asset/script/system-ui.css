@@ -100,7 +100,6 @@ tr:hover .row-actions {
 .w300 {
     width: 300px;
 }
-
 .box-hover {
     border-bottom: 1px solid #e6e6e6;
     padding: 10px 0;
@@ -131,7 +130,88 @@ tr:hover .row-actions {
     margin-left: -12px;
 }
 /*Dashboard*/
-
+.notice .widget-body {
+    padding: 10px;
+}
+.notice-show-text {
+    margin-bottom: 10px;
+}
+.notice-show-time {
+    margin-left: 20px;
+}
+.notice-show-action {
+    margin-top: 10px;
+}
+.notice-edit {
+    display: none;
+}
+.notice-editing .notice-edit {
+    display: block;
+}
+.notice-editing .notice-show {
+    display: none;
+}
+.quick-link .js-all-save {
+    display: none;
+}
+.quick-link .widget-header,
+.module-summary .widget-header {
+    line-height: 28px;
+}
+.quick-link i {
+    visibility: hidden;
+}
+.quick-link-form {
+    display: none;
+}
+.quick-link-item {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    border: 1px solid transparent;
+    margin:0 10px 10px 0;
+    min-height: auto;
+    height: 24px;
+    line-height: 24px;
+    background: #fff;
+}
+.quick-link-add {
+    display: none;
+    vertical-align: top;
+    text-align: center;
+    width: 130px;
+    border: 1px dashed #ccc;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.quick-link-edit .js-all-save {
+    display: inline-block;
+}
+.quick-link-edit .quick-link-item a:hover {
+    text-decoration: none;
+}
+.quick-link-edit .js-all-edit {
+    display: none;
+}
+.quick-link-edit i,
+.quick-link .icon-plus {
+    visibility: visible;
+}
+.quick-link-edit .quick-link-item {
+    border: 1px dashed #ccc;
+    cursor: move;
+}
+.quick-link-edit .quick-link-add {
+    display: inline-block;
+}
+.quick-link-item i {
+    cursor: pointer;
+}
+.icon-quick-link-add {
+    font-size: 16px;
+    color: #808080;
+}
 /*block list*/
 .block-list-page .dropdown-menu {
     width: 240px;

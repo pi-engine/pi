@@ -55,6 +55,7 @@ class Acl extends AbstractResource
         $section = $this->engine->section();
         $routeMatch = $e->getRouteMatch();
         $route = array(
+            'section'       => $section,
             'module'        => $routeMatch->getParam('module'),
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
@@ -81,7 +82,7 @@ class Acl extends AbstractResource
                     $denied = false;
                     // Get allowed modules
                     $modulesAllowed = Pi::service('registry')->moduleperm->read('manage');
-                    $moduleName = $routeMatch->getParam('name');
+                    $moduleName = $routeMatch->getParam('name') ?: $e->getRequest()->getPost('name');
                     // Denied if module is not allowed
                     if (null !== $modulesAllowed && !in_array($moduleName, $modulesAllowed)) {
                         $denied = true;
@@ -102,9 +103,9 @@ class Acl extends AbstractResource
                 $denied = true;
             // Denied if action page is not allowed if check on page is enabled
             } elseif (!empty($this->options['check_page']) && 'dashboard' != $route['controller']) {
-                $resource = $route;
-                //$this->aclHandler->setDefault(false);
-                if (!$this->aclHandler->checkAccess($resource)) {
+                if ('admin' == $section && $this->aclHandler->checkException($route)) {
+                    $denied = false;
+                } elseif (!$this->aclHandler->checkAccess($route)) {
                     $denied = true;
                 }
             }

@@ -133,10 +133,7 @@ class DashboardController extends ActionController
 
         // Get module summary callbacks
         // Get hidden modules
-        $summaryList = array(
-            'active'    => array(),
-            'inactive'  => array(),
-        );
+        $summaryList = array();
         $list = array();
         $row = Pi::model('user_repo')->select((array('user' => $user, 'module' => 'system', 'type' => 'module-summary')))->current();
         if ($row) {
@@ -161,11 +158,12 @@ class DashboardController extends ActionController
         foreach ($keys as $name) {
             $callback = sprintf('Module\\%s\\Dashboard::summary', ucfirst($modules[$name]['directory']));
             if (is_callable($callback)) {
-                $summaryList['active'][] = array(
+                $summaryList[] = array(
                     'name'      => $name,
                     'content'   => call_user_func($callback, $name),
                     'title'     => $modules[$name]['title'],
                     'logo'      => $modules[$name]['logo'],
+                    'active'    => 1
                 );
             }
         }
@@ -175,6 +173,7 @@ class DashboardController extends ActionController
                 $summaryList['inactive'][] = array(
                     'name'      => $name,
                     'title'     => $modules[$name]['title'],
+                    'active'    => 0
                 );
             }
         }

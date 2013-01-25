@@ -170,7 +170,7 @@
         checkUpdate: function() {},
         update: function() {
             this.model.fetch({
-                url: '<?php echo $this->url('', array('action' => 'update', 'id'=>'')); ?>' + this.model.id,
+                url: '<?php echo $this->url('', array('action' => 'update', 'id' => '')); ?>' + this.model.id,
                 success: function(model, resp) {
                     systemMessage.succ(resp.message);
                 },
@@ -205,7 +205,7 @@
             var self = this;
             if (confirm('<?php _e('Are you sure to uninstall this module'); ?>')) {
                 systemMessage.wait('<?php _e('In process of uninstalling'); ?>');
-                $.get('<?php echo $this->url('', array('action' => 'uninstall')); ?>' + this.model.id).done(function(mode, res) {
+                $.getJSON('<?php echo $this->url('', array('action' => 'uninstall', 'id' => '')); ?>' + this.model.id).done(function(res) {
                     if (res.status) {
                         self.model.trigger('destroy');
                         systemMessage.succ(res.message);

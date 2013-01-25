@@ -20,6 +20,7 @@
 
 namespace Pi\Application\Service;
 use Pi;
+//use Pi\Cache\Storage\AdapterPluginManager;
 use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 
@@ -65,6 +66,7 @@ class Cache extends AbstractService
             $config['adapter']['options']['namespace'] = '';
         }
         $config['adapter']['options']['namespace'] = $this->getNamespace($config['adapter']['options']['namespace']);
+        //StorageFactory::setAdapterPluginManager(new AdapterPluginManager);
         $storage = StorageFactory::factory($config);
 
         return $storage;
@@ -201,27 +203,41 @@ class Cache extends AbstractService
      * @params AbstractAdapter $storage
      * @return mixed
      */
-    public function getItem($key, $options = null, $storage = null)
+    public function getItem($key, $options = array(), $storage = null)
     {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
         $namespace      = null;
+        $ttl            = null;
         $namespaceOld   = null;
-        if (is_array($options)) {
+        $ttlOld         = null;
+        if (is_string($options)) {
+            $namespace = $options;
+            $options = array();
+        } else {
+            if (isset($options['ttl'])) {
+                $ttl = $options['ttl'];
+            }
             if (isset($options['namespace'])) {
                 $namespace = $options['namespace'];
             }
-        } else {
-            $namespace = $options;
         }
-        if ($namespace) {
+        if (null !== $namespace) {
             $namespaceOld = $storageOptions->namespace;
             $storageOptions->namespace = $this->getNamespace($namespace);
         }
+        if (null !== $ttl) {
+            $ttlOld = $storageOptions->ttl;
+            $storageOptions->ttl = $ttl;
+        }
+
         $data = $storage->getItem($key);
         if (null !== $namespaceOld) {
             $storageOptions->namespace = $namespaceOld;
+        }
+        if (null !== $ttlOld) {
+            $storageOptions->ttl = $ttlOld;
         }
 
         return $data;
@@ -235,7 +251,7 @@ class Cache extends AbstractService
      * @params AbstractAdapter $storage
      * @return Cache
      */
-    public function removeItem($key, $options = null, $storage = null)
+    public function removeItem($key, $options = array(), $storage = null)
     {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();

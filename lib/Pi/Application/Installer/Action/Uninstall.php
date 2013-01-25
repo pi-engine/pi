@@ -40,7 +40,9 @@ class Uninstall extends AbstractAction
         $model = Pi::model('module');
         $row = $model->select(array('name' => $this->module))->current();
         // save module entry into database
-        $status = $row->delete();
+        if ($row) {
+            $status = $row->delete();
+        }
         /*
         if (!$status) {
             $result['module'] = array(

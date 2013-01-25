@@ -89,11 +89,12 @@ class LoginForm extends BaseForm
             'type'  => 'csrf',
         ));
 
+        $redirect = Pi::engine()->application()->getRequest()->getServer('HTTP_REFERER') ?: Pi::engine()->application()->getRequest()->getRequestUri();
         $this->add(array(
             'name'  => 'redirect',
             'type'  => 'hidden',
             'attributes'    => array(
-                'value' => urlencode(Pi::engine()->application()->getRequest()->getServer('HTTP_REFERER')),
+                'value' => urlencode($redirect),
             ),
         ));
 

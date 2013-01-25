@@ -27,6 +27,12 @@ return array(
 
             // Remember Me in seconds, two weeks
             'remember_me_seconds'   => 1209600,
+
+            // Validators: validator class => data
+            'validator'             => array(
+                'Zend\\Session\\Validator\\HttpUserAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
+                'Zend\\Session\\Validator\\RemoteAddr'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
+            ),
         ),
     ),
 
@@ -35,13 +41,13 @@ return array(
         'class' => 'Zend\\Session\\Storage\\SessionStorage',
         'input' => array(
         ),
-        /**/
+        /*
         // Validators: validator class => data
         'validator' => array(
-            'Zend\\Session\\Validator\\HttpUserAgent' => null,
-            'Zend\\Session\\Validator\\RemoteAddr'    => null,
+            'Zend\\Session\\Validator\\HttpUserAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
+            //'Zend\\Session\\Validator\\RemoteAddr'    => null,
         )
-        /**/
+        */
     ),
     // SaveHandler, DbTable
     'save_handler'  => array(

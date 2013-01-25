@@ -21,14 +21,15 @@
     border: 2px dashed #ccc;
     width: 180px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .upload-carousel-btn .icon-plus {
-    font-size: 45px;
+    font-size: 56px;
     color: #999;
 }
 .upload-carousel-add {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 35px;
 }
 .fileinput-button {
     overflow: hidden;
@@ -147,6 +148,7 @@
 /*widget-lsit*/
 .widget-list {
     min-height: 30px;
+    margin-left: 0;
 }
 .widget-list li {
     display: inline-block;
@@ -160,18 +162,23 @@
     background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
     background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
     background-image: -o-linear-gradient(top , #F9F9F9, #ECECEC);
-    padding: 5px 10px;
+    padding: 5px 8px;
     box-shadow: 0 1px 0 #FFFFFF inset;
     border: 1px solid #DFDFDF;
     overflow: hidden;
 }
+.widget-hd strong {
+    width: 240px;
+}
 .widget-description {
-    height: 40px;
-    overflow: hidden;
-    padding: 0 10px;
+    min-height: 40px;
+    padding: 5px 8px;
     font-size: 12px;
 }
 .widget-placeholder {
     border: 1px dotted #333;
     height: 28px;
+}
+.widget-action .btn {
+    padding: 1px 5px;
 }

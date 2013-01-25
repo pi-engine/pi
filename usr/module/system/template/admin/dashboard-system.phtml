@@ -10,87 +10,6 @@
     ));
     $this->backbone();
 ?>
-<style>
-    .notice-show-text {
-        margin-bottom: 10px;
-    }
-    .notice-show-time {
-        margin-left: 20px;
-    }
-    .notice-show-action {
-        margin-top: 10px;
-    }
-    .notice-edit {
-        display: none;
-    }
-    .notice-editing .notice-edit {
-        display: block;
-    }
-    .notice-editing .notice-show {
-        display: none;
-    }
-    .quick-link .js-all-save {
-        display: none;
-    }
-    .quick-link .widget-header,
-    .module-summary .widget-header {
-        line-height: 28px;
-    }
-    .quick-link i {
-        visibility: hidden;
-    }
-    .quick-link-form {
-        display: none;
-    }
-    .quick-link-item {
-        display: inline-block;
-        vertical-align: top;
-        width: 200px;
-        border: 1px solid transparent;
-        margin:0 10px 10px 0;
-        min-height: auto;
-        height: 24px;
-        line-height: 24px;
-        background: #fff;
-    }
-    .quick-link-add {
-        display: none;
-        vertical-align: top;
-        text-align: center;
-        width: 130px;
-        border: 1px dashed #ccc;
-        height: 24px;
-        line-height: 24px;
-        cursor: pointer;
-    }
-    .quick-link-edit .js-all-save {
-        display: inline-block;
-    }
-    .quick-link-edit .quick-link-item a:hover {
-        text-decoration: none;
-    }
-    .quick-link-edit .js-all-edit {
-        display: none;
-    }
-    .quick-link-edit i,
-    .quick-link .icon-plus {
-        visibility: visible;
-    }
-    .quick-link-edit .quick-link-item {
-        border: 1px dashed #ccc;
-        cursor: move;
-    }
-    .quick-link-edit .quick-link-add {
-        display: inline-block;
-    }
-    .quick-link-item i {
-        cursor: pointer;
-    }
-    .icon-quick-link-add {
-        font-size: 16px;
-        color: #808080;
-    }
-</style>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div class="row-fluid">
     <div class="span8">
@@ -142,16 +61,28 @@
                 </div>
             </div>
         </div>
-        <div class="widget module-summary">
+        <div class="widget module-summary" id="js-module-summary">
             <div class="clearfix widget-header">
                 <div class="pull-right">
-                    <span class="btn"><?php _e('Edit'); ?></span>
-                    <span class="btn"><?php _e('Save'); ?></span>
+                    <span class="btn display-all"><?php _e('Toggle all'); ?></span>
                 </div>
                 <strong><?php _e('Module summary')?></strong>
             </div>
             <div class="widget-body">
-
+                <div class="accordion" id="summary-accordion">
+                    <?php foreach($summaryList as $i => $item) { ?>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#summary-accordion" href="#collapse<?php echo $item['name']; ?>"><?php echo $item['title']; ?></a>
+                        </div>
+                        <div id="collapse<?php echo $item['name']; ?>" class="accordion-body collapse <?php if($i == 0) { echo 'in'; } ?>">
+                            <div class="accordion-inner">
+                                <?php echo $item['content']; ?>
+                            </div>
+                        </div>                        
+                    </div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>
@@ -270,10 +201,7 @@
             this.sortLinks();
         },
         renderLinks: function() {
-            var m = this.collection.models;
-            for (var i = 0, l = m.length; i < l; i++) {
-                this.addOne(m[i]);
-            }
+            this.collection.forEach(this.addOne, this);
         },
         editModel: function() {
             this.$el.addClass('quick-link-edit');
@@ -333,14 +261,22 @@
             });
         }
     });
-    new NoticeView;
-    $links = <?php echo json_encode($links) ?>;
-    if (!_.isObject($links[0])) {
-        $links = [];
-    }
-    new LinkListView({
-        collection:  new Backbone.Collection($links)
+    var SummaryView = Backbone.View.extend({
+        el: $('#js-module-summary'),
+        events: {
+            'click .display-all': 'toggleAll'    
+        },
+        initialize: function() {
+        },
+        toggleAll: function() {
+            this.$('.accordion-body').collapse('toggle');        
+        }    
     });
+    
+    new NoticeView;
+    new LinkListView({
+        collection:  new Backbone.Collection(_.toArray(<?php echo json_encode($links); ?>))
+    });
+    new SummaryView;
 })(jQuery)
 </script>
-

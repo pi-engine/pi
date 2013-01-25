@@ -71,20 +71,6 @@ return array(
             'page'      => true,
             // Enable action caching, default as false
             'action'    => false,
-            /*
-            // Cache storage
-            'storage'   => 'filesystem',
-            'storage'   => array(
-                'adapter'   => array(
-                    'name'  => 'filesystem',
-                    // Options
-                    'options'    => array(
-                        'cache_dir' => Pi::path('cache'),
-                        'dir_level' => 1,
-                    ),
-                ),
-            ),
-            */
         ),
     ),
 

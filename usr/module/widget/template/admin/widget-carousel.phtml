@@ -41,11 +41,11 @@ echo $this->formRow($form->get('template'));
  * $content: model collection of 'caption', 'desc', 'image', 'link'
  */
 ?>
-<div class="controls" id="js-carousel" style="overflow:hidden;">
+<div class="controls" id="js-carousel">
    <div class="upload-carousel-btn">
        <div class="upload-carousel-add">
          <i class="icon-plus fileinput-button">
-            <input type="file" name="image" multiple style="width: 100%;">
+            <input type="file" name="image" multiple style="width: 100%;" class="hide">
         </i>
        </div>
    </div>
@@ -126,15 +126,20 @@ var carouselItemView = Backbone.View.extend({
 var carouselListView = Backbone.View.extend({
     el: $("#js-carousel"),
     initialize: function () {
-        carouselCollection.on("add", this.addOne, this);
-        this.btn=this.$(".upload-carousel-btn");
+        _.bindAll(this);
+        carouselCollection.on("add", this.addOne);
+        this.btn = this.$(".upload-carousel-btn");
         this.render();
         this.fileupload();
         this.sortable();
+        this.btn.click(this.popup);
+        this.$('[name=image]').click(function(e) {
+            e.stopPropagation();    
+        });
     },
     fileupload: function () {
         var obj = {
-          url: "<?php echo $this->url('', array('action' => 'upload')); ?>",
+          url: '<?php echo $this->url('', array('action' => 'upload')); ?>',
           formData: function() {
               return [];
           }
@@ -142,28 +147,28 @@ var carouselListView = Backbone.View.extend({
         if ($.support.xhrFileUpload) { //html5 upload
             this.$("[name=image]").fileupload(_.extend(obj, {
                 done: function(e, data) {
-                     var resp = $.parseJSON(data.jqXHR.responseText);
-                        if (resp.status == 1) {
-                             carouselCollection.add({
-                                   image: resp.image
-                              });
-                        } else {
-                            alert(resp.message);
-                       }
+                    var resp = $.parseJSON(data.jqXHR.responseText);
+                    if (resp.status == 1) {
+                        carouselCollection.add({
+                            image: resp.image
+                        });
+                    } else {
+                        alert(resp.message);
+                    }
                 }
             }));
         } else { //ie upload
            this.$("[name=image]").fileupload(_.extend(obj, {
                forceIframeTransport: true,
                done: function(e, data) {
-                     var resp = $.parseJSON($.trim(data.result.contents().find('body').html()));
-                         if (resp.status == 1) {
-                                carouselCollection.add({
-                                      image: resp.image
-                                 });
-                           } else {
-                               alert(resp.message);
-                          }
+                    var resp = $.parseJSON($.trim(data.result.contents().find('body').html()));
+                    if (resp.status == 1) {
+                        carouselCollection.add({
+                            image: resp.image
+                        });
+                    } else {
+                        alert(resp.message);
+                    }
                 }
            }));
         }
@@ -171,16 +176,15 @@ var carouselListView = Backbone.View.extend({
     sortable: function() {
        this.$el.sortable({
            items: ".upload-carousel-item",
-           revert: 300,
            placeholder: "upload-carousel-item upload-carousel-sort",
            tolerance: "pointer"
        });
     },
+    popup: function(e) {
+        this.$('[name=image]')[0].click();
+    },
     render: function () {
-        var m = carouselCollection.models;
-        for (var i = 0, l = m.length; i < l; i++) {
-            this.addOne(m[i]);
-        }
+        carouselCollection.forEach(this.addOne, this);
     },
     addOne: function (model) {
         $(new carouselItemView({

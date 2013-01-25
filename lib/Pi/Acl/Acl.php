@@ -346,18 +346,7 @@ class Acl
         if ($role == static::ADMIN) return true;
 
         $moduleRule = $this->getModel('rule');
-        //$resources = $this->loadResources($resource);
         $where = array();
-
-        /*
-        if (empty($resources)) {
-            return $this->getDefault();
-        } elseif (count($resources) == 1) {
-            $where['resource'] = $resources[0];
-        } else {
-            $where['resource'] = $resources;
-        }
-        */
 
         if (null !== $privilege) {
             $where['privilege'] = $privilege;
@@ -369,18 +358,6 @@ class Acl
         $allowed = null;
         // Look up in all parent resources
         $resources = $this->loadResources($resource);
-        /*
-        if (is_string($resource) ) {
-            $current = $resource;
-        } elseif (is_array($resource) && !empty($resource['name'])) {
-            $current = $resource['name'];
-        } else {
-            $current = null;
-        }
-        if ($current) {
-            array_unshift($resources, $current);
-        }
-        */
 
         while ($resources) {
             $where['resource'] = array_pop($resources);
@@ -406,6 +383,34 @@ class Acl
     public function checkAccess($resource, $privilege = null)
     {
         return $this->isAllowed($this->getRole(), $resource, $privilege);
+    }
+
+    /**
+     * Check exceptions for admin page access to skip permission check
+     *
+     * @param array $resource  array('module' => $module, 'controller' => $controller, 'action' => $action)
+     * @return boolean
+     */
+    public function checkException($resource)
+    {
+        $module = $resource['module'];
+        $controller = $resource['controller'];
+        $action = $resource['action'];
+        $pageList = Pi::service('registry')->page->read('exception', $module);
+
+        // Page resource
+        $key = sprintf('%s-%s-%s', $module, $controller, $action);
+        if (isset($pageList[$key])) {
+            return true;
+        }
+        $key = sprintf('%s-%s', $module, $controller);
+        if (isset($pageList[$key])) {
+            return true;
+        }
+        if (isset($pageList[$module])) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -458,8 +463,9 @@ class Acl
             $module = $resource['module'];
             $controller = $resource['controller'];
             $action = $resource['action'];
-            $resourceList = Pi::service('registry')->resource->read($this->getSection(), $module, 'page');
-            $pageList = array_flip(Pi::service('registry')->page->read($this->getSection(), $module));
+            $section = empty($resource['section']) ? $this->getSection() : $resource['section'];
+            $resourceList = Pi::service('registry')->resource->read($section, $module, 'page');
+            $pageList = array_flip(Pi::service('registry')->page->read($section, $module));
 
             $resources = array();
             foreach ($resourceList as $page => $list) {

@@ -178,4 +178,16 @@ return array(
             'title'         => __('What\'s new'),
         ),
     ),
+
+    // Exception of admin pages to skip ACL check
+    'exception' => array(
+        array(
+            'controller'    => 'resource',
+            'action'        => 'assign',
+        ),
+        array(
+            'controller'    => 'perm',
+            'action'        => 'assign',
+        ),
+    ),
 );

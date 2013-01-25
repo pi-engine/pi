@@ -74,7 +74,7 @@ class BlockController extends ActionController
         $rowset = $model->selectWith($select);
         $blocks = array();
         foreach ($rowset as $row) {
-            $blocks[$row->title] = array(
+            $blocks[$row->id] = array(
                 'id'            => $row->id,
                 'name'          => $row->name,
                 'title'         => $row->title,
@@ -145,7 +145,7 @@ class BlockController extends ActionController
                 extract($result);
                 if ($status) {
                     $message = __('Block data saved successfully.');
-                    $this->jump(array('action' => 'index', 'name' => $row->module), $message);
+                    $this->jump(array('action' => 'index', 'name' => $rootRow->module), $message);
                     return;
                 } else {
                     $message = __('Block data not saved.');

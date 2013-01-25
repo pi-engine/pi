@@ -33,9 +33,9 @@ class Render extends AbstractService
     /**
      * Cache Storage
      *
-     * @var AbstractAdapter
+     * @var AbstractAdapter|string
      */
-    protected $storage;
+    protected $storage = 'filesystem';
 
     /**
      * Rendering type, potential values: page, action, block
@@ -125,9 +125,9 @@ class Render extends AbstractService
     public function getStorage()
     {
         if (!$this->storage instanceof AbstractAdapter) {
-            //$frontConfig = Pi::config()->load('application.front.php');
-            if (!empty($this->options['storage'])) {
-                $storage = Pi::service('cache')->loadStorage($this->options['storage']);
+            $storage = !empty($this->options['storage']) ? $this->options['storage'] : ($this->storage ?: '');
+            if ($storage) {
+                $storage = Pi::service('cache')->loadStorage($storage);
             } else {
                 $storage = Pi::service('cache')->storage();
             }
@@ -255,7 +255,7 @@ class Render extends AbstractService
     public function cachedContent()
     {
         if (null === $this->cachedContent) {
-            $this->cachedContent = Pi::service('cache')->getItem($this->meta['key'], $this->meta['namespace'], $this->getStorage());
+            $this->cachedContent = Pi::service('cache')->getItem($this->meta['key'], $this->meta, $this->getStorage());
         }
         return $this->cachedContent;
     }

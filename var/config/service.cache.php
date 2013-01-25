@@ -2,7 +2,7 @@
 // Cache service configuration
 
 // Set up cache engine key, the key must match one of $config keys
-$cache = 'apc';
+$cache = 'filesystem';
 
 if ('apc' == $cache && !extension_loaded('apc')) {
     $cache = 'filesystem';

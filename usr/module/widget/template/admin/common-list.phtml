@@ -5,16 +5,15 @@
     <?php  foreach ($widgets as $id => $widget) {  ?>
     <li>
         <div class="widget-hd clearfix">
-            <strong title="<?php echo $this->escape($widget['block']['title']); ?>"><?php echo $this->escape($widget['block']['title']); ?></strong>
-            
+            <strong title="<?php echo $this->escape($widget['block']['title']); ?>" class="ellipsis"><?php echo $this->escape($widget['block']['title']); ?></strong>
         </div>
         <div class="widget-description">
            <?php echo $this->escape($widget['block']['description']); ?>
         </div>
         <div class="widget-action">
-           <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $widget['id'])); ?>" title="<?php _e('Edit'); ?>"><?php _e('Edit'); ?></a>
-           <span class="divider">|</span>
-           <a href="<?php echo $this->url('', array('action' => 'delete', 'id' => $widget['id'])); ?>" title="<?php _e('Delete'); ?>" onclick=" return confirm('<?php _e('Are you sure delete this widget?'); ?>')"><?php _e('Delete'); ?></a>
+           <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $widget['id'])); ?>" class="btn btn-link"><?php _e('Edit'); ?></a>
+           <span class="muted">|</span>
+           <a href="<?php echo $this->url('', array('action' => 'delete', 'id' => $widget['id'])); ?>" class="btn btn-link" onclick=" return confirm('<?php _e('Are you sure delete this widget?'); ?>')"><?php _e('Delete'); ?></a>
         </div>         
     <?php } ?>    
 </ul>

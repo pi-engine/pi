@@ -62,12 +62,9 @@ class Session extends AbstractService
             }
             $sessionStorage = null;
             if (!empty($options['storage'])) {
-                $class  = !empty($options['storage']['class']) ? $options['storage']['class'] : 'Zend\\Session\\Config\\SessionConfig';
+                $class  = !empty($options['storage']['class']) ? $options['storage']['class'] : 'Zend\\Session\\Storage\\SessionStorage';
                 $input  = isset($options['storage']['input']) ? $options['storage']['input'] : null;
                 $sessionStorage = new $class($input);
-                if (!empty($options['storage']['validator'])) {
-                    $sessionStorage->setMetaData('_VALID', $options['storage']['validator']);
-                }
             }
             $saveHandler = null;
             if (!empty($options['save_handler']) && !empty($options['save_handler']['class'])) {

@@ -24,7 +24,7 @@ use Pi;
 class I18n extends AbstractRegistry
 {
     const NAMESPACE_GLOBAL = '_usr';
-    protected $namespaceCustom;
+    protected $namespaceCustom = '';
 
     public function read($rawDomain, $locale)
     {
@@ -39,10 +39,11 @@ class I18n extends AbstractRegistry
         }
         $moduleDomain = Pi::service('i18n')->moduleDomain;
         if ($moduleDomain == substr($domain, 0, strlen($moduleDomain))) {
-            $namespace = substr($domain, strlen($moduleDomain) + 1);
+            $namespace = substr($domain, strlen($moduleDomain) + 1) ?: '';
         } else {
             $namespace = static::NAMESPACE_GLOBAL;
         }
+
         $this->namespaceCustom = $namespace;
         $options = compact('domain', 'file', 'locale');
         return $this->loadData($options);
