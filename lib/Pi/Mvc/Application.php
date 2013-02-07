@@ -137,6 +137,37 @@ class Application extends ZendApplication
     }
     /**#@-*/
 
+    /**#@+
+     * Extended from Zend\Mvc\Application
+     */
+    /**
+     * Static method for quick and easy initialization of the Application.
+     *
+     * If you use this init() method, you cannot specify a service with the
+     * name of 'ApplicationConfig' in your service manager config. This name is
+     * reserved to hold the array from application.config.php.
+     *
+     * The following services can only be overridden from application.config.php:
+     *
+     * - ModuleManager
+     * - SharedEventManager
+     * - EventManager & Zend\EventManager\EventManagerInterface
+     *
+     * All other services are configured after module loading, thus can be
+     * overridden by modules.
+     *
+     * @param array $configuration
+     * @return Application
+     */
+    public static function init($configuration = array())
+    {
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
+        $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
+        $serviceManager->setService('ApplicationConfig', $configuration);
+        //$serviceManager->get('ModuleManager')->loadModules();
+        return $serviceManager->get('Application')->bootstrap();
+    }
+
     /**
      * Complete the request
      *
@@ -148,17 +179,10 @@ class Application extends ZendApplication
      */
     protected function completeRequest(MvcEvent $event)
     {
-        $events = $this->getEventManager();
-        $event->setTarget($this);
-        /**#@++
-         * Trigger events onComplete
-         * @see View\DeniedStrategy
+        parent:: completeRequest($event);
+        /**
+         * Log route information
          */
-        $events->trigger('complete', $event);
-        /**#@-*/
-        $events->trigger(MvcEvent::EVENT_RENDER, $event);
-        $events->trigger(MvcEvent::EVENT_FINISH, $event);
-
         if (Pi::service()->hasService('log')) {
             if ($this->getRouteMatch()) {
                 Pi::service('log')->info(sprintf('Route: %s-%s-%s.', $this->getRouteMatch()->getParam('module'), $this->getRouteMatch()->getParam('controller'), $this->getRouteMatch()->getParam('action')));
@@ -167,6 +191,7 @@ class Application extends ZendApplication
             }
         }
 
-        return $event->getResponse();
+        return $this;
     }
+    /**#@-*/
 }

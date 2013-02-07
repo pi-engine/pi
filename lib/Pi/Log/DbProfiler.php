@@ -18,6 +18,7 @@
  */
 
 namespace Pi\Log;
+
 use Zend\Log\Writer\WriterInterface;
 use Zend\Stdlib\SplPriorityQueue;
 
@@ -32,8 +33,6 @@ class DbProfiler
 
     /**
      * Constructor
-     *
-     * @return Logger
      */
     public function __construct($options = array())
     {
@@ -47,7 +46,7 @@ class DbProfiler
      */
     public function shutdown()
     {
-        foreach ($this->writers as $writer) {
+        foreach ($this->writers->toArray() as $writer) {
             try {
                 $writer->shutdown();
             } catch (\Exception $e) {}

@@ -19,6 +19,7 @@
 
 
 namespace Pi\Log\Formatter;
+
 use Pi;
 use Pi\Security;
 use Pi\Log\Logger;
@@ -44,8 +45,9 @@ class DbProfiler implements FormatterInterface
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL .
                         '<div class="time">%timestamp%</div>' . PHP_EOL .
-                        '<div class="message %priorityName%" style="clear: both;">[%timer%] %count% %message%</div>' . PHP_EOL .
-                        '<div class="message">%query%</div>' . PHP_EOL .
+                        '<div class="message %priorityName%" style="clear: both;">[%timer%] %message%</div>' . PHP_EOL .
+                        '<div class="message">query: %sql%</div>' . PHP_EOL .
+                        '<div class="message">params: %params%</div>' . PHP_EOL .
                         '</div>' . PHP_EOL;
         }
 
@@ -64,12 +66,17 @@ class DbProfiler implements FormatterInterface
         /**#@++
          * Remove DB table prefix for security considerations
          */
-        $event['message'] = Security::sanitizeDb($event['message']);
-        $event['query'] = Security::sanitizeDb($event['query']);
+        $event['message'] = isset($event['message']) ? Security::sanitizeDb($event['message']) : '';
+        $event['sql'] = Security::sanitizeDb($event['sql']);
         /**#@-*/
 
-        $event['timestamp'] = date($this->getDateTimeFormat(), intval($event['timestamp'])) . substr($event['timestamp'], strpos($event['timestamp'], '.'), 5);
-        $event['timer'] = sprintf('%.4f', $event['timer']);
+        $event['params'] = '';
+        $params = $event['parameters'] ?: array();
+        foreach ($params as $key => $val) {
+            $event['params'] .= '[' . $key . '] ' . $val . ';';
+        }
+        $event['timestamp'] = date($this->getDateTimeFormat(), intval($event['start'])) . substr($event['start'], strpos($event['start'], '.'), 5);
+        $event['timer'] = sprintf('%.4f', $event['elapse']);
         if (!$event['status'] && empty($event['priorityName'])) {
             $event['priorityName'] = Pi::service('log')->logger()->priorityName(Logger::ERR);
         }

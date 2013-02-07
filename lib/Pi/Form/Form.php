@@ -45,7 +45,6 @@ class Form extends ZendForm
      */
     public function __construct($name = null)
     {
-        //$this->iterator = new PriorityQueue();
         parent::__construct($name);
         $this->init();
     }

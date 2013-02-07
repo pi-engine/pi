@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Mvc
  */
 
 namespace Zend\Mvc\Router\Http;
@@ -18,8 +17,6 @@ use Zend\Stdlib\RequestInterface as Request;
 /**
  * Hostname route.
  *
- * @package    Zend_Mvc_Router
- * @subpackage Http
  * @see        http://guides.rubyonrails.org/routing.html
  */
 class Hostname implements RouteInterface
@@ -70,7 +67,7 @@ class Hostname implements RouteInterface
      * factory(): defined by RouteInterface interface.
      *
      * @see    Route::factory()
-     * @param  array|\Traversable $options
+     * @param  array|Traversable $options
      * @throws \Zend\Mvc\Router\Exception\InvalidArgumentException
      * @return Hostname
      */

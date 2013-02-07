@@ -3,19 +3,14 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_View
  */
 
 namespace Zend\View\Helper;
 
 /**
  * Helper for returning the current server URL (optionally with request URI)
- *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
  */
 class ServerUrl extends AbstractHelper
 {
@@ -51,7 +46,7 @@ class ServerUrl extends AbstractHelper
      * View helper entry point:
      * Returns the current host's URL like http://site.com
      *
-     * @param  string|boolean $requestUri  [optional] if true, the request URI
+     * @param  string|bool $requestUri  [optional] if true, the request URI
      *                                     found in $_SERVER will be appended
      *                                     as a path. If a string is given, it
      *                                     will be appended as a path. Default
@@ -98,7 +93,7 @@ class ServerUrl extends AbstractHelper
         if (($scheme == 'http' && (null === $port || $port == 80))
             || ($scheme == 'https' && (null === $port || $port == 443))
         ) {
-            $this->host = $host;;
+            $this->host = $host;
             return $this;
         }
 
@@ -180,6 +175,15 @@ class ServerUrl extends AbstractHelper
         }
 
         if (isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST'])) {
+            // Detect if the port is set in SERVER_PORT and included in HTTP_HOST
+            if (isset($_SERVER['SERVER_PORT'])) {
+                $portStr = ':' . $_SERVER['SERVER_PORT'];
+                if (substr($_SERVER['HTTP_HOST'], 0-strlen($portStr), strlen($portStr)) == $portStr) {
+                    $this->setHost(substr($_SERVER['HTTP_HOST'], 0, 0-strlen($portStr)));
+                    return;
+                }
+            }
+
             $this->setHost($_SERVER['HTTP_HOST']);
             return;
         }

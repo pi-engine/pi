@@ -112,6 +112,14 @@ use Pi\Acl\Acl as AclHandler;
  *              ),
  *              ...
  *          ),
+ *          // Exception of admin pages to skip ACL check
+ *          'exception' => array(
+ *              array(
+ *                  'controller'    => 'controllerName',
+ *                  'action'        => 'actionName',
+ *              ),
+ *              ...
+ *          ),
  *          ...
  *  );
  *  </code>
@@ -137,15 +145,18 @@ class Page extends AbstractResource
     protected function canonizePage($config)
     {
         $moduleTitle = $this->event->getParam('title');
-        if (!isset($config['front'])) {
-            $config['front'] = array(array(
-                'title' => $moduleTitle,
-            ));
+        $pageEntry = array(
+            'title' => $moduleTitle,
+        );
+        // Set module exception for admin
+        if (empty($config['admin']) && !isset($config['exception'])) {
+            $config['exception'] = array($pageEntry);
         }
-        if (!isset($config['admin'])) {
-            $config['admin'] = array(array(
-                'title' => $moduleTitle,
-            ));
+        if (!isset($config['front']) || false !== $config['front']) {
+            $config['front'][] = $pageEntry;
+        }
+        if (!isset($config['admin']) || false !== $config['admin']) {
+            $config['admin'][] = $pageEntry;
         }
 
         return $config;
@@ -181,6 +192,7 @@ class Page extends AbstractResource
                 }
                 $pageList[$pageName] = $page;
             }
+            /*
             // Set up module pseudo page
             if (!isset($pageList[$module])) {
                 $pageList[$module] = array(
@@ -191,6 +203,7 @@ class Page extends AbstractResource
                     'block'     => ('front' == $section) ? 1 : 0,
                 );
             }
+            */
             // Sort page list by module-controller-action
             ksort($pageList);
             $pages[$section] = $pageList;
@@ -209,6 +222,7 @@ class Page extends AbstractResource
                 'staff'     => 1
             );
         }
+
         foreach ($pages as $section => $pageList) {
             foreach ($pageList as $name => $page) {
                 $message = array();
@@ -301,6 +315,8 @@ class Page extends AbstractResource
                 }
             }
         }
+
+
         foreach ($pages_exist as $key => $page) {
             if ($page['custom'] && !$diablePage) continue;
             $message = array();

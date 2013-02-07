@@ -35,12 +35,6 @@ class Standard extends AbstractEngine
     const SECTION = self::FRONT;
 
     /**
-     * Section name
-     * @var string
-     */
-    //protected $section = 'front';
-
-    /**
      * Identifier for file name of option data
      * @var string
      */
@@ -65,13 +59,15 @@ class Standard extends AbstractEngine
         if (false === $status) {
             return false;
         }
+
         $response = $this->application->getResponse();
         $response->getHeaders()->addHeaders(array(
             'content-type'      => sprintf('text/html; charset=%s', Pi::config('charset')),
             'content-language'  => Pi::config('locale'),
         ));
-        $response = $this->application->run();
-        //$response->send();
+
+        $this->application->run();
+
         return true;
     }
 
@@ -88,6 +84,7 @@ class Standard extends AbstractEngine
 
         // Load application, which could be called during resouce setup
         $application = $this->application();
+
 
         // Load application resources
         $status = $this->setupResource();

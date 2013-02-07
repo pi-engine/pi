@@ -10,17 +10,19 @@
     ));
     $this->backbone();
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<div class="page-header">
+    <h2><?php echo $this->escape($title); ?></h2>
+</div>
 <div class="row-fluid">
     <div class="span8">
         <div class="widget notice" id="js-notice">
             <div class="media widget-body">
-                <i class="pull-left icon-volume-up" style="font-size: 16px;"></i>
+                <i class="pull-left icon-bullhorn" style="font-size: 18px;"></i>
                 <div class="media-body">
                     <div class="notice-show">
                         <div>
                             <span class="notice-show-text"><?php echo $message['content']; ?></span>
-                            <span class="muted notice-show-time"><?php echo $message['time']; ?></span>
+                            <i class="muted notice-show-time"><?php echo $message['time']; ?></i>
                         </div>
                         <?php if ($messagePerm) { ?>
                         <div class="notice-show-action">
@@ -33,7 +35,7 @@
                     </div>
                     <div class="notice-edit">
                         <textarea class="span8" placeholder="<?php _e('notice'); ?>"></textarea>
-                        <div class="muted" style="margin-bottom: 5px;"><?php _e('Add a site announcement.'); ?></div>
+                        <div class="muted" style="margin-bottom: 10px;"><?php _e('Add a site announcement.'); ?></div>
                         <div>
                             <span class="btn js-save"><?php _e('Save'); ?></span>
                             <span class="btn btn-link js-cancel"><?php _e('Cancel'); ?></span>
@@ -69,11 +71,11 @@
                 <strong><?php _e('Module summary')?></strong>
             </div>
             <div class="widget-body">
-                <div class="accordion" id="summary-accordion">
+                <div class="accordion" id="summary-accordion" style="margin-bottom: 0;">
                     <?php foreach($summaryList as $i => $item) { ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#summary-accordion" href="#collapse<?php echo $item['name']; ?>"><?php echo $item['title']; ?></a>
+                             <span class="accordion-toggle" data-toggle="collapse" data-parent="#summary-accordion" href="#collapse<?php echo $item['name']; ?>"><?php echo $item['title']; ?></span>
                         </div>
                         <div id="collapse<?php echo $item['name']; ?>" class="accordion-body collapse <?php if($i == 0) { echo 'in'; } ?>">
                             <div class="accordion-inner">
@@ -92,7 +94,7 @@
                 <strong><?php _e('Powered by Pi'); ?></strong>
             </div>
             <div class="widget-body">
-
+                <?php _e('Pi Engine is the next generation of XOOPS, designed as an application development engine for web and mobile. I1t is aims at building a sustainable ecosystem to benefit all contributors and user in technology and business.'); ?>
             </div>
         </div>
     </div>

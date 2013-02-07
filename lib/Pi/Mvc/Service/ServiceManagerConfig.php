@@ -34,17 +34,17 @@ class ServiceManagerConfig extends ZendServiceManagerConfig
         /**#@+
          * From ServiceListenerFactory
          */
+        'DispatchListener'          => 'Zend\Mvc\DispatchListener',
+        'RouteListener'             => 'Zend\Mvc\RouteListener',
+        'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
+        /**#@-*/
+
+        /**#@+
+         * Pi custom service
+         */
         'ViewManager'               => 'Pi\Mvc\View\Http\ViewManager',
         'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
         'Config'                    => 'Pi\Mvc\Service\Config',
-        'ControllerLoader'          => 'Pi\Mvc\Service\ControllerLoader',
-        'ControllerPluginManager'   => 'Pi\Mvc\Controller\PluginManager',
-        //'Router'                    => 'Pi\Mvc\Router\Http\TreeRouteStack',
-
-        'DispatchListener'          => 'Zend\Mvc\DispatchListener',
-        //'Request'                   => 'Zend\Http\PhpEnvironment\Request',
-        //'Response'                  => 'Zend\Http\PhpEnvironment\Response',
-        'RouteListener'             => 'Zend\Mvc\RouteListener',
         /**#@-*/
     );
 
@@ -55,33 +55,48 @@ class ServiceManagerConfig extends ZendServiceManagerConfig
      */
     protected $factories = array(
         'EventManager'              => 'Zend\Mvc\Service\EventManagerFactory',
-        'ModuleManager'             => 'Pi\Mvc\Service\ModuleManagerFactory',
+        'ModuleManager'             => 'Zend\Mvc\Service\ModuleManagerFactory',
 
         /**#@+
          * From ServiceListenerFactory
          */
-        'Application'               => 'Pi\Mvc\Service\ApplicationFactory',
+        'Application'                    => 'Zend\Mvc\Service\ApplicationFactory',
+        //'Config'                         => 'Zend\Mvc\Service\ConfigFactory',
+        //'ControllerLoader'               => 'Zend\Mvc\Service\ControllerLoaderFactory',
+        //'ControllerPluginManager'        => 'Zend\Mvc\Service\ControllerPluginManagerFactory',
+        'ConsoleAdapter'                 => 'Zend\Mvc\Service\ConsoleAdapterFactory',
+        'ConsoleRouter'                  => 'Zend\Mvc\Service\RouterFactory',
+        'DependencyInjector'             => 'Zend\Mvc\Service\DiFactory',
+        'DiAbstractServiceFactory'       => 'Zend\Mvc\Service\DiAbstractServiceFactoryFactory',
+        'DiServiceInitializer'           => 'Zend\Mvc\Service\DiServiceInitializerFactory',
+        'DiStrictAbstractServiceFactory' => 'Zend\Mvc\Service\DiStrictAbstractServiceFactoryFactory',
+        'FilterManager'                  => 'Zend\Mvc\Service\FilterManagerFactory',
+        'FormElementManager'             => 'Zend\Mvc\Service\FormElementManagerFactory',
+        'HttpRouter'                     => 'Zend\Mvc\Service\RouterFactory',
+        'PaginatorPluginManager'         => 'Zend\Mvc\Service\PaginatorPluginManagerFactory',
+        'Request'                        => 'Zend\Mvc\Service\RequestFactory',
+        'Response'                       => 'Zend\Mvc\Service\ResponseFactory',
+        //'Router'                         => 'Zend\Mvc\Service\RouterFactory',
+        'RoutePluginManager'             => 'Zend\Mvc\Service\RoutePluginManagerFactory',
+        'ValidatorManager'               => 'Zend\Mvc\Service\ValidatorManagerFactory',
+        //'ViewHelperManager'              => 'Zend\Mvc\Service\ViewHelperManagerFactory',
+        'ViewFeedRenderer'               => 'Zend\Mvc\Service\ViewFeedRendererFactory',
+        'ViewFeedStrategy'               => 'Zend\Mvc\Service\ViewFeedStrategyFactory',
+        'ViewJsonRenderer'               => 'Zend\Mvc\Service\ViewJsonRendererFactory',
+        'ViewJsonStrategy'               => 'Zend\Mvc\Service\ViewJsonStrategyFactory',
+        //'ViewManager'                    => 'Zend\Mvc\Service\ViewManagerFactory',
+        'ViewResolver'                   => 'Zend\Mvc\Service\ViewResolverFactory',
+        'ViewTemplateMapResolver'        => 'Zend\Mvc\Service\ViewTemplateMapResolverFactory',
+        'ViewTemplatePathStack'          => 'Zend\Mvc\Service\ViewTemplatePathStackFactory',
+        /**#@-*/
 
-        'ConsoleAdapter'            => 'Zend\Mvc\Service\ConsoleAdapterFactory',
-        //'ConsoleRouter'             => 'Zend\Mvc\Service\RouterFactory',
-        'DependencyInjector'        => 'Zend\Mvc\Service\DiFactory',
-
-        //'HttpRouter'                => 'Zend\Mvc\Service\RouterFactory',
-        'Request'                   => 'Zend\Mvc\Service\RequestFactory',
-        'Response'                  => 'Zend\Mvc\Service\ResponseFactory',
-        //'Router'                    => 'Zend\Mvc\Service\RouterFactory',
-
-        //'ViewHelperManager'         => 'Zend\Mvc\Service\ViewHelperManagerFactory',
-
-        'ViewFeedRenderer'          => 'Zend\Mvc\Service\ViewFeedRendererFactory',
-        'ViewFeedStrategy'          => 'Zend\Mvc\Service\ViewFeedStrategyFactory',
-        'ViewJsonRenderer'          => 'Zend\Mvc\Service\ViewJsonRendererFactory',
-        'ViewJsonStrategy'          => 'Zend\Mvc\Service\ViewJsonStrategyFactory',
-
-        'ViewResolver'              => 'Pi\Mvc\Service\ViewResolverFactory',
-        'ViewTemplateMapResolver'   => 'Zend\Mvc\Service\ViewTemplateMapResolverFactory',
-        'ViewTemplatePathStack'     => 'Zend\Mvc\Service\ViewTemplatePathStackFactory',
-
+        /**#@+
+         * Pi custom service
+         */
+        'Application'                   => 'Pi\Mvc\Service\ApplicationFactory',
+        'ControllerLoader'              => 'Pi\Mvc\Service\ControllerLoaderFactory',
+        'ControllerPluginManager'       => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
+        'ViewResolver'                  => 'Pi\Mvc\Service\ViewResolverFactory',
         /**#@-*/
     );
 
@@ -96,17 +111,15 @@ class ServiceManagerConfig extends ZendServiceManagerConfig
         /**#@+
          * From ServiceListenerFactory
          */
-        'Configuration'                             => 'Config',
-        'Console'                                   => 'ConsoleAdapter',
-        //'ControllerPluginBroker'                    => 'ControllerPluginManager',
-        'Di'                                        => 'DependencyInjector',
-        'Zend\Di\LocatorInterface'                  => 'DependencyInjector',
-        //'Zend\Mvc\Controller\PluginBroker'          => 'ControllerPluginBroker',
-        'Zend\Mvc\Controller\PluginManager'         => 'ControllerPluginManager',
-        'Zend\View\Resolver\TemplateMapResolver'    => 'ViewTemplateMapResolver',
-        'Zend\View\Resolver\TemplatePathStack'      => 'ViewTemplatePathStack',
-        'Zend\View\Resolver\AggregateResolver'      => 'ViewResolver',
-        'Zend\View\Resolver\ResolverInterface'      => 'ViewResolver',
+        'Configuration'                          => 'Config',
+        'Console'                                => 'ConsoleAdapter',
+        'Di'                                     => 'DependencyInjector',
+        'Zend\Di\LocatorInterface'               => 'DependencyInjector',
+        'Zend\Mvc\Controller\PluginManager'      => 'ControllerPluginManager',
+        'Zend\View\Resolver\TemplateMapResolver' => 'ViewTemplateMapResolver',
+        'Zend\View\Resolver\TemplatePathStack'   => 'ViewTemplatePathStack',
+        'Zend\View\Resolver\AggregateResolver'   => 'ViewResolver',
+        'Zend\View\Resolver\ResolverInterface'   => 'ViewResolver',
         /**#@-*/
     );
 }

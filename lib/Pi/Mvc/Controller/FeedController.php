@@ -79,8 +79,8 @@ abstract class FeedController extends ActionController
 
         // Preset feed variables
         $variables = array(
-            'copyright'     => Pi::config('copyright', 'meta'),
-            'description'   => Pi::config('description', 'meta'),
+            'copyright'     => Pi::config('copyright', 'meta') ?: Pi::config('sitename'),
+            'description'   => Pi::config('description', 'meta') ?: Pi::config('slogan'),
             'authors'       => array(
                 array(
                     'name'      => Pi::config('author', 'meta'),

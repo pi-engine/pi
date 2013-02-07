@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Feed
  */
 
 namespace Zend\Feed\Writer;
@@ -14,10 +13,6 @@ use DateTime;
 use Zend\Uri;
 use Zend\Validator;
 
-/**
- * @category Zend
- * @package Zend_Feed_Writer
- */
 class AbstractFeed
 {
     /**
@@ -94,6 +89,9 @@ class AbstractFeed
         return $this;
     }
 
+    /**#@+
+     * Modified by Taiwen Jiang
+     */
     /**
      * Set an array with feed authors
      *
@@ -101,12 +99,25 @@ class AbstractFeed
      * @param array $authors
      * @return AbstractFeed
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addAuthors(array $authors)
     public function setAuthors(array $authors)
+    {
+        $this->data['authors'] = array();
+        foreach ($authors as $author) {
+            $this->addAuthor($author);
+        }
+
+        return $this;
+    }
     /**#@-*/
+
+    /**
+     * Set an array with feed authors
+     *
+     * @see addAuthor
+     * @param array $authors
+     * @return AbstractFeed
+     */
+    public function addAuthors(array $authors)
     {
         foreach ($authors as $author) {
             $this->addAuthor($author);
@@ -517,14 +528,33 @@ class AbstractFeed
         return $this;
     }
 
+    /**#@+
+     * Modified by Taiwen Jiang
+     */
     /**
      * Set an array of feed categories
      *
      * @param array $categories
      * @return AbstractFeed
      */
-    //public function addCategories(array $categories)
     public function setCategories(array $categories)
+    {
+        $this->data['categories'] = array();
+        foreach ($categories as $category) {
+            $this->addCategory($category);
+        }
+
+        return $this;
+    }
+    /**#@-*/
+
+    /**
+     * Set an array of feed categories
+     *
+     * @param array $categories
+     * @return AbstractFeed
+     */
+    public function addCategories(array $categories)
     {
         foreach ($categories as $category) {
             $this->addCategory($category);
@@ -543,9 +573,9 @@ class AbstractFeed
     {
         if (isset($this->data['authors'][$index])) {
             return $this->data['authors'][$index];
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -785,10 +815,12 @@ class AbstractFeed
      * on their appropriateness for the current type, e.g. renderers.
      *
      * @param string $type
+     * @return AbstractFeed
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -805,12 +837,14 @@ class AbstractFeed
      * Unset a specific data point
      *
      * @param string $name
+     * @return AbstractFeed
      */
     public function remove($name)
     {
         if (isset($this->data[$name])) {
             unset($this->data[$name]);
         }
+        return $this;
     }
 
     /**

@@ -39,9 +39,9 @@ class Adminmode extends AbstractResource
 
     public function setMode(MvcEvent $e)
     {
+        $route = $e->getRouteMatch();
         //d(Pi::service('session')->backoffice->changed);
-        if (!Pi::service('session')->backoffice->changed) {
-            $route = $e->getRouteMatch();
+        if (!Pi::service('session')->backoffice->changed && $route) {
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module && in_array($controller, array('block', 'config', 'page', 'resource', 'event'))) {

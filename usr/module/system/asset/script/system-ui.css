@@ -59,18 +59,6 @@ tr:hover .row-actions {
     margin-bottom: 10px;
     text-align: center;
 }
-.mb5 {
-    margin-bottom: 5px;
-}
-.mr10 {
-    margin-right: 10px;
-}
-.mb10 {
-    margin-bottom: 10px;
-}
-.mr20 {
-    margin-right: 20px;
-}
 .nowrap {
     white-space: nowrap;
     overflow: hidden;
@@ -78,27 +66,13 @@ tr:hover .row-actions {
 .bg-loading {
     background: url('../image/alertload.gif') no-repeat center center #fff;
 }
-.inline-block, .w150, .w300, .w180, .w200, .w250, .col2 {
+.inline-block,
+.col2 {
     display: inline-block;
     *display: inline;
     *zoom: 1;
     vertical-align: top;
     margin: 0 10px 10px 0;
-}
-.w150 {
-    width: 150px;
-}
-.w180 {
-    width: 180px;
-}
-.w200 {
-    width: 200px;
-}
-.w250 {
-    width: 250px;
-}
-.w300 {
-    width: 300px;
 }
 .box-hover {
     border-bottom: 1px solid #e6e6e6;
@@ -130,8 +104,12 @@ tr:hover .row-actions {
     margin-left: -12px;
 }
 /*Dashboard*/
-.notice .widget-body {
-    padding: 10px;
+.quick-link .widget-header,
+.module-summary .widget-header {
+    line-height: 28px;
+}
+.notice {
+    background: #F8F8F8;
 }
 .notice-show-text {
     margin-bottom: 10px;
@@ -154,9 +132,8 @@ tr:hover .row-actions {
 .quick-link .js-all-save {
     display: none;
 }
-.quick-link .widget-header,
-.module-summary .widget-header {
-    line-height: 28px;
+.quick-link .widget-body {
+    padding: 18px 9px 8px;    
 }
 .quick-link i {
     visibility: hidden;
@@ -184,6 +161,7 @@ tr:hover .row-actions {
     height: 24px;
     line-height: 24px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .quick-link-edit .js-all-save {
     display: inline-block;
@@ -211,6 +189,12 @@ tr:hover .row-actions {
 .icon-quick-link-add {
     font-size: 16px;
     color: #808080;
+}
+.module-summary .accordion-toggle {
+    padding: 8px 9px;
+}
+.module-summary .widget-body {
+    padding: 10px;
 }
 /*block list*/
 .block-list-page .dropdown-menu {

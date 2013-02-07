@@ -90,6 +90,9 @@ class Meta extends AbstractHelper
         $configMeta = Pi::service('registry')->config->read('system', 'meta');
         // Set head meta
         foreach ($configMeta as $key => $value) {
+            if (!$value) {
+                continue;
+            }
             $view->headMeta()->appendName($key, $value);
         }
 

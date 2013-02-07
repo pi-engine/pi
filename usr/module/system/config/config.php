@@ -240,7 +240,6 @@ $config['item'] = array(
     ),
 
     // Meta section
-    /*
     'copyright'     => array(
         'title'         => 'Meta copyright',
         'description'   => 'The copyright meta tag defines any copyright statements you wish to disclose about your web page documents.',
@@ -248,7 +247,6 @@ $config['item'] = array(
         'value'         => 'Copyright &copy; ' . date('Y'),
         'category'      => 'meta',
     ),
-    */
 
     'author'        => array(
         'title'         => 'Meta author',

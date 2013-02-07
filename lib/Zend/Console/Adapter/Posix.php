@@ -3,22 +3,20 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Console
  */
 
 namespace Zend\Console\Adapter;
 
+use ReflectionClass;
 use Zend\Console\Charset;
 use Zend\Console\Exception;
+use Zend\Console\Color\Xterm256;
 use Zend\Console\ColorInterface as Color;
 
 /**
  * @todo Add GNU readline support
- * @category   Zend
- * @package    Zend_Console
- * @subpackage Adapter
  * @link http://en.wikipedia.org/wiki/ANSI_escape_code
  */
 class Posix extends AbstractAdapter
@@ -38,13 +36,12 @@ class Posix extends AbstractAdapter
     /**
      * Map of colors to ANSI codes
      *
-     * @todo implement Xterm 256 colors (http://www.frexx.de/xterm-256-notes/)
      * @var array
      */
     protected static $ansiColorMap = array(
         'fg' => array(
-            Color::NORMAL        => '22;39m',
-            Color::RESET         => '22;39m',
+            Color::NORMAL        => '22;39',
+            Color::RESET         => '22;39',
 
             Color::BLACK         => '0;30',
             Color::RED           => '0;31',
@@ -65,8 +62,8 @@ class Posix extends AbstractAdapter
             Color::LIGHT_WHITE   => '1;37',
         ),
         'bg' => array(
-            Color::NORMAL        => '0;49m',
-            Color::RESET         => '0;49m',
+            Color::NORMAL        => '0;49',
+            Color::RESET         => '0;49',
 
             Color::BLACK         => '40',
             Color::RED           => '41',
@@ -218,28 +215,9 @@ class Posix extends AbstractAdapter
      */
     public function colorize($string, $color = null, $bgColor = null)
     {
-        // Retrieve ansi color codes
-        if ($color !== null) {
-            if (!isset(static::$ansiColorMap['fg'][$color])) {
-                throw new Exception\BadMethodCallException(sprintf(
-                    'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants',
-                    $color
-                ));
-            }
-            $color = static::$ansiColorMap['fg'][$color];
-        }
-
-        if ($bgColor !== null) {
-            if (!isset(static::$ansiColorMap['bg'][$bgColor])) {
-                throw new Exception\BadMethodCallException(sprintf(
-                    'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants',
-                    $bgColor
-                ));
-            }
-            $bgColor = static::$ansiColorMap['bg'][$bgColor];
-        }
-
-        return ($color   !== null ? "\x1b[" . $color   . 'm' : '')
+        $color   = $this->getColorCode($color, 'fg');
+        $bgColor = $this->getColorCode($bgColor, 'bg');
+        return ($color !== null ? "\x1b[" . $color   . 'm' : '')
             . ($bgColor !== null ? "\x1b[" . $bgColor . 'm' : '')
             . $string
             . "\x1b[22;39m\x1b[0;49m";
@@ -253,17 +231,7 @@ class Posix extends AbstractAdapter
      */
     public function setColor($color)
     {
-        // Retrieve ansi color code
-        if ($color !== null) {
-            if (!isset(static::$ansiColorMap['fg'][$color])) {
-                throw new Exception\BadMethodCallException(sprintf(
-                    'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants',
-                    $color
-                ));
-            }
-            $color = static::$ansiColorMap['fg'][$color];
-        }
-
+        $color = $this->getColorCode($color, 'fg');
         echo "\x1b[" . $color . 'm';
     }
 
@@ -275,18 +243,7 @@ class Posix extends AbstractAdapter
      */
     public function setBgColor($bgColor)
     {
-        // Retrieve ansi color code
-        if ($bgColor !== null) {
-            if (!isset(static::$ansiColorMap['bg'][$bgColor])) {
-                throw new Exception\BadMethodCallException(sprintf(
-                    'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants',
-                    $bgColor
-                ));
-            }
-
-            $bgColor = static::$ansiColorMap['bg'][$bgColor];
-        }
-
+        $bgColor = $this->getColorCode($bgColor, 'bg');
         echo "\x1b[" . ($bgColor) . 'm';
     }
 
@@ -401,5 +358,39 @@ class Posix extends AbstractAdapter
 
         // Set new mode
         shell_exec('stty '.escapeshellcmd($mode));
+    }
+
+    /**
+     * Get the final color code and throw exception on error
+     *
+     * @param  null|int|Xterm256 $color
+     * @throws Exception\BadMethodCallException
+     * @return string
+     */
+    protected function getColorCode($color, $type = 'fg')
+    {
+        if ($color instanceof Xterm256) {
+            $r    = new ReflectionClass($color);
+            $code = $r->getStaticPropertyValue('color');
+            if ($type == 'fg') {
+                $code = sprintf($code, $color::FOREGROUND);
+            } else {
+                $code = sprintf($code, $color::BACKGROUND);
+            }
+            return $code;
+        }
+
+        if ($color !== null) {
+            if (!isset(static::$ansiColorMap[$type][$color])) {
+                throw new Exception\BadMethodCallException(sprintf(
+                        'Unknown color "%s". Please use one of the Zend\Console\ColorInterface constants or use Zend\Console\Color\Xterm256::calculate',
+                        $color
+                ));
+            }
+
+            return static::$ansiColorMap[$type][$color];
+        }
+
+        return null;
     }
 }

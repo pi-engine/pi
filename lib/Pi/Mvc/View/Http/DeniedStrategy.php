@@ -52,7 +52,8 @@ class DeniedStrategy implements ListenerAggregateInterface
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareDeniedViewModel'), -90);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'prepareDeniedViewModel'));
-        $this->listeners[] = $events->attach('complete', array($this, 'prepareDeniedViewModel'));
+        //$this->listeners[] = $events->attach('complete', array($this, 'prepareDeniedViewModel'));
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'prepareDeniedViewModel'), -8);
     }
 
     /**

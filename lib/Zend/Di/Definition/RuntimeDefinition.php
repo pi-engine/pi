@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Di
  */
 
 namespace Zend\Di\Definition;
@@ -16,9 +15,6 @@ use Zend\Di\Definition\Annotation;
 
 /**
  * Class definitions based on runtime reflection
- *
- * @category   Zend
- * @package    Zend_Di
  */
 class RuntimeDefinition implements DefinitionInterface
 {
@@ -346,7 +342,7 @@ class RuntimeDefinition implements DefinitionInterface
             // set the class name, if it exists
             $def['parameters'][$methodName][$fqName][] = $actualParamName;
             $def['parameters'][$methodName][$fqName][] = ($p->getClass() !== null) ? $p->getClass()->getName() : null;
-            $def['parameters'][$methodName][$fqName][] = !($optional =$p->isOptional());
+            $def['parameters'][$methodName][$fqName][] = !($optional = $p->isOptional() && $p->isDefaultValueAvailable());
             $def['parameters'][$methodName][$fqName][] = $optional ? $p->getDefaultValue() : null;
         }
 

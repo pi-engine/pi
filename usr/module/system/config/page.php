@@ -189,5 +189,9 @@ return array(
             'controller'    => 'perm',
             'action'        => 'assign',
         ),
+        array(
+            'controller'    => 'block',
+            'action'        => 'page',
+        ),
     ),
 );

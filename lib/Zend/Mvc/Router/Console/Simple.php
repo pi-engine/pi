@@ -12,9 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mvc_Router
- * @subpackage Http
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -36,8 +33,6 @@ use Zend\Mvc\Exception\InvalidArgumentException;
 /**
  * Segment route.
  *
- * @package    Zend_Mvc_Router
- * @subpackage Http
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @see        http://guides.rubyonrails.org/routing.html
@@ -128,7 +123,7 @@ class Simple implements RouteInterface
             } elseif ($validators instanceof Traversable || is_array($validators)) {
                 $this->validators = new ValidatorChain();
                 foreach ($validators as $v) {
-                    $this->validators->addValidator($v);
+                    $this->validators->attach($v);
                 }
             } else {
                 throw new InvalidArgumentException('Cannot use ' . gettype($validators) . ' as validators for ' . __CLASS__);
@@ -375,7 +370,9 @@ class Simple implements RouteInterface
                 array_unique($options);
 
                 // remove prefix
-                array_walk($options, function(&$val, $key) {$val = ltrim($val, '-');});
+                array_walk($options, function (&$val, $key) {
+                    $val = ltrim($val, '-');
+                });
 
                 // prepare item
                 $item = array(
@@ -416,7 +413,9 @@ class Simple implements RouteInterface
                 array_unique($options);
 
                 // remove prefix
-                array_walk($options, function(&$val, $key) {$val = ltrim($val, '-');});
+                array_walk($options, function (&$val, $key) {
+                    $val = ltrim($val, '-');
+                });
 
                 // prepare item
                 $item = array(
@@ -588,7 +587,7 @@ class Simple implements RouteInterface
              * Look for param
              */
             $value = $param = null;
-            for ($x=0;$x<count($params);$x++) {
+            for ($x = 0, $count = count($params); $x < $count; $x++) {
                 if (preg_match($regex, $params[$x], $m)) {
                     // found param
                     $param = $params[$x];

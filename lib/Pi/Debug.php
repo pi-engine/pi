@@ -41,7 +41,7 @@ namespace Pi
         public static function conditional($data, $skip = 0)
         {
             if (true !== static::$inProcess) {
-                return '';
+                return null;
             }
             return static::render($data, $skip);
         }
@@ -268,7 +268,9 @@ namespace
     {
         //echo Debug::conditional($data, 2);
         $output = Debug::conditional($data, 2);
-        Pi::service('log')->debug($output);
+        if (null !== $output) {
+            Pi::service('log')->debug($output);
+        }
     }
 
     /**

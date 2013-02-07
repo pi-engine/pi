@@ -3,18 +3,12 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Db
  */
 
 namespace Zend\Db\Adapter;
 
-/**
- * @category   Zend
- * @package    Zend_Db
- * @subpackage Adapter
- */
 class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
 {
 
@@ -22,6 +16,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
     const TYPE_NULL    = 'null';
     const TYPE_DOUBLE  = 'double';
     const TYPE_INTEGER = 'integer';
+    const TYPE_BINARY  = 'binary';
     const TYPE_STRING  = 'string';
     const TYPE_LOB     = 'lob';
 
@@ -60,7 +55,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
      * Offset exists
      *
      * @param  string $name
-     * @return boolean
+     * @return bool
      */
     public function offsetExists($name)
     {
@@ -96,10 +91,31 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
      */
     public function offsetSet($name, $value, $errata = null)
     {
-        $this->data[$name] = $value;
+        $position = false;
 
-        $names = array_keys($this->data);
-        $this->positions[array_search($name, $names)] = $name;
+        // if integer, get name for this position
+        if (is_int($name)) {
+            if (isset($this->positions[$name])) {
+                $position = $name;
+                $name = $this->positions[$name];
+            } else {
+                $name = (string) $name;
+            }
+        } elseif (is_string($name)) {
+            // is a string:
+            $currentNames = array_keys($this->data);
+            $position = array_search($name, $currentNames, true);
+        } elseif ($name === null) {
+            $name = (string) count($this->data);
+        } else {
+            throw new Exception\InvalidArgumentException('Keys must be string, integer or null');
+        }
+
+        if ($position === false) {
+            $this->positions[] = $name;
+        }
+
+        $this->data[$name] = $value;
 
         if ($errata) {
             $this->offsetSetErrata($name, $errata);
@@ -114,7 +130,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
      */
     public function offsetUnset($name)
     {
-        if (is_int($name)) {
+        if (is_int($name) && isset($this->positions[$name])) {
             $name = $this->positions[$name];
         }
         unset($this->data[$name]);
@@ -171,7 +187,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
      * Offset has errata
      *
      * @param  string|integer $name
-     * @return boolean
+     * @return bool
      */
     public function offsetHasErrata($name)
     {
@@ -271,7 +287,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
     /**
      * Valid
      *
-     * @return boolean
+     * @return bool
      */
     public function valid()
     {

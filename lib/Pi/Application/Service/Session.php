@@ -50,8 +50,8 @@ class Session extends AbstractService
         if (!$this->manager) {
             $options = $this->options;
             $sessionConfig = null;
-            if (!empty($options['config'])) {
-                $class  = !empty($options['config']['class']) ? $options['config']['class'] : 'Zend\\Session\\Config\\SessionConfig';
+            if (!empty($options['config']) && !empty($options['config']['class'])) {
+                $class  = $options['config']['class'];
                 $sessionConfig = new $class;
                 if (isset($options['config']['options'])) {
                     if (!isset($options['config']['options']['cookie_path']) && $baseUrl = Pi::host()->get('baseUrl')) {
@@ -61,8 +61,8 @@ class Session extends AbstractService
                 }
             }
             $sessionStorage = null;
-            if (!empty($options['storage'])) {
-                $class  = !empty($options['storage']['class']) ? $options['storage']['class'] : 'Zend\\Session\\Storage\\SessionStorage';
+            if (!empty($options['storage']) && !empty($options['storage']['class'])) {
+                $class  = $options['storage']['class'];
                 $input  = isset($options['storage']['input']) ? $options['storage']['input'] : null;
                 $sessionStorage = new $class($input);
             }
@@ -73,6 +73,10 @@ class Session extends AbstractService
                 $saveHandler = new $class($opts);
             }
             $this->manager = new SessionManager($sessionConfig, $sessionStorage, $saveHandler);
+
+            if (!empty($options['config']) && !empty($options['config']['validators'])) {
+                $this->manager->setValidators($options['config']['validators']);
+            }
 
             // Set default session manager in case Zend\Session is called directly
             Container::setDefaultManager($this->manager);

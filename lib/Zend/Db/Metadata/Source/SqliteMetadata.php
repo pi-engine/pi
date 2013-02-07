@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Db
  */
 
 namespace Zend\Db\Metadata\Source;
@@ -13,11 +12,6 @@ namespace Zend\Db\Metadata\Source;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSetInterface;
 
-/**
- * @category   Zend
- * @package    Zend_Db
- * @subpackage Metadata
- */
 class SqliteMetadata extends AbstractSource
 {
     protected function loadSchemaData()
@@ -124,7 +118,7 @@ class SqliteMetadata extends AbstractSource
         $primaryKey = array();
 
         foreach ($this->data['sqlite_columns'][$schema][$table] as $col) {
-            if ((bool)$col['pk']) {
+            if ((bool) $col['pk']) {
                 $primaryKey[] = $col['name'];
             }
         }
@@ -135,7 +129,7 @@ class SqliteMetadata extends AbstractSource
         $constraints = array();
         $indexes = $this->fetchPragma('index_list', $table, $schema);
         foreach ($indexes as $index) {
-            if (!((bool)$index['unique'])) {
+            if (!((bool) $index['unique'])) {
                 continue;
             }
             $constraint = array(

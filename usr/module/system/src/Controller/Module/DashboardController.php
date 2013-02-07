@@ -86,11 +86,12 @@ class DashboardController extends ActionController
                 break;
         }
         if (!$link) {
-            $this->redirect('', array('action' => 'system'));
+            $this->jump(array('action' => 'system'), __('No permitted operation available.'));
             return;
         }
         //d($link);exit;
         $this->redirect()->toUrl($link);
+
         return;
     }
 

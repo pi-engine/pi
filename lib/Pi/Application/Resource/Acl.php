@@ -33,8 +33,6 @@ class Acl extends AbstractResource
      */
     public function boot()
     {
-        // Load user role
-        //Pi::registry('user')->loadRole();
         // Load global ACL handler
         $this->loadAcl();
         // Check access permission before any other action is performed
@@ -79,13 +77,20 @@ class Acl extends AbstractResource
                 if (!$this->aclHandler->checkAccess($resource)) {
                     $denied = true;
                 } else {
-                    $denied = false;
-                    // Get allowed modules
-                    $modulesAllowed = Pi::service('registry')->moduleperm->read('manage');
                     $moduleName = $routeMatch->getParam('name') ?: $e->getRequest()->getPost('name');
-                    // Denied if module is not allowed
-                    if (null !== $modulesAllowed && !in_array($moduleName, $modulesAllowed)) {
-                        $denied = true;
+                    if ($moduleName) {
+                        $denied = false;
+                        // Get allowed modules
+                        $modulesAllowed = Pi::service('registry')->moduleperm->read('manage');
+                        // Denied if module is not allowed
+                        if (null !== $modulesAllowed && !in_array($moduleName, $modulesAllowed)) {
+                            $denied = true;
+                        }
+                    // Denied if action page is not allowed if check on page is enabled
+                    } elseif (!empty($this->options['check_page'])) {
+                        if ($this->aclHandler->checkException($route)) {
+                            $denied = false;
+                        }
                     }
                 }
             }

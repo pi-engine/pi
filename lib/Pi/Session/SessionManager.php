@@ -18,61 +18,14 @@
  */
 
 namespace Pi\Session;
+
 use Zend\Session\SessionManager as ZendSessionManager;
 use Zend\Session\Container;
-use Zend\Session\Storage\SessionStorage;
-use Zend\Session\SaveHandler\SaveHandlerInterface;
-
 
 class SessionManager extends ZendSessionManager
 {
     protected $containers = array();
-
-    /**
-     * Start session
-     *
-     * if No session currently exists, attempt to start it. Calls
-     * {@link isValid()} once session_start() is called, and raises an
-     * exception if validation fails.
-     *
-     * @param bool $preserveStorage        If set to true, current session storage will not be overwritten by the
-     *                                     contents of $_SESSION.
-     * @return void
-     * @throws Exception\RuntimeException
-     */
-    public function start($preserveStorage = false)
-    {
-        if ($this->sessionExists()) {
-            return;
-        }
-
-        $saveHandler = $this->getSaveHandler();
-        if ($saveHandler instanceof SaveHandlerInterface) {
-            // register the session handler with ext/session
-            $this->registerSaveHandler($saveHandler);
-        }
-
-        session_start();
-        /*
-        if (!$this->isValid()) {
-            throw new Exception\RuntimeException('Session validation failed');
-        }
-        */
-        $storage = $this->getStorage();
-
-        // Since session is starting, we need to potentially repopulate our
-        // session storage
-        if ($storage instanceof SessionStorage && $_SESSION !== $storage) {
-            if (!$preserveStorage) {
-                $storage->fromArray($_SESSION);
-            }
-            $_SESSION = $storage;
-        }
-
-        if (!$this->isValid()) {
-            throw new \RuntimeException('Session validation failed');
-        }
-    }
+    protected $validators = array();
 
     /**
      * Write session to save handler and close
@@ -83,11 +36,28 @@ class SessionManager extends ZendSessionManager
      */
     public function writeClose()
     {
-        $validator = $this->getConfig()->getOption('validator');
-        if ($validator) {
-            $this->getStorage()->setMetaData('_VALID', $validator);
+        // The assumption is that we're using PHP's ext/session.
+        // session_write_close() will actually overwrite $_SESSION with an
+        // empty array on completion -- which leads to a mismatch between what
+        // is in the storage object and $_SESSION. To get around this, we
+        // temporarily reset $_SESSION to an array, and then re-link it to
+        // the storage object.
+        //
+        // Additionally, while you _can_ write to $_SESSION following a
+        // session_write_close() operation, no changes made to it will be
+        // flushed to the session handler. As such, we now mark the storage
+        // object isImmutable.
+        $storage  = $this->getStorage();
+        if (!$storage->isImmutable() && $this->validators) {
+            $storage->setMetaData('_VALID', $this->validators);
         }
         parent::writeClose();
+    }
+
+    public function setValidators($validators = array())
+    {
+        $this->validators = $validators;
+        return $this;
     }
 
     public function container($name = 'Default')

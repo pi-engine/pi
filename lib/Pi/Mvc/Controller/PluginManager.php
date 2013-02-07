@@ -27,39 +27,59 @@ class PluginManager extends ZendPluginManager
      *
      * @var array
      */
-    protected $invokableClasses = array(
+    protected $____invokableClasses = array(
+        'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
+        'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
+        'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
+        'forward'                     => 'Zend\Mvc\Controller\Plugin\Forward',
+        'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
+        'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
+        'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
+        'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
+        'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
+
+        // Pi custom plugins
         'acl'               => 'Pi\Mvc\Controller\Plugin\Acl',
         'cache'             => 'Pi\Mvc\Controller\Plugin\Cache',
-        //'params'            => 'Pi\Mvc\Controller\Plugin\Params',
+        'config'            => 'Pi\Mvc\Controller\Plugin\Config',
+        'jump'              => 'Pi\Mvc\Controller\Plugin\Jump',
         'redirect'          => 'Pi\Mvc\Controller\Plugin\Redirect',
         'url'               => 'Pi\Mvc\Controller\Plugin\Url',
-
-        //'flashmessenger'    => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
-        //'forward'           => 'Zend\Mvc\Controller\Plugin\Forward',
-        //'layout'            => 'Zend\Mvc\Controller\Plugin\Layout',
+        'view'              => 'Pi\Mvc\Controller\Plugin\View',
     );
 
     /**
-     * Retrieve a service from the manager by name
-     *
-     * Allows passing an array of options to use when creating the instance.
-     * createFromInvokable() will use these and pass them to the instance
-     * constructor if not null and a non-empty array.
+     * Canonicalize name
      *
      * @param  string $name
-     * @param  array $options
-     * @param  bool $usePeeringServiceManagers
-     * @return object
+     * @return string
      */
-    public function get($name, $options = array(), $usePeeringServiceManagers = true)
+    protected function canonicalizeName($name)
     {
-        if (!$this->has($name) && !class_exists($name)) {
+        static $inCanonicalization = false;
+
+        if ($inCanonicalization) {
+            $inCanonicalization = false;
+            return $name;
+        }
+
+        $invokableClass = null;
+        if (false === strpos($name, '\\')) {
             $invokableClass = sprintf('%s\\Plugin\\%s', __NAMESPACE__, ucfirst($name));
             if (!class_exists($invokableClass)) {
                 $invokableClass = sprintf('Zend\\Mvc\\Controller\\Plugin\\%s', ucfirst($name));
             }
             $name = $invokableClass;
         }
-        return parent::get($name, $options, $usePeeringServiceManagers);
+
+        $cName = parent::canonicalizeName($name);
+
+        if ($invokableClass && !isset($this->invokableClasses[$cName]) && class_exists($invokableClass)) {
+            $inCanonicalization = true;
+            $this->setInvokableClass($cName, $invokableClass);
+            $inCanonicalization = false;
+        }
+
+        return $cName;
     }
 }

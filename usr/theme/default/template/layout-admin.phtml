@@ -24,45 +24,45 @@ $module = Pi::service('module')->current();
 </head>
 <body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
     <!-- pi header bar: fixed-->
-    <div id="pi-bar">
-        <div class="pi-bar-top clearfix">
-            <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="admin-logo" title="<?php echo $this->escape($sitename); ?>">Pi</a>
-            <div class="operation-switch">
-                <?php
-                    $modes = $this->adminNav($module)->modes();
-                    foreach ($modes as $key => $mode) {
-                        switch ($key) {
-                            case 'admin':
-                                $icon = 'icon-wrench';
-                                break;
-                            case 'manage':
-                                $icon = 'icon-cog';
-                                break;
-                            default:
-                                $icon = 'icon-th-large';
-                                break;
-                        }
-                ?>
-                    <a href="<?php echo $mode['link']? : 'javascript:void(0)'; ?>" class="<?php if (!empty($mode['active'])) { echo 'active'; } elseif (!$mode['link']) { echo 'disabled'; } ?>">
-                        <i class="<?php echo $icon; ?>"></i>
-                        <?php echo $this->escape($mode['label']); ?>
-                <?php } ?>
+    <div id="pi-bar" class="clearfix">
+        <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="admin-logo">Pi</a>
+        <div class="operation-switch">
+            <?php
+                $modes = $this->adminNav($module)->modes();
+                foreach ($modes as $key => $mode) {
+                    switch ($key) {
+                        case 'admin':
+                            $icon = 'icon-wrench';
+                            break;
+                        case 'manage':
+                            $icon = 'icon-cog';
+                            break;
+                        default:
+                            $icon = 'icon-th-large';
+                            break;
+                    }
+            ?>
+                <a href="<?php echo $mode['link']? : 'javascript:void(0)'; ?>" class="<?php if (!empty($mode['active'])) { echo 'active'; } elseif (!$mode['link']) { echo 'disabled'; } ?>">
+                    <i class="<?php echo $icon; ?>"></i>
+                    <?php echo $this->escape($mode['label']); ?>
+                </a>
+            <?php } ?>
 
-            </div>
-            <div class="pi-bar-user">
-               <?php echo $this->widget('system-user-bar'); ?>
-               <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank"><?php _e('Go to front'); ?> <i class="icon-circle-arrow-right"></i> </a>
-            </div>
         </div>
-
-
+        <div class="pi-bar-user">
+           <?php echo $this->widget('system-user-bar'); ?>
+           <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank">
+               <i class="icon-external-link"></i>
+               <?php _e('Go to front'); ?>
+           </a>
+        </div>
     </div>
     <div id="pi-wrap">
             <div id="modules-menu">
             <!-- modules list link : sidemenu,fixed-->
             <?php $navigation = $this->adminNav($module)->side(); ?>
             <?php if ($navigation) { ?>
-                <?php echo $navigation->menu()->setUlClass('nav nav-list nav-modules')->render(); ?>
+                <?php echo $navigation->menu()->setUlClass('nav-modules')->render(); ?>
             <?php } ?>
             </div>
 
@@ -77,12 +77,12 @@ $module = Pi::service('module')->current();
                 </div>
                 <?php } ?>
 
-                <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top:20px;'; } ?>">
+                <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
                     <div class="clearfix pi-main-content">
                         <?php echo $content; ?>
                     </div>
                     <div id="pi-footer" class="pi-footer">
-                        &copy;<a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>"><?php echo $this->escape($sitename); ?></a>
+                        <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
                         <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
                         <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of  Pi Engine</a>
                         <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>

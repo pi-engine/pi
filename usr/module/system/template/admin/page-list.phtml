@@ -19,15 +19,15 @@
                 <td>
                     <?php echo $this->escape($page['title']); ?>
                 <td>
-                    <div class="btn-group">
+                    <div class="btn-group btns-indent">
                         <?php if ($page['id']) { ?>
-                            <a class="btn js-edit"><?php _e('Edit'); ?></a>
+                            <a class="btn btn-link js-edit"><?php _e('Edit'); ?></a>
                         <?php } ?>
                         <?php if ($page['block']) { ?>
-                            <a class="btn" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
+                            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
                         <?php } ?>
                         <?php if ($page['custom']) { ?>
-                            <a class="btn js-delete"><?php _e('Delete'); ?></a>
+                            <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
                         <?php } ?>
                     </div>
             <?php } ?>

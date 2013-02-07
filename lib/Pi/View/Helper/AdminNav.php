@@ -54,7 +54,7 @@ class AdminNav extends AbstractHelper
                 'link'  => '',
             ),
             'manage'        => array(
-                'label' => __('Manage'),
+                'label' => __('Management'),
                 'link'  => '',
             ),
             'deployment'    => array(
@@ -73,6 +73,26 @@ class AdminNav extends AbstractHelper
                 $allowed = array_intersect($allowed, $moduleList);
             }
             if ($allowed) {
+                /**#@+
+                 * Check access permission to managed components
+                 */
+                if ('manage' == $type) {
+                    $navConfig = Pi::service('registry')->navigation->read('system-component');
+                    if (!$navConfig) {
+                        continue;
+                    }
+                    $navIsEmpty = true;
+                    foreach ($navConfig as $key => $page) {
+                        if (!isset($page['visible']) || $page['visible']) {
+                            $navIsEmpty = false;
+                            break;
+                        }
+                    }
+                    if ($navIsEmpty) {
+                        continue;
+                    }
+                }
+                /**#@-*/
                 $modes[$type]['link'] = $this->view->url('admin', array(
                     'module'        => 'system',
                     'controller'    => 'dashboard',

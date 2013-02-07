@@ -12,18 +12,17 @@
 </ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
-    <ul class="nav nav-pills">
-        <li class="<?php if ('_front' == $section) { echo 'active'; } ?>">
-            <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_front')); ?>">
-                <?php _e('Front'); ?>
-            </a>
-        <li class="<?php if ('_admin' == $section) { echo 'active'; } ?>">
-            <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_admin')); ?>">
-                <?php _e('Admin'); ?>
-            </a>
-    </ul>    
 </div>    
-
+<ul class="nav nav-pills">
+    <li class="<?php if ('_front' == $section) { echo 'active'; } ?>">
+        <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_front')); ?>">
+            <?php _e('Front'); ?>
+        </a>
+    <li class="<?php if ('_admin' == $section) { echo 'active'; } ?>">
+        <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_admin')); ?>">
+            <?php _e('Admin'); ?>
+        </a>
+</ul>   
 <div id="js-page">
     <fieldset style="margin-bottom:20px;">
         <legend><?php _e('Theme in use'); ?></legend>

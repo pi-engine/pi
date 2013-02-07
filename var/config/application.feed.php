@@ -28,8 +28,8 @@ $config['resource']['authentication'] = false;
 $config['resource']['user'] = false;
 // Instantiate ACL manager and register listeners
 $config['resource']['acl'] = false;
-// Cache
-$config['resource']['cache'] = array(
+// Rendering cache
+$config['resource']['render'] = array(
     'page'  => true,
 );
 

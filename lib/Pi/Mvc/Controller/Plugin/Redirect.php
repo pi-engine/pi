@@ -27,6 +27,22 @@ class Redirect extends ZendRedirect
     protected $responseCode;
 
     /**
+     * Generates a URL based on a route
+     *
+     * @param  string $route RouteInterface name
+     * @param  array $params Parameters to use in url generation, if any
+     * @param  array $options RouteInterface-specific options to use in url generation, if any
+     * @return Response|Redirect
+     */
+    public function __invoke($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
+    {
+        if (!$route && !$params) {
+            return $this;
+        }
+        return $this->toRoute($route, $params, $options, $reuseMatchedParams);
+    }
+
+    /**
      * Set response status code
      *
      * @param int $code

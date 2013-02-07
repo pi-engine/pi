@@ -20,8 +20,9 @@
 
 namespace Pi\Db\Adapter\Driver;
 
+use PDO;
 use PDOStatement;
-use Pi\Application\Db;
+//use Pi\Application\Db;
 use Pi\Log\DbProfiler;
 
 class Statement extends PDOStatement
@@ -38,6 +39,8 @@ class Statement extends PDOStatement
      * @var int
      */
     protected $counter = 0;
+
+    protected $parameters = array();
 
     /**
      * Constructor
@@ -62,7 +65,7 @@ class Statement extends PDOStatement
             $this->counter ++;
             $start = microtime(true);
         }
-        $exception = '';
+        $exception = null;
         try {
             if (null !== $args) {
                 $status = parent::execute($args);
@@ -71,28 +74,50 @@ class Statement extends PDOStatement
             }
         } catch (\Exception $e) {
             $status = false;
-            //$exception = $e->getMessage();
-            throw $e;
+            $exception = $e;
         }
 
         //Profiling ends
         if ($this->profiler) {
-            $timer = microtime(true) - $start;
-            //$message = sprintf('[%s]: %s', $status ? 'rows:' . $this->rowCount() : 'failed', $this->queryString);
+            $message = '';
+            if (!$status) {
+                $errorInfo = $this->errorInfo();
+                $message = $errorInfo[2];
+            }
+            $parameters = array_merge($this->parameters, (array) $args);
             // Write to log container
             $this->profiler->log(array(
-                'timestamp' => $start,
-                'message'   => $exception,
-                'query'     => $this->queryString,
-                'status'    => $status,
-                'timer'     => $timer,
-                'count'     => $this->rowCount(),
+                'start'         => $start,
+                'elapse'        => microtime(true) - $start,
+                'sql'           => $this->queryString,
+                'parameters'    => $parameters,
+                'message'       => $message,
+                'status'        => $status,
             ));
-        // Trigger error if profiler is not enabled
-        } elseif ($exception) {
-            trigger_error($exception, E_USER_ERROR);
+        }
+
+        if ($exception) {
+            throw $exception;
         }
 
         return $status;
+    }
+
+    public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR, $length = null, $driver_options = null)
+    {
+        $result = parent::bindParam($parameter, $variable, $data_type, $length, $driver_options);
+        if ($this->profiler) {
+            $this->parameters[$parameter] = $variable;
+        }
+        return $result;
+    }
+
+    public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
+    {
+        $result = parent::bindValue($parameter, $value, $data_type);
+        if ($this->profiler) {
+            $this->parameters[$parameter] = $value;
+        }
+        return $result;
     }
 }

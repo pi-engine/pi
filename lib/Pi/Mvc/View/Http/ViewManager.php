@@ -21,9 +21,7 @@
 namespace Pi\Mvc\View\Http;
 
 use Pi;
-//use Pi\View\Resolver\ModuleTemplate as ModuleTemplateResolver;
-//use Pi\View\Resolver\ThemeTemplate as ThemeTemplateResolver;
-//use Pi\View\Resolver\ComponentTemplate as ComponentTemplateResolver;
+
 use Pi\View\Renderer\PhpRenderer as ViewPhpRenderer;
 use Pi\View\Strategy\PhpRendererStrategy;
 use Zend\Mvc\MvcEvent;
@@ -31,9 +29,6 @@ use Zend\Mvc\View\Http\ViewManager as ZendViewManager;
 use Pi\Mvc\View\Http\CreateViewModelListener;
 use Zend\Mvc\View\Http\InjectViewModelListener;
 use Pi\Mvc\View\Http\InjectTemplateListener;
-use Zend\View\Resolver as ViewResolver;
-use Pi\Mvc\View\SendResponseListener;
-
 
 /**
  * Prepares the view layer
@@ -52,9 +47,9 @@ use Pi\Mvc\View\SendResponseListener;
  * - ViewRenderer (also aliased to Zend\View\Renderer\PhpRenderer and RendererInterface)
  * - ViewPhpRendererStrategy (also aliased to Zend\View\Strategy\PhpRendererStrategy)
  * - View (also aliased to Zend\View\View)
- * - DefaultRenderingStrategy (also aliased to Zend\Mvc\View\DefaultRenderingStrategy)
- * - ExceptionStrategy (also aliased to Zend\Mvc\View\ExceptionStrategy)
- * - RouteNotFoundStrategy (also aliased to Zend\Mvc\View\RouteNotFoundStrategy and 404Strategy)
+ * - DefaultRenderingStrategy (also aliased to Zend\Mvc\View\Http\DefaultRenderingStrategy)
+ * - ExceptionStrategy (also aliased to Zend\Mvc\View\Http\ExceptionStrategy)
+ * - RouteNotFoundStrategy (also aliased to Zend\Mvc\View\Http\RouteNotFoundStrategy and 404Strategy)
  * - ViewModel
  *
  * @see   Zend\Mvc\View\ViewManager
@@ -66,12 +61,11 @@ class ViewManager extends ZendViewManager
     /**
      * Prepares the view layer
      *
-     * @param  ApplicationInterface $application
+     * @param  $event
      * @return void
      */
     public function onBootstrap($event)
     {
-        /* */
         $application  = $event->getApplication();
         $services     = $application->getServiceManager();
         $config       = $services->get('Config');
@@ -90,7 +84,6 @@ class ViewManager extends ZendViewManager
         $createViewModelListener = new CreateViewModelListener();
         $injectTemplateListener  = new InjectTemplateListener();
         $injectViewModelListener = new InjectViewModelListener();
-        $sendResponseListener    = new SendResponseListener();
 
         $this->registerMvcRenderingStrategies($events);
         /**#@+
@@ -103,23 +96,15 @@ class ViewManager extends ZendViewManager
         $events->attach($routeNotFoundStrategy);
         $events->attach($exceptionStrategy);
         $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($injectViewModelListener, 'injectViewModel'), -100);
+        $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($injectViewModelListener, 'injectViewModel'), -100);
         $events->attach($mvcRenderingStrategy);
-        $events->attach($sendResponseListener);
 
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromArray'), -80);
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($routeNotFoundStrategy, 'prepareNotFoundViewModel'), -90);
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromNull'), -80);
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($injectTemplateListener, 'injectTemplate'), -90);
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($injectViewModelListener, 'injectViewModel'), -100);
-        /* */
 
-        /*
-        parent::onBootstrap($event);
-
-        $application  = $event->getApplication();
-        $events       = $application->getEventManager();
-        $sharedEvents = $events->getSharedManager();
-        */
 
         $deniedStrategy = $this->getDeniedStrategy();
         $events->attach($deniedStrategy);
@@ -137,9 +122,8 @@ class ViewManager extends ZendViewManager
             return $this->renderer;
         }
 
-        /* */
         $this->renderer = new ViewPhpRenderer;
-        $this->renderer->setHelperPluginManager($this->getHelpermanager());
+        $this->renderer->setHelperPluginManager($this->getHelperManager());
         $this->renderer->setResolver($this->getResolver());
 
         $model       = $this->getViewModel();
@@ -149,16 +133,6 @@ class ViewManager extends ZendViewManager
         $this->services->setService('ViewRenderer', $this->renderer);
         $this->services->setAlias('Zend\View\Renderer\PhpRenderer', 'ViewRenderer');
         $this->services->setAlias('Zend\View\Renderer\RendererInterface', 'ViewRenderer');
-        /* */
-
-        //parent::getRenderer();
-
-        /**#@+
-         *  Set up page meta
-         */
-        //$metaHelper = $this->renderer->plugin('meta');
-        //$metaHelper->assign();
-        /**#@-*/
 
         return $this->renderer;
     }
@@ -231,6 +205,7 @@ class ViewManager extends ZendViewManager
 
         $this->services->setService('DefaultRenderingStrategy', $this->mvcRenderingStrategy);
         $this->services->setAlias('Zend\Mvc\View\DefaultRenderingStrategy', 'DefaultRenderingStrategy');
+        $this->services->setAlias('Zend\Mvc\View\Http\DefaultRenderingStrategy', 'DefaultRenderingStrategy');
 
         return $this->mvcRenderingStrategy;
     }

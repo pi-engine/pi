@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Mvc
  */
 
 namespace Zend\Mvc\View\Http;
@@ -18,11 +17,6 @@ use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ViewModel;
 
-/**
- * @category   Zend
- * @package    Zend_Mvc
- * @subpackage View
- */
 class ExceptionStrategy implements ListenerAggregateInterface
 {
     /**
@@ -50,9 +44,8 @@ class ExceptionStrategy implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareExceptionViewModel'), -90);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'prepareExceptionViewModel'));
-        $this->listeners[] = $events->attach('complete', array($this, 'prepareExceptionViewModel'));
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'prepareExceptionViewModel'));
     }
 
     /**
@@ -148,40 +141,26 @@ class ExceptionStrategy implements ListenerAggregateInterface
 
             case Application::ERROR_EXCEPTION:
             default:
-                /**#@+
-                 * Modified by Taiwen Jiang
-                 */
-                if (is_string($error) && Application::ERROR_EXCEPTION != $error) {
-                    $message = $error;
-                } else {
-                    $message = 'An error occurred during execution; please try again later.';
-                }
-                if (!$result instanceof ViewModel) {
-                    $model = new ViewModel(array(
-                        'message'            => $message,
-                        'exception'          => $e->getParam('exception'),
-                        'display_exceptions' => $this->displayExceptions(),
-                    ));
-                } else {
-                    $model = $result;
-                    if ($model->getVariable('message') === null) {
-                        $model->setVariable('message', $message);
-                    }
-                }
-
+                $model = new ViewModel(array(
+                    'message'            => 'An error occurred during execution; please try again later.',
+                    'exception'          => $e->getParam('exception'),
+                    'display_exceptions' => $this->displayExceptions(),
+                ));
                 $model->setTemplate($this->getExceptionTemplate());
-                $e->getViewModel()->addChild($model);
-                //$e->setResult($model);
+                $e->setResult($model);
 
                 $response = $e->getResponse();
                 if (!$response) {
                     $response = new HttpResponse();
-                    $e->setResponse($response);
-                }
-                if (!$response->getStatusCode()) {
                     $response->setStatusCode(500);
+                    $e->setResponse($response);
+                } else {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode === 200) {
+                        $response->setStatusCode(500);
+                    }
                 }
-                /**#@-*/
+
                 break;
         }
     }
