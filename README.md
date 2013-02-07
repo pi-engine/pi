@@ -130,6 +130,7 @@ Authors
 + Danyi Feng
 
 **Longquan Monastery Team**
++ Longquan IT Group: http://weibo.com/lqsit
 + Liu Hao
 + Zhang Jing
 
