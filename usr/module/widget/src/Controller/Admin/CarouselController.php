@@ -143,7 +143,27 @@ class CarouselController extends WidgetController
             'message'   => '',
             'image'     => '',
         );
-        $uploader = new Upload(array('rename' => $this->tmpPrefix . '%random%'));
+        $rename = $this->tmpPrefix . '%random%';
+        /**#@+
+         * Just for demo for anonymous callback
+         */
+        /*
+        $rename = function ($name)
+        {
+            $pos = strrpos($name, '.');
+            if (false !== $pos) {
+                $extension = substr($name, $pos);
+                $name = substr($name, 0, $pos);
+            } else {
+                $extension = '';
+            }
+            $newName = $name . '.random-' .uniqid() . '.' . $extension;
+            return $newName;
+        };
+        */
+        /**#@-*/
+
+        $uploader = new Upload(array('rename' => $rename));
         $uploader->setExtension('jpg,png,gif'); //->setRename('tmp.%random%'); //->setImageSize(array('maxWidth' => 600, 'maxHeight' => 500));
         if ($uploader->isValid()) {
             $uploader->receive();

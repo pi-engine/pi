@@ -166,14 +166,18 @@ class Extension extends AbstractValidator
         return $this;
     }
 
+    /**#@+
+     * API restored by Taiwen Jiang
+     */
     /**
      * Returns true if and only if the file extension of $value is included in the
      * set extension list
      *
      * @param  string|array $value Real file to check for extension
+     * @param  array   $file  File data from \Zend\File\Transfer\Transfer
      * @return bool
      */
-    public function isValid($value)
+    public function isValid($value, $file = null)
     {
         if (is_array($value)) {
             if (!isset($value['tmp_name']) || !isset($value['name'])) {
@@ -183,6 +187,9 @@ class Extension extends AbstractValidator
             }
             $file     = $value['tmp_name'];
             $filename = $value['name'];
+        } elseif (is_array($file)) {
+            $filename = $file['name'];
+            $file     = $value;
         } else {
             $file     = $value;
             $filename = basename($file);
@@ -211,4 +218,5 @@ class Extension extends AbstractValidator
         $this->error(self::FALSE_EXTENSION);
         return false;
     }
+    /**#@-*/
 }

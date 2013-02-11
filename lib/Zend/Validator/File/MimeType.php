@@ -334,6 +334,9 @@ class MimeType extends AbstractValidator
         return $this;
     }
 
+    /**#@+
+     * API restored by Taiwen Jiang
+     */
     /**
      * Defined by Zend\Validator\ValidatorInterface
      *
@@ -342,9 +345,10 @@ class MimeType extends AbstractValidator
      * mime types will be accepted like "image/gif", "image/jpeg" and so on.
      *
      * @param  string|array $value Real file to check for mimetype
+     * @param  array  $file  File data from \Zend\File\Transfer\Transfer
      * @return bool
      */
-    public function isValid($value)
+    public function isValid($value, $file = null)
     {
         if (is_array($value)) {
             if (!isset($value['tmp_name']) || !isset($value['name']) || !isset($value['type'])) {
@@ -355,6 +359,10 @@ class MimeType extends AbstractValidator
             $file     = $value['tmp_name'];
             $filename = $value['name'];
             $filetype = $value['type'];
+        } elseif (is_array($file)) {
+            $filename = $file['name'];
+            $filetype = $file['type'];
+            $file     = $value;
         } else {
             $file     = $value;
             $filename = basename($file);
@@ -420,4 +428,5 @@ class MimeType extends AbstractValidator
         $this->error(static::FALSE_TYPE);
         return false;
     }
+    /**#@-*/
 }
