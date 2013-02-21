@@ -114,7 +114,7 @@ abstract class AbstractSql
     }
 
     /**
-     * @param $specification
+     * @param $specifications
      * @param $parameters
      * @return string
      * @throws Exception\RuntimeException

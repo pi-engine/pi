@@ -30,20 +30,21 @@ class ExcludeExtension extends Extension
         self::NOT_FOUND       => "File is not readable or does not exist",
     );
 
-    /**#@+
-     * API restored by Taiwen Jiang
-     */
     /**
      * Returns true if and only if the file extension of $value is not included in the
      * set extension list
      *
      * @param  string|array $value Real file to check for extension
-     * @param  array   $file  File data from \Zend\File\Transfer\Transfer
+     * @param  array        $file  File data from \Zend\File\Transfer\Transfer (optional)
      * @return bool
      */
     public function isValid($value, $file = null)
     {
-        if (is_array($value)) {
+        if (is_string($value) && is_array($file)) {
+            // Legacy Zend\Transfer API support
+            $filename = $file['name'];
+            $file     = $file['tmp_name'];
+        } elseif (is_array($value)) {
             if (!isset($value['tmp_name']) || !isset($value['name'])) {
                 throw new Exception\InvalidArgumentException(
                     'Value array must be in $_FILES format'
@@ -51,9 +52,6 @@ class ExcludeExtension extends Extension
             }
             $file     = $value['tmp_name'];
             $filename = $value['name'];
-        } elseif (is_array($file)) {
-            $filename = $file['name'];
-            $file     = $value;
         } else {
             $file     = $value;
             $filename = basename($file);
@@ -85,5 +83,4 @@ class ExcludeExtension extends Extension
         $this->error(self::FALSE_EXTENSION);
         return false;
     }
-    /**#@-*/
 }

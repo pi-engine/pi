@@ -182,7 +182,7 @@ class Entry
     /**
      * Set the feed creation date
      *
-     * @param string|null|DateTime $date
+     * @param null|integer|DateTime $date
      * @throws Exception\InvalidArgumentException
      * @return Entry
      */
@@ -203,7 +203,7 @@ class Entry
     /**
      * Set the feed modification date
      *
-     * @param string|null|DateTime $date
+     * @param null|integer|DateTime $date
      * @throws Exception\InvalidArgumentException
      * @return Entry
      */
@@ -572,8 +572,12 @@ class Entry
      * @param array $categories
      * @return Entry
      */
+    /**#@+
+     * Modified by Taiwen Jiang
+     */
     //public function addCategories(array $categories)
     public function setCategories(array $categories)
+    /**#@-*/
     {
         foreach ($categories as $category) {
             $this->addCategory($category);

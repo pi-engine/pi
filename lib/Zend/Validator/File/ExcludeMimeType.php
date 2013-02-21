@@ -21,21 +21,23 @@ class ExcludeMimeType extends MimeType
     const NOT_DETECTED = 'fileExcludeMimeTypeNotDetected';
     const NOT_READABLE = 'fileExcludeMimeTypeNotReadable';
 
-    /**#@+
-     * API restored by Taiwen Jiang
-     */
     /**
      * Returns true if the mimetype of the file does not matche the given ones. Also parts
      * of mimetypes can be checked. If you give for example "image" all image
      * mime types will not be accepted like "image/gif", "image/jpeg" and so on.
      *
      * @param  string|array $value Real file to check for mimetype
-     * @param  array  $file  File data from \Zend\File\Transfer\Transfer
+     * @param  array        $file  File data from \Zend\File\Transfer\Transfer (optional)
      * @return bool
      */
     public function isValid($value, $file = null)
     {
-        if (is_array($value)) {
+        if (is_string($value) && is_array($file)) {
+            // Legacy Zend\Transfer API support
+            $filename = $file['name'];
+            $filetype = $file['type'];
+            $file     = $file['tmp_name'];
+        } elseif (is_array($value)) {
             if (!isset($value['tmp_name']) || !isset($value['name']) || !isset($value['type'])) {
                 throw new Exception\InvalidArgumentException(
                     'Value array must be in $_FILES format'
@@ -44,10 +46,6 @@ class ExcludeMimeType extends MimeType
             $file     = $value['tmp_name'];
             $filename = $value['name'];
             $filetype = $value['type'];
-        } elseif (is_array($file)) {
-            $filename = $file['name'];
-            $filetype = $file['type'];
-            $file     = $value;
         } else {
             $file     = $value;
             $filename = basename($file);
@@ -111,5 +109,4 @@ class ExcludeMimeType extends MimeType
 
         return true;
     }
-    /**#@-*/
 }
