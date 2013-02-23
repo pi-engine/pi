@@ -2,6 +2,7 @@
 =================
 
 Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
+
 The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users in technology and business.
 
 
