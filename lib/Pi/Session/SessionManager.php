@@ -56,7 +56,8 @@ class SessionManager extends ZendSessionManager
     {
         // Skip storage writing if validation is failed
         if (!$this->isValid()) {
-            return;
+            $this->destroy();
+            exit('Exit on session violation.');
         }
 
         // Set metadata for validators

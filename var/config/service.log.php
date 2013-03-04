@@ -98,6 +98,18 @@ $config['production'] = array(
             ),
         ),
     ),
+    // Error handler
+    'error_handler' => array(
+        // Error handler enable
+        'active'    => true,
+        // error reporting
+        'error_reporting'   => E_USER_ERROR,
+    ),
+    // Exception handler
+    'exception_handler' => array(
+        // Exception handler enable
+        'active'    => true,
+    ),
 );
 
 return $config[Pi::environment()] ?: $config['production'];
