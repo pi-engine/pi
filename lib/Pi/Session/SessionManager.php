@@ -27,6 +27,24 @@ class SessionManager extends ZendSessionManager
     protected $containers = array();
     protected $validators = array();
 
+    protected $isValid;
+
+    /**
+     * Is this session valid?
+     *
+     * Notifies the Validator Chain until either all validators have returned
+     * true or one has failed.
+     *
+     * @return bool
+     */
+    public function isValid()
+    {
+        if (null === $this->isValid) {
+            $this->isValid = parent::isValid();
+        }
+        return $this->isValid;
+    }
+
     /**
      * Write session to save handler and close
      *
@@ -36,21 +54,17 @@ class SessionManager extends ZendSessionManager
      */
     public function writeClose()
     {
-        // The assumption is that we're using PHP's ext/session.
-        // session_write_close() will actually overwrite $_SESSION with an
-        // empty array on completion -- which leads to a mismatch between what
-        // is in the storage object and $_SESSION. To get around this, we
-        // temporarily reset $_SESSION to an array, and then re-link it to
-        // the storage object.
-        //
-        // Additionally, while you _can_ write to $_SESSION following a
-        // session_write_close() operation, no changes made to it will be
-        // flushed to the session handler. As such, we now mark the storage
-        // object isImmutable.
+        // Skip storage writing if validation is failed
+        if (!$this->isValid()) {
+            return;
+        }
+
+        // Set metadata for validators
         $storage  = $this->getStorage();
         if (!$storage->isImmutable() && $this->validators) {
             $storage->setMetaData('_VALID', $this->validators);
         }
+
         parent::writeClose();
     }
 
