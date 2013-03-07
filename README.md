@@ -99,56 +99,44 @@ If you wish to contribute to Xoops/Pi Engine, please read both the CONTRIBUTING.
 Authors
 -------
 
-**Taiwen Jiang (D.J.)**
-
+**[Taiwen Jiang (D.J.)](http://github.com/taiwen)**
 + XOOPS account: phppp
 + http://twitter.com/taiwen
 + http://weibo.com/nope
-+ http://github.com/taiwen
 + http://github.com/xoops
 + https://www.facebook.com/xoops
 
-
-**Hossein Azizabadi**
-
+**[Hossein Azizabadi](http://github.com/voltan)**
 + XOOPS account: voltan
-+ http://github.com/voltan
 
-
-**marco**
-
+**[marco](http://github.com/MarcoXoops)**
 + XOOPS account: marco_fr
-+ http://github.com/MarcoXoops
 
-
-**kris**
-
+**[kris](http://github.com/krisxoofoo)**
 + XOOPS account: kris
-+ http://github.com/krisxoofoo
 
+**[Lin Zongshu](http://github.com/linzongshu)**
 
-**Lin Zongshu**
-
-+ http://github.com/linzongshu
-
-**EEFOCUS Team**
-
-+ Dong Lijun
+**[EEFOCUS Team](http://www.eefocus.com)**
++ [Dong Lijun](https://github.com/donglijun)
++ [Liu Chuang](https://github.com/liuchuangww)
 + Liao Wei
 + Simon Zhang
-+ Liu Chuang
 + Danyi Feng
 
-**Longquan Monastery Team**
-+ Longquan IT Group: http://weibo.com/lqsit
-+ Liu Hao
-+ Zhang Jing
+**[Longquan Monastery Team](http://weibo.com/lqsit)**
++ [Master Xianxin](https://github.com/htouch)
++ [Liu Hao](https://github.com/gwisdomroof)
++ [Zhang Jing](https://github.com/zhangjing1117)
+
+**[Wen.org.cn Team](http://wen.org.cn)**
++ [wenorgcn](https://github.com/wenorgcn)
 
 
 Acknowledgements
 ----------------
 
-The Xoops/Pi Engine Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate supports.
+The Xoops/Pi Engine Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate supports. The Wen.org.cn Team has been a great support since early days of Xoops Project and continuously been a part of the Pi Team. 
 
 
 Copyright and license
