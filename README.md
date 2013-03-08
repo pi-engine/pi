@@ -69,7 +69,7 @@ Read more detailed announcements, discussions, and more on [Xoops/Pi Engine Dev 
 
 
 
-Developers
+Development
 ----------
 
 Beyond production and application, the Engine also tries to be strict standard compliant, including by not limited to:
