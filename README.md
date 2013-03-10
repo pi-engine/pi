@@ -3,7 +3,7 @@
 
 Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
 
-The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users in technology and business.
+The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
 
 
 Features and practices
@@ -11,10 +11,10 @@ Features and practices
 1. Modularization for functionality and applications
 2. Components for basic libraries and services for fundamental system functions
 3. Theming for presentation and appearance
-4. Templating for design friendly
+4. Design-friendly templating 
 5. DevOps oriented architecture
 
-To get started, checkout http://www.xoopsengine.org!
+To get started, check out http://www.xoopsengine.org!
 
 
 
@@ -28,9 +28,9 @@ Clone the repo, `git clone git://github.com/taiwen/pi.git`, or [download the lat
 Versioning
 ----------
 
-For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Xoops/Pi Engine will be maintained under the Semantic Versioning guidelines as much as possible.
+For transparency and insight into our release cycle, and striving to maintain backward compatibility, Xoops/Pi Engine will be maintained under the Semantic Versioning guidelines as much as possible.
 
-Releases will be numbered with the following format:
+Releases will be numbered in the following format:
 
 `<major>.<minor>.<patch>`
 
@@ -72,7 +72,7 @@ Read more detailed announcements, discussions, and more on [Xoops/Pi Engine Dev 
 Development
 ----------
 
-Beyond production and application, the Engine also tries to be strict standard compliant, including by not limited to:
+Beyond production and application, the Engine also strives to be strictly standard compliant, including but not limited to:
 
 1. Versioning - Semantic Versioning Specification http://semver.org/
 2. PHP - PSR compliant https://github.com/php-fig/fig-standards http://framework.zend.com/wiki/display/ZFDEV2/Coding+Standards
@@ -136,13 +136,13 @@ Authors
 Acknowledgements
 ----------------
 
-The Xoops/Pi Engine Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate supports. The Wen.org.cn Team has been a great support since early days of Xoops Project and continuously been a part of the Pi Team. 
+The Xoops/Pi Engine Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate support. The Wen.org.cn Team has been a great support since early days of Xoops Project and continues to be a part of the Pi Team. 
 
 
-Copyright and license
+Copyright and License
 ---------------------
 
-The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users in technology and business.
+The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
 
 New BSD License
 Copyright (c) 2011, Pi Engine Project
