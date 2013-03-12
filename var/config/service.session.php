@@ -37,7 +37,8 @@ return array(
 
     // Storage
     'storage'   => array(
-        'class' => 'Zend\\Session\\Storage\\SessionStorage',
+        //'class' => 'Zend\\Session\\Storage\\SessionStorage',
+        'class' => 'Zend\\Session\\Storage\\SessionArrayStorage',
         'input' => array(
         ),
     ),

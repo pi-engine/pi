@@ -41,7 +41,8 @@ class Adminmode extends AbstractResource
     {
         $route = $e->getRouteMatch();
         //d(Pi::service('session')->backoffice->changed);
-        if (!Pi::service('session')->backoffice->changed && $route) {
+        //if (!Pi::service('session')->backoffice->changed && $route) {
+        if (empty($_SESSION['__BACKOFFICE']['changed']) && $route) {
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module && in_array($controller, array('block', 'config', 'page', 'resource', 'event'))) {
@@ -49,10 +50,11 @@ class Adminmode extends AbstractResource
             } else {
                 $mode = 'admin';
             }
-            Pi::service('session')->backoffice->mode = $mode;
-            //d(Pi::service('session')->backoffice->mode);
+            //Pi::service('session')->backoffice->mode = $mode;
+            $_SESSION['__BACKOFFICE']['mode'] = $mode;
         } else {
-            Pi::service('session')->backoffice->changed = 0;
+            //Pi::service('session')->backoffice->changed = 0;
+            $_SESSION['__BACKOFFICE']['changed'] = 0;
         }
     }
 }

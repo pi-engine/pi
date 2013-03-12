@@ -46,18 +46,21 @@ class LoginController extends ActionController
 
         // Display login form
         $form = $this->getForm();
-        $redirect = $this->request->getServer('HTTP_REFERER') ?: '';
-        $form->setData(array('redirect' => urlencode($redirect)));
+        $redirect = $this->params('redirect') ?: $this->request->getServer('HTTP_REFERER');
+        if ($redirect) {
+            $form->setData(array('redirect' => urlencode($redirect)));
+        }
         $this->renderForm($form);
     }
 
-    protected function renderForm($form)
+    protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
         $configs = Pi::service('registry')->config->read('', 'user');
 
-        $message = '';
+        //$message = '';
         if (!empty($configs['attempts'])) {
+            /*
             $sessionLogin = Pi::service('session')->login;
             if (!empty($sessionLogin->attempts) && $sessionLogin->attempts >= $configs['attempts']) {
                 $wait = Pi::service('session')->manager()->getSaveHandler()->getLifeTime() / 60;
@@ -66,6 +69,20 @@ class LoginController extends ActionController
             } elseif (!empty($sessionLogin->attempts)) {
                 $remaining = $configs['attempts'] - $sessionLogin->attempts;
                 $message = sprintf(__('You have %d times to try.'), $remaining);
+            }
+            */
+            $attempts = isset($_SESSION['__LOGIN']['attempts']) ? $_SESSION['__LOGIN']['attempts'] : 0;
+            //d((array)$_SESSION);
+            //d($attempts);
+            if (!empty($attempts)) {
+                if ($attempts >= $configs['attempts']) {
+                    $wait = Pi::service('session')->manager()->getSaveHandler()->getLifeTime() / 60;
+                    $message = sprintf(__('Login with the account is suspended, please wait for %d minutes to try again.'), $wait);
+                    $this->view()->setTemplate('login-suspended');
+                } else {
+                    $remaining = $configs['attempts'] - $attempts;
+                    $message = sprintf(__('You have %d times to try.'), $remaining);
+                }
             }
         }
         //$form->assign($this->view);
@@ -111,9 +128,18 @@ class LoginController extends ActionController
         $identity = $values['identity'];
         $credential = $values['credential'];
 
+        /*
         if (!empty($configs['attempts'])) {
             $sessionLogin = Pi::service('session')->login;
             if (!empty($sessionLogin->attempts) && $sessionLogin->attempts >= $configs['attempts']) {
+                $this->jump(array('route' => 'home'), __('You have tried too many times. Please try later.'), 5);
+                return;
+            }
+        }
+        */
+        if (!empty($configs['attempts'])) {
+            $sessionLogin = isset($_SESSION['__LOGIN']) ? $_SESSION['__LOGIN'] : array();
+            if (!empty($sessionLogin['attempts']) && $sessionLogin['attempts'] >= $configs['attempts']) {
                 $this->jump(array('route' => 'home'), __('You have tried too many times. Please try later.'), 5);
                 return;
             }
@@ -122,13 +148,20 @@ class LoginController extends ActionController
         $result = Pi::service('authentication')->authenticate($identity, $credential);
 
         if (!$result->isValid()) {
+            /*
             if (!empty($configs['attempts'])) {
                 $sessionLogin = Pi::service('session')->login;
                 $sessionLogin->attempts = isset($sessionLogin->attempts) ? ($sessionLogin->attempts + 1) : 1;
             }
-            //$message = 'Invalid credentials provided, please try again.';
-            $this->renderForm($form);
-            $this->view()->assign('message', __('Invalid credentials provided, please try again.'));
+            */
+            if (!empty($configs['attempts'])) {
+                if (!isset($_SESSION['__LOGIN'])) {
+                    $_SESSION['__LOGIN'] = array();
+                }
+                $_SESSION['__LOGIN']['attempts'] = isset($_SESSION['__LOGIN']['attempts']) ? ($_SESSION['__LOGIN']['attempts'] + 1) : 1;
+            }
+            $message = __('Invalid credentials provided, please try again.');
+            $this->renderForm($form, $message);
             return;
         }
 
@@ -139,8 +172,11 @@ class LoginController extends ActionController
         Pi::service('event')->trigger('login', $result->getIdentity());
 
         if (!empty($configs['attempts'])) {
+            /*
             $sessionLogin = Pi::service('session')->login;
             unset($sessionLogin);
+            */
+            unset($_SESSION['__LOGIN']);
         }
 
         if (empty($values['redirect'])) {

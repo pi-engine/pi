@@ -38,7 +38,7 @@ use Zend\Mvc\InjectApplicationEventInterface;
  */
 class Jump extends AbstractPlugin
 {
-    protected static $sessionNamespace = 'jump';
+    protected static $sessionNamespace = '__JUMP';
 
     /**
      * Generates a URL based on a route
@@ -86,8 +86,11 @@ class Jump extends AbstractPlugin
             'message'   => $message,
             'url'       => $url,
         );
+        /*
         $session = Pi::service('session')->{static::$sessionNamespace}->setExpirationHops(1);
         $session->params = $jumpParams;
+        */
+        $_SESSION[static::$sessionNamespace] = $jumpParams;
 
         $this->controller->view()->setTemplate(false);
         $response = $controller->plugin('redirect')->toRoute('jump');

@@ -159,7 +159,8 @@ class CKFinder_Connector_Core_AccessControlConfig
             $_userRole = (string)$_SESSION[$_roleSessionVar];
         }
         */
-        $_userRole = Pi::service('session')->ckfinder->role;
+        //$_userRole = Pi::service('session')->ckfinder->role;
+        $_userRole = isset($_SESSION['__CKFINDER']['role']) ? $_SESSION['__CKFINDER']['role'] : null;
         /**#@-*/
 
         if (!is_null($_userRole) && !strlen($_userRole)) {

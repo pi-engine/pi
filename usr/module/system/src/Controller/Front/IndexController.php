@@ -104,7 +104,12 @@ class IndexController extends ActionController
     public function jumpAction()
     {
         $this->view()->setTemplate('jump')->setLayout('layout-simple');
-        $params = Pi::service('session')->jump->params;
+        //$params = Pi::service('session')->jump->params;
+        $params = array();
+        if (isset($_SESSION['__JUMP'])) {
+            $params = $_SESSION['__JUMP'];
+            unset($_SESSION['__JUMP']);
+        }
         if (empty($params['time'])) {
             $params['time'] = 3;
         }
@@ -112,11 +117,14 @@ class IndexController extends ActionController
             $params['url'] = Pi::url('www');
         }
         $this->view()->assign($params);
+
+        /*
         $response = $this->response;
 
         // It is weird the reponse will be failed in IE with successive redirect with 302
         //$response->setStatusCode(302);
         $headerRefresh = sprintf('%d; url=%s', intval($params['time']), $params['url']);
         $response->getHeaders()->addHeaderLine('Refresh', $headerRefresh);
+        */
     }
 }

@@ -20,8 +20,7 @@
 
 namespace Pi\Application\Resource;
 
-use Pi,
-    Pi\Session\SessionManager;
+use Pi;
 
 class Session extends AbstractResource
 {

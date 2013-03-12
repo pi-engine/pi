@@ -15,8 +15,8 @@ define('APPLICATION_ENV', 'production');
 include '../../../boot.php';
 // Load session resource which is required by CKfinder
 Pi::engine()->loadResource('session');
-$session = Pi::service('session')->ckfinder;
-
+//$session = Pi::service('session')->ckfinder;
+$session = $_SESSION['__CKFINDER'];
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *
@@ -81,7 +81,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 //$baseUrl = '/ckfinder/userfiles/';
-$baseUrl = $session->url . '/';
+$baseUrl = $session['url'] . '/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -101,7 +101,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 //$baseDir = resolveUrl($baseUrl);
-$baseDir = $session->path . '/';
+$baseDir = $session['path'] . '/';
 
 /*
  * ### Advanced Settings

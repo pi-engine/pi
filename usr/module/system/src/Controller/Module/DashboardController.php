@@ -33,12 +33,17 @@ class DashboardController extends ActionController
         $mode = $this->params('mode', 'admin');
         // Set run mode
         if (!empty($mode)) {
+            /*
             Pi::service('session')->backoffice->exchangeArray(array(
                 'mode'      => $mode,
                 'changed'   => 1,
-                //'component' => '',
-                //'module'    => '',
             ));
+            */
+            $_SESSION['__BACKOFFICE'] = array(
+                'mode'      => $mode,
+                'changed'   => 1,
+            );
+
         }
 
         $modules = Pi::service('registry')->modulelist->read();
@@ -116,12 +121,20 @@ class DashboardController extends ActionController
             ));
         }
         */
+        /*
         Pi::service('session')->backoffice->exchangeArray(array(
             'mode'      => '',
             'changed'   => 1,
             'component' => '',
             'module'    => '',
         ));
+        */
+        $_SESSION['__BACKOFFICE'] = array(
+            'mode'      => '',
+            'changed'   => 1,
+            'component' => '',
+            'module'    => '',
+        );
 
         // Fetch all permitted modules
         $modules = Pi::service('registry')->modulelist->read('active');
