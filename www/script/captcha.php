@@ -37,7 +37,7 @@ if (!empty($id)) {
     $image = $captcha->createImage($id);
     // Close session
     //session_write_close();
-    Pi::service('session')->manager()->writeClose();
+    //Pi::service('session')->manager()->writeClose();
 }
 
 // Send responding response if image is not created

@@ -38,7 +38,7 @@ use Zend\Mvc\InjectApplicationEventInterface;
  */
 class Jump extends AbstractPlugin
 {
-    protected static $sessionNamespace = '__JUMP';
+    protected static $sessionNamespace = 'PI_JUMP';
 
     /**
      * Generates a URL based on a route

@@ -106,9 +106,9 @@ class IndexController extends ActionController
         $this->view()->setTemplate('jump')->setLayout('layout-simple');
         //$params = Pi::service('session')->jump->params;
         $params = array();
-        if (isset($_SESSION['__JUMP'])) {
-            $params = $_SESSION['__JUMP'];
-            unset($_SESSION['__JUMP']);
+        if (isset($_SESSION['PI_JUMP'])) {
+            $params = $_SESSION['PI_JUMP'];
+            unset($_SESSION['PI_JUMP']);
         }
         if (empty($params['time'])) {
             $params['time'] = 3;

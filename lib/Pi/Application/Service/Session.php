@@ -38,6 +38,13 @@ class Session extends AbstractService
      */
     public function shutdown()
     {
+        // Clear expired items by a probability
+        $clearProbability = $this->options['clear_probability'];
+        if (rand(1, 100) <= $clearProbability) {
+            $this->clearExpirations();
+        }
+
+        // session_write_close
         $this->manager()->writeClose();
     }
 
@@ -105,5 +112,25 @@ class Session extends AbstractService
     public function __get($name)
     {
         return $this->container($name);
+    }
+
+    public function clearExpirations()
+    {
+        $storage = $this->manager()->getStorage();
+        if ($storage->isImmutable()) {
+            return;
+        }
+        $ts = $storage->getRequestAccessTime();
+        $meta = (array) $storage->getMetadata();
+        foreach ($meta as $name => $metadata) {
+            if (!is_array($metadata)) {
+                continue;
+            }
+            if ((isset($metadata['EXPIRE']) && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
+                || (isset($metadata['EXPIRE_HOPS']) && $ts > $metadata['EXPIRE_HOPS']['ts'] && 0 >= $metadata['EXPIRE_HOPS']['hops'])
+            ) {
+                $storage->clear($name);
+            }
+        }
     }
 }

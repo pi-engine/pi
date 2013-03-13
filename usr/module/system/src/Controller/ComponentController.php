@@ -42,11 +42,11 @@ class ComponentController extends ActionController
         // Set module
         if (!empty($name)) {
             //Pi::service('session')->backoffice->module = $name;
-            $_SESSION['__BACKOFFICE']['module'] = $name;
+            $_SESSION['PI_BACKOFFICE']['module'] = $name;
         }
         // Set component
         //Pi::service('session')->backoffice->component = $component;
-        $_SESSION['__BACKOFFICE']['component'] = $component;
+        $_SESSION['PI_BACKOFFICE']['component'] = $component;
 
         return parent::onDispatch($e);
     }

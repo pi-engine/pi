@@ -105,7 +105,7 @@ class Renderer extends AbstractRenderer
         $session->url  = $uploadUrl;
         */
         //Pi::service('session')->manager()->writeClose();
-        $_SESSION['__CKFINDER'] = array(
+        $_SESSION['PI_CKFINDER'] = array(
             'role'  => $role,
             'path'  => $uploadPath,
             'url'   => $uploadUrl,

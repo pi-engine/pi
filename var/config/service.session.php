@@ -49,4 +49,6 @@ return array(
             'remember_me_'
         )
     ),
+    // Probability to clear expired containers, valid value: 1 - 100
+    'clear_probability' => 10,
 );

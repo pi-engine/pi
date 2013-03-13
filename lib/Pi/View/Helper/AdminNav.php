@@ -45,7 +45,7 @@ class AdminNav extends AbstractHelper
     public function modes($module = null)
     {
         //$mode = Pi::service('session')->backoffice->mode;
-        $mode = $_SESSION['__BACKOFFICE']['mode'];
+        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $modules = Pi::service('registry')->modulelist->read();
         $moduleList = array_keys($modules);
@@ -120,7 +120,7 @@ class AdminNav extends AbstractHelper
 
         $module = $module ?: $this->module;
         //$mode = Pi::service('session')->backoffice->mode;
-        $mode = $_SESSION['__BACKOFFICE']['mode'];
+        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $modules = Pi::service('registry')->modulelist->read();
         $navConfig = array();
@@ -207,7 +207,7 @@ class AdminNav extends AbstractHelper
 
         $module = $module ?: $this->module;
         //$mode = Pi::service('session')->backoffice->mode;
-        $mode = $_SESSION['__BACKOFFICE']['mode'];
+        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
         /*
         if ('admin' == Pi::service('session')->backoffice->mode) {
             $mode = 'admin';
@@ -219,7 +219,7 @@ class AdminNav extends AbstractHelper
         if ('manage' == $mode && 'system' == $module) {
             $navConfig = Pi::service('registry')->navigation->read('system-component');
             //$currentModule = Pi::service('session')->backoffice->module;
-            $currentModule = $_SESSION['__BACKOFFICE']['module'];
+            $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
             if ($currentModule) {
                 foreach ($navConfig as $key => &$nav) {
                     $nav['params']['name'] = $currentModule;

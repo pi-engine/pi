@@ -16,7 +16,7 @@ include '../../../boot.php';
 // Load session resource which is required by CKfinder
 Pi::engine()->loadResource('session');
 //$session = Pi::service('session')->ckfinder;
-$session = $_SESSION['__CKFINDER'];
+$session = $_SESSION['PI_CKFINDER'];
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *

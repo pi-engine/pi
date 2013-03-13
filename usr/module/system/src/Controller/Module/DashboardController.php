@@ -39,7 +39,7 @@ class DashboardController extends ActionController
                 'changed'   => 1,
             ));
             */
-            $_SESSION['__BACKOFFICE'] = array(
+            $_SESSION['PI_BACKOFFICE'] = array(
                 'mode'      => $mode,
                 'changed'   => 1,
             );
@@ -129,7 +129,7 @@ class DashboardController extends ActionController
             'module'    => '',
         ));
         */
-        $_SESSION['__BACKOFFICE'] = array(
+        $_SESSION['PI_BACKOFFICE'] = array(
             'mode'      => '',
             'changed'   => 1,
             'component' => '',

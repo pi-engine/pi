@@ -6,7 +6,7 @@ return array(
     'storage'   => array(
         'class' => 'Pi\\Authentication\\Storage\\Session',
         'options' => array(
-            'namespace' => 'XE_AUTH',
+            'namespace' => 'PI_AUTH',
             'member'    => 'member',
         ),
     ),
