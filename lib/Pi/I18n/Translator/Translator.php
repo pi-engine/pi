@@ -220,19 +220,20 @@ class Translator extends ZendTranslator
         return parent::translatePlural($singular, $plural, $number, $textDomain, $locale);
     }
 
-
     /**
      * Get a translated message.
      *
-     * @param  string $message
-     * @param  string $locale
-     * @param  string $textDomain
+     * @param  string      $message
+     * @param  string      $locale
+     * @param  string      $textDomain
+     * @param  boolean     $returnPluralRule
      * @return string|null
      */
     protected function getTranslatedMessage(
         $message,
         $locale = null,
-        $textDomain = null
+        $textDomain = null,
+        $returnPluralRule = false
     ) {
         if ($message === '') {
             return '';
@@ -249,6 +250,8 @@ class Translator extends ZendTranslator
         if (isset($this->messages[''][$locale][$message])) {
             return $this->messages[''][$locale][$message];
         }
+
+        //return parent::getTranslatedMessage($message, $locale, $textDomain, $returnPluralRule);
 
         return null;
     }
