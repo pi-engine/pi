@@ -130,7 +130,7 @@ Authors
 + [Zhang Jing](https://github.com/zhangjing1117)
 
 **[Wen.org.cn Team](http://wen.org.cn)**
-+ [Liot](https://github.com/wenorgcn) liot@wen.org.cn
++ [Liot](https://github.com/liot) liot@wen.org.cn
 
 
 Acknowledgements
