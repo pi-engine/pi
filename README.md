@@ -120,8 +120,8 @@ Authors
 **[EEFOCUS Team](http://www.eefocus.com)**
 + [Dong Lijun](https://github.com/donglijun)
 + [Liu Chuang](https://github.com/liuchuangww)
-+ Liao Wei
-+ Simon Zhang
++ [Liao Wei](https://github.com/sexnothing)
++ [Simon Zhang](https://github.com/zhangsimon)
 + Danyi Feng
 
 **[Longquan Monastery Team](http://weibo.com/lqsit)**
