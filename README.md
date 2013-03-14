@@ -1,4 +1,4 @@
-[Xoops/Pi Engine](http://www.xoopsengine.org)
+Pi Engine
 =================
 
 Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
@@ -102,8 +102,8 @@ Authors
 **[Taiwen Jiang (D.J.)](http://github.com/taiwen)**
 + XOOPS account: phppp
 + http://twitter.com/taiwen
-+ http://weibo.com/nope
 + http://github.com/xoops
++ http://weibo.com/nope
 + https://www.facebook.com/xoops
 
 **[Hossein Azizabadi](http://github.com/voltan)**
@@ -136,7 +136,7 @@ Authors
 Acknowledgements
 ----------------
 
-The Xoops/Pi Engine Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate support. The Wen.org.cn Team has been a great support since early days of Xoops Project and continues to be a part of the Pi Team. 
+The Pi Team would like to thank Mr. Su Gongyu from EEFOCUS.com and Master Xianxin from Longquan Monastery for their ultimate support. The Wen.org.cn Team has been a great support since early days of Xoops Project and continues to be a part of the Pi Team.
 
 
 Copyright and License

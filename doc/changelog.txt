@@ -1,6 +1,13 @@
 Pi Engine Changelog
 
 
+March 14th, 2013
+=============================
+1. Created Pi public project in github/xoops/pi organization
+2. Imported Pi code to Pi public repository from github/taiwen/pi
+3. Announcement of Pi Day Release for Pi Engine
+
+
 March 13th, 2013
 =============================
 1. Upgraded ZF2 to 2.1.1
