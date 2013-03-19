@@ -2,7 +2,7 @@ Pi Day Release for Pi Engine
 
 The Pi Team is pleased to present the Pi Day Release as the first public release of Xoops/Pi Engine as the next generation of XOOPS in years.
 
-Check out https://github.com/xoops/pi/blob/master/doc/pi-day-release.txt for full announcement.
+Check out https://github.com/taiwen/pi/blob/master/doc/pi-day-release.txt for full announcement.
 
 Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
 
@@ -21,7 +21,7 @@ Third-party frameworks utilized in this framework:
 3. CSS/JS - Bootstrap/Backbone
 
 Welcome to check out the temporary Pi Repository at github https://github.com/xoops/pi
-Download the code as a zip file: https://github.com/xoops/pi/archive/master.zip
+Download the code as a zip file: https://github.com/taiwen/pi/archive/master.zip
 
 
 Taiwen Jiang
