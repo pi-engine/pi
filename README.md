@@ -102,7 +102,6 @@ Authors
 **[Taiwen Jiang (D.J.)](http://github.com/taiwen)**
 + XOOPS account: phppp
 + http://twitter.com/taiwen
-+ http://github.com/xoops
 + http://weibo.com/nope
 + https://www.facebook.com/xoops
 
