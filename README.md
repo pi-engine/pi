@@ -125,7 +125,7 @@ Authors
 + [Liu Chuang](https://github.com/liuchuangww)
 + [Liao Wei](https://github.com/sexnothing)
 + [Simon Zhang](https://github.com/zhangsimon)
-+ Danyi Feng
++ [Danyi Feng](https://github.com/d4ny1)
 
 **[Longquan Monastery Team](http://weibo.com/lqsit)**
 + [Master Xianxin](https://github.com/htouch)
