@@ -1,6 +1,11 @@
 Pi Engine Changelog
 
 
+March 23rd, 2013
+=============================
+1. Fix Issue #2 reported by @jemz: set default timezone in case not set in php.ini
+
+
 March 14th, 2013
 =============================
 1. Created Pi public project in github/xoops/pi organization

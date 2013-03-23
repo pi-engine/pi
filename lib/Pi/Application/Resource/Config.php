@@ -34,5 +34,11 @@ class Config extends AbstractResource
 
         // Load system general configuration
         Pi::config()->loadDomain();
+
+        // Setup timezone
+        $timezone = Pi::config('timezone');
+        if ($timezone) {
+            date_default_timezone_set($timezone);
+        }
     }
 }

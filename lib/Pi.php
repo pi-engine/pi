@@ -180,6 +180,12 @@ class Pi
      */
     public static function init()
     {
+        // Set default timezone if not available in php.ini
+        if (!ini_get('date.timezone')) {
+            date_default_timezone_set('UTC');
+        }
+
+        // Set start time
         static::$start = microtime(true);
 
         /**#@+
