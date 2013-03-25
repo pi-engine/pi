@@ -129,7 +129,7 @@ Authors
 
 **[Longquan Monastery Team](http://weibo.com/lqsit)**
 + [Master Xianxin](https://github.com/htouch)
-+ [Liu Hao](https://github.com/gwisdomroof)
++ [Xiandu](https://github.com/gwisdomroof)
 + [Zhang Jing](https://github.com/zhangjing1117)
 
 **[Wen.org.cn Team](http://wen.org.cn)**
