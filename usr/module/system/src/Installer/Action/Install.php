@@ -145,11 +145,11 @@ class Install extends BasicInstall
             ),
             array(
                 'title' => 'Pi Engine Code',
-                'url'   => 'http://github.com/xoops',
+                'url'   => 'http://github.com/pi-engine/pi',
             ),
             array(
                 'title' => 'Pi Engine Doc',
-                'url'   => 'http://api.xoopsengine.org',
+                'url'   => 'https://github.com/pi-engine/pi/wiki',
             ),
             array(
                 'title' => 'Pi Engine Twitter',

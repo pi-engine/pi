@@ -24,8 +24,11 @@ return array(
         'options'   => array(
             PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8 COLLATE utf8_general_ci',
             PDO::ATTR_PERSISTENT            => false,
-        )
+        ),
+        // To build connection upload. Optional, default as true
+        'connect_onload'    => true,
     ),
+
     // Database schema
     'schema'        => 'pi',
     // Prefix for all tables
