@@ -104,7 +104,7 @@ class Db
      * @param array $options
      *              'connection' - Database connection parameters
      *                  Single DB mode:
-     *                      'driver', 'dsn', 'username', 'password', 'options'
+     *                      'driver', 'dsn', 'username', 'password', 'options'[, 'connect_onload']
      *                  Master-Slave mode:
      *                      'master', 'slave'
      *              'table_prefix' - database table prefix;
@@ -237,6 +237,13 @@ class Db
         }
         //$driver = $this->createDriver($config);
         $adapter = new Adapter($config, $platform);
+
+        // Build connection onload if not disabled explicitly
+        if (!isset($config['connect_onload']) || !empty($config['connect_onload'])) {
+            $adapter->driver->getConnection()->connect();
+            $adapter->platform->setDriver($adapter->driver);
+        }
+
         return $adapter;
     }
 
