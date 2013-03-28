@@ -42,7 +42,7 @@
             <td class="td-indent"><?php echo $name; ?>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php _e('Flush'); ?></span>
-        <?php } ?>            
+        <?php } ?>
 </table>
 
 
@@ -61,8 +61,3 @@
     });
 })(jQuery)
 </script>
-
-<?php
-    d($list);
-    d($page); 
-?>

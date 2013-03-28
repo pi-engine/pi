@@ -47,7 +47,7 @@ class Service
             if (method_exists(static::$services[$key], 'shutdown')) {
                 Pi::registerShutdown(array(static::$services[$key], 'shutdown'));
             }
-            if ($this->hasService('log')) {
+            if ('log' != $name && $this->hasService('log')) {
                 $this->getService('log')->info(sprintf('Service "%s" is loaded', $name));
             }
         }
@@ -61,7 +61,7 @@ class Service
     public function hasService($name)
     {
         $name = strtolower($name);
-        return isset(static::$services[$name]);
+        return isset(static::$services[$name]) && static::$services[$name];
     }
 
     /**

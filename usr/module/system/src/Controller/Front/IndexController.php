@@ -34,7 +34,6 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-
         //return $this->jumpTo404('Demo for 404');
         //return $this->jumpToDenied('Demo for denied');
         //return $this->jumpToException('Demo for 503', 503);

@@ -165,8 +165,11 @@ namespace Pi
             }
 
             if ($display) {
-                //echo $bt;
-                \Pi::service('log')->debug($bt);
+                if (\Pi::service()->hasService('log')) {
+                    \Pi::service('log')->debug($bt);
+                } else {
+                    echo $bt;
+                }
             } else {
                 return $bt;
             }
@@ -246,9 +249,12 @@ namespace
      */
     function d($data = '')
     {
-        //echo Debug::render($data, 1);
-        $output = Debug::render($data, 1);
-        Pi::service('log')->debug($output);
+        if (Pi::service()->hasService('log')) {
+            $output = Debug::render($data, 1);
+            Pi::service('log')->debug($output);
+        } else {
+            echo Debug::render($data, 1);
+        }
     }
 
     /**

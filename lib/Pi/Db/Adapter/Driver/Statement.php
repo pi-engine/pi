@@ -22,7 +22,6 @@ namespace Pi\Db\Adapter\Driver;
 
 use PDO;
 use PDOStatement;
-//use Pi\Application\Db;
 use Pi\Log\DbProfiler;
 
 class Statement extends PDOStatement
