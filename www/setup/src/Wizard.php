@@ -61,6 +61,12 @@ class Wizard
 
     public function init()
     {
+        // Set default timezone if not available in php.ini
+        if (!ini_get('date.timezone')) {
+            date_default_timezone_set('UTC');
+        }
+
+        // Load persistent data
         $this->loadPersist();
 
         // Load the main language file

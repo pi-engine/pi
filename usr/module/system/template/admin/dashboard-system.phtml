@@ -35,7 +35,7 @@
                     </div>
                     <div class="notice-edit">
                         <textarea class="span8" placeholder="<?php _e('notice'); ?>"></textarea>
-                        <div class="muted" style="margin-bottom: 10px;"><?php _e('Add a site announcement.'); ?></div>
+                        <div class="muted" style="margin-bottom: 10px;"><?php _e('Add/update site announcement.'); ?></div>
                         <div>
                             <span class="btn js-save"><?php _e('Save'); ?></span>
                             <span class="btn btn-link js-cancel"><?php _e('Cancel'); ?></span>
@@ -81,7 +81,7 @@
                             <div class="accordion-inner">
                                 <?php echo $item['content']; ?>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <?php } ?>
                 </div>
@@ -91,17 +91,23 @@
     <div class="span4">
         <div class="widget">
             <div class="widget-header">
-                <strong><?php _e('Powered by Pi'); ?></strong>
+                <strong><?php _e('Powered by Pi Engine'); ?></strong>
             </div>
             <div class="widget-body">
-                <?php _e('Pi Engine is the next generation of XOOPS, designed as an application development engine for web and mobile. I1t is aims at building a sustainable ecosystem to benefit all contributors and user in technology and business.'); ?>
+                <p>
+                    Xoops/Pi Engine is a role oriented application development engine powered by Zend Framework for web and mobile, a successor of Xoops led by Ono Kazumi (onokazu), skalpa and Taiwen Jiang (phppp).
+                    The Pi Team is inspired by them and benefits from their experiences and spirit. Pi Engine will continue to inherit and promote XOOPS brand.
+                </p>
+                <p>
+                    The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
+                </p>
             </div>
         </div>
     </div>
 </div>
 <script id="temp-link" type="text/template">
     <div class="ellipsis span10">
-        <a href="<%= url %>" title="<%= title %>" style="margin-left:10px;"><%= title %></a>
+        <a href="<%= url %>" title="<%= title %>" style="margin-left: 10px;"><%= title %></a>
     </div>
     <div class="span2">
         <i class="icon-pencil js-edit" style="padding-right: 1px;" title="<?php _e('Edit'); ?>"></i>
@@ -266,15 +272,15 @@
     var SummaryView = Backbone.View.extend({
         el: $('#js-module-summary'),
         events: {
-            'click .display-all': 'toggleAll'    
+            'click .display-all': 'toggleAll'
         },
         initialize: function() {
         },
         toggleAll: function() {
-            this.$('.accordion-body').collapse('toggle');        
-        }    
+            this.$('.accordion-body').collapse('toggle');
+        }
     });
-    
+
     new NoticeView;
     new LinkListView({
         collection:  new Backbone.Collection(_.toArray(<?php echo json_encode($links); ?>))

@@ -189,6 +189,7 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
+    /*
     'timezone_server'   => array(
         'title'         => 'Server timezone',
         'description'   => 'Timezone set by server.',
@@ -198,6 +199,14 @@ $config['item'] = array(
 
     'timezone_system'   => array(
         'title'         => 'System timezone',
+        'description'   => 'Timezone for application system.',
+        'edit'          => 'timezone',
+        'category'      => 'general',
+    ),
+    */
+
+    'timezone'   => array(
+        'title'         => 'Timezone',
         'description'   => 'Timezone for application system.',
         'edit'          => 'timezone',
         'category'      => 'general',

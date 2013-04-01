@@ -5,23 +5,28 @@ Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework
 
 The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
 
+The Xoops/Pi Engine is a successor of the XOOPS Project led by Ono Kazumi (onokazu), skalpa and Taiwen Jiang (phppp). The Pi Team is inspired by them and benefits from their experiences and spirit. Pi Engine will continue to inherit and promote XOOPS brand.
+
+**Check out the [Pi Day Release](https://github.com/pi-engine/pi/blob/master/doc/pi-day-release.txt).**
+
+
 
 Features and practices
 ----------------------
 1. Modularization for functionality and applications
 2. Components for basic libraries and services for fundamental system functions
 3. Theming for presentation and appearance
-4. Design-friendly templating 
+4. Design-friendly templating
 5. DevOps oriented architecture
 
-To get started, check out http://www.xoopsengine.org!
+To get started, check out [Pi Engine Repository](https://github.com/pi-engine/pi).
 
 
 
 Quick start
 -----------
 
-Clone the repo, `git clone git://github.com/taiwen/pi.git`, or [download the latest release](https://github.com/taiwen/pi/zipball/master).
+Clone the repo, `git clone git://github.com/pi-engine/pi.git`, or [download the latest release](https://github.com/xoops/pi/zipball/master).
 
 
 
@@ -44,12 +49,10 @@ For more information on SemVer, please visit http://semver.org/.
 
 
 
-Bug tracker
+Bug/feature tracker
 -----------
 
-To report a bug, please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
-
-https://github.com/taiwen/pi/issues
+To report a bug or request a feature, please create an issue here on GitHub [Pi Issues](https://github.com/pi-engine/pi/issues) that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
 
 
@@ -74,18 +77,18 @@ Development
 
 Beyond production and application, the Engine also strives to be strictly standard compliant, including but not limited to:
 
-1. Versioning - Semantic Versioning Specification http://semver.org/
-2. PHP - PSR compliant https://github.com/php-fig/fig-standards http://framework.zend.com/wiki/display/ZFDEV2/Coding+Standards
-3. HTML/CSS - Google HTML/CSS Style Guide http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
-4. JavaScript - Google JavaScript Style Guide http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+1. Versioning - [Semantic Versioning Specification](http://semver.org)
+2. PHP - [PSR compliant](https://github.com/php-fig/fig-standards), [Zend Framework Coding Standards](http://framework.zend.com/wiki/display/ZFDEV2/Coding+Standards)
+3. HTML/CSS - [Google HTML/CSS Style Guide](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)
+4. JavaScript - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 5. All code must be strictly compliant to its corresponding standards, no warning/notice messages allowed
 
 
 Third-party libraries utilized in this framework:
 
-1. PHP - Zend Framework 2
-2. JavaScript - jQuery
-3. CSS/JS - Bootstrap/Backbone
+1. PHP - [Zend Framework 2](https://github.com/zendframework/zf2)
+2. JavaScript - [jQuery](https://github.com/jquery/jquery)
+3. CSS/JS - [Bootstrap](https://github.com/twitter/bootstrap)/[Backbone](https://github.com/documentcloud/backbone)
 
 
 
@@ -102,6 +105,7 @@ Authors
 **[Taiwen Jiang (D.J.)](http://github.com/taiwen)**
 + XOOPS account: phppp
 + http://twitter.com/taiwen
++ http://github.com/pi-engine
 + http://weibo.com/nope
 + https://www.facebook.com/xoops
 
@@ -121,11 +125,11 @@ Authors
 + [Liu Chuang](https://github.com/liuchuangww)
 + [Liao Wei](https://github.com/sexnothing)
 + [Simon Zhang](https://github.com/zhangsimon)
-+ Danyi Feng
++ [Danyi Feng](https://github.com/d4ny1)
 
 **[Longquan Monastery Team](http://weibo.com/lqsit)**
 + [Master Xianxin](https://github.com/htouch)
-+ [Liu Hao](https://github.com/gwisdomroof)
++ [Xiandu](https://github.com/gwisdomroof)
 + [Zhang Jing](https://github.com/zhangjing1117)
 
 **[Wen.org.cn Team](http://wen.org.cn)**

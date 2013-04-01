@@ -1,6 +1,12 @@
 Pi Engine Changelog
 
 
+March 23rd, 2013
+=============================
+1. Fixed Issue #2 reported by @jemz: set default timezone in case not set in php.ini
+2. Fixed BC issues caused by ZF2 including Issue #5 reported by @jemz
+
+
 March 14th, 2013
 =============================
 1. Created Pi public project in github/xoops/pi organization

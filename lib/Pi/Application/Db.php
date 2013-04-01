@@ -19,12 +19,10 @@
 
 namespace Pi\Application;
 
+use PDO;
 use Pi;
 use Pi\Db\Sql\Where;
-//use Pi\Db\Adapter\Driver\Statement;
 use Zend\Db\Adapter\Adapter;
-//use Zend\Db\Adapter\Driver\Pdo\Pdo as Driver;
-//use Zend\Db\Sql\Where;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Predicate;
 use Zend\Db\Metadata\Metadata;
@@ -104,7 +102,7 @@ class Db
      * @param array $options
      *              'connection' - Database connection parameters
      *                  Single DB mode:
-     *                      'driver', 'dsn', 'username', 'password', 'options'
+     *                      'driver', 'dsn', 'username', 'password', 'options'[, 'connect_onload']
      *                  Master-Slave mode:
      *                      'master', 'slave'
      *              'table_prefix' - database table prefix;
@@ -226,17 +224,28 @@ class Db
      */
     public function createAdapter(array $config, $platform = null)
     {
-        // Set up custom statement class
-        // @see Pi\Db\Adapter\Driver\Statement
-        if (!isset($config['driver_options']) && isset($config['options'])) {
-            $config['driver_options'] = $config['options'];
+        // Canonize config to avoid violiation of driver_options in Zend\Db\Adapter\Driver\Pdo\Connection::connect()
+        $options = array();
+        if (isset($config['options'])) {
+            $options = $config['options'];
             unset($config['options']);
         }
-        if (!isset($config['driver_options'][\PDO::ATTR_STATEMENT_CLASS])) {
-            $config['driver_options'][\PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler()));
+
+        // Set user-supplied statement class derived from PDOStatement. Cannot be used with persistent PDO instances.
+        // @see http://www.php.net/manual/en/pdo.setattribute.php
+        if (!isset($config['driver_options'][PDO::ATTR_STATEMENT_CLASS])) {
+            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler()));
         }
+
         //$driver = $this->createDriver($config);
         $adapter = new Adapter($config, $platform);
+
+        // Build connection onload if not disabled explicitly
+        if (!isset($options['connect_onload']) || !empty($options['connect_onload'])) {
+            $adapter->driver->getConnection()->connect();
+            $adapter->platform->setDriver($adapter->driver);
+        }
+
         return $adapter;
     }
 
@@ -313,9 +322,9 @@ class Db
         $name = strtolower($name);
 
         if (!isset($this->model[$name])) {
-            $pos = \strpos($name, '/');
+            $pos = strpos($name, '/');
             if ($pos) {
-                list($module, $key) = \explode('/', $name, 2);
+                list($module, $key) = explode('/', $name, 2);
             } else {
                 $module = '';
                 $key = $name;
