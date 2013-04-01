@@ -1,6 +1,8 @@
-Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
-The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
+Xoops/Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation of Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) since 2001. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.
 
+Pi Project follows the philosophy of open standard, open design, open development and open structure. Pi Team is inspired by the Xoops Developers and benefits from their experiences and spirit. Pi Engine is born and developed as a complete open source project, inherits and will continue to promote Xoops brand.
+
+The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
 
 Selected features and practices:
 1. Modularization for functionality and applications
