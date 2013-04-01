@@ -1,11 +1,14 @@
 Pi Engine
 =================
 
-Xoops/Pi Engine (The Engine, hereafter) is a role oriented modularized framework, an application development engine for web and mobile, designed as the next generation of XOOPS.
+Xoops/Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation of Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) since 2001.
+Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to [Zend Framework library](https://github.com/zendframework/zf2), [jQuery](https://github.com/jquery/jquery), [Bootstrap](https://github.com/twitter/bootstrap) and [Backbone](https://github.com/documentcloud/backbone).
+
+Pi Project follows the philosophy of open standard, open design, open development and open structure.
+[Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) is inspired by the Xoops Developers and benefits from their experiences and spirit.
+Pi Engine is born and developed as a complete open source project, inherits and will continue to promote Xoops brand.
 
 The Engine is released under a New BSD License and the project is intended to promote a sustainable ecosystem that benefits all contributors and users.
-
-The Xoops/Pi Engine is a successor of the XOOPS Project led by Ono Kazumi (onokazu), skalpa and Taiwen Jiang (phppp). The Pi Team is inspired by them and benefits from their experiences and spirit. Pi Engine will continue to inherit and promote XOOPS brand.
 
 **Check out the [Pi Day Release](https://github.com/pi-engine/pi/blob/master/doc/pi-day-release.txt).**
 
@@ -19,20 +22,19 @@ Features and practices
 4. Design-friendly templating
 5. DevOps oriented architecture
 
-To get started, check out [Pi Engine Repository](https://github.com/pi-engine/pi).
-
-
 
 Quick start
 -----------
-
-Clone the repo, `git clone git://github.com/pi-engine/pi.git`, or [download the latest release](https://github.com/xoops/pi/zipball/master).
+* Check documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
+* Clone the repo `git clone git://github.com/pi-engine/pi.git`
+* Or download the [latest code](https://github.com/xoops/pi/zipball/master).
 
 
 Development
 ----------
 
-Join the [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team).
+* Submit bug reports and feature requests to [Issue Tracker](https://github.com/pi-engine/pi/issues) 
+* Or join the [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team).
 
 
 Copyright and License
