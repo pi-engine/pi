@@ -24,3 +24,15 @@ _.extend(Backbone.Model.prototype, {
     }
 });
 </code>
+
+
+
+
+April 2th, Liao Wei
+
+========================
+
+1. Updata backbone (Version 1.0.0)
+        methods:
+            1. replace backbone-min.js backbone.js with newest file into 'backbone' folder
+            2. replace underscore-min.js underscore.js with newest file into 'backbone' folder
