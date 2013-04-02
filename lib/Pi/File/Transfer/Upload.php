@@ -202,4 +202,51 @@ class Upload extends TransferHandler
         }
         return $result;
     }
+    
+    /**
+     * Get file(s) info
+     *
+     * @return array
+     */
+    public function getInfo()
+    {
+	     $ret = array();
+	     $files = $this->getAdapter()->getFileList();
+	     foreach ($files as $key => $data) {
+            $ret['name'] = $data['name'];
+            $ret['size'] = $data['size'];
+            $ret['type'] = $data['type'];
+        }
+	     return $ret;	
+    }	
+
+    /**
+     * Get file size
+     *
+     * @return size number
+     */
+    public function getSize()
+    {
+        return $this->getInfo()['size'];
+    }
+
+    /**
+     * Get file name
+     *
+     * @return file name
+     */
+    public function getName()
+    {
+        return $this->getInfo()['name'];
+    }
+
+    /**
+     * Get file Type
+     *
+     * @return file Type
+     */
+    public function getType()
+    {
+        return $this->getInfo()['type'];
+    }
 }
