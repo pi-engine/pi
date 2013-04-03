@@ -8,7 +8,7 @@ Pi Project follows the philosophy of open standard, open design, open developmen
 
 [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) is highly inspired by the Xoops  led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) since 2001 and will continue to support and promote Xoops.
 
-**Check out the [Pi Day Release](https://github.com/pi-engine/pi/blob/master/doc/pi-day-release.txt).**
+**Check out [Latest Release](https://github.com/pi-engine/pi/blob/master/doc/releasenotes.txt).**
 
 
 
