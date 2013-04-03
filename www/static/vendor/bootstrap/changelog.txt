@@ -55,3 +55,11 @@ Jan 14th, Liao Wei
 					<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 					<link rel="stylesheet" href="bootstrap/css/font-awesome.css">
 				</code>
+
+April 2th, Liao Wei
+
+========================
+1. Update bootstrap (Version 2.3.1)
+        methods:
+            1. replace bootstrap-responsive.css bootstrap-responsive.min.css bootstrap.css bootstrap.min.css with newest file into 'bootstrap/css' folder
+            2. replace bootstrap.js bootstrap.min.js with newest file into 'bootstrap/js' folder

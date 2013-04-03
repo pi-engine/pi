@@ -5,6 +5,7 @@ March 23rd, 2013
 =============================
 1. Fixed Issue #2 reported by @jemz: set default timezone in case not set in php.ini
 2. Fixed BC issues caused by ZF2 including Issue #5 reported by @jemz
+3. Upgraded Boostrap to 1.0.0 and Backbone to 2.3.1 by @sexnothing
 
 
 March 14th, 2013
