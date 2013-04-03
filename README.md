@@ -30,7 +30,7 @@ Quick start
 Development
 ----------
 
-Pi Engine is started by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops French Lead), etc. You are welcome to **join [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)**. 
+Pi Engine is started by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops France Lead), etc. You are welcome to **join [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)**. 
 
 Or you may contribute to Pi by submitting bug reports and feature requests to **[Issue Tracker](https://github.com/pi-engine/pi/issues)**.
 
