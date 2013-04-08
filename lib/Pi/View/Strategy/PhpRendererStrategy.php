@@ -35,60 +35,46 @@ class PhpRendererStrategy extends ZendPhpRendererStrategy
      */
     public function injectResponse(ViewEvent $e)
     {
-        $renderer = $e->getRenderer();
-        if ($renderer !== $this->renderer) {
-            return;
-        }
-
-        $result   = $e->getResult();
+        parent::injectResponse($e);
         $response = $e->getResponse();
-
-        // Set content
-        // If content is empty, check common placeholders to determine if they are
-        // populated, and set the content from them.
-        if (empty($result)) {
-            $placeholders = $renderer->plugin('placeholder');
-            $registry     = $placeholders->getRegistry();
-            foreach ($this->contentPlaceholders as $placeholder) {
-                if ($registry->containerExists($placeholder)) {
-                    $result = (string) $registry->getContainer($placeholder);
-                    break;
-                }
-            }
-        }
-
-        $result = $this->assembleMeta($result);
-
-        $response->setContent($result);
+        $content = $response->getContent();
+        $content = $this->assembleMeta($content);
+        $response->setContent($content);
     }
 
     public function assembleMeta($content)
     {
+        /**#@+
+         * Generates and inserts head meta, stylesheets and scripts
+         */
         $pos = stripos($content, '</head>');
         if (false === $pos) {
             return $content;
         }
-
         $preHead = substr($content, 0, $pos);
         $postHead = substr($content, $pos);
         $head = $this->renderer->headMeta() . PHP_EOL
             . $this->renderer->headLink() . PHP_EOL
+            . $this->renderer->headStyle() . PHP_EOL
             . $this->renderer->headScript();
         $content = $preHead . PHP_EOL
             . $head . PHP_EOL . PHP_EOL
             . $postHead;
+        /**#@-*/
 
+        /**@+
+         * Generates and inserts foot scripts
+         */
         $foot = $this->renderer->footScript()->toString();
         if ($foot && $pos = strripos($content, '</body>')) {
             $preFoot = substr($content, 0, $pos);
             $postFoot = substr($content, $pos);
-            $head = $this->renderer->headMeta() . PHP_EOL
-                . $this->renderer->headLink() . PHP_EOL
-                . $this->renderer->headScript();
             $content = $preFoot . PHP_EOL
                 . $foot . PHP_EOL . PHP_EOL
                 . $postFoot;
         }
+        /**#@-*/
+
         return $content;
     }
 }

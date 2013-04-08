@@ -1,5 +1,10 @@
 Pi Engine Changelog
 
+April 8th, 2013
+=============================
+1. Fixed Issue #21 reported by @voltan: duplicated head keywords and description
+2. Added missing head style in view renderer
+
 
 March 23rd, 2013
 =============================
