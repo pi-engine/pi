@@ -94,7 +94,6 @@ class Navigation extends NavigationHelper
             $navConfig = $name;
         }
 
-
         $this->setContainer($navConfig);
 
         return $this;
