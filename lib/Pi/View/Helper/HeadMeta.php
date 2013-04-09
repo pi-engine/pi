@@ -45,7 +45,8 @@ class HeadMeta extends ZendHeadMeta
      */
     public function __invoke($content = null, $keyValue = null, $keyType = 'name', $modifiers = array(), $placement = Placeholder\Container\AbstractContainer::SET)
     {
-        return parent::__invoke($content, $keyValue, $keyType, $modifiers, $placement);
+        parent::__invoke($content, $keyValue, $keyType, $modifiers, $placement);
+        return $this;
     }
 
     /**
