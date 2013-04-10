@@ -6,6 +6,8 @@ April 8th, 2013
 2. Added missing head style in view renderer
 3. Changed empty result of navigation registry from false to array() to avoid crash in backend with no-nav module
 4. Refactored title/meta rendering
+5. Improved cache option files
+
 
 March 23rd, 2013
 =============================
