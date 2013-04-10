@@ -195,7 +195,7 @@ class Debugger extends AbstractWriter
             $system['Cache Storage'] = $class;
         }
         if (Pi::service()->hasService('module')) {
-            $system['Module'] = Pi::service('module')->current();
+            $system['Module'] = Pi::service('module')->current() ?: 'N/A';
         }
         if (Pi::service()->hasService('theme')) {
             $system['Theme'] = Pi::service('theme')->current();
