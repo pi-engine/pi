@@ -7,6 +7,7 @@ April 8th, 2013
 3. Changed empty result of navigation registry from false to array() to avoid crash in backend with no-nav module
 4. Refactored title/meta rendering
 5. Improved cache option files
+6. Added Pi\Cache\Storage\Adapter\Filesystem to record file expiration so that TTL is not required any more for reading cache
 
 
 March 23rd, 2013
