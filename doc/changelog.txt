@@ -8,6 +8,7 @@ April 8th, 2013
 4. Refactored title/meta rendering
 5. Improved cache option files
 6. Added Pi\Cache\Storage\Adapter\Filesystem to record file expiration so that TTL is not required any more for reading cache
+7. Added support for Intl extension with intlDateFormatter and NumberFormatter suggested by @voltan in Issue #24
 
 
 March 23rd, 2013

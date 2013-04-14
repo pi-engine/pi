@@ -133,6 +133,10 @@ $config['category'] = array(
         'title'     => 'Head meta',
     ),
     array(
+        'name'      => 'intl',
+        'title'     => 'Internationalization',
+    ),
+    array(
         'name'      => 'mail',
         'title'     => 'Mailing',
     ),
@@ -189,22 +193,6 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
-    /*
-    'timezone_server'   => array(
-        'title'         => 'Server timezone',
-        'description'   => 'Timezone set by server.',
-        'edit'          => 'timezone',
-        'category'      => 'general',
-    ),
-
-    'timezone_system'   => array(
-        'title'         => 'System timezone',
-        'description'   => 'Timezone for application system.',
-        'edit'          => 'timezone',
-        'category'      => 'general',
-    ),
-    */
-
     'timezone'   => array(
         'title'         => 'Timezone',
         'description'   => 'Timezone for application system.',
@@ -249,6 +237,7 @@ $config['item'] = array(
     ),
 
     // Meta section
+
     'copyright'     => array(
         'title'         => 'Meta copyright',
         'description'   => 'The copyright meta tag defines any copyright statements you wish to disclose about your web page documents.',
@@ -288,6 +277,102 @@ $config['item'] = array(
         'value'         => __('Pi Engine is an extensible development engine for web and mobile applications written in PHP.'),
         'category'      => 'meta',
     ),
+
+    // Internationalizaiton section
+
+    'number_style'    => array(
+        'title'         => 'Default number style',
+        'description'   => 'See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatstyle',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'   => array(
+                    'DEFAULT_STYLE'     => 'Default format for the locale',
+                    'PATTERN_DECIMAL'   => 'Decimal format defined by pattern',
+                    'DECIMAL'           => 'Decimal format',
+                    'PERCENT'           => 'Percent format',
+                    'SCIENTIFIC'        => 'Scientific format',
+                    'SPELLOUT'          => 'Spellout rule-based format',
+                    'ORDINAL'           => 'Ordinal rule-based format',
+                    'DURATION'          => 'Duration rule-based format',
+                    'PATTERN_RULEBASED' => 'Rule-based format defined by pattern',
+                ),
+            ),
+        ),
+        'value'         => 'DEFAULT_STYLE',
+        'category'      => 'intl',
+    ),
+
+    'number_pattern'    => array(
+        'title'         => 'Default pattern for selected number style',
+        'description'   => 'Only if required by style',
+        'edit'          => 'text',
+        'value'         => '',
+        'category'      => 'intl',
+    ),
+
+    'number_currency'   => array(
+        'title'         => 'Default currency type',
+        'description'   => 'The 3-letter ISO 4217 currency code indicating the currency to use.',
+        'edit'          => 'text',
+        'value'         => '',
+        'category'      => 'intl',
+    ),
+
+    'date_calendar'     => array(
+        'title'         => 'Default calendar for the locale',
+        'description'   => '"persian" is suggested for Persian language. See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes',
+        'edit'          => 'text',
+        'value'         => '',
+        'category'      => 'intl',
+    ),
+
+    'date_datetype'    => array(
+        'title'         => 'Default date type',
+        'description'   => 'See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'   => array(
+                    'NONE'      => 'Do not include this element',
+                    'FULL'      => 'Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)',
+                    'LONG'      => 'Long style (January 12, 1952 or 3:30:32pm)',
+                    'MEDIUM'    => 'Medium style (Jan 12, 1952)',
+                    'SHORT'     => 'Most abbreviated style, only essential data (12/13/52 or 3:30pm)',
+                ),
+            ),
+        ),
+        'value'         => 'MEDIUM',
+        'category'      => 'intl',
+    ),
+
+    'date_timetype'    => array(
+        'title'         => 'Default time type',
+        'description'   => 'See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'   => array(
+                    'NONE'      => 'Do not include this element',
+                    'FULL'      => 'Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)',
+                    'LONG'      => 'Long style (January 12, 1952 or 3:30:32pm)',
+                    'MEDIUM'    => 'Medium style (Jan 12, 1952)',
+                    'SHORT'     => 'Most abbreviated style, only essential data (12/13/52 or 3:30pm)',
+                ),
+            ),
+        ),
+        'value'         => 'LONG',
+        'category'      => 'intl',
+    ),
+
+    'date_pattern'      => array(
+        'title'         => 'Default formatting pattern for date-time',
+        'description'   => 'Be aware that both date type and time type are ignored if the pattern is set. See http://userguide.icu-project.org/formatparse/datetime',
+        'edit'          => 'text',
+        'value'         => 'yyyy-MM-dd HH:mm:ss',
+        'category'      => 'intl',
+    ),
+
 
     // Mailing section
 
