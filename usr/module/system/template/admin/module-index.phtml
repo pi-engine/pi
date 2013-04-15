@@ -112,7 +112,16 @@
     var systemError = function() {
         systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');
     };
+    _.extend(Backbone.Model.prototype, {
+        parse: function(resp, xhr) {
+          if (resp.status) {
+             return resp.data;
+          }
+          return "";
+        }
+    });
     var moduleCollection = new Backbone.Collection(<?php echo json_encode(array_values($modules)); ?>);
+    
     var ModuleItemView = Backbone.View.extend({
         tagName: 'tr',
         className: 'module-item',
