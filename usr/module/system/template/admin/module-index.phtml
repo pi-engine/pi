@@ -121,7 +121,6 @@
         }
     });
     var moduleCollection = new Backbone.Collection(<?php echo json_encode(array_values($modules)); ?>);
-    
     var ModuleItemView = Backbone.View.extend({
         tagName: 'tr',
         className: 'module-item',
