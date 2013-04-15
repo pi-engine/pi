@@ -21,9 +21,7 @@
 namespace Pi\Mvc\View\Http;
 
 use Pi;
-
 use Pi\View\Renderer\PhpRenderer as ViewPhpRenderer;
-use Pi\View\Strategy\PhpRendererStrategy;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\View\Http\ViewManager as ZendViewManager;
 use Pi\Mvc\View\Http\CreateViewModelListener;
@@ -135,27 +133,6 @@ class ViewManager extends ZendViewManager
         $this->services->setAlias('Zend\View\Renderer\RendererInterface', 'ViewRenderer');
 
         return $this->renderer;
-    }
-
-    /**
-     * Instantiates and configures the renderer strategy for the view
-     *
-     * @return PhpRendererStrategy
-     */
-    public function getRendererStrategy()
-    {
-        if ($this->rendererStrategy) {
-            return $this->rendererStrategy;
-        }
-
-        $this->rendererStrategy = new PhpRendererStrategy(
-            $this->getRenderer()
-        );
-
-        $this->services->setService('ViewPhpRendererStrategy', $this->rendererStrategy);
-        $this->services->setAlias('Zend\View\Strategy\PhpRendererStrategy', 'ViewPhpRendererStrategy');
-
-        return $this->rendererStrategy;
     }
 
     /**

@@ -5,9 +5,8 @@ $config = array(
     // Storage adapter
     'adapter'   => array(
         'name'  => 'apc',
-        // Options
+        // Options, see Zend\Cache\Storage\Adapter\ApcOptions
         'options'    => array(
-            //'namespace' => Pi::config('identifier'),
         ),
     ),
     // Plugin list

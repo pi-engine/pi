@@ -200,7 +200,7 @@ CREATE TABLE `{core.config}` (
   `title`           varchar(255)    NOT NULL default '',
   `value`           text,
   `description`     varchar(255)    NOT NULL default '',
-  `edit`            tinytext        default NULL,           # callback options for edit
+  `edit`            text,           # callback options for edit
   `filter`          varchar(64)     NOT NULL default '',
   `order`           smallint(5)     unsigned NOT NULL default '0',
   `visible`         tinyint(1)      unsigned NOT NULL default '1',
@@ -485,10 +485,10 @@ CREATE TABLE `{core.user_meta}` (
   `title`           varchar(255)    NOT NULL default '',
   `attribute`       varchar(255)    default NULL,           # profile column attribute
   `view`            varchar(255)    default NULL,           # callback function for view
-  `edit`            tinytext        default NULL,           # callback options for edit
-  `admin`           tinytext        default NULL,           # callback options for administration
-  `search`          tinytext        default NULL,           # callback options for search
-  `options`         tinytext        default NULL,           # value options
+  `edit`            text,           # callback options for edit
+  `admin`           text,           # callback options for administration
+  `search`          text,           # callback options for search
+  `options`         text,           # value options
   `module`          varchar(64)     NOT NULL default '',
   `active`          tinyint(1)      NOT NULL default '0',
   `required`        tinyint(1)      NOT NULL default '0',

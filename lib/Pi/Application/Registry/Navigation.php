@@ -117,7 +117,7 @@ class Navigation extends AbstractRegistry
 
         $row = Pi::model('navigation_node')->find($name, 'navigation');
         if (!$row) {
-            return false;
+            return array();
         }
         $this->module = $row->module;
 
@@ -214,13 +214,15 @@ class Navigation extends AbstractRegistry
         }
         */
 
-        Pi::service('i18n')->load($domain, $locale);
+        if ($config) {
+            Pi::service('i18n')->load($domain, $locale);
 
-        //d($config);
-        foreach ($config as $p => &$page) {
-            $this->translatePage($page, $config, $p, true);
+            //d($config);
+            foreach ($config as $p => &$page) {
+                $this->translatePage($page, $config, $p, true);
+            }
+            //d($config);
         }
-        //d($config);
 
         return $config;
     }

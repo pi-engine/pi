@@ -117,6 +117,7 @@ class Meta extends AbstractHelper
         $rootModel->setVariables($configGeneral);
 
         // Set page title
+        // TODO: To reset title
         $view->headTitle()->setSeparator(' - ');
         $view->headTitle()->append($configGeneral['sitename']);
         $view->headTitle()->append($configGeneral['slogan']);

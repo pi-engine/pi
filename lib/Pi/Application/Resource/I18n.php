@@ -42,11 +42,11 @@ class I18n extends AbstractResource
         $locale = $locale ?: (isset($this->options['locale']) ? $this->options['locale'] : null);
         $charset = $charset ?: (isset($this->options['charset']) ? $this->options['charset'] : null);
 
+        // Set default locale
         Pi::service('i18n')->setLocale($locale);
-        //$locale = new Locale($locale, $charset);
         setlocale(LC_ALL, $locale);
-        //Pi::registry('locale', $locale);
 
+        // Preload translations
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->translator;
             if (!empty($this->options['translator']['global'])) {

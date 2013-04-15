@@ -166,8 +166,10 @@ class Standard implements RouteInterface
         $pathLength = strlen($path);
 
         if ($this->prefix) {
-            $prefixLength = strlen($this->prefix);
-            if ($this->prefix != substr($path, 0, $prefixLength)) {
+            $prefix = rtrim($this->prefix, $this->paramDelimiter) . $this->paramDelimiter;
+            $path = rtrim($path, $this->paramDelimiter) . $this->paramDelimiter;
+            $prefixLength = strlen($prefix);
+            if ($prefix != substr($path, 0, $prefixLength)) {
                 return null;
             }
             $path = substr($path, $prefixLength);
