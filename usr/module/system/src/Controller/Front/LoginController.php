@@ -94,8 +94,8 @@ class LoginController extends ActionController
     public function logoutAction()
     {
         //$this->view()->assign('title', __('Logout'));
-        //Pi::service('session')->manager()->destroy();
-        Pi::service('session')->manager()->getStorage()->clear();
+        Pi::service('session')->manager()->destroy();
+        //Pi::service('session')->manager()->getStorage()->clear();
         $this->jump(array('route' => 'home'), __('You logged out successfully. Now go back to homepage.'));
     }
 
