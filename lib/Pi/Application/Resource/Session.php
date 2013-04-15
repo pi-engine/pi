@@ -29,7 +29,19 @@ class Session extends AbstractResource
      */
     public function boot()
     {
-        Pi::service('session')->manager()->start();
+        try {
+            // Attempt to start session
+            Pi::service('session')->manager()->start();
+        } catch (\Exception $e) {
+            // Clear session data for current request on failure
+            // Note: only disable session for current request
+            Pi::service('session')->manager()->getStorage()->clear();
+            // Log error attempts
+            if (Pi::service()->hasService('log')) {
+                Pi::service('log')->audit($e->getMessage());
+            }
+            trigger_error($e->getMessage(), E_USER_ERROR);
+        }
         return;
     }
 }

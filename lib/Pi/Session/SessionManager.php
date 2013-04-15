@@ -24,6 +24,17 @@ use Zend\Session\Container;
 
 class SessionManager extends ZendSessionManager
 {
+    /**
+     * Default options when a call to {@link destroy()} is made
+     * - send_expire_cookie: whether or not to send a cookie expiring the current session cookie
+     * - clear_storage: whether or not to empty the storage object of any stored values
+     * @var array
+     */
+    protected $defaultDestroyOptions = array(
+        'send_expire_cookie' => true,
+        'clear_storage'      => true,
+    );
+
     protected $containers = array();
     protected $validators = array();
 
@@ -56,8 +67,8 @@ class SessionManager extends ZendSessionManager
     {
         // Skip storage writing if validation is failed
         if (!$this->isValid()) {
-            $this->destroy();
-            exit('Exit on session violation.');
+            //$this->destroy();
+            return;
         }
 
         // Set metadata for validators
