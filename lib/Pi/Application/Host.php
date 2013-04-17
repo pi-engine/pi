@@ -153,7 +153,7 @@ class Host
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
         $requestUri = rtrim($this->getBaseLocation() . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
 
-        // Lookup identifier again alias list
+        // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri)
         {
             foreach($conf as $uri => $identifier) {
