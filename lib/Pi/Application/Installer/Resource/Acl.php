@@ -148,17 +148,6 @@ class Acl extends AbstractResource
         foreach ($modulePerms as $section => $access) {
             foreach ($access as $role => $rule) {
                 AclHandler::addRule($rule, $role, 'module-' . $section, $module, $module);
-                /*
-                $data = array(
-                    'role'      => $role,
-                    'resource'  => $module,
-                    'section'   => 'module-' . $section,
-                    'module'    => $module,
-                    'deny'      => empty($rule) ? 1 : 0,
-                );
-                $row = $modelRule->createRow($data);
-                $row->save();
-                */
             }
         }
 
@@ -509,22 +498,6 @@ class Acl extends AbstractResource
                 if (isset($privilege['access'])) {
                     foreach ($privilege['access'] as $role => $rule) {
                         AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId, $name);
-                        /*
-                        $data = array(
-                            'role'      => $role,
-                            'resource'  => $resourceId,
-                            'section'   => $resource['section'],
-                            'module'    => $resource['module'],
-                            'deny'      => empty($rule) ? 1 : 0,
-                        );
-                        $data['privilege'] = $name;
-                        $row = $modelRule->createRow($data);
-                        $row->save();
-                        if (!$row->id) {
-                            $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
-                            return false;
-                        }
-                        */
                     }
                 }
             }
@@ -532,21 +505,6 @@ class Acl extends AbstractResource
         } elseif (isset($resource['access'])) {
             foreach ($resource['access'] as $role => $rule) {
                 AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId);
-                /*
-                $data = array(
-                    'role'      => $role,
-                    'resource'  => $resourceId,
-                    'section'   => $resource['section'],
-                    'module'    => $resource['module'],
-                    'deny'      => empty($rule) ? 1 : 0,
-                );
-                $row = $modelRule->createRow($data);
-                $row->save();
-                if (!$row->id) {
-                    $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
-                    return false;
-                }
-                */
             }
         }
 
@@ -600,22 +558,6 @@ class Acl extends AbstractResource
             if (isset($privilege['access'])) {
                 foreach ($privilege['access'] as $role => $rule) {
                     AclHandler::addRule($rule, $role, $resource['section'], $resource['module'], $resourceId, $name);
-                    /*
-                    $data = array(
-                        'role'      => $role,
-                        'resource'  => $resourceId,
-                        'section'   => $resource['section'],
-                        'module'    => $resource['module'],
-                        'deny'      => empty($rule) ? 1 : 0,
-                    );
-                    $data['privilege'] = $name;
-                    $row = $modelRule->createRow($data);
-                    $row->save();
-                    if (!$row->id) {
-                        $message[] = sprintf('Rule "%s" is not created.', implode('-', array_values($data)));
-                        return false;
-                    }
-                    */
                 }
             }
         }
