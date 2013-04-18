@@ -339,11 +339,11 @@ abstract class AbstractNest extends AbstractTableGateway
         $primary = $this->quoteIdentifier($this->primaryKeyColumn);
         $leftCol = $this->quoteColumn('left');
         $rightCol = $this->quoteColumn('right');
-        $depthCol = $this->quoteColumn('depth');
+        //$depthCol = $this->quoteColumn('depth');
 
         $node = /*'node'*/$this->table;
         $parent = 'parent';
-        $nodeTable = $this->quoteIdentifier($node);
+        //$nodeTable = $this->quoteIdentifier($node);
         $parentTable = $this->quoteIdentifier($parent);
         $select = new Select;
         $select->columns(array(
@@ -580,6 +580,7 @@ abstract class AbstractNest extends AbstractTableGateway
      *
      * @param   mixed   $objective  target node ID or Node
      * @param   array   $cols
+     * @return  Rowset
      */
     public function getAncestors($objective, $cols = null)
     {
@@ -606,6 +607,7 @@ abstract class AbstractNest extends AbstractTableGateway
      *
      * @param   mixed   $objective  target node ID or Node
      * @param   array   $cols
+     * @return  Rowset
      */
     public function getChildren($objective, $cols = null)
     {

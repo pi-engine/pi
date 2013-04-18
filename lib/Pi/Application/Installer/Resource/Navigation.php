@@ -297,16 +297,6 @@ class Navigation extends AbstractResource
             // Delete deprecated node
             } else {
                 $row->delete();
-                /*
-                $status = $this->deleteNavigationNode($row, $message);
-                if (!$status) {
-                    $message[] = sprintf('Deprecated navigation node "%s" is not deleted.', $row->navigation);
-                    return array(
-                        'status'    => false,
-                        'message'   => $message
-                    );
-                }
-                */
             }
         }
         // Add new nodes
@@ -347,16 +337,6 @@ class Navigation extends AbstractResource
         $rowset = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
             $row->delete();
-            /*
-            $status = $this->deleteNavigationNode($row, $message);
-            if (!$status) {
-                $message[] = sprintf('Deprecated navigation node "%s" is not deleted.', $row->navigation);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
-            }
-            */
         }
 
         Pi::service('registry')->navigation->flush();
@@ -370,7 +350,6 @@ class Navigation extends AbstractResource
         // update role active => 1
         $where = array('module' => $module);
         Pi::model('navigation')->update(array('active' => 1), $where);
-        //Pi::model('navigation_node')->update(array('active' => 1), $where);
         Pi::service('registry')->navigation->flush();
         Pi::service('cache')->clearByNamespace('nav');
     }
@@ -382,7 +361,6 @@ class Navigation extends AbstractResource
         // update role active => 1
         $where = array('module' => $module);
         Pi::model('navigation')->update(array('active' => 0), $where);
-        //Pi::model('navigation_node')->update(array('active' => 0), $where);
         Pi::service('registry')->navigation->flush();
         Pi::service('cache')->clearByNamespace('nav');
      }
@@ -449,7 +427,6 @@ class Navigation extends AbstractResource
         if ($row) {
             $row->delete();
         }
-        //$this->deleteNavigationNode($navigationRow->name, $message);
 
         return true;
     }
