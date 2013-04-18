@@ -287,6 +287,15 @@ CREATE TABLE `{core.module_schema}` (
   PRIMARY KEY  (`id`)
 );
 
+# Module dependency
+CREATE TABLE `{core.module_dependency}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `dependent`       varchar(64)     NOT NULL,
+  `independent`     varchar(64)     NOT NULL,
+
+  PRIMARY KEY  (`id`)
+);
+
 # ------------------------------------------------------
 # Navigation
 # >>>>

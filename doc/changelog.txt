@@ -11,6 +11,8 @@ April 8th, 2013
 7. Added support for Intl extension with intlDateFormatter and NumberFormatter suggested by @voltan in Issue #24
 8. Improved support for multi-host config
 9. Fixed ACL resource bugs in module installation/uninstallation
+10. Changed configuration related table fields from tinytext to text in System module v3.1.0
+11. Added missing module_dependency table in System module v3.1.1
 
 
 March 23rd, 2013

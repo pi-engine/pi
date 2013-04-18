@@ -51,6 +51,34 @@ class Update extends BasicUpdate
     {
         $moduleVersion = $e->getParam('version');
 
+
+        if (version_compare($moduleVersion, '3.1.1', '<')):
+
+        // Add table of navigation data
+        $sql =<<<'EOD'
+CREATE TABLE `{core.module_dependency}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `dependent`       varchar(64)     NOT NULL,
+  `independent`     varchar(64)     NOT NULL,
+
+  PRIMARY KEY  (`id`)
+);
+EOD;
+        $sqlHandler = new SqlSchema;
+        try {
+            $sqlHandler->queryContent($sql);
+        } catch (\Exception $exception) {
+            $result = $e->getParam('result');
+            $result['db'] = array(
+                'status'    => false,
+                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+            );
+            $e->setParam('result', $result);
+            return false;
+        }
+
+        endif;
+
         if (version_compare($moduleVersion, '3.1.0', '<')):
 
         $sqlHandler = new SqlSchema;
