@@ -76,7 +76,6 @@ abstract class AbstractAction
 
     public function checkDependent(Event $e)
     {
-        //$options = $e->getParam('options');
         $model = Pi::model('module_dependency');
         $rowset = $model->select(array('independent' => $e->getParam('module')));
         if ($rowset->count() > 0) {
@@ -97,15 +96,14 @@ abstract class AbstractAction
         if (empty($config['dependency'])) {
             return true;
         }
-        //$options = $e->getParam('options');
-        $model = Pi::model('module_dependency');
-        $rowset = $model->select(array('dependent' => $e->getParam('module')));
         $independents = $config['dependency'];
-        $available = array();
-        while ($row = $rowset->current()) {
-            $available[] = $row->independent;
+        $modules = Pi::service('registry')->modulelist->read();
+        $missing = array();
+        foreach ($independents as $indenpendent) {
+            if (!isset($modules[$indenpendent])) {
+                $missing[] = $indenpendent;
+            }
         }
-        $missing = array_diff($independents, $available);
         if ($missing) {
             $result = $e->getParam('result');
             $result['dependency'] = array(
@@ -121,11 +119,10 @@ abstract class AbstractAction
     public function createDependency(Event $e)
     {
         $config = $this->event->getParam('config');
-        $module = $e->getParam('module');
         if (empty($config['dependency'])) {
             return true;
         }
-        //$options = $e->getParam('options');
+        $module = $e->getParam('module');
         $model = Pi::model('module_dependency');
         foreach ($config['dependency'] as $independent) {
             $row = $model->createRow(array(
@@ -149,12 +146,9 @@ abstract class AbstractAction
     public function removeDependency(Event $e)
     {
         $config = $this->event->getParam('config');
-        if (empty($config['dependency'])) {
-            return true;
-        }
-        //$options = $e->getParam('options');
         $model = Pi::model('module_dependency');
         $ret = $model->delete(array('dependent' => $e->getParam('module')));
+        /*
         if ($ret < count($config['dependency'])) {
             $result = $e->getParam('result');
             $result['dependency'] = array(
@@ -164,6 +158,8 @@ abstract class AbstractAction
             $e->setParam('result', $result);
             return false;
         }
+        */
         return true;
     }
+
 }
