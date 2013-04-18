@@ -71,7 +71,7 @@ class DashboardController extends ActionController
                 break;
             case 'manage':
                 $controller = '';
-                $navConfig = Pi::service('registry')->navigation->read('system-component');
+                $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
                 foreach ($navConfig as $key => $item) {
                     if (!isset($item['visible']) || $item['visible']) {
                         $controller = $item['controller'];

@@ -34,8 +34,10 @@ class Session extends AbstractResource
             Pi::service('session')->manager()->start();
         } catch (\Exception $e) {
             // Clear session data for current request on failure
-            // Note: only disable session for current request
+            // Empty session for current request
             Pi::service('session')->manager()->getStorage()->clear();
+            // Disconnect cookie for current user
+            Pi::service('session')->manager()->expireSessionCookie();
             // Log error attempts
             if (Pi::service()->hasService('log')) {
                 Pi::service('log')->audit($e->getMessage());
