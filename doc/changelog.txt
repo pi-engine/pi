@@ -1,5 +1,11 @@
 Pi Engine Changelog
 
+
+April 8th, 2013
+=============================
+1. Upgraded ZF2 to 2.1.5
+
+
 April 8th, 2013
 =============================
 1. Fixed Issue #21 reported by @voltan: duplicated head keywords and description
