@@ -110,12 +110,6 @@ class Db
      */
     public function __construct($options)
     {
-        /*
-        if (isset($options['schema'])) {
-            $this->setSchema($options['schema']);
-            $options['connection']['dsn'] .= ';dbname=' . $options['schema'];
-        }
-        */
         $this->loadAdapter($options['connection']);
         if (isset($options['table_prefix'])) {
             $this->setTablePrefix($options['table_prefix']);
@@ -237,14 +231,7 @@ class Db
             $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler()));
         }
 
-        //$driver = $this->createDriver($config);
         $adapter = new Adapter($config, $platform);
-
-        // Build connection onload if not disabled explicitly
-        if (!isset($options['connect_onload']) || !empty($options['connect_onload'])) {
-            $adapter->driver->getConnection()->connect();
-            $adapter->platform->setDriver($adapter->driver);
-        }
 
         return $adapter;
     }

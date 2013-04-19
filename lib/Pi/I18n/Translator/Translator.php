@@ -226,14 +226,12 @@ class Translator extends ZendTranslator
      * @param  string      $message
      * @param  string      $locale
      * @param  string      $textDomain
-     * @param  boolean     $returnPluralRule
      * @return string|null
      */
     protected function getTranslatedMessage(
         $message,
         $locale = null,
-        $textDomain = null,
-        $returnPluralRule = false
+        $textDomain = null
     ) {
         if ($message === '') {
             return '';
@@ -251,7 +249,7 @@ class Translator extends ZendTranslator
             return $this->messages[''][$locale][$message];
         }
 
-        //return parent::getTranslatedMessage($message, $locale, $textDomain, $returnPluralRule);
+        //return parent::getTranslatedMessage($message, $locale, $textDomain);
 
         return null;
     }
