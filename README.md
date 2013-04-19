@@ -25,7 +25,7 @@ Quick start
 -----------
 * Check documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
 * Download the [latest code](https://github.com/xoops/pi/zipball/master).
-* Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo).
+* Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo#step-3-configure-remotes).
 
 Development
 ----------
