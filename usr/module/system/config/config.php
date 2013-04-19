@@ -367,12 +367,19 @@ $config['item'] = array(
 
     'date_pattern'      => array(
         'title'         => 'Default formatting pattern for date-time',
-        'description'   => 'Be aware that both date type and time type are ignored if the pattern is set. See http://userguide.icu-project.org/formatparse/datetime',
+        'description'   => 'See http://userguide.icu-project.org/formatparse/datetime',
         'edit'          => 'text',
         'value'         => 'yyyy-MM-dd HH:mm:ss',
         'category'      => 'intl',
     ),
 
+    'date_format'       => array(
+        'title'         => 'Default format for legacy date function',
+        'description'   => 'The format is required in case Intl extension is not available. See http://www.php.net/manual/en/function.date.php',
+        'edit'          => 'text',
+        'value'         => 'Y-m-d H:i:s',
+        'category'      => 'intl',
+    ),
 
     // Mailing section
 
