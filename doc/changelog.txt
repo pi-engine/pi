@@ -5,6 +5,7 @@ April 8th, 2013
 =============================
 1. Upgraded ZF2 to 2.1.5
 2. Improved Intl functions for BC by @voltan
+3. Imported "test" module for module dependency test
 
 
 April 8th, 2013
