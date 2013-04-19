@@ -137,16 +137,16 @@ $config['category'] = array(
         'title'     => 'Internationalization',
     ),
     array(
-        'name'      => 'mail',
-        'title'     => 'Mailing',
+        'name'      => 'user',
+        'title'     => 'User account',
     ),
     array(
         'name'      => 'text',
         'title'     => 'Text processing',
     ),
     array(
-        'name'      => 'user',
-        'title'     => 'User account',
+        'name'      => 'mail',
+        'title'     => 'Mailing',
     ),
 );
 
@@ -172,12 +172,6 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
-    'adminmail'     => array(
-        'title'         => 'Admin email',
-        'description'   => 'Admin email address for convenient contact.',
-        'category'      => 'general',
-    ),
-
     'locale'        => array(
         'title'         => 'Locale',
         'description'   => 'Locale for application content.',
@@ -197,6 +191,12 @@ $config['item'] = array(
         'title'         => 'Timezone',
         'description'   => 'Timezone for application system.',
         'edit'          => 'timezone',
+        'category'      => 'general',
+    ),
+
+    'adminmail'     => array(
+        'title'         => 'Admin email',
+        'description'   => 'Admin email address for convenient contact.',
         'category'      => 'general',
     ),
 
