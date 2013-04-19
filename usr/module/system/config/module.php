@@ -29,7 +29,7 @@ return array(
         // Description, for admin, optional
         'description'   => __('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.0.6',
+        'version'       => '3.1.1',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional

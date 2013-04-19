@@ -27,8 +27,8 @@ class Activate extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkIndependent'));
-        $events->attach('install.post', array($this, 'createDependency'));
+        $events->attach('activate.pre', array($this, 'checkIndependent'));
+        $events->attach('activate.post', array($this, 'createDependency'));
         return $this;
     }
 

@@ -31,7 +31,8 @@ return array(
         // Validators: validator class => data
         'validators'    => array(
             'Zend\\Session\\Validator\\HttpUserAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
-            'Zend\\Session\\Validator\\RemoteAddr'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
+            // The following RemoteAddr validator must be disabled when "RememberMe" is enabled
+            //'Zend\\Session\\Validator\\RemoteAddr'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
         ),
     ),
 

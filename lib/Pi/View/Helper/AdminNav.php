@@ -78,7 +78,7 @@ class AdminNav extends AbstractHelper
                  * Check access permission to managed components
                  */
                 if ('manage' == $type) {
-                    $navConfig = Pi::service('registry')->navigation->read('system-component');
+                    $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
                     if (!$navConfig) {
                         continue;
                     }
@@ -217,7 +217,7 @@ class AdminNav extends AbstractHelper
         $navigation = '';
         // Managed components
         if ('manage' == $mode && 'system' == $module) {
-            $navConfig = Pi::service('registry')->navigation->read('system-component');
+            $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
             //$currentModule = Pi::service('session')->backoffice->module;
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
             if ($currentModule) {

@@ -25,14 +25,14 @@ Quick start
 -----------
 * Check documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
 * Download the [latest code](https://github.com/xoops/pi/zipball/master).
-* Clone the repo `git clone git://github.com/pi-engine/pi.git`
+* Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes).
 
 Development
 ----------
 
-Pi Engine is started by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops France Lead), etc. You are welcome to **join [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)**. 
+Pi Engine is started by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops France Lead), etc. You are welcome to join **[Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)**. 
 
-Or you may contribute to Pi by submitting bug reports and feature requests to **[Issue Tracker](https://github.com/pi-engine/pi/issues)**.
+You may contribute to Pi at github by submitting your code to Pi repo with **[Pull Request](https://help.github.com/articles/using-pull-requests)** or submitting bug reports and feature requests to **[Issue Tracker](https://github.com/pi-engine/pi/issues)**.
 
 
 Copyright and License

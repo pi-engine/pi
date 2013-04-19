@@ -51,7 +51,7 @@ class Modulelist extends AbstractRegistry
                 'version'       => $module->version,
                 'directory'     => $module->directory,
                 'update'        => $module->update,
-                'logo'          => $info['logo'],
+                'logo'          => isset($info['logo']) ? $info['logo'] : '',
             );
         }
 

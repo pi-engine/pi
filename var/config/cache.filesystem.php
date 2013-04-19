@@ -5,11 +5,12 @@ $config = array(
     // Storage adapter
     'adapter'   => array(
         'name'  => 'filesystem',
-        // Options
+        // Options, see Zend\Cache\Storage\Adapter\FilesystemOptions
         'options'    => array(
-            //'namespace' => Pi::config('identifier'),
-            'cache_dir' => Pi::path('cache'),
-            'dir_level' => 1,
+            'cache_dir'         => Pi::path('cache'),
+            'dir_level'         => 1,
+            'dir_permission'    => 0700,
+            'file_permission'   => 0600,
         ),
     ),
     // Plugin list

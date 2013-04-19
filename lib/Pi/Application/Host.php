@@ -19,14 +19,35 @@
 
 namespace Pi\Application;
 
+/**
+ * Host handler
+ *
+ * Single host
+ * 1. In www/boot.php:
+ *  <code>
+ *      define('PI_PATH_HOST', '/path/to/pi/var/config/host.php');
+ *  </code>
+ * 2. In /path/to/pi/var/config/host.php:
+ *  <code>
+ *      return array(
+ *          'uri'   => array(
+ *              ...
+ *          ),
+ *          'path'  => array(
+ *              ...
+ *          ),
+ *      );
+ *  </code>
+ *
+ * Multiple hosts
+ * 1. In www/boot.php:
+ *  <code>
+ *      define('PI_PATH_HOST', '/path/to/pi/var/config/hosts.php');
+ *  </code>
+ * 2. In /path/to/pi/var/config/hosts.php, see /var/config/hosts.php
+ */
 class Host
 {
-    /**
-     * Default host identifier
-     * @var string
-     */
-    const DEFAULT_HOST_FILE = 'Default.php';
-
     /**
      * Base URL, segment after baseLocation in installed URL which is: ($scheme:://$hostName[:$port])$baseUrl with leading slash
      * @var string
@@ -116,66 +137,46 @@ class Host
      * @param  string    $hostIdentifier
      * @return array
      */
-    protected function lookup($hostIdentifier = null)
+    protected function lookup($config, $hostIdentifier = '')
     {
-        // Build current request URI
-        /*
-        $scheme = ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
-        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
-        $requestUri = sprintf('%s://%s%s', $scheme, $_SERVER['HTTP_HOST'], ($uri ? '/' . ltrim($uri, '/') : ''));
-        */
-        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
-        $requestUri = $this->getBaseLocation() . ($uri ? '/' . ltrim($uri, '/') : '');
+        // Valid host data, return directly
+        if (isset($config['path']) || isset($config['uri'])) {
+            return $config;
+        }
+        // Invalid hosts data, return empty data
+        if (!isset($config['hosts']) || !isset($config['alias'])) {
+            trigger_error('Invalid hosts config.', E_USER_ERROR);
+            return array();
+        }
 
-        // Lookup again alias list
+        // Build current request URI
+        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
+        $requestUri = rtrim($this->getBaseLocation() . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
+
+        // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri)
         {
             foreach($conf as $uri => $identifier) {
-                if (0 === strpos($uri, $requestUri)) {
+                $uri = rtrim($uri, '/') . '/';
+                if (0 === strpos($requestUri, $uri)) {
                     return $identifier;
                 }
             }
             return false;
         };
 
-        $host = '';
-        $identifier = '';
-        // Lookup against specified host
-        if ($hostIdentifier) {
-            $config = include sprintf('%s/Host/%sHost.php', __DIR__, ucfirst($hostIdentifier));
-            $identifier = $lookup($config['alias']);
-            if ($identifier) {
-                $host = $config['location'][$identifier];
-            // Load default host if specified host is not found
-            } else {
-                $configDefault = include sprintf('%s/Host/%s', __DIR__, static::DEFAULT_HOST_FILE);
-                $identifier = 'default';
-                $host = $configDefault['location'][$identifier];
-            }
-        } else {
-            // Lookup against default host first
-            $configDefault = include sprintf('%s/Host/%s', __DIR__, static::DEFAULT_HOST_FILE);
-            $identifier = $lookup($configDefault['alias']);
-            if ($identifier) {
-                $host = $configDefault['location'][$identifier];
-            } else {
-                // Lookup against rest hosts in Host folder
-                foreach (glob(__DIR__ . '/Host/*Host.php') as $file) {
-                    $config = include $file;
-                    $identifier = $lookup($config['alias']);
-                    if ($identifier) {
-                        $host = $config['location'][$identifier];
-                        break;
-                    }
-                }
-                if (!$host) {
-                    $identifier = 'default';
-                    $host = $configDefault['location'][$identifier];
-                }
-            }
+        // Find identifier
+        if (!$hostIdentifier) {
+            $hostIdentifier = $lookup($config['alias']) ?: 'default';
+        }
+        // Get host data
+        $hostData = $config['hosts'][$hostIdentifier];
+        // Read from file
+        if (is_string($hostData)) {
+            $hostData = include $hostData;
         }
 
-        return $host;
+        return $hostData;
     }
 
     /**
@@ -184,45 +185,47 @@ class Host
      * @param string|array  $config Host file path or array of path settings
      * @return void
      */
-    public function setHost($config = null)
+    public function setHost($config)
     {
         $hostConfig = array();
         $hostFile = '';
-        // Nothing set, so do a traversal lookup to find host file
-        if (!$config) {
-            $hostFile = $this->lookup();
+        $hostIdentifier = '';
+
         // Host file path is specified
-        } elseif (is_string($config)) {
-            $hostFile = $config;
-        // Host file path specified
-        } elseif (!empty($config['file'])) {
-            $hostFile = $config['file'];
-            $hostConfig = !empty($config['host']) ? $config['host'] : array();
-        // Host identifier specified
-        } elseif (!empty($config['identifier'])) {
-            $hostFile = $this->lookup($config['identifier']);
-            $hostConfig = !empty($config['host']) ? $config['host'] : array();
-        // Host config specified partially
-        } elseif (!empty($config['host'])) {
-            $hostFile = $this->lookup();
-            $hostConfig = $config['host'];
-        // Host config specified directly
-        } else {
-            $hostConfig = $config;
+        if (is_string($config)) {
+            $config['file'] = $config;
         }
-        // Load configs from file if specified
+        if (isset($config['file'])) {
+            $hostFile = $config['file'];
+            unset($config['file']);
+        }
+        // Get host identifier
+        if (isset($config['identifier'])) {
+            $hostIdentifier = $config['identifier'];
+            unset($config['identifier']);
+        }
+        // Get custom host config
+        if (isset($config['host'])) {
+            $hostConfig = $config['host'];
+            unset($config['host']);
+        }
+        // Load host data from file
         if ($hostFile) {
-            $configs = include $hostFile;
-            if (isset($hostConfig['path'])) {
-                $hostConfig['path'] = array_merge($configs['path'], $hostConfig['path']);
-            } else {
-                $hostConfig['path'] = $configs['path'];
-            }
-            if (isset($hostConfig['uri'])) {
-                $hostConfig['uri'] = array_merge($configs['uri'], $hostConfig['uri']);
-            } else {
-                $hostConfig['uri'] = $configs['uri'];
-            }
+            $config = include $hostFile;
+        }
+
+        // Find host config data
+        $configs = $this->lookup($config, $hostIdentifier);
+        // Merge with custom host config
+        if (isset($hostConfig['path'])) {
+            $hostConfig['path'] = array_merge($configs['path'], $hostConfig['path']);
+        } else {
+            $hostConfig['path'] = $configs['path'];
+        }
+        if (isset($hostConfig['uri'])) {
+            $hostConfig['uri'] = array_merge($configs['uri'], $hostConfig['uri']);
+        } else {
+            $hostConfig['uri'] = $configs['uri'];
         }
 
         // Canonize www URI

@@ -27,8 +27,8 @@ class Deactivate extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkDependent'));
-        $events->attach('install.post', array($this, 'removeDependency'));
+        $events->attach('deactivate.pre', array($this, 'checkDependent'));
+        $events->attach('deactivate.post', array($this, 'removeDependency'));
         return $this;
     }
 

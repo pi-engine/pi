@@ -1,6 +1,28 @@
 Pi Engine Changelog
 
 
+April 19th, 2013
+=============================
+1. Upgraded ZF2 to 2.1.5
+2. Improved Intl functions for BC by @voltan
+3. Imported "test" module for module dependency test
+
+
+April 8th, 2013
+=============================
+1. Fixed Issue #21 reported by @voltan: duplicated head keywords and description
+2. Added missing head style in view renderer
+3. Changed empty result of navigation registry from false to array() to avoid crash in backend with no-nav module
+4. Refactored title/meta rendering
+5. Improved cache option files
+6. Added Pi\Cache\Storage\Adapter\Filesystem to record file expiration so that TTL is not required any more for reading cache
+7. Added support for Intl extension with intlDateFormatter and NumberFormatter suggested by @voltan in Issue #24
+8. Improved support for multi-host config
+9. Fixed ACL resource bugs in module installation/uninstallation
+10. Changed configuration related table fields from tinytext to text in System module v3.1.0
+11. Added missing module_dependency table in System module v3.1.1
+
+
 March 23rd, 2013
 =============================
 1. Fixed Issue #2 reported by @jemz: set default timezone in case not set in php.ini
