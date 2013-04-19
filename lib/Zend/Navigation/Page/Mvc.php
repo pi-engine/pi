@@ -251,6 +251,10 @@ class Mvc extends AbstractPage
             );
         }
 
+        /**#@+
+         * Modified by Taiwen Jiang
+         */
+        /*
         if ($this->getRouteMatch() !== null) {
             $rmParams = $this->getRouteMatch()->getParams();
 
@@ -267,10 +271,9 @@ class Mvc extends AbstractPage
         } else {
             $params = $this->getParams();
         }
+        */
 
-        /**#@+
-         * Added by Taiwen Jiang
-         */
+        $params = $this->getParams();
         if (($param = $this->getModule()) != null) {
             $params['module'] = $param;
         }
@@ -307,7 +310,7 @@ class Mvc extends AbstractPage
             $options['query'] = $query;
         }
 
- 	
+
         /**#@+
          * Modified by Taiwen Jiang
          */
@@ -427,7 +430,7 @@ class Mvc extends AbstractPage
         return $this->module;
     }
     /**#@-*/
-    
+
     /**
      * Sets URL query part to use when assembling URL
      *
