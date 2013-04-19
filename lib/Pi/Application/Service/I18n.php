@@ -140,8 +140,6 @@
  *
  * 7. Format a date
  * <code>
- *  if (!_intl()) date($format, $timestamp); // Skip if Intl extension is not available
- *
  *  _date(time(), 'fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  _date(time(), array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
  *
@@ -161,12 +159,16 @@
  *  _date(time(), array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
  *
  *  _date(time());
+ *
+ *  // In case Intl is not available, pass a format string for legacy date() function
+ *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss', 'Y-m-d H:i:s');
+ *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
+ *  // Format defined in system intl config (Pi::config('date_format', 'intl')) will be used if format is not specified
+ *  _date(time(), ...);
  * </code>
  *
  * 8. Format a number
  * <code>
- *  if (!_intl()) return; // Skip if Intl extension is not available
- *
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN', 'default');
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN');
  *  _number(123.4567, 'scientific');
@@ -175,8 +177,6 @@
  *
  * 9. Format a currency
  * <code>
- *  if (!_intl()) return; // Skip if Intl extension is not available
- *
  *  _currency(123.45, 'USD', 'en-US');
  *  _currency(123.45, 'USD');
  *  _currency(123.45);
@@ -184,16 +184,11 @@
  *
  * 10. Get a date formatter
  * <code>
- *  if (!_intl()) return; // Skip if Intl extension is not available
- *
  *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
  *
  *  Pi::service('i18n')->getDateFormatter('fa-IR@calendar=persian', 'long', 'short', 'Asia/Tehran');
  *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR@calendar=persian', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran'));
- *
- *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss');
- *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss'));
  *
  *  Pi::service('i18n')->getDateFormatter(null, null, null, null, null, 'yyyy-MM-dd HH:mm:ss');
  *  Pi::service('i18n')->getDateFormatter(array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
@@ -201,16 +196,15 @@
  *
  * 11. Get a number formatter
  * <code>
- *  if (!_intl()) return; // Skip if Intl extension is not available
- *
- *  Pi::service('i18n')->getDateFormatter('decimal', '#0.# kg', 'zh-CN');
- *  Pi::service('i18n')->getDateFormatter('decimal', '', 'zh-CN');
- *  Pi::service('i18n')->getDateFormatter('decimal');
- *  Pi::service('i18n')->getDateFormatter('scientific');
- *  Pi::service('i18n')->getDateFormatter('spellout');
- *
- *  Pi::service('i18n')->getDateFormatter('currency', '', 'zh-CN');
- *  Pi::service('i18n')->getDateFormatter('currency');
+ *  // Get a number formatter
+ *  Pi::service('i18n')->getNumberFormatter('decimal', '#0.# kg', 'zh-CN');
+ *  Pi::service('i18n')->getNumberFormatter('decimal', '', 'zh-CN');
+ *  Pi::service('i18n')->getNumberFormatter('decimal');
+ *  Pi::service('i18n')->getNumberFormatter('scientific');
+ *  Pi::service('i18n')->getNumberFormatter('spellout');
+ *  // Get a currency formatter
+ *  Pi::service('i18n')->getNumberFormatter('currency', '', 'zh-CN');
+ *  Pi::service('i18n')->getNumberFormatter('currency');
  * </code>
  */
 
@@ -489,11 +483,11 @@ namespace Pi\Application\Service
          * @see IntlDateFormatter
          *
          * @param array|string|null $locale
-         * @param string|null $datetype, valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timetype, valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
          * @param string|null $timezone
          * @param int|string|null $calendar
-         * @param string|null $pattern
+         * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
          * @return IntlDateFormatter
          */
         public function getDateFormatter($locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null)
@@ -535,9 +529,6 @@ namespace Pi\Application\Service
 
             $formatter = new IntlDateFormatter($locale, $datetype, $timetype, $timezone, $calendar);
 
-            if (null === $pattern) {
-                $pattern = Pi::config('date_pattern', 'intl');
-            }
             if ($pattern) {
                 $formatter->setPattern($pattern);
             }
@@ -617,18 +608,28 @@ namespace
     /**
      * Locale-dependent formatting/parsing of date-time using pattern strings and/or canned patterns
      *
-     * @param array|string|null $locale
-     * @param int|null $datetype
-     * @param int|null $timetype
-     * @param string|null $timezone
-     * @param int|string|null $calendar
-     * @param string|null $pattern
+         * @param array|string|null $locale
+         * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $timezone
+         * @param int|string|null $calendar
+         * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
+     * @param string|null $format           Legacy format for date() in case Intl is not available
      * @return string
      */
-    function _date($value, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null)
+    function _date($value, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null, $format = null)
     {
+        // Formatted using date() in case Intl is not available
         if (!_intl()) {
-            return false;
+            if (is_array($locale)) {
+                $format = isset($locale['format']) ? $locale['format'] : $format;
+            }
+            if (!$format) {
+                $format = Pi::config('date_format', 'intl');
+            }
+            $result = date($format, $value);
+
+            return $result;
         }
 
         $formatter = Pi::service('i18n')->getDateFormatter($locale, $datetype, $timetype, $timezone, $calendar, $pattern);
@@ -648,9 +649,11 @@ namespace
      */
     function _number($value, $style = null, $pattern = null, $locale = null, $type = null)
     {
+        // Return raw data in case Intl is not available
         if (!_intl()) {
-            return false;
+            return $value;
         }
+
         $formatter = Pi::service('i18n')->getNumberFormatter($style, $pattern, $locale);
         if ($type) {
             $type = constant('NumberFormatter::TYPE_' . strtoupper($type));
