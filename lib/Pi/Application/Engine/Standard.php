@@ -60,11 +60,13 @@ class Standard extends AbstractEngine
             return false;
         }
 
+        /*
         $response = $this->application->getResponse();
         $response->getHeaders()->addHeaders(array(
             'content-type'      => sprintf('text/html; charset=%s', Pi::config('charset')),
             'content-language'  => Pi::config('locale'),
         ));
+        */
 
         $this->application->run();
 
