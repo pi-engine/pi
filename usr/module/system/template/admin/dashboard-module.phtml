@@ -13,7 +13,7 @@
              <div class="widget-header">
                  <strong><?php _e('About')?></strong>
              </div>
-             <div class="media widget-body" style="padding: 0 10px;margin-top: 10px;">
+             <div class="media widget-body" style="padding: 0 10px; margin-top: 10px;">
                  <img src="<?php echo $data['logo']; ?>" class="pull-left" style="margin-top: 10px;">
                  <div class="media-body">
                      <fieldset>
@@ -27,7 +27,7 @@
                              <dd><?php echo $this->escape($data['update']); ?>
                              <dt><?php _e('Description:'); ?>
                              <dd><?php echo $this->escape($data['description']); ?>
-                             <?php if($data['demo']) { ?>
+                             <?php if (!empty($data['demo'])) { ?>
                              <dt><?php _e('Demo:'); ?>
                              <dd><?php echo $this->escape($data['demo']); ?>
                              <?php } ?>

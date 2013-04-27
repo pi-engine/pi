@@ -34,8 +34,6 @@ return array(
 
         // Add custom options in this section
         'options'   => array(
-            // To build connection upload. Optional, default as true
-            'connect_onload'    => true,
         ),
     ),
 

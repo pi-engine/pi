@@ -32,8 +32,8 @@ class Navigation
         $modules = Pi::service('registry')->modulelist->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
-            $node = Pi::service('registry')->navigation->read($key . '-front');
-            if (!is_array($node)) {
+            $node = Pi::service('registry')->navigation->read($key . '-front') ?: array();
+            if (!$node) {
                 continue;
             }
 

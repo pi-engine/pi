@@ -1151,7 +1151,7 @@ abstract class AbstractPage extends AbstractContainer
             'privilege' => $this->getPrivilege(),
             'active'    => $this->isActive(),
             'visible'   => $this->isVisible(),
-            'type'      => get_called_class(),
+            'type'      => get_class($this),
             'pages'     => parent::toArray(),
         ));
     }

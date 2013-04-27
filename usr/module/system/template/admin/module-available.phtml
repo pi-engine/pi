@@ -28,7 +28,7 @@
                 <th style="width: 15%;"><?php _e('Version'); ?>
                 <th style="width: 30%;"><?php _e('Description'); ?>
                 <th><?php _e('Action'); ?>
-        <tbody> 
+        <tbody>
             <?php foreach ($modules as $directory => $module) { ?>
             <tr class="avail-module-item" data-name="<?php echo $directory; ?>" data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>">
                 <td>
@@ -49,22 +49,22 @@
                             <dd>
                                <a href="<?php echo  $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
                                <?php echo $module['author']['email'];  ?>
-                             <?php if($module['meta']['demo']) { ?>
+                             <?php if (isset($module['meta']['demo'])) { ?>
                              <dt><?php _e('Demo:'); ?>
                              <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a>
                              <?php } ?>
-                        </dl> 
+                        </dl>
                     </div>    
                 <td>
                     <span class="btn module-install"><?php _e('Install'); ?></span>
-            <?php } ?>                                   
-    </table>    
+            <?php } ?>
+    </table>
 </div>
 <script>
 (function($) {
     //var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>";
     var systemError = function() {
-        systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');    
+        systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');
     };
     var page = {
         el: $('#js-module'),
@@ -88,14 +88,14 @@
             }).fail(systemError);
         },
         toggleDetail: function(e) {
-            $(e.target).parents('tr').find('.module-detail-html').toggleClass('hide');            
+            $(e.target).parents('tr').find('.module-detail-html').toggleClass('hide');
         },
         installSucc: function(res,tar) {
             this.modal.modal('hide');
             systemMessage.succ(res.message);
             if (!res.clonable) {
-                tar.remove();        
-            } 
+                tar.remove();
+            }
         }
     }
     page.init();

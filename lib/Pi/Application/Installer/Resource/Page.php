@@ -146,16 +146,22 @@ class Page extends AbstractResource
     {
         $moduleTitle = $this->event->getParam('title');
         $pageEntry = array(
-            'title' => $moduleTitle,
+            'title' => $moduleTitle . ' *',
         );
         // Set module exception for admin
         if (empty($config['admin']) && !isset($config['exception'])) {
             $config['exception'] = array($pageEntry);
         }
         if (!isset($config['front']) || false !== $config['front']) {
+            if (!isset($config['front'])) {
+                $config['front'] = array();
+            }
             $config['front'][] = $pageEntry;
         }
         if (!isset($config['admin']) || false !== $config['admin']) {
+            if (!isset($config['admin'])) {
+                $config['admin'] = array();
+            }
             $config['admin'][] = $pageEntry;
         }
 
@@ -169,7 +175,7 @@ class Page extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $moduleTitle = $this->event->getParam('title');
+        //$moduleTitle = $this->event->getParam('title');
         Pi::service('registry')->page->clear($module);
         $pages = $this->canonizePage($this->config);
 
@@ -192,18 +198,6 @@ class Page extends AbstractResource
                 }
                 $pageList[$pageName] = $page;
             }
-            /*
-            // Set up module pseudo page
-            if (!isset($pageList[$module])) {
-                $pageList[$module] = array(
-                    'section'   => $section,
-                    'module'    => $module,
-                    'name'      => $module,
-                    'title'     => $moduleTitle,
-                    'block'     => ('front' == $section) ? 1 : 0,
-                );
-            }
-            */
             // Sort page list by module-controller-action
             ksort($pageList);
             $pages[$section] = $pageList;
@@ -431,21 +425,7 @@ class Page extends AbstractResource
         // Set rules of accessing the resource by each role
         if (isset($page['permission']['access'])) {
             foreach ($page['permission']['access'] as $role => $rule) {
-                AclHandler::addRule($rule, $role, $resource['section'], $resourceId, $module);
-                /*
-                $data = array();
-                $data['role'] = $role;
-                $data['resource'] = $resourceId;
-                $data['section'] = $resource['section'];
-                $data['module'] = $module;
-                $data['deny'] = empty($rule) ? 1 : 0;
-                $rowRule = $modelRule->createRow($data);
-                $rowRule->save();
-                if (!$rowRule->id) {
-                    $message[] = sprintf('Rule "%s" is not saved', implode('-', array_values($data)));
-                    return false;
-                }
-                */
+                AclHandler::addRule($rule, $role, $resource['section'], $module, $resourceId);
             }
         }
 
