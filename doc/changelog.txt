@@ -7,7 +7,7 @@ April 19th, 2013
 2. Improved Intl functions for BC by @voltan
 3. Imported "test" module for module dependency test
 4. Refactored HTML head/foot rendering to expose section positions
-
+5. Added convenient methods for setting custom head title, keywords and description suggested by @voltan
 
 April 8th, 2013
 =============================
