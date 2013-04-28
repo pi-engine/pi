@@ -36,12 +36,19 @@ abstract class AbstractTranslatorHelper extends AbstractHelper implements
      */
     public function __construct()
     {
+        /**#@+
+         * Remove unnecessary dependency on Intl extension introduced in commit #751ce1895bd8b3fcbb28253a3a308842345318f4
+         * Modified by Taiwen Jiang
+         */
+        /*
         if (!extension_loaded('intl')) {
             throw new Exception\ExtensionNotLoadedException(sprintf(
                 '%s component requires the intl PHP extension',
                 __NAMESPACE__
             ));
         }
+        */
+        /**#@-*/
     }
 
     /**
