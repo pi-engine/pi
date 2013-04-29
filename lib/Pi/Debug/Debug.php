@@ -107,7 +107,8 @@ namespace Pi\Debug
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
-                $location .= $item['file'] . ':' . $item['line'];
+                $file = Pi::service('security')->path($item['file']);
+                $location .= $file . ':' . $item['line'];
                 break;
             }
 
@@ -155,14 +156,16 @@ namespace Pi\Debug
                 $bt = PHP_EOL;
                 $bt .= 'Backtrace at: ' . microtime(true) . PHP_EOL . PHP_EOL;
                 foreach ($list as $backtrace) {
-                    $bt .= (empty($backtrace['file']) ? 'Internal' : $backtrace['file'] . '(' . $backtrace['line'] . ')') . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()' . PHP_EOL;
+                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
+                    $bt .= $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()' . PHP_EOL;
                 }
                 $bt .= PHP_EOL;
             } else {
                 $bt = '<pre>';
                 $bt .= '<strong>Backtrace at: ' . microtime(true) . '</strong><ul>';
                 foreach ($list as $backtrace) {
-                    $bt .= '<li>' . (empty($backtrace['file']) ? 'Internal' : $backtrace['file'] . '(' . $backtrace['line'] . ')') . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()</li>';
+                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
+                    $bt .= '<li>' . $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()</li>';
                 }
                 $bt .= '</ul>';
                 $bt .= '</pre>';

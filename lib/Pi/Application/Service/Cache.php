@@ -19,6 +19,7 @@
  */
 
 namespace Pi\Application\Service;
+
 use Pi;
 use Pi\Cache\Storage\AdapterPluginManager;
 use Zend\Cache\StorageFactory;

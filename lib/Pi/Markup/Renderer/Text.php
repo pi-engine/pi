@@ -20,7 +20,7 @@
 namespace Pi\Markup\Renderer;
 
 use Pi\Markup\Parser\AbstractParser;
-use Pi\Security;
+//use Pi\Security\Security;
 
 class Text extends AbstractRenderer
 {
@@ -35,11 +35,11 @@ class Text extends AbstractRenderer
     {
         if ($this->parser instanceof AbstractParser) {
             $content = $this->parser->parse($content);
-            $content = Security::escape($content);
+            $content = Pi::service('security')->escape($content);
         } elseif ('html' == $this->parser) {
             $content = strip_tags($content);
         } else {
-            $content = Security::escape($content);
+            $content = Pi::service('security')->escape($content);
         }
         if (!isset($this->options['newline']) || !empty($this->options['newline'])) {
             $content = nl2br($content);

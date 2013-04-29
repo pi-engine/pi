@@ -20,7 +20,8 @@
 
 namespace Pi\Application\Resource;
 
-use Pi\Security as SecurityUtility;
+use Pi;
+//use Pi\Security\Security as SecurityUtility;
 
 class Security extends AbstractResource
 {
@@ -33,14 +34,14 @@ class Security extends AbstractResource
     {
         $options = $this->options;
         foreach ($options as $type => $opt) {
-            if (empty($opt)) {
+            if (false === $opt) {
                 continue;
             }
-            $status = SecurityUtility::$type($opt);
+            $status = Pi::service('security')->{$type}($opt);
             if ($status) return true;
             if (false === $status) {
                 return false;
-                SecurityUtility::deny($type);
+                //Pi::service('security')->deny($type);
             }
         }
     }

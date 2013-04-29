@@ -19,7 +19,7 @@
 
 namespace Pi\Security;
 
-class Bot extends AbstractSecurity
+class Bot extends AbstractAdapter
 {
     const MESSAGE = "Access denied by bot check";
 
@@ -28,7 +28,7 @@ class Bot extends AbstractSecurity
      *
      * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
      */
-    public static function check($options = null)
+    public static function check($options = array())
     {
         $key = 'HTTP_USER_AGENT';
         $agent = '';
@@ -45,7 +45,7 @@ class Bot extends AbstractSecurity
             return null;
         }
         // Check bad bots
-        $pattern = is_array($options) ? implode("|", $options) : $options;
+        $pattern = implode("|", $options);
         $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
 
         return $status;

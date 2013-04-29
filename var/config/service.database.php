@@ -40,7 +40,7 @@ return array(
     // Database schema
     'schema'        => 'pi',
     // Prefix for all tables
-    'table_prefix'  => 'xc6c_',
+    'table_prefix'  => 'x2d1_',
     // Prefix for system tables; module identifiers will be used for its tables, respectively
     'core_prefix'   => 'core_'
 );

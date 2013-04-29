@@ -20,7 +20,7 @@
 namespace Pi\Log\Formatter;
 
 use Pi;
-use Pi\Security;
+//use Pi\Security\Security;
 use Zend\Log\Formatter\FormatterInterface;
 
 class Debugger implements FormatterInterface
@@ -75,8 +75,7 @@ class Debugger implements FormatterInterface
                 /**#@++
                 * Remove path prefix for security considerations
                 */
-                //$location .= sprintf(' in %s', $this->sanitizePaths($event['extra']['file']));
-                $location .= sprintf(' in %s', Security::sanitizePath($event['extra']['file']));
+                $location .= sprintf(' in %s', Pi::service('security')->path($event['extra']['file']));
                 /**#@-*/
             }
             $event['location'] = $location;
@@ -89,36 +88,6 @@ class Debugger implements FormatterInterface
             $output = str_replace('%' . $name . '%', $value, $output);
         }
         return $output;
-    }
-
-    /**
-     * Remove path prefix for security considerations
-     *
-     * @staticvar array $paths
-     * @param string $str
-     * @return string
-     */
-    protected function sanitizePaths($str)
-    {
-        static $paths;
-
-        if (!isset($paths)) {
-            // Loads all path settings from host data
-            $paths = Pi::host()->get('path');
-            $lens = array();
-            foreach ($paths as $root => $v) {
-                $lens[] = strlen($v);
-            }
-            // Sort the paths by their lengths in reverse
-            array_multisort($lens, SORT_NUMERIC, SORT_DESC, $paths);
-        }
-        if (DIRECTORY_SEPARATOR != '/') {
-            $str = str_replace(DIRECTORY_SEPARATOR, '/', $str);
-        }
-        foreach ($paths as $root => $v) {
-            $str  = str_replace($v . '/', $root . '/', $str);
-        }
-        return $str;
     }
 
     /**
