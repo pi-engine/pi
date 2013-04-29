@@ -248,10 +248,13 @@ class View extends AbstractPlugin
      *
      * @param string $title     Head title
      * @param string $setType   Position, default as append
-     * @return View
+     * @return View|AbstractPlugin
      */
-    public function headTitle($title, $setType = null)
+    public function headTitle($title = null, $setType = null)
     {
+        if (func_num_args() == 0) {
+            return $this->helper('headTitle');
+        }
         $this->helper('headTitle')->__invoke($title, $setType);
         return $this;
     }
