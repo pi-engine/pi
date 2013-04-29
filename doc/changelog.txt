@@ -8,6 +8,12 @@ April 19th, 2013
 3. Imported "test" module for module dependency test
 4. Refactored HTML head/foot rendering to expose section positions
 5. Added convenient methods for setting custom head title, keywords and description suggested by @voltan
+6. Moved Pi\Debug to Pi\Debug\Debug
+7. Refactored Pi\Security with Pi::service('Security') and Pi\Security\Security
+8. Added files: var/config/service.security.php
+9. Modified files: var/config/resource.security.php
+10. Added convenient methods and syntactic sugar for parameter filtering and sanitizing
+
 
 April 8th, 2013
 =============================

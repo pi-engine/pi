@@ -55,11 +55,11 @@
     <?php if (isset($this->exception) && $this->exception): ?>
 
     <h3 class="page-header">Exception:</h3>
-    <p><?php echo $this->escape(Pi\Security::sanitizePath($this->exception->getMessage())); ?></p>
+    <p><?php echo $this->escape(Pi::service('security')->path($this->exception->getMessage())); ?></p>
 
     <h4 class="page-header">Stack trace</h4>
     <pre>
-    <?php echo Pi\Security::sanitizePath($this->exception->getTraceAsString()); ?>
+    <?php echo Pi::service('security')->path($this->exception->getTraceAsString()); ?>
     </pre>
 
     <?php endif ?>

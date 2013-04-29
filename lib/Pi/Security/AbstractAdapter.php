@@ -19,7 +19,7 @@
 
 namespace Pi\Security;
 
-abstract class AbstractSecurity
+abstract class AbstractAdapter
 {
     const MESSAGE = "DEFINE SPECIFIC MESSAGE";
 
@@ -30,7 +30,7 @@ abstract class AbstractSecurity
      */
     public static function check($options = null)
     {
-        throw new Exception('Access the abstract method is not allowed.');
+        throw new \Exception('Access the abstract method is not allowed.');
         return null;
     }
 }

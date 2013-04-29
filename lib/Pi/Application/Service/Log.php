@@ -125,7 +125,7 @@ class Log extends AbstractService
             }
         } elseif (null === $this->active) {
             if (!empty($this->options['ip'])) {
-                $this->active = (bool) Pi\Security::ip(array('good' => $this->options['ip']));
+                $this->active = (bool) Pi::service('security')->ip(array('good' => $this->options['ip']));
             } else {
                 $this->active = true;
             }
