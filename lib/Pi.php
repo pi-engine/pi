@@ -225,7 +225,7 @@ class Pi
         /**#@-*/
 
         // Load debugger
-        Pi\Debug::load();
+        Pi\Debug\Debug::load();
 
         /**#@+
          * Load engine global config
