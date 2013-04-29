@@ -12,6 +12,7 @@ April 19th, 2013
 7. Refactored Pi\Security with Pi::service('Security') and Pi\Security\Security
 8. Added files: var/config/service.security.php
 9. Modified files: var/config/resource.security.php
+10. Added convenient methods and syntactic sugar for parameter filtering and sanitizing
 
 
 April 8th, 2013

@@ -26,6 +26,12 @@ namespace Pi\Debug
         protected static $inProcess = null;
 
         /**
+         * Loads debugger, nothing to do at this moment
+         */
+        public static function load()
+        {}
+
+        /**
          * Enable/Disable conditional debugging
          *
          * @param bool $flag
@@ -50,13 +56,6 @@ namespace Pi\Debug
                 return null;
             }
             return static::render($data, $skip);
-        }
-
-        /**
-         * Loads debugger, nothing to do at this moment
-         */
-        public static function load()
-        {
         }
 
         /**

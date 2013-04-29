@@ -224,8 +224,9 @@ class Pi
         static::autoloader($options);
         /**#@-*/
 
-        // Load debugger
+        // Load debugger and filter
         Pi\Debug\Debug::load();
+        Pi\Utility\Filter::load();
 
         /**#@+
          * Load engine global config
