@@ -26,7 +26,7 @@ use Zend\View\Helper\HeadStyle as ZendHeadStyle;
 /**
  * Helper for setting and retrieving script elements for HTML head section
  *
- * @see HeadStyle for details.
+ * @see ZendHeadStyle for details.
  * A new use case with raw type content:
  * <code>
  * <?php

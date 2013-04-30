@@ -21,6 +21,7 @@
 namespace Pi\Mvc\View\Http;
 
 use Pi;
+use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\View\Http\DefaultRenderingStrategy as ZendDefaultRenderingStrategy;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ModelInterface as ViewModel;
@@ -34,6 +35,24 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      * @var string
      */
     protected $layoutError = 'layout-error';
+
+    /**
+     * Attach the aggregate to the specified event manager
+     *
+     * @param  EventManagerInterface $events
+     * @return void
+     */
+    public function attach(EventManagerInterface $events)
+    {
+        parent::attach($events);
+
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'initAssemble'), 10000);
+
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'renderAssemble'), 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'renderAssemble'), 10000);
+
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'completeAssemble'), 10000);
+    }
 
     /**
      * Get error layout template value
@@ -99,10 +118,6 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
             if ($e->isError()) {
                 $viewModel->setTemplate($this->getLayoutError());
             }
-
-            // Set up layout meta data
-            $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
-            $viewRenderer->meta()->assign();
         }
 
         $view = $this->view;
@@ -114,5 +129,75 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
         Pi::service('log')->end('RENDER');
 
         return $response;
+    }
+
+    /**
+     * Initialize assemble with config meta
+     *
+     * @param  MvcEvent $e
+     * @return void
+     */
+    public function initAssemble(MvcEvent $e)
+    {
+        // Skip ajax request
+        $request   = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return;
+        }
+
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
+        $viewRenderer->assemble()->initStrategy();
+        return;
+    }
+
+    /**
+     * Canonize head title by appending site name and/or slogan
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
+    public function renderAssemble(MvcEvent $e)
+    {
+        // Skip ajax request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return;
+        }
+
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
+        $viewRenderer->assemble()->renderStrategy();
+        return;
+    }
+
+
+    /**
+     * Assemble meta contents
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
+    public function completeAssemble(MvcEvent $e)
+    {
+        // Set response headers for language and charset
+        $response = $e->getResponse();
+        $response->getHeaders()->addHeaders(array(
+            'content-type'      => sprintf('text/html; charset=%s', Pi::config('charset')),
+            'content-language'  => Pi::config('locale'),
+        ));
+        
+        // Skip ajax request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return;
+        }
+
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
+        $content = $response->getContent();
+        $content = $viewRenderer->assemble()->completeStrategy($content);
+        $response->setContent($content);
+        return;
     }
 }

@@ -26,7 +26,7 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
 /**
  * Helper for setting and retrieving script elements for HTML head section
  *
- * @see HeadScript for details.
+ * @see ZendHeadScript for details.
  * A new use case with raw type content:
  * <code>
  * <?php

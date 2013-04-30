@@ -19,8 +19,9 @@
  */
 
 namespace Pi\Application\Service;
+
 use Pi;
-//use Pi\Cache\Storage\AdapterPluginManager;
+use Pi\Cache\Storage\AdapterPluginManager;
 use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 
@@ -66,7 +67,7 @@ class Cache extends AbstractService
             $config['adapter']['options']['namespace'] = '';
         }
         $config['adapter']['options']['namespace'] = $this->getNamespace($config['adapter']['options']['namespace']);
-        //StorageFactory::setAdapterPluginManager(new AdapterPluginManager);
+        StorageFactory::setAdapterPluginManager(new AdapterPluginManager);
         $storage = StorageFactory::factory($config);
 
         return $storage;

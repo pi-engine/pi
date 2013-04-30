@@ -5,7 +5,7 @@ $config = array(
     // Storage adapter
     'adapter'   => array(
         'name'  => 'memcached',
-        // Options
+        // Options, see Zend\Cache\Storage\Adapter\MemcachedOptions
         'options'    => array(
             'servers'   => array(
                 array('127.0.0.1', 11211),

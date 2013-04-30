@@ -59,8 +59,9 @@ class ConfigController extends ActionController
             }
             if ($configs) {
                 $groups = array();
-                $configsByCategory = array();
-                $categories = Pi::model('config_category')->select(array('module' => $module));
+                //$configsByCategory = array();
+                $select = Pi::model('config_category')->select()->where(array('module' => $module))->order(array('order ASC'));
+                $categories = Pi::model('config_category')->selectWith($select);
                 if ($categories->count() > 1) {
                     foreach ($categories as $category) {
                         $groups[$category->name] = array(

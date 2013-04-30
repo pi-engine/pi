@@ -21,7 +21,7 @@
 namespace Pi\Log\Formatter;
 
 use Pi;
-use Pi\Security;
+//use Pi\Security\Security;
 use Pi\Log\Logger;
 use Zend\Log\Formatter\FormatterInterface;
 
@@ -66,8 +66,8 @@ class DbProfiler implements FormatterInterface
         /**#@++
          * Remove DB table prefix for security considerations
          */
-        $event['message'] = isset($event['message']) ? Security::sanitizeDb($event['message']) : '';
-        $event['sql'] = Security::sanitizeDb($event['sql']);
+        $event['message'] = isset($event['message']) ? Pi::service('security')->db($event['message']) : '';
+        $event['sql'] = Pi::service('security')->db($event['sql']);
         /**#@-*/
 
         $event['params'] = '';

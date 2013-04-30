@@ -127,7 +127,7 @@ class Block extends AbstractApi
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
             $rule = isset($access[$role]) ? $access[$role] : 1;
-            AclHandler::addRule($rule, $role, 'block', $rowBlock->id, $module);
+            AclHandler::addRule($rule, $role, 'block', $module, $rowBlock->id);
             /*
             $dataRule['role'] = $role;
             if (isset($access[$role])) {

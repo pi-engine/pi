@@ -40,7 +40,7 @@ class IndexController extends ActionController
             }
             $title = $row->title;
             // Specify page head title
-            $this->view()->headTitle()->prepend($row->title);
+            $this->view()->headTitle($row->title);
             $model = $this->getModel('page');
             $model->update(array('clicks' => new Expression('`clicks` + 1')), array('id' => $row->id));
         }

@@ -11,6 +11,8 @@ $this->css(array(
     $this->assetTheme('css/style.css'),
     $this->assetTheme('css/front.css'),
 ));
+
+
 /**#@+
  * For demonstration
  */
@@ -26,18 +28,18 @@ $this->js($this->assetLocale('rtl.js'));
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
 <head>
-    <!-- Charset -->
     <meta charset="<?php echo $charset; ?>">
-
-    <!-- Title -->
-    <?php echo $this->headTitle(); ?>
-
+    <?php echo $this->assemble('headTitle', 4); ?>
+    <?php echo $this->assemble('headMeta', 4); ?>
+    <?php echo $this->assemble('headLink', 4); ?>
+    <?php echo $this->assemble('headStyle', 4); ?>
+    <?php echo $this->assemble('headScript', 4); ?>
 </head>
 
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <div class="header clearfix">
         <div class="container clearfix">
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="header-logo"><?php echo $this->escape($sitename); ?></a>
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="header-logo"><?php echo $this->escape($sitename); ?></a>
         </div>
     </div>
 
@@ -84,7 +86,7 @@ $this->js($this->assetLocale('rtl.js'));
         </div>
 
         <?php } ?>
-         <div class="<?php echo (isset($blocks['1']) && isset($blocks['7'])) ? 'span6' : 'span9'; ?>">
+        <div class="<?php echo (isset($blocks['1']) && isset($blocks['7'])) ? 'span6' : 'span9'; ?>">
             <?php if(isset($blocks['2'])) {
             ?>
             <div class="pi-zone-2">
@@ -177,6 +179,8 @@ $this->js($this->assetLocale('rtl.js'));
 
     </div>
     <!-- Footer ends -->
+
+    <?php echo $this->assemble('footScript', 4); ?>
 
 </body>
 </html>

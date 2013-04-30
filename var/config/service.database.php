@@ -21,18 +21,26 @@ return array(
         'dsn'       => 'mysql:dbname=pi;host=localhost',
         'username'  => 'root',
         'password'  => '',
-        'options'   => array(
+
+        // driver_options. All attributes must be valid.
+        // @see http://www.php.net/manual/en/pdo.setattribute.php
+        'driver_options'   => array(
             PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8 COLLATE utf8_general_ci',
             PDO::ATTR_PERSISTENT            => false,
+
+            // Custom PDOstatement class. Optional, default as Pi\Db\Adapter\Driver\Statement
+            // PDO::ATTR_STATEMENT_CLASS       => array('PDOstatement'),
         ),
-        // To build connection upload. Optional, default as true
-        'connect_onload'    => true,
+
+        // Add custom options in this section
+        'options'   => array(
+        ),
     ),
 
     // Database schema
     'schema'        => 'pi',
     // Prefix for all tables
-    'table_prefix'  => 'xc6c_',
+    'table_prefix'  => 'x2d1_',
     // Prefix for system tables; module identifiers will be used for its tables, respectively
     'core_prefix'   => 'core_'
 );

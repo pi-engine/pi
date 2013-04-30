@@ -19,7 +19,7 @@
 
 namespace Pi\Security;
 
-class Xss extends AbstractSecurity
+class Xss extends AbstractAdapter
 {
     const MESSAGE = "Access denied by XSS check";
     protected static $filter = true;
@@ -30,12 +30,11 @@ class Xss extends AbstractSecurity
      *
      * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
      */
-    public static function check($options = null)
+    public static function check($options = array())
     {
         $filter = isset($options['filter']) ? $options['filter'] : static::$filter;
         static::$length = isset($options['length']) ? $options['length'] : static::$length;
 
-        //$filter = false;
         if (!empty($options['post']) && !empty($_POST)) {
             if (static::checkXssRecursive($_POST, $filter) && !$filter) {
                 return false;

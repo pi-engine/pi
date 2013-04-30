@@ -19,7 +19,7 @@
 
 namespace Pi\Security;
 
-class Agent extends AbstractSecurity
+class Agent extends AbstractAdapter
 {
     const MESSAGE = "Access denied by HTTP_USER_AGENT check";
 
@@ -28,7 +28,7 @@ class Agent extends AbstractSecurity
      *
      * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
      */
-    public static function check($options = null)
+    public static function check($options = array())
     {
         $key = 'HTTP_USER_AGENT';
         $agent = '';

@@ -10,11 +10,7 @@ $this->css($this->assetTheme('css/style.css'));
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
 <head>
-    <!-- Charset -->
     <meta charset="<?php echo $charset; ?>">
-
-    <!-- Title -->
-    <?php echo $this->headTitle(); ?>
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <div class="header clearfix">

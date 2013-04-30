@@ -144,11 +144,18 @@ class Config extends AbstractResource
             );
         }
 
-        // Check item name
+        // Formulate config name and order
+        $order = 1;
         foreach ($ret['item'] as $key => &$item) {
             if (!isset($item['name'])) {
                 $item['name'] = strval($key);
             }
+            $item['order'] = $order++;
+        }
+        // Formulate category order
+        $order = 1;
+        foreach ($ret['category'] as $key => &$item) {
+            $item['order'] = $order++;
         }
 
         return $ret;
@@ -181,12 +188,14 @@ class Config extends AbstractResource
         $config = $this->canonize($this->config);
         if (!empty($config['category'])) {
             $modelCategory = Pi::model('config_category');
-            $order = 0;
+            //$order = 0;
             foreach ($config['category'] as $category) {
                 $category['module'] = $module;
+                /*
                 if (!isset($category['order'])) {
                     $category['order'] = ++$order;
                 }
+                */
                 $status = $modelCategory->insert($category);
                 if (!$status) {
                     return array(
@@ -198,11 +207,13 @@ class Config extends AbstractResource
         }
 
         $model = Pi::model('config');
-        $order = 0;
+        //$order = 0;
         foreach ($config['item'] as $item) {
+            /*
             if (!isset($item['order'])) {
                 $item['order'] = ++$order;
             }
+            */
             $item = $this->canonizeConfig($item);
             $row = $model->createRow($item);
             $status = $row->save();
@@ -256,7 +267,7 @@ class Config extends AbstractResource
                     $row->name = $categories[$key]['name'];
                     $isChanged = true;
                 }
-                if (isset($categories[$key]['order']) && $categories[$key]['order'] != $row->order) {
+                if ($categories[$key]['order'] != $row->order) {
                     $row->order = $categories[$key]['order'];
                     $isChanged = true;
                 }

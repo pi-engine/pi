@@ -28,8 +28,8 @@ class Uninstall extends AbstractAction
     {
         $events = $this->events;
         //$events->attach('install.pre', array($this, 'loadConfig'));
-        $events->attach('install.pre', array($this, 'checkDependent'));
-        $events->attach('install.post', array($this, 'removeDependency'));
+        $events->attach('uninstall.pre', array($this, 'checkDependent'));
+        $events->attach('uninstall.post', array($this, 'removeDependency'));
         //$events->attach('install.post', array($this->installer, 'updateMeta'));
         return $this;
     }
