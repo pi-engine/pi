@@ -46,9 +46,13 @@ class LoginController extends ActionController
 
         // Display login form
         $form = $this->getForm();
-        $redirect = $this->params('redirect') ?: $this->request->getServer('HTTP_REFERER');
-        if ($redirect) {
-            $form->setData(array('redirect' => urlencode($redirect)));
+        $redirect = $this->params('redirect');
+        if (null === $redirect) {
+            $redirect = $this->request->getServer('HTTP_REFERER');
+        }
+        if (null !== $redirect) {
+            $redirect = $redirect ? urlencode($redirect) : '';
+            $form->setData(array('redirect' => $redirect));
         }
         $this->renderForm($form);
     }

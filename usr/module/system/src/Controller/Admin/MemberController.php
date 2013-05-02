@@ -112,7 +112,7 @@ class MemberController extends ActionController
         */
         foreach ($users as $id => &$user) {
             $user['role'] = $roleList[$user['role']];
-            $user['role_staff'] = $roleList[$user['role_staff']];
+            $user['role_staff'] = isset($user['role_staff']) ? $roleList[$user['role_staff']] : '';
         }
 
         $paginator = Paginator::factory(intval($count));
@@ -136,7 +136,7 @@ class MemberController extends ActionController
         $title = __('Member list');
         $this->view()->assign('title', $title);
         $this->view()->assign('users', $users);
-        $this->view()->assign('role', $role);
+        //$this->view()->assign('role', $role);
         $this->view()->assign('roles', $roles);
     }
 
@@ -148,7 +148,7 @@ class MemberController extends ActionController
             return;
         }
 
-        $active = $this->params('active', null);
+        //$active = $this->params('active', null);
         $page = $this->params('p', 1);
         $limit = 50;
         $offset = (int) ($page - 1) * $limit;
@@ -211,7 +211,7 @@ class MemberController extends ActionController
 
             foreach ($users as $id => &$user) {
                 $user['role'] = $roleList[$user['role']];
-                $user['role_staff'] = $roleList[$user['role_staff']];
+                $user['role_staff'] = isset($user['role_staff']) ? $roleList[$user['role_staff']] : '';
             }
         }
 

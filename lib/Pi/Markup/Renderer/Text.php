@@ -19,6 +19,7 @@
 
 namespace Pi\Markup\Renderer;
 
+use Pi;
 use Pi\Markup\Parser\AbstractParser;
 //use Pi\Security\Security;
 

@@ -18,6 +18,7 @@
  */
 
 namespace Pi\Setup\Controller;
+
 use Pi;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -35,7 +36,6 @@ class Finish extends AbstractController
     {
         $wizard = $this->wizard;
         $vars = $wizard->getPersist('paths');
-        //$this->normalizeHost($vars);
         $configs = array();
 
         /**#@+
@@ -50,12 +50,6 @@ class Finish extends AbstractController
             }
         }
         $content = str_replace('%host%', $vars['config']['path'] . '/host.php', $content);
-        /*
-        $content = preg_replace('/(define\()([\'"])(PI_PATH_LIB)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_LIB\', \'' . $vars['lib']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(PI_PATH_WWW)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_WWW\', \'' . $vars['www']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(PI_PATH_VAR)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_VAR\', \'' . $vars['var']['path'] . '\')', $content);
-        $content = preg_replace('/(define\()([\'"])(PI_PATH_HOST)\\2,\s*([\'"])(.*?)\\4\s*\)/', 'define(\'PI_PATH_HOST\', \'' . $vars['config']['path'] . '/host.php\')', $content);
-        */
         $configs[] = array('file' => $file, 'content' => $content);
         /**#@-*/
 
@@ -99,16 +93,16 @@ class Finish extends AbstractController
         $readPaths .= "</ul>";
 
         $message = <<<'HTML'
-<h2>Congratulatons! The system is set up successfully. <a href='../index.php'>Click to visit your website!</a></h2>
+<h2>Congratulatons! The system is set up successfully. <a href='../index.php?redirect=0'>Click to visit your website!</a></h2>
 <h3>Security advisory</h3>
 <ol>For security considerations please make sure the following operations are done:
-    <li>Remove the installation folder <strong>%s</strong> from your server.</li>
+    <li>Remove the installation folder <strong>{www}/setup/</strong> from your server manually.</li>
     <li>Set configuration directories and files to readonly: %s</li>
 </ol>
 <h3>Support</h3>
 <p>Visit <a href='http://www.xoopsengine.org/' rel='external'>Pi Engine Development Site</a> in case you need any help.</p>
 HTML;
-        $this->content = sprintf(_t($message), basename(dirname(__DIR__)), $readPaths);
+        $this->content = sprintf(_t($message), $readPaths);
 
         $path = Pi::path('cache');
         $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
