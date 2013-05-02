@@ -34,6 +34,12 @@ class RegisterController extends ActionController
             return;
         }
 
+        // If already logged in
+        if (Pi::service('authentication')->hasIdentity()) {
+            $this->redirect()->toRoute('user', array('controller' => 'account'));
+            return;
+        }
+
         // Display register form
         $form = $this->getForm();
         $this->renderForm($form);

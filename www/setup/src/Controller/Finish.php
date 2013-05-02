@@ -93,7 +93,7 @@ class Finish extends AbstractController
         $readPaths .= "</ul>";
 
         $message = <<<'HTML'
-<h2>Congratulatons! The system is set up successfully. <a href='../index.php'>Click to visit your website!</a></h2>
+<h2>Congratulatons! The system is set up successfully. <a href='../index.php?redirect=0'>Click to visit your website!</a></h2>
 <h3>Security advisory</h3>
 <ol>For security considerations please make sure the following operations are done:
     <li>Remove the installation folder <strong>{www}/setup/</strong> from your server manually.</li>
