@@ -206,7 +206,7 @@ class DashboardController extends ActionController
         if ($row) {
             $content = $row->content;
             $memo = array(
-                'time'      => date('Y/m/d H:i:s', $content['time']),
+                'time'      => _date($content['time']),
                 'content'   => Pi::service('markup')->render($content['content'], 'text'),
             );
         }
@@ -220,7 +220,7 @@ class DashboardController extends ActionController
         }
         $content = $row->content;
         $message = array(
-            'time'      => date('Y/m/d H:i:s', $content['time']),
+            'time'      => _date($content['time']),
             'content'   => Pi::service('markup')->render($content['content'], 'text'),
         );
         $messagePerm = false;
@@ -273,7 +273,7 @@ class DashboardController extends ActionController
         if (empty($data['update'])) {
             $data['update'] = __('Never updated.');
         } else {
-            $data['update'] = date('Y-m-d H:i:s', $data['update']);
+            $data['update'] = _date($data['update']);
         }
 
         $this->view()->assign('summary', $summary);
@@ -376,7 +376,7 @@ class DashboardController extends ActionController
         }
 
         $message = array(
-            'time'      => date('Y/m/d H:i:s', $data['time']),
+            'time'      => _date($data['time']),
             'content'   => Pi::service('markup')->render($data['content'], 'text'),
         );
 
@@ -413,7 +413,7 @@ class DashboardController extends ActionController
         $row->save();
 
         $memo = array(
-            'time'      => date('Y/m/d H:i:s', $data['time']),
+            'time'      => _date($data['time']),
             'content'   => $data['content'],
         );
 
