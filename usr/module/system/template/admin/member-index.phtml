@@ -10,7 +10,7 @@
 <form method='GET'>
     <?php _e('Select a role: '); ?><select id='role-selection' list-url='<?php echo $this->url('admin', array('controller' => 'member', 'action' => 'role', 'role' => '')) ?>'>
     <?php foreach ($roles as $roleName => $roleTitle) { ?>
-        <option value="<?php echo $roleName; ?>"<?php if ($role == $roleName) { echo ' selected'; } ?>><?php echo $this->escape($roleTitle); ?></option>
+        <option value="<?php echo $roleName; ?>"<?php if (isset($role) && $role == $roleName) { echo ' selected'; } ?>><?php echo $this->escape($roleTitle); ?></option>
     <?php } ?>
     </select>
 </form>
