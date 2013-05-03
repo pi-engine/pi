@@ -27,7 +27,7 @@
     </thead>
     <?php foreach ($items as $row) { ?>
     <tr>
-        <td><?php echo date('y-m-d H:i:s', $row['time']); ?></td>
+        <td><?php echo _date($row['time']); ?></td>
         <td><?php echo $row['user']; ?></td>
         <td><?php echo $row['ip']; ?></td>
         <td><?php echo $row['section']; ?></td>
