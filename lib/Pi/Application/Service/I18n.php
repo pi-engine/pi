@@ -619,6 +619,7 @@ namespace
      */
     function _date($value, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null, $format = null)
     {
+        $value = intval($value);
         // Formatted using date() in case Intl is not available
         if (!_intl()) {
             if (is_array($locale)) {
