@@ -28,419 +28,399 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <?php _e('This navgation is only for viewing'); ?>
     </div>
-    <? } ?>
+    <?php } ?>
     <div class="menu-to-edit">
-    </div>    
+    </div>
 </div>
 <script type="text/template" id="temp-menu">
-    <div class="tree-item menu-item-depth<%= depth %>">
-        <div class="no-select row-fluid tree-item-header">
-            <div class="span8">
-                <div class="ellipsis tree-item-header-label"><%= label %></div>
-            </div>
-            <div class="span4 btn-group">
-                <span class="btn btn-small js-toggle" title="<?php _e('Click to toggle edit'); ?>">
-                    <?php _e('Custom'); ?>
-                </span>
-                <?php if (!$navigation['module']) { ?>
-                <button class="btn btn-small js-delete">×</button>
-                <?php } ?>
-            </div>    
+    <div class="no-select row-fluid tree-item-header">
+        <div class="span8">
+            <div class="ellipsis tree-item-header-label"><%= label %></div>
         </div>
-        <div class="tree-item-body">
-            <div class="form-horizontal menu-edit-form">
-                <div class="control-group">
-                    <label class="control-label"><?php _e('Label'); ?></label>
-                    <div class="controls">
-                        <input type="text" value="<%= label %>" name="label">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label"><?php _e('Url'); ?></label>
-                    <div class="controls">
-                        <input type="text" name="url" value="<%= url %>" data-original-title="<?php _e('Page link by url or by the after of route'); ?>">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label"><?php _e('Target'); ?></label>
-                    <div class="controls">
-                        <select name="target">
-                            <option value="" <% if (!target) { print('selected'); } %>><?php _e('None'); ?>
-                            <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php _e('_blank'); ?>    
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label"><?php _e('Permission'); ?></label>
-                    <div class="controls">
-                        <input type="text" name="url" value="<%= resource %>">    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <label class="checkbox">
-                            <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php _e('To display in menu.'); ?>
-                        </label>    
-                    </div>  
-                </div>
-            </div>
-            <div class="legend"><?php _e('Page link by route'); ?></div>
-            <div class="row-fluid">
-                <div class="span6">
-                    <div class="form-horizontal menu-edit-form">
-                        <div class="control-group">
-                            <label class="control-label"><?php _e('Route'); ?></label>
-                            <div class="controls">
-                                <input type="text" value="<%= route %>" name="route" class="input-small">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><?php _e('Controller'); ?></label>
-                            <div class="controls">
-                                <input type="text" name="controller" value="<%= controller %>" class="input-small">
-                            </div>
-                        </div>   
-                    </div>    
-                </div>
-                <div class="span6" style="margin-left: 0;">
-                    <div class="form-horizontal menu-edit-form">
-                        <div class="control-group">
-                            <label class="control-label"><?php _e('Module'); ?></label>
-                            <div class="controls">
-                                <input type="text" value="<%= module %>" name="module" class="input-small">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><?php _e('Action'); ?></label>
-                            <div class="controls">
-                                <input type="text" name="action" value="<%= action %>" class="input-small">
-                            </div>
-                        </div>   
-                    </div>  
-                </div>
-            </div>
-            <div class="btn-save-action">
-                <span class="btn btn-link tree-item-save"><?php _e('Save'); ?></span>
-            </div>
+        <div class="span4 btn-group">
+            <span class="btn btn-small js-toggle" title="<?php _e('Click to toggle edit'); ?>">
+                <?php _e('Custom'); ?>
+            </span>
+            <?php if (!$navigation['module']) { ?>
+            <button class="btn btn-small js-delete">×</button>
+            <?php } ?>
         </div>    
     </div>
+    <div class="tree-item-body">
+        <div class="form-horizontal menu-edit-form">
+            <div class="control-group">
+                <label class="control-label"><?php _e('Label'); ?></label>
+                <div class="controls">
+                    <input type="text" value="<%= label %>" name="label">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><?php _e('Url'); ?></label>
+                <div class="controls">
+                    <input type="text" name="url" value="<%= url %>" data-original-title="<?php _e('Page link by url or by the after of route'); ?>">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><?php _e('Target'); ?></label>
+                <div class="controls">
+                    <select name="target">
+                        <option value="" <% if (!target) { print('selected'); } %>><?php _e('None'); ?>
+                        <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php _e('_blank'); ?>    
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><?php _e('Permission'); ?></label>
+                <div class="controls">
+                    <input type="text" name="url" value="<%= resource %>">    
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php _e('To display in menu.'); ?>
+                    </label>    
+                </div>  
+            </div>
+        </div>
+        <div class="legend"><?php _e('Page link by route'); ?></div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="form-horizontal menu-edit-form">
+                    <div class="control-group">
+                        <label class="control-label"><?php _e('Route'); ?></label>
+                        <div class="controls">
+                            <input type="text" value="<%= route %>" name="route" class="input-small">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"><?php _e('Controller'); ?></label>
+                        <div class="controls">
+                            <input type="text" name="controller" value="<%= controller %>" class="input-small">
+                        </div>
+                    </div>   
+                </div>    
+            </div>
+            <div class="span6" style="margin-left: 0;">
+                <div class="form-horizontal menu-edit-form">
+                    <div class="control-group">
+                        <label class="control-label"><?php _e('Module'); ?></label>
+                        <div class="controls">
+                            <input type="text" value="<%= module %>" name="module" class="input-small">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"><?php _e('Action'); ?></label>
+                        <div class="controls">
+                            <input type="text" name="action" value="<%= action %>" class="input-small">
+                        </div>
+                    </div>   
+                </div>  
+            </div>
+        </div>
+        <div class="btn-save-action">
+            <span class="btn btn-link tree-item-save"><?php _e('Save'); ?></span>
+        </div>
+    </div>    
 </script>
 <script>
-var isDone = false;
-var Menu = Backbone.Model.extend({
-    idAttribute: "_id",
-    defaults: {
-        id: 0,
-        depth: 0,
-        pid: 0,
-        label: "",
-        resource: "",
-        url: "",
-        target: "",
-        route: "",
-        module: "",
-        controller: "",
-        action: "",
-        visible: 1
-    },
-    getChild: function() {
-        var ret = [],
-            get = function(model) {
-                var c = model.collection.where({
-                    pid: model.get('id')    
-                });
-                for(var i = 0 , l = c.length; i < l; i++) {
-                    get1(c[i]);    
-                }
-            },
-            get1 = function (model) {
-                var c = model.collection.where({
-                    pid: model.get('id')    
-                });
-                ret.push(model);
-                for (var i = 0, l = c.length; i < l; i++) {
-                    get1(c[i]);
-                }
-            };
-        get(this);
-        return ret;
-    }
-});
-var MenuCollection = Backbone.Collection.extend({
-    model: Menu    
-});
-var MenuItemView = Backbone.View.extend({
-    template: $('#temp-menu').html(),
-    events: {
-        'click .js-toggle': 'toggle',
-        'click .js-delete': 'deleteItem',
-        'click .tree-item-save': 'saveItem'    
-    },
-    initialize: function() {
-        this.model.on('destroy', this.remove, this);
-        this.model.on("change", this.render, this);
-        this.model.el = this.el;
-    },
-    toggle: function() {
-        this.$el.toggleClass('tree-item-editing');
-        this.$('.js-toggle').toggleClass('active');    
-    },
-    deleteItem: function() {
-        var m = this.model;
-        m.collection.trigger('deleteItem', m);
-        m.destroy();
-        isDone = true;
-    },
-    saveItem: function() {
-        var self = this,
-            val = function(name) {
-                return $.trim(self.$('[name=' + name + ']').val());    
-            },
-            label = val('label');
-        if (label) {
-            this.model.set({
-                'url': val('url'),
-                'route': val('route'),
-                'module': val('module'),
-                'controller': val('controller'),
-                'action': val('action'),
-                'label': val('label'),
-                'visible': this.$('[name=visible]').attr('checked') ? 1 : 0,
-                'resource': val('resource'),
-                'target': val('target')
-            });                
-        } else {
-            this.$('[name=label]').parents('.control-group').addClass('error');
-        }
-        isDone = true;
-    },
-    render: function() {
-        this.$el.html(_.template(this.template,this.model.toJSON())).data('model', this.model).removeClass('tree-item-editing');
-        this.$('[name=url]').tooltip();
-        return this;    
-    }
-});
-var MenuListItemView = Backbone.View.extend({
-    el: $('#js-menu-edit'),
-    events: {
-        'click .js-add-to': 'addMenu',
-        'click .menu-submit': 'saveMenu'    
-    },
-    initialize: function(option) {
-        this.box = this.$('.menu-to-edit');
-        this.render();
-        this.$('.menu-submit').tooltip();
-        this.collection.on('add', this.addOne, this);
-        this.collection.on('deleteItem', this.deleteItem, this);
-        if (option.onlyView) {
-            this.$('.tree-item-header').css('cursor', 'default');
-            this.$('.btn-save-action').css('display', 'none');    
-        } else {
-            this.sortable();    
-        }
-    },
-    sortable: function() {
-        var getDepth = function(el) {
-            return el.length && el.data('model').get('depth');
-        };
-        var placePosition = function() {
-            depth = Math.max(depth, 0);   
-            place[0].className = "tree-sortable-placeholder menu-item-depth" + depth;
-        };
-        var self = this,
-            depth = 0,
-            place,
-            item,
-            itemChild,
-            itemLeft;
-        this.box.sortable({
-            handle: ".tree-item-header",
-            placeholder: "tree-sortable-placeholder",
-            start: function(e, ui) {
-                item = ui.item;
-                depth = item.data('model').get('depth');
-                place = ui.placeholder;
-                itemChild = self.getChild(item);
-                itemLeft = parseInt(item.find('.tree-item').css('marginLeft'))
-                var maxDepth = depth,
-                    w;
-                itemChild.each(function() {
-                    var d = getDepth($(this));
-                    maxDepth = Math.max(maxDepth, d);      
-                });
-                w = item.find(".tree-item-header").outerWidth() + (maxDepth - depth) * 30;
-                place.css({
-                    width: w,
-                    height: (item.find(".tree-item-header").outerHeight() + 10) * (itemChild.length + 1) -12
-                });
-                item.css('width', w + 20);
-                placePosition();
-                item.append(itemChild);
-                $(this).sortable('refresh');
-            },
-            sort: function(e, ui) {
-                var pre = '',
-                    parent = '',
-                    next = '',
-                    before = place.prev(),
-                    left1,
-                    left2 = ui.position.left + itemLeft,
-                    d,
-                    child;
-                place.prevAll().each(function() {
-                    var $this = $(this),
-                        d = getDepth($this);
-                    if (d == depth && this != item[0]) {
-                        pre = pre || $this;
-                    } else if(d == depth -1 && this != item[0]) {
-                        parent = $this;
-                        return false;
-                    }
-                });
-                if (getDepth(place.next()) == depth) {
-                    next = place.next();        
-                }
-                if (before[0] == item[0]) {
-                    before = before.prev();
-                }
-                if (!before.length) {
-                    depth = 0;
-                    placePosition();
-                    return;
-                }
-                child = self.getChild(before);
-                if (child.length && child[child.length - 1] != item[0]) {
-                    depth = getDepth(before) + 1;        
-                } else {
-                    if (pre) {
-                        d = getDepth(pre);
-                        left1 = pre.position().left + d * 30;
-                        if (left2 - left1 > 20) {
-                            depth = d + 1;
-                        } 
-                    }
-                    if(parent && pre && !next) {
-                        d = getDepth(parent);
-                        left1 = parent.position().left + d * 30;
-                        if (left2 < left1) {
-                            depth = d;    
-                        }     
-                    }
-                    if (parent && !pre && !next) {
-                        d = getDepth(parent);
-                        left1 = parent.position().left + d * 30;
-                        if (left2 + 1 < left1) {
-                            depth = d;    
-                        }    
-                    }
-                }
-                placePosition();
-            },
-            stop: function(e, ui) {
-                var pid,
-                    diff = depth - item.data('model').get('depth');
-                if (depth == 0) {
-                    pid = 0;    
-                } else {
-                    item.prevAll().each(function() {
-                        var m = $(this).data('model');
-                        if (m.get('depth') == depth-1) {
-                            pid = m.get('id');
-                            return false;
-                        }    
+(function($) {
+    var isDone = false;
+    var Menu = Backbone.Model.extend({
+        idAttribute: "_id",
+        defaults: {
+            id: 0,
+            depth: 0,
+            pid: 0,
+            label: "",
+            resource: "",
+            url: "",
+            target: "",
+            route: "",
+            module: "",
+            controller: "",
+            action: "",
+            visible: 1
+        },
+        getChild: function() {
+            var ret = [],
+                get = function(model) {
+                    var c = model.collection.where({
+                        pid: model.get('id')    
                     });
-                }
-                if (itemChild.length) {
-                    itemChild.insertAfter(item).each(function() {
-                        var m = $(this).data('model');
-                        m.set({
-                            depth: m.get('depth') + diff    
-                        });    
+                    for(var i = 0 , l = c.length; i < l; i++) {
+                        get1(c[i]);    
+                    }
+                },
+                get1 = function (model) {
+                    var c = model.collection.where({
+                        pid: model.get('id')    
                     });
-                }
-                item.css('width', 'auto').data('model').set({
-                    depth: depth,
-                    pid: pid        
-                });
-            },
-            update: function() {
-                isDone = true;    
-            }        
-        });  
-    },
-    render: function() {
-        this.collection.forEach(this.addOne, this);    
-    },
-    addMenu: function() {
-        var input = this.$('.js-add-label'),
-            val = $.trim(input.val());
-        if (val) {
-            this.collection.add({
-                id: (new Date).getTime(),
-                label: val
-            });    
+                    ret.push(model);
+                    for (var i = 0, l = c.length; i < l; i++) {
+                        get1(c[i]);
+                    }
+                };
+            get(this);
+            return ret;
         }
-        input.val('');    
-    },
-    addOne: function(item) {
-        this.box.append(new MenuItemView({
-            model: item    
-        }).render().el);
-    },
-    getChild: function(el) {
-        var i = 0,
-            child = $('');
-        el.nextAll().not('.tree-sortable-placeholder').each(function() {
-            var $this = $(this);
-            if ($this.data('model').get('depth') > el.data('model').get('depth')) {
-                child[i++] = this;    
+    });
+    var MenuCollection = Backbone.Collection.extend({
+        model: Menu    
+    });
+    var MenuItemView = Backbone.View.extend({
+        template: $('#temp-menu').html(),
+        events: {
+            'click .js-toggle': 'toggle',
+            'click .js-delete': 'deleteItem',
+            'click .tree-item-save': 'saveItem'    
+        },
+        initialize: function() {
+            this.model.on('destroy', this.remove, this);
+            this.model.on("change", this.render, this);
+            this.model.el = this.el;
+            this.$el.data('model', this.model);
+        },
+        toggle: function() {
+            this.$el.toggleClass('tree-item-editing');
+            this.$('.js-toggle').toggleClass('active');    
+        },
+        deleteItem: function() {
+            var m = this.model;
+            m.collection.trigger('deleteItem', m);
+            m.destroy();
+            isDone = true;
+        },
+        saveItem: function() {
+            var self = this,
+                val = function(name) {
+                    return $.trim(self.$('[name=' + name + ']').val());    
+                },
+                label = val('label');
+            if (label) {
+                this.model.set({
+                    'url': val('url'),
+                    'route': val('route'),
+                    'module': val('module'),
+                    'controller': val('controller'),
+                    'action': val('action'),
+                    'label': val('label'),
+                    'visible': this.$('[name=visible]').attr('checked') ? 1 : 0,
+                    'resource': val('resource'),
+                    'target': val('target')
+                });                
             } else {
-                return false;
+                this.$('[name=label]').parents('.control-group').addClass('error');
             }
-        });
-        child.length = i;
-        return child;    
-    },
-    deleteItem: function(model) {
-        this.getChild($(model.el)).each(function() {
-            var m = $(this).data('model');
-            m.set('depth', parseInt(m.get('depth')) - 1);
-            if (m.get('depth') == model.get('depth')) {
-                m.set({
-                    pid: model.get('pid')
-                }, { 
-                    silent: true 
-                });  
+            isDone = true;
+        },
+        render: function() {
+            this.$el.html(_.template(this.template,this.model.toJSON()))[0].className = 'tree-item menu-item-depth' + this.model.get('depth');
+            this.$el.attr('id', this.model.get('label'));
+            this.$('[name=url]').tooltip();
+            return this;    
+        }
+    });
+    var MenuListItemView = Backbone.View.extend({
+        el: $('#js-menu-edit'),
+        events: {
+            'click .js-add-to': 'addMenu',
+            'click .menu-submit': 'saveMenu',
+            'keypress .js-add-label': 'enterSaveMenu'    
+        },
+        initialize: function(option) {
+            this.box = this.$('.menu-to-edit');
+            this.render();
+            this.$('.menu-submit').tooltip();
+            this.collection.on('add', this.addOne, this);
+            this.collection.on('deleteItem', this.deleteItem, this);
+            if (option.onlyView) {
+                this.$('.tree-item-header').css('cursor', 'default');
+                this.$('.btn-save-action').css('display', 'none');    
+            } else {
+                this.sortable();    
             }
-        });
-    },
-    saveMenu: function() {
-        var ret = [];
-        this.box.find('>').each(function() {
-            ret.push($(this).data('model').toJSON());    
-        });
-        $.post('<?php echo $this->url('', array('action' => 'update')); ?>', {
-            name: '<?php echo $navigation['name']; ?>',
-            pages: ret
-        }).done(function(result) {
-            result = $.parseJSON(result);
-            if (result.status == 1) {
-                systemMessage.succ(result.message);
+        },
+        sortable: function() {
+            var getDepth = function(el) {
+                return el.length && parseInt(el.data('model').get('depth'));
+            };
+            var placePosition = function() {
+                depth = Math.max(depth, 0);   
+                place[0].className = "tree-sortable-placeholder menu-item-depth" + depth;
+            };
+            var self = this,
+                depth = 0,
+                place,
+                item,
+                itemChild;
+            var leftWidth = 30;
+            this.box.sortable({
+                handle: ".tree-item-header",
+                placeholder: "tree-sortable-placeholder",
+                start: function(e, ui) {
+                    item = ui.item;
+                    depth = item.data('model').get('depth');
+                    place = ui.placeholder;
+                    itemChild = self.getChild(item);
+                    var maxDepth = depth,
+                        w;
+                    itemChild.each(function() {
+                        var d = getDepth($(this));
+                        maxDepth = Math.max(maxDepth, d);      
+                    });
+                    w = item.find(".tree-item-header").outerWidth() + (maxDepth - depth) * 30;
+                    place.css({
+                        width: w,
+                        height: (item.find(".tree-item-header").outerHeight() + 10) * (itemChild.length + 1) -12
+                    });
+                    item.css('width', w + 20);
+                    placePosition();
+                    item.append(itemChild);
+                    $(this).sortable('refresh');
+                },
+                sort: function(e, ui) {
+                    var l = function(str) {
+                        console.log(str);
+                    };
+                    var itemOffset = ui.item.offset().left;
+                    var prev = place.prev();
+                    var next = place.next();
+                    if (prev.hasClass('ui-sortable-helper')) {
+                        prev = prev.prev();
+                    }
+                    if (next.hasClass('ui-sortable-helper')) {
+                        next = next.next();
+                    }
+                    var prevDepth = getDepth(prev);
+                    var prevOffset = prev.offset();
+                    var nextDepth = getDepth(next);
+                    if (prev.length) {
+                        if (prevDepth) { //adjust up
+                            depth = prevDepth;
+                        }
+                        if (nextDepth == prevDepth + 1) { //adjust down
+                            depth = prevDepth + 1;
+                        }
+                        if (itemOffset - 10 > prevOffset.left) {
+                            depth = prevDepth + 1;
+                        } else if ((next.length && itemOffset + 10 < prevOffset.left && nextDepth != prevDepth && nextDepth != prevDepth + 1) || (!nextDepth && itemOffset + 10 < prevOffset.left)) {
+                            depth = prevDepth - Math.floor((prevOffset.left - itemOffset - 10)/30);
+                        }
+                    } else {
+                        depth = 0;
+                    }
+                    placePosition();
+                },
+                stop: function(e, ui) {
+                    var pid,
+                        diff = depth - item.data('model').get('depth');
+                    if (depth == 0) {
+                        pid = 0;    
+                    } else {
+                        item.prevAll().each(function() {
+                            var m = $(this).data('model');
+                            if (m.get('depth') == depth-1) {
+                                pid = m.get('id');
+                                return false;
+                            }    
+                        });
+                    }
+                    if (itemChild.length) {
+                        itemChild.insertAfter(item).each(function() {
+                            var m = $(this).data('model');
+                            m.set({
+                                depth: m.get('depth') + diff    
+                            });    
+                        });
+                    }
+                    item.css('width', 'auto').data('model').set({
+                        depth: depth,
+                        pid: pid        
+                    });
+                },
+                update: function() {
+                    isDone = true;    
+                }        
+            });  
+        },
+        render: function() {
+            this.collection.forEach(this.addOne, this);    
+        },
+        addMenu: function() {
+            var input = this.$('.js-add-label'),
+                val = $.trim(input.val());
+            if (val) {
+                this.collection.add({
+                    id: (new Date).getTime(),
+                    label: val
+                });    
             }
-            isDone = false;
-        });    
-    }    
-});
-new MenuListItemView({
-    collection: new MenuCollection(<?php echo json_encode($pages) ?>),
-    onlyView: <?php if ($navigation['module']) {  echo 1; } else { echo 0; } ?> 
-});
-window.onbeforeunload = function() {
-    if (isDone) {
-        return '<?php _e('You have made unsaved changes. Would you still like to leave this page?'); ?>'
+            input.val('');    
+        },
+        enterSaveMenu: function(e) {
+            if (e.keyCode == 13) {
+                this.addMenu();
+            }
+        },
+        addOne: function(item) {
+            this.box.append(new MenuItemView({
+                model: item    
+            }).render().el);
+        },
+        getChild: function(el) {
+            var i = 0,
+                child = $('');
+            el.nextAll().not('.tree-sortable-placeholder').each(function() {
+                var $this = $(this);
+                if ($this.data('model').get('depth') > el.data('model').get('depth')) {
+                    child[i++] = this;    
+                } else {
+                    return false;
+                }
+            });
+            child.length = i;
+            return child;    
+        },
+        deleteItem: function(model) {
+            this.getChild($(model.el)).each(function() {
+                var m = $(this).data('model');
+                m.set('depth', parseInt(m.get('depth')) - 1);
+                if (m.get('depth') == model.get('depth')) {
+                    m.set({
+                        pid: model.get('pid')
+                    }, { 
+                        silent: true 
+                    });  
+                }
+            });
+        },
+        saveMenu: function() {
+            var ret = [];
+            this.box.find('>').each(function() {
+                ret.push($(this).data('model').toJSON());    
+            });
+            $.post('<?php echo $this->url('', array('action' => 'update')); ?>', {
+                name: '<?php echo $navigation['name']; ?>',
+                pages: ret
+            }).done(function(result) {
+                result = $.parseJSON(result);
+                if (result.status == 1) {
+                    systemMessage.succ(result.message);
+                }
+                isDone = false;
+            });    
+        }    
+    });
+    new MenuListItemView({
+        collection: new MenuCollection(<?php echo json_encode($pages) ?>),
+        onlyView: <?php if ($navigation['module']) {  echo 1; } else { echo 0; } ?> 
+    });
+    window.onbeforeunload = function() {
+        if (isDone) {
+            return '<?php _e('You have made unsaved changes. Would you still like to leave this page?'); ?>'
+        }
     }
-}
+})(jQuery)
 </script>
-
-
 

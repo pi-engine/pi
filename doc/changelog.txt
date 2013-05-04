@@ -1,11 +1,25 @@
 Pi Engine Changelog
 
 
+May 4th, 2013
+=============================
+1. Applied _date() to system module by @voltan
+2. Fixes bugs in navigation edit by @sexnothing
+3. Improved parameter filtering functionality with PHP filter_id()
+
+
 April 19th, 2013
 =============================
 1. Upgraded ZF2 to 2.1.5
 2. Improved Intl functions for BC by @voltan
 3. Imported "test" module for module dependency test
+4. Refactored HTML head/foot rendering to expose section positions
+5. Added convenient methods for setting custom head title, keywords and description suggested by @voltan
+6. Moved Pi\Debug to Pi\Debug\Debug
+7. Refactored Pi\Security with Pi::service('Security') and Pi\Security\Security
+8. Added files: var/config/service.security.php
+9. Modified files: var/config/resource.security.php
+10. Added convenient methods and syntactic sugar for parameter filtering and sanitizing
 
 
 April 8th, 2013

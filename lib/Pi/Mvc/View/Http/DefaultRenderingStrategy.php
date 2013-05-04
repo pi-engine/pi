@@ -46,12 +46,12 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
     {
         parent::attach($events);
 
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'loadMeta'), 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'initAssemble'), 10000);
 
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeTitle'), 10000);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'canonizeTitle'), 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'renderAssemble'), 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'renderAssemble'), 10000);
 
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'assembleMeta'), 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'completeAssemble'), 10000);
     }
 
     /**
@@ -132,12 +132,12 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
     }
 
     /**
-     * Load config meta
+     * Initialize assemble with config meta
      *
      * @param  MvcEvent $e
      * @return void
      */
-    public function loadMeta(MvcEvent $e)
+    public function initAssemble(MvcEvent $e)
     {
         // Skip ajax request
         $request   = $e->getRequest();
@@ -147,36 +147,8 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
 
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
-
-        // Load meta config
-        $configMeta = Pi::service('registry')->config->read('system', 'meta');
-        // Set head meta
-        foreach ($configMeta as $key => $value) {
-            if (!$value) {
-                continue;
-            }
-            $viewRenderer->headMeta()->appendName($key, $value);
-        }
-
-        // Load general config
-        $configGeneral = Pi::service('registry')->config->read('system');
-
-        // Set Google Analytics scripts in case available
-        if ($configGeneral['ga_account']) {
-            $viewRenderer->footScript()->appendScript($viewRenderer->ga($configGeneral['ga_account']));
-        }
-        // Set foot scripts in case available
-        if ($configGeneral['foot_script']) {
-            if (false !== stripos($configGeneral['foot_script'], '<script ')) {
-                $viewRenderer->footScript()->appendScript($configGeneral['foot_script'], 'raw');
-            } else {
-                $viewRenderer->footScript()->appendScript($configGeneral['foot_script']);
-            }
-        }
-        unset($configGeneral['ga_account'], $configGeneral['foot_script']);
-
-        // Set global variables to root ViewModel, e.g. theme template
-        $viewRenderer->plugin('view_model')->getRoot()->setVariables($configGeneral);
+        $viewRenderer->assemble()->initStrategy();
+        return;
     }
 
     /**
@@ -185,7 +157,7 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      * @param MvcEvent $e
      * @return void
      */
-    public function canonizeTitle(MvcEvent $e)
+    public function renderAssemble(MvcEvent $e)
     {
         // Skip ajax request
         $request = $e->getRequest();
@@ -193,23 +165,10 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
             return;
         }
 
-        $headTitle = $e->getApplication()->getServiceManager()->get('ViewRenderer')->headTitle();
-        $hasCustom = $headTitle->count();
-        $headTitle->setSeparator(' - ');
-
-        // Append module name for non-system module
-        $currentModule = Pi::service('module')->current();
-        if ($currentModule && 'system' != $currentModule) {
-            $moduleMeta = Pi::service('registry')->module->read($currentModule);
-            $headTitle->append($moduleMeta['title']);
-        }
-        // Append site name
-        $headTitle->append(Pi::config('sitename'));
-
-        // Append site slogan if no custom title available
-        if (!$hasCustom) {
-            $headTitle->append(Pi::config('slogan'));
-        }
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
+        $viewRenderer->assemble()->renderStrategy();
+        return;
     }
 
 
@@ -219,61 +178,26 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      * @param MvcEvent $e
      * @return void
      */
-    public function assembleMeta(MvcEvent $e)
+    public function completeAssemble(MvcEvent $e)
     {
+        // Set response headers for language and charset
         $response = $e->getResponse();
-        $content = $response->getContent();
-
-        $pos = stripos($content, '</head>');
-        if (false === $pos) {
+        $response->getHeaders()->addHeaders(array(
+            'content-type'      => sprintf('text/html; charset=%s', Pi::config('charset')),
+            'content-language'  => Pi::config('locale'),
+        ));
+        
+        // Skip ajax request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
             return;
         }
 
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
-
-        /**#@+
-         * Generates and inserts head meta, stylesheets and scripts
-         */
-        $preHead = substr($content, 0, $pos);
-        $postHead = substr($content, $pos);
-
-        $indent = 4;
-
-        $headTitle = '';
-        /*
-        if ($viewRenderer->headTitle()->count()) {
-            $headTitle = $viewRenderer->headTitle()->toString($indent) . PHP_EOL;
-        }
-        */
-
-        $headMeta = $viewRenderer->headMeta()->toString($indent);
-        $headMeta .= $headMeta ? PHP_EOL : '';
-
-        $headLink = $viewRenderer->headLink()->toString($indent);
-        $headLink .= $headLink ? PHP_EOL : '';
-
-        $headStyle = $viewRenderer->headStyle()->toString($indent);
-        $headStyle .= $headStyle ? PHP_EOL : '';
-
-        $headScript = $viewRenderer->headScript()->toString($indent);
-        $headScript .= $headScript ? PHP_EOL : '';
-
-        $head = $headTitle . $headMeta . $headLink . $headStyle . $headScript;
-        $content = $preHead . ($head ? PHP_EOL . $head . PHP_EOL : '') . $postHead;
-        /**#@-*/
-
-        /**@+
-         * Generates and inserts foot scripts
-         */
-        $foot = $viewRenderer->footScript()->toString($indent);
-        if ($foot && $pos = strripos($content, '</body>')) {
-            $preFoot = substr($content, 0, $pos);
-            $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $foot . PHP_EOL . PHP_EOL . $postFoot;
-        }
-        /**#@-*/
-
+        $content = $response->getContent();
+        $content = $viewRenderer->assemble()->completeStrategy($content);
         $response->setContent($content);
+        return;
     }
 }

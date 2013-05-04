@@ -71,7 +71,7 @@ class ModuleController extends ActionController
             if (empty($data['update'])) {
                 $data['update'] = __('Never updated.');
             } else {
-                $data['update'] = date('Y-m-d H:i:s', $data['update']);
+                $data['update'] = _date($data['update']);
             }
             $data['active'] = isset($active[$name]) ? true : false;
         }
@@ -144,7 +144,7 @@ class ModuleController extends ActionController
             */
             $row = Pi::model('module')->find($id);
             $data = $row->toArray();
-            $data['update'] = date('Y-m-d H:i:s', $data['update']);
+            $data['update'] = _date($data['update']);
             $data['description'] = $meta['description'];
             $data['author'] = $author;
             if (empty($meta['logo'])) {

@@ -24,6 +24,61 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\InjectApplicationEventInterface;
 
+/**
+ * View plugin
+ *
+ * Assign variables to view model
+ * <code>
+ *  $this->view(array('key' => 'value'));
+ *  $this->view()->assign('key', 'value');
+ *  $this->view()->assign(array('key' => 'value'));
+ * </code>
+ *
+ * Set page layout
+ * <code>
+ *  $this->view()->setLayout('layout-simple');
+ * </code>
+ *
+ * Set page template
+ * <code>
+ *  $this->view()->setTemplate('page-template');
+ *  // Disable template
+ *  $this->view()->setTemplate(false);
+ * </code>
+ *
+ * Set head title
+ * <code>
+ *  $this->view()->headTitle('Set custom title');
+ * </code>
+ *
+ * Set head keywords, default as set by overwriting
+ * <code>
+ *  $this->view()->headKeywords('keyword, keyword, keyword'[, 'set']);
+ *  $this->view()->headKeywords('keyword, keyword, keyword', 'append');
+ *  $this->view()->headKeywords('keyword, keyword, keyword', 'prepend');
+ *
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword')[, 'set']);
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'append');
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'prepend');
+ * </code>
+ *
+ * Set head description, default as set by overwriting
+ * <code>
+ *  $this->view()->headKeywords('Custom description of the page.'[, 'set']);
+ *  $this->view()->headKeywords('Custom description of the page.', 'append');
+ *  $this->view()->headKeywords('Custom description of the page.', 'prepend');
+ * </code>
+ *
+ * Load a view helper
+ * <code>
+ *  $helper = $this->view()->helper('helpername');
+ * </code>
+ *
+ * Call view helper methods
+ * <code>
+ *  $this->view()->css('url-to-css-resouce');
+ * </code>
+ */
 class View extends AbstractPlugin
 {
     /**
@@ -189,6 +244,51 @@ class View extends AbstractPlugin
     }
 
     /**
+     * Set head title
+     *
+     * @param string $title     Head title
+     * @param string $setType   Position, default as append
+     * @return View|AbstractPlugin
+     */
+    public function headTitle($title = null, $setType = null)
+    {
+        if (func_num_args() == 0) {
+            return $this->helper('headTitle');
+        }
+        $this->helper('headTitle')->__invoke($title, $setType);
+        return $this;
+    }
+
+    /**
+     * Set head description
+     *
+     * @param string $description   Head description
+     * @param string $placement     Position, default as set
+     * @return View
+     */
+    public function headDescription($description, $placement = null)
+    {
+        $this->helper('headMeta')->__invoke($description, 'description', 'name', array(), $placement);
+        return $this;
+    }
+
+    /**
+     * Set head keywords
+     *
+     * @param string|array $keywords  Head keywords
+     * @param string $placement Position, default as set
+     * @return View
+     */
+    public function headKeywords($keywords, $placement = null)
+    {
+        if (is_array($keywords)) {
+            $keywords = implode(', ', $keywords);
+        }
+        $this->helper('headMeta')->__invoke($keywords, 'keywords', 'name', array(), $placement);
+        return $this;
+    }
+
+    /**
      * Overloading: proxy to helpers
      *
      * Proxies to the attached plugin broker to retrieve, return, and potentially
@@ -203,11 +303,23 @@ class View extends AbstractPlugin
      */
     public function __call($method, $argv)
     {
-        $render = $this->getController()->getServiceLocator()->get('ViewManager')->getRenderer();
-        $helper = $render->plugin($method);
+        $helper = $this->helper($method);
         if (is_callable($helper)) {
             return call_user_func_array($helper, $argv);
         }
+        return $helper;
+    }
+
+    /**
+     * Load view helper
+     *
+     * @param string $name
+     * @return  AbstractPlugin
+     */
+    public function helper($name)
+    {
+        $render = $this->getController()->getServiceLocator()->get('ViewManager')->getRenderer();
+        $helper = $render->plugin($name);
         return $helper;
     }
 }

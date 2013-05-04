@@ -125,7 +125,7 @@
                 }
             }
             this.model.set(obj);
-            $.post('<?php echo $this->url('', array('controller' => 'perm', 'action' => 'assign', 'role' => $role)); ?>', this.model.previousAttributes()).done(function(res) {
+            $.post('<?php echo $this->url('', array('controller' => 'perm', 'action' => 'assign', 'role' => $role)); ?>', this.model.attributes).done(function(res) {
                 res = $.parseJSON(res);
                 self.model.set(res.data);
             }).error(function() {

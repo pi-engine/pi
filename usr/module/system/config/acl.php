@@ -22,11 +22,11 @@
  *
  *  return array(
  *      'roles' => array(
- *          'roleName'  => array(
+ *          'role_name'  => array(
  *              'title'     => 'Title',
  *              'parents'   => array('parent'),
  *          ),
- *          'roleNameStaff' => array(
+ *          'role_name_staff' => array(
  *              'title'     => 'Title',
  *              'parents'   => array('parent'),
  *              'section'   => 'admin',         // Default as front if not specified
@@ -89,7 +89,7 @@
  *                      'roleB' => 0
  *                  ),
  *                  'privileges'    => array(
- *                      'nameA'     => array(
+ *                      'name_a'    => array(
  *                          'title' => 'privilegeName',
  *                          'access' => array(
  *                              'roleA' => 1,

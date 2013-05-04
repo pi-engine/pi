@@ -17,18 +17,30 @@
  * @version         $Id$
  */
 
-namespace Pi
+namespace Pi\Debug
 {
+    use Pi;
+
     class Debug
     {
         protected static $inProcess = null;
 
-        public static function enable($flag)
+        /**
+         * Loads debugger, nothing to do at this moment
+         */
+        public static function load()
+        {}
+
+        /**
+         * Enable/Disable conditional debugging
+         *
+         * @param bool $flag
+         */
+        public static function enable($flag = true)
         {
             static::$inProcess = $flag;
-            //echo static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
             $message = static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
-            \Pi::service('log')->debug($message);
+            Pi::service('log')->debug($message);
         }
 
         /**
@@ -47,13 +59,6 @@ namespace Pi
         }
 
         /**
-         * Loads debugger, nothing to do at this moment
-         */
-        public static function load()
-        {
-        }
-
-        /**
          * Syntatic sugar for displaying debugger information
          *
          * @param mixed $data
@@ -62,7 +67,7 @@ namespace Pi
         {
             //echo static::render($data);
             $message = static::render($data);
-            \Pi::service('log')->debug($message);
+            Pi::service('log')->debug($message);
         }
 
         /**
@@ -83,9 +88,8 @@ namespace Pi
          */
         public static function display($data)
         {
-            //echo static::render($data);
             $message = static::render($data);
-            \Pi::service('log')->debug($message);
+            Pi::service('log')->debug($message);
         }
 
         /**
@@ -102,8 +106,8 @@ namespace Pi
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
-                //$location .= basename($item['file']) . ':' . $item['line'];
-                $location .= $item['file'] . ':' . $item['line'];
+                $file = Pi::service('security')->path($item['file']);
+                $location .= $file . ':' . $item['line'];
                 break;
             }
 
@@ -151,22 +155,24 @@ namespace Pi
                 $bt = PHP_EOL;
                 $bt .= 'Backtrace at: ' . microtime(true) . PHP_EOL . PHP_EOL;
                 foreach ($list as $backtrace) {
-                    $bt .= (empty($backtrace['file']) ? 'Internal' : $backtrace['file'] . '(' . $backtrace['line'] . ')') . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()' . PHP_EOL;
+                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
+                    $bt .= $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()' . PHP_EOL;
                 }
                 $bt .= PHP_EOL;
             } else {
                 $bt = '<pre>';
                 $bt .= '<strong>Backtrace at: ' . microtime(true) . '</strong><ul>';
                 foreach ($list as $backtrace) {
-                    $bt .= '<li>' . (empty($backtrace['file']) ? 'Internal' : $backtrace['file'] . '(' . $backtrace['line'] . ')') . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()</li>';
+                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
+                    $bt .= '<li>' . $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()</li>';
                 }
                 $bt .= '</ul>';
                 $bt .= '</pre>';
             }
 
             if ($display) {
-                if (\Pi::service()->hasService('log')) {
-                    \Pi::service('log')->debug($bt);
+                if (Pi::service()->hasService('log')) {
+                    Pi::service('log')->debug($bt);
                 } else {
                     echo $bt;
                 }
@@ -204,8 +210,7 @@ namespace Pi
             }
 
             if ($echo) {
-                //echo($output);
-                \Pi::service('log')->debug($output);
+                Pi::service('log')->debug($output);
             }
             return $output;
         }
@@ -240,7 +245,7 @@ namespace Pi
  */
 namespace
 {
-    use Pi\Debug;
+    use Pi\Debug\Debug;
 
     /**
      * Displays a debug message
@@ -272,7 +277,6 @@ namespace
      */
     function dc($data = '')
     {
-        //echo Debug::conditional($data, 2);
         $output = Debug::conditional($data, 2);
         if (null !== $output) {
             Pi::service('log')->debug($output);

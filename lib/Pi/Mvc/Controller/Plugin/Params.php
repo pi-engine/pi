@@ -21,6 +21,22 @@ namespace Pi\Mvc\Controller\Plugin;
 
 use Zend\Mvc\Controller\Plugin\Params as ZendParams;
 
+/**#@+
+ * Syntactic sugar for params
+ *
+ * Retrieve a request variable:
+ * <code>
+ *  $paramGet = $this->params()->get('var', 'int');
+ *  $paramPost = $this->params()->post('var', 'email');
+ *  $paramPut = $this->params()->put('var', 'url');
+ *  $paramAuto = $this->params()->request('var', 'ip');
+ * </code>
+ *
+ * Filter a value:
+ * <code>
+ *  $paramFiltered = $this->params()->filter('+1234.5', 'float');
+ * </code>
+ */
 class Params extends ZendParams
 {
     protected $putParams;
@@ -41,7 +57,7 @@ class Params extends ZendParams
         if ($result !== null) {
             return $result;
         }
-        
+
         $value = $default;
         foreach ($this->variablesOrder as $method) {
             if (method_exists($this, 'from' . $method)) {
@@ -96,4 +112,97 @@ class Params extends ZendParams
 
         return null;
     }
+
+    /**#@+
+     * Retrieve request params with PHP filter_var
+     */
+    /**
+     * Retrieve a variable from query
+     *
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
+     * @return mixed
+     */
+    public function get($variable, $filter, $options = null)
+    {
+        $value = $this->fromRoute($variable);
+        if (null === $value) {
+            $value = $this->fromQuery($variable);
+        }
+        if (null !== $value) {
+            $value = $this->filter($value, $filter, $options);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Retrieve a variable from POST
+     *
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
+     * @return mixed
+     */
+    public function post($variable, $filter, $options = null)
+    {
+        $value = $this->fromPost($variable);
+        if (null !== $value) {
+            $value = $this->filter($value, $filter, $options);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Retrieve a variable from PUT
+     *
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
+     * @return mixed
+     */
+    public function put($variable, $filter, $options = null)
+    {
+        $value = $this->fromPut($variable);
+        if (null !== $value) {
+            $value = $this->filter($value, $filter, $options);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Retrieve a variable from current HTTP method: get, post, put
+     *
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
+     * @return mixed
+     */
+    public function request($variable, $filter, $options = null)
+    {
+        $value = $this->fromRequest($variable);
+        if (null !== $value) {
+            $value = $this->filter($value, $filter, $options);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Filter value with filter_var
+     *
+     * @param mixed $value
+     * @param int|string $filter
+     * @param mixed $options
+     * @return mixed
+     */
+    public function filter($value, $filter, $options = null)
+    {
+        $value = _filter($value, $filter, $options);
+        return $value;
+    }
+    /**#@-*/
 }
