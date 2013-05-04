@@ -201,20 +201,7 @@ class Params extends ZendParams
      */
     public function filter($value, $filter, $options = null)
     {
-        if (!is_int($filter)) {
-            $filterName = strtoupper('filter_validate_' . $filter);
-            if (defined($filterName)) {
-                $filter = constant($filterName);
-            } else {
-                $filter = null;
-            }
-        }
-        if (null !== $filter) {
-            $value = filter_var($value, $filter, $options);
-        } else {
-            $value = false;
-        }
-
+        $value = _filter($value, $filter, $options);
         return $value;
     }
     /**#@-*/
