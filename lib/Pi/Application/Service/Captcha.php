@@ -35,9 +35,9 @@ class Captcha extends AbstractService
     public function load($type = null, $options = array())
     {
         $type = $type ?: 'image';
-        $class = 'Pi\\Captcha\\' . ucfirst($type);
+        $class = 'Pi\Captcha\\' . ucfirst($type);
         if (!class_exists($class)) {
-            $class = 'Pi\\Captcha\\' . ucfirst($type);
+            $class = 'Pi\Captcha\\' . ucfirst($type);
         }
         if ($options) {
             $options = array_merge($this->options, $options);
