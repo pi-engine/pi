@@ -37,15 +37,35 @@ namespace Pi\Utility
          */
         protected static function filterValue($value, $filter, $options = null)
         {
-            if (!is_int($filter)) {
-                $filterName = strtoupper($filter);
+            // Canonize filter flag
+            $filterFlag = function ($name)
+            {
+                $flag = null;
+                $filterName = 'FILTER_FLAG_' . strtoupper($name);
                 if (defined($filterName)) {
-                    $filter = constant($filterName);
-                } else {
-                    $filter = null;
+                    $flag = constant($filterName);
+                }
+                return $flag;
+            };
+            if ($options) {
+                if (is_string($options)) {
+                    $options = $filterFlag($options);
+                } elseif (is_array($options)) {
+                    if (isset($options['flags']) && is_string($options['flags'])) {
+                        $options['flags'] = $filterFlag($options['flags']);
+                    } elseif (isset($options['options']) && is_string($options['options'])) {
+                        $options['options'] = $filterFlag($options['options']);
+                    }
                 }
             }
-            if (null !== $filter) {
+
+            // Canonize fitler
+            if (is_string($filter)) {
+                $filter = filter_id($filter);
+            }
+
+            // Performe filtering
+            if ($filter) {
                 $value = filter_var($value, $filter, $options);
             } else {
                 $value = false;
@@ -64,8 +84,17 @@ namespace Pi\Utility
          */
         public static function filter($value, $filter, $options = null)
         {
+            // See @link http://www.php.net/manual/en/filter.filters.validate.php
             if (is_string($filter)) {
-                $filter = 'filter_validate_' . $filter;
+                switch ($filter) {
+                    case 'email':
+                    case 'ip':
+                    case 'url':
+                        $filter = 'validate_' . $filter;
+                        break;
+                    default:
+                        break;
+                }
             }
             $value = static::filterValue($value, $filter, $options);
             return $value;
@@ -81,11 +110,16 @@ namespace Pi\Utility
          */
         public static function sanitize($value, $filter, $options = null)
         {
+            // See @link http://www.php.net/manual/en/filter.filters.sanitize.php
             if (is_string($filter)) {
-                if ('int' == $filter || 'float' == $filter) {
-                    $filter = 'number_' . $filter;
+                switch ($filter) {
+                    case 'float':
+                    case 'int':
+                        $filter = 'number_' . $filter;
+                        break;
+                    default:
+                        break;
                 }
-                $filter = 'filter_sanitize_' . $filter;
             }
             $value = static::filterValue($value, $filter, $options);
             return $value;
@@ -165,6 +199,10 @@ namespace Pi\Utility
  * <code>
  *  $paramFiltered = _filter('1234.5', 'int');
  *  $paramFiltered = _filter('+1234.5', 'float');
+ *  $paramFiltered = _filter('+1234.5', 'float', FILTER_FLAG_ALLOW_THOUSAND);
+ *  $paramFiltered = _filter('+1234.5', 'float', 'allow_thousand');
+ *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => FILTER_FLAG_ALLOW_THOUSAND));
+ *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => 'allow_thousand'));
  * </code>
  *
  * Sanitize a value:
