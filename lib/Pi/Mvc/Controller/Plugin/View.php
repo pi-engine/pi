@@ -255,6 +255,7 @@ class View extends AbstractPlugin
         if (func_num_args() == 0) {
             return $this->helper('headTitle');
         }
+        $title = strip_tags($title);
         $this->helper('headTitle')->__invoke($title, $setType);
         return $this;
     }
@@ -268,6 +269,7 @@ class View extends AbstractPlugin
      */
     public function headDescription($description, $placement = null)
     {
+        $description = strip_tags($description);
         $this->helper('headMeta')->__invoke($description, 'description', 'name', array(), $placement);
         return $this;
     }
@@ -284,6 +286,7 @@ class View extends AbstractPlugin
         if (is_array($keywords)) {
             $keywords = implode(', ', $keywords);
         }
+        $keywords = strip_tags($keywords);
         $this->helper('headMeta')->__invoke($keywords, 'keywords', 'name', array(), $placement);
         return $this;
     }
