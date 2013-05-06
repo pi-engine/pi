@@ -6,6 +6,7 @@ May 4th, 2013
 1. Applied _date() to system module by @voltan
 2. Fixes bugs in navigation edit by @sexnothing
 3. Improved parameter filtering functionality with PHP filter_id()
+4. Added mail service 
 
 
 April 19th, 2013
