@@ -91,10 +91,10 @@ class Config extends RowGateway
             $value = $this->decodeValue($value);
             return $value;
         }
-        $filter_id = filter_id($filter);
+        $filter_id = is_string($filter) ? filter_id($filter) : null;
         if ($filter_id) {
             $value = filter_var($value, $filter_id);
-        } elseif (function_exists($filter)) {
+        } elseif (is_callable($filter)) {
             $value = filter_var($value, FILTER_CALLBACK, array('options' => $filter));
         }
         return $value;
