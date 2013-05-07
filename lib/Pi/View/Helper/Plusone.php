@@ -1,6 +1,6 @@
 <?php
 /**
- * Plusone helper
+ * Google +1 helper
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -24,49 +24,50 @@ use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
- * Helper for loading google pliusone
+ * Helper for loading google +1
  *
  * Usage inside a phtml template:
  * <code>
  *  $this->plusone();
- *  $this->plusone(array()); 
+ *  $this->plusone(array('datas-size' => 'small'));
  * </code>
  */
 class Plusone extends AbstractHtmlElement
-{ 
+{
     /**
-     * Make Plusone
+     * Add a Google +1 button
      *
      * @param   array
-     * @return  Button
+     * @return  string
      */
-    public function __invoke($setting = '')
+    public function __invoke($config = array())
     {
         $attribs = array();
-        
-        // Set size
-        if(isset($setting['data-size']) && in_array($setting['data-size'], array('small', 'medium', 'tall'))) {
-				     $attribs['data-size'] = $setting['data-size'];	
-        }	
-		     
-		     // Set annotation
-        if(isset($setting['data-annotation']) && in_array($setting['data-annotation'], array('inline', 'none'))) {
-				     $attribs['data-annotation'] = $setting['data-annotation'];
-        }	
-		     
-		     // Set width
-        if(isset($setting['data-annotation'], $setting['data-width']) && $setting['data-annotation'] == 'inline' && is_numeric($setting['data-width']) ) {
-				     $attribs['data-width'] = $setting['data-width'];
-        }
 
-         $plusone = '<div class="g-plusone" ' . $this->htmlAttribs($attribs) . '></div>' . self::EOL
-         . '<script type="text/javascript">' . self::EOL
-         . '  (function() {' . self::EOL
-         . '    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;' . self::EOL
-         . '    po.src = "https://apis.google.com/js/plusone.js";' . self::EOL
-         . '    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);' . self::EOL
-         . '  })();' . self::EOL
-         . '</script>';
-         return $plusone;
-    }	
+        // Set size
+        if (isset($config['data-size']) && in_array($config['data-size'], array('small', 'medium', 'tall'))) {
+            $attribs['data-size'] = $config['data-size'];
+        }
+        // Set annotation
+        if (isset($config['data-annotation']) && in_array($config['data-annotation'], array('inline', 'none'))) {
+            $attribs['data-annotation'] = $config['data-annotation'];
+        }
+        // Set width
+        if (isset($config['data-annotation'], $config['data-width']) && $config['data-annotation'] == 'inline' && is_numeric($config['data-width']) ) {
+            $attribs['data-width'] = $config['data-width'];
+        }
+        $attributeString = $attribs ? $this->htmlAttribs($attribs) : '';
+
+        $content = '<div class="g-plusone"' . ($attributeString ? ' ' . $attributeString : '') . '></div>' . PHP_EOL;
+        $content .= <<<'EOT'
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+    po.src = "https://apis.google.com/js/plusone.js";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+  })();' . self::EOL
+</script>
+EOT;
+         return $content;
+    }
 }

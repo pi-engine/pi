@@ -1,6 +1,6 @@
 <?php
 /**
- * facebook helper
+ * Facebook like helper
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -24,7 +24,7 @@ use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
- * Helper for loading facebook
+ * Helper for loading facebook like
  *
  * Usage inside a phtml template:
  * <code>
@@ -32,26 +32,35 @@ use Zend\View\Helper\AbstractHtmlElement;
  * </code>
  */
 class Facebook extends AbstractHtmlElement
-{ 
+{
     /**
-     * Make Plusone
+     * Add a facebook Like button
      *
-     * @param   array
-     * @return  Button
+     * @param array $config
+     * @return  string
      */
-    public function __invoke()
+    public function __invoke($config = array())
     {
-         $facebook = '<div id="fb-root"></div>' . self::EOL
-						. '<script type="text/javascript">' . self::EOL
-						. '(function(d, s, id) {' . self::EOL
-						. '   var js, fjs = d.getElementsByTagName(s)[0];' . self::EOL
-						. '   if (d.getElementById(id)) return;' . self::EOL
-						. '   js = d.createElement(s); js.id = id;' . self::EOL
-						. '   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";' . self::EOL
-						. '   fjs.parentNode.insertBefore(js, fjs);' . self::EOL
-						. '   }(document, "script", "facebook-jssdk"));' . self::EOL
-						. '</script>' . self::EOL
-						. '<div class="fb-like" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>' . self::EOL;
-        return $facebook;
-    }	
-} 
+        $dataSend = isset($config['data-send']) ? $config['data-send'] : false;
+        $dataSend = $dataSend ? 'true' : 'false';
+        $dataWidth = isset($config['data-width']) ? $config['data-width'] : 120;
+        $dataShowFaces = isset($config['data-show-faces']) ? $config['data-show-faces'] : false;
+        $dataShowFaces = $dataShowFaces ? 'true' : 'false';
+
+        $content = <<<'EOT'
+<div id="fb-root"></div>
+<script type="text/javascript">
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "facebook-jssdk"));
+</script>
+<div class="fb-like" data-send="%s" data-layout="button_count" data-width="%d" data-show-faces="%s"></div>
+EOT;
+        $content = sprintf($content, $dataSend, $dataWidth, $dataShowFaces);
+        return $content;
+    }
+}

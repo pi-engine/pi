@@ -1,6 +1,6 @@
 <?php
 /**
- * twitter helper
+ * Twitter share helper
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -32,24 +32,25 @@ use Zend\View\Helper\AbstractHtmlElement;
  * </code>
  */
 class Twitter extends AbstractHtmlElement
-{ 
+{
     /**
-     * Make Plusone
+     * Add a Twitter share button
      *
-     * @param   array
-     * @return  Button
+     * @return  string
      */
     public function __invoke()
     {
-        $twitter = '<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>' . self::EOL
-        . '<script type="text/javascript">' . self::EOL
-        . '   !function(d,s,id){' . self::EOL
-        . '      var js,fjs=d.getElementsByTagName(s)[0];' . self::EOL
-        . '      if(!d.getElementById(id)){' . self::EOL
-        . '         js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);' . self::EOL
-        . '      }' . self::EOL
-        . '   }(document,"script","twitter-wjs");' . self::EOL
-        . '</script>' . self::EOL;
-        return $twitter;
-    }	
+        $content = <<<'EOT'
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+<script type="text/javascript">
+   !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0];
+      if(!d.getElementById(id)){
+         js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);
+      }
+   }(document,"script","twitter-wjs");
+</script>
+EOT;
+        return $content;
+    }
 }
