@@ -159,26 +159,6 @@ class Assemble extends AbstractHelper
             }
         }
 
-        /*
-        $headMeta = $this->view->headMeta()->toString();
-        if (!empty($this->sectionLabel['headMeta'])) {
-            $content = str_replace($this->sectionLabel['headMeta'], $headMeta, $content);
-        } else {
-            $head .= $headMeta . PHP_EOL;
-        }
-
-        $headLink = $this->view->headLink()->toString();
-        $headLink .= $headLink ? PHP_EOL : '';
-
-        $headStyle = $this->view->headStyle()->toString();
-        $headStyle .= $headStyle ? PHP_EOL : '';
-
-        $headScript = $this->view->headScript()->toString();
-        $headScript .= $headScript ? PHP_EOL : '';
-
-        $head = $headTitle . $headMeta . $headLink . $headStyle . $headScript;
-        */
-
         if ($head) {
             $pos = stripos($content, '</head>');
             $preHead = substr($content, 0, $pos);
@@ -190,13 +170,6 @@ class Assemble extends AbstractHelper
         /**@+
          * Generates and inserts foot scripts
          */
-        $foot = $this->view->footScript()->toString();
-        if ($foot && $pos = strripos($content, '</body>')) {
-            $preFoot = substr($content, 0, $pos);
-            $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $foot . PHP_EOL . PHP_EOL . $postFoot;
-        }
-
         $section = 'footScript';
         $sectionContent = $this->view->plugin($section)->toString();
         if (!empty($this->sectionLabel[$section])) {
@@ -206,7 +179,6 @@ class Assemble extends AbstractHelper
             $postFoot = substr($content, $pos);
             $content = $preFoot . PHP_EOL . $foot . PHP_EOL . PHP_EOL . $sectionContent;
         }
-
         /**#@-*/
 
         return $content;
