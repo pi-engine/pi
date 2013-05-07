@@ -8,6 +8,8 @@
     * ...
 * usr/module/demo: Module
   * /en
+    * /mail: Mail templates
+      * mail-template.phtml
     * main.csv
     * navigation.csv
     * admin.csv: Admin area
