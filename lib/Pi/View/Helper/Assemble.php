@@ -175,9 +175,10 @@ class Assemble extends AbstractHelper
         if (!empty($this->sectionLabel[$section])) {
             $content = str_replace($this->sectionLabel[$section], $sectionContent, $content);
         } elseif ($sectionContent) {
+            $pos = stripos($content, '</body>');
             $preFoot = substr($content, 0, $pos);
             $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $foot . PHP_EOL . PHP_EOL . $sectionContent;
+            $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL . $postFoot;
         }
         /**#@-*/
 

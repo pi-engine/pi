@@ -3,7 +3,7 @@
 
 
 <div class="alert alert-success">
-    <?php if ($message) { ?>
+    <?php if (!empty($message)) { ?>
     <h3><?php echo $message; ?></h3>
     <?php } ?>
 
