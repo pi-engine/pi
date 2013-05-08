@@ -8,6 +8,7 @@ May 4th, 2013
 3. Improved parameter filtering functionality with PHP filter_id()
 4. Added social widgets: Facebook Like, Google +1, Twitter share
 5. Added mail service
+6. Upgraded MakeItUp
 
 
 April 19th, 2013
