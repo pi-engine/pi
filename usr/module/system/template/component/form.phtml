@@ -1,6 +1,6 @@
 <?php
-$this->jQuery();
-$this->bootstrap('js/bootstrap.min.js');
+    $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
 ?>
 <?php
     if (!empty($success)) {
@@ -15,105 +15,98 @@ $this->bootstrap('js/bootstrap.min.js');
 ?>
 <?php if (!empty($message)) { ?>
 <div class="alert<?php echo $class; ?>">
-    <button data-dismiss="alert" class="close" type="button">
-        ×
-    </button>
+    <button data-dismiss="alert" class="close" type="button">×</button>
     <?php echo $message; ?>
 </div>
-
 <script>$(".alert").alert();</script>
 <?php } ?>
-
 <?php
-$form->setAttribute('class', 'form-horizontal');
-$form->prepare();
-echo $this->form()->openTag($form);
+    $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
+    echo $this->form()->openTag($form);
 
-/**#@+
- * Preparation
- */
-$elements = $form->elementList();
-$validate = $form->getMessages();
-$groups = $form->getGroups();
-/**#@-**/
+    /**#@+
+     * Preparation
+     */
+    $elements = $form->elementList();
+    $validate = $form->getMessages();
+    $groups = $form->getGroups();
+    /**#@-**/
 
-/**#@++
- * Temporary function for element display
- */
-$_this = $this;
-$renderElement = function ($element) use ($_this)
-{
-    if ($element->getAttribute('type') != 'checkbox') {
-        $element->setLabelAttributes(array('class' => 'control-label'));
-        echo $_this->formLabel($element);
-        $desc = $element->getAttribute('description');
-        if ($desc) {
-            echo '<span class="what-this" data-original-title="' . $_this->escape($desc) . '">?</span>';
-        }
-    }
-    echo '
-    <div class="controls">';
-        echo $_this->formElement($element);
-        echo $_this->formElementErrors($element, array('class' => 'help-inline'));
-    echo '
-    </div>';
-};
-
-$renderRow = function ($element) use ($_this, $validate, $renderElement)
-{
-    if (method_exists($element, 'getElements')) {
-        echo '<div class="legend">' .  $_this->formLabel($element) . '</div>';
-
-        $eles = $element->elementList();
-        foreach ($eles['active'] as $ele) {
-            echo '<div class="control-group">';
-            $renderElement($ele);
-            echo '</div>';
+    /**#@++
+     * Temporary function for element display
+     */
+    $_this = $this;
+    $renderElement = function ($element) use ($_this)
+    {
+        if ($element->getAttribute('type') != 'checkbox') {
+            $element->setLabelAttributes(array('class' => 'control-label'));
+            echo $_this->formLabel($element);
+            $desc = $element->getAttribute('description');
+            if ($desc) {
+                echo '<span class="what-this" data-original-title="' . $_this->escape($desc) . '">?</span>';
+            }
         }
         echo '
-        <script>
-            $(".help-inline").parents(".control-group").addClass("error");
-        </script>';
-    } else {
-        echo '<div class="control-group';
-        if (!empty($validate[$element->getName()])) {
-            echo ' error';
-        }
-        echo '">';
-        $renderElement($element);
-        echo '</div>';
-    }
-};
-/**#@-**/
+        <div class="controls">';
+            echo $_this->formElement($element);
+            echo $_this->formElementErrors($element, array('class' => 'help-inline'));
+        echo '
+        </div>';
+    };
 
-if (!$groups) {
-    foreach ($elements['active'] as $element) {
-        //d($element->getName());
-        $renderRow($element);
-    }
-} else {
-    foreach ($groups as $group) {
-    ?>
-        <div class="legend"><?php echo $this->escape($group['label']); ?></div>
-        <?php
-        foreach ($group['elements'] as $name) {
-            $element = $form->get($name);
+    $renderRow = function ($element) use ($_this, $validate, $renderElement)
+    {
+        if (method_exists($element, 'getElements')) {
+            echo '<div class="legend">' .  $_this->formLabel($element) . '</div>';
+    
+            $eles = $element->elementList();
+            foreach ($eles['active'] as $ele) {
+                echo '<div class="control-group">';
+                $renderElement($ele);
+                echo '</div>';
+            }
+            echo '
+            <script>
+                $(".help-inline").parents(".control-group").addClass("error");
+            </script>';
+        } else {
+            echo '<div class="control-group';
+            if (!empty($validate[$element->getName()])) {
+                echo ' error';
+            }
+            echo '">';
+            $renderElement($element);
+            echo '</div>';
+        }
+    };
+    /**#@-**/
+
+    if (!$groups) {
+        foreach ($elements['active'] as $element) {
             $renderRow($element);
         }
+    } else {
+        foreach ($groups as $group) {
+        ?>
+            <div class="legend"><?php echo $this->escape($group['label']); ?></div>
+        <?php
+            foreach ($group['elements'] as $name) {
+                $element = $form->get($name);
+                $renderRow($element);
+            }
+        }
     }
-}
 
-/**#@+
- * Add hidden elements
- */
-foreach ($elements['hidden'] as $element) {
-    echo $this->formElement($element);
-}
-/**#@-**/
+    /**#@+
+     * Add hidden elements
+     */
+    foreach ($elements['hidden'] as $element) {
+        echo $this->formElement($element);
+    }
+    /**#@-**/
 
-echo '<div class="controls">' . $this->formElement($elements['submit']) . '</div>';
-echo $this->form()->closeTag();
+    echo '<div class="controls">' . $this->formElement($elements['submit']) . '</div>';
+    echo $this->form()->closeTag();
 ?>
-<script>
-    $(".what-this").tooltip();
-</script>
+<script>$(".what-this").tooltip();</script>
