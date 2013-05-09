@@ -19,7 +19,7 @@ Features and practices
 3. Theming for presentation and appearance
 4. Design-friendly templating
 5. DevOps oriented architecture
-
+6. Centralized security enhancement
 
 Quick start
 -----------
