@@ -12,7 +12,7 @@ Selected features and practices:
 3. Theming for presentation and appearance
 4. Design-friendly templating
 5. DevOps oriented architecture
-
+6. Centralized security enhancement
 
 Beyond production and application, the Engine also tries to be strict standard compliant, including by not limited to:
 1. Versioning - Semantic Versioning Specification http://semver.org/
