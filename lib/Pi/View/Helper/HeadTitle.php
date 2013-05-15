@@ -52,7 +52,7 @@ class HeadTitle extends ZendHeadTitle
      * @param  null|string|int $indent
      * @return void
      */
-    public function render($indent = null)
+    public function ____render($indent = null)
     {
         if (null !== $indent) {
             $this->setIndent($indent);

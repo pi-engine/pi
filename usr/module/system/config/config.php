@@ -383,6 +383,7 @@ $config['item'] = array(
 
     // Mailing section
 
+    /*
     'mailmethod'    => array(
         'title'         => 'Mail delivery method',
         'description'   => 'Method used to deliver mail. Default is "mail", use others only if that makes trouble.',
@@ -419,6 +420,7 @@ $config['item'] = array(
         'description'   => 'Password to connect to an SMTP host with SMTPAuth.',
         'category'      => 'mail',
     ),
+    */
 
     'from'          => array(
         'title'         => 'FROM address',
