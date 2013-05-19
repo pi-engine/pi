@@ -99,6 +99,8 @@ use Zend\Mime;
  */
 class Mail extends AbstractService
 {
+    protected $fileIdentifier = 'mail';
+
     /**
      * Load transport
      *
