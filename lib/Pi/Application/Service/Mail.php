@@ -220,14 +220,15 @@ class Mail extends AbstractService
     public function mimeMessage($parts = array())
     {
         $message = new Mime\Message;
-        $part = function ($content) use ($this)
+        $_this = $this;
+        $part = function ($content) use ($_this)
         {
             if (is_string($content)) {
                 $content = new Mime\Part($content);
             }
             if (is_array($content)) {
                 list($data, $type) = $content;
-                $content = $this->mimePart($data, $type);
+                $content = $_this->mimePart($data, $type);
             }
             return $content;
         };
