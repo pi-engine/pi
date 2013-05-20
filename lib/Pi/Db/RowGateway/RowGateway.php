@@ -179,7 +179,8 @@ class RowGateway extends AbstractRowGateway
      */
     protected function encodeValue($value)
     {
-        return $value ? json_encode($value) : '';
+        $value = $value ?: array();
+        return json_encode($value);
     }
 
     /**
@@ -191,7 +192,7 @@ class RowGateway extends AbstractRowGateway
      */
     protected function decodeValue($value, $assoc = true)
     {
-        return $value ? json_decode($value, $assoc) : '';
+        return $value ? json_decode($value, $assoc) : ($assoc ? array() : $value);
     }
 
     /**

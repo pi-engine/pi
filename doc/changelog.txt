@@ -1,6 +1,11 @@
 Pi Engine Changelog
 
 
+May 20th, 2013
+=============================
+1. Fixed config encode/decode conflicts reported by @MarcoXoops in Issue #13
+
+
 May 4th, 2013
 =============================
 1. Applied _date() to system module by @voltan

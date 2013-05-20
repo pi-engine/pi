@@ -65,39 +65,32 @@ class Config extends RowGateway
      */
     protected function decodeValueColumn($value, $filter)
     {
-        switch($filter) {
+        $options = null;
+        $filterId = null;
+        switch ($filter) {
             case 'int':
+            case 'number_int':
                 $filter = 'number_int';
                 break;
-            case 'array':
-                //$filter = 'json_decode';
-                break;
             case 'float':
+            case 'number_float':
                 $filter = 'number_float';
                 break;
-            case 'textarea':
-                $filter = 'special_chars';
+            case 'array':
+            case 'decode':
+                $options = array($this, 'decodeValue');
+                $filterId = FILTER_CALLBACK;
                 break;
+            case 'textarea':
+            case 'special_chars':
             case 'text':
-                $filter = 'string';
+            case 'string':
+                $filter = null;
                 break;
             default:
                 break;
         }
-        if (!$filter) {
-            return $value;
-        }
-        if ('array' == $filter) {
-            $value = $this->decodeValue($value);
-            return $value;
-        }
-        $filter_id = is_string($filter) ? filter_id($filter) : null;
-        if ($filter_id) {
-            $value = filter_var($value, $filter_id);
-        } elseif (is_callable($filter)) {
-            $value = filter_var($value, FILTER_CALLBACK, array('options' => $filter));
-        }
-        return $value;
+        return $this->filterValue($value, $filter, $filterId, $options);
     }
 
     /**
@@ -109,13 +102,61 @@ class Config extends RowGateway
      */
     protected function encodeValueColumn($value, $filter)
     {
+        $options = null;
+        $filterId = null;
         switch ($filter) {
+            case 'int':
+            case 'number_int':
+                $filter = 'number_int';
+                break;
+            case 'float':
+            case 'number_float':
+                $filter = 'number_float';
+                break;
             case 'array':
-                $value = json_encode($value);
+            case 'encode':
+                $filter = array($this, 'encodeValue');
+                break;
+            case 'textarea':
+            case 'special_chars':
+            case 'text':
+            case 'string':
+                $filter = null;
                 break;
             default:
                 break;
         }
+        return $this->filterValue($value, $filter, $filterId, $options);
+    }
+
+    /**
+     * Filters a value according to filter, filter_id and options
+     *
+     * @param mixed $value
+     * @param mixed $filter
+     * @param int $filterId
+     * @param mixed $options
+     * @return mixed
+     */
+    protected function filterValue($value, $filter, $filterId, $options)
+    {
+        if (!$filter && !$filterId) {
+            return $value;
+        }
+        if (null === $filterId) {
+            $filterId = is_string($filter) ? filter_id($filter) : null;
+        }
+        if ($filterId) {
+            if (null === $options) {
+                $value = filter_var($value, $filterId);
+            } else {
+                $value = filter_var($value, $filterId, array('options' => $options));
+            }
+        } elseif (is_callable($filter)) {
+            $value = call_user_func($filter, $value);
+        }
+
         return $value;
+
     }
 }
