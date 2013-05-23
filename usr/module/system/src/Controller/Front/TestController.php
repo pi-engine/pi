@@ -56,6 +56,11 @@ class TestController extends ActionController
         Pi::service('audit')->log('lean', $args);
         Pi::service('audit')->log('test', $args);
 
+        Pi::service('audit')->attach('custom', array(
+            'file'  => Pi::path('log') . '/custom.csv'
+        ));
+        Pi::service('audit')->log('custom', $args);
+
         $this->view()->setTemplate(false);
     }
 
