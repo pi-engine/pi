@@ -82,7 +82,7 @@ namespace Pi\Utility
          * @param mixed $options
          * @return mixed
          */
-        public static function filter($value, $filter, $options = null)
+        public static function filter($value, $filter = '', $options = null)
         {
             // See @link http://www.php.net/manual/en/filter.filters.validate.php
             if (is_string($filter)) {
@@ -104,19 +104,21 @@ namespace Pi\Utility
          * Sanitize value with filter_var
          *
          * @param mixed $value
-         * @param int|string $filter
+         * @param int|string $filter    Filter name or id, default as 'full_special_chars'
          * @param mixed $options
          * @return mixed
          */
-        public static function sanitize($value, $filter, $options = null)
+        public static function sanitize($value, $filter = '', $options = null)
         {
             // See @link http://www.php.net/manual/en/filter.filters.sanitize.php
-            if (is_string($filter)) {
+            if (!is_int($filter)) {
                 switch ($filter) {
                     case 'float':
                     case 'int':
                         $filter = 'number_' . $filter;
                         break;
+                    case '':
+                        $filter = 'full_special_chars';
                     default:
                         break;
                 }
@@ -226,7 +228,7 @@ namespace
      * @param mixed $options
      * @return mixed
      */
-    function _get($variable, $filter, $options = null)
+    function _get($variable, $filter = '', $options = null)
     {
         $value = FilterManager::fromGet($variable, $filter, $options);
         return $value;
@@ -240,7 +242,7 @@ namespace
      * @param mixed $options
      * @return mixed
      */
-    function _post($variable, $filter, $options = null)
+    function _post($variable, $filter = '', $options = null)
     {
         $value = FilterManager::fromPost($variable, $filter, $options);
         return $value;
@@ -254,7 +256,7 @@ namespace
      * @param mixed $options
      * @return mixed
      */
-    function _filter($value, $filter, $options = null)
+    function _filter($value, $filter = '', $options = null)
     {
         $value = FilterManager::filter($value, $filter, $options);
         return $value;
@@ -264,11 +266,11 @@ namespace
      * Sanitize a value with PHP filter_var
      *
      * @param string $variable
-     * @param int|string $filter
+     * @param int|string $filter    Filter name or id, default as 'full_special_chars'
      * @param mixed $options
      * @return mixed
      */
-    function _sanitize($value, $filter, $options = null)
+    function _sanitize($value, $filter = '', $options = null)
     {
         $value = FilterManager::sanitize($value, $filter, $options);
         return $value;

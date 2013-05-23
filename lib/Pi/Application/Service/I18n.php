@@ -617,9 +617,9 @@ namespace
      * @param string|null $format           Legacy format for date() in case Intl is not available
      * @return string
      */
-    function _date($value, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null, $format = null)
+    function _date($value = null, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null, $format = null)
     {
-        $value = intval($value);
+        $value = intval(null === $value ? time() : $value);
         // Formatted using date() in case Intl is not available
         if (!_intl()) {
             if (is_array($locale)) {

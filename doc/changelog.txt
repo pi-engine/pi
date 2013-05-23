@@ -4,6 +4,7 @@ Pi Engine Changelog
 May 20th, 2013
 =============================
 1. Fixed config encode/decode conflicts reported by @MarcoXoops in Issue #13
+2. Modified _sanitize() adding default filter as 'full_special_chars'; _date() adding default time
 
 
 May 4th, 2013
@@ -14,6 +15,7 @@ May 4th, 2013
 4. Added social widgets: Facebook Like, Google +1, Twitter share
 5. Added mail service
 6. Upgraded MakeItUp
+7. Added config file: var/config/service.mail.php
 
 
 April 19th, 2013
