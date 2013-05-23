@@ -1,0 +1,10 @@
+
+Dear %username%:
+
+This is a greeting mail from %site_name%.
+
+Yours sincerely,
+
+%sendername%
+%site_admin%
+%site_name%: %site_url%

@@ -1,6 +1,0 @@
-<!--
-Mail template demonstration
--->
-<div class="header">Dear <strong><?php echo $username; ?></strong>:</div>
-<div class="body">Mail body contents ... </div>
-<div class="footer"><?php echo $sendername; ?> <?php echo $sendermail; ?><br /> <a href="<?php echo Pi::url('www', true); ?>" title="<?php echo _sanitize(Pi::config('sitename'), 'special_chars'); ?>"><?php echo _sanitize(Pi::config('sitename'), 'special_chars');?></a></div>

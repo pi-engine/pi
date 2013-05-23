@@ -7,6 +7,10 @@ May 20th, 2013
 2. Modified _sanitize() adding default filter as 'full_special_chars'; _date() adding default time
 3. Added audit service
 4. Added config file: var/config/service.audit.php
+5. Improved mail service for template support
+6. Added locale file: usr/module/system/locale/en/mail/mail-text.txt
+7. Added locale file: usr/module/system/locale/en/mail/mail-html.txt
+8. Added locale file: usr/module/system/locale/en/mail/mail-body.txt
 
 
 May 4th, 2013

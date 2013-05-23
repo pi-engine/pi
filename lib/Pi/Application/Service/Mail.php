@@ -39,22 +39,25 @@ use Zend\Mime;
  *  $transport = Pi::service('mail')->transport();
  *  $transport->send($message);
  *  // Send with specified transport
- *  $transport = Pi::service('mail')->transport('smtp', array('username' => '', 'password' => ''));
+ *  $transport = Pi::service('mail')->loadTransport('smtp', array('username' => '', 'password' => ''));
  *  $transport->send($message);
  *  // Or send with default transport directly
  *  Pi::service('mail')->send($message);
+ *
+ *  // Set default transport
+ *  Pi::service('mail')->setTransport($transport);
  * </code>
  *
  * Send mails with template
  * <code>
  *  // Load from absolute template
- *  $body = Pi::service('mail')->template('/path/to/mail-template.phtml', array());
+ *  $data = Pi::service('mail')->template('/path/to/mail-template.txt', array());
  *  // Load from template relative to current module
- *  $body = Pi::service('mail')->template('mail-template[.phtml]', array());
+ *  $data = Pi::service('mail')->template('mail-template[.txt]', array());
  *  // Load from template of specified module and locale
- *  $body = Pi::service('mail')->template(array('file' => 'mail-template[.phtml]', 'module' => 'user', 'locale' => 'en'), array());
+ *  $data = Pi::service('mail')->template(array('file' => 'mail-template[.txt]', 'module' => 'user', 'locale' => 'en'), array());
  *
- *  $message = Pi::service('mail')->message($subject, $body, 'text/html');
+ *  $message = Pi::service('mail')->message($data['subject'], $data['body'], $data['format']);
  *  Pi::service('mail')->send($message);
  * </code>
  *
@@ -102,13 +105,19 @@ class Mail extends AbstractService
     protected $fileIdentifier = 'mail';
 
     /**
+     * Default transport
+     * @var MailHandler\Transport\TransportInterface
+     */
+    protected $transport;
+
+    /**
      * Load transport
      *
      * @param string $name
      * @param array $config
-     * @return \MailHandler\Transport\TransportInterface
+     * @return MailHandler\Transport\TransportInterface
      */
-    public function transport($name = null, $config = null)
+    public function loadTransport($name = null, $config = null)
     {
         $name = $name ?: $this->options['transport'];
         if (isset($this->options[$name])) {
@@ -133,14 +142,46 @@ class Mail extends AbstractService
     }
 
     /**
+     * get default transport, load it if not previously loaded
+     *
+     * @return MailHandler\Transport\TransportInterface
+     */
+    public function transport()
+    {
+        if (!$this->transport) {
+            $this->transport = $this->loadTransport();
+        }
+        return $this->transport;
+    }
+
+    /**
+     * get default transport, load it if not previously loaded
+     *
+     * @param  MailHandler\Transport\TransportInterface $transport
+     * @return Mail
+     */
+    public function setTransport(MailHandler\Transport\TransportInterface $transport)
+    {
+        $this->transport = $transport;
+        return $this;
+    }
+
+    /**
      * Send mail
      *
      * @param MailHandler\Message $message
      * @param string $body
+     * @return bool
      */
     public function send(MailHandler\Message $message)
     {
-        $this->transport()->send($message);
+        try {
+            $this->transport()->send($message);
+        } catch (\Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -154,7 +195,15 @@ class Mail extends AbstractService
     public function message($subject = null, $body = null, $type = null)
     {
         $message = new MailHandler\Message;
-        $message->setSender(Pi::config('from', 'mail'), Pi::config('fromname', 'mail'));
+        $sender = array(
+            'mail'  => Pi::config('from', 'mail'),
+            'name'  => Pi::config('fromname', 'mail')
+        );
+        $message->setSender($sender['mail'], $sender['name']);
+        $message->setFrom($sender['mail'], $sender['name']);
+        //@TODO: once encoding is set, mail body is not parsed by some SP
+        //$message->setEncoding(Pi::config('charset'));
+
         if ($subject) {
             $message->setSubject($subject);
         }
@@ -170,47 +219,149 @@ class Mail extends AbstractService
     }
 
     /**
-     * Load content from template
+     * Create message from template
      *
      * @see Pi\Service\I18n for template path
      *
      * @param string|array $template
      * @param array $vars
-     * @return string
+     * @return array of subject, body and format, etc.
      */
     public function template($template, $vars = array())
     {
+        // Load content
+        $content = $this->loadTemplate($template);
+
+        // Assign data
+        $content = $this->assignTemplate($content, $vars);
+
+        // Parse elements
+        $result = $this->parseTemplate($content);
+
+        return $result;
+    }
+
+    /**
+     * Load a template content
+     *
+     * @param string $template
+     * @return string
+     */
+    public function loadTemplate($template)
+    {
+        // Load directly for absolute path
         if (file_exists($template)) {
             $path = $template;
+        // Get realpath
         } else {
+            // Canonize path from array('module' => , 'locale' => , 'file' => )
             if (is_array($template)) {
                 $module = isset($template['module']) ? $template['module'] : Pi::service('module')->directory();
                 $locale = isset($template['locale']) ? $template['locale'] : null;
                 $file = $template['file'];
+            // Canonize for current module
             } else {
                 $module = Pi::service('module')->directory();
                 $locale = null;
                 $file = $template;
             }
 
-            if (substr($file, -6) != '.phtml') {
-                $file .= '.phtml';
+            // Canonize file extension, only txt is accepted
+            if (substr($file, -4) != '.txt') {
+                $file .= '.txt';
             }
+
+            // Assemble module mail template
             $path = Pi::service('i18n')->getPath(array('module/' . $module, 'mail/' . $file), $locale);
+            // Load english template if current locale is not available
             if (!file_exists($path)) {
                 $locale = 'en';
                 $path = Pi::service('i18n')->getPath(array('module/' . $module, 'mail/' . $file), $locale);
             }
         }
 
-        if ($vars) {
-            extract($vars);
-        }
-        ob_start();
-        include $path;
-        $content = ob_get_clean();
+        // Load content from file
+        $content = is_readable($path) ? file_get_contents($path) : '';
 
         return $content;
+    }
+
+    /**
+     * Assign data to template
+     *
+     * Note:
+     *  1. Variables are tagged with %name% in templates
+     *  2. Variables provided by system by default:
+     *      site_name, site_url, site_slogan, site_description, site_admin
+     *
+     * @param string $content
+     * @param array $vars
+     * @return string
+     */
+    public function assignTemplate($content, $vars = array())
+    {
+        // Bind system variables
+        $systemVars = array(
+            'site_admin'            => _sanitize(Pi::config('from', 'mail')),
+            'site_name'             => _sanitize(Pi::config('sitename')),
+            'site_slogan'           => _sanitize(Pi::config('slogan')),
+            'site_description'      => _sanitize(Pi::config('description', 'meta')),
+            'site_url'              => Pi::url('www'),
+        );
+        $vars = array_merge($systemVars, $vars);
+        // Assign variables
+        foreach ($vars as $key => $val) {
+            $content = str_replace('%' . $key . '%', $val, $content);
+        }
+        return $content;
+    }
+
+    /**
+     * Parse content into required elements
+     *
+     * Template with element tag of subject, body and format:
+     *  Text
+     *      <code>
+     *          [subject]Mail from %site_name%[/subject]
+     *          [body]Dear %username%, greetings from %site_name%...[/body]
+     *      </code>
+     *  HTML
+     *      <code>
+     *          [subject]Mail from %site_name%[/subject]
+     *          [body]<div>Dear %username%,</div><p>Greetings from %site_name%...</p>[/body]
+     *          [format]html[/html]
+     *      </code>
+     * Template text body only:
+     *  <code>
+     *   Dear %username%, greetings from %site_name%...
+     *  </code>
+     *
+     * @param string $content
+     * @param array $elements   Names for elements to parse
+     * @return array
+     */
+    public function parseTemplate($content, $elements = array())
+    {
+        // Default elements
+        $defaultElements = array('subject', 'body', 'format');
+        $elements = array_merge($defaultElements, $elements);
+        $result = array_fill_keys($elements, '');
+
+        // Extract elements
+        $subpattern = '#(\[%s\](?P<%s>.*)\[\/%s\])#msU';
+        $tagged = false;
+        foreach ($elements as $element) {
+            $pattern = str_replace('%s', $element, $subpattern);
+            $matched = preg_match($pattern, $content, $matches);
+            if ($matched) {
+                $result[$element] = $matches[$element];
+                $tagged = true;
+            }
+        }
+        if (!$tagged && in_array('body', $elements)) {
+            $result['body'] = $content;
+        }
+        return $result;
     }
 
     /**
@@ -252,8 +403,10 @@ class Mail extends AbstractService
     public function mimePart($content, $type = null)
     {
         $part = new Mime\Part($content);
-        if (is_scalar($type)) {
-            $type['type'] = $type;
+        if (!is_array($type)) {
+            $type = array(
+                'type'  => $type,
+            );
         }
         foreach ($type as $key => $val) {
             switch ($key) {
