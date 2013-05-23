@@ -5,6 +5,8 @@ May 20th, 2013
 =============================
 1. Fixed config encode/decode conflicts reported by @MarcoXoops in Issue #13
 2. Modified _sanitize() adding default filter as 'full_special_chars'; _date() adding default time
+3. Added audit service
+4. Added config file: var/config/service.audit.php
 
 
 May 4th, 2013

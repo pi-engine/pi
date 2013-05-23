@@ -24,7 +24,7 @@ $config['development'] = array(
                 'application'   => 'Pi\Log',
                 'facility'      => LOG_USER,
             ),
-             * */
+            */
             // Write logs to audit table
             'audit' => array(
                 // Roles of users to be logged
