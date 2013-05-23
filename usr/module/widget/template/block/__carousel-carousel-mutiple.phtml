@@ -13,7 +13,7 @@ $this->js($this->assetModule('script/jcarousel/jcarousel-min.js','widget'));
         <?php foreach($items as $item) {
                 $str= !empty($item['link']) ? $item['link'] : 'javascript:void(0)'; 
         ?>
-        <li class="item"> 
+        <li class="jcarousel-item"> 
             <a target="_blank" href="<?php echo $str; ?>">
                 <img src="<?php echo $item['image']; ?>" style="height:114px;width:152px;" >
             </a>
@@ -23,16 +23,16 @@ $this->js($this->assetModule('script/jcarousel/jcarousel-min.js','widget'));
         <?php } ?>   
     </ul>  
 </div>
-<?php $this->footScript()->captureStart(); ?>
+<script>
 $('#<?php echo $carouselId; ?>').jcarousel({
     auto: 4,
     wrap: 'circular',
-        initCallback: function($jcarousel) {
-            $jcarousel.container.hover(function() {
-                $jcarousel.stopAuto();
-            }, function() {
-                $jcarousel.startAuto();
-            });
-        }
+    initCallback: function($jcarousel) {
+        $jcarousel.container.hover(function() {
+            $jcarousel.stopAuto();
+        }, function() {
+            $jcarousel.startAuto();
+        });
+    }
 });   
-<?php $this->footScript()->captureTo('mutiple'); ?>
+</script>
