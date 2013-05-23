@@ -11,6 +11,7 @@ May 20th, 2013
 6. Added locale file: usr/module/system/locale/en/mail/mail-text.txt
 7. Added locale file: usr/module/system/locale/en/mail/mail-html.txt
 8. Added locale file: usr/module/system/locale/en/mail/mail-body.txt
+9. Added TestController to system module with mail/audit test actions
 
 
 May 4th, 2013
