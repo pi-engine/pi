@@ -105,7 +105,8 @@ class Host
             $request = $this->wizard->getRequest();
             $baseUrl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBaseUrl();
             $this->paths['www'] = array(
-                'path'  => rtrim(str_replace('\\', '/', realpath('../')), '/'),
+                //'path'  => rtrim(str_replace('\\', '/', realpath('../')), '/'),
+                'path'  => dirname($this->wizard->getRoot()),
                 'url'   => dirname($baseUrl)
             );
 
