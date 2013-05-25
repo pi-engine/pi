@@ -8,9 +8,9 @@
 <div style="margin-bottom: 5px">Dear <strong>%username%</strong>:</div>
 <div style="margin: 5px">This is a greeting mail from %site_name%.</div>
 <div style="margin-top: 10px">
-    %sendername%<br />
-    %site_admin%<br />
+    %site_adminname%<br />
+    %site_adminmail%<br />
     <a href="%site_url%" title="%site_name%">%site_name%</a>
-    sn: %sn%
+    <small>sn: %sn%</small>
 </div>
 [/body]

@@ -11,7 +11,8 @@ This is a greeting mail from %site_name%.
 
 Yours sincerely,
 
-%sendername%
-%site_admin%
+%site_adminname%
+%site_adminmail%
 %site_name%: %site_url%
+(sn: %sn%)
 [/body]
