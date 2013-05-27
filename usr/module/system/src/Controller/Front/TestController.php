@@ -71,26 +71,28 @@ class TestController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $vars = array(
-            'username'      => 'Tester',
-            'sendername'    => 'Pi Admin',
-            'sn'            => _date(),
-        );
-        $result = Pi::service('mail')->template('mail-html', $vars);
-
-        // Set subject and body
-        $subject = $result['subject'];
-        $body = $result['body'];
-        $type = $result['format'];
-        // Set message
-        $message = Pi::service('mail')->message($subject, $body, $type);
-
-        $message->addTo(Pi::config('from', 'mail'), Pi::config('fromname', 'mail'));
-        $message->addTo(array(
+        $to = array(
+            Pi::config('adminmail', 'mail') => Pi::config('adminname', 'mail'),
             'infomax@gmail.com'             => 'Pi GMail',
             'taiwenjiang@tsinghua.org.cn'   => 'Pi THU',
-        ));
+        );
+        $vars = array(
+            'username'      => 'Pier',
+            'sn'            => _date(),
+        );
 
+        // Load from text template
+        $data = Pi::service('mail')->template('mail-text', $vars);
+
+        // Set subject and body
+        $subject = $data['subject'];
+        $body = $data['body'];
+        $type = $data['format'];
+        // Set message
+        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($to);
+
+        // Enable following code to use instant custom transport
         /*
         $options = array(
             'name'              => '[name]',
@@ -104,11 +106,44 @@ class TestController extends ActionController
         );
 
         $transport = Pi::service('mail')->loadTransport('smtp', $options);
-
         // Send mail through service
         Pi::service('mail')->setTransport($transport);
         */
+	
+        // Send mail
+        $result = Pi::service('mail')->send($message);
 
+
+        // Load from HTML template
+        $data = Pi::service('mail')->template('mail-html', $vars);
+        // Set subject and body
+        $subject = $data['subject'];
+        $body = $data['body'];
+        $type = $data['format'];
+        // Set message
+        $message = Pi::service('mail')->message();
+        $message->addTo($to);
+        $message->addTo('piengine@163.com', 'Netease');
+        $message->setSubject($subject);
+        $body = Pi::service('mail')->mimeMessage($body, $type);
+        $message->setBody($body);
+        // Send mail
+        $result = Pi::service('mail')->send($message);
+
+
+        // Load from raw body template
+        $data = Pi::service('mail')->template('mail-body', $vars);
+        // Set subject and body
+        $subject = sprintf(__('Greetings in raw body %d'), time());
+        $body = $data['body'];
+        $type = '';
+        // Set message
+        $message = Pi::service('mail')->message();
+        $message->addTo($to);
+        $message->addTo('piengine@163.com', 'Netease');
+        $message->setSubject($subject);
+        $body = Pi::service('mail')->mimeMessage($body, $type);
+        $message->setBody($body);
         // Send mail
         $result = Pi::service('mail')->send($message);
 
