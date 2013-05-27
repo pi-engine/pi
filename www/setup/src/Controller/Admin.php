@@ -166,7 +166,6 @@ class Admin extends AbstractController
             $error['pass'][] = _t('The two passwords do not match');
         }
         if (!$error) {
-            var_dump($vars);
             // Update global contact email
             $configModel = Pi::model('config');
             $configModel->update(array('value' => $vars['adminmail']), array('name' => 'adminmail'));
