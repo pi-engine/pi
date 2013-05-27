@@ -71,8 +71,10 @@ class Security extends AbstractService
             if (empty($v) || empty($root)) {
                 continue;
             }
-            $str  = str_replace($v . '/', $root . '/', $str);
+            // Replace full path with relative path to prevent path disclosure
+            $str  = str_replace(array($v . '/', realpath($v) . '/'), $root . '/', $str);
         }
+
         return $str;
     }
 

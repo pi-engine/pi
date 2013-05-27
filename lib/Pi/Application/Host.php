@@ -193,12 +193,13 @@ class Host
 
         // Host file path is specified
         if (is_string($config)) {
-            $config['file'] = $config;
-        }
-        if (isset($config['file'])) {
+            $hostFile = $config;
+            $config = array();
+        } elseif (isset($config['file'])) {
             $hostFile = $config['file'];
             unset($config['file']);
         }
+
         // Get host identifier
         if (isset($config['identifier'])) {
             $hostIdentifier = $config['identifier'];
