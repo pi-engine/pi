@@ -254,10 +254,11 @@ class Render extends AbstractService
      */
     public function cachedContent()
     {
-        if (null === $this->cachedContent) {
-            $this->cachedContent = Pi::service('cache')->getItem($this->meta['key'], $this->meta, $this->getStorage());
+        $key = $this->meta['key'];
+        if (null === $this->cachedContent[$key]) {
+            $this->cachedContent[$key] = Pi::service('cache')->getItem($this->meta['key'], $this->meta, $this->getStorage());
         }
-        return $this->cachedContent;
+        return $this->cachedContent[$key];
     }
 
     /**
