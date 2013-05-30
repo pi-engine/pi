@@ -26,6 +26,27 @@ use Zend\Mvc\MvcEvent;
 
 class Adminmode extends AbstractResource
 {
+    /**#@+
+     * Operation modes
+     *
+     * @see Pi\Application\Resource\AdminMode
+     * @see Pi\View\Helper\AdminNav
+     * @see Module\System\Controller\Admin\PermController
+     */
+    /**
+     * Admin operation mode
+     */
+    const MODE_ADMIN = 'admin';
+    /**
+     * Settings mode
+     */
+    const MODE_SETTING = 'manage';
+    /**
+     * Deployment mode
+     */
+    const MODE_DEPLOYMENT = 'deployment';
+    /**#@-*/
+
     /**
      * @return void
      */
@@ -40,20 +61,16 @@ class Adminmode extends AbstractResource
     public function setMode(MvcEvent $e)
     {
         $route = $e->getRouteMatch();
-        //d(Pi::service('session')->backoffice->changed);
-        //if (!Pi::service('session')->backoffice->changed && $route) {
         if (empty($_SESSION['PI_BACKOFFICE']['changed']) && $route) {
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module && in_array($controller, array('block', 'config', 'page', 'resource', 'event'))) {
-                $mode = 'manage';
+                $mode = static::MODE_SETTING;
             } else {
-                $mode = 'admin';
+                $mode = static::MODE_ADMIN;
             }
-            //Pi::service('session')->backoffice->mode = $mode;
             $_SESSION['PI_BACKOFFICE']['mode'] = $mode;
         } else {
-            //Pi::service('session')->backoffice->changed = 0;
             $_SESSION['PI_BACKOFFICE']['changed'] = 0;
         }
     }

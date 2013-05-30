@@ -41,11 +41,9 @@ class ComponentController extends ActionController
         $component = $routeMatch->getParam('controller');
         // Set module
         if (!empty($name)) {
-            //Pi::service('session')->backoffice->module = $name;
             $_SESSION['PI_BACKOFFICE']['module'] = $name;
         }
         // Set component
-        //Pi::service('session')->backoffice->component = $component;
         $_SESSION['PI_BACKOFFICE']['component'] = $component;
 
         return parent::onDispatch($e);

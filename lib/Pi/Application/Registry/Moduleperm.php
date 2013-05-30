@@ -43,7 +43,6 @@ class Moduleperm extends AbstractRegistry
      * @param string $type      default as front
      *                              front: all active and allowed for front section
      *                              admin: all active and allowed for admin section
-     *                              operation: all active and allowed for admin operations
      *                              manage: all active and allowed for admin managed components
      *
      * @param string $role

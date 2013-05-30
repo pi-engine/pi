@@ -10,6 +10,7 @@ May 24th, 2013
 5. Modified file boot.php removing 'PI_PATH_WWW'
 6. Modified file var/config/host.php enabling paramters path-www and path-lib
 7. Fixed bug causing block cache conflicts, reported in Issue #77
+8. Changed backoffice mode name 'manage-Management' to 'manage-Setting'
 
 
 May 20th, 2013

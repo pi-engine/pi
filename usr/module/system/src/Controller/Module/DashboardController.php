@@ -22,6 +22,7 @@ namespace Module\System\Controller\Module;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Application\Resource\AdminMode;
 
 /**
  * Dashboard action controller
@@ -30,20 +31,13 @@ class DashboardController extends ActionController
 {
     public function modeAction()
     {
-        $mode = $this->params('mode', 'admin');
+        $mode = $this->params('mode', AdminMode::MODE_ADMIN);
         // Set run mode
         if (!empty($mode)) {
-            /*
-            Pi::service('session')->backoffice->exchangeArray(array(
-                'mode'      => $mode,
-                'changed'   => 1,
-            ));
-            */
             $_SESSION['PI_BACKOFFICE'] = array(
                 'mode'      => $mode,
                 'changed'   => 1,
             );
-
         }
 
         $modules = Pi::service('registry')->modulelist->read();
@@ -62,14 +56,13 @@ class DashboardController extends ActionController
         $name = array_shift($allowed);
         $link = '';
         switch ($mode) {
-            case 'admin':
+            case AdminMode::MODE_ADMIN:
                 $link = $this->url('admin', array(
                     'module'        => $name,
                     'controller'    => 'dashboard',
-                    //'mode'          => $mode,
                 ));
                 break;
-            case 'manage':
+            case AdminMode::MODE_SETTING:
                 $controller = '';
                 $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
                 foreach ($navConfig as $key => $item) {
@@ -86,7 +79,7 @@ class DashboardController extends ActionController
                     ));
                 }
                 break;
-            case 'deployment':
+            case AdminMode::MODE_DEPLOYMENT:
             default:
                 break;
         }
@@ -109,26 +102,7 @@ class DashboardController extends ActionController
     {
         $module = $this->params('module');
         $user   = Pi::registry('user')->id;
-        //$mode = $this->params('mode', '');
 
-        /*
-        // Set run mode
-        if (!empty($mode)) {
-            Pi::service('session')->backoffice->exchangeArray(array(
-                'mode'      => 'operation' == $mode ? 'operation' : 'manage',
-                'component' => '',
-                'module'    => '',
-            ));
-        }
-        */
-        /*
-        Pi::service('session')->backoffice->exchangeArray(array(
-            'mode'      => '',
-            'changed'   => 1,
-            'component' => '',
-            'module'    => '',
-        ));
-        */
         $_SESSION['PI_BACKOFFICE'] = array(
             'mode'      => '',
             'changed'   => 1,
