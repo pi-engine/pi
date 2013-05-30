@@ -51,7 +51,6 @@ class Update extends BasicUpdate
     {
         $moduleVersion = $e->getParam('version');
 
-
         if (version_compare($moduleVersion, '3.1.1', '<')):
 
         // Add table of navigation data

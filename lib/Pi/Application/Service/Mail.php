@@ -196,13 +196,17 @@ class Mail extends AbstractService
     {
         $message = new MailHandler\Message;
         $sender = array(
-            'mail'  => Pi::config('from', 'mail'),
-            'name'  => Pi::config('fromname', 'mail')
+            'mail'  => Pi::config('adminmail', 'mail'),
+            'name'  => Pi::config('adminname', 'mail') ?: null
         );
-        $message->setSender($sender['mail'], $sender['name']);
-        $message->setFrom($sender['mail'], $sender['name']);
-        //@TODO: once encoding is set, mail body is not parsed by some SP
-        //$message->setEncoding(Pi::config('charset'));
+        if ($sender['mail']) {
+            $message->setSender($sender['mail'], $sender['name']);
+            $message->setFrom($sender['mail'], $sender['name']);
+        }
+        $encoding = Pi::config('mail_encoding', 'mail');
+        if ($encoding) {
+            $message->setEncoding($encoding);
+        }
 
         if ($subject) {
             $message->setSubject($subject);
@@ -292,7 +296,7 @@ class Mail extends AbstractService
      * Note:
      *  1. Variables are tagged with %name% in templates
      *  2. Variables provided by system by default:
-     *      site_name, site_url, site_slogan, site_description, site_admin
+     *      site_name, site_url, site_slogan, site_description, site_adminname, site_adminmail
      *
      * @param string $content
      * @param array $vars
@@ -302,11 +306,12 @@ class Mail extends AbstractService
     {
         // Bind system variables
         $systemVars = array(
-            'site_admin'            => _sanitize(Pi::config('from', 'mail')),
+            'site_adminmail'        => _sanitize(Pi::config('adminmail', 'mail')),
+            'site_adminname'        => _sanitize(Pi::config('adminname', 'mail')),
             'site_name'             => _sanitize(Pi::config('sitename')),
             'site_slogan'           => _sanitize(Pi::config('slogan')),
             'site_description'      => _sanitize(Pi::config('description', 'meta')),
-            'site_url'              => Pi::url('www'),
+            'site_url'              => Pi::url('www', true),
         );
         $vars = array_merge($systemVars, $vars);
         // Assign variables
@@ -370,24 +375,32 @@ class Mail extends AbstractService
      * @param array $parts
      * @return Mime\Message
      */
-    public function mimeMessage($parts = array())
+    public function mimeMessage($data, $type = null)
     {
-        $message = new Mime\Message;
         $_this = $this;
-        $part = function ($content) use ($_this)
+        $createPart = function ($content) use ($_this)
         {
             if (is_string($content)) {
                 $content = new Mime\Part($content);
-            }
-            if (is_array($content)) {
+            } elseif (is_array($content)) {
                 list($data, $type) = $content;
                 $content = $_this->mimePart($data, $type);
             }
             return $content;
         };
-        $parts = (array) $parts;
+        if (!is_array($data)) {
+            if (null !== $type) {
+                $part = array($data, $type);
+            } else {
+                $part = $data;
+            }
+            $parts = array($part);
+        } else {
+            $parts = $data;
+        }
+        $message = new Mime\Message;
         foreach ($parts as $content) {
-            $message->addPart($part($content));
+            $message->addPart($createPart($content));
         }
 
         return $message;
@@ -404,9 +417,8 @@ class Mail extends AbstractService
     {
         $part = new Mime\Part($content);
         if (!is_array($type)) {
-            $type = array(
-                'type'  => $type,
-            );
+            $type = $type ?: 'text';
+            $type = array('type'  => $type);
         }
         foreach ($type as $key => $val) {
             switch ($key) {

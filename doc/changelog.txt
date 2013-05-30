@@ -1,6 +1,16 @@
 Pi Engine Changelog
 
 
+May 24th, 2013
+=============================
+1. Upgraded system to 3.2.0
+2. Modified configs: moved 'adminmail' to category 'mail'; changed 'fromname' to 'adminname', added 'mail_encoding' to category 'mail'; removed 'from', 'fromuid'
+3. Changed default config values: 'sitename', 'slogan' in setup
+4. Add 'name' to admin account in setup
+5. Modified file boot.php removing 'PI_PATH_WWW'
+6. Modified file var/config/host.php enabling paramters path-www and path-lib
+
+
 May 20th, 2013
 =============================
 1. Fixed config encode/decode conflicts reported by @MarcoXoops in Issue #13

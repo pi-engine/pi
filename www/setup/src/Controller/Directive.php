@@ -421,7 +421,7 @@ HTML;
 
         $content = '';
         // Advanced item elements
-        $itemList = array('path_asset', 'url_asset', 'path_upload', 'url_upload', 'path_static', 'url_static', 'path_lib', 'path_var', 'path_usr');
+        $itemList = array('path_lib', 'path_var', 'path_usr', 'path_asset', 'url_asset', 'path_upload', 'url_upload', 'path_static', 'url_static');
         foreach ($itemList as $item) {
             $content .= $displayItem($item);
         }

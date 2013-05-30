@@ -38,9 +38,9 @@ return array(
     // If path is a relative one then www root path will be prepended
     'path'      => array(
         // WWW root path
-        //'www'       => '/path/to/www',
+        'www'       => '/path/to/www',
         // Library directory
-        //'lib'       => '/path/to/lib',
+        'lib'       => '/path/to/lib',
         // User extension directory
         'usr'       => '/path/to/usr',
         // User data directory

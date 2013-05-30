@@ -42,7 +42,12 @@ class Wizard
 
     public function __construct()
     {
-        static::$root = dirname(__DIR__);
+        $docroot = $_SERVER['DOCUMENT_ROOT'];
+        $root = str_replace('\\', '/', realpath($docroot));
+        $pwd = str_replace('\\', '/', dirname(__DIR__));
+        static::$root = str_replace($root, $docroot, $pwd);
+
+        //static::$root = dirname(__DIR__);
         spl_autoload_register('static::autoload');
         $this->request = new Request();
     }
@@ -52,20 +57,13 @@ class Wizard
         if (static::BASE_NAMESPACE !== substr($class, 0, strlen(static::BASE_NAMESPACE))) {
             return;
         }
-        //echo '<p>' . __CLASS__ . ': ' . $class . '</p>';
         $class = substr($class, strlen(static::BASE_NAMESPACE) + 1);
         $classFile = static::$root. DIRECTORY_SEPARATOR . static::DIR_CLASS . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-        //echo '<p>' . __CLASS__ . ': ' . $classFile . '</p>';
         include $classFile;
     }
 
     public function init()
     {
-        // Set default timezone if not available in php.ini
-        if (!ini_get('date.timezone')) {
-            date_default_timezone_set('UTC');
-        }
-
         // Load persistent data
         $this->loadPersist();
 
