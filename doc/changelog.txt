@@ -11,7 +11,7 @@ May 24th, 2013
 6. Modified file var/config/host.php enabling paramters path-www and path-lib
 7. Fixed bug causing block cache conflicts, reported in Issue #77
 8. Changed backoffice mode name 'manage-Management' to 'manage-Setting'
-9. Added support for theme template inheritance proposed in Issue # 80
+9. Added support for theme template inheritance proposed in Issue #80
 
 
 May 20th, 2013
