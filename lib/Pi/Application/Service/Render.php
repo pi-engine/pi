@@ -70,10 +70,10 @@ class Render extends AbstractService
     );
 
     /**
-     * Cached content
-     * @var string
+     * Cached contents
+     * @var array
      */
-    protected $cachedContent = null;
+    protected $cachedContent = array();
 
     /**
      * Generated content
