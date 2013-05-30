@@ -46,7 +46,6 @@ class TemplateModule extends AbstractHelper
     public function __invoke($template, $module = null)
     {
         $template = $module ? $module . ':' . $template : $template;
-        //$template = $this->getView()->resolver($template);
 
         $resolver = new ModuleTemplateResolver;
         $template = $resolver->resolve($template);
