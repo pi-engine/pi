@@ -244,7 +244,7 @@ class Navigation extends AbstractResource
     {
         $module = $this->event->getParam('module');
 
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
         $message = array();

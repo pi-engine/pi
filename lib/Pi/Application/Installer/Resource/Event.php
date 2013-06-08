@@ -108,7 +108,7 @@ class Event extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->event->clear($module);
 
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

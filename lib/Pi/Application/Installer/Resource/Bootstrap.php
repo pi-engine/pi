@@ -56,7 +56,7 @@ class Bootstrap extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->bootstrap->clear($module);
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

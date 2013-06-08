@@ -139,7 +139,7 @@ class Route extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->route->flush();
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

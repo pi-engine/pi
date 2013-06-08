@@ -106,7 +106,7 @@ class Database extends AbstractResource
      */
     public function updateAction()
     {
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
         $module = $this->event->getParam('module');

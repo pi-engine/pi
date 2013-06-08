@@ -165,7 +165,7 @@ class Block extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->block->clear($module);
 
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

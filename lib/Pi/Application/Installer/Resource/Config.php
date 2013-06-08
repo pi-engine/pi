@@ -233,7 +233,7 @@ class Config extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->config->clear($module);
 
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

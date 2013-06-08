@@ -50,7 +50,7 @@ class Search extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->search->clear($module);
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

@@ -227,7 +227,7 @@ class Acl extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        if ($this->versionCompare()) {
+        if ($this->skipUpgrade()) {
             return true;
         }
 

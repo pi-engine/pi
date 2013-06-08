@@ -19,6 +19,7 @@
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 use Zend\EventManager\Event;
 
@@ -37,6 +38,18 @@ class AbstractResource
     {
         $this->event = $event;
         return $this;
+    }
+
+    /**
+     * Determine whether to skip upgrade for current resource
+     *
+     * Performe upgrade in anyway if system is in development mode; Skip upgrade if module version is already greater than configuration
+     *
+     * @return bool
+     */
+    protected function skipUpgrade()
+    {
+        return (Pi::environent() == 'development' || !$this->versionCompare()) ? false : true;
     }
 
     /**
