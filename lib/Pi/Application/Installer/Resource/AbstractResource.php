@@ -49,7 +49,7 @@ class AbstractResource
      */
     protected function skipUpgrade()
     {
-        return (Pi::environent() == 'development' || !$this->versionCompare()) ? false : true;
+        return (Pi::environment() == 'development' || !$this->versionCompare()) ? false : true;
     }
 
     /**
