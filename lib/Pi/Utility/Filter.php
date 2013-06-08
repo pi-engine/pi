@@ -37,6 +37,10 @@ namespace Pi\Utility
          */
         protected static function filterValue($value, $filter, $options = null)
         {
+            if (empty($filter)) {
+                return $value;
+            }
+
             // Canonize filter flag
             $filterFlag = function ($name)
             {
@@ -47,14 +51,27 @@ namespace Pi\Utility
                 }
                 return $flag;
             };
+
             if ($options) {
+                // Filter flag is passed as a direct string
                 if (is_string($options)) {
                     $options = $filterFlag($options);
                 } elseif (is_array($options)) {
-                    if (isset($options['flags']) && is_string($options['flags'])) {
-                        $options['flags'] = $filterFlag($options['flags']);
-                    } elseif (isset($options['options']) && is_string($options['options'])) {
-                        $options['options'] = $filterFlag($options['options']);
+                    // Flags are passed in an array
+                    if (isset($options['flags'])) {
+                        if (is_string($options['flags'])) {
+                            $options['flags'] = $filterFlag($options['flags']);
+                        }
+                    // Options are passed in an array
+                    } elseif (isset($options['options'])) {
+                        if (is_string($options['options'])) {
+                            $options['options'] = $filterFlag($options['options']);
+                        }
+                    // Options are passed directly
+                    } else {
+                        $options = array(
+                            'options'   => $options,
+                        );
                     }
                 }
             }
@@ -90,6 +107,7 @@ namespace Pi\Utility
                     case 'email':
                     case 'ip':
                     case 'url':
+                    case 'regexp':
                         $filter = 'validate_' . $filter;
                         break;
                     default:

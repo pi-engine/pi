@@ -5,6 +5,8 @@ June 8th, 2013
 =============================
 1. Disabled form autocomplete in setup
 2. Skip version comparison in debug mode for module update
+3. Improved Filter to support regexp filter
+4. Refactored module install/uninstall/update displaying information messages on a redirecting page
 
 
 May 24th, 2013
