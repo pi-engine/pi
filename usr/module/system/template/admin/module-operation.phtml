@@ -1,0 +1,33 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/system-ui.css'));
+?>
+<ul class="nav nav-tabs">
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
+    <li class="disabled"><a><?php _e('Repository'); ?></a>
+</ul>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<p class="lead"><?php echo $this->escape($message); ?> <a href="<?php echo $url; ?>" title=""><?php _e('Press to continue ...'); ?></a></p>
+
+<?php if (!empty($error)) { ?>
+<p class="text-error"><?php echo $this->escape($error); ?></p>
+<?php } ?>
+
+<?php
+if (!empty($details)) {
+    echo '<dl>';
+    foreach ($details as $action => $state) {
+        if (isset($state['status']) && $state['status'] === false) {
+            echo '<dt class="text-error">' . $this->escape($action)  . ': failed</dt>';
+        } else {
+            echo '<dt class="text-success">' . $this->escape($action)  . ': success</dt>';
+        }
+        if (!empty($state['message'])) {
+            foreach ((array) $state['message'] as $msg) {
+                echo '<dd>' . $this->escape($msg)  . '</dd>';
+            }
+        }
+    }
+    echo '</dl>';
+} ?>

@@ -102,7 +102,8 @@ class ModuleController extends ActionController
             }
             $author = Pi::service('module')->loadMeta($directory, 'author');
             $clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
-            if (!$clonable && in_array($directory, $modulesInstalled)) {
+            $meta['installed'] = in_array($directory, $modulesInstalled);
+            if (!$clonable && $meta['installed']) {
                 continue;
             }
             $meta['logo'] = !empty($meta['logo']) ? Pi::url('script/browse.php') . '?' . sprintf('module/%s/asset/%s', $directory, $meta['logo']) : Pi::url('static/image/module.png');
@@ -117,52 +118,195 @@ class ModuleController extends ActionController
     }
 
     /**
-     * AJAX to update a module
+     * Install a module and publish its asset
+     */
+    public function installAction()
+    {
+        $directory  = _get('directory', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'));
+        $name       = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i')) ?: $directory;
+        $title      = _get('title');
+
+        $result     = false;
+        $error      = '';
+        $message    = '';
+        $details    = array();
+
+        if (!$directory) {
+            $error = __('Directory is not specified.');
+        }
+        if (!$error) {
+            $meta = Pi::service('module')->loadMeta($directory, 'meta');
+            if (!$meta) {
+                $error = sprintf(__('Meta data are not loaded for directory "%s".'), $directory);
+            }
+        }
+        if (!$error) {
+            $installed = Pi::service('registry')->module->read($name) ? true : false;
+            if (!$installed) {
+                $installedModules = $this->installedModules();
+                if (in_array($directory, $installedModules) && empty($meta['clonable'])) {
+                    $installed = false;
+                }
+            }
+            if ($installed) {
+                $error = __('The module has already been installed.');
+            }
+        }
+        if (!$error) {
+            $args = array(
+                'directory' => $directory,
+                'title'     => $title ?: $meta['title'],
+            );
+
+            $installer = new ModuleInstaller;
+            $result = $installer->install($name, $args);
+            $details = $installer->getResult();
+        }
+        if ($result) {
+            $message = sprintf(__('Module "%s" is installed successfully.'), $directory);
+        } else {
+            $message = sprintf(__('Module "%s" is not installed.'), $directory);
+        }
+
+        $data = array(
+            'title'     => __('Module installation'),
+            'result'    => $result,
+            'error'     => $error,
+            'message'   => $message,
+            'details'   => $details,
+            'url'       => $this->url('', array('action' => 'available')),
+        );
+        $this->view()->assign($data);
+        $this->view()->setTemplate('module-operation');
+    }
+
+    /**
+     * Clone a module and publish its asset
+     */
+    public function cloneAction()
+    {
+        $form = new ModuleForm('install');
+        $this->view()->assign('form', $form);
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $form->setData($post);
+            $form->setInputFilter(new ModuleFilter);
+            if ($form->isValid()) {
+                $values = $form->getData();
+                $this->redirect('', array('action' => 'install', 'name' => $values['name'], 'directory' => $values['directory'], 'title' => $values['title']));
+                $this->setTemplate(false);
+                return;
+            }
+
+            $messages = $form->getMessages();
+            $message = array();
+            foreach ($messages as $key => $msg) {
+                $message[$key] = array_values($msg);
+            }
+            $status = -1;
+            return array(
+                'status'    => $status,
+                'message'   => $message,
+            );
+        } else {
+            $directory = _get('directory');
+            $meta = Pi::service('module')->loadMeta($directory, 'meta');
+            $form->setData(array(
+                'directory' => $directory,
+                'name'      => $directory,
+                'title'     => $meta['title'],
+            ));
+        }
+        $this->view()->assign('title', __('Module installation'));
+        $this->view()->setTemplate('system:component/form-popup');
+    }
+
+    /**
+     * Uninstall a module and remove its asset
+     */
+    public function uninstallAction()
+    {
+        $id = _get('id', 'int');
+
+        $result     = false;
+        $error      = '';
+        $message    = '';
+        $details    = array();
+
+        if (!$id) {
+            $error = __('Module ID is not specified.');
+        }
+        if (!$error) {
+            $row = Pi::model('module')->find($id);
+            if (!$row) {
+                $error = __('Module is not found.');
+            } elseif ('system' == $row->name) {
+                $error = __('System module is protected.');
+            } else {
+                $installer = new ModuleInstaller;
+                $result = $installer->uninstall($row);
+                $details = $installer->getResult();
+            }
+        }
+        if ($result) {
+            $message = sprintf(__('Module "%d" is uninstalled successfully.'), $id);
+        } else {
+            $message = sprintf(__('Module "%d" is not uninstalled.'), $id);
+        }
+
+        $data = array(
+            'title'     => __('Module uninstallation'),
+            'result'    => $result,
+            'error'     => $error,
+            'message'   => $message,
+            'details'   => $details,
+            'url'       => $this->url('', array('action' => 'index')),
+        );
+        $this->view()->assign($data);
+        $this->view()->setTemplate('module-operation');
+    }
+
+    /**
+     * Update a module
      */
     public function updateAction()
     {
-        $status = 1;
-        $id = $this->params('id');
-        $row = Pi::model('module')->find($id);
-        $moduleName = $row->name;
-        $installer = new ModuleInstaller;
-        $ret = $installer->update($row);
-        $message = '';
-        $data = array();
-        if (!$ret) {
-            $status = 0;
-            $message = $installer->renderMessage() ?: sprintf(__('The module "%s" is not updated.'), $moduleName);
-        } else {
-            $meta = Pi::service('module')->loadMeta($row->directory, 'meta');
-            $author = Pi::service('module')->loadMeta($row->directory, 'author');
-            /*
-            $detail = array(
-                'module'    => $row->toArray(),
-                'meta'      => $meta,
-                'author'    => $author,
-            );
-            */
+        $id = _get('id', 'int');
+
+        $result     = false;
+        $error      = '';
+        $message    = '';
+        $details    = array();
+
+        if (!$id) {
+            $error = __('Module ID is not specified.');
+        }
+        if (!$error) {
             $row = Pi::model('module')->find($id);
-            $data = $row->toArray();
-            $data['update'] = _date($data['update']);
-            $data['description'] = $meta['description'];
-            $data['author'] = $author;
-            if (empty($meta['logo'])) {
-                $data['logo'] = Pi::url('static/image/module.png');
-            } elseif (empty($data['active'])) {
-                $data['logo'] = Pi::url('script/browse.php') . '?' . sprintf('module/%s/asset/%s', $data['directory'], $meta['logo']);
+            if (!$row) {
+                $error = __('Module is not found.');
             } else {
-                $data['logo'] = Pi::service('asset')->getModuleAsset($meta['logo'], $data['name'], false);
+                $installer = new ModuleInstaller;
+                $result = $installer->update($row);
+                $details = $installer->getResult();
             }
         }
-        $message = $message ?: sprintf(__('The module "%s" is updated.'), $moduleName);
-        $result = array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $data,
-        );
+        if ($result) {
+            $message = sprintf(__('Module "%d" is updated successfully.'), $id);
+        } else {
+            $message = sprintf(__('Module "%d" is not updated.'), $id);
+        }
 
-        return $result;
+        $data = array(
+            'title'     => __('Module update'),
+            'result'    => $result,
+            'error'     => $error,
+            'message'   => $message,
+            'details'   => $details,
+            'url'       => $this->url('', array('action' => 'index')),
+        );
+        $this->view()->assign($data);
+        $this->view()->setTemplate('module-operation');
     }
 
     /**
@@ -193,127 +337,6 @@ class ModuleController extends ActionController
             'data'      => array(
                 'active'    => $active,
             ),
-        );
-
-        return $result;
-    }
-
-    /**
-     * Install a module and publish its asset
-     */
-    public function installAction()
-    {
-        $form = new ModuleForm('install');
-        $this->view()->assign('form', $form);
-        if ($this->request->isPost()) {
-            $post = $this->request->getPost();
-
-            $directory = $post['directory'];
-            $meta = Pi::service('module')->loadMeta($directory, 'meta');
-            $installedModules = $this->installedModules();
-            if (in_array($directory, $installedModules)) {
-                if (empty($meta['clonable'])) {
-                    return array(
-                        'status'    => 0,
-                        'message'   => __('The module is not allowed to install mutiples.'),
-                        'module'    => array(),
-                    );
-                }
-            }
-
-            $form->setData($post);
-            $form->setInputFilter(new ModuleFilter);
-
-            $status = 1;
-            $message = '';
-            $module = array();
-            if ($form->isValid()) {
-                $values = $form->getData();
-                $installer = new ModuleInstaller;
-                $ret = $installer->install($values['name'], array('directory' => $values['directory'], 'title' => $values['title']));
-                if (!$ret) {
-                    $message = $installer->renderMessage() ?: sprintf(__('The module "%s" is not installed.'), $values['name']);
-                    $status = 0;
-                } else {
-                    $row = Pi::model('module')->select(array('name' => $values['name']))->current();
-                    /*
-                    if (!empty($values['title'])) {
-                        $row->title = $values['title'];
-                        $row->save();
-                    }
-                    */
-                    $message = $message ?: sprintf(__('The module "%s" is installed.'), $values['name']);
-                    $module = array(
-                        'id'    => $row->id,
-                        'name'  => $row->name,
-                        'title' => $row->title,
-                    );
-                    /*
-                    $this->view()->assign('id', $row->id);
-                    $this->view()->assign('message', $message);
-                    $this->view()->setTemplate('module-operation');
-
-                    return;
-                    */
-                }
-            } else {
-                $messages = $form->getMessages();
-                $message = array();
-                foreach ($messages as $key => $msg) {
-                    $message[$key] = array_values($msg);
-                }
-                $status = -1;
-            }
-            return array(
-                'status'    => $status,
-                'message'   => $message,
-                'module'    => $module,
-                'clonable'  => empty($meta['clonable']) ? 0 : 1,
-            );
-        } else {
-            $directory = $this->Params('directory');
-            $meta = Pi::service('module')->loadMeta($directory, 'meta');
-            $form->setData(array(
-                'directory' => $directory,
-                'name'      => $directory,
-                'title'     => $meta['title'],
-            ));
-        }
-        $form->setAttribute('action', $this->url('', array('action' => 'install')));
-        $this->view()->assign('title', __('Module installation'));
-        $this->view()->setTemplate('system:component/form-popup');
-    }
-
-    /**
-     * Uninstall a module and remove its asset
-     */
-    public function uninstallAction()
-    {
-        $status = 1;
-        $id = $this->params('id');
-        $row = Pi::model('module')->find($id);
-        $moduleName = $row->name;
-        $message = '';
-        if ('system' == $moduleName) {
-            $status = 0;
-            $message = __('System module is protected from uninstallation.');
-        } else {
-            $installer = new ModuleInstaller;
-            $ret = $installer->uninstall($row);
-            if (!$ret) {
-                $status = 0;
-                $message = $installer->renderMessage() ?: sprintf(__('The module "%s" is not uninstalled.'), $moduleName);
-            }
-        }
-        $message = $message ?: sprintf(__('The module "%s" is uninstalled.'), $moduleName);
-        /*
-        $this->view()->assign('message', $message);
-        $this->view()->assign('title', __('Module uninstallaton'));
-        */
-        $result = array(
-            'status'    => $status,
-            'message'   => $message,
-            'module'    => $moduleName,
         );
 
         return $result;

@@ -30,7 +30,10 @@
                 <th><?php _e('Action'); ?>
         <tbody>
             <?php foreach ($modules as $directory => $module) { ?>
-            <tr class="avail-module-item" data-name="<?php echo $directory; ?>" data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>">
+            <tr class="avail-module-item"
+                data-name="<?php echo $directory; ?>"
+                data-install="<?php echo $this->url('', array('action' => 'install', 'directory' => $directory)); ?>"
+                data-clone="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
                 <td>
                     <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
                 <td>
@@ -47,21 +50,27 @@
                             <dd><?php echo $directory; ?>
                             <dt><?php _e('Author:'); ?>
                             <dd>
-                               <a href="<?php echo  $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
-                               <?php echo $module['author']['email'];  ?>
-                             <?php if (isset($module['meta']['demo'])) { ?>
+                                <?php if (!empty($module['author']['website'])) { ?>
+                                <a href="<?php echo $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
+                                <?php } ?>
+                                <?php echo $module['author']['email'];  ?>
+                             <?php if (!empty($module['meta']['demo'])) { ?>
                              <dt><?php _e('Demo:'); ?>
                              <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a>
                              <?php } ?>
                         </dl>
-                    </div>    
+                    </div>
                 <td>
-                    <span class="btn module-install"><?php _e('Install'); ?></span>
+                    <span class="btn module-install<?php if (!empty($module['meta']['installed'])) { echo ' disbaled'; } ?>"><?php _e('Install'); ?></span>
+                    <?php if (!empty($module['meta']['clonable'])) { ?>
+                    <span class="btn module-clone"><?php _e('Clone'); ?></span>
+                    <?php } ?>
             <?php } ?>
     </table>
 </div>
 <script>
 (function($) {
+    // Note implemented yet
     //var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>";
     var systemError = function() {
         systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');
@@ -75,12 +84,20 @@
         init: function() {
             _.bindAll(this);
             this.$('.module-install').click(this.installAction);
+            this.$('.module-clone').click(this.cloneAction);
             this.$('.module-detail').click(this.toggleDetail);
         },
         installAction: function(e) {
+             var p = $(e.target).parents('tr'),
+                self =this;
+            var url = p.attr('data-install');
+            // Redirect to module install action
+
+        },
+        cloneAction: function(e) {
             var p = $(e.target).parents('tr'),
                 self =this;
-            $.get(p.attr('data-install')).done(function(res) {
+            $.get(p.attr('data-clone')).done(function(res) {
                 self.modal.html(res).modal('show');
                 formModule.success = function(res) {
                     self.installSucc(res, p);
