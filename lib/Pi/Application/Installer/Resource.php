@@ -84,9 +84,17 @@ class Resource implements ListenerAggregateInterface
         foreach ($resourceList as $resource) {
             $ret = $this->loadResource($resource);
             if (is_array($ret)) {
-                $result['resource-' . $resource] = $ret;
+                $data = $ret;
                 $ret = $ret['status'];
+            } elseif (null !== $ret) {
+                $ret = (bool) $ret;
+                $data = array(
+                    'status' => $ret,
+                );
+            } else {
+                continue;
             }
+            $result['resource-' . $resource] = $data;
             if (false === $ret) {
                 break;
             }
@@ -97,28 +105,6 @@ class Resource implements ListenerAggregateInterface
         $this->event->setParam('result', $result);
         return;
     }
-
-    /*
-    public function __call($method, $args)
-    {
-        if (substr($method, 0, 7) !== 'process') {
-            return true;
-        }
-        $result = $this->event->getParam('result');
-        $resource = substr($method, 7);
-        $ret = $this->loadResource($resource);
-        if (is_array($ret)) {
-            $result['resource-' . $resource] = $ret;
-            $ret = $ret['status'];
-        }
-        $this->event->setParam('result', $result);
-        if (Pi::service()->hasService('log')) {
-            Pi::service('log')->info(sprintf('Module resource %s is loaded.', $resource));
-        }
-
-        return $ret;
-    }
-    */
 
     protected function resourceList()
     {
@@ -155,9 +141,9 @@ class Resource implements ListenerAggregateInterface
         $e = $this->event;
         $config = $e->getParam('config');
         $moduleDirectory = $e->getParam('directory');
-        $resourceClass = sprintf('Module\\%s\\Installer\\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
+        $resourceClass = sprintf('Module\\%s\Installer\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
         if (!class_exists($resourceClass)) {
-            $resourceClass = sprintf('%s\\Resource\\%s', __NAMESPACE__, ucfirst($resource));
+            $resourceClass = sprintf('%s\Resource\\%s', __NAMESPACE__, ucfirst($resource));
         }
         if (!class_exists($resourceClass)) {
             return;

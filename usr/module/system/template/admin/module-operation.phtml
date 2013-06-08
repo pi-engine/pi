@@ -21,7 +21,7 @@ if (!empty($details)) {
         if (isset($state['status']) && $state['status'] === false) {
             echo '<dt class="text-error">' . $this->escape($action)  . ': failed</dt>';
         } else {
-            echo '<dt class="text-success">' . $this->escape($action)  . ': success</dt>';
+            echo '<dt class="text-success">' . $this->escape($action)  . ': successful</dt>';
         }
         if (!empty($state['message'])) {
             foreach ((array) $state['message'] as $msg) {

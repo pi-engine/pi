@@ -19,6 +19,7 @@
  */
 
 namespace Module\Demo\Installer\Action;
+
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicInstall;
 use Zend\EventManager\Event;
@@ -36,11 +37,10 @@ class Install extends BasicInstall
 
     public function preInstall(Event $e)
     {
-        $result = array(
+        $this->setResult('pre-install', array(
             'status'    => true,
             'message'   => sprintf('Called from %s', __METHOD__),
-        );
-        $e->setParam('result', $result);
+        ));
     }
 
     public function postInstall(Event $e)
@@ -60,10 +60,9 @@ class Install extends BasicInstall
             ));
         }
 
-        $result = array(
+        $this->setResult('post-install', array(
             'status'    => true,
             'message'   => sprintf('Called from %s', __METHOD__),
-        );
-        $e->setParam('result', $result);
+        ));
     }
 }

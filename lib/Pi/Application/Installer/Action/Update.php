@@ -35,11 +35,6 @@ class Update extends AbstractAction
 
     public function process()
     {
-        /*
-        if (!$this->event->getParam('upgrade')) {
-            return true;
-        }
-        */
         $model = Pi::model('module');
         $row = $model->select(array('name' => $this->event->getParam('module')))->current();
 
@@ -53,7 +48,6 @@ class Update extends AbstractAction
             $this->event->setParam('upgrade', true);
         }
 
-        $result = $this->event->getParam('result');
         $originalRow = clone $row;
         $config = $this->event->getParam('config');
         $meta = array('update' => time());
@@ -68,11 +62,10 @@ class Update extends AbstractAction
 
         // save module entry into database
         if (!$row->save()) {
-            $result['module'] = array(
+            $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module upgrade failed')
-            );
-            $this->event->setParam('result', $result);
+            ));
             return false;
         }
 

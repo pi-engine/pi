@@ -71,12 +71,14 @@ class AbstractResource
 
     public function fooAction()
     {
+        // Return full result with status and message
         return array(
             'status'    => true,
             'message'   => 'Just for test'
         );
-        // Or
+        // return status
         return false;
-        return true;
+        // return void if no action performed
+        return;
     }
 }

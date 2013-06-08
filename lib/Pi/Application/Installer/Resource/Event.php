@@ -63,7 +63,7 @@ class Event extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         Pi::service('registry')->event->clear($module);
@@ -109,7 +109,7 @@ class Event extends AbstractResource
         Pi::service('registry')->event->clear($module);
 
         if ($this->skipUpgrade()) {
-            return true;
+            return;
         }
 
         $modelEvent = Pi::model('event');
@@ -213,7 +213,7 @@ class Event extends AbstractResource
             Pi::service('registry')->event->clear($moduleName);
         }
 
-        return;
+        return true;
     }
 
     public function uninstallAction()

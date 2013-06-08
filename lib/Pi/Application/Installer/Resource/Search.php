@@ -32,7 +32,7 @@ class Search extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         Pi::service('registry')->search->clear($module);
@@ -44,6 +44,8 @@ class Search extends AbstractResource
         $data['module'] = $module;
         $row = $model->createRow($data);
         $row->save();
+
+        return true;
     }
 
     public function updateAction()
@@ -51,7 +53,7 @@ class Search extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->search->clear($module);
         if ($this->skipUpgrade()) {
-            return true;
+            return;
         }
 
         $model = Pi::model('search');
@@ -61,7 +63,7 @@ class Search extends AbstractResource
             if ($row) {
                 $row->delete();
             }
-            return;
+            return true;
         }
         $data = $this->config;
         $directory = $this->event->getParam('directory');
@@ -73,6 +75,8 @@ class Search extends AbstractResource
             $row = $model->createRow($data);
         }
         $row->save();
+
+        return true;
     }
 
     public function uninstallAction()
@@ -82,7 +86,7 @@ class Search extends AbstractResource
 
         $model = Pi::model('search');
         $model->delete(array('module' => $module));
-         return;
+        return true;
     }
 
     public function activateAction()
@@ -91,7 +95,7 @@ class Search extends AbstractResource
         $model = Pi::model('search');
         $model->update(array('active' => 1), array('module' => $module));
         Pi::service('registry')->search->flush();
-        return;
+        return true;
     }
 
     public function deactivateAction()
@@ -100,6 +104,6 @@ class Search extends AbstractResource
         $model = Pi::model('search');
         $model->update(array('active' => 0), array('module' => $module));
         Pi::service('registry')->search->flush();
-        return;
+        return true;
     }
 }

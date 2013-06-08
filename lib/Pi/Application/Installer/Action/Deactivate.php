@@ -34,17 +34,15 @@ class Deactivate extends AbstractAction
 
     public function process()
     {
-        $result = $this->event->getParam('result');
         $model = Pi::model('module');
         $row = $model->select(array('name' => $this->module))->current();
         $row->active = 0;
         // save module entry into database
         if (!$row->save()) {
-            $result['module'] = array(
+            $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module deactivate failed')
-            );
-            $this->event->setParam('result', $result);
+            ));
             return false;
         }
 

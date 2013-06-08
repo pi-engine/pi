@@ -67,12 +67,10 @@ EOD;
         try {
             $sqlHandler->queryContent($sql);
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -89,12 +87,10 @@ EOD;
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -104,12 +100,10 @@ EOD;
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $result = $e->getParam('result');
-                $result['db'] = array(
+                $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-                );
-                $e->setParam('result', $result);
+                ));
                 return false;
             }
         }
@@ -134,12 +128,10 @@ EOD;
         try {
             $sqlHandler->queryContent($sql);
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -154,12 +146,10 @@ EOD;
                 $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $result = $e->getParam('result');
-                $result['db'] = array(
+                $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table drop failed: ' . $exception->getMessage(),
-                );
-                $e->setParam('result', $result);
+                ));
                 return false;
             }
         }
@@ -178,12 +168,10 @@ EOD;
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -193,36 +181,30 @@ EOD;
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
         $sql = sprintf('ALTER TABLE %s DROP KEY `pair`', $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
         $sql = sprintf('ALTER TABLE %s ADD KEY `pair` UNIQUE KEY (`section`, `module`, `name`)', $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -232,12 +214,10 @@ EOD;
             $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table drop failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -261,12 +241,10 @@ EOD;
         try {
             $sqlHandler->queryContent($sql);
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -284,12 +262,10 @@ EOD;
         try {
             $sqlHandler->queryContent($sql);
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 

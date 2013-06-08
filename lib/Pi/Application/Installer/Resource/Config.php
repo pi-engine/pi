@@ -180,7 +180,7 @@ class Config extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         Pi::service('registry')->config->clear($module);
@@ -234,7 +234,7 @@ class Config extends AbstractResource
         Pi::service('registry')->config->clear($module);
 
         if ($this->skipUpgrade()) {
-            return true;
+            return;
         }
 
         $config = $this->canonize($this->config);
@@ -348,6 +348,6 @@ class Config extends AbstractResource
         $modelConfig = Pi::model('config');
         $modelCategory->delete(array('module' => $module));
         $modelConfig->delete(array('module' => $module));
-        return;
+        return true;
     }
 }

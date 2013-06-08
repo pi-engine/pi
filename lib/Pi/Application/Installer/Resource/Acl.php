@@ -228,7 +228,7 @@ class Acl extends AbstractResource
     {
         $module = $this->event->getParam('module');
         if ($this->skipUpgrade()) {
-            return true;
+            return;
         }
 
         // Update roles
@@ -411,10 +411,10 @@ class Acl extends AbstractResource
         Pi::service('registry')->moduleperm->flush();
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
-        return;
+        return true;
     }
 
-    public function activate(&$message)
+    public function activateAction(&$message)
     {
         $module = $this->event->getParam('module');
         $where = array('module' => $module);
@@ -423,9 +423,11 @@ class Acl extends AbstractResource
 
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
+
+        return true;
     }
 
-    public function deactivate(&$message)
+    public function deactivateAction(&$message)
     {
         $module = $this->event->getParam('module');
         $where = array('module' => $module);
@@ -434,6 +436,8 @@ class Acl extends AbstractResource
 
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
+
+        return true;
     }
 
     protected function insertRole($role, &$message)
