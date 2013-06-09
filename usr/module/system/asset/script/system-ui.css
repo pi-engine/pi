@@ -220,6 +220,9 @@ tr:hover .row-actions {
 .module-item .well {
     margin-bottom: 0;
 }
+.module-ol li {
+    list-style: decimal;
+}
 /*nav-data*/
 .menu-item-depth0 {
     margin-left: 0;
