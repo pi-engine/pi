@@ -208,7 +208,7 @@ class ModuleController extends ActionController
                 $message[$key] = array_values($msg);
             }
             return array(
-                'status'    => 1,
+                'status'    => 0,
                 'message'   => $message,
             );
         } else {

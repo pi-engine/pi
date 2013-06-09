@@ -60,7 +60,7 @@
                             } else {
                                 echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), __('Enable'));
                             }
-                            echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Uninstall'));
+                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Are you sure uninstall this module?') ,__('Uninstall'));
                         } ?>
                     </div>
             <?php } ?>
