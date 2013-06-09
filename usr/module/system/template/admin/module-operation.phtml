@@ -17,7 +17,7 @@
         //echo '<script>setTimeout(function() {location.href ="' . $url . '"}, 1500);</script>';
     }
     if ($details) {
-        echo '<ol>';
+        echo '<ol class="module-ol">';
         foreach ($details as $action => $state) {
             if (isset($state['status']) && $state['status'] === false) {
                 echo '<li><strong class="text-error">' . $this->escape($action)  . ': failed</strong><script>$(".alert-success").addClass("alert-error")</script>';
@@ -26,7 +26,7 @@
             }
             if (!empty($state['message'])) {
                 foreach ((array) $state['message'] as $msg) {
-                    echo $this->escape($msg);
+                    echo '<div class="indent">' . $this->escape($msg) . '</div>';
                 }
             }
         }
