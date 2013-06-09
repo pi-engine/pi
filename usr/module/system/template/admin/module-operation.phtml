@@ -1,33 +1,35 @@
 <?php
     $this->bootstrap();
     $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
+    <li class="<?php ?>"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
+    <li class=""><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
     <li class="disabled"><a><?php _e('Repository'); ?></a>
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<p class="lead"><?php echo $this->escape($message); ?> <a href="<?php echo $url; ?>" title=""><?php _e('Press to continue ...'); ?></a></p>
-
-<?php if (!empty($error)) { ?>
-<p class="text-error"><?php echo $this->escape($error); ?></p>
-<?php } ?>
-
 <?php
-if (!empty($details)) {
-    echo '<dl>';
-    foreach ($details as $action => $state) {
-        if (isset($state['status']) && $state['status'] === false) {
-            echo '<dt class="text-error">' . $this->escape($action)  . ': failed</dt>';
-        } else {
-            echo '<dt class="text-success">' . $this->escape($action)  . ': successful</dt>';
-        }
-        if (!empty($state['message'])) {
-            foreach ((array) $state['message'] as $msg) {
-                echo '<dd>' . $this->escape($msg)  . '</dd>';
+    if($error) {
+        echo '<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">×</button>' . $error . '</div>';
+    } else {
+        echo sprintf('<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">×</button>%s<a href="%s" title="">%s</a></div>', $message, $url, __('Press to continue ...'));
+        //echo '<script>setTimeout(function() {location.href ="' . $url . '"}, 1500);</script>';
+    }
+    if ($details) {
+        echo '<ol>';
+        foreach ($details as $action => $state) {
+            if (isset($state['status']) && $state['status'] === false) {
+                echo '<li><strong class="text-error">' . $this->escape($action)  . ': failed</strong><script>$(".alert-success").addClass("alert-error")</script>';
+            } else {
+                echo '<li><strong class="text-success">' . $this->escape($action)  . ': success</strong>';
+            }
+            if (!empty($state['message'])) {
+                foreach ((array) $state['message'] as $msg) {
+                    echo $this->escape($msg);
+                }
             }
         }
-    }
-    echo '</dl>';
-} ?>
+        echo '</ol>';
+    } 
+?>

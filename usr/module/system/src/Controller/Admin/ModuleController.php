@@ -193,9 +193,12 @@ class ModuleController extends ActionController
             $form->setInputFilter(new ModuleFilter);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $this->redirect('', array('action' => 'install', 'name' => $values['name'], 'directory' => $values['directory'], 'title' => $values['title']));
-                $this->setTemplate(false);
-                return;
+               // $this->redirect('', array('action' => 'install', 'name' => $values['name'], 'directory' => $values['directory'], 'title' => $values['title']));
+               // $this->setTemplate(false);
+                return array(
+                    'status'    => 1,
+                    'data' => $values
+                );
             }
 
             $messages = $form->getMessages();
@@ -217,6 +220,7 @@ class ModuleController extends ActionController
                 'title'     => $meta['title'],
             ));
         }
+        $form->setAttribute('action', $this->url('', array('action' => 'clone')));
         $this->view()->assign('title', __('Module installation'));
         $this->view()->setTemplate('system:component/form-popup');
     }
@@ -254,9 +258,9 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(__('Module "%s" is uninstalled successfully.'), $id ?: $name);
+            $message = sprintf(__('Module "%s" is uninstalled successfully.'), $row->title);
         } elseif ($id || $name) {
-            $message = sprintf(__('Module "%s" is not uninstalled.'), $id ?: $name);
+            $message = sprintf(__('Module "%s" is not uninstalled.'), $row->title);
         } else {
             $message = __('Module is not uninstalled.');
         }
@@ -304,9 +308,9 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(__('Module "%s" is updated successfully.'), $id ?: $name);
+            $message = sprintf(__('Module "%s" is updated successfully.'), $row->title);
         } elseif ($id || $name) {
-            $message = sprintf(__('Module "%s" is not updated.'), $id ?: $name);
+            $message = sprintf(__('Module "%s" is not updated.'), $row->title);
         } else {
             $message = __('Module is not updated.');
         }
@@ -360,17 +364,17 @@ class ModuleController extends ActionController
         }
         if ($active) {
             if ($result) {
-                $message = sprintf(__('Module "%s" is enabled successfully.'), $id ?: $name);
+                $message = sprintf(__('Module "%s" is enabled successfully.'), $row->title);
             } elseif ($id || $name) {
-                $message = sprintf(__('Module "%s" is not enabled.'), $id ?: $name);
+                $message = sprintf(__('Module "%s" is not enabled.'), $row->title);
             } else {
                 $message = __('Module is not enabled.');
             }
         } else {
             if ($result) {
-                $message = sprintf(__('Module "%s" is disabled successfully.'), $id ?: $name);
+                $message = sprintf(__('Module "%s" is disabled successfully.'), $row->title);
             } elseif ($id || $name) {
-                $message = sprintf(__('Module "%s" is not disabled.'), $id ?: $name);
+                $message = sprintf(__('Module "%s" is not disabled.'), $row->title);
             } else {
                 $message = __('Module is not disabled.');
             }
@@ -393,7 +397,7 @@ class ModuleController extends ActionController
      */
     public function renameAction()
     {
-        $post = $this->params()->fromPut();
+        $post = $this->params()->fromPost();
         if (empty($post['title'])) {
             return array(
                 'status'    => 0,
