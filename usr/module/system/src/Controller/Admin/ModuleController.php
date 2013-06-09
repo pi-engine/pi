@@ -226,18 +226,23 @@ class ModuleController extends ActionController
      */
     public function uninstallAction()
     {
-        $id = _get('id', 'int');
+        $id         = _get('id', 'int');
+        $name       = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'));
 
         $result     = false;
         $error      = '';
         $message    = '';
         $details    = array();
 
-        if (!$id) {
-            $error = __('Module ID is not specified.');
+        if (!$id && !$name) {
+            $error = __('Module is not specified.');
         }
         if (!$error) {
-            $row = Pi::model('module')->find($id);
+            if ($id) {
+                $row = Pi::model('module')->find($id);
+            } else {
+                $row = Pi::model('module')->find($name, 'name');
+            }
             if (!$row) {
                 $error = __('Module is not found.');
             } elseif ('system' == $row->name) {
@@ -249,9 +254,11 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(__('Module "%d" is uninstalled successfully.'), $id);
+            $message = sprintf(__('Module "%s" is uninstalled successfully.'), $id ?: $name);
+        } elseif ($id || $name) {
+            $message = sprintf(__('Module "%s" is not uninstalled.'), $id ?: $name);
         } else {
-            $message = sprintf(__('Module "%d" is not uninstalled.'), $id);
+            $message = __('Module is not uninstalled.');
         }
 
         $data = array(
@@ -271,18 +278,23 @@ class ModuleController extends ActionController
      */
     public function updateAction()
     {
-        $id = _get('id', 'int');
+        $id         = _get('id', 'int');
+        $name       = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'));
 
         $result     = false;
         $error      = '';
         $message    = '';
         $details    = array();
 
-        if (!$id) {
-            $error = __('Module ID is not specified.');
+        if (!$id && !$name) {
+            $error = __('Module is not specified.');
         }
         if (!$error) {
-            $row = Pi::model('module')->find($id);
+            if ($id) {
+                $row = Pi::model('module')->find($id);
+            } else {
+                $row = Pi::model('module')->find($name, 'name');
+            }
             if (!$row) {
                 $error = __('Module is not found.');
             } else {
@@ -292,9 +304,11 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(__('Module "%d" is updated successfully.'), $id);
+            $message = sprintf(__('Module "%s" is updated successfully.'), $id ?: $name);
+        } elseif ($id || $name) {
+            $message = sprintf(__('Module "%s" is not updated.'), $id ?: $name);
         } else {
-            $message = sprintf(__('Module "%d" is not updated.'), $id);
+            $message = __('Module is not updated.');
         }
 
         $data = array(
@@ -310,36 +324,68 @@ class ModuleController extends ActionController
     }
 
     /**
-     * Activate a module
+     * Activate/deactivate a module
      */
     public function enableAction()
     {
-        $status = 1;
-        $id = $this->params()->fromPut('id');
-        $active = $this->params()->fromPut('active');
-        $row = Pi::model('module')->find($id);
-        $moduleName = $row->name;
-        $installer = new ModuleInstaller;
-        if ($active) {
-            $ret = $installer->activate($row);
-        } else {
-            $ret = $installer->deactivate($row);
-        }
-        if (!$ret) {
-            $status = 0;
-            $message = $installer->renderMessage() ?: sprintf(__('The module "%s" status is not updated.'), $moduleName);
-        } else {
-            $message = sprintf(__('The module "%s" status is updated.'), $moduleName);
-        }
-        $result = array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => array(
-                'active'    => $active,
-            ),
-        );
+        $id         = _get('id', 'int');
+        $name       = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'));
+        $active     = _get('active', 'int');
 
-        return $result;
+        $result     = false;
+        $error      = '';
+        $message    = '';
+        $details    = array();
+
+        if (!$id && !$name) {
+            $error = __('Module is not specified.');
+        }
+        if (!$error) {
+            if ($id) {
+                $row = Pi::model('module')->find($id);
+            } else {
+                $row = Pi::model('module')->find($name, 'name');
+            }
+            if (!$row) {
+                $error = __('Module is not found.');
+            } else {
+                $installer = new ModuleInstaller;
+                if ($active) {
+                    $result = $installer->activate($row);
+                } else {
+                    $result = $installer->deactivate($row);
+                }
+                $details = $installer->getResult();
+            }
+        }
+        if ($active) {
+            if ($result) {
+                $message = sprintf(__('Module "%s" is enabled successfully.'), $id ?: $name);
+            } elseif ($id || $name) {
+                $message = sprintf(__('Module "%s" is not enabled.'), $id ?: $name);
+            } else {
+                $message = __('Module is not enabled.');
+            }
+        } else {
+            if ($result) {
+                $message = sprintf(__('Module "%s" is disabled successfully.'), $id ?: $name);
+            } elseif ($id || $name) {
+                $message = sprintf(__('Module "%s" is not disabled.'), $id ?: $name);
+            } else {
+                $message = __('Module is not disabled.');
+            }
+        }
+
+        $data = array(
+            'title'     => __('Module activation'),
+            'result'    => $result,
+            'error'     => $error,
+            'message'   => $message,
+            'details'   => $details,
+            'url'       => $this->url('', array('action' => 'index')),
+        );
+        $this->view()->assign($data);
+        $this->view()->setTemplate('module-operation');
     }
 
     /**
