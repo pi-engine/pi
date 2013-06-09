@@ -380,7 +380,7 @@ class Host
                 }
             }
             // Assemble full URI
-            $uri .= $path ? '/' . $path : '';
+            $uri .= $path ? '/' . ltrim($path, '/') : '';
         }
 
         return $uri;

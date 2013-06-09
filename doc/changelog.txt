@@ -5,6 +5,7 @@ June 8th, 2013
 =============================
 1. Disabled form autocomplete in setup
 2. Skip version comparison in debug mode for module update
+3. Fixed bug in URL generation with duplicated '/' reported in Issue #66
 
 
 May 24th, 2013
