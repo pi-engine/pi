@@ -61,6 +61,7 @@ class ModuleController extends ActionController
             $author = Pi::service('module')->loadMeta($data['directory'], 'author');
             $data['description'] = $meta['description'];
             $data['author'] = $author;
+            $data['active'] = isset($active[$name]) ? true : false;
             if (empty($meta['logo'])) {
                 $data['logo'] = Pi::url('static/image/module.png');
             } elseif (empty($data['active'])) {
@@ -73,7 +74,6 @@ class ModuleController extends ActionController
             } else {
                 $data['update'] = _date($data['update']);
             }
-            $data['active'] = isset($active[$name]) ? true : false;
         }
         $this->view()->assign('modules', $modules);
         //$this->view()->setTemplate('module-list');
@@ -101,9 +101,10 @@ class ModuleController extends ActionController
                 continue;
             }
             $author = Pi::service('module')->loadMeta($directory, 'author');
-            $clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
-            $meta['installed'] = in_array($directory, $modulesInstalled);
-            if (!$clonable && $meta['installed']) {
+            //$clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
+            //$meta['installed'] = in_array($directory, $modulesInstalled);
+            $meta['installed'] = Pi::service('registry')->module->read($directory) ? true : false;
+            if (empty($meta['clonable']) && $meta['installed']) {
                 continue;
             }
             $meta['logo'] = !empty($meta['logo']) ? Pi::url('script/browse.php') . '?' . sprintf('module/%s/asset/%s', $directory, $meta['logo']) : Pi::url('static/image/module.png');
@@ -197,7 +198,7 @@ class ModuleController extends ActionController
                // $this->setTemplate(false);
                 return array(
                     'status'    => 1,
-                    'data' => $values
+                    'data'      => $values,
                 );
             }
 
@@ -206,9 +207,8 @@ class ModuleController extends ActionController
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
-            $status = -1;
             return array(
-                'status'    => $status,
+                'status'    => 1,
                 'message'   => $message,
             );
         } else {
@@ -237,6 +237,7 @@ class ModuleController extends ActionController
         $error      = '';
         $message    = '';
         $details    = array();
+        $row        = null;
 
         if (!$id && !$name) {
             $error = __('Module is not specified.');
@@ -259,7 +260,7 @@ class ModuleController extends ActionController
         }
         if ($result) {
             $message = sprintf(__('Module "%s" is uninstalled successfully.'), $row->title);
-        } elseif ($id || $name) {
+        } elseif ($row) {
             $message = sprintf(__('Module "%s" is not uninstalled.'), $row->title);
         } else {
             $message = __('Module is not uninstalled.');
@@ -289,6 +290,7 @@ class ModuleController extends ActionController
         $error      = '';
         $message    = '';
         $details    = array();
+        $row        = null;
 
         if (!$id && !$name) {
             $error = __('Module is not specified.');
@@ -309,7 +311,7 @@ class ModuleController extends ActionController
         }
         if ($result) {
             $message = sprintf(__('Module "%s" is updated successfully.'), $row->title);
-        } elseif ($id || $name) {
+        } elseif ($row) {
             $message = sprintf(__('Module "%s" is not updated.'), $row->title);
         } else {
             $message = __('Module is not updated.');
@@ -340,6 +342,7 @@ class ModuleController extends ActionController
         $error      = '';
         $message    = '';
         $details    = array();
+        $row        = null;
 
         if (!$id && !$name) {
             $error = __('Module is not specified.');
@@ -365,7 +368,7 @@ class ModuleController extends ActionController
         if ($active) {
             if ($result) {
                 $message = sprintf(__('Module "%s" is enabled successfully.'), $row->title);
-            } elseif ($id || $name) {
+            } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not enabled.'), $row->title);
             } else {
                 $message = __('Module is not enabled.');
@@ -373,7 +376,7 @@ class ModuleController extends ActionController
         } else {
             if ($result) {
                 $message = sprintf(__('Module "%s" is disabled successfully.'), $row->title);
-            } elseif ($id || $name) {
+            } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not disabled.'), $row->title);
             } else {
                 $message = __('Module is not disabled.');
@@ -397,16 +400,29 @@ class ModuleController extends ActionController
      */
     public function renameAction()
     {
-        $post = $this->params()->fromPost();
-        if (empty($post['title'])) {
+        //$post = $this->params()->fromPost();
+        $title = _post('title');
+        if (empty($title)) {
             return array(
                 'status'    => 0,
                 'message'   => __('Title is required.')
             );
         }
-        $id = intval($post['id']);
-        $row = Pi::model('module')->find($id);
-        $row->title = $post['title'];
+        $id     = _post('id', 'int');
+        $name   = _post('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'));
+        if ($id) {
+            $row = Pi::model('module')->find($id);
+        } else {
+            $row = Pi::model('module')->find($name, 'name');
+        }
+        if (!$row) {
+            return array(
+                'status'    => 0,
+                'message'   => __('Module is not found.')
+            );
+        }
+
+        $row->title = $title;
         $row->save();
         Pi::service('registry')->module->clear();
         Pi::service('registry')->modulelist->clear();

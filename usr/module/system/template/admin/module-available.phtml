@@ -52,10 +52,15 @@
                 <td>
                     <?php
                         if (empty($module['meta']['installed'])) {
-                            echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array('action' => 'install', 'directory' => $directory)), __('Install'));
-                        } 
+                            $buttonClass = '';
+                            $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory));
+                        } else {
+                            $buttonClass = ' disabled';
+                            $installUrl = '';
+                        }
+                        echo sprintf('<a class="btn%s" href="%s">%s</a>', $buttonClass, $installUrl, __('Install'));
                     ?>
-                    <?php if ($module['meta']['clonable'] && $module['meta']['installed']) { ?>
+                    <?php if (!empty($module['meta']['clonable'])) { ?>
                     <span class="btn module-clone"><?php _e('Clone'); ?></span>
                     <?php } ?>
             <?php } ?>
