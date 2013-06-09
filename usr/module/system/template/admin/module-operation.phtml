@@ -10,10 +10,10 @@
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <?php
-    if($error) {
-        echo '<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">×</button>' . $error . '</div>';
+    if ($error) {
+        echo '<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">×</button>' . $this->escape($error) . '</div>';
     } else {
-        echo sprintf('<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">×</button>%s<a href="%s" title="">%s</a></div>', $message, $url, __('Press to continue ...'));
+        echo sprintf('<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">×</button>%s<a href="%s" title="">%s</a></div>', $this->escape($message), $url, __('Press to continue ...'));
         //echo '<script>setTimeout(function() {location.href ="' . $url . '"}, 1500);</script>';
     }
     if ($details) {
@@ -31,5 +31,5 @@
             }
         }
         echo '</ol>';
-    } 
+    }
 ?>
