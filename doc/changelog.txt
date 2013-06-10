@@ -10,6 +10,7 @@ June 8th, 2013
 5. Refactored module install/uninstall/update displaying information messages on a redirecting page
 6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
 7. Added default value 'text' for renderer to markup service
+8. Initiated system service Url
 
 
 May 24th, 2013
