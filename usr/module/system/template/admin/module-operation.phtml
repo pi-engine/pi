@@ -10,19 +10,20 @@
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <?php
+    // Display result message
+    echo sprintf('<div class="lead">%s <a href="%s" title="">%s</a></div>', $this->escape($message), $url, __('Press to continue ...'));
+    // Display summary error message
     if ($error) {
-        echo '<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">×</button>' . $this->escape($error) . '</div>';
-    } else {
-        echo sprintf('<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">×</button>%s<a href="%s" title="">%s</a></div>', $this->escape($message), $url, __('Press to continue ...'));
-        //echo '<script>setTimeout(function() {location.href ="' . $url . '"}, 1500);</script>';
+        echo '<div class="alert alert-error">' . $this->escape($error) . '</div>';
     }
+    // Display detailed information
     if ($details) {
         echo '<ol class="module-ol">';
         foreach ($details as $action => $state) {
             if (isset($state['status']) && $state['status'] === false) {
                 echo '<li>' . $this->escape($action)  . ': <strong class="text-error">' . __('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script></li>';
             } else {
-                echo '<li>' . $this->escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</li>';
+                echo '<li>' . $this->escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</strong></li>';
             }
             if (!empty($state['message'])) {
                 foreach ((array) $state['message'] as $msg) {
