@@ -210,7 +210,7 @@ class Markup
     public static function getRenderer()
     {
         if (!static::$renderer) {
-            static::$renderer = static::loadRenderer('raw');
+            static::$renderer = static::loadRenderer('text');
         }
         return static::$renderer;
     }
