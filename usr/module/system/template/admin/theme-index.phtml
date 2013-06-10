@@ -5,10 +5,10 @@
     $this->backbone();
 ?>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
-    <li class="disabled"><a><?php _e('Repository'); ?></a>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
+    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
 </ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
@@ -18,10 +18,12 @@
         <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_front')); ?>">
             <?php _e('Front'); ?>
         </a>
+    </li>    
     <li class="<?php if ('_admin' == $section) { echo 'active'; } ?>">
         <a href="<?php echo $this->url('', array('action' => 'index', 'section' => '_admin')); ?>">
             <?php _e('Admin'); ?>
         </a>
+    </li>    
 </ul>   
 <div id="js-page">
     <fieldset style="margin-bottom:20px;">

@@ -3,13 +3,10 @@
     $this->jQuery();
     $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
-<style>
-
-</style>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'cache', 'action' => 'index')); ?>" title="<?php _e('Cache flush'); ?>"><?php _e('Cache flush'); ?></a>
-    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'asset', 'action' => 'index')); ?>" title="<?php _e('Asset publish'); ?>"><?php _e('Asset publish'); ?></a>
-    <li><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'cache', 'action' => 'index')); ?>" title="<?php _e('Cache flush'); ?>"><?php _e('Cache flush'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'asset', 'action' => 'index')); ?>" title="<?php _e('Asset publish'); ?>"><?php _e('Asset publish'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a></li>
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div id="asset-list">
