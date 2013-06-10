@@ -11,6 +11,8 @@ June 8th, 2013
 6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
 7. Added default value 'text' for renderer to markup service
 8. Initiated system service Url
+9. Initiated system service User
+10. Added file: var/config/service.user.php
 
 
 May 24th, 2013
