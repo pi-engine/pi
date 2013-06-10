@@ -8,8 +8,8 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 
 <div class="page-role">
     <ul class="nav nav-tabs">
-        <li<?php if ('front' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'front')); ?>" title="<?php _e('User roles'); ?>"><?php _e('User roles'); ?></a>
-        <li<?php if ('admin' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'admin')); ?>" title="<?php _e('Admin roles'); ?>"><?php _e('Admin roles'); ?></a>
+        <li<?php if ('front' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'front')); ?>" title="<?php _e('User roles'); ?>"><?php _e('User roles'); ?></a></li>
+        <li<?php if ('admin' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'admin')); ?>" title="<?php _e('Admin roles'); ?>"><?php _e('Admin roles'); ?></a></li>
     </ul>
     <div class="role-ident">
         <i class="icon-check"></i><span><?php _e('Directly inherited'); ?></span>

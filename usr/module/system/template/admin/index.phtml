@@ -1,8 +1,8 @@
 <h2><?php echo $title; ?></h2>
-<div>
+<div class="empty">
     <?php _e('There is no entry page for this module management. Please:'); ?>
     <ul>
-        <li><a href="<?php echo $this->url('', array('module' => 'system', 'controller' => 'config', 'action' => 'module', 'name' => $module)); ?>" title="<?php _e('Module config'); ?>"><?php _e('Go to set up module configs;'); ?></a>
-        <li><a href="<?php echo $this->url('', array('module' => 'system', 'controller' => 'dashboard')); ?>" title="<?php _e('System admin'); ?>"><?php _e('Go back to system dashboard.'); ?></a>
+        <li><a href="<?php echo $this->url('', array('module' => 'system', 'controller' => 'config', 'action' => 'module', 'name' => $module)); ?>" title="<?php _e('Module config'); ?>"><?php _e('Go to set up module configs;'); ?></a></li>
+        <li><a href="<?php echo $this->url('', array('module' => 'system', 'controller' => 'dashboard')); ?>" title="<?php _e('System admin'); ?>"><?php _e('Go back to system dashboard.'); ?></a></li>
     </ul>
 </div>
