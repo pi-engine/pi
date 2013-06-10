@@ -50,12 +50,6 @@ class Resource implements ListenerAggregateInterface
     public function attach(EventManagerInterface $events)
     {
         $this->listener = $events->attach('process', array($this, 'processResources'));
-        /*
-        $resourceList = $this->resourceList();
-        foreach ($resourceList as $resource) {
-            $this->listeners[] = $events->attach('process', array($this, 'process' . $resource));
-        }
-        */
     }
 
     /**
@@ -67,13 +61,6 @@ class Resource implements ListenerAggregateInterface
     public function detach(EventManagerInterface $events)
     {
         $events->detach($this->listener);
-        /*
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
-        */
     }
 
     public function processResources(Event $e)
@@ -83,19 +70,11 @@ class Resource implements ListenerAggregateInterface
         $resourceList = $this->resourceList();
         foreach ($resourceList as $resource) {
             $ret = $this->loadResource($resource);
-            if (is_array($ret)) {
-                $data = $ret;
-                $ret = $ret['status'];
-            } elseif (null !== $ret) {
-                $ret = (bool) $ret;
-                $data = array(
-                    'status' => $ret,
-                );
-            } else {
+            if (null === $ret) {
                 continue;
             }
-            $result['resource-' . $resource] = $data;
-            if (false === $ret) {
+            $result['resource-' . $resource] = $ret;
+            if (false === $ret['status']) {
                 break;
             }
             if (Pi::service()->hasService('log')) {
@@ -136,6 +115,12 @@ class Resource implements ListenerAggregateInterface
         return $resourceList;
     }
 
+    /**
+     * Load and performe resource actions
+     *
+     * @param strint $resource Resource name
+     * @return array|null
+     */
     protected function loadResource($resource)
     {
         $e = $this->event;
@@ -163,6 +148,30 @@ class Resource implements ListenerAggregateInterface
         $resourceHandler = new $resourceClass($options);
         $resourceHandler->setEvent($this->event);
         $ret = $resourceHandler->$methodAction();
+
+        if (is_string($ret)) {
+            $ret = array(
+                'status'    => true,
+                'message'   => (array) $ret,
+            );
+        } elseif (is_bool($ret)) {
+            $ret = array(
+                'status'    => $ret,
+                'message'   => array(),
+            );
+        } elseif (is_array($ret)) {
+            if (!isset($ret['message'])) {
+                $ret['message'] = array();
+            } else {
+                $ret['message'] = (array) $ret['message'];
+            }
+        } else {
+            $ret = null;
+        }
+
+        if (null !== $ret) {
+            array_unshift($ret['message'], 'Class: ' . $resourceClass);
+        }
 
         return $ret;
     }

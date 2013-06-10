@@ -132,13 +132,17 @@ class ModuleController extends ActionController
         $message    = '';
         $details    = array();
 
+        if (empty($directory) && $name) {
+            $directory = $name;
+        }
+
         if (!$directory) {
             $error = __('Directory is not specified.');
         }
         if (!$error) {
             $meta = Pi::service('module')->loadMeta($directory, 'meta');
             if (!$meta) {
-                $error = sprintf(__('Meta data are not loaded for directory "%s".'), $directory);
+                $error = sprintf(__('Meta data are not loaded for "%s".'), $directory);
             }
         }
         if (!$error) {
@@ -164,9 +168,11 @@ class ModuleController extends ActionController
             $details = $installer->getResult();
         }
         if ($result) {
-            $message = sprintf(__('Module "%s" is installed successfully.'), $directory);
+            $message = sprintf(__('Module "%s" is installed successfully.'), $name ?: $directory);
+        } elseif ($directory) {
+            $message = sprintf(__('Module "%s" is not installed.'), $name ?: $directory);
         } else {
-            $message = sprintf(__('Module "%s" is not installed.'), $directory);
+            $message = __('Module is not installed.');
         }
 
         $data = array(
@@ -262,6 +268,8 @@ class ModuleController extends ActionController
             $message = sprintf(__('Module "%s" is uninstalled successfully.'), $row->title);
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not uninstalled.'), $row->title);
+        } elseif ($id || $name) {
+            $message = sprintf(__('Module "%s" is not uninstalled.'), $name ?: $id);
         } else {
             $message = __('Module is not uninstalled.');
         }
@@ -313,6 +321,8 @@ class ModuleController extends ActionController
             $message = sprintf(__('Module "%s" is updated successfully.'), $row->title);
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not updated.'), $row->title);
+        } elseif ($id || $name) {
+            $message = sprintf(__('Module "%s" is not updated.'), $name ?: $id);
         } else {
             $message = __('Module is not updated.');
         }
@@ -370,6 +380,8 @@ class ModuleController extends ActionController
                 $message = sprintf(__('Module "%s" is enabled successfully.'), $row->title);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not enabled.'), $row->title);
+            } elseif ($id || $name) {
+                $message = sprintf(__('Module "%s" is not enabled.'), $name ?: $id);
             } else {
                 $message = __('Module is not enabled.');
             }
@@ -378,6 +390,8 @@ class ModuleController extends ActionController
                 $message = sprintf(__('Module "%s" is disabled successfully.'), $row->title);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not disabled.'), $row->title);
+            } elseif ($id || $name) {
+                $message = sprintf(__('Module "%s" is not disabled.'), $name ?: $id);
             } else {
                 $message = __('Module is not disabled.');
             }
