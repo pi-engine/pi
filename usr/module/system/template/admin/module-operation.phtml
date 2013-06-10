@@ -11,10 +11,10 @@
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <?php
     // Display result message
-    echo sprintf('<div class="lead">%s <a href="%s" title="">%s</a></div>', $this->escape($message), $url, __('Press to continue ...'));
+    echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', $this->escape($message), $url, __('Press to continue ...'));
     // Display summary error message
     if ($error) {
-        echo '<div class="alert alert-error">' . $this->escape($error) . '</div>';
+        echo '<div class="text-error">' . $this->escape($error) . '</div>';
     }
     // Display detailed information
     if ($details) {

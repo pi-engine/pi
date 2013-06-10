@@ -414,7 +414,7 @@ class Acl extends AbstractResource
         return true;
     }
 
-    public function activateAction(&$message)
+    public function activateAction()
     {
         $module = $this->event->getParam('module');
         $where = array('module' => $module);
@@ -427,7 +427,7 @@ class Acl extends AbstractResource
         return true;
     }
 
-    public function deactivateAction(&$message)
+    public function deactivateAction()
     {
         $module = $this->event->getParam('module');
         $where = array('module' => $module);
