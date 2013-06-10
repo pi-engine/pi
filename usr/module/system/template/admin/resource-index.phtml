@@ -6,8 +6,10 @@
 <ul class="nav nav-tabs">
     <li class="<?php if ($section == 'front') { echo 'active'; } ?>">
         <a href="<?php echo $this->url('', array('action' => 'index', 'section' => 'front', 'name' => $name)); ?>"><?php _e('Front'); ?></a>
+    </li>
     <li class="<?php if ($section == 'admin') { echo 'active'; } ?>">
         <a href="<?php echo $this->url('', array('action' => 'index', 'section' => 'admin', 'name' => $name)); ?>"><?php _e('Admin'); ?></a>
+    </li>
 </ul>
 <div class="page-perm row-fluid">
     <div class="span2 well well-small">
@@ -15,6 +17,7 @@
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
                 <a href="<?php echo $this->url('', array('action' => 'index', 'section' => $section, 'role' => $key, 'name' => $name)); ?>"><?php echo $value; ?></a>
+            </li>
             <?php } ?>
         </ul>
     </div>
@@ -22,9 +25,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 30%;"><?php _e('Resource Title'); ?>
-                    <th style="width: 30%;"><?php _e('Action'); ?>
-                    <th><?php _e('Status'); ?>
+                    <th style="width: 30%;"><?php _e('Resource Title'); ?></th>
+                    <th style="width: 30%;"><?php _e('Action'); ?></th>
+                    <th><?php _e('Status'); ?></th>
+                </tr>
+            </thead>        
             <tbody id="js-resources">
         </table>
     </div>

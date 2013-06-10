@@ -4,13 +4,13 @@
     $this->jQuery();
 ?>
 <ul class="nav nav-tabs">
-    <li class="<?php ?>"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
-    <li class=""><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
-    <li class="disabled"><a><?php _e('Repository'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
+    <li class="disabled"><a title="<?php _e('Repository'); ?>"><?php _e('Repository'); ?></a></li>
+    <li class="active"><a title="<?php _e('Operation'); ?>"><?php _e('Operation'); ?></a></li>
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<?php
-    if ($error) {
+<?php if ($error) { 
         echo '<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">×</button>' . $this->escape($error) . '</div>';
     } else {
         echo sprintf('<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">×</button>%s<a href="%s" title="">%s</a></div>', $this->escape($message), $url, __('Press to continue ...'));
@@ -20,9 +20,9 @@
         echo '<ol class="module-ol">';
         foreach ($details as $action => $state) {
             if (isset($state['status']) && $state['status'] === false) {
-                echo '<li><strong class="text-error">' . $this->escape($action)  . ': failed</strong><script>$(".alert-success").addClass("alert-error")</script>';
+                echo '<li><strong class="text-error">' . $this->escape($action)  . ': ' . __('failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script></li>';
             } else {
-                echo '<li><strong class="text-success">' . $this->escape($action)  . ': success</strong>';
+                echo '<li><strong class="text-success">' . $this->escape($action)  . ': ' . __('success'). '</strong></li>';
             }
             if (!empty($state['message'])) {
                 foreach ((array) $state['message'] as $msg) {

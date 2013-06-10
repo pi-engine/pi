@@ -3,8 +3,8 @@
 
 <?php include $this->templateComponent('form'); ?>
 
-<p>
+<div class="empty">
     <strong><?php _e('Choose: ') ?></strong>
     <span><a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>" title="<?php _e('Find password'); ?>"><?php _e('Find password'); ?></a></span>
     <span><a href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a></span>
-</p>
+</div>
