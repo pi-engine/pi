@@ -13,6 +13,7 @@ June 8th, 2013
 8. Initiated system service Url
 9. Initiated system service User
 10. Added file: var/config/service.user.php
+11. Improved filter User
 
 
 May 24th, 2013
