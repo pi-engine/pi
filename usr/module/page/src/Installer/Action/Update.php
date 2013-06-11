@@ -57,12 +57,10 @@ EOD;
         try {
             $sqlHandler->queryContent($sql);
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -76,12 +74,10 @@ EOD;
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -90,12 +86,10 @@ EOD;
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
         // Add table field `clicks`
@@ -103,12 +97,10 @@ EOD;
             $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10) unsigned NOT NULL default \'0\'', $table);
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table alter query failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 
@@ -117,12 +109,10 @@ EOD;
             $sql = sprintf('DROP TABLE IF EXISTS %s', Pi::model('stats', $this->module)->getTable());
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $result = $e->getParam('result');
-            $result['db'] = array(
+            $this->setResult('db', array(
                 'status'    => false,
                 'message'   => 'Table drop failed: ' . $exception->getMessage(),
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
 

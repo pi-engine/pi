@@ -41,10 +41,9 @@ class Update extends BasicUpdate
         );
         $model->insert($data);
 
-        $result = array(
+        $this->setResult('post-update', array(
             'status'    => true,
             'message'   => sprintf('Called from %s', __METHOD__),
-        );
-        $e->setParam('result', $result);
+        ));
     }
 }

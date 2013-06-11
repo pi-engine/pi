@@ -70,6 +70,20 @@ abstract class AbstractAction
         return $this;
     }
 
+    protected function setResult($name, $data)
+    {
+        if (!is_array($data)) {
+            $data = array(
+                'status'    => true,
+                'message'   => $data,
+            );
+        }
+        $result = $this->event->getParam('result');
+        $result[$name] = $data;
+        $this->event->setParam('result', $result);
+        return $this;
+    }
+
     protected function attachDefaultListeners()
     {
     }
@@ -79,12 +93,10 @@ abstract class AbstractAction
         $model = Pi::model('module_dependency');
         $rowset = $model->select(array('independent' => $e->getParam('module')));
         if ($rowset->count() > 0) {
-            $result = $e->getParam('result');
-            $result['dependency'] = array(
+            $this->setResult('dependent', array(
                 'status'    => false,
                 'message'   => 'The module has dependants on it.'
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
         return true;
@@ -105,12 +117,10 @@ abstract class AbstractAction
             }
         }
         if ($missing) {
-            $result = $e->getParam('result');
-            $result['dependency'] = array(
+            $this->setResult('Independent', array(
                 'status'    => false,
                 'message'   => 'Modules required by this module: ' . implode(', ', $missing)
-            );
-            $e->setParam('result', $result);
+            ));
             return false;
         }
         return true;
@@ -131,12 +141,10 @@ abstract class AbstractAction
             ));
             if (!$row->save()) {
                 $model->delete(array('dependent' => $module));
-                $result = $e->getParam('result');
-                $result['dependency'] = array(
+                $this->setResult('dependency', array(
                     'status'    => false,
                     'message'   => 'Module dependency is not built.'
-                );
-                $e->setParam('result', $result);
+                ));
                 return false;
             }
         }
@@ -145,7 +153,7 @@ abstract class AbstractAction
 
     public function removeDependency(Event $e)
     {
-        $config = $this->event->getParam('config');
+        //$config = $this->event->getParam('config');
         $model = Pi::model('module_dependency');
         $ret = $model->delete(array('dependent' => $e->getParam('module')));
         /*

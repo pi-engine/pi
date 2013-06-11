@@ -39,7 +39,6 @@ class IndexController extends ActionController
         //return $this->jumpToException('Demo for 503', 503);
 
         $this->view()->setTemplate(false);
-        return '';
     }
 
     /**

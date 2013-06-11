@@ -30,13 +30,13 @@ tr:hover .row-actions {
     padding-left: 24px;
 }
 .box-disable {
-    color: #888;
+    color: #999;
 }
 .box-disable img {
     filter: url(../image/filters.svg#grayscale);
     filter: gray;
     -webkit-filter: grayscale(90%); /* Webkit */
-    color: #888;
+    color: #999;
 }
 .graybg {
     filter: url(../image/filters.svg#grayscale);
@@ -204,11 +204,24 @@ tr:hover .row-actions {
     overflow: auto;
 }
 /*module list*/
-.module-detail-html {
+.module-item-title-edit .module-title-input {
+    display: block;
+}
+.module-item-title-edit >p,
+.module-item-title-edit >a {
+    display: none;
+}
+.module-item:hover .invisible {
+    visibility: visible;
+}
+.module-p {
+    margin: 0 0 5px;
+}
+.module-item .well {
     margin-bottom: 0;
 }
-.module-detail-html .dl-horizontal {
-    margin: 0;
+.module-ol li {
+    list-style: decimal;
 }
 /*nav-data*/
 .menu-item-depth0 {

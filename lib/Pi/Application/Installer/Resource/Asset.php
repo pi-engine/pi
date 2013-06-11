@@ -39,12 +39,14 @@ class Asset extends AbstractResource
         Pi::service('asset')->publish('module/' . $directory, 'module/' . $module);
         // Publish module custom assets in theme
         //Pi::service('asset')->publish('theme/' . Pi::config('theme') . '/module/' . $directory, 'module/' . $module, false);
+
+        return true;
     }
 
     public function updateAction()
     {
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
         $module = $this->event->getParam('module');
         $directory = $this->event->getParam('directory');
@@ -52,6 +54,8 @@ class Asset extends AbstractResource
         Pi::service('asset')->publish('module/' . $directory, 'module/' . $module);
         // Publish module custom assets in theme
         //Pi::service('asset')->publish('theme/' . Pi::config('theme') . '/module/' . $directory, 'module/' . $module, false);
+
+        return true;
     }
 
     public function uninstallAction()
@@ -59,6 +63,8 @@ class Asset extends AbstractResource
         $module = $this->event->getParam('module');
         // Remove published assets
         Pi::service('asset')->remove('module/' . $module);
+
+        return true;
     }
 
     public function activateAction()

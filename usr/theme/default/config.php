@@ -59,4 +59,6 @@ return array(
     'license'       => 'Creative Common License http://creativecommons.org/licenses/by/3.0/',
     // Optional description
     'description'   => 'Default theme for Pi Engine',
+    // Parent theme from which templates can be inherited, default as 'default'
+    'parent'        => '',
 );

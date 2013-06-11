@@ -86,13 +86,6 @@ class Pi
     const PATH_LIB = PI_PATH_LIB;
 
     /**
-     * Path to www root
-     * @var string
-     * @access public
-     */
-    const PATH_WWW = PI_PATH_WWW;
-
-    /**
      * Reference to application host
      * @var {@Pi\Application\Host}
      * @access protected
@@ -191,9 +184,13 @@ class Pi
         /**#@+
          * Initialize Host
          */
-        $config = array();
-        $config['host']['path']['lib'] = constant('PI_PATH_LIB');
-        $config['host']['path']['www'] = constant('PI_PATH_WWW');
+        $config = array(
+            'host'  => array(
+                'path'  => array(
+                    'lib'   => constant('PI_PATH_LIB'),
+                ),
+            ),
+        );
         if (constant('PI_PATH_HOST')) {
             $config['file'] = constant('PI_PATH_HOST');
         }

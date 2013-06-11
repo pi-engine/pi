@@ -2,244 +2,112 @@
     $this->bootstrap();
     $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery();
-    $this->Backbone();
-    $this->js($this->assetModule('script/system-msg.js'));
+    $this->backbone();
 ?>
-<style>
-.module-item .ellipsis {
-    display: block;
-    height: 24px;
-    line-height: 24px;
-}
-.module-item .module-title-input {
-    display: none;
-    margin-bottom: 0;
-    padding: 1px 0 1px 2px;
-    width: 90%;
-}
-.module-item-editing .module-title-input {
-    display: inline-block;
-}
-.module-item-editing .module-title-text {
-    display: none;
-}
-.installed-module-page .popover {
-    width: 350px;
-}
-.installed-module-page .popover-content {
-    padding: 0;
-}
-.module-item div.link {
-    width: 70px;
-    visibility: hidden;
-}
-.module-item:hover div.link {
-    visibility: visible;
-}
-.popover .dl-horizontal dt {
-    width: 80px;
-}
-.popover .dl-horizontal dd {
-    margin-left: 90px;
-}
-</style>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
-    <li class="disabled"><a><?php _e('Repository'); ?></a>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
+    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
 </ul>
-<div class="installed-module-page" id="js-module">
+<div id="js-module">
     <table class="table">
         <thead>
             <tr>
                 <th style="width: 10%;"><?php _e('Logo'); ?>
                 <th style="width: 15%;"><?php _e('Title'); ?>
-                <th style="width: 15%;"><?php _e('Version'); ?>
+                <th style="width: 10%;"><?php _e('Version'); ?>
                 <th style="width: 15%;"><?php _e('Last Update'); ?>
                 <th style="width: 30%;"><?php _e('Description'); ?>
                 <th><?php _e('Action'); ?>
-        <tbody class="module-list">
+        <tbody>
+            <?php foreach ($modules as $module) { ?>
+            <tr class="<?php if (!$module['active']) { echo 'box-disable'; } else { echo 'module-item'; } ?>">
+                <td>
+                    <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
+                <td>
+                    <div class="module-item-title">
+                        <p class="module-p"><strong><?php echo $module['title']; ?></strong></p>
+                        <div class="hide module-title-input">
+                            <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
+                        </div> 
+                        <a href="javascript:void(0)" class="invisible rename-action"><?php _e('Rename'); ?></a>
+                    </div>
+                <td>
+                    <?php echo $module['version']; ?>
+                <td>
+                    <p class="module-p"><?php echo $module['update']; ?></p>
+                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php _e('update'); ?></a>
+                <td>
+                    <p class="module-p"><?php echo $module['description']; ?></p>
+                    <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
+                    <div class="hide well well-small">
+                        <dl class="dl-horizontal">
+                            <dt><?php _e('Name:'); ?>
+                            <dd><?php echo $module['name']; ?>
+                            <dt><?php _e('Directory:'); ?>
+                            <dd><?php echo $module['directory']; ?>
+                            <dt><?php _e('Author:'); ?>
+                            <dd>
+                                <?php $author = $module['author']; echo sprintf('<a href="%s" target="_blank">%s</a><br>%s', $author['website'], $author['website'], $author['email']); ?>
+                        </dl>
+                    </div>
+                <td>
+                    <div class="btn-group">
+                        <?php 
+                        if($module['name'] != 'system') {
+                            if ($module['active']) { 
+                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), __('Disable'));
+                            } else {
+                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), __('Enable'));
+                            }
+                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Are you sure uninstall this module?') ,__('Uninstall'));
+                        } ?>
+                    </div>
+            <?php } ?>
     </table>
 </div>
-<script id="temp-module" type="text/template">
-    <td>
-        <img src="<%= logo %>" alt="<%- title %>">
-    <td>
-        <strong class="ellipsis module-title-text"><%- title %></strong>
-        <input type="text" class="module-title-input" value="<%- title %>" >
-        <% if (active) { %>
-        <div class="no-select link js-rename"><?php _e('Rename'); ?></div>
-        <% } %>
-    <td>
-        <span class="ellipsis"><%= version %></span>
-        <% if (active) { %>
-        <div class="link"><?php _e('Check'); ?></div>
-        <% } %>
-    <td>
-        <span class="ellipsis"><%= update %></span>
-        <% if (active) { %>
-        <div class="link js-update"><?php _e('Update'); ?></div>
-        <% } %>
-    <td class="module-td-desc">
-        <div style="margin-bottom: 5px;"><%- description %></div>
-        <span class="no-select link module-detail"><?php _e('Detail'); ?></span>
-        <div class="hide well well-small module-detail-html">
-            <dl class="dl-horizontal">
-                <dt><?php _e('Name:'); ?>
-                <dd><%= name %>
-                <dt><?php _e('Directory:'); ?>
-                <dd><%= directory %>
-                <dt><?php _e('Author:'); ?>
-                <dd>
-                   <a href="<%= author.website %>" target="_blank"><%= author.name %></a><br>
-                   <%= author.email %>
-            </dl>
-        </div>
-    <td>
-        <% if ('system' != name) {  %>
-        <div class="btn-group">
-            <% if (active == 1) { %>
-            <span class="btn js-disable"><?php _e('Disable'); ?></span>
-            <% } else { %>
-            <span class="btn js-enable"><?php _e('Enable'); ?></span>
-            <% } %>
-            <span class="btn js-uninstall"><?php _e('Uninstall'); ?></span>
-        </div>
-        <% } %>
-</script>
 <script>
 (function($){
-    var systemError = function() {
-        systemMessage.fail('<?php _e('An error occurred, please try again later.'); ?>');
-    };
-    _.extend(Backbone.Model.prototype, {
-        parse: function(resp, xhr) {
-          if (resp.status) {
-             return resp.data;
-          }
-          return "";
-        }
-    });
-    var moduleCollection = new Backbone.Collection(<?php echo json_encode(array_values($modules)); ?>);
-    var ModuleItemView = Backbone.View.extend({
-        tagName: 'tr',
-        className: 'module-item',
-        template: _.template($("#temp-module").html()),
-        events: {
-            'click .js-rename': 'toggleRename',
-            'keypress .module-title-input': 'blurOnEnter',
-            'blur .module-title-input': 'renameOk',
-            'click .js-update': 'update',
-            'click .js-disable': 'disable',
-            'click .js-enable': 'enable',
-            'click .js-uninstall': 'uninstall',
-            'click .module-detail': 'toggleDetail'
-        },
-        initialize: function() {
-            this.model.on('destroy', this.remove, this);
-            this.model.on('change', this.render, this);
-        },
-        render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
-            if(this.model.get('active')) {
-                this.$el.removeClass('box-disable');
-            } else {
-                this.$el.addClass('box-disable');
-            }
-            return this.el;
-        },
-        toggleDetail: function() {
-            this.$('.module-detail-html').toggleClass('hide');
-        },
-        toggleRename: function() {
-            this.$el.toggleClass('module-item-editing');
-        },
-        renameOk: function(e) {
-            this.$el.removeClass('module-item-editing');
-            var val = $.trim(this.$('.module-title-input').val()),
-                pre = this.model.get('title');
-            if (val && val != pre) {
-                this.model.save({
-                    title: val
-                }, {
-                    url: '<?php echo $this->url('', array('action' => 'rename')); ?>',
-                    error: function(model) {
-                        model.set('title', pre);
-                        systemError();
-                    }
-                });
-            }
-        },
-        blurOnEnter: function(e) {
-            if (e.keyCode === 13) {
-                return e.target.blur();
-            }
-        },
-        checkUpdate: function() {},
-        update: function() {
-            this.model.fetch({
-                url: '<?php echo $this->url('', array('action' => 'update', 'id' => '')); ?>' + this.model.id,
-                success: function(model, resp) {
-                    systemMessage.succ(resp.message);
-                },
-                error: systemError
-            });
-        },
-        disable: function() {
-            if (confirm('<?php _e('Are you sure to disable this module')?>')) {
-                this.model.save({
-                    'active': 0
-                 }, {
-                    url:'<?php echo $this->url('', array('action' => 'enable')); ?>',
-                    error: function(model) {
-                        model.set('active', 0);
-                        systemError();
-                    }
-                });
-            }
-        },
-        enable: function() {
-            this.model.save({
-                'active': 1
-             }, {
-                url: '<?php echo $this->url('', array('action' => 'enable')); ?>',
-                error: function(model) {
-                    model.set('active', 0);
-                    systemError();
-                }
-            });
-        },
-        uninstall: function() {
-            var self = this;
-            if (confirm('<?php _e('Are you sure to uninstall this module'); ?>')) {
-                systemMessage.wait('<?php _e('In process of uninstalling'); ?>');
-                $.getJSON('<?php echo $this->url('', array('action' => 'uninstall', 'id' => '')); ?>' + this.model.id).done(function(res) {
-                    if (res.status) {
-                        self.model.trigger('destroy');
-                        systemMessage.succ(res.message);
-                    } else {
-                        systemError();
-                    }
-                }).fail(systemError);
-            }
-        }
-    });
-    var ModuleListView = Backbone.View.extend({
+    var page = {
         el: $('#js-module'),
-        initialize: function() {
-            this.box = this.$('.module-list');
-            this.render();
+        $: function(selector) {
+            return this.el.find(selector);
         },
-        render: function() {
-            var el = this.box,
-                m = moduleCollection.models;
-            for (var i = 0, l = m.length; i < l; i++) {
-                el.append(new ModuleItemView({
-                    model: m[i]
-                }).render());
+        init: function() {
+            _.bindAll(this);
+            this.$('.detail-action').click(this.toggleDetail);
+            this.$('.rename-action').click(this.rename);
+            this.$('input[type=text]').blur(this.renameAction);
+        },
+        toggleDetail: function(e) {
+            $(e.target).siblings('.well').toggle();
+        },
+        rename: function(e) {
+            var $this = $(e.target);
+            var p = $this.parent();
+            p.addClass('module-item-title-edit');
+            p.find('input').focus().val($.trim(p.find('strong').html()));
+        },
+        renameAction: function(e) {
+            var $this = $(e.target);
+            var val = $.trim($this.val());
+            var p = $this.parents('.module-item-title');
+            if (val) {
+                $.post("<?php echo $this->url('', array('action' => 'rename')); ?>", {
+                    id: $this.attr('data-id'),
+                    title: val
+                }).done(function(res) {
+                    res = $.parseJSON(res);
+                    if (res.status) {
+                        p.removeClass('module-item-title-edit');
+                        p.find('strong').html(res.data.title);
+                    }
+                });
+            } else {
+                p.removeClass('module-item-title-edit');
             }
         }
-    });
-    new ModuleListView;
+    }
+    page.init();
 })(jQuery)
 </script>

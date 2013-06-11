@@ -1,11 +1,52 @@
 Pi Engine Changelog
 
 
+June 8th, 2013
+=============================
+1. Disabled form autocomplete in setup
+2. Skip version comparison in debug mode for module update
+3. Fixed bug in URL generation with duplicated '/' reported in Issue #66
+4. Improved Filter to support regexp filter
+5. Refactored module install/uninstall/update displaying information messages on a redirecting page
+6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
+7. Added default value 'text' for renderer to markup service
+
+
+May 24th, 2013
+=============================
+1. Upgraded system to 3.2.0
+2. Modified configs: moved 'adminmail' to category 'mail'; changed 'fromname' to 'adminname', added 'mail_encoding' to category 'mail'; removed 'from', 'fromuid'
+3. Changed default config values: 'sitename', 'slogan' in setup
+4. Add 'name' to admin account in setup
+5. Modified file boot.php removing 'PI_PATH_WWW'
+6. Modified file var/config/host.php enabling parameters path-www and path-lib
+7. Fixed bug causing block cache conflicts, reported in Issue #77
+8. Changed backoffice mode name 'manage-Management' to 'manage-Setting'
+9. Added support for theme template inheritance proposed in Issue #80
+
+
+May 20th, 2013
+=============================
+1. Fixed config encode/decode conflicts reported by @MarcoXoops in Issue #13
+2. Modified _sanitize() adding default filter as 'full_special_chars'; _date() adding default time
+3. Added audit service
+4. Added config file: var/config/service.audit.php
+5. Improved mail service for template support
+6. Added locale file: usr/module/system/locale/en/mail/mail-text.txt
+7. Added locale file: usr/module/system/locale/en/mail/mail-html.txt
+8. Added locale file: usr/module/system/locale/en/mail/mail-body.txt
+9. Added TestController to system module with mail/audit test actions
+
+
 May 4th, 2013
 =============================
 1. Applied _date() to system module by @voltan
 2. Fixes bugs in navigation edit by @sexnothing
 3. Improved parameter filtering functionality with PHP filter_id()
+4. Added social widgets: Facebook Like, Google +1, Twitter share
+5. Added mail service
+6. Upgraded MakeItUp
+7. Added config file: var/config/service.mail.php
 
 
 April 19th, 2013

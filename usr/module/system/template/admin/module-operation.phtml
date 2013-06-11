@@ -1,0 +1,36 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/system-ui.css'));
+    $this->jQuery();
+?>
+<ul class="nav nav-tabs">
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
+    <li class="disabled"><a title="<?php _e('Repository'); ?>"><?php _e('Repository'); ?></a></li>
+</ul>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<?php
+    // Display result message
+    echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', $this->escape($message), $url, __('Press to continue ...'));
+    // Display summary error message
+    if ($error) {
+        echo '<div class="text-error">' . $this->escape($error) . '</div>';
+    }
+    // Display detailed information
+    if ($details) {
+        echo '<ol class="module-ol">';
+        foreach ($details as $action => $state) {
+            if (isset($state['status']) && $state['status'] === false) {
+                echo '<li>' . $this->escape($action)  . ': <strong class="text-error">' . __('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script></li>';
+            } else {
+                echo '<li>' . $this->escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</strong></li>';
+            }
+            if (!empty($state['message'])) {
+                foreach ((array) $state['message'] as $msg) {
+                    echo '<div class="indent">' . $this->escape($msg) . '</div>';
+                }
+            }
+        }
+        echo '</ol>';
+    }
+?>

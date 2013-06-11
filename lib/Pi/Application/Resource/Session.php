@@ -42,7 +42,7 @@ class Session extends AbstractResource
             if (Pi::service()->hasService('log')) {
                 Pi::service('log')->audit($e->getMessage());
             }
-            trigger_error($e->getMessage(), E_USER_ERROR);
+            trigger_error($e->getMessage(), E_USER_NOTICE);
         }
         return;
     }

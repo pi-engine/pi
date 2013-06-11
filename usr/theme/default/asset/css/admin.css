@@ -117,7 +117,7 @@ body {
     border-bottom: 1px solid #d7d7d7;
     padding: 10px 0 10px 20px;
     position: relative;
-    z-index: 2;
+    z-index: 1001;
     background: #fff;
 }
 .module-menu li {
@@ -275,4 +275,7 @@ fieldset dl {
 }
 legend {
     border-bottom: 1px solid #d7d7d7;
+}
+.pi-bar-user .dropdown-menu {
+    z-index: 1002;
 }

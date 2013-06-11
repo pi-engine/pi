@@ -238,8 +238,8 @@ class Page extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->page->clear($module);
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
 
         if ($this->config === false) {
@@ -323,7 +323,7 @@ class Page extends AbstractResource
                 );
             }
         }
-        return;
+        return true;
     }
 
     public function uninstallAction()

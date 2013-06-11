@@ -41,7 +41,7 @@ class Uninstall extends AbstractAction
         $row = $model->select(array('name' => $this->module))->current();
         // save module entry into database
         if ($row) {
-            $status = $row->delete();
+            $row->delete();
         }
         /*
         if (!$status) {

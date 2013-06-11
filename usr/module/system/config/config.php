@@ -161,14 +161,14 @@ $config['item'] = array(
         'title'         => 'Site name',
         'description'   => 'Website name.',
         'filter'        => 'string',
-        'value'         => 'Web Applications',
+        'value'         => 'Pi Engine',
         'category'      => 'general',
     ),
 
     'slogan'        => array(
         'title'         => 'Slogan',
         'description'   => 'Website slogan.',
-        'value'         => 'Powered by Pi Engine.',
+        'value'         => 'Power your web and mobile applications.',
         'category'      => 'general',
     ),
 
@@ -191,12 +191,6 @@ $config['item'] = array(
         'title'         => 'Timezone',
         'description'   => 'Timezone for application system.',
         'edit'          => 'timezone',
-        'category'      => 'general',
-    ),
-
-    'adminmail'     => array(
-        'title'         => 'Admin email',
-        'description'   => 'Admin email address for convenient contact.',
         'category'      => 'general',
     ),
 
@@ -383,6 +377,7 @@ $config['item'] = array(
 
     // Mailing section
 
+    /*
     'mailmethod'    => array(
         'title'         => 'Mail delivery method',
         'description'   => 'Method used to deliver mail. Default is "mail", use others only if that makes trouble.',
@@ -419,24 +414,25 @@ $config['item'] = array(
         'description'   => 'Password to connect to an SMTP host with SMTPAuth.',
         'category'      => 'mail',
     ),
+    */
 
-    'from'          => array(
-        'title'         => 'FROM address',
-        'description'   => 'Email address set as from when sending emails',
+    'adminmail'     => array(
+        'title'         => 'Admin email',
+        'description'   => 'Admin email address for contact.',
+        'filter'        => 'email',
         'category'      => 'mail',
     ),
 
-    'fromname'      => array(
-        'title'         => 'FROM name',
+    'adminname'      => array(
+        'title'         => 'Admin name',
         'description'   => 'User name used to send emails',
         'category'      => 'mail',
     ),
 
-    'fromuid'       => array(
-        'title'         => 'FROM user ID',
-        'description'   => 'User ID used to send emails',
-        'filter'        => 'number_int',
-        'value'         => 1,
+    'mail_encoding'       => array(
+        'title'         => 'Email encoding',
+        'description'   => 'Encoding for email contents',
+        'value'         => '',
         'category'      => 'mail',
     ),
 

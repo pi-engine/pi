@@ -34,12 +34,16 @@ class Admin extends AbstractController
 
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
-            $vars['adminname'] = 'admin';
+            $vars['adminusername'] = 'admin';
+            $vars['adminname'] = _t('Pi Admin');
+            /*
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             if (false === strpos($hostname, '.')) {
                 $hostname .= '.com';
             }
             $vars['adminmail'] = $vars['adminname'] . '@' . $hostname;
+            */
+            $vars['adminmail'] = '';
             $vars['adminpass'] = $vars['adminpass2'] = '';
             $this->wizard->setPersist('siteconfig', $vars);
         }
@@ -100,7 +104,7 @@ class Admin extends AbstractController
             case 'adminmail':
                 if (empty($val)) {
                     $error = _t('Information is required.');
-                } elseif (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $val)) {
+                } elseif (!filter_var($val, FILTER_VALIDATE_EMAIL)) {
                     $error = _t('Invalid Email.');
                 }
                 break;
@@ -135,15 +139,19 @@ class Admin extends AbstractController
         }
 
         $vars = $this->vars;
-        $vars['adminname'] = $this->request->getPost('adminname');
+        $vars['adminusername'] = $this->request->getPost('adminusername');
         $vars['adminmail'] = $this->request->getPost('adminmail');
         $vars['adminpass'] = $this->request->getPost('adminpass');
         $vars['adminpass2'] = $this->request->getPost('adminpass2');
+        $vars['adminname'] = $this->request->getPost('adminname');
         $this->wizard->setPersist('siteconfig', $vars);
 
         $error = array();
-        if (empty($vars['adminname'])) {
+        if (empty($vars['adminusername'])) {
             $error['name'][] = _t('Username is required.');
+        }
+        if (empty($vars['adminname'])) {
+            $error['name'][] = _t('Name is required.');
         }
         if (empty($vars['adminmail'])) {
             $error['email'][] = _t('Email is required.');
@@ -151,7 +159,7 @@ class Admin extends AbstractController
         if (empty($vars['adminpass'])) {
             $error['pass'][] = _t('Password is required.');
         }
-        if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $vars['adminmail'])) {
+        if (!filter_var($vars['adminmail'], FILTER_VALIDATE_EMAIL)) {
             $error['email'][] = _t('Invalid Email.');
         }
         if ($vars['adminpass'] != $vars['adminpass2']) {
@@ -161,12 +169,14 @@ class Admin extends AbstractController
             // Update global contact email
             $configModel = Pi::model('config');
             $configModel->update(array('value' => $vars['adminmail']), array('name' => 'adminmail'));
+            $configModel->update(array('value' => $vars['adminname']), array('name' => 'adminname'));
 
             // Create root admin user
             $userData = array(
-                'identity'      => $vars['adminname'],
+                'identity'      => $vars['adminusername'],
                 'credential'    => $vars['adminpass'],
                 'email'         => $vars['adminmail'],
+                'name'          => $vars['adminname'],
                 'active'        => 1,
                 'role'          => Acl::MEMBER,
                 'role_staff'    => Acl::ADMIN,
@@ -238,10 +248,11 @@ class Admin extends AbstractController
         $this->wizard->setPersist('siteconfig', $vars);
 
         $elementInfo = array(
-            'adminmail' => _t('Admin email'),
-            'adminname' => _t('Admin username'),
-            'adminpass' => _t('Admin password'),
-            'adminpass2' => _t('Confirm password'),
+            'adminmail'     => _t('Admin email'),
+            'adminusername' => _t('Admin username'),
+            'adminname'     => _t('Admin name'),
+            'adminpass'     => _t('Admin password'),
+            'adminpass2'    => _t('Confirm password'),
         );
         $displayItem = function ($item) use ($vars, $elementInfo) {
             $content = '<div class=\'item\'>
@@ -257,6 +268,7 @@ class Admin extends AbstractController
         $content = '<div class=\'install-form\'>';
         $content .= '<h3 class=\'section\'>' . _t('Administrator account') . '</h3>';
         $content .= $displayItem('adminmail');
+        $content .= $displayItem('adminusername');
         $content .= $displayItem('adminname');
 
         $item = 'adminpass';

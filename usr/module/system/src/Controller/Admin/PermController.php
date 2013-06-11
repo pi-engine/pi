@@ -23,6 +23,7 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Module\System\Controller\ComponentController  as ActionController;
 use Pi\Acl\Acl as AclHandler;
+use Pi\Application\Resource\AdminMode;
 
 /**
  * Feature list:
@@ -239,7 +240,7 @@ class PermController extends ActionController
      */
     public function adminAction()
     {
-        $section = 'admin';
+        $section = AdminMode::MODE_ADMIN;
         $role = $this->params('role');
 
         $roles = $this->getRoles($section, $role);
@@ -253,7 +254,7 @@ class PermController extends ActionController
         }
 
         $moduleList = array();
-        foreach (array('admin', 'manage') as $section) {
+        foreach (array(AdminMode::MODE_ADMIN, AdminMode::MODE_SETTING) as $section) {
             $modules = $modulesInstalled;
             $rowset = Pi::model('acl_rule')->select(array('role' => $role, 'section' => 'module-' . $section, 'resource' => array_keys($modules), 'module' => array_keys($modules)));
             foreach ($rowset as $row) {
@@ -283,6 +284,4 @@ class PermController extends ActionController
         $this->view()->assign('roles', $roles);
         $this->view()->assign('modules', $moduleList);
     }
-
-
 }

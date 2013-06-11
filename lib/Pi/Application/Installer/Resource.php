@@ -50,12 +50,6 @@ class Resource implements ListenerAggregateInterface
     public function attach(EventManagerInterface $events)
     {
         $this->listener = $events->attach('process', array($this, 'processResources'));
-        /*
-        $resourceList = $this->resourceList();
-        foreach ($resourceList as $resource) {
-            $this->listeners[] = $events->attach('process', array($this, 'process' . $resource));
-        }
-        */
     }
 
     /**
@@ -67,13 +61,6 @@ class Resource implements ListenerAggregateInterface
     public function detach(EventManagerInterface $events)
     {
         $events->detach($this->listener);
-        /*
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
-        */
     }
 
     public function processResources(Event $e)
@@ -83,11 +70,11 @@ class Resource implements ListenerAggregateInterface
         $resourceList = $this->resourceList();
         foreach ($resourceList as $resource) {
             $ret = $this->loadResource($resource);
-            if (is_array($ret)) {
-                $result['resource-' . $resource] = $ret;
-                $ret = $ret['status'];
+            if (null === $ret) {
+                continue;
             }
-            if (false === $ret) {
+            $result['resource-' . $resource] = $ret;
+            if (false === $ret['status']) {
                 break;
             }
             if (Pi::service()->hasService('log')) {
@@ -97,28 +84,6 @@ class Resource implements ListenerAggregateInterface
         $this->event->setParam('result', $result);
         return;
     }
-
-    /*
-    public function __call($method, $args)
-    {
-        if (substr($method, 0, 7) !== 'process') {
-            return true;
-        }
-        $result = $this->event->getParam('result');
-        $resource = substr($method, 7);
-        $ret = $this->loadResource($resource);
-        if (is_array($ret)) {
-            $result['resource-' . $resource] = $ret;
-            $ret = $ret['status'];
-        }
-        $this->event->setParam('result', $result);
-        if (Pi::service()->hasService('log')) {
-            Pi::service('log')->info(sprintf('Module resource %s is loaded.', $resource));
-        }
-
-        return $ret;
-    }
-    */
 
     protected function resourceList()
     {
@@ -150,14 +115,20 @@ class Resource implements ListenerAggregateInterface
         return $resourceList;
     }
 
+    /**
+     * Load and performe resource actions
+     *
+     * @param strint $resource Resource name
+     * @return array|null
+     */
     protected function loadResource($resource)
     {
         $e = $this->event;
         $config = $e->getParam('config');
         $moduleDirectory = $e->getParam('directory');
-        $resourceClass = sprintf('Module\\%s\\Installer\\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
+        $resourceClass = sprintf('Module\\%s\Installer\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
         if (!class_exists($resourceClass)) {
-            $resourceClass = sprintf('%s\\Resource\\%s', __NAMESPACE__, ucfirst($resource));
+            $resourceClass = sprintf('%s\Resource\\%s', __NAMESPACE__, ucfirst($resource));
         }
         if (!class_exists($resourceClass)) {
             return;
@@ -177,6 +148,30 @@ class Resource implements ListenerAggregateInterface
         $resourceHandler = new $resourceClass($options);
         $resourceHandler->setEvent($this->event);
         $ret = $resourceHandler->$methodAction();
+
+        if (is_string($ret)) {
+            $ret = array(
+                'status'    => true,
+                'message'   => (array) $ret,
+            );
+        } elseif (is_bool($ret)) {
+            $ret = array(
+                'status'    => $ret,
+                'message'   => array(),
+            );
+        } elseif (is_array($ret)) {
+            if (!isset($ret['message'])) {
+                $ret['message'] = array();
+            } else {
+                $ret['message'] = (array) $ret['message'];
+            }
+        } else {
+            $ret = null;
+        }
+
+        if (null !== $ret) {
+            array_unshift($ret['message'], 'Class: ' . $resourceClass);
+        }
 
         return $ret;
     }

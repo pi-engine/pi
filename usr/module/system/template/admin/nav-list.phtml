@@ -5,8 +5,8 @@
 ?>
 
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Navigation in action'); ?>"><?php _e('Navigation in action'); ?></a>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'list')); ?>" title="<?php _e('Navigation list'); ?>"><?php _e('Navigation list'); ?></a>
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Navigation in action'); ?>"><?php _e('Navigation in action'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'list')); ?>" title="<?php _e('Navigation list'); ?>"><?php _e('Navigation list'); ?></a></li>
 </ul>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div id="js-nav-select" class="span12">
@@ -20,19 +20,20 @@
                         <a class="btn" target="_Manipulation" href="<?php echo $this->url('', array('action' => 'data', 'name' => 'system-front', 'readonly' => 1)); ?>" title="<?php _e('Click to view the details.'); ?>"><?php _e('View detail'); ?></a>
                     </div>
                     <span><?php _e('Global navigation'); ?></span>
+                </li>    
             </ul>
         <?php foreach ($navModule['front'] as $module => $list) { ?>
         <li class="self-nav">
             <div class="legend"><?php echo $modules[$module]['title']; ?></div>
             <ul>
-                 <?php foreach ($list as $nav) { ?>
+                <?php foreach ($list as $nav) { ?>
                 <li class="box-hover">
                     <div class="pull-right">
                         <span class="btn nav-clone1" data-link="<?php echo $this->url('', array('action' => 'clone', 'name' => $nav['name'])); ?>"><?php _e('Clone'); ?></span>
                         <a class="btn" target="_Manipulation" href="<?php echo $this->url('', array('action' => 'data', 'name' => $nav['name'], 'readonly' => 1)); ?>" title="<?php _e('Click to view the details.'); ?>"><?php _e('View detail'); ?></a>
                     </div>
                     <span><?php echo $this->escape($nav['title']); ?></span>
-
+                </li>
             <?php } ?>
             </ul>
         <?php } ?>
@@ -41,6 +42,7 @@
             <ul class="navs-front-items">
 
             </ul>
+        </li>   
     </ul>
     <button class="btn btn-primary nav-clone1 pull-right" data-link="<?php echo $this->url('', array('action' => 'add', 'section' => 'front')); ?>"><?php _e('Add a custom navigation'); ?></button>
 </div>
