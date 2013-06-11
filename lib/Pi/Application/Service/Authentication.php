@@ -20,7 +20,7 @@
 
 namespace Pi\Application\Service;
 use Pi;
-use Pi\Application\User;
+use Pi\User\User;
 use Zend\Authentication\Adapter;
 use Zend\Authentication\Storage;
 

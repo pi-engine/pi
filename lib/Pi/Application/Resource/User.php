@@ -21,7 +21,7 @@
 namespace Pi\Application\Resource;
 
 use Pi;
-use Pi\Application\User as UserModel;
+use Pi\User\User as UserModel;
 
 class User extends AbstractResource
 {
