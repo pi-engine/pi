@@ -22,6 +22,7 @@ use Pi;
 use Zend\Mvc\Router\RouteStackInterface;
 use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Http\PhpEnvironment\Request;
+use Zend\Uri\Http as HttpUri;
 
 class Url extends AbstractService
 {
@@ -78,6 +79,8 @@ class Url extends AbstractService
     /**
      * Match a URL against routes and parse to paramters
      *
+     * Note: host is not checked for match
+     *
      * @param string $url
      * @return RouteMatch|null
      */
@@ -86,8 +89,10 @@ class Url extends AbstractService
         if (!$this->getRouter()) {
             throw new \RuntimeException('No RouteStackInterface instance provided');
         }
+
+        $uri = new HttpUri($url);
         $request = new Request();
-        $request->setRequestUri($url);
+        $request->setUri($uri);
         $result = $this->getRouter()->match($request);
 
         return $result;
