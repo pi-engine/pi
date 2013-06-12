@@ -140,9 +140,6 @@ class User extends AbstractService
     public function __call($method, $args)
     {
         return call_user_func_array(array($this->getHandler(), $method), $args);
-
-        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method), E_USER_NOTICE);
-        return 'Not defined';
     }
     /**#@-*/
 }
