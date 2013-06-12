@@ -18,7 +18,7 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 use Pi\Acl\Acl as AclManager;
@@ -29,7 +29,7 @@ class Adminmode extends AbstractResource
     /**#@+
      * Operation modes
      *
-     * @see Pi\Application\Resource\AdminMode
+     * @see Pi\Application\Bootstrap\Resource\AdminMode
      * @see Pi\View\Helper\AdminNav
      * @see Module\System\Controller\Admin\PermController
      */

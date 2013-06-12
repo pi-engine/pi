@@ -18,32 +18,39 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
+use Zend\Mvc\MvcEvent;
 
-class Session extends AbstractResource
+class Module extends AbstractResource
 {
     /**
      * @return void
      */
     public function boot()
     {
-        try {
-            // Attempt to start session
-            Pi::service('session')->manager()->start();
-        } catch (\Exception $e) {
-            // Clear session data for current request on failure
-            // Empty session for current request
-            Pi::service('session')->manager()->getStorage()->clear();
-            // Disconnect cookie for current user
-            Pi::service('session')->manager()->expireSessionCookie();
-            // Log error attempts
-            if (Pi::service()->hasService('log')) {
-                Pi::service('log')->audit($e->getMessage());
+        // Setup module service and load module config right after access permission check
+        $this->application->getEventManager()->attach('dispatch', array($this, 'setup'), 999);
+    }
+
+    /**
+     * Set current module to module service and load module config after module is dispatched
+     *
+     * @param MvcEvent $e
+     */
+    public function setup(MvcEvent $e)
+    {
+        $module = $e->getRouteMatch()->getParam('module');
+        // Load module config
+        Pi::service('module')->setModule($module)->config();
+
+        // Load module theme
+        if ('front' == $this->application->getSection()) {
+            $themes = Pi::config('theme_module', '');
+            if (!empty($themes[$module])) {
+                Pi::service('theme')->setTheme($themes[$module]);
             }
-            trigger_error($e->getMessage(), E_USER_NOTICE);
         }
-        return;
     }
 }

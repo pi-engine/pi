@@ -18,27 +18,32 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 
-class Config extends AbstractResource
+class Session extends AbstractResource
 {
     /**
      * @return void
      */
     public function boot()
     {
-        // Config will be fetched from database if not cached yet
-        //$this->bootstrap->loadResource('db');
-
-        // Load system general configuration
-        Pi::config()->loadDomain();
-
-        // Setup timezone
-        $timezone = Pi::config('timezone');
-        if ($timezone) {
-            date_default_timezone_set($timezone);
+        try {
+            // Attempt to start session
+            Pi::service('session')->manager()->start();
+        } catch (\Exception $e) {
+            // Clear session data for current request on failure
+            // Empty session for current request
+            Pi::service('session')->manager()->getStorage()->clear();
+            // Disconnect cookie for current user
+            Pi::service('session')->manager()->expireSessionCookie();
+            // Log error attempts
+            if (Pi::service()->hasService('log')) {
+                Pi::service('log')->audit($e->getMessage());
+            }
+            trigger_error($e->getMessage(), E_USER_NOTICE);
         }
+        return;
     }
 }

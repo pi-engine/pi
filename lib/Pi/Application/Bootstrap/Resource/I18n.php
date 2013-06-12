@@ -18,7 +18,7 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 use Locale;
@@ -31,7 +31,7 @@ class I18n extends AbstractResource
      */
     public function boot()
     {
-        $this->engine->loadResource('config');
+        $this->engine->bootResource('config');
 
         // Load options for locale and charset
         $locale = !empty($this->options['locale']) ? $this->options['locale'] : Pi::config('locale');

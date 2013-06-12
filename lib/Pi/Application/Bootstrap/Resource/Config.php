@@ -18,26 +18,27 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Pi\User\User as UserModel;
 
-class User extends AbstractResource
+class Config extends AbstractResource
 {
+    /**
+     * @return void
+     */
     public function boot()
     {
-        if (Pi::registry('user')) {
-            return Pi::registry('user');
-        }
-        $identity = Pi::service('authentication')->getIdentity();
-        if ($identity) {
-            $user = new UserModel($identity);
-        } else {
-            $user = new UserModel;
-        }
-        Pi::registry('user', $user);
+        // Config will be fetched from database if not cached yet
+        //$this->bootstrap->bootResource('db');
 
-        return $user;
+        // Load system general configuration
+        Pi::config()->loadDomain();
+
+        // Setup timezone
+        $timezone = Pi::config('timezone');
+        if ($timezone) {
+            date_default_timezone_set($timezone);
+        }
     }
 }

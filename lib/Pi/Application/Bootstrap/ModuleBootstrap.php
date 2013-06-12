@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap resource
+ * Pi module bootstrap abstraction
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -13,24 +13,22 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
- * @subpackage      Resource
  * @since           3.0
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap;
 
-use Pi;
+use Pi\Mvc\Application as Application;
 
-class Database extends AbstractResource
+abstract class ModuleBootstrap
 {
-    /**
-     * @return Pi\Application\Db
-     */
-    public function boot()
-    {
-        $db = Pi::service('database')->db($this->options);
+    protected $application;
 
-        return $db;
+    public function __construct(Application $application)
+    {
+        $this->application = $application;
     }
+
+    abstract public function bootstrap($module = null);
 }

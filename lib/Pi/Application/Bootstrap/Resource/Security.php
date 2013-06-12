@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap resource interface
+ * Bootstrap resource
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -18,25 +18,31 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
-use Pi\Application\Engine\AbstractEngine;
+use Pi;
+//use Pi\Security\Security as SecurityUtility;
 
-abstract class AbstractResource
+class Security extends AbstractResource
 {
-    protected $options = array();
-    protected $engine;
-    protected $application;
-
-    public function __construct(AbstractEngine $engine, $options = array())
-    {
-        $this->options = $options;
-        $this->engine = $engine;
-        $this->application = $engine->application();
-    }
-
+    /**
+     * Check security settings
+     *
+     * Policy: quit the process and approve current request if TRUE is returned by a check; quit and deny the request if FALSE is return; continue with next check if NULL is returned
+     */
     public function boot()
     {
-        return $this;
+        $options = $this->options;
+        foreach ($options as $type => $opt) {
+            if (false === $opt) {
+                continue;
+            }
+            $status = Pi::service('security')->{$type}($opt);
+            if ($status) return true;
+            if (false === $status) {
+                return false;
+                //Pi::service('security')->deny($type);
+            }
+        }
     }
 }

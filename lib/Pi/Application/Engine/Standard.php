@@ -71,7 +71,7 @@ class Standard extends AbstractEngine
     public function bootstrap()
     {
         // Load Pi services
-        $status = $this->loadService();
+        $status = $this->bootServices();
         if (false === $status) {
             return false;
         }
@@ -79,9 +79,8 @@ class Standard extends AbstractEngine
         // Load application, which could be called during resouce setup
         $application = $this->application();
 
-
-        // Load application resources
-        $status = $this->setupResource();
+        // Boot application resources
+        $status = $this->bootResources();
         if (false === $status) {
             return false;
         }
@@ -111,11 +110,11 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Load Pi application services
+     * Bood Pi application services
      *
      * @return boolean
      */
-    protected function loadService()
+    protected function bootServices()
     {
         if (!empty($this->options['service'])) {
             foreach ($this->options['service'] as $service => $options) {
@@ -131,17 +130,17 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Sets up resources
+     * Boot resources
      *
      * @param  array resources
      * @return boolean
      */
-    protected function setupResource()
+    protected function bootResources()
     {
         $this->resources['options'] = $this->options['resource'];
 
         foreach (array_keys($this->resources['options']) as $resource) {
-            $result = $this->loadResource($resource);
+            $result = $this->bootResource($resource);
             if (false === $result) {
                 trigger_error(sprintf('Resource "%s" failed', $resource), E_USER_ERROR);
                 return false;
@@ -158,7 +157,7 @@ class Standard extends AbstractEngine
      * @param array $options    custom options, will be merged with native options
      * @return void
      */
-    public function loadResource($resource, $options = array())
+    public function bootResource($resource, $options = array())
     {
         if (!isset($this->resources['instances'][$resource])) {
             // Skip resource if disabled
@@ -176,7 +175,7 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
-                $class = sprintf('Pi\Application\Resource\\%s', ucfirst($resource));
+                $class = sprintf('Pi\Application\Bootstrap\Resource\\%s', ucfirst($resource));
                 $resourceInstance = new $class($this, $options);
 
                 $result = $resourceInstance->boot();

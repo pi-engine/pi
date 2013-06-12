@@ -22,7 +22,7 @@ namespace Module\System\Controller\Module;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Application\Resource\AdminMode;
+use Pi\Application\Bootstrap\Resource\AdminMode;
 
 /**
  * Dashboard action controller

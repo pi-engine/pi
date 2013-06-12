@@ -26,7 +26,7 @@ use Zend\Cache\Storage\Adapter\AbstractAdapter;
 /**
  * Cache handler for view rendering
  *
- * @see Pi\Application\Resource\Cache
+ * @see Pi\Application\Bootstrap\Resource\Cache
  */
 class Render extends AbstractService
 {
