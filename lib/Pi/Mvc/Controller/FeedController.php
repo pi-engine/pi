@@ -98,14 +98,14 @@ abstract class FeedController extends ActionController
                 'link'      => Pi::url('www', true),
             ),
 
-            'language'      => Pi::config('locale'),
+            'language'      => Pi::service('i18n')->locale,
             'link'          => Pi::url('www', true),
             'feed_link'     => array(
                 'link'      => Pi::url($this->url('feed', $routeMatch->getParams()), true),
                 'type'      => $feedType,
             ),
             'title'         => sprintf(__('Feed of %s - %s'), Pi::config('sitename'), Pi::config('slogan')),
-            'encoding'      => Pi::config('charset'),
+            'encoding'      => Pi::service('i18n')->charset,
             'base_url'      => Pi::url('www', true),
         );
         $options = array(

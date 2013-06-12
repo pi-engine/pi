@@ -34,6 +34,17 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
+        $text = <<<EOT
+        Test for user and tag:
+            @admin tested tag #good# ok?
+EOT;
+        $content = Pi::service('markup')->render($text);
+        d($content);
+
+        $url = '/user/profile';
+        $routeMatch = Pi::service('url')->route($url);
+
+        Pi::service('user')->test('ss');
         $this->view()->setTemplate(false);
     }
 
@@ -109,7 +120,7 @@ class TestController extends ActionController
         // Send mail through service
         Pi::service('mail')->setTransport($transport);
         */
-	
+
         // Send mail
         $result = Pi::service('mail')->send($message);
 

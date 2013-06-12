@@ -183,10 +183,10 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
         // Set response headers for language and charset
         $response = $e->getResponse();
         $response->getHeaders()->addHeaders(array(
-            'content-type'      => sprintf('text/html; charset=%s', Pi::config('charset')),
-            'content-language'  => Pi::config('locale'),
+            'content-type'      => sprintf('text/html; charset=%s', Pi::service('i18n')->charset),
+            'content-language'  => Pi::service('i18n')->locale,
         ));
-        
+
         // Skip ajax request
         $request = $e->getRequest();
         if ($request->isXmlHttpRequest()) {

@@ -12,9 +12,14 @@ June 8th, 2013
 7. Added default value 'text' for renderer to markup service
 8. Initiated system service Url
 9. Initiated system service User
-10. Added file: var/config/service.user.php
+10. Added config file: var/config/service.user.php
 11. Improved filter User
 12. Changed route User parameter name 'name' to 'identity'
+13. Modified config files: var/config/application.front.php; var/config/application.admin.php; -- moved i18n config to separate files
+14. Added config files: var/config/resource.i18n.php; var/config/resource.i18n-admin.php
+15. Added support for auto detection of locale with parameter in i18n config files
+16. Added charset to service Locale
+17. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
 
 
 May 24th, 2013

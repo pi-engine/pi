@@ -49,7 +49,7 @@ class Renderer extends AbstractRenderer
 
         // Set up language
         if (!isset($options['language'])) {
-            $options['language'] = Pi::config('locale');
+            $options['language'] = Pi::service('i18n')->locale;
         }
         $options['language'] = strtolower(str_replace('_', '-', $options['language']));
 

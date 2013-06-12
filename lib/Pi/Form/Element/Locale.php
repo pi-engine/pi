@@ -41,7 +41,7 @@ class Locale extends Select
                 $label = $directory;
                 //if (class_exists('SystemLocale')) {
                 if (class_exists('\\Locale')) {
-                    $label = \Locale::getDisplayName($directory, Pi::config('locale')) ?: $label;
+                    $label = \Locale::getDisplayName($directory, Pi::service('i18n')->locale) ?: $label;
                 }
                 $this->valueOptions[$directory] = $label;
             }
