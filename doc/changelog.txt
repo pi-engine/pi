@@ -20,6 +20,7 @@ June 8th, 2013
 15. Added support for auto detection of locale with parameter in i18n config files
 16. Added charset to service Locale
 17. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
+18. Modified config file: var/config/service.markup.php -- removing default value for encoding
 
 
 May 24th, 2013

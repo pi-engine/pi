@@ -2,7 +2,7 @@
 // Markup service configuration
 
 return array(
-    'encoding'  => Pi::config('charset'),
+    'encoding'  => '',
     'filters'   => array(
         // User filter
         // @see Pi/Filter/User
