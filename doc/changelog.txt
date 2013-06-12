@@ -23,6 +23,8 @@ June 8th, 2013
 17. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
 18. Modified config file: var/config/service.markup.php -- removing default value for encoding
 19. Added vd shortcoming function to Debug
+20. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
+21. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
 
 
 May 24th, 2013
