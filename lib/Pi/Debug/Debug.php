@@ -221,6 +221,7 @@ namespace Pi\Debug
                 $result .= '<div><pre>';
                 $result .= $output;
                 $result .= '</pre></div>';
+                $result .= '</div>';
             }
 
             if ($display) {

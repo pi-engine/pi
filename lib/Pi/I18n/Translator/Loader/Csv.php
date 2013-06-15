@@ -46,12 +46,7 @@ class Csv implements FileLoaderInterface
     }
 
     /**
-     * load(): defined by FileLoaderInterface.
-     *
-     * @see    LoaderInterface::load()
-     * @param  string $locale
-     * @param  string $filename
-     * @return TextDomain|null
+     * {@inheritdoc}
      */
     public function load($locale, $filename)
     {
@@ -76,9 +71,13 @@ class Csv implements FileLoaderInterface
                     $messages[$singular] = $data;
                 }
             }
+        } else {
+            if (Pi::service()->hasService('log')) {
+                Pi::service()->getService('log')->info(sprintf('Translation file is not loaded: %s', $filename));
+            }
         }
 
-        return $messages;
+        //return $messages;
 
         $textDomain = new TextDomain($messages);
         return $textDomain;

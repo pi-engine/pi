@@ -19,8 +19,10 @@
  */
 
 namespace Module\System\Controller\Front;
-use Pi\Mvc\Controller\ActionController;
+
 use Pi;
+use Pi\Mvc\Controller\ActionController;
+use Pi\Debug\Debug;
 
 /**
  * Public action controller
@@ -34,18 +36,37 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
+        $this->view()->setTemplate(false);
+        $content = array();
+
         $text = <<<EOT
         Test for user and tag:
             @admin tested tag #good# ok?
 EOT;
-        $content = Pi::service('markup')->render($text);
-        d($content);
+        $content['User and tag'] = Pi::service('markup')->render($text);
 
         $url = '/user/profile';
         $routeMatch = Pi::service('url')->route($url);
+        $content['URL'] = $routeMatch;
+
+        $content['site name'] = __('site name');
+        $content['locale'] = Pi::service('i18n')->locale . ' ' . Pi::service('i18n')->charset;
 
         Pi::service('user')->test('ss');
-        $this->view()->setTemplate(false);
+
+        $display = '';
+        foreach ($content as $title => $data) {
+            $string = $title && is_string($title) ? '<dt style="margin-top: 1em;text-decoration: underline;"><strong>' . $title . '</strong></dt>' : '';
+            if (is_scalar($data)) {
+                $string .= $data;
+            } else {
+                ob_start();
+                var_dump($data);
+                $string .= '<pre>' . ob_get_clean() . '</pre>';
+            }
+            $display .= $string;
+        }
+        return $display;
     }
 
     /**

@@ -9,7 +9,7 @@ return array(
         'user'  => array(
             'tag'           => '%term%',
             'pattern'       => '@([a-zA-Z0-9]{3,32})',
-            'replacement'   => '<a href="' . Pi::url('www') . '/user/%term%" title="%term%">@%term%</a>',
+            //'replacement'   => '<a href="' . Pi::url('www') . '/user/%term%" title="%term%">@%term%</a>',
         ),
         // Tag filter
         // @see Pi/Filter/Tag

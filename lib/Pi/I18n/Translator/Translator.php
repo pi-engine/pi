@@ -290,12 +290,12 @@ class Translator extends ZendTranslator
      * Load translation resource
      *
      * @param array $options
-     * @return TextDomain
+     * @return array
      */
     public function loadResource($options)
     {
         $filename = Pi::service('i18n')->getPath(array($options['domain'], $options['file']), $options['locale']);
-
-        return $this->loader->load($options['locale'], $filename);
+        $result = (array) $this->loader->load($options['locale'], $filename);
+        return $result;
     }
 }

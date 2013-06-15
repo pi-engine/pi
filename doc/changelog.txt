@@ -1,5 +1,9 @@
 Pi Engine Changelog
 
+June 8th, 2013
+=============================
+1. Upgraded ZF2 to 2.2.1
+
 
 
 June 8th, 2013
