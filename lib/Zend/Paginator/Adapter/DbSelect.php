@@ -13,8 +13,8 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Select;
-use Zend\Db\ResultSet\ResultSetInterface;
 use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\ResultSet\ResultSetInterface;
 
 class DbSelect implements AdapterInterface
 {
@@ -39,7 +39,7 @@ class DbSelect implements AdapterInterface
     /**
      * Total item count
      *
-     * @var integer
+     * @var int
      */
     protected $rowCount = null;
 
@@ -72,8 +72,8 @@ class DbSelect implements AdapterInterface
     /**
      * Returns an array of items for a page.
      *
-     * @param  integer $offset           Page offset
-     * @param  integer $itemCountPerPage Number of items per page
+     * @param  int $offset           Page offset
+     * @param  int $itemCountPerPage Number of items per page
      * @return array
      */
     public function getItems($offset, $itemCountPerPage)
@@ -94,7 +94,7 @@ class DbSelect implements AdapterInterface
     /**
      * Returns the total number of rows in the result set.
      *
-     * @return integer
+     * @return int
      */
     public function count()
     {
@@ -103,22 +103,15 @@ class DbSelect implements AdapterInterface
         }
 
         $select = clone $this->select;
-        $select->reset(Select::COLUMNS);
         $select->reset(Select::LIMIT);
         $select->reset(Select::OFFSET);
         $select->reset(Select::ORDER);
-        $select->reset(Select::GROUP);
 
-        // get join information, clear, and repopulate without columns
-        $joins = $select->getRawState(Select::JOINS);
-        $select->reset(Select::JOINS);
-        foreach ($joins as $join) {
-            $select->join($join['name'], $join['on'], array(), $join['type']);
-        }
+        $countSelect = new Select;
+        $countSelect->columns(array('c' => new Expression('COUNT(1)')));
+        $countSelect->from(array('original_select' => $select));
 
-        $select->columns(array('c' => new Expression('COUNT(1)')));
-
-        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $statement = $this->sql->prepareStatementForSqlObject($countSelect);
         $result    = $statement->execute();
         $row       = $result->current();
 

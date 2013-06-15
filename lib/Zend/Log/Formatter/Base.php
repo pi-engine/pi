@@ -11,6 +11,7 @@ namespace Zend\Log\Formatter;
 
 use DateTime;
 use Traversable;
+use Zend\Stdlib\ErrorHandler;
 
 class Base implements FormatterInterface
 {
@@ -75,23 +76,29 @@ class Base implements FormatterInterface
             return $value;
         }
 
+        // better readable JSON
+        static $jsonFlags;
+        if ($jsonFlags === null) {
+            $jsonFlags = 0;
+            $jsonFlags |= defined('JSON_UNESCAPED_SLASHES') ? JSON_UNESCAPED_SLASHES : 0;
+            $jsonFlags |= defined('JSON_UNESCAPED_UNICODE') ? JSON_UNESCAPED_UNICODE : 0;
+        }
+
+        ErrorHandler::start();
         if ($value instanceof DateTime) {
             $value = $value->format($this->getDateTimeFormat());
-        } elseif (is_array($value) || $value instanceof Traversable) {
-            if ($value instanceof Traversable) {
-                $value = iterator_to_array($value);
-            }
-            foreach ($value as $key => $subvalue) {
-                $value[$key] = $this->normalize($subvalue);
-            }
-            $value = json_encode($value);
-        } elseif (is_object($value) && !method_exists($value,'__toString')) {
+        } elseif ($value instanceof Traversable) {
+            $value = json_encode(iterator_to_array($value), $jsonFlags);
+        } elseif (is_array($value)) {
+            $value = json_encode($value, $jsonFlags);
+        } elseif (is_object($value) && !method_exists($value, '__toString')) {
             $value = sprintf('object(%s) %s', get_class($value), json_encode($value));
         } elseif (is_resource($value)) {
             $value = sprintf('resource(%s)', get_resource_type($value));
         } elseif (!is_object($value)) {
             $value = gettype($value);
         }
+        ErrorHandler::stop();
 
         return (string) $value;
     }

@@ -4,4 +4,3 @@ Sql\AbstractSql.php
 Sql\Delete.php
 Sql\Select.php
 Sql\Update.php
-Sql\Where.php

@@ -239,7 +239,7 @@ namespace Pi\Application\Service
          * Locale
          * @var string
          */
-        protected $__locale;
+        protected $__locale = 'en';
 
         /**
          * Charset
@@ -295,7 +295,7 @@ namespace Pi\Application\Service
          * Set locale and configure Translator
          *
          * @param string $locale
-         * @return I18n
+         * @return string
          */
         public function setLocale($locale)
         {
@@ -304,7 +304,7 @@ namespace Pi\Application\Service
                 $this->__locale = $locale;
                 $this->translator->setLocale($locale);
             }
-            return $this;
+            return $this->__locale;
         }
 
         /**

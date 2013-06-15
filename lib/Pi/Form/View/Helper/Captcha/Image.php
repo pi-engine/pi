@@ -20,11 +20,11 @@
 
 namespace Pi\Form\View\Helper\Captcha;
 
-use Zend\Form\View\Helper\Captcha\Image as CaptchaHelper;
+use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 use Zend\Captcha\Image as CaptchaAdapter;
 use Zend\Form\ElementInterface;
 
-class Image extends CaptchaHelper
+class Image extends ZendHelperCaptchaImage
 {
     /**
      * Render the captcha
@@ -50,11 +50,18 @@ class Image extends CaptchaHelper
             'width'  => $captcha->getWidth(),
             'height' => $captcha->getHeight(),
             'alt'    => $captcha->getImgAlt(),
+            //'src'    => $captcha->getImgUrl() . $captcha->getId() . $captcha->getSuffix(),
+
             'src'    => $imgSrc,
             // For "click to refresh": <img src="$src" onclick="this.src='$src&refresh='+Math.random()">
             'onclick'   => sprintf('this.src=\'%s&refresh=\'+Math.random()', $imgSrc),
             'style'     => 'cursor: pointer; vertical-align: middle;',
         );
+
+        if ($element->hasAttribute('id')) {
+            $imgAttributes['id'] = $element->getAttribute('id') . '-image';
+        }
+
         $closingBracket = $this->getInlineClosingBracket();
         $img = sprintf(
             '<img %s%s',

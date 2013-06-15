@@ -39,24 +39,13 @@ class I18n extends AbstractResource
         $locale = $locale ?: 'auto';
         $charset = $charset ?: 'utf-8';
 
-        /*
-        // Loads charset from system config
-        $locale = Pi::config('locale');
-        // Loads charset from system config
-        $charset = Pi::config('charset');
-
-        // Load from options if not set in system config
-        $locale = $locale ?: (isset($this->options['locale']) ? $this->options['locale'] : null);
-        $charset = $charset ?: (isset($this->options['charset']) ? $this->options['charset'] : null);
-        */
         if ('auto' == $locale) {
             $locale = Pi::service('i18n')->getClient() ?: Pi::config('locale');
-            //$locale = Pi::service('i18n')->getClient();
         }
 
         // Set default locale
+        $locale = Pi::service('i18n')->setLocale($locale);
         $result = setlocale(LC_ALL, $locale);
-        Pi::service('i18n')->setLocale($locale);
 
         // Preload translations
         if (!empty($this->options['translator'])) {

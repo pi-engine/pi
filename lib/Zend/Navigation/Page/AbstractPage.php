@@ -108,6 +108,14 @@ abstract class AbstractPage extends AbstractContainer
      */
     protected $privilege;
 
+    /**
+     * Permission associated with this page
+     *
+     * @var string|null
+     */
+    protected $permission;
+
+
     /**#@+
      * Re-initialize
      * Modified by Taiwen Jiang
@@ -145,19 +153,19 @@ abstract class AbstractPage extends AbstractContainer
     // Initialization:
 
     /**
-     * Factory for Zend_Navigation_Page classes
+     * Factory for Zend\Navigation\Page classes
      *
      * A specific type to construct can be specified by specifying the key
      * 'type' in $options. If type is 'uri' or 'mvc', the type will be resolved
-     * to Zend_Navigation_Page_Uri or Zend_Navigation_Page_Mvc. Any other value
+     * to Zend\Navigation\Page\Uri or Zend\Navigation\Page\Mvc. Any other value
      * for 'type' will be considered the full name of the class to construct.
-     * A valid custom page class must extend Zend_Navigation_Page.
+     * A valid custom page class must extend Zend\Navigation\Page\AbstractPage.
      *
      * If 'type' is not given, the type of page to construct will be determined
      * by the following rules:
      * - If $options contains either of the keys 'action', 'controller',
-     *   or 'route', a Zend_Navigation_Page_Mvc page will be created.
-     * - If $options contains the key 'uri', a Zend_Navigation_Page_Uri page
+     *   or 'route', a Zend\Navigation\Page\Mvc page will be created.
+     * - If $options contains the key 'uri', a Zend\Navigation\Page\Uri page
      *   will be created.
      *
      * @param  array|Traversable $options  options used for creating page
@@ -716,6 +724,31 @@ abstract class AbstractPage extends AbstractContainer
     }
 
     /**
+     * Sets permission associated with this page
+     *
+     * @param  string|null $permission  [optional] permission to associate
+     *                                  with this page. Default is null, which
+     *                                  sets no permission.
+     *
+     * @return AbstractPage fluent interface, returns self
+     */
+    public function setPermission($permission = null)
+    {
+        $this->permission = is_string($permission) ? $permission : null;
+        return $this;
+    }
+
+    /**
+     * Returns permission associated with this page
+     *
+     * @return string|null  permission or null
+     */
+    public function getPermission()
+    {
+        return $this->permission;
+    }
+
+    /**
      * Sets whether page should be considered active or not
      *
      * @param  bool $active [optional] whether page should be
@@ -1149,6 +1182,7 @@ abstract class AbstractPage extends AbstractContainer
             'order'     => $this->getOrder(),
             'resource'  => $this->getResource(),
             'privilege' => $this->getPrivilege(),
+            'permission' => $this->getPermission(),
             'active'    => $this->isActive(),
             'visible'   => $this->isVisible(),
             'type'      => get_class($this),

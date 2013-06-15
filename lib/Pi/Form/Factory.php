@@ -12,45 +12,31 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
- * @version         $Id$
  */
 namespace Pi\Form;
 
 use Pi\Filter\FilterChain;
 use Zend\Form\Factory as ZendFactory;
 use Zend\InputFilter\Factory as InputFilterFactory;
-use ArrayAccess;
-use Traversable;
 
 class Factory extends ZendFactory
 {
     /**
-     * Get current input filter factory
-     *
-     * If none provided, uses an unconfigured instance.
-     *
-     * @return InputFilterFactory
+     * @{inheritdoc}
      */
     public function getInputFilterFactory()
     {
-        if (null === $this->inputFilterFactory) {
-            $this->setInputFilterFactory(new InputFilterFactory());
-            $this->inputFilterFactory->setDefaultFilterChain(new FilterChain);
+        $factory = parent::getInputFilterFactory();
+        // Ensure Pi\Filter\FilterChain is used
+        if (!$factory->getDefaultFilterChain() instanceof FilterChain) {
+            $factory->setDefaultFilterChain(new FilterChain);
         }
-        return $this->inputFilterFactory;
+        return $factory;
     }
 
     /**
-     * Create an element, fieldset, or form
-     *
-     * Introspects the 'type' key of the provided $spec, and determines what
-     * type is being requested; if none is provided, assumes the spec
-     * represents simply an element.
-     *
-     * @param  array|Traversable $spec
-     * @return ElementInterface
+     * @{inheritdoc}
      */
     public function create($spec)
     {
@@ -60,9 +46,9 @@ class Factory extends ZendFactory
             if ($type == 'form' || $type == 'fieldset') {
                 $spec['type'] = sprintf('%s\\%s', __NAMESPACE__, ucfirst($type));
             } else {
-                $type = sprintf('%s\\Element\\%s', __NAMESPACE__, ucfirst($spec['type']));
+                $type = sprintf('%s\Element\\%s', __NAMESPACE__, ucfirst($spec['type']));
                 if (!class_exists($type)) {
-                    $type = sprintf('Zend\\Form\\Element\\%s', ucfirst($spec['type']));
+                    $type = sprintf('Zend\Form\Element\\%s', ucfirst($spec['type']));
                     if (class_exists($type)) {
                         $spec['type'] = $type;
                     }
@@ -71,27 +57,22 @@ class Factory extends ZendFactory
                 }
             }
         }
+
         return parent::create($spec);
     }
 
-    /**
-     * Create an element based on the provided specification
-     *
-     * Specification can contain any of the following:
-     * - type: the Element class to use; defaults to \Zend\Form\Element
-     * - name: what name to provide the element, if any
-     * - attributes: an array, Traversable, or ArrayAccess object of element
-     *   attributes to assign
-     *
-     * @param  array|Traversable|ArrayAccess $spec
-     * @return ElementInterface
+    /**#@+
+     * Deprecated methods
      */
-    public function createElement($spec)
+    /**
+     * {@inheritdoc}
+     */
+    public function ____createElement($spec)
     {
         if (isset($spec['type']) && !class_exists($spec['type'])) {
-            $type = __NAMESPACE__ . '\\Element\\' . ucfirst($spec['type']);
+            $type = __NAMESPACE__ . '\Element\\' . ucfirst($spec['type']);
             if (!class_exists($type)) {
-                $type = 'Zend\\Form\\Element\\' . ucfirst($spec['type']);
+                $type = 'Zend\Form\Element\\' . ucfirst($spec['type']);
                 if (class_exists($type)) {
                     $spec['type'] = $type;
                 }
@@ -103,27 +84,14 @@ class Factory extends ZendFactory
     }
 
     /**
-     * Create a fieldset based on the provided specification
-     *
-     * Specification can contain any of the following:
-     * - type: the Fieldset class to use; defaults to \Zend\Form\Fieldset
-     * - name: what name to provide the fieldset, if any
-     * - attributes: an array, Traversable, or ArrayAccess object of element
-     *   attributes to assign
-     * - elements: an array or Traversable object where each entry is an array
-     *   or ArrayAccess object containing the keys:
-     *   - flags: (optional) array of flags to pass to FieldsetInterface::add()
-     *   - spec: the actual element specification, per {@link createElement()}
-     *
-     * @param  array|Traversable|ArrayAccess $spec
-     * @return FieldsetInterface
+     * {@inheritdoc}
      */
-    public function createFieldset($spec)
+    public function ____createFieldset($spec)
     {
         if (isset($spec['type']) && !class_exists($spec['type'])) {
-            $type = __NAMESPACE__ . '\\Fieldset\\' . ucfirst($spec['type']);
+            $type = __NAMESPACE__ . '\Fieldset\\' . ucfirst($spec['type']);
             if (!class_exists($type)) {
-                $type = 'Zend\\Form\\Fieldset\\' . ucfirst($spec['type']);
+                $type = 'Zend\Form\Fieldset\\' . ucfirst($spec['type']);
                 if (class_exists($type)) {
                     $spec['type'] = $type;
                 }
@@ -135,22 +103,14 @@ class Factory extends ZendFactory
     }
 
     /**
-     * Create a form based on the provided specification
-     *
-     * Specification follows that of {@link createFieldset()}, and adds the
-     * following keys:
-     *
-     * @param  array|Traversable|ArrayAccess $spec
-     * @return FormInterface
-     * @throws Exception\InvalidArgumentException for an invalid $spec
-     * @throws Exception\DomainException for an invalid form type
+     * {@inheritdoc}
      */
-    public function createForm($spec)
+    public function ____createForm($spec)
     {
         if (isset($spec['type']) && !class_exists($spec['type'])) {
-            $type = __NAMESPACE__ . '\\Form\\' . ucfirst($spec['type']);
+            $type = __NAMESPACE__ . '\Form\\' . ucfirst($spec['type']);
             if (!class_exists($type)) {
-                $type = 'Zend\\Form\\Form\\' . ucfirst($spec['type']);
+                $type = 'Zend\Form\Form\\' . ucfirst($spec['type']);
                 if (class_exists($type)) {
                     $spec['type'] = $type;
                 }
@@ -160,4 +120,5 @@ class Factory extends ZendFactory
         }
         return parent::createForm($spec);
     }
+    /**#@-*/
 }

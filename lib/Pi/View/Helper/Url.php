@@ -52,19 +52,9 @@ class Url extends ZendUrl
     protected $routeMatch;
 
     /**
-     * Generates an url given the name of a route.
-     *
-     * @see    Zend\Mvc\Router\RouteInterface::assemble()
-     * @param  string  $name               Name of the route
-     * @param  array   $params             Parameters for the link
-     * @param  array   $options            Options for the route
-     * @param  boolean $reuseMatchedParams Whether to reuse matched parameters
-     * @return string Url                  For the link href attribute
-     * @throws \RuntimeException  If no RouteStackInterface was provided
-     * @throws \RuntimeException  If no RouteMatch was provided
-     * @throws \RuntimeException  If RouteMatch didn't contain a matched route name
+     * {@inheritdoc}
      */
-    public function __invoke($name = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
     {
         if (null === $this->router()) {
             throw new \RuntimeException('No RouteStackInterface instance provided');

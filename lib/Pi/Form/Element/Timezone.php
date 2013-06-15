@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      ELement
- * @version         $Id$
  */
 
 namespace Pi\Form\Element;
@@ -36,7 +34,7 @@ class Timezone extends Select
         if (empty($this->valueOptions)) {
             if (!static::$timezones) {
                 Pi::service('i18n')->load('timezone');
-                foreach(DateTimeZone::listIdentifiers() as $timezone) {
+                foreach (DateTimeZone::listIdentifiers() as $timezone) {
                     static::$timezones[$timezone] = __($timezone);
                 }
             }

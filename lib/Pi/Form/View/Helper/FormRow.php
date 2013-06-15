@@ -28,54 +28,40 @@ use Zend\Form\FieldsetInterface;
 
 class FormRow extends ZendFormRow
 {
-    protected $descriptionHelper;
-
     /**
      * @var string
      */
     protected $inputErrorClass = 'input-error alert-error';
 
     /**
-     * Utility form helper that renders a label (if it exists), an element and errors
-     *
-     * @param ElementInterface $element
-     * @return string
-     * @throws \Zend\Form\Exception\DomainException
+     * {@inheritdoc}
      */
     public function render(ElementInterface $element)
     {
+        /**#@+
+         * Jump to specific collective renderer if specified
+         */
         if ($element instanceof Collection) {
             return $this->view->formCollection($element);
         } elseif ($element instanceof FieldsetInterface) {
             return $this->view->formFieldset($element);
         }
+        /**#@-*/
+
+        /**#@+
+         * Load description
+         */
+        $descriptionHelper  = $this->view->plugin('form_description');
+        $elementDescription = $descriptionHelper->render($element);
+        /**#@-*/
 
         $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $labelHelper         = $this->getLabelHelper();
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
 
-
         $label           = $element->getLabel();
         $inputErrorClass = $this->getInputErrorClass();
-        $errorAttributes = array();
-        if (!empty($inputErrorClass)) {
-            $errorAttributes['class'] = $inputErrorClass;
-        }
-        $elementErrors   = $elementErrorsHelper->render($element, $errorAttributes);
-
-        // Does this element have errors ?
-        if (!empty($elementErrors) && !empty($inputErrorClass)) {
-            $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
-            $classAttributes = $classAttributes . $inputErrorClass;
-
-            $element->setAttribute('class', $classAttributes);
-        }
-
-        $elementString = $elementHelper->render($element);
-
-        $descriptionHelper   = $this->getDescriptionHelper();
-        $elementDescription = $descriptionHelper->render($element);
 
         if (isset($label) && '' !== $label) {
             // Translate the label
@@ -84,7 +70,35 @@ class FormRow extends ZendFormRow
                     $label, $this->getTranslatorTextDomain()
                 );
             }
+        }
 
+        // Does this element have errors ?
+        if (count($element->getMessages()) > 0 && !empty($inputErrorClass)) {
+            $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
+            $classAttributes = $classAttributes . $inputErrorClass;
+
+            $element->setAttribute('class', $classAttributes);
+        }
+
+        if ($this->partial) {
+            $vars = array(
+                'element'           => $element,
+                'label'             => $label,
+                'labelAttributes'   => $this->labelAttributes,
+                'labelPosition'     => $this->labelPosition,
+                'renderErrors'      => $this->renderErrors,
+            );
+
+            return $this->view->render($this->partial, $vars);
+        }
+
+        if ($this->renderErrors) {
+            $elementErrors = $elementErrorsHelper->render($element);
+        }
+
+        $elementString = $elementHelper->render($element);
+
+        if (isset($label) && '' !== $label) {
             $label = $escapeHtmlHelper($label);
             $labelAttributes = $element->getLabelAttributes();
 
@@ -99,7 +113,11 @@ class FormRow extends ZendFormRow
                 $markup = sprintf(
                     '<fieldset><legend>%s</legend>%s%s</fieldset>',
                     $label,
+                    /**#@+
+                     * For description
+                     */
                     $elementDescription,
+                    /**#@-*/
                     $elementString);
             } else {
                 if ($element->hasAttribute('id')) {
@@ -111,25 +129,40 @@ class FormRow extends ZendFormRow
                     $labelClose = $labelHelper->closeTag();
                 }
 
-                $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>' . $elementDescription . $elementString;
-                /*
+                if ($label !== '' && !$element->hasAttribute('id')) {
+                    $label = '<span>' . $label . '</span>';
+                }
+
+                // Button element is a special case, because label is always rendered inside it
+                if ($element instanceof Button) {
+                    $labelOpen = $labelClose = $label = '';
+                }
+
                 switch ($this->labelPosition) {
-                    case static::LABEL_PREPEND:
-                        $markup = $labelOpen . $label . $elementDescription .  $elementString . $labelClose . $elementErrors;
+                    case self::LABEL_PREPEND:
+                        $markup = $labelOpen . $label . $elementString . $labelClose;
                         break;
-                    case static::LABEL_APPEND:
+                    case self::LABEL_APPEND:
                     default:
-                        $markup = $labelOpen . $elementString . $label . $elementDescription . $labelClose . $elementErrors;
+                        $markup = $labelOpen . $elementString . $label . $labelClose;
                         break;
                 }
-                */
+                /**#@+
+                 * For description
+                 */
+                $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>' . $elementDescription . $elementString;
+                /**#@-*/
             }
 
             if ($this->renderErrors) {
                 $markup .= $elementErrors;
             }
         } else {
+            /**#@+
+             * For description
+             */
             $elementString = $elementDescription . $elementString;
+            /**#@-*/
             if ($this->renderErrors) {
                 $markup = $elementString . $elementErrors;
             } else {
@@ -138,19 +171,5 @@ class FormRow extends ZendFormRow
         }
 
         return $markup;
-    }
-
-    /**
-     * Retrieve the FormDescription helper
-     *
-     * @return FormDescription
-     */
-    protected function getDescriptionHelper()
-    {
-        if ($this->descriptionHelper) {
-            return $this->descriptionHelper;
-        }
-        $this->descriptionHelper = $this->view->plugin('form_description');
-        return $this->descriptionHelper;
     }
 }

@@ -140,6 +140,8 @@ class WinCache extends AbstractAdapter implements
 
         if ($success) {
             $casToken = $result;
+        } else {
+            $result = null;
         }
 
         return $result;
@@ -172,7 +174,7 @@ class WinCache extends AbstractAdapter implements
         $prefixL = strlen($prefix);
         $result  = array();
         foreach ($fetch as $internalKey => & $value) {
-            $result[ substr($internalKey, $prefixL) ] = & $value;
+            $result[substr($internalKey, $prefixL)] = & $value;
         }
 
         return $result;

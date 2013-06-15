@@ -12,17 +12,14 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      ELement
- * @version         $Id$
  */
 
 namespace Pi\Form\Element;
 
 use Pi;
 use Zend\Form\Element\Select;
-//use Locale as SystemLocale;
 
 class Locale extends Select
 {
@@ -39,7 +36,6 @@ class Locale extends Select
                 }
                 $directory = $fileinfo->getFilename();
                 $label = $directory;
-                //if (class_exists('SystemLocale')) {
                 if (class_exists('\\Locale')) {
                     $label = \Locale::getDisplayName($directory, Pi::service('i18n')->locale) ?: $label;
                 }

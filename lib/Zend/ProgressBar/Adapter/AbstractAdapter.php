@@ -13,7 +13,7 @@ use Traversable;
 use Zend\Stdlib\ArrayUtils;
 
 /**
- * Abstract class for Zend_ProgressBar_Adapters
+ * Abstract class for Zend\ProgressBar Adapters
  */
 abstract class AbstractAdapter
 {
@@ -30,7 +30,7 @@ abstract class AbstractAdapter
     /**
      * Create a new adapter
      *
-     * $options may be either be an array or a Zend_Config object which
+     * $options may be either be an array or a Zend\Config object which
      * specifies adapter related options.
      *
      * @param  array|Traversable $options
@@ -73,8 +73,8 @@ abstract class AbstractAdapter
      * @param  float   $current       Current progress value
      * @param  float   $max           Max progress value
      * @param  float   $percent       Current percent value
-     * @param  integer $timeTaken     Taken time in seconds
-     * @param  integer $timeRemaining Remaining time in seconds
+     * @param  int $timeTaken     Taken time in seconds
+     * @param  int $timeRemaining Remaining time in seconds
      * @param  string  $text          Status text
      * @return void
      */

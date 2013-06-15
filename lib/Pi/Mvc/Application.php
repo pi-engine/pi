@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
- * @version         $Id$
  */
 
 namespace Pi\Mvc;
@@ -141,41 +139,20 @@ class Application extends ZendApplication
      * Extended from Zend\Mvc\Application
      */
     /**
-     * Static method for quick and easy initialization of the Application.
-     *
-     * If you use this init() method, you cannot specify a service with the
-     * name of 'ApplicationConfig' in your service manager config. This name is
-     * reserved to hold the array from application.config.php.
-     *
-     * The following services can only be overridden from application.config.php:
-     *
-     * - ModuleManager
-     * - SharedEventManager
-     * - EventManager & Zend\EventManager\EventManagerInterface
-     *
-     * All other services are configured after module loading, thus can be
-     * overridden by modules.
-     *
-     * @param array $configuration
-     * @return Application
+     * {@inheritdoc}
      */
     public static function init($configuration = array())
     {
         $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
+        $listeners = isset($configuration['listeners']) ? $configuration['listeners'] : array();
         $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
         $serviceManager->setService('ApplicationConfig', $configuration);
         //$serviceManager->get('ModuleManager')->loadModules();
-        return $serviceManager->get('Application')->bootstrap();
+        return $serviceManager->get('Application')->bootstrap($listeners);
     }
 
     /**
-     * Complete the request
-     *
-     * Triggers "render" and "finish" events, and returns response from
-     * event object.
-     *
-     * @param  MvcEvent $event
-     * @return Response
+     * {@inheritdoc}
      */
     protected function completeRequest(MvcEvent $event)
     {

@@ -169,12 +169,16 @@ class Mvc extends AbstractPage
                     $myParams['action'] = $this->action;
                 }
 
-                if (null !== $this->getRoute()
-                    && $this->routeMatch->getMatchedRouteName() === $this->getRoute()
-                    && (count(array_intersect_assoc($reqParams, $myParams)) == count($myParams))
-                ) {
-                    $this->active = true;
-                    return true;
+                if (null !== $this->getRoute()) {
+                    if (
+                        $this->routeMatch->getMatchedRouteName() === $this->getRoute()
+                        && (count(array_intersect_assoc($reqParams, $myParams)) == count($myParams))
+                    ) {
+                        $this->active = true;
+                        return $this->active;
+                    } else {
+                        return parent::isActive($recursive);
+                    }
                 }
                 /**#@+
                  * Added by Taiwen Jiang
@@ -225,9 +229,10 @@ class Mvc extends AbstractPage
         /**#@+
          * Modified by Taiwen Jiang
          */
-        //return parent::isActive($recursive);
         return $this->active;
         /**#@-*/
+
+        return parent::isActive($recursive);
     }
 
     /**
@@ -539,9 +544,9 @@ class Mvc extends AbstractPage
         /**#@+
          * Modified by Taiwen Jiang
          */
-        //return $this->routeMatch;
         return $this->routeMatch ?: static::$defaultRouteMatch;
         /**#@-*/
+        return $this->routeMatch;
     }
 
     /**
@@ -590,9 +595,9 @@ class Mvc extends AbstractPage
         /**#@+
          * Modified by Taiwen Jiang
          */
-        //return $this->router;
         return $this->router ?: static::$defaultRouter;
         /**#@-*/
+        return $this->router;
     }
 
     /**

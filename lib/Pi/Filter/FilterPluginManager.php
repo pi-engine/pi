@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
  * @package         Pi\Filter
- * @version         $Id$
  */
 
 namespace Pi\Filter;
@@ -119,10 +117,10 @@ class FilterPluginManager extends ZendFilterPluginManager
             // Lookup in helper locations
             } else {
                 $class = str_replace(' ', '', ucwords(str_replace(array('-', '_', '\\', '/'), ' ', $name)));
-                if (class_exists('Pi\\Filter\\' . $class)) {
-                    $name = 'Pi\\Filter\\' . $class;
+                if (class_exists('Pi\Filter\\' . $class)) {
+                    $name = 'Pi\Filter\\' . $class;
                 } else {
-                    $name = 'Zend\\Filter\\' . $class;
+                    $name = 'Zend\Filter\\' . $class;
                 }
             }
         }
