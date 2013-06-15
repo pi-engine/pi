@@ -28,7 +28,7 @@ class Csv implements FileLoaderInterface
     protected $fileExtension = '.csv';
 
     protected $options = array(
-        'delimiter' => ';',
+        'delimiter' => ',',
         'length'    => 0,
         'enclosure' => '"',
     );

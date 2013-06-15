@@ -3,7 +3,7 @@ Pi Engine Changelog
 June 8th, 2013
 =============================
 1. Upgraded ZF2 to 2.2.1
-
+2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
 
 
 June 8th, 2013
