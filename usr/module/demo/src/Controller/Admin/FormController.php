@@ -16,7 +16,6 @@ class FormController extends ActionController
   			$form->setData($post);	
 			if ($form->isValid()) {
 				$message = __('Demo data saved successfully.');
-				d($message);
 			} else {
 				d($form->getMessages());
 			}
