@@ -14,7 +14,7 @@
 			} else if (!/^[0-9a-z_][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}\.){1,4}[a-z]{2,4}$/.test(attrs.email)) {
 				error.email = 'Please enter a valid email address';
 			}
-			if (!attrs.multiple.length) {
+			if (typeof attrs.multiple != 'undefined' && !attrs.multiple.length) {
 				error.multiple = 'Please check one at lease';
 			}
   		if (!attrs.time) {
