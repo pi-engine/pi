@@ -1,0 +1,183 @@
+<fieldset>
+	<legend><?php _e('Only admin validate form'); ?></legend>
+<?php
+	$form->setAttribute('class', 'form-horizontal');
+	$form->setAttributes(array( 'class' => 'form-horizontal'));
+	echo $this->form()->openTag($form);
+	if($message) {
+		echo $message;
+	}
+?>
+<?php
+  $this->formElementErrors()->setMessageOpenFormat('<span class="help-inline text-error">')->setMessageSeparatorString('')->setMessageCloseString('</span>');
+	$username = $form->get('username');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$username->getMessages() ?' error' : '', 
+		$username->getOption('label'), 
+		$this->formElement($username),
+		$this->formElementErrors($username));
+
+	$sex = $form->get('sex');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$sex->getMessages() ?' error' : '',
+		$sex->getOption('label'),
+		$this->formRadio()->setLabelAttributes(array( 'class' => 'inline radio' ))->render($sex),
+		$this->formElementErrors($sex));
+
+	$checkbox = $form->get('checkbox');
+	echo sprintf('<div class="control-group%s"><div class="controls">%s%s</div></div>',
+		$checkbox->getMessages() ?' error' : '', 
+		$this->formCheckbox()->setLabelAttributes(array( 'class' => 'inline checkbox' ))->render($checkbox),
+		$this->formElementErrors($checkbox));
+
+  	$multiple = $form->get('multiple');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$multiple->getMessages() ?' error' : '',
+		$multiple->getOption('label'),
+		$this->formMultiCheckbox()->setLabelAttributes(array( 'class' => 'inline checkbox' ))->render($multiple),
+		$this->formElementErrors($multiple));
+
+	$select = $form->get('select');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$select->getMessages() ?' error' : '',
+		$select->getOption('label'),
+		$this->formSelect($select),
+		$this->formElementErrors($select));
+
+	$multipselect = $form->get('multipselect');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$multipselect->getMessages() ?' error' : '',
+		$multipselect->getOption('label'),
+		$this->formSelect($multipselect),
+		$this->formElementErrors($multipselect));
+
+	$textarea = $form->get('textarea');
+	echo sprintf('<div class="control-group%s"><label class="control-label">%s</label><div class="controls">%s%s</div></div>',
+		$textarea->getMessages() ?' error' : '', 
+		$textarea->getOption('label'), 
+		$this->formElement($textarea),
+		$this->formElementErrors($textarea));
+
+	$captcha = $form->get('captcha');
+	echo sprintf('<div class="control-group%s"><div class="controls">%s%s</div></div>',
+		$captcha->getMessages() ?' error' : '', 
+		$this->formElement($captcha),
+		$this->formElementErrors($captcha));
+
+	$element = $form->get('submit');
+ 	echo sprintf('<div class="control-group"><div class="controls">%s</div></div>',
+ 	$this->formElement($element));
+ 	echo $this->form()->closeTag();
+?>
+</fieldset>
+ <!-- front-end interactive form -->
+<?php
+	$this->jQuery();
+	$this->Backbone();
+	$this->bootstrap(array('datepicker/bootstrap-datepicker.js', 'datepicker/datepicker.css')); 
+	$this->footScript()->appendFile($this->assetModule('js/form.js'));
+?>
+<style>
+/*must have this style, otherwise help-block style will not be normal*/
+.form-horizontal .help-block {
+	margin-top: 10px;
+}
+</style>
+<fieldset>
+	<legend><?php _e('front end validate form'); ?></legend>
+	<form class="form-horizontal" id="demo-form">
+		
+	</form>
+</fieldset>
+<script type="text/template" id="form-template">
+	<div class="control-group">
+  		<label class="control-label">username</label>
+	      <div class="controls">
+	        <input type="text" placeholder="textinput" name="username" class="js-username" maxlength="16">
+	        <span class="help-inline"></span>
+	        <span class="help-block"><?php _e('username cannot be blank, and only include numbers and letters'); ?></span>
+	      </div>
+    </div>
+    <div class="control-group">
+  		<label class="control-label">email</label>
+	      <div class="controls">
+	        <input type="text" name="email" class="js-email">
+	        <span class="help-inline"></span>
+	        <span class="help-block"><?php _e('Your email will never be shown to the public.'); ?></span>
+	      </div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">time</label>
+		<div class="controls">
+	   		<input type="text" name="time">
+	   		<span class="help-inline"></span>
+		    <span class="help-block">bootstrap plugin bootstrap-datepicker</span>
+	  	</div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">radio</label>
+      	<div class="controls">
+        	<label class="radio inline">
+            	<input type="radio" name="sex" value="male" checked>male
+        	</label>
+        	<label class="radio inline">
+            	<input type="radio" name="sex" value="female">female
+        	</label>
+      	</div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">multipleCheck</label>
+      	<div class="controls">
+	        <label data-original-title="choose reason?" data-toggle="tooltip" class="checkbox inline">
+	          <input type="checkbox" name="multiple" value="check1" class="js-multiple">check1
+	        </label>
+	        <label data-original-title="choose reason?" data-toggle="tooltip" class="checkbox inline">
+	          <input type="checkbox" name="multiple" value="check2" class="js-multiple">check2
+	        </label>
+	        <span class="help-inline"></span>
+      	</div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">one row multiple select</label>
+      	<div class="controls">
+	        <select class="input-small">
+	          <option>select1
+	          <option>select1
+	        </select>
+	        <select class="input-small">
+	          <option>select2
+	          <option>select2
+	        </select>
+      	</div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">select</label>
+	      <div class="controls">
+	        	<select name="select" class="js-select">
+	        		<option value="">please select
+	          		<option value="option1">option1
+	     	 		<option value="option2">option2
+	    		</select>
+	    		<span class="help-inline"></span>
+	      </div>
+    </div>
+    <div class="control-group">
+      	<label class="control-label">textarea</label>
+      	<div class="controls">
+        	<textarea rows="5" maxlength="500" class="input-large" name="textarea"></textarea>
+        	<span class="help-inline"></span>
+      	</div>
+    </div>
+    <div class="control-group">
+      	<div class="controls">
+        	<button class="btn btn-primary" type="submit">提交</button>
+      	</div>
+    </div>	
+</script>
+<script type="text/template" id="input-template">
+	<% if (error) { %>
+	<span class="text-error"><i class="icon-remove"></i>&nbsp;<%= error %></span>
+	<% } else { %>
+	<span class="text-success"><i class="icon-ok"></i></span>
+	<% } %>
+</script>
