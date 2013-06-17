@@ -119,14 +119,6 @@ class Update extends AbstractSql implements SqlInterface, PreparableSqlInterface
      */
     public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
     {
-        /**#@+
-        * Use canonized method
-        * @see Zend\Db\Sql\AbstractSql::where()
-        */
-        parent::where($predicate, $combination);
-        return $this;
-        /**#@-*/
-
         if ($predicate === null) {
             throw new Exception\InvalidArgumentException('Predicate cannot be null');
         }

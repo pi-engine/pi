@@ -101,12 +101,7 @@ class Entry
      * @param array $authors
      * @return Entry
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addAuthors(array $authors)
-    public function setAuthors(array $authors)
-    /**#@-*/
+    public function addAuthors(array $authors)
     {
         foreach ($authors as $author) {
             $this->addAuthor($author);
@@ -572,12 +567,7 @@ class Entry
      * @param array $categories
      * @return Entry
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addCategories(array $categories)
-    public function setCategories(array $categories)
-    /**#@-*/
+    public function addCategories(array $categories)
     {
         foreach ($categories as $category) {
             $this->addCategory($category);

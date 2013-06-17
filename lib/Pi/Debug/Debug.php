@@ -189,9 +189,10 @@ namespace Pi\Debug
          * @see     Zend\Debug::dump()
          * @param   mixed  $var   The variable to dump.
          * @param   bool   $display  OPTIONAL echo output if true.
+         * @param   int   $skip steps to skip
          * @return  string|void
          */
-        public static function dump($var, $display = true)
+        public static function dump($var, $display = true, $skip = 1)
         {
             $time = microtime(true);
             $location = date('H:i:s', $time) . substr($time, strpos($time, '.'), 5) . ' ';
@@ -333,7 +334,7 @@ namespace
      */
     function vd($data)
     {
-        return Debug::dump($data);
+        return Debug::dump($data, true, 1);
     }
 }
 /**#@-*/

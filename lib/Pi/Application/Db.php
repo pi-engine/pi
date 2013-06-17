@@ -22,7 +22,7 @@ namespace Pi\Application;
 use PDO;
 use Pi;
 use Pi\Db\Sql\Where;
-use Zend\Db\Adapter\Adapter;
+use Pi\Db\Adapter\Adapter;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Predicate;
 use Zend\Db\Metadata\Metadata;

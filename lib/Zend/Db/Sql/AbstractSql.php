@@ -14,12 +14,6 @@ use Zend\Db\Adapter\ParameterContainer;
 use Zend\Db\Adapter\Platform\PlatformInterface;
 use Zend\Db\Adapter\StatementContainer;
 
-/**#@+
- * Modified by Taiwen Jiang
- */
-use Pi\Db\Sql\Where as WhereWrapper;
-/**#@-*/
-
 abstract class AbstractSql
 {
     /**
@@ -191,29 +185,4 @@ abstract class AbstractSql
         }
         return $sql;
     }
-
-
-    /**#@+
-     * Common Where handler added by Taiwen Jiang
-     */
-    /**
-     * Create where clause
-     *
-     * @param  Where|\Closure|string|array $predicate
-     * @param  string $combination One of the OP_* constants from Predicate\PredicateSet
-     * @return Select
-     */
-    public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
-    {
-        if ($predicate instanceof Where) {
-            $this->where = $predicate;
-        } elseif ($predicate instanceof \Closure) {
-            $predicate($this->where);
-        } elseif ($predicate) {
-            $predicate = new WhereWrapper($predicate, $combination);
-            $this->where->addPredicate($predicate, $combination);
-        }
-        return $this;
-    }
-    /**#@-*/
 }

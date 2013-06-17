@@ -21,76 +21,22 @@
 namespace Pi\Mvc\View\Http;
 
 use Zend\View\Model\ViewModel;
+use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
 use Zend\Http\Response as HttpResponse;
-use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 
-class DeniedStrategy implements ListenerAggregateInterface
+class DeniedStrategy extends AbstractListenerAggregate
 {
     /**
-     * @var \Zend\Stdlib\CallbackHandler[]
-     */
-    protected $listeners = array();
-
-    /**
-     * Template to use to display denying messages
-     *
-     * @var string
-     */
-    protected $deniedTemplate = 'denied';
-
-    /**
-     * Attach the aggregate to the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @return void
+     * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events)
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareDeniedViewModel'), -90);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'prepareDeniedViewModel'));
-        //$this->listeners[] = $events->attach('complete', array($this, 'prepareDeniedViewModel'));
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'prepareDeniedViewModel'), -8);
-    }
-
-    /**
-     * Detach aggregate listeners from the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @return void
-     */
-    public function detach(EventManagerInterface $events)
-    {
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
-    }
-
-    /**
-     * Get template
-     *
-     * @param  string $deniedTemplate
-     * @return DeniedFoundStrategy
-     */
-    public function setDeniedTemplate($deniedTemplate)
-    {
-        $this->deniedTemplate = (string) $deniedTemplate;
-        return $this;
-    }
-
-    /**
-     * Get template
-     *
-     * @return string
-     */
-    public function getDeniedTemplate()
-    {
-        return $this->deniedTemplate;
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'prepareDeniedViewModel'), 100);
     }
 
     /**
@@ -102,24 +48,17 @@ class DeniedStrategy implements ListenerAggregateInterface
     public function prepareDeniedViewModel(MvcEvent $e)
     {
         $result = $e->getResult();
-        if ($result instanceof Response/* || $result instanceof ViewModel*/) {
+        if ($result instanceof Response) {
             // Already have a response or view model as the result
             return;
         }
 
         $response = $e->getResponse();
         $statusCode = $response->getStatusCode();
-        // Detect 401/403 response if status code is not set
-        $errorMessage = $e->getError();
-        if (empty($statusCode) && ('__denied__' == $errorMessage)) {
-            $statusCode = Pi::registry("user")->isGuest() ? 401 : 403;
-            $response->setStatusCode($statusCode);
-        }
         if ($statusCode != 401 && $statusCode != 403) {
-        //if ($statusCode < 400) {
-            // Only handle 401/403 responses
             return;
         }
+        $errorMessage = $e->getError();
         if ('__denied__' == $errorMessage) {
             $errorMessage = '';
         }
@@ -134,13 +73,10 @@ class DeniedStrategy implements ListenerAggregateInterface
         }
         $result->setVariable('code', $statusCode);
 
-        $routeMatch = $e->getRouteMatch();
-        if ($routeMatch) {
-            $result->setVariable('module', $routeMatch->getParam('module'));
-            $result->setVariable('controller', $routeMatch->getParam('controller'));
-            $result->setVariable('action', $routeMatch->getParam('action'));
-        }
-        $result->setTemplate($this->getDeniedTemplate());
+        $config  = $e->getApplication()->getServiceManager()->get('Config');
+        $viewConfig = $config['view_manager'];
+        $deniedTemplate = isset($viewConfig['denied_template']) ? $viewConfig['denied_template'] : 'error-denied';
+        $result->setTemplate($deniedTemplate);
 
         $e->getViewModel()->addChild($result);
     }

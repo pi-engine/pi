@@ -101,14 +101,6 @@ class Delete extends AbstractSql implements SqlInterface, PreparableSqlInterface
      */
     public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
     {
-        /**#@+
-        * Use canonized method
-        * @see Zend\Db\Sql\AbstractSql::where()
-        */
-        parent::where($predicate, $combination);
-        return $this;
-        /**#@-*/
-
         if ($predicate instanceof Where) {
             $this->where = $predicate;
         } elseif ($predicate instanceof \Closure) {

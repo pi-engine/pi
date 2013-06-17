@@ -19,85 +19,101 @@
 
 namespace Pi\View\Strategy;
 
+use Pi;
 use Zend\View\Strategy\PhpRendererStrategy as ZendPhpRendererStrategy;
 use Zend\View\ViewEvent;
-use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventManagerInterface;
 
 class PhpRendererStrategy extends ZendPhpRendererStrategy
 {
+    protected $initialized = false;
+
     /**
-     * Attach the aggregate to the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @param  int $priority
-     * @return void
+     * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
         parent::attach($events, $priority);
-        //$this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'assembleMeta'), $priority);
+
+        /*
+        // The initAssemble should be called before all view rendering
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'initAssemble'), 10000);
+
+        // The renderAssemble should be called after all view rendering
+        //$this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER_POST, array($this, 'renderAssemble'), 10000);
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'renderAssemble'), 10000);
+
+        // The completeAssemble should be called after all view rendering and before response is sent
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'completeAssemble'), -10000);
+        */
     }
 
     /**
-     * Populate the response object from the View
+     * Initialize assemble with config meta
      *
-     * Populates the content of the response object from the view rendering
-     * results.
+     * @param  ViewEvent $e
+     * @return void
+     */
+    public function initAssemble(ViewEvent $e)
+    {
+        if ($this->initialized) {
+            return;
+        }
+        $this->initialized = true;
+
+        // Skip ajax request
+        $request   = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return;
+        }
+
+        d(__METHOD__);
+        $this->renderer->assemble()->initStrategy();
+        return;
+    }
+
+    /**
+     * Canonize head title by appending site name and/or slogan
      *
      * @param ViewEvent $e
      * @return void
      */
-    public function assembleMeta(ViewEvent $e)
+    public function renderAssemble(ViewEvent $e)
     {
-        $response = $e->getResponse();
-        $content = $response->getContent();
-
-        /**#@+
-         * Generates and inserts head meta, stylesheets and scripts
-         */
-        $pos = stripos($content, '</head>');
-        if (false === $pos) {
+        // Skip ajax request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
             return;
         }
-        $preHead = substr($content, 0, $pos);
-        $postHead = substr($content, $pos);
 
-        $indent = 4;
+        $this->renderer->assemble()->renderStrategy();
+        return;
+    }
 
-        $headTitle = '';
-        if ($this->renderer->headTitle()->count()) {
-            $headTitle = $this->renderer->headTitle()->toString($indent);
-            $headTitle .= $headTitle;
+    /**
+     * Assemble meta contents
+     *
+     * @param ViewEvent $e
+     * @return void
+     */
+    public function completeAssemble(ViewEvent $e)
+    {
+        // Set response headers for language and charset
+        $response = $e->getResponse();
+        $response->getHeaders()->addHeaders(array(
+            'content-type'      => sprintf('text/html; charset=%s', Pi::service('i18n')->charset),
+            'content-language'  => Pi::service('i18n')->locale,
+        ));
+
+        // Skip ajax request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return;
         }
 
-        $headMeta = $this->renderer->headMeta()->toString($indent);
-        $headMeta .= $headMeta ? PHP_EOL : '';
-
-        $headLink = $this->renderer->headLink()->toString($indent);
-        $headLink .= $headLink ? PHP_EOL : '';
-
-        $headStyle = $this->renderer->headStyle()->toString($indent);
-        $headStyle .= $headStyle ? PHP_EOL : '';
-
-        $headScript = $this->renderer->headScript()->toString($indent);
-        $headScript .= $headScript ? PHP_EOL : '';
-
-        $head = $headTitle . $headMeta . $headLink . $headStyle . $headScript;
-        $content = $preHead . ($head ? PHP_EOL . $head . PHP_EOL : '') . $postHead;
-        /**#@-*/
-
-        /**@+
-         * Generates and inserts foot scripts
-         */
-        $foot = $this->renderer->footScript()->toString($indent);
-        if ($foot && $pos = strripos($content, '</body>')) {
-            $preFoot = substr($content, 0, $pos);
-            $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $foot . PHP_EOL . PHP_EOL . $postFoot;
-        }
-        /**#@-*/
-
+        $content = $response->getContent();
+        $content = $this->renderer->assemble()->completeStrategy($content);
         $response->setContent($content);
+        return;
     }
 }

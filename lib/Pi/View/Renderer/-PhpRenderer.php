@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
- * @version         $Id$
  */
 
 namespace Pi\View\Renderer;
@@ -25,16 +23,7 @@ use Zend\View\Model\ModelInterface as Model;
 class PhpRenderer extends ZendPhpRenderer
 {
     /**
-     * Processes a view script and returns the output.
-     *
-     * @param  string|Model $nameOrModel Either the template to use, or a
-     *                                   ViewModel. The ViewModel must have the
-     *                                   template as an option in order to be
-     *                                   valid.
-     * @param  null|array|Traversable Values to use when rendering. If none
-     *                                provided, uses those in the composed
-     *                                variables container.
-     * @return string The script output.
+     * {@inheritDoc}
      */
     public function __render($nameOrModel, $values = null)
     {

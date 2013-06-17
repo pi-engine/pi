@@ -89,27 +89,6 @@ class AbstractFeed
         return $this;
     }
 
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    /**
-     * Set an array with feed authors
-     *
-     * @see addAuthor
-     * @param array $authors
-     * @return AbstractFeed
-     */
-    public function setAuthors(array $authors)
-    {
-        $this->data['authors'] = array();
-        foreach ($authors as $author) {
-            $this->addAuthor($author);
-        }
-
-        return $this;
-    }
-    /**#@-*/
-
     /**
      * Set an array with feed authors
      *
@@ -487,12 +466,7 @@ class AbstractFeed
      * @param array $urls
      * @return AbstractFeed
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addHubs(array $urls)
-    public function setHubs(array $urls)
-    /**#@-*/
+    public function addHubs(array $urls)
     {
         foreach ($urls as $url) {
             $this->addHub($url);
@@ -531,26 +505,6 @@ class AbstractFeed
 
         return $this;
     }
-
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    /**
-     * Set an array of feed categories
-     *
-     * @param array $categories
-     * @return AbstractFeed
-     */
-    public function setCategories(array $categories)
-    {
-        $this->data['categories'] = array();
-        foreach ($categories as $category) {
-            $this->addCategory($category);
-        }
-
-        return $this;
-    }
-    /**#@-*/
 
     /**
      * Set an array of feed categories

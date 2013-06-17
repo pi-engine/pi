@@ -24,7 +24,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ApplicationFactory extends ZendApplicationFactory
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

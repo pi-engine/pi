@@ -139,17 +139,7 @@ class Assemble extends AbstractHelper
         /**#@+
          * Generates and inserts head meta, stylesheets and scripts
          */
-        //$indent = 4;
         $head = '';
-        //$headTitle = '';
-        /*
-        $headTitle = $this->view->headTitle()->toString() . PHP_EOL;
-        if (!empty($this->sectionLabel['headTitle'])) {
-            $content = str_replace($this->sectionLabel['headTitle'], $headTitle, $content);
-        } else {
-            $head .= $headTitle . PHP_EOL;
-        }
-        */
 
         foreach (array('headTitle', 'headMeta', 'headLink', 'headStyle', 'headScript') as $section) {
             $sectionContent = $this->view->plugin($section)->toString();

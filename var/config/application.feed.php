@@ -15,11 +15,15 @@
  * @version         $Id$
  */
 
-
 $config = include __DIR__ . '/application.front.php';
 // Translations
-$config['resource']['i18n']['translator']['global'][] = 'usr:feed';
-$config['resource']['i18n']['translator']['module'][] = 'feed';
+$config['resource']['i18n'] = array(
+    'charset'       => 'UTF-8',
+    'translator'    => array(
+        'global'    => array('usr:feed'),
+        'module'    => array('feed'),
+    ),
+);
 // Session resource, load configs from resource.session.php and instantiate session service
 $config['resource']['session'] = false;
 // Load authentication configs from resource.authentication.php and instantiate authentication service
@@ -34,11 +38,12 @@ $config['resource']['render'] = array(
 );
 
 // Application service configuration
-//$config['application']['view_manager']['mvc_strategies'] = array('ViewFeedRenderer');
+$config['application']['listeners'] = array('PrepareFeedModel');
+$config['application']['view_manager']['mvc_strategies'] = null;
 $config['application']['view_manager']['strategies'] = array('ViewFeedStrategy');
 $config['application']['send_response'] = null;
 
 // Application environment
-$config['config']['environment'] = 'production';
+//$config['config']['environment'] = 'production';
 
 return $config;

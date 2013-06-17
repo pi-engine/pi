@@ -45,6 +45,9 @@ class ServiceManagerConfig extends ZendServiceManagerConfig
         'ViewManager'               => 'Pi\Mvc\View\Http\ViewManager',
         'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
         'Config'                    => 'Pi\Mvc\Service\Config',
+        'DeniedRendering'           => 'Pi\Mvc\View\Http\DeniedStrategy',
+        'PrepareViewModel'          => 'Pi\Mvc\View\Http\PrepareViewModelListener',
+        'ThemeRendering'            => 'Pi\Mvc\View\Http\ThemeRenderingStrategy',
         /**#@-*/
     );
 

@@ -19,7 +19,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\View\Model\ViewModel as Model;
+use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\InjectApplicationEventInterface;
@@ -152,7 +152,7 @@ class View extends AbstractPlugin
      * @param  Model $viewModel
      * @return View
      */
-    public function setViewModel(Model $viewModel)
+    public function setViewModel(ViewModel $viewModel)
     {
         $this->viewModel = $viewModel;
         return $this;
@@ -168,11 +168,11 @@ class View extends AbstractPlugin
     public function getViewModel($variables = null, $options = array())
     {
         if (!$this->viewModel) {
-            $this->viewModel = new Model($variables, $options);
+            $this->viewModel = new ViewModel($variables, $options);
             $this->viewModel->setCaptureTo('content');
         } elseif ($variables || $options) {
             if ($variables) {
-                $this->assign($variables);
+                $this->viewModel->setVariables($variables);
             }
             if ($options) {
                 $this->viewModel->setOptions($options);

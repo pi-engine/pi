@@ -12,54 +12,27 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Mvc\View\Http;
 
+use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface as Events;
-use Zend\EventManager\ListenerAggregateInterface;
 use Zend\Filter\Word\CamelCaseToDash as CamelCaseToDashFilter;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\View\Model\ModelInterface as ViewModel;
 
-class InjectTemplateListener implements ListenerAggregateInterface
+class InjectTemplateListener extends AbstractListenerAggregate
 {
     /**
-     * Listeners we've registered
-     *
-     * @var array
-     */
-    protected $listeners = array();
-
-    /**
-     * Attach listeners
-     *
-     * @param  Events $events
-     * @return void
+     * {@inheritDoc}
      */
     public function attach(Events $events)
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'injectTemplate'), -90);
-    }
-
-    /**
-     * Detach listeners
-     *
-     * @param  Events $events
-     * @return void
-     */
-    public function detach(Events $events)
-    {
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
     }
 
     /**

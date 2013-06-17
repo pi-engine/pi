@@ -51,7 +51,7 @@ class I18n extends AbstractResource
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->translator;
             if (!empty($this->options['translator']['global'])) {
-                foreach ($this->options['translator']['global'] as $domain) {
+                foreach ((array) $this->options['translator']['global'] as $domain) {
                     $translator->load($domain);
                 }
             }
@@ -69,7 +69,7 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
-        foreach ($this->options['translator']['module'] as $domain) {
+        foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
         }
     }

@@ -53,4 +53,7 @@ $config['resource']['audit'] = array(
 // Admin mode detection
 $config['resource']['adminmode'] = array();
 
+// Application service configuration
+$config['application']['view_manager']['layout'] = 'layout-admin';
+
 return $config;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Default rendering strategy
+ * Pi theme rendering strategy
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,123 +12,104 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Mvc\View\Http;
 
 use Pi;
+use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\View\Http\DefaultRenderingStrategy as ZendDefaultRenderingStrategy;
-use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\ModelInterface as ViewModel;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Model\ModelInterface as ViewModel;
+use Zend\View\Model\ConsoleModel;
+use Zend\View\Model\FeedModel;
+use Zend\View\Model\JsonModel;
 
-class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
+
+class ThemeRenderingStrategy extends AbstractListenerAggregate
 {
-    /**
-     * Layout template for error - template used in root ViewModel of MVC event for error pages.
-     *
-     * @var string
-     */
-    protected $layoutError = 'layout-error';
+    protected $skip = null;
 
     /**
-     * Attach the aggregate to the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @return void
+     * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events)
     {
-        parent::attach($events);
-
         $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'initAssemble'), 10000);
 
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'renderAssemble'), 10000);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'renderAssemble'), 10000);
 
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'setLayout'), 1000);
+
         $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'completeAssemble'), 10000);
     }
 
-    /**
-     * Get error layout template value
-     *
-     * @return string
-     */
-    public function getLayoutError()
+    public function setSkip($skip)
     {
-        return $this->layoutError;
-    }
-
-    /**
-     * Set error layout template value
-     *
-     * @param  string $layoutError
-     * @return DefaultRenderingStrategy
-     */
-    public function setLayoutError($layoutError)
-    {
-        $this->layoutError = (string) $layoutError;
+        $this->skip = $skip;
         return $this;
     }
 
-    /**
-     * Get AJAX layout template value
-     *
-     * @return string
-     */
-    public function getAjaxLayoutTemplate()
+    protected function skip(MvcEvent $e)
     {
-        return 'layout-content';
+        if (null !== $this->skip) {
+            return $this->skip;
+        }
+
+        $_this = $this;
+        $setSkip = function ($skip = true) use ($_this) {
+            $_this->setSkip($skip);
+            return $skip;
+        };
+
+        $result = $e->getResult();
+        if ($result instanceof Response) {
+            return $setSkip();
+        }
+
+        // Skip AJAX request
+        $request = $e->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            return $setSkip();
+        }
+
+        $viewModel = $e->getViewModel();
+        if (!$viewModel instanceof ViewModel || $viewModel instanceof JsonModel) {
+            return $setSkip();
+        }
+
+        return $this->skip;
     }
 
     /**
-     * Render the view
-     *
-     * @param  MvcEvent $e
-     * @return Response
+     * {@inheritDoc}
      */
-    public function render(MvcEvent $e)
+    public function setLayout(MvcEvent $e)
     {
         $result = $e->getResult();
         if ($result instanceof Response) {
             return $result;
         }
 
-        // Martial arguments
-        $request   = $e->getRequest();
-        $response  = $e->getResponse();
         $viewModel = $e->getViewModel();
         if (!$viewModel instanceof ViewModel) {
             return;
         }
 
-        // Profiling
-        Pi::service('log')->start('RENDER');
+        $config  = $e->getApplication()->getServiceManager()->get('Config');
+        $viewConfig = $config['view_manager'];
 
+        $request   = $e->getRequest();
         // Set up AJAX layout
         if ($request->isXmlHttpRequest()) {
-            $viewModel->setTemplate($this->getAjaxLayoutTemplate());
-        } else {
-            // Set up error page layut
-            if ($e->isError()) {
-                $viewModel->setTemplate($this->getLayoutError());
-            }
+            $viewModel->setTemplate(isset($viewConfig['layout_ajax']) ? $viewConfig['layout_ajax'] : 'layout-content');
+        // Set error page layout
+        } elseif ($e->isError()) {
+            $viewModel->setTemplate(isset($viewConfig['layout_error']) ? $viewConfig['layout_error'] : 'layout-style');
         }
-
-        $view = $this->view;
-        $view->setRequest($request);
-        $view->setResponse($response);
-        $view->render($viewModel);
-
-        // Profiling
-        Pi::service('log')->end('RENDER');
-
-        return $response;
     }
 
     /**
@@ -139,9 +120,7 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      */
     public function initAssemble(MvcEvent $e)
     {
-        // Skip ajax request
-        $request   = $e->getRequest();
-        if ($request->isXmlHttpRequest()) {
+        if ($this->skip($e)) {
             return;
         }
 
@@ -159,9 +138,7 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      */
     public function renderAssemble(MvcEvent $e)
     {
-        // Skip ajax request
-        $request = $e->getRequest();
-        if ($request->isXmlHttpRequest()) {
+        if ($this->skip($e)) {
             return;
         }
 
@@ -180,18 +157,16 @@ class DefaultRenderingStrategy extends ZendDefaultRenderingStrategy
      */
     public function completeAssemble(MvcEvent $e)
     {
+        if ($this->skip($e)) {
+            return;
+        }
+
         // Set response headers for language and charset
         $response = $e->getResponse();
         $response->getHeaders()->addHeaders(array(
             'content-type'      => sprintf('text/html; charset=%s', Pi::service('i18n')->charset),
             'content-language'  => Pi::service('i18n')->locale,
         ));
-
-        // Skip ajax request
-        $request = $e->getRequest();
-        if ($request->isXmlHttpRequest()) {
-            return;
-        }
 
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');

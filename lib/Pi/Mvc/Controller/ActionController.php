@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
  * @subpackage      Controller
- * @version         $Id$
  */
 
 namespace Pi\Mvc\Controller;
@@ -59,7 +57,7 @@ abstract class ActionController extends AbstractController
     {
         $this->jumpTo404();
         return;
-        
+
         $response   = $this->response;
         $event      = $this->getEvent();
         $routeMatch = $event->getRouteMatch();

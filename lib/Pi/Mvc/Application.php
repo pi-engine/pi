@@ -21,37 +21,11 @@ use Pi;
 use Pi\Application\Engine\AbstractEngine;
 use Zend\Mvc\Application as ZendApplication;
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Service;
+use Zend\ServiceManager\ServiceManager;
 
 /**
- * Main application class for invoking applications
- *
- * Expects the user will provide a configured ServiceManager, configured with
- * the following services:
- *
- * - EventManager
- * //- ModuleManager
- * - Request
- * - Response
- * - RouteListener
- * - Router
- * - DispatchListener
- * - ViewManager
- *
- * The most common workflow is:
- * <code>
- * $services = new Pi\ServiceManager\ServiceManager($servicesConfig);
- * $app      = new Application($appConfig, $services);
- * $app->bootstrap();
- * $response = $app->run();
- * $response->send();
- * </code>
- *
- * bootstrap() opts in to the default route, dispatch, and view listeners,
- * sets up the MvcEvent, and triggers the bootstrap event. This can be omitted
- * if you wish to setup your own listeners and/or workflow; alternately, you
- * can simply extend the class to override such behavior.
- *
- * @see   Zend\Mvc\Application
+ * {@inheritDoc}
  */
 class Application extends ZendApplication
 {
@@ -66,6 +40,25 @@ class Application extends ZendApplication
      * @var AbstractEngine
      */
     protected $engine;
+
+    public function setListeners(array $listeners = array())
+    {
+        if ($listeners) {
+            $this->defaultListeners = array_merge($this->defaultListeners, $listeners);
+        }
+        
+        return $this;
+    }
+
+    public static function load($configuration = array())
+    {
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
+        $listeners = isset($configuration['listeners']) ? $configuration['listeners'] : array();
+        $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
+        //$serviceManager->setService('Configuration', $configuration);
+        $serviceManager->get('Configuration')->exchangeArray($configuration);
+        return $serviceManager->get('Application')->setListeners($listeners);
+    }
 
     /**
      * Set section, called by Engine
@@ -138,19 +131,6 @@ class Application extends ZendApplication
     /**#@+
      * Extended from Zend\Mvc\Application
      */
-    /**
-     * {@inheritdoc}
-     */
-    public static function init($configuration = array())
-    {
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
-        $listeners = isset($configuration['listeners']) ? $configuration['listeners'] : array();
-        $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
-        $serviceManager->setService('ApplicationConfig', $configuration);
-        //$serviceManager->get('ModuleManager')->loadModules();
-        return $serviceManager->get('Application')->bootstrap($listeners);
-    }
-
     /**
      * {@inheritdoc}
      */

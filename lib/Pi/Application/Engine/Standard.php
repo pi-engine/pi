@@ -12,16 +12,15 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Application
- * @since           3.0
- * @version         $Id$
+ * @package         Pi\Application
  */
 
 namespace Pi\Application\Engine;
 
 use Pi;
-use Pi\Mvc\Service\ServiceManagerConfig;
-use Zend\ServiceManager\ServiceManager;
+use Pi\Mvc\Application;
+//use Pi\Mvc\Service\ServiceManagerConfig;
+//use Zend\ServiceManager\ServiceManager;
 
 /**
  * Pi standard application engine
@@ -76,14 +75,14 @@ class Standard extends AbstractEngine
             return false;
         }
 
-        // Load application, which could be called during resouce setup
-        $application = $this->application();
-
         // Boot application resources
         $status = $this->bootResources();
         if (false === $status) {
             return false;
         }
+
+        // Load application, which could be called during resouce setup
+        $application = $this->application();
 
         // Boot application
         $application->bootstrap();
@@ -97,12 +96,17 @@ class Standard extends AbstractEngine
     public function application()
     {
         if (!$this->application) {
+            $options = isset($this->options['application']) ? $this->options['application'] : array();
+            /*
             // setup service manager
-            $serviceManager = new ServiceManager(new ServiceManagerConfig($this->options['service_manager']));
+            $smConfig = isset($options['service_manager']) ? $options['service_manager'] : array();
+            $serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
             if (isset($this->options['application'])) {
                 $serviceManager->get('Configuration')->exchangeArray($this->options['application']);
             }
             $this->application = $serviceManager->get('Application');
+            */
+            $this->application = Application::load($options);
             $this->application->setEngine($this)->setSection($this->section());
         }
 
