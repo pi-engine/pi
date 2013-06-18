@@ -417,18 +417,6 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
 
         $escaper = $this->view->plugin('escapeHtml');
 
-        /**#@+
-         * Added by Taiwen Jiang
-         */
-        if (empty($label)) {
-            $attribs['class'] = $attribs['class'] ?: 'divider';
-            return '<div' . $this->htmlAttribs($attribs) . ' />';
-        }
-        if (empty($attribs['href'])) {
-            return '<span>' . $escaper($label) . '</span>';
-        }
-        /**#@-*/
-
         return '<a' . $this->htmlAttribs($attribs) . '>' . $escaper($label) . '</a>';
     }
 
@@ -785,6 +773,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
         if (null !== $textDomain) {
             $this->setTranslatorTextDomain($textDomain);
         }
+
         return $this;
     }
 

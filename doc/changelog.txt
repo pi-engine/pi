@@ -4,6 +4,11 @@ June 8th, 2013
 =============================
 1. Upgraded ZF2 to 2.2.1
 2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
+3. Refactoring ZF related components: keep ZF untouched for smooth upgrade maintenance
+4. Modified config files: var/config/application.front.php; var/config/application.admin.php; var/config/application.feed.php
+5. Added config file: var/config/config.application.php
+6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
+7. Restored i18n config files
 
 
 June 8th, 2013

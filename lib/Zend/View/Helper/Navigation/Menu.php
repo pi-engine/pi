@@ -150,15 +150,6 @@ class Menu extends AbstractHelper
             if (!$this->accept($subPage)) {
                 continue;
             }
-            /**#@+
-             * Added by Taiwen Jiang
-             */
-            if (!$subPage->getLabel()) {
-                $liClass = $subPage->getClass() ?: 'divider';
-                $html .= $indent . '    <li class="' . $liClass . '" />' . self::EOL;
-                continue;
-            }
-            /**#@-*/
 
             // render li tag and page
             $liClasses = array();
@@ -329,17 +320,6 @@ class Menu extends AbstractHelper
                 $html .= $myIndent . '    </li>' . self::EOL;
             }
 
-            /**#@+
-             * Added by Taiwen Jiang
-             */
-            if (!$page->getLabel()) {
-                $liClass = $page->getClass() ?: 'divider';
-                $html .= $myIndent . '    <li class="' . $liClass . '" />' . self::EOL;
-                $prevDepth = $depth;
-                continue;
-            }
-            /**#@-*/
-	    
             // render li tag and page
             $liClasses = array();
             // Is page active?

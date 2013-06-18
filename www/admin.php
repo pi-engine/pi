@@ -15,5 +15,6 @@
  */
 
 define('APPLICATION_ENGINE', 'Admin');
+define('PI_BOOT_ENABLE', 1);
 
 include __DIR__ . "/boot.php";

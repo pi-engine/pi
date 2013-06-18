@@ -1194,13 +1194,6 @@ class Uri implements UriInterface
      */
     protected static function isValidDnsHostname($host)
     {
-        /**#@+
-         * Skip host validation as the system will be crashed during a redirect response in some windows OS
-         * Added by Taiwen Jiang
-         */
-        return true;
-        /**#@-*/
-        
         $validator = new Validator\Hostname(array(
             'allow' => Validator\Hostname::ALLOW_DNS | Validator\Hostname::ALLOW_LOCAL,
         ));

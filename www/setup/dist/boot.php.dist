@@ -22,6 +22,6 @@ define('PI_PATH_HOST', '%host%');
 define('PI_PATH_LIB', '%lib%');
 
 include PI_PATH_LIB . '/Pi.php';
-if (!defined('PI_BOOT_SKIP')) {
+if (defined('PI_BOOT_ENABLE') && constant('PI_BOOT_ENABLE')) {
     return Pi::boot();
 }

@@ -66,6 +66,9 @@ EOT;
             }
             $display .= $string;
         }
+
+        trigger_error('test notice message', E_USER_NOTICE);
+        trigger_error('test warning message', E_USER_WARNING);
         return $display;
     }
 

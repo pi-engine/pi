@@ -137,7 +137,7 @@ class CarouselController extends WidgetController
 
     public function uploadAction()
     {
-        Pi::service('log')->active(false);
+        //Pi::service('log')->active(false);
         $return = array(
             'status'    => 1,
             'message'   => '',
@@ -168,7 +168,6 @@ class CarouselController extends WidgetController
         if ($uploader->isValid()) {
             $uploader->receive();
             $file = $uploader->getUploaded('image');
-            //$return['image'] = Pi::url('upload') . '/' . $this->getModule() . '/' . $file;
             $return['image'] = $file;
         } else {
             $messages = $uploader->getMessages();
@@ -178,7 +177,7 @@ class CarouselController extends WidgetController
             );
         }
 
-        //return $return;
+        return $return;
         /**#@+
          *  For iframe
          */

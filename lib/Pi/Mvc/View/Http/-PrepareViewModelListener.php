@@ -72,7 +72,8 @@ class PrepareViewModelListener extends AbstractListenerAggregate
         // Disable error debugging for AJAX and Flash
        $request = $e->getRequest();
        if ($request->isXmlHttpRequest() || $request->isFlashRequest()) {
-            Pi::service('log')->debugger(false);
+            Pi::service('log')->active(false);
+            //Pi::service('log')->debugger(false);
         }
     }
 
@@ -117,10 +118,12 @@ class PrepareViewModelListener extends AbstractListenerAggregate
 
         // Inject ViewModel
         if ($model) {
+            //var_dump($model);
             // Skip following result handling
             $e->setResult(false);
 
             // Inject ViewModel
+            $model->setTemplate('');
             $e->setViewModel($model);
         }
     }
@@ -146,7 +149,7 @@ class PrepareViewModelListener extends AbstractListenerAggregate
 
         $template = $model->getTemplate();
         // Preset variables for module templates, skip AJAX requests
-        if ($template && '__NULL__' != $template) {
+        if ('__NULL__' != $template) {
             $model->setVariables(array(
                 'module'        => $routeMatch->getParam('module'),
                 'controller'    => $routeMatch->getParam('controller'),

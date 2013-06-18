@@ -12,7 +12,6 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @version         $Id$
  */
 
 $config = include __DIR__ . '/application.front.php';
@@ -38,7 +37,7 @@ $config['resource']['render'] = array(
 );
 
 // Application service configuration
-$config['application']['listeners'] = array('PrepareFeedModel');
+$config['application']['listeners'] = array('FeedStrategyListener');
 $config['application']['view_manager']['mvc_strategies'] = null;
 $config['application']['view_manager']['strategies'] = array('ViewFeedStrategy');
 $config['application']['send_response'] = null;

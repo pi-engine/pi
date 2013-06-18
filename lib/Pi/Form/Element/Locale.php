@@ -29,6 +29,7 @@ class Locale extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
+            $this->valueOptions['auto'] = __('Auto-detection');
             $iterator = new \DirectoryIterator(Pi::service('i18n')->getPath('', ''));
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() || $fileinfo->isDot()) {

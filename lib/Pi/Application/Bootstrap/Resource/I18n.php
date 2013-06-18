@@ -34,22 +34,24 @@ class I18n extends AbstractResource
         $this->engine->bootResource('config');
 
         // Load options for locale and charset
-        $locale = !empty($this->options['locale']) ? $this->options['locale'] : Pi::config('locale');
-        $charset = !empty($this->options['charset']) ? $this->options['charset'] : Pi::config('charset');
-        $locale = $locale ?: 'auto';
-        $charset = $charset ?: 'utf-8';
+        //$locale = !empty($this->options['locale']) ? $this->options['locale'] : Pi::config('locale');
+        //$charset = !empty($this->options['charset']) ? $this->options['charset'] : Pi::config('charset');
+        $locale = Pi::config('locale') ?: 'auto';
+        $charset = Pi::config('charset') ?: 'utf-8';
 
         if ('auto' == $locale) {
             $locale = Pi::service('i18n')->getClient() ?: Pi::config('locale');
         }
 
-        // Set default locale
-        $locale = Pi::service('i18n')->setLocale($locale);
-        $result = setlocale(LC_ALL, $locale);
+        // Set default locale and charset
+        Pi::service('i18n')->setCharset($charset);
+        Pi::service('i18n')->setLocale($locale);
+        $locale = Pi::service('i18n')->getLocale();
+        setlocale(LC_ALL, $locale);
 
         // Preload translations
         if (!empty($this->options['translator'])) {
-            $translator = Pi::service('i18n')->translator;
+            $translator = Pi::service('i18n')->getTranslator();
             if (!empty($this->options['translator']['global'])) {
                 foreach ((array) $this->options['translator']['global'] as $domain) {
                     $translator->load($domain);

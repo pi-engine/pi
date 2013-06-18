@@ -9,10 +9,10 @@
 
 namespace Zend\Navigation\Page;
 
+use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\Mvc\Router\RouteStackInterface;
 use Zend\Navigation\Exception;
-use Zend\Mvc\ModuleRouteListener;
 
 /**
  * Represents a page that is defined using controller, action, route
@@ -99,25 +99,6 @@ class Mvc extends AbstractPage
      */
     protected static $defaultRouter= null;
 
-    /**#@+
-     * Added by Taiwen Jiang
-     */
-    /**
-     * Module name to use when assembling URL
-     *
-     * @var string
-     */
-    protected $module;
-
-    /**
-     * Default RouteMatch to be used if RouteMatch is not given.
-     *
-     * @var RouteMatch
-     */
-    protected static $defaultRouteMatch = null;
-    /**#@-*/
-
-
     // Accessors:
 
     /**
@@ -133,20 +114,8 @@ class Mvc extends AbstractPage
      */
     public function isActive($recursive = false)
     {
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        //if (!$this->active) {
-        if (null === $this->active) {
-        /**#@-*/
+        if (!$this->active) {
             $reqParams = array();
-
-            /**#@+
-             * Added by Taiwen Jiang
-             */
-            $this->routeMatch = $this->getRouteMatch();
-            /**#@-*/
-
             if ($this->routeMatch instanceof RouteMatch) {
                 $reqParams  = $this->routeMatch->getParams();
 
@@ -155,13 +124,6 @@ class Mvc extends AbstractPage
                 }
 
                 $myParams   = $this->params;
-                /**#@+
-                 * Added by Taiwen Jiang
-                 */
-                if (null !== $this->module) {
-                    $myParams['module'] = $this->module;
-                }
-                /**#@-*/
                 if (null !== $this->controller) {
                     $myParams['controller'] = $this->controller;
                 }
@@ -180,22 +142,9 @@ class Mvc extends AbstractPage
                         return parent::isActive($recursive);
                     }
                 }
-                /**#@+
-                 * Added by Taiwen Jiang
-                 */
-                return parent::isActive($recursive);
-                /**#@-*/
             }
 
             $myParams = $this->params;
-
-            /**#@+
-             * Added by Taiwen Jiang
-             */
-            if (null !== $this->module) {
-                $myParams['module'] = $this->module;
-            }
-            /**#@-*/
 
             if (null !== $this->controller) {
                 $myParams['controller'] = $this->controller;
@@ -219,18 +168,7 @@ class Mvc extends AbstractPage
                 $this->active = true;
                 return true;
             }
-
-            /**#@+
-             * Added by Taiwen Jiang
-             */
-            return parent::isActive($recursive);
-            /*#@-*/
         }
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        return $this->active;
-        /**#@-*/
 
         return parent::isActive($recursive);
     }
@@ -263,7 +201,7 @@ class Mvc extends AbstractPage
             );
         }
 
-        if ($this->useRouteMatch()) {
+        if ($this->useRouteMatch() && $this->getRouteMatch()) {
             $rmParams = $this->getRouteMatch()->getParams();
 
             if (isset($rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER])) {
@@ -280,14 +218,6 @@ class Mvc extends AbstractPage
             $params = $this->getParams();
         }
 
-
-        /**#@+
-         * Added by Taiwen Jiang
-         */
-        if (($param = $this->getModule()) != null) {
-            $params['module'] = $param;
-        }
-        /**#@-*/
 
         if (($param = $this->getController()) != null) {
             $params['controller'] = $param;
@@ -320,17 +250,7 @@ class Mvc extends AbstractPage
             $options['query'] = $query;
         }
 
-
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        try {
-           $url = $router->assemble($params, $options);
-        } catch (\Exception $e) {
-            $url = '';
-            trigger_error($e->getMessage(), E_USER_WARNING);
-        }
-        /**#@-**/
+        $url = $router->assemble($params, $options);
 
         return $this->hrefCache = $url;
     }
@@ -402,44 +322,6 @@ class Mvc extends AbstractPage
     {
         return $this->controller;
     }
-
-    /**#@+
-     * Added by Taiwen Jiang
-     */
-    /**
-     * Sets module name to use when assembling URL
-     *
-     * @see getHref()
-     *
-     * @param  string|null $module    module name
-     * @return Mvc   fluent interface, returns self
-     * @throws Exception\InvalidArgumentException  if invalid module name is given
-     */
-    public function setModule($module)
-    {
-        if (null !== $module && !is_string($module)) {
-            throw new Exception\InvalidArgumentException(
-                'Invalid argument: $module must be a string or null'
-            );
-        }
-
-        $this->module = $module;
-        $this->hrefCache  = null;
-        return $this;
-    }
-
-    /**
-     * Returns module name to use when assembling URL
-     *
-     * @see getHref()
-     *
-     * @return string|null  module name or null
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
-    /**#@-*/
 
     /**
      * Sets URL query part to use when assembling URL
@@ -541,11 +423,6 @@ class Mvc extends AbstractPage
      */
     public function getRouteMatch()
     {
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        return $this->routeMatch ?: static::$defaultRouteMatch;
-        /**#@-*/
         return $this->routeMatch;
     }
 
@@ -592,11 +469,6 @@ class Mvc extends AbstractPage
      */
     public function getRouter()
     {
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        return $this->router ?: static::$defaultRouter;
-        /**#@-*/
         return $this->router;
     }
 
@@ -636,31 +508,6 @@ class Mvc extends AbstractPage
         return static::$defaultRouter;
     }
 
-    /**#@+
-     * Added by Taiwen Jiang
-     */
-    /**
-     * Sets the default RouteMatch
-     *
-     * @param  RouteMatch $matches
-     * @return void
-     */
-    public static function setDefaultRouteMatch($matches)
-    {
-        self::$defaultRouteMatch = $matches;
-    }
-
-    /**
-     * Gets the default RouteMatch
-     *
-     * @return RouteMatch
-     */
-    public static function getDefaultRouteMatch()
-    {
-        return static::$defaultRouteMatch;
-    }
-    /**#@-*/
-
     // Public methods:
 
     /**
@@ -679,11 +526,6 @@ class Mvc extends AbstractPage
                  'route'      => $this->getRoute(),
                  'router'     => $this->getRouter(),
                  'route_match' => $this->getRouteMatch(),
-                /**#@+
-                 * Added by Taiwen Jiang
-                 */
-                 'module'       => $this->getModule(),
-                /**#@-*/
             )
         );
     }

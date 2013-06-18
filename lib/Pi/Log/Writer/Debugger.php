@@ -30,6 +30,11 @@ use Zend\Log\Writer\AbstractWriter;
 
 class Debugger extends AbstractWriter
 {
+    /**
+     * {@inheritDoc}
+     */
+    protected $errorsToExceptionsConversionLevel = E_ALL;
+
     protected $profilerFormatter;
     protected $dbProfilerFormatter;
     protected $systemInfoFormatter;

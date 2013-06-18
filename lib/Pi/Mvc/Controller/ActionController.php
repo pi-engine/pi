@@ -136,6 +136,7 @@ abstract class ActionController extends AbstractController
             $e->setResult($actionResponse);
         }
 
+        /*
         // Collect directly returned scalar content
         if (null !== $actionResponse && is_scalar($actionResponse)) {
             $this->view()->setTemplate(false);
@@ -146,6 +147,7 @@ abstract class ActionController extends AbstractController
             $actionResponse = $this->view()->getViewModel();
             $e->setResult($actionResponse);
         }
+        */
 
         return $actionResponse;
     }

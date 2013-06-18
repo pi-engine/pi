@@ -77,7 +77,7 @@ class ThemeRenderingStrategy extends AbstractListenerAggregate
         }
 
         $viewModel = $e->getViewModel();
-        if (!$viewModel instanceof ViewModel || $viewModel instanceof JsonModel) {
+        if (!$viewModel instanceof ViewModel || !$viewModel->getTemplate()) {
             return $setSkip();
         }
 
@@ -95,14 +95,13 @@ class ThemeRenderingStrategy extends AbstractListenerAggregate
         }
 
         $viewModel = $e->getViewModel();
-        if (!$viewModel instanceof ViewModel) {
+        if (!$viewModel instanceof ViewModel || $viewModel instanceof JsonModel || $viewModel instanceof FeedModel) {
             return;
         }
 
-        $config  = $e->getApplication()->getServiceManager()->get('Config');
+        $config     = $e->getApplication()->getServiceManager()->get('Config');
         $viewConfig = $config['view_manager'];
-
-        $request   = $e->getRequest();
+        $request    = $e->getRequest();
         // Set up AJAX layout
         if ($request->isXmlHttpRequest()) {
             $viewModel->setTemplate(isset($viewConfig['layout_ajax']) ? $viewConfig['layout_ajax'] : 'layout-content');

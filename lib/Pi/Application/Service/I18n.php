@@ -287,7 +287,7 @@ namespace Pi\Application\Service
         public function setTranslator(Translator $translator)
         {
             $this->__translator = $translator;
-            $this->__translator->setLocale($this->locale);
+            $this->__translator->setLocale($this->getLocale());
             return $this;
         }
 
@@ -295,16 +295,16 @@ namespace Pi\Application\Service
          * Set locale and configure Translator
          *
          * @param string $locale
-         * @return string
+         * @return I18n
          */
         public function setLocale($locale)
         {
             $locale = $this->canonize($locale);
             if ($locale) {
                 $this->__locale = $locale;
-                $this->translator->setLocale($locale);
+                $this->getTranslator()->setLocale($locale);
             }
-            return $this->__locale;
+            return $this;
         }
 
         /**
@@ -415,9 +415,9 @@ namespace Pi\Application\Service
         public function load($domain, $locale = null)
         {
             $domain = is_array($domain) ? $domain : $this->normalizeDomain($domain);
-            $locale = $locale ?: $this->locale;
+            $locale = $locale ?: $this->getLocale();
 
-            $this->translator->load($domain, $locale);
+            $this->getTranslator()->load($domain, $locale);
 
             if (Pi::service()->hasService('log')) {
                 Pi::service()->getService('log')->info(sprintf('Translation "%s" is loaded', implode(':', $domain)));
@@ -473,7 +473,7 @@ namespace Pi\Application\Service
             } else {
                 list($component, $normalizedDomain) = $this->normalizeDomain($domain);
             }
-            $locale = (null === $locale) ? $this->locale : $locale;
+            $locale = (null === $locale) ? $this->getLocale() : $locale;
             $path = sprintf('%s/%s', Pi::path($component), static::DIR_RESOURCE);
             if ($locale) {
                 $path .= '/' . $locale . ($normalizedDomain ? '/' . $normalizedDomain : '');

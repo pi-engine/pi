@@ -26,6 +26,7 @@ if (!empty($_SERVER['REQUEST_URI']) && false !== ($pos = strpos($_SERVER['REQUES
  * Application engine type, mapped to /lib/Pi/Application/Engine, default as 'Standard'
  */
 define('APPLICATION_ENGINE', 'Standard');
+define('PI_BOOT_ENABLE', 1);
 
 //Load application boot
 include './boot.php';

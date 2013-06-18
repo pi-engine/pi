@@ -115,19 +115,12 @@ abstract class AbstractPage extends AbstractContainer
      */
     protected $permission;
 
-
-    /**#@+
-     * Re-initialize
-     * Modified by Taiwen Jiang
-     */
     /**
      * Whether this page should be considered active
      *
      * @var bool
      */
-    //protected $active = false;
-    protected $active = null;
-    /**#@-*/
+    protected $active = false;
 
     /**
      * Whether this page should be considered visible
@@ -227,18 +220,9 @@ abstract class AbstractPage extends AbstractContainer
             }
         }
 
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        /*
         $hasUri = isset($options['uri']);
         $hasMvc = isset($options['action']) || isset($options['controller'])
                 || isset($options['route']);
-        */
-        $hasUri = true;
-        $hasMvc = !empty($options['action']) || !empty($options['controller'])
-                || !empty($options['route']);
-        /**#@-*/
 
         if ($hasMvc) {
             return new Mvc($options);
@@ -772,21 +756,14 @@ abstract class AbstractPage extends AbstractContainer
      */
     public function isActive($recursive = false)
     {
-        /**#@+
-         * Modified by Taiwen Jiang
-         */
-        //if (!$this->active && $recursive) {
-        if (null === $this->active && $recursive) {
+        if (!$this->active && $recursive) {
             foreach ($this->pages as $page) {
                 if ($page->isActive(true)) {
-                    $this->active = true;
                     return true;
                 }
             }
-            $this->active = false;
             return false;
         }
-        /**#@-*/
 
         return $this->active;
     }
