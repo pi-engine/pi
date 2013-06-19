@@ -12,13 +12,13 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Application
- * @since           3.0
- * @version         $Id$
+ * @package         Pi\Application
  */
 
 /**
- * Autoloader
+ * Autoloader handler
+ *
+ * Options are loaded in Pi::init()
  *
  * Autoloading priority:
  * 1. class map

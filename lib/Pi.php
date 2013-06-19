@@ -204,7 +204,7 @@ class Pi
         $options = array(
             // Top namespaces
             'top'       => array(
-                'Pi' => static::path('lib') . '/Pi',
+                'Pi'    => static::path('lib') . '/Pi',
                 'Zend'  => static::path('lib') . '/Zend',
             ),
             // Regular namespaces
