@@ -26,10 +26,15 @@
  *  tmplate/layout-simple.phtml - error page layout: header, footer, body
  *  tmplate/layout-style.phtml - content with stylesheets
  *  tmplate/layout-content.phtml - raw content without stylesheets
+ *  template/error.phtml - defined in var/config/config.application.php: vivew_manager.error_template
  * REQUIRED for admin:
  *  tmplate/layout-admin.phtml - backoffice layout
  * OPTIONAL for front:
  *  template/page-zone.phtml - for block manipulation on a page
+ *  template/block.phtml - called by layout-front.phtml
+ *  template/error-404.phtml - defined in var/config/config.application.php: vivew_manager.not_found_template
+ *  template/error-denied.phtml - defined in var/config/config.application.php: vivew_manager.denied_template
+ *  template/error-exception.phtml - defined in var/config/config.application.php: vivew_manager.exception_template
  *
  * Stylesheet files:
  * REQUIRED:

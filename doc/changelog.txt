@@ -10,7 +10,8 @@ June 8th, 2013
 6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
 7. Restored i18n config files
 8. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
-
+9. Added ErrorStrategy for all erroneous results
+10. Added file: theme/template/error.phtml
 
 
 June 8th, 2013

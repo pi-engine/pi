@@ -32,12 +32,9 @@ return array(
                 /**#@+
                  * Pi custom service
                  */
-                'PrepareViewModel'          => 'Pi\Mvc\View\Http\PrepareViewModelListener',
-                'PrepareFeedModel'          => 'Pi\Mvc\View\Http\PrepareFeedModelListener',
-                //'ViewManager'               => 'Pi\Mvc\View\Http\ViewManager',
                 'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
                 'Config'                    => 'Pi\Mvc\Service\Config',
-                'DeniedRendering'           => 'Pi\Mvc\View\Http\DeniedStrategy',
+                'ErrorStrategy'             => 'Pi\Mvc\View\Http\ErrorStrategy',
                 'ViewStrategyListener'      => 'Pi\Mvc\View\Http\ViewStrategyListener',
                 'FeedStrategyListener'      => 'Pi\Mvc\View\Http\FeedStrategyListener',
                 /**#@-*/
@@ -126,6 +123,7 @@ return array(
         'view_manager' => array(
             'display_not_found_reason'  => true,
             'display_exceptions'        => true,
+            'error_template'            => 'error',
             'not_found_template'        => 'error-404',
             'exception_template'        => 'error-exception',
             'denied_template'           => 'error-denied',
@@ -134,7 +132,7 @@ return array(
             'layout_ajax'               => 'layout-content',
 
             'mvc_strategies'            => array(
-                'DeniedRendering',
+                'ErrorStrategy',
             ),
 
             'strategies'                => array(

@@ -19,8 +19,6 @@
 namespace Pi\Mvc\View\Http;
 
 use Pi;
-use Zend\EventManager\EventManagerInterface as Events;
-use Zend\Mvc\MvcEvent;
 
 class FeedStrategyListener extends ViewStrategyListener
 {
