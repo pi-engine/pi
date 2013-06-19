@@ -9,6 +9,8 @@ June 8th, 2013
 5. Added config file: var/config/config.application.php
 6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
 7. Restored i18n config files
+8. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
+
 
 
 June 8th, 2013

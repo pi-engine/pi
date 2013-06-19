@@ -64,21 +64,6 @@ abstract class Rand
                 'Please consider installing the OpenSSL and/or Mcrypt extensions'
             );
         }
-
-        /**#@+
-         * By Taiwen Jiang
-         * Fix for BC break caused by
-         *  https://github.com/zendframework/zf2/commit/97b98e7208f93613ab358432e56b6e2245153807#library/Zend/Math/Rand.php
-         */
-        if (!class_exists('RandomLib\\Factory')) {
-            $rand = '';
-            for ($i = 0; $i < $length; $i++) {
-                $rand .= chr(mt_rand(0, 255));
-            }
-            return $rand;
-        }
-        /**@-*/
-
         $generator = self::getAlternativeGenerator();
         return $generator->generate($length);
     }

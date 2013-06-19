@@ -135,7 +135,6 @@ return array(
 
             'mvc_strategies'            => array(
                 'DeniedRendering',
-                //'ThemeRendering',
             ),
 
             'strategies'                => array(
