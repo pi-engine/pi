@@ -120,7 +120,7 @@ class Acl extends AbstractResource
         if ($denied) {
             $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
             $e->getResponse()->setStatusCode($statusCode);
-            $e->setError('__denied__');
+            $e->setError(true);
         }
     }
 }

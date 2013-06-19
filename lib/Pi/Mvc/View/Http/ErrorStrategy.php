@@ -24,6 +24,7 @@ use Zend\EventManager\EventManagerInterface;
 use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
+use Zend\View\Model\ClearableModelInterface;
 
 class ErrorStrategy extends AbstractListenerAggregate
 {
@@ -101,5 +102,12 @@ class ErrorStrategy extends AbstractListenerAggregate
         $viewModel->setTemplate($template);
 
         $e->setResult($viewModel);
+
+        // Inject error ViewModel to root ViewModel in case InjectViewModelListener is not triggered
+        $model = $e->getViewModel();
+        if ($model instanceof ClearableModelInterface) {
+            $model->clearChildren();
+        }
+        $model->addChild($viewModel);
     }
 }

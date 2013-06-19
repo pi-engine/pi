@@ -66,7 +66,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'renderThemeAssemble'), 10000);
 
         // Canonize theme layout if necessary
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeThemeLayout'), 1000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeThemeLayout'), 10);
 
         // Complete meta assemble for theme
         $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'completeThemeAssemble'), 10000);
