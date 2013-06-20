@@ -38,7 +38,15 @@ return array(
             //'class'     => 'Pi\\Mvc\\Router\\RouteStack',
         ),
         // Intl resource, instantiate translator services and load specified translation data
-        'i18n'      => 'i18n',
+        'i18n'      => array(
+            // Translations to be loaded on bootstrap
+            'translator'    => array(
+                // Global available
+                'global'    => array('usr:main'),
+                // Module wide
+                'module'    => array('main'),
+            )
+        ),
         // Module resource, instantiate module service and load module configs
         'module'    => array(),
         // Modules resource, to boot up module bootstraps

@@ -5,14 +5,13 @@ June 19th, 2013
 1. Upgraded ZF2 to 2.2.1
 2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
 3. Refactoring ZF related components: keep ZF untouched for smooth upgrade maintenance
-4. Modified config files: var/config/application.front.php; var/config/application.admin.php; var/config/application.feed.php
+4. Modified config files with separate config file: var/config/application.front.php; var/config/application.admin.php; var/config/application.feed.php
 5. Added config file: var/config/config.application.php
 6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
-7. Restored i18n config files
-8. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
-9. Added ErrorStrategy for all erroneous results
-10. Added file: theme/template/error.phtml
-11. Added Pi\Version\Version and removed Pi::VERSION
+7. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
+8. Added ErrorStrategy for all erroneous results
+9. Added file: theme/template/error.phtml
+10. Added Pi\Version\Version and removed Pi::VERSION
 
 
 June 8th, 2013
@@ -29,15 +28,13 @@ June 8th, 2013
 10. Added config file: var/config/service.user.php
 11. Improved filter User
 12. Changed route User parameter name 'name' to 'identity'
-13. Modified config files: var/config/application.front.php; var/config/application.admin.php; -- moved i18n config to separate files
-14. Added config files: var/config/resource.i18n.php; var/config/resource.i18n-admin.php
-15. Added support for auto detection of locale with parameter in i18n config files
-16. Added charset to service Locale
-17. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
-18. Modified config file: var/config/service.markup.php -- removing default value for encoding
-19. Added vd shortcoming function to Debug
-20. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
-21. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
+13. Added support for auto detection of locale
+14. Added charset to service Locale
+15. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
+16. Modified config file: var/config/service.markup.php -- removing default value for encoding
+17. Added vd shortcoming function to Debug
+18. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
+19. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
 
 
 May 24th, 2013

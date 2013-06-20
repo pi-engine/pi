@@ -18,7 +18,12 @@
 $config = include __DIR__ . '/application.front.php';
 
 // Translations
-$config['resource']['i18n'] = 'i18n-admin';
+$config['resource']['i18n'] = array(
+    'translator'    => array(
+        'global'    => array('usr:admin'),
+        'module'    => array('admin'),
+    ),
+);
 
 // Permission ACL
 $config['resource']['acl'] = array(

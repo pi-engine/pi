@@ -17,7 +17,6 @@
 $config = include __DIR__ . '/application.front.php';
 // Translations
 $config['resource']['i18n'] = array(
-    'charset'       => 'UTF-8',
     'translator'    => array(
         'global'    => array('usr:feed'),
         'module'    => array('feed'),
