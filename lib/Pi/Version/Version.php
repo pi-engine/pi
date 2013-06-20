@@ -1,0 +1,180 @@
+<?php
+/**
+ * Pi version
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
+ * @license         http://www.xoopsengine.org/license New BSD License
+ * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @package         Pi\Version
+ */
+
+namespace Pi\Version;
+
+use Zend\Json\Json;
+
+/**
+ * Class to store and retrieve Pi Engine version.
+ * @see Zend\Version\Version  Class to store and retrieve the version of Zend Framework.
+ */
+class Version
+{
+    /**
+     * Pi Engine version identification - see compareVersion()
+     *
+     * @var string
+     * @see http://semver.org/ for semantic versioning
+     */
+    const VERSION = '2.2.0-dev';
+
+    /**
+     * Github Service Identifier for version information is retreived from
+     */
+    const VERSION_SERVICE_GITHUB = 'GITHUB';
+
+    /**
+     * Pi Service Identifier for version information is retreived from
+     */
+    const VERSION_SERVICE_PI = 'PI';
+
+    /**
+     * The latest stable version Pi Engine available
+     *
+     * @var string
+     */
+    protected static $latestVersion;
+
+    /**
+     * The latest master commit number from github
+     *
+     * @var string
+     */
+    protected static $latestCommit;
+
+    /**
+     * API URL to retrieve latest commit from Github
+     *
+     * @var string
+     */
+    protected static $githubApiCommit = 'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
+
+    /**
+     * API URL to retrieve release tags from Github
+     *
+     * @var string
+     */
+    protected static $githubApiRelease = 'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
+
+    /**
+     * API URL to retrieve latest Pi release
+     * @var string
+     */
+    protected static $piApiRelease = '';
+
+    /**
+     * Compare the specified Pi Engine version string $version
+     * with the current Pi\Version::VERSION of Pi Engine.
+     *
+     * @param  string  $version  A version string (e.g. "0.7.1").
+     * @return int           -1 if the $version is older,
+     *                           0 if they are the same,
+     *                           and +1 if $version is newer.
+     *
+     */
+    public static function compareVersion($version)
+    {
+        $version = strtolower($version);
+        $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
+        return version_compare($version, strtolower(static::VERSION));
+    }
+
+    /**
+     * Fetches the version of the latest stable release.
+     *
+     * By Default, this uses the GitHub API (v3) and only returns refs that begin with
+     * 'tags/release-'. Because GitHub returns the refs in alphabetical order,
+     * we need to reduce the array to a single value, comparing the version
+     * numbers with version_compare().
+     *
+     * If $service is set to VERSION_SERVICE_PI this will fall back to calling the
+     * classic style of version retreival.
+     *
+     *
+     * @see http://developer.github.com/v3/git/refs/#get-all-references
+     * @link https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-
+     * @param string $service Version Service with which to retrieve the version
+     * @return string
+     */
+    public static function getLatest($service = self::VERSION_SERVICE_PI)
+    {
+        if (null === static::$latestVersion) {
+            static::$latestVersion = false;
+            $service = strtoupper($service);
+            if ($service == self::VERSION_SERVICE_GITHUB) {
+                $url  = static::$githubApiRelease;
+
+                $apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
+
+                // Simplify the API response into a simple array of version numbers
+                $tags = array_map(function ($tag) {
+                    return substr($tag['ref'], 18); // Reliable because we're filtering on 'refs/tags/release-'
+                }, $apiResponse);
+
+                // Fetch the latest version number from the array
+                static::$latestVersion = array_reduce($tags, function ($a, $b) {
+                    return version_compare($a, $b, '>') ? $a : $b;
+                });
+            } elseif ($service == self::VERSION_SERVICE_PI) {
+                $handle = fopen(static::$piApiRelease, 'r');
+                if (false !== $handle) {
+                    static::$latestVersion = stream_get_contents($handle);
+                    fclose($handle);
+                }
+            }
+        }
+
+        return static::$latestVersion;
+    }
+
+    /**
+     * Returns true if the running version of Pi Engine is
+     * the latest than the latest tag on GitHub,
+     * which is returned by static::getLatest().
+     *
+     * @return bool
+     */
+    public static function isLatest()
+    {
+        return static::compareVersion(static::getLatest()) < 1;
+    }
+
+    /**
+     * Fetches the last github commit hash number
+     *
+     * @see http://developer.github.com/v3/git/refs/#get-a-reference
+     * @link https://api.github.com/repos/pi-engine/pi/git/refs/heads
+     * @return array|false
+     */
+    public static function getLatestCommit()
+    {
+        if (null === static::$latestCommit) {
+            static::$latestCommit = false;
+            $url  = static::$githubApiCommit;
+
+            $apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
+            $latestCommit = $apiResponse[0];
+            static::$latestCommit = array(
+                'commit'    => $latestCommit['object']['sha'],
+                'url'       => $latestCommit['object']['url'],
+            );
+        }
+
+        return static::$latestCommit;
+    }
+}

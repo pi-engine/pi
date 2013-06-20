@@ -1,6 +1,6 @@
 Pi Engine Changelog
 
-June 8th, 2013
+June 19th, 2013
 =============================
 1. Upgraded ZF2 to 2.2.1
 2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
@@ -12,6 +12,7 @@ June 8th, 2013
 8. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
 9. Added ErrorStrategy for all erroneous results
 10. Added file: theme/template/error.phtml
+11. Added Pi\Version\Version and removed Pi::VERSION
 
 
 June 8th, 2013

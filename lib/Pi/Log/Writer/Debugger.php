@@ -13,20 +13,20 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Log
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Log\Writer;
 
 use Pi;
-use Zend\Log\Formatter\FormatterInterface;
 use Pi\Log\Logger;
 use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\DbProfiler as DbFormatter;
 use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
+use Zend\Log\Formatter\FormatterInterface;
 use Zend\Log\Writer\AbstractWriter;
+use Pi\Version\Version as PiVersion;
+use Zend\Version\Version as ZendVersion;
 
 class Debugger extends AbstractWriter
 {
@@ -192,8 +192,8 @@ class Debugger extends AbstractWriter
         $system['MySQL Version'] = sprintf('Server: %s; Client: %s', $server_version, $client_version);
 
         // Application versions
-        $system['Pi Version'] = Pi::VERSION;
-        $system['Zend Version'] = \Zend\Version\Version::VERSION;
+        $system['Pi Version'] = PiVersion::VERSION;
+        $system['Zend Version'] = ZendVersion::VERSION;
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {
             $class = get_class(Pi::service('cache')->storage());
