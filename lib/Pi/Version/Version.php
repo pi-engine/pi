@@ -17,6 +17,7 @@
 
 namespace Pi\Version;
 
+use Zend\Version\Version as ZendVersion;
 use Zend\Json\Json;
 
 /**
@@ -32,16 +33,6 @@ class Version
      * @see http://semver.org/ for semantic versioning
      */
     const VERSION = '2.2.0-dev';
-
-    /**
-     * Github Service Identifier for version information is retreived from
-     */
-    const VERSION_SERVICE_GITHUB = 'GITHUB';
-
-    /**
-     * Pi Service Identifier for version information is retreived from
-     */
-    const VERSION_SERVICE_PI = 'PI';
 
     /**
      * The latest stable version Pi Engine available
@@ -78,6 +69,33 @@ class Version
     protected static $piApiRelease = '';
 
     /**
+     * Get version number
+     *
+     * @param string $service
+     * @return string
+     */
+    public static function version($service = 'PI')
+    {
+        $version = '';
+        switch (strtoupper($service)) {
+            // Zend Framework version
+            case 'ZEND':
+                $version = ZendVersion::VERSION;
+                break;
+            // Full version: Pi version plush Zend version as build metadata
+            case 'FULL':
+                $version = static::VERSION . '+' . ZendVersion::VERSION;
+                break;
+            // Pi Version
+            case 'PI':
+            default:
+                $version = static::VERSION;
+                break;
+        }
+        return strtolower($version);
+    }
+
+    /**
      * Compare the specified Pi Engine version string $version
      * with the current Pi\Version::VERSION of Pi Engine.
      *
@@ -111,12 +129,12 @@ class Version
      * @param string $service Version Service with which to retrieve the version
      * @return string
      */
-    public static function getLatest($service = self::VERSION_SERVICE_PI)
+    public static function getLatest($service = 'PI')
     {
         if (null === static::$latestVersion) {
             static::$latestVersion = false;
             $service = strtoupper($service);
-            if ($service == self::VERSION_SERVICE_GITHUB) {
+            if ($service == 'GITHUB') {
                 $url  = static::$githubApiRelease;
 
                 $apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
@@ -130,7 +148,7 @@ class Version
                 static::$latestVersion = array_reduce($tags, function ($a, $b) {
                     return version_compare($a, $b, '>') ? $a : $b;
                 });
-            } elseif ($service == self::VERSION_SERVICE_PI) {
+            } elseif ($service == 'PI') {
                 $handle = fopen(static::$piApiRelease, 'r');
                 if (false !== $handle) {
                     static::$latestVersion = stream_get_contents($handle);

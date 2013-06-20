@@ -23,10 +23,10 @@ use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\DbProfiler as DbFormatter;
 use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
+use Pi\Version\Version as PiVersion;
 use Zend\Log\Formatter\FormatterInterface;
 use Zend\Log\Writer\AbstractWriter;
-use Pi\Version\Version as PiVersion;
-use Zend\Version\Version as ZendVersion;
+use PDO;
 
 class Debugger extends AbstractWriter
 {
@@ -187,13 +187,13 @@ class Debugger extends AbstractWriter
 
         // MySQL version
         $pdo = Pi::db()->getAdapter()->getDriver()->getConnection()->connect()->getResource();
-        $server_version = $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
-        $client_version = $pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION);
+        $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+        $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
         $system['MySQL Version'] = sprintf('Server: %s; Client: %s', $server_version, $client_version);
 
         // Application versions
-        $system['Pi Version'] = PiVersion::VERSION;
-        $system['Zend Version'] = ZendVersion::VERSION;
+        $system['Pi Version'] = PiVersion::version();
+        $system['Zend Version'] = PiVersion::version('zend');
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {
             $class = get_class(Pi::service('cache')->storage());
@@ -219,7 +219,7 @@ class Debugger extends AbstractWriter
         }
         // APD
         if (function_exists('apd_set_pprof_trace')) {
-            $extensions[] = 'APD: ' . \APD_VERSION;
+            $extensions[] = 'APD: ' . APD_VERSION;
         }
         // XHProf
         if (function_exists('xhprof_enable')) {
