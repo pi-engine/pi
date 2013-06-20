@@ -66,7 +66,6 @@ return array(
             'check_page'    => false,
         ),
 
-
         // Instantiate render cache manager
         'render'     => array(
             // Enable page caching, default as false

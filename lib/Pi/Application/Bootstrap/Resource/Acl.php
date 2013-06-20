@@ -96,18 +96,31 @@ class Acl extends AbstractResource
             }
         }
 
-        // Check for module and page access
+        // Check for module access
         if (null === $denied) {
-            $denied = false;
-
             // Get allowed modules
             $modulesAllowed = Pi::service('registry')->moduleperm->read($section);
+            // Automatically allowed for not defined cases
+            if (!isset($this->options['default']) || !empty($this->options['default'])) {
+                // Get all active modules
+                $modulesActive = Pi::service('registry')->modulelist->read();
+                // Denied if is explicitly not allowed installed modules
+                if (isset($modulesActive[$route['module']]) && !in_array($route['module'], $modulesAllowed)) {
+                    $denied = true;
+                }
+            // Automatically denied for not defined cases
+            } else {
+                // Denied if module is not allowed
+                if (null !== $modulesAllowed && !in_array($route['module'], $modulesAllowed)) {
+                    $denied = true;
+                }
+            }
+        }
 
-            // Denied if module is not allowed
-            if (null !== $modulesAllowed && !in_array($route['module'], $modulesAllowed)) {
-                $denied = true;
+        // Check for page access
+        if (null === $denied) {
             // Denied if action page is not allowed if check on page is enabled
-            } elseif (!empty($this->options['check_page']) && 'dashboard' != $route['controller']) {
+            if (!empty($this->options['check_page']) && 'dashboard' != $route['controller']) {
                 if ('admin' == $section && $this->aclHandler->checkException($route)) {
                     $denied = false;
                 } elseif (!$this->aclHandler->checkAccess($route)) {
