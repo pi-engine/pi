@@ -1,6 +1,7 @@
 Pi Engine Changelog
 
 
+
 June 8th, 2013
 =============================
 1. Disabled form autocomplete in setup
@@ -9,6 +10,21 @@ June 8th, 2013
 4. Improved Filter to support regexp filter
 5. Refactored module install/uninstall/update displaying information messages on a redirecting page
 6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
+7. Added default value 'text' for renderer to markup service
+8. Initiated system service Url
+9. Initiated system service User
+10. Added config file: var/config/service.user.php
+11. Improved filter User
+12. Changed route User parameter name 'name' to 'identity'
+13. Modified config files: var/config/application.front.php; var/config/application.admin.php; -- moved i18n config to separate files
+14. Added config files: var/config/resource.i18n.php; var/config/resource.i18n-admin.php
+15. Added support for auto detection of locale with parameter in i18n config files
+16. Added charset to service Locale
+17. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
+18. Modified config file: var/config/service.markup.php -- removing default value for encoding
+19. Added vd shortcoming function to Debug
+20. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
+21. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
 
 
 May 24th, 2013

@@ -17,10 +17,11 @@
  * @version         $Id$
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Bootstrap;
+
 use Pi\Mvc\Application as Application;
 
-abstract class Bootstrap
+abstract class ModuleBootstrap
 {
     protected $application;
 

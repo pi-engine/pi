@@ -18,18 +18,34 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
+use Pi\Application\Bootstrap\ModuleBootstrap;
 
-class Authentication extends AbstractResource
+class Modules extends AbstractResource
 {
     /**
+     * Initialize modules
+     *
      * @return void
      */
     public function boot()
     {
-        $authService = Pi::service('authentication', $this->options);
-        $authService->wakeup();
+        $bootstraps = Pi::service('registry')->bootstrap->read();
+        if (empty($bootstraps)) {
+            return;
+        }
+        foreach ($bootstraps as $module => $bootstrapClass) {
+            if (!class_exists($bootstrapClass)) {
+                continue;
+            }
+
+            $moduleBootstrap = new $bootstrapClass($this->application);
+            if (!$moduleBootstrap instanceof ModuleBootstrap) {
+                continue;
+            }
+            $moduleBootstrap->bootstrap($module);
+        }
     }
 }

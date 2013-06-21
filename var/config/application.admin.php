@@ -15,10 +15,11 @@
  * @version         $Id$
  */
 
+// Inherite from front
 $config = include __DIR__ . '/application.front.php';
+
 // Translations
-$config['resource']['i18n']['translator']['global'][] = 'usr:admin';
-$config['resource']['i18n']['translator']['module'][] = 'admin';
+$config['resource']['i18n'] = 'i18n-admin';
 
 // Permission ACL
 $config['resource']['acl'] = array(

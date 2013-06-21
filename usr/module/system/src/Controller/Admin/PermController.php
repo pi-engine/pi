@@ -23,7 +23,7 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Module\System\Controller\ComponentController  as ActionController;
 use Pi\Acl\Acl as AclHandler;
-use Pi\Application\Resource\AdminMode;
+use Pi\Application\Bootstrap\Resource\AdminMode;
 
 /**
  * Feature list:

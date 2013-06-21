@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo module bootstrap
+ * Bootstrap resource
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,20 +12,25 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @package         Pi\Application
+ * @subpackage      Resource
  * @since           3.0
- * @category        Module
- * @package         Demo
  * @version         $Id$
  */
 
-namespace Module\Demo;
-use Pi\Application\Bootstrap\ModuleBootstrap;
+namespace Pi\Application\Bootstrap\Resource;
 
-class Bootstrap extends ModuleBootstrap
+use Pi;
+
+class Database extends AbstractResource
 {
-    public function bootstrap($module = null)
+    /**
+     * @return Pi\Application\Db
+     */
+    public function boot()
     {
-        $message = sprintf('%s: module - %s', __METHOD__, $module);
-        return $message;
+        $db = Pi::service('database')->db($this->options);
+
+        return $db;
     }
 }

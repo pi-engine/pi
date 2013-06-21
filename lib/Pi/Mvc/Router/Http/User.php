@@ -122,8 +122,8 @@ class User extends Standard
         if ('profile' == $mergedParams['controller']) {
             if (!empty($mergedParams['id'])) {
                 $url .= $this->paramDelimiter . intval($mergedParams['id']);
-            } elseif (!empty($mergedParams['name'])) {
-                $url .= $this->paramDelimiter . urlencode($mergedParams['name']);
+            } elseif (!empty($mergedParams['identity'])) {
+                $url .= $this->paramDelimiter . urlencode($mergedParams['identity']);
             }
         }
 

@@ -25,7 +25,7 @@ define('APPLICATION_ENV', 'production');
 // Pi boot with no engine bootup: current file is located in www/script/...
 require __DIR__ . '/../boot.php';
 // Load session resource which is required by CAPTCHA
-Pi::engine()->loadResource('session');
+Pi::engine()->bootResource('session');
 
 // Retrieve id generated CAPTCHA
 $id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');

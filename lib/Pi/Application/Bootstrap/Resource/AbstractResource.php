@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap resource
+ * Bootstrap resource interface
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -18,26 +18,25 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
-use Pi;
-use Pi\Application\User as UserModel;
+use Pi\Application\Engine\AbstractEngine;
 
-class User extends AbstractResource
+abstract class AbstractResource
 {
+    protected $options = array();
+    protected $engine;
+    protected $application;
+
+    public function __construct(AbstractEngine $engine, $options = array())
+    {
+        $this->options = $options;
+        $this->engine = $engine;
+        $this->application = $engine->application();
+    }
+
     public function boot()
     {
-        if (Pi::registry('user')) {
-            return Pi::registry('user');
-        }
-        $identity = Pi::service('authentication')->getIdentity();
-        if ($identity) {
-            $user = new UserModel($identity);
-        } else {
-            $user = new UserModel;
-        }
-        Pi::registry('user', $user);
-
-        return $user;
+        return $this;
     }
 }

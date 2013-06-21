@@ -18,7 +18,7 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 

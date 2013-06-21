@@ -99,7 +99,7 @@ class Security extends AbstractService
      */
     public function escape($content = null)
     {
-        $escaper = new Escaper(Pi::config('charset'));
+        $escaper = new Escaper(Pi::service('i18n')->charset);
         if (null === $content) {
             return $escaper;
         }

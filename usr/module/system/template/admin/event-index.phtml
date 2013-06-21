@@ -40,12 +40,12 @@
 
 <ul class="event-items submain" id="event-list">
     <?php foreach ($events as $name => $event) { ?>
-    <li class="event-item <?php echo $event['active'] ? '' : 'disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($event['title']) . ' (' . $name . ')'; ?></span><button class="pi-ui-btn" data-action="<?php echo $event['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'event', 'id' => $event['id'])); ?>"><?php $event['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
+    <li class="event-item <?php echo $event['active'] ? '' : 'disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($event['title']) . ' (' . $name . ')'; ?></span><button class="pi-ui-btn btn" data-action="<?php echo $event['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'event', 'id' => $event['id'])); ?>"><?php $event['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
     <?php if ($event['listeners']) { ?>
     <ul class="listener-items">
             <?php _e('Listeners:'); ?>
             <?php foreach ($event['listeners'] as $listener) { ?>
-            <li class="listener-item <?php echo $listener['active'] ? '' : 'disable'; ?>"><span><?php echo sprintf('%s-%s::%s', $listener['module'], $listener['class'], $listener['method']) ; ?></span><button class="pi-ui-btn1" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button>
+            <li class="listener-item <?php echo $listener['active'] ? '' : 'disable'; ?>"><span><?php echo sprintf('%s-%s::%s', $listener['module'], $listener['class'], $listener['method']) ; ?></span><button class="pi-ui-btn1 btn" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></li>
             <?php } ?>
     </ul>
     <?php } ?>
@@ -58,7 +58,7 @@
 
 <ul class="event-items submain" id="listener-list">
     <?php foreach ($listeners as $id => $listener) { ?>
-    <li class="event-item<?php echo $listener['active'] ? '' : ' disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($listener['title']) . ' (' . $listener['event'] . ')'; ?></span><button class="pi-ui-btn" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
+    <li class="event-item<?php echo $listener['active'] ? '' : ' disable'; ?>"><div class="event-item-hd"><span><?php echo $this->escape($listener['title']) . ' (' . $listener['event'] . ')'; ?></span><button class="pi-ui-btn btn" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></div>
     </li>
     <?php } ?>
 </ul>

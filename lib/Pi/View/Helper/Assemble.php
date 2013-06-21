@@ -97,6 +97,8 @@ class Assemble extends AbstractHelper
         unset($configGeneral['ga_account'], $configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
+        $configGeneral['locale'] = Pi::service('i18n')->locale ?: $configGeneral['locale'];
+        $configGeneral['charset'] = Pi::service('i18n')->charset ?: $configGeneral['charset'];
         $this->view->plugin('view_model')->getRoot()->setVariables($configGeneral);
     }
 

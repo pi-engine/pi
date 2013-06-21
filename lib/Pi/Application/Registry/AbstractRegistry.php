@@ -149,7 +149,7 @@ abstract class AbstractRegistry
                         $meta[$var] = Pi::registry('user')->role;
                         break;
                     case 'locale':
-                        $meta[$var] = Pi::config('locale');
+                        $meta[$var] = Pi::service('i18n')->locale;
                         break;
                     default:
                         break;

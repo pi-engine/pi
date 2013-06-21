@@ -71,7 +71,6 @@ abstract class AbstractRenderer
             unset($options['parser']);
         }
 
-        $this->filterChain = new FilterChain;
         if (isset($options['filters'])) {
             $this->setFilters($options['filters']);
             unset($options['filters']);
@@ -91,6 +90,10 @@ abstract class AbstractRenderer
 
     public function setFilters($filters)
     {
+        if (!$this->filterChain instanceof FilterChain) {
+            $this->filterChain = new FilterChain;
+        }
+
         foreach ($filters as $name => $options) {
             $this->filterChain->attachByName($name, $options);
         }
@@ -155,7 +158,9 @@ abstract class AbstractRenderer
     public function render($content)
     {
         $content = $this->parse($content);
-        $content = $this->filterChain->filter($content);
+        if ($this->filterChain instanceof FilterChain) {
+            $content = $this->filterChain->filter($content);
+        }
 
         return $content;
     }

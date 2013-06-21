@@ -18,31 +18,26 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-//use Pi\Security\Security as SecurityUtility;
+use Pi\User\User as UserModel;
 
-class Security extends AbstractResource
+class User extends AbstractResource
 {
-    /**
-     * Check security settings
-     *
-     * Policy: quit the process and approve current request if TRUE is returned by a check; quit and deny the request if FALSE is return; continue with next check if NULL is returned
-     */
     public function boot()
     {
-        $options = $this->options;
-        foreach ($options as $type => $opt) {
-            if (false === $opt) {
-                continue;
-            }
-            $status = Pi::service('security')->{$type}($opt);
-            if ($status) return true;
-            if (false === $status) {
-                return false;
-                //Pi::service('security')->deny($type);
-            }
+        if (Pi::registry('user')) {
+            return Pi::registry('user');
         }
+        $identity = Pi::service('authentication')->getIdentity();
+        if ($identity) {
+            $user = new UserModel($identity);
+        } else {
+            $user = new UserModel;
+        }
+        Pi::registry('user', $user);
+
+        return $user;
     }
 }

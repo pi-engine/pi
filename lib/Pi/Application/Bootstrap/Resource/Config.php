@@ -18,19 +18,27 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 
-class Database extends AbstractResource
+class Config extends AbstractResource
 {
     /**
-     * @return Pi\Application\Db
+     * @return void
      */
     public function boot()
     {
-        $db = Pi::service('database')->db($this->options);
+        // Config will be fetched from database if not cached yet
+        //$this->bootstrap->bootResource('db');
 
-        return $db;
+        // Load system general configuration
+        Pi::config()->loadDomain();
+
+        // Setup timezone
+        $timezone = Pi::config('timezone');
+        if ($timezone) {
+            date_default_timezone_set($timezone);
+        }
     }
 }

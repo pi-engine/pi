@@ -6,16 +6,15 @@
     $this->js($this->assetModule('script/system-msg.js'));
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a>
-    <li class="disabled"><a><?php _e('Repository'); ?></a>
+    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
+    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
 </ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
 </div>
-<div class="theme-list" id="js-theme">
-</div>
+<div class="theme-list" id="js-theme"></div>
 <script id="temp-theme" type="text/template">
     <a href="" class="theme-screenshot">
         <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>">

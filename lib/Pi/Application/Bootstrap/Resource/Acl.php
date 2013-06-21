@@ -18,7 +18,7 @@
  * @version         $Id$
  */
 
-namespace Pi\Application\Resource;
+namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 use Pi\Acl\Acl as AclManager;
@@ -41,7 +41,7 @@ class Acl extends AbstractResource
 
     protected function loadAcl()
     {
-        $this->engine->loadResource('authentication');
+        $this->engine->bootResource('authentication');
         $this->aclHandler = new AclManager($this->engine->section(), isset($this->options['default']) ? $this->options['default'] : null);
         $this->aclHandler->setRole(Pi::registry('user')->role());
         Pi::registry('acl', $this->aclHandler);

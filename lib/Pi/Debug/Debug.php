@@ -131,7 +131,7 @@ namespace Pi\Debug
                     $result .= print_r($data, true);
                     $result .= '</pre></div>';
                 } else {
-                    $result .= sprintf('<div>[%s]<pre>%s</pre></div>', $location, $data);
+                    $result .= sprintf('<div>%s<pre>%s</pre></div>', $location, $data);
                 }
                 $result .= '</div>';
             }
@@ -188,11 +188,21 @@ namespace Pi\Debug
          *
          * @see     Zend\Debug::dump()
          * @param   mixed  $var   The variable to dump.
-         * @param   bool   $echo  OPTIONAL echo output if true.
-         * @return  string
+         * @param   bool   $display  OPTIONAL echo output if true.
+         * @return  string|void
          */
-        public static function dump($var, $echo = true)
+        public static function dump($var, $display = true)
         {
+            $time = microtime(true);
+            $location = date('H:i:s', $time) . substr($time, strpos($time, '.'), 5) . ' ';
+            $list = debug_backtrace();
+            foreach ($list as $item) {
+                if ($skip-- > 0) continue;
+                $file = Pi::service('security')->path($item['file']);
+                $location .= $file . ':' . $item['line'];
+                break;
+            }
+
             // var_dump the variable into a buffer and keep the output
             ob_start();
             var_dump($var);
@@ -201,18 +211,23 @@ namespace Pi\Debug
             // neaten the newlines and indents
             $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
             if (PHP_SAPI === 'cli') {
-                $output = PHP_EOL . $output . PHP_EOL;
+                $result = PHP_EOL . $location . PHP_EOL . $output . PHP_EOL;
             } else {
                 if (!extension_loaded('xdebug')) {
                     $output = htmlspecialchars($output, ENT_QUOTES);
                 }
-                $output = '<pre>' . $output . '</pre>';
+                $result = '<div style="padding: .8em; margin-bottom: 1em; border: 2px solid #ddd;">';
+                $result .= $location;
+                $result .= '<div><pre>';
+                $result .= $output;
+                $result .= '</pre></div>';
             }
 
-            if ($echo) {
-                Pi::service('log')->debug($output);
+            if ($display) {
+                Pi::service('log')->debug($result);
+            } else {
+                return $result;
             }
-            return $output;
         }
     }
 }
@@ -307,6 +322,17 @@ namespace
     function df()
     {
         Debug::enable(false);
+    }
+
+    /**
+     * Dump data with var_dump
+     *
+     * @param mixed $data
+     * @return string
+     */
+    function vd($data)
+    {
+        return Debug::dump($data);
     }
 }
 /**#@-*/
