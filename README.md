@@ -23,9 +23,10 @@ Features and practices
 
 Quick start
 -----------
-* Check documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
+* Documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
 * Download the [latest stable code](https://github.com/xoops/pi/zipball/master) and [latest dev code](https://github.com/xoops/pi/zipball/develop).
 * Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes).
+* Demo sites with shared deployment: Pi Dialogue ([pialog.org](http://pialog.org) | [pialogue.org](http://pialogue.org)), Pi Demo ([pi-demo.org](http://pi-demo.org)) and Xoops/Pi ([xoopsengine.org](http://demo.xoopsengine.org)).
 
 Development
 ----------
