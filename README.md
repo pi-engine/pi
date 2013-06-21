@@ -24,7 +24,7 @@ Features and practices
 Quick start
 -----------
 * Check documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
-* Download the [latest code](https://github.com/xoops/pi/zipball/master).
+* Download the [latest stable code](https://github.com/xoops/pi/zipball/master) and [latest dev code](https://github.com/xoops/pi/zipball/develop).
 * Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes).
 
 Development
