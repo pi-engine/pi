@@ -1,9 +1,10 @@
-Pi Day Release for Pi Engine
+Pi Engine 2.2.0 Release
 
-The Pi Team is pleased to present the Pi Day Release as the first public release of Xoops/Pi Engine as the next generation of XOOPS in years.
+The Pi Team is pleased to present the Pi 2.2.0 Release as yet another stable release of Pi Engine after Pi Day Release in March.
+During the months of intensive development, a lot of features have been introduced or improved along with Zend Framework upgraded from 2.1.5 to 2.2.1.
 
-Check out [Pi Day Release Announcement](https://github.com/pi-engine/pi/blob/master/doc/pi-day-release.txt) for details.
+Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.0/doc/changelog.txt) for details.
 
 Taiwen Jiang
-Lead for Pi Development Team
-March 14th, 2013
+Pi Development Team
+June 19th, 2013
