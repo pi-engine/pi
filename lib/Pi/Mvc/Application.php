@@ -46,7 +46,7 @@ class Application extends ZendApplication
         if ($listeners) {
             $this->defaultListeners = array_merge($this->defaultListeners, $listeners);
         }
-        
+
         return $this;
     }
 
@@ -142,7 +142,7 @@ class Application extends ZendApplication
          */
         if (Pi::service()->hasService('log')) {
             if ($this->getRouteMatch()) {
-                Pi::service('log')->info(sprintf('Route: %s-%s-%s.', $this->getRouteMatch()->getParam('module'), $this->getRouteMatch()->getParam('controller'), $this->getRouteMatch()->getParam('action')));
+                Pi::service('log')->info(sprintf('Route: %s:%s-%s-%s.', $this->getSection(), $this->getRouteMatch()->getParam('module'), $this->getRouteMatch()->getParam('controller'), $this->getRouteMatch()->getParam('action')));
             } else {
                 Pi::service('log')->err($event->getError());
             }

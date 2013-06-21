@@ -35,13 +35,13 @@ RewriteRule ^.*$ feed.php [NC,L]
 RewriteRule ^admin(/.*)?$ admin.php [NC,L]
 
 # Application feed routes
-RewriteRule ^feed/[^/]+(/.*)?$ feed.php [NC,L]
+RewriteRule ^feed(/.*)?$ feed.php [NC,L]
 
 # API routes
-RewriteRule ^api/[^/]+(/.*)?$ api.php [NC,L]
+RewriteRule ^api(/.*)?$ api.php [NC,L]
 
 # Widget routes
-RewriteRule ^widget/[^/]+(/.*)?$ widget.php [NC,L]
+RewriteRule ^widget(/.*)?$ widget.php [NC,L]
 
 # Otherwise, go through application routes
 RewriteRule ^.*$ app.php [NC,L]

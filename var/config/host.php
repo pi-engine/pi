@@ -25,13 +25,13 @@ return array(
     // If URI is a relative one then www root URI will be prepended
     'uri'       => array(
         // WWW root URI
-        'www'       => 'http://siteurl.tld',
+        'www'       => 'http://pi-engine.org',
         // URI to access uploads directory
-        'upload'    => 'http://siteurl.tld/upload',
+        'upload'    => 'http://pi-engine.org/upload',
         // URI to access assets directory
-        'asset'     => 'http://siteurl.tld/asset',
+        'asset'     => 'http://pi-engine.org/asset',
         // URI to access static files directory
-        'static'    => 'http://siteurl.tld/static',
+        'static'    => 'http://pi-engine.org/static',
     ),
 
     // Paths to resources
