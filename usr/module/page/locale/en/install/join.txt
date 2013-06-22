@@ -1,15 +1,6 @@
-When you donate to the FSF as an associate member, you support the essential freedoms for all computer users, with a sustaining contribution.
-Join with over 3,000 active members in 48 countries, representing a diverse membership of computer users, artists, software engineers, hackers, students, and activists.
+Pi Engine is started as the next generation of Xoops and developed as a successor to Xoops by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops France Lead), etc. Pi Team is highly inspired by the Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) successively since 2001 and will continue to support and promote Xoops.
 
-When you donate as an associate member, you are part of an informed society working together to make a better world: respectful of individual freedom, social solidarity, personal privacy, and democracy — built on free software.
+All open source contributors including Xoopsers are welcome.
 
-The Free Software Foundation is a 501(c)(3) non-profit organization, so your member donation is tax-deductible in the US.
-
-“I've long been a supporter of the ideas of the FSF and the whole free software movement. Today, I wanted to make a tangible contribution to the FSF, as well as openly declaring my support for the key advocate and defender of software freedom.”
-— Cathal McGinley, member #5886
-
-Why donate as an associate member?
-As a software developer, free software lets you build and improve on the work of others, as part of a social community — built on the principles of sharing.
-As an artist, you can do things with free software that proprietary software does not allow. All free software allows you to use it for any purpose.
-As a user, free software removes you from the power struggle of proprietary software, where you are able to help yourself and are not dependent on a single developer or company to help you.
-As a student, you can study and modify the software you use, learning from and enhancing the tools that you use for education.
+To join the team, please contact: infomax#gmail.com
+Or visit Pi Team page: https://github.com/pi-engine/pi/wiki/Pi-Team

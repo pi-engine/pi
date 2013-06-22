@@ -11,4 +11,5 @@
     <li><a href="SITE_URL/page/contact" title="Contact us" target="_blank">Contact us</a></li>
     <li><a href="SITE_URL/page/join" title="Join us" target="_blank">Join us</a></li>
     <li><a href="SITE_URL/page/help" title="Get help" target="_blank">Get help</a></li>
+    <li><a href="SITE_URL/feed" title="RSS feed" target="_blank">Feed</a></li>
 </ul>

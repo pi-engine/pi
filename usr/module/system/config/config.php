@@ -532,7 +532,7 @@ $config['item'] = array(
         'title'         => 'Email backlist',
         'description'   => 'Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.',
         'edit'          => 'textarea',
-        'value'         => 'pi.org$',
+        'value'         => 'pi-engine.org$',
         'category'      => 'user',
     ),
 
