@@ -1,7 +1,7 @@
 Pi Engine 2.2.0 Release
 =======================
 
-The Pi Team is pleased to present the Pi 2.2.0 Release (or Summer Day Release) on Summer Day as yet another stable release of Pi Engine after Pi Day Release in March.
+The Pi Team is pleased to present on Summer Day the Pi 2.2.0 Release (or Summer Day Release), a role oriented application development engine based on Zend Framwork 2.
 
 Get the [Pi Summer Day Release](https://github.com/pi-engine/pi/archive/release-2.2.0.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
 
@@ -33,7 +33,11 @@ Some of the major changes:
    + Modified: var/config/application.feed.php
 
 Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.0/doc/changelog.txt) for details from @taiwen, @sexnothing, @voltan, @MarcoXoops, @linzongshu, @kris and etc.
+
+Tutorials
+=========
 Aside from framework and module developments, **[tutorials](https://github.com/pi-engine/pi/wiki)** are being built up at Pi Wiki and a variety of development teams start to learn and build their applications on Pi Engine, for instance @linzongshu, @sexnothing and @9sheng with their teams respectively.
+
 
 ---------------------
 Taiwen Jiang, Pi Team 
