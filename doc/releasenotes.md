@@ -1,7 +1,7 @@
 Pi Engine 2.2.0 Release
 =======================
 
-The Pi Team is pleased to present on Summer Day the Pi 2.2.0 Release (or Summer Day Release), a role oriented application development engine based on Zend Framwork 2.
+The Pi Team is pleased to present the Pi Summer Day Release (Pi 2.2.0), a role oriented application development engine based on Zend Framwork 2.
 
 Get the [Pi Summer Day Release](https://github.com/pi-engine/pi/archive/release-2.2.0.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
 
