@@ -34,17 +34,15 @@ class Activate extends AbstractAction
 
     public function process()
     {
-        $result = $this->event->getParam('result');
         $model = Pi::model('module');
         $row = $model->select(array('name' => $this->module))->current();
         $row->active = 1;
         // save module entry into database
         if (!$row->save()) {
-            $result['module'] = array(
+            $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module activate failed')
-            );
-            $this->event->setParam('result', $result);
+            ));
             return false;
         }
 

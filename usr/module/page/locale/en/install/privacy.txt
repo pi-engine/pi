@@ -5,14 +5,11 @@ We maintain strict internal policies against unauthorized disclosure or use of c
 Customer Information
 All information related to financial transactions and member logins is handled through a secure connection.
 
-Sales
-Contact information is requested at the time of a sale in order to complete the sale and deliver the products.  It is also used to verify the credit card transaction when a credit card is used. Customer lists are not sold or distributed to third parties.  The Free Software Foundation uses these customer lists to send occasional solicitations and its biannual newsletter.
-
 Donations
 Contact information is requested at the time of a donation. This information is used to verify the initial credit card transaction. Donor lists are not sold or distributed to third parties. The Free Software Foundation uses these donor lists to send occasional solicitations and its biannual newsletter. Donors can opt out of all contact or specify only print or e-mail contact at the time of the donation. Donor names are posted on our Thank Gnus page as a recognition of their support. At the time of the donation, the donor can ask to be anonymous, so that their name will not be publicly recognized.
 
 Membership
 Contact information is requested at the time of a membership sign-up. This information is used to verify the initial credit card transaction and future transactions if the member signs up for monthly deductions. Customer lists are not sold or distributed to third parties. The Free Software Foundation uses this member list to send a membership packet, occasional solicitations, and its biannual newsletter. Members can opt out of receiving the newsletter when they sign up.
 
-User Registration
-Free Software Foundation uses registration lists to send news updates, occasional solicitations and its biannual newsletter. You can be removed by writing to privacy@fsf.org.
+
+NOTE: THIS PAGE IS SOLELY FOR DEMONSTRATION PURPOSE.

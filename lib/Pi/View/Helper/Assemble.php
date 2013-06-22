@@ -97,6 +97,8 @@ class Assemble extends AbstractHelper
         unset($configGeneral['ga_account'], $configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
+        $configGeneral['locale'] = Pi::service('i18n')->locale ?: $configGeneral['locale'];
+        $configGeneral['charset'] = Pi::service('i18n')->charset ?: $configGeneral['charset'];
         $this->view->plugin('view_model')->getRoot()->setVariables($configGeneral);
     }
 
@@ -137,17 +139,7 @@ class Assemble extends AbstractHelper
         /**#@+
          * Generates and inserts head meta, stylesheets and scripts
          */
-        //$indent = 4;
         $head = '';
-        //$headTitle = '';
-        /*
-        $headTitle = $this->view->headTitle()->toString() . PHP_EOL;
-        if (!empty($this->sectionLabel['headTitle'])) {
-            $content = str_replace($this->sectionLabel['headTitle'], $headTitle, $content);
-        } else {
-            $head .= $headTitle . PHP_EOL;
-        }
-        */
 
         foreach (array('headTitle', 'headMeta', 'headLink', 'headStyle', 'headScript') as $section) {
             $sectionContent = $this->view->plugin($section)->toString();

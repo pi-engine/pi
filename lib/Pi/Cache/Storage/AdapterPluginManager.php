@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Cache
- * @version         $Id$
  */
 
 namespace Pi\Cache\Storage;
@@ -34,6 +32,7 @@ class AdapterPluginManager extends ZendAdapterPluginManager
         'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
         'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
         'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
+        'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
         'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
         'wincache'       => 'Zend\Cache\Storage\Adapter\WinCache',
         'zendserverdisk' => 'Zend\Cache\Storage\Adapter\ZendServerDisk',

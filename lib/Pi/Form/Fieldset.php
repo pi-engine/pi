@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
- * @version         $Id$
  */
 namespace Pi\Form;
 
@@ -23,11 +21,7 @@ use Zend\Form\Fieldset as ZendFieldset;
 class Fieldset extends ZendFieldset
 {
     /**
-     * Retrieve composed form factory
-     *
-     * Lazy-loads one if none present.
-     *
-     * @return Factory
+     * {@inheritdoc}
      */
     public function getFormFactory()
     {
@@ -38,7 +32,7 @@ class Fieldset extends ZendFieldset
     }
 
     /**
-     * Get list of elements for form view
+     * Get list of elements for form view divided as active and hidden
      *
      * @return array
      */

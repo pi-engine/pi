@@ -276,3 +276,6 @@ fieldset dl {
 legend {
     border-bottom: 1px solid #d7d7d7;
 }
+.pi-bar-user .dropdown-menu {
+    z-index: 1002;
+}

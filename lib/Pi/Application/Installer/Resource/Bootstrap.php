@@ -42,7 +42,7 @@ class Bootstrap extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         Pi::service('registry')->bootstrap->clear($module);
@@ -50,14 +50,16 @@ class Bootstrap extends AbstractResource
         $model = Pi::model('bootstrap');
         $data = $this->canonize($this->config);
         $model->insert($data);
+
+        return true;
     }
 
     public function updateAction()
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->bootstrap->clear($module);
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
 
         $model = Pi::model('bootstrap');
@@ -66,7 +68,7 @@ class Bootstrap extends AbstractResource
             if ($row) {
                 $row->delete();
             }
-            return;
+            return true;
         }
         $data = $this->canonize($this->config);
         if ($row) {
@@ -74,6 +76,8 @@ class Bootstrap extends AbstractResource
         } else {
             $status = $model->insert($data);
         }
+
+        return true;
     }
 
     public function uninstallAction()
@@ -83,6 +87,6 @@ class Bootstrap extends AbstractResource
 
         $model = Pi::model('bootstrap');
         $model->delete(array('module' => $module));
-         return;
+        return true;
     }
 }

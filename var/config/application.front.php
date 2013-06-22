@@ -12,7 +12,6 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @version         $Id$
  */
 
 return array(
@@ -40,6 +39,7 @@ return array(
         ),
         // Intl resource, instantiate translator services and load specified translation data
         'i18n'      => array(
+            // Translations to be loaded on bootstrap
             'translator'    => array(
                 // Global available
                 'global'    => array('usr:main'),
@@ -58,8 +58,9 @@ return array(
         // Instantiate use handler
         'user'      => array(),
         // Instantiate ACL manager and register listeners
+
         'acl'       => array(
-            // Default access perm in case not defined
+            // Default access perm in case not defined: true for allowed, false for denied
             'default'       => true,
             // If check page access
             'check_page'    => false,
@@ -77,28 +78,7 @@ return array(
     /**#@+
      * Service Manager configuration, and Application service configurations managed by Configuration service {@Pi\Mvc\Service\ConfigurationFactory}
      */
-    //ServiceMananger Configuration
-    'service_manager'   => array(
-    ),
     // Application service configuration
-    'application'   => array(
-        'view_manager' => array(
-            'display_not_found_reason'  => true,
-            'display_exceptions'        => true,
-            'not_found_template'        => 'error-404',
-            'exception_template'        => 'error-exception',
-            'denied_template'           => 'error-denied',
-            'layout_error'              => 'layout-style',
-        ),
-        'send_response' => array(
-            // Compress for response
-            // @see Zend\Filter\Compress\Gz
-            'compress'  => array(
-                'mode'      => false,   // Valid modes: deflate, gzip; default as 'gzip', false for disable
-                'level'     => 6,
-                //'archive'   => null,
-            ),
-        ),
-    )
+    'application'   => include __DIR__ . '/config.application.php',
     /**#@-*/
 );

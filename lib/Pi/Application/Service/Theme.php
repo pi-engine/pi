@@ -60,7 +60,6 @@ class Theme extends AbstractService
      */
     public function loadConfig($theme)
     {
-        //Pi::service('i18n')->translator->load(sprintf('theme/%s:meta', $theme));
         $configFile = sprintf('%s/config.php', $this->path($theme));
         if (file_exists($configFile)) {
             $config = include $configFile;
@@ -80,5 +79,19 @@ class Theme extends AbstractService
     {
         $path = Pi::path('theme') . '/' . $theme;
         return $path;
+    }
+
+    /**
+     * Get parent theme
+     *
+     * @param string $theme
+     * @return string
+     */
+    public function getParent($theme = null)
+    {
+        $theme = $theme ?: $this->current();
+        $config = $this->loadConfig($theme);
+        $parent = !empty($config['parent']) ? $config['parent'] : ($theme == static::DEFAULT_THEME ? '' : static::DEFAULT_THEME);
+        return $parent;
     }
 }

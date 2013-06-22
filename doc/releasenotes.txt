@@ -1,9 +1,0 @@
-Pi Day Release for Pi Engine
-
-The Pi Team is pleased to present the Pi Day Release as the first public release of Xoops/Pi Engine as the next generation of XOOPS in years.
-
-Check out [Pi Day Release Announcement](https://github.com/pi-engine/pi/blob/master/doc/pi-day-release.txt) for details.
-
-Taiwen Jiang
-Lead for Pi Development Team
-March 14th, 2013

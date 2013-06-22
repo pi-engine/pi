@@ -153,11 +153,6 @@ class Http extends AbstractAdapter
                 $filename = $directory . $content['name'];
                 $rename   = $this->getFilter('Rename');
                 if ($rename !== null) {
-                    /**#@+
-                     * Added by Taiwen Jiang
-                     */
-                    $rename->setSource($content);
-                    /**#@-*/
                     $tmp = $rename->getNewName($content['tmp_name']);
                     if ($tmp != $content['tmp_name']) {
                         $filename = $tmp;
@@ -467,13 +462,4 @@ class Http extends AbstractAdapter
 
         return $this;
     }
-
-    /**#@+
-     * Added by Taiwen Jiang
-     */
-    public function getFileList()
-    {
-        return $this->files;
-    }
-    /**#@-*/
 }

@@ -72,6 +72,6 @@ class Install extends BasicInstall
             'status'    => true,
             'message'   => 'Pages added.',
         );
-        $e->setParam('result', $result);
+        $this->setResult('post-install', $result);
     }
 }

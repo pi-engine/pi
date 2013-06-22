@@ -1,5 +1,42 @@
 Pi Engine Changelog
 
+June 19th, 2013
+=============================
+1. Upgraded ZF2 to 2.2.1
+2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
+3. Refactoring ZF related components: keep ZF untouched for smooth upgrade maintenance
+4. Modified config files with separate config file: var/config/application.front.php; var/config/application.admin.php; var/config/application.feed.php
+5. Added config file: var/config/config.application.php
+6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
+7. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
+8. Added ErrorStrategy for all erroneous results
+9. Added file: theme/template/error.phtml
+10. Added Pi\Version\Version and removed Pi::VERSION
+11. Added module availability check against module controller load
+
+
+June 8th, 2013
+=============================
+1. Disabled form autocomplete in setup
+2. Skip version comparison in debug mode for module update
+3. Fixed bug in URL generation with duplicated '/' reported in Issue #66
+4. Improved Filter to support regexp filter
+5. Refactored module install/uninstall/update displaying information messages on a redirecting page
+6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
+7. Added default value 'text' for renderer to markup service
+8. Initiated system service Url
+9. Initiated system service User
+10. Added config file: var/config/service.user.php
+11. Improved filter User
+12. Changed route User parameter name 'name' to 'identity'
+13. Added support for auto detection of locale
+14. Added charset to service Locale
+15. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
+16. Modified config file: var/config/service.markup.php -- removing default value for encoding
+17. Added vd shortcoming function to Debug
+18. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
+19. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
+
 
 May 24th, 2013
 =============================
@@ -8,8 +45,10 @@ May 24th, 2013
 3. Changed default config values: 'sitename', 'slogan' in setup
 4. Add 'name' to admin account in setup
 5. Modified file boot.php removing 'PI_PATH_WWW'
-6. Modified file var/config/host.php enabling paramters path-www and path-lib
+6. Modified file var/config/host.php enabling parameters path-www and path-lib
 7. Fixed bug causing block cache conflicts, reported in Issue #77
+8. Changed backoffice mode name 'manage-Management' to 'manage-Setting'
+9. Added support for theme template inheritance proposed in Issue #80
 
 
 May 20th, 2013

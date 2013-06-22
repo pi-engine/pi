@@ -20,10 +20,9 @@
 
 namespace Pi\Mvc\Router\Http;
 
-use Zend\Mvc\Router\Http\TreeRouteStack as RouteStack;
-
 use Pi;
 use Pi\Mvc\Router\RoutePluginManager;
+use Zend\Mvc\Router\Http\TreeRouteStack as RouteStack;
 use Zend\Mvc\Router\PriorityList;
 use Zend\Stdlib\RequestInterface as Request;
 use Zend\Mvc\Router\SimpleRouteStack;

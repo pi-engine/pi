@@ -19,8 +19,8 @@
  */
 
 namespace Pi\Application\Installer\Action;
-use Pi;
 
+use Pi;
 
 class Install extends AbstractAction
 {
@@ -36,7 +36,6 @@ class Install extends AbstractAction
 
     public function process()
     {
-        $result = $this->event->getParam('result');
         $model = Pi::model('module');
         $moduleData = array(
             'name'          => $this->module,
@@ -48,11 +47,10 @@ class Install extends AbstractAction
         $row = $model->createRow($moduleData);
         // save module entry into database
         if (!$row->save()) {
-            $result['module'] = array(
+            $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module insert failed')
-            );
-            $this->event->setParam('result', $result);
+            ));
             return false;
         }
 

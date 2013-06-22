@@ -238,14 +238,16 @@ class Navigation extends AbstractResource
 
         Pi::service('registry')->navigation->clear($module);
         Pi::service('cache')->clearByNamespace('nav');
+
+        return true;
     }
 
     public function updateAction()
     {
         $module = $this->event->getParam('module');
 
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
         $message = array();
         $navigationList = $this->loadNavigation();
@@ -313,6 +315,8 @@ class Navigation extends AbstractResource
 
         Pi::service('registry')->navigation->clear($module);
         Pi::service('cache')->clearByNamespace('nav');
+
+        return true;
     }
 
     public function uninstallAction()
@@ -341,6 +345,8 @@ class Navigation extends AbstractResource
 
         Pi::service('registry')->navigation->flush();
         Pi::service('cache')->clearByNamespace('nav');
+
+        return true;
     }
 
     public function activateAction()
@@ -352,6 +358,8 @@ class Navigation extends AbstractResource
         Pi::model('navigation')->update(array('active' => 1), $where);
         Pi::service('registry')->navigation->flush();
         Pi::service('cache')->clearByNamespace('nav');
+
+        return true;
     }
 
     public function deactivateAction()
@@ -363,6 +371,8 @@ class Navigation extends AbstractResource
         Pi::model('navigation')->update(array('active' => 0), $where);
         Pi::service('registry')->navigation->flush();
         Pi::service('cache')->clearByNamespace('nav');
+
+        return true;
      }
 
     /**

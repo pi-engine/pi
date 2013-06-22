@@ -58,11 +58,11 @@ class Database extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
 
         if (empty($this->config['sqlfile'])) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         $sqlFile = sprintf('%s/%s/%s', Pi::path('module'), $this->event->getParam('directory'), $this->config['sqlfile']);
@@ -106,8 +106,8 @@ class Database extends AbstractResource
      */
     public function updateAction()
     {
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
         $module = $this->event->getParam('module');
         $schemaList = isset($this->config['schema']) ? $this->config['schema'] : array();

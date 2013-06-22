@@ -133,7 +133,7 @@ class Cache extends AbstractService
                 $prefix = Pi::registry('user') ? Pi::registry('user')->role : '';
                 break;
             case 'locale':
-                $prefix = Pi::config('locale');
+                $prefix = Pi::service('i18n')->locale;
                 break;
             default:
                 $prefix = '';

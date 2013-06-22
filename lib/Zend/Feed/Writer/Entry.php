@@ -10,8 +10,8 @@
 namespace Zend\Feed\Writer;
 
 use DateTime;
+use Zend\Feed\Uri;
 use Zend\Feed\Writer\Exception;
-use Zend\Uri;
 
 /**
 */
@@ -82,7 +82,7 @@ class Entry
         }
         if (isset($author['uri'])) {
             if (empty($author['uri']) || !is_string($author['uri']) ||
-                !Uri\UriFactory::factory($author['uri'])->isValid()
+                !Uri::factory($author['uri'])->isValid()
             ) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid parameter: "uri" array value must be a non-empty string and valid URI/IRI');
@@ -101,12 +101,7 @@ class Entry
      * @param array $authors
      * @return Entry
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addAuthors(array $authors)
-    public function setAuthors(array $authors)
-    /**#@-*/
+    public function addAuthors(array $authors)
     {
         foreach ($authors as $author) {
             $this->addAuthor($author);
@@ -182,7 +177,7 @@ class Entry
     /**
      * Set the feed creation date
      *
-     * @param null|integer|DateTime $date
+     * @param null|int|DateTime $date
      * @throws Exception\InvalidArgumentException
      * @return Entry
      */
@@ -203,7 +198,7 @@ class Entry
     /**
      * Set the feed modification date
      *
-     * @param null|integer|DateTime $date
+     * @param null|int|DateTime $date
      * @throws Exception\InvalidArgumentException
      * @return Entry
      */
@@ -264,7 +259,7 @@ class Entry
      */
     public function setLink($link)
     {
-        if (empty($link) || !is_string($link) || !Uri\UriFactory::factory($link)->isValid()) {
+        if (empty($link) || !is_string($link) || !Uri::factory($link)->isValid()) {
             throw new Exception\InvalidArgumentException('Invalid parameter: parameter must be a non-empty string and valid URI/IRI');
         }
         $this->data['link'] = $link;
@@ -298,7 +293,7 @@ class Entry
      */
     public function setCommentLink($link)
     {
-        if (empty($link) || !is_string($link) || !Uri\UriFactory::factory($link)->isValid()) {
+        if (empty($link) || !is_string($link) || !Uri::factory($link)->isValid()) {
             throw new Exception\InvalidArgumentException('Invalid parameter: "link" must be a non-empty string and valid URI/IRI');
         }
         $this->data['commentLink'] = $link;
@@ -315,7 +310,7 @@ class Entry
      */
     public function setCommentFeedLink(array $link)
     {
-        if (!isset($link['uri']) || !is_string($link['uri']) || !Uri\UriFactory::factory($link['uri'])->isValid()) {
+        if (!isset($link['uri']) || !is_string($link['uri']) || !Uri::factory($link['uri'])->isValid()) {
             throw new Exception\InvalidArgumentException('Invalid parameter: "link" must be a non-empty string and valid URI/IRI');
         }
         if (!isset($link['type']) || !in_array($link['type'], array('atom', 'rss', 'rdf'))) {
@@ -498,7 +493,7 @@ class Entry
     /**
      * Get the number of comments/replies for current entry
      *
-     * @return integer
+     * @return int
      */
     public function getCommentCount()
     {
@@ -552,7 +547,7 @@ class Entry
         if (isset($category['scheme'])) {
             if (empty($category['scheme'])
                 || !is_string($category['scheme'])
-                || !Uri\UriFactory::factory($category['scheme'])->isValid()
+                || !Uri::factory($category['scheme'])->isValid()
             ) {
                 throw new Exception\InvalidArgumentException('The Atom scheme or RSS domain of'
                 . ' a category must be a valid URI');
@@ -572,12 +567,7 @@ class Entry
      * @param array $categories
      * @return Entry
      */
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
-    //public function addCategories(array $categories)
-    public function setCategories(array $categories)
-    /**#@-*/
+    public function addCategories(array $categories)
     {
         foreach ($categories as $category) {
             $this->addCategory($category);
@@ -614,7 +604,7 @@ class Entry
         if (!isset($enclosure['uri'])) {
             throw new Exception\InvalidArgumentException('Enclosure "uri" is not set');
         }
-        if (!Uri\UriFactory::factory($enclosure['uri'])->isValid()) {
+        if (!Uri::factory($enclosure['uri'])->isValid()) {
             throw new Exception\InvalidArgumentException('Enclosure "uri" is not a valid URI/IRI');
         }
         $this->data['enclosure'] = $enclosure;
@@ -719,7 +709,7 @@ class Entry
     }
 
     /**
-     * Creates a new Zend_Feed_Writer_Source data container for use. This is NOT
+     * Creates a new Zend\Feed\Writer\Source data container for use. This is NOT
      * added to the current feed automatically, but is necessary to create a
      * container with some initial values preset based on the current feed data.
      *
@@ -736,7 +726,7 @@ class Entry
     }
 
     /**
-     * Appends a Zend_Feed_Writer_Entry object representing a new entry/item
+     * Appends a Zend\Feed\Writer\Entry object representing a new entry/item
      * the feed data container's internal group of entries.
      *
      * @param Source $source
@@ -760,7 +750,7 @@ class Entry
     }
 
     /**
-     * Load extensions from Zend_Feed_Writer
+     * Load extensions from Zend\Feed\Writer\Writer
      *
      * @return void
      */

@@ -6,7 +6,7 @@
 
     ```sh
     % git clone https://github.com/pi-engine/pi.git
-    % cd framework
+    % cd pi
     ```
 
 # GIT REPO SKELETON FOR PI ENGINE

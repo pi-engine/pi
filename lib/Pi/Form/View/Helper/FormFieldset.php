@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Form\View\Helper;
@@ -35,7 +33,7 @@ class FormFieldset extends AbstractHelper
     /**
      * If set to true, collections are automatically wrapped around a fieldset
      *
-     * @var boolean
+     * @var bool
      */
     protected $shouldWrap = true;
 
@@ -45,7 +43,7 @@ class FormFieldset extends AbstractHelper
      * Proxies to {@link render()}.
      *
      * @param  ElementInterface|null $element
-     * @param  boolean $wrap
+     * @param  bool $wrap
      * @return string|FormFieldset
      */
     public function __invoke(ElementInterface $element = null, $wrap = true)
@@ -67,7 +65,7 @@ class FormFieldset extends AbstractHelper
      */
     public function setShouldWrap($wrap)
     {
-        $this->shouldWrap = (bool)$wrap;
+        $this->shouldWrap = (bool) $wrap;
         return $this;
     }
 

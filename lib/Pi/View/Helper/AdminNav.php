@@ -22,6 +22,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Pi\Acl\Acl;
+use Pi\Application\Bootstrap\Resource\AdminMode;
 use Zend\View\Helper\AbstractHelper;
 
 class AdminNav extends AbstractHelper
@@ -50,15 +51,15 @@ class AdminNav extends AbstractHelper
         $modules = Pi::service('registry')->modulelist->read();
         $moduleList = array_keys($modules);
         $modes = array(
-            'admin'     => array(
+            AdminMode::MODE_ADMIN      => array(
                 'label' => __('Operation'),
                 'link'  => '',
             ),
-            'manage'        => array(
-                'label' => __('Management'),
+            AdminMode::MODE_SETTING    => array(
+                'label' => __('Setting'),
                 'link'  => '',
             ),
-            'deployment'    => array(
+            AdminMode::MODE_DEPLOYMENT => array(
                 'label' => __('Deployment'),
                 'link'  => '',
             ),
@@ -66,7 +67,7 @@ class AdminNav extends AbstractHelper
         if (isset($modes[$mode])) {
             $modes[$mode]['active'] = 1;
         }
-        foreach (array('admin', 'manage') as $type) {
+        foreach (array(AdminMode::MODE_ADMIN, AdminMode::MODE_SETTING) as $type) {
             $allowed = Pi::service('registry')->moduleperm->read($type);
             if (null === $allowed || !is_array($allowed)) {
                 $allowed = $moduleList;
@@ -77,7 +78,7 @@ class AdminNav extends AbstractHelper
                 /**#@+
                  * Check access permission to managed components
                  */
-                if ('manage' == $type) {
+                if (AdminMode::MODE_SETTING == $type) {
                     $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
                     if (!$navConfig) {
                         continue;
@@ -119,7 +120,6 @@ class AdminNav extends AbstractHelper
         }
 
         $module = $module ?: $this->module;
-        //$mode = Pi::service('session')->backoffice->mode;
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $modules = Pi::service('registry')->modulelist->read();
@@ -127,8 +127,8 @@ class AdminNav extends AbstractHelper
 
         $navigation = '';
         // Get manage mode navigation
-        if ('manage' == $mode && 'system' == $module/* && in_array($module, $modulesAllowed)*/) {
-            $managedAllowed = Pi::service('registry')->moduleperm->read('manage');
+        if (AdminMode::MODE_SETTING == $mode && 'system' == $module/* && in_array($module, $modulesAllowed)*/) {
+            $managedAllowed = Pi::service('registry')->moduleperm->read($mode);
 
             $routeMatch = Pi::engine()->application()->getRouteMatch();
             $params = $routeMatch->getParams();
@@ -156,8 +156,8 @@ class AdminNav extends AbstractHelper
 
             $navigation = $this->view->navigation($navConfig);
         // Get operation mode navigation
-        } elseif ('admin' == $mode) {
-            $adminAllowed = Pi::service('registry')->moduleperm->read('admin');
+        } elseif (AdminMode::MODE_ADMIN == $mode) {
+            $adminAllowed = Pi::service('registry')->moduleperm->read($mode);
             if (null === $adminAllowed || !is_array($adminAllowed)) {
                 $adminAllowed = array_keys($modules);
             }
@@ -206,30 +206,22 @@ class AdminNav extends AbstractHelper
         }
 
         $module = $module ?: $this->module;
-        //$mode = Pi::service('session')->backoffice->mode;
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
-        /*
-        if ('admin' == Pi::service('session')->backoffice->mode) {
-            $mode = 'admin';
-        }
-        */
 
         $navigation = '';
         // Managed components
-        if ('manage' == $mode && 'system' == $module) {
+        if (AdminMode::MODE_SETTING == $mode && 'system' == $module) {
             $navConfig = Pi::service('registry')->navigation->read('system-component') ?: array();
-            //$currentModule = Pi::service('session')->backoffice->module;
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
             if ($currentModule) {
                 foreach ($navConfig as $key => &$nav) {
                     $nav['params']['name'] = $currentModule;
                 }
             }
-            //d($navConfig);
             $navigation = $this->view->navigation($navConfig);
         // Module operations
-        } elseif ('admin' == $mode) {
-            $modulesAllowed = Pi::service('registry')->moduleperm->read('admin');
+        } elseif (AdminMode::MODE_ADMIN == $mode) {
+            $modulesAllowed = Pi::service('registry')->moduleperm->read($mode);
             if (null === $modulesAllowed || in_array($module, $modulesAllowed)) {
                 $navigation = $this->view->navigation($module . '-admin', array('section' => 'admin'));
             } else {

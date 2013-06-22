@@ -44,7 +44,7 @@ return array(
      * To be stored in DB
      */
     // Version
-    'version'       => '1.0.0-beta.1',
+    'version'       => '1.0.0',
     // Type of layouts available in the theme
     'type'          => 'front', // Potential value: 'both', 'admin', 'front', default as 'both'
     /**#@-**/
@@ -58,5 +58,7 @@ return array(
     // License or theme images and scripts
     'license'       => 'Creative Common License http://creativecommons.org/licenses/by/3.0/',
     // Optional description
-    'description'   => 'PI Engine official theme',
+    'description'   => 'PI Engine demo theme',
+    // Parent theme from which templates can be inherited, default as 'default'
+    'parent'        => 'default',
 );

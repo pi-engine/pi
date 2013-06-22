@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Form\View\Helper;
@@ -32,7 +30,7 @@ class FormCheckbox extends FormInput
     const LABEL_PREPEND = 'prepend';
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $useHiddenElement = true;
 
@@ -54,20 +52,20 @@ class FormCheckbox extends FormInput
     );
 
     /**
-     * Set value for labelPosition
+     * Set value for label position
      *
-     * @param  mixed labelPosition
-     * @return $this
+     * @param  string labelPosition
+     * @return FormCheckbox
      */
     public function setLabelPosition($labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (!in_array($labelPosition, array(static::LABEL_APPEND, static::LABEL_PREPEND))) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
+                '%s expects either %s or %s; received "%s"',
                 __METHOD__,
-                __CLASS__,
-                __CLASS__,
+                static::LABEL_APPEND,
+                static::LABEL_PREPEND,
                 (string) $labelPosition
             ));
         }
@@ -90,7 +88,7 @@ class FormCheckbox extends FormInput
      * Sets the attributes applied to option label.
      *
      * @param  array|null $attributes
-     * @return FormMultiCheckbox
+     * @return FormCheckbox
      */
     public function setLabelAttributes($attributes)
     {
@@ -112,7 +110,7 @@ class FormCheckbox extends FormInput
      * Returns the option for prefixing the element with a hidden element
      * for the unset value.
      *
-     * @return boolean
+     * @return bool
      */
     public function getUseHiddenElement()
     {
@@ -124,7 +122,7 @@ class FormCheckbox extends FormInput
      * for the unset value.
      *
      * @param  boolean $useHiddenElement
-     * @return FormMultiCheckbox
+     * @return FormCheckbox
      */
     public function setUseHiddenElement($useHiddenElement)
     {

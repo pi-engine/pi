@@ -87,9 +87,9 @@ class Module
 
         $this->getEventManager()->trigger('start', null, $event);
 
-        $actionClass = sprintf('Module\\%s\\Installer\\Action\\%s', ucfirst($moduleDirectory), ucfirst($method));
+        $actionClass = sprintf('Module\\%s\Installer\Action\\%s', ucfirst($moduleDirectory), ucfirst($method));
         if (!class_exists($actionClass)) {
-            $actionClass = sprintf('%s\\Action\\%s', __NAMESPACE__, ucfirst($method));
+            $actionClass = sprintf('%s\Action\\%s', __NAMESPACE__, ucfirst($method));
         }
         $action = new $actionClass($event);
         $action->setEvents($this->getEventManager());

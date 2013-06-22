@@ -74,11 +74,11 @@ class Markup extends AbstractService
     {
         parent::__construct($options);
 
-        if (isset($this->options['encoding'])) {
+        if (!empty($this->options['encoding'])) {
             Renderer::setEncoding($this->options['encoding']);
         }
 
-        if (isset($this->options['filters'])) {
+        if (!empty($this->options['filters'])) {
             Renderer::setFilters($this->options['filters']);
         }
     }
@@ -86,12 +86,12 @@ class Markup extends AbstractService
     /**
      * Render content
      * @param string $content
-     * @param string $renderer  Renderer type
+     * @param string $renderer  Renderer type, valid type: html, text
      * @param string|null $parser
      * @param array $renderOptions
      * @return string
      */
-    public function render($content, $renderer, $parser = false, $renderOptions = array())
+    public function render($content, $renderer = 'text', $parser = false, $renderOptions = array())
     {
         return Renderer::render($content, $renderer, $parser, $renderOptions);
     }

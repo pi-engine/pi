@@ -19,6 +19,7 @@
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 use Zend\EventManager\Event;
 
@@ -40,6 +41,18 @@ class AbstractResource
     }
 
     /**
+     * Determine whether to skip upgrade for current resource
+     *
+     * Performe upgrade in anyway if system is in development mode; Skip upgrade if module version is already greater than configuration
+     *
+     * @return bool
+     */
+    protected function skipUpgrade()
+    {
+        return (Pi::environment() == 'development' || !$this->versionCompare()) ? false : true;
+    }
+
+    /**
      * Check if module version is greater than configuration version
      *
      * @param string $operator
@@ -58,12 +71,14 @@ class AbstractResource
 
     public function fooAction()
     {
+        // Return full result with status and message
         return array(
             'status'    => true,
             'message'   => 'Just for test'
         );
-        // Or
+        // return status
         return false;
-        return true;
+        // return void if no action performed
+        return;
     }
 }

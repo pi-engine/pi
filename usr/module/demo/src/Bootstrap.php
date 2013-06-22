@@ -19,7 +19,7 @@
  */
 
 namespace Module\Demo;
-use Pi\Application\Bootstrap as ModuleBootstrap;
+use Pi\Application\Bootstrap\ModuleBootstrap;
 
 class Bootstrap extends ModuleBootstrap
 {

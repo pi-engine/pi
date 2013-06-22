@@ -32,7 +32,7 @@
 /*#@-*/
 
 // Skip engine bootup
-define('PI_BOOT_SKIP', 1);
+//define('PI_BOOT_SKIP', 1);
 // Disable error_reporting
 define('APPLICATION_ENV', 'production');
 

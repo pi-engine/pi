@@ -134,7 +134,7 @@ class Block extends AbstractResource
     public function installAction()
     {
         if (empty($this->config)) {
-            return true;
+            return;
         }
         $module = $this->event->getParam('module');
         $blocks = $this->config;
@@ -158,6 +158,7 @@ class Block extends AbstractResource
         }
 
         Pi::service('registry')->block->clear($module);
+        return true;
     }
 
     public function updateAction()
@@ -165,8 +166,8 @@ class Block extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->block->clear($module);
 
-        if ($this->versionCompare()) {
-            return true;
+        if ($this->skipUpgrade()) {
+            return;
         }
 
         $blocks = $this->config ?: array();
@@ -226,6 +227,8 @@ class Block extends AbstractResource
                 }
             }
         }
+
+        return true;
     }
 
     public function uninstallAction()
@@ -250,6 +253,8 @@ class Block extends AbstractResource
         */
 
         Pi::service('registry')->block->clear($module);
+
+        return true;
     }
 
     public function activateAction()
@@ -258,6 +263,8 @@ class Block extends AbstractResource
         Pi::model('block')->update(array('active' => 1), array('module' => $module));
 
         Pi::service('registry')->block->clear($module);
+
+        return true;
     }
 
     public function deactivateAction()
@@ -266,6 +273,8 @@ class Block extends AbstractResource
         Pi::model('block')->update(array('active' => 0), array('module' => $module));
 
         Pi::service('registry')->block->clear($module);
+
+        return true;
     }
 
     /**

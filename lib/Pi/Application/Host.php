@@ -13,8 +13,6 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application;
@@ -380,7 +378,7 @@ class Host
                 }
             }
             // Assemble full URI
-            $uri .= $path ? '/' . $path : '';
+            $uri .= $path ? '/' . ltrim($path, '/') : '';
         }
 
         return $uri;

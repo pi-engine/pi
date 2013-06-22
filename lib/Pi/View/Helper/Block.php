@@ -61,7 +61,7 @@ class Block extends AbstractHelper
     protected function cacheEvent()
     {
         if (!$this->cacheEvent) {
-            $this->cacheEvent = Pi::engine()->loadResource('cache')->cacheEvent('block');
+            $this->cacheEvent = Pi::engine()->bootResource('cache')->cacheEvent('block');
         }
         return $this->cacheEvent;
     }
