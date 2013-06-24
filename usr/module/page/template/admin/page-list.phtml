@@ -1,6 +1,8 @@
 <?php
     $this->css($this->assetModule('script/system-ui.css','system'));
     $this->jQuery();
+    $this->Backbone();
+    $this->js($this->assetModule('script/system-msg.js','system'));
 ?>
 <style>
     .box-hover .pull-right {
@@ -11,11 +13,11 @@
     }
 </style>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-<div id="js-page" class="submain">
+<div id="page-list" class="submain">
 <div class="legend"><?php _e('Active pages'); ?></div>
 <ul class="active-pages">
     <?php foreach ($pages['active'] as $page) { ?>
-    <li class="box-hover" data-id="<?php echo $page['id']; ?>" data-action="enable">
+    <li id="page-<?php echo $page['id']; ?>" class="box-hover page" data-id="<?php echo $page['id']; ?>" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
         <div class="pull-right btn-group">
            <a class="btn" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php _e('Edit'); ?></a>
            <a class="btn" href="<?php echo $this->url('.page', $page); ?>"  target="_blank"><?php _e('View'); ?></a>
@@ -24,18 +26,19 @@
         </div>
         <h4 class="box-title"><?php echo $this->escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
-            <dt><?php _e('name: '); ?>
-            <dd><?php echo $page['name'] ?: ''; ?>
-            <dt><?php _e('slug: '); ?>
-            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?>
+            <dt><?php _e('name: '); ?></dt>
+            <dd><?php echo $page['name'] ?: ''; ?></dd>
+            <dt><?php _e('slug: '); ?></dt>
+            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
         </dl>
+    </li>    
     <?php } ?>
 </ul>
 <?php if (!empty($pages['inactive'])) { ?>
-<div class="legend"  style="color: #888;"><?php _e('Inactive pages'); ?></div>
+<div class="legend" style="color: #888;"><?php _e('Inactive pages'); ?></div>
 <ul class="inactive-pages">
     <?php foreach ($pages['inactive'] as $page) { ?>
-    <li class="box-hover box-disable" data-id="<?php echo $page['id']; ?>" data-action="disable">
+    <li id="page-<?php echo $page['id']; ?>" class="box-hover box-disable page" data-id="<?php echo $page['id']; ?>" data-action="disable" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
         <div class="pull-right btn-group">
            <a class="btn" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php _e('Edit'); ?></a>
            <a class="btn" href="<?php echo $this->url('.page', $page); ?>"  target="_View"><?php _e('View'); ?></a>
@@ -44,11 +47,12 @@
         </div>
         <h4 class="box-title"><?php echo $this->escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
-            <dt><?php _e('name: '); ?>
-            <dd><?php echo $page['name'] ?: ''; ?>
-            <dt><?php _e('slug: '); ?>
-            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?>
+            <dt><?php _e('name: '); ?></dt>
+            <dd><?php echo $page['name'] ?: ''; ?></dd>
+            <dt><?php _e('slug: '); ?></dt>
+            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
         </dl>
+    </li>    
     <?php } ?>
 </ul>
 <?php } ?>
@@ -56,64 +60,40 @@
 </div>
 <script>
 (function($) {
-    var PageItem = Controller({
-        events: {
-            "click .page-delete": "remove",
-            "click .page-active": "active"
+    var page = {
+        el: $('#page-list'),
+        $: function(selector) {
+            return this.el.find(selector);
         },
-        remove: function() {
-            var el = this.el;
-            this.toggleClass();
+        init: function() {
+            _.bindAll(this);
+            this.$('.page-delete').click(this.deleteAction);
+            this.$('.page-active').click(this.activeAction);
+        },
+        deleteAction: function(e) {
             if (confirm("<?php _e("Are you sure to delete the page?"); ?>")) {
-                $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>" + el.attr("data-id")).done(function(result) {
+                $.getJSON($(e.target).parents(".page").attr('data-delete')).done(function(result) {
                     if (result.status == 1) {
-                        el.fadeOut(150, function() {
-                            el.remove();
-                        });
-                        beautAlert.done(result.message, "succ");
+                        $('#page-' + $(e.target).parents(".page").attr('data-id')).slideUp('fast');
+                        systemMessage.succ(result.message);
                     }
                 });
             }
-            this.toggleClass();
         },
-        active: function() {
-            $.getJSON("<?php echo $this->url('', array('action' => 'activate', 'id' => '')); ?>" + this.el.attr("data-id")).done(function(result) {
-                if (result.status == 1) {
-                    this.toggleAction();
-                    beautAlert.done(result.message, "succ");
-                }
-            }.bind(this));
+        activeAction: function(e) {
+	          $.getJSON($(e.target).parents(".page").attr('data-active')).done(function(result) {
+	              if (result.status == 1) {
+	                  if ($(e.target).parents(".page").attr("data-action") == "disable") {
+	                      $(e.target).parents(".page").attr("data-action", "enable").removeClass("box-disable").find(".page-active").html("<?php _e('Deactivate'); ?>");
+	                      $(e.target).parents(".page").appendTo(pageItems1.activePages);
+	                  } else {
+	                      $(e.target).parents(".page").attr("data-action", "disable").addClass("box-disable").find(".page-active").html("<?php _e('Activate'); ?>");
+	                      $(e.target).parents(".page").appendTo(pageItems1.inactivePages);
+	                  }
+	              }
+	          });
         },
-        toggleClass: function() {
-            this.el.toggleClass("handle");
-        },
-        toggleAction: function() {
-            var el = this.el;
-                if (el.attr("data-action") == "disable") {
-                    el.attr("data-action", "enable").removeClass("box-disable").find(".page-active").html("<?php _e('Deactivate'); ?>");
-                    el.appendTo(pageItems1.activePages);
-                } else {
-                    el.attr("data-action", "disable").addClass("box-disable").find(".page-active").html("<?php _e('Activate'); ?>");
-                    el.appendTo(pageItems1.inactivePages);
-                }
-        }
-    });
-    var PageItems = Controller({
-        elements: {
-            ".box-hover": "items",
-            ".active-pages": "activePages",
-            ".inactive-pages": "inactivePages"
-        },
-        init: function() {
-            this.items.each(function() {
-                new PageItem({
-                    el: $(this)
-                });
-            });
-        }
-    });
-    var pageItems1 = new PageItems({
-        el: $("#js-page")
-    });
+    }
+    page.init();
 })(jQuery)
 </script>
