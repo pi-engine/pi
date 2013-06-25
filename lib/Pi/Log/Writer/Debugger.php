@@ -53,12 +53,15 @@ class Debugger extends AbstractWriter
      * Enable/disable
      *
      * @param bool $flag
-     * @return bool
+     * @return bool return previous muted value
      */
     public function mute($flag = true)
     {
-        $this->muted = (bool) $flag;
-        return $this->muted;
+        $muted = $this->muted;
+        if (null !== $flag) {
+            $this->muted = (bool) $flag;
+        }
+        return $muted;
     }
 
     /**

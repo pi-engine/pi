@@ -33,7 +33,7 @@ class Log extends AbstractService
 
     /**
      * Whether or not to the service is active
-     * @var boolean
+     * @var bool
      */
     protected $active;
     protected $debugger;
@@ -137,14 +137,15 @@ class Log extends AbstractService
      * Enable/disable debugger
      *
      * @param bool $flag
-     * @return Log
+     * @return bool|null    return previous muted value or null if no debugger available
      */
     public function mute($flag = true)
     {
+        $muted = null;
         if ($this->debugger) {
-            $this->debugger->mute($flag);
+            $muted = $this->debugger->mute($flag);
         }
-        return $this;
+        return $muted;
     }
 
     /**
