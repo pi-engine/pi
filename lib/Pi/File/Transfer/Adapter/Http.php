@@ -119,7 +119,7 @@ class Http extends ZendHttp
     public function send($options = null)
     {
         // Disable logging service
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
 
         // Canonize download options
         $options = $this->canonizeDownload($options);

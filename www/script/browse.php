@@ -12,7 +12,6 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
  * @todo            enhance security by protecting files with path filters besides mimetype filters
  * @todo            add symlink like pi.url/resource/app/mvc/my.css, pi.url/resource/plugin/comment/some.js
@@ -31,8 +30,6 @@
 //define("PI_HEADER_TYPE", 'SENDFILE');
 /*#@-*/
 
-// Skip engine bootup
-//define('PI_BOOT_SKIP', 1);
 // Disable error_reporting
 define('APPLICATION_ENV', 'production');
 
@@ -152,7 +149,6 @@ if (defined('PI_HEADER_TYPE')) {
         return;
     }
 }
-
 
 $handle = fopen($path, "rb");
 if (!$handle) {

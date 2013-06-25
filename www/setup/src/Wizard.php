@@ -192,7 +192,7 @@ class Wizard
         $content = $this->controller->getContent();
         if ($this->request->isXmlHttpRequest()) {
             if ($this->controller->hasBootstrap() && Pi::service()->hasService('log')) {
-                Pi::service('log')->active(false);
+                Pi::service('log')->mute();
             } else {
                 error_reporting(0);
             }

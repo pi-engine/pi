@@ -134,6 +134,20 @@ class Log extends AbstractService
     }
 
     /**
+     * Enable/disable debugger
+     *
+     * @param bool $flag
+     * @return Log
+     */
+    public function mute($flag = true)
+    {
+        if ($this->debugger) {
+            $this->debugger->mute($flag);
+        }
+        return $this;
+    }
+
+    /**
      * Get logger, instantiate it if not available
      *
      * @param Logger $logger

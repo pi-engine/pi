@@ -107,13 +107,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Disable error debugging for AJAX and Flash
        if ($type) {
-            Pi::service('log')->active(false);
-            /*
-            // Not implemented yet
-            if (Pi::service('log')->debugger()) {
-                Pi::service('log')->debugger()->disable();
-            }
-            */
+            Pi::service('log')->mute();
         }
     }
 

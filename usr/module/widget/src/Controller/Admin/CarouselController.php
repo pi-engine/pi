@@ -137,7 +137,7 @@ class CarouselController extends WidgetController
 
     public function uploadAction()
     {
-        //Pi::service('log')->active(false);
+        //Pi::service('log')->mute();
         $return = array(
             'status'    => 1,
             'message'   => '',

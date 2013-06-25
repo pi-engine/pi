@@ -5,6 +5,7 @@ June 19th, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download
+3. Added Pi\Service\Log::mute() and Debugger::mute to disable debugger output for some use cases.
 
 
 June 19th, 2013
