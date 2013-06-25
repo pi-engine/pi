@@ -22,6 +22,11 @@ use Pi\Filter\File\Rename;
 
 class Upload extends Transfer
 {
+    /**
+     * Destination path for uploaded files
+     *
+     * @var string
+     */
     protected $destination;
 
     /**
@@ -29,7 +34,6 @@ class Upload extends Transfer
      *
      * @param  array   $options   OPTIONAL Options to set for this adapter
      * @param  string  $adapter   Adapter to use
-     * @throws Exception\InvalidArgumentException
      */
     public function __construct($options = array(), $adapter = 'Http')
     {
@@ -44,10 +48,7 @@ class Upload extends Transfer
     /**
      * Returns adapter
      *
-     * @param boolean $direction On null, all directions are returned
-     *                           On false, download direction is returned
-     *                           On true, upload direction is returned
-     * @return array|Adapter\AbstractAdapter
+     * {@inheriteDoc}
      * @note Zend\File\Transfer\Transfer does not support for $direction = 1 yet
      */
     public function getAdapter($direction = false)
@@ -81,6 +82,11 @@ class Upload extends Transfer
         return $this;
     }
 
+    /**
+     * Get upload destination path
+     *
+     * @return string
+     */
     public function getDestination()
     {
         return $this->destination;
