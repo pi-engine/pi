@@ -4,7 +4,7 @@ Pi Themes
 
 Folder and file skeleton
 ------------------------
-* config.php: required, defines meta data of a theme, following as configuration for default theme
+* ```config.php```: required, defines meta data of a theme, following as configuration for default theme
 ```
     // Version
     'version'       => '1.0.0-beta.1',
@@ -24,23 +24,23 @@ Folder and file skeleton
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => '',
 ```
-* README.md: optional readme for a theme
+* ```README.md```: optional readme for a theme
 
-* template/: required for root theme, optional for children theme, for layout templates, error page templates, block component, paginator component, page-zone component, etc.
-* asset/: required for root theme, optional for children theme, for assets
-  * css/: required, stylesheet files
-  * image/: required, images used by a theme
-  * js/: optional, JavaScript files used by a theme
-  * locale/: optional, localization specific assets, like css, js or images
-    * en/
-    * zh-cn/
-* locale/: optional, locale data used by a theme
-  * en/
-  * zh-cn/
-* module/: on-demand, templates and assets extended from modules, for theme specific customization
-  * {modulename}/: module assets and templates
-    * asset/: on-demand, same skeleton as module/asset
-    * template/: on-demand, same skeleton as module/template
+* ```template/```: required for root theme, optional for children theme, for layout templates, error page templates, block component, paginator component, page-zone component, etc.
+* ```asset/```: required for root theme, optional for children theme, for assets
+  * ```css/```: required, stylesheet files
+  * ```image/```: required, images used by a theme
+  * ```js/```: optional, JavaScript files used by a theme
+  * ```locale/```: optional, localization specific assets, like css, js or images
+    * ```en/```
+    * ```zh-cn/```
+* ```locale/```: optional, locale data used by a theme
+  * ```en/```
+  * ```zh-cn/```
+* ```module/```: on-demand, templates and assets extended from modules, for theme specific customization
+  * ```demo/```: on-demand, module assets and templates
+    * ```asset/```: on-demand, same skeleton as module/asset
+    * ```template/```: on-demand, same skeleton as module/template
 
 
 File Cheatsheet
