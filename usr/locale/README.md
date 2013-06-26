@@ -7,8 +7,8 @@ SPECs
 * Folder name must be in lowercase
 * Folder name, i.e. language tag must respect [RFC 4646](http://www.ietf.org/rfc/rfc4646.txt)
 * Loacle files are in CSV format except mail templates which are in plain text
-* Both keys and values must be quoted with double quote (```"```), delimited with comma (```,```)
-
+* Both keys and values in CSV must be quoted with double quote (```"```), delimited with comma (```,```)
+* All files must be encoded in the same charset as Pi system, default as ```UTF-8```
 
 Skeleton
 --------
