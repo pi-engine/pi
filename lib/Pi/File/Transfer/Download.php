@@ -115,6 +115,7 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($file)
+ * </code>
  *
  * Download without auto exit
  * <code>
@@ -122,7 +123,6 @@ use ZipArchive;
  *  $downloader->send(array(...));
  *  // Do something
  *  exit;
- * </code>
  * </code>
  */
 class Download
