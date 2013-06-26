@@ -31,6 +31,16 @@ use Zend\Mvc\ModuleRouteListener;
 class Mvc extends ZendMvcPage
 {
     /**#@+
+     * Re-initialize
+     * Modified by Taiwen Jiang
+     */
+    /**
+     * {@inheritDoc}
+     */
+    protected $active = null;
+    /**#@-*/
+
+    /**#@+
      * Added by Taiwen Jiang
      */
     /**
