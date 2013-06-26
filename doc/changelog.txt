@@ -1,7 +1,7 @@
 Pi Engine Changelog
 
 
-June 19th, 2013
+June 24th, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
