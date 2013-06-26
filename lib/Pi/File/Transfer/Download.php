@@ -115,6 +115,14 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($file)
+ *
+ * Download without auto exit
+ * <code>
+ *  $downloader = new Download(array('exit' => false));
+ *  $downloader->send(array(...));
+ *  // Do something
+ *  exit;
+ * </code>
  * </code>
  */
 class Download
