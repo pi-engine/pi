@@ -19,24 +19,24 @@
 
 $pages = array(
     'presetting'     => array(
-        'title' => _t("Presettings"),
-        'desc'  => _t("Presettings and server configuration detection")
+        'title' => _s("Presettings"),
+        'desc'  => _s("Presettings and server configuration detection")
     ),
     'directive'     => array(
-        'title' => _t("Directives"),
-        'desc'  => _t("Directive settings for website")
+        'title' => _s("Directives"),
+        'desc'  => _s("Directive settings for website")
     ),
     'database'      => array(
-        'title' => _t("Database"),
-        'desc'  => _t("Database settings")
+        'title' => _s("Database"),
+        'desc'  => _s("Database settings")
     ),
     'admin'         => array(
-        'title' => _t("Administrator"),
-        'desc'  => _t("Administrator account creation")
+        'title' => _s("Administrator"),
+        'desc'  => _s("Administrator account creation")
     ),
     'finish'        => array(
-        'title' => _t("Finish"),
-        'desc'  => _t("Finishing installation process"),
+        'title' => _s("Finish"),
+        'desc'  => _s("Finishing installation process"),
         'hide'  => true,
     ),
 );

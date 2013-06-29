@@ -110,7 +110,7 @@ class Directive extends AbstractController
         if (!empty($messages)) {
             $messageString = '<ul>';
             foreach (array_keys($messages) as $key) {
-                $messageString .= '<li>' . sprintf(_t('%s is NOT writable.'), $key) . '</li>';
+                $messageString .= '<li>' . sprintf(_s('%s is NOT writable.'), $key) . '</li>';
             }
             $messageString .= '</ul>';
         }
@@ -220,17 +220,17 @@ class Directive extends AbstractController
         // Display saving error messages
         if (!empty($errorsSave)) {
             $content .= '
-                <h3>' . _t('Configuration file write error') . '</h3>';
+                <h3>' . _s('Configuration file write error') . '</h3>';
             foreach ($errorsSave as $error) {
                 $content .= '
-                    <p class=\'caption\' style=\'margin-top: 10px;\'>' . sprintf(_t('The configuration file "%s" is not written correctly.'), $error['file']) . '</p>
+                    <p class=\'caption\' style=\'margin-top: 10px;\'>' . sprintf(_s('The configuration file "%s" is not written correctly.'), $error['file']) . '</p>
                     <textarea cols=\'80\' rows=\'10\'>' . $error['content'] . '</textarea>';
             }
         // Display config file error messages
         } elseif (!empty($errorsConfig)) {
             $content .= '
-                <h3>' . _t('Configuration file copy error') . '</h3>
-                <p class=\'caption\'>' . _t('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.') . '</p>
+                <h3>' . _s('Configuration file copy error') . '</h3>
+                <p class=\'caption\'>' . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.') . '</p>
                 <div class=\'message error\'>
                 <ul>';
             foreach ($errorsConfig as $file) {
@@ -287,13 +287,13 @@ class Directive extends AbstractController
         $content .= '<p class=\'caption\'>' . $config['memcache']['message'] . '</p>';
 
         $checkedString = ($persist == 'filesystem') ? 'checked' : '';
-        $content .= '<div><input type=\'radio\' name=\'persist\' value=\'filesystem\' ' . $checkedString . ' />' . _t('File system') . '</div>';
-        $content .= '<p class=\'caption warning\'>' . _t('Caching storage with files is not recommended. You are highly adviced to check recommended extensions to ensure they are installed and configured correctly.') . '</p>';
+        $content .= '<div><input type=\'radio\' name=\'persist\' value=\'filesystem\' ' . $checkedString . ' />' . _s('File system') . '</div>';
+        $content .= '<p class=\'caption warning\'>' . _s('Caching storage with files is not recommended. You are highly adviced to check recommended extensions to ensure they are installed and configured correctly.') . '</p>';
         $content .= '</div>';
 
         $content = '
-            <h2> <span class=\'' . (empty($valid) ? 'warning' : 'success') . '\'>' . _t('Persistent data container') . '</span> <a href=\'javascript:void(0);\' id=\'persist-label\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h2>
-            <p class=\'caption\'>' . _t('Choose the proper backend container for persistent data') . '</p>
+            <h2> <span class=\'' . (empty($valid) ? 'warning' : 'success') . '\'>' . _s('Persistent data container') . '</span> <a href=\'javascript:void(0);\' id=\'persist-label\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h2>
+            <p class=\'caption\'>' . _s('Choose the proper backend container for persistent data') . '</p>
             <div class=\'install-form advanced-form\' id=\'advanced-persist\'>' .
             $content .
             '</div>';
@@ -333,48 +333,48 @@ SCRIPT;
         // Title and description for each item
         $pathInfo = array(
             'path_www'  => array(
-                _t('Documents root physical path'),
-                _t('Physical path to the documents (served) directory without trailing slash; PHP executable.'),
+                _s('Documents root physical path'),
+                _s('Physical path to the documents (served) directory without trailing slash; PHP executable.'),
             ),
             'url_www'   => array(
-                _t('Website location (URL)'),
-                _t('Main URL that will be used to access your Pi Engine'),
+                _s('Website location (URL)'),
+                _s('Main URL that will be used to access your Pi Engine'),
             ),
             'path_asset'    => array(
-                _t('Asset file directory'),
-                _t('Physical path to asset file directory without trailing slash.'),
+                _s('Asset file directory'),
+                _s('Physical path to asset file directory without trailing slash.'),
             ),
             'url_asset'     => array(
-                _t('URL of asset file root directory'),
-                _t('URL that will be used to access asset files.'),
+                _s('URL of asset file root directory'),
+                _s('URL that will be used to access asset files.'),
             ),
             'path_upload'   => array(
-                _t('Upload directory'),
-                _t('Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'),
+                _s('Upload directory'),
+                _s('Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'),
             ),
             'url_upload'    => array(
-                _t('URL of upload root'),
-                _t('URL that will be used to access upload directory. PI root URL will be prepended if relative URL is used.'),
+                _s('URL of upload root'),
+                _s('URL that will be used to access upload directory. PI root URL will be prepended if relative URL is used.'),
             ),
             'path_static'   => array(
-                _t('Static file directory'),
-                _t('Physical path to static file directory without trailing slash; PHP disabled.'),
+                _s('Static file directory'),
+                _s('Physical path to static file directory without trailing slash; PHP disabled.'),
             ),
             'url_static'    => array(
-                _t('URL of static file root directory'),
-                _t('URL that will be used to access static files. Upload URL will be used if static directory is not set explicitly.'),
+                _s('URL of static file root directory'),
+                _s('URL that will be used to access static files. Upload URL will be used if static directory is not set explicitly.'),
             ),
             'path_lib'      => array(
-                _t('Library directory'),
-                _t('Physical path to library directory without trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
+                _s('Library directory'),
+                _s('Physical path to library directory without trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
             ),
             'path_var'      => array(
-                _t('Data file directory'),
-                _t('Physical path to the data files (writable) directory WITHOUT trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
+                _s('Data file directory'),
+                _s('Physical path to the data files (writable) directory WITHOUT trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
             ),
             'path_usr'      => array(
-                _t('Root directory for user applications'),
-                _t('Physical path to user contributed directory WITHOUT trailing slash.. Locate the folder out of web directory to make it secure; PHP executable'),
+                _s('Root directory for user applications'),
+                _s('Physical path to user contributed directory WITHOUT trailing slash.. Locate the folder out of web directory to make it secure; PHP executable'),
             ),
         );
 
@@ -413,8 +413,8 @@ HTML;
 
         // Assemble basic section which is composed of www path and URI
         $contentBasic = '
-            <h3 class=\'section\'><span id=\'path-basic-label\' class=\'' . $statusBasic . '\'>' . _t('Basic settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-basic-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
-            <p class=\'caption\'>' . _t('Settings required by system') . '</p>
+            <h3 class=\'section\'><span id=\'path-basic-label\' class=\'' . $statusBasic . '\'>' . _s('Basic settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-basic-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
+            <p class=\'caption\'>' . _s('Settings required by system') . '</p>
             <div class=\'install-form advanced-form item-container\' id=\'path-basic\'>' .
             $content .
             '</div>';
@@ -428,16 +428,16 @@ HTML;
 
         // Assemble advanced section by including the advanced items
         $contentAdvanced = '
-            <h3 class=\'section\'><span id=\'path-advanced-label\' class=\'' . $statusAdvanced . '\'>' . _t('Advanced settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-advanced-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
-            <p class=\'caption\'>' . _t('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.') . '</p>
+            <h3 class=\'section\'><span id=\'path-advanced-label\' class=\'' . $statusAdvanced . '\'>' . _s('Advanced settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-advanced-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
+            <p class=\'caption\'>' . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.') . '</p>
             <div class=\'install-form advanced-form item-container\' id=\'path-advanced\'>' .
             $content .
             '</div>';
 
         // Assemble content by combining basic and advanced sections
         $content = '
-            <h2><span id=\'paths-label\' class=\'' . $status . '\'>' . _t('Path settings') . '</span> <a href=\'javascript:void(0);\' id=\'paths-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h2>
-            <p class=\'caption\'>' . _t('Path and URL settings') . '</p>
+            <h2><span id=\'paths-label\' class=\'' . $status . '\'>' . _s('Path settings') . '</span> <a href=\'javascript:void(0);\' id=\'paths-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h2>
+            <p class=\'caption\'>' . _s('Path and URL settings') . '</p>
             <div class=\'install-form advanced-form item-container\' id=\'paths\'>' .
             $contentBasic . $contentAdvanced .
             '</div>';

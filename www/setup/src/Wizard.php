@@ -216,7 +216,7 @@ class Wizard
         $currentPage = $pages[$pageList[$pageIndex]];
         $currentPage['key'] = $pageList[$pageIndex];
 
-        $title = $currentPage['title'] . ' - ' . _t('Pi Engine Setup Wizard') . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
+        $title = $currentPage['title'] . ' - ' . _s('Pi Engine Setup Wizard') . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
         $desc = $currentPage['desc'];
 
         if ($pageIndex > 0) {

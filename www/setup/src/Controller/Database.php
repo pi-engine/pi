@@ -138,8 +138,8 @@ class Database extends AbstractController
         $content = '';
         if (!empty($errorDsn)) {
             $content .= '
-                <h3>' . _t('Configuration file write error') . '</h3>
-                    <p class="caption" style="margin-top: 10px;">' . sprintf(_t('The configuration file "%s" is not written correctly.'), $errorDsn['file']) . '</p>
+                <h3>' . _s('Configuration file write error') . '</h3>
+                    <p class="caption" style="margin-top: 10px;">' . sprintf(_s('The configuration file "%s" is not written correctly.'), $errorDsn['file']) . '</p>
                     <textarea cols="80" rows="10">' . $errorDsn['content'] . '</textarea>';
         }
         $this->content .= $content;
@@ -160,24 +160,24 @@ class Database extends AbstractController
 
         $elementInfo = array(
             'DB_HOST'   => array(
-                _t('Server hostname'),
-                _t('Hostname (and port, delimited by ":") or Unix socket of the database server. If you are unsure, "localhost" works in most cases, or "127.0.0.1"'),
+                _s('Server hostname'),
+                _s('Hostname (and port, delimited by ":") or Unix socket of the database server. If you are unsure, "localhost" works in most cases, or "127.0.0.1"'),
             ),
             'DB_USER'   => array(
-                _t('User name'),
-                _t('Name of the user account that will be used to connect to the database server'),
+                _s('User name'),
+                _s('Name of the user account that will be used to connect to the database server'),
             ),
             'DB_PASS'   => array(
-                _t('Password'),
-                _t('Password of your database user account'),
+                _s('Password'),
+                _s('Password of your database user account'),
             ),
             'DB_DBNAME'   => array(
-                _t('Database name'),
-                _t('The name of database on the host. The database must be already available.'),
+                _s('Database name'),
+                _s('The name of database on the host. The database must be already available.'),
             ),
             'DB_PREFIX'     => array(
-                _t('Table prefix'),
-                _t('This prefix will be added to all new tables created to avoid name conflicts in the database. If you are unsure, just keep the default.'),
+                _s('Table prefix'),
+                _s('This prefix will be added to all new tables created to avoid name conflicts in the database. If you are unsure, just keep the default.'),
             ),
         );
 
@@ -206,8 +206,8 @@ class Database extends AbstractController
         $content .= $displayInput('DB_PREFIX');
 
         $contentSetup = '
-            <h2><span id="db-connection-label" class="">' . _t("Database setup") . '</span></h2>
-            <p class="caption">' . _t("Settings for database") . '</p>' .
+            <h2><span id="db-connection-label" class="">' . _s("Database setup") . '</span></h2>
+            <p class="caption">' . _s("Settings for database") . '</p>' .
             $content;
 
         $this->content = $contentSetup;
