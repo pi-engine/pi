@@ -14,7 +14,6 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Module\Widget
  * @subpackage      Form
- * @version         $Id$
  */
 
 namespace Module\Widget\Form\Element;
@@ -24,28 +23,22 @@ use Zend\Form\Element\Select;
 
 class CarouselTemplate extends Select
 {
+    protected function getStyles()
+    {
+        $styles = array(
+            'carousel-bootstrp'     => __('Bootstrap slideshow'),
+            'carousel-jcarousel'    => __('jCarousel riding Carousel'),
+        );
+        return $styles;
+    }
+
     /**
      * @return array
      */
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $list = array();
-            $templatePath = sprintf('%s/template/block', Pi::service('module')->path('widget'));
-            $iterator = new \DirectoryIterator($templatePath);
-            foreach ($iterator as $fileinfo) {
-                if (!$fileinfo->isFile() || $fileinfo->isDot()) {
-                    continue;
-                }
-                $fileName = $fileinfo->getFilename();
-                if (!preg_match('/^__carousel\-[a-z0-9_\-]+\.phtml$/', $fileName)) {
-                    continue;
-                }
-                $templateName = substr($fileName, 11, -6);
-                $template = substr($fileName, 0, -6);
-                $list[$template] = $templateName;
-            }
-            $this->valueOptions = $list;
+            $this->valueOptions = $this->getStyles();
         }
 
         return $this->valueOptions;

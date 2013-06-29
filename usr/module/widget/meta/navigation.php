@@ -21,6 +21,7 @@
 return array(
     'title'         => __('Navigation'),
     'description'   => __('Block to display navigation menu and breadcrumbs'),
+    'template'      => 'navigation.phtml',
     'config'        => array(
         'navigation'    => array(
             'title'         => 'Navigation name',

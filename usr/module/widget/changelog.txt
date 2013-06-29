@@ -1,10 +1,14 @@
 Widget module changelog
 
+June 30th, 2013
+===============
+1. Widgets are specified meta data located in widget/meta instead of templates
+2. Carousel styles are fixed as jCarousel riding and Bootstrap slide, no extensible styles
+
 
 October 10th, 2012
 =============================
-1. Initiative of widget mangement module
-
+1. Initiative of widget management module
 
 
 Taiwen Jiang
