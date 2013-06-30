@@ -65,8 +65,11 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'renderThemeAssemble'), 10000);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'renderThemeAssemble'), 10000);
 
+        // Canonize ViewModel for error/exception
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeErrorResult'), 10);
+
         // Canonize theme layout if necessary
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeThemeLayout'), 10);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'canonizeThemeLayout'), 5);
 
         // Complete meta assemble for theme
         $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH, array($this, 'completeThemeAssemble'), 10000);
@@ -258,6 +261,85 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 break;
         }
         $e->setResult($model);
+    }
+
+    /**
+     * Inspect the result for erroneous action of JSON/AJAX/Feed
+     *
+     * @param  MvcEvent $e
+     * @return void
+     */
+    public function canonizeErrorResult(MvcEvent $e)
+    {
+        $result = $e->getResult();
+        if ($result instanceof Response) {
+            return;
+        }
+        if (!$this->type) {
+            return;
+        }
+
+        $response = $e->getResponse();
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 400) {
+            return;
+        }
+
+        // Cast controller view model to result viewmodel
+        switch ($this->type) {
+            // For Feed
+            case 'feed':
+                if ($result instanceof FeedModel) {
+                    $model = $result;
+                    $model->setTemplate('');
+                    $model->clearChildren();
+                } else {
+                    $variables = array();
+                    $options = array();
+                    if ($result instanceof ViewModel) {
+                        $variables = $result->getVariables();
+                        $options = $result->getOptions();
+                    } elseif ($result instanceof FeedDataModel) {
+                        $variables = (array) $result;
+                        $options = array('feed_type' => $result->getType());
+                    }
+                    $model = new FeedModel($variables, $options);
+                }
+                break;
+            // For Json
+            case 'json':
+                if ($result instanceof JsonModel) {
+                    $model = $result;
+                    $model->setTemplate('');
+                    $model->clearChildren();
+                } else {
+                    $variables = array();
+                    $options = array();
+                    if ($result instanceof ViewModel) {
+                        $variables = $result->getVariables();
+                        $options = $result->getOptions();
+                    }
+                    $model = new JsonModel($variables, $options);
+                }
+                break;
+
+            // For AJAX/Flash
+            case 'ajax':
+            // MISC
+            default:
+                if ($result instanceof ViewModel) {
+                    $model = $result;
+                    $model->setTemplate('');
+                    $model->clearChildren();
+                    $result = null;
+                } else {
+                    $model = new ViewModel;
+                }
+                $model->terminate(true);
+
+                break;
+        }
+        $e->setViewModel($model);
     }
 
     /**
