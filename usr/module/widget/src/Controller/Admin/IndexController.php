@@ -53,7 +53,7 @@ class IndexController extends WidgetController
         $available = array();
         //$rootPath = Pi::service('module')->path($this->getModule()) . '/template/block';
         $metaPath = Pi::service('module')->path($this->getModule()) . '/meta';
-        $iterator = new \DirectoryIterator($rootPath);
+        $iterator = new \DirectoryIterator($metaPath);
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isFile()) {
                 continue;
@@ -99,7 +99,7 @@ class IndexController extends WidgetController
     public function addAction()
     {
         $module = $this->getModule();
-        $name = _filter($this->params('name'), 'regexp', '/[^a-z0-9_\-]/');
+        $name = _filter($this->params('name'), 'regexp', array('regexp' => '/^[a-z0-9_\-]+$/'));
         $meta = sprintf('%s/meta/%s.php', Pi::service('module')->path($module), $name);
         $block = include $meta;
         $block['type'] = $this->type;
