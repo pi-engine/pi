@@ -1,6 +1,7 @@
 <?php
     $this->css($this->assetModule('script/widget-admin.css', 'widget'));
     $this->jQuery('ui/jquery-ui.custom.min.js');
+    $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <div id="js-widget">
     <fieldset>
@@ -31,18 +32,35 @@
 <script>
 (function($) {
    var wl = $(".widget-list");
+   var alertMessage = function(res) {
+      if (res.status) {
+        systemMessage.succ(res.message);
+      } else {
+        systemMessage.fail(res.message);
+        wl.eq(0).html(cache.installed);
+        wl.eq(1).html(cache.available);
+      }
+   }
+   var cache = {}; 
    wl.sortable({
           connectWith: wl,
           revert: 300,
           placeholder: "widget-placeholder",
           handle: ".widget-hd",
+          start: function(e, ui) {
+            var str = function(tar) {
+              return tar.clone().find('.widget-placeholder').remove().end().find('>li').attr('style', '').end().html();
+            }
+            cache.installed = str(wl.eq(0));
+            cache.available = str(wl.eq(1));
+          },
           receive: function(e, ui) {
               var s = ui.sender,
                   name = ui.item.attr("data-name");
               if (s.attr("data-list") == "add") {
-                  $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>" + name);
+                  $.getJSON("<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>" + name).done(alertMessage);
               } else {
-                  $.getJSON("<?php echo $this->url('', array('action' => 'add', 'name' => '')); ?>" + name);
+                  $.getJSON("<?php echo $this->url('', array('action' => 'add', 'name' => '')); ?>" + name).done(alertMessage);
               }
           }
     })
