@@ -10,9 +10,9 @@ if (isset($options['class'])) {
 }
 $items = $block['items'];
 $activeItem = array_shift($items);
+$count = count($items);
 
 $_this = $this;
-
 $render = function ($item) use ($_this)
 {
     $caption = $_this->escape($item['caption']);
@@ -31,9 +31,17 @@ $render = function ($item) use ($_this)
 
 $this->jQuery();
 $this->bootstrap('js/bootstrap-carousel.js', false);
-$carouselId = uniqid('carousel-');
+$carouselId = uniqid('carousel');
 ?>
 <div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">
+
+  <ol class="carousel-indicators">
+    <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
+    <?php for ($i = 1; $i <= $count; $i++) { ?>
+    <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
+    <?php } ?>
+  </ol>
+
   <!-- Carousel items -->
   <div class="carousel-inner">
     <div class="active item">
@@ -45,6 +53,7 @@ $carouselId = uniqid('carousel-');
     </div>
     <?php } ?>
   </div>
+
   <!-- Carousel nav -->
   <a class="carousel-control left" href="#<?php echo $carouselId; ?>" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#<?php echo $carouselId; ?>" data-slide="next">&rsaquo;</a>

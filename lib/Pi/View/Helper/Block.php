@@ -149,14 +149,6 @@ class Block extends AbstractHelper
         $blockData = null;
         if ('tab' != $block['type'] && $block['cache_ttl']) {
             $cacheKey = empty($options) ? md5($block['id']) : md5($block['id'] . serialize($options));
-            /*
-            $cacheKey = 'b' . $cacheKey;
-            $cacheOptions = array(
-                'ttl'       => $block['cache_ttl'],
-                'namespace' => $block['module'] ?: 'system',
-            );
-            $blockData = Pi::service('cache')->getItem($cacheKey, $cacheOptions);
-            */
             $renderCache = Pi::service('render')->setType('block');
             $renderCache->meta('key', $cacheKey)
                     ->meta('namespace', $block['module'] ?: 'system')
@@ -179,11 +171,6 @@ class Block extends AbstractHelper
             if (false === $blockData) {
                 return false;
             }
-            /*
-            if ($cacheOptions) {
-                Pi::service('cache')->setItem($cacheKey, json_encode($blockData), $cacheOptions);
-            }
-            */
             if ($renderCache) {
                 $renderCache->saveCache(json_encode($blockData));
             }
