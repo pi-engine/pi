@@ -12,17 +12,16 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @subpackage      Controller
- * @version         $Id$
  */
 
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
+
 use Module\Widget\Form\BlockCarouselForm as BlockForm;
 use Pi\File\Transfer\Upload;
+use Zend\Uri\Uri;
 
 /**
  * For carousel block
@@ -250,10 +249,32 @@ class CarouselController extends WidgetController
     {
         $path = Pi::path('upload') . '/' . $this->getModule();
         foreach ($images as $image) {
+            if ($this->isUrl($image)) {
+                continue;
+            }
             $file = $path . '/' . $image;
             if (is_file($file)) {
                 unlink($file);
             }
         }
+    }
+
+    protected function prepareFormValues($blockRow)
+    {
+        $data = $blockRow->toArray();
+        //$values = array();
+        foreach ($data['content'] as &$item) {
+            if (!$this->isUrl($item['image'])) {
+                $item['image'] = $this->urlRoot() . '/' . $item['image'];
+            }
+            //$values[] = $item;
+        }
+        return $data;
+    }
+
+    protected function isUrl($link)
+    {
+        $uri = new Uri($link);
+        return $uri->isAbsolute();
     }
 }

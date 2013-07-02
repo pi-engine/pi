@@ -12,10 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @subpackage      Controller
- * @version         $Id$
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -51,7 +48,6 @@ class IndexController extends WidgetController
         }
 
         $available = array();
-        //$rootPath = Pi::service('module')->path($this->getModule()) . '/template/block';
         $metaPath = Pi::service('module')->path($this->getModule()) . '/meta';
         $iterator = new \DirectoryIterator($metaPath);
         foreach ($iterator as $fileinfo) {
@@ -67,18 +63,6 @@ class IndexController extends WidgetController
             if (isset($installed[$name]) || preg_match('/[^a-z0-9_\-]/', $name)) {
                 continue;
             }
-            /*
-            $meta = sprintf('%s/%s-config.php', $rootPath, $name);
-            $config = array();
-            if (is_readable($meta)) {
-                $config = include $meta;
-            } else {
-                $config = array(
-                    'title'         => $name,
-                    'description'   => ''
-                );
-            }
-            */
             $config = include $fileinfo->getPathname();
             $config['name'] = $name;
             $available[$name] = $config;

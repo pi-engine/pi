@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 namespace Module\System;
@@ -24,6 +22,11 @@ use Module\System\Form\LoginForm;
 
 class Block
 {
+    /**
+     * Site infomation block
+     *
+     * @return array
+     */
     public static function site()
     {
         return array(
@@ -35,6 +38,11 @@ class Block
         );
     }
 
+    /**
+     * User link block
+     *
+     * @return bool|array
+     */
     public static function user()
     {
         if (Pi::registry('user')->isGuest()) {
@@ -47,6 +55,11 @@ class Block
         );
     }
 
+    /**
+     * User bar
+     *
+     * @return array
+     */
     public static function userbar()
     {
         return array(
@@ -56,16 +69,34 @@ class Block
         );
     }
 
+    /**
+     * User login form block
+     *
+     * @return bool|array
+     */
     public static function login()
     {
         if (!Pi::registry('user')->isGuest()) {
             return false;
         }
         $form = new LoginForm('login');
-        $form->setAttribute('action', Pi::engine()->application()->getRouter()->assemble(array('module' => 'system', 'controller' => 'login', 'action' => 'process'), array('name' => 'user')));
+        $form->setAttribute('action', Pi::service('url')->assemble('user', array('module' => 'system', 'controller' => 'login', 'action' => 'process')));
 
         return array(
             'form'  => $form,
+        );
+    }
+
+    /**
+     * Get Pi Engine feature API
+     *
+     * @return string
+     */
+    public static function pi()
+    {
+        $featureApi = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+        return array(
+            'api'   => $featureApi,
         );
     }
 }

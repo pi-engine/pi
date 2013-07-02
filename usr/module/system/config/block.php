@@ -50,4 +50,13 @@ return array(
         'render'        => 'block::login',
         'template'      => 'login',
     ),
+
+    // Pi feature block
+    'pi'    => array(
+        'title'         => __('Pi feature'),
+        'description'   => __('Introduction to Pi Engine'),
+        'render'        => 'block::pi',
+        'template'      => 'pi',
+    ),
+
 );
