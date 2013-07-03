@@ -73,7 +73,7 @@ class Debugger implements FormatterInterface
             }
             if (!empty($event['extra']['file'])) {
                 /**#@++
-                * Remove path prefix for security considerations
+                * Remove path prefix for security concerns
                 */
                 $location .= sprintf(' in %s', Pi::service('security')->path($event['extra']['file']));
                 /**#@-*/

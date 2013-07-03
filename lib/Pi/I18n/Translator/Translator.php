@@ -57,10 +57,7 @@ class Translator extends ZendTranslator
     protected $loader;
 
     /**
-     * Set the default locale.
-     *
-     * @param  string $locale
-     * @return Translator
+     * {@inheritDoc}
      */
     public function setLocale($locale)
     {
@@ -72,9 +69,7 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Get the default locale.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getLocale()
     {
@@ -86,9 +81,7 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Get the fallback locale.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getFallbackLocale()
     {
@@ -181,12 +174,7 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Translate a message.
-     *
-     * @param  string $message
-     * @param  string|null $textDomain
-     * @param  string|null $locale
-     * @return string
+     * {@inheritDoc}
      */
     public function translate($message, $textDomain = null, $locale = null)
     {
@@ -198,14 +186,7 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Translate a plural message.
-     *
-     * @param  string      $singular
-     * @param  string      $plural
-     * @param  int         $number
-     * @param  string|null $textDomain
-     * @param  string|null $locale
-     * @return string
+     * {@inheritDoc}
      */
     public function translatePlural(
         $singular,
@@ -221,12 +202,7 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Get a translated message.
-     *
-     * @param  string      $message
-     * @param  string      $locale
-     * @param  string      $textDomain
-     * @return string|null
+     * {@inheritDoc}
      */
     protected function getTranslatedMessage(
         $message,
@@ -259,7 +235,7 @@ class Translator extends ZendTranslator
      *
      * @param array|string $domain
      * @param string|null $locale
-     * @return Translator
+     * @return bool
      */
     public function load($domain, $locale = null)
     {
@@ -268,7 +244,7 @@ class Translator extends ZendTranslator
         $this->setTextDomain($domain[0]);
         $this->setLocale($locale);
 
-        $messages = Pi::service('registry')->i18n->setGenerator(array($this, 'loadResource'))->read($domain, $this->locale);
+        $messages = (array) Pi::service('registry')->i18n->setGenerator(array($this, 'loadResource'))->read($domain, $this->locale);
         $this->messages[$this->textDomain][$this->locale] = new TextDomain($messages);
         //$this->messages[$this->textDomain][$this->locale] = $messages;
         if ($this->textDomain && $messages) {
@@ -283,7 +259,8 @@ class Translator extends ZendTranslator
                 //$this->messages[''][$this->locale] = $messages;
             }
         }
-        return $this;
+
+        return $messages ? true : false;
     }
 
     /**
@@ -295,7 +272,15 @@ class Translator extends ZendTranslator
     public function loadResource($options)
     {
         $filename = Pi::service('i18n')->getPath(array($options['domain'], $options['file']), $options['locale']);
-        $result = (array) $this->loader->load($options['locale'], $filename);
+        try {
+            $result = (array) $this->loader->load($options['locale'], $filename);
+        } catch (\Exception $e) {
+            $result = array();
+
+            if (Pi::service()->hasService('log')) {
+                Pi::service()->getService('log')->info(sprintf('Translation "%s-%s.%s" load failed.', $options['domain'], $options['file'], $options['locale']));
+            }
+        }
         return $result;
     }
 }

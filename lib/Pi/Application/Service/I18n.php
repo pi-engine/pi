@@ -418,7 +418,7 @@ namespace Pi\Application\Service
         * Normalize domain in Intl resources, including Translator, Locale, Date, NumberFormatter, etc.
         *
         * @param string $domain
-        * @return array pair of component and domain
+        * @return array     pair of component and domain
         */
         public function normalizeDomain($rawDomain)
         {
@@ -436,17 +436,19 @@ namespace Pi\Application\Service
          *
          * @param array|string $domain
          * @param string|null $locale
-         * @return Intl
+         * @return I18n
          */
         public function load($domain, $locale = null)
         {
             $domain = is_array($domain) ? $domain : $this->normalizeDomain($domain);
             $locale = $locale ?: $this->getLocale();
-
-            $this->getTranslator()->load($domain, $locale);
+            $result = $this->getTranslator()->load($domain, $locale);
 
             if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(sprintf('Translation "%s" is loaded', implode(':', $domain)));
+                $message = $result
+                    ? sprintf('Translation "%s.%s" is loaded.', implode(':', $domain), $locale)
+                    : sprintf('Translation "%s.%s" is empty.', implode(':', $domain), $locale);
+                Pi::service()->getService('log')->info($message);
             }
 
             return $this;
@@ -458,14 +460,14 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $module
          * @param string $locale
-         * @return Intl
+         * @return I18n
          */
         public function loadModule($domain, $module = null, $locale = null)
         {
             $module = $module ?: Pi::service('module')->current();
             $component = array('module/' . $module, $domain);
-
             $this->load($component, $locale);
+
             return $this;
         }
 
@@ -475,13 +477,14 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $theme
          * @param string $locale
-         * @return Intl
+         * @return I18n
          */
         public function loadTheme($domain, $theme = null, $locale = null)
         {
             $theme = $theme ?: Pi::service('theme')->current();
             $component = array('theme/' . $theme, $domain);
             $this->load($component, $locale);
+
             return $this;
         }
 

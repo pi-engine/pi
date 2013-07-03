@@ -22,11 +22,22 @@ namespace Pi\I18n\Translator\Loader;
 use Pi;
 use Zend\I18n\Translator\Loader\FileLoaderInterface;
 use Zend\I18n\Translator\TextDomain;
+use Zend\I18n\Exception;
+use Zend\Stdlib\ErrorHandler;
 
 class Csv implements FileLoaderInterface
 {
+    /**
+     * File extension
+     * @var string
+     */
     protected $fileExtension = '.csv';
 
+    /**
+     * Options for CSV file
+     * @var array
+     * @see http://www.php.net/manual/en/function.fgetcsv.php
+     */
     protected $options = array(
         'delimiter' => ',',
         'length'    => 0,
@@ -53,31 +64,32 @@ class Csv implements FileLoaderInterface
         $filename .= $this->fileExtension;
         $messages = array();
 
-        if (is_file($filename) && is_readable($filename)) {
-            $file = @fopen($filename, 'rb');
-            while(($data = fgetcsv($file, $this->options['length'], $this->options['delimiter'], $this->options['enclosure'])) !== false) {
-                if (substr($data[0], 0, 1) === '#') {
-                    continue;
-                }
-
-                if (!isset($data[1])) {
-                    continue;
-                }
-
-                if (count($data) == 2) {
-                    $messages[$data[0]] = $data[1];
-                } else {
-                    $singular = array_shift($data);
-                    $messages[$singular] = $data;
-                }
-            }
-        } else {
-            if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(sprintf('Translation file is not loaded: %s', $filename));
-            }
+        ErrorHandler::start();
+        $file = fopen($filename, 'rb');
+        $error = ErrorHandler::stop();
+        if (false === $file) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Could not open file %s for reading',
+                $filename
+            ), 0, $error);
         }
 
-        //return $messages;
+        while(($data = fgetcsv($file, $this->options['length'], $this->options['delimiter'], $this->options['enclosure'])) !== false) {
+            if (substr($data[0], 0, 1) === '#') {
+                continue;
+            }
+
+            if (!isset($data[1])) {
+                continue;
+            }
+
+            if (count($data) == 2) {
+                $messages[$data[0]] = $data[1];
+            } else {
+                $singular = array_shift($data);
+                $messages[$singular] = $data;
+            }
+        }
 
         $textDomain = new TextDomain($messages);
         return $textDomain;
