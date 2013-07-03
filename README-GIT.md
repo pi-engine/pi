@@ -1,4 +1,4 @@
-# USING THE GIT REPOSITORY TO WORK ON PI ENGINE
+# WORK ON PI ENGINE ON GITHUB
 
  1. Setup a GitHub account (http://github.com/), if you haven't yet
  2. Clone the repo locally and enter it (use your own GitHub username
