@@ -665,7 +665,7 @@ class PageController extends ActionController
         $template = file_get_contents($path);
 
         // Convert zone ID from pi-zone-ID to pi-zone-ID-edit for block manipulation
-        $template = preg_replace('|\{([\d])\}|', '<div id="pi-zone-$1-edit"></div>', $template);
+        $template = preg_replace('|\{([\d]+)\}|', '<div id="pi-zone-$1-edit"></div>', $template);
         $template = str_replace('{content}', '<div id="pi-content-fixed"></div>', $template);
 
         return $template;
