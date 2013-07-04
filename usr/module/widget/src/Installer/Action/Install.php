@@ -73,8 +73,8 @@ class Install extends BasicInstall
         // Spotlight block
         $block = array(
             'module'        => 'widget',
-            'name'          => 'spotlight',
-            'title'         => __('Spotlight'),
+            'name'          => 'highlights',
+            'title'         => __('Pi Highlights'),
             'description'   => __('Introduction to Pi Engine with carousel.'),
             'type'          => 'carousel',
             'template'      => 'carousel-bootstrap',
@@ -101,28 +101,28 @@ class Install extends BasicInstall
         );
         $images = array(
             array(
-                'caption'   => __('Pi Engine Architecture'),
-                'desc'      => '',
-                'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-architecture.png'),
-            ),
-            array(
-                'caption'   => __('Pi Engine Theme'),
-                'desc'      => '',
-                'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-theme.png'),
-            ),
-            array(
-                'caption'   => __('Pi Engine Skeleton'),
-                'desc'      => '',
-                'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-skeleton.png'),
-            ),
-            array(
-                'caption'   => __('Pi Engine Ecosystem'),
-                'desc'      => '',
+                'caption'   => __('Sustainable ecosystem'),
+                'desc'      => __('A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('www/static/image/pi-ecosystem.png'),
+            ),
+            array(
+                'caption'   => __('Engineered development'),
+                'desc'      => __('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.'),
+                'link'      => 'http://pialog.org',
+                'image'     => Pi::url('www/static/image/pi-engineering.png'),
+            ),
+            array(
+                'caption'   => __('Visualization of application management'),
+                'desc'      => __('Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.'),
+                'link'      => 'http://pialog.org',
+                'image'     => Pi::url('www/static/image/pi-visualization.png'),
+            ),
+            array(
+                'caption'   => __('Agile compliant development workflow'),
+                'desc'      => __('Role oriented architecture and deployment skeleton supports managable agile development workflow.'),
+                'link'      => 'http://pialog.org',
+                'image'     => Pi::url('www/static/image/pi-agile.png'),
             ),
         );
         $block['content'] = json_encode($images);
