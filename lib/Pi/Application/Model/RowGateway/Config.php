@@ -35,7 +35,7 @@ class Config extends RowGateway
      */
     protected function encode($data)
     {
-        if (!empty($data['filter'])) {
+        if (!empty($data['filter']) && isset($data['value'])) {
             $data['value'] = $this->encodeValueColumn($data['value'], $data['filter']);
         }
 
