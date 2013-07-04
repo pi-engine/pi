@@ -208,14 +208,14 @@ class Install extends BasicInstall
                 $data = array(
                     'page'      => $homePage['id'],
                     'block'     => $block['id'],
-                    'zone'      => 0,
+                    'zone'      => 8,
                     'order'     => ++$i
                 );
                 $modelLink->insert($data);
             //}
         }
 
-        // Add spotlight and feature to homepage
+        // Add spotlight as top block to homepage
         $blockList = array();
 
         if (in_array('widget', $this->preInstalledModules)) {
@@ -225,7 +225,21 @@ class Install extends BasicInstall
                 'name'      => 'widget-spotlight',
             ))->current()->toArray();
         }
-        
+
+        $i = 0;
+        foreach ($blockList as $block) {
+            $data = array(
+                'page'      => $homePage['id'],
+                'block'     => $block['id'],
+                'zone'      => 0,
+                'order'     => ++$i
+            );
+            $modelLink->insert($data);
+        }
+
+
+        // Add feature as center block to homepage
+        $blockList = array();
         $blockList[] = $modelBlock->select(array(
             'module'    => 'system',
             'name'      => 'system-pi'
@@ -236,7 +250,7 @@ class Install extends BasicInstall
             $data = array(
                 'page'      => $homePage['id'],
                 'block'     => $block['id'],
-                'zone'      => 1,
+                'zone'      => 2,
                 'order'     => ++$i
             );
             $modelLink->insert($data);
