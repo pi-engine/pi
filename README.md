@@ -26,6 +26,7 @@ Quick start
 * Documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki)
 * Download the [latest stable code](https://github.com/pi-engine/pi/zipball/master) and [latest dev code](https://github.com/pi-engine/pi/zipball/develop).
 * Clone Pi repo `git clone git://github.com/pi-engine/pi.git` and [keep updated](https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes).
+* More resources at [Pi Repos](https://github.com/pi-engine/pi/blob/master/README-GIT.md)
 
 Development
 ----------
