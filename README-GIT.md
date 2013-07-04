@@ -1,17 +1,23 @@
-# WORK ON PI ENGINE ON GITHUB
 
- 1. Setup a GitHub account (http://github.com/), if you haven't yet
- 2. Clone the repo locally and enter it (use your own GitHub username
-    in the statement below)
+Pi Engine Github Skeleton
+=========================
 
-    ```sh
-    % git clone https://github.com/pi-engine/pi.git
-    % cd pi
-    ```
-
-# GIT REPO SKELETON FOR PI ENGINE
-
+Pi Engine Core
+----------------
 * [pi-engine/pi](https://github.com/pi-engine/pi): Pi Engine core repo
-* [pi-module](https://github.com/pi-module)/{modulename}: repo for module {modulename}, for instance [pi-module/tag](https://github.com/pi-module/tag) for module tag
-* [pi-theme](https://github.com/pi-theme)/{themename}: repo for theme {themename}, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
-* [pi-extra](https://github.com/pi-extra)/{reponame}: repo for extra components
+* [pi-engine/pi/wiki](https://github.com/pi-engine/pi/wiki): Pi Engine documents
+
+
+Pi Engine Module
+----------------
+* [pi-module](https://github.com/pi-module): repos for modules
+* Eeach module has its own repo, for instance [pi-module/tag](https://github.com/pi-module/tag) for module tag
+
+Pi Engine Theme
+---------------
+* [pi-theme](https://github.com/pi-theme): repos for themes
+* Each theme has its ownrepo, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
+ 
+Pi Engine Extras
+----------------
+* [pi-extra](https://github.com/pi-extra): repos for extra components
