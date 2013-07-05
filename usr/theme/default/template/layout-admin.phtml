@@ -8,7 +8,6 @@ $this->bootstrap(array(
     'css/font-awesome.min.css'
 ));
 $this->css(array(
-    $this->assetTheme('css/style.css'),
     $this->assetTheme('css/admin.css')
 ));
 $module = Pi::service('module')->current();
@@ -59,7 +58,7 @@ $module = Pi::service('module')->current();
             <!-- modules list link : sidemenu,fixed-->
             <?php $navigation = $this->adminNav($module)->side(); ?>
             <?php if ($navigation) { ?>
-                <?php echo $navigation->menu()->setUlClass('nav-modules')->render(); ?>
+                <?php echo $navigation->menu()->setUlClass('unstyled nav-modules')->render(); ?>
             <?php } ?>
             </div>
 
@@ -69,7 +68,7 @@ $module = Pi::service('module')->current();
                 <?php $navigation = $this->adminNav($module)->top(); ?>
                 <?php if ($navigation) {  ?>
                 <div class="clearfix module-menu">
-                    <?php echo $navigation->menu()->setUlClass('')->render();?>
+                    <?php echo $navigation->menu()->setUlClass('unstyled')->render();?>
                     <div class="module-menu-shadow"></div>
                 </div>
                 <?php } ?>
@@ -78,7 +77,7 @@ $module = Pi::service('module')->current();
                     <div class="clearfix pi-main-content">
                         <?php echo $content; ?>
                     </div>
-                    <div id="pi-footer" class="pi-footer">
+                    <div id="pi-footer" class="footer">
                         <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
                         <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
                         <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of  Pi Engine</a>
@@ -87,21 +86,6 @@ $module = Pi::service('module')->current();
                 </div>
             </div>
     </div>
-    <script>
-        $(function() {
-            /*for scroll shadow*/
-           var a = $('.pi-content-inner'),
-               b = $('.module-menu-shadow').css('transition', 'opacity .2s ease-in-out');
-           a.scroll(function(){
-               if (a.scrollTop() > 5) {
-                   b.css('opacity', .4);
-               } else {
-                   b.css('opacity', 0);
-               }
-           })
-            /*for debug info*/
-            $("#pi-logger-output").insertAfter($("#pi-footer"));
-        });
-    </script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
 </body>
 </html>

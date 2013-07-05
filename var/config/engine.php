@@ -20,19 +20,19 @@ return array(
     // application configs
     'config'    => array(
         //Site specific identifier, you should not change it after installation
-        'identifier'    => 'siteidentifier',
+        'identifier'    => 'pieca8',
 
         //Salt for hashing
-        'salt'          => 'bf11488eed7286c61db279f2c02af5f0',
+        'salt'          => '4c889129744313abc3322432898ad9d9',
 
         //Run mode. Potential values: production - for production, debug - for users debugging, development - for developers, close - for maintenance
-        'environment'   => 'development',
+        'environment'   => 'production',
     ),
 
     // System persist storage configs
     'persist'   => array(
-        'storage'   => 'apc',
-        'namespace' => 'apcns',
+        'storage'   => 'filesystem',
+        'namespace' => 'eca8',
         'options'   => array(
         ),
     ),
