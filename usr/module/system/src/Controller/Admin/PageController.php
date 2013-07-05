@@ -510,7 +510,7 @@ class PageController extends ActionController
         $this->view()->assign('currentTheme', Pi::config('theme'));
         $this->view()->assign('modules', $modules);
         $this->view()->assign('name', $name);
-        $this->view()->assign('pi_zone', $this->getZoneTemplate());
+        $this->view()->assign('pageZone', $this->getZoneTemplate());
         $this->view()->assign('title', sprintf(__('%s blocks'), $pageData['title']));
         $this->view()->setTemplate('page-block');
     }

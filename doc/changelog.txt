@@ -11,6 +11,7 @@ June 24th, 2013
 6. Renamed Setup translation function name to _s() to avoid conflicts with translation placeholder function _t()
 7. Added listener for error ViewModel under JSON/AJAX/Feed request
 8. Added "pi-feature" and "pi-spotlight" blocks to homepage on installation
+9. Added two new block zones to theme font layout: $block['0'] for head blocks and $block['99'] for foot blocks
 
 
 June 19th, 2013
