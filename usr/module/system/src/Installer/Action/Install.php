@@ -222,7 +222,7 @@ class Install extends BasicInstall
             // Add spotlight and feature blocks to homepage
             $blockList[] = $modelBlock->select(array(
                 'module'    => 'widget',
-                'name'      => 'widget-spotlight',
+                'name'      => 'widget-highlights',
             ))->current()->toArray();
         }
 
