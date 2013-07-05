@@ -23,12 +23,12 @@ use Zend\Db\Adapter\Driver;
 use Zend\Db\ResultSet;
 
 /**
- * {@inheritdoc}
+ * {@inheritDoc}
  */
 class Adapter extends ZendAdapter
 {
     /**
-     * {@inherit}
+     * {@inheritDoc}
      */
     public function query($sql, $parametersOrQueryMode = self::QUERY_MODE_PREPARE)
     {
