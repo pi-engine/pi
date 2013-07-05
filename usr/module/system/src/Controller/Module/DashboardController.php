@@ -421,4 +421,7 @@ class DashboardController extends ActionController
 
         return true;
     }
+    public function xxAction() {
+        
+    }
 }

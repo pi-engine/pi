@@ -14,4 +14,14 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-header('location: ./setup/');
+// Physical path to host configuration file
+// For performance consideration it is recommended to be specified if there is only one host; Otherwise it will be automatically looked up in central host specifications
+define('PI_PATH_HOST', '/home/liaowei/project/pifork/var/config/host.php');
+
+// Physical path to default library directory WITHOUT trailing slash
+define('PI_PATH_LIB', '/home/liaowei/project/pifork/lib');
+
+include PI_PATH_LIB . '/Pi.php';
+if (defined('PI_BOOT_ENABLE') && constant('PI_BOOT_ENABLE')) {
+    return Pi::boot();
+}

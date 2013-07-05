@@ -1,1 +1,167 @@
-!function(e){"use strict";var t=function(t,n){this.$element=e(t);this.options=e.extend({},e.fn.collapse.defaults,n);if(this.options.parent){this.$parent=e(this.options.parent)}this.options.toggle&&this.toggle()};t.prototype={constructor:t,dimension:function(){var e=this.$element.hasClass("width");return e?"width":"height"},show:function(){var t,n,r,i;if(this.transitioning)return;t=this.dimension();n=e.camelCase(["scroll",t].join("-"));r=this.$parent&&this.$parent.find("> .accordion-group > .in");if(r&&r.length){i=r.data("collapse");if(i&&i.transitioning)return;r.collapse("hide");i||r.data("collapse",null)}this.$element[t](0);this.transition("addClass",e.Event("show"),"shown");e.support.transition&&this.$element[t](this.$element[0][n])},hide:function(){var t;if(this.transitioning)return;t=this.dimension();this.reset(this.$element[t]());this.transition("removeClass",e.Event("hide"),"hidden");this.$element[t](0)},reset:function(e){var t=this.dimension();this.$element.removeClass("collapse")[t](e||"auto")[0].offsetWidth;this.$element[e!==null?"addClass":"removeClass"]("collapse");return this},transition:function(t,n,r){var i=this,s=function(){if(n.type=="show")i.reset();i.transitioning=0;i.$element.trigger(r)};this.$element.trigger(n);if(n.isDefaultPrevented())return;this.transitioning=1;this.$element[t]("in");e.support.transition&&this.$element.hasClass("collapse")?this.$element.one(e.support.transition.end,s):s()},toggle:function(){this[this.$element.hasClass("in")?"hide":"show"]()}};e.fn.collapse=function(n){return this.each(function(){var r=e(this),i=r.data("collapse"),s=typeof n=="object"&&n;if(!i)r.data("collapse",i=new t(this,s));if(typeof n=="string")i[n]()})};e.fn.collapse.defaults={toggle:true};e.fn.collapse.Constructor=t;e(document).on("click.collapse.data-api","[data-toggle=collapse]",function(t){var n=e(this),r,i=n.attr("data-target")||t.preventDefault()||(r=n.attr("href"))&&r.replace(/.*(?=#[^\s]+$)/,""),s=e(i).data("collapse")?"toggle":n.data();n[e(i).hasClass("in")?"addClass":"removeClass"]("collapsed");e(i).collapse(s)})}(window.jQuery)
+/* =============================================================
+ * bootstrap-collapse.js v2.3.2
+ * http://twitter.github.com/bootstrap/javascript.html#collapse
+ * =============================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ============================================================ */
+
+
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* COLLAPSE PUBLIC CLASS DEFINITION
+  * ================================ */
+
+  var Collapse = function (element, options) {
+    this.$element = $(element)
+    this.options = $.extend({}, $.fn.collapse.defaults, options)
+
+    if (this.options.parent) {
+      this.$parent = $(this.options.parent)
+    }
+
+    this.options.toggle && this.toggle()
+  }
+
+  Collapse.prototype = {
+
+    constructor: Collapse
+
+  , dimension: function () {
+      var hasWidth = this.$element.hasClass('width')
+      return hasWidth ? 'width' : 'height'
+    }
+
+  , show: function () {
+      var dimension
+        , scroll
+        , actives
+        , hasData
+
+      if (this.transitioning || this.$element.hasClass('in')) return
+
+      dimension = this.dimension()
+      scroll = $.camelCase(['scroll', dimension].join('-'))
+      actives = this.$parent && this.$parent.find('> .accordion-group > .in')
+
+      if (actives && actives.length) {
+        hasData = actives.data('collapse')
+        if (hasData && hasData.transitioning) return
+        actives.collapse('hide')
+        hasData || actives.data('collapse', null)
+      }
+
+      this.$element[dimension](0)
+      this.transition('addClass', $.Event('show'), 'shown')
+      $.support.transition && this.$element[dimension](this.$element[0][scroll])
+    }
+
+  , hide: function () {
+      var dimension
+      if (this.transitioning || !this.$element.hasClass('in')) return
+      dimension = this.dimension()
+      this.reset(this.$element[dimension]())
+      this.transition('removeClass', $.Event('hide'), 'hidden')
+      this.$element[dimension](0)
+    }
+
+  , reset: function (size) {
+      var dimension = this.dimension()
+
+      this.$element
+        .removeClass('collapse')
+        [dimension](size || 'auto')
+        [0].offsetWidth
+
+      this.$element[size !== null ? 'addClass' : 'removeClass']('collapse')
+
+      return this
+    }
+
+  , transition: function (method, startEvent, completeEvent) {
+      var that = this
+        , complete = function () {
+            if (startEvent.type == 'show') that.reset()
+            that.transitioning = 0
+            that.$element.trigger(completeEvent)
+          }
+
+      this.$element.trigger(startEvent)
+
+      if (startEvent.isDefaultPrevented()) return
+
+      this.transitioning = 1
+
+      this.$element[method]('in')
+
+      $.support.transition && this.$element.hasClass('collapse') ?
+        this.$element.one($.support.transition.end, complete) :
+        complete()
+    }
+
+  , toggle: function () {
+      this[this.$element.hasClass('in') ? 'hide' : 'show']()
+    }
+
+  }
+
+
+ /* COLLAPSE PLUGIN DEFINITION
+  * ========================== */
+
+  var old = $.fn.collapse
+
+  $.fn.collapse = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('collapse')
+        , options = $.extend({}, $.fn.collapse.defaults, $this.data(), typeof option == 'object' && option)
+      if (!data) $this.data('collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.collapse.defaults = {
+    toggle: true
+  }
+
+  $.fn.collapse.Constructor = Collapse
+
+
+ /* COLLAPSE NO CONFLICT
+  * ==================== */
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+ /* COLLAPSE DATA-API
+  * ================= */
+
+  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function (e) {
+    var $this = $(this), href
+      , target = $this.attr('data-target')
+        || e.preventDefault()
+        || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
+      , option = $(target).data('collapse') ? 'toggle' : $this.data()
+    $this[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
+    $(target).collapse(option)
+  })
+
+}(window.jQuery);

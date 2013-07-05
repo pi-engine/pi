@@ -58,10 +58,9 @@ if (is_array($block['content'])) {
 ?>
 
 <?php /* Assign global ID, add custom stylesheet class if available */ ?>
-<div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="block-container<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
+<div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="block<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
     <?php /* Display block header section only if title, or subline or tab availabe */ ?>
     <?php if (!empty($block['title']) || !empty($block['subline']) || is_array($block['content'])) { ?>
-    <div class="block-header-bg"></div>
     <div class="clearfix block-header">
         <?php /* Float position for subline and tab */ ?>
         <?php $float = empty($block['title']) ? '' : 'pull-right'; ?>
@@ -84,7 +83,7 @@ if (is_array($block['content'])) {
         <?php } ?>
 
         <?php /* Display title if available */ ?>
-        <span class="block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></span>
+        <h4 class="block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
     </div>
     <?php } ?>
 

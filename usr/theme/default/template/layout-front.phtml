@@ -3,15 +3,15 @@
 $this->i18nTheme('main');
 
 // Load Bootstrap css by Twitter Team
-$this->bootstrap();
-
-// Load style.css
-// Load front.css
-$this->css(array(
-    $this->assetTheme('css/style.css'),
-    $this->assetTheme('css/front.css'),
+$this->bootstrap(array(
+    'css/font-awesome.min.css'
 ));
 
+// Load style.css
+$this->css(array(
+    $this->assetTheme('css/style.css')
+));
+$this->jQuery();
 
 /**#@+
  * For demonstration
@@ -35,48 +35,39 @@ $this->js($this->assetLocale('rtl.js'));
     <?php echo $this->assemble('headStyle', 4); ?>
     <?php echo $this->assemble('headScript', 4); ?>
 </head>
-
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
-    <div class="header clearfix">
-        <div class="container clearfix">
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="header-logo"><?php echo $this->escape($sitename); ?></a>
+    <!-- header: sitename -->
+    <div class="container header">
+        <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="sitename"><?php echo $this->escape($sitename); ?></a>
+        <div class="pull-right header-user">
+        <?php
+            $user = Pi::registry('user'); 
+            if ($user->isGuest()) {
+                echo sprintf(
+                    '<a href="%s" class="header-user-login">%s</a><a href="%s">%s</a>',
+                    $this->url('user', array('module' => 'system', 'controller' => 'login')),
+                    __('Login'),
+                    $this->url('user', array('module' => 'system', 'controller' => 'register')),
+                    __('Signup'));
+            } else {
+                echo sprintf(
+                    '%s,<a href="%s" class="header-user-name">%s</a><a href="%s">%s</a>',
+                    __('Hi'),
+                    $this->url('user', array('module' => 'system', 'controller' => 'account')),
+                    $user->name,
+                    $this->url('user', array('module' => 'system', 'controller' => 'login', 'action' => 'logout')),
+                    __('Logout'));
+            }
+        ?>
         </div>
     </div>
-
-    <div class="global-nav container">
-
-        <!-- Global navigation starts -->
-        <?php $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/); ?>
-        <?php if ($navigation) { ?>
-
-            <!-- Global menu starts -->
-            <?php $this->css($this->assetTheme('css/menu.css')); ?>
-            <div class="menu">
-                <?php echo $navigation->menu()->setUlClass('menu-horizontal'); ?>
-            </div>
-            <!-- Global menu ends -->
-
-            <!-- Global breadcrumbs starts -->
-            <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">&gt;</span>')->render(); ?>
-            <?php if ($breadcrumbs) { ?>
-            <div class="breadcrumb">
-                <?php echo $breadcrumbs; ?>
-            </div>
-            <?php } ?>
-            <!-- Global breadcrumbs ends -->
-
-        <?php } ?>
-        <!-- Global navigation ends -->
-    </div>
-
-    <div class="wrapper">
+    <!-- navigation  -->
     <div class="container">
-
-        <!-- Blocks starts -->
-        <?php
-            $blocks = $this->blocks();
-            $blockTempalte = $this->template('block');
+        <?php 
+            $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+            echo $navigation->menu()->setUlClass('unstyled menu'); 
         ?>
+<<<<<<< Updated upstream
 
         <?php if (isset($blocks['0'])) {?>
         <div class="row">
@@ -137,18 +128,92 @@ $this->js($this->assetLocale('rtl.js'));
             <div class="pi-zone-5">
                 <?php foreach ($blocks['5'] as $key => $block) {
                     include $blockTempalte;
+=======
+        <!-- breadcrumbs: check if it exists  -->
+        <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">/</span>')->render(); ?>
+        <?php if ($breadcrumbs) { ?>
+        <div class="breadcrumb">
+           <?php echo $breadcrumbs; ?> 
+        </div>
+        <?php } ?>
+    </div>
+    <!-- page main content: blocks and module content -->
+    <?php 
+        $blocks = $this->blocks();
+        $blockTemplate = $this->template('block');
+        $gutter1 = 'style="padding-right: 10px; width: 50%;"';
+        $gutter2 = 'style="padding-left: 10px;"';
+        $colspan = 'colspan="2"';
+    ?>
+    <table class="container main">
+        <tr>
+            <?php if (isset($blocks['1'])) { ?>
+            <td class="pi-zone-1">
+                <?php foreach ($blocks['1'] as $block) {
+                    include $blockTemplate;
+>>>>>>> Stashed changes
                 } ?>
-            </div>
             <?php } ?>
+<<<<<<< Updated upstream
 
             <?php if (isset($blocks['6'])) {
             ?>
             <div class="pi-zone-6">
                 <?php foreach ($blocks['6'] as $key => $block) {
                     include $blockTempalte;
+=======
+            <td>
+                <table>
+                    <?php if (isset($blocks['2'])) { ?>
+                    <tr>
+                        <td class="pi-zone-2" colspan="2">
+                            <?php foreach ($blocks['2'] as $block) {
+                                include $blockTemplate;
+                            } ?>
+                    <?php } ?>
+                    <tr>
+                        <?php if (isset($blocks['3'])) { ?>
+                        <td class="pi-zone-3" <?php if (isset($blocks['4'])) { echo $gutter1; } else { echo $colspan; } ?>>
+                            <?php foreach ($blocks['3'] as $block) {
+                                    include $blockTemplate;
+                            } ?>
+                        <?php } ?>
+                        <?php if (isset($blocks['4'])) { ?>
+                        <td class="pi-zone-4" <?php if (isset($blocks['3'])) { echo $gutter2; } else { echo $colspan; } ?>>
+                            <?php foreach ($blocks['4'] as $block) {
+                                    include $blockTemplate;
+                            } ?>
+                        <?php } ?>
+                    <?php if ($content) { echo '<tr><td class="row-fluid pi-module-content">'. $content .'</td></tr>'; } ?>
+                    <?php if (isset($blocks['5'])) { ?>
+                    <tr>
+                        <td class="pi-zone-5" colspan="2">
+                            <?php foreach ($blocks['5'] as $block) {
+                                include $blockTemplate;
+                            } ?>
+                    <?php } ?>
+                    <tr>
+                        <?php if (isset($blocks['6'])) { ?>
+                        <td class="pi-zone-6" <?php if (isset($blocks['7'])) { echo $gutter1; } else { echo $colspan; } ?>>
+                            <?php foreach ($blocks['6'] as $block) {
+                                    include $blockTemplate;
+                            } ?>  
+                        <?php } ?>
+                        <?php if (isset($blocks['7'])) { ?>
+                        <td class="pi-zone-7" <?php if (isset($blocks['6'])) { echo $gutter2; } else { echo $colspan; } ?>>
+                            <?php foreach ($blocks['7'] as $block) {
+                                    include $blockTemplate;
+                            } ?>
+                        <?php } ?>
+                </table>
+            <?php if (isset($blocks['8'])) { ?>
+            <td class="pi-zone-8">
+                <?php foreach ($blocks['8'] as $block) {
+                    include $blockTemplate;
+>>>>>>> Stashed changes
                 } ?>
-            </div>
             <?php } ?>
+<<<<<<< Updated upstream
 
 
             <?php if (isset($blocks['7'])) { ?>
@@ -186,32 +251,29 @@ $this->js($this->assetLocale('rtl.js'));
     </div>
 
     <!-- Footer starts -->
+=======
+    </table>
+    <!-- Footer: sitelink -->
+>>>>>>> Stashed changes
     <div class="footer">
-        <div class="horizontal-rule"></div>
         <div class="container">
-            <!-- Official statement starts -->
-            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a>  |
-            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a>  |
-            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a>  |
-            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a>  |
+            <div class="footer-line"></div>
+            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a><span class="divider">|</span>
             <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
-            <!-- Official statement ends -->
-            &copy; <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>"><?php echo $this->escape($sitename); ?></a> | Powered by <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a> | Design of <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a>
-
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="divider">|</span>
+            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="divider">|</span> 
+            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
         </div>
-
         <!-- Show execution time -->
         <?php $time = microtime(true) - Pi::startTime(); ?>
         <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
-        <!-- Show execution time -->
-
     </div>
-    <!-- Footer ends -->
-
     <?php echo $this->assemble('footScript', 4); ?>
-
 </body>
 </html>

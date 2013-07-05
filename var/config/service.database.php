@@ -18,9 +18,9 @@ return array(
     // Connection configs, to be passed to driver
     'connection'    => array(
         'driver'    => 'pdo',
-        'dsn'       => 'mysql:dbname=pi;host=localhost',
+        'dsn'       => 'mysql:dbname=liaowei_pifork;host=192.168.18.14',
         'username'  => 'root',
-        'password'  => '',
+        'password'  => 'root',
 
         // driver_options. All attributes must be valid.
         // @see http://www.php.net/manual/en/pdo.setattribute.php
@@ -38,9 +38,9 @@ return array(
     ),
 
     // Database schema
-    'schema'        => 'pi',
+    'schema'        => 'liaowei_pifork',
     // Prefix for all tables
-    'table_prefix'  => 'x2d1_',
+    'table_prefix'  => 'x1dc_',
     // Prefix for system tables; module identifiers will be used for its tables, respectively
     'core_prefix'   => 'core_'
 );

@@ -15,7 +15,7 @@ $this->css($this->assetTheme('css/style.css'));
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <div class="header clearfix">
         <div class="container clearfix">
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>" class="header-logo"><?php echo $this->escapeHtml($sitename); ?></a>
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>" class="sitename"><?php echo $this->escapeHtml($sitename); ?></a>
         </div>
     </div>
 
@@ -29,29 +29,25 @@ $this->css($this->assetTheme('css/style.css'));
     </div>
     </div>
 
-    <!-- Footer starts -->
+    <!-- Footer: sitelink -->
     <div class="footer">
-        <div class="horizontal-rule"></div>
         <div class="container">
-            <!-- Official statement starts -->
-            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a>  |
-            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a>  |
-            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a>  |
-            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a>  |
-            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a>  |
+            <div class="footer-line"></div>
+            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a><span class="divider">|</span>
+            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a><span class="divider">|</span>
             <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
-            <!-- Official statement ends -->
-            &copy; <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>"><?php echo $this->escapeHtml($sitename); ?></a> | Powered by <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a> | Design of <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine</a>
-
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="divider">|</span>
+            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="divider">|</span> 
+            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
         </div>
-
         <!-- Show execution time -->
         <?php $time = microtime(true) - Pi::startTime(); ?>
         <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
-        <!-- Show execution time -->
-
     </div>
     <!-- Footer ends -->
 

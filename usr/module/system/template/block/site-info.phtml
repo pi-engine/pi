@@ -1,7 +1,6 @@
-<h2 class="page-header"><?php echo $this->escape($block['caption']); ?></h2>
-
-<ul>
+<h4><?php echo $this->escape($block['caption']); ?></h4>
+<ol>
     <?php foreach ($block['items'] as $caption => $text) {?>
-        <li><span class="label"><?php echo $this->escape($caption); ?></span><span class="text"><?php echo $text ?></span></li>
+        <li><strong><?php echo $this->escape($caption) . ': '; ?></strong><?php echo $text ?></li>
     <?php }?>
-</ul>
+</ol>
