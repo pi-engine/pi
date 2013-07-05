@@ -58,6 +58,7 @@ class Csv implements FileLoaderInterface
 
     /**
      * {@inheritdoc}
+     * @return TextDomain|false
      */
     public function load($locale, $filename)
     {
@@ -68,10 +69,7 @@ class Csv implements FileLoaderInterface
         $file = fopen($filename, 'rb');
         $error = ErrorHandler::stop();
         if (false === $file) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Could not open file %s for reading',
-                $filename
-            ), 0, $error);
+            return false;
         }
 
         while(($data = fgetcsv($file, $this->options['length'], $this->options['delimiter'], $this->options['enclosure'])) !== false) {
