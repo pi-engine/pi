@@ -16,6 +16,7 @@ June 24th, 2013
 11. Fixed Issue #121: exception messages were missed by ErrorStrategy template overwritten
 12. Merged theme/template/error-exception.phtml to error.phtml
 13. Modified config: var/config/config.application.php -- changed 'exception_template' value
+14. Formulated return of Ajax/JSON request with format: array('status' => 1, 'message' => '', 'data' => array())
 
 
 June 19th, 2013
