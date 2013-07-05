@@ -273,13 +273,17 @@ class Translator extends ZendTranslator
     {
         $filename = Pi::service('i18n')->getPath(array($options['domain'], $options['file']), $options['locale']);
         try {
-            $result = (array) $this->loader->load($options['locale'], $filename);
+            $result = $this->loader->load($options['locale'], $filename);
         } catch (\Exception $e) {
-            $result = array();
-
+            $result = false;
+        }
+        if (false === $result) {
             if (Pi::service()->hasService('log')) {
                 Pi::service()->getService('log')->info(sprintf('Translation "%s-%s.%s" load failed.', $options['domain'], $options['file'], $options['locale']));
             }
+            $result = array();
+        } else {
+            $result = (array) $result;
         }
         return $result;
     }
