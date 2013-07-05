@@ -25,7 +25,9 @@ $render = function ($item) use ($_this)
     } else {
         $content .= $image;
     }
-    $content .= '<div class="carousel-caption">' . '<h4>' . $caption . '</h4>' . '<p>' . $description . '</p>' . '</div>';
+    if ($caption || $description) {
+        $content .= '<div class="carousel-caption">' . '<h4>' . $caption . '</h4>' . '<p>' . $description . '</p>' . '</div>';
+    }
     return $content;
 };
 
