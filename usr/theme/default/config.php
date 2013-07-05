@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Theme
- * @version         $Id$
  */
 
 /**
@@ -67,4 +65,6 @@ return array(
     'description'   => 'Default theme for Pi Engine',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => '',
+    // Supported browsers
+    'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+; Safari: 5.1+; Opera: 9.8+;',
 );
