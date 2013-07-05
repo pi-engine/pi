@@ -23,15 +23,15 @@ return array(
         'identifier'    => 'pieca8',
 
         //Salt for hashing
-        'salt'          => '0ad4396951c58d0075c9d76ae9045485',
+        'salt'          => '4c889129744313abc3322432898ad9d9',
 
         //Run mode. Potential values: production - for production, debug - for users debugging, development - for developers, close - for maintenance
-        'environment'   => 'development',
+        'environment'   => 'production',
     ),
 
     // System persist storage configs
     'persist'   => array(
-        'storage'   => 'apc',
+        'storage'   => 'filesystem',
         'namespace' => 'eca8',
         'options'   => array(
         ),
