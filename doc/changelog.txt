@@ -13,6 +13,9 @@ June 24th, 2013
 8. Added "pi-feature" and "pi-spotlight" blocks to homepage on installation
 9. Added two new block zones to theme font layout: $block['0'] for head blocks and $block['99'] for foot blocks
 10. Added browser support indication to theme configuration
+11. Fixed Issue #121: exception messages were missed by ErrorStrategy template overwritten
+12. Merged theme/template/error-exception.phtml to error.phtml
+13. Modified config: var/config/config.application.php -- changed 'exception_template' value
 
 
 June 19th, 2013
