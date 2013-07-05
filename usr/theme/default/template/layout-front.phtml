@@ -6,7 +6,8 @@ $this->i18nTheme('main');
 $this->bootstrap(array(
     'css/font-awesome.min.css'
 ));
-
+// Ie 7 hack
+$this->headLink()->appendStylesheet(Pi::service('asset')->getStaticUrl('vendor/bootstrap/css/font-awesome-ie7.min.css', false), '', 'IE 7');
 // Load style.css
 $this->css(array(
     $this->assetTheme('css/style.css')
@@ -62,73 +63,11 @@ $this->js($this->assetLocale('rtl.js'));
         </div>
     </div>
     <!-- navigation  -->
-    <div class="container">
+    <div class="container nav-container">
         <?php 
             $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
             echo $navigation->menu()->setUlClass('unstyled menu'); 
         ?>
-<<<<<<< Updated upstream
-
-        <?php if (isset($blocks['0'])) {?>
-        <div class="row">
-        <div class="span12 pi-zone-0">
-            <?php foreach ($blocks['0'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-        </div>
-        </div>
-        <?php } ?>
-
-        <div class="row">
-
-        <?php if (isset($blocks['1'])) {?>
-        <div class="span3 pi-zone-1">
-            <?php foreach ($blocks['1'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-        </div>
-        <?php } ?>
-
-        <div class="<?php echo (isset($blocks['1']) && isset($blocks['8'])) ? 'span6' : 'span9'; ?>">
-            <?php if(isset($blocks['2'])) {
-            ?>
-            <div class="pi-zone-2">
-                <?php foreach ($blocks['2'] as $key => $block) {
-                    include $blockTempalte;
-                } ?>
-            </div>
-            <?php } ?>
-
-            <?php if(isset($blocks['3'])) {
-            ?>
-            <div class="pi-zone-3">
-                <?php foreach ($blocks['3'] as $key => $block) {
-                    include $blockTempalte;
-                } ?>
-            </div>
-            <?php } ?>
-
-            <?php if (isset($blocks['4'])) {
-            ?>
-            <div class="pi-zone-4">
-            <?php foreach ($blocks['4'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-            </div>
-            <?php } ?>
-
-            <!-- Module content starts -->
-            <?php if (!empty($content)) { ?>
-                <div class="pi-zone-module row-fluid"><?php echo $content; ?></div>
-            <?php } ?>
-            <!-- Module content ends -->
-
-            <?php if (isset($blocks['5'])) {
-            ?>
-            <div class="pi-zone-5">
-                <?php foreach ($blocks['5'] as $key => $block) {
-                    include $blockTempalte;
-=======
         <!-- breadcrumbs: check if it exists  -->
         <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">/</span>')->render(); ?>
         <?php if ($breadcrumbs) { ?>
@@ -145,23 +84,22 @@ $this->js($this->assetLocale('rtl.js'));
         $gutter2 = 'style="padding-left: 10px;"';
         $colspan = 'colspan="2"';
     ?>
+    <?php if (isset($blocks['0'])) { ?>
+    <div class="container pi-zone-0">
+        <?php foreach ($blocks['0'] as $block) {
+            include $blockTemplate;
+        } ?>
+    </div>
+    <?php } ?>
     <table class="container main">
         <tr>
             <?php if (isset($blocks['1'])) { ?>
             <td class="pi-zone-1">
                 <?php foreach ($blocks['1'] as $block) {
                     include $blockTemplate;
->>>>>>> Stashed changes
+
                 } ?>
             <?php } ?>
-<<<<<<< Updated upstream
-
-            <?php if (isset($blocks['6'])) {
-            ?>
-            <div class="pi-zone-6">
-                <?php foreach ($blocks['6'] as $key => $block) {
-                    include $blockTempalte;
-=======
             <td>
                 <table>
                     <?php if (isset($blocks['2'])) { ?>
@@ -210,51 +148,17 @@ $this->js($this->assetLocale('rtl.js'));
             <td class="pi-zone-8">
                 <?php foreach ($blocks['8'] as $block) {
                     include $blockTemplate;
->>>>>>> Stashed changes
                 } ?>
             <?php } ?>
-<<<<<<< Updated upstream
-
-
-            <?php if (isset($blocks['7'])) { ?>
-            <div class="pi-zone-7">
-                <?php foreach ($blocks['7'] as $key => $block) {
-                    include $blockTempalte;
-                } ?>
-            </div>
-            <?php } ?>
-
-        </div>
-
-        <?php if (isset($blocks['8'])) {?>
-        <div class="pi-zone-8">
-            <?php foreach ($blocks['8'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-        </div>
-        <?php } ?>
-
-        </div>
-
-        <?php if (isset($blocks['99'])) {?>
-        <div class="row">
-        <div class="span12 pi-zone-99">
-            <?php foreach ($blocks['99'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-        </div>
-        </div>
-        <?php } ?>
-
-        <!-- Blocks ends -->
-    </div>
-    </div>
-
-    <!-- Footer starts -->
-=======
     </table>
+    <?php if (isset($blocks['99'])) { ?>
+    <div class="container pi-zone-99">
+        <?php foreach ($blocks['99'] as $block) {
+            include $blockTemplate;
+        } ?>
+    </div>
+    <?php } ?>
     <!-- Footer: sitelink -->
->>>>>>> Stashed changes
     <div class="footer">
         <div class="container">
             <div class="footer-line"></div>

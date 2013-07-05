@@ -11,11 +11,9 @@ body {
 }
 
 /* Layout */
-.main {
-  margin-top: 10px;
-  max-width: 940px;
+.nav-container {
+  margin-bottom: 20px;
 }
-
 .main td {
   vertical-align: top;
   padding: 0;
@@ -60,7 +58,7 @@ body {
 }
 .header-user-name,
 .header-user-login {
-  margin:0 5px;
+  margin:0 10px 0 5px;
 }
 .sitename {
   font: bold 32px Helvetica, sans-serif;
@@ -78,6 +76,7 @@ body {
   box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   height: 40px;
   border-radius: 4px;
+  margin-bottom: 0;
 }
 
 .menu li {
@@ -140,25 +139,30 @@ body {
 
 .breadcrumb {
   margin-bottom: 0;
-  padding-left: 0;
+  padding: 10px 0;
 }
 
 
 /* Zone */
+.pi-zone-0 .block-header {
+  display: none;
+}
+
+.pi-zone-0 .block-body {
+  padding: 0;
+}
+
+.pi-zone-0 .carousel {
+  margin-bottom: 0;
+}
+
 .pi-zone-1 {
   width: 220px;
 }
 
-.pi-zone-1 .block-header {
-  
-}
 
-.pi-zone-1 .block-body {
-}
 
-.pi-zone-1 .carousel {
-  margin-bottom: 0;
-}
+
 .pi-zone-2 {
 
 }

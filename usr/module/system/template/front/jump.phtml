@@ -1,16 +1,11 @@
 
 <?php $this->headMeta(sprintf('%d; url=%s', intval($time), $url), 'refresh', 'http-equiv'); ?>
-
-
 <div class="alert alert-success">
     <?php if (!empty($message)) { ?>
     <h3><?php echo $message; ?></h3>
     <?php } ?>
-
-    <p>
-        <?php
-        $link = sprintf('<a href="%s" title="%s">%s</a>', $url, __('the link'), __('the link'));
-        echo sprintf(__('The page will redirected in %d seconds. Or you can click %s directly.'), $time, $link);
-        ?>
-    </p>
+    <?php
+    $link = sprintf('<a href="%s" title="%s">%s</a>', $url, __('the link'), __('the link'));
+    echo sprintf(__('The page will redirected in %d seconds. Or you can click %s directly.'), $time, $link);
+    ?>
 </div>

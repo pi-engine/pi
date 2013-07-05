@@ -1,7 +1,8 @@
 <?php
-    $this->css($this->assetModule('script/admin.css'));
+    $this->css($this->assetModule('script/system-ui.css'));
     $this->jQuery('ui/jquery-ui.custom.min.js');
     $this->backbone();
+    $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <style>
 table {
@@ -28,16 +29,8 @@ table td {
    min-width: 180px;
 }
 
-#pi-zone-0-edit,
-#pi-zone-99-edit,
-#pi-zone-2-edit,
-#pi-zone-3-edit,
-#pi-zone-4-edit,
-#pi-zone-5-edit,
-#pi-zone-6-edit,
-#pi-zone-7-edit,
-#pi-zone-8-edit {
-   min-height: 200px;
+[id*='pi-zone-'] {
+   min-height: 180px;
 }
 #pi-content-fixed {
     clear: both;
@@ -50,7 +43,7 @@ table td {
     font:bold 16px/100px sans-serif;
     text-align: center;
     *width: 572px;
-    min-height: 200px;
+    min-height: 180px;
 }
 .module-block-title,
 .pi-zone-num {
@@ -168,7 +161,6 @@ table td {
     width: 180px;
 }
 </style>
-
 <div class="row-fluid dressup-page">
     <div class="span2">
         <h4 class="ellipsis legend" title="<?php echo $title; ?>">
@@ -196,13 +188,12 @@ table td {
         </div>
     </div>
 </div>
-
 <script id="module-temp" type="text/template">
     <div class="nav-header module-header" title="<%- title %>">
         <b class="pull-right caret caret-big"></b>
         <div class="ellipsis"><%- title %></div>
     </div>
-    <ul class="module-blocks">
+    <ul class="unstyled module-blocks">
     </ul>
 </script>
 <script id="module-block-temp" type="text/template">
@@ -228,193 +219,11 @@ table td {
         </li>
     <% }) %>
 </script>
-
+<script src="<?php echo $this->assetModule('script/page-block.js'); ?>"></script>
 <script>
-(function($) {
-/* module */
-/* module model */
-var modules = new Backbone.Collection(<?php echo json_encode($modules); ?>);
-/*module view*/
-var ModuleListItemView = Backbone.View.extend({
-    template: _.template($("#module-temp").html()),
-    templateBlock: _.template($("#module-block-temp").html()),
-    events: {
-        "click .module-header": "loadBlock"
-    },
-    initialize: function() {
-    },
-    render: function() {
-       this.$el.html(this.template(this.model.toJSON()));
-       return this;
-    },
-    loadBlock: function() {
-        var h = this.$(".module-header"),
-            b = this.$(".module-blocks"),
-            tb = this.templateBlock,
-            self = this;
-        h.toggleClass("active");
-        if (!h.attr("data-loaded")) {
-           $.getJSON("<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '')); ?>" + this.model.get("name")).done(function(result) {
-                var data = result.data;
-                if (data.length) {
-                    for(var i = 0, l = data.length; i < l; i++) {
-                        b.append($(tb(data[i])).data("info",data[i]));
-                    }
-                } else {
-                    b.append('<span class="label label-info"><?php _e('No Block'); ?></span>');
-                }
-                self.dragBlock(b.find(".module-block"));
-                b.css('dispaly', 'block');
-                h.attr("data-loaded", 1);
-            });
-        } else {
-            b.slideToggle("300");
-        }
-    },
-    dragBlock: function(el) {
-       el.draggable({
-                helper : "clone",
-                handle : ".module-block-title"
-       });
-       el.each(function() {
-          var $this = $(this);
-          if ($("[id*=pi-zone-]").find(".widget-clone[data-id=" + $this.attr("data-id") + "]").length) {
-            $this.draggable("option", "disabled", true);
-          }
-       });
-    }
+pageBlcokAction({
+    modules: <?php echo json_encode($modules); ?>,
+    blocks: <?php echo json_encode($blocks); ?>,
+    page: <?php echo $page['id']; ?>
 });
-var ModuleListView = Backbone.View.extend({
-    el: $("#widget-wrap"),
-    initialize: function() {
-        this.render();
-    },
-    render: function() {
-         var m = modules.models;
-         for (var i = 0, l = m.length; i < l; i++) {
-             this.$el.append(new ModuleListItemView({model:m[i]}).render().el);
-         }
-    }
-});
-new ModuleListView;
-
-/* page */
-var blocks = <?php echo json_encode($blocks); ?>;
-var PageItemView = Backbone.View.extend({
-     template: _.template($("#page-area-temp").html()),
-     initialize: function() {
-         this.render();
-     },
-     render: function() {
-       var m = this.model,
-           el = this.$el;
-       for (var i = 0, l = m.length; i < l; i++) {
-           el.append(this.template(m[i]));
-       }
-       return this;
-    }
-});
-var ThemeListView = Backbone.View.extend({
-    template: $("#temp-theme").html(),
-    el: $("#js-theme"),
-    events: {
-        "click .load-theme": "loadTheme",
-        "click .set-theme-item": "setTheme"
-    },
-    initialize: function() {
-        $('.submit-theme').click(_.bind(this.submitTheme, this));
-    },
-    loadTheme: function() {
-        var w = this.$(".theme-wrap"),
-            self = this,
-            u = w.find("ul");
-        w.fadeToggle("200");
-        this.$('.load-theme').toggleClass('active');
-        if (!w.attr("data-load")) {
-            $.getJSON("<?php echo $this->url('', array('action' => 'themelist')); ?>").done(function(result) {
-                u.html(_.template(self.template, _.toArray(result),{variable:'data'}));
-                w.attr("data-load", 1);
-            });
-        }
-    },
-    submitTheme: function() {
-        var data = {
-            page: parseInt(<?php echo $page['id']; ?>),
-            blocks: {}
-        }, b = $("[id*=pi-zone-]"),
-            ret;
-        for (var i = 0; i < 8; i++) {
-            ret = [];
-            b.eq(i).find(".widget-clone").each(function() {
-                ret.push(parseInt($(this).attr("data-id")));
-            });
-            if (ret.length) {
-                data.blocks[i] = ret;
-            }
-        }
-        $.post("<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'save')); ?>", data).done(function(result) {
-            alert("<?php _e('Data saved successfully.'); ?>");
-        });
-    },
-    setTheme: function(e) {
-        this.$(".set-theme-item").removeClass("active");
-        var tar = $(e.currentTarget);
-        tar.addClass("active");
-        $.getJSON("<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => ''))?>" + tar.attr("data-name")).done(function(result) {
-            var org = [""];
-            for (var i = 1; i < 9; i++) {
-                   org.push($("#pi-zone-" + i + "-edit").find(".ui-placeholder,.pi-zone-num").remove().end().html());
-            }
-            $("#drag-main").html(result.content.content);
-            for (var i = 1; i < 9; i++) {
-                   $("#pi-zone-"+i+"-edit").html(org[i]);
-            }
-            initPageEvent();
-        });
-    }
-});
-var initPageEvent = function() {
-    var drag = $("[id*=pi-zone-]");
-        drag.droppable({
-            accept : "#widget-wrap .module-block",
-            hoverClass : "ui-state-hover",
-            drop: function(event, ui) {
-                var h = ui.draggable,
-                    m = h.data("info");
-                h.draggable("option", "disabled", true);
-                $(_.template($("#page-area-temp").html(),{
-                    title: m.title,
-                    id: m.id,
-                    description: m.description
-                })).insertBefore($(this).find(".ui-placeholder"));
-            }
-        }).append("<div class='ui-placeholder'></div>");
-        drag.each(function() {
-           var $this = $(this);
-           $this.css("min-height", $this.parent().height());
-           $this.prepend("<div class='pi-zone-num'>" + $this.attr("id").replace(/[a-z-]/g, "")+"</div>");
-        });
-        drag.sortable({
-            placeholder: "ui-state-highlight",
-            connectWith: drag,
-            items: ".widget-clone",
-            revert: 300
-        });
-        drag.on("click", ".close", function(e) {
-            var tar = $(e.target), p = tar.parents(".widget-clone");
-            p.fadeOut(100, function() {
-                p.remove();
-                $("#" + p.attr("id").replace(/\-clone$/, "")).draggable("option", "disabled", false);
-            });
-        });
-}
-
-for (var i in blocks) {
-    if (blocks.hasOwnProperty(i)) {
-        new PageItemView({el: $("#pi-zone-" + (parseInt(i) + 1) + "-edit"), model: _.toArray(blocks[i])});
-    }
-}
-initPageEvent();
-new ThemeListView;
-})(jQuery)
 </script>

@@ -274,7 +274,7 @@ class PageController extends ActionController
         return array(
             'status'    => $status,
             'message'   => $message,
-            'page'      => $page,
+            'data'      => $page,
         );
     }
 
@@ -318,7 +318,6 @@ class PageController extends ActionController
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('system:component/form-popup');
     }
-
 
     /**
      * AJAX for editing a page
@@ -365,7 +364,7 @@ class PageController extends ActionController
         return array(
             'status'    => $status,
             'message'   => $message,
-            'page'      => $page,
+            'data'      => $page,
         );
     }
 
@@ -400,12 +399,18 @@ class PageController extends ActionController
             // Remove page
             $row->delete();
             Pi::service('registry')->page->clear($row->module);
+            $result = array(
+                'status'    => 0,
+                'message'   => __('Page is not found.'),
+            );
+        } else {
+            $result = array(
+                'status'    => 1,
+                'message'   => __('Page is deleted.'),
+            );
         }
-        /*
-        $this->view()->setTemplate(false);
-        $this->redirect()->toRoute('', array('action' => 'index', 'name' => $row->module));
-        */
-        return 1;
+
+        return $result;
     }
 
     /**
@@ -550,18 +555,27 @@ class PageController extends ActionController
      *  ),
      * );
      *
-     * @return int 0 for false; 1 for success
+     * @return array
      */
     public function saveAction()
     {
+        $result = array(
+            'status'    => 1,
+            'message'   => '',
+            'data'      => array(),
+        );
         $page   = $this->params()->fromPost('page');
         $blocks = $this->params()->fromPost('blocks');
 
         $row = Pi::model('page')->find($page);
         if (!$row) {
-            return 0;
+            $result = array(
+                'status'    => 0,
+                'message'   => __('Page is not found.'),
+            );
+            return $result;
         }
-
+;
         // Remove all existent block links
         Pi::model('page_block')->delete(array('page' => $page));
         // Add new block links
@@ -579,7 +593,11 @@ class PageController extends ActionController
 
         // Clear cache of the page module
         Pi::service('registry')->block->clear($row->module);
-        return 1;
+        $result = array(
+            'status'    => 1,
+            'message'   => __('Page block links are updated.'),
+        );
+        return $result;
     }
 
     /**
@@ -667,7 +685,6 @@ class PageController extends ActionController
         // Convert zone ID from pi-zone-ID to pi-zone-ID-edit for block manipulation
         $template = preg_replace('|\{([\d]+)\}|', '<div id="pi-zone-$1-edit"></div>', $template);
         $template = str_replace('{content}', '<div id="pi-content-fixed"></div>', $template);
-
         return $template;
 
     }

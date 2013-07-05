@@ -32,13 +32,8 @@ $render = function ($item) use ($_this)
 };
 
 $this->jQuery();
-<<<<<<< Updated upstream
-$this->bootstrap('js/bootstrap-carousel.js', false);
+$this->bootstrap(array('js/bootstrap-transition.js', 'js/bootstrap-carousel.js'), false);
 $carouselId = uniqid('carousel');
-=======
-$this->bootstrap('js/bootstrap.min.js', false);
-$carouselId = uniqid('carousel-');
->>>>>>> Stashed changes
 ?>
 <div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">
 
