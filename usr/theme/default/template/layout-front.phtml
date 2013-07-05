@@ -37,7 +37,7 @@ $this->js($this->assetLocale('rtl.js'));
     <?php echo $this->assemble('headScript', 4); ?>
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
-    <!-- header: sitename -->
+    <!-- Header: sitename -->
     <div class="container header">
         <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="sitename"><?php echo $this->escape($sitename); ?></a>
         <div class="pull-right header-user">
@@ -62,13 +62,13 @@ $this->js($this->assetLocale('rtl.js'));
         ?>
         </div>
     </div>
-    <!-- navigation  -->
+    <!-- Navigation  -->
     <div class="container nav-container">
         <?php 
             $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
             echo $navigation->menu()->setUlClass('unstyled menu'); 
         ?>
-        <!-- breadcrumbs: check if it exists  -->
+        <!-- Breadcrumbs: check if it exists  -->
         <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="divider">/</span>')->render(); ?>
         <?php if ($breadcrumbs) { ?>
         <div class="breadcrumb">
@@ -76,7 +76,7 @@ $this->js($this->assetLocale('rtl.js'));
         </div>
         <?php } ?>
     </div>
-    <!-- page main content: blocks and module content -->
+    <!-- Page main content: blocks and module content -->
     <?php 
         $blocks = $this->blocks();
         $blockTemplate = $this->template('block');
