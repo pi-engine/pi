@@ -14,6 +14,7 @@ body {
 .nav-container {
   margin-bottom: 20px;
 }
+
 .main td {
   vertical-align: top;
   padding: 0;
@@ -22,14 +23,17 @@ body {
 .main .pi-zone-1 {
   padding-right: 20px;
 }
+
 .main .next-zone {
   padding-right: 10px;
   width: 50%;
 }
+
 .main .pre-zone {
   padding-left: 10px;
   width: 50%;
 }
+
 .main .pi-zone-8 {
   padding-left: 20px;
 }
@@ -39,7 +43,6 @@ body {
 }
 
 .span1 {
-
 }
 
 
@@ -47,19 +50,24 @@ body {
 .header {
   margin: 20px auto;
 }
+
 .header-user {
   color: #666;
 }
+
 .header-user a {
   color: #666;
 }
+
 .header-user a:hover {
   color: #005580;
 }
+
 .header-user-name,
 .header-user-login {
-  margin:0 10px 0 5px;
+  margin: 0 10px 0 5px;
 }
+
 .sitename {
   font: bold 32px Helvetica, sans-serif;
 }
@@ -160,24 +168,24 @@ body {
   width: 220px;
 }
 
-
-
-
 .pi-zone-2 {
-
 }
+
 .pi-zone-3 {
 }
+
 .pi-zone-4 {
 }
-.pi-zone-5 {
 
+.pi-zone-5 {
 }
+
 .pi-zone-6 {
 }
-.pi-zone-7 {
 
+.pi-zone-7 {
 }
+
 .pi-zone-8 {
   width: 220px;
 }
@@ -198,6 +206,7 @@ body {
 .block-body {
   padding: 20px;
 }
+
 .block-body >:last-child {
   margin-bottom: 0;
 }
