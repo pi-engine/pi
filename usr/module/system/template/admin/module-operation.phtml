@@ -18,18 +18,22 @@
     }
     // Display detailed information
     if ($details) {
-        echo '<ol class="module-ol">';
+        echo '<ol>';
         foreach ($details as $action => $state) {
             if (isset($state['status']) && $state['status'] === false) {
-                echo '<li>' . $this->escape($action)  . ': <strong class="text-error">' . __('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script></li>';
+                echo '<li>' . $this->escape($action)  . ': <strong class="text-error">' . __('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
             } else {
-                echo '<li>' . $this->escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</strong></li>';
+                echo '<li>' . $this->escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</strong>';
             }
+            
             if (!empty($state['message'])) {
+                echo '<ul>';
                 foreach ((array) $state['message'] as $msg) {
-                    echo '<div class="indent">' . $this->escape($msg) . '</div>';
+                    echo '<li>' . $this->escape($msg);
                 }
+                echo '</ul>';
             }
+            
         }
         echo '</ol>';
     }

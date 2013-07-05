@@ -17,6 +17,7 @@ June 24th, 2013
 12. Merged theme/template/error-exception.phtml to error.phtml
 13. Modified config: var/config/config.application.php -- changed 'exception_template' value
 14. Formulated return of Ajax/JSON request with format: array('status' => 1, 'message' => '', 'data' => array())
+15. Default theme style refactoring
 
 
 June 19th, 2013
