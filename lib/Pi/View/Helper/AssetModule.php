@@ -29,8 +29,8 @@ use Zend\View\Helper\AbstractHelper;
  *
  * Usage inside a phtml template:
  * <code>
- *  $this->assetModule('css/style.css');
- *  $this->assetModule('css/style.css', 'demo');
+ *  $cssUri = $this->assetModule('css/style.css');
+ *  $cssUri = $this->assetModule('css/style.css', 'demo');
  * </code>
  */
 class AssetModule extends AbstractHelper
@@ -46,7 +46,7 @@ class AssetModule extends AbstractHelper
     public function __invoke($file, $module = null, $versioning = true)
     {
         $module = $module ?: Pi::service('module')->current();
-        
+
         // Check if customized asset available in current theme
         $customAssets = Pi::service('registry')->asset->read($module);
         if (!empty($customAssets[$file])) {

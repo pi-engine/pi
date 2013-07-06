@@ -12,31 +12,42 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading Backbone files
  *
  * Usage inside a phtml template:
  * <code>
+ *  // Load basic backbone and underscore
  *  $this->backbone();
+ *
+ *  // Load specific file
  *  $this->backbone('some.js');
+ *
+ *  // Load specific file with attributes
+ *  $this->backbone('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *
+ *  // Load a list of files
  *  $this->backbone(array(
  *      'some.css',
  *      'some.js',
  *  ));
+ *
+ *  // Load a list of files with corresponding attributes
+ *  $this->backbone(array(
+ *      'some.css' => array('media' => '...', 'conditional' => '...'),
+ *      'some.js' => array(),
+ *  ));
  * </code>
  */
-class Backbone extends AbstractHelper
+class Backbone extends AssetCanonize
 {
     const DIR_ROOT = 'vendor/backbone';
     protected static $rootLoaded;
@@ -44,31 +55,44 @@ class Backbone extends AbstractHelper
     /**
      * Load bootstrap files
      *
-     * @param   null|string|array $file
+     * @param   null|string|array $files
+     * @param   array $attributes
      * @return  void
      */
-    public function __invoke($options = null)
+    public function __invoke($files = null, $attributes = array())
     {
-        $options = (array) $options;
+        $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
+            $autoLoad = array();
             // Required primary js
-            if (!in_array('backbone.min.js', $options)) {
-                array_unshift($options, 'backbone-min.js');
+            if (!isset($files['backbone.min.js'])) {
+                $autoLoad = array('backbone-min.js' => $this->canonizeFile('backbone-min.js')) + $files;
             }
             // Required underscore js
-            if (!in_array('underscore.min.js', $options)) {
-                array_unshift($options, 'underscore-min.js');
+            if (!isset($files['underscore.min.js'])) {
+                $autoLoad += array('underscore-min.js' => $this->canonizeFile('underscore-min.js')) + $files;
             }
+            $files = $autoLoad + $files;
             static::$rootLoaded = true;
         }
-        foreach ($options as $file) {
-            $fileExtension = substr($file, strrpos( $file, '.' ) + 1);
+        foreach ($files as $file => $attrs) {
+            $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
+            $position = isset($file['position']) ? $file['position'] : 'append';
             if ($fileExtension == 'css') {
-                $this->view->headLink()->appendStylesheet($url);
+                $attrs['href'] = $url;
+                if ('prepend' == $position) {
+                    $this->view->headLink()->prependStylesheet($attrs);
+                } else {
+                    $this->view->headLink()->appendStylesheet($attrs);
+                }
             } else {
-                $this->view->headScript()->appendFile($url);
+                if ('prepend' == $position) {
+                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                } else {
+                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                }
             }
         }
         return $this;

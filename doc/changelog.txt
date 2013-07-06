@@ -18,6 +18,7 @@ June 24th, 2013
 13. Modified config: var/config/config.application.php -- changed 'exception_template' value
 14. Formulated return of Ajax/JSON request with format: array('status' => 1, 'message' => '', 'data' => array())
 15. Default theme style refactoring
+16. Refactored view helpers to allow for attributes: Backbone, Bootstrap, Css, JQuery, Js
 
 
 June 19th, 2013

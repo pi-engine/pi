@@ -51,6 +51,36 @@ body {
   margin: 20px auto;
 }
 
+/* User bar */
+.pi-user-bar {
+  margin: 5px 10px 0 5px;
+  height: 20px;
+  line-height: 20px;
+  font-size: .9em;
+}
+
+.pi-user-bar {
+  color: #666;
+}
+
+.pi-user-bar a {
+  color: #666;
+}
+
+.pi-user-bar a:hover {
+  color: #005580;
+}
+
+.pi-user-bar .dropdown {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.pi-user-bar .caret {
+  border-top-color: #666;
+}
+
+/*
 .header-user {
   color: #666;
 }
@@ -67,6 +97,7 @@ body {
 .header-user-login {
   margin: 0 10px 0 5px;
 }
+*/
 
 .sitename {
   font: bold 32px Helvetica, sans-serif;

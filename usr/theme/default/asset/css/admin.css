@@ -29,7 +29,7 @@ fieldset dl {
   margin-top: 0;
 }
 
-.pi-bar-user .dropdown-menu {
+.pi-user-bar .dropdown-menu {
   z-index: 1002;
 }
 
@@ -115,7 +115,7 @@ form .icon-question-sign {
   margin-bottom: 1px;
 }
 
-.pi-bar-user {
+.pi-user-bar {
   float: right;
   margin: 17px 30px 0 0;
   height: 20px;
@@ -123,20 +123,20 @@ form .icon-question-sign {
   font-size: 12px;
 }
 
-.pi-bar-user a {
+.pi-user-bar a {
   color: #fff;
 }
 
-.pi-bar-user .dropdown {
+.pi-user-bar .dropdown {
   display: inline-block;
   margin-right: 15px;
 }
 
-.pi-bar-user .caret {
+.pi-user-bar .caret {
   border-top-color: #fff;
 }
 
-.pi-bar-user i {
+.pi-user-bar i {
   margin-right: 1px;
 }
 

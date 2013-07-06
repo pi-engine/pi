@@ -45,7 +45,7 @@ $module = Pi::service('module')->current();
             <?php } ?>
 
         </div>
-        <div class="pi-bar-user">
+        <div class="pi-user-bar">
            <?php echo $this->widget('system-user-bar'); ?>
            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank">
                <i class="icon-external-link"></i>
@@ -79,8 +79,8 @@ $module = Pi::service('module')->current();
                     </div>
                     <div id="pi-footer" class="footer">
                         <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
-                        <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
-                        <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of  Pi Engine</a>
+                        <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
+                        <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of  Pi Engine</a>
                         <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>
                     </div>
                 </div>

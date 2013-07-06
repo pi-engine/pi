@@ -12,39 +12,61 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading JavaScript files
  *
  * Usage inside a phtml template:
  * <code>
- *  $this->js('file.js');
- *  $this->js(array('f1.js', 'f2.js'));
+ *  // Load specific file
+ *  $this->js('some.js');
+ *
+ *  // Load specific file with position
+ *  $this->js('some.js', 'prepend');
+ *
+ *  // Load specific file with attributes
+ *  $this->js('some.js', array('conditional' => '...', 'postion' => 'prepend'));
+ *
+ *  // Load a list of files
+ *  $this->js(array(
+ *      'a.js',
+ *      'b.js',
+ *  ));
+ *
+ *  // Load a list of files with corresponding attributes
+ *  $this->js(array(
+ *      'a.js' => array('media' => '...', 'conditional' => '...'),
+ *      'b.js' => array(),
+ *  ));
  * </code>
  */
-class Js extends AbstractHelper
+class Js extends AssetCanonize
 {
     /**
-     * Load JavaScrpt file
+     * Load JavaScript file
      *
-     * @param   string|array $file
+     * @param   string|array $files
+     * @param   string|array $attributes    Only applicable when $files is scalar, default as string for position, append or prepend, default as 'append'
      * @return  Js
      */
-    public function __invoke($file = null)
+    public function __invoke($files = null, $attributes = 'append')
     {
-        $files = (array) $file;
-        foreach ($files as $file) {
-            $this->view->headScript()->appendFile($file);
+        $files = $this->canonize($files, $attributes);
+        $helper = $this->view->headScript();
+        foreach ($files as $file => $attrs) {
+            $position = isset($file['position']) ? $file['position'] : 'append';
+            if ('prepend' == $position) {
+                $helper->prependFile($file['src'], 'text/javascript', $attrs);
+            } else {
+                $helper->appendFile($file['src'], 'text/javascript', $attrs);
+            }
         }
         return $this;
     }

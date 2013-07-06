@@ -12,15 +12,14 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
+use stdClass;
 use Zend\View\Helper\HeadLink as ZendHeadLink;
 use Zend\View\Helper\Placeholder;
 
@@ -32,18 +31,26 @@ use Zend\View\Helper\Placeholder;
 class HeadLink extends ZendHeadLink
 {
     /**
-     * headLink() - View Helper Method
-     *
-     * Returns current object instance. Optionally, allows passing array of
-     * values to build link.
-     *
-     * @param array $attributes
-     * @param string $placement
-     * @return HeadLink
+     * {@inheritDoc}
      */
     public function __invoke(array $attributes = null, $placement = Placeholder\Container\AbstractContainer::APPEND)
     {
         parent::__invoke($attributes, strtoupper($placement));
         return $this;
     }
+
+    /**
+     *  Canonize attribute 'conditional' with 'conditionalStylesheet'
+     * {@inheritDoc}
+     */
+    public function itemToString(stdClass $item)
+    {
+        if (isset($item->conditional)) {
+            $item->conditionalStylesheet = $item->conditional;
+            $item->conditional = null;
+        }
+
+        return parent::itemToString($item);
+    }
+
 }
