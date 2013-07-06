@@ -19,7 +19,7 @@ June 24th, 2013
 14. Formulated return of Ajax/JSON request with format: array('status' => 1, 'message' => '', 'data' => array())
 15. Default theme style refactoring
 16. Refactored view helpers to allow for attributes: Backbone, Bootstrap, Css, JQuery, Js
-
+17. CSS class/ID name standardization in process: prefixed with "pi-" and module identifier
 
 June 19th, 2013
 =============================

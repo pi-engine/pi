@@ -273,13 +273,13 @@ form .icon-question-sign {
 }
 
 /* Footer */
-.footer {
+.pi-footer {
   border-top: 1px solid #d7d7d7;
   padding: 10px 0 0 20px;
   margin-top: 40px;
 }
 
-.footer a {
+.pi-footer a {
   margin-right: 20px;
 }
 

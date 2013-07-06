@@ -53,7 +53,7 @@
 // For tabbed block
 if (is_array($block['content'])) {
     $this->jQuery();
-    $this->bootstrap('js/bootstrap.min.js');
+    $this->bootstrap();
 }
 ?>
 
@@ -61,13 +61,13 @@ if (is_array($block['content'])) {
 <div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="block<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
     <?php /* Display block header section only if title, or subline or tab availabe */ ?>
     <?php if (!empty($block['title']) || !empty($block['subline']) || is_array($block['content'])) { ?>
-    <div class="clearfix block-header">
+    <div class="clearfix pi-block-header">
         <?php /* Float position for subline and tab */ ?>
         <?php $float = empty($block['title']) ? '' : 'pull-right'; ?>
 
         <?php /* Display tab if available, i.e. content is an array */ ?>
         <?php if(is_array($block['content'])) { ?>
-            <ul class="<?php echo $float; ?> block-tab">
+            <ul class="<?php echo $float; ?> pi-block-tab">
                 <?php
                 $i = 0;
                 foreach ($block['content'] as $tab) {
@@ -79,17 +79,17 @@ if (is_array($block['content'])) {
 
         <?php /* Display subline if available */ ?>
         <?php if(!empty($block['subline'])) { ?>
-            <div class="<?php echo $float; ?> block-subline"><?php echo $block['subline']; ?></div>
+            <div class="<?php echo $float; ?> pi-block-subline"><?php echo $block['subline']; ?></div>
         <?php } ?>
 
         <?php /* Display title if available */ ?>
-        <h4 class="block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
+        <h4 class="pi-block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
     </div>
     <?php } ?>
 
     <?php /* Display tab contents if available, i.e. content is an array */ ?>
     <?php if(!empty($block['content']) && is_array($block['content'])) { ?>
-    <div class="clearfix block-body tab-content">
+    <div class="clearfix pi-block-body tab-content">
         <?php $i = 0;
         foreach ($block['content'] as $tab) {
         ?>
@@ -98,7 +98,7 @@ if (is_array($block['content'])) {
     </div>
     <?php /* Display regular content */ ?>
     <?php } else { ?>
-    <div class="clearfix block-body">
+    <div class="clearfix pi-block-body">
         <?php echo $block['content']; ?>
     </div>
     <?php } ?>
