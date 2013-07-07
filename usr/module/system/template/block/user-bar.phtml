@@ -1,23 +1,47 @@
-<div class="dropdown">
-
-<?php
-    if (!$block['id']) { ?>
-    <a href="<?php $this->url('user', array('controller' => 'login')); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
-<?php
-    } else {
-        $name = $block['name'] ?: $block['identity'];
-?>
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+<?php if (!isset($block['type']) || 'dropdown' != $block['type']) { ?>
+    <!-- Plain display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <?php
+        if (!$block['id']) { ?>
         <i class="icon-user"></i>
-        <?php echo $this->escape($name); ?>
-        <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="<?php echo $this->url('user', array('controller' => 'account')); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
-        <li><a href="<?php echo $this->url('user', array('controller' => 'login', 'action' => 'logout')); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
-    </ul>
-<?php
-    }
-?>
-</div>
-<script>$('.dropdown-toggle').dropdown();</script>
+        <a href="<?php echo Pi::service('user')->getLoginUrl(); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
+        <span class="pi-divider">|</span>
+        <a href="<?php echo Pi::service('user')->getRegisterUrl(); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
+    <?php
+        } else {
+            $name = $block['name'] ?: $block['identity'];
+    ?>
+            <i class="icon-user"></i>
+            <a href="<?php echo Pi::service('user')->getProfileUrl(); ?>" title="<?php _e('Profile'); ?>"><?php echo $this->escape($name); ?></a>
+            <span class="pi-divider">|</span>
+            <a href="<?php echo Pi::service('user')->getLogoutUrl(); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+    <?php
+        }
+    ?>
+
+<?php } else { ?>
+    <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <?php $this->bootstrap('js/bootstrap.min.js'); ?>
+    <div class="dropdown">
+
+    <?php
+        if (!$block['id']) { ?>
+        <a href="<?php $this->url('user', array('controller' => 'login')); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
+    <?php
+        } else {
+            $name = $block['name'] ?: $block['identity'];
+    ?>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i>
+            <?php echo $this->escape($name); ?>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="<?php echo $this->url('user', array('controller' => 'account')); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
+            <li><a href="<?php echo $this->url('user', array('controller' => 'login', 'action' => 'logout')); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+        </ul>
+    <?php
+        }
+    ?>
+    </div>
+    <script>$('.dropdown-toggle').dropdown();</script>
+<?php } ?>

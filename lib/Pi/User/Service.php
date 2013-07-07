@@ -52,6 +52,48 @@ class Service extends AbstractService
     }
 
     /**
+     * Get user login URL
+     *
+     * @return string
+     */
+    public function getLoginUrl()
+    {
+        $url = Pi::service('url')->assemble('user', array(
+            'controller'    => 'login'
+        ));
+        return $url;
+    }
+
+    /**
+     * Get user logout URL
+     *
+     * @return string
+     */
+    public function getLogoutUrl()
+    {
+        $identity = $identity ?: $this->identity;
+        $url = Pi::service('url')->assemble('user', array(
+            'controller'    => 'login',
+            'action'        => 'logout',
+        ));
+        return $url;
+    }
+
+    /**
+     * Get user register URL
+     *
+     * @return string
+     */
+    public function getRegisterUrl()
+    {
+        $identity = $identity ?: $this->identity;
+        $url = Pi::service('url')->assemble('user', array(
+            'controller'    => 'register',
+        ));
+        return $url;
+    }
+
+    /**
      * Method handler allows a shortcut
      *
      * @param  string  $method

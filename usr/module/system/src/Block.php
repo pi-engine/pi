@@ -58,14 +58,16 @@ class Block
     /**
      * User bar
      *
+     * @param array $options
      * @return array
      */
-    public static function userbar()
+    public static function userbar($options = array())
     {
         return array(
             'identity'  => Pi::registry('user')->identity,
             'id'        => Pi::registry('user')->id,
             'name'      => Pi::registry('user')->name,
+            'type'      => isset($options['type']) ? $options['type'] : '',
         );
     }
 

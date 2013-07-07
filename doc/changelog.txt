@@ -20,6 +20,8 @@ June 24th, 2013
 15. Default theme style refactoring
 16. Refactored view helpers to allow for attributes: Backbone, Bootstrap, Css, JQuery, Js
 17. CSS class/ID name standardization in process: prefixed with "pi-" and module identifier
+18. Organized theme CSS to style.css for generic, front.css for front pages and admin.css for admin area
+
 
 June 19th, 2013
 =============================
