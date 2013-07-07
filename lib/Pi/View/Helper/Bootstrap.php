@@ -71,7 +71,7 @@ class Bootstrap extends AssetCanonize
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            $position = isset($file['position']) ? $file['position'] : 'append';
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {
                 $attrs['href'] = $url;
                 if ('prepend' == $position) {

@@ -61,7 +61,7 @@ class Css extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headLink();
         foreach ($files as $file => $attrs) {
-            $position = isset($file['position']) ? $file['position'] : 'append';
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
                 $helper->prependStylesheet($attrs);
             } else {

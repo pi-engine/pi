@@ -61,11 +61,11 @@ class Js extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headScript();
         foreach ($files as $file => $attrs) {
-            $position = isset($file['position']) ? $file['position'] : 'append';
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
-                $helper->prependFile($file['src'], 'text/javascript', $attrs);
+                $helper->prependFile($attrs['src'], 'text/javascript', $attrs);
             } else {
-                $helper->appendFile($file['src'], 'text/javascript', $attrs);
+                $helper->appendFile($attrs['src'], 'text/javascript', $attrs);
             }
         }
         return $this;

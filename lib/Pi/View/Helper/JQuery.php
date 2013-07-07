@@ -69,6 +69,7 @@ class JQuery extends AssetCanonize
             }
             static::$rootLoaded = true;
         }
+        
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);

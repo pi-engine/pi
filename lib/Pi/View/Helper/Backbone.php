@@ -75,12 +75,12 @@ class Backbone extends AssetCanonize
             $files = $autoLoad + $files;
             static::$rootLoaded = true;
         }
+
         foreach ($files as $file => $attrs) {
-            $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            $position = isset($file['position']) ? $file['position'] : 'append';
-            if ($fileExtension == 'css') {
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            if ($attrs['ext'] == 'css') {
                 $attrs['href'] = $url;
                 if ('prepend' == $position) {
                     $this->view->headLink()->prependStylesheet($attrs);

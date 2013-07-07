@@ -61,8 +61,8 @@ class AssetCanonize extends AbstractHelper
      */
     protected function canonizeFile($file, $attrs = array())
     {
-        $ext = pathinfo($file, PATHINFO_EXTENSION);
-        $attrs['ext'] = strtolower($ext);
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        $attrs['ext'] = $ext;
         switch ($ext) {
             case 'css':
                 if (!isset($attrs['href'])) {
@@ -76,6 +76,11 @@ class AssetCanonize extends AbstractHelper
                 }
                 if (!isset($attrs['media'])) {
                     $attrs['media'] = 'screen';
+                }
+                break;
+            case 'js':
+                if (!isset($attrs['src'])) {
+                    $attrs['src'] = $file;
                 }
                 break;
             default:
@@ -94,7 +99,16 @@ class AssetCanonize extends AbstractHelper
      */
     protected function canonize($files = null, $attributes = array())
     {
+        if (!$files) {
+            return array();
+        }
+
         if ($files && is_string($files)) {
+            if (is_string($attributes)) {
+                $attributes = array(
+                    'position' => $attributes,
+                );
+            }
             $files = array(
                 $files => $attributes,
             );
@@ -108,6 +122,7 @@ class AssetCanonize extends AbstractHelper
         foreach ($files as $file => &$attrs) {
             $attrs = $this->canonizeFile($file, $attrs);
         }
+
         return $files;
     }
 }
