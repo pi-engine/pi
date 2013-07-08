@@ -116,7 +116,7 @@ class BlockStaticForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'editor',
-                'class'         => 'textarea-large',
+                'class'         => 'span6',
             )
         ));
 

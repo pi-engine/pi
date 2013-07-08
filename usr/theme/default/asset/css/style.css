@@ -1,10 +1,23 @@
+/* Bootstrap customization */
+
 /* Base */
 body {
   background: #f5f5f5;
 }
 
-/* Bootstrap customization */
-/* page header: inherited from bootstrap */
+/* Elements */
+fieldset dl {
+  margin-top: 0;
+}
+
+form .icon-question-sign {
+  color: #0089D1;
+  float: left;
+  cursor: pointer;
+  margin: 8px 0 0 3px;
+}
+
+/* Components */
 .page-header {
   margin: 0 0 15px 0;
 }
@@ -22,17 +35,8 @@ body {
   border-radius: 5px;
 }
 
-fieldset dl {
-  margin-top: 0;
-}
-
-form .icon-question-sign {
-  color: #0089D1;
-  float: left;
-  cursor: pointer;
-  margin: 8px 0 0 3px;
-}
-
+/** Pi Specific **/
+/* Elements */
 .dl-horizontal dt {
   width: 120px;
 }
@@ -41,31 +45,7 @@ form .icon-question-sign {
   margin-left: 140px;
 }
 
-.input-large {
-    width: 450px;
-}
-.textarea-small {
-    width: 200px;
-    height: auto;
-}
-.textarea-large {
-    width: 450px;
-    height: 300px;
-}
-.textarea-long {
-    width: 450px;
-    height: 600px;
-}
-.textarea-wide {
-    width: 750px;
-    height: 300px;
-}
-.textarea-full {
-    width: 95%;
-    height: 500px;
-}
-
-/* Common */
+/* Components */
 .pi-divider {
   font-family: serif,sans-serif;
   margin: 0 6px;
@@ -100,4 +80,37 @@ form .icon-question-sign {
 
 .pi-widget-body {
   padding: 18px 20px;
+}
+
+/* Avatar*/
+.pi-avatar {
+  width: 80px;
+}
+
+.pi-avatar-mini {
+  width: 16px;
+}
+
+.pi-avatar-xsmall {
+  width: 20px;
+}
+
+.pi-avatar-small {
+  width: 30px;
+}
+
+.pi-avatar-medium {
+  width: 60px;
+}
+
+.pi-avatar-large {
+  width: 100px;
+}
+
+.pi-avatar-xlarge {
+  width: 120px;
+}
+
+.pi-avatar-xxlarge {
+  width: 150px;
 }
