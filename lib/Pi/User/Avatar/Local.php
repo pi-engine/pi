@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap resource
+ * Pi Engine user avatar local class
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,32 +12,33 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Resource
- * @since           3.0
- * @version         $Id$
+ * @package         Pi\User
  */
 
-namespace Pi\Application\Bootstrap\Resource;
+namespace Pi\User\Avatar;
 
 use Pi;
-use Pi\User\User as UserModel;
 
-class User extends AbstractResource
+class Local extends Upload
 {
-    public function boot()
+    /**
+     * {@inheritDoc}
+     */
+    public function getPath($size = null)
     {
-        if (Pi::registry('user')) {
-            return Pi::registry('user');
-        }
-        $identity = Pi::service('authentication')->getIdentity();
-        if ($identity) {
-            $user = new UserModel($identity);
-        } else {
-            $user = new UserModel;
-        }
-        Pi::registry('user', $user);
+        return false;
+    }
 
-        return $user;
+    /**
+     * Get relative path
+     *
+     * @param string $size
+     * @return string
+     */
+    protected function getRelativePath($size = '')
+    {
+        $folder = $this->canonizeSize($size);
+        $path = sprintf('static/avatar/%s.jpg', $folder);
+        return $path;
     }
 }

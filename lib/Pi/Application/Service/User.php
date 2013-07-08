@@ -19,8 +19,9 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\User\AbstractService as AbstractHandler;
-use Pi\User\Service as LocalHandler;
+use Pi\User\Adapter\AbstractAdapter;
+use Pi\User\Adapter\Local as LocalAdapter;
+use Pi\User\Model\AbstractModel as UserModel;
 
 /**
  * User service
@@ -43,95 +44,129 @@ class User extends AbstractService
     protected $fileIdentifier = 'user';
 
     /**
-     * Bound user identity
-     * @var string
+     * Bound user data object
+     * @var UserModel
      */
-    protected $identity;
+    protected $model;
 
     /**
-     * Service handler
-     * @var AbstractHandler
+     * Previous user data object
+     * @var UserModel
      */
-    protected $handler;
+    protected $modelPrevious;
+
+    /**
+     * Service handler adapter
+     * @var AbstractAdapter
+     */
+    protected $adapter;
 
     /**
      * Bind a user to service
      *
-     * @param string $identity
+     * @param UserModel|int|string|null $identity   User id, identity or data object
+     * @param string                    $type       Type of the identity: id, identity, object
      * @return User
      */
-    public function bind($identity = null)
+    public function bind($identity = null, $type = '')
     {
-        if (null === $identity) {
-            $identity = Pi::service('authentication')->getIdentity();
-        }
-        $this->identity = $identity;
-        $this->getHandler()->bind($this->identity);
-
-        return $this;
-    }
-
-    /**
-     * Set service handler
-     *
-     * @param AbstractHandler $handler
-     * @return User
-     */
-    public function setHandler(AbstractHandler $handler)
-    {
-        $this->handler = $handler;
-        return $this;
-    }
-
-    /**
-     * Get service handler
-     *
-     * Instantiate local handler if not available
-     *
-     * @return AbstractHandler
-     */
-    public function getHandler()
-    {
-        if (!$this->handler instanceof AbstractHandler) {
-            if (!empty($this->options['handler']) && class_exists($this->options['handler'])) {
-                $this->handler = new $this->options['handler'];
+        if (null !== $identity || null === $this->model) {
+            $this->modelPrevious = $this->model;
+            if ($identity instanceof UserModel) {
+                $this->model = $identity;
             } else {
-                $this->handler = new LocalHandler;
+                $this->model = $this->getUser($identity, $type);
+            }
+            $this->getAdapter()->bind($this->model);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Restore user model to previous
+     */
+    public function restore()
+    {
+        $this->model = $this->modelPrevious;
+        $this->getAdapter()->bind($this->model);
+        $this->modelPrevious = null;
+        return $this;
+    }
+
+    /**
+     * Get user data object
+     *
+     * @param UserModel|int|string|null  $identity   User id, identity or data object
+     * @param string                    $field      Field of the identity: id, identity, object
+     * @return UserModel
+     */
+    public function getUser($identity = null, $field = 'id')
+    {
+        return $this->getAdapter()->getUser($identity, $field);
+    }
+
+    /**
+     * Set service adapter
+     *
+     * @param AbstractAdapter $adapter
+     * @return User
+     */
+    public function setAdapter(AbstractAdapter $adapter)
+    {
+        $this->adapter = $adapter;
+        $this->adapter->bind($this->bind());
+
+        return $this;
+    }
+
+    /**
+     * Get service adapter
+     *
+     * Instantiate local adapter if not available
+     *
+     * @return AbstractAdapter
+     */
+    public function getAdapter()
+    {
+        if (!$this->adapter instanceof AbstractAdapter) {
+            if (!empty($this->options['adapter']) && class_exists($this->options['adapter'])) {
+                $this->adapter = new $this->options['adapter'];
+            } else {
+                $this->adapter = new LocalAdapter;
             }
         }
-        return $this->handler;
+        return $this->adapter;
     }
 
     /**#@+
-     * Service handler APIs
-     * @see Pi\User\ServiceInterface
+     * Service adapter APIs
+     * @see Pi\User\Adapter\AbstractAdapter
      */
     /**
      * Get user profile URL
      *
-     * @param string $identity
+     * @param int $id
      * @return string
      */
-    public function getProfileUrl($identity = null)
+    public function getProfileUrl($id = null)
     {
-        $identity = $identity ?: $this->identity;
-        return $this->getHandler()->getProfileUrl($identity);
+        return $this->getAdapter()->getProfileUrl($id);
     }
 
     /**
      * Get user full name
      *
-     * @param string $identity
+     * @param int $id
      * @return string
      */
-    public function getName($identity = null)
+    public function getName($id = null)
     {
-        $identity = $identity ?: $this->identity;
-        return $this->getHandler()->getName($identity);
+        return $this->getAdapter()->getName($id);
     }
 
     /**
-     * Method handler allows a shortcut
+     * Method adapter allows a shortcut
      *
      * @param  string  $method
      * @param  array  $args
@@ -139,7 +174,7 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->getHandler(), $method), $args);
+        return call_user_func_array(array($this->getAdapter(), $method), $args);
     }
     /**#@-*/
 }

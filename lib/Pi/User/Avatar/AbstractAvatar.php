@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi User Account Model
+ * Pi Engine abstract user avatar
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,28 +12,37 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Model
+ * @package         Pi\User
  */
 
-namespace Pi\Application\Model\User;
+namespace Pi\User\Avatar;
 
 use Pi;
-use Pi\Application\Model\Model;
+use Pi\User\Model\AbstractModel as UserModel;
 
-class Account extends Model
+abstract class AbstractAvatar
 {
-    protected $table = "user_account";
+    /**
+     * Bound user account
+     * @var UserModel
+     */
+    protected $model;
 
     /**
-     * Row gateway class
+     * Constructor
      *
-     * @var string
+     * @param UserModel $model
      */
-    protected $rowClass = 'Pi\Application\Model\User\RowGateway\Account';
-
-    public function getIdentityColumn()
+    public function __construct(UserModel $model = null)
     {
-        return 'identity';
+        $this->model = $model;
     }
+
+    /**
+     * Get user avatar link
+     *
+     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @return string
+     */
+    abstract public function build($size = '');
 }

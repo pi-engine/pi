@@ -43,9 +43,10 @@ class User extends AbstractFilter
         $this->setOptions($options);
         if (empty($this->options['replacement']) && empty($this->options['callback'])) {
             $this->options['callback'] = function ($identity) {
-                $user = Pi::service('user')->bind($identity);
-                $url = $user->getProfileUrl();
-                $name = $user->getName();
+                $service = Pi::service('user')->bind($identity, 'identity');
+                $url = $service->getProfileUrl();
+                $name = $service->getName();
+                $service->restore();
                 return sprintf('<a href="%s" title="%s">@%s</a>', $url, $name, $identity);
             };
         }
