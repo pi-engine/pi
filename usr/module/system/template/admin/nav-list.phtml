@@ -12,7 +12,7 @@
 <div id="js-nav-select" class="span12">
     <ul>
         <li class="self-nav">
-            <div class="legend"><?php _e('Global navigations'); ?></div>
+            <div class="pi-legend"><?php _e('Global navigations'); ?></div>
             <ul>
                 <li class="box-hover">
                     <div class="pull-right">
@@ -20,11 +20,11 @@
                         <a class="btn" target="_Manipulation" href="<?php echo $this->url('', array('action' => 'data', 'name' => 'system-front', 'readonly' => 1)); ?>" title="<?php _e('Click to view the details.'); ?>"><?php _e('View detail'); ?></a>
                     </div>
                     <span><?php _e('Global navigation'); ?></span>
-                </li>    
+                </li>
             </ul>
         <?php foreach ($navModule['front'] as $module => $list) { ?>
         <li class="self-nav">
-            <div class="legend"><?php echo $modules[$module]['title']; ?></div>
+            <div class="pi-legend"><?php echo $modules[$module]['title']; ?></div>
             <ul>
                 <?php foreach ($list as $nav) { ?>
                 <li class="box-hover">
@@ -38,11 +38,11 @@
             </ul>
         <?php } ?>
         <li>
-            <div class="legend"><?php _e('Custom navigations'); ?></div>
+            <div class="pi-legend"><?php _e('Custom navigations'); ?></div>
             <ul class="navs-front-items">
 
             </ul>
-        </li>   
+        </li>
     </ul>
     <button class="btn btn-primary nav-clone1 pull-right" data-link="<?php echo $this->url('', array('action' => 'add', 'section' => 'front')); ?>"><?php _e('Add a custom navigation'); ?></button>
 </div>

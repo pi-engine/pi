@@ -6,7 +6,7 @@
     $this->js($this->assetModule('script/system-msg.js'));
 ?>
 <div class="page-header">
-    <h2><?php echo $this->escape($title); ?></h2>    
+    <h2><?php echo $this->escape($title); ?></h2>
 </div>
 <div id="js-menu-edit" style="margin-bottom: 10px;">
     <?php if (!$navigation['module']) { ?>
@@ -44,7 +44,7 @@
             <?php if (!$navigation['module']) { ?>
             <button class="btn btn-small js-delete">×</button>
             <?php } ?>
-        </div>    
+        </div>
     </div>
     <div class="tree-item-body">
         <div class="form-horizontal menu-edit-form">
@@ -65,25 +65,25 @@
                 <div class="controls">
                     <select name="target">
                         <option value="" <% if (!target) { print('selected'); } %>><?php _e('None'); ?>
-                        <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php _e('_blank'); ?>    
+                        <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php _e('_blank'); ?>
                     </select>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"><?php _e('Permission'); ?></label>
                 <div class="controls">
-                    <input type="text" name="url" value="<%= resource %>">    
+                    <input type="text" name="url" value="<%= resource %>">
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
                     <label class="checkbox">
                         <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php _e('To display in menu.'); ?>
-                    </label>    
-                </div>  
+                    </label>
+                </div>
             </div>
         </div>
-        <div class="legend"><?php _e('Page link by route'); ?></div>
+        <div class="pi-legend"><?php _e('Page link by route'); ?></div>
         <div class="row-fluid">
             <div class="span6">
                 <div class="form-horizontal menu-edit-form">
@@ -98,8 +98,8 @@
                         <div class="controls">
                             <input type="text" name="controller" value="<%= controller %>" class="input-small">
                         </div>
-                    </div>   
-                </div>    
+                    </div>
+                </div>
             </div>
             <div class="span6" style="margin-left: 0;">
                 <div class="form-horizontal menu-edit-form">
@@ -114,14 +114,14 @@
                         <div class="controls">
                             <input type="text" name="action" value="<%= action %>" class="input-small">
                         </div>
-                    </div>   
-                </div>  
+                    </div>
+                </div>
             </div>
         </div>
         <div class="btn-save-action">
             <span class="btn btn-link tree-item-save"><?php _e('Save'); ?></span>
         </div>
-    </div>    
+    </div>
 </script>
 <script>
 (function($) {
@@ -146,15 +146,15 @@
             var ret = [],
                 get = function(model) {
                     var c = model.collection.where({
-                        pid: model.get('id')    
+                        pid: model.get('id')
                     });
                     for(var i = 0 , l = c.length; i < l; i++) {
-                        get1(c[i]);    
+                        get1(c[i]);
                     }
                 },
                 get1 = function (model) {
                     var c = model.collection.where({
-                        pid: model.get('id')    
+                        pid: model.get('id')
                     });
                     ret.push(model);
                     for (var i = 0, l = c.length; i < l; i++) {
@@ -166,14 +166,14 @@
         }
     });
     var MenuCollection = Backbone.Collection.extend({
-        model: Menu    
+        model: Menu
     });
     var MenuItemView = Backbone.View.extend({
         template: $('#temp-menu').html(),
         events: {
             'click .js-toggle': 'toggle',
             'click .js-delete': 'deleteItem',
-            'click .tree-item-save': 'saveItem'    
+            'click .tree-item-save': 'saveItem'
         },
         initialize: function() {
             this.model.on('destroy', this.remove, this);
@@ -183,7 +183,7 @@
         },
         toggle: function() {
             this.$el.toggleClass('tree-item-editing');
-            this.$('.js-toggle').toggleClass('active');    
+            this.$('.js-toggle').toggleClass('active');
         },
         deleteItem: function() {
             var m = this.model;
@@ -194,7 +194,7 @@
         saveItem: function() {
             var self = this,
                 val = function(name) {
-                    return $.trim(self.$('[name=' + name + ']').val());    
+                    return $.trim(self.$('[name=' + name + ']').val());
                 },
                 label = val('label');
             if (label) {
@@ -208,7 +208,7 @@
                     'visible': this.$('[name=visible]').attr('checked') ? 1 : 0,
                     'resource': val('resource'),
                     'target': val('target')
-                });                
+                });
             } else {
                 this.$('[name=label]').parents('.control-group').addClass('error');
             }
@@ -217,7 +217,7 @@
         render: function() {
             this.$el.html(_.template(this.template,this.model.toJSON()))[0].className = 'tree-item menu-item-depth' + this.model.get('depth');
             this.$('[name=url]').tooltip();
-            return this;    
+            return this;
         }
     });
     var MenuListItemView = Backbone.View.extend({
@@ -225,7 +225,7 @@
         events: {
             'click .js-add-to': 'addMenu',
             'click .menu-submit': 'saveMenu',
-            'keypress .js-add-label': 'enterSaveMenu'    
+            'keypress .js-add-label': 'enterSaveMenu'
         },
         initialize: function(option) {
             this.box = this.$('.menu-to-edit');
@@ -235,9 +235,9 @@
             this.collection.on('deleteItem', this.deleteItem, this);
             if (option.onlyView) {
                 this.$('.tree-item-header').css('cursor', 'default');
-                this.$('.btn-save-action').css('display', 'none');    
+                this.$('.btn-save-action').css('display', 'none');
             } else {
-                this.sortable();    
+                this.sortable();
             }
         },
         sortable: function() {
@@ -246,7 +246,7 @@
             };
             var placePosition = function() {
                 depth = Math.max(depth, 0);
-                depth = Math.min(depth, 9);   
+                depth = Math.min(depth, 9);
                 place[0].className = "tree-sortable-placeholder menu-item-depth" + depth;
             };
             var self = this,
@@ -267,7 +267,7 @@
                         w;
                     itemChild.each(function() {
                         var d = getDepth($(this));
-                        maxDepth = Math.max(maxDepth, d);      
+                        maxDepth = Math.max(maxDepth, d);
                     });
                     w = item.find(".tree-item-header").outerWidth() + (maxDepth - depth) * 30;
                     place.css({
@@ -319,36 +319,36 @@
                     var pid,
                         diff = depth - item.data('model').get('depth');
                     if (depth == 0) {
-                        pid = 0;    
+                        pid = 0;
                     } else {
                         item.prevAll().each(function() {
                             var m = $(this).data('model');
                             if (m.get('depth') == depth-1) {
                                 pid = m.get('id');
                                 return false;
-                            }    
+                            }
                         });
                     }
                     if (itemChild.length) {
                         itemChild.insertAfter(item).each(function() {
                             var m = $(this).data('model');
                             m.set({
-                                depth: m.get('depth') + diff    
-                            });    
+                                depth: m.get('depth') + diff
+                            });
                         });
                     }
                     item.css('width', 'auto').data('model').set({
                         depth: depth,
-                        pid: pid        
+                        pid: pid
                     });
                 },
                 update: function() {
-                    isDone = true;    
-                }        
-            });  
+                    isDone = true;
+                }
+            });
         },
         render: function() {
-            this.collection.forEach(this.addOne, this);    
+            this.collection.forEach(this.addOne, this);
         },
         addMenu: function() {
             var input = this.$('.js-add-label'),
@@ -357,9 +357,9 @@
                 this.collection.add({
                     id: (new Date).getTime(),
                     label: val
-                });    
+                });
             }
-            input.val('');    
+            input.val('');
         },
         enterSaveMenu: function(e) {
             if (e.keyCode == 13) {
@@ -368,7 +368,7 @@
         },
         addOne: function(item) {
             this.box.append(new MenuItemView({
-                model: item    
+                model: item
             }).render().el);
         },
         getChild: function(el) {
@@ -377,13 +377,13 @@
             el.nextAll().not('.tree-sortable-placeholder').each(function() {
                 var $this = $(this);
                 if ($this.data('model').get('depth') > el.data('model').get('depth')) {
-                    child[i++] = this;    
+                    child[i++] = this;
                 } else {
                     return false;
                 }
             });
             child.length = i;
-            return child;    
+            return child;
         },
         deleteItem: function(model) {
             this.getChild($(model.el)).each(function() {
@@ -392,16 +392,16 @@
                 if (m.get('depth') == model.get('depth')) {
                     m.set({
                         pid: model.get('pid')
-                    }, { 
-                        silent: true 
-                    });  
+                    }, {
+                        silent: true
+                    });
                 }
             });
         },
         saveMenu: function() {
             var ret = [];
             this.box.find('>').each(function() {
-                ret.push($(this).data('model').toJSON());    
+                ret.push($(this).data('model').toJSON());
             });
             $.post('<?php echo $this->url('', array('action' => 'update')); ?>', {
                 name: '<?php echo $navigation['name']; ?>',
@@ -412,12 +412,12 @@
                     systemMessage.succ(result.message);
                 }
                 isDone = false;
-            });    
-        }    
+            });
+        }
     });
     new MenuListItemView({
         collection: new MenuCollection(<?php echo json_encode($pages) ?>),
-        onlyView: <?php if ($navigation['module']) {  echo 1; } else { echo 0; } ?> 
+        onlyView: <?php if ($navigation['module']) {  echo 1; } else { echo 0; } ?>
     });
     window.onbeforeunload = function() {
         if (isDone) {

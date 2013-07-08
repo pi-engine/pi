@@ -12,28 +12,43 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading jQuery files
  *
+ *
  * Usage inside a phtml template:
  * <code>
+ *  // Load basic jQuery file
  *  $this->jQuery();
- *  $this->jQuery('extension.js');
- *  $this->jQuery(array('ext1.js', 'ext2.js'));
+ *
+ *  // Load specific file
+ *  $this->jQuery('some.js');
+ *
+ *  // Load specific file with attributes
+ *  $this->jQuery('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *
+ *  // Load a list of files
+ *  $this->bootstrap(array(
+ *      'some.css',
+ *      'some.js',
+ *  ));
+ *
+ *  // Load a list of files with corresponding attributes
+ *  $this->bootstrap(array(
+ *      'some.css' => array('media' => '...', 'conditional' => '...'),
+ *      'some.js' => array(),
+ *  ));
  * </code>
  */
-class JQuery extends AbstractHelper
+class JQuery extends AssetCanonize
 {
     const DIR_ROOT = 'vendor/jquery';
     protected static $rootLoaded;
@@ -41,28 +56,37 @@ class JQuery extends AbstractHelper
     /**
      * Load jQuery files
      *
-     * @param   null|string|array $file
+     * @param   null|string|array $files
+     * @param   array $attributes
      * @return  void
      */
-    public function __invoke($options = null)
+    public function __invoke($files = null, $attributes = array())
     {
-        //$root = Pi::url('static') . '/' . static::DIR_ROOT;
-        //$rootPath = Pi::path('static') . '/' . static::DIR_ROOT;
-        $options = (array) $options;
-        if (!static::$rootLoaded) {
-            if (!in_array('jquery.min.js', $options)) {
-                array_unshift($options, 'jquery.min.js');
+        $files = $this->canonize($files, $attributes);
+        if (empty(static::$rootLoaded)) {
+            if (!isset($files['jquery.min.js'])) {
+                $files = array('jquery.min.js' => $this->canonizeFile('jquery.min.js')) + $files;
             }
             static::$rootLoaded = true;
         }
-        foreach ($options as $file) {
-            $fileExtension = substr($file, strrpos( $file, '.' ) + 1);
+        
+        foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            if ($fileExtension == 'css') {
-                $this->view->headLink()->appendStylesheet($url);
+            $position = isset($file['position']) ? $file['position'] : 'append';
+            if ('css' == $attrs['ext']) {
+                $attrs['href'] = $url;
+                if ('prepend' == $position) {
+                    $this->view->headLink()->prependStylesheet($attrs);
+                } else {
+                    $this->view->headLink()->appendStylesheet($attrs);
+                }
             } else {
-                $this->view->headScript()->appendFile($url);
+                if ('prepend' == $position) {
+                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                } else {
+                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                }
             }
         }
         return $this;

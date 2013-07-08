@@ -7,58 +7,15 @@ body {
   background: #f1f1f1;
 }
 
-/* Common */
-.page-header {
-  margin: 0 0 15px 0;
-}
-
-.page-header h2 {
-  margin: 0;
-  font-size: 30px;
-}
-
-.page-header .nav {
-  margin-bottom: 0;
-}
-
-.page-header .search-query {
-  border-radius: 5px;
-}
-
-fieldset dl {
-  margin-top: 0;
-}
-
-.pi-bar-user .dropdown-menu {
-  z-index: 1002;
-}
-
-form .icon-question-sign {
-  color: #0089D1;
-  float: left;
-  cursor: pointer;
-  margin: 8px 0 0 3px;
-}
-
-.legend {
-  display: block;
-  margin-bottom: 15px;
-  font-size: 18px;
-  padding: 9px 10px;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #d7d7d7;
-}
-
 /* Layout */
-#pi-bar {
+#pi-header-bar {
   background: #0082bf;
   height: 54px;
   border-bottom: 1px solid #79a3b9;
   font-size: 12px;
 }
 
-.admin-logo {
+.pi-admin-logo {
   display: block;
   float: left;
   font-size: 45px;
@@ -70,16 +27,16 @@ form .icon-question-sign {
   height: 34px;
 }
 
-.admin-logo:hover {
+.pi-admin-logo:hover {
   text-decoration: none;
   color: #fff;
 }
 
-.operation-switch {
+.pi-operation-switch {
   float: left;
 }
 
-.operation-switch a {
+.pi-operation-switch a {
   display: block;
   text-align: center;
   color: #fff;
@@ -90,32 +47,37 @@ form .icon-question-sign {
   letter-spacing: 1px;
 }
 
-.operation-switch a:hover {
+.pi-operation-switch a:hover {
   background: #4DB1E3;
 }
 
-.operation-switch .active {
+.pi-operation-switch .active {
   background: #005580 !important;
   cursor: default;
 }
 
-.operation-switch a.disabled {
+.pi-operation-switch a.disabled {
   cursor: default;
   color: #4da8d2;
   background: none;
 }
 
-.operation-switch a:hover {
+.pi-operation-switch a:hover {
   text-decoration: none;
 }
 
-.operation-switch i {
+.pi-operation-switch i {
   display: block;
   font-size: 20px;
   margin-bottom: 1px;
 }
 
-.pi-bar-user {
+/* User bar */
+.pi-user-bar .dropdown-menu {
+  z-index: 1002;
+}
+
+.pi-user-bar {
   float: right;
   margin: 17px 30px 0 0;
   height: 20px;
@@ -123,24 +85,24 @@ form .icon-question-sign {
   font-size: 12px;
 }
 
-.pi-bar-user a {
+.pi-user-bar a {
   color: #fff;
 }
 
-.pi-bar-user .dropdown {
+.pi-user-bar .dropdown {
   display: inline-block;
   margin-right: 15px;
 }
 
-.pi-bar-user .caret {
+.pi-user-bar .caret {
   border-top-color: #fff;
 }
 
-.pi-bar-user i {
+.pi-user-bar i {
   margin-right: 1px;
 }
 
-.nav-modules a {
+.pi-nav-modules a {
   display: block;
   height: 30px;
   line-height: 30px;
@@ -151,17 +113,17 @@ form .icon-question-sign {
   white-space: nowrap;
 }
 
-.nav-modules a:hover {
+.pi-nav-modules a:hover {
   background: #E7E7E7;
   text-decoration: none;
 }
 
-.nav-modules .active a {
+.pi-nav-modules .active a {
   background: #ccc;
   font-weight: bold;
 }
 
-.module-menu {
+.pi-module-menu {
   white-space: nowrap;
   border-bottom: 1px solid #d7d7d7;
   padding: 10px 0 10px 20px;
@@ -170,11 +132,11 @@ form .icon-question-sign {
   background: #fff;
 }
 
-.module-menu li {
+.pi-module-menu li {
   float: left;
 }
 
-.module-menu a {
+.pi-module-menu a {
   display: block;
   padding: 6px 15px;
   margin-left: -1px;
@@ -186,14 +148,14 @@ form .icon-question-sign {
   background-image: linear-gradient(center top , #F5F5F5, #F1F1F1);
 }
 
-.module-menu a:hover {
+.pi-module-menu a:hover {
   background: #f8f8f8;
   text-decoration: none;
   border-color: #ccc;
   box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.module-menu .active a {
+.pi-module-menu .active a {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset;
   border-color: #ccc;
   color: #333;
@@ -203,18 +165,18 @@ form .icon-question-sign {
   background-image: linear-gradient(center top , #EEEEEE, #E0E0E0);
 }
 
-.module-menu li:first-child a {
+.pi-module-menu li:first-child a {
   margin-left: 0;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
 }
 
-.module-menu li:last-child a {
+.pi-module-menu li:last-child a {
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.module-menu-shadow {
+.pi-module-menu-shadow {
   position: absolute;
   height: 8px;
   opacity: 0;
@@ -226,7 +188,7 @@ form .icon-question-sign {
   background: linear-gradient(top, rgba(0, 0, 0, .3), transparent);
 }
 
-#pi-wrap {
+#pi-wrapper {
   position: absolute;
   top: 65px;
   bottom: 0;
@@ -234,7 +196,7 @@ form .icon-question-sign {
   right: 0;
 }
 
-#modules-menu {
+#pi-modules-menu {
   position: relative;
   width: 140px;
   overflow: auto;
@@ -273,44 +235,12 @@ form .icon-question-sign {
 }
 
 /* Footer */
-.footer {
+.pi-footer {
   border-top: 1px solid #d7d7d7;
   padding: 10px 0 0 20px;
   margin-top: 40px;
 }
 
-.footer a {
+.pi-footer a {
   margin-right: 20px;
-}
-
-/* Box with border */
-.widget {
-  margin-bottom: 20px;
-  border: 1px solid #d7d7d7;
-}
-
-.widget-header {
-  padding: 5px 10px;
-  background: #F8F8F8;
-  border-bottom: 1px solid #d7d7d7;
-}
-
-.widget-header * {
-  margin-bottom: 0;
-}
-
-.widget-body {
-  padding: 18px 20px;
-}
-
-.pi-zone-module {
-  margin: 0 20px;
-}
-
-.dl-horizontal dt {
-  width: 120px;
-}
-
-.dl-horizontal dd {
-  margin-left: 140px;
 }

@@ -13,9 +13,14 @@ $this->css($this->assetTheme('css/style.css'));
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
-    <div class="header clearfix">
-        <div class="container clearfix">
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escapeHtml($sitename); ?>" class="sitename"><?php echo $this->escapeHtml($sitename); ?></a>
+    <!-- Header: logo, user bar -->
+    <div class="container pi-header">
+        <div class="pi-logo">
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="pi-logo-headline"><span class="pi-logo-symbol">&pi;</span> Engine</a>
+            <em class="pi-logo-tagline" title="<?php echo $this->escape($slogan); ?>"><?php echo $this->escape($slogan); ?></em>
+        </div>
+        <div class="pull-right pi-user-bar">
+           <?php echo $this->widget('system-user-bar'); ?>
         </div>
     </div>
 
@@ -30,20 +35,20 @@ $this->css($this->assetTheme('css/style.css'));
     </div>
 
     <!-- Footer: sitelink -->
-    <div class="footer">
+    <div class="pi-footer">
         <div class="container">
-            <div class="footer-line"></div>
-            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a><span class="divider">|</span>
-            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a><span class="divider">|</span>
+            <div class="pi-footer-line"></div>
+            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a><span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a><span class="pi-divider">|</span>
             <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="divider">|</span>
-            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="divider">|</span> 
-            <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="pi-divider">|</span>
+            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="pi-divider">|</span>
+            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
         </div>
         <!-- Show execution time -->
         <?php $time = microtime(true) - Pi::startTime(); ?>

@@ -12,59 +12,79 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading Bootstrap files
  *
  * Usage inside a phtml template:
  * <code>
+ *  // Load basic bootstrap css
  *  $this->bootstrap();
- *  $this->bootstrap('css/bootstrap.responsive.min.css');
+ *
+ *  // Load specific file
+ *  $this->bootstrap('some.css');
+ *
+ *  // Load specific file with attributes
+ *  $this->bootstrap('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *
+ *  // Load a list of files
  *  $this->bootstrap(array(
- *      'css/bootstrap.responsive.css',
- *      'js/bootstrap.js',
+ *      'some.css',
+ *      'some.js',
+ *  ));
+ *
+ *  // Load a list of files with corresponding attributes
+ *  $this->bootstrap(array(
+ *      'some.css' => array('media' => '...', 'conditional' => '...'),
+ *      'some.js' => array(),
  *  ));
  * </code>
  */
-class Bootstrap extends AbstractHelper
+class Bootstrap extends AssetCanonize
 {
     const DIR_ROOT = 'vendor/bootstrap';
-    protected $rootLoaded;
+    protected static $rootLoaded;
 
     /**
      * Load bootstrap files
      *
-     * @param   null|string|array $file
-     * @param   bool $includeCss To include bootstrap.min.css automatically
+     * @param   null|string|array $files
+     * @param   array $attributes
      * @return  void
      */
-    public function __invoke($options = null, $includeCss = true)
+    public function __invoke($files = null, $attributes = array())
     {
-        $options = (array) $options;
-        if (empty(static::$rootLoaded) && $includeCss) {
-            if (!in_array('css/bootstrap.min.css', $options)) {
-                array_unshift($options, 'css/bootstrap.min.css');
+        $files = $this->canonize($files, $attributes);
+        if (empty(static::$rootLoaded)) {
+            if (!isset($files['css/bootstrap.min.css'])) {
+                $files = array('css/bootstrap.min.css' => $this->canonizeFile('css/bootstrap.min.css')) + $files;
             }
-            $this->rootLoaded = true;
+            static::$rootLoaded = true;
         }
-        foreach ($options as $file) {
-            $fileExtension = substr($file, strrpos( $file, '.' ) + 1);
+        foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            if ($fileExtension == 'css') {
-                $this->view->headLink()->appendStylesheet($url);
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            if ('css' == $attrs['ext']) {
+                $attrs['href'] = $url;
+                if ('prepend' == $position) {
+                    $this->view->headLink()->prependStylesheet($attrs);
+                } else {
+                    $this->view->headLink()->appendStylesheet($attrs);
+                }
             } else {
-                $this->view->headScript()->appendFile($url);
+                if ('prepend' == $position) {
+                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                } else {
+                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                }
             }
         }
         return $this;
