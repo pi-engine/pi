@@ -217,7 +217,7 @@ abstract class AbstractRegistry
      * Load cache data matching the meta
      *
      * @param array $meta
-     * @return array
+     * @return array|bool
      */
     protected function loadCacheData($meta = array())
     {

@@ -27,15 +27,18 @@ use Zend\Navigation\Exception;
  */
 class Uri extends ZendUriPage
 {
+    /**#@+
+     * Re-initialize
+     * Modified by Taiwen Jiang
+     */
     /**
-     * Adds a page to the container
-     *
-     * This method will inject the container as the given page's parent by
-     * calling {@link Page\AbstractPage::setParent()}.
-     *
-     * @param  Page\AbstractPage|array|Traversable $page  page to add
-     * @return AbstractContainer fluent interface, returns self
-     * @throws Exception\InvalidArgumentException if page is invalid
+     * {@inheritDoc}
+     */
+    protected $active = null;
+    /**#@-*/
+
+    /**
+     * {@inheritDoc}
      * @see Pi\Navigation\Navigation::addPage()
      * @see Pi\Navigation\Page\Mvc::addPage()
      */
@@ -73,6 +76,30 @@ class Uri extends ZendUriPage
         $page->setParent($this);
 
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isActive($recursive = false)
+    {
+        /**#@+
+         * Modified by Taiwen Jiang
+         */
+        //if (!$this->active && $recursive) {
+        if (null === $this->active && $recursive) {
+            foreach ($this->pages as $page) {
+                if ($page->isActive(true)) {
+                    $this->active = true;
+                    return true;
+                }
+            }
+            $this->active = false;
+            return false;
+        }
+        /**#@-*/
+
+        return $this->active;
     }
 
 }

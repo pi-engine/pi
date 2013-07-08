@@ -28,11 +28,11 @@ if (!ini_get('date.timezone')) {
 
 $wizard = new Setup\Wizard();
 if (!$wizard->init()) {
-    die("Pi Engine setup wizard initialization failed.");
+    die('Pi Engine setup wizard initialization failed.');
 }
 
 // Translation function
-function _t($message)
+function _s($message)
 {
     return Setup\Translator::translate($message);
 }

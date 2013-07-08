@@ -28,7 +28,8 @@ table td {
    min-width: 180px;
 }
 
-#pi-zone-1-edit,
+#pi-zone-0-edit,
+#pi-zone-99-edit,
 #pi-zone-2-edit,
 #pi-zone-3-edit,
 #pi-zone-4-edit,
@@ -190,7 +191,7 @@ table td {
     </div>
     <div class="span10 drag-main" id="js-page">
         <div id="drag-main" class="clearfix">
-            <?php echo $pi_zone; ?>
+            <?php echo $pageZone; ?>
         </div>
     </div>
 </div>
@@ -198,7 +199,7 @@ table td {
 <script id="module-temp" type="text/template">
     <div class="nav-header module-header" title="<%- title %>">
         <b class="pull-right caret caret-big"></b>
-        <div class="ellipsis"><%- title %></div>        
+        <div class="ellipsis"><%- title %></div>
     </div>
     <ul class="module-blocks">
     </ul>

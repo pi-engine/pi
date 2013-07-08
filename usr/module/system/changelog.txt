@@ -1,5 +1,10 @@
 System module changelog
 
+July 2nd, 2013
+==============
+1. Added "pi-feature" block
+2. Added "pi-feature" and "pi-spotlight" blocks to homepage on installation
+
 
 October 8th, 2012
 =============================

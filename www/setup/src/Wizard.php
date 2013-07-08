@@ -192,7 +192,7 @@ class Wizard
         $content = $this->controller->getContent();
         if ($this->request->isXmlHttpRequest()) {
             if ($this->controller->hasBootstrap() && Pi::service()->hasService('log')) {
-                Pi::service('log')->active(false);
+                Pi::service('log')->mute();
             } else {
                 error_reporting(0);
             }
@@ -216,7 +216,7 @@ class Wizard
         $currentPage = $pages[$pageList[$pageIndex]];
         $currentPage['key'] = $pageList[$pageIndex];
 
-        $title = $currentPage['title'] . ' - ' . _t('Pi Engine Setup Wizard') . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
+        $title = $currentPage['title'] . ' - ' . _s('Pi Engine Setup Wizard') . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
         $desc = $currentPage['desc'];
 
         if ($pageIndex > 0) {

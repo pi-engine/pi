@@ -12,7 +12,6 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
  * @todo            enhance security by protecting files with path filters besides mimetype filters
  * @todo            add symlink like pi.url/resource/app/mvc/my.css, pi.url/resource/plugin/comment/some.js
@@ -31,17 +30,21 @@
 //define("PI_HEADER_TYPE", 'SENDFILE');
 /*#@-*/
 
-// Skip engine bootup
-//define('PI_BOOT_SKIP', 1);
+// Allowed file extensions
+$allowedExtension = array('css', 'js', 'gif', 'jpg', 'png');
+
 // Disable error_reporting
-define('APPLICATION_ENV', 'production');
+//define('APPLICATION_ENV', 'production');
 
 // Pi boot with no engine bootup: current file is located in www/script/...
 require __DIR__ . '/../boot.php';
 
+// Disable debugger message
+Pi::service('log')->mute();
+
 // Fetch path from query string if path is not set, i.e. through a direct request
 if (!empty($_SERVER['QUERY_STRING'])) {
-    $path = Pi::path(ltrim($_SERVER['QUERY_STRING'], "/"));
+    $path = Pi::path(ltrim($_SERVER['QUERY_STRING'], '/'));
 }
 if (empty($path) || !is_readable($path)) {
     if (substr(PHP_SAPI, 0, 3) == 'cgi') {
@@ -103,11 +106,11 @@ $mimetypes = array(
 );
 
 $suffix = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-$content_type = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
-if (in_array($suffix, array('css', 'js', 'gif', 'jpg', 'png'))) {
+$contentType = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
+if (in_array($suffix, $allowedExtension)) {
 } else {
-    $content_type_category = substr($content_type, 0, strpos($content_type, "/"));
-    if (!in_array($content_type_category, array('image', 'text'))) {
+    $contentTypeCategory = substr($contentType, 0, strpos($contentType, "/"));
+    if (!in_array($contentTypeCategory, array('image', 'text'))) {
         if (substr(PHP_SAPI, 0, 3) == 'cgi') {
             header("Status: 403 Forbidden");
         } else {
@@ -116,9 +119,9 @@ if (in_array($suffix, array('css', 'js', 'gif', 'jpg', 'png'))) {
         return;
     }
 }
-/** #@- */
+/**#@-*/
 
-header('Content-type: ' . $content_type);
+header('Content-type: ' . $contentType);
 
 /**
  * #@+
@@ -152,7 +155,6 @@ if (defined('PI_HEADER_TYPE')) {
         return;
     }
 }
-
 
 $handle = fopen($path, "rb");
 if (!$handle) {

@@ -83,6 +83,10 @@ class ErrorStrategy extends AbstractListenerAggregate
         $viewModel = null;
         if (!$result instanceof ViewModel) {
             $viewModel = new ViewModel;
+            $config  = $e->getApplication()->getServiceManager()->get('Config');
+            $viewConfig = $config['view_manager'];
+            $template = isset($viewConfig[$templateName]) ? $viewConfig[$templateName] : 'error';
+            $viewModel->setTemplate($template);
         } else {
             $viewModel = $result;
         }
@@ -95,11 +99,6 @@ class ErrorStrategy extends AbstractListenerAggregate
             $viewModel->setVariable('message', $errorMessage ?: '');
         }
         $viewModel->setVariable('code', $statusCode);
-
-        $config  = $e->getApplication()->getServiceManager()->get('Config');
-        $viewConfig = $config['view_manager'];
-        $template = isset($viewConfig[$templateName]) ? $viewConfig[$templateName] : 'error';
-        $viewModel->setTemplate($template);
 
         $e->setResult($viewModel);
 

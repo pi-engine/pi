@@ -123,9 +123,9 @@ return array(
         'view_manager' => array(
             'display_not_found_reason'  => true,
             'display_exceptions'        => true,
-            'error_template'            => 'error',
             'not_found_template'        => 'error-404',
-            'exception_template'        => 'error-exception',
+            'exception_template'        => 'error',
+            'error_template'            => 'error',
             'denied_template'           => 'error-denied',
             'layout'                    => 'layout-front',
             'layout_error'              => 'layout-style',

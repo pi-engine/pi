@@ -12,16 +12,14 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @version         $Id$
  */
 
 // Widget meta
 return array(
     'title'         => __('Pi Engine top contents'),
     'description'   => __('Block to display Pi Engine top and hot contents'),
-    //'template'      => 'pi-content',
+    'template'      => 'pi-content',
     'render'        => array('PiContent', 'test'),
     'config'        => array(
         // text option

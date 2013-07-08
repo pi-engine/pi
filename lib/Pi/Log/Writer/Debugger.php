@@ -47,6 +47,23 @@ class Debugger extends AbstractWriter
         'system'    => array(),
     );
 
+    protected $muted = false;
+
+    /**
+     * Enable/disable
+     *
+     * @param bool $flag
+     * @return bool return previous muted value
+     */
+    public function mute($flag = true)
+    {
+        $muted = $this->muted;
+        if (null !== $flag) {
+            $this->muted = (bool) $flag;
+        }
+        return $muted;
+    }
+
     /**
      * get formatter for loggder writer
      *
@@ -111,6 +128,9 @@ class Debugger extends AbstractWriter
      */
     protected function doWrite(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         if ($event['priority'] > Logger::DEBUG) {
             return;
         }
@@ -134,6 +154,9 @@ class Debugger extends AbstractWriter
      */
     public function doProfiler(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         $message = $this->profilerFormatter()->format($event);
 
         $this->logger['profiler'][] = $message;
@@ -147,6 +170,9 @@ class Debugger extends AbstractWriter
      */
     public function doDb(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         $message = $this->dbProfilerFormatter()->format($event);
         $this->logger['db'][] = $message;
     }
@@ -253,6 +279,9 @@ class Debugger extends AbstractWriter
 
     public function render()
     {
+        if ($this->muted) {
+            return;
+        }
         $this->systemInfo();
 
         // Use heredoc for log contents

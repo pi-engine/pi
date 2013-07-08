@@ -12,10 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @subpackage      Controller
- * @version         $Id$
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -51,31 +48,22 @@ class IndexController extends WidgetController
         }
 
         $available = array();
-        $rootPath = Pi::service('module')->path($this->getModule()) . '/template/block';
-        $iterator = new \DirectoryIterator($rootPath);
+        $metaPath = Pi::service('module')->path($this->getModule()) . '/meta';
+        $iterator = new \DirectoryIterator($metaPath);
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isFile()) {
                 continue;
             }
             $name = $fileinfo->getFilename();
             $extension = pathinfo($name, PATHINFO_EXTENSION);
-            if ('phtml' != $extension) {
+            if ('php' != $extension) {
                 continue;
             }
             $name = pathinfo($name, PATHINFO_FILENAME);
-            if (isset($installed[$name]) || preg_match('/[^a-z0-9_]/i', $name)) {
+            if (isset($installed[$name]) || preg_match('/[^a-z0-9_\-]/', $name)) {
                 continue;
             }
-            $meta = sprintf('%s/%s-config.php', $rootPath, $name);
-            $config = array();
-            if (is_readable($meta)) {
-                $config = include $meta;
-            } else {
-                $config = array(
-                    'title'         => $name,
-                    'description'   => ''
-                );
-            }
+            $config = include $fileinfo->getPathname();
             $config['name'] = $name;
             $available[$name] = $config;
         }
@@ -95,28 +83,23 @@ class IndexController extends WidgetController
     public function addAction()
     {
         $module = $this->getModule();
-        $name = $this->params('name');
-        $meta = sprintf('%s/template/block/%s-config.php', Pi::service('module')->path($module), $name);
-        $block = array();
-        if (is_readable($meta)) {
-            $block = include $meta;
-        }
+        $name = _filter($this->params('name'), 'regexp', array('regexp' => '/^[a-z0-9_\-]+$/'));
+        $meta = sprintf('%s/meta/%s.php', Pi::service('module')->path($module), $name);
+        $block = include $meta;
         $block['type'] = $this->type;
         $block['name'] = $name;
         if (empty($block['render'])) {
-            $block['render'] = sprintf('Module\\Widget\\Render::%s', $name);
+            $block['render'] = sprintf('Module\Widget\Render::%s', $name);
         } else {
             if (is_array($block['render'])) {
                 $block['render'] = $block['render'][0] . '::' . $block['render'][1];
             }
-            $block['render'] = sprintf('Module\\Widget\\Render\\%s', ucfirst($block['render']));
+            $block['render'] = sprintf('Module\Widget\Render\\%s', ucfirst($block['render']));
         }
-        /*
         if (!isset($block['template'])) {
             $block['template'] = $name;
         }
-        */
-        $block['template'] = $name;
+        //$block['template'] = $name;
         $status = $this->addBlock($block);
 
         if ($status) {

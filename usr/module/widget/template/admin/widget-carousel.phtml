@@ -62,7 +62,7 @@ echo $this->form()->closeTag();
 ?>
 <script id="temp-carousel" type="text/template">
     <i class="icon-remove-sign"></i>
-    <img src="<?php echo $imageRoot; ?><%= data.image %>" style="margin-bottom: 8px; height: 150px;">
+    <img src="<?php echo ''; /*$imageRoot;*/ ?><%= data.image %>" style="margin-bottom: 8px; height: 150px;">
     <div class="form-horizontal">
         <div class="control-group">
             <label class="control-label"><?php _e('Caption'); ?></label>
@@ -134,7 +134,7 @@ var carouselListView = Backbone.View.extend({
         this.sortable();
         this.btn.click(this.popup);
         this.$('[name=image]').click(function(e) {
-            e.stopPropagation();    
+            e.stopPropagation();
         });
     },
     fileupload: function () {

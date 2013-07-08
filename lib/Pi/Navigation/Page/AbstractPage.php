@@ -28,16 +28,6 @@ use Zend\Stdlib\ArrayUtils;
  */
 abstract class AbstractPage extends ZendAbstractPage
 {
-    /**#@+
-     * Re-initialize
-     * Modified by Taiwen Jiang
-     */
-    /**
-     * {@inheritDoc}
-     */
-    protected $active = null;
-    /**#@-*/
-
     /**
      * {@inheritDoc}
      */
