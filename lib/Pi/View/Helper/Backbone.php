@@ -64,13 +64,13 @@ class Backbone extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
             $autoLoad = array();
-            // Required primary js
-            if (!isset($files['backbone.min.js'])) {
-                $autoLoad = array('backbone-min.js' => $this->canonizeFile('backbone-min.js')) + $files;
-            }
             // Required underscore js
             if (!isset($files['underscore.min.js'])) {
-                $autoLoad += array('underscore-min.js' => $this->canonizeFile('underscore-min.js')) + $files;
+                $autoLoad += array('underscore-min.js' => $this->canonizeFile('underscore-min.js'));
+            }
+            // Required primary js
+            if (!isset($files['backbone.min.js'])) {
+                $autoLoad += array('backbone-min.js' => $this->canonizeFile('backbone-min.js'));
             }
             $files = $autoLoad + $files;
             static::$rootLoaded = true;
