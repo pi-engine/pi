@@ -56,7 +56,7 @@ return array(
         // Load authentication configs from resource.authentication.php and instantiate authentication service
         'authentication'    => array(),
         // Instantiate use handler
-        'user'      => array(),
+        //'user'      => array(),
         // Instantiate ACL manager and register listeners
 
         'acl'       => array(

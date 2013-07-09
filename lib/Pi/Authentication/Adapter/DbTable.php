@@ -21,6 +21,7 @@
 namespace Pi\Authentication\Adapter;
 
 use Pi;
+use Pi\Application\Model\User\Account as AccountModel;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result as AuthenticationResult;
 
@@ -33,6 +34,10 @@ class DbTable implements AdapterInterface
      */
     protected $tableName;
 
+    /**
+     * User account table
+     * @var AccountModel
+     */
     protected $table;
 
     /**
@@ -137,7 +142,6 @@ class DbTable implements AdapterInterface
 
         return $authResult;
     }
-
 
     /**
      * _authenticateValidateResult() - This method attempts to validate that

@@ -14,8 +14,6 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Resource
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Bootstrap\Resource;
