@@ -4,8 +4,11 @@ $this->i18nTheme('main');
 
 // Load Bootstrap css by Twitter Team
 $this->bootstrap();
-// Load style.css
-$this->css($this->assetTheme('css/style.css'));
+// Load style.css, front.css
+$this->css(array(
+    $this->assetTheme('css/style.css'),
+    $this->assetTheme('css/front.css'),
+));
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
