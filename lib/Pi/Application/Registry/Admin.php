@@ -119,7 +119,7 @@ class Admin extends AbstractRegistry
     public function read($privilege = 'manage', $module = null, $role = null)
     {
         if (null === $role) {
-            $role = Pi::registry('user')->role;
+            $role = Pi::service('user')->getUser()->role();
         }
         $options = compact('privilege', 'role');
         $data = $this->loadData($options);

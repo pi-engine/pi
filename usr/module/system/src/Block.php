@@ -45,13 +45,13 @@ class Block
      */
     public static function user()
     {
-        if (Pi::registry('user')->isGuest()) {
+        if (Pi::service('user')->getUser()->isGuest()) {
             return false;
         }
 
         return array(
-            'identity'  => Pi::registry('user')->identity,
-            'id'        => Pi::registry('user')->id,
+            'identity'  => Pi::service('user')->getUser()->identity,
+            'id'        => Pi::service('user')->getUser()->id,
         );
     }
 
@@ -64,9 +64,9 @@ class Block
     public static function userbar($options = array())
     {
         return array(
-            'identity'  => Pi::registry('user')->identity,
-            'id'        => Pi::registry('user')->id,
-            'name'      => Pi::registry('user')->name,
+            'identity'  => Pi::service('user')->getUser()->identity,
+            'id'        => Pi::service('user')->getUser()->id,
+            'name'      => Pi::service('user')->getUser()->name,
             'type'      => isset($options['type']) ? $options['type'] : '',
         );
     }
@@ -78,7 +78,7 @@ class Block
      */
     public static function login()
     {
-        if (!Pi::registry('user')->isGuest()) {
+        if (!Pi::service('user')->getUser()->isGuest()) {
             return false;
         }
         $form = new LoginForm('login');
