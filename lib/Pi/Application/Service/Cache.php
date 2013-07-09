@@ -127,10 +127,10 @@ class Cache extends AbstractService
     {
         switch ($cacheLevel) {
             case 'user':
-                $prefix = Pi::registry('user') ? Pi::registry('user')->id : '';
+                $prefix = Pi::service('user')->getUser()->id ?: '';
                 break;
             case 'role':
-                $prefix = Pi::registry('user') ? Pi::registry('user')->role : '';
+                $prefix = Pi::service('user')->getUser()->role ?: '';
                 break;
             case 'locale':
                 $prefix = Pi::service('i18n')->locale;

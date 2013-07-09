@@ -233,7 +233,7 @@ class Acl
     public function getRole()
     {
         if (null === $this->role) {
-            $this->role = Pi::registry('user') ? Pi::registry('user')->role : static::GUEST;
+            $this->role = Pi::service('user')->getUser() ? Pi::service('user')->getUser()->role() : static::GUEST;
         }
         return $this->role;
     }

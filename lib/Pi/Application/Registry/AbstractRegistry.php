@@ -146,7 +146,7 @@ abstract class AbstractRegistry
             if (null === $meta[$var]) {
                 switch ($var) {
                     case 'role':
-                        $meta[$var] = Pi::registry('user')->role;
+                        $meta[$var] = Pi::service('user')->getUser()->role();
                         break;
                     case 'locale':
                         $meta[$var] = Pi::service('i18n')->locale;
