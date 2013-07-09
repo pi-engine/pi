@@ -47,7 +47,7 @@ return array(
      * To be stored in DB
      */
     // Version
-    'version'       => '1.0.0-beta.1',
+    'version'       => '1.0.0-rc.1',
     // Type of layouts available in the theme
     'type'          => 'both', // Potential value: 'both', 'admin', 'front', default as 'both'
     /**#@-**/
