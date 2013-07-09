@@ -72,7 +72,7 @@ class Factory
             }
             $attrs = '';
             foreach ($attributes as $key => $val) {
-                $attrs .= ' ' . $key . '="' . $val . '"';
+                $attrs .= ' ' . $key . '="' . _escape($val) . '"';
             }
             $img = '<img src="%s"%s />';
             $result = sprintf($img, $src, $attrs);
