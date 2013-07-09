@@ -166,16 +166,4 @@ class Authentication extends AbstractService
     {
         $this->getStorage()->clear();
     }
-
-    /**
-     * Wake up a user
-     *
-     * @param string|null $identity
-     */
-    public function wakeup($identity = null)
-    {
-        $identity = strval($identity ?: $this->getIdentity());
-        Pi::service('user')->bind($identity, 'identity');
-        Pi::registry('user', Pi::service('user')->getUser());
-    }
 }

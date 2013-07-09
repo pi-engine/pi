@@ -41,7 +41,7 @@ class Acl extends AbstractResource
 
     protected function loadAcl()
     {
-        $this->engine->bootResource('authentication');
+        $this->engine->bootResource('user');
         $this->aclHandler = new AclManager($this->engine->section(), isset($this->options['default']) ? $this->options['default'] : null);
         $this->aclHandler->setRole(Pi::service('user')->getUser()->role());
         Pi::registry('acl', $this->aclHandler);

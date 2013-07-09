@@ -97,12 +97,19 @@ class User extends AbstractService
     /**
      * Get user data object
      *
-     * @param UserModel|int|string|null  $identity   User id, identity or data object
+     * @param UserModel|int|string|null $identity   User id, identity or data object
      * @param string                    $field      Field of the identity: id, identity, object
      * @return UserModel
      */
-    public function getUser($identity = null, $field = 'id')
+    public function getUser($identity = null, $field = '')
     {
+        if (!$field) {
+            if (is_string($identity)) {
+                $field = 'identiy';
+            } elseif (is_int($identity)) {
+                $field = 'id';
+            }
+        }
         return $this->getAdapter()->getUser($identity, $field);
     }
 

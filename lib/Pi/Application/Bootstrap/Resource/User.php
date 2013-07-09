@@ -20,14 +20,15 @@ namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
 
-class Authentication extends AbstractResource
+class User extends AbstractResource
 {
     /**
      * @return void
      */
     public function boot()
     {
-        $authService = Pi::service('authentication', $this->options);
-        $authService->wakeup();
+        $identity = (string) Pi::service('authentication')->getIdentity();
+        Pi::service('user')->bind($identity, 'identity');
+        Pi::registry('user', Pi::service('user')->getUser());
     }
 }
