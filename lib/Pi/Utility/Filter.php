@@ -236,10 +236,18 @@ namespace Pi\Utility
  *  $paramSanitized = _sanitize('1234.5', 'int');
  *  $paramSanitized = _sanitize('+1234.5', 'float', FILTER_FLAG_ALLOW_FRACTION);
  * </code>
+ *
+ * Escape a stribg:
+ * <code>
+ *  $paramEscape = _escape('<p>Text demo</demo>');
+ *  $paramEscape = _escape('<p>Text demo</demo>', 'html');
+ *  $paramEscape = _escape('http://www.pialog.org/demo', 'url');
+ * </code>
  */
 namespace
 {
     use Pi\Utility\Filter as FilterManager;
+    use Zend\Escaper\Escaper;
 
     /**#@+
      * Retrieve request params with PHP filter_var
@@ -297,6 +305,26 @@ namespace
     function _sanitize($value, $filter = '', $options = null)
     {
         $value = FilterManager::sanitize($value, $filter, $options);
+        return $value;
+    }
+
+    /**
+     * Escape a string for corresponding context
+     *
+     * @see Zend\Escaper\Escaper
+     * @param string $value
+     * @param stribg $context   String context, valid value: html, htmlAttr, js, url, css
+     * @return stribg
+     */
+    function _escape($value, $context = 'html')
+    {
+        $context = $context ? ucfirst($context) : 'Html';
+        $method = 'escape' . $context;
+        $escaper = new Escaper(Pi::service('i18n')->getCharset());
+        if (method_exists($escaper, $method)) {
+            $value = $escaper->{$method}($value);
+        }
+
         return $value;
     }
 }
