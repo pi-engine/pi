@@ -101,7 +101,7 @@ class DashboardController extends ActionController
     public function systemAction()
     {
         $module = $this->params('module');
-        $user   = Pi::registry('user')->id;
+        $user   = Pi::service('user')->getUser()->id;
 
         $_SESSION['PI_BACKOFFICE'] = array(
             'mode'      => '',
@@ -198,7 +198,7 @@ class DashboardController extends ActionController
             'content'   => Pi::service('markup')->render($content['content'], 'text'),
         );
         $messagePerm = false;
-        if (Pi::registry('user')->isAdmin()) {
+        if (Pi::service('user')->getUser()->isAdmin()) {
             $messagePerm = true;
         }
 
@@ -331,7 +331,7 @@ class DashboardController extends ActionController
         }
         $row = Pi::model('user_repo')->select((array('module' => 'system', 'type' => $type)))->current();
 
-        if (Pi::registry('user')->isAdmin()) {
+        if (Pi::service('user')->getUser()->isAdmin()) {
             if ($row) {
                 $row->content = $data;
             } else {
@@ -366,7 +366,7 @@ class DashboardController extends ActionController
     {
         $type = 'admin-memo';
         $module = $this->params('module');
-        $user   = Pi::registry('user')->id;
+        $user   = Pi::service('user')->getUser()->id;
 
         $content = $this->params()->fromPost('content');
         $data = array(
@@ -403,7 +403,7 @@ class DashboardController extends ActionController
     protected function saveAjax($type)
     {
         $module = $this->params('module');
-        $user   = Pi::registry('user')->id;
+        $user   = Pi::service('user')->getUser()->id;
 
         $content = $this->params()->fromPost('content');
         $row = Pi::model('user_repo')->select((array('user' => $user, 'module' => $module, 'type' => $type)))->current();
