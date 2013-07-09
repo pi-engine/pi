@@ -74,12 +74,12 @@ form .icon-question-sign {
   border-bottom: 1px solid #d7d7d7;
 }
 
-.pi-widget-header * {
-  margin-bottom: 0;
-}
-
 .pi-widget-body {
   padding: 18px 20px;
+}
+
+.pi-widget-body >:last-child {
+  margin-bottom: 0;
 }
 
 /* Avatar*/
