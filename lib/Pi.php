@@ -46,6 +46,8 @@
  *  - autoloader()
  *  - engine()
  *  - service()
+ *  - user()
+ *  - db()
  *  - model()
  *  - registerShutdown()
  *  - registry()
@@ -415,6 +417,16 @@ class Pi
         // Load a service
         $service = static::$service->load($name, $options);
         return $service;
+    }
+
+    /**
+     * Load user service
+     *
+     * @return Pi\Application\Service\User
+     */
+    public static function user()
+    {
+        return static::service('user');
     }
 
     /**
