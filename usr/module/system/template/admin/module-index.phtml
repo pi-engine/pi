@@ -75,9 +75,14 @@
         },
         init: function() {
             _.bindAll(this);
+            var self = this;
             this.$('.detail-action').click(this.toggleDetail);
             this.$('.rename-action').click(this.rename);
-            this.$('input[type=text]').blur(this.renameAction);
+            this.$('input[type=text]').blur(this.renameAction).keyup(function(e) {
+                if (e.keyCode == 13) {
+                    self.renameAction(e);
+                }
+            });
         },
         toggleDetail: function(e) {
             $(e.target).siblings('.well').toggle();

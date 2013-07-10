@@ -14,7 +14,8 @@ form .icon-question-sign {
   color: #0089D1;
   float: left;
   cursor: pointer;
-  margin: 8px 0 0 3px;
+  margin: 6px 0 0 1px;
+  padding: 2px;
 }
 
 /* Components */

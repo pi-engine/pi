@@ -93,12 +93,6 @@ table td {
 .widget-clone:hover .module-block-desc {
     display: block;
 }
-#drag-main {
-    -moz-user-select: none ;
-    -khtml-user-select: none;
-    -webkit-user-select: none ;
-    user-select: none ;
-}
 .drag-btn-wrap {
     clear: both;
     float: right;
@@ -117,7 +111,7 @@ table td {
     z-index: 1001;
 }
 .ui-draggable-disabled {
-   background: rgba(240,240,240,.6);
+   background: rgba(240, 240, 240, .6);
 }
 .ui-draggable-disabled .module-block-title {
     cursor: no-drop;
@@ -182,7 +176,7 @@ table td {
             </div>
         </div>
     </div>
-    <div class="span10 drag-main" id="js-page">
+    <div class="span10 diable-selected" id="js-page">
         <div id="drag-main" class="clearfix">
             <?php echo $pageZone; ?>
         </div>

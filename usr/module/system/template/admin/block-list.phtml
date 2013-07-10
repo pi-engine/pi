@@ -31,7 +31,7 @@
                             <?php _e('pages'); ?>
                             <span  class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu nav nav-list">
                     </div>
                 <td>
                     <div class="btn-group btns-indent">
@@ -50,12 +50,10 @@
     <% if(data.length) { %>
     <% _.each(data, function(item) { %>
     <li>
-        <strong><%= item.title %></strong>
-        <ul>
-            <% _.each(item.pages,function(page) { %>
-            <li><a href="<%= page.url %>"><%= page.title %></a>
-            <% }); %>
-        </ul>
+        <strong class="nav-header"><%= item.title %></strong>
+        <% _.each(item.pages,function(page) { %>
+        <li><a href="<%= page.url %>"><%= page.title %></a>
+        <% }); %>
     </li>
     <% }); %>
     <% } else { %>
