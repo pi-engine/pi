@@ -15,11 +15,11 @@
  * @package         Pi\User
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\User\Handler;
 
 use Pi;
 
-class Gravatar extends AbstractAvatar
+class AvatarGravatar extends AbstractAvatar
 {
     /**
      * {@inheritDoc}

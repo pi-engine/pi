@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine user avatar local class
+ * Pi Engine abstract user avatar
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -15,30 +15,34 @@
  * @package         Pi\User
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\User\Handler;
 
 use Pi;
+use Pi\User\Model\AbstractModel as UserModel;
 
-class Local extends Upload
+abstract class AbstractAvatar
 {
     /**
-     * {@inheritDoc}
+     * Bound user account
+     * @var UserModel
      */
-    public function getPath($size = null)
+    protected $model;
+
+    /**
+     * Constructor
+     *
+     * @param UserModel $model
+     */
+    public function __construct(UserModel $model = null)
     {
-        return false;
+        $this->model = $model;
     }
 
     /**
-     * Get relative path
+     * Get user avatar link
      *
-     * @param string $size
+     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @return string
      */
-    protected function getRelativePath($size = '')
-    {
-        $folder = $this->canonizeSize($size);
-        $path = sprintf('static/avatar/%s.jpg', $folder);
-        return $path;
-    }
+    abstract public function build($size = '');
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine user avatar factory
+ * Pi Engine user avatar handler
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -15,29 +15,20 @@
  * @package         Pi\User
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\User\Handler;
 
 use Pi;
-use Pi\User\Model\AbstractModel as UserModel;
 
-class Factory
+/**
+ * Avatar APIs;
+ *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
+ *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
+ *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
+ *   - avatar([$id])->set($value[, $source])                                        // Set avatar for a user
+ *   - avatar([$id])->delete()                                                      // Delete user avatar
+ */
+class Avatar extends AbstractHandler
 {
-    /**
-     * Bound user account
-     * @var UserModel
-     */
-    protected $model;
-
-    /**
-     * Constructor
-     *
-     * @param UserModel $model
-     */
-    public function __construct(UserModel $model = null)
-    {
-        $this->model = $model;
-    }
-
     /**
      * Get avatar adapter
      *
@@ -46,7 +37,7 @@ class Factory
      */
     public function getAdapter($adapter)
     {
-        $class = __NAMESPACE__ . '\\' . ucfirst($adapter);
+        $class = __NAMESPACE__ . '\Avatar' . ucfirst($adapter);
         $adapter = new $class($this->model);
         return $adapter;
     }
@@ -87,7 +78,7 @@ class Factory
      * @param array|string|bool $attributes     Array for attributes of HTML img element of img, string for alt of img, false to return URL
      * @return string
      */
-    public function getAvatar($size = '', $attributes = array())
+    public function get($size = '', $attributes = array())
     {
         $avatar = $this->model ? $this->model->avatar : '';
         if (false !== strpos('@', $avatar)) {

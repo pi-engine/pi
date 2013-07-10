@@ -22,93 +22,192 @@ use Pi\User\Model\Local as UserModel;
 
 class Local extends AbstractAdapter
 {
-    /**
-     * Get user data object
-     *
-     * @param int|string|null   $identity   User id, identity or data object
-     * @param string            $field      Field of the identity: id, identity, object
-     * @return UserModel
+    /**#@+
+     * Meta operations
      */
-    public function getUser($identity = null, $field = 'id')
+    /**
+     * {@inheritDoc}
+     */
+    public function getMeta($type = 'account')
     {
-        if (null !== $identity) {
-            $model = new UserModel($identity, $field);
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+    /**#@-*/
+
+    /**#@+
+     * User operations
+     */
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser($id = null, $field = 'id')
+    {
+        if (null !== $id) {
+            $model = new UserModel($id, $field);
         } else {
             $model = $this->model;
         }
         return $model;
     }
 
-    /**#@+
-     * Account APIs
-     */
     /**
      * {@inheritDoc}
      */
-    public function getProfileUrl($id = null)
+    public function getUserList($ids)
     {
-        $id = $id ?: $this->id;
-        $url = Pi::service('url')->assemble('user', array(
-            'controller'    => 'profile',
-            'id'            => $id,
-        ));
-        $url = Pi::url($url, true);
-        return $url;
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
 
     /**
-     * Get user login URL
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function getLoginUrl()
+    public function getIds($condition = array(), $limit = 0, $offset = 0, $order = '')
     {
-        $url = Pi::service('url')->assemble('user', array(
-            'controller'    => 'login'
-        ));
-        return $url;
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
 
     /**
-     * Get user logout URL
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function getLogoutUrl()
+    public function getCount($condition = array())
     {
-        $url = Pi::service('url')->assemble('user', array(
-            'controller'    => 'login',
-            'action'        => 'logout',
-        ));
-        return $url;
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
 
     /**
-     * Get user register URL
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function getRegisterUrl()
+    public function addUser($data)
     {
-        $url = Pi::service('url')->assemble('user', array(
-            'controller'    => 'register',
-        ));
-        return $url;
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateUser($data, $id = null)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteUser($id)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function activateUser($id)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deactivateUser($id)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
     /**#@-*/
 
     /**#@+
-     * Profile APIs
+     * User account/Profile fields operations
+     */
+    public function get($key, $id = null)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList($key, $ids)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function set($key, $value, $id = null)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function increment($key, $value, $id = null)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPassword($value, $id = null)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+    /**#@-*/
+
+    /**#@+
+     * Utility APIs
      */
     /**
      * {@inheritDoc}
      */
-    public function getName($id = null)
+    public function getUrl($type, $id = null)
     {
-        $name = $this->getUser($id)->name;
-        return $name;
+        switch ($type) {
+            case 'account':
+            case 'profile':
+                $id = $id ?: $this->id;
+                $url = Pi::service('url')->assemble('user', array(
+                    'controller'    => 'profile',
+                    'id'            => $id,
+                ));
+                break;
+            case 'login':
+            case 'signin':
+                $url = Pi::service('url')->assemble('user', array(
+                    'controller'    => 'login'
+                ));
+                break;
+            case 'logout':
+            case 'signout':
+                $url = Pi::service('url')->assemble('user', array(
+                    'controller'    => 'login',
+                    'action'        => 'logout',
+                ));
+                break;
+            case 'register':
+            case 'signup':
+                $url = Pi::service('url')->assemble('user', array(
+                    'controller'    => 'register',
+                ));
+                break;
+            default:
+                $url = '';
+                break;
+        }
+        return $url;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function authenticate($identity, $credential, $field = 'identity')
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
     /**#@-*/
+
 
     /**
      * Method handler allows a shortcut
@@ -120,6 +219,5 @@ class Local extends AbstractAdapter
     public function __call($method, $args)
     {
         trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method), E_USER_NOTICE);
-        return 'Not defined';
     }
 }
