@@ -12,7 +12,7 @@ tr:hover .row-actions {
   visibility: visible;
 }
 
-.diable-selected {
+.disable-selecteded {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
