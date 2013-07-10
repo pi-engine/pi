@@ -327,5 +327,88 @@ namespace
 
         return $value;
     }
+    
+    /**
+     * text a value for make needed texts
+     *
+     * @param string $value
+     * @param string $type
+     * @return string
+     */
+    function _text($value, $type = 'text')
+    {
+        
+        $search = array(
+            "&nbsp;","\t","\r\n","\r","\n",",",".","'",";",":",")","(",
+            '"','?','!','{','}','[',']','<','>','/','+','-','_','\\',
+            '*','=','@','#','$','%','^','&'
+        );
+        
+        $replace = array(
+            ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+            ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+            ' ',' ',' ',' '
+        );
+        
+        switch($type) {
+            
+            case 'text':
+                $value = strip_tags($value);
+                break;
+                
+            case 'html':
+                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
+                break;
+                
+            case 'slug':
+                $value = strip_tags($value);
+                $value = strtolower($value);
+                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
+                $value = preg_replace('`\[.*\]`U', ' ', $value);
+                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', ' ', $value);
+                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
+                $value = str_replace($search, $replace, $value);
+                $value = explode(' ',$value);
+                foreach($value as $word) {
+                    if(!empty($word)) {
+                        $key[] = $word;
+                    }
+                }
+                $value = implode('-',$key);
+                $value = trim($value, '-');
+                break;
+                
+            case 'keywords':
+                $value = strip_tags($value);
+                $value = strtolower($value);
+                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
+                $value = preg_replace('`\[.*\]`U', '', $value);
+                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '', $value);
+                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
+                $value = str_replace($search, $replace, $value);
+                $value = explode(' ',$value);
+                $value = array_unique($value);
+                foreach($value as $word) {
+                    if(!empty($word)) {
+                        $key[] = $word;
+                    }
+                }
+                $value = implode(',',$key);
+                $value = trim($value, ',');
+                break;
+                
+            case 'description':
+                $value = strip_tags($value);
+                $value = strtolower($value);
+                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
+                $value = preg_replace('`\[.*\]`U', '', $value);
+                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $value);
+                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
+                $value = str_replace($search, $replace, $value);
+                break;
+        }
+    
+        return $value;
+    }
 }
 /**#@-*/
