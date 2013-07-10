@@ -237,11 +237,30 @@ namespace Pi\Utility
  *  $paramSanitized = _sanitize('+1234.5', 'float', FILTER_FLAG_ALLOW_FRACTION);
  * </code>
  *
- * Escape a stribg:
+ * Escape a string:
  * <code>
- *  $paramEscape = _escape('<p>Text demo</demo>');
- *  $paramEscape = _escape('<p>Text demo</demo>', 'html');
- *  $paramEscape = _escape('http://www.pialog.org/demo', 'url');
+ *  $stringEscaped = _escape('<p>Text demo</demo>');
+ *  $stringEscaped = _escape('<p>Text demo</demo>', 'html');
+ *  $stringEscaped = _escape('http://www.pialog.org/demo', 'url');
+ * </code>
+ *
+ * Strip a string:
+ * <code>
+ *  $stringStripped = _strip('<p>Text &^#%demo</demo>@!');
+ *
+ *  // For slug generation
+ *  $text = strtolower(trim($stringStripped));
+ *  $words = array_filter(explode(' ', $text));
+ *  $slug = implode('-', $words);
+ *
+ *  // For keywords generation
+ *  $text = strtolower(trim($stringStripped));
+ *  $words = array_unique(array_filter(explode(' ', $text)));
+ *  $keywords = implode(',', $words);
+ *
+ *  // For description generation
+ *  $text = strtolower(trim($stringStripped));
+ *  $description = preg_replace('/[\s]+/', ' ', $text);
  * </code>
  */
 namespace
@@ -327,88 +346,35 @@ namespace
 
         return $value;
     }
-    
+
     /**
-     * text a value for make needed texts
+     * Clean a string by stripping HTML tags and removing unrecognizable characters
      *
-     * @param string $value
-     * @param string $type
+     * @param string        $text           Text to be cleaned
+     * @param string|null   $replacement    Replacement for stripped characters
      * @return string
      */
-    function _text($value, $type = 'text')
+    function _strip($text, $replacement = null)
     {
-        
-        $search = array(
-            "&nbsp;","\t","\r\n","\r","\n",",",".","'",";",":",")","(",
-            '"','?','!','{','}','[',']','<','>','/','+','-','_','\\',
-            '*','=','@','#','$','%','^','&'
+        $pattern = array(
+            "&nbsp;", "\t", "\r\n", "\r", "\n", ",", ".", "'", ";", ":", ")", "(",
+            '"', '?', '!', '{', '}', '[', ']', '<', '>', '/', '+', '-', '_', '\\',
+            '*', '=', '@', '#', '$', '%', '^', '&'
         );
-        
-        $replace = array(
-            ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-            ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-            ' ',' ',' ',' '
-        );
-        
-        switch($type) {
-            
-            case 'text':
-                $value = strip_tags($value);
-                break;
-                
-            case 'html':
-                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
-                break;
-                
-            case 'slug':
-                $value = strip_tags($value);
-                $value = strtolower($value);
-                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
-                $value = preg_replace('`\[.*\]`U', ' ', $value);
-                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', ' ', $value);
-                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
-                $value = str_replace($search, $replace, $value);
-                $value = explode(' ',$value);
-                foreach($value as $word) {
-                    if(!empty($word)) {
-                        $key[] = $word;
-                    }
-                }
-                $value = implode('-',$key);
-                $value = trim($value, '-');
-                break;
-                
-            case 'keywords':
-                $value = strip_tags($value);
-                $value = strtolower($value);
-                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
-                $value = preg_replace('`\[.*\]`U', '', $value);
-                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '', $value);
-                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
-                $value = str_replace($search, $replace, $value);
-                $value = explode(' ',$value);
-                $value = array_unique($value);
-                foreach($value as $word) {
-                    if(!empty($word)) {
-                        $key[] = $word;
-                    }
-                }
-                $value = implode(',',$key);
-                $value = trim($value, ',');
-                break;
-                
-            case 'description':
-                $value = strip_tags($value);
-                $value = strtolower($value);
-                $value = htmlentities($value, ENT_COMPAT, 'utf-8');
-                $value = preg_replace('`\[.*\]`U', '', $value);
-                $value = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $value);
-                $value = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $value);
-                $value = str_replace($search, $replace, $value);
-                break;
-        }
-    
-        return $value;
+        $replacement = (null === $replacement) ? ' ' : $replacement;
+
+        // Strip HTML tags
+        $text = $text ? strip_tags($text) : '';
+        // Sanitize
+        $text = $text ? _escape($text) : '';
+
+        // Clean up
+        $text = $text ? preg_replace('`\[.*\]`U', '', $text) : '';
+        $text = $text ? preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '', $text) : '';
+        $text = $text ? preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $text) : '';
+        $text = $text ? str_replace($pattern, $replacement, $text) : '';
+
+        return $text;
     }
 }
 /**#@-*/
