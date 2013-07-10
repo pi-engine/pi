@@ -82,7 +82,9 @@ form .icon-question-sign {
   padding: 18px 20px;
 }
 
-/* Avatar*/
+
+/* Avatar */
+/* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
 .pi-avatar {
   width: 80px;
 }
@@ -92,19 +94,19 @@ form .icon-question-sign {
 }
 
 .pi-avatar-xsmall {
-  width: 20px;
+  width: 24px;
 }
 
 .pi-avatar-small {
-  width: 30px;
+  width: 28px;
 }
 
 .pi-avatar-medium {
-  width: 60px;
+  width: 46px;
 }
 
 .pi-avatar-large {
-  width: 100px;
+  width: 96px;
 }
 
 .pi-avatar-xlarge {
@@ -112,5 +114,5 @@ form .icon-question-sign {
 }
 
 .pi-avatar-xxlarge {
-  width: 150px;
+  width: 214px;
 }
