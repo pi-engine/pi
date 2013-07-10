@@ -12,7 +12,7 @@ tr:hover .row-actions {
   visibility: visible;
 }
 
-.no-select {
+.disable-selecteded {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -133,14 +133,6 @@ tr:hover .row-actions {
 .system-quick-link-edit .system-quick-link-item {
   border: 1px dashed #ccc;
   cursor: move;
-}
-
-/* Block list */
-.block-list-page .dropdown-menu {
-  width: 240px;
-  padding: 10px 0 10px 10px;
-  max-height: 400px;
-  overflow: auto;
 }
 
 /* Module list */
@@ -454,9 +446,4 @@ b.caret-big:hover {
 
 .perm-blocks-show .icon-plus {
   display: none;
-}
-
-/* Asset, cache, audit list page*/
-.table .td-indent {
-  padding-left: 2em;
 }
