@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine abstract user avatar
+ * Pi Engine user external handler
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -15,12 +15,13 @@
  * @package         Pi\User
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\User\Handler;
 
 use Pi;
 use Pi\User\Model\AbstractModel as UserModel;
+use Pi\User\BindInterface;
 
-abstract class AbstractAvatar
+class AbstractHandler implements BindInterface
 {
     /**
      * Bound user account
@@ -29,20 +30,14 @@ abstract class AbstractAvatar
     protected $model;
 
     /**
-     * Constructor
+     * Bind a user
      *
-     * @param UserModel $model
+     * @param UserModel $user
+     * @return AbstractHandler
      */
-    public function __construct(UserModel $model = null)
+    public function bind(UserModel $model = null)
     {
         $this->model = $model;
+        return $this;
     }
-
-    /**
-     * Get user avatar link
-     *
-     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
-     * @return string
-     */
-    abstract public function build($size = '');
 }

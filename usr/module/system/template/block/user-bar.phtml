@@ -2,18 +2,18 @@
     <!-- Plain display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
     <?php
         if (!$block['id']) { ?>
-        <?php echo Pi::service('user')->getAvatar(0, 'mini'); ?>
-        <a href="<?php echo Pi::service('user')->getLoginUrl(); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
+        <?php echo Pi::service('user')->avatar()->get('mini'); ?>
+        <a href="<?php echo Pi::service('user')->getUrl('login'); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
         <span class="pi-divider">|</span>
-        <a href="<?php echo Pi::service('user')->getRegisterUrl(); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
+        <a href="<?php echo Pi::service('user')->getUrl('register'); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
     <?php
         } else {
             $name = $block['name'] ?: $block['identity'];
     ?>
-            <?php echo Pi::service('user')->getAvatar($block['id'], 'mini'); ?>
-            <a href="<?php echo Pi::service('user')->getProfileUrl(); ?>" title="<?php _e('Profile'); ?>"><?php echo $this->escape($name); ?></a>
+            <?php echo Pi::service('user')->avatar()->get('mini'); ?>
+            <a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php echo $this->escape($name); ?></a>
             <span class="pi-divider">|</span>
-            <a href="<?php echo Pi::service('user')->getLogoutUrl(); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <a href="<?php echo Pi::service('user')->getUrl('logout'); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
     <?php
         }
     ?>
@@ -25,19 +25,19 @@
 
     <?php
         if (!$block['id']) { ?>
-        <a href="<?php $this->url('user', array('controller' => 'login')); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
+        <a href="<?php echo Pi::service('user')->getUrl('login'); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
     <?php
         } else {
             $name = $block['name'] ?: $block['identity'];
     ?>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="icon-user"></i>
-            <?php echo $this->escape($name); ?>
+            <?php echo _escape($name); ?>
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="<?php echo $this->url('user', array('controller' => 'account')); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
-            <li><a href="<?php echo $this->url('user', array('controller' => 'login', 'action' => 'logout')); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <li><a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
+            <li><a href="<?php echo Pi::service('user')->getUrl('logout'); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
         </ul>
     <?php
         }
