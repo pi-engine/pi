@@ -23,7 +23,7 @@ June 24th, 2013
 18. Organized theme CSS to style.css for generic, front.css for front pages and admin.css for admin area
 19. Build User APIs with avatar factory
 20. Modified config file: var/config/application.front.php - removed authentication resource; var/config/service.user.php - changed key 'handler' to 'adapter'
-21. Added syntactic sugar for escaper: '_escape' in lib/Pi/Utility/Filter.php
+21. Added syntactic sugar for escaper: '_escape' and '_strip' (@voltan) in lib/Pi/Utility/Filter.php
 22. Added syntactic sugar for user service: Pi::user()
 23. Upgraded to FontAwsome 3.2.1 (@krisxoofoo)
 24. First import of complete user APIs
