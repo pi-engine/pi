@@ -25,6 +25,7 @@ June 24th, 2013
 20. Modified config file: var/config/application.front.php - removed authentication resource; var/config/service.user.php - changed key 'handler' to 'adapter'
 21. Added syntactic sugar for escaper: '_escape' in lib/Pi/Utility/Filter.php
 22. Added syntactic sugar for user service: Pi::user()
+23. Upgraded to FontAwsome 3.2.1 (@krisxoofoo)
 
 
 June 19th, 2013
