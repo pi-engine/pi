@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Theme
- * @version         $Id$
  */
 
 /**
@@ -26,7 +24,7 @@
  *  tmplate/layout-simple.phtml - error page layout: header, footer, body
  *  tmplate/layout-style.phtml - content with stylesheets
  *  tmplate/layout-content.phtml - raw content without stylesheets
- *  template/error.phtml - defined in var/config/config.application.php: view_manager.error_template
+ *  template/error.phtml - defined in var/config/config.application.php: view_manager.error_template, view_manager.error_exception_template
  * REQUIRED for admin:
  *  tmplate/layout-admin.phtml - backoffice layout
  * OPTIONAL for front:
@@ -34,7 +32,6 @@
  *  template/block.phtml - called by layout-front.phtml
  *  template/error-404.phtml - defined in var/config/config.application.php: view_manager.not_found_template
  *  template/error-denied.phtml - defined in var/config/config.application.php: view_manager.denied_template
- *  template/error-exception.phtml - defined in var/config/config.application.php: view_manager.exception_template
  *
  * Stylesheet files:
  * REQUIRED:
@@ -67,4 +64,6 @@ return array(
     'description'   => 'Default theme for Pi Engine',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => '',
+    // Supported browsers
+    'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+; Safari: 5.1+; Opera: 9.8+;',
 );

@@ -77,16 +77,28 @@ $this->js($this->assetLocale('rtl.js'));
             $blocks = $this->blocks();
             $blockTempalte = $this->template('block');
         ?>
+
+        <?php if (isset($blocks['0'])) {?>
         <div class="row">
+        <div class="span12 pi-zone-0">
+            <?php foreach ($blocks['0'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+        </div>
+        </div>
+        <?php } ?>
+
+        <div class="row">
+
         <?php if (isset($blocks['1'])) {?>
         <div class="span3 pi-zone-1">
             <?php foreach ($blocks['1'] as $key => $block) {
                 include $blockTempalte;
             } ?>
         </div>
-
         <?php } ?>
-        <div class="<?php echo (isset($blocks['1']) && isset($blocks['7'])) ? 'span6' : 'span9'; ?>">
+
+        <div class="<?php echo (isset($blocks['1']) && isset($blocks['8'])) ? 'span6' : 'span9'; ?>">
             <?php if(isset($blocks['2'])) {
             ?>
             <div class="pi-zone-2">
@@ -95,6 +107,7 @@ $this->js($this->assetLocale('rtl.js'));
                 } ?>
             </div>
             <?php } ?>
+
             <?php if(isset($blocks['3'])) {
             ?>
             <div class="pi-zone-3">
@@ -103,6 +116,7 @@ $this->js($this->assetLocale('rtl.js'));
                 } ?>
             </div>
             <?php } ?>
+
             <?php if (isset($blocks['4'])) {
             ?>
             <div class="pi-zone-4">
@@ -126,6 +140,7 @@ $this->js($this->assetLocale('rtl.js'));
                 } ?>
             </div>
             <?php } ?>
+
             <?php if (isset($blocks['6'])) {
             ?>
             <div class="pi-zone-6">
@@ -134,15 +149,18 @@ $this->js($this->assetLocale('rtl.js'));
                 } ?>
             </div>
             <?php } ?>
+
+
+            <?php if (isset($blocks['7'])) { ?>
+            <div class="pi-zone-7">
+                <?php foreach ($blocks['7'] as $key => $block) {
+                    include $blockTempalte;
+                } ?>
+            </div>
+            <?php } ?>
+
         </div>
-        <?php if (isset($blocks['7'])) { ?>
-        <div class="span3 pi-zone-7">
-            <?php foreach ($blocks['7'] as $key => $block) {
-                include $blockTempalte;
-            } ?>
-        </div>
-        <?php } ?>
-        </div>
+
         <?php if (isset($blocks['8'])) {?>
         <div class="pi-zone-8">
             <?php foreach ($blocks['8'] as $key => $block) {
@@ -150,6 +168,19 @@ $this->js($this->assetLocale('rtl.js'));
             } ?>
         </div>
         <?php } ?>
+
+        </div>
+
+        <?php if (isset($blocks['99'])) {?>
+        <div class="row">
+        <div class="span12 pi-zone-99">
+            <?php foreach ($blocks['99'] as $key => $block) {
+                include $blockTempalte;
+            } ?>
+        </div>
+        </div>
+        <?php } ?>
+
         <!-- Blocks ends -->
     </div>
     </div>

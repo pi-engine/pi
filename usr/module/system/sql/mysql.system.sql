@@ -347,11 +347,11 @@ CREATE TABLE `{core.page}` (
 
 # Page-block links
 CREATE TABLE `{core.page_block}` (
-  `id`              int(8)    unsigned    NOT NULL auto_increment,
-  `page`            int(8)    unsigned    NOT NULL    default '0',
-  `block`           int(8)    unsigned    NOT NULL    default '0',
-  `zone`            smallint(5)     unsigned    NOT NULL    default '0', #potential value: 0 - left, 1 - right, 2 - topleft, 3 - topcenter, 4 - topright, 5 - bottomleft, 6 - bottomcenter, 7 - bottomright
-  `order`           int(8)    NOT NULL    default '5',    # positive: display orer; negative: id of global page-block link that will be disabled on a specific page
+  `id`              int(8)      unsigned    NOT NULL auto_increment,
+  `page`            int(8)      unsigned    NOT NULL    default '0',
+  `block`           int(8)      unsigned    NOT NULL    default '0',
+  `zone`            smallint(5) unsigned    NOT NULL    default '0', #potential value: 0 - head, 99 - foot, 1 - left, 2 - topcenter, 3 - topleft, 4 - topright, 5 - bottomcenter, 6 - bottomleft, 7 - bottomright, 8 - right
+  `order`           int(8)      NOT NULL    default '5',    # positive: display order; negative: id of global page-block link that will be disabled on a specific page
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `page_block` (`page`, `block`)

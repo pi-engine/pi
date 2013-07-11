@@ -102,7 +102,7 @@ class Finish extends AbstractController
 <h3>Support</h3>
 <p>Visit <a href='http://www.xoopsengine.org/' rel='external'>Pi Engine Development Site</a> in case you need any help.</p>
 HTML;
-        $this->content = sprintf(_t($message), $readPaths);
+        $this->content = sprintf(_s($message), $readPaths);
 
         $path = Pi::path('cache');
         $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);

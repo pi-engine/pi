@@ -1,10 +1,10 @@
 var systemMessage = {
-    tmp: '<div class="label label-{type}"><i class="icon-{cls}"></i><span class="system-layer-msg">{msg}</span></div>',
-    _css: '.system-layer {position: fixed;top: -21px;height: 20px;line-height: 20px;z-index: 13;width: 100%;text-align: center;}.system-layer-show {top: 0;}.system-layer-msg {margin-left: 10px;}',
+    tmp: '<div class="label label-{type}" style="font-size: 14px; line-height: 20px; padding: 5px 20px; text-align: left; white-space: normal;">' +
+            '<i class="icon-{cls}"></i>' +
+            '<span style="margin-left: 10px;">{msg}</span>' +
+        '</div>',
     _init: function() {
-        var b = document.body;
-        $('<style>').html(this._css).appendTo(b);
-        this.el = $('<div class="system-layer">').appendTo(b);
+        this.el = $('<div class="system-layer" style="position: fixed; z-index: 1013; width: 60%; left: 20%; text-align: center;">').appendTo(document.body);
     },
     succ: function(msg, time) {
         this._type('succ', msg, time || 3000);
@@ -24,7 +24,7 @@ var systemMessage = {
         this._timer = setTimeout(function() {
             self.el.css({
                 'transition': 'top .3s ease-in-out',
-                'top': -22
+                'top': -self.el.outerHeight()
             });
         }, time);
     },

@@ -55,12 +55,12 @@
     <div id="buttons">
         <?php if (!empty($data['previousUrl'])) { ?>
             <button type="button" accesskey="p" onclick="location.href='<?php echo $data['previousUrl']; ?>'">
-            <?php echo _t("Previous"); ?>
+            <?php echo _s("Previous"); ?>
             </button>
         <?php } ?>
 
         <button type="button" accesskey="r" onclick="location.href='<?php echo $data['currentPage']['url']; ?>'">
-        <?php echo _t("Reload"); ?>
+        <?php echo _s("Reload"); ?>
         </button>
 
         <?php
@@ -69,12 +69,12 @@
         ?>
 
             <button type="submit">
-        <?php echo _t("Next"); ?>
+        <?php echo _s("Next"); ?>
             </button>
         <?php
             } elseif (!empty($data['nextUrl'])) { ?>
             <button type="button" accesskey="n" onclick="location.href='<?php echo $data['nextUrl']; ?>'">
-        <?php echo _t("Next"); ?>
+        <?php echo _s("Next"); ?>
             </button>
         <?php
             }
