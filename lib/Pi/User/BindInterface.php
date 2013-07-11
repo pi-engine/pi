@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine User class
+ * Pi Engine user bind interface
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,17 +12,21 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
+ * @package         Pi\User
  */
 
-namespace Pi\Application;
+namespace Pi\User;
 
-use Pi\User\User as UserClass;
+use Pi;
+use Pi\User\Model\AbstractModel as UserModel;
 
-/**
- * Deprecated class
- * 
- * @see Pi\User\User
- */
-class User extends UserClass
-{}
+interface BindInterface
+{
+    /**
+     * Bind a user to service
+     *
+     * @param UserModel $user
+     * @return UserModel
+     */
+    public function bind(UserModel $user = null);
+}

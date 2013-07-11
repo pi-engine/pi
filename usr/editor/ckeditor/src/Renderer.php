@@ -88,14 +88,14 @@ class Renderer extends AbstractRenderer
         //$height = $this->getOption('finder_height') ?: 400;
 
         //$session =& Pi::service('session')->ckfinder;
-        if (Pi::registry('user')->isAdmin()) {
+        if (Pi::service('user')->getUser()->isAdmin()) {
             $role = 'admin';
-        } elseif (Pi::registry('user')->isGuest()) {
+        } elseif (Pi::service('user')->getUser()->isGuest()) {
             $role = '*';
         } else {
             $role = 'user';
         }
-        //$role = (Pi::registry('user')->isAdmin()) ? 'admin' : ((!isset($uploadConfig['enabled']) || !empty($uploadConfig['enabled'])) ? 'user' : '*');
+        //$role = (Pi::service('user')->getUser()->isAdmin()) ? 'admin' : ((!isset($uploadConfig['enabled']) || !empty($uploadConfig['enabled'])) ? 'user' : '*');
         //$session->CKFinder_UserRoleVar = 'CKFinder_UserRole';
         //$_SESSION[$session->CKFinder_UserRoleVar] = $role;
         //$seesion->allowed = $role != '*' ? true : false;

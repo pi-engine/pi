@@ -1,11 +1,6 @@
 <?php
     $this->jQuery('ui/jquery-ui.custom.min.js');
-    $this->bootstrap(array(
-        'js/bootstrap.min.js',
-        'css/font-awesome.min.css'
-    ));
     $this->css(array(
-        $this->assetTheme('css/admin.css'),
         $this->assetModule('script/system-ui.css')
     ));
     $this->backbone();
@@ -15,63 +10,65 @@
 </div>
 <div class="row-fluid">
     <div class="span8">
-        <div class="widget notice" id="js-notice">
-            <div class="media widget-body">
-                <i class="pull-left icon-bullhorn" style="font-size: 18px;"></i>
+        <div class="pi-widget system-notice" id="system-js-notice">
+            <div class="media pi-widget-body">
+                <span class="pull-left">
+                    <i class="icon-bullhorn icon-large"></i>
+                </span>
                 <div class="media-body">
-                    <div class="notice-show">
-                        <div class="empty">
-                            <span class="notice-show-text"><?php echo $message['content']; ?></span>
-                            <i class="muted notice-show-time"><?php echo $message['time']; ?></i>
-                        </div>
+                    <div class="system-notice-show">
+                        <p>
+                            <span class="system-js-notice-content"><?php echo $message['content']; ?></span>
+                            <em class="muted gutter-large system-js-notice-time"><?php echo $message['time']; ?></em>
                         <?php if ($messagePerm) { ?>
-                        <div class="notice-show-action">
-                            <a href="javascript:void(0)" class="notice-show-action-edit">
+                        <div>
+                            <a href="javascript:void(0)" class="system-js-edit">
                                 <i class="icon-pencil"></i>
                                 <?php _e('Edit'); ?>
                             </a>
                         </div>
                         <?php } ?>
                     </div>
-                    <div class="notice-edit">
+                    <div class="hide system-notice-edit">
                         <textarea class="span8" placeholder="<?php _e('notice'); ?>"></textarea>
-                        <div class="muted" style="margin-bottom: 10px;"><?php _e('Add/update site announcement.'); ?></div>
-                        <div class="empty">
-                            <span class="btn js-save"><?php _e('Save'); ?></span>
-                            <span class="btn btn-link js-cancel"><?php _e('Cancel'); ?></span>
+                        <p class="muted">
+                            <?php _e('Add/update site announcement.'); ?>
+                        <div>
+                            <span class="btn system-js-save"><?php _e('Save'); ?></span>
+                            <span class="btn btn-link system-js-cancel"><?php _e('Cancel'); ?></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="widget quick-link" id="js-quick-link">
-            <div class="clearfix widget-header">
+        <div class="pi-widget system-quick-link" id="system-js-quick-link">
+            <div class="clearfix pi-widget-header">
                 <div class="pull-right">
-                    <span class="btn js-all-edit"><?php _e('Edit'); ?></span>
-                    <span class="btn js-all-save" data-placement="top" data-original-title="<?php _e('Click the button to switch to view mode.'); ?>"><?php _e('Save'); ?></span>
+                    <span class="btn system-quick-all-edit system-js-all-edit"><?php _e('Edit'); ?></span>
+                    <span class="hide btn system-quick-all-save system-js-all-save" data-placement="top" data-original-title="<?php _e('Click the button to switch to view mode.'); ?>"><?php _e('Save'); ?></span>
                 </div>
                 <strong><?php _e('Quick links')?></strong>
             </div>
-            <div class="widget-body">
-                <div class="well form-horizontal quick-link-form">
+            <div class="pi-widget-body">
+                <div class="hide well form-horizontal system-quick-link-form">
 
                 </div>
-                <div class="quick-link-box">
-                    <div class="quick-link-add">
-                        <i class="icon-plus icon-quick-link-add"></i>
+                <div class="system-quick-link-box">
+                    <div class="inline-block system-quick-link-add system-js-add">
+                        <i class="icon-plus icon-large"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="widget module-summary" id="js-module-summary">
-            <div class="clearfix widget-header">
+        <div class="pi-widget system-module-summary" id="system-js-module-summary">
+            <div class="clearfix pi-widget-header">
                 <div class="pull-right">
-                    <span class="btn display-all"><?php _e('Toggle all'); ?></span>
+                    <span class="btn system-js-all"><?php _e('Toggle all'); ?></span>
                 </div>
                 <strong><?php _e('Module summary')?></strong>
             </div>
-            <div class="widget-body">
-                <div class="accordion" id="summary-accordion" style="margin-bottom: 0;">
+            <div class="pi-widget-body">
+                <div class="accordion" id="summary-accordion">
                     <?php foreach($summaryList as $i => $item) { ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -89,33 +86,30 @@
         </div>
     </div>
     <div class="span4">
-        <div class="widget">
-            <div class="widget-header">
+        <div class="pi-widget">
+            <div class="pi-widget-header">
                 <strong><?php _e('Powered by Pi Engine'); ?></strong>
             </div>
-            <div class="widget-body">
+            <div class="pi-widget-body">
                 <p>
                     Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops.
                     Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.
-                </p>
                 <p>
                     Pi Project follows the philosophy of open standard, open design, open development and open structure.
                     Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.
-                </p>
                 <p>
                     Pi Team is highly inspired by the Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) successively since 2001 and will continue to support and promote Xoops.
-                </p>
             </div>
         </div>
     </div>
 </div>
 <script id="temp-link" type="text/template">
-    <div class="ellipsis span10">
-        <a href="<%= url %>" title="<%= title %>" style="margin-left: 10px;"><%= title %></a>
+    <div class="ellipsis inline-block system-quick-link-text">
+        <a href="<%= url %>" title="<%= title %>"><%= title %></a>
     </div>
-    <div class="span2">
-        <i class="icon-pencil js-edit" style="padding-right: 1px;" title="<?php _e('Edit'); ?>"></i>
-        <i class="icon-remove js-remove" title="<?php _e('Remove'); ?>" style="padding-left: 1px;"></i>
+    <div class="inline-block system-quick-link-icon">
+        <i class="icon-pencil system-js-edit" title="<?php _e('Edit'); ?>"></i>
+        <i class="icon-remove system-js-remove" title="<?php _e('Remove'); ?>"></i>
     </div>
 </script>
 <script id="temp-form" type="text/template">
@@ -132,163 +126,13 @@
         </div>
     </div>
     <div class="controls">
-        <span class="btn js-quick-form-save" data-action="<%= form.action %>"><?php _e('Save'); ?></span>
-        <span class="btn btn-link btn-quick-form-cancel"><?php _e('Cancel'); ?></span>
+        <span class="btn system-js-save" data-action="<%= form.action %>"><?php _e('Save'); ?></span>
+        <span class="btn btn-link system-js-cancel"><?php _e('Cancel'); ?></span>
     </div>
 </script>
+<script src="<?php echo $this->assetModule('/script/dashboard-system.js'); ?>"></script>
 <script>
-(function($){
-    var NoticeView = Backbone.View.extend({
-        el: $('#js-notice'),
-        events: {
-            'click .notice-show-action-edit': 'editModel',
-            'click .js-cancel': 'cancel',
-            'click .js-save': 'messageAction'
-        },
-        initialize: function() {
-
-        },
-        editModel: function() {
-            this.$el.addClass('notice-editing');
-            this.$('textarea').focus().val(this.$('.notice-show-text').html());
-        },
-        cancel: function() {
-            this.$el.removeClass('notice-editing');
-        },
-        messageAction: function() {
-            var v = $.trim(this.$('textarea').val());
-            $.post('<?php echo $this->url('', array('action' => 'message')); ?>',{
-                content: v
-            }).done(_.bind(function(data){
-                data = $.parseJSON(data);
-                this.$('.notice-show-text').html(data.content);
-                this.$('.notice-show-time').html(data.time);
-            }, this));
-            this.cancel();
-        }
-    });
-    var LinkItemView = Backbone.View.extend({
-        className: 'row-fluid quick-link-item',
-        template: $('#temp-link').html(),
-        events: {
-            'click .js-edit': 'editAction',
-            'click .js-remove': 'removeAction'
-        },
-        initialize: function() {
-            this.model.on('destroy', this.remove, this);
-            this.model.on('change', this.render, this);
-            this.$el.data('model', this.model.toJSON());
-        },
-        editAction: function() {
-            var c = this.model.collection;
-            c.current = this.model;
-            c.trigger('showForm');
-        },
-        removeAction: function() {
-            this.model.destroy();
-        },
-        render: function() {
-            this.$el.html(_.template(this.template, this.model.toJSON()));
-            return this;
-        }
-    });
-    var LinkListView = Backbone.View.extend({
-        el: $('#js-quick-link'),
-        formTemplate: $('#temp-form').html(),
-        events: {
-            'click .js-all-edit': 'editModel',
-            'click .quick-link-add': 'changeCurrent',
-            'click .js-quick-form-save': 'addOrEditSaveAction',
-            'click .btn-quick-form-cancel': 'hideAddForm',
-            'click .js-all-save': 'saveLinks'
-        },
-        initialize: function() {
-            this.linkAddBtn = this.$('.quick-link-add');
-            this.form = this.$('.quick-link-form');
-            this.renderLinks();
-            this.collection.on('add', this.addOne, this);
-            this.collection.on('remove', this.updateLink, this);
-            this.collection.on('showForm', this.showAddForm, this);
-            this.$('.js-all-save').tooltip();
-            this.sortLinks();
-        },
-        renderLinks: function() {
-            this.collection.forEach(this.addOne, this);
-        },
-        editModel: function() {
-            this.$el.addClass('quick-link-edit');
-            this.$('.quick-link-box').sortable( "option", "disabled", false);
-        },
-        sortLinks: function() {
-            this.$('.quick-link-box').sortable({
-                items: ".quick-link-item",
-                disabled: true
-            });
-        },
-        addOne: function(model) {
-            $(new LinkItemView({
-                model: model
-            }).render().el).insertBefore(this.linkAddBtn);
-        },
-        changeCurrent: function() {
-            this.collection.current = new Backbone.Model({
-                action: 'add'
-            });
-            this.showAddForm();
-        },
-        showAddForm: function() {
-            this.form.html(_.template(this.formTemplate, this.collection.current.toJSON(), {variable: 'form'})).css('display', 'block');
-        },
-        hideAddForm: function() {
-            this.form.css('display', 'none');
-        },
-        addOrEditSaveAction: function(e) {
-            var action = $(e.currentTarget).attr('data-action'),
-                title = $.trim(this.$('[name=title]').val()),
-                url = $.trim(this.$('[name=url]').val()),
-                obj = {
-                    title: title,
-                    url: url
-                };
-            if (title && url) {
-                if (action == 'add') {
-                    this.collection.add(obj);
-                    this.changeCurrent();
-                } else {
-                    this.collection.current.set(obj);
-                    this.hideAddForm();
-                }
-            }
-        },
-        saveLinks: function() {
-            var data = [];
-            this.$('.quick-link-item').each(function() {
-                data.push($(this).data('model'))
-            })
-            this.$el.removeClass('quick-link-edit');
-            this.hideAddForm();
-
-            $.post("<?php echo $this->url('', array('action' => 'link')); ?>", {
-                content: data
-            });
-        }
-    });
-    var SummaryView = Backbone.View.extend({
-        el: $('#js-module-summary'),
-        events: {
-            'click .display-all': 'toggleAll'
-        },
-        initialize: function() {
-        },
-        toggleAll: function() {
-            this.$('.accordion-body').collapse('toggle');
-        }
-    });
-
-    new NoticeView;
-    new LinkListView({
-        collection:  new Backbone.Collection(_.toArray(<?php echo json_encode($links); ?>))
-    });
-    new SummaryView;
-})(jQuery)
+dashboardSystem({
+    quicLinkCollection: new Backbone.Collection(<?php echo json_encode($links); ?>)
+});
 </script>

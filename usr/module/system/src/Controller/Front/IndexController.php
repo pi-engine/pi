@@ -50,14 +50,14 @@ class IndexController extends ActionController
     {
         return $this->jumpToDenied('Access to resource is denied.');
 
-        $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
+        $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
         $this->response->setStatusCode($statusCode);
         $event = $this->getEvent();
         //$event->setError(404);
         $event->setError('Access to resource is denied.');//->setResponse($this->response);
 
         /*
-        $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
+        $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
         $this->response->setStatusCode($statusCode);
         $event      = $this->getEvent();
         $routeMatch = $event->getRouteMatch();

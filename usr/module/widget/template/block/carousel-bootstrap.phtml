@@ -32,7 +32,7 @@ $render = function ($item) use ($_this)
 };
 
 $this->jQuery();
-$this->bootstrap('js/bootstrap-carousel.js', false);
+$this->bootstrap(array('js/bootstrap-transition.js', 'js/bootstrap-carousel.js'), false);
 $carouselId = uniqid('carousel');
 ?>
 <div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">

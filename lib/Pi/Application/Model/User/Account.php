@@ -14,11 +14,10 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Model
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Model\User;
+
 use Pi;
 use Pi\Application\Model\Model;
 
@@ -31,7 +30,7 @@ class Account extends Model
      *
      * @var string
      */
-    protected $rowClass = 'Pi\Application\Model\User\\RowGateway\\Account';
+    protected $rowClass = 'Pi\Application\Model\User\RowGateway\Account';
 
     public function getIdentityColumn()
     {

@@ -41,9 +41,9 @@ class Acl extends AbstractResource
 
     protected function loadAcl()
     {
-        $this->engine->bootResource('authentication');
+        $this->engine->bootResource('user');
         $this->aclHandler = new AclManager($this->engine->section(), isset($this->options['default']) ? $this->options['default'] : null);
-        $this->aclHandler->setRole(Pi::registry('user')->role());
+        $this->aclHandler->setRole(Pi::service('user')->getUser()->role());
         Pi::registry('acl', $this->aclHandler);
     }
 
@@ -131,7 +131,7 @@ class Acl extends AbstractResource
 
         // Jump to denied page upon denial
         if ($denied) {
-            $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
+            $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
             $e->getResponse()->setStatusCode($statusCode);
             $e->setError(true);
         }

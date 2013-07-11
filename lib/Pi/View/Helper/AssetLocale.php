@@ -29,8 +29,8 @@ use Zend\View\Helper\AbstractHelper;
  *
  * Usage inside a phtml template:
  * <code>
- *  $this->assetLocale('rtl.css');
- *  $this->assetLocale('rtl.js', 'en);
+ *  $cssUri = $this->assetLocale('rtl.css');
+ *  $jsUri = $this->assetLocale('rtl.js', 'en);
  * </code>
  */
 class AssetLocale extends AbstractHelper

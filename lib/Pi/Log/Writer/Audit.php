@@ -122,11 +122,11 @@ class Audit extends AbstractWriter
         $this->extra = false;
         $data = array();
         if (!empty($this->options['role'])) {
-            if (!in_array(Pi::registry('user')->role, $this->options['role'])) {
+            if (!in_array(Pi::service('user')->getUser()->role, $this->options['role'])) {
                 return $this->extra;
             }
         }
-        $data['user'] = Pi::registry('user') ? Pi::registry('user')->id : 0;
+        $data['user'] = Pi::service('user')->getUser()->id ?: 0;
         if (!empty($this->options['user'])) {
             if (!in_array($data['user'], $this->options['user'])) {
                 return $this->extra;

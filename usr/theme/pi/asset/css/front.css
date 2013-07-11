@@ -1,176 +1,293 @@
+/* Base */
+body {
+  background: #f5f5f5;
+}
 
-/* Block zones */
+/* Layout */
+.pi-nav-container {
+  margin-bottom: 20px;
+}
+
+.pi-main td {
+  vertical-align: top;
+  padding: 0;
+}
+
+.pi-main .pi-zone-1 {
+  padding-right: 20px;
+}
+
+/* Not used yet */
 /*
- |<------------------         center       ------------------>|
-
- --------------------------------------------------------------------------------
- |        |                                                            |        |
- |        |                               2                            |        |
- |        |                                                            |        |
- |        |------------------------------------------------------------|        |
- |        |                               |                            |        |
- |        |                3              |             4              |        |
- |        |                               |                            |        |
- |   1    |------------------------------------------------------------|   7    |
- |        |                                                            |        |
- |        |                            content                         |        |
- |        |                                                            |        |
- |        |------------------------------------------------------------|        |
- |        |                               |                            |        |
- |        |                5              |             6              |        |
- |        |                               |                            |        |
- |--------|------------------------------------------------------------|--------|
- |                                                                              |
- |                                        8                                     |
- |                                                                              |
- --------------------------------------------------------------------------------
-
- |<------------------         center       ------------------>|
- */
-
-/* Zones */
-.pi-zone-1,
-.pi-zone-7 {
-
-}
-.pi-zone-2 {
-}
-.pi-zone-3,
-.pi-zone-5 {
-    float: left;
-    width: 49.5%;
-}
-.pi-zone-4,
-.pi-zone-6 {
-   float: right;
-   width: 49.5%;
-}
-.pi-zone-8 {
+.pi-main .next-zone {
+  padding-right: 10px;
+  width: 50%;
 }
 
-.pi-zone-module {
-    padding: 5px;
-}
-
-/* Block */
-.block-container {
-    margin-bottom: 15px;
-}
-.block-header {
-    background: #f5f5f5;
-    border: 1px solid #e6e6e6;
-    border-bottom-color: #b4c8da;
-    border-top: none;
-    height: 34px;
-    line-height: 34px;
-    padding: 0 14px;
-}
-.block-header-bg {
-    content: "";
-    height: 2px;
-    width: 100%;
-    display: block;
-    background-color: #195d9f;
-    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1,StartColorStr=#0096d2,EndColorStr=#195d9f);
-    background-image: -moz-linear-gradient(left,#0096d2,#195d9f);
-    background-image: -webkit-linear-gradient(left,#0096d2,#195d9f);
-    background-image: -o-linear-gradient(left,#0096d2,#195d9f);
-}
-
-.block-header-title {
-    font-size: 18px;
-    font-family:"Microsoft YaHei";
-    color: #333;
-}
-.block-subline {
-    color: #808080;
-}
-.block-subline a {
-    color: #808080;
-}
-.block-tab {
-    margin: 8px 0 0;
-    font-size: 12px;
-
-}
-.block-tab li {
-    float: left;
-    height: 25px;
-    line-height: 24px;
-    padding:0 8px;
-    border: 1px solid transparent;
-    border-top-width: 2px;
-    border-bottom:none;
-}
-.block-tab .active {
-   background: #fff;
-   border-top: 2px solid #d01628;
-   border-left: 1px solid #b4c8da;
-   border-right: 1px solid #b4c8da;
-}
-.block-body {
-    padding: 12px 8px 0 10px;
-    border: 1px solid #e6e6e6;
-    border-top: none;
-}
-.block-body ul {
-    margin: 0;
-}
-
-.block-body input,
-.block-body textarea,
-.block-body uneditable-input {
-    max-width: 80%;
-}
-
-
-
-/* Article module */
-/*
-.article-header {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
-}
-.article-header .headline {
-
-}
-.article-header .byline {
-    text-align: center;
-    margin-bottom: 10px;
-}
-.article-header .subline {
-
-}
-.article-body {
-    font-size: 14px;
-}
-.article-body .page-subject {
-
-}
-.article-body a {
-    text-decoration: underline;
-    color: #1E50A2;
-}
-.article-body a:hover {
-    color: #BA2636;
-}
-
-.summary {
-    text-align: justify;
-    background: #fff;
-    margin: 15px 0 0;
-    padding: 10px 5px;
-    line-height: 23px;
-    font-size: 14px;
-    text-indent: 2em;
-    border: 1px solid #dcdddd;
+.pi-main .pre-zone {
+  padding-left: 10px;
+  width: 50%;
 }
 */
 
-/*common*/
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.pi-main .pi-zone-8 {
+  padding-left: 20px;
 }
+
+.pi-main table {
+  width: 100%;
+}
+
+
+/* Header */
+.pi-header {
+  margin: 20px auto;
+}
+
+/* Logo: image, headline, tagline */
+.pi-logo {
+    float: left;
+    font-family: sans-serif, Arial;
+}
+.pi-logo img {}
+.pi-logo a {
+    text-decoration: none;
+}
+.pi-logo a:hover {
+    color: #0088CC;
+}
+
+.pi-logo-symbol {
+    font-size: 64px;
+    line-height: 0;
+    text-transform: lowercase;
+    display: none;
+}
+
+.pi-logo-headline {
+    font: bold 40px Georgia, monospace, Arial;
+}
+
+.pi-logo-tagline {
+    color: #0088CC;
+    font-style: normal;
+    font-size: .9em;
+    display: block;
+}
+
+/* User bar */
+.pi-user-bar {
+  margin: 5px 10px 0 5px;
+  height: 20px;
+  line-height: 20px;
+  font-size: .9em;
+}
+
+.pi-user-bar {
+  color: #666;
+}
+
+.pi-user-bar a {
+  color: #666;
+}
+
+.pi-user-bar a:hover {
+  color: #005580;
+}
+
+.pi-user-bar .dropdown {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.pi-user-bar .caret {
+  border-top-color: #666;
+}
+
+/* Navigation */
+.pi-menu {
+  font-family: Helvetica, sans-serif;
+  border: 1px solid #006ca3;
+  background-color: #0293da;
+  background-image: -moz-linear-gradient(top, #04a0df, #0180d1);
+  background-image: -webkit-linear-gradient(top, #04a0df, #0180d1);
+  background-image: -o-linear-gradient(top, #04a0df, #0180d1);
+  background-image: linear-gradient(to bottom, #04a0df, #0180d1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  height: 40px;
+  border-radius: 4px;
+  margin-bottom: 0;
+}
+
+.pi-menu li {
+  float: left;
+  position: relative;
+}
+
+.pi-menu a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.pi-menu ul a {
+  padding: 5px 0 5px 20px;
+}
+
+.pi-menu li:hover >a {
+  background: #0076b1;
+}
+
+.pi-menu ul li:hover >a {
+  background: #0292da;
+  border-radius: 3px;
+}
+
+.pi-menu >.active >a {
+  background-color: #0076b1;
+  box-shadow: inset 0 3px 8px #005986;
+}
+
+.pi-menu ul {
+  position: absolute;
+  width: 180px;
+  z-index: 2;
+  background: #0076b1;
+  left: 0;
+  margin: 0;
+  list-style: none;
+  display: none;
+  border-radius: 3px;
+}
+
+.pi-menu ul ul {
+  left: 179px;
+  top: -1px;
+}
+
+.pi-menu li li {
+  float: none;
+}
+
+.pi-menu a {
+  color: #fff;
+}
+
+.pi-menu li:hover >ul {
+  display: block;
+}
+
+.pi-breadcrumb {
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+
+/* Block zones */
+.pi-zone-0 .pi-block-header {
+  display: none;
+}
+
+.pi-zone-0 .pi-block-body {
+  padding: 0;
+}
+
+/*
+.pi-zone-0 .carousel {
+  margin-bottom: 0;
+}
+*/
+
+.pi-zone-1 {
+  width: 220px;
+}
+
+.pi-zone-2 {
+}
+
+.pi-zone-3 {
+}
+
+.pi-zone-4 {
+}
+
+.pi-zone-5 {
+}
+
+.pi-zone-6 {
+}
+
+.pi-zone-7 {
+}
+
+.pi-zone-8 {
+  width: 220px;
+}
+
+.pi-zone-module {
+  margin: 0 20px;
+}
+
+/* Block */
+.pi-block {
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px #bababa;
+  border: 1px solid #cecece \9;
+  border-radius: 3px;
+}
+
+.pi-block-header {
+  margin: 0 20px;
+  border-bottom: 1px dashed #e5e5e5;
+}
+
+.pi-block-body {
+  padding: 20px;
+}
+
+.pi-block-body >:last-child {
+  margin-bottom: 0;
+}
+
+.pi-block-body h4 {
+  margin-top: 0;
+}
+
+/* Footer */
+.pi-footer {
+  text-align: center;
+  margin-top: 40px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+.pi-footer-line {
+  height: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+}
+
+.pi-footer a,
+.pi-footer .pi-divider {
+  color: #333;
+}
+
+.pi-footer a:hover {
+  color: #0088CC;
+}
+
+/* System module custom */
+/*
+.system-login-form .control-group {
+  margin-bottom: 15px;
+}
+
+.system-login-form .checkbox {
+  margin-bottom: 12px;
+}
+
+.system-login-form [class^="icon-"] {
+  color: #8d8d8d;
+}
+*/

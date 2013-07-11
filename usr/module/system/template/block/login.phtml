@@ -1,3 +1,41 @@
-<?php $form = $block['form']; ?>
+<?php
+    $form = $block['form'];
+    $form->setAttribute('class', 'form-horizontal system-login-form');
+    echo $this->form()->openTag($form);
+?>
+<?php
+    $identity = $form->get('identity');
+    $identity->setAttributes(array(
+        'placeholder' => $identity->getOption('label'),
+        'class' => 'span2'
+    ));
+?>
+<div class="control-group">
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-user"></i></span>
+        <?php echo $this->formElement($identity); ?>
+    </div>
+</div>
+<?php
+    $credential = $form->get('credential');
+    $credential->setAttributes(array(
+        'placeholder' => $credential->getOption('label'),
+        'class' => 'span2'
+    ));
+?>
+<div class="control-group">
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-lock"></i></span>
+        <?php echo $this->formElement($credential); ?>
+    </div>
+</div>
+<?php
+    $rememberme = $form->get('rememberme');
+    echo $this->formElement($rememberme);
+    echo $this->formElement($form->get('security'));
+    $submit =  $form->get('submit');
+    $submit->setAttribute('class', 'btn btn-primary');
+    echo $this->formElement($submit);
+?>
 
-<?php include $this->templateComponent('form-vertical'); ?>
+<?php echo $this->form()->closeTag(); ?>

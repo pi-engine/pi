@@ -14,30 +14,21 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Resource
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Pi\User\User as UserModel;
 
 class User extends AbstractResource
 {
+    /**
+     * @return void
+     */
     public function boot()
     {
-        if (Pi::registry('user')) {
-            return Pi::registry('user');
-        }
-        $identity = Pi::service('authentication')->getIdentity();
-        if ($identity) {
-            $user = new UserModel($identity);
-        } else {
-            $user = new UserModel;
-        }
-        Pi::registry('user', $user);
-
-        return $user;
+        $identity = (string) Pi::service('authentication')->getIdentity();
+        Pi::service('user')->bind($identity, 'identity');
+        Pi::registry('user', Pi::service('user')->getUser());
     }
 }

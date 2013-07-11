@@ -139,7 +139,7 @@ class LoginController extends ActionController
         if ($configs['rememberme'] && $values['rememberme']) {
             Pi::service('session')->manager()->rememberme($configs['rememberme'] * 86400);
         }
-        Pi::service('authentication')->wakeup($result->getIdentity());
+        Pi::service('user')->bind($result->getIdentity(), 'identity');
         Pi::service('event')->trigger('login', $result->getIdentity());
 
         if (!empty($configs['attempts'])) {

@@ -43,7 +43,7 @@ class Theme
 
             'template/paginator.phtml',         // Pagination template
 
-            'template/error-exception.phtml',   // Exception error template
+            'template/error.phtml',             // Exception error template
             'template/error-404.phtml',         // 404 error template
             'template/error-denied.phtml',      // Denied error template
 
@@ -54,7 +54,7 @@ class Theme
 
             'template/paginator.phtml',         // Pagination template
 
-            'template/error-exception.phtml',   // Exception error template
+            'template/error.phtml',             // Exception error template
             'template/error-404.phtml',         // 404 error template
             'template/error-denied.phtml',      // Denied error template
 

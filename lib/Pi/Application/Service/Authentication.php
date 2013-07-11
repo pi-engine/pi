@@ -14,13 +14,11 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Service
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Service;
+
 use Pi;
-use Pi\User\User;
 use Zend\Authentication\Adapter;
 use Zend\Authentication\Storage;
 
@@ -69,6 +67,7 @@ class Authentication extends AbstractService
      * @var Adapter
      */
     protected $adapter;
+
     /**
      * Storage handler
      * @var Storage
@@ -151,7 +150,6 @@ class Authentication extends AbstractService
     public function getIdentity()
     {
         $storage = $this->getStorage();
-
         if ($storage->isEmpty()) {
             return null;
         }
@@ -167,16 +165,5 @@ class Authentication extends AbstractService
     public function clearIdentity()
     {
         $this->getStorage()->clear();
-    }
-
-    /**
-     * Wake up a user
-     *
-     * @param string|null $identity
-     */
-    public function wakeup($identity = null)
-    {
-        $identity = $identity ?: $this->getIdentity();
-        Pi::registry('user', new User($identity));
     }
 }

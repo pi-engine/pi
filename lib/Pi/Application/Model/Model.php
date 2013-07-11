@@ -14,8 +14,6 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Model
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Model;

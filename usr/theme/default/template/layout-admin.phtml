@@ -18,11 +18,12 @@ $module = Pi::service('module')->current();
 <head>
     <meta charset="<?php echo $charset; ?>">
 </head>
+
 <body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
     <!-- pi header bar: fixed-->
-    <div id="pi-bar" class="clearfix">
-        <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="admin-logo">Pi</a>
-        <div class="operation-switch">
+    <div id="pi-header-bar" class="clearfix">
+        <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="pi-admin-logo">Pi</a>
+        <div class="pi-operation-switch">
             <?php
                 $modes = $this->adminNav($module)->modes();
                 foreach ($modes as $key => $mode) {
@@ -44,64 +45,50 @@ $module = Pi::service('module')->current();
                     <?php echo $this->escape($mode['label']); ?>
                 </a>
             <?php } ?>
-
         </div>
-        <div class="pi-bar-user">
-           <?php echo $this->widget('system-user-bar'); ?>
+
+        <div class="pi-user-bar">
+           <?php echo $this->widget('system-user-bar', array('type' => 'dropdown')); ?>
            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank">
                <i class="icon-external-link"></i>
                <?php _e('Go to front'); ?>
            </a>
         </div>
     </div>
-    <div id="pi-wrap">
-            <div id="modules-menu">
-            <!-- modules list link : sidemenu,fixed-->
-            <?php $navigation = $this->adminNav($module)->side(); ?>
-            <?php if ($navigation) { ?>
-                <?php echo $navigation->menu()->setUlClass('nav-modules')->render(); ?>
+
+    <div id="pi-wrapper">
+        <div id="pi-modules-menu">
+        <!-- modules list link : sidemenu,fixed-->
+        <?php $navigation = $this->adminNav($module)->side(); ?>
+        <?php if ($navigation) { ?>
+            <?php echo $navigation->menu()->setUlClass('unstyled pi-nav-modules')->render(); ?>
+        <?php } ?>
+        </div>
+
+        <!-- modules content -->
+        <div id="pi-content">
+                <!-- each module or system  link : operation or manage -->
+            <?php $navigation = $this->adminNav($module)->top(); ?>
+            <?php if ($navigation) {  ?>
+            <div class="clearfix pi-module-menu">
+                <?php echo $navigation->menu()->setUlClass('unstyled')->render();?>
+                <div class="pi-module-menu-shadow"></div>
+            </div>
             <?php } ?>
-            </div>
 
-            <!-- modules content -->
-            <div id="pi-content">
-                 <!-- each module or system  link : operation or manage -->
-                <?php $navigation = $this->adminNav($module)->top(); ?>
-                <?php if ($navigation) {  ?>
-                <div class="clearfix module-menu">
-                    <?php echo $navigation->menu()->setUlClass('')->render();?>
-                    <div class="module-menu-shadow"></div>
+            <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
+                <div class="clearfix pi-main-content">
+                    <?php echo $content; ?>
                 </div>
-                <?php } ?>
-
-                <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
-                    <div class="clearfix pi-main-content">
-                        <?php echo $content; ?>
-                    </div>
-                    <div id="pi-footer" class="pi-footer">
-                        <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
-                        <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
-                        <a href="http://www.xoopsengine.org" title="Pi Engine" target="_blank">Design of  Pi Engine</a>
-                        <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>
-                    </div>
+                <div id="pi-footer" class="pi-footer">
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
+                    <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>
                 </div>
             </div>
+        </div>
     </div>
-    <script>
-        $(function() {
-            /*for scroll shadow*/
-           var a = $('.pi-content-inner'),
-               b = $('.module-menu-shadow').css('transition', 'opacity .2s ease-in-out');
-           a.scroll(function(){
-               if (a.scrollTop() > 5) {
-                   b.css('opacity', .4);
-               } else {
-                   b.css('opacity', 0);
-               }
-           })
-            /*for debug info*/
-            $("#pi-logger-output").insertAfter($("#pi-footer"));
-        });
-    </script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
 </body>
 </html>

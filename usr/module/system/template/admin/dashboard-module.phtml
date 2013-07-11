@@ -9,52 +9,54 @@
 </div>
 <div class="row-fluid">
     <div class="span8">
-        <div class="widget">
-             <div class="widget-header">
+        <div class="pi-widget">
+             <div class="pi-widget-header">
                  <strong><?php _e('About')?></strong>
              </div>
-             <div class="media widget-body" style="padding: 0 10px; margin-top: 10px;">
-                 <img src="<?php echo $data['logo']; ?>" class="pull-left" style="margin-top: 10px;">
-                 <div class="media-body">
-                     <fieldset>
-                         <legend><?php _e('Module information'); ?></legend>
-                         <dl class="dl-horizontal">
-                             <dt><?php _e('Title:'); ?>
-                             <dd><?php echo $this->escape($data['title']); ?>
-                             <dt><?php _e('Version:'); ?>
-                             <dd><?php echo $this->escape($data['version']); ?>
-                             <dt><?php _e('Update:'); ?>
-                             <dd><?php echo $this->escape($data['update']); ?>
-                             <dt><?php _e('Description:'); ?>
-                             <dd><?php echo $this->escape($data['description']); ?>
-                             <?php if (!empty($data['demo'])) { ?>
-                             <dt><?php _e('Demo:'); ?>
-                             <dd><?php echo $this->escape($data['demo']); ?>
-                             <?php } ?>
-                         </dl>
-                     </fieldset>
-                     <fieldset>
-                         <legend><?php _e('Author information'); ?></legend>
-                         <dl class="dl-horizontal">
-                             <dt><?php _e('Name:'); ?>
-                             <dd><?php echo $data['author']['name']; ?>
-                             <dt><?php _e('Email:'); ?>
-                             <dd><?php echo $data['author']['email']; ?>
-                             <dt><?php _e('Website:'); ?>
-                             <dd><?php echo $data['author']['website']; ?>
-                             <dt><?php _e('Credits:'); ?>
-                             <dd><?php echo $data['author']['credits']; ?>
-                         </dl>
-                     </fieldset>
+             <div class="pi-widget-body">
+                 <div class="media">
+                     <img src="<?php echo $data['logo']; ?>" class="pull-left">
+                     <div class="media-body">
+                         <fieldset style="margin-top: -10px;">
+                             <legend><?php _e('Module information'); ?></legend>
+                             <dl class="dl-horizontal">
+                                 <dt><?php _e('Title:'); ?>
+                                 <dd><?php echo $this->escape($data['title']); ?>
+                                 <dt><?php _e('Version:'); ?>
+                                 <dd><?php echo $this->escape($data['version']); ?>
+                                 <dt><?php _e('Update:'); ?>
+                                 <dd><?php echo $this->escape($data['update']); ?>
+                                 <dt><?php _e('Description:'); ?>
+                                 <dd><?php echo $this->escape($data['description']); ?>
+                                 <?php if (!empty($data['demo'])) { ?>
+                                 <dt><?php _e('Demo:'); ?>
+                                 <dd><?php echo $this->escape($data['demo']); ?>
+                                 <?php } ?>
+                             </dl>
+                         </fieldset>
+                         <fieldset>
+                             <legend><?php _e('Author information'); ?></legend>
+                             <dl class="dl-horizontal">
+                                 <dt><?php _e('Name:'); ?>
+                                 <dd><?php echo $data['author']['name']; ?>
+                                 <dt><?php _e('Email:'); ?>
+                                 <dd><?php echo $data['author']['email']; ?>
+                                 <dt><?php _e('Website:'); ?>
+                                 <dd><?php echo $data['author']['website']; ?>
+                                 <dt><?php _e('Credits:'); ?>
+                                 <dd><?php echo $data['author']['credits']; ?>
+                             </dl>
+                         </fieldset>
+                     </div>
                  </div>
              </div>
         </div>
         <?php if ($summary) { ?>
-        <div class="widget">
-             <div class="widget-header">
+        <div class="pi-widget">
+             <div class="pi-widget-header">
                  <strong><?php _e('Summary'); ?></strong>
              </div>
-             <div class="widget-body">
+             <div class="pi-widget-body">
                  <?php echo $summary; ?>
              </div>
         </div>

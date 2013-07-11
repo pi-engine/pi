@@ -91,7 +91,6 @@ class AccountController extends ActionController
                     $message = __('User data saved successfully.');
                     if ($identityChanged) {
                         Pi::service('authentication')->clearIdentity();
-                        //Pi::service('authentication')->wakeup($row->identity);
                     }
 
                     $this->redirect()->toRoute('', array('action' => 'index'));

@@ -19,15 +19,15 @@ $this->bootstrap('js/bootstrap.min.js');
 <?php $elements = $form->elementList();
 foreach ($elements['active'] as $element) { ?>
     <div class="control-group" data-name="<?php echo $element -> getName(); ?>">
-            <?php if ($element->getAttribute('type') != 'checkbox') { ?>
-            <?php
+            <?php if ($element->getAttribute('type') != 'checkbox') {
                 $element->setLabelAttributes(array('class' => 'control-label'));
                 echo $this->formLabel($element);
-            ?>
-            <?php if ($element->getAttribute('description')) { ?>
-                <span class="what-this" data-original-title="<?php echo $this->formDescription($element); ?>">?</span>
-            <?php } ?>
-            <?php } ?>
+                $desc = $element->getAttribute('description');
+                if ($desc) {
+                    echo '<i class="icon-question-sign" data-original-title="' . $this->escape($desc) . '"></i>';
+                }
+
+            } ?>
             <div class="controls">
             <?php echo $this->formElement($element); ?>
             <span class="help-block"></span>
@@ -49,7 +49,6 @@ foreach ($elements['active'] as $element) { ?>
     </div>
 <?php echo $this->form()->closeTag(); ?>
 <script>
-jQuery(".what-this").tooltip();
 var formModule = (function($) {
     var formModule = {},
         form = $("#popup-form"),

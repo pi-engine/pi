@@ -14,7 +14,7 @@
 </style>
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 <div id="page-list" class="submain">
-<div class="legend"><?php _e('Active pages'); ?></div>
+<div class="pi-legend"><?php _e('Active pages'); ?></div>
 <ul class="active-pages">
     <?php foreach ($pages['active'] as $page) { ?>
     <li id="page-<?php echo $page['id']; ?>" class="box-hover page" data-id="<?php echo $page['id']; ?>" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
@@ -31,11 +31,11 @@
             <dt><?php _e('slug: '); ?></dt>
             <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
         </dl>
-    </li>    
+    </li>
     <?php } ?>
 </ul>
 <?php if (!empty($pages['inactive'])) { ?>
-<div class="legend" style="color: #888;"><?php _e('Inactive pages'); ?></div>
+<div class="pi-legend" style="color: #888;"><?php _e('Inactive pages'); ?></div>
 <ul class="inactive-pages">
     <?php foreach ($pages['inactive'] as $page) { ?>
     <li id="page-<?php echo $page['id']; ?>" class="box-hover box-disable page" data-id="<?php echo $page['id']; ?>" data-action="disable" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
@@ -52,7 +52,7 @@
             <dt><?php _e('slug: '); ?></dt>
             <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
         </dl>
-    </li>    
+    </li>
     <?php } ?>
 </ul>
 <?php } ?>

@@ -29,8 +29,8 @@ use Zend\View\Helper\AbstractHelper;
  *
  * Usage inside a phtml template:
  * <code>
- *  $this->assetTheme('css/style.css');
- *  $this->assetTheme('css/style.css', 'default');
+ *  $cssUri = $this->assetTheme('css/style.css');
+ *  $cssUri = $this->assetTheme('css/style.css', 'default');
  * </code>
  */
 class AssetTheme extends AbstractHelper

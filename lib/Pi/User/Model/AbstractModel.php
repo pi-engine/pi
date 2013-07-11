@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Engine local User class
+ * Pi Engine abstract user model class
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -15,49 +15,69 @@
  * @package         Pi\User
  */
 
-namespace Pi\User;
+namespace Pi\User\Model;
 
 use Pi;
-use Pi\Acl\Acl;
 use StdClass;
 
-class User
+abstract class AbstractModel
 {
     /**
      * Use account property
      * @var StdClass
      */
     protected $account;
-    /**
-     * User role
-     * @var string
-     */
-    protected $role;
+
+    protected $accountMeta = array(
+        'id'        => 0,
+        'identity'  => '',
+        'email'     => '',
+    );
+
     /**
      * User profile property
      * @var StdClass
      */
     protected $profile;
 
+    protected $profileMeta = array(
+        'id'        => 0,
+        'name'      => '',
+    );
+
+    /**
+     * User role
+     * @var string
+     */
+    protected $role;
+
     /**
      * Constructor
      *
      * @param array|int|string|null $data
+     * @param string $column
      */
-    public function __construct($data = null)
+    public function __construct($data = null, $column = 'id')
     {
-        $this->account = (object) array(
-            'id'        => 0,
-            'identity'  => '',
-            'email'     => '',
-            'name'      => '',
-        );
+        $this->account = $this->createAccount();
 
         if (is_array($data)) {
             $this->assign($data);
         } elseif (is_scalar($data)) {
-            $this->load($data);
+            $this->load($data, $column);
         }
+    }
+
+    /**
+     * Create account object
+     *
+     * @param array $vars
+     * @return StdClass
+     */
+    public function createAccount($vars = array())
+    {
+        $account = array_merge($this->accountMeta, $vars);
+        return (object) $account;
     }
 
     /**
@@ -90,23 +110,10 @@ class User
      * Load user account from database
      *
      * @param int|string $data
+     * @param string    $column
      * @return User
      */
-    public function load($data)
-    {
-        $model = Pi::model('user');
-        if (is_numeric($data)) {
-            $user = $model->find($data);
-        } else {
-            $user = $model->select(array('identity' => $data))->current();
-        }
-        if ($user && $user->active) {
-            $this->assign($user);
-        }
-        $this->role = null;
-
-        return $this;
-    }
+    abstract public function load($data, $column = 'id');
 
     /**
      * Assign account data to current user
@@ -157,16 +164,12 @@ class User
         return $this->role;
     }
 
-    public function loadRole()
-    {
-        if ($this->account->id) {
-            $model = ('admin' == Pi::engine()->section()) ? Pi::model('user_staff') : Pi::model('user_role');
-            $role = $model->find($this->account->id, 'user');
-            $this->role = $role ? $role->role : Acl::GUEST;
-        } else {
-            $this->role = Acl::GUEST;
-        }
-    }
+    /**
+     * Load role of current user
+     *
+     * @return string
+     */
+    abstract public function loadRole();
 
     /**
      * Retrieve profile object
@@ -176,52 +179,44 @@ class User
     public function profile()
     {
         if (null === $this->profile) {
-            $row = Pi::model('user_profile')->find($this->id);
-            $this->profile = $row ? (object) $row->toArray() : new StdClass;
+            $this->loadProfile();
         }
 
         return $this->profile;
     }
 
     /**
+     * Load profile of current user
+     */
+    abstract public function loadProfile();
+
+    /**
      * Check if current user is a guest
      *
      * @return bool
      */
-    public function isGuest()
-    {
-        return $this->account->id ? false : true;
-    }
+    abstract public function isGuest();
 
     /**
      * Check if current user is a top admin
      *
      * @return bool
      */
-    public function isAdmin()
-    {
-        return $this->role() == Acl::ADMIN ? true : false;
-    }
+    abstract public function isAdmin();
 
     /**
      * Check if current user is a regular member
      *
      * @return bool
      */
-    public function isMember()
-    {
-        return $this->hasRole(Acl::MEMBER)  ? true : false;
-    }
+    abstract public function isMember();
 
     /**
      * Check if current user is a staff
      *
      * @return bool
      */
-    public function isStaff()
-    {
-        return $this->hasRole(Acl::STAFF)  ? true : false;
-    }
+    abstract public function isStaff();
 
     /**
      * Check if current user has a role in its role ancestors
@@ -229,9 +224,5 @@ class User
      * @param string $role
      * @return bool
      */
-    public function hasRole($role)
-    {
-        $roles = Pi::service('registry')->role->read($this->role());
-        return in_array($role, $roles) ? true : false;
-    }
+    abstract public function hasRole($role);
 }

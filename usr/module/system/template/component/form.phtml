@@ -48,7 +48,7 @@ $renderElement = function ($element) use ($_this)
         echo $_this->formLabel($element);
         $desc = $element->getAttribute('description');
         if ($desc) {
-            echo '<span class="what-this" data-original-title="' . $_this->escape($desc) . '">?</span>';
+            echo '<i class="icon-question-sign" data-original-title="' . $_this->escape($desc) . '"></i>';
         }
     }
     echo '
@@ -62,7 +62,7 @@ $renderElement = function ($element) use ($_this)
 $renderRow = function ($element) use ($_this, $validate, $renderElement)
 {
     if (method_exists($element, 'getElements')) {
-        echo '<div class="legend">' .  $_this->formLabel($element) . '</div>';
+        echo '<div class="pi-legend">' .  $_this->formLabel($element) . '</div>';
 
         $eles = $element->elementList();
         foreach ($eles['active'] as $ele) {
@@ -94,7 +94,7 @@ if (!$groups) {
 } else {
     foreach ($groups as $group) {
     ?>
-        <div class="legend"><?php echo $this->escape($group['label']); ?></div>
+        <div class="pi-legend"><?php echo $this->escape($group['label']); ?></div>
         <?php
         foreach ($group['elements'] as $name) {
             $element = $form->get($name);
@@ -115,5 +115,5 @@ echo '<div class="controls">' . $this->formElement($elements['submit']) . '</div
 echo $this->form()->closeTag();
 ?>
 <script>
-    $(".what-this").tooltip();
+    $(".icon-question-sign").tooltip();
 </script>

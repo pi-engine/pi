@@ -39,7 +39,8 @@
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>"><?php _e('Flush'); ?></span>
         <?php foreach ($registry as $name) { ?>
         <tr>
-            <td class="td-indent"><?php echo $name; ?>
+            <td>
+                <span class="gutter-large"><?php echo $name; ?></span>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php _e('Flush'); ?></span>
         <?php } ?>

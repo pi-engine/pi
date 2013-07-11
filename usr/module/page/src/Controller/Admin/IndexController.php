@@ -92,7 +92,7 @@ class IndexController extends ActionController
                     $values['slug'] = null;
                 }
                 $values['active'] = 1;
-                $values['user'] = Pi::registry('user')->id;
+                $values['user'] = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
 
@@ -153,7 +153,7 @@ class IndexController extends ActionController
                 $values['slug'] = null;
             }
             $values['active'] = 1;
-            $values['user'] = Pi::registry('user')->id;
+            $values['user'] = Pi::service('user')->getUser()->id;
             $values['time_created'] = time();
             unset($values['id']);
 

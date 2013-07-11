@@ -117,7 +117,7 @@ abstract class ActionController extends AbstractActionController
      */
     protected function jumpToDenied($message = '')
     {
-        $statusCode = Pi::registry('user')->isGuest() ? 401 : 403;
+        $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
         $this->response->setStatusCode($statusCode);
         $event = $this->getEvent();
         $event->setError($message ?: true);

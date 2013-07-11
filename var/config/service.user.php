@@ -2,5 +2,5 @@
 // User service configuration
 
 return array(
-    'handler'   => 'Pi\User\Service',
+    'adapter'   => 'Pi\User\Adapter\Local',
 );

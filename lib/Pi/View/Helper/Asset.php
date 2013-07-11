@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\View
  * @subpackage      Helper
- * @version         $Id$
  */
 
 namespace Pi\View\Helper;
@@ -29,8 +27,8 @@ use Zend\View\Helper\AbstractHelper;
  *
  * Usage inside a phtml template:
  * <code>
- *  $this->asset('theme/default', 'css/style.css');
- *  $this->asset('module/demo', 'js/demo.js');
+ *  $cssUri = $this->asset('theme/default', 'css/style.css');
+ *  $jsUri = $this->asset('module/demo', 'js/demo.js');
  * </code>
  */
 class Asset extends AbstractHelper

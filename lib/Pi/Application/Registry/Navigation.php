@@ -168,7 +168,7 @@ class Navigation extends AbstractRegistry
     {
         //$this->cache = false;
         if (null === $role) {
-            $role = Pi::registry('user')->role;
+            $role = Pi::service('user')->getUser()->role;
         }
         $options = compact('name', 'module', 'section', 'role', 'locale');
         $data = $this->loadData($options);

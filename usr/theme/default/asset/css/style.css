@@ -1,268 +1,118 @@
-/* Basic tags */
-body :focus {
-    outline: none;
-}
-ul, ol, li {
-    list-style: none;
-}
-p {
-    margin: 10px 0;
-}
-label, input, button, select, textarea {
-    line-height: 20px;
-}
-.checkbox, .radio {
-    font-size: 14px;
+/* Bootstrap customization */
+
+/* Base */
+body {
+  background: #f5f5f5;
 }
 
-/**#@+ Global structured: top to bottom, outside to inside */
-/* HTML body container */
-.container {
-    /* Inherited from Bootstrap */
+/* Elements */
+fieldset dl {
+  margin-top: 0;
 }
 
-/* Portal header */
-.portal-header {
-    /* To be defined */
-}
-.portal-header .site-name {
-    /* To be defined */
-}
-
-/* Page header */
-.header {
-    background: #fafafa;
-    background: -moz-linear-gradient(#fafafa, #eaeaea);
-    background: -webkit-linear-gradient(#fafafa, #eaeaea);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#eaeaea')";
-    border-bottom: 1px solid #cacaca;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 0px 10px rgba(0,0,0,0.1);
-    margin-bottom: 10px;
-}
-.header-logo {
-    float: left;
-    font: bold 40px sans-serif, Arial;
-}
-.header-logo:hover {
-    text-decoration: none;
-    color: #0088CC;
+form .icon-question-sign {
+  color: #0089D1;
+  float: left;
+  cursor: pointer;
+  margin: 6px 0 0 1px;
+  padding: 2px;
 }
 
-/* Global/Sub navigation */
-/* Global */
-.global-nav {
-
-}
-/* Global menu */
-.global-nav .menu {
-    color: #fff;
-    font: 14px "Helvetica Neue",Arial,sans-serif;
-    height: 35px;
-    background-color: #144c8d;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1e6fb2,endColorstr=#144b8c);
-    background-image: -moz-linear-gradient(top,#1e6fb2,#144b8c);
-    background-image: -webkit-linear-gradient(top,#1e6fb2,#144b8c);
-    background-image: -o-linear-gradient(top,#1e6fb2,#144b8c);
-    margin-bottom: 10px;
-    border-top: 1px solid #2da8d9;
-    border-bottom: 1px solid #9f9f9f;
-    box-shadow: 0 1px 0 #dfdfdf;
-}
-/* Global breadcrumbs */
-.global-nav .breadcrumb {
-    /* Inherited from Bootstrap */
+/* Components */
+.page-header {
+  margin: 0 0 15px 0;
 }
 
-/* Sub*/
-.sub-nav {
-    /* To be defined */
-}
-/* Sub menu */
-.sub-nav .menu {
-    /* To be defined */
-}
-/* Sub breadcrumbs */
-.sub-nav .breadcrumb {
-    /* Inherited from Bootstrap */
+.page-header h2 {
+  margin: 0;
+  font-size: 30px;
 }
 
-
-/* Page content wrapper */
-.wrapper {
-    /* To be defined */
+.page-header .nav {
+  margin-bottom: 0;
 }
 
-/* Footer */
-.footer {
-    color: #515151;
-    margin: 30px 0 0 0;
-    font-size: 12px;
-    clear: both;
-    text-align: center;
-    line-height: 24px;
-    background: #F2F2F2;
-}
-.footer a {
-    color: #515151;
-}
-.footer a:hover {
-    color: #BD0A01;
-    text-decoration: underline;
-}
-/**#@-**/
-
-/* list */
-.list {
-    margin: 0;
-    font-size: 14px;
-    *zoom: 1;
-}
-.list:after,
-.list li:after,
-.img-text-wrapper:after {
-    display: block;
-    content: "";
-    height: 0;
-    clear: both;
-}
-.list li {
-    background: url(../image/sprite.png) no-repeat;
-    height: 22px;
-    line-height: 22px;
-    padding-left: 10px;
-    background-position: 0 9px;
-    overflow: hidden;
-    *zoom: 1;
-}
-.list .timestamp {
-    float: right;
+.page-header .search-query {
+  border-radius: 5px;
 }
 
-/* Image text compound */
-.img-text-wrapper {
-    margin-bottom: 10px;
-    *zoom: 1;
-}
-.img-text-wrapper img {
-    float: left;
-    margin: 3px 8px 0 0;
-}
-.img-text-wrapper >div {
-    overflow: hidden;
-}
-.img-text-wrapper .text-title {
-    display: block;
-    font: bold 14px/26px Arial;
-    height: 26px;
-    overflow: hidden;
-}
-.img-text-wrapper p {
-    color: #808080;
-    line-height: 20px;
-    font-size: 12px;
-    margin: 0;
+/** Pi Specific **/
+/* Elements */
+.dl-horizontal dt {
+  width: 120px;
 }
 
-/* Figure with description */
-.figure-desc {
-    line-height: 20px;
-    color: #808080;
-    font-size: 12px;
-}
-.figure p {
-    margin: 0;
-}
-.figure-caption {
-    font-weight: bold;
-    text-align: center;
+.dl-horizontal dd {
+  margin-left: 140px;
 }
 
-
-
-/* Description pair with label and text*/
-.desc-pair {
-    margin-left: 15px;
-}
-.desc-pair span {
-    margin-right: 6px;
+/* Components */
+.pi-divider {
+  font-family: serif,sans-serif;
+  margin: 0 6px;
+  color: #ccc;
 }
 
-/* common components */
-.indent {
-    text-indent: 2em;
-}
-.overhidden {
-    overflow: hidden;
-}
-.horizontal-rule {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #fff;
-    margin-bottom: 10px;
-    height: 0;
-}
-.capitalize {
-    text-transform: capitalize;
+.pi-legend {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 18px;
+  padding: 9px 10px;
+  color: #333333;
+  border: 0;
+  border-bottom: 1px solid #d7d7d7;
 }
 
-.legend {
-    display: block;
-    margin-bottom: 15px;
-    font-size: 18px;
-    padding: 9px 10px;
-    color: #333333;
-    border: 0;
-    border-bottom: 1px solid #d7d7d7;
-}
-.divider {
-    color: #888;
-    padding: 0 5px;
+/* Box with border */
+.pi-widget {
+  margin-bottom: 20px;
+  border: 1px solid #d7d7d7;
 }
 
-/* Popover hint message */
-.what-this {
-    font: bold 10px Helvetica;
-    text-align: center;
-    width: 12px;
-    height: 12px;
-    border-radius: 20px;
-    background: #0089D1;
-    display: inline-block;
-    color: #fff;
-    cursor: help;
-    *display: inline;
-    *zoom: 1;
-    vertical-align: middle;
-    margin-bottom: 9px;
-}
-.form-horizontal .what-this {
-	float: left;
-	margin: 9px 0 0 3px;
+.pi-widget-header {
+  padding: 5px 10px;
+  background: #F8F8F8;
+  border-bottom: 1px solid #d7d7d7;
 }
 
+.pi-widget-body {
+  padding: 18px 20px;
+}
 
+.pi-widget-body >:last-child {
+  margin-bottom: 0;
+}
 
-/**#@+ Bootstrap customization **/
-.input-large {
-    width: 450px;
+/* Avatar */
+/* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
+.pi-avatar {
+  width: 80px;
 }
-.textarea-small {
-    width: 200px;
-    height: auto;
+
+.pi-avatar-mini {
+  width: 16px;
 }
-.textarea-large {
-    width: 450px;
-    height: 300px;
+
+.pi-avatar-xsmall {
+  width: 24px;
 }
-.textarea-long {
-    width: 450px;
-    height: 600px;
+
+.pi-avatar-small {
+  width: 28px;
 }
-.textarea-wide {
-    width: 750px;
-    height: 300px;
+
+.pi-avatar-medium {
+  width: 46px;
 }
-.textarea-full {
-    width: 95%;
-    height: 500px;
+
+.pi-avatar-large {
+  width: 96px;
 }
-/**#@-**/
+
+.pi-avatar-xlarge {
+  width: 120px;
+}
+
+.pi-avatar-xxlarge {
+  width: 214px;
+}

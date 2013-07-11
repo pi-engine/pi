@@ -54,7 +54,7 @@ return array(
         // Session resource, load configs from resource.session.php and instantiate session service
         'session'   => array(),
         // Load authentication configs from resource.authentication.php and instantiate authentication service
-        'authentication'    => array(),
+        //'authentication'    => array(),
         // Instantiate use handler
         'user'      => array(),
         // Instantiate ACL manager and register listeners

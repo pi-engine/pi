@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap resource
+ * Pi Engine user external handler
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,24 +12,32 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Resource
- * @since           3.0
- * @version         $Id$
+ * @package         Pi\User
  */
 
-namespace Pi\Application\Bootstrap\Resource;
+namespace Pi\User\Handler;
 
 use Pi;
+use Pi\User\Model\AbstractModel as UserModel;
+use Pi\User\BindInterface;
 
-class Authentication extends AbstractResource
+class AbstractHandler implements BindInterface
 {
     /**
-     * @return void
+     * Bound user account
+     * @var UserModel
      */
-    public function boot()
+    protected $model;
+
+    /**
+     * Bind a user
+     *
+     * @param UserModel $user
+     * @return AbstractHandler
+     */
+    public function bind(UserModel $model = null)
     {
-        $authService = Pi::service('authentication', $this->options);
-        $authService->wakeup();
+        $this->model = $model;
+        return $this;
     }
 }

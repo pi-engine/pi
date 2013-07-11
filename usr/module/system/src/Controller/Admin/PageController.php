@@ -575,7 +575,7 @@ class PageController extends ActionController
             );
             return $result;
         }
-;
+
         // Remove all existent block links
         Pi::model('page_block')->delete(array('page' => $page));
         // Add new block links

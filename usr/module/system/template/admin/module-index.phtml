@@ -21,12 +21,12 @@
                 <th><?php _e('Action'); ?>
         <tbody>
             <?php foreach ($modules as $module) { ?>
-            <tr class="<?php if (!$module['active']) { echo 'box-disable'; } else { echo 'module-item'; } ?>">
+            <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
                 <td>
                     <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
                 <td>
                     <div class="module-item-title">
-                        <p class="module-p"><strong><?php echo $module['title']; ?></strong></p>
+                        <p><strong><?php echo $module['title']; ?></strong>
                         <div class="hide module-title-input">
                             <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
                         </div> 
@@ -35,10 +35,10 @@
                 <td>
                     <?php echo $module['version']; ?>
                 <td>
-                    <p class="module-p"><?php echo $module['update']; ?></p>
+                    <p><?php echo $module['update']; ?></p>
                     <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php _e('update'); ?></a>
                 <td>
-                    <p class="module-p"><?php echo $module['description']; ?></p>
+                    <p><?php echo $module['description']; ?></p>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">
@@ -75,9 +75,14 @@
         },
         init: function() {
             _.bindAll(this);
+            var self = this;
             this.$('.detail-action').click(this.toggleDetail);
             this.$('.rename-action').click(this.rename);
-            this.$('input[type=text]').blur(this.renameAction);
+            this.$('input[type=text]').blur(this.renameAction).keyup(function(e) {
+                if (e.keyCode == 13) {
+                    self.renameAction(e);
+                }
+            });
         },
         toggleDetail: function(e) {
             $(e.target).siblings('.well').toggle();
