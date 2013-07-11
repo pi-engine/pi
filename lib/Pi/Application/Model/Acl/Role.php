@@ -78,7 +78,7 @@ class Role extends Model
         $rowset = $model->select(array('parent' => $role));
 
         foreach ($rowset as $row) {
-            $children[] = $row->parent;
+            $children[] = $row->child;
             $sub = $this->getChildren($row->child);
             $children = array_unique(array_merge($children, $sub));
         }
