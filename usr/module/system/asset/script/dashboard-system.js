@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
   var NoticeView = Backbone.View.extend({
     el: $('#system-js-notice'),
     events: {
@@ -6,18 +6,18 @@
       'click .system-js-cancel': 'cancel',
       'click .system-js-save': 'messageAction'
     },
-    editModel: function () {
+    editModel: function() {
       this.$el.addClass('system-notice-editing');
       this.$('textarea').focus().val(this.$('.system-js-notice-content').html());
     },
-    cancel: function () {
+    cancel: function() {
       this.$el.removeClass('system-notice-editing');
     },
-    messageAction: function () {
+    messageAction: function() {
       var v = $.trim(this.$('textarea').val());
       $.post('/admin/system/dashboard/message', {
         content: v
-      }).done(_.bind(function (data) {
+      }).done(_.bind(function(data) {
         data = $.parseJSON(data);
         this.$('.system-js-notice-content').html(data.content);
         this.$('.system-js-notice-time').html(data.time);
@@ -32,19 +32,19 @@
       'click .system-js-edit': 'editAction',
       'click .system-js-remove': 'removeAction'
     },
-    initialize: function () {
+    initialize: function() {
       this.model.on('destroy', this.remove, this);
       this.model.on('change', this.render, this);
     },
-    editAction: function () {
+    editAction: function() {
       var c = this.model.collection;
       c.current = this.model;
       c.trigger('showForm');
     },
-    removeAction: function () {
+    removeAction: function() {
       this.model.destroy();
     },
-    render: function () {
+    render: function() {
       this.$el.html(_.template(this.template, this.model.toJSON()));
       this.$el.data('model', this.model.toJSON());
       return this;
@@ -60,7 +60,7 @@
       'click .system-js-cancel': 'hideAddForm',
       'click .system-js-all-save': 'saveLinks'
     },
-    initialize: function () {
+    initialize: function() {
       this.linkAddBtn = this.$('.system-js-add');
       this.form = this.$('.system-quick-link-form');
       this.renderLinks();
@@ -70,39 +70,39 @@
       this.$('.js-all-save').tooltip();
       this.sortLinks();
     },
-    renderLinks: function () {
+    renderLinks: function() {
       this.collection.forEach(this.addOne, this);
     },
-    editModel: function () {
+    editModel: function() {
       this.$el.addClass('system-quick-link-edit');
       this.$('.system-quick-link-box').sortable("option", "disabled", false);
     },
-    sortLinks: function () {
+    sortLinks: function() {
       this.$('.system-quick-link-box').sortable({
         items: ".system-quick-link-item",
         disabled: true
       });
     },
-    addOne: function (model) {
+    addOne: function(model) {
       $(new LinkItemView({
         model: model
       }).render().el).insertBefore(this.linkAddBtn);
     },
-    changeCurrent: function () {
+    changeCurrent: function() {
       this.collection.current = new Backbone.Model({
         action: 'add'
       });
       this.showAddForm();
     },
-    showAddForm: function () {
+    showAddForm: function() {
       this.form.html(_.template(this.formTemplate, this.collection.current.toJSON(), {
         variable: 'form'
       })).css('display', 'block');
     },
-    hideAddForm: function () {
+    hideAddForm: function() {
       this.form.css('display', 'none');
     },
-    addOrEditSaveAction: function (e) {
+    addOrEditSaveAction: function(e) {
       var action = $(e.currentTarget).attr('data-action');
       var title = $.trim(this.$('[name=title]').val());
       var url = $.trim(this.$('[name=url]').val());
@@ -120,11 +120,11 @@
         }
       }
     },
-    saveLinks: function () {
+    saveLinks: function() {
       var data = [];
-      this.$('.system-quick-link-item').each(function () {
-        data.push($(this).data('model'))
-      })
+      this.$('.system-quick-link-item').each(function() {
+        data.push($(this).data('model'));
+      });
       this.$el.removeClass('system-quick-link-edit');
       this.hideAddForm();
       $.post('/admin/system/dashboard/link', {
@@ -137,17 +137,17 @@
     events: {
       'click .system-js-all': 'toggleAll'
     },
-    initialize: function () {},
-    toggleAll: function () {
+    initialize: function() {},
+    toggleAll: function() {
       this.$('.accordion-body').collapse('toggle');
     }
   });
 
-  this.dashboardSystem = function (options) {
-    new NoticeView;
+  this.dashboardSystem = function(options) {
+    new NoticeView();
     new LinkListView({
       collection: options.quicLinkCollection
     });
-    new SummaryView;
-  }
+    new SummaryView();
+  };
 })(jQuery);
