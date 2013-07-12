@@ -66,3 +66,7 @@ Best Practices
 --------------
 * It is highly recommended to use 'pi-' as prefix for all global id and class names used in theme to avoid conflicts.
 * It is highly recommended to use module identity as prefix for module id and class names used in templates to avoid conflicts, for instance 'demo-'.
+
+Resources
+---------
+* [Pi Theme Repository](http://pialog.org/theme.html)
