@@ -48,7 +48,7 @@ class EventController extends ActionController
         foreach ($rowset as $row) {
             $events[$row->name] = array(
                 'id'        => $row->id,
-                'title'     => $row->title,
+                'title'     => __($row->title),
                 'active'    => $row->active,
                 'listeners' => array(),
             );

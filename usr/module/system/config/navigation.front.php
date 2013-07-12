@@ -12,52 +12,50 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 return array(
     // Homepage
     'nav-home' => array(
         'order'         => -100,
-        'label'         => 'Home',
+        'label'         => _t('Home'),
         'route'         => 'home',
     ),
 
     // Account
     'account'   => array(
-        'label'         => 'Account',
+        'label'         => _t('Account'),
         'route'         => 'user',
         'controller'    => 'account',
         //'visible'       => 0,
         'pages'         => array(
             'profile'     => array(
-                'label'         => 'Profile',
+                'label'         => _t('Profile'),
                 'route'         => 'user',
                 'controller'    => 'profile',
                 'visible'       => 0,
             ),
             'login'     => array(
-                'label'         => 'Login',
+                'label'         => _t('Login'),
                 'route'         => 'user',
                 'controller'    => 'login',
                 'visible'       => 0,
             ),
             'register'     => array(
-                'label'         => 'Register',
+                'label'         => _t('Register'),
                 'route'         => 'user',
                 'controller'    => 'register',
                 'visible'       => 0,
             ),
             'password'     => array(
-                'label'         => 'Password',
+                'label'         => _t('Password'),
                 'route'         => 'user',
                 'controller'    => 'password',
                 'visible'       => 0,
             ),
             'email'     => array(
-                'label'         => 'Email',
+                'label'         => _t('Email'),
                 'route'         => 'user',
                 'controller'    => 'email',
                 'visible'       => 0,
@@ -67,7 +65,7 @@ return array(
 
     // Admin page
     'admin'     => array(
-        'label'         => 'Admin Area',
+        'label'         => _t('Admin Area'),
         'route'         => 'admin',
         'resource'      => array(
             'module'    => 'system',

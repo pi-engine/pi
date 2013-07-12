@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 // System settings, don't change
@@ -24,19 +22,19 @@ return array(
         'front'     => array(
             'name'      => 'front',
             'section'   => 'front',
-            'title'    => 'Front navigation',
+            'title'    => _t('Front navigation'),
         ),
         // Back-end navigation template
         'admin'     => array(
             'name'      => 'admin',
             'section'   => 'admin',
-            'title'     => 'Admin navigation',
+            'title'     => _t('Admin navigation'),
         ),
         // Managed components
         'component' => array(
             'name'      => 'component',
             'section'   => 'admin',
-            'title'     => 'Managed components',
+            'title'     => _t('Managed components'),
         ),
     ),
     'item' => array(

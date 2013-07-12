@@ -12,14 +12,12 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 return array(
     'modules' => array(
-        'label'         => 'Modules',
+        'label'         => _t('Modules'),
         'resource'      => array(
             'resource'  => 'module',
         ),
@@ -30,7 +28,7 @@ return array(
 
         'pages'     => array(
             'list'  => array(
-                'label'         => 'Installed',
+                'label'         => _t('Installed'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'module',
@@ -38,7 +36,7 @@ return array(
                 'visible'       => 0,
             ),
             'available' => array(
-                'label'         => 'Availables',
+                'label'         => _t('Availables'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'module',
@@ -46,7 +44,7 @@ return array(
                 'visible'       => 0,
             ),
             'repo'  => array(
-                'label'         => 'Repository',
+                'label'         => _t('Repository'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'module',
@@ -57,7 +55,7 @@ return array(
     ),
 
     'themes'    => array(
-        'label'         => 'Themes',
+        'label'         => _t('Themes'),
         'resource'      => array(
             'resource'  => 'theme',
         ),
@@ -68,7 +66,7 @@ return array(
 
         'pages'     => array(
             'apply' => array(
-                'label'         => 'In action',
+                'label'         => _t('In action'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'theme',
@@ -76,7 +74,7 @@ return array(
                 'visible'       => 0,
             ),
             'list' => array(
-                'label'         => 'Installed',
+                'label'         => _t('Installed'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'theme',
@@ -84,7 +82,7 @@ return array(
                 'visible'       => 0,
             ),
             'install' => array(
-                'label'         => 'Availables',
+                'label'         => _t('Availables'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'theme',
@@ -92,7 +90,7 @@ return array(
                 'visible'       => 0,
             ),
             'repo' => array(
-                'label'         => 'Repository',
+                'label'         => _t('Repository'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'theme',
@@ -104,7 +102,7 @@ return array(
     ),
 
     'navigations'   => array(
-        'label'         => 'Navigations',
+        'label'         => _t('Navigations'),
         'resource'      => array(
             'resource'  => 'navigation',
         ),
@@ -115,7 +113,7 @@ return array(
 
         'pages' => array(
             'front' => array(
-                'label'         => 'Navigations list',
+                'label'         => _t('Navigations list'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'nav',
@@ -124,7 +122,7 @@ return array(
 
                 'pages' => array(
                     'data'      => array(
-                        'label'         => 'Data manipulation',
+                        'label'         => _t('Data manipulation'),
                         'route'         => 'admin',
                         'module'        => 'system',
                         'controller'    => 'nav',
@@ -135,7 +133,7 @@ return array(
             ),
 
             'select'    => array(
-                'label'         => 'Navigation setup',
+                'label'         => _t('Navigation setup'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'nav',
@@ -146,7 +144,7 @@ return array(
     ),
 
     'role'   => array(
-        'label'         => 'Roles',
+        'label'         => _t('Roles'),
         'resource'      => array(
             'resource'  => 'role',
         ),
@@ -156,7 +154,7 @@ return array(
 
         'pages'     => array(
             'front'      => array(
-                'label'         => 'Front roles',
+                'label'         => _t('Front roles'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -166,7 +164,7 @@ return array(
                 'visible'       => 0,
             ),
             'admin'  => array(
-                'label'         => 'Admin roles',
+                'label'         => _t('Admin roles'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -179,7 +177,7 @@ return array(
     ),
 
     'perm'   => array(
-        'label'         => 'Permissions',
+        'label'         => _t('Permissions'),
         'resource'      => array(
             'resource'  => 'perm',
         ),
@@ -190,7 +188,7 @@ return array(
 
         'pages'     => array(
             'front'      => array(
-                'label'         => 'Front resources',
+                'label'         => _t('Front resources'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'perm',
@@ -198,7 +196,7 @@ return array(
                 'visible'       => 0,
             ),
             'admin'  => array(
-                'label'         => 'Admin resources',
+                'label'         => _t('Admin resources'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'perm',
@@ -209,7 +207,7 @@ return array(
     ),
 
     'members'   => array(
-        'label'         => 'Membership',
+        'label'         => _t('Membership'),
         'resource'      => array(
             'resource'  => 'member',
         ),
@@ -219,7 +217,7 @@ return array(
 
         'pages'         => array(
             'add'  => array(
-                'label'         => 'Add member',
+                'label'         => _t('Add member'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'member',
@@ -227,7 +225,7 @@ return array(
                 'visible'       => 0,
             ),
             'edit'  => array(
-                'label'         => 'Edit member',
+                'label'         => _t('Edit member'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'member',
@@ -235,7 +233,7 @@ return array(
                 'visible'       => 0,
             ),
             'password'  => array(
-                'label'         => 'Change password',
+                'label'         => _t('Change password'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'member',
@@ -243,7 +241,7 @@ return array(
                 'visible'       => 0,
             ),
             'delete'  => array(
-                'label'         => 'Delete member',
+                'label'         => _t('Delete member'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'member',
@@ -254,7 +252,7 @@ return array(
     ),
 
     'toolkit'   => array(
-        'label'         => 'Toolkit',
+        'label'         => _t('Toolkit'),
         'resource'      => array(
             'resource'  => 'maintenance',
         ),
@@ -265,7 +263,7 @@ return array(
 
         'pages'     => array(
             'cache'     => array(
-                'label'         => 'Cache flush',
+                'label'         => _t('Cache flush'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'cache',
@@ -273,7 +271,7 @@ return array(
                 'visible'       => 0,
             ),
             'asset'     => array(
-                'label'         => 'Asset publish',
+                'label'         => _t('Asset publish'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'asset',
@@ -281,7 +279,7 @@ return array(
                 'visible'       => 0,
             ),
             'audit'     => array(
-                'label'         => 'Audit',
+                'label'         => _t('Audit'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'audit',
@@ -289,7 +287,7 @@ return array(
                 'visible'       => 0,
             ),
             'mailing'   => array(
-                'label'         => 'Mailing',
+                'label'         => _t('Mailing'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'mailing',

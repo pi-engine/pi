@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 
@@ -29,7 +27,7 @@ return array(
         // Description, for admin, optional
         'description'   => __('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.2.1',
+        'version'       => '3.2.2',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -39,7 +37,7 @@ return array(
         // Direct download link, available for wget, optional
         //'download'      => 'http://dl.xoopsengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://demo.xoopsengine.org/demo',
+        'demo'          => 'http://pialog',
 
         // Module is ready for clone? Default as false
         'clonable'      => false,
@@ -51,7 +49,7 @@ return array(
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://www.xoopsengine.org',
+        'website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
         'credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),

@@ -12,14 +12,12 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 return array(
     'config'        => array(
-        'label'         => 'Configurations',
+        'label'         => _t('Configurations'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'config',
@@ -29,7 +27,7 @@ return array(
     ),
 
     'block' => array(
-        'label'         => 'Blocks',
+        'label'         => _t('Blocks'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'block',
@@ -39,7 +37,7 @@ return array(
     ),
 
     'page' => array(
-        'label'         => 'Pages',
+        'label'         => _t('Pages'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'page',
@@ -49,7 +47,7 @@ return array(
     ),
 
     'perm' => array(
-        'label'         => 'Resources',
+        'label'         => _t('Resources'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'resource',
@@ -59,7 +57,7 @@ return array(
     ),
 
     'event' => array(
-        'label'         => 'Event/Hook',
+        'label'         => _t('Event/Hook'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'event',

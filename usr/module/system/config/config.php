@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\System
- * @version         $Id$
  */
 
 /**
@@ -25,12 +23,12 @@
  *      'category'  => array(
  *          array(
  *              'name'  => 'category_name',
- *              'title' => 'Category Title'
+ *              'title' => _t('Category Title'),
  *              'order' => 1,
  *          ),
  *          array(
  *              'name'  => 'category_b',
- *              'title' => 'Category B Title'
+ *              'title' => _t('Category B Title'),
  *              'order' => 2,
  *          ),
  *          ...
@@ -38,7 +36,7 @@
  *      'item'     => array(
  *          // Config of input textbox
  *          'config_name_a' => array(
- *              'title'         => 'Config title A',
+ *              'title'         => _t('Config title A'),
  *              'category'      => 'cate',
  *              'description'   => '',
  *              'value'         => 'a config',
@@ -47,7 +45,7 @@
  *          ),
  *          // 'edit' default as 'input'
  *          'config_name_ab' => array(
- *              'title'         => 'Config title AB',
+ *              'title'         => _t('Config title AB'),
  *              'category'      => 'cate',
  *              'description'   => '',
  *              'value'         => 'a config',
@@ -55,15 +53,15 @@
  *          ),
  *          // Config with select edit type
  *          'config_name_b' => array(
- *              'title'         => 'Config title B',
+ *              'title'         => _t('Config title B'),
  *              'description'   => '',
  *              'value'         => 'option_a',
  *              'edit'          => array(
  *                  'type'  => 'select',
  *                  'options'   => array(
  *                      'options'   => array(
- *                          'option_a'  => 'Option A',
- *                          'option_b'  => 'Option B',
+ *                          'option_a'  => _t('Option A'),
+ *                          'option_b'  => _t('Option B'),
  *                      ),
  *                  ),
  *              ),
@@ -71,7 +69,7 @@
  *          ),
  *          // Config with custom edit element
  *          'config_name_c' => array(
- *              'title'         => 'Config title C',
+ *              'title'         => _t('Config title C'),
  *              'category'      => 'general',
  *              'description'   => '',
  *              'value'         => '',
@@ -85,7 +83,7 @@
  *          ),
  *          // Config not show on edit pages
  *          'config_name_d' => array(
- *              'title'         => 'Config title D',
+ *              'title'         => _t('Config title D'),
  *              'category'      => 'general',
  *              'description'   => '',
  *              'value'         => 'a config',
@@ -94,7 +92,7 @@
  *          ),
  *          // Orphan configs
  *          'config_name_e' => array(
- *              'title'         => 'Config title E',
+ *              'title'         => _t('Config title E'),
  *              'category'      => '',                      // Not managed by any category
  *              'description'   => '',
  *              'value'         => 'a config',
@@ -110,7 +108,7 @@
  * <code>
  *  return array(
  *          'config_name'   => array(
- *              'title'         => 'Config title',
+ *              'title'         => _t('Config title'),
  *              'category'      => '',
  *              'description'   => '',
  *              'value'         => '',
@@ -126,27 +124,27 @@ $config = array();
 $config['category'] = array(
     array(
         'name'      => 'general',
-        'title'     => 'General'
+        'title'     => _t('General'),
     ),
     array(
         'name'      => 'meta',
-        'title'     => 'Head meta',
+        'title'     => _t('Head meta'),
     ),
     array(
         'name'      => 'intl',
-        'title'     => 'Internationalization',
+        'title'     => _t('Internationalization'),
     ),
     array(
         'name'      => 'user',
-        'title'     => 'User account',
+        'title'     => _t('User account'),
     ),
     array(
         'name'      => 'text',
-        'title'     => 'Text processing',
+        'title'     => _t('Text processing'),
     ),
     array(
         'name'      => 'mail',
-        'title'     => 'Mailing',
+        'title'     => _t('Mailing'),
     ),
 );
 
@@ -158,58 +156,66 @@ $config['item'] = array(
     // General section
 
     'sitename'      => array(
-        'title'         => 'Site name',
-        'description'   => 'Website name.',
+        'title'         => _t('Site name'),
+        'description'   => _t('Website name.'),
         'filter'        => 'string',
         'value'         => 'Pi Engine',
         'category'      => 'general',
     ),
 
     'slogan'        => array(
-        'title'         => 'Slogan',
-        'description'   => 'Website slogan.',
+        'title'         => _t('Slogan'),
+        'description'   => _t('Website slogan.'),
         'value'         => 'Power your web and mobile applications.',
         'category'      => 'general',
     ),
 
     'locale'        => array(
-        'title'         => 'Locale',
-        'description'   => 'Locale for application content.',
+        'title'         => _t('Locale'),
+        'description'   => _t('Locale for application content.'),
         'edit'          => 'locale',
         'value'         => Pi::config('locale'),
         'category'      => 'general',
     ),
 
     'charset'       => array(
-        'title'         => 'Charset',
-        'description'   => 'Charset for page display.',
+        'title'         => _t('Charset'),
+        'description'   => _t('Charset for page display.'),
         'value'         => Pi::config('charset'),
         'category'      => 'general',
     ),
 
     'timezone'   => array(
-        'title'         => 'Timezone',
-        'description'   => 'Timezone for application system.',
+        'title'         => _t('Timezone'),
+        'description'   => _t('Timezone for application system.'),
         'edit'          => 'timezone',
         'category'      => 'general',
     ),
 
+    'list_number'    => array(
+        'title'         => _t('List count'),
+        'description'   => _t('Number of items on a list.'),
+        'value'         => '20',
+        'filter'        => 'int',
+        'category'      => 'general',
+    ),
+
     'ga_account'   => array(
-        'title'         => 'GA account',
-        'description'   => 'Google Analytics account. Or use following custom foot scripts.',
+        'title'         => _t('GA account'),
+        'description'   => _t('Google Analytics account. Or use following custom foot scripts.'),
         'category'      => 'general',
     ),
 
     'foot_script'   => array(
-        'title'         => 'Foot scripts',
-        'description'   => 'Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.',
+        'title'         => _t('Foot scripts'),
+        'description'   => _t('Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.'),
         'edit'          => 'textarea',
         'category'      => 'general',
     ),
 
     'asset_versioning'  => array(
-        'title'         => 'Enable asset versions',
-        'description'   => 'Append version to asset URLs. It is suggested to trun off in production environments for performance consideration.',
+        'title'         => _t('Enable asset versions'),
+        'description'   => _t('Append version to asset URLs. It is suggested to trun off in production environments for performance consideration.'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
@@ -217,14 +223,14 @@ $config['item'] = array(
     ),
 
     'theme'         => array(
-        'title'         => 'Theme',
+        'title'         => _t('Theme'),
         'value'         => 'default',
         'category'      => 'general',
         'visible'       => 0,
     ),
 
     'theme_admin'   => array(
-        'title'         => 'Admin theme',
+        'title'         => _t('Admin theme'),
         'value'         => 'default',
         'category'      => 'general',
         'visible'       => 0,
@@ -233,63 +239,63 @@ $config['item'] = array(
     // Meta section
 
     'copyright'     => array(
-        'title'         => 'Meta copyright',
-        'description'   => 'The copyright meta tag defines any copyright statements you wish to disclose about your web page documents.',
+        'title'         => _t('Meta copyright'),
+        'description'   => _t('The copyright meta tag defines any copyright statements you wish to disclose about your web page documents.'),
         'edit'          => 'text',
         'value'         => 'Copyright &copy; ' . date('Y'),
         'category'      => 'meta',
     ),
 
     'author'        => array(
-        'title'         => 'Meta author',
-        'description'   => 'The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.',
+        'title'         => _t('Meta author'),
+        'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
         'category'      => 'meta',
     ),
 
     'generator'     => array(
-        'title'         => 'Meta generator',
-        'description'   => 'Generator of the document being read.',
+        'title'         => _t('Meta generator'),
+        'description'   => _t('Generator of the document being read.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
         'category'      => 'meta',
     ),
 
     'keywords'      => array(
-        'title'         => 'Meta keywords',
-        'description'   => 'The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.',
+        'title'         => _t('Meta keywords'),
+        'description'   => _t('The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.'),
         'edit'          => 'textarea',
-        'value'         => __('Pi Engine, Web application'),
+        'value'         => 'Pi Engine,Web application,PHP,Zend Framework',
         'category'      => 'meta',
     ),
 
     'description'   => array(
-        'title'         => 'Meta description',
-        'description'   => 'The description meta tag is a general description of what is contained in your web page',
+        'title'         => _t('Meta description'),
+        'description'   => _t('The description meta tag is a general description of what is contained in your web page'),
         'edit'          => 'textarea',
-        'value'         => __('Pi Engine is an extensible development engine for web and mobile applications written in PHP.'),
+        'value'         => 'Pi Engine is an extensible development engine for web and mobile applications written in PHP.',
         'category'      => 'meta',
     ),
 
     // Internationalizaiton section
 
     'number_style'    => array(
-        'title'         => 'Default number style',
-        'description'   => 'See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatstyle',
+        'title'         => _t('Default number style'),
+        'description'   => _t('See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatstyle'),
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
                 'options'   => array(
-                    'DEFAULT_STYLE'     => 'Default format for the locale',
-                    'PATTERN_DECIMAL'   => 'Decimal format defined by pattern',
-                    'DECIMAL'           => 'Decimal format',
-                    'PERCENT'           => 'Percent format',
-                    'SCIENTIFIC'        => 'Scientific format',
-                    'SPELLOUT'          => 'Spellout rule-based format',
-                    'ORDINAL'           => 'Ordinal rule-based format',
-                    'DURATION'          => 'Duration rule-based format',
-                    'PATTERN_RULEBASED' => 'Rule-based format defined by pattern',
+                    'DEFAULT_STYLE'     => _t('Default format for the locale'),
+                    'PATTERN_DECIMAL'   => _t('Decimal format defined by pattern'),
+                    'DECIMAL'           => _t('Decimal format'),
+                    'PERCENT'           => _t('Percent format'),
+                    'SCIENTIFIC'        => _t('Scientific format'),
+                    'SPELLOUT'          => _t('Spellout rule-based format'),
+                    'ORDINAL'           => _t('Ordinal rule-based format'),
+                    'DURATION'          => _t('Duration rule-based format'),
+                    'PATTERN_RULEBASED' => _t('Rule-based format defined by pattern'),
                 ),
             ),
         ),
@@ -298,41 +304,41 @@ $config['item'] = array(
     ),
 
     'number_pattern'    => array(
-        'title'         => 'Default pattern for selected number style',
-        'description'   => 'Only if required by style',
+        'title'         => _t('Default pattern for selected number style'),
+        'description'   => _t('Only if required by style'),
         'edit'          => 'text',
         'value'         => '',
         'category'      => 'intl',
     ),
 
     'number_currency'   => array(
-        'title'         => 'Default currency type',
-        'description'   => 'The 3-letter ISO 4217 currency code indicating the currency to use.',
+        'title'         => _t('Default currency type'),
+        'description'   => _t('The 3-letter ISO 4217 currency code indicating the currency to use.'),
         'edit'          => 'text',
         'value'         => '',
         'category'      => 'intl',
     ),
 
     'date_calendar'     => array(
-        'title'         => 'Default calendar for the locale',
-        'description'   => '"persian" is suggested for Persian language. See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes',
+        'title'         => _t('Default calendar for the locale'),
+        'description'   => _t('"persian" is suggested for Persian language. See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes'),
         'edit'          => 'text',
         'value'         => '',
         'category'      => 'intl',
     ),
 
     'date_datetype'    => array(
-        'title'         => 'Default date type',
-        'description'   => 'See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants',
+        'title'         => _t('Default date type'),
+        'description'   => _t('See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants'),
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
                 'options'   => array(
-                    'NONE'      => 'Do not include this element',
-                    'FULL'      => 'Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)',
-                    'LONG'      => 'Long style (January 12, 1952 or 3:30:32pm)',
-                    'MEDIUM'    => 'Medium style (Jan 12, 1952)',
-                    'SHORT'     => 'Most abbreviated style, only essential data (12/13/52 or 3:30pm)',
+                    'NONE'      => _t('Do not include this element'),
+                    'FULL'      => _t('Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)'),
+                    'LONG'      => _t('Long style (January 12, 1952 or 3:30:32pm)'),
+                    'MEDIUM'    => _t('Medium style (Jan 12, 1952)'),
+                    'SHORT'     => _t('Most abbreviated style, only essential data (12/13/52 or 3:30pm)'),
                 ),
             ),
         ),
@@ -341,17 +347,17 @@ $config['item'] = array(
     ),
 
     'date_timetype'    => array(
-        'title'         => 'Default time type',
-        'description'   => 'See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants',
+        'title'         => _t('Default time type'),
+        'description'   => _t('See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants'),
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
                 'options'   => array(
-                    'NONE'      => 'Do not include this element',
-                    'FULL'      => 'Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)',
-                    'LONG'      => 'Long style (January 12, 1952 or 3:30:32pm)',
-                    'MEDIUM'    => 'Medium style (Jan 12, 1952)',
-                    'SHORT'     => 'Most abbreviated style, only essential data (12/13/52 or 3:30pm)',
+                    'NONE'      => _t('Do not include this element'),
+                    'FULL'      => _t('Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)'),
+                    'LONG'      => _t('Long style (January 12, 1952 or 3:30:32pm)'),
+                    'MEDIUM'    => _t('Medium style (Jan 12, 1952)'),
+                    'SHORT'     => _t('Most abbreviated style, only essential data (12/13/52 or 3:30pm)'),
                 ),
             ),
         ),
@@ -360,16 +366,16 @@ $config['item'] = array(
     ),
 
     'date_pattern'      => array(
-        'title'         => 'Default formatting pattern for date-time',
-        'description'   => 'See http://userguide.icu-project.org/formatparse/datetime',
+        'title'         => _t('Default formatting pattern for date-time'),
+        'description'   => _t('See http://userguide.icu-project.org/formatparse/datetime'),
         'edit'          => 'text',
         'value'         => 'yyyy-MM-dd HH:mm:ss',
         'category'      => 'intl',
     ),
 
     'date_format'       => array(
-        'title'         => 'Default format for legacy date function',
-        'description'   => 'The format is required in case Intl extension is not available. See http://www.php.net/manual/en/function.date.php',
+        'title'         => _t('Default format for legacy date function'),
+        'description'   => _t('The format is required in case Intl extension is not available. See http://www.php.net/manual/en/function.date.php'),
         'edit'          => 'text',
         'value'         => 'Y-m-d H:i:s',
         'category'      => 'intl',
@@ -377,61 +383,22 @@ $config['item'] = array(
 
     // Mailing section
 
-    /*
-    'mailmethod'    => array(
-        'title'         => 'Mail delivery method',
-        'description'   => 'Method used to deliver mail. Default is "mail", use others only if that makes trouble.',
-        'edit'          => array(
-            'type'      => 'select',
-            'options'   => array(
-                'options'   => array(
-                    'phpmail'   => 'PHP mail()',
-                    'sendmail'  => 'sendmail',
-                    'smtp'      => 'SMTP',
-                    'smtpauth'  => 'SMTPAuth',
-                ),
-            ),
-        ),
-        'value'         => 'phpmail',
-        'category'      => 'mail',
-    ),
-
-    'smtphost'      => array(
-        'title'         => 'SMTP host(s)',
-        'description'   => 'List of SMTP servers to try to connect to.',
-        'edit'          => 'textarea',
-        'category'      => 'mail',
-    ),
-
-    'smtpuser'      => array(
-        'title'         => 'SMTPAuth username',
-        'description'   => 'Username to connect to an SMTP host with SMTPAuth.',
-        'category'      => 'mail',
-    ),
-
-    'smtppass'      => array(
-        'title'         => 'SMTPAuth password',
-        'description'   => 'Password to connect to an SMTP host with SMTPAuth.',
-        'category'      => 'mail',
-    ),
-    */
-
     'adminmail'     => array(
-        'title'         => 'Admin email',
-        'description'   => 'Admin email address for contact.',
+        'title'         => _t('Admin email'),
+        'description'   => _t('Admin email address for contact.'),
         'filter'        => 'email',
         'category'      => 'mail',
     ),
 
     'adminname'      => array(
-        'title'         => 'Admin name',
-        'description'   => 'User name used to send emails',
+        'title'         => _t('Admin name'),
+        'description'   => _t('User name used to send emails'),
         'category'      => 'mail',
     ),
 
     'mail_encoding'       => array(
-        'title'         => 'Email encoding',
-        'description'   => 'Encoding for email contents',
+        'title'         => _t('Email encoding'),
+        'description'   => _t('Encoding for email contents'),
         'value'         => '',
         'category'      => 'mail',
     ),
@@ -439,14 +406,14 @@ $config['item'] = array(
     // Text processing
 
     'editor'        => array(
-        'title'         => 'Editor',
-        'description'   => 'Default editor for text processing',
+        'title'         => _t('Editor'),
+        'description'   => _t('Default editor for text processing'),
         'category'      => 'text',
     ),
 
     'censor_enable'  => array(
-        'title'         => 'Enable word censoring',
-        'description'   => 'Words will be censored if this option is enabled. This option may be turned off for enhanced site speed.',
+        'title'         => _t('Enable word censoring'),
+        'description'   => _t('Words will be censored if this option is enabled. This option may be turned off for enhanced site speed.'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
@@ -454,16 +421,16 @@ $config['item'] = array(
     ),
 
     'censor_words'  => array(
-        'title'         => 'Words to censor',
-        'description'   => 'Enter words that should be censored in user posts. Separate each with a "|", case insensitive.',
+        'title'         => _t('Words to censor'),
+        'description'   => _t('Enter words that should be censored in user posts. Separate each with a "|", case insensitive.'),
         'edit'          => 'textarea',
         'value'         => 'fuck|shit',
         'category'      => 'text',
     ),
 
     'censor_replace'    => array(
-        'title'         => 'Word to replace censored words',
-        'description'   => 'Censored words will be replaced with the characters entered in this textbox',
+        'title'         => _t('Word to replace censored words'),
+        'description'   => _t('Censored words will be replaced with the characters entered in this textbox'),
         'value'         => '#OOPS#',
         'category'      => 'text',
     ),
@@ -471,15 +438,15 @@ $config['item'] = array(
     // User account
 
     'uname_format'  => array(
-        'title'         => 'Username format',
-        'description'   => 'Format of username for registration.',
+        'title'         => _t('Username format'),
+        'description'   => _t('Format of username for registration.'),
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
                 'options'       => array(
-                    'strict'    => 'Strict: alphabet or number only',
-                    'medium'    => 'Medium: ASCII characters',
-                    'loose'     => 'Loose: multi-byte characters',
+                    'strict'    => _t('Strict: alphabet or number only'),
+                    'medium'    => _t('Medium: ASCII characters'),
+                    'loose'     => _t('Loose: multi-byte characters'),
                 ),
             ),
         ),
@@ -489,72 +456,72 @@ $config['item'] = array(
     ),
 
     'uname_min'     => array(
-        'title'         => 'Minmum username',
-        'description'   => 'Minmum length of username for user registration',
+        'title'         => _t('Minmum username'),
+        'description'   => _t('Minmum length of username for user registration'),
         'value'         => 3,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'uname_max'     => array(
-        'title'         => 'Maximum username',
-        'description'   => 'Maximum length of username for user registration',
+        'title'         => _t('Maximum username'),
+        'description'   => _t('Maximum length of username for user registration'),
         'value'         => 32,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'password_min'  => array(
-        'title'         => 'Minmum password',
-        'description'   => 'Minmum length of password for user registration',
+        'title'         => _t('Minmum password'),
+        'description'   => _t('Minmum length of password for user registration'),
         'value'         => 5,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'password_max'  => array(
-        'title'         => 'Maximum password',
-        'description'   => 'Maximum length of password for user registration',
+        'title'         => _t('Maximum password'),
+        'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'uname_backlist'    => array(
-        'title'         => 'Username backlist',
-        'description'   => 'Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.',
+        'title'         => _t('Username backlist'),
+        'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
         'category'      => 'user',
     ),
 
     'email_backlist'    => array(
-        'title'         => 'Email backlist',
-        'description'   => 'Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.',
+        'title'         => _t('Email backlist'),
+        'description'   => _t('Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
         'category'      => 'user',
     ),
 
     'rememberme'        => array(
-        'title'         => 'Remember me',
-        'description'   => 'Days to remember login, 0 for disable.',
+        'title'         => _t('Remember me'),
+        'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'attempts'      => array(
-        'title'         => 'Maximum attempts',
-        'description'   => 'Maximum attempts allowed to try for user login',
+        'title'         => _t('Maximum attempts'),
+        'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
         'filter'        => 'number_int',
         'category'      => 'user',
     ),
 
     'login_disable'     => array(
-        'title'         => 'Login disable',
-        'description'   => 'Disable user login',
+        'title'         => _t('Login disable'),
+        'description'   => _t('Disable user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
@@ -562,8 +529,8 @@ $config['item'] = array(
     ),
 
     'register_disable'  => array(
-        'title'         => 'Register disable',
-        'description'   => 'Disable user registration',
+        'title'         => _t('Register disable'),
+        'description'   => _t('Disable user registration'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
@@ -571,8 +538,8 @@ $config['item'] = array(
     ),
 
     'login_captcha'       => array(
-        'title'         => 'Login CAPTCHA',
-        'description'   => 'Enable CAPTCHA for user login',
+        'title'         => _t('Login CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
@@ -580,8 +547,8 @@ $config['item'] = array(
     ),
 
     'register_captcha'  => array(
-        'title'         => 'Register CAPTCHA',
-        'description'   => 'Enable CAPTCHA for user registration',
+        'title'         => _t('Register CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
         'filter'        => 'number_int',
@@ -590,8 +557,8 @@ $config['item'] = array(
 
     // Orphan configs
     'theme_module'      => array(
-        'title'         => 'Module themes',
-        'description'   => 'Themes for modules.',
+        'title'         => _t('Module themes'),
+        'description'   => _t('Themes for modules.'),
         'value'         => array(),
         'filter'        => 'array',
         'category'      => '',
@@ -599,16 +566,16 @@ $config['item'] = array(
     ),
 
     'nav_front'         => array(
-        'title'         => 'Front navigation',
-        'description'   => 'Global navigation for front end.',
+        'title'         => _t('Front navigation'),
+        'description'   => _t('Global navigation for front end.'),
         'value'         => 'front',
         'category'      => '',
         'visible'       => 0,
     ),
 
     'nav_admin'         => array(
-        'title'         => 'Admin navigation',
-        'description'   => 'Global navigation for admin.',
+        'title'         => _t('Admin navigation'),
+        'description'   => _t('Global navigation for admin.'),
         'value'         => 'admin',
         'category'      => '',
         'visible'       => 0,
