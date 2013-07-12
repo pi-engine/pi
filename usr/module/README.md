@@ -103,12 +103,10 @@ Folder and file skeleton
 * ```README.md```
 
 
-Module Development documentation
---------------------------------
+Resources
+---------
+* [Pi Module Repository](http://pialog.org/module.html)
 * [Module Development Documentation](https://github.com/pi-engine/pi/wiki/Pi-Documentation-Team)
-
-Best Practices
---------------
 * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
 * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)
 * [Code Review](https://github.com/pi-engine/pi/wiki/Dev.Code-Review)
