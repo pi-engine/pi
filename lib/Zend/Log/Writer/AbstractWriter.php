@@ -52,17 +52,12 @@ abstract class AbstractWriter implements WriterInterface
      */
     protected $convertWriteErrorsToExceptions = true;
 
-    /**#@+
-     * Modified by Taiwen Jiang
-     */
     /**
      * Error level passed to Zend\Stdlib\ErrorHandler::start for errors reported during calls to write
      *
      * @var bool
      */
-    //protected $errorsToExceptionsConversionLevel = E_WARNING;
-    protected $errorsToExceptionsConversionLevel = E_ALL;
-    /**#@-**/
+    protected $errorsToExceptionsConversionLevel = E_WARNING;
 
     /**
      * Constructor
@@ -105,7 +100,7 @@ abstract class AbstractWriter implements WriterInterface
                 $formatter = $options['formatter'];
                 if (is_string($formatter) || $formatter instanceof Formatter\FormatterInterface) {
                     $this->setFormatter($formatter);
-                } else if(is_array($formatter)) {
+                } elseif (is_array($formatter)) {
                     if (!isset($formatter['name'])) {
                         throw new Exception\InvalidArgumentException('Options must contain a name for the formatter');
                     }
@@ -259,7 +254,6 @@ abstract class AbstractWriter implements WriterInterface
             }
         }
 
-        /*
         $errorHandlerStarted = false;
 
         if ($this->convertWriteErrorsToExceptions && !ErrorHandler::started()) {
@@ -284,21 +278,6 @@ abstract class AbstractWriter implements WriterInterface
                 throw new Exception\RuntimeException("Unable to write", 0, $error);
             }
         }
-        */
-
-        if (true) {
-            $errorLevel = \E_ALL|\E_STRICT;
-
-            $function = function($errno, $errstr = '', $errfile = '', $errline = 0)
-            {
-                echo $errno;
-            };
-
-            set_error_handler($function);
-            restore_error_handler();
-        }
-
-        $this->doWrite($event);
     }
 
     /**

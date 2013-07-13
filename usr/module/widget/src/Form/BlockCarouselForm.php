@@ -86,7 +86,7 @@ class BlockCarouselForm extends BaseForm
                 'label' => __('Template'),
             ),
             //'attributes'    => array(
-                'type'          =>  '\Module\Widget\Form\Element\CarouselTemplate',
+                'type'          =>  'Module\Widget\Form\Element\CarouselTemplate',
             //)
             'attributes'    => array(
                 'required'  => true,

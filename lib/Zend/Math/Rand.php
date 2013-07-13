@@ -27,7 +27,7 @@ abstract class Rand
     /**
      * Generate random bytes using OpenSSL or Mcrypt and mt_rand() as fallback
      *
-     * @param  integer $length
+     * @param  int $length
      * @param  bool $strong true if you need a strong random generator (cryptography)
      * @return string
      * @throws Exception\RuntimeException
@@ -64,21 +64,6 @@ abstract class Rand
                 'Please consider installing the OpenSSL and/or Mcrypt extensions'
             );
         }
-
-        /**#@+
-         * By Taiwen Jiang
-         * Fix for BC break caused by
-         *  https://github.com/zendframework/zf2/commit/97b98e7208f93613ab358432e56b6e2245153807#library/Zend/Math/Rand.php
-         */
-        if (!class_exists('RandomLib\\Factory')) {
-            $rand = '';
-            for ($i = 0; $i < $length; $i++) {
-                $rand .= chr(mt_rand(0, 255));
-            }
-            return $rand;
-        }
-        /**@-*/
-
         $generator = self::getAlternativeGenerator();
         return $generator->generate($length);
     }
@@ -124,10 +109,10 @@ abstract class Rand
     /**
      * Generate a random integer between $min and $max
      *
-     * @param  integer $min
-     * @param  integer $max
+     * @param  int $min
+     * @param  int $max
      * @param  bool $strong true if you need a strong random generator (cryptography)
-     * @return integer
+     * @return int
      * @throws Exception\DomainException
      */
     public static function getInteger($min, $max, $strong = false)
@@ -185,7 +170,7 @@ abstract class Rand
      * Uses supplied character list for generating the new string.
      * If no character list provided - uses Base 64 character set.
      *
-     * @param  integer $length
+     * @param  int $length
      * @param  string|null $charlist
      * @param  bool $strong  true if you need a strong random generator (cryptography)
      * @return string

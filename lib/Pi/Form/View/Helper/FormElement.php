@@ -12,28 +12,19 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\Element;
 use Zend\Form\View\Helper\FormElement as ZendFormElement;
 use Zend\Form\ElementInterface;
 
 class FormElement extends ZendFormElement
 {
     /**
-     * Render an element
-     *
-     * Introspects the element type and attributes to determine which
-     * helper to utilize when rendering.
-     *
-     * @param  ElementInterface $element
-     * @return string
+     * {@inheritdoc}
      */
     public function render(ElementInterface $element)
     {
@@ -43,31 +34,15 @@ class FormElement extends ZendFormElement
             return '';
         }
 
-        if ($element instanceof Element\Captcha) {
-            $helper = $renderer->plugin('form_captcha');
-            return $helper($element);
+        $type   = $element->getAttribute('type');
+        if ($type) {
+            $type = sprintf('form_%s', str_replace('-', '_', $type));
+            $helper = $renderer->plugin($type);
+            if ($helper) {
+                return $helper($element);
+            }
         }
 
-        /*
-        if ($element instanceof Element\Csrf) {
-            $helper = $renderer->plugin('form_hidden');
-            return $helper($element);
-        }
-        */
-
-        if ($element instanceof Element\Collection) {
-            $helper = $renderer->plugin('form_collection');
-            return $helper($element);
-        }
-
-        $type   = $element->getAttribute('type') ?: 'input';
-        $type = sprintf('form_%s', $type);
-        $helper = $renderer->plugin($type);
-        if ($helper) {
-            return $helper($element);
-        }
-
-        $helper = $renderer->plugin('form_input');
-        return $helper($element);
+        return parent::render($element);
     }
 }

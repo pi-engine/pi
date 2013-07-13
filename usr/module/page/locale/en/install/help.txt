@@ -1,120 +1,88 @@
-Frequently Answered Questions
-Here are answers to questions we are frequently asked. If you have a question not addressed here, please email us at osi {_AT_} opensource.org.
 
-Can Open Source software be used for commercial purposes?
-Absolutely. All Open Source software can be used for commercial purpose; the Open Source Definition guarantees this. You can even sell Open Source software.
+All documents and information could be found at [Pi Wiki](https://github.com/pi-engine/pi/wiki) or [P Engine Web](http://pi-engine.org).
 
-However, note that commercial is not the same as proprietary. If you receive software under an Open Source license, you can always use that software for commercial purposes, but that doesn't always mean you can place further restrictions on people who receive the software from you. In particular, so-called copyleft-style Open Source licenses require that when you distribute the software, you do so under the same license you received it under.
 
-Can I restrict how people use an Open Source licensed program?
-No. The freedom to use the program for any purpose is part of the Open Source Definition. Open source licenses do not discriminate against fields of endeavor. Note that nearly all Open Source licenses also state that there is no warranty: you can't sue if it blows up your computer or destroys your data, even if it was the program's fault. (Some companies may sell you a warranty separately, for a fee, but that is not part of the open source license, it's just your private contract with that company.)
-Can I stop "evil people" from using my program?
-No. The Open Source Definition specifies that Open Source licenses may not discriminate against persons or groups. Giving everyone freedom means giving evil people freedom, too. Fortunately, there are other laws that constrain the behavior of evil people.
-What is "copyleft"? Is it the same as "open source"?
-"Copyleft" refers to licenses that allow derivative works but require them to use the same license as the original work. For example, if you write some software and release it under the GNU General Public License (a widely-used copyleft license), and then someone else modifies that software and distributes their modified version, the modified version must be licensed under the GNU GPL too — including any new code written specifically to go into the modified version. Both the original and the new work are Open Source; the copyleft license simply ensures that property is perpetuated to all downstream derivatives.
+# Introduction
+* [Pi Project](https://github.com/pi-engine/pi/blob/master/README.md)
+* [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)
+* [Pi VI](https://github.com/pi-engine/pi/wiki/Pi-VI)
 
-Most copyleft licenses are Open Source, but not all Open Source licenses are copyleft. When an Open Source license is not copyleft, that means software released under that license can be used as part of programs distributed under other licenses, including proprietary (non-open-source) licenses. For example, the BSD license is a non-copyleft Open Source license. Such licenses are usually called either "non-copyleft" or "permissive" open source licenses
+# User Guide
+  * Setup
+    * [Installation](https://github.com/pi-engine/pi/wiki/Pi-Installation)
+    * [Deployment](https://github.com/pi-engine/pi/wiki/Pi-Deployment)
+  * Operation guide
+    * [Nginx Deployment](https://github.com/pi-engine/pi/blob/master/doc/nginx.conf)
+    * [Nginx Virtual Host](https://github.com/pi-engine/pi/blob/master/doc/nginx-site.conf)
 
-Copyleft provisions apply only to actual derivatives, that is, cases where an existing copylefted work was modified. Merely distributing a copyleft work alongside a non-copyleft work does not cause the latter to fall under the copyleft terms.
+# Developer Guide
+* Best Practices
+  * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
+  * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)
+  * [Code Review](https://github.com/pi-engine/pi/wiki/Dev.Code-Review)
+  * [Pi Security](https://github.com/pi-engine/pi/wiki/Dev.Security)
+* Engine Development
+  * [Role Oriented Architecture (PPT)](https://github.com/pi-engine/pi/blob/master/doc/RoleOrientedAchitecture-20121201.pdf)
+  * [Backoffice Readme](https://github.com/pi-engine/pi/blob/master/doc/readme-backoffice.txt)
+* Module Development
+  * [Module Workflow](https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow)
+  * [Module Structure](https://github.com/pi-engine/pi/wiki/Dev.Module-Structure)
+  * [Kernel APIs](https://github.com/pi-engine/pi/wiki/Dev.Kernel-APIs)
+  * [Configuration](https://github.com/pi-engine/pi/wiki/Dev.Module-Configuration)
+  * [Authorization](https://github.com/pi-engine/pi/wiki/Dev.Module-Authorization)
+  * [Custom setup](https://github.com/pi-engine/pi/wiki/Dev.Module-Installation)
+  * [Route](https://github.com/pi-engine/pi/wiki/Dev.Module-Route)
+  * [I18n](https://github.com/pi-engine/pi/wiki/Dev.Module-I18n)
+  * [Pagination](https://github.com/pi-engine/pi/wiki/Dev.Module-Pagination)
+  * [Session](https://github.com/pi-engine/pi/wiki/Dev.Module-Session)
+  * [Parameters](https://github.com/pi-engine/pi/wiki/Dev.Module-Parameters)
+  * [Databse](https://github.com/pi-engine/pi/wiki/Dev.Module-Database)
+  * [Form](https://github.com/pi-engine/pi/wiki/Dev.Module-Form)
+* Theme Design
+  * [Theme Structure](https://github.com/pi-engine/pi/wiki/Dev.Theme-Structure)
+  * [Theme Helpers](https://github.com/pi-engine/pi/wiki/Dev.Theme-Helpers)
+* Readme Readings
+  * [Permission](https://github.com/pi-engine/pi/blob/master/doc/readme-permission.txt)
+  * [Route](https://github.com/pi-engine/pi/blob/master/doc/readme-route.txt)
+  * [Taxonomy](https://github.com/pi-engine/pi/blob/master/doc/readme-taxonomy.txt)
+  * [Template](https://github.com/pi-engine/pi/blob/master/doc/readme-template.txt)
 
-For more information, look at the text of the specific copyleft license you're thinking of using, or see the Wikipedia entry on copyleft.
+# Translator Guide
+* [Translation Skeleton](https://github.com/pi-engine/pi/blob/master/doc/readme-i18n.txt)
 
-What is a "permissive" Open Source license?
-A "permissive" license is simply a non-copyleft license. See the copyleft entry for more information.
-Is <SOME PROGRAM> Open Source?
-Only if it uses one of the approved licenses, and releases appropriate software.
-Can I call my program "Open Source" even if I don't use an approved license?
-Please don't do that. If you call it "Open Source" without using an approved license, you will confuse people. This is not merely a theoretical concern — we have seen this confusion happen in the past, and it's part of the reason we have a formal license approval process.
-Is <SOME LICENSE> an Open Source license, even if it is not listed on your web site?
-In general, no. We run all licenses through an approval process to provide an accepted standard on which licenses are Open Source, and we list the approved ones. Be dubious of claimed Open Source-ness for licenses that haven't gone through the process.
-What about software in the "public domain"? Is that Open Source?
-For most practical purposes, it is — sort of. This is a complicated question, so please read on.
+# Tutorials
+* [Training Checklist](https://github.com/pi-engine/pi/wiki/Tutorial.Training-Checklist)
+* [Course Schedule](https://github.com/pi-engine/pi/wiki/Tutorial.Course-Schedule)
+* Courses
+  * [Course 1: Introduction and Setup](https://github.com/pi-engine/pi/wiki/Tutorial.Introduction-And-Installation-I)
+  * [Course 2: Module Design](https://github.com/pi-engine/pi/wiki/Tutorial.Module-Design-I)
+  * [Course 3: Form Generation and Validation](https://github.com/pi-engine/pi/wiki/Tutorial.Form-Generation-and-Validation-I)
+  * [Course 4: Database Operation](https://github.com/pi-engine/pi/wiki/Tutorial.Database-Operation-I)
+  * [Course 5: Theme and Block](https://github.com/pi-engine/pi/wiki/Tutorial.Theme-and-Block-I)
+  * [Course 6: Navigation and Custom Navigation](https://github.com/pi-engine/pi/wiki/Tutorial.Navigation-and-Custom-Navigation)
+  * [Course 7: Custom Route](https://github.com/pi-engine/pi/wiki/Tutorial.Custom-Route)
+  * [Course 8: Authentication Management](https://github.com/pi-engine/pi/wiki/Tutorial.Authentication-Management-I)
+  * [Course 9: Others (APIs/Localization/Updating/Cache)](https://github.com/pi-engine/pi/wiki/Tutorial.Others-I:-Module-API)
+* Enhance
+  * [Course 11: Pi Engine Mechanism](https://github.com/pi-engine/pi/wiki/Toturial.Pi-Engine-Mechanism)
 
-"Public domain" is a technical term in copyright law that refers to works not under copyright — either because they were never in copyright to begin with (for example, works authored by U.S. government employees, on government time and as part of their job, are automatically in the public domain), or because their copyright term has finally lapsed and they have "fallen into" the public domain.
-
-Not all jurisdictions have a public domain, and it doesn't always mean exactly the same thing in the jurisdictions that do have it. Furthermore, even where it is clear what it means, it's still not a license. To be subject to a license, a work must still be in copyright. That means there is no way for the "public domain", as a concept, to go through the OSI evaluation and approval process. We wouldn't be evaluating a license text. Instead, we would have to somehow evaluate the laws themselves, in different jurisdictions, and say which jurisdictions have a public domain that meets the Open Source Definition. But even if we could succeed at this (which would be difficult, because it would mean evaluating not just the statutes but various bodies of case law), it would not be useful to the OSI's mission, because open source is an international phenomenon and we only want to approve licenses that meet the Open Source Definition everywhere.
-
-Thus we recommend that you always apply an approved Open Source license to software you are releasing, rather than try to waive copyright altogether. Using a clear, recognized Open Source license actually makes it easier for others to know that your software meets the Open Source Definition. It also enables the protection of attribution, and various other non-restrictive rights, that cannot be reliably enforced when there is no license.
-
-There are certain circumstances, such as with U.S. government works as described above, where it is not easy to apply a license, and the software must be released into the public domain. In these cases, while it would be inaccurate to display the OSI logo or say that the license is OSI-approved (since there is no license), nevertheless we think it is accurate to say that such software is effectively open source, or open source for most practical purposes, even though it is not officially released under an open source license. (This is assuming, of course, that in the laws of releasing jurisdiction the meaning of "public domain" is compatible with the Open Source Definition.) After all, the freedoms guaranteed by open source licenses are still present, and it is possible for the familiar dynamics of open source collaboration to arise around the software.
-
-For a detailed discussion of the complexities of the public domain and open source, search for the words "public domain" and "PD" in the subject headers of the January 2012, February 2012, and March 2012 archives of the OSI License Review mailing list. And if the thought of reading all those conversations is daunting, please take that as more evidence that it's just better to use an approved Open Source License if you can!
-
-See also the CC0 question.
-
-What about the Creative Commons "CC0" ("CC Zero") public domain dedication? Is that Open Source?
-At this time, we do not recommend releasing software using the the CC0 public domain dedication.
-
-Creative Commons Zero is a legal device known as a "public domain dedication". It is essentially a statement of intent by the copyright holder to waive copyright ownership in the work — that is, the copyright holder wishes to place the work into the public domain.
-
-Because such a waiver is (perhaps surprisingly) not possible in all jurisdictions, CC0 also contains a "Public License Fallback" clause that goes into effect "should any part of the Waiver for any reason be judged legally invalid or ineffective under applicable law". The fallback is essentially a copyright license that is very similar to an Open Source license, in that it gives up most of the restrictive powers associated with copyright, and allows redistribution and modification of the work.
-
-In February 2012, Creative Commons submitted CC0 to the OSI for approval as an open source license, requesting that the OSI evaluate the public license fallback section, since the rest of the text is a waiver of rights rather than a license. An unexpectedly intense and detailed discussion followed — search for "CC0" and "Creative Commons Zero" in the subject headers of the February 2012 and March 2012 archives of the OSI License Review mailing list.
-
-CC0 was not explicitly rejected, but the License Review Committee was unable to reach consensus that it should be approved, and Creative Commons eventually withdrew the application. The most serious of the concerns raised had to do with the effects of clause 4(a), which reads: "No trademark or patent rights held by Affirmer are waived, abandoned, surrendered, licensed or otherwise affected by this document.". While many open source licenses simply do not mention patents, it is exceedingly rare for open source licenses to explicitly disclaim any conveyance of patent rights, and the Committee felt that approving such a license would set a dangerous precedent, and possibly even weaken patent infringement defenses available to users of software released under CC0.
-
-See also the public domain question.
-
-Which Open Source license should I choose to release my software under?
-You can choose any license from the open source licenses shown at opensource.org/licenses/category. Most people select one from the "popular" category, but you are free to choose any license on that list.
-
-If this is your first time choosing an open source license, we recommend that you find someone who has experience with open source licensing and talk to them about your project — that will help you choose the most appropriate license. The person doesn't have to be a lawyer; it could be a developer who has experience releasing open source code. The section Choosing a License at the Civic Commons wiki may be useful, and you can learn more about open source licenses from Section 3.2 of the eBook Introduction to Free Software by Hernandez, Jimenez, Barahona, Pascual, and Robles.
-
-How do I apply <SOME OPEN SOURCE LICENSE> to software I'm releasing?
-This question isn't actually specific to open source licenses — it's really just about how to apply a particular copyright license to your software. Please note that the OSI is not a legal services organization and does not provide legal advice. However, many licenses come with instructions on how to apply them: for example, see the section "APPENDIX: How to apply the Apache License to your work" in the Apache-2.0 license, or the section "How to Apply These Terms to Your New Programs" in the GPL-3.0 license. If the license you want to apply has such instructions, just follow them. If it does not, then look at the previous two examples (or at other licenses that contain similar instructions) and follow a similar recipe, adjusting for the license you're actually using of course.
-Can I strip out the copyrights on Open Source code and put in my own?
-Definitely not! This isn't even about Open Source, really: in general, you should not remove a valid copyright notice, no matter what license it specifies. Copyright notices are legal notices; they are also a source of information about the provenance of source code, and if that information is stripped out, recipients of downstream copies have no easy way to rediscover it.
-Can I write proprietary code that links to a shared library that's open source?
-Sometimes you can; it depends on the Open Source license. Authors often want you to be able to do this, so most shared libraries are licensed under a permissive license or one that allows linking under certain circumstances (e.g., the LGPL). A very small number of libraries use the GPL, which only allows linking with proprietary works if the licensor grants an explicit exception. Thus, you are wise to check the licenses that your program links to. The community expects that all code linked to GPL code will be licensed under the GPL, even if the link is made at runtime using a shared library.
-I want to publish some code as Open Source code — can I get a license from you?
-As long as you own that source code, all that you need to do is choose one of the approved Open Source licenses, include a copy of the license text, typically in a filenamed "COPYRIGHT", including a statement saying that you are licensing the code under that copyright, and give it to somebody else! Of course, you probably want to give it to a lot of people in order to gain the maximum benefit from giving away your code. A number of websites will help you do that: berlios.de, sourceforge.net, code.google.com, and others.
-Is <SOME PHP PROGRAM> Open Source simply because it's written in PHP?
-No. PHP itself is Open Source, but that doesn't turn all code written in PHP into Open Source. The code written in PHP needs to be licensed under an approved Open Source license in order to be Open Source.
-What if I do not want to distribute my program in source code form? Or what if I don't want to distribute it in either source or binary form?
-If you don't distribute source code, then what you are distributing cannot meaningfully be called "Open Source". And if you don't distribute at all, then by definition you're not distributing source code, so you're not distributing anything Open Source.
-
-Think of it this way: Open Source licenses are always applied to the source code — so if you're not distributing the source, then you're not distributing the thing to which an Open Source license applies. You might or might not distribute binaries; that's a separate question. But while some Open Source licenses allow you to distribute binary code without distributing the corresponding source, it is only the source code that can be "open source". The binaries alone cannot be Open Source, because you're not making any source code available to be open. (If someone else distributes the source code under an Open Source license, then that's still Open Source, of course.)
-
-Note that copyleft Open Source licenses require redistributors to make source code available under certain circumstances; for example, see the GNU General Public License and GNU Affero General Public License.
-
-Someone is violating a copyleft license, for example by refusing to give me source code when they are required to. What can I do?
-The Open Source Initiative is not a legal services organization and generally cannot help you when someone is violating a copyleft license. However, as of late 2011, one of the organizations below may be able to help (note that most of the enforcement they do is about the GNU GPL and AGPL licenses, though in theory they can help enforce other copyleft licenses too):
-
-The Software Freedom Law Center.
-The GPL Violations Project.
-If the violation includes software that is one of Software Freedom Conservancy's Member Projects, you can contact the Conservancy at <compliance@sfconservancy.org> and they will help you help that project enforce the GPL.
-If you know of other organizations that provide similar legal assistance, please let us know at osi {_AT_} opensource.org.
-
-Can I use one of your pages in a document I'm writing?
-Generally, yes. Look at the bottom of each page for the Creative Commons Attribution 2.5 License. That gives you fairly broad permission to re-use the material; read the license to see the exact permissions.
-Can I link to your site?
-Yes, but you don't have to ask permission. It's always okay to link to anybody's site. Linking to something is like saying its name and address out loud.
-Can I sell Open Source programs? Even if I haven't written it?
-Yes, you can. But depending on the license, you probably can't stop your customers from selling it in the same manner as you. See the commercial use for more details.
-How do I make money if anybody can sell my code?
-You can sell services based on the code (i.e., sell your time), sell warranties and other assurances, sell customization and maintenance work, license the trademark, etc. The only kind of profit strategy that is incompatible with Open Source is monopoly-based sales, also known as "royalties". See this article for how to think about business strategies that make money from Open Source.
-Does Open Source mean anybody else can use my name and logo?
-No, at least not any more than they could otherwise. Open Source is about software source code, not about identity. That is, letting people use your code under an Open Source license is not the same as letting them use your trademarks or other identifying attributes, except insofar as they would be permitted to anyway (for example, in nominative use doctrine). There are many companies and other organizations that release open source code while exercising tight control over their trademarks.
-
-Trademarks and other marks of attribution are primarily about preventing public confusion over identity and provenance, and therefore trademark regulation is useful in Open Source software in the same way it is useful generally.
-
-How much does it cost for a link on opensource.org to my website?
-We don't sell advertising space on our website.
-Why did you approve Microsoft's licenses when they are attacking Open Source?
-Because those licenses are still Open Source licenses, and people who receive software under those licenses are receiving all the freedoms promised by the Open Source Definition. In general, just because we approve licenses from a given organization does not mean we endorse every other activity that organization engages in, whether it's Microsoft or anyone else.
-Can you help me find an Open Source programmer or program?
-Unfortunately, we can't; Open Source is now too big for us to keep track of all the people and activities in it. A web search engine is your best bet. For specific software packages, you may also find it useful to look in Freecode.
-How do I unsubscribe from one of your mailing lists?
-Visit the lists page, and click on the appropriate "unsubscribe" link to generate the necessary email request.
-How can I join an open source project?
-Most open source projects are run via online discussion forums: mailing lists, wikis, chat rooms, etc. We encourage you to find a project you care about, look at their web site to see what kinds of discussion forums they're using, and join those forums. The usual next step is to starting filing bug reports and/or fixing bugs.
-I have a thesis and I'm sending out a survey...
-We do not personally answer surveys. Read this for more information.
-Can I use your corporate logo (green open keyhole saying "Open Source") or something very similar (different color / texture / words) on my product (hat, shirt, web page, etc)?
-Alas, no, it is a trademark and we need to retain control over it.
-Can I use your corporate logo on my web page to link to you?
-Yes. You can always use a trademark in a truthful manner to refer accurately to an entity.
-Can I ask a legal question here?
-We are not a legal services organization and we can't give you legal advice. If you want legal advice, you need to have an attorney-client relationship with a lawyer. Even if the lawyer is pro bono, there still needs to be a formal client arrangement.
-
-Without giving you legal advice, we can still give you advice about community norms and expectations. It won't be legal advice, but you may find it useful when talking with your lawyer or, if necessary, coming to a decision without the help of a lawyer.
+# Front-end
+  * [Course Schedule](https://github.com/pi-engine/pi/wiki/front-end-course-schedule)
+  * Theme
+   * [Concept and compose](https://github.com/pi-engine/pi/wiki/concept-and-compose)
+   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/file-structor-and-file-explain)
+   * Step by step
+   * [Advanced](https://github.com/pi-engine/pi/wiki/Theme-advance)
+  * Module
+   * [Concept and compose](https://github.com/pi-engine/pi/wiki/module-concept-and-compose)
+   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/module-file)
+   * Step by step
+   * [Advanced](https://github.com/pi-engine/pi/wiki/Module-advance)
+  * Standard
+   * [css](https://github.com/pi-engine/pi/wiki/css-standard)
+   * js
+   * html
+   * phtml
+  * [API](https://github.com/pi-engine/pi/wiki/template-API)
+  * Backbone
+   * [Form validate demo](https://github.com/pi-engine/pi/wiki/Js-Backbone-demo)

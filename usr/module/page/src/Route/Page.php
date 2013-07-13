@@ -134,7 +134,9 @@ class Page extends Standard
         if (empty($url)) {
             $url = $action;
         } elseif (!empty($action)) {
-            $url = $action . $this->paramDelimiter . $url;
+            if ($action != 'index') {
+                $url = $action . $this->paramDelimiter . $url;  
+            }
         } else {
             $url = 'view' . $this->paramDelimiter . $url;
         }

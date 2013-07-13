@@ -225,6 +225,12 @@ namespace Pi\Utility
  *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => 'allow_thousand'));
  * </code>
  *
+ * Filter a value with regexp, only alphabetic and numeric characters are allowed:
+ * <code>
+ *  $paramFiltered = _filter($paramRaw, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
+ *  $paramFiltered = _get($paramName, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
+ * </code>
+ *
  * Sanitize a value:
  * <code>
  *  $paramSanitized = _sanitize('1234.5', 'int');

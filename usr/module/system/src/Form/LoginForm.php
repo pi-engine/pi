@@ -68,7 +68,7 @@ class LoginForm extends BaseForm
                 ),
                 'attributes'    => array(
                     'value'         => '1',
-                    'description'   => __('Remember login status for 14 days.')
+                    'description'   => __('Keep me logged in.')
                 )
             ));
         }

@@ -9,7 +9,6 @@
 
 namespace Zend\I18n\View\Helper;
 
-use Zend\I18n\Exception;
 use Zend\I18n\Translator\Translator;
 use Zend\I18n\Translator\TranslatorAwareInterface;
 use Zend\View\Helper\AbstractHelper;
@@ -30,26 +29,6 @@ abstract class AbstractTranslatorHelper extends AbstractHelper implements
      * @var string
      */
     protected $translatorTextDomain = 'default';
-
-    /**
-     * @throws Exception\ExtensionsNotLoadedException if ext/intl is not present
-     */
-    public function __construct()
-    {
-        /**#@+
-         * Remove unnecessary dependency on Intl extension introduced in commit #751ce1895bd8b3fcbb28253a3a308842345318f4
-         * Modified by Taiwen Jiang
-         */
-        /*
-        if (!extension_loaded('intl')) {
-            throw new Exception\ExtensionNotLoadedException(sprintf(
-                '%s component requires the intl PHP extension',
-                __NAMESPACE__
-            ));
-        }
-        */
-        /**#@-*/
-    }
 
     /**
      * Whether translator should be used
@@ -73,6 +52,7 @@ abstract class AbstractTranslatorHelper extends AbstractHelper implements
         if (null !== $textDomain) {
             $this->setTranslatorTextDomain($textDomain);
         }
+
         return $this;
     }
 
@@ -103,8 +83,7 @@ abstract class AbstractTranslatorHelper extends AbstractHelper implements
     /**
      * Sets whether translator is enabled and should be used
      *
-     * @param  bool $enabled [optional] whether translator should be used.
-     *                       Default is true.
+     * @param  bool $enabled
      * @return AbstractTranslatorHelper
      */
     public function setTranslatorEnabled($enabled = true)

@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
- * @version         $Id$
  */
 namespace Pi\Mvc\Controller;
 
@@ -42,6 +40,14 @@ class ControllerManager extends ZendControllerManager
         if (false === strpos($name, '\\')) {
             $routeMatch = $this->serviceLocator->get('Application')->getRouteMatch();
             if ($routeMatch) {
+                /**#@+
+                 * Only active module controller are accessible
+                 */
+                if (!Pi::service('module')->isActive($routeMatch->getParam('module'))) {
+                    return '';
+                }
+                /**#@-*/
+
                 $params = array(
                     'section'       => $this->serviceLocator->get('Application')->getSection(),
                     'module'        => $routeMatch->getParam('module'),

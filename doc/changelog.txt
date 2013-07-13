@@ -1,6 +1,39 @@
 Pi Engine Changelog
 
 
+June 24th, 2013
+=============================
+1. Added doc "Pi Engine Architecture Diagram"
+2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
+3. Added Pi\Service\Log::mute() and Debugger::mute to disable debugger output for some use cases.
+4. Fixes Issue #113: Navigation page active is not properly detected
+5. Added function for translation register: _t('Message to be translated later.')
+6. Renamed Setup translation function name to _s() to avoid conflicts with translation placeholder function _t()
+7. Added listener for error ViewModel under JSON/AJAX/Feed request
+8. Added "pi-feature" and "pi-spotlight" blocks to homepage on installation
+9. Added two new block zones to theme font layout: $block['0'] for head blocks and $block['99'] for foot blocks
+10. Added browser support indication to theme configuration
+11. Fixed Issue #121: exception messages were missed by ErrorStrategy template overwritten
+12. Merged theme/template/error-exception.phtml to error.phtml
+13. Modified config: var/config/config.application.php -- changed 'exception_template' value
+14. Formulated return of Ajax/JSON request with format: array('status' => 1, 'message' => '', 'data' => array())
+
+
+June 19th, 2013
+=============================
+1. Upgraded ZF2 to 2.2.1
+2. Formulated CSV file format: keys and values are required to be quoted with enclosure of ["]
+3. Refactoring ZF related components: keep ZF untouched for smooth upgrade maintenance
+4. Modified config files with separate config file: var/config/application.front.php; var/config/application.admin.php; var/config/application.feed.php
+5. Added config file: var/config/config.application.php
+6. Modified boot.php: added constant 'PI_BOOT_ENABLE' and removed 'PI_BOOT_SKIP'
+7. Imported \RandomLib and \SecurityLib required by \Zend\Math\Rand
+8. Added ErrorStrategy for all erroneous results
+9. Added file: theme/template/error.phtml
+10. Added Pi\Version\Version and removed Pi::VERSION
+11. Added module availability check against module controller load
+
+
 June 8th, 2013
 =============================
 1. Disabled form autocomplete in setup
@@ -10,6 +43,18 @@ June 8th, 2013
 5. Refactored module install/uninstall/update displaying information messages on a redirecting page
 6. Formulated module install/uninstall/update result message structure for improvements in Issue #88
 7. Added default value 'text' for renderer to markup service
+8. Initiated system service Url
+9. Initiated system service User
+10. Added config file: var/config/service.user.php
+11. Improved filter User
+12. Changed route User parameter name 'name' to 'identity'
+13. Added support for auto detection of locale
+14. Added charset to service Locale
+15. Modified locale file folders: usr/locale/zh-cn  -- folder name must be in lower case
+16. Modified config file: var/config/service.markup.php -- removing default value for encoding
+17. Added vd shortcoming function to Debug
+18. Refactored bootstrap resource: changed resource namespace to Pi\Application\Bootstrap\Resource; changed Pi\Application\Bootstrap to Pi\Application\Bootstrap\ModuleBootstrap
+19. Changed Pi\Application\Engine\Standard methods: loadService to bootServices; setupResource to bootResources; loadResource to bootResource
 
 
 May 24th, 2013

@@ -12,10 +12,9 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      View
- * @version         $Id$
+
  */
 
 namespace Pi\Form\View\Helper;
@@ -58,14 +57,11 @@ class FormDescription extends AbstractHelper
     }
 
     /**
-     * Generate a form message, optionally with content
-     *
-     * Always generates a "for" statement, as we cannot assume the form input
-     * will be provided in the $labelContent.
+     * Generate a form element description
      *
      * @param  ElementInterface $element
      * @param  array $attributes
-     * @return string|FormElementErrors
+     * @return string|FormDescription
      */
     public function __invoke(ElementInterface $element = null, array $attributes = array())
     {

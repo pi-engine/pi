@@ -13,9 +13,6 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Db
- * @subpackage      RowGateway
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Db\Adapter\Driver;

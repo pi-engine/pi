@@ -14,8 +14,6 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  * @subpackage      Service
- * @since           3.0
- * @version         $Id$
  */
 
 /**
@@ -138,7 +136,35 @@
  *  __('A test message', 'theme/default', 'en');
  * </code>
  *
- * 7. Format a date
+ *
+ * 7. Register a message that will be translated in different lanauges, but not translated at the place where it is registered
+ * <code>
+ *  _t('Message to be translated and used later.');
+ * </code>
+ *  // Use case, register module config
+ *  // Registered in a module's config.php
+ * <code>
+ *  $config['key'] = array('title' => _t('Config Title'), 'description' => _t('Config hint'), '...'));
+ * </code>
+ *  // Load translated message in the module config setting page
+ *  // module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
+ * <code>
+ *  // Module\System\Form\ConfigForm::addElement()
+ *
+ *  protected function addElement($config)
+ *  {
+ *      // ...
+ *      $attributes['description'] = __($config->description);
+ *      $options = array(
+ *              'label'     => __($config->title),
+ *              'module'    => $this->module,
+ *      );
+ *      // ...
+ *  }
+ * </code>
+ *
+ *
+ * 8. Format a date
  * <code>
  *  _date(time(), 'fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  _date(time(), array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
@@ -167,7 +193,7 @@
  *  _date(time(), ...);
  * </code>
  *
- * 8. Format a number
+ * 9. Format a number
  * <code>
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN', 'default');
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN');
@@ -175,14 +201,14 @@
  *  _number(123.4567, 'spellout');
  * </code>
  *
- * 9. Format a currency
+ * 10. Format a currency
  * <code>
  *  _currency(123.45, 'USD', 'en-US');
  *  _currency(123.45, 'USD');
  *  _currency(123.45);
  * </code>
  *
- * 10. Get a date formatter
+ * 11. Get a date formatter
  * <code>
  *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
@@ -194,7 +220,7 @@
  *  Pi::service('i18n')->getDateFormatter(array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
  * </code>
  *
- * 11. Get a number formatter
+ * 12. Get a number formatter
  * <code>
  *  // Get a number formatter
  *  Pi::service('i18n')->getNumberFormatter('decimal', '#0.# kg', 'zh-CN');
@@ -236,13 +262,21 @@ namespace Pi\Application\Service
         protected $fileIdentifier = 'i18n';
 
         /**
-        * Locale
-        * @var string
-        */
-        protected $__locale;
+         * Locale
+         * @var string
+         */
+        protected $__locale = 'en';
+
         /**
-        * Translator
-        */
+         * Charset
+         * @var string
+         */
+        protected $__charset;
+
+        /**
+         * Translator
+         * @var Translator
+         */
         protected $__translator;
 
         /**
@@ -279,19 +313,23 @@ namespace Pi\Application\Service
         public function setTranslator(Translator $translator)
         {
             $this->__translator = $translator;
-            $this->__translator->setLocale($this->locale);
+            $this->__translator->setLocale($this->getLocale());
             return $this;
         }
 
         /**
          * Set locale and configure Translator
+         *
          * @param string $locale
          * @return I18n
          */
         public function setLocale($locale)
         {
-            $this->__locale = $locale;
-            $this->translator->setLocale($locale);
+            $locale = $this->canonize($locale);
+            if ($locale) {
+                $this->__locale = $locale;
+                $this->getTranslator()->setLocale($locale);
+            }
             return $this;
         }
 
@@ -306,6 +344,31 @@ namespace Pi\Application\Service
                 $this->__locale = Pi::config('locale');
             }
             return $this->__locale;
+        }
+
+        /**
+         * Set charset
+         *
+         * @param string $charset
+         * @return I18n
+         */
+        public function setCharset($charset)
+        {
+            $this->__charset = $charset;
+            return $this;
+        }
+
+        /**
+         * Get charset
+         *
+         * @return string
+         */
+        public function getCharset()
+        {
+            if (!$this->__charset) {
+                $this->__charset = Pi::config('charset') ?: 'utf-8';
+            }
+            return $this->__charset;
         }
 
         /**
@@ -326,6 +389,9 @@ namespace Pi\Application\Service
                     break;
                 case 'locale':
                     return $this->getLocale();
+                    break;
+                case 'charset':
+                    return $this->getCharset();
                     break;
                 case 'numberFormatter':
                     return $this->getNumberFormatter();
@@ -352,7 +418,7 @@ namespace Pi\Application\Service
         * Normalize domain in Intl resources, including Translator, Locale, Date, NumberFormatter, etc.
         *
         * @param string $domain
-        * @return array pair of component and domain
+        * @return array     pair of component and domain
         */
         public function normalizeDomain($rawDomain)
         {
@@ -360,7 +426,7 @@ namespace Pi\Application\Service
                 list($component, $domain) = explode(':', $rawDomain, 2);
             } else {
                 $component = static::DOMAIN_GLOBAL;
-                $domain = $rawDomain ?: static::FILE_DEFAULT;
+                $domain = (null !== $rawDomain) ? $rawDomain : static::FILE_DEFAULT;
             }
             return array($component, $domain);
         }
@@ -370,17 +436,19 @@ namespace Pi\Application\Service
          *
          * @param array|string $domain
          * @param string|null $locale
-         * @return Intl
+         * @return I18n
          */
         public function load($domain, $locale = null)
         {
             $domain = is_array($domain) ? $domain : $this->normalizeDomain($domain);
-            $locale = $locale ?: $this->locale;
-
-            $this->translator->load($domain, $locale);
+            $locale = $locale ?: $this->getLocale();
+            $result = $this->getTranslator()->load($domain, $locale);
 
             if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(sprintf('Translation "%s" is loaded', implode(':', $domain)));
+                $message = $result
+                    ? sprintf('Translation "%s.%s" is loaded.', implode(':', $domain), $locale)
+                    : sprintf('Translation "%s.%s" is empty.', implode(':', $domain), $locale);
+                Pi::service()->getService('log')->info($message);
             }
 
             return $this;
@@ -392,14 +460,14 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $module
          * @param string $locale
-         * @return Intl
+         * @return I18n
          */
         public function loadModule($domain, $module = null, $locale = null)
         {
             $module = $module ?: Pi::service('module')->current();
             $component = array('module/' . $module, $domain);
-
             $this->load($component, $locale);
+
             return $this;
         }
 
@@ -409,31 +477,32 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $theme
          * @param string $locale
-         * @return Intl
+         * @return I18n
          */
         public function loadTheme($domain, $theme = null, $locale = null)
         {
             $theme = $theme ?: Pi::service('theme')->current();
             $component = array('theme/' . $theme, $domain);
             $this->load($component, $locale);
+
             return $this;
         }
 
         /**
          * Get resource folder path
          *
-         * @param array|string $domain
+         * @param array|string|null $domain
          * @param string $locale
          * @return string
          */
-        public function getPath($domain = '', $locale = null)
+        public function getPath($domain = null, $locale = null)
         {
             if (is_array($domain)) {
                 list($component, $normalizedDomain) = $domain;
             } else {
                 list($component, $normalizedDomain) = $this->normalizeDomain($domain);
             }
-            $locale = (null === $locale) ? $this->locale : $locale;
+            $locale = (null === $locale) ? $this->getLocale() : $locale;
             $path = sprintf('%s/%s', Pi::path($component), static::DIR_RESOURCE);
             if ($locale) {
                 $path .= '/' . $locale . ($normalizedDomain ? '/' . $normalizedDomain : '');
@@ -563,8 +632,59 @@ namespace Pi\Application\Service
 
             return $formatter;
         }
-    }
 
+        /**
+         * Canonize locale name based on locales supported by Pi
+         *
+         * @param string $locale
+         * @param bool $checkParent
+         * @return string
+         */
+        public function canonize($locale, $checkParent = false)
+        {
+            $canonizedLocale = '';
+            $locale = strtolower($locale);
+            $localePath = $this->getPath('', $locale);
+            $status = is_readable($localePath);
+            if ($status) {
+                $canonizedLocale = $locale;
+            } elseif ($checkParent) {
+                $pos = strpos($locale, '-');
+                if (false !== $pos) {
+                    $locale = substr($locale, 0, $pos);
+                    $localePath = $this->getPath('', $locale);
+                    $status = is_readable($localePath);
+                    if ($status) {
+                        $canonizedLocale = $locale;
+                    }
+                }
+            }
+            return $canonizedLocale;
+        }
+
+        /**
+         * Auto detect client supported language(s) from browser request header 'Accept-Language'
+         *
+         * @return string
+         */
+        public function getClient()
+        {
+            $accepted = '';
+            $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
+            $matched = preg_match_all('/([a-z]{2,8}(-[a-z]{2,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',  $acceptedLanguage, $matches);
+            if ($matched) {
+                foreach ($matches[1] as $language) {
+                    $canonized = $this->canonize($language);
+                    if ($canonized) {
+                        $accepted = $canonized;
+                        break;
+                    }
+                }
+            }
+
+            return $accepted;
+        }
+    }
 }
 
 /**#@+
@@ -595,6 +715,18 @@ namespace
     function _e($message, $domain = null, $locale = null)
     {
         echo __($message, $domain, $locale);
+    }
+
+    /**
+     * Register a message to translation queue
+     *
+     *
+     * @param string    $message    The string to be localized
+     * @return void
+     */
+    function _t($message)
+    {
+        return $message;
     }
 
     /**

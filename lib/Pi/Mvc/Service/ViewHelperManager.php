@@ -12,14 +12,11 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Mvc
- * @version         $Id$
  */
 
 namespace Pi\Mvc\Service;
 
-//use Zend\ServiceManager\AbstractPluginManager;
 use Zend\View\HelperPluginManager;
 use Zend\View\Helper;
 use Zend\View\Exception;

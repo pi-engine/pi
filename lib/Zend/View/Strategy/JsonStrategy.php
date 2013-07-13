@@ -9,14 +9,14 @@
 
 namespace Zend\View\Strategy;
 
+use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
 use Zend\Http\Request as HttpRequest;
 use Zend\View\Model;
 use Zend\View\Renderer\JsonRenderer;
 use Zend\View\ViewEvent;
 
-class JsonStrategy implements ListenerAggregateInterface
+class JsonStrategy extends AbstractListenerAggregate
 {
     /**
      * Character set for associated content-type
@@ -24,11 +24,6 @@ class JsonStrategy implements ListenerAggregateInterface
      * @var string
      */
     protected $charset = 'utf-8';
-
-    /**
-     * @var \Zend\Stdlib\CallbackHandler[]
-     */
-    protected $listeners = array();
 
     /**
      * Multibyte character sets that will trigger a binary content-transfer-encoding
@@ -56,31 +51,12 @@ class JsonStrategy implements ListenerAggregateInterface
     }
 
     /**
-     * Attach the aggregate to the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @param  int $priority
-     * @return void
+     * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $priority);
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $priority);
-    }
-
-    /**
-     * Detach aggregate listeners from the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @return void
-     */
-    public function detach(EventManagerInterface $events)
-    {
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
     }
 
     /**
@@ -116,46 +92,13 @@ class JsonStrategy implements ListenerAggregateInterface
     {
         $model = $e->getModel();
 
-        /**#@+
-         * Keep the way
-         *
-         * By Taiwen Jiang
-         */
-        if ($model instanceof Model\JsonModel) {
-            // JsonModel found
-            return $this->renderer;
-        }
-
-        $request = $e->getRequest();
-        if (!$request instanceof HttpRequest) {
-            // Not an HTTP request; cannot autodetermine
+        if (!$model instanceof Model\JsonModel) {
+            // no JsonModel; do nothing
             return;
         }
 
-        $headers = $request->getHeaders();
-        if (!$headers->has('accept')) {
-            return;
-        }
-
-
-        $accept  = $headers->get('Accept');
-        if (($match = $accept->match('application/json, application/javascript')) == false) {
-            return;
-        }
-
-        if ($match->getTypeString() == 'application/json') {
-            // application/json Accept header found
-            return $this->renderer;
-        }
-
-        if ($match->getTypeString() == 'application/javascript') {
-            // application/javascript Accept header found
-            if (false != ($callback = $request->getQuery()->get('callback'))) {
-                $this->renderer->setJsonpCallback($callback);
-            }
-            return $this->renderer;
-        }
-        /**#@-*/
+        // JsonModel found
+        return $this->renderer;
     }
 
     /**

@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @version         $Id$
  */
 
 /**
@@ -28,13 +26,13 @@ return array(
         // Description, for admin, optional
         'description'   => 'Management of custom blocks/widgets.',
         // Version number, required
-        'version'       => '1.0.0-rc',
+        'version'       => '1.0.0',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
         // Demo site link, optional
-        'demo'          => 'http://demo.xoopsengine.org/demo',
+        'demo'          => 'http://pi-demo.org',
     ),
     // Author information
     'author'    => array(
@@ -43,7 +41,7 @@ return array(
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://www.xoopsengine.org',
+        'website'   => 'http://www.pialog.org',
         // Credits and aknowledgement, optional
         'credits'   => 'Pi Engine Team; EEFOCUS Team.'
     ),

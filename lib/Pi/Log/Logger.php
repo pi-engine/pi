@@ -184,6 +184,7 @@ class Logger
     {
         return $this->writers;
     }
+    
     /**
      * Set the writers
      *

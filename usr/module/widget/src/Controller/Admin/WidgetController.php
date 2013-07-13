@@ -12,10 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Module\Widget
- * @subpackage      Controller
- * @version         $Id$
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -224,8 +221,7 @@ abstract class WidgetController extends ActionController
             $content = $row->meta;
 
             $blockRow = Pi::model('block_root')->find($row->block);
-
-            $values = $blockRow->toArray();
+            $values = $this->prepareFormValues($blockRow);
             $values['id'] = $id;
             $form->setData($values);
             $message = '';
@@ -248,5 +244,10 @@ abstract class WidgetController extends ActionController
     protected function canonizeContent($content)
     {
         return $content;
+    }
+
+    protected function prepareFormValues($blockRow)
+    {
+        return $blockRow->toArray();
     }
 }

@@ -12,19 +12,21 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
  * @package         Pi\File
- * @version         $Id$
  */
 
 namespace Pi\File\Transfer;
 
 use Pi;
-use Zend\File\Transfer\Transfer as TransferHandler;
 use Pi\Filter\File\Rename;
 
-class Upload extends TransferHandler
+class Upload extends Transfer
 {
+    /**
+     * Destination path for uploaded files
+     *
+     * @var string
+     */
     protected $destination;
 
     /**
@@ -32,7 +34,6 @@ class Upload extends TransferHandler
      *
      * @param  array   $options   OPTIONAL Options to set for this adapter
      * @param  string  $adapter   Adapter to use
-     * @throws Exception\InvalidArgumentException
      */
     public function __construct($options = array(), $adapter = 'Http')
     {
@@ -47,13 +48,12 @@ class Upload extends TransferHandler
     /**
      * Returns adapter
      *
-     * @param boolean $direction On null, all directions are returned
-     *                           On false, download direction is returned
-     *                           On true, upload direction is returned
-     * @return array|Adapter\AbstractAdapter
+     * {@inheriteDoc}
+     * @note Zend\File\Transfer\Transfer does not support for $direction = 1 yet
      */
     public function getAdapter($direction = false)
     {
+        $direction = false;
         return parent::getAdapter($direction);
     }
 
@@ -66,11 +66,9 @@ class Upload extends TransferHandler
      */
     public function setDestination($value, $verify = true)
     {
-        //if (false === strpos($value, ':') && $value{0} !== '/') {
         if (!Pi::service('file')->isAbsolutePath($value)) {
             $path = Pi::path('upload') . '/' . $value;
             if (!is_dir($path)) {
-                //mkdir($path, 0777, true);
                 Pi::service('file')->mkdir($path);
             }
         } else {
@@ -78,13 +76,17 @@ class Upload extends TransferHandler
         }
         if ($verify && !is_dir($path)) {
             Pi::service('file')->mkdir($path);
-            //throw new \Exception('The destination does not exist: ' . $value);
         }
         $this->destination = $value;
         $this->getAdapter()->setDestination($path);
         return $this;
     }
 
+    /**
+     * Get upload destination path
+     *
+     * @return string
+     */
     public function getDestination()
     {
         return $this->destination;
@@ -182,7 +184,6 @@ class Upload extends TransferHandler
                 $result = array_values($result);
             }
         } else {
-            //$singles = array();
             $multiples = array();
             $result = array();
             foreach ($files as $key => $data) {

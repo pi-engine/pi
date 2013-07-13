@@ -34,11 +34,11 @@ class IndexController extends FeedController
      */
     public function indexAction()
     {
-        $feed = array(
+        $feed = $this->getDataModel(array(
             'title'         => __('What\'s new'),
             'description'   => __('Recent module updates.'),
             'date_created'  => time(),
-        );
+        ));
         $model = $this->getModel('update');
         $select = $model->select()->order('time DESC')->limit(10);
         $rowset = $model->selectWith($select);
@@ -48,7 +48,7 @@ class IndexController extends FeedController
             $entry['description'] = $row->content;
             $entry['date_modified'] = (int) $row->time;
             $entry['link'] = $this->getHref($row);
-            $feed['entries'][] = $entry;
+            $feed->entry = $entry;
         }
         return $feed;
     }

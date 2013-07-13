@@ -10,10 +10,10 @@
 namespace Zend\Db\Sql;
 
 use Zend\Db\Adapter\AdapterInterface;
-use Zend\Db\Adapter\StatementContainerInterface;
 use Zend\Db\Adapter\ParameterContainer;
 use Zend\Db\Adapter\Platform\PlatformInterface;
 use Zend\Db\Adapter\Platform\Sql92;
+use Zend\Db\Adapter\StatementContainerInterface;
 
 /**
  *
@@ -119,14 +119,6 @@ class Update extends AbstractSql implements SqlInterface, PreparableSqlInterface
      */
     public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
     {
-        /**#@+
-        * Use canonized method
-        * @see Zend\Db\Sql\AbstractSql::where()
-        */
-        parent::where($predicate, $combination);
-        return $this;
-        /**#@-*/
-
         if ($predicate === null) {
             throw new Exception\InvalidArgumentException('Predicate cannot be null');
         }

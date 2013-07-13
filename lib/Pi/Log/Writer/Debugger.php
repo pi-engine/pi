@@ -13,23 +13,28 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Log
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Log\Writer;
 
 use Pi;
-use Zend\Log\Formatter\FormatterInterface;
 use Pi\Log\Logger;
 use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\DbProfiler as DbFormatter;
 use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
+use Pi\Version\Version as PiVersion;
+use Zend\Log\Formatter\FormatterInterface;
 use Zend\Log\Writer\AbstractWriter;
+use PDO;
 
 class Debugger extends AbstractWriter
 {
+    /**
+     * {@inheritDoc}
+     */
+    protected $errorsToExceptionsConversionLevel = E_ALL;
+
     protected $profilerFormatter;
     protected $dbProfilerFormatter;
     protected $systemInfoFormatter;
@@ -41,6 +46,23 @@ class Debugger extends AbstractWriter
         'db'        => array(),
         'system'    => array(),
     );
+
+    protected $muted = false;
+
+    /**
+     * Enable/disable
+     *
+     * @param bool $flag
+     * @return bool return previous muted value
+     */
+    public function mute($flag = true)
+    {
+        $muted = $this->muted;
+        if (null !== $flag) {
+            $this->muted = (bool) $flag;
+        }
+        return $muted;
+    }
 
     /**
      * get formatter for loggder writer
@@ -106,6 +128,9 @@ class Debugger extends AbstractWriter
      */
     protected function doWrite(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         if ($event['priority'] > Logger::DEBUG) {
             return;
         }
@@ -129,6 +154,9 @@ class Debugger extends AbstractWriter
      */
     public function doProfiler(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         $message = $this->profilerFormatter()->format($event);
 
         $this->logger['profiler'][] = $message;
@@ -142,6 +170,9 @@ class Debugger extends AbstractWriter
      */
     public function doDb(array $event)
     {
+        if ($this->muted) {
+            return;
+        }
         $message = $this->dbProfilerFormatter()->format($event);
         $this->logger['db'][] = $message;
     }
@@ -182,13 +213,13 @@ class Debugger extends AbstractWriter
 
         // MySQL version
         $pdo = Pi::db()->getAdapter()->getDriver()->getConnection()->connect()->getResource();
-        $server_version = $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
-        $client_version = $pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION);
+        $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+        $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
         $system['MySQL Version'] = sprintf('Server: %s; Client: %s', $server_version, $client_version);
 
         // Application versions
-        $system['Pi Version'] = Pi::VERSION;
-        $system['Zend Version'] = \Zend\Version\Version::VERSION;
+        $system['Pi Version'] = PiVersion::version();
+        $system['Zend Version'] = PiVersion::version('zend');
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {
             $class = get_class(Pi::service('cache')->storage());
@@ -214,7 +245,7 @@ class Debugger extends AbstractWriter
         }
         // APD
         if (function_exists('apd_set_pprof_trace')) {
-            $extensions[] = 'APD: ' . \APD_VERSION;
+            $extensions[] = 'APD: ' . APD_VERSION;
         }
         // XHProf
         if (function_exists('xhprof_enable')) {
@@ -248,6 +279,9 @@ class Debugger extends AbstractWriter
 
     public function render()
     {
+        if ($this->muted) {
+            return;
+        }
         $this->systemInfo();
 
         // Use heredoc for log contents

@@ -35,7 +35,7 @@ class Admin extends AbstractController
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
             $vars['adminusername'] = 'admin';
-            $vars['adminname'] = _t('Pi Admin');
+            $vars['adminname'] = _s('Pi Admin');
             /*
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             if (false === strpos($hostname, '.')) {
@@ -70,7 +70,7 @@ class Admin extends AbstractController
                 // Drop all triggers
                 // ...
             } catch (\Exception $e) {
-                $this->content = '<p class="error">' . _t('System module uninstallation is failed. Please continue to try again.') . '</p>' .
+                $this->content = '<p class="error">' . _s('System module uninstallation is failed. Please continue to try again.') . '</p>' .
                         $e->getMessage() .
                         '<input type="hidden" name="page" value="admin" />' .
                         '<input type="hidden" name="retry" value="1" />' .
@@ -98,14 +98,14 @@ class Admin extends AbstractController
         switch ($var) {
             case 'adminname':
                 if (empty($val)) {
-                    $error = _t('Information is required.');
+                    $error = _s('Information is required.');
                 }
                 break;
             case 'adminmail':
                 if (empty($val)) {
-                    $error = _t('Information is required.');
+                    $error = _s('Information is required.');
                 } elseif (!filter_var($val, FILTER_VALIDATE_EMAIL)) {
-                    $error = _t('Invalid Email.');
+                    $error = _s('Invalid Email.');
                 }
                 break;
             case 'adminpass':
@@ -113,9 +113,9 @@ class Admin extends AbstractController
                 $v1 = $this->vars['adminpass'];
                 $v2 = $this->vars['adminpass2'];
                 if (empty($v1) || empty($v2)) {
-                    $error = _t('Information is required.');
+                    $error = _s('Information is required.');
                 } elseif ($v1 !== $v2) {
-                    $error = _t('The two passwords do not match');
+                    $error = _s('The two passwords do not match');
                 }
                 break;
             default:
@@ -130,7 +130,7 @@ class Admin extends AbstractController
         $ret = $installer->install('system');
         if (!$ret) {
             $this->hasForm = true;
-            $this->content = '<p class=\'error\'>' . _t('System module installation is failed. Please continue to try again.') . '</p>' .
+            $this->content = '<p class=\'error\'>' . _s('System module installation is failed. Please continue to try again.') . '</p>' .
                         $installer->renderMessage() .
                         '<input type=\'hidden\' name=\'page\' value=\'admin\' />' .
                         '<input type=\'hidden\' name=\'retry\' value=\'1\' />' .
@@ -148,22 +148,22 @@ class Admin extends AbstractController
 
         $error = array();
         if (empty($vars['adminusername'])) {
-            $error['name'][] = _t('Username is required.');
+            $error['name'][] = _s('Username is required.');
         }
         if (empty($vars['adminname'])) {
-            $error['name'][] = _t('Name is required.');
+            $error['name'][] = _s('Name is required.');
         }
         if (empty($vars['adminmail'])) {
-            $error['email'][] = _t('Email is required.');
+            $error['email'][] = _s('Email is required.');
         }
         if (empty($vars['adminpass'])) {
-            $error['pass'][] = _t('Password is required.');
+            $error['pass'][] = _s('Password is required.');
         }
         if (!filter_var($vars['adminmail'], FILTER_VALIDATE_EMAIL)) {
-            $error['email'][] = _t('Invalid Email.');
+            $error['email'][] = _s('Invalid Email.');
         }
         if ($vars['adminpass'] != $vars['adminpass2']) {
-            $error['pass'][] = _t('The two passwords do not match');
+            $error['pass'][] = _s('The two passwords do not match');
         }
         if (!$error) {
             // Update global contact email
@@ -232,7 +232,7 @@ class Admin extends AbstractController
         $resource->execute();
         $count = $resource->rowCount();
         if ($count) {
-            $this->content = '<p class=\'error\'>' . _t('Deprected tables exist in the database. Please continue to re-install.') . '</p>' .
+            $this->content = '<p class=\'error\'>' . _s('Deprected tables exist in the database. Please continue to re-install.') . '</p>' .
                         '<input type=\'hidden\' name=\'page\' value=\'admin\' />' .
                         '<input type=\'hidden\' name=\'retry\' value=\'1\' />' .
                         '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
@@ -248,11 +248,11 @@ class Admin extends AbstractController
         $this->wizard->setPersist('siteconfig', $vars);
 
         $elementInfo = array(
-            'adminmail'     => _t('Admin email'),
-            'adminusername' => _t('Admin username'),
-            'adminname'     => _t('Admin name'),
-            'adminpass'     => _t('Admin password'),
-            'adminpass2'    => _t('Confirm password'),
+            'adminmail'     => _s('Admin email'),
+            'adminusername' => _s('Admin username'),
+            'adminname'     => _s('Admin name'),
+            'adminpass'     => _s('Admin password'),
+            'adminpass2'    => _s('Confirm password'),
         );
         $displayItem = function ($item) use ($vars, $elementInfo) {
             $content = '<div class=\'item\'>
@@ -266,7 +266,7 @@ class Admin extends AbstractController
         };
 
         $content = '<div class=\'install-form\'>';
-        $content .= '<h3 class=\'section\'>' . _t('Administrator account') . '</h3>';
+        $content .= '<h3 class=\'section\'>' . _s('Administrator account') . '</h3>';
         $content .= $displayItem('adminmail');
         $content .= $displayItem('adminusername');
         $content .= $displayItem('adminname');

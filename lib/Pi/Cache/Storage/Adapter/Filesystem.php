@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Cache
- * @version         $Id$
  */
 
 namespace Pi\Cache\Storage\Adapter;
@@ -26,26 +24,29 @@ use Zend\Cache\Storage\Adapter\Exception;
 class Filesystem extends ZendFilesystem
 {
     /**
-     * Internal method to get an item.
-     *
-     * @param  string  $normalizedKey
-     * @param  bool $success
-     * @param  mixed   $casToken
-     * @return mixed Data on success, null on failure
-     * @throws Exception\ExceptionInterface
+     * {@inheritdoc}
      */
     protected function internalGetItem(& $normalizedKey, & $success = null, & $casToken = null)
     {
+        /**#@+
+         * Skip extra file reading cost
+         */
         /*
         if (!$this->internalHasItem($normalizedKey)) {
             $success = false;
             return null;
         }
         */
+        /**#@-*/
 
         try {
             $filespec = $this->getFileSpec($normalizedKey);
+            /**#@+
+             * Internal file content parsing
+             */
+            //$data     = $this->getFileContent($filespec . '.dat');
             $data     = $this->getFileData($filespec . '.dat');
+            /**#@-*/
 
             // use filemtime + filesize as CAS token
             if (func_num_args() > 2) {
@@ -61,15 +62,11 @@ class Filesystem extends ZendFilesystem
     }
 
     /**
-     * Internal method to get multiple items.
-     *
-     * @param  array $normalizedKeys
-     * @return array Associative array of keys and values
-     * @throws Exception\ExceptionInterface
+     * {@inheritdoc}
      */
     protected function internalGetItems(array & $normalizedKeys)
     {
-        //$options = $this->getOptions();
+        $options = $this->getOptions();
         $keys    = $normalizedKeys; // Don't change argument passed by reference
         $result  = array();
         while ($keys) {
@@ -80,15 +77,24 @@ class Filesystem extends ZendFilesystem
 
             // read items
             foreach ($keys as $i => $key) {
+                /**#@+
+                 * Skip extra file reading cost
+                 */
                 /*
                 if (!$this->internalHasItem($key)) {
                     unset($keys[$i]);
                     continue;
                 }
                 */
+                /**#@-*/
 
                 $filespec = $this->getFileSpec($key);
+                /**#@+
+                 * Internal file content parsing
+                 */
+                //$data     = $this->getFileContent($filespec . '.dat', $nonBlocking, $wouldblock);
                 $data     = $this->getFileData($filespec . '.dat', $nonBlocking, $wouldblock);
+                /**#-*/
                 if ($nonBlocking && $wouldblock) {
                     continue;
                 } else {
@@ -106,28 +112,24 @@ class Filesystem extends ZendFilesystem
     }
 
     /**
-     * Internal method to test if an item exists.
-     *
-     * @param  string $normalizedKey
-     * @return bool
+     * {@inheritdoc}
      */
     protected function internalHasItem(& $normalizedKey)
     {
         $file = $this->getFileSpec($normalizedKey) . '.dat';
+        /**#@+
+         * Internale content parsing
+         */
         if (!$this->fileValid($file)) {
             return false;
         }
+        /**#@-*/
 
         return true;
     }
 
     /**
-     * Internal method to store an item.
-     *
-     * @param  string $normalizedKey
-     * @param  mixed  $value
-     * @return bool
-     * @throws Exception\ExceptionInterface
+     * {@inheritdoc}
      */
     protected function internalSetItem(& $normalizedKey, & $value)
     {
@@ -137,29 +139,35 @@ class Filesystem extends ZendFilesystem
 
         // write data in non-blocking mode
         $wouldblock = null;
+        /**#@+
+         * Internale content assemble
+         */
+        //$this->putFileContent($filespec . '.dat', $value, true, $wouldblock);
         $this->putFileData($filespec . '.dat', $value, true, $wouldblock);
+        /**#@-*/
 
         // delete related tag file (if present)
         $this->unlink($filespec . '.tag');
 
         // Retry writing data in blocking mode if it was blocked before
         if ($wouldblock) {
+            /**#@+
+             * Internale content assemble
+             */
+            //$this->putFileContent($filespec . '.dat', $value);
             $this->putFileData($filespec . '.dat', $value);
+            /**#@-*/
         }
 
         return true;
     }
 
     /**
-     * Internal method to store multiple items.
-     *
-     * @param  array $normalizedKeyValuePairs
-     * @return array Array of not stored keys
-     * @throws Exception\ExceptionInterface
+     * {@inheritdoc}
      */
     protected function internalSetItems(array & $normalizedKeyValuePairs)
     {
-        //$oldUmask    = null;
+        $oldUmask    = null;
 
         // create an associated array of files and contents to write
         $contents = array();
@@ -180,7 +188,12 @@ class Filesystem extends ZendFilesystem
             $wouldblock  = null;
 
             foreach ($contents as $file => & $content) {
+                /**#@+
+                 * Internale content assemble
+                 */
+                //$this->putFileContent($file, $content, $nonBlocking, $wouldblock);
                 $this->putFileData($file, $content, $nonBlocking, $wouldblock);
+                /**#@-*/
                 if (!$nonBlocking || !$wouldblock) {
                     unset($contents[$file]);
                 }
@@ -192,7 +205,7 @@ class Filesystem extends ZendFilesystem
     }
 
     /**
-     * Read valid cache data
+     * Read and validate cache data, return valid content
      *
      * @param  string  $file        File complete path
      * @param  bool $nonBlocking Don't block script if file is locked
@@ -214,7 +227,27 @@ class Filesystem extends ZendFilesystem
     }
 
     /**
-     * Check if cache file valid
+     * Assemble content data and write to a cache file
+     *
+     * @param  string  $file        File complete path
+     * @param  string  $data        Data to write
+     * @param  bool $nonBlocking Don't block script if file is locked
+     * @param  bool $wouldblock  The optional argument is set to TRUE if the lock would block
+     * @return void
+     */
+    protected function putFileData($file, $data, $nonBlocking = false, & $wouldblock = null)
+    {
+        $expire = 0;
+        $options = $this->getOptions();
+        if ($options->ttl) {
+            $expire = time() + $options->ttl;
+        }
+        $data = $expire . ':' . $data;
+        $this->putFileContent($file, $data, $nonBlocking, $wouldblock);
+    }
+
+    /**
+     * Check if cached file content valid
      *
      * @param  string  $file        File complete path
      * @return bool
@@ -236,25 +269,5 @@ class Filesystem extends ZendFilesystem
         }
 
         return true;
-    }
-
-    /**
-     * Write cache data to a file
-     *
-     * @param  string  $file        File complete path
-     * @param  string  $data        Data to write
-     * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock  The optional argument is set to TRUE if the lock would block
-     * @return void
-     */
-    protected function putFileData($file, $data, $nonBlocking = false, & $wouldblock = null)
-    {
-        $expire = 0;
-        $options = $this->getOptions();
-        if ($options->ttl) {
-            $expire = time() + $options->ttl;
-        }
-        $data = $expire . ':' . $data;
-        $this->putFileContent($file, $data, $nonBlocking, $wouldblock);
     }
 }

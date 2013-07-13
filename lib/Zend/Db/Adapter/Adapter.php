@@ -186,13 +186,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
                 return $this->lastPreparedStatement;
             }
         } else {
-            /**#@+ Pi Engine
-            * Skip PDO direct SQL query and proxy to PDOStatement so that all queries will be logged for debug and profiling
-            * Modified by Taiwen Jiang
-            */
-            //$result = $this->driver->getConnection()->execute($sql);
-            $result = $this->driver->getConnection()->connect()->getResource()->prepare($sql)->execute();
-            /**#@-*/
+            $result = $this->driver->getConnection()->execute($sql);
         }
 
         if ($result instanceof Driver\ResultInterface && $result->isQueryResult()) {

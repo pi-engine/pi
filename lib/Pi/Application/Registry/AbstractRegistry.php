@@ -149,7 +149,7 @@ abstract class AbstractRegistry
                         $meta[$var] = Pi::registry('user')->role;
                         break;
                     case 'locale':
-                        $meta[$var] = Pi::config('locale');
+                        $meta[$var] = Pi::service('i18n')->locale;
                         break;
                     default:
                         break;
@@ -217,7 +217,7 @@ abstract class AbstractRegistry
      * Load cache data matching the meta
      *
      * @param array $meta
-     * @return array
+     * @return array|bool
      */
     protected function loadCacheData($meta = array())
     {

@@ -1,17 +1,23 @@
-# USING THE GIT REPOSITORY TO WORK ON PI ENGINE
 
- 1. Setup a GitHub account (http://github.com/), if you haven't yet
- 2. Clone the repo locally and enter it (use your own GitHub username
-    in the statement below)
+Pi Engine Github Skeleton
+=========================
 
-    ```sh
-    % git clone https://github.com/pi-engine/pi.git
-    % cd framework
-    ```
-
-# GIT REPO SKELETON FOR PI ENGINE
-
+Pi Engine Core
+----------------
 * [pi-engine/pi](https://github.com/pi-engine/pi): Pi Engine core repo
-* pi-engine/pi-{modulename}: repo for module {modulename}, for instance [pi-engine/pi-tag](https://github.com/pi-engine/pi-tag) for module tag
-* pi-engine/pi-theme-{themename}: repo for theme {themename}, for instance [pi-engine/pi-theme-pi](https://github.com/pi-engine/pi-theme-pi) for theme pi
-* pi-engine/{reponame}: repo for non-pi components
+* [pi-engine/pi/wiki](https://github.com/pi-engine/pi/wiki): Pi Engine documents
+
+
+Pi Engine Module
+----------------
+* [pi-module](https://github.com/pi-module): repos for modules
+* Eeach module has its own repo, for instance [pi-module/tag](https://github.com/pi-module/tag) for module tag
+
+Pi Engine Theme
+---------------
+* [pi-theme](https://github.com/pi-theme): repos for themes
+* Each theme has its ownrepo, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
+ 
+Pi Engine Extras
+----------------
+* [pi-extra](https://github.com/pi-extra): repos for extra components

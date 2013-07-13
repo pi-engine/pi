@@ -10,10 +10,10 @@
 namespace Zend\Form\Element;
 
 use DateTime as PhpDateTime;
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\Form\FormInterface;
 use Zend\Validator\ValidatorInterface;
 use Zend\Validator\Date as DateValidator;
-use Zend\Form\Exception\InvalidArgumentException;
 use Exception;
 
 class DateSelect extends MonthSelect
@@ -33,9 +33,9 @@ class DateSelect extends MonthSelect
      */
     public function __construct($name = null, $options = array())
     {
-        parent::__construct($name, $options);
-
         $this->dayElement = new Select('day');
+
+        parent::__construct($name, $options);
     }
 
     /**

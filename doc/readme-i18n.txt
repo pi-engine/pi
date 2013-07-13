@@ -1,12 +1,12 @@
 
-* usr/locale: Global
+* usr/locale: Global, locale folder name must be in lower case
   * /en
     * main.csv: General
     * navigation.csv: Navigation and menu
     * ...
-  * /zh-CN
+  * /zh-cn
     * ...
-* usr/module/demo: Module
+* usr/module/demo: Module, locale folder name must be in lower case
   * /en
     * /mail: Mail templates
       * mail-template.phtml
@@ -16,7 +16,7 @@
     * config.csv: Config edit
     * feed.csv: Feed
     * ...
-  * /zh-CN
+  * /zh-cn
     * ...
 
 

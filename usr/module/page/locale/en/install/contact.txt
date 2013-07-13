@@ -1,9 +1,15 @@
-Please use the form below to contact OSI. If you have a specific enquiry, please select the relevant category.
+Please contact us with following contacts:
 
-To contact OSI by mail, please write to:
+Email: dev@xoopsengine.org
+Pi Engine Team: https://github.com/pi-engine/pi/wiki/Pi-Team
+Pi Engine Website: http://www.pi-engine.org
+Pi Engine Github: http://github.com/pi-engine
+Pi Engine Code: https://github.com/pi-engine/pi
+Pi Engine Docs: https://github.com/pi-engine/pi/wiki
+Pi Engine Tickets: https://github.com/pi-engine/pi/issues
+Pi Engine Google+: https://plus.google.com/communities/113415243547871753745
 
-Open Source Initiative
-855 El Camino Real
-Ste 13A, #270
-Palo Alto, CA 94301
-United States
+Pi demo websites:
+Pi Dialogue: http://pialog.org; http://pialogue.org
+Pi Demo: http://pi-demo.org
+Xoops/Pi: http://demo.xoopsengine.org

@@ -14,7 +14,7 @@ define('APPLICATION_ENV', 'production');
  */
 include '../../../boot.php';
 // Load session resource which is required by CKfinder
-Pi::engine()->loadResource('session');
+Pi::engine()->bootResource('session');
 //$session = Pi::service('session')->ckfinder;
 $session = $_SESSION['PI_CKFINDER'];
 /*

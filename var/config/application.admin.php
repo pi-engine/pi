@@ -12,13 +12,18 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @version         $Id$
  */
 
+// Inherite from front
 $config = include __DIR__ . '/application.front.php';
+
 // Translations
-$config['resource']['i18n']['translator']['global'][] = 'usr:admin';
-$config['resource']['i18n']['translator']['module'][] = 'admin';
+$config['resource']['i18n'] = array(
+    'translator'    => array(
+        'global'    => array('user:main', 'usr:admin'),
+        'module'    => array('main', 'admin'),
+    ),
+);
 
 // Permission ACL
 $config['resource']['acl'] = array(
@@ -51,5 +56,8 @@ $config['resource']['audit'] = array(
 
 // Admin mode detection
 $config['resource']['adminmode'] = array();
+
+// Application service configuration
+$config['application']['view_manager']['layout'] = 'layout-admin';
 
 return $config;

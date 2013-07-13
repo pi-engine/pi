@@ -1,6 +1,0 @@
-
-Helper\Navigation\AbstractHelper.php
-Helper\Navigation\Menu.php
-
-Strategy\FeedStrategy.php
-Strategy\JsonStrategy.php

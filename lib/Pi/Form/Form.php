@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
- * @version         $Id$
  */
 namespace Pi\Form;
 
@@ -39,27 +37,16 @@ class Form extends ZendForm
     protected $groups;
 
     /**
-     * Constructor
-     *
-     * @param null|string|int $name Optional name for the element
+     * {@inheritdoc}
      */
-    public function __construct($name = null)
+    public function __construct($name = null, $options = array())
     {
-        parent::__construct($name);
+        parent::__construct($name, $options);
         $this->init();
     }
 
     /**
-     * Prepare elements for the form, optional
-     */
-    public function init() {}
-
-    /**
-     * Retrieve composed form factory
-     *
-     * Lazy-loads one if none present.
-     *
-     * @return Factory
+     * {@inheritdoc}
      */
     public function getFormFactory()
     {
@@ -70,7 +57,12 @@ class Form extends ZendForm
     }
 
     /**
-     * Get list of elements for form view
+     * Prepare elements for the form, optional
+     */
+    public function init() {}
+
+    /**
+     * Get list of elements for form view divided as active and hidden
      *
      * @return array
      */
@@ -120,6 +112,7 @@ class Form extends ZendForm
 
     /**
      * Get assembled message
+     *
      * @param bool $OnlyHidden  Return only hidden field messages
      * @param string $delimiter
      * @return string

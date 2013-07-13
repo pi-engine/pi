@@ -31,7 +31,7 @@ class Bcrypt implements PasswordInterface
     protected $salt;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $backwardCompatibility = false;
 
@@ -97,7 +97,7 @@ class Bcrypt implements PasswordInterface
             }
         }
         $hash = crypt($password, $prefix . $this->cost . '$' . $salt64);
-        if (strlen($hash) <= 13) {
+        if (strlen($hash) < 13) {
             throw new Exception\RuntimeException('Error during the bcrypt generation');
         }
         return $hash;
@@ -108,17 +108,38 @@ class Bcrypt implements PasswordInterface
      *
      * @param  string $password
      * @param  string $hash
+     * @throws Exception\RuntimeException when the hash is unable to be processed
      * @return bool
      */
     public function verify($password, $hash)
     {
-        return ($hash === crypt($password, $hash));
+        $result = crypt($password, $hash);
+        if ($result === $hash) {
+            return true;
+        }
+        if (strlen($result) <= 13) {
+            /* This should only happen if the algorithm that generated hash is
+             * either unsupported by this version of crypt(), or is invalid.
+             *
+             * An example of when this can happen, is if you generate
+             * non-backwards-compatible hashes on 5.3.7+, and then try to verify
+             * them on < 5.3.7.
+             *
+             * This is needed, because version comparisons are not possible due
+             * to back-ported functionality by some distributions.
+             */
+            throw new Exception\RuntimeException(
+                'The supplied password hash could not be verified. Please check ' .
+                'backwards compatibility settings.'
+            );
+        }
+        return false;
     }
 
     /**
      * Set the cost parameter
      *
-     * @param  integer|string $cost
+     * @param  int|string $cost
      * @throws Exception\InvalidArgumentException
      * @return Bcrypt
      */
@@ -177,19 +198,19 @@ class Bcrypt implements PasswordInterface
     /**
      * Set the backward compatibility $2a$ instead of $2y$ for PHP 5.3.7+
      *
-     * @param boolean $value
+     * @param bool $value
      * @return Bcrypt
      */
     public function setBackwardCompatibility($value)
     {
-        $this->backwardCompatibility = (boolean) $value;
+        $this->backwardCompatibility = (bool) $value;
         return $this;
     }
 
     /**
      * Get the backward compatibility
      *
-     * @return boolean
+     * @return bool
      */
     public function getBackwardCompatibility()
     {

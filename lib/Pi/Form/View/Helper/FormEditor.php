@@ -12,10 +12,8 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Form
  * @subpackage      View
- * @version         $Id$
  */
 
 namespace Pi\Form\View\Helper;
@@ -35,7 +33,7 @@ class FormEditor extends AbstractHelper
      *
      * @param  ElementInterface|null $element
      * @param  boolean $wrap
-     * @return string|FormFieldset
+     * @return string|FormEditor
      */
     public function __invoke(ElementInterface $element = null)
     {
