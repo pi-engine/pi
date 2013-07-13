@@ -1,4 +1,3 @@
-
 Pi Engine Github Skeleton
 =========================
 
@@ -17,6 +16,10 @@ Pi Engine Theme
 ---------------
 * [pi-theme](https://github.com/pi-theme): repos for themes
 * Each theme has its ownrepo, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
+
+Pi Engine Asset
+---------------
+* [pi-asset](https://github.com/pi-asset): repos for assets: [images](https://github.com/pi-asset/image), [pdfs/files](https://github.com/pi-asset/file), videos, etc.
  
 Pi Engine Extras
 ----------------
