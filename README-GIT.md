@@ -12,7 +12,7 @@ Checkout from Pi Engine project (readonly)
 
 Make a new fork
 ---------------
-* Fork from [Pi Engine Repo](https://github.com/pi-engine/pi) following [Image guide](https://raw.github.com/pi-asset/image/master/git-fork.png)
+* Fork from [Pi Engine Repo](https://github.com/pi-engine/pi) following ![Image guide](https://raw.github.com/pi-asset/image/master/git-fork.png)
 
 
 Working with forked repo
@@ -52,9 +52,9 @@ Pi Engine Github Skeleton
 Pi Engine Core
 ----------------
 * [pi-engine/pi](https://github.com/pi-engine/pi): Pi Engine core repo
-  *[branch/master] (https://github.com/pi-engine/pi): Stable code in development
-  *[branch/develop] (https://github.com/pi-engine/pi/tree/develop): Code in active development
-  *[tag/release-{20130314}] (https://github.com/pi-engine/pi/tree/release-pi-day): Release tags
+  * [branch/master] (https://github.com/pi-engine/pi): Stable code in development
+  * [branch/develop] (https://github.com/pi-engine/pi/tree/develop): Code in active development
+  * [tag/release-{20130314}] (https://github.com/pi-engine/pi/tree/release-pi-day): Release tags
 * [pi-engine/pi/wiki](https://github.com/pi-engine/pi/wiki): Pi Engine documents
 
 
