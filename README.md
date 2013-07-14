@@ -37,7 +37,7 @@ Quick start
 Development
 ----------
 
-You may contribute to Pi at github by submitting your code to Pi repo with **[Pull Request](https://help.github.com/articles/using-pull-requests)** or submitting bug reports and feature requests to **[Issue Tracker](https://github.com/pi-engine/pi/issues)**.
+You may contribute to Pi Engine by [working on Pi code](https://github.com/pi-engine/pi/blob/master/README-GIT.md) and submit to Pi repo with **[Pull Request](https://help.github.com/articles/using-pull-requests)** or submitting bug reports and feature requests to **[Issue Tracker](https://github.com/pi-engine/pi/issues)**.
 
 
 Copyright and License
