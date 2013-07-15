@@ -2,7 +2,6 @@
 body {
   background: #f5f5f5;
 }
-
 /* Layout */
 .pi-nav-container {
   margin-bottom: 20px;
@@ -46,33 +45,38 @@ body {
 
 /* Logo: image, headline, tagline */
 .pi-logo {
-    float: left;
-    font-family: sans-serif, Arial;
+  float: left;
+  font-family: sans-serif, Arial;
 }
-.pi-logo img {}
+
+.pi-logo img {
+  ;
+}
+
 .pi-logo a {
-    text-decoration: none;
+  text-decoration: none;
 }
+
 .pi-logo a:hover {
-    color: #0088CC;
+  color: #0088CC;
 }
 
 .pi-logo-symbol {
-    font-size: 64px;
-    line-height: 0;
-    text-transform: lowercase;
-    display: none;
+  font-size: 64px;
+  line-height: 0;
+  text-transform: lowercase;
+  display: none;
 }
 
 .pi-logo-headline {
-    font: bold 40px Georgia, monospace, Arial;
+  font: bold 40px Georgia, monospace, Arial;
 }
 
 .pi-logo-tagline {
-    color: #0088CC;
-    font-style: normal;
-    font-size: .9em;
-    display: block;
+  color: #0088CC;
+  font-style: normal;
+  font-size: .9em;
+  display: block;
 }
 
 /* User bar */
@@ -191,32 +195,40 @@ body {
   padding: 0;
 }
 
-/*
 .pi-zone-0 .carousel {
   margin-bottom: 0;
 }
-*/
+
+.pi-zone-0 {
+  margin-bottom: 20px;
+}
 
 .pi-zone-1 {
   width: 220px;
 }
 
 .pi-zone-2 {
+  ;
 }
 
 .pi-zone-3 {
+  ;
 }
 
 .pi-zone-4 {
+  ;
 }
 
 .pi-zone-5 {
+  ;
 }
 
 .pi-zone-6 {
+  ;
 }
 
 .pi-zone-7 {
+  ;
 }
 
 .pi-zone-8 {
@@ -229,11 +241,15 @@ body {
 
 /* Block */
 .pi-block {
-  margin-bottom: 20px;
+  margin-top: 20px;
   background: #fff;
   box-shadow: 0 1px 3px #bababa;
   border: 1px solid #cecece \9;
   border-radius: 3px;
+}
+
+.pi-block:first-child {
+  margin-top: 0;
 }
 
 .pi-block-header {
