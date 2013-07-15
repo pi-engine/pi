@@ -18,32 +18,33 @@
             <?php } ?>
         </ul>
     </div>
-
     <div class="span10">
         <h3 class="page-header"><?php _e('Module operation access'); ?></h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 35%;"><?php _e('Modules'); ?>
-                    <th style="width: 35%;"><?php _e('Action'); ?>
-                    <th style="width: 30%;"><?php _e('Status'); ?>
-            <tbody id="js-modules-admin">
+                    <th style="width: 35%;"><?php _e('Modules'); ?></th>
+                    <th style="width: 35%;"><?php _e('Action'); ?></th>
+                    <th style="width: 30%;"><?php _e('Status'); ?></th>
+                </tr>    
+            </thead>        
+            <tbody id="js-modules-admin"></tbody> 
         </table>
         <h3 class="page-header"><?php _e('Module management access'); ?></h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 35%;"><?php _e('Modules'); ?>
-                    <th style="width: 35%;"><?php _e('Action'); ?>
-                    <th style="width: 30%;"><?php _e('Status'); ?>
-            <tbody id="js-modules-manage">
+                    <th style="width: 35%;"><?php _e('Modules'); ?></th>
+                    <th style="width: 35%;"><?php _e('Action'); ?></th>
+                    <th style="width: 30%;"><?php _e('Status'); ?></th>
+                </tr>    
+            </thead>        
+            <tbody id="js-modules-manage"></tbody> 
         </table>
     </div>
-
-
 </div>
 <script id="temp-module" type="text/template">
-    <td><%= title %>
+    <td><%= title %></td>
     <td>
         <div class="btn-group">
             <button class="btn">
@@ -67,30 +68,38 @@
                     <% if (direct > 0) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    </li>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                    </li>
                     <% } else {  %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
-                    <li>
+                   </li>
+                   <li>
                         <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                   </li> 
                     <% } %>
                 <% } else { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    </li>
                     <% if (perm < 1) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    </li>
                     <% } %>
                 <% } %>
             </ul>
         </div>
+    </td>    
     <td>
         <% if (perm > 0) { %>
         <span class="label label-success"><?php _e('Allowed'); ?></span>
         <% } else { %>
         <span class="label label-important"><?php _e('Denied'); ?></span>
         <% } %>
+    </td>
 </script>
 
 

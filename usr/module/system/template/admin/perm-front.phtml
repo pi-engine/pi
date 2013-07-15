@@ -14,6 +14,7 @@
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
                 <a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'front', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
+            </li>
             <?php } ?>
         </ul>
     </div>
@@ -21,17 +22,21 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 35%;"><?php _e('Modules'); ?>
-                    <th style="width: 35%;"><?php _e('Action'); ?>
-                    <th style="width: 30%;"><?php _e('Status'); ?>
-            <tbody id="js-modules">
+                    <th style="width: 35%;"><?php _e('Modules'); ?></th>
+                    <th style="width: 35%;"><?php _e('Action'); ?></th>
+                    <th style="width: 30%;"><?php _e('Status'); ?></th>
+                </tr>    
+            </thead>
+            <tbody id="js-modules"></tbody>
         </table>
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 35%;"><?php _e('Blocks'); ?>
-                    <th style="width: 35%;"><?php _e('Action'); ?>
-                    <th style="width: 30%;"><?php _e('Status'); ?>
+                    <th style="width: 35%;"><?php _e('Blocks'); ?></th>
+                    <th style="width: 35%;"><?php _e('Action'); ?></th>
+                    <th style="width: 30%;"><?php _e('Status'); ?></th>
+                </tr>     
+            </thead>
             <tbody id="js-blocks">
                <?php foreach ($modules as $item) { ?>
                <tr class="js-perm-parent">
@@ -39,12 +44,15 @@
                        <i class="icon-plus"></i>
                        <i class="icon-minus"></i>
                        <span style="margin-left: 10px;"><?php echo $this->escape($item['title']); ?></span>
+                   </td>    
+               </tr>
                <?php } ?>
+            </tbody>   
         </table>
     </div>
 </div>
 <script id="temp-item" type="text/template">
-    <td><%= title %>
+    <td><%= title %></td>
     <td>
         <div class="btn-group">
             <button class="btn">
@@ -68,30 +76,38 @@
                     <% if (direct > 0) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    </li>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                    </li>
                     <% } else{  %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    </li>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="inherit"><?php _e('Inherit'); ?></a>
+                    </li>
                     <% } %>
                 <% } else { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="allow"><?php _e('Allow'); ?></a>
+                    </li>
                     <% if (perm < 1) { %>
                     <li>
                         <a href="javascript:void(0)" class="js-action" data-action="deny"><?php _e('Deny'); ?></a>
+                    </li>
                     <% } %>
                 <% } %>
             </ul>
         </div>
+    </td>
     <td>
         <% if (perm > 0) { %>
         <span class="label label-success"><?php _e('Allowed'); ?></span>
         <% } else { %>
         <span class="label label-important"><?php _e('Denied'); ?></span>
         <% } %>
+    </td>
 </script>
 <script>
 (function() {

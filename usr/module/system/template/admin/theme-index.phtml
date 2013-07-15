@@ -29,7 +29,7 @@
     <fieldset style="margin-bottom:20px;">
         <legend><?php _e('Theme in use'); ?></legend>
         <div class="media" style="margin-top: 0;">
-            <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo $this->escape($theme['title']); ?>" class="pull-left" style="width: 300px;">
+            <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo $this->escape($theme['title']); ?>" class="pull-left" style="width: 300px;" />
             <div class="media-body">
                 <h4 class="media-heading"><?php echo $this->escape($theme['title']); ?></h4>
                 <h5><?php echo $theme['version']; ?></h5>
@@ -45,7 +45,6 @@
         </div>
     </fieldset>
 </div>
-
 <script type="text/template" id="temp-theme">
     <a class="theme-screenshot">
         <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>">
@@ -57,11 +56,11 @@
             <span class="no-select btn btn-link theme-detail"><?php _e('Detail'); ?></span>   
         </div>
         <dl class="hide">
-            <dt><?php _e('Version'); ?>
-            <dd><%= version %>
-            <dt><?php _e('Description'); ?>
-            <dd><%= description %>
-        <dl>        
+            <dt><?php _e('Version'); ?></dt>
+            <dd><%= version %></dd>
+            <dt><?php _e('Description'); ?></dt>
+            <dd><%= description %></dd>
+        </dl>        
     </div>    
 </script>
 <script>

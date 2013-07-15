@@ -13,26 +13,30 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 20%;"><?php _e('Title'); ?>
-                <th style="width: 30%;"><?php _e('Description'); ?>
-                <th style="width: 20%;"><?php _e('Related pages'); ?>
-                <th><?php _e('Action'); ?>
+                <th style="width: 20%;"><?php _e('Title'); ?></th>
+                <th style="width: 30%;"><?php _e('Description'); ?></th>
+                <th style="width: 20%;"><?php _e('Related pages'); ?></th>
+                <th><?php _e('Action'); ?></th>
+            </tr>
+        </thead>
         <tbody>
             <?php foreach ($blocks as $block) { ?>
             <tr data-id="<?php echo $block['id']; ?>">
                 <td>
                     <span class="block-title"><?php echo $this->escape($block['title']); ?></span>
-
+                </td>
                 <td>
                     <?php echo $this->escape($block['description']); ?>
+                </td>
                 <td>
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                             <?php _e('pages'); ?>
                             <span  class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu nav nav-list">
+                        <ul class="dropdown-menu nav nav-list"></ul>
                     </div>
+                </td>
                 <td>
                     <div class="btn-group btns-indent">
                         <a class="btn btn-link"  href="<?php echo $this->url('', array('action' => 'edit', 'id' => $block['id'], 'name' => $block['module'])); ?>"><?php _e('Edit'); ?></a>
@@ -42,7 +46,10 @@
                         <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'clone', 'root' => $block['root'], 'name' => $block['module'])); ?>"><?php _e('Clone'); ?></a>
                         <?php } ?>
                     </div>
+                </td>    
+            </tr>
             <?php } ?>
+        </tbody>
     </table>
     <?php } ?>
 </div>
@@ -52,7 +59,7 @@
     <li>
         <strong class="nav-header"><%= item.title %></strong>
         <% _.each(item.pages,function(page) { %>
-        <li><a href="<%= page.url %>"><%= page.title %></a>
+        <li><a href="<%= page.url %>"><%= page.title %></a></li>
         <% }); %>
     </li>
     <% }); %>
