@@ -14,41 +14,52 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php _e('Icon'); ?>
-                <th style="width: 15%;"><?php _e('Title'); ?>
-                <th style="width: 15%;"><?php _e('Version'); ?>
-                <th style="width: 30%;"><?php _e('Description'); ?>
-                <th><?php _e('Action'); ?>
+                <th style="width: 10%;"><?php _e('Icon'); ?></th>
+                <th style="width: 15%;"><?php _e('Title'); ?></th>
+                <th style="width: 15%;"><?php _e('Version'); ?></th>
+                <th style="width: 30%;"><?php _e('Description'); ?></th>
+                <th><?php _e('Action'); ?></th>
+            </tr>
+        </thead>
         <tbody>
             <?php foreach ($modules as $directory => $module) { ?>
             <tr class="module-item"
                 data-name="<?php echo $directory; ?>"
                 data-clone="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
                 <td>
-                    <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
+                    <div class="module-item-logo">
+                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
+                    </div>
+                </td>
                 <td>
-                    <strong><?php echo $this->escape($module['meta']['title']); ?></strong>
+                    <div class="module-item-title">
+                        <strong><?php echo $this->escape($module['meta']['title']); ?></strong>
+                    </div>
+                </td>
                 <td>
                     <?php echo $module['meta']['version']; ?>
+                </td>
                 <td>
                     <div class="module-p"><?php echo $this->escape($module['meta']['description']); ?></div>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">
-                            <dt><?php _e('Directory:'); ?>
-                            <dd><?php echo $directory; ?>
-                            <dt><?php _e('Author:'); ?>
+                            <dt><?php _e('Directory:'); ?></dt>
+                            <dd><?php echo $directory; ?></dd>
+                            <dt><?php _e('Author:'); ?></dt>
                             <dd>
                                 <?php if (!empty($module['author']['website'])) { ?>
                                 <a href="<?php echo $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
                                 <?php } ?>
                                 <?php echo $module['author']['email'];  ?>
-                             <?php if (!empty($module['meta']['demo'])) { ?>
-                             <dt><?php _e('Demo:'); ?>
-                             <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a>
-                             <?php } ?>
+                            </dd>   
+                            <?php if (!empty($module['meta']['demo'])) { ?>
+                            <dt><?php _e('Demo:'); ?></dt>
+                            <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a></dd>
+                            <?php } ?>
                         </dl>
                     </div>
+                </td>
                 <td>
                     <div class="btn-group">
                     <?php
@@ -65,7 +76,10 @@
                     <span class="btn module-clone"><?php _e('Clone'); ?></span>
                     <?php } ?>
                     </div>
+                </td>
+            </tr>        
             <?php } ?>
+        </tbody>
     </table>
 </div>
 <script>

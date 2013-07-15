@@ -4,20 +4,22 @@
     $this->backbone();
 ?> 
 <div id="page-list-page" class="page-list-page">
-
     <?php foreach ($pagesBySection as $key => $section) { ?>
     <fieldset>
         <legend><?php echo $key; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php _e('Setup a page'); ?></button><?php } ?></legend>
         <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 40%;"><?php _e('Title'); ?>
-                <th><?php _e('Action'); ?>
+                <th style="width: 40%;"><?php _e('Title'); ?></th>
+                <th><?php _e('Action'); ?></th>
+            </tr>    
+        </thead>
         <tbody>
             <?php foreach ($section['pages'] as $page) { ?>
             <tr data-id="<?php echo $page['id']; ?>">
                 <td>
                     <?php echo $this->escape($page['title']); ?>
+                </td>
                 <td>
                     <div class="btn-group btns-indent">
                         <?php if ($page['id']) { ?>
@@ -30,11 +32,13 @@
                             <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
                         <?php } ?>
                     </div>
+                </td>    
+            </tr>
             <?php } ?>
+         </tbody>   
         </table>
     </fieldset>
     <?php } ?>
-
 </div>
 <script>
 (function($) {

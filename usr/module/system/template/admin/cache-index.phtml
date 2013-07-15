@@ -12,38 +12,51 @@
 <table class="table table-hover table-condensed" id="cache-list">
     <thead>
         <tr>
-            <th style="width: 250px;"><?php _e('Title'); ?>
-            <th><?php _e('Action'); ?>
+            <th style="width: 250px;"><?php _e('Title'); ?></th>
+            <th><?php _e('Action'); ?></th>
+    </thead>
     <tbody>
         <tr>
-            <td>
+            <td></td>
             <td>
                 <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'all')); ?>"><?php _e('Flush all'); ?></span>
+            </td>
+        </tr>
         <?php foreach ($list as $name => $label) { ?>
         <tr>
-            <td><?php echo $this->escape($label); ?>
+            <td><?php echo $this->escape($label); ?></td>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => $name)); ?>"><?php _e('Flush'); ?></span>
+            </td>
+        </tr>
         <?php } ?>
         <?php if (!empty($page)) { ?>
         <?php foreach ($page['modules'] as $name) { ?>
         <tr>
-            <td><?php echo $name; ?>
+            <td><?php echo $name; ?></td>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page', 'item' => $name)); ?>"><?php _e('Flush'); ?></span>
+            </td>
+        </tr>
         <?php } ?>
         <?php } ?>
         <tr>
-            <td><?php _e('Registry'); ?>
+            <td><?php _e('Registry'); ?></td>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>"><?php _e('Flush'); ?></span>
+		      </td>
+        </tr>
         <?php foreach ($registry as $name) { ?>
         <tr>
             <td>
                 <span class="gutter-large"><?php echo $name; ?></span>
+            </td>
             <td>
                 <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php _e('Flush'); ?></span>
+            </td>
+        </tr>
         <?php } ?>
+    </tbody>
 </table>
 
 
