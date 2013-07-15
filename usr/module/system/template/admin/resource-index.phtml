@@ -30,12 +30,12 @@
                     <th><?php _e('Status'); ?></th>
                 </tr>
             </thead>        
-            <tbody id="js-resources">
+            <tbody id="js-resources"></tbody>
         </table>
     </div>
 </div>
 <script id="temp-resource" type="text/template">
-    <td><%= title %>
+    <td><%= title %></td>
     <td>
         <div class="btn-group">
             <button class="btn">
@@ -77,12 +77,14 @@
                 <% } %>
             </ul>
         </div>
+    </td>    
     <td>
         <% if (perm > 0) { %>
         <span class="label label-success"><?php _e('Allowed'); ?></span>
         <% } else { %>
         <span class="label label-important"><?php _e('Denied'); ?></span>
         <% } %>
+    </td>   
 </script>
 <script>
     var ResourceItemView = Backbone.View.extend({

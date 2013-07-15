@@ -13,44 +13,54 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php _e('Logo'); ?>
-                <th style="width: 15%;"><?php _e('Title'); ?>
-                <th style="width: 10%;"><?php _e('Version'); ?>
-                <th style="width: 15%;"><?php _e('Last Update'); ?>
-                <th style="width: 30%;"><?php _e('Description'); ?>
-                <th><?php _e('Action'); ?>
+                <th style="width: 10%;"><?php _e('Logo'); ?></th>
+                <th style="width: 15%;"><?php _e('Title'); ?></th>
+                <th style="width: 10%;"><?php _e('Version'); ?></th>
+                <th style="width: 15%;"><?php _e('Last Update'); ?></th>
+                <th style="width: 30%;"><?php _e('Description'); ?></th>
+                <th><?php _e('Action'); ?></th>
+            </tr>    
+        </thead>        
         <tbody>
             <?php foreach ($modules as $module) { ?>
             <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
                 <td>
-                    <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
+                    <div class="module-item-logo">
+                        <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
+                    </div>
+                </td>    
                 <td>
                     <div class="module-item-title">
-                        <p><strong><?php echo $module['title']; ?></strong>
+                        <p><strong><?php echo $module['title']; ?></strong></p>
                         <div class="hide module-title-input">
                             <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
                         </div> 
                         <a href="javascript:void(0)" class="invisible rename-action"><?php _e('Rename'); ?></a>
                     </div>
+                </td>    
                 <td>
                     <?php echo $module['version']; ?>
+                </td>    
                 <td>
                     <p><?php echo $module['update']; ?></p>
                     <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php _e('update'); ?></a>
+                </td>
                 <td>
                     <p><?php echo $module['description']; ?></p>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">
-                            <dt><?php _e('Name:'); ?>
-                            <dd><?php echo $module['name']; ?>
-                            <dt><?php _e('Directory:'); ?>
-                            <dd><?php echo $module['directory']; ?>
-                            <dt><?php _e('Author:'); ?>
+                            <dt><?php _e('Name:'); ?></dt>
+                            <dd><?php echo $module['name']; ?></dd>
+                            <dt><?php _e('Directory:'); ?></dt>
+                            <dd><?php echo $module['directory']; ?></dd>
+                            <dt><?php _e('Author:'); ?></dt>
                             <dd>
                                 <?php $author = $module['author']; echo sprintf('<a href="%s" target="_blank">%s</a><br>%s', $author['website'], $author['website'], $author['email']); ?>
+                            </dd>
                         </dl>
                     </div>
+                </td>
                 <td>
                     <div class="btn-group">
                         <?php 
@@ -63,7 +73,10 @@
                             echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Are you sure uninstall this module?') ,__('Uninstall'));
                         } ?>
                     </div>
+                </td>    
+            </tr>        
             <?php } ?>
+        </tbody>     
     </table>
 </div>
 <script>

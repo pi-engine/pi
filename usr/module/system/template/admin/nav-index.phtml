@@ -11,28 +11,36 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 250px;"><?php _e('Title'); ?>
-                <th style="width: 200px;"><?php _e('Setup'); ?>
-                <th style="width: 200px;"><?php _e('Related'); ?>
-                <th><?php _e('Action'); ?>
+                <th style="width: 250px;"><?php _e('Title'); ?></th>
+                <th style="width: 200px;"><?php _e('Setup'); ?></th>
+                <th style="width: 200px;"><?php _e('Related'); ?></th>
+                <th><?php _e('Action'); ?></th>
+            </tr>    
+        </thead>        
         <tbody>
             <tr class="none-set">
-                <td>
+                <td></td>
                 <td colspan="3">
                     <span class="btn <?php if (!$navGlobal) { echo 'btn-primary active'; } else { echo 'js-apply'; } ?>"><?php _e('None to use'); ?></span>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
 <script id="temp-nav" type="text/template">
     <td>
         <%- title %>
+    </td>    
     <td>
         <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php _e('Set global'); ?></span>
+    </td>
     <td>
         <% if(module) { %>
         <%= module %>
         <% } else { %>
         <?php _e('Custom'); ?>
         <% } %>
+    </td>
     <td>
         <div class="btn-group btns-indent">
             <% if(module) { %>
@@ -43,6 +51,7 @@
             <span class="btn btn-link js-delete"><?php _e('Delete'); ?></span>
             <% } %>    
         </div>
+    </td>    
 </script>
 <script>
 (function($){
