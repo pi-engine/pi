@@ -37,14 +37,10 @@
                          <fieldset>
                              <legend><?php _e('Author information'); ?></legend>
                              <dl class="dl-horizontal">
-                                 <dt><?php _e('Name:'); ?>
-                                 <dd><?php echo $data['author']['name']; ?>
-                                 <dt><?php _e('Email:'); ?>
-                                 <dd><?php echo $data['author']['email']; ?>
-                                 <dt><?php _e('Website:'); ?>
-                                 <dd><?php echo $data['author']['website']; ?>
-                                 <dt><?php _e('Credits:'); ?>
-                                 <dd><?php echo $data['author']['credits']; ?>
+                                <?php foreach ($data['author'] as $key => $value) {
+                                    echo '<dt>' . _escape($key) . ':';
+                                    echo '<dd>' . _escape($value);
+                                }?>
                              </dl>
                          </fieldset>
                      </div>

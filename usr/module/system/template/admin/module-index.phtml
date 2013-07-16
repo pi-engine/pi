@@ -19,8 +19,8 @@
                 <th style="width: 15%;"><?php _e('Last Update'); ?></th>
                 <th style="width: 30%;"><?php _e('Description'); ?></th>
                 <th><?php _e('Action'); ?></th>
-            </tr>    
-        </thead>        
+            </tr>
+        </thead>
         <tbody>
             <?php foreach ($modules as $module) { ?>
             <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
@@ -28,19 +28,19 @@
                     <div class="module-item-logo">
                         <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
                     </div>
-                </td>    
+                </td>
                 <td>
                     <div class="module-item-title">
                         <p><strong><?php echo $module['title']; ?></strong></p>
                         <div class="hide module-title-input">
                             <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
-                        </div> 
+                        </div>
                         <a href="javascript:void(0)" class="invisible rename-action"><?php _e('Rename'); ?></a>
                     </div>
-                </td>    
+                </td>
                 <td>
                     <?php echo $module['version']; ?>
-                </td>    
+                </td>
                 <td>
                     <p><?php echo $module['update']; ?></p>
                     <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php _e('update'); ?></a>
@@ -54,18 +54,20 @@
                             <dd><?php echo $module['name']; ?></dd>
                             <dt><?php _e('Directory:'); ?></dt>
                             <dd><?php echo $module['directory']; ?></dd>
-                            <dt><?php _e('Author:'); ?></dt>
-                            <dd>
-                                <?php $author = $module['author']; echo sprintf('<a href="%s" target="_blank">%s</a><br>%s', $author['website'], $author['website'], $author['email']); ?>
-                            </dd>
+                            <dt><?php _e('Author'); ?></dt>
+                            <dd>&nbsp;</dd>
+                            <?php foreach ($module['author'] as $key => $value) {
+                                echo '<dt>' . _escape($key) . ':</dt>';
+                                echo '<dd>' . _escape($value) . '</dd>';
+                            }?>
                         </dl>
                     </div>
                 </td>
                 <td>
                     <div class="btn-group">
-                        <?php 
+                        <?php
                         if($module['name'] != 'system') {
-                            if ($module['active']) { 
+                            if ($module['active']) {
                                 echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), __('Disable'));
                             } else {
                                 echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), __('Enable'));
@@ -73,10 +75,10 @@
                             echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Are you sure uninstall this module?') ,__('Uninstall'));
                         } ?>
                     </div>
-                </td>    
-            </tr>        
+                </td>
+            </tr>
             <?php } ?>
-        </tbody>     
+        </tbody>
     </table>
 </div>
 <script>

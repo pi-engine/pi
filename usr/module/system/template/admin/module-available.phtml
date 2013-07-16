@@ -46,17 +46,11 @@
                         <dl class="dl-horizontal">
                             <dt><?php _e('Directory:'); ?></dt>
                             <dd><?php echo $directory; ?></dd>
-                            <dt><?php _e('Author:'); ?></dt>
-                            <dd>
-                                <?php if (!empty($module['author']['website'])) { ?>
-                                <a href="<?php echo $module['author']['website']; ?>" target="_blank"><?php echo $this->escape($module['author']['name']);  ?></a><br>
-                                <?php } ?>
-                                <?php echo $module['author']['email'];  ?>
-                            </dd>   
-                            <?php if (!empty($module['meta']['demo'])) { ?>
-                            <dt><?php _e('Demo:'); ?></dt>
-                            <dd><a href="<?php echo $module['meta']['demo']; ?>" target="_blank"><?php _e('In action'); ?></a></dd>
-                            <?php } ?>
+                            <dd>&nbsp;
+                            <?php foreach ($module['author'] as $key => $value) {
+                                echo '<dt>' . _escape($key) . ':</dt>';
+                                echo '<dd>' . _escape($value) . '</dd>';
+                            }?>
                         </dl>
                     </div>
                 </td>
@@ -77,7 +71,7 @@
                     <?php } ?>
                     </div>
                 </td>
-            </tr>        
+            </tr>
             <?php } ?>
         </tbody>
     </table>
