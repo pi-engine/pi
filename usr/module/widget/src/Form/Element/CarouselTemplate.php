@@ -28,6 +28,7 @@ class CarouselTemplate extends Select
         $styles = array(
             'carousel-bootstrap'     => __('Bootstrap slide'),
             'carousel-jcarousel'    => __('jCarousel riding Carousel'),
+            'carousel-parallax'    => __('Parallax Content Slider'),
         );
         return $styles;
     }
