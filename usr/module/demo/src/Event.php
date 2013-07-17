@@ -13,22 +13,22 @@
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @since           3.0
- * @package         Demo
+ * @package         Module\Demo
  * @version         $Id$
  */
 
-namespace App\Demo;
+namespace Module\Demo;
 
 class Event
 {
     public static function message($data, $module)
     {
-        \Debug::e("Called by {$module} through " . __METHOD__);
+        d("Called by {$module} through " . __METHOD__);
     }
 
     public static function selfcall($data, $module)
     {
-        \Debug::e("Called by {$module} through " . __METHOD__);
+        d("Called by {$module} through " . __METHOD__);
     }
 
     public static function moduleupdate($data, $module)
