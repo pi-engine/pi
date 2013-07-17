@@ -12,13 +12,12 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @category        Module
- * @package         Demo
- * @version         $Id$
+ * @category        Pi
+ * @package         Module\Demo
  */
 
 namespace Module\Demo;
+
 use Pi\Application\Bootstrap\ModuleBootstrap;
 
 class Bootstrap extends ModuleBootstrap

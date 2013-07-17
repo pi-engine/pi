@@ -12,9 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
  * @package         Pi\Markup
- * @version         $Id$
  */
 
 namespace Pi\Markup\Renderer;
@@ -27,9 +25,7 @@ use Zend\Stdlib\ArrayUtils;
 /**
  * Defines the basic rendering functionality
  *
- * @category   Zend
- * @package    Zend_Markup
- * @subpackage Renderer
+ * @see    Zend_Markup
  */
 abstract class AbstractRenderer
 {
