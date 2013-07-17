@@ -1,0 +1,40 @@
+<?php 
+	// Load jQuerty  
+	$this->jQuery();
+	// Load css   
+	$this->css(array(
+	    $this->assetModule('script/parallax/style.css', 'widget'),
+	));
+	// Load js   
+	$this->js(array(
+	    $this->assetModule('script/parallax/modernizr.js', 'widget'),
+	    $this->assetModule('script/parallax/jquery.cslider.js', 'widget'),
+	));
+	// Setting as footscript
+	$script = "$(function() {
+			$('#da-slider').cslider({
+				autoplay	: true,
+			});
+		});";
+	$this->footScript()->appendScript($script);	
+	// Load Google font
+	$this->HeadLink(array(
+		'href' => 'http://fonts.googleapis.com/css?family=Economica:700,400italic',
+		'rel' => 'stylesheet',
+		'type' => 'text/css',
+	));
+?>
+<div id="da-slider" class="da-slider">
+	<?php foreach ($block['items'] as $item) { ?>
+	<div class="da-slide">
+		<h2><?php echo $this->escape($item['caption']); ?></h2>
+		<p><?php echo $this->escape($item['desc']); ?></p>
+		<a title="<?php echo $this->escape($item['caption']); ?>" href="<?php echo $this->escape($item['link']); ?>" class="da-link"><?php _e('More'); ?></a>
+		<div class="da-img"><img src="<?php echo $this->escape($item['image']); ?>" alt="<?php echo $this->escape($item['caption']); ?>" /></div>
+	</div>
+	<?php } ?>
+	<nav class="da-arrows">
+		<span class="da-arrows-prev"></span>
+		<span class="da-arrows-next"></span>
+	</nav>
+</div>

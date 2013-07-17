@@ -1,5 +1,9 @@
 Widget module changelog
 
+July 16th, 2013
+===============
+1. Add parallax slider
+
 June 30th, 2013
 ===============
 1. Widgets are specified meta data located in widget/meta instead of templates
