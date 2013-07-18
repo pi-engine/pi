@@ -73,6 +73,12 @@ class Autoloader
      */
     protected $modulePath = '';
 
+    /**
+     * Directory of extras
+     * @var string
+     */
+    protected $extraPath = '';
+
     /**#@+
      * Factory variables
      */
@@ -107,28 +113,33 @@ class Autoloader
      * Constructor
      *
      * @param  array|Traversable $options
-     * 
-     *   - includepath - path to set for vendors
-     *   - modulepath  - path to modules
+     *
+     *   - include_path - path to set for vendors
+     *   - module_path  - path to modules
+     *   - extra_path  - path to extras
      *   - top         - paths to top namespaces
      *   - namespace   - paths to regular namespaces
-     *   - classmap    - class-path map
+     *   - class_map    - class-path map
      *
      * @return void
      */
     public function __construct($options = array())
     {
         // Include paths, adding vendor path
-        if (!empty($options['includepath'])) {
-            set_include_path(get_include_path() . \PATH_SEPARATOR . $options['includepath']);
+        if (!empty($options['include_path'])) {
+            set_include_path(get_include_path() . \PATH_SEPARATOR . $options['include_path']);
         }
         // Module directory
-        if (!empty($options['modulepath'])) {
-            $this->modulePath = $options['modulepath'];
+        if (!empty($options['module_path'])) {
+            $this->modulePath = $options['module_path'];
+        }
+        // Extra directory
+        if (!empty($options['extra_path'])) {
+            $this->extraPath = $options['extra_path'];
         }
         // class map
-        if (!empty($options['classmap'])) {
-            $this->registerAutoloadMap($options['classmap']);
+        if (!empty($options['class_map'])) {
+            $this->registerAutoloadMap($options['class_map']);
         }
         // namespaces
         if (!empty($options['top'])) {
@@ -231,9 +242,14 @@ class Autoloader
         // Module classes, Module\ModuleName\ClassNamespace\ClassName
         if (static::TOP_NAMESPACE_MODULE === $top) {
             list($top, $module, $trimmedClass) = explode(static::NS_SEPARATOR, $class, 3);
-            $path = $this->modulePath . \DIRECTORY_SEPARATOR . strtolower($module) . \DIRECTORY_SEPARATOR . static::MODULE_SOURCE_DIRECTORY . \DIRECTORY_SEPARATOR;
+            $path = $this->modulePath . DIRECTORY_SEPARATOR . strtolower($module) . DIRECTORY_SEPARATOR . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
 
+        // Extra classes, Extra\ModuleName\ClassNamespace\ClassName
+        } elseif (static::TOP_NAMESPACE_EXTRA === $top) {
+            list($top, $module, $trimmedClass) = explode(static::NS_SEPARATOR, $class, 3);
+            $path = $this->extraPath . DIRECTORY_SEPARATOR . strtolower($module) . DIRECTORY_SEPARATOR . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
         // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
