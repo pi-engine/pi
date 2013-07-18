@@ -195,14 +195,6 @@ body {
   padding: 0;
 }
 
-.pi-zone-0 .carousel {
-  margin-bottom: 0;
-}
-
-.pi-zone-0 {
-  margin-bottom: 20px;
-}
-
 .pi-zone-1 {
   width: 220px;
 }
@@ -241,15 +233,11 @@ body {
 
 /* Block */
 .pi-block {
-  margin-top: 20px;
+  margin-bottom: 20px;
   background: #fff;
   box-shadow: 0 1px 3px #bababa;
   border: 1px solid #cecece \9;
   border-radius: 3px;
-}
-
-.pi-block:first-child {
-  margin-top: 0;
 }
 
 .pi-block-header {
