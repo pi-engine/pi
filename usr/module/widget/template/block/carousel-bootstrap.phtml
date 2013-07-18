@@ -60,6 +60,6 @@ $carouselId = uniqid('carousel');
   <a class="carousel-control left" href="#<?php echo $carouselId; ?>" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#<?php echo $carouselId; ?>" data-slide="next">&rsaquo;</a>
 </div>
-<script>
-$('.carousel').carousel(<?php echo $options; ?>)
-</script>
+<?php
+  $this->footScript()->appendScript('$(".carousel").carousel(' . $options . ');');
+?>
