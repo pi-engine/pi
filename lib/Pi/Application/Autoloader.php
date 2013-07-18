@@ -107,11 +107,13 @@ class Autoloader
      * Constructor
      *
      * @param  array|Traversable $options
-     *          includepath - path to set for vendors
-     *          modulepath  - path to modules
-     *          top         - paths to top namespaces
-     *          namespace   - paths to regular namespaces
-     *          classmap    - class-path map
+     *
+     *          - includepath - path to set for vendors
+     *          - modulepath  - path to modules
+     *          - top         - paths to top namespaces
+     *          - namespace   - paths to regular namespaces
+     *          - classmap    - class-path map
+     * 
      * @return void
      */
     public function __construct($options = array())
