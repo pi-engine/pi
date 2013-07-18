@@ -107,7 +107,6 @@ class Autoloader
      * Constructor
      *
      * @param  array|Traversable $options
-     *
      *   - includepath - path to set for vendors
      *   - modulepath  - path to modules
      *   - top         - paths to top namespaces
