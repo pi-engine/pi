@@ -28,7 +28,7 @@ use Zend\Stdlib\ArrayUtils;
  *
  * Usage inside a phtml template:
  *
- * ```
+ * <code>
  *  // Canonize specific file
  *  $this->canonize('some.css');
  *
@@ -43,7 +43,7 @@ use Zend\Stdlib\ArrayUtils;
  *      'a.css' => array('media' => '...', 'conditional' => '...'),
  *      'b.css',
  *  ));
- * ```
+ * </code>
  */
 class AssetCanonize extends AbstractHelper
 {
