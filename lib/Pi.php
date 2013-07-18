@@ -2,13 +2,6 @@
 /**
  * Pi Kernel Engine
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -70,84 +63,72 @@ class Pi
     /**
      * Default application engine
      * @var string
-     * @access public
      */
     const DEFAULT_APPLICATION_ENGINE = 'standard';
 
     /**
      * Default application environment
      * @var string
-     * @access public
      */
     const DEFAULT_APPLICATION_ENV = 'production';
 
     /**
      * Path to library root
      * @var string
-     * @access public
      */
     const PATH_LIB = PI_PATH_LIB;
 
     /**
      * Reference to application host
      * @var {@Pi\Application\Host}
-     * @access protected
      */
     protected static $host = null;
 
     /**
      * Reference to persist handler
      * @var {@Pi\Application\Persist}
-     * @access protected
      */
     protected static $persist = null;
 
     /**
      * Reference to autoloader handler
      * @var {@Pi\Application\Autoloader}
-     * @access protected
      */
     protected static $autoloader = null;
 
     /**
      * Reference to application engine
      * @var array of {@Pi\Application\Engine}
-     * @access protected
      */
     protected static $engine = null;
 
     /**
      * Reference to service handler
      * @var {@Pi\Application\Service}
-     * @access protected
      */
     protected static $service = null;
 
     /**
      * Reference to config handler
      * @var {@Pi\Application\Config}
-     * @access protected
      */
     protected static $config = null;
 
     /**
      * Reference to Db handler
      * @var {@Pi\Application\Db}
-     * @access protected
      */
     protected static $db = null;
 
     /**
      * Registry container
      * @var array
-     * @access protected
      */
     protected static $registry = array();
 
     /**
      * Shutdown callback container
      * @var array
-     * @access protected
      */
     protected static $shutdown = array();
 
@@ -160,7 +141,6 @@ class Pi
     /**
      * Run environment
      * @var string
-     * @access protected
      */
     protected static $environment = null;
 
@@ -168,6 +148,7 @@ class Pi
      * Initialize system environment and APIs
      *
      * Tasks:
+     *
      *  1. instantiate host handler and load host data
      *  2. load engine general config data which applicable to all applications
      *  3. instantiate persist handler with persist config data from general config
@@ -256,13 +237,14 @@ class Pi
      * Verify application environment
      *
      * Priority of different entries
+     *
      *  1. Specified in file via define('APPLICATION_ENV', 'somevalue');
      *  2. Specified value via Pi::environment('somevalue');
      *  3. Specified via getenv('APPLICATION_ENV') - usually set in .htaccess via "SetEnv APPLICATION_ENV production";
      *  4. Set from system config via Pi::config('environment') set in var/config/engine.php.
      *
      * @param string|null $environment
-     * @return null:string
+     * @return null|string
      */
     public static function environment($environment = null)
     {
@@ -298,6 +280,7 @@ class Pi
      * Perform the boot sequence
      *
      * The following operations are done in order during the boot-sequence:
+     *
      * - Load system bootstrap preferences
      * - Load primary services
      * - Application bootstrap
@@ -319,7 +302,6 @@ class Pi
     /**
      * Perform registered shutdown sequence
      *
-     * @access public
      * @return bool
      */
     public static function shutdown()
@@ -341,7 +323,7 @@ class Pi
     public static function host($config = null)
     {
         if (!isset(static::$host)) {
-            if (!class_exists('Pi\\Application\\Host', false)) {
+            if (!class_exists('Pi\Application\Host', false)) {
                 require static::PATH_LIB . '/Pi/Application/Host.php';
             }
             static::$host = new Pi\Application\Host($config);
@@ -392,7 +374,7 @@ class Pi
             if (!$type) {
                 $type = defined('APPLICATION_ENGINE') ? APPLICATION_ENGINE : static::DEFAULT_APPLICATION_ENGINE;
             }
-            $appEngineClass = 'Pi\\Application\\Engine\\' . ucfirst($type);
+            $appEngineClass = 'Pi\Application\Engine\\' . ucfirst($type);
             static::$engine = new $appEngineClass($config);
         }
         return static::$engine;
