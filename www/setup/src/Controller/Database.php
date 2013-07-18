@@ -206,9 +206,11 @@ class Database extends AbstractController
         $content .= $displayInput('DB_PREFIX');
 
         $contentSetup = '
+            <div class="well">
             <h2><span id="db-connection-label" class="">' . _s("Database setup") . '</span></h2>
             <p class="caption">' . _s("Settings for database") . '</p>' .
-            $content;
+            $content . 
+            '</div>';
 
         $this->content = $contentSetup;
 

@@ -90,17 +90,19 @@ class Presetting extends AbstractController
         $languageList = $this->getLanguages();
 
         $content = '
-            <h2>' . _s('Language Selection') . '</h2>
-            <p class="caption">' . _s('Choose the language for the installation and website') . '</p>
-            <div class="install-form">
-                <p>
-                    <select id="language-selector" size="5" name="language">';
-                        foreach ($languageList as $name => $language) {
-                            $selected = ($name == $this->wizard->getLocale()) ? " selected='selected'" : "";
-                            $content .= sprintf('<option value="%s"%s>%s</option>', $name, $selected, $language['title']);
-                        }
-                        $content .= '</select>
-                </p>
+            <div class="well">
+	            <h2>' . _s('Language Selection') . '</h2>
+	            <p class="caption">' . _s('Choose the language for the installation and website') . '</p>
+	            <div class="install-form">
+	                <p>
+	                    <select id="language-selector" size="5" name="language">';
+	                        foreach ($languageList as $name => $language) {
+	                            $selected = ($name == $this->wizard->getLocale()) ? " selected='selected'" : "";
+	                            $content .= sprintf('<option value="%s"%s>%s</option>', $name, $selected, $language['title']);
+	                        }
+	                        $content .= '</select>
+	                </p>
+	            </div>
             </div>';
         $this->content .= $content;
 
@@ -152,7 +154,7 @@ SCRIPT;
         }
         $content .= '
             <p class="caption">' . _s('Check server settings and extensions') . '</p>
-            <div class="install-form advanced-form" id="advanced-form">
+            <div class="install-form advanced-form well" id="advanced-form">
                 <h3 class="section">' . _s('System requirements') . '</h3>
                 <p class="caption">' . _s('Server settings and system extensions required by Pi Engine') . '</p>';
                 foreach ($this->result['system'] as $item => $result) {
