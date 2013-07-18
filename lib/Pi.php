@@ -23,8 +23,8 @@
  * Boot up process:
  *
  * init: instantiate and initialize gobal APIs
- *  - host()
- *  - config()
+ *  * host()
+ *  * config()
  *  - persist()
  *  - autoloader()
  *  - engine()
