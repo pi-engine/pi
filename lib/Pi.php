@@ -9,8 +9,8 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi
  */
@@ -21,6 +21,7 @@
  * Plays the role as system bootstrap and global interfaces to applications and modules
  *
  * Boot up process:
+ *
  * init: instantiate and initialize gobal APIs
  *  - host()
  *  - config()
@@ -28,18 +29,23 @@
  *  - autoloader()
  *  - engine()
  *  - register self::shutdown()
+ *
  * boot: boot up engine
  *  - engine->config()
  *  - engine->bootstrap()
  *  - engine->application()
+ *
  * bootstrap: boostap application
  *  - bootstrap(application)
+ *
  * run: run application and returns response
  *  - run(): route, dispatch
+ *
  * send response
  *  - send()
  *
  * Global APIs:
+ *
  *  - host()
  *  - config()
  *  - persist()
@@ -53,8 +59,6 @@
  *  - registry()
  *  - path()
  *  - url()
- *
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Pi
 {
