@@ -2,15 +2,8 @@
 /**
  * Pi Autoloader
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
@@ -21,14 +14,15 @@
  * Options are loaded in Pi::init()
  *
  * Autoloading priority:
+ *
  * 1. class map
  * 2. PSR standard
- *    2.1 module namespace
- *    2.2 Pi and Zend namespace
- *    2.3 registered namespace
- *    2.4 vendor namespace
+ *    1. module namespace
+ *    2. Pi and Zend namespace
+ *    3. registered namespace
+ *    4. vendor namespace
  * 3. fallbacks
- *    3.1 custom autoloader
+ *    1. custom autoloader
  */
 
 namespace Pi\Application;
@@ -41,13 +35,19 @@ class Autoloader
     const TOP_NAMESPACE_MODULE = 'Module';
 
     /**
-     * @var constant Directory for module source code. Module classes are located in /usr/module/modulename/src/
+     * @var constant Top namespace for extras
+     */
+    const TOP_NAMESPACE_EXTRA = 'Extra';
+
+    /**
+     * @var constant Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/
      *
      */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
      * Namespace speparator
+     * @var constant
      */
     const NS_SEPARATOR     = '\\';
 
@@ -206,6 +206,7 @@ class Autoloader
      * Load by PSR standard autoloader
      *
      * Autoloading order:
+     *
      *  1. Top namespaces: Pi, Zend, ...
      *  2. Zend namespace
      *  3. registered namespace with specified path
@@ -339,7 +340,7 @@ class Autoloader
         return $directory
             . str_replace(
                 static::NS_SEPARATOR,
-                \DIRECTORY_SEPARATOR,
+                DIRECTORY_SEPARATOR,
                 $class
             )
             . '.php';
@@ -352,6 +353,7 @@ class Autoloader
      * Factory for autoloaders
      *
      * Options should be an array or Traversable object of the following structure:
+     *
      * <code>
      * array(
      *     '<autoloader class name>' => $autoloaderOptions,
@@ -608,12 +610,12 @@ interface SplAutoloader
      * Register the autoloader with spl_autoload registry
      *
      * Typically, the body of this will simply be:
+     *
      * <code>
      * spl_autoload_register(array($this, 'autoload'));
      * </code>
      *
      * @return void
      */
-    //public function register();
     public function register($throw = true, $prepend = false);
 }
