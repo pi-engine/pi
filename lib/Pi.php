@@ -23,25 +23,30 @@
  * Boot up process:
  *
  * init: instantiate and initialize gobal APIs
- *  * host()
- *  * config()
+ *
+ *  - host()
+ *  - config()
  *  - persist()
  *  - autoloader()
  *  - engine()
  *  - register self::shutdown()
  *
  * boot: boot up engine
- *  - engine->config()
- *  - engine->bootstrap()
- *  - engine->application()
+ *
+ *  - config()
+ *  - bootstrap()
+ *  - application()
  *
  * bootstrap: boostap application
+ *
  *  - bootstrap(application)
  *
  * run: run application and returns response
+ *
  *  - run(): route, dispatch
  *
  * send response
+ *
  *  - send()
  *
  * Global APIs:
@@ -62,12 +67,6 @@
  */
 class Pi
 {
-    /**
-     * @var string
-     * @see http://semver.org/ for semantic versioning
-     */
-    //const VERSION = '3.0.0-beta.1';
-
     /**
      * Default application engine
      * @var string
