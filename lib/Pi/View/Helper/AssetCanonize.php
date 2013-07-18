@@ -37,16 +37,10 @@ use Zend\Stdlib\ArrayUtils;
  *  // Canonize specific file with attributes
  *  $this->canonize('some.css', array('conditional' => '...', 'postion' => 'prepend'));
  *
- *  // Canonize a list of files
- *  $this->canonize(array(
- *      'a.css',
- *      'b.css',
- *  ));
- *
  *  // Canonize a list of files with corresponding attributes
  *  $this->canonize(array(
  *      'a.css' => array('media' => '...', 'conditional' => '...'),
- *      'b.css' => array(),
+ *      'b.css',
  *  ));
  * </code>
  */
@@ -99,8 +93,9 @@ class AssetCanonize extends AbstractHelper
      */
     protected function canonize($files = null, $attributes = array())
     {
+        $result = array();
         if (!$files) {
-            return array();
+            return $result;
         }
 
         if ($files && is_string($files)) {
@@ -115,14 +110,16 @@ class AssetCanonize extends AbstractHelper
         } elseif (!is_array($files)) {
             $files = (array) $files;
         }
-        if (!ArrayUtils::hasStringKeys($files)) {
-            $files = array_fill_keys($files, array());
-        }
 
-        foreach ($files as $file => &$attrs) {
+        foreach ($files as $file => $attrs) {
+            if (is_int($file)) {
+                $file = $attrs;
+                $attrs = array();
+            }
             $attrs = $this->canonizeFile($file, $attrs);
+            $result[$file] = $attrs;
         }
 
-        return $files;
+        return $result;
     }
 }
