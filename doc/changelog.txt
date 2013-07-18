@@ -29,6 +29,7 @@ June 24th, 2013
 24. First import of complete user APIs
 25. Added config 'list_number' to system for number of items on a list, added _t() to text for translation
 26. Migrated to Bootstrap for setup by @voltan
+27. Added support for extra extensions with Extra namespace
 
 
 June 19th, 2013
