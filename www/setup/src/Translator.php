@@ -1,21 +1,11 @@
 <?php
 /**
- * Pi Engine Setup Request
+ * Pi Engine Setup Translator
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see             Zend\Translate\Adapter\Csv
- * @since           3.0
  * @package         Pi\Setup
- * @version         $Id$
  */
 
 namespace Pi\Setup;
@@ -77,7 +67,7 @@ class Translator
             throw new \InvalidArgumentException('Error opening translation file \'' . $filename . '\'.');
         }
 
-        while(($data = fgetcsv($file, $options['length'], $options['delimiter'], $options['enclosure'])) !== false) {
+        while (($data = fgetcsv($file, $options['length'], $options['delimiter'], $options['enclosure'])) !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }

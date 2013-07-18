@@ -2,19 +2,10 @@
 /**
  * Pi Engine Setup Wizard
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Setup
- * @version         $Id$
  */
 
 namespace Pi\Setup;
@@ -22,7 +13,7 @@ use Pi;
 
 class Wizard
 {
-    const BASE_NAMESPACE = 'Pi\\Setup';
+    const BASE_NAMESPACE = 'Pi\Setup';
     const DIR_CLASS = 'src';
     protected static $root;
     protected $request;
@@ -36,7 +27,7 @@ class Wizard
     protected $configs = array();
 
     public $support = array(
-        'url'   => 'http://www.xoopsengine.org',
+        'url'   => 'http://pialog.org',
         'title' => 'Pi Engine',
     );
 

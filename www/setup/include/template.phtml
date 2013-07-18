@@ -8,7 +8,7 @@
     <link rel="icon" href="../..favicon.ico" type="image/ico" />
     <link rel="stylesheet" href="./asset/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./asset/css/style.css" />
-    <script type="text/javascript" src="./asset/js/jquery.min.js"></script>
+    <script src="./asset/js/jquery.min.js"></script>
     <?php
         if (!empty($data['headContent'])) {
             echo $data['headContent'];
@@ -57,23 +57,23 @@
 	            echo $data['content'];
 	        ?>
 	    </div>
-	
+
 	    <div id="buttons">
 		        <?php if (!empty($data['previousUrl'])) { ?>
 		            <button class="btn" type="button" accesskey="p" onclick="location.href='<?php echo $data['previousUrl']; ?>'">
 		            <?php echo _s("Previous"); ?>
 		            </button>
 		        <?php } ?>
-		
+
 		        <button class="btn" type="button" accesskey="r" onclick="location.href='<?php echo $data['currentPage']['url']; ?>'">
 		        <?php echo _s("Reload"); ?>
 		        </button>
-		
+
 		        <?php
 		        if ($data['status'] > -1) {
 		            if (!empty($data['pageHasForm'])) {
 		        ?>
-		
+
 		            <button class="btn" type="submit">
 		        <?php echo _s("Next"); ?>
 		            </button>
@@ -87,7 +87,7 @@
 		        }
 		        ?>
 		    </div>
-		
+
 		    <?php
 		        if (!empty($data['pageHasForm'])) {
 		            echo '<input type="hidden" name="page" value="' . $data['currentPage']['key'] . '">';
@@ -96,11 +96,11 @@
 		    ?>
 	    </div>
     </div>
-    
+
     <div id="footer">
 	    <div class="container">
 		    <div class="row">
-		        <p>Powered by <a href="http://www.xoopsengine.org" title="Pi Engine">Pi Engine</a></p>
+		        <p>Powered by <a href="http://pialog.org" title="Pi Engine">Pi Engine</a></p>
 		    </div>
 	    </div>
     </div>
