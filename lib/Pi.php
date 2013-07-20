@@ -15,32 +15,32 @@
  *
  * Boot up process:
  *
- * 1. init: instantiate and initialize gobal APIs
+ * - init: instantiate and initialize gobal APIs
  *
- *  - host()
- *  - config()
- *  - persist()
- *  - autoloader()
- *  - engine()
- *  - register self::shutdown()
+ *   - host()
+ *   - config()
+ *   - persist()
+ *   - autoloader()
+ *   - engine()
+ *   - register self::shutdown()
  *
- * 2. boot: boot up engine
+ * - boot: boot up engine
  *
- *  - config()
- *  - bootstrap()
- *  - application()
+ *   - config()
+ *   - bootstrap()
+ *   - application()
  *
- * 3. bootstrap: boostap application
+ * - bootstrap: boostap application
  *
- *  - bootstrap(application)
+ *   - bootstrap(application)
  *
- * 4. run: run application and returns response
+ * - run: run application and returns response
  *
- *  - run(): route, dispatch
+ *   - run(): route, dispatch
  *
- * 5. send response
+ * - send response
  *
- *  - send()
+ *   - send()
  *
  * Global APIs:
  *
@@ -512,7 +512,7 @@ class Pi
      *
      *  - with ':' or leading slash '/' - absolute path, do not convert
      *  - First part as section, map to www if no section matched
-     * 
+     *
      * @return string
      * @link Pi\Application\Host::path()
      */
