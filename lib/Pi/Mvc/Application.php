@@ -110,7 +110,7 @@ class Application extends ZendApplication
     /**
      * Get RouteMatch of MvcEvent
      *
-     * @return
+     * @return \Zend\Mvc\Router\RouteMatch
      */
     public function getRouteMatch()
     {
@@ -120,7 +120,7 @@ class Application extends ZendApplication
     /**
      * Get router of MvcEvent
      *
-     * @return type
+     * @return \Zend\Mvc\Router\RouteStackInterface
      */
     public function getRouter()
     {

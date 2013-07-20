@@ -2,15 +2,8 @@
 /**
  * Standard application engine class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
@@ -19,18 +12,15 @@ namespace Pi\Application\Engine;
 
 use Pi;
 use Pi\Mvc\Application;
-//use Pi\Mvc\Service\ServiceManagerConfig;
-//use Zend\ServiceManager\ServiceManager;
 
 /**
  * Pi standard application engine
  *
  * Tasks: load configs, default listeners, module manager, bootstrap, application; boot application; run application
- *
- * @author      Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Standard extends AbstractEngine
 {
+    /** @var string Section name */
     const SECTION = self::FRONT;
 
     /**
@@ -40,6 +30,7 @@ class Standard extends AbstractEngine
     protected $fileIdentifier = 'front';
 
     /**
+     * Resource container
      * @var array
      */
     protected $resources = array(
@@ -48,9 +39,7 @@ class Standard extends AbstractEngine
     );
 
     /**
-     * Run the application
-     *
-     * @return boolean
+     * {@inheritDoc}
      */
     public function run()
     {
@@ -65,7 +54,7 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Bootstrap
+     * Bootstrap application
      */
     public function bootstrap()
     {
@@ -91,7 +80,7 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Load application
+     * {@inheritDoc}
      */
     public function application()
     {
@@ -116,7 +105,7 @@ class Standard extends AbstractEngine
     /**
      * Bood Pi application services
      *
-     * @return boolean
+     * @return bool
      */
     protected function bootServices()
     {
@@ -136,8 +125,7 @@ class Standard extends AbstractEngine
     /**
      * Boot resources
      *
-     * @param  array resources
-     * @return boolean
+     * @return bool
      */
     protected function bootResources()
     {
@@ -157,8 +145,8 @@ class Standard extends AbstractEngine
     /**
      * Loads a resource
      *
-     * @param string $resource
-     * @param array $options    custom options, will be merged with native options
+     * @param string    $resource
+     * @param array     $options    Custom options, will be merged with native options
      * @return void
      */
     public function bootResource($resource, $options = array())

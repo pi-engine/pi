@@ -8,10 +8,12 @@
  * @package         Pi\Application
  */
 
+namespace Pi\Application;
+
 /**
  * Autoloader handler
  *
- * Options are loaded in Pi::init()
+ * Options are loaded in {@link Pi::init()}
  *
  * Autoloading priority:
  *
@@ -24,30 +26,27 @@
  * 3. fallbacks
  *    1. custom autoloader
  */
-
-namespace Pi\Application;
-
 class Autoloader
 {
     /**
-     * @var constant Top namespace for modules
+     * @var string Top namespace for modules
      */
     const TOP_NAMESPACE_MODULE = 'Module';
 
     /**
-     * @var constant Top namespace for extras
+     * @var string Top namespace for extras
      */
     const TOP_NAMESPACE_EXTRA = 'Extra';
 
     /**
-     * @var constant Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/
+     * @var string Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/
      *
      */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
      * Namespace speparator
-     * @var constant
+     * @var string
      */
     const NS_SEPARATOR     = '\\';
 
@@ -112,15 +111,16 @@ class Autoloader
     /**
      * Constructor
      *
+     * Supported options:
+     *
+     *   - include_path:    path to set for vendors
+     *   - module_path:     path to modules
+     *   - extra_path:      path to extras
+     *   - top:             paths to top namespaces
+     *   - namespace:       paths to regular namespaces
+     *   - class_map:       class-path map
+     *
      * @param  array|Traversable $options
-     *
-     *   - include_path - path to set for vendors
-     *   - module_path  - path to modules
-     *   - extra_path  - path to extras
-     *   - top         - paths to top namespaces
-     *   - namespace   - paths to regular namespaces
-     *   - class_map    - class-path map
-     *
      * @return void
      */
     public function __construct($options = array())
@@ -155,7 +155,8 @@ class Autoloader
     /**
      * Set persist handler for class/file map
      *
-     * @return Autoloader
+     * @param Persist\PersistInterface $persist
+     * @return $this
      */
     public function setPersist(Persist\PersistInterface $persist)
     {
@@ -164,7 +165,7 @@ class Autoloader
     }
 
     /**
-     * Register the autoloader with spl_autoload registry
+     * Register the autoloader with {@link spl_autoload} registry
      *
      * @return void
      */
@@ -303,7 +304,7 @@ class Autoloader
      *
      * @param array|string  $callback array of (class, method) or function
      * @param bool          $append  append or prepend to callback list
-     * @return Autoloader
+     * @return $this
      */
     public function registerCallback($callback, $append = true)
     {
@@ -318,8 +319,8 @@ class Autoloader
     /**
      * Register multiple top namespace/directory pairs at once
      *
-     * @param  array $namespaces
-     * @return Autoloader
+     * @param  string[] $namespaces
+     * @return $this
      */
     public function registerTops($namespaces)
     {
@@ -338,7 +339,7 @@ class Autoloader
      *
      * @param  string $namespace
      * @param  string $directory
-     * @return Autoloader
+     * @return $this
      */
     public function registerTop($namespace, $directory)
     {
@@ -436,7 +437,7 @@ class Autoloader
      * classname/file pairs.
      *
      * @param  string|array $location
-     * @return Autoloader
+     * @return $this
      */
     public function registerAutoloadMap($map)
     {
@@ -464,7 +465,7 @@ class Autoloader
      * Register many autoload maps at once
      *
      * @param  array $locations
-     * @return Autoloader
+     * @return $this
      */
     public function registerAutoloadMaps($locations)
     {
@@ -495,7 +496,7 @@ class Autoloader
      * location.
      *
      * @param  string $location
-     * @return Autoloader|mixed
+     * @return $this|mixed
      * @throws \InvalidArgumentException for nonexistent locations
      */
     protected function loadMapFromFile($location)
@@ -555,7 +556,7 @@ class Autoloader
      *
      * @param  string $namespace
      * @param  string $directory
-     * @return Autoloader
+     * @return $this
      */
     public function registerNamespace($namespace, $directory)
     {
@@ -568,7 +569,7 @@ class Autoloader
      * Register many namespace/directory pairs at once
      *
      * @param  array $namespaces
-     * @return Autoloader
+     * @return $this
      */
     public function registerNamespaces($namespaces)
     {
@@ -592,10 +593,10 @@ class Autoloader
     {
         $last = $directory[strlen($directory) - 1];
         if (in_array($last, array('/', '\\'))) {
-            $directory[strlen($directory) - 1] = \DIRECTORY_SEPARATOR;
+            $directory[strlen($directory) - 1] = DIRECTORY_SEPARATOR;
             return $directory;
         }
-        $directory .= \DIRECTORY_SEPARATOR;
+        $directory .= DIRECTORY_SEPARATOR;
         return $directory;
     }
     /*#@-*/
@@ -630,7 +631,7 @@ interface SplAutoloader
      * Typically, the body of this will simply be:
      *
      * <code>
-     * spl_autoload_register(array($this, 'autoload'));
+     *  spl_autoload_register(array($this, 'autoload'));
      * </code>
      *
      * @return void

@@ -2,15 +2,8 @@
 /**
  * Application engine abstraction
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
@@ -25,11 +18,22 @@ use Pi\Mvc\Application;
  */
 abstract class AbstractEngine
 {
+    /** @var string Front section */
     const FRONT     = 'front';
+
+    /** @var string Admin section */
     const ADMIN     = 'admin';
-    const API       = 'api';
-    const CRON      = 'cron';
+
+    /** @var string Feed section */
     const FEED      = 'feed';
+
+    /** @var string API section */
+    const API       = 'api';
+
+    /** @var string Cront section */
+    const CRON      = 'cron';
+
+    /** @var string Widget section */
     const WIDGET    = 'widget';
 
     /**
@@ -57,11 +61,6 @@ abstract class AbstractEngine
     protected $application;
 
     /**
-     * Bootstrap
-     */
-    //protected $bootstrap;
-
-    /**
      * Constructor
      *
      * @param  array $options
@@ -74,27 +73,27 @@ abstract class AbstractEngine
 
     /**
      * Run the application
+     *
+     * @return bool
      */
     abstract public function run();
 
     /**
-     * Bootstrap
-     */
-    //abstract public function bootstrap();
-
-    /**
      * Load application
+     *
+     * @return Application
      */
     abstract public function application();
 
     /**
      * Load options from data file
+     *
      *  - Bootstrap config and listener options
      *  - Global config
      *  - Services
      *
      * @param array $options
-     * @return AbstractEngine
+     * @return $this
      */
     public function setOption(array $options)
     {
@@ -117,6 +116,11 @@ abstract class AbstractEngine
         return $this;
     }
 
+    /**
+     * Get section
+     *
+     * @return string
+     */
     public function section()
     {
         return static::SECTION;

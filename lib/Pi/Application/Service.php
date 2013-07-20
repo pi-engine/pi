@@ -2,37 +2,49 @@
 /**
  * Pi Engine sevice class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
 
 namespace Pi\Application;
+
 use Pi;
 
+/**
+ * Pi Engine service handler
+ */
 class Service
 {
+    /**
+     * Loaded services
+     * @var Service\AbstractService[]
+     */
     protected static $services = array();
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
     }
 
+    /**
+     * Load a service
+     *
+     * @param string    $name
+     * @param array     $options
+     * @return Service\AbstractService
+     * @throws \Exception
+     */
     public function load($name, $options = array())
     {
         $key = strtolower($name);
         if (!isset(static::$services[$key])) {
             static::$services[$key] = false;
             // Loads service
-            $class = sprintf('%s\\Service\\%s', __NAMESPACE__, ucfirst($name));
+            $class = sprintf('%s\Service\\%s', __NAMESPACE__, ucfirst($name));
             if (!class_exists($class)) {
                 trigger_error(sprintf('Service class "%s" was not loaded.', $class), E_USER_ERROR);
                 return static::$services[$key];
@@ -55,6 +67,9 @@ class Service
 
     /**
      * Check if a services is loaded
+     *
+     * @param string @name
+     * @return bool
      */
     public function hasService($name)
     {
@@ -64,6 +79,9 @@ class Service
 
     /**
      * Get loaded service
+     *
+     * @param string|null $name
+     * @return Service\AbstractService|Service\AbstractService[]
      */
     public function getService($name = null)
     {

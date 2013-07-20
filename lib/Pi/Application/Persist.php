@@ -1,16 +1,9 @@
 <?php
 /**
- * Kernel persist
+ * Kernel persist handler
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
@@ -19,16 +12,20 @@ namespace Pi\Application;
 
 /**
  * Gateway for persist handlers
+ *
+ * The class is supposed to serve system only, i.e. not called by modules
  */
 class Persist
 {
     /**
      * Currently active persist handler
+     * @var Persist\StorageInterface
      */
     protected $handler;
 
     /**
      * Backend storage of currently active persist handler, potential types: Apc, Memcached, Memcache, Redis, File, etc.
+     * @var string
      */
     protected $storage;
 
@@ -70,7 +67,7 @@ class Persist
     /**
      * Gets currently active backend handler
      *
-     * @return {Persist\StorageInterface}|false
+     * @return Persist\StorageInterface|false
      */
     public function getHandler()
     {
@@ -101,21 +98,33 @@ class Persist
      * Persist APIs, proxy to handler
      * @see Persist\AbstractStorage
      */
+    /**
+     * @see Persist\AbstractStorage::load()
+     */
     public function load($id)
     {
         return $this->handler->load($id);
     }
 
+    /**
+     * @see Persist\AbstractStorage::save()
+     */
     public function save($data, $id, $ttl = 0)
     {
         return $this->handler->save($data, $id, $ttl);
     }
 
+    /**
+     * @see Persist\AbstractStorage::remove()
+     */
     public function remove($id)
     {
         return $this->handler->remove($id);
     }
 
+    /**
+     * @see Persist\AbstractStorage::flush()
+     */
     public function flush()
     {
         $this->handler->flush();
@@ -123,7 +132,11 @@ class Persist
     /**#@-*/
 
     /**
-     * @see Persist\AbstractStorage
+     * Magic methods call {@link Persist\AbstractStorage}
+     *
+     * @param string    $method
+     * @param array     $params
+     * @return mixed
      */
     public function __call($method, $params)
     {

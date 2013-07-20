@@ -2,15 +2,8 @@
 /**
  * Pi Application Db API class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
@@ -27,14 +20,17 @@ use Zend\Db\Metadata\Metadata;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Log\DbProfiler;
 
-/*
- * In installation sql scripts, quote all database names with '{' and '}' so that all names can be easily prefixed on installation.
+/**
+ * Pi DB service hander
+ *
+ * Note:
+ * In installation sql scripts, quote all database names with `{` and `}` so that all names can be easily prefixed on installation.
  */
 class Db
 {
     /**
-     * Custom statement class for \PDO
-     * @see
+     * Custom statement class for PDO
+     * @see http://www.php.net/manual/en/pdo.setattribute.php
      */
     const STATEMENT_CLASS = 'Pi\Db\Adapter\Driver\Statement';
 
@@ -97,14 +93,14 @@ class Db
     /**
      * Constructor
      *
+     * Build DB handler with options:
+     *  - connection: Database connection parameters
+     *    - Single DB mode: 'driver', 'dsn', 'username', 'password', 'options'[, 'connect_onload']
+     *    - Master-Slave mode: 'master', 'slave'
+     *  - table_prefix: database table prefix;
+     *  - core_prefix: core table prefix
+     *
      * @param array $options
-     *              'connection' - Database connection parameters
-     *                  Single DB mode:
-     *                      'driver', 'dsn', 'username', 'password', 'options'[, 'connect_onload']
-     *                  Master-Slave mode:
-     *                      'master', 'slave'
-     *              'table_prefix' - database table prefix;
-     *              'core_prefix' - core table prefix
      */
     public function __construct($options)
     {
@@ -121,7 +117,7 @@ class Db
      * Loads adatpers
      *
      * @param array $options
-     * @return Db
+     * @return $this
      */
     public function loadAdapter($options)
     {
@@ -141,7 +137,7 @@ class Db
      * Set table prefix
      *
      * @param string $prefix
-     * @return Db
+     * @return $this
      */
     public function setTablePrefix($prefix)
     {
@@ -163,7 +159,7 @@ class Db
      * Set system table prefix
      *
      * @param string $prefix
-     * @return Db
+     * @return $this
      */
     public function setCorePrefix($prefix)
     {
@@ -185,7 +181,7 @@ class Db
      * Set database schema
      *
      * @param string $schema
-     * @return Db
+     * @return $this
      */
     public function setSchema($schema)
     {
@@ -202,6 +198,12 @@ class Db
     {
         return $this->schema;
     }
+
+    /**
+     * Get database schema
+     *
+     * @see getSchema()
+     */
     public function schema()
     {
         return $this->getSchema();
@@ -210,8 +212,8 @@ class Db
     /**
      * Create adapter with configs
      *
-     * @param array $config
-     * @param \Zend\Db\Platform\PlatformInterface $platform
+     * @param array                                 $config
+     * @param \Zend\Db\Platform\PlatformInterface   $platform
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
@@ -237,8 +239,8 @@ class Db
     /**
      * Set adapter
      *
-     * @param Adapter $adapter
-     * @param null|string $type master or slave, default as null
+     * @param Adapter       $adapter
+     * @param null|string   $type     `master` or `slave`, default as null
      * @return Db
      */
     public function setAdapter(Adapter $adapter, $type = null)
@@ -255,7 +257,7 @@ class Db
     /**
      * Get adatper
      *
-     * @param null|string $type master or slave, default as null
+     * @param null|string $type `master` or `slave`, default as null
      * @return Adapter
      */
     public function getAdapter($type = null)
@@ -270,7 +272,7 @@ class Db
     /**
      * Get adatper
      *
-     * @param null|string $type master or slave, default as null
+     * @param null|string $type `master` or `slave`, default as null
      * @return Adapter
      */
     public function adapter($type = null)
@@ -294,12 +296,13 @@ class Db
     /**
      * Loads a model
      *
-     * Load a normal model: Pi::db()->model('block');
-     * Load a model with no model class: Pi::db()->model('page');
-     * Load a nest model with no model class: Pi::db()->model('test', array('type' => 'nest'));
+     * Sample:
+     *  - Load a normal model: `Pi::db()->model('block')`
+     *  - Load a model with no model class: `Pi::db()->model('page')`
+     *  - Load a nest model with no model class: `Pi::db()->model('test', array('type' => 'nest'))`
      *
-     * @param string $name
-     * @param array $options
+     * @param string    $name
+     * @param array     $options
      * @return AbstractTableGateway
      */
     public function model($name, $options = array())
@@ -316,10 +319,10 @@ class Db
             }
             $className = str_replace(' ', '\\', ucwords(str_replace('_', ' ', $key)));
             if ($module) {
-                $className = sprintf('Module\\%s\\Model\\%s', ucfirst($module), $className);
+                $className = sprintf('Module\\%s\Model\\%s', ucfirst($module), $className);
                 $options['prefix'] = static::prefix('', $module);
             } else {
-                $className = sprintf('Pi\\Application\\Model\\%s', $className);
+                $className = sprintf('Pi\Application\Model\\%s', $className);
                 $options['prefix'] = static::prefix('', 'core');
             }
             if (!class_exists($className)) {
@@ -329,7 +332,7 @@ class Db
                 } else {
                     $type = 'Model';
                 }
-                $className = 'Pi\\Application\\Model\\' . $type;
+                $className = 'Pi\Application\Model\\' . $type;
             }
             $options['name'] = $key;
             $options['adapter'] = empty($options['adapter']) ? $this->adapter() : $options['adapter'];
@@ -370,9 +373,9 @@ class Db
     /**
      * Creates a SQL expression
      *
-     * @param string $expression
-     * @param string|array $parameters
-     * @param array $types
+     * @param string        $expression
+     * @param string|array  $parameters
+     * @param array         $types
      * @return Expression
      */
     public function expression($expression = '', $parameters = null, array $types = array())
@@ -385,7 +388,7 @@ class Db
      * Log a query information or load all log information
      *
      * @param object|null $profiler
-     * @return object|Db
+     * @return object|$this
      */
     public function profiler($profiler = null)
     {

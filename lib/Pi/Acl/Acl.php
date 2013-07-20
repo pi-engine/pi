@@ -2,15 +2,8 @@
 /**
  * Permission ACL class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Acl
  */
@@ -26,40 +19,54 @@ use Zend\Db\Sql\Where;
  * Permission ACL manager
  *
  * Handles:
- *  1. Role: follows DAG (Directed Acyclic Graph), i.e. one role could inherit from multiple parent roles; All permissions are checked through roles not users
- *  2. Resource: one resource could inherit from one direct parent resource
- *      2.1 Item: one resource could have multiple items
- *  3. Privilege: one resource could have multiple privileges, or none as direct access
- *  4. Rule: one rule specifies one role's access to one resource/item upon one specific priviledge, default as access
+ *
+ *  - Role: follows DAG (Directed Acyclic Graph), i.e. one role could inherit from multiple parent roles; All permissions are checked through roles not users
+ *  - Resource: one resource could inherit from one direct parent resource
+ *    - Item: one resource could have multiple items
+ *  - Privilege: one resource could have multiple privileges, or none as direct access
+ *  - Rule: one rule specifies one role's access to one resource/item upon one specific priviledge, default as access
  */
 class Acl
 {
     /**
      * Admin role
+     * @var string
      */
     const ADMIN     = 'admin';
+
     /**
      * Regular member role
+     * @var string
      */
     const MEMBER    = 'member';
+
     /**
      * Staff role
+     * @var string
      */
     const STAFF     = 'staff';
+
     /**
      * Guest or visitor role
+     * @var string
      */
     const GUEST     = 'guest';
+
     /**
      * Moderator staff role
+     * @var string
      */
     const MODERATOR = 'moderator';
+
     /**
      * Banned account role
+     * @var string
      */
     const BANNED    = 'banned';
+
     /**
      * Pending account role
+     * @var string
      */
     const INACTIVE  = 'inactive';
 
@@ -83,7 +90,7 @@ class Acl
 
     /**
      * Ancestor roles or current role
-     * @var array
+     * @var string[]
      */
     protected $roles;
 
@@ -96,10 +103,16 @@ class Acl
     /**
      * Default permission when a rule is not specified
      *
-     * @var bool
+     * @var bool True for allowed and false for denied
      */
     protected $default;
 
+    /**
+     * Constructor
+     *
+     * @param string $section
+     * @param bool $default
+     */
     public function __construct($section = null, $default = null)
     {
         if (null !== $section) {
@@ -136,7 +149,7 @@ class Acl
      * Set section for resources
      *
      * @param string $section  section name, potential values: front - 'front'; admin - 'admin'; block - 'block'
-     * @return Acl
+     * @return $this
      */
     public function setSection($section)
     {
@@ -160,7 +173,7 @@ class Acl
      * Set default permission
      *
      * @param bool $default Default permission
-     * @return Acl
+     * @return $this
      */
     public function setDefault($default)
     {
@@ -187,7 +200,7 @@ class Acl
      * Set current module
      *
      * @param string $module
-     * @return Acl
+     * @return $this
      */
     public function setModule($module)
     {
@@ -211,7 +224,7 @@ class Acl
      * Set current role
      *
      * @param string $role
-     * @return Acl
+     * @return $this
      */
     public function setRole($role)
     {
@@ -240,12 +253,12 @@ class Acl
     /**
      * Add a rule to database
      *
-     * @param bool|int $allowed
-     * @param string $role
-     * @param string $section
-     * @param string $module
-     * @param string|int $resource
-     * @param string|null $privilege
+     * @param bool|int      $allowed
+     * @param string        $role
+     * @param string        $section
+     * @param string        $module
+     * @param string|int    $resource
+     * @param string|null   $privilege
      * @return bool
      */
     public static function addRule($allowed, $role, $section, $module, $resource, $privilege = null)
@@ -270,11 +283,11 @@ class Acl
     /**
      * Remove a rule to database
      *
-     * @param string $role
-     * @param string $section
-     * @param string $module
-     * @param string|int $resource
-     * @param string|null $privilege
+     * @param string        $role
+     * @param string        $section
+     * @param string        $module
+     * @param string|int    $resource
+     * @param string|null   $privilege
      * @return bool
      */
     public static function removeRule($role, $section, $module, $resource, $privilege = null)
@@ -299,12 +312,12 @@ class Acl
     /**
      * Set a rule to database
      *
-     * @param bool|int $allowed
-     * @param string $role
-     * @param string $section
-     * @param string $module
-     * @param string|int $resource
-     * @param string|null $privilege
+     * @param bool|int      $allowed
+     * @param string        $role
+     * @param string        $section
+     * @param string        $module
+     * @param string|int    $resource
+     * @param string|null   $privilege
      * @return bool
      */
     public static function setRule($allowed, $role, $section, $module, $resource, $privilege = null)
@@ -336,9 +349,11 @@ class Acl
      * Check access to a resource privilege for a given role
      *
      * @param string $role
-     * @param string|array|object  $resource  resource name or array('name' => $name, 'type' => $type), or array('module' => $module, 'controller' => $controller, 'action' => $action)
-     * @param string $privilege privilege name
-     * @return boolean
+     * @param string|array|object   $resource  Resource name
+     *                                              or `array('name' => $name, 'type' => $type)`,
+     *                                              or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
+     * @param string                $privilege privilege name
+     * @return bool
      */
     public function isAllowed($role, $resource, $privilege = null)
     {
@@ -375,9 +390,11 @@ class Acl
     /**
      * Check access to a resource privilege for a given role
      *
-     * @param string|array|object  $resource  resource name or array('name' => $name, 'type' => $type), or array('module' => $module, 'controller' => $controller, 'action' => $action)
-     * @param string    $privilege privilege name
-     * @return boolean
+     * @param string|array|object   $resource  Resource name
+     *                                              or `array('name' => $name, 'type' => $type)`,
+     *                                              or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
+     * @param string                $privilege privilege name
+     * @return bool
      */
     public function checkAccess($resource, $privilege = null)
     {
@@ -388,7 +405,7 @@ class Acl
      * Check exceptions for admin page access to skip permission check
      *
      * @param array $resource  array('module' => $module, 'controller' => $controller, 'action' => $action)
-     * @return boolean
+     * @return bool
      */
     public function checkException($resource)
     {
@@ -417,7 +434,7 @@ class Acl
      *
      * @param array|Where   $where
      * @param bool          $allowed
-     * @return array of resource IDs
+     * @return int[]
      */
     public function getResources($where = null, $allowed = true)
     {
@@ -430,7 +447,7 @@ class Acl
      * Load ancestors of a role from database
      *
      * @param string $role
-     * @return array of roles
+     * @return string[]
      */
     public function loadRoles($role = null)
     {
@@ -449,10 +466,10 @@ class Acl
     /**
      * Load ancestors of a resource from database
      *
-     * @param string|array|Node  $resource  resource name or array('name' => $name, 'type' => $type)
-     *                                          or array('module' => $module, 'controller' => $controller, 'action' => $action)
+     * @param string|array|Node  $resource  Resource name or `array('name' => $name, 'type' => $type)`
+     *                                          or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
      *                                          or {@link Node}
-     * @return array of resources
+     * @return string[]
      */
     public function loadResources($resource)
     {

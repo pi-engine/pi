@@ -2,25 +2,27 @@
 /**
  * Pi Engine API abstraction class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
  */
 
 namespace Pi\Application;
 
+/**
+ * Abstract class for API classes
+ */
 abstract class AbstractApi
 {
+    /** @var string Module name**/
     protected $module;
 
+    /**
+     * Constructor
+     *
+     * @param string|null $module
+     */
     public function __construct($module = null)
     {
         if ($module) {
@@ -28,12 +30,23 @@ abstract class AbstractApi
         }
     }
 
+    /**
+     * Set module for the API class
+     *
+     * @param string $module
+     * @return $this
+     */
     public function setModule($module)
     {
         $this->module = $module;
         return $this;
     }
 
+    /**
+     * Get moduel name of the class
+     *
+     * @return string
+     */
     public function getModule()
     {
         return $this->module;

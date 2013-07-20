@@ -471,8 +471,8 @@ class Pi
     /**
      * Registry container for global variables
      *
-     * @param string $index The location to store the value, if value is not set, to load the value.
-     * @param mixed $value The object to store.
+     * @param string    $index  The location to store the value, if value is not set, to load the value.
+     * @param mixed     $value  The object to store.
      * @return mixed
      */
     public static function registry($index, $value = null)
@@ -488,8 +488,8 @@ class Pi
     /**
      * Register a shutdown callback with FILO
      *
-     * @param string|array $callback Callback method to be called in shutdown
-     * @param bool $toAppend To append current callback to registered shutdown list, false to prepend
+     * @param string|array  $callback   Callback method to be called in shutdown
+     * @param bool          $toAppend   To append current callback to registered shutdown list, false to prepend
      * @return void
      */
     public static function registerShutdown($callback, $toAppend = false)
@@ -508,13 +508,12 @@ class Pi
     /**
      * Convert a path to a physical one, proxy to host handler
      *
+     * @see Pi\Application\Host::path()
+     *
      * @param string    $url        Pi Engine path:
-     *
-     *  - with ':' or leading slash '/' - absolute path, do not convert
-     *  - First part as section, map to www if no section matched
-     *
+     *                                  with ':' or leading slash '/' - absolute path, do not convert;
+     *                                  otherwise, first part as section, map to www if no section matched
      * @return string
-     * @link Pi\Application\Host::path()
      */
     public static function path($url)
     {
@@ -524,15 +523,13 @@ class Pi
     /**
      * Convert a path to an URL, proxy to host handler
      *
+     * @see Pi\Application\Host::url()
      * @param string    $url        Pi Engine URI:
-     *
-     *  - With URI scheme "://" - absolute URI, do not convert
-     *  - First part as section, map to www if no section matched
-     *  - If section URI is relative, www URI will be appended
-     *
-     * @param bool      $absolute   whether convert to full URI; relative URI is used by default, i.e. no hostname
+     *                                  - With URI scheme "://" - absolute URI, do not convert;
+     *                                  - First part as section, map to www if no section matched;
+     *                                  - If section URI is relative, www URI will be appended.
+     * @param bool      $absolute   Whether convert to full URI; relative URI is used by default, i.e. no hostname
      * @return string
-     * @link Pi\Application\Host::url()
      */
     public static function url($url, $absolute = false)
     {
@@ -542,8 +539,9 @@ class Pi
     /**
      * Logs audit information
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     * @return void
      */
     public static function log($message, $extra = array())
     {
@@ -552,5 +550,7 @@ class Pi
     /**#@-*/
 }
 
-// Initialize
+/**
+ * Initialize Pi Engine by calling `Pi::init()`
+ */
 Pi::init();
