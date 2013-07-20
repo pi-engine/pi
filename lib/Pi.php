@@ -1,6 +1,6 @@
 <?php
 /**
- * Pi Kernel Engine
+ * Pi Engine
  *
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
@@ -15,7 +15,7 @@
  *
  * Boot up process:
  *
- * init: instantiate and initialize gobal APIs
+ * 1. init: instantiate and initialize gobal APIs
  *
  *  - host()
  *  - config()
@@ -24,39 +24,39 @@
  *  - engine()
  *  - register self::shutdown()
  *
- * boot: boot up engine
+ * 2. boot: boot up engine
  *
  *  - config()
  *  - bootstrap()
  *  - application()
  *
- * bootstrap: boostap application
+ * 3. bootstrap: boostap application
  *
  *  - bootstrap(application)
  *
- * run: run application and returns response
+ * 4. run: run application and returns response
  *
  *  - run(): route, dispatch
  *
- * send response
+ * 5. send response
  *
  *  - send()
  *
  * Global APIs:
  *
- *  - host()
- *  - config()
- *  - persist()
  *  - autoloader()
- *  - engine()
- *  - service()
- *  - user()
+ *  - config()
  *  - db()
+ *  - engine()
+ *  - host()
  *  - model()
+ *  - path()
+ *  - persist()
  *  - registerShutdown()
  *  - registry()
- *  - path()
+ *  - service()
  *  - url()
+ *  - user()
  */
 class Pi
 {
@@ -80,43 +80,43 @@ class Pi
 
     /**
      * Reference to application host
-     * @var {@Pi\Application\Host}
+     * @var Pi\Application\Host
      */
     protected static $host = null;
 
     /**
      * Reference to persist handler
-     * @var {@Pi\Application\Persist}
+     * @var Pi\Application\Persist
      */
     protected static $persist = null;
 
     /**
      * Reference to autoloader handler
-     * @var {@Pi\Application\Autoloader}
+     * @var Pi\Application\Autoloader
      */
     protected static $autoloader = null;
 
     /**
      * Reference to application engine
-     * @var array of {@Pi\Application\Engine}
+     * @var array of Pi\Application\Engine
      */
     protected static $engine = null;
 
     /**
      * Reference to service handler
-     * @var {@Pi\Application\Service}
+     * @var Pi\Application\Service
      */
     protected static $service = null;
 
     /**
      * Reference to config handler
-     * @var {@Pi\Application\Config}
+     * @var Pi\Application\Config
      */
     protected static $config = null;
 
     /**
      * Reference to Db handler
-     * @var {@Pi\Application\Db}
+     * @var Pi\Application\Db
      */
     protected static $db = null;
 
@@ -195,12 +195,14 @@ class Pi
             'namespace' => array(
             ),
             // Class map
-            'classmap'  => array(
+            'class_map'  => array(
             ),
             // Directory of modules
-            'modulepath'    => static::path('module'),
+            'module_path'    => static::path('module'),
+            // Directory of extras
+            'extra_path'    => !empty($paths['extra']) ? $paths['extra'] : static::path('usr') . '/extra',
             // Vendor directory
-            'includepath'   => !empty($paths['vendor']) ? $paths['vendor'] : static::path('lib') . '/vendor',
+            'include_path'   => !empty($paths['vendor']) ? $paths['vendor'] : static::path('lib') . '/vendor',
         );
         static::autoloader($options);
         /**#@-*/
@@ -238,10 +240,10 @@ class Pi
      *
      * Priority of different entries
      *
-     *  1. Specified in file via define('APPLICATION_ENV', 'somevalue');
-     *  2. Specified value via Pi::environment('somevalue');
-     *  3. Specified via getenv('APPLICATION_ENV') - usually set in .htaccess via "SetEnv APPLICATION_ENV production";
-     *  4. Set from system config via Pi::config('environment') set in var/config/engine.php.
+     *  1. Specified in file via `define('APPLICATION_ENV', 'somevalue')`;
+     *  2. Specified value via `Pi::environment('somevalue')`;
+     *  3. Specified via `getenv('APPLICATION_ENV')` - usually set in .htaccess via `SetEnv APPLICATION_ENV production`;
+     *  4. Set from system config via `Pi::config('environment')` set in `var/config/engine.php`.
      *
      * @param string|null $environment
      * @return null|string
@@ -318,7 +320,7 @@ class Pi
      * Instantiate application host
      *
      * @param string|array  $config Host file path or array of configuration data
-     * @return {@Pi\Application\Host}
+     * @return Pi\Application\Host
      */
     public static function host($config = null)
     {
@@ -335,7 +337,7 @@ class Pi
      * Loads persistent data handler
      *
      * @param array     $config    Config for the persist handler
-     * @return {@Pi\Application\Persist\PersistInterface}
+     * @return Pi\Application\Persist\PersistInterface
      */
     public static function persist($config = array())
     {
@@ -366,7 +368,7 @@ class Pi
      *
      * @param string    $type       Application type
      * @param array     $config     Config data for the application
-     * @return {@Pi\Application\Engine\AbstractEngine}
+     * @return Pi\Application\Engine\AbstractEngine
      */
     public static function engine($type = '', $config = array())
     {
@@ -507,8 +509,10 @@ class Pi
      * Convert a path to a physical one, proxy to host handler
      *
      * @param string    $url        Pi Engine path:
-     *                                  with ':' or leading slash '/' - absolute path, do not convert
-     *                                  First part as section, map to www if no section matched
+     *
+     *  - with ':' or leading slash '/' - absolute path, do not convert
+     *  - First part as section, map to www if no section matched
+     * 
      * @return string
      * @link Pi\Application\Host::path()
      */
@@ -521,9 +525,11 @@ class Pi
      * Convert a path to an URL, proxy to host handler
      *
      * @param string    $url        Pi Engine URI:
-     *                                  With URI scheme "://" - absolute URI, do not convert
-     *                                  First part as section, map to www if no section matched
-     *                                  If section URI is relative, www URI will be appended
+     *
+     *  - With URI scheme "://" - absolute URI, do not convert
+     *  - First part as section, map to www if no section matched
+     *  - If section URI is relative, www URI will be appended
+     *
      * @param bool      $absolute   whether convert to full URI; relative URI is used by default, i.e. no hostname
      * @return string
      * @link Pi\Application\Host::url()
