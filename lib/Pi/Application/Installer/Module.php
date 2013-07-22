@@ -21,7 +21,7 @@ use Zend\EventManager\Event;
 class Module
 {
     /**
-     * Result
+     * Results of every operation in an associative array
      * @var array
      */
     protected $result;
@@ -179,7 +179,18 @@ class Module
     }
 
     /**
-     * Get result
+     * Get operation results
+     *
+     * Returns results of every operation in an associative array:
+     *
+     * <code>
+     *  array(
+     *      '<action-name>' => array(
+     *          'status'    => <true|false>,
+     *          'message'   => <Message array>[],
+     *      ),
+     *  );
+     * </code>
      *
      * @return array
      */
@@ -203,7 +214,7 @@ class Module
         foreach ($message as $action => $state) {
             $content .= $action  . ': ' . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
-                $content .= '<br />&nbsp;&nbsp;' . implode('<br />&nbsp;&nbsp;', (array) $state['message']);
+                $content .= '<br />&nbsp;&nbsp;' . implode('<br />&nbsp;&nbsp;', $state['message']);
             }
         }
         return $content;

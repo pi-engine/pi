@@ -2,28 +2,20 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 use Pi\Application\Installer\SqlSchema;
 
 /**
  * SQL file format
+ *
  * <code>
  *  CREATE TABLE `{test}` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
@@ -37,7 +29,9 @@ use Pi\Application\Installer\SqlSchema;
  *      PRIMARY KEY  (`id`)
  *  ) ENGINE=InnoDB;
  * </code>
+ *
  * Translated format: global prefix 'pi_', module demo prefix 'demo_', system prefix 'core_'
+ *
  * <code>
  *  CREATE TABLE `pi_demo_test` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
@@ -55,6 +49,9 @@ use Pi\Application\Installer\SqlSchema;
  */
 class Database extends AbstractResource
 {
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -101,6 +98,8 @@ class Database extends AbstractResource
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Module database table list is supposed to be updated during module upgrade,
      * however we don't have a feasible solution yet. Thus module developers are encouraged to use $config['schema']
      */
@@ -145,6 +144,9 @@ class Database extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');

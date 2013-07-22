@@ -62,28 +62,7 @@ class SqlSchema
     }
 
     /**
-     * Normalize schema name
-     *
-     * @param array $matches
-     * @return string
-     */
-    public static function normalizeSchema($matches)
-    {
-        $name = $matches[1];
-        // Core tables: {core.user}
-        if (substr($name, 0, 6) == '{core.') {
-            $tableName = substr($name, 6, -1);
-            $tableName = Pi::db()->prefix($tableName, 'core');
-        // Module tables: {article}
-        } else {
-            $tableName = substr($name, 1, -1);
-            $tableName = Pi::db()->prefix($tableName, static::$type);
-        }
-        return $tableName;
-    }
-
-    /**
-     * Parse schema definition content
+     * Parse and canonize schema definition content
      *
      * @param string $content
      * @return string
@@ -93,7 +72,26 @@ class SqlSchema
         // Remove comments to prevent from invalid syntax
         $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->', $content);
         // Normalize table prefix
-        return preg_replace_callback('|(\{[^\}]+\})|', 'static::normalizeSchema', $content);
+        //return preg_replace_callback('|(\{[^\}]+\})|', 'static::normalizeSchema', $content);
+
+        $type = static::$type;
+        $canonizePrefix = function ($matches) use ($type)
+        {
+            $name = $matches[1];
+            // Core tables: {core.<table_name>}
+            if (substr($name, 0, 6) == '{core.') {
+                $tableName = substr($name, 6, -1);
+                $tableName = Pi::db()->prefix($tableName, 'core');
+            // Module tables: {<module_table>}
+            } else {
+                $tableName = substr($name, 1, -1);
+                $tableName = Pi::db()->prefix($tableName, $type);
+            }
+            return $tableName;
+        };
+
+        $result = preg_replace_callback('|(\{[^\}]+\})|', $canonizePrefix, $content);
+        return $result;
     }
 
     /**

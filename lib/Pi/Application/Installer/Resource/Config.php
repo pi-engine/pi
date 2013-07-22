@@ -2,30 +2,23 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 
 /**
  * Config definition
+ *
  * With category and configs
+ *
  * <code>
- *  return array(
+ *  array(
  *      'category'  => array(
  *          array(
  *              'name'  => 'category_name',
@@ -110,9 +103,11 @@ use Pi;
  *      )
  *  );
  * </code>
+ *
  * Only with configs
+ *
  * <code>
- *  return array(
+ *  array(
  *          'config_name'   => array(
  *              'title'         => 'Config title',
  *              'category'      => '',
@@ -126,8 +121,18 @@ use Pi;
 
 class Config extends AbstractResource
 {
+    /**
+     * Default category name
+     * @var string
+     */
     const DEFAULT_CATEGORY = 'general';
 
+    /**
+     * Canonize config category and item list data
+     *
+     * @param array $config
+     * @return array
+     */
     protected function canonize($config)
     {
         $ret = array();
@@ -161,6 +166,12 @@ class Config extends AbstractResource
         return $ret;
     }
 
+    /**
+     * Canonize a config
+     *
+     * @param array $config
+     * @return array
+     */
     protected function canonizeConfig($config)
     {
         $module = $this->event->getParam('module');
@@ -177,6 +188,9 @@ class Config extends AbstractResource
         return $config;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -228,6 +242,9 @@ class Config extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -339,6 +356,9 @@ class Config extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');

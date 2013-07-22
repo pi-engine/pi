@@ -2,28 +2,20 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 
 /**
  * Route configuration
  *
+ * <code>
  * array(
     // A specified route
     'name'   => array(
@@ -46,13 +38,13 @@ use Pi;
         )
     ),
  * );
+ * </code>
  */
-
 
 class Route extends AbstractResource
 {
     /**
-     * Canonizes route name, prefix with module name for any module other than system
+     * Canonizes route list: route name, prefix with module name for any module other than system
      *
      * @param array $configs
      * @return array
@@ -88,6 +80,11 @@ class Route extends AbstractResource
         return $routes;
     }
 
+    /**
+     * Canonize route data
+     * @param array $data
+     * @return array
+     */
     protected function canonizeRoute(array $data)
     {
         $module = $this->event->getParam('module');
@@ -110,6 +107,9 @@ class Route extends AbstractResource
         return $route;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -137,6 +137,9 @@ class Route extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -164,6 +167,9 @@ class Route extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -174,6 +180,9 @@ class Route extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function activateAction()
     {
         $module = $this->event->getParam('module');
@@ -184,6 +193,9 @@ class Route extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');

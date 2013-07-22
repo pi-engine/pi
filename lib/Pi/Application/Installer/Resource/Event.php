@@ -2,27 +2,20 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 
 /**
  * Event meta:
+ *
+ * <code>
  *  // Event list
  *  'events'    => array(
  *      // event name (unique)
@@ -40,10 +33,17 @@ use Pi;
  *          'listener'  => array('event', 'message'),
  *      ),
  *  ),
+ * </code>
  */
 
 class Event extends AbstractResource
 {
+    /**
+     * Canonize listener data
+     *
+     * @param array $listener
+     * @return array
+     */
     protected function canonize($listener)
     {
         $module = $this->event->getParam('module');
@@ -60,6 +60,9 @@ class Event extends AbstractResource
         return $data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -103,6 +106,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -216,6 +222,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -233,6 +242,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function activateAction()
     {
         $module = $this->event->getParam('module');
@@ -251,6 +263,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');

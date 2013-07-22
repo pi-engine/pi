@@ -2,20 +2,10 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -25,8 +15,9 @@ use Pi\Acl\Acl as AclHandler;
 
 /**
  * Page configuration specs
- *  <code>
- *  return array(
+ *
+ * <code>
+ *  array(
  *          // font mvc pages
  *          'front' => array(
  *              array(
@@ -122,12 +113,16 @@ use Pi\Acl\Acl as AclHandler;
  *          ),
  *          ...
  *  );
- *  </code>
+ * </code>
+ *
  * Disable pages
+ *
  *  <code>
  *  return false;
  *  </code>
+ *
  * Disable a section
+ *
  *  <code>
  *  return array(
  *      'front' => false,
@@ -138,10 +133,18 @@ use Pi\Acl\Acl as AclHandler;
  */
 
 /**
- * Note: the installation uses Acl\Resource
+ * Page maintenance
+ *
+ * @link \Pi\Acl\Acl\Resource
  */
 class Page extends AbstractResource
 {
+    /**
+     * Canonize page config
+     *
+     * @param array $config
+     * @return array
+     */
     protected function canonizePage($config)
     {
         $moduleTitle = $this->event->getParam('title');
@@ -168,6 +171,9 @@ class Page extends AbstractResource
         return $config;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         // Skip if pages disabled
@@ -234,6 +240,9 @@ class Page extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -310,7 +319,6 @@ class Page extends AbstractResource
             }
         }
 
-
         foreach ($pages_exist as $key => $page) {
             if ($page['custom'] && !$diablePage) continue;
             $message = array();
@@ -326,6 +334,9 @@ class Page extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -340,6 +351,13 @@ class Page extends AbstractResource
         return;
     }
 
+    /**
+     * Insert a page
+     *
+     * @param array $page
+     * @param array $message
+     * @return bool
+     */
     protected function insertPage($page, &$message)
     {
         $module = $this->event->getParam('module');
@@ -432,6 +450,12 @@ class Page extends AbstractResource
         return true;
     }
 
+    /**
+     * Delete a page
+     * @param int|\Pi\Application\Model\Model $page
+     * @param array $message
+     * @return bool
+     */
     protected function deletePage($page, &$message)
     {
         $modelPage = Pi::model('page');

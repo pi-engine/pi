@@ -2,28 +2,22 @@
 /**
  * Pi module uninstall action
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Action;
+
 use Pi;
 
 
 class Uninstall extends AbstractAction
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function attachDefaultListeners()
     {
         $events = $this->events;
@@ -34,6 +28,9 @@ class Uninstall extends AbstractAction
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function process()
     {
         $result = $this->event->getParam('result');

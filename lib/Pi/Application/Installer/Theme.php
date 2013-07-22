@@ -176,6 +176,7 @@ class Theme
     /**
      * Get result
      *
+     * @see Module\getResult()
      * @return array
      */
     public function getResult()

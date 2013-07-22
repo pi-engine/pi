@@ -2,20 +2,10 @@
 /**
  * Pi module installer resource
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -24,9 +14,10 @@ use Pi;
 use Pi\Acl\Acl as AclHandler;
 
 /**
- * ACL configuration specs
+ * Setup ACL component with configuration specs
  *
- *  return array(
+ * <code>
+ *  array(
  *      'roles' => array(
  *          'roleName'  => array(
  *              'title'     => 'Title',
@@ -79,10 +70,17 @@ use Pi\Acl\Acl as AclHandler;
  *          ),
  *      ),
  *  );
+ * </code>
  */
 
 class Acl extends AbstractResource
 {
+    /**
+     * Canonize ACL resource config
+     *
+     * @param array $resource
+     * @return array
+     */
     protected function canonizeResource($resource)
     {
         $columns = array(
@@ -97,6 +95,9 @@ class Acl extends AbstractResource
         return $data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         $module = $this->event->getParam('module');
@@ -224,6 +225,9 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -373,6 +377,9 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -414,6 +421,9 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function activateAction()
     {
         $module = $this->event->getParam('module');
@@ -427,6 +437,9 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
@@ -440,6 +453,13 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * Create a role
+     *
+     * @param array $role
+     * @param array $message
+     * @return bool
+     */
     protected function insertRole($role, &$message)
     {
         $model = Pi::model('acl_role');
@@ -448,6 +468,13 @@ class Acl extends AbstractResource
         return $row->id ? true : false;
     }
 
+    /**
+     * Create role inheritance
+     *
+     * @param array $pair
+     * @param array $message
+     * @return bool
+     */
     protected function insertInherit($pair, &$message)
     {
         $model = Pi::model('acl_inherit');
@@ -456,6 +483,13 @@ class Acl extends AbstractResource
         return $row->id ? true : false;
     }
 
+    /**
+     * Inerset ACL resource
+     *
+     * @param array $resource
+     * @param array $message
+     * @return bool
+     */
     protected function insertResource($resource, &$message)
     {
         $modelResource = Pi::model('acl_resource');
@@ -522,6 +556,13 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * Update ACL resource
+     *
+     * @param array $resource
+     * @param array $message
+     * @return bool
+     */
     protected function updateResource($resource, &$message)
     {
         $modelResource = Pi::model('acl_resource');
@@ -576,6 +617,13 @@ class Acl extends AbstractResource
         return true;
     }
 
+    /**
+     * Delete ACL resource
+     *
+     * @param int|Pi\Application\Model\Acl\Resource $resource
+     * @param array $message
+     * @return bool
+     */
     protected function deleteResource($resource, &$message = null)
     {
         $modelResource = Pi::model('acl_resource');
