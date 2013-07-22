@@ -1,90 +1,286 @@
-/* Bootstrap customization */
-
 /* Base */
 body {
   background: #f5f5f5;
 }
 
-/* Elements */
-fieldset dl {
-  margin-top: 0;
+/* Layout */
+.pi-nav-container {
+  margin-bottom: 20px;
 }
 
-form .icon-question-sign {
-  color: #0089D1;
+.pi-main-left {
+  margin-left: 320px;
+}
+.pi-main-right {
+  margin-right: 320px;
+}
+.pi-zone-1 {
   float: left;
-  cursor: pointer;
-  margin: 8px 0 0 3px;
+  width: 300px;
 }
 
-/* Components */
-.page-header {
-  margin: 0 0 15px 0;
+.pi-zone-8 {
+  float: right;
+  width: 300px;
 }
 
-.page-header h2 {
+.pi-zone-1 {
+  float: left;
+  width: 300px;
+}
+
+.pi-zone-3,
+.pi-zone-5 {
+  width: 50%;
+  float: left;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pi-zone-4,
+.pi-zone-6 {
+  float: right;
+  width: 50%;
+  padding-left: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pi-module-content,
+.pi-zone-99 {
+  clear: both;
+}
+
+/* Header */
+.pi-header {
+  margin: 20px auto;
+}
+
+/* Logo: image, headline, tagline */
+.pi-logo {
+  float: left;
+  font-family: sans-serif, Arial;
+}
+
+/*
+.pi-logo img {
+  
+}
+*/
+
+.pi-logo a {
+  text-decoration: none;
+}
+
+.pi-logo a:hover {
+  color: #0088CC;
+}
+
+.pi-logo-symbol {
+  font-size: 64px;
+  line-height: 0;
+  text-transform: lowercase;
+  display: none;
+}
+
+.pi-logo-headline {
+  font: bold 40px Georgia, monospace, Arial;
   margin: 0;
-  font-size: 30px;
 }
 
-.page-header .nav {
+.pi-logo-tagline {
+  color: #0088CC;
+  font-style: normal;
+  font-size: .9em;
+  display: block;
+}
+
+/* User bar */
+.pi-user-bar {
+  margin: 5px 10px 0 5px;
+  height: 20px;
+  line-height: 20px;
+  font-size: .9em;
+}
+
+.pi-user-bar {
+  color: #666;
+}
+
+.pi-user-bar a {
+  color: #666;
+}
+
+.pi-user-bar a:hover {
+  color: #005580;
+}
+
+.pi-user-bar .dropdown {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.pi-user-bar .caret {
+  border-top-color: #666;
+}
+
+/* Navigation */
+.pi-menu {
+  font-family: Helvetica, sans-serif;
+  border: 1px solid #006ca3;
+  background-color: #0293da;
+  background-image: -moz-linear-gradient(top, #04a0df, #0180d1);
+  background-image: -webkit-linear-gradient(top, #04a0df, #0180d1);
+  background-image: -o-linear-gradient(top, #04a0df, #0180d1);
+  background-image: linear-gradient(to bottom, #04a0df, #0180d1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  height: 40px;
+  border-radius: 4px;
   margin-bottom: 0;
 }
 
-.page-header .search-query {
-  border-radius: 5px;
+.pi-menu li {
+  float: left;
+  position: relative;
 }
 
-/** Pi Specific **/
-/* Elements */
-.dl-horizontal dt {
-  width: 120px;
+.pi-menu a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
 }
 
-.dl-horizontal dd {
-  margin-left: 140px;
+.pi-menu ul a {
+  padding: 5px 0 5px 20px;
 }
 
-/* Components */
+.pi-menu li:hover >a {
+  background: #0076b1;
+}
+
+.pi-menu ul li:hover >a {
+  background: #0292da;
+  border-radius: 3px;
+}
+
+.pi-menu >.active >a {
+  background-color: #0076b1;
+  box-shadow: inset 0 3px 8px #005986;
+}
+
+.pi-menu ul {
+  position: absolute;
+  width: 180px;
+  z-index: 2;
+  background: #0076b1;
+  left: 0;
+  margin: 0;
+  list-style: none;
+  display: none;
+  border-radius: 3px;
+}
+
+.pi-menu ul ul {
+  left: 179px;
+  top: -1px;
+}
+
+.pi-menu li li {
+  float: none;
+}
+
+.pi-menu a {
+  color: #fff;
+}
+
+.pi-menu li:hover >ul {
+  display: block;
+}
+
+.pi-breadcrumb {
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+
+/* Block zones */
+.pi-zone-0 .pi-block-header {
+  display: none;
+}
+
+.pi-zone-0 .pi-block-body {
+  padding: 0;
+}
+
+/* Block */
+.pi-block {
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px #bababa;
+  border: 1px solid #cecece \9;
+  border-radius: 3px;
+}
+
+.pi-block-header {
+  margin: 0 20px;
+  border-bottom: 1px dashed #e5e5e5;
+  height: 40px;
+}
+
+.pi-block-title {
+  margin: 10px 0 0 0;
+  float: left;
+}
+
+.pi-block-subline {
+  margin: 10px 0 0 0;
+}
+
+.pi-block-body {
+  padding: 20px;
+}
+
+.pi-block-body >:last-child {
+  margin-bottom: 0;
+}
+
+.pi-block-body h4 {
+  margin-top: 0;
+}
+
+/* Footer */
+.pi-footer {
+  text-align: center;
+  margin-top: 40px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+.pi-footer-line {
+  height: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+}
+
+.pi-footer a,
+.pi-footer .pi-divider {
+  color: #333;
+}
+
+.pi-footer a:hover {
+  color: #0088CC;
+}
+
+/* Component */
 .pi-divider {
   font-family: serif,sans-serif;
   margin: 0 6px;
   color: #ccc;
 }
 
-.pi-legend {
-  display: block;
-  margin-bottom: 15px;
-  font-size: 18px;
-  padding: 9px 10px;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #d7d7d7;
-}
-
-/* Box with border */
-.pi-widget {
-  margin-bottom: 20px;
-  border: 1px solid #d7d7d7;
-}
-
-.pi-widget-header {
-  padding: 5px 10px;
-  background: #F8F8F8;
-  border-bottom: 1px solid #d7d7d7;
-}
-
-.pi-widget-header * {
-  margin-bottom: 0;
-}
-
-.pi-widget-body {
-  padding: 18px 20px;
-}
-
-
-/* Avatar */
-/* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
 .pi-avatar {
   width: 80px;
 }
@@ -115,4 +311,17 @@ form .icon-question-sign {
 
 .pi-avatar-xxlarge {
   width: 214px;
+}
+
+/* System module custom */
+.system-login-form .control-group {
+  margin-bottom: 15px;
+}
+
+.system-login-form .checkbox {
+  margin-bottom: 12px;
+}
+
+.system-login-form [class^="icon-"] {
+  color: #8d8d8d;
 }
