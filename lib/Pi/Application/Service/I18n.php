@@ -25,10 +25,6 @@ namespace Pi\Application\Service
 /**
  * I18n (Internationalization) service
  *
- * @link    http://www.php.net/manual/en/book.intl.php
- * @see     Pi\Application\Service\Asset for component disptach
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- *
  * Usage:
  *
  * 1. Translator
@@ -283,6 +279,10 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->getNumberFormatter('currency', '', 'zh-CN');
  *  Pi::service('i18n')->getNumberFormatter('currency');
  * </code>
+ *
+ * @link    http://www.php.net/manual/en/book.intl.php
+ * @see     Pi\Application\Service\Asset for component disptach
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
     class I18n extends AbstractService
     {
