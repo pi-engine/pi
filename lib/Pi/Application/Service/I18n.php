@@ -27,7 +27,7 @@ namespace Pi\Application\Service
  *
  * Usage:
  *
- * 1. Translator
+ * - Translator
  *
  * <code>
  *  Pi::service('i18n')->setTranslator(<translator>);
@@ -35,7 +35,7 @@ namespace Pi\Application\Service
  *  $translator = Pi::service('i18n')->translator;
  * </code>
  *
- * 2. Locale
+ * - Locale
  *
  * <code>
  *  Pi::service('i18n')->setLocale($locale);
@@ -43,9 +43,9 @@ namespace Pi\Application\Service
  *  $locale = Pi::service('i18n')->locale;
  * </code>
  *
- * 3. Load a resource file
+ * - Load a resource file
  *
- * - Use namespace pair and specified locale
+ *   - Use namespace pair and specified locale
  *
  * <code>
  *  // Specified module
@@ -68,7 +68,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load(array('www/script/mycode/demo', 'main'), 'en');
  * </code>
  *
- * - Use string namespace with delimitor and specified locale
+ *   - Use string namespace with delimitor and specified locale
  *
  * <code>
  *  // Specified module
@@ -86,7 +86,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load('www/script/mycode/demo:main', 'en');
  * </code>
  *
- * - Use current locale
+ *   - Use current locale
  *
  * <code>
  *  // Specified module
@@ -94,7 +94,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load('module/demo:block');
  * </code>
  *
- * - Module translation
+ *   - Module translation
  *
  * <code>
  *  // Current module
@@ -105,7 +105,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->loadModule('block', 'demo');
  * </code>
  *
- * - Theme translation
+ *   - Theme translation
  *
  * <code>
  *  // Current theme
@@ -116,30 +116,30 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->loadTheme('main', 'default');
  * </code>
  *
- * 4. Get a path
+ * - Get a path
  *
  * <code>
  *  $path = Pi::service('i18n')->getPath(array('usr', 'mail/template'), 'en');
  *  $path = Pi::service('i18n')->getPath('usr:mail/template', 'en');
  * </code>
  *
- * 5. Translate a message
+ * - Translate a message
  *
- * - From current text domain
+ *   - From current text domain
  *
  * <code>
  *  __('A test message');
  *  __('A test message', null, 'zh_CN');
  * </code>
  *
- * - From a specified text domain
+ *   - From a specified text domain
  *
  * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
  *  __('A test message');
  * </code>
  *
- * - From a specified text domain and restore previous domain after translation
+ *   - From a specified text domain and restore previous domain after translation
  *
  * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
@@ -147,7 +147,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->translator->restoreTextDomain();
  * </code>
  *
- * - From a specified text domain and locale and restore previous domain/locale after translation
+ *   - From a specified text domain and locale and restore previous domain/locale after translation
  *
  * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
@@ -156,30 +156,30 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->translator->restore();
  * </code>
  *
- * 6. Translate a message within a specified domain and locale
+ * - Translate a message within a specified domain and locale
  *
  * <code>
  *  __('A test message', 'theme/default', 'en');
  * </code>
  *
  *
- * 7. Register a message that will be translated in different lanauges, but not translated at the place where it is registered
+ * - Register a message that will be translated in different lanauges, but not translated at the place where it is registered
  *
  * <code>
  *  _t('Message to be translated and used later.');
  * </code>
  *
- * - Use case, register module config
+ *   - Use case, register module config
  *
- *   - Registered in a module's config.php
+ *     - Registered in a module's config.php
  *
  * <code>
  *  $config['key'] = array('title' => _t('Config Title'), 'description' => _t('Config hint'), '...'));
  * </code>
  *
- *   - Load translated message in the module config setting page:
- *     module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
- *    `Module\System\Form\ConfigForm::addElement()`
+ *     - Load translated message in the module config setting page:
+ *       module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
+ *       "Module\System\Form\ConfigForm::addElement()"
  *
  * <code>
  *  protected function addElement($config)
@@ -195,7 +195,7 @@ namespace Pi\Application\Service
  * </code>
  *
  *
- * 8. Format a date
+ * - Format a date
  *
  * <code>
  *  _date(time(), 'fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
@@ -219,20 +219,20 @@ namespace Pi\Application\Service
  *  _date(time());
  * </code>
  *
- * - In case Intl is not available, pass a format string for legacy date() function
+ *   - In case Intl is not available, pass a format string for legacy date() function
  *
  * <code>
  *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss', 'Y-m-d H:i:s');
  *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
  * </code>
  *
- * - Format defined in system intl config (`Pi::config('date_format', 'intl')`) will be used if format is not specified
+ *   - Format defined in system intl config (`Pi::config('date_format', 'intl')`) will be used if format is not specified
  *
  * <code>
  *  _date(time(), ...);
  * </code>
  *
- * 9. Format a number
+ * - Format a number
  *
  * <code>
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN', 'default');
@@ -241,7 +241,7 @@ namespace Pi\Application\Service
  *  _number(123.4567, 'spellout');
  * </code>
  *
- * 10. Format a currency
+ * - Format a currency
  *
  * <code>
  *  _currency(123.45, 'USD', 'en-US');
@@ -249,7 +249,7 @@ namespace Pi\Application\Service
  *  _currency(123.45);
  * </code>
  *
- * 11. Get a date formatter
+ * - Get a date formatter
  *
  * <code>
  *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
@@ -262,9 +262,9 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->getDateFormatter(array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
  * </code>
  *
- * 12. Get a number formatter
+ * - Get a number formatter
  *
- *  - Get a number formatter
+ *   - Get a number formatter
  *
  * <code>
  *  Pi::service('i18n')->getNumberFormatter('decimal', '#0.# kg', 'zh-CN');
@@ -274,7 +274,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->getNumberFormatter('spellout');
  * </code>
  *
- *  - Get a currency formatter
+ *   - Get a currency formatter
  *
  * <code>
  *  Pi::service('i18n')->getNumberFormatter('currency', '', 'zh-CN');
