@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -16,7 +15,7 @@ use Pi\Application\Model\Block\Root as RootRow;
 /**
  * Block maintenance with configuration specs
  *
- * <code>
+ * ```
  *  array(
  *      // Block with renderer and structured options
  *      'blockA' => array(
@@ -64,7 +63,9 @@ use Pi\Application\Model\Block\Root as RootRow;
  *      ),
  *      ...
  *  );
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
 class Block extends AbstractResource

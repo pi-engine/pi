@@ -1,17 +1,21 @@
 <?php
 /**
- * Pi Navigation Page Model
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Model\Navigation;
 
 use Pi\Application\Model\Nest;
 
+/**
+ * Navigation page model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Page extends Nest
 {
     /** @var string Navigation name */

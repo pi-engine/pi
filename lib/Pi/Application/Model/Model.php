@@ -1,17 +1,21 @@
 <?php
 /**
- * Pi Table Gateway Model
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Model;
 
 use Pi\Db\Table\AbstractTableGateway;
 
+/**
+ * Pi table gateway model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Model extends AbstractTableGateway
 {
     /**
@@ -26,5 +30,5 @@ class Model extends AbstractTableGateway
      *
      * @var string
      */
-    protected $rowClass = 'Pi\\Db\\RowGateway\\RowGateway';
+    protected $rowClass = 'Pi\Db\RowGateway\RowGateway';
 }

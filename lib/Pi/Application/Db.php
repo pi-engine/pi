@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi Application Db API class
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application;
@@ -25,6 +24,8 @@ use Pi\Log\DbProfiler;
  *
  * Note:
  * In installation sql scripts, quote all database names with `{` and `}` so that all names can be easily prefixed on installation.
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Db
 {

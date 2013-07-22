@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -13,11 +12,11 @@ namespace Pi\Application\Installer\Resource;
 use Pi;
 
 /**
- * Config definition
+ * Config setup
  *
- * With category and configs
+ * - With category and configs
  *
- * <code>
+ * ```
  *  array(
  *      'category'  => array(
  *          array(
@@ -102,11 +101,11 @@ use Pi;
  *          ...
  *      )
  *  );
- * </code>
+ * ```
  *
- * Only with configs
+ * - Only with configs
  *
- * <code>
+ * ```
  *  array(
  *          'config_name'   => array(
  *              'title'         => 'Config title',
@@ -116,9 +115,10 @@ use Pi;
  *          ),
  *          ...
  *  );
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Config extends AbstractResource
 {
     /**

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi User Account Model Row
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Model\User\RowGateway;
@@ -14,23 +13,25 @@ use Pi;
 use Pi\Db\RowGateway\RowGateway;
 
 /**
- * Update credential
+ * User account row gateway
  *
- * <code>
+ * Update credential:
+ *
+ * ```
  *  $row = $accountModel->createRow($dataAarray);
  *  $row->prepare()->save();
- * </code>
+ * ```
  *
  * Or
- * <code>
- *
+ * ```
  *  $row = $accountModel->createRow($dataAarray);
  *  $row->createSalt();
  *  $row->setCredential($raw_credential);
  *  $row->save();
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Account extends RowGateway
 {
     /**

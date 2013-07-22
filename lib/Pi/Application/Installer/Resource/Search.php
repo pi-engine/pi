@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -13,13 +12,15 @@ namespace Pi\Application\Installer\Resource;
 use Pi;
 
 /**
- * Search configuration
+ * Module search setup configuration
  *
- * <code>
+ * ```
  * array(
  *  'callback'  => array('class', 'method'),
  * );
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Search extends AbstractResource
 {

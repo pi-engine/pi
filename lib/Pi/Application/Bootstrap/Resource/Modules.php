@@ -1,11 +1,10 @@
 <?php
 /**
- * Bootstrap resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -15,6 +14,8 @@ use Pi\Application\Bootstrap\ModuleBootstrap;
 
 /**
  * Pre-boot modules
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Modules extends AbstractResource
 {

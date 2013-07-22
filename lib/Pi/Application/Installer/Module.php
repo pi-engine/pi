@@ -1,11 +1,10 @@
 <?php
 /**
- * Widget application engine class
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer;
@@ -16,7 +15,11 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\Event;
 
 /**
- * Maintenance of a module: install, uninstall, activate, deactivate, update
+ * Maintenance of a module
+ *
+ * Actions: install, uninstall, activate, deactivate, update
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Module
 {

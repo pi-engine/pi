@@ -1,50 +1,61 @@
 <?php
 /**
- * Kernel persist
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Persist
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Persist;
+
 use Pi;
 
+/**
+ * File system persist storage
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class FilesystemStorage extends AbstractStorage
 {
+    /**
+     * Path to cached files
+     * @var string
+     */
     protected $cacheDir;
 
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
     public function __construct($options = array())
     {
         $this->cacheDir = isset($options['cache_dir']) ? $options['cache_dir'] : Pi::path('cache');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getType()
     {
         return 'file';
     }
 
+    /**
+     * Find file name for a cached object
+     *
+     * @param string $id
+     * @param bool $hash
+     * @return string
+     */
     protected function fileName($id, $hash = false)
     {
         return sprintf('%s/%s.php', $this->cacheDir, $this->prefix(($hash ? md5($id) : $id)));
     }
 
     /**
-     * Test if an item is available for the given id and (if yes) return it (false else)
-     *
-     * @param  string  $id                     Item id
-     * @return mixed|false Cached datas
+     * {@inheritDoc}
      */
     public function load($id)
     {
@@ -56,11 +67,7 @@ class FilesystemStorage extends AbstractStorage
     }
 
     /**
-     * Save some data in a key
-     *
-     * @param  mixed $data      Data to put in cache
-     * @param  string $id       Store id
-     * @return boolean True if no problem
+     * {@inheritDoc}
      */
     public function save($data, $id, $ttl = 0)
     {
@@ -75,10 +82,7 @@ class FilesystemStorage extends AbstractStorage
     }
 
     /**
-     * Remove an item
-     *
-     * @param  string $id Data id to remove
-     * @return boolean True if ok
+     * {@inheritDoc}
      */
     public function remove($id)
     {
@@ -87,10 +91,7 @@ class FilesystemStorage extends AbstractStorage
     }
 
     /**
-     * Clear cached entries
-     *
-     * @param string $prefix
-     * @return boolean True if ok
+     * {@inheritDoc}
      */
     public function flush()
     {

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi Engine host and path container class
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application;
@@ -17,13 +16,13 @@ namespace Pi\Application;
  *
  * - Specify host file in `www/boot.php`
  *
- *  <code>
+ *  ```
  *      define('PI_PATH_HOST', '/path/to/pi/var/config/host.php');
- *  </code>
+ *  ```
  *
  * - Define host specification details in the specified host file
  *
- *  <code>
+ *  ```
  *      return array(
  *          'uri'   => array(
  *              ...
@@ -32,17 +31,19 @@ namespace Pi\Application;
  *              ...
  *          ),
  *      );
- *  </code>
+ *  ```
  *
  * Multiple hosts
  *
  * - Specify hosts file in `www/boot.php`
  *
- *  <code>
+ *  ```
  *      define('PI_PATH_HOST', '/path/to/pi/var/config/hosts-config.php');
- *  </code>
+ *  ```
  *
  * - Define hosts specification details in the specified hosts file, {@see var/config/hosts.php} for sample
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Host
 {

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer action
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Action;
@@ -15,6 +14,11 @@ use Pi\Application\Installer\Module;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\Event;
 
+/**
+ * Module installer action abstract class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 abstract class AbstractAction
 {
     /** @var EventManager */

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi Engine Taxonomy content provider API
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application;
@@ -13,7 +12,10 @@ namespace Pi\Application;
 use Zend\View\ViewModel;
 
 /**
- * @todo Move the class to a Taxonomy dedicated namespace
+ * Pi Engine Taxonomy content provider API
+ *
+ * @todo    Move the class to a Taxonomy dedicated namespace
+ * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractProvider extends AbstractApi
 {

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -19,7 +18,8 @@ use Pi;
  *    - Source path: module/demo/asset; theme/default/module/demo/asset
  * 2. Remove module published assets from www/asset/[encrypted path]/
  *
- * @see Pi\Application\Service\Asset for asset maintenance
+ * @see \Pi\Application\Service\Asset for asset maintenance
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractResource
 {

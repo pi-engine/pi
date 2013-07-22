@@ -1,40 +1,50 @@
 <?php
 /**
- * Kernel persist
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Persist
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Persist;
 
+use Pi;
+
 /**
- * Note: this storage does not support namespace or tag
+ * Memcache storage
+ *
+ * This storage does not support namespace or tag
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class MemcacheStorage extends AbstractStorage
 {
     /**
      * Default Values
      */
+    /** @var string */
     const DEFAULT_HOST = '127.0.0.1';
+
+    /** @var int */
     const DEFAULT_PORT =  11211;
+
+    /** @var bool */
     const DEFAULT_PERSISTENT = true;
+
+    /** @var int */
     const DEFAULT_WEIGHT  = 1;
+
+    /** @var int */
     const DEFAULT_TIMEOUT = 1;
+
+    /** @var int */
     const DEFAULT_RETRY_INTERVAL = 15;
+
+    /** @var bool */
     const DEFAULT_STATUS = true;
+
+    /** @var null|Callback */
     const DEFAULT_FAILURE_CALLBACK = null;
 
     /**
@@ -42,28 +52,31 @@ class MemcacheStorage extends AbstractStorage
      *
      * =====> (array) servers :
      * an array of memcached server ; each memcached server is described by an associative array :
-     * 'host' => (string) : the name of the memcached server
-     * 'port' => (int) : the port of the memcached server
-     * 'persistent' => (bool) : use or not persistent connections to this memcached server
-     * 'weight' => (int) : number of buckets to create for this server which in turn control its
+     *
+     * - 'host' => (string) : the name of the memcached server
+     * - 'port' => (int) : the port of the memcached server
+     * - 'persistent' => (bool) : use or not persistent connections to this memcached server
+     * - 'weight' => (int) : number of buckets to create for this server which in turn control its
      *                     probability of it being selected. The probability is relative to the total
      *                     weight of all servers.
-     * 'timeout' => (int) : value in seconds which will be used for connecting to the daemon. Think twice
+     * - 'timeout' => (int) : value in seconds which will be used for connecting to the daemon. Think twice
      *                      before changing the default value of 1 second - you can lose all the
      *                      advantages of caching if your connection is too slow.
-     * 'retry_interval' => (int) : controls how often a failed server will be retried, the default value
+     * - 'retry_interval' => (int) : controls how often a failed server will be retried, the default value
      *                             is 15 seconds. Setting this parameter to -1 disables automatic retry.
-     * 'status' => (bool) : controls if the server should be flagged as online.
-     * 'failure_callback' => (callback) : Allows the user to specify a callback function to run upon
+     * - 'status' => (bool) : controls if the server should be flagged as online.
+     * - 'failure_callback' => (callback) : Allows the user to specify a callback function to run upon
      *                                    encountering an error. The callback is run before failover
      *                                    is attempted. The function takes two parameters, the hostname
      *                                    and port of the failed server.
      *
      * =====> (boolean) compression :
-     * true if you want to use on-the-fly compression
+     *
+     * - true if you want to use on-the-fly compression
      *
      * =====> (boolean) compatibility :
-     * true if you use old memcache server or extension
+     *
+     * - true if you use old memcache server or extension
      *
      * @var array available options
      */
@@ -85,7 +98,7 @@ class MemcacheStorage extends AbstractStorage
     /**
      * Memcache object
      *
-     * @var mixed memcache object
+     * @var \memcache|null memcache object
      */
     protected $memcache = null;
 
@@ -145,21 +158,24 @@ class MemcacheStorage extends AbstractStorage
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getType()
     {
         return 'memcache';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getEngine()
     {
         return $this->memcache;
     }
 
     /**
-     * Test if an item is available for the given id and (if yes) return it (false else)
-     *
-     * @param  string  $id                     Item id
-     * @return mixed|false Cached datas
+     * {@inheritDoc}
      */
     public function load($id)
     {
@@ -168,11 +184,7 @@ class MemcacheStorage extends AbstractStorage
     }
 
     /**
-     * Save some data in a key
-     *
-     * @param  mixed $data      Data to put in cache
-     * @param  string $id       Store id
-     * @return boolean True if no problem
+     * {@inheritDoc}
      */
     public function save($data, $id, $ttl = 0)
     {
@@ -184,10 +196,7 @@ class MemcacheStorage extends AbstractStorage
     }
 
     /**
-     * Remove an item
-     *
-     * @param  string $id Data id to remove
-     * @return boolean True if ok
+     * {@inheritDoc}
      */
     public function remove($id)
     {
@@ -196,9 +205,7 @@ class MemcacheStorage extends AbstractStorage
     }
 
     /**
-     * Clean cached entries
-     *
-     * @return boolean True if ok
+     * {@inheritDoc}
      */
     public function flush()
     {

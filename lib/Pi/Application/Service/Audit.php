@@ -1,35 +1,42 @@
 <?php
 /**
- * Pi Engine auditing service
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Service;
 
 use Pi;
 
+/**
+ * Auditing service
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Audit extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'audit';
+
+    /** @var string Time format for audit log */
     protected $timeformat = 'c';
+
+    /** @var string File content format for log */
     protected $format = 'csv';
+
+    /** @var array Log container */
     protected $logs = array();
+
+    /** @var array Log iterms */
     protected $items = array();
 
     /**
-     * Shutdown function, triggered by Pi::shutdown()
+     * Shutdown function, triggered by {@link Pi::shutdown()}
+     *
+     * @return void
      */
     public function shutdown()
     {
@@ -42,8 +49,8 @@ class Audit extends AbstractService
     /**
      * Attach a log
      *
-     * @param string $name
-     * @param array|string|null $options
+     * @param string                $name
+     * @param array|string|null     $options
      * @return void
      */
     public function attach($name, $options = null)
@@ -71,8 +78,8 @@ class Audit extends AbstractService
     /**
      * Write messages to a log
      *
-     * @param string $name
-     * @param array $messages
+     * @param string    $name
+     * @param array     $messages
      * @return bool
      */
     public function write($name, $messages)
@@ -114,11 +121,11 @@ class Audit extends AbstractService
      * Logs an operation
      *
      * <code>
-     *   Pi::service('audit')->log('operation_name', array('val1', 'val2', 'val3'));
+     *   Pi::service('audit')->log(<operation-name>, array(<val1>, <val2>, <val3>, ..., <valn>));
      * </code>
      *
-     * @param  string  $name  log name
-     * @param  array|string  $args  parameters to log
+     * @param  string       $name  Log name
+     * @param  array|string $args  Parameters to log
      * @return void
      */
     public function log($name, $args)

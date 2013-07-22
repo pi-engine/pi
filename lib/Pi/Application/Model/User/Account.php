@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi User Account Model
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Model\User;
@@ -13,10 +12,15 @@ namespace Pi\Application\Model\User;
 use Pi;
 use Pi\Application\Model\Model;
 
+/**
+ * User account model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Account extends Model
 {
     /** @var string */
-    protected $table = "user_account";
+    protected $table = 'user_account';
 
     /**
      * Row gateway class

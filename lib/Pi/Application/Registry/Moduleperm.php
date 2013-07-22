@@ -1,33 +1,26 @@
 <?php
 /**
- * Pi cache registry
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Registry
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Registry;
+
 use Pi;
 use Pi\Acl\Acl as AclManager;
 
+/**
+ * Module list of different operation permission
+ *
+ * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Moduleperm extends AbstractRegistry
 {
     /**
-     * Load raw data
-     *
-     * @param   array   $options potential values for type: front, admin, manage
+     * {@inheritDoc}
      */
     protected function loadDynamic($options)
     {
@@ -38,15 +31,13 @@ class Moduleperm extends AbstractRegistry
     }
 
     /**
-     * Get allowed module list
+     * {@inheritDoc}
+     * @param string $type Default as front:
+     *                              front - all active and allowed for front section;
+     *                              admin - all active and allowed for admin section;
+     *                              manage - all active and allowed for admin managed components.
      *
-     * @param string $type      default as front
-     *                              front: all active and allowed for front section
-     *                              admin: all active and allowed for admin section
-     *                              manage: all active and allowed for admin managed components
-     *
-     * @param string $role
-     * @return array
+     * @param string|null $role
      */
     public function read($type = 'front', $role = null)
     {
@@ -58,6 +49,15 @@ class Moduleperm extends AbstractRegistry
         return $this->loadData($options);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param string $type Default as front:
+     *                              front - all active and allowed for front section;
+     *                              admin - all active and allowed for admin section;
+     *                              manage - all active and allowed for admin managed components.
+     *
+     * @param string|null $role
+     */
     public function create($type = 'front', $role = null)
     {
         $this->clear('');
@@ -65,17 +65,26 @@ class Moduleperm extends AbstractRegistry
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setNamespace($meta = null)
     {
         return parent::setNamespace('');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function clear($namespace = '')
     {
         parent::clear('');
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function flush()
     {
         return $this->clear('');

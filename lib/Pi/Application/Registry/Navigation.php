@@ -1,33 +1,29 @@
 <?php
 /**
- * Pi cache registry
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Registry
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Registry;
+
 use Pi;
 use Pi\Acl\Acl as AclManager;
 
+/**
+ * Navigation list
+ *
+ * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Navigation extends AbstractRegistry
 {
+    /** @var string */
     protected $module;
-    protected $section = 'front';
 
-    protected $translator;
+    /** @var string */
+    protected $section = 'front';
 
     /**
      * Columns for URI pages
@@ -75,14 +71,11 @@ class Navigation extends AbstractRegistry
         'params',
     );
 
+    /**
+     * {@inheritDoc}
+     */
     protected function loadDynamic($options)
     {
-        /*
-        if (isset($options['module']) && !isset($options['domain'])) {
-            $options['domain'] = $options['module'];
-        }
-        */
-
         $name = $options['name'];
         if ('front' == $name) {
             return $this->loadFront($options);
@@ -105,6 +98,12 @@ class Navigation extends AbstractRegistry
         return $this->loadNavigation($options);
     }
 
+    /**
+     * Load navigation data
+     *
+     * @param array $options
+     * @return array
+     */
     protected function loadNavigation($options)
     {
         $name = $options['name'];
@@ -133,10 +132,14 @@ class Navigation extends AbstractRegistry
         return $navigation;
     }
 
+    /**
+     * Load navigation of front section
+     *
+     * @param array $options
+     * @return array
+     */
     protected function loadFront($options)
     {
-        //$this->section = 'front';
-        //$this->route = 'default';
         $options['section'] = 'front';
         $options['name'] = 'system-front';
 
@@ -146,7 +149,7 @@ class Navigation extends AbstractRegistry
     }
 
     /**
-     * Load admin nav data
+     * Load navigation of admin section
      *
      * NOTE: Only top level items are shown in a non-system module admin menu
      *
@@ -164,7 +167,16 @@ class Navigation extends AbstractRegistry
         return $navigation;
     }
 
-    public function read($name = null, $module = null, $section = null, $role = null, $locale = '')
+    /**
+     * {@inheritDoc}
+     *
+     * @param string        $name
+     * @param string|null   $module
+     * @param string|null   $section
+     * @param string|null   $role
+     * @param string        $locale
+     */
+    public function read($name, $module = null, $section = null, $role = null, $locale = '')
     {
         //$this->cache = false;
         if (null === $role) {
@@ -177,51 +189,61 @@ class Navigation extends AbstractRegistry
     }
 
     /**
-     * Add a module menu
+     * {@inheritDoc}
+     *
+     * @param string        $name
+     * @param string|null   $module
+     * @param string|null   $section
+     * @param string|null   $role
+     * @param string        $locale
      */
-    public function create($name = null, $module = null, $role = null, $locale = '')
+    public function create($name, $module = null, $role = null, $locale = '')
     {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setNamespace($meta = null)
     {
         return parent::setNamespace('');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function clear($namespace = '')
     {
         parent::clear('');
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function flush()
     {
         return $this->clear('');
     }
 
+    /**
+     * Translate navigation config
+     *
+     * @param array     $config
+     * @param string    $domain
+     * @param string    $locale
+     * @return array
+     */
     protected function translateConfig($config, $domain, $locale)
     {
-        /*
-        $this->translator = null;
-        if ($domain) {
-            $translateData = 'navigation';
-            $translator = clone Pi::service('i18n')->translator;
-            $translator->load(sprintf('module/%s:%s', $domain, $translateData), $locale);
-            $this->translator = $translator;
-        }
-        */
-
         if ($config) {
             Pi::service('i18n')->load($domain, $locale);
-
-            //d($config);
             foreach ($config as $p => &$page) {
                 $this->translatePage($page, $config, $p, true);
             }
-            //d($config);
         }
 
         return $config;
@@ -234,6 +256,7 @@ class Navigation extends AbstractRegistry
      *  <li>Declaration: 'callback' must befined as a direct property of a page, as a direct method string, or an array of class and method
      *      <ul>
      *          <li>Direct callback
+     *
      *              <code>
      *              $pages = array(
      *                  ...
@@ -244,7 +267,9 @@ class Navigation extends AbstractRegistry
      *                  ...
      *              );
      *              </code>
+     *
      *          <li>Callback with full class and method
+     *
      *              <code>
      *              $pages = array(
      *                  ...
@@ -255,7 +280,9 @@ class Navigation extends AbstractRegistry
      *                  ...
      *              );
      *              </code>
+     *
      *          <li>Callback with direct class and method, the class will be transilated to the module in which the page spec is defined
+     *
      *              <code>
      *              $pages = array(
      *                  ...
@@ -266,10 +293,12 @@ class Navigation extends AbstractRegistry
      *                  ...
      *              );
      *              </code>
+     *
      *      </ul>
      *  <li>Return: the return array shall be for the page itself/subpages, or for its parent
      *      <ul>
      *          <li>For the page
+     *
      *              <code>
      *              $return = array(
      *                  ...
@@ -281,7 +310,9 @@ class Navigation extends AbstractRegistry
      *                  ),
      *              );
      *              </code>
+     *
      *          <li>For the page's parent with replacement: the page will be replaced with p1, p2, etc. in its parent
+     *
      *              <code>
      *              $return = array(
      *                  'parent' => array(
@@ -291,7 +322,9 @@ class Navigation extends AbstractRegistry
      *                  ),
      *              );
      *              </code>
+     *
      *          <li>For the page's parent with insertion: the pages  p1, p2, etc. specified in 'pages' will be inserted into its parent before/after the page specified in 'position'
+     *
      *              <code>
      *              $return = array(
      *                  'parent' => array(
@@ -304,7 +337,9 @@ class Navigation extends AbstractRegistry
      *                  ),
      *              );
      *              </code>
+     *
      *          <li>For the page itself and its parent with insertion: the pages  p1, p2, etc. specified in 'pages' will be inserted into its parent before/after the page specified in 'position'
+     *
      *              <code>
      *              $return = array(
      *                  ...
@@ -319,13 +354,14 @@ class Navigation extends AbstractRegistry
      *                  ),
      *              );
      *              </code>
+     *
      *      </ul>
      * </ul>
      *
-     * @see     Module\System\Navigation for details
-     * @param array $page
-     * @param array $parent
-     * @param string $pKey
+     * @see     \Module\System\Navigation for details
+     * @param array     $page   Page data to be canonized
+     * @param array     $parent Sibling of parent page
+     * @param string    $pKey   Key of parent in sibling
      * @return array
      */
     protected function canonizeCallback($page, &$parent, $pKey)
@@ -405,6 +441,15 @@ class Navigation extends AbstractRegistry
         return $page;
     }
 
+    /**
+     * Canonize a page
+     *
+     * @param array     $page   Page data to be canonized
+     * @param array     $parent Sibling of parent page
+     * @param string    $pKey   Key of parent in sibling
+     * @param bool      $isTop  If the page is top level, only top level menu is shown in non-system module admin
+     * @return array
+     */
     protected function canonizePage($page, &$parent, $pKey, $isTop = false)
     {
         $page = $this->canonizeCallback($page, $parent, $pKey);
@@ -430,6 +475,15 @@ class Navigation extends AbstractRegistry
         return $page;
     }
 
+    /**
+     * Translate a page
+     *
+     * @param array     $page   Page data to be canonized
+     * @param array     $parent Sibling of parent page
+     * @param string    $pKey   Key of parent in sibling
+     * @param bool      $isTop  If the page is top level, only top level menu is shown in non-system module admin
+     * @return array
+     */
     protected function translatePage(&$page, &$parent, $pKey, $isTop = false)
     {
         $page = $this->canonizePage($page, $parent, $pKey, $isTop);
@@ -443,18 +497,6 @@ class Navigation extends AbstractRegistry
         }
         $page['resource'] = null;
 
-        /*
-        // Translate
-        if ($this->translator) {
-            if (!empty($page['label'])) {
-                $page['label'] = $this->translator->translate($page['label']);
-            }
-            // translate title
-            if (!empty($page['title'])) {
-                $page['title'] = $this->translator->translate($page['title']);
-            }
-        }
-        */
         if (!empty($page['label'])) {
             $page['label'] = __($page['label']);
         }
@@ -472,6 +514,12 @@ class Navigation extends AbstractRegistry
         }
     }
 
+    /**
+     * Check if a page is accessible
+     *
+     * @param array $page
+     * @return bool
+     */
     public function isAllowed($page)
     {
         if (!empty($page['resource'])) {
@@ -480,6 +528,12 @@ class Navigation extends AbstractRegistry
         return true;
     }
 
+    /**
+     * Check if a resource is allowed
+     *
+     * @param array $params
+     * @return bool
+     */
     protected function isAllowedResource($params)
     {
         $module = null;

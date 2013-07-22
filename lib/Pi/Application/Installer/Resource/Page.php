@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -14,9 +13,9 @@ use Pi;
 use Pi\Acl\Acl as AclHandler;
 
 /**
- * Page configuration specs
+ * Page setup with configuration specs
  *
- * <code>
+ * ```
  *  array(
  *          // font mvc pages
  *          'front' => array(
@@ -113,29 +112,26 @@ use Pi\Acl\Acl as AclHandler;
  *          ),
  *          ...
  *  );
- * </code>
+ * ```
  *
  * Disable pages
  *
- *  <code>
+ *  ```
  *  return false;
- *  </code>
+ *  ```
  *
  * Disable a section
  *
- *  <code>
+ *  ```
  *  return array(
  *      'front' => false,
  *      'admin' => array(
  *      ),
  *  );
- *  </code>
- */
-
-/**
- * Page maintenance
+ *  ```
  *
  * @link \Pi\Acl\Acl\Resource
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Page extends AbstractResource
 {

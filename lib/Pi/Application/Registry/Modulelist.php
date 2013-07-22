@@ -1,34 +1,29 @@
 <?php
 /**
- * Pi cache registry
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Registry
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Registry;
+
 use Pi;
 use Pi\Acl\Acl as AclManager;
 
+/**
+ * Module list of different types
+ *
+ * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Modulelist extends AbstractRegistry
 {
     /**
-     * Load raw data
-     *
-     * @param   array   $options potential values for type: active, inactive
-     * @return  array    keys: dirname, name, (mid), weight, image, author, version
+     * {@inheritDoc}
+     * @param   array  $options potential values for type: active, inactive
+     * @return  array
+     *  - keys: directory, name, title, id, logo, version, update
      */
     protected function loadDynamic($options)
     {
@@ -66,12 +61,10 @@ class Modulelist extends AbstractRegistry
     }
 
     /**
-     * Get module list
-     *
-     * @param string $type      default as active
-     *                              active: all active modules
-     *                              inactive: all inactive modules
-     * @return type
+     * {@inheritDoc}
+     * @param string $type Default as active:
+     *                              active - all active modules;
+     *                              inactive - all inactive modules.
      */
     public function read($type = 'active')
     {
@@ -81,6 +74,12 @@ class Modulelist extends AbstractRegistry
         return $this->loadData($options);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param string $type Default as active:
+     *                              active - all active modules;
+     *                              inactive - all inactive modules.
+     */
     public function create($type = 'active')
     {
         $this->clear('');
@@ -88,17 +87,26 @@ class Modulelist extends AbstractRegistry
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setNamespace($meta = null)
     {
         return parent::setNamespace('');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function clear($namespace = '')
     {
         parent::clear('');
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function flush()
     {
         return $this->clear('');
