@@ -14,11 +14,6 @@ use Pi;
 /**
  * Asset maintenance service
  *
- * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see \Pi\View\Resolver\ComponentTemplate for component template skeleton
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- *
  * Module asset folders/files skeleton
  * <ul>
  *  <li>
@@ -82,6 +77,11 @@ use Pi;
  *
  *  </li>
  * </ul>
+ *
+ * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see \Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractService
 {

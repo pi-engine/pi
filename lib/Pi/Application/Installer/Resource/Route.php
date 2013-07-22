@@ -16,26 +16,26 @@ use Pi;
  *
  * ```
  * array(
-    // A specified route
-    'name'   => array(
-        // section: front, admin, feed, etc.
-        'section'   => 'front',
-        // order to call
-        'priority'  => -999,
-        // Type defined in \Pi\Mvc\Router\Route
-        'type'      => 'Standard',
-        'options'   =>array(
-            'route' => '', // Used as prefix, which is different from Zend routes
-            'structure_delimiter'   => '/',
-            'param_delimiter'       => '/',
-            'key_value_delimiter'   => '-',
-            'defaults'              => array(
-                'module'        => 'system',
-                'controller'    => 'public',
-                'action'        => 'index',
-            )
-        )
-    ),
+ *  // A specified route
+ *  'name'   => array(
+ *      // section: front, admin, feed, etc.
+ *      'section'   => 'front',
+ *      // order to call
+ *      'priority'  => -999,
+ *      // Type defined in \Pi\Mvc\Router\Route
+ *      'type'      => 'Standard',
+ *      'options'   =>array(
+ *          'route' => '', // Used as prefix, which is different from Zend routes
+ *          'structure_delimiter'   => '/',
+ *          'param_delimiter'       => '/',
+ *          'key_value_delimiter'   => '-',
+ *          'defaults'              => array(
+ *              'module'        => 'system',
+ *              'controller'    => 'public',
+ *              'action'        => 'index',
+ *          )
+ *      )
+ *  ),
  * );
  * ```
  *

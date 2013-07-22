@@ -17,19 +17,19 @@ use Pi\Application\AbstractApi;
  *
  * Samples:
  *
- * - Call a module's specified API defined in its API class in `Module\<ModuleName>\Api\Api`
+ * - Call a module's specified API defined in its API class in "Module\<ModuleName>\Api\Api"
  *
  * ```
  *  Pi::service('api')->demo('method', $args);
  *  Pi::service('api')->demo->method($args);
  * ```
  *
- * - Call a module's API defined in custom class in `Module\<ModuleName>\Api\Callback`
+ * - Call a module's API defined in custom class in "Module\<ModuleName>\Api\Callback"
  *
  * ```
  *  Pi::service('api')->demo(array('callback', 'method'), $args);
  * ```
- * 
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Api extends AbstractService

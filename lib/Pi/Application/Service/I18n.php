@@ -36,6 +36,7 @@ namespace Pi\Application\Service
  * </code>
  *
  * 2. Locale
+ *
  * <code>
  *  Pi::service('i18n')->setLocale($locale);
  *  Pi::service('i18n')->getLocale();

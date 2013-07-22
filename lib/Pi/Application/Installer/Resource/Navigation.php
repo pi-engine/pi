@@ -17,6 +17,7 @@ use Pi\Application\Model\Model as NavigationRow;
  * Navigation setup with configuration specs
  *
  * NOTE:
+ *
  * - Module front navigation won't be updated upon module upgrade
  * - Only top level items are shown in a non-system module admin menu
  *

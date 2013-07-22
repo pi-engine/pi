@@ -16,7 +16,7 @@ use Pi;
  *
  * - With category and configs
  *
- * ```
+ * <code>
  *  array(
  *      'category'  => array(
  *          array(
@@ -101,11 +101,11 @@ use Pi;
  *          ...
  *      )
  *  );
- * ```
+ * </code>
  *
  * - Only with configs
  *
- * ```
+ * <code>
  *  array(
  *          'config_name'   => array(
  *              'title'         => 'Config title',
@@ -115,7 +115,7 @@ use Pi;
  *          ),
  *          ...
  *  );
- * ```
+ * </code>
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
