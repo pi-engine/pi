@@ -17,7 +17,7 @@ use Pi\Application\Installer\SqlSchema;
  *
  * SQL file format
  *
- * <code>
+ * <pre>
  *  CREATE TABLE `{test}` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
  *      `message` varchar(255)            NOT NULL default '',
@@ -29,11 +29,11 @@ use Pi\Application\Installer\SqlSchema;
  *      `message` varchar(255)            NOT NULL default '',
  *      PRIMARY KEY  (`id`)
  *  ) ENGINE=InnoDB;
- * </code>
+ * </pre>
  *
  * Translated format: global prefix 'pi_', module demo prefix 'demo_', system prefix 'core_'
  *
- * <code>
+ * <pre>
  *  CREATE TABLE `pi_demo_test` (
  *      `id`      int(10) unsigned        NOT NULL auto_increment,
  *      `message` varchar(255)            NOT NULL default '',
@@ -45,7 +45,7 @@ use Pi\Application\Installer\SqlSchema;
  *      `message` varchar(255)            NOT NULL default '',
  *      PRIMARY KEY  (`id`)
  *  ) ENGINE=InnoDB;
- * </code>
+ * </pre>
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
