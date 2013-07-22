@@ -11,9 +11,11 @@ body {
 .pi-main-left {
   margin-left: 320px;
 }
+
 .pi-main-right {
   margin-right: 320px;
 }
+
 .pi-zone-1 {
   float: left;
   width: 300px;
