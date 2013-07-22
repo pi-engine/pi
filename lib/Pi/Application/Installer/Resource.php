@@ -2,23 +2,14 @@
 /**
  * Installer Event class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer;
+
 use Pi;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
@@ -26,16 +17,17 @@ use Zend\EventManager\Event;
 
 class Resource implements ListenerAggregateInterface
 {
+    /** @var ListenerAggregateInterface */
     protected $listener;
 
-    /**
-     * Listeners we've registered
-     *
-     * @var array
-     */
-    //protected $listeners = array();
+    /** @var Event */
     protected $event;
 
+    /**
+     * Constructor
+     *
+     * @param Event $event
+     */
     public function __construct(Event $event)
     {
         $this->event = $event;
@@ -55,7 +47,7 @@ class Resource implements ListenerAggregateInterface
     /**
      * Detach listeners
      *
-     * @param  Events $events
+     * @param EventManagerInterface $events
      * @return void
      */
     public function detach(EventManagerInterface $events)
@@ -63,6 +55,12 @@ class Resource implements ListenerAggregateInterface
         $events->detach($this->listener);
     }
 
+    /**
+     * Process resources
+     *
+     * @param Event $e
+     * @return void
+     */
     public function processResources(Event $e)
     {
         $this->event = $e;
@@ -85,6 +83,11 @@ class Resource implements ListenerAggregateInterface
         return;
     }
 
+    /**
+     * Get available resource list
+     *
+     * @return array
+     */
     protected function resourceList()
     {
         $resourceList = array();
@@ -123,10 +126,10 @@ class Resource implements ListenerAggregateInterface
      */
     protected function loadResource($resource)
     {
-        $e = $this->event;
-        $config = $e->getParam('config');
-        $moduleDirectory = $e->getParam('directory');
-        $resourceClass = sprintf('Module\\%s\Installer\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
+        $e                  = $this->event;
+        $config             = $e->getParam('config');
+        $moduleDirectory    = $e->getParam('directory');
+        $resourceClass      = sprintf('Module\\%s\Installer\Resource\\%s', ucfirst($moduleDirectory), ucfirst($resource));
         if (!class_exists($resourceClass)) {
             $resourceClass = sprintf('%s\Resource\\%s', __NAMESPACE__, ucfirst($resource));
         }

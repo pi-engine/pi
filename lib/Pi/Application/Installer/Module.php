@@ -1,24 +1,15 @@
 <?php
 /**
- * Pi module installer
+ * Widget application engine class
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
  */
 
 namespace Pi\Application\Installer;
+
 use Pi;
 use Pi\Db\RowGateway\RowGateway as ModuleRow;
 use Zend\EventManager\EventManager;
@@ -26,15 +17,22 @@ use Zend\EventManager\Event;
 
 /**
  * Maintenance of a module: install, uninstall, activate, deactivate, update
- *
- * Calling priority:
- *  \Module\Modulname\Installer\
  */
 class Module
 {
+    /**
+     * Result
+     * @var array
+     */
     protected $result;
+
+    /** @var array */
     protected $options;
+
+    /** @var EventManagerInterface */
     protected $events;
+
+    /** @var Event */
     protected $event;
 
     /*
@@ -50,6 +48,14 @@ class Module
     const EVENT_DEACTIVATE_POST = 'moudle.installer.install.post';
     */
 
+    /**
+     * Magic method for install, uninstall, update, activate, deactivate, etc.
+     *
+     * @param string    $method
+     * @param array     $args
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
     public function __call($method, $args)
     {
         if (!in_array($method, array('install', 'uninstall', 'update', 'activate', 'deactivate'))) {
@@ -132,6 +138,11 @@ class Module
         return $status;
     }
 
+    /**
+     * Get EventManager
+     *
+     * @return EventManager
+     */
     public function getEventManager()
     {
         if (!$this->events) {
@@ -140,6 +151,11 @@ class Module
         return $this->events;
     }
 
+    /**
+     * Attach default listeners to event mananger
+     *
+     * @return void
+     */
     protected function attachDefaultListeners()
     {
         $events = $this->getEventManager();
@@ -148,6 +164,12 @@ class Module
         $events->attach('finish', array($this, 'updateMeta'));
     }
 
+    /**
+     * Clear system caches
+     *
+     * @param Event $e
+     * @return void
+     */
     public function clearCache(Event $e)
     {
         Pi::persist()->flush();
@@ -156,11 +178,22 @@ class Module
         Pi::service('registry')->modulelist->clear($e->getParam('module'));
     }
 
+    /**
+     * Get result
+     *
+     * @return array
+     */
     public function getResult()
     {
         return $this->event->getParam('result');
     }
 
+    /**
+     * Render messages
+     *
+     * @param array|null $message
+     * @return string
+     */
     public function renderMessage($message = null)
     {
         if (null === $message) {
@@ -168,22 +201,32 @@ class Module
         }
         $content = '';
         foreach ($message as $action => $state) {
-            //$content .= '<p>';
             $content .= $action  . ': ' . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
                 $content .= '<br />&nbsp;&nbsp;' . implode('<br />&nbsp;&nbsp;', (array) $state['message']);
             }
-            //$content .= '</p>';
         }
         return $content;
     }
 
+    /**
+     * Update module meta data via re-creating them
+     *
+     * @param Event $e
+     * @return bool
+     */
     public function updateMeta(Event $e)
     {
         Pi::service('module')->createMeta();
         return true;
     }
 
+    /**
+     * Load module meta
+     *
+     * @param Event $e
+     * @return void
+     */
     public function loadConfig(Event $e)
     {
         $config = Pi::service('module')->loadMeta($e->getParam('directory'));
@@ -193,6 +236,11 @@ class Module
         }
     }
 
+    /**
+     * Attach install resoures
+     *
+     * @return void
+     */
     protected function attachResource()
     {
         $resourceHandler = new Resource($this->event);
