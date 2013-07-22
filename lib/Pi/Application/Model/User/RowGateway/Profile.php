@@ -2,30 +2,31 @@
 /**
  * Pi User Profile Model Row
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @package         Pi\Application
- * @subpackage      Model
- * @since           3.0
- * @version         $Id$
  */
 
 namespace Pi\Application\Model\User\RowGateway;
+
 use Pi;
 use Pi\Db\RowGateway\RowGateway;
 
 class Profile extends RowGateway
 {
+    /**
+     * Profile meta data
+     * @var array
+     */
     protected static $meta;
 
+    /**
+     * Get meta data of a key
+     *
+     * @param string $key
+     * @return array
+     */
     protected function getMeta($key)
     {
         if (!isset(static::$meta)) {
@@ -44,6 +45,12 @@ class Profile extends RowGateway
         return $meta;
     }
 
+    /**
+     * Get value of a column for display
+     *
+     * @param string $col
+     * @return string
+     */
     public function display($col = null)
     {
         $result = array();
@@ -61,6 +68,12 @@ class Profile extends RowGateway
         return $result;
     }
 
+    /**
+     * Transform a meat
+     *
+     * @param string $key
+     * @return mixed
+     */
     protected function transformMeta($key)
     {
         $value = $this->{$key};
