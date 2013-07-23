@@ -12,7 +12,7 @@ namespace Pi\Application\Service;
 use Pi;
 
 /**
- * Even service
+ * Event service
  *
  * - Trigger an event with event name:
  *
