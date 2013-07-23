@@ -41,8 +41,6 @@ use Pi;
  * API for listener callback:
  *
  * ```
- *  namespace Module\\<ModuleName>;
- *
  *  class <ListenerClass>
  *  {
  *      static public function <listenerMethod>(<object>[, <module-name>])
