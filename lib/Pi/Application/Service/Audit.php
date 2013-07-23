@@ -14,6 +14,86 @@ use Pi;
 /**
  * Auditing service
  *
+ * The service provides a variety of ways logging run-time structured data into files.
+ * An audit task could be specified in "var/config/service.audit.php" then called in applications,
+ * it could also be called directly in run-time in applications on fly.
+ *
+ * Definition of configuration {@see var/config/service.audit.php}:
+ *
+ * - Full specified mode with option array:
+ *   - file: path to the log file
+ *   - timeformat: time stamp format in log, {@link http://www.php.net/manual/en/function.date.php}
+ *   - format: logged data format, for example "%time% %d %s [%s]"
+ *
+ * ```
+ *  'full-mode-audit'   => array(
+ *      'file'          => <path/to/full.log>,
+ *      'timeformat'    => <date-format>,
+ *      'format'        => '%time% %d %s [%s]',
+ *  )
+ * ```
+ *
+ * - CSV mode with option array:
+ *   - file: path to the log file
+ *   - timeformat: time stamp format in log, {@link http://www.php.net/manual/en/function.date.php}
+ *   - format: "csv", data are stored in CSV format
+ *
+ * ```
+ *  'csv-mode-audit'    => array(
+ *      'file'          => <path/to/csv.log>,
+ *      'format'        => 'csv', // fixed
+ *      'timeformat'    => <date-format>,
+ *  ),
+ * ```
+ *
+ * - Custom mode with option array (could be empty):
+ *   - file: optional; if file is not specified, log data will be stored in "var/log/<audit-name>.log"
+ *   - timeformat: optional, default as "c"
+ *   - format: optional, default as "csv"
+ *
+ * ```
+ *  'custom-mode-audit'  => array(
+ *      ['file'          => <path/to/audit.log>,]
+ *      ['timeformat'    => <date-format>,]
+ *      ['format'        => <data-format>,]
+ *  )
+ * ```
+ *
+ * - Custom mode with string option:
+ *   - file: the specified string is used as log file
+ *   - timeformat: "c"
+ *   - format: "csv"
+ *
+ * ```
+ *  'audit-name' => <path/to/audit.log>
+ * ```
+ *
+ * Log data with an audit defined in var/config/service.audit.php:
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->log('full-mode-audit', $args);
+ *  Pi::service('audit')->log('csv-mode-audit', $args);
+ *  Pi::service('audit')->log('audit-name', $args);
+ * ```
+ *
+ * Log data directly to a log file on fly (not pre-defined):
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->log('audit-on-fly', $args);
+ * ```
+ *
+ * Define and attach an audit then write log data:
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->attach('custom-audit', array(
+ *      'file'  => Pi::path('log') . '/custom.csv'
+ *  ));
+ *  Pi::service('audit')->log('custom-audit', $args);
+ * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Audit extends AbstractService
@@ -120,9 +200,9 @@ class Audit extends AbstractService
     /**
      * Logs an operation
      *
-     * <code>
+     * ```
      *   Pi::service('audit')->log(<operation-name>, array(<val1>, <val2>, <val3>, ..., <valn>));
-     * </code>
+     * ```
      *
      * @param  string       $name  Log name
      * @param  array|string $args  Parameters to log
