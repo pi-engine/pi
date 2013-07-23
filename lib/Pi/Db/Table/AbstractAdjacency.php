@@ -1,35 +1,25 @@
 <?PHP
 /**
- * Pi Adjacency List Table Gateway
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Db
- * @subpackage      Table
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Db\Table;
 
 /**
- * Pi Adjacency List Model
+ * Pi Adjacency List Table Gateway
  *
  * Managing Hierarchical Data with adjacency list model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractAdjacency extends AbstractTableGateway
 {
     /**
      * Predefined columns
-     *
      * @var array
      */
     protected $column = array(
@@ -37,8 +27,7 @@ abstract class AbstractAdjacency extends AbstractTableGateway
     );
 
     /**
-     * Setup model
-     * @param array $options
+     * {@inheritDoc}
      */
     public function setup($options = array())
     {
@@ -51,6 +40,12 @@ abstract class AbstractAdjacency extends AbstractTableGateway
         parent::setup($options);
     }
 
+    /**
+     * Get column name
+     *
+     * @param string $column
+     * @return string|null
+     */
     public function column($column)
     {
         return isset($this->column[$column]) ? $this->column[$column] : null;
@@ -60,15 +55,17 @@ abstract class AbstractAdjacency extends AbstractTableGateway
      * Gets all ancestors of a role
      *
      * @todo Not ready yet
+     * @param int $node
+     * @return string[]
      */
-    public function getAncestors($role)
+    public function getAncestors($node)
     {
         $parents = array();
         $select = $this->getAdapter()->select()
                     ->from(array('r' => $this->_name))
                     ->where(array('r.active' => 1))
                     ->joinLeft(array('i' => $this->getAdapter()->prefix('acl_inherit', 'xo')), 'r.name = i.parent')
-                    ->where(array('i.child' => $role));
+                    ->where(array('i.child' => $node));
                     //->order(array('i.order'));
         $result = $select->query()->fetchAll();
         if (empty($result)) {

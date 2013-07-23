@@ -1,21 +1,10 @@
 <?PHP
 /**
- * Pi Directed Acyclic Graph Table Gateway
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Db
- * @subpackage      Table
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Db\Table;
@@ -24,14 +13,21 @@ namespace Pi\Db\Table;
  * Pi Directed Acyclic Graph or Partilly Ordered Set Model
  *
  * Managing Partially Ordered Data with DAG
+ *
  * @see http://en.wikipedia.org/wiki/Directed_acyclic_graph
  * @see http://www.codeproject.com/KB/database/Modeling_DAGs_on_SQL_DBs.aspx
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractDag extends AbstractTableGateway
 {
     /**
      * Predefined columns
-     *
+     *  - start: Start vertex column name
+     *  - end: End vertex column name
+     *  - entry: Entry edge column name
+     *  - direct: Direct edge column name
+     *  - exit: Exit edge column name
+     *  - hops: Number of hops from start to end
      * @var array
      */
     protected $column = array(
@@ -56,8 +52,7 @@ abstract class AbstractDag extends AbstractTableGateway
     protected $rowClass = 'Pi\Db\RowGateway\Vertex';
 
     /**
-     * Setup model
-     * @param array $options
+     * {@inheritDoc}
      */
     public function setup($options = array())
     {
@@ -70,6 +65,9 @@ abstract class AbstractDag extends AbstractTableGateway
         parent::setup($options);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function initialize()
     {
         if ($this->initialized == true) {
@@ -83,6 +81,12 @@ abstract class AbstractDag extends AbstractTableGateway
         }
     }
 
+    /**
+     * Get column name
+     *
+     * @param string $column
+     * @return string|null
+     */
     public function column($column)
     {
         return isset($this->column[$column]) ? $this->column[$column] : null;

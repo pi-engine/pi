@@ -1,21 +1,10 @@
 <?PHP
 /**
- * Pi Row Gateway
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Db
- * @subpackage      RowGateway
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Db\RowGateway;
@@ -27,13 +16,12 @@ use Zend\Db\RowGateway\Feature;
 use Zend\Db\RowGateway\Exception;
 
 /**
+ * Row gateway class
+ *
  * Use 'encode' to serialize array and object data before saveing to database and use 'decode' after fetching from database
  *
- * $data: regular data
- * $primayKeyData: primary key value(s)
- * $originalData: data for direct in/out DB
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class RowGateway extends AbstractRowGateway
 {
     /**
@@ -49,34 +37,10 @@ class RowGateway extends AbstractRowGateway
     protected $primaryKeyColumns = array();
 
     /**
+     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB, specified as pairs of column name and bool value: true - to convert to associative array for decode; false - keep as array object.
      * @var array
      */
-    //protected $primaryKeyData = null;
-
-    /**#@+
-     * The originalData and data are declared in \Zend\Db\RowGateway\AbstractRowGateway with no informative explanation.
-     * My guess is: originalData for date fetched from DB directory without processing; data for assigned from applications
-     */
-    /**
-     * @var array
-     */
-    //protected $originalData = null;
-
-    /**
-     * @var array
-     */
-    //protected $data = array();
-    /**#@-*/
-
-    /**
-     * Non-scalar columns to be endcoded/decoded during save/fetch with DB
-     * @var type
-     */
-    protected $encodeColumns = array(
-        // column name => convert to associative array?
-        //'col_array'     => true,
-        //'col_object'    => false,
-    );
+    protected $encodeColumns = array();
 
     /**
      * Constructor
@@ -110,7 +74,9 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
-     * initialize()
+     * Initialization
+     *
+     * @return void
      */
     public function initialize()
     {
@@ -158,7 +124,7 @@ class RowGateway extends AbstractRowGateway
      * Set columns to be encode/decode
      *
      * @param array $columns
-     * @return RowGateway
+     * @return $this
      */
     public function setEncodeColumns(array $columns)
     {
@@ -166,6 +132,11 @@ class RowGateway extends AbstractRowGateway
         return $this;
     }
 
+    /**
+     * Get columns to be encoded/decoded
+     *
+     * @return array
+     */
     public function getEncodeColumns()
     {
         return $this->encodeColumns;
@@ -175,7 +146,7 @@ class RowGateway extends AbstractRowGateway
      * Encode content
      *
      * @param  array|resource|object $value
-     * @return mixed
+     * @return string
      */
     protected function encodeValue($value)
     {
@@ -186,8 +157,8 @@ class RowGateway extends AbstractRowGateway
     /**
      * Decode content
      *
-     * @param string $value
-     * @param bool $assoc
+     * @param string    $value
+     * @param bool      $assoc
      * @return array|resource|object
      */
     protected function decodeValue($value, $assoc = true)
@@ -239,6 +210,7 @@ class RowGateway extends AbstractRowGateway
 
     /**
      * Encode a non-scalar column
+     *
      * @param string $column Column/field name
      * @return string
      */
@@ -263,8 +235,9 @@ class RowGateway extends AbstractRowGateway
     /**
      * Populate Data
      *
-     * @param  array $currentData
-     * @return RowGateway
+     * @param array $rowData
+     * @param bool  $rowExistsInDatabase If row is already in DB
+     * @return $this
      */
     public function populate(array $rowData, $rowExistsInDatabase = false)
     {
@@ -283,10 +256,10 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
-     * Save
+     * Save a row
      *
-     * @param bool $rePopulate
-     * @return integer
+     * @param bool $rePopulate  To re-populate data
+     * @return int
      */
     public function save($rePopulate = true)
     {
@@ -362,9 +335,9 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
-     * Delete
+     * Delete a row
      *
-     * @return type
+     * @return int
      */
     public function delete()
     {
@@ -399,6 +372,12 @@ class RowGateway extends AbstractRowGateway
         return $affectedRows;
     }
 
+    /**
+     * Assign data
+     *
+     * @param array $data
+     * @return $this
+     */
     public function assign($data)
     {
         foreach ($data as $offset => $value) {
@@ -409,6 +388,9 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
+     * Process primary key
+     *
+     * @return void
      * @throws Exception\RuntimeException
      */
     protected function processPrimaryKeyData()

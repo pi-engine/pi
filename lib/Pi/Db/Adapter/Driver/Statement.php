@@ -1,18 +1,10 @@
 <?PHP
 /**
- * Pi Db statement class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Db
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Db\Adapter\Driver;
@@ -21,6 +13,12 @@ use PDO;
 use PDOStatement;
 use Pi\Log\DbProfiler;
 
+/**
+ * Pi DB custom statement class
+ *
+ * @see http://www.php.net/manual/en/pdo.setattribute.php
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Statement extends PDOStatement
 {
     /**
@@ -31,11 +29,11 @@ class Statement extends PDOStatement
 
     /**
      * DB query counter
-     *
      * @var int
      */
     protected $counter = 0;
 
+    /** @var array */
     protected $parameters = array();
 
     /**
@@ -43,7 +41,7 @@ class Statement extends PDOStatement
      *
      * @param DbProfiler $profiler
      */
-    protected function __construct($profiler = null)
+    protected function __construct(DbProfiler $profiler = null)
     {
         $this->profiler = $profiler;
     }
@@ -51,8 +49,8 @@ class Statement extends PDOStatement
     /**
      * Execute query with args and log query information
      *
-     * @param array $args
-     * @return boolean
+     * @param array|null $args
+     * @return bool
      */
     public function execute($args = null)
     {
@@ -99,6 +97,9 @@ class Statement extends PDOStatement
         return $status;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR, $length = null, $driver_options = null)
     {
         $result = parent::bindParam($parameter, $variable, $data_type, $length, $driver_options);
@@ -108,6 +109,9 @@ class Statement extends PDOStatement
         return $result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
     {
         $result = parent::bindValue($parameter, $value, $data_type);

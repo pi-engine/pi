@@ -1,21 +1,10 @@
 <?php
 /**
- * Db Authentication Adapter
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Authentication
- * @subpackage      Adpater
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Authentication\Adapter;
@@ -25,11 +14,15 @@ use Pi\Application\Model\User\Account as AccountModel;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result as AuthenticationResult;
 
+/**
+ * Db Authentication Adapter
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class DbTable implements AdapterInterface
 {
     /**
-     * $tableName - the table name to check
-     *
+     * Table name to check
      * @var string
      */
     protected $tableName;
@@ -40,37 +33,30 @@ class DbTable implements AdapterInterface
      */
     protected $table;
 
-    /**
-     * $identity - Identity value
-     *
-     * @var string
-     */
+    /** @var string Identity value */
     protected $identity = null;
 
-    /**
-     * $credential - Credential values
-     *
-     * @var string
-     */
+    /** @var string Credential value */
     protected $credential = null;
 
-    /**
-     * $authenticateResultInfo
-     *
-     * @var array
-     */
+    /** @var array */
     protected $authenticateResultInfo = null;
 
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
     public function __construct($options = array())
     {
         $this->tableName = isset($options['table_name']) ? $options['table_name'] : 'user_account';
     }
 
     /**
-     * setTableName() - set the table name to be used in the select query
+     * Set the table name to be used in the select query
      *
      * @param  string $tableName
-     * @return Db Provides a fluent interface
+     * @return $this
      */
     public function setTableName($tableName)
     {
@@ -79,10 +65,10 @@ class DbTable implements AdapterInterface
     }
 
     /**
-     * setIdentity() - set the value to be used as the identity
+     * Set the value to be used as the identity
      *
      * @param  string $value
-     * @return Db Provides a fluent interface
+     * @return $this
      */
     public function setIdentity($value)
     {
@@ -91,11 +77,11 @@ class DbTable implements AdapterInterface
     }
 
     /**
-     * setCredential() - set the credential value to be used, optionally can specify a treatment
+     * Set the credential value to be used, optionally can specify a treatment
      * to be used, should be supplied in parameterized form, such as 'MD5(?)' or 'PASSWORD(?)'
      *
      * @param  string $credential
-     * @return Db Provides a fluent interface
+     * @return $this
      */
     public function setCredential($credential)
     {
@@ -104,9 +90,10 @@ class DbTable implements AdapterInterface
     }
 
     /**
-     * authenticate() - This method is called to
-     * attempt an authentication.  Previous to this call, this adapter would have already
-     * been configured with all necessary information to successfully connect to a database
+     * Authenticate a user
+     *
+     * This method is called to attempt an authentication.
+     * Previous to this call, this adapter would have already been configured with all necessary information to successfully connect to a database
      * table and attempt to find a record matching the provided identity.
      *
      * @return AuthenticationResult
@@ -144,8 +131,9 @@ class DbTable implements AdapterInterface
     }
 
     /**
-     * _authenticateValidateResult() - This method attempts to validate that
-     * the record in the resultset is indeed a record that matched the
+     * Validate authentication
+     *
+     * This method attempts to validate that the record in the resultset is indeed a record that matched the
      * identity provided to this adapter.
      *
      * @param  array $resultIdentity
@@ -166,7 +154,9 @@ class DbTable implements AdapterInterface
     }
 
     /**
-     * _authenticateCreateAuthResult() - Creates a Zend_Auth_Result object from
+     * Create authentication result
+     *
+     * Creates a Zend\Authentication\Result object from
      * the information that has been collected during the authenticate() attempt.
      *
      * @return AuthenticationResult

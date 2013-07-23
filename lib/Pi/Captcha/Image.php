@@ -1,37 +1,29 @@
 <?php
 /**
- * Pi CAPTCHA image class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Captcha
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Captcha;
+
 use Pi;
 use Zend\Captcha\Image as ZendImage;
-
 use Zend\Captcha\Exception;
 use Zend\Stdlib\ErrorException;
 use Zend\Stdlib\ErrorHandler;
 
+/**
+ * CAPTCHA image class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Image extends ZendImage
 {
     /**
-     * Set captcha image base URL
-     *
-     * @param  string $imgUrl
-     * @return Image
+     * {@inheritDoc}
      */
     public function setImgUrl($imgUrl)
     {
@@ -60,9 +52,7 @@ class Image extends ZendImage
     }
 
     /**
-     * Get session object
-     *
-     * @return Container
+     * {@inheritDoc}
      */
     public function getSession()
     {
@@ -77,10 +67,7 @@ class Image extends ZendImage
     }
 
     /**
-     * Set captcha word
-     *
-     * @param  string $word
-     * @return AbstractWord
+     * {@inheritDoc}
      */
     protected function setWord($word)
     {
@@ -97,9 +84,7 @@ class Image extends ZendImage
     }
 
     /**
-     * Generate new session ID and new word
-     *
-     * @return string session ID
+     * {@inheritDoc}
      */
     public function generate()
     {
@@ -114,13 +99,9 @@ class Image extends ZendImage
     }
 
     /**
-     * Generate image captcha
+     * {@inheritDoc}
      *
-     * Override this function if you want different image generator
-     * Wave transform from http://www.captcha.ru/captchas/multiwave/
-     *
-     * @param string $id Captcha ID
-     * @param string $word Captcha word
+     * @return resource
      */
     protected function generateImage($id, $word)
     {

@@ -36,7 +36,7 @@ abstract class AbstractService
     }
 
     /**
-     * Loads options
+     * Set options
      *
      * Options data will be loaded from config file if defined
      *
