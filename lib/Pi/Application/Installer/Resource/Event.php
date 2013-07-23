@@ -41,7 +41,7 @@ use Pi;
  * API for listener callback:
  *
  * ```
- *  namespace Module\<ModuleName>;
+ *  namespace Module\\<ModuleName>;
  *
  *  class <ListenerClass>
  *  {
