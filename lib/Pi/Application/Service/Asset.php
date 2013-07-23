@@ -15,68 +15,33 @@ use Pi;
  * Asset maintenance service
  *
  * Module asset folders/files skeleton
- * <ul>
- *  <li>
- *      <ul>Source assts
- *          <li>
- *              <ul>Module native assets:
- *                  <li>for both module "demo" and cloned "democlone"
  *
- *                      <code>module/demo/asset/</code>
+ * - Source assts
+ *   - Module native assets:
+ *     - for both module "demo" and cloned "democlone": `module/demo/asset/`</li>
+ *   - Module custom assets: (Note: the custom relationship is not maintained by the Asset service, it shall be addressed by module maintainer instead.)
+ *     - for module "demo": `theme/default/module/demo/asset/`</li>
+ *     - for module "democlone": `theme/default/module/democlone/asset/`
  *
- *                  </li>
- *              </ul>
- *          </li>
- *          <li>
- *              <ul>Module custom assets: (Note: the custom relationship is not maintained by the Asset service, it shall be addressed by module maintainer instead.)
- *                  <li>for module "demo"
- *
- *                      <code>theme/default/module/demo/asset/</code>
- *
- *                  </li>
- *                  <li>for module "democlone"
- *
- *                      <code>theme/default/module/democlone/asset/</code>
- *
- *                  </li>
- *          </li>
- *      </ul>
- *  </li>
- *  <li>Published assts
- *
- *      <code>www/asset/[encrypted "module/demo"]/</code>
- *      <code>www/asset/[encrypted "module/democlone"]/</code>
- *
- *  </li>
- * </ul>
+ * - Published assts
+ *   - for module "demo": `www/asset/[encrypted "module/demo"]/`
+ *   - for module "democlone":  `www/asset/[encrypted "module/democlone"]/`
  *
  * Theme asset folders files skeleton
- * <ul>
- *  <li>Source assets
  *
- *      <code>theme/default/asset/</code>
+ * - Source assets
+ *   - `theme/default/asset/`
  *
- *  </li>
- *  <li>Published assets
+ * - Published assets
+ *   - `www/asset/<encrypted "theme/default">/`
  *
- *      <code>www/asset/<encrypted "theme/default">/</code>
+ * Other component asset folders files skeleton
  *
- *  </li>
- * </ul>
+ * - Source assets
+ *   - `path/to/component/asset/`
  *
- * MISC asset folders files skeleton
- * <ul>
- *  <li>Source assets
- *
- *      <code>path/to/component/asset/</code>
- *
- *  </li>
- *  <li>Published assets
- *
- *      <code>www/asset/<encrypted "path/to/component">/</code>
- *
- *  </li>
- * </ul>
+ * - Published assets
+ *   - `www/asset/<encrypted "path/to/component">/`
  *
  * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
  * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
