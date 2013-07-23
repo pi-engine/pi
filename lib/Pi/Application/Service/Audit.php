@@ -18,11 +18,11 @@ use Pi;
  * An audit task could be specified in "var/config/service.audit.php" then called in applications,
  * it could also be called directly in run-time in applications on fly.
  *
- * Definition of configuration {@see var/config/service.audit.php}:
+ * Definition of configuration:
  *
  * - Full specified mode with option array:
  *   - file: path to the log file
- *   - timeformat: time stamp format in log, {@link http://www.php.net/manual/en/function.date.php}
+ *   - timeformat: time stamp format in log
  *   - format: logged data format, for example "%time% %d %s [%s]"
  *
  * ```
@@ -35,7 +35,7 @@ use Pi;
  *
  * - CSV mode with option array:
  *   - file: path to the log file
- *   - timeformat: time stamp format in log, {@link http://www.php.net/manual/en/function.date.php}
+ *   - timeformat: time stamp format in log
  *   - format: "csv", data are stored in CSV format
  *
  * ```
@@ -89,11 +89,13 @@ use Pi;
  * ```
  *  $args = array(rand(), 'var1', 'var, val and exp');
  *  Pi::service('audit')->attach('custom-audit', array(
- *      'file'  => Pi::path('log') . '/custom.csv'
+ *      'file'  => <path/to/custom.csv>
  *  ));
  *  Pi::service('audit')->log('custom-audit', $args);
  * ```
  *
+ * @see var/config/service.audit.php for audit service configuration
+ * @see http://www.php.net/manual/en/function.date.php for date format
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Audit extends AbstractService
