@@ -14,6 +14,26 @@ use Pi;
 /**
  * Even service
  *
+ * - Trigger an event with event name:
+ *
+ * ```
+ *  Pi::service('event')->trigger(<event-name>[, <data-for-the-event>[, <shortcircuit-callback>]]);
+ * ```
+ *
+ * - Trigger an event with module and event name:
+ *
+ * ```
+ *  Pi::service('event')->trigger(array(<module-name>, <event-name>)[, <data-for-the-event>[, <shortcircuit-callback>]]);
+ * ```
+ *
+ * - Attach a listener in run-time
+ *
+ * ```
+ *  Pi::service('event')->attach(<module-name>, <event-name>, array(<callback-class>, <callback-method>[, <callback-module-name>]));
+ * ```
+ *
+ * @see \Pi\Application\Installer\Resource\Event for event specifications
+ * @see \Pi\Application\Registry\Event for event listing
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractService
@@ -27,9 +47,9 @@ class Event extends AbstractService
     /**
      * Trigger (or notify) callbacks registered to an event
      *
-     * @param string|array  $event  event name or module event pair
-     * @param mixed         $object object or array
-     * @param Callback|null $shortcircuit
+     * @param string|array  $event          Event name or module event pair
+     * @param mixed|null    $object         Object or array
+     * @param Callback|null $shortcircuit   Shortcircuit callback to stop the event trigger
      * @return bool
      */
     public function trigger($event, $object = null, $shortcircuit = null)
@@ -39,6 +59,8 @@ class Event extends AbstractService
         } else {
             $module = Pi::service('module')->current();
         }
+
+        // Load pre-defined listeners
         $listeners = $this->loadListeners($module, $event);
         $isStopped = false;
         foreach ($listeners as $listener) {
@@ -52,6 +74,8 @@ class Event extends AbstractService
                 }
             }
         }
+
+        // Load run-time attached listeners
         if (!$isStopped && !empty($this->container[$module][$event])) {
             foreach ($this->container[$module][$event] as $key => $listener) {
                 if (isset($listener[2])) {
@@ -88,9 +112,9 @@ class Event extends AbstractService
     /**
      * Attach a predefined observer to an event in run-time
      *
-     * @param string    $module
-     * @param string    $event
-     * @param array     $callback: array of <class>, <method>, <module>
+     * @param string    $module     Event module
+     * @param string    $event      Event name
+     * @param array     $listener   Listener callback : array of <class>, <method>[, <module>]
      * @return $this
      */
     public function attach($module, $event, $listener)
@@ -103,9 +127,9 @@ class Event extends AbstractService
     /**
      * Detach an observer from an event
      *
-     * @param string    $module
-     * @param string    $event
-     * @param array     $callback: array of <class>, <method>, <module>
+     * @param string        $module     Event module
+     * @param string        $event      Event name
+     * @param array|null    $listener   Listener callback : array of <class>, <method>, <module>
      * @return $this
      */
     public function detach($module, $event, $listener = null)

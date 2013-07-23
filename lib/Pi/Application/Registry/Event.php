@@ -14,43 +14,14 @@ use Pi;
 /**
  * Event/Listener list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @see \Pi\Application\Installer\Resource\Event for event specifications
+ * @see \Pi\Application\Service\Event for event trigger
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractRegistry
 {
     /**
-     * load event data from module config
-     *
-     * A module event configuration file (events in `module/press/config/event.ini.php`):
-     *
-     * <code>
-     *  $event[] = 'article_post';
-     *  $event[] = 'article_delete';
-     *  $event[] = 'article_rate';
-     * </code>
-     *
-     * Trigger in `module/press/controller/ArticleController.php`
-     *
-     * <code>
-     *  Pi::service('event')->trigger('press_article_post', $articleObject);
-     * </code>
-     *
-     * Callback configurations in `module/user/config/event.ini.php`
-     *
-     * <code>
-     *  $observer['press'.']['article_post'][] = 'stats::article';
-     * </code>
-     *
-     * Callback class in module/user/class/stats.php
-     *
-     * <code>
-     * class UserStats
-     * {
-     *      public static function article($articleObject)
-     *      {
-     *      }
-     * }
-     * </code>
+     * {@inheritDoc}
      */
     protected function loadDynamic($options)
     {

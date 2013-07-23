@@ -31,7 +31,7 @@ return array(
         array(
             // event info: module, event name
             'event'     => array('pm', 'test'),
-            // listener info: class, method
+            // listener callback: class, method
             'listener'  => array('event', 'message'),
         ),
         array(

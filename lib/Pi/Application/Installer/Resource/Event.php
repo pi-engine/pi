@@ -14,9 +14,10 @@ use Pi;
 /**
  * Event/Listner setup
  *
- * Event meta:
+ * Event specifications:
  *
  * ```
+ * array(
  *  // Event list
  *  'events'    => array(
  *      // event name (unique)
@@ -30,10 +31,25 @@ use Pi;
  *      array(
  *          // event info: module, event name
  *          'event'     => array('pm', 'test'),
- *          // listener info: class, method
+ *          // listener callback: class, method
  *          'listener'  => array('event', 'message'),
  *      ),
  *  ),
+ * );
+ * ```
+ *
+ * API for listener callback:
+ *
+ * ```
+ *  namespace Module\<ModuleName>;
+ *
+ *  class <ListenerClass>
+ *  {
+ *      static public function <listenerMethod>(<object>[, <module-name>])
+ *      {
+ *          // Do something;
+ *      }
+ *  }
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -49,14 +65,13 @@ class Event extends AbstractResource
     protected function canonize($listener)
     {
         $module = $this->event->getParam('module');
-        //$classPrefix = sprintf('Module\\%s', ucfirst($this->event->getParam('directory')));
         list($class, $method) = $listener['listener'];
         list($eventModule, $eventName) = $listener['event'];
+
         $data = array();
         $data['event_module']   = $eventModule;
         $data['event_name']     = $eventName;
         $data['module']         = $module;
-        //$data['class']          = $classPrefix . '\\' . $class;
         $data['class']          = ucfirst($class);
         $data['method']         = $method;
         return $data;
@@ -73,6 +88,7 @@ class Event extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->event->clear($module);
 
+        // Install events
         $modelEvent = Pi::model('event');
         $events = isset($this->config['events']) ? $this->config['events'] : array();
         foreach ($events as $name => $event) {
@@ -87,6 +103,7 @@ class Event extends AbstractResource
             }
         }
 
+        // Install listeners
         $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
         $flushList = array();
         $modelListener = Pi::model('event_listener');
@@ -176,7 +193,6 @@ class Event extends AbstractResource
 
         $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
         $listenerList = array();
-        //$classPrefix = sprintf('Module\\%s', ucfirst($this->event->getParam('directory')));
         foreach ($listeners as $listener) {
             $data = $this->canonize($listener);
             $key = $data['event_module'] . '-' . $data['event_name'] . '-' . $data['class'] . '-' . $data['method'];
