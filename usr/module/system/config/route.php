@@ -62,6 +62,17 @@ return array(
         ),
     ),
 
+    // API route
+    'admin' => array(
+        'section'   => 'api',
+        'priority'  => 100,
+
+        'type'      => 'Api',
+        'options'   => array(
+            'route'     => '/api',
+        ),
+    ),
+
     // feed route
     'feed' => array(
         'section'   => 'feed',

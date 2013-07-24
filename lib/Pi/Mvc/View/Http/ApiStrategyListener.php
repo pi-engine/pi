@@ -7,23 +7,19 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application\Engine;
+namespace Pi\Mvc\View\Http;
 
 use Pi;
 
 /**
- * Pi API application engine
+ * API view strategy listener
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Api extends Standard
+class ApiStrategyListener extends ViewStrategyListener
 {
-    /** @var string Section name */
-    const SECTION = 'api';
-
     /**
-     * Identifier for file name of option data
-     * @var string
+     * {@inheritDoc}
      */
-    protected $fileIdentifier = 'api';
+    protected $type = 'json';
 }
