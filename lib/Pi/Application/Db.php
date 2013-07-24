@@ -229,7 +229,7 @@ class Db
         // Set user-supplied statement class derived from PDOStatement. Cannot be used with persistent PDO instances.
         // @see http://www.php.net/manual/en/pdo.setattribute.php
         if (!isset($config['driver_options'][PDO::ATTR_STATEMENT_CLASS])) {
-            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler()));
+            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler() ?: null));
         }
 
         $adapter = new Adapter($config, $platform);
@@ -388,10 +388,10 @@ class Db
     /**
      * Log a query information or load all log information
      *
-     * @param object|null $profiler
-     * @return object|$this
+     * @param DbProfiler|null $profiler
+     * @return DbProfiler|$this
      */
-    public function profiler($profiler = null)
+    public function profiler(DbProfiler $profiler = null)
     {
         if (null === $profiler) {
             if (null === $this->profiler) {
