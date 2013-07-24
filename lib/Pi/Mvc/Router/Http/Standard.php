@@ -1,21 +1,10 @@
 <?php
 /**
- * Default standard route implementation
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @subpackage      Router
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Router\Http;
@@ -30,17 +19,20 @@ use Zend\Stdlib\RequestInterface as Request;
  * Default route for Pi Engine
  *
  * Use cases:
- * 1. Same structure, key-value and param delimiters:
- *    1.1 Full mode: /module/controller/action/key1/val1/key2/val2
- *    1.2 Full structure only: /module/controller/action
- *    1.3 Module with default structure: /module
- * 2. Same structure and param delimiters:
- *    2.1 Full mode: /module/controller/action/key1-val1/key2-val2
- *    2.2 Full structure only: /module/controller/action
- * 3. Different structure delimiter:
- *    3.1 Full mode: /module-controller-action/key1/val1/key2/val2; /module-controller-action/key1-val2/key2-val2
- *    3.2 Default structure and parameters: /module/key1/val1/key2/val2; /module/key1-val1/key2-val2
- *    3.3 Default structure: /module-controller
+ *
+ * - Same structure, key-value and param delimiters:
+ *   - Full mode: /module/controller/action/key1/val1/key2/val2
+ *   - Full structure only: /module/controller/action
+ *   - Module with default structure: /module
+ * - Same structure and param delimiters:
+ *   - Full mode: /module/controller/action/key1-val1/key2-val2
+ *   - Full structure only: /module/controller/action
+ * - Different structure delimiter:
+ *   - Full mode: /module-controller-action/key1/val1/key2/val2; /module-controller-action/key1-val2/key2-val2
+ *   - Default structure and parameters: /module/key1/val1/key2/val2; /module/key1-val1/key2-val2
+ *   - Default structure: /module-controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Standard implements RouteInterface
 {
@@ -184,7 +176,8 @@ class Standard implements RouteInterface
      *
      * @see    Route::match()
      * @param  Request $request
-     * @return RouteMatch
+     * @param int|null  $pathOffset
+     * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
     {
@@ -240,7 +233,7 @@ class Standard implements RouteInterface
      * @see    Route::assemble()
      * @param  array $params
      * @param  array $options
-     * @return mixed
+     * @return string
      */
     public function assemble(array $params = array(), array $options = array())
     {

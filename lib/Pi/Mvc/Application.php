@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi Application abstraction
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Mvc
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc;
@@ -26,6 +18,7 @@ use Zend\ServiceManager\ServiceManager;
 
 /**
  * {@inheritDoc}
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Application extends ZendApplication
 {
@@ -41,6 +34,12 @@ class Application extends ZendApplication
      */
     protected $engine;
 
+    /**
+     * Set listeners
+     *
+     * @param string[] $listeners
+     * @return $this
+     */
     public function setListeners(array $listeners = array())
     {
         if ($listeners) {
@@ -50,6 +49,12 @@ class Application extends ZendApplication
         return $this;
     }
 
+    /**
+     * Load application hander
+     *
+     * @param array $configuration
+     * @return $this
+     */
     public static function load($configuration = array())
     {
         $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
@@ -64,7 +69,7 @@ class Application extends ZendApplication
      * Set section, called by Engine
      *
      * @param string $section
-     * @return Application
+     * @return $this
      */
     public function setSection($section = null)
     {
@@ -86,7 +91,7 @@ class Application extends ZendApplication
      * Set application boot engine
      *
      * @param AbstractEngine $engine
-     * @return Application
+     * @return $this
      */
     public function setEngine(AbstractEngine $engine = null)
     {

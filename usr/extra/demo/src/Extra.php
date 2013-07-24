@@ -1,14 +1,20 @@
 <?php
 /**
- * Demo module extra class
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Extra\Demo
  */
 
 namespace Extra\Demo;
 
+/**
+ * Demo module extra class
+ *
+ * Solely for demonstration.
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Extra
 {}

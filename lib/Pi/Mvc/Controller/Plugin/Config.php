@@ -1,20 +1,10 @@
 <?php
 /**
- * Controller plugin config class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
@@ -22,24 +12,35 @@ namespace Pi\Mvc\Controller\Plugin;
 use Pi;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
+/**
+ * Config access plugin for controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Config extends AbstractPlugin
 {
     /**
-     * @var config
+     * @var array
      */
     protected $configs;
 
     /**
      * Invoke as a functor
      *
-     * @params string $name
-     * @return config or array of all configs
+     * @params string|null $name
+     * @return array Config or array of all configs
      */
     public function __invoke($name = null)
     {
         return $this->getConfig($name);
     }
 
+    /**
+     * Get config data
+     *
+     * @param string|null $name
+     * @return array|mixed
+     */
     public function getConfig($name = null)
     {
         if (null === $this->configs) {

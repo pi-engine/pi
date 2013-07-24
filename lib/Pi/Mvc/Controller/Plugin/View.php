@@ -1,20 +1,10 @@
 <?php
 /**
- * Controller plugin view class as proxy to viewmodel and viewhelper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
@@ -25,34 +15,40 @@ use Zend\Mvc\MvcEvent;
 use Zend\Mvc\InjectApplicationEventInterface;
 
 /**
- * View plugin
+ * View plugin for controller
  *
  * Assign variables to view model
- * <code>
+ *
+ * ```
  *  $this->view(array('key' => 'value'));
  *  $this->view()->assign('key', 'value');
  *  $this->view()->assign(array('key' => 'value'));
- * </code>
+ * ```
  *
  * Set page layout
- * <code>
+ *
+ * ```
  *  $this->view()->setLayout('layout-simple');
- * </code>
+ * ```
  *
  * Set page template
- * <code>
+ *
+ * ```
  *  $this->view()->setTemplate('page-template');
+ *
  *  // Disable template
  *  $this->view()->setTemplate(false);
- * </code>
+ * ```
  *
  * Set head title
- * <code>
+ *
+ * ```
  *  $this->view()->headTitle('Set custom title');
- * </code>
+ * ```
  *
  * Set head keywords, default as set by overwriting
- * <code>
+ *
+ * ```
  *  $this->view()->headKeywords('keyword, keyword, keyword'[, 'set']);
  *  $this->view()->headKeywords('keyword, keyword, keyword', 'append');
  *  $this->view()->headKeywords('keyword, keyword, keyword', 'prepend');
@@ -60,24 +56,29 @@ use Zend\Mvc\InjectApplicationEventInterface;
  *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword')[, 'set']);
  *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'append');
  *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'prepend');
- * </code>
+ * ```
  *
  * Set head description, default as set by overwriting
- * <code>
+ *
+ * ```
  *  $this->view()->headKeywords('Custom description of the page.'[, 'set']);
  *  $this->view()->headKeywords('Custom description of the page.', 'append');
  *  $this->view()->headKeywords('Custom description of the page.', 'prepend');
- * </code>
+ * ```
  *
  * Load a view helper
- * <code>
- *  $helper = $this->view()->helper('helpername');
- * </code>
+ *
+ * ```
+ *  $helper = $this->view()->helper(<helper-name>);
+ * ```
  *
  * Call view helper methods
- * <code>
- *  $this->view()->css('url-to-css-resouce');
- * </code>
+ *
+ * ```
+ *  $this->view()->css(<css-url>);
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class View extends AbstractPlugin
 {
@@ -96,7 +97,7 @@ class View extends AbstractPlugin
     protected $event;
 
     /**
-     * @var Model
+     * @var ViewModel
      */
     protected $viewModel;
 
@@ -106,9 +107,9 @@ class View extends AbstractPlugin
      * If no arguments are given, return the view plugin
      * Otherwise, attempts to set variables for that view model.
      *
-     * @param  null|array|Traversable $variables
-     * @param  array|Traversable $options
-     * @return View|Model
+     * @param  null|array|Traversable   $variables
+     * @param  array|Traversable        $options
+     * @return ViewModel|$this
      */
     public function __invoke($variables = null, $options = null)
     {
@@ -149,8 +150,8 @@ class View extends AbstractPlugin
     /**
      * Set View Model
      *
-     * @param  Model $viewModel
-     * @return View
+     * @param  ViewModel $viewModel
+     * @return $this
      */
     public function setViewModel(ViewModel $viewModel)
     {
@@ -161,9 +162,9 @@ class View extends AbstractPlugin
     /**
      * Create ViewModel
      *
-     * @param  null|array|Traversable $variables
-     * @param  array|Traversable $options
-     * @return Model
+     * @param  null|array|Traversable   $variables
+     * @param  array|Traversable        $options
+     * @return ViewModel
      */
     public function getViewModel($variables = null, $options = array())
     {
@@ -185,7 +186,7 @@ class View extends AbstractPlugin
      * Set template for root model
      *
      * @param string $template
-     * @return View
+     * @return $this
      */
     public function setLayout($template)
     {
@@ -198,8 +199,8 @@ class View extends AbstractPlugin
      *
      * @see Pi\Mvc\View\InjectTemplateListener::injectTemplate()
      * @param  string $template
-     * @param  string $system
-     * @return ViewModel
+     * @param  string $module
+     * @return $this
      */
     public function setTemplate($template, $module = '')
     {
@@ -219,9 +220,9 @@ class View extends AbstractPlugin
     /**
      * Assign variables to view model
      *
-     * @param string|array $variable    variable name or array of variables
-     * @param mixed $value value to assign
-     * @return View
+     * @param string|array  $variable   Variable name or array of variables
+     * @param mixed         $value      Value to assign
+     * @return $this
      */
     public function assign($variable, $value = null)
     {
@@ -236,6 +237,7 @@ class View extends AbstractPlugin
 
     /**
      * Check if view model is available
+     *
      * @return bool
      */
     public function hasViewModel()
@@ -248,7 +250,7 @@ class View extends AbstractPlugin
      *
      * @param string $title     Head title
      * @param string $setType   Position, default as append
-     * @return View|AbstractPlugin
+     * @return $this|AbstractPlugin
      */
     public function headTitle($title = null, $setType = null)
     {
@@ -263,9 +265,9 @@ class View extends AbstractPlugin
     /**
      * Set head description
      *
-     * @param string $description   Head description
-     * @param string $placement     Position, default as set
-     * @return View
+     * @param string        $description   Head description
+     * @param string|null   $placement     Position, default as set
+     * @return $this
      */
     public function headDescription($description, $placement = null)
     {
@@ -277,9 +279,9 @@ class View extends AbstractPlugin
     /**
      * Set head keywords
      *
-     * @param string|array $keywords  Head keywords
-     * @param string $placement Position, default as set
-     * @return View
+     * @param string|array  $keywords  Head keywords
+     * @param string|null   $placement Position, default as set
+     * @return $this
      */
     public function headKeywords($keywords, $placement = null)
     {
@@ -297,12 +299,12 @@ class View extends AbstractPlugin
      * Proxies to the attached plugin broker to retrieve, return, and potentially
      * execute helpers.
      *
-     * * If the helper does not define __invoke, it will be returned
-     * * If the helper does define __invoke, it will be called as a functor
+     * - If the helper does not define __invoke, it will be returned
+     * - If the helper does define __invoke, it will be called as a functor
      *
-     * @param  string $method
-     * @param  array $argv
-     * @return mixed
+     * @param string    $method
+     * @param array     $argv
+     * @return mixed|AbstractPlugin
      */
     public function __call($method, $argv)
     {
@@ -317,7 +319,7 @@ class View extends AbstractPlugin
      * Load view helper
      *
      * @param string $name
-     * @return  AbstractPlugin
+     * @return AbstractPlugin
      */
     public function helper($name)
     {
