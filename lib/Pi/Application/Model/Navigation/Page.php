@@ -1,34 +1,30 @@
 <?php
 /**
- * Pi Navigation Page Model
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Model
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Model\Navigation;
+
 use Pi\Application\Model\Nest;
 
+/**
+ * Navigation page model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Page extends Nest
 {
+    /** @var string Navigation name */
     protected $navigation = '';
 
     /**
-     * Classname for row
+     * Columns to be encoded
      *
-     * @var string
+     * @var array
      */
     protected $encodeColumns = array(
         'params'    => true,
@@ -36,12 +32,11 @@ class Page extends Nest
     );
 
     /**
-     * Classname for row
+     * Set navigation name
      *
-     * @var string
+     * @param string $navigation
+     * @return $this
      */
-    //protected $rowClass = 'Pi\\Db\\RowGateway\\Node';
-
     public function setNavigation($navigation)
     {
         if (null !== $navigation) {
@@ -50,6 +45,11 @@ class Page extends Nest
         return $this;
     }
 
+    /**
+     * Get navigation
+     *
+     * @return string
+     */
     public function getNavigation()
     {
         return $this->navigation;
@@ -59,7 +59,7 @@ class Page extends Nest
      * Remove pages of a navigation
      *
      * @param string $nav  Navigation name
-     * @return boolean
+     * @return bool
      */
     public function removeByNavigation($nav)
     {

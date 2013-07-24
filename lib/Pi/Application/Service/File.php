@@ -1,21 +1,11 @@
 <?php
 /**
- * Filesystem manipulation service
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
 namespace Pi\Application\Service;
@@ -24,10 +14,12 @@ use Pi;
 use Exception;
 
 /**
+ * Filesystem manipulation service
+ *
  * Provides basic utility to manipulate the file system.
  *
  * @see https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Filesystem/Filesystem.php
- * @credits Fabien Potencier <fabien@symfony.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class File extends AbstractService
 {
@@ -38,10 +30,10 @@ class File extends AbstractService
      *
      * By default, if the target already exists, it is not overridden.
      *
-     * @param string  $originFile The original filename
-     * @param string  $targetFile The target filename
-     * @param boolean $override   Whether to override an existing file or not
-     * @return File
+     * @param string    $originFile The original filename
+     * @param string    $targetFile The target filename
+     * @param bool      $override   Whether to override an existing file or not
+     * @return $this
      *
      * @throws Exception When copy fails
      */
@@ -68,8 +60,8 @@ class File extends AbstractService
      * Creates a directory recursively.
      *
      * @param string|array|\Traversable $dirs The directory path
-     * @param integer                   $mode The directory mode
-     * @return File
+     * @param int                       $mode The directory mode
+     * @return $this
      *
      * @throws Exception On any directory creation failure
      */
@@ -93,7 +85,7 @@ class File extends AbstractService
      *
      * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to check
      *
-     * @return Boolean true if the file exists, false otherwise
+     * @return Bool
      */
     public function exists($files)
     {
@@ -110,9 +102,9 @@ class File extends AbstractService
      * Sets access and modification time of file.
      *
      * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to create
-     * @param integer                   $time  The touch time as a unix timestamp
-     * @param integer                   $atime The access time as a unix timestamp
-     * @return File
+     * @param int                       $time  The touch time as a unix timestamp
+     * @param int                       $atime The access time as a unix timestamp
+     * @return $this
      *
      * @throws Exception When touch fails
      */
@@ -135,7 +127,7 @@ class File extends AbstractService
      * Empties directories.
      *
      * @param string|array|\Traversable $dirs The directory path
-     * @return File
+     * @return $this
      */
     public function flush($dirs)
     {
@@ -154,7 +146,7 @@ class File extends AbstractService
      * Removes files or directories.
      *
      * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to remove
-     * @return File
+     * @return $this
      *
      * @throws Exception When removal fails
      */
@@ -194,10 +186,10 @@ class File extends AbstractService
      * Change mode for an array of files or directories.
      *
      * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change mode
-     * @param integer                   $mode      The new mode (octal)
-     * @param integer                   $umask     The mode mask (octal)
-     * @param Boolean                   $recursive Whether change the mod recursively or not
-     * @return File
+     * @param int                       $mode      The new mode (octal)
+     * @param int                       $umask     The mode mask (octal)
+     * @param Bool                      $recursive Whether change the mod recursively or not
+     * @return $this
      *
      * @throws Exception When the change fail
      */
@@ -220,8 +212,8 @@ class File extends AbstractService
      *
      * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change owner
      * @param string                    $user      The new owner user name
-     * @param Boolean                   $recursive Whether change the owner recursively or not
-     * @return File
+     * @param Bool                      $recursive Whether change the owner recursively or not
+     * @return $this
      *
      * @throws Exception When the change fail
      */
@@ -250,8 +242,8 @@ class File extends AbstractService
      *
      * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change group
      * @param string                    $group     The group name
-     * @param Boolean                   $recursive Whether change the group recursively or not
-     * @return File
+     * @param Bool                      $recursive Whether change the group recursively or not
+     * @return $this
      *
      * @throws Exception When the change fail
      */
@@ -280,7 +272,7 @@ class File extends AbstractService
      *
      * @param string $origin The origin filename
      * @param string $target The new filename
-     * @return File
+     * @return $this
      *
      * @throws Exception When target file already exists
      * @throws Exception When origin cannot be renamed
@@ -302,11 +294,11 @@ class File extends AbstractService
     /**
      * Creates a symbolic link or copy a directory.
      *
-     * @param string  $originDir     The origin directory path
-     * @param string  $targetDir     The symbolic link name
-     * @param Boolean $copyOnWindows Whether to copy files if on Windows
-     * @param Boolean $override      Whether to override existing files on copy if on Windows
-     * @return File
+     * @param string    $originDir     The origin directory path
+     * @param string    $targetDir     The symbolic link name
+     * @param Bool      $copyOnWindows Whether to copy files if on Windows
+     * @param Bool      $override      Whether to override existing files on copy if on Windows
+     * @return $this
      *
      * @throws Exception When symlink fails
      */
@@ -393,11 +385,10 @@ class File extends AbstractService
      * @param string       $originDir The origin directory
      * @param string       $targetDir The target directory
      * @param \Traversable $iterator  A Traversable instance
-     * @param array        $options   An array of boolean options
-     *                               Valid options are:
-     *                                 - $options['override'] Whether to override an existing file on copy or not (see copy())
-     *                                 - $options['copy_on_windows'] Whether to copy files instead of links on Windows (see symlink())
-     * @return File
+     * @param array        $options   An array of bool options:
+     *                                 - override: Whether to override an existing file on copy or not {@see copy()};
+     *                                 - copy_on_windows: Whether to copy files instead of links on Windows {@see symlink()}.
+     * @return $this
      *
      * @throws Exception When file type is unknown
      */
@@ -438,7 +429,7 @@ class File extends AbstractService
      *
      * @param string $file A file path
      *
-     * @return Boolean
+     * @return Bool
      */
     public function isAbsolutePath($file)
     {
@@ -456,8 +447,9 @@ class File extends AbstractService
     }
 
     /**
-     * @param mixed $files
+     * Transform array to iterator
      *
+     * @param mixed $files
      * @return \Traversable
      */
     protected function toIterator($files)

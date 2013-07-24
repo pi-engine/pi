@@ -1,47 +1,28 @@
 <?php
 /**
- * Pi cache registry
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Registry
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Registry
  */
 
 namespace Pi\Application\Registry;
+
 use Pi;
 
+/**
+ * Event/Listener list
+ *
+ * @see \Pi\Application\Installer\Resource\Event for event specifications
+ * @see \Pi\Application\Service\Event for event trigger
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Event extends AbstractRegistry
 {
     /**
-     * load event data from module config
-     *
-     * A module event configuration file (events in app/press/config/event.ini.php):
-     * event[] = article_post
-     * event[] = article_delete
-     * event[] = article_rate
-     *
-     * Trigger in app/press/controller/ArticleController.php
-     * \Pi::service('event')->trigger('press_article_post', $articleObject);
-     *
-     * Callback configurations in apps/user/config/event.ini.php
-     * observer.press.article_post[] = stats::article
-     *
-     * Callback calss in app/user/class/stats.php
-     * class User_Stats
-     * {
-     *      public static function article($articleObject) { ... }
-     * }
+     * {@inheritDoc}
      */
     protected function loadDynamic($options)
     {
@@ -72,18 +53,27 @@ class Event extends AbstractRegistry
         return $listeners;
     }
 
-    public function read($module, $event)
+    /**
+     * {@inheritDoc}
+     * @param string    $module
+     * @param string    $event
+     */
+    public function read($module = '', $event = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         if (empty($event)) return false;
         $options = compact('module', 'event');
         return $this->loadData($options);
     }
 
     /**
-     * Add a module event
+     * {@inheritDoc}
+     * @param string    $module
+     * @param string    $event
      */
-    public function create($module, $event = null)
+    public function create($module = '', $event = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $event);
         return true;

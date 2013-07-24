@@ -1,25 +1,19 @@
 <?php
 /**
- * Kernel persist abstraction
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Persist
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Persist;
 
+/**
+ * Abstract class for persist storage
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 abstract class AbstractStorage
 {
     /**
@@ -28,13 +22,28 @@ abstract class AbstractStorage
      */
     protected $namespace;
 
+    /**
+     * Get storage type
+     *
+     * @return string
+     */
     abstract public function getType();
+
+    /**
+     * Get storage engine
+     *
+     * @return Resource|null
+     */
+    public function getEngine()
+    {
+        return null;
+    }
 
     /**
      * Set namespace
      *
      * @param string $namespace
-     * @return StorageInterface
+     * @return $this
      */
     public function setNamespace($namespace)
     {
@@ -59,7 +68,7 @@ abstract class AbstractStorage
     /**
      * Test if an item is available for the given id and (if yes) return it (false else)
      *
-     * @param  string  $id                     Item id
+     * @param  string  $id Item id
      * @return mixed|false Cached datas
      */
     public function load($id)
@@ -71,9 +80,9 @@ abstract class AbstractStorage
      * Save some data in a key
      *
      * @param  mixed $data      Data to put in cache
-     * @param  string $id       Store id
+     * @param  string $id       Stored id
      * @param  int $ttl
-     * @return boolean True if no problem
+     * @return bool
      */
     public function save($data, $id, $ttl = 0)
     {
@@ -84,7 +93,7 @@ abstract class AbstractStorage
      * Remove an item
      *
      * @param  string $id Data id to remove
-     * @return boolean True if ok
+     * @return bool
      */
     public function remove($id)
     {
@@ -94,7 +103,7 @@ abstract class AbstractStorage
     /**
      * Clear cached entries
      *
-     * @return boolean True if ok
+     * @return bool
      */
     public function flush()
     {

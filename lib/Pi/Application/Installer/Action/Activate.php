@@ -1,29 +1,26 @@
 <?php
 /**
- * Pi module activate action
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer\Action;
+
 use Pi;
 
-
+/**
+ * Module activation
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Activate extends AbstractAction
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function attachDefaultListeners()
     {
         $events = $this->events;
@@ -32,6 +29,9 @@ class Activate extends AbstractAction
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function process()
     {
         $model = Pi::model('module');
@@ -50,6 +50,9 @@ class Activate extends AbstractAction
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function rollback()
     {
         $row = $this->event->getParam('row');

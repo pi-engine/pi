@@ -1,21 +1,10 @@
 <?php
 /**
- * Feed route implementation
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @subpackage      Router
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Router\Http;
@@ -24,31 +13,38 @@ use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Stdlib\RequestInterface as Request;
 
 /**
- * Feed route for Pi Engine
+ * Feed route
  *
  * Use cases:
- * 1. Same structure, key-value and param delimiters:
- *    1.1 Full mode: feed/module/controller/action/key1/val1/key2/val2/atom-or-rss
- *    1.2 Full structure only: feed/module/controller/action/atom-or-rss
- *    1.3 Module with default structure: feed/module/atatom-or-rssom
- * 2. Same structure and param delimiters:
- *    2.1 Full mode: feed/module/controller/action/key1-val1/key2-val2/atom-or-rss
- *    2.2 Full structure only: feed/module/controller/action/atom-or-rss
- * 3. Different structure delimiter:
- *    3.1 Full mode: feed/module-controller-action/key1/val1/key2/val2/atom-or-rss; feed/module-controller-action/key1-val2/key2-val2/atom-or-rss
- *    3.2 Default structure and parameters: feed/module/key1/val1/key2/val2/atom-or-rss; feed/module/key1-val1/key2-val2/atom-or-rss
- *    3.3 Default structure: feed/module-controller/atom-or-rss
+ *
+ * - Same structure, key-value and param delimiters:
+ *   - Full mode: feed/module/controller/action/key1/val1/key2/val2/atom-or-rss
+ *   - Full structure only: feed/module/controller/action/atom-or-rss
+ *   - Module with default structure: feed/module/atatom-or-rssom
+ * - Same structure and param delimiters:
+ *   - Full mode: feed/module/controller/action/key1-val1/key2-val2/atom-or-rss
+ *   - Full structure only: feed/module/controller/action/atom-or-rss
+ * - Different structure delimiter:
+ *   - Full mode: feed/module-controller-action/key1/val1/key2/val2/atom-or-rss; feed/module-controller-action/key1-val2/key2-val2/atom-or-rss
+ *   - Default structure and parameters: feed/module/key1/val1/key2/val2/atom-or-rss; feed/module/key1-val1/key2-val2/atom-or-rss
+ *   - Default structure: feed/module-controller/atom-or-rss
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Feed extends Standard
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $prefix = '/feed';
 
     /**
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  Request $request
-     * @return RouteMatch
+     * @param Request   $request
+     * @param int|null  $pathOffset
+     * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
     {

@@ -1,65 +1,77 @@
 <?php
 /**
- * Pi Engine i18n sevice
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
+namespace Pi\Application\Service
+{
+    use Pi;
+    use Pi\I18n\Translator\LoaderPluginManager;
+    use Pi\I18n\Translator\Translator;
+
+    /**
+     * Internationalization Functions
+     *
+     * @see http://www.php.net/manual/en/book.intl.php
+     */
+    use IntlDateFormatter;
+    use NumberFormatter;
+    use Collator;
+
 /**
- * Internationalization service
- *
- * @link    http://www.php.net/manual/en/book.intl.php
- * @see     Pi\Application\Service\Asset for component disptach
- *
+ * I18n (Internationalization) service
  *
  * Usage:
- * 1. Translator
+ *
+ * - Translator
+ *
  * <code>
- *  Pi::service('i18n')->setTranslator($translator);
+ *  Pi::service('i18n')->setTranslator(<translator>);
  *  $translator = Pi::service('i18n')->getTranslator();
  *  $translator = Pi::service('i18n')->translator;
  * </code>
  *
- * 2. Locale
+ * - Locale
+ *
  * <code>
  *  Pi::service('i18n')->setLocale($locale);
  *  Pi::service('i18n')->getLocale();
  *  $locale = Pi::service('i18n')->locale;
  * </code>
  *
- * 3. Load a resource file
+ * - Load a resource file
+ *
+ *   - Use namespace pair and specified locale
+ *
  * <code>
- *  /**#@+
- *   *  Use namespace pair and specified locale
- *   *\/
  *  // Specified module
- *  Pi::service('i18n')->load(array('module/demo', 'block'), 'en');
+ *  Pi::service('i18n')->load(array('module/demo', 'block'), 'en')
+ * ;
  *  // Global resource
  *  Pi::service('i18n')->load('date', 'en');
  *  Pi::service('i18n')->load(array('usr', 'mail/template'), 'en');
+ *
  *  // Specified theme
  *  Pi::service('i18n')->load(array('theme/default', 'main'), 'en');
+ *
  *  // Editor resource
  *  Pi::service('i18n')->load(array('usr/editor/myeditor', 'toolbar'), 'en');
+ *
  *  // Specified lib component resource
  *  Pi::service('i18n')->load(array('lib/Pi/Captcha/Image', 'captcha'), 'en');
+ *
  *  // Specified custom component resource
  *  Pi::service('i18n')->load(array('www/script/mycode/demo', 'main'), 'en');
- *  /**#@-*\/
- *  /**#@+
- *   *  Use string namespace with delimitor and specified locale
- *   *\/
+ * </code>
+ *
+ *   - Use string namespace with delimitor and specified locale
+ *
+ * <code>
  *  // Specified module
  *  Pi::service('i18n')->load('module/demo:block', 'en');
  *  // Global resource
@@ -73,84 +85,104 @@
  *  Pi::service('i18n')->load('lib/Pi/Captcha/Image:captcha', 'en');
  *  // Specified custom component resource
  *  Pi::service('i18n')->load('www/script/mycode/demo:main', 'en');
- *  /**#@-*\/
- *  /**#@+
- *   *  Use current locale
- *   *\/
+ * </code>
+ *
+ *   - Use current locale
+ *
+ * <code>
  *  // Specified module
  *  Pi::service('i18n')->load(array('module/demo', 'block'));
  *  Pi::service('i18n')->load('module/demo:block');
- *  /**#@-*\/
- *  /**#@+
- *   *  Module translation
- *   *\/
+ * </code>
+ *
+ *   - Module translation
+ *
+ * <code>
  *  // Current module
  *  Pi::service('i18n')->loadModule('block');
- *  // Specified locale
+ *  // Specified locale of current module
  *  Pi::service('i18n')->loadModule('block', null, 'en');
  *  // Specified module
  *  Pi::service('i18n')->loadModule('block', 'demo');
- *  /**#@-*\/
- *  /**#@+
- *   *  Theme translation
- *   *\/
- *  // Current module
+ * </code>
+ *
+ *   - Theme translation
+ *
+ * <code>
+ *  // Current theme
  *  Pi::service('i18n')->loadTheme('main');
- *  // Specified locale
+ *  // Specified locale of current theme
  *  Pi::service('i18n')->loadTheme('main', null, 'en');
  *  // Specified theme
  *  Pi::service('i18n')->loadTheme('main', 'default');
- *  /**#@-*\/
  * </code>
  *
- * 4. Get a path
+ * - Get a path
+ *
  * <code>
  *  $path = Pi::service('i18n')->getPath(array('usr', 'mail/template'), 'en');
  *  $path = Pi::service('i18n')->getPath('usr:mail/template', 'en');
  * </code>
  *
- * 5. Translate a message
+ * - Translate a message
+ *
+ *   - From current text domain
+ *
  * <code>
- *  // From current text domain
  *  __('A test message');
  *  __('A test message', null, 'zh_CN');
+ * </code>
  *
- *  // From a specified text domain
+ *   - From a specified text domain
+ *
+ * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
  *  __('A test message');
+ * </code>
  *
- *  // From a specified text domain and restore previous domain after translation
+ *   - From a specified text domain and restore previous domain after translation
+ *
+ * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
  *  __('A test message');
  *  Pi::service('i18n')->translator->restoreTextDomain();
+ * </code>
  *
- *  // From a specified text domain and locale and restore previous domain/locale after translation
+ *   - From a specified text domain and locale and restore previous domain/locale after translation
+ *
+ * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
  *  Pi::service('i18n')->translator->setLocale('zh_TW');
  *  __('A test message');
  *  Pi::service('i18n')->translator->restore();
  * </code>
  *
- * 6. Translate a message within a specified domain and locale
+ * - Translate a message within a specified domain and locale
+ *
  * <code>
  *  __('A test message', 'theme/default', 'en');
  * </code>
  *
  *
- * 7. Register a message that will be translated in different lanauges, but not translated at the place where it is registered
+ * - Register a message that will be translated in different lanauges, but not translated at the place where it is registered
+ *
  * <code>
  *  _t('Message to be translated and used later.');
  * </code>
- *  // Use case, register module config
- *  // Registered in a module's config.php
+ *
+ *   - Use case, register module config
+ *
+ *     - Registered in a module's config.php
+ *
  * <code>
  *  $config['key'] = array('title' => _t('Config Title'), 'description' => _t('Config hint'), '...'));
  * </code>
- *  // Load translated message in the module config setting page
- *  // module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
- * <code>
- *  // Module\System\Form\ConfigForm::addElement()
  *
+ *     - Load translated message in the module config setting page:
+ *       module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
+ *       "Module\System\Form\ConfigForm::addElement()"
+ *
+ * <code>
  *  protected function addElement($config)
  *  {
  *      // ...
@@ -164,7 +196,8 @@
  * </code>
  *
  *
- * 8. Format a date
+ * - Format a date
+ *
  * <code>
  *  _date(time(), 'fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  _date(time(), array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
@@ -185,15 +218,23 @@
  *  _date(time(), array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
  *
  *  _date(time());
+ * </code>
  *
- *  // In case Intl is not available, pass a format string for legacy date() function
+ *   - In case Intl is not available, pass a format string for legacy date() function
+ *
+ * <code>
  *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss', 'Y-m-d H:i:s');
  *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
- *  // Format defined in system intl config (Pi::config('date_format', 'intl')) will be used if format is not specified
+ * </code>
+ *
+ *   - Format defined in system intl config (`Pi::config('date_format', 'intl')`) will be used if format is not specified
+ *
+ * <code>
  *  _date(time(), ...);
  * </code>
  *
- * 9. Format a number
+ * - Format a number
+ *
  * <code>
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN', 'default');
  *  _number(123.4567, 'decimal', '#0.# kg', 'zh-CN');
@@ -201,14 +242,16 @@
  *  _number(123.4567, 'spellout');
  * </code>
  *
- * 10. Format a currency
+ * - Format a currency
+ *
  * <code>
  *  _currency(123.45, 'USD', 'en-US');
  *  _currency(123.45, 'USD');
  *  _currency(123.45);
  * </code>
  *
- * 11. Get a date formatter
+ * - Get a date formatter
+ *
  * <code>
  *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
  *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
@@ -220,45 +263,47 @@
  *  Pi::service('i18n')->getDateFormatter(array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
  * </code>
  *
- * 12. Get a number formatter
+ * - Get a number formatter
+ *
+ *   - Get a number formatter
+ *
  * <code>
- *  // Get a number formatter
  *  Pi::service('i18n')->getNumberFormatter('decimal', '#0.# kg', 'zh-CN');
  *  Pi::service('i18n')->getNumberFormatter('decimal', '', 'zh-CN');
  *  Pi::service('i18n')->getNumberFormatter('decimal');
  *  Pi::service('i18n')->getNumberFormatter('scientific');
  *  Pi::service('i18n')->getNumberFormatter('spellout');
- *  // Get a currency formatter
+ * </code>
+ *
+ *   - Get a currency formatter
+ *
+ * <code>
  *  Pi::service('i18n')->getNumberFormatter('currency', '', 'zh-CN');
  *  Pi::service('i18n')->getNumberFormatter('currency');
  * </code>
+ *
+ * @link    http://www.php.net/manual/en/book.intl.php
+ * @see     Pi\Application\Service\Asset for component disptach
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
-namespace Pi\Application\Service
-{
-    use Pi;
-    use Pi\I18n\Translator\LoaderPluginManager;
-    use Pi\I18n\Translator\Translator;
-
-    /**#@+
-     * Internationalization Functions
-     * @see http://www.php.net/manual/en/book.intl.php
-     */
-    use IntlDateFormatter;
-    use NumberFormatter;
-    use Collator;
-    /**#@-*/
-
     class I18n extends AbstractService
     {
-        //const NAMESPACE_GLOBAL = '_usr';
+        /** @var string Global domain */
         const DOMAIN_GLOBAL = 'usr';
+
+        /** @var string Module domain */
         const DOMAIN_MODULE = 'module';
+
+        /** @var string Theme domain */
         const DOMAIN_THEME = 'theme';
+
+        /** @var string Dir for i18n resource */
         const DIR_RESOURCE = 'locale';
 
+        /** @var string Default file name */
         const FILE_DEFAULT = 'main';
 
+        /** {@inheritDoc} */
         protected $fileIdentifier = 'i18n';
 
         /**
@@ -308,7 +353,7 @@ namespace Pi\Application\Service
          * Set translator with current locale
          *
          * @param Translator $translator
-         * @return I18n
+         * @return $this
          */
         public function setTranslator(Translator $translator)
         {
@@ -321,7 +366,7 @@ namespace Pi\Application\Service
          * Set locale and configure Translator
          *
          * @param string $locale
-         * @return I18n
+         * @return $this
          */
         public function setLocale($locale)
         {
@@ -350,7 +395,7 @@ namespace Pi\Application\Service
          * Set charset
          *
          * @param string $charset
-         * @return I18n
+         * @return $this
          */
         public function setCharset($charset)
         {
@@ -418,7 +463,7 @@ namespace Pi\Application\Service
         * Normalize domain in Intl resources, including Translator, Locale, Date, NumberFormatter, etc.
         *
         * @param string $domain
-        * @return array     pair of component and domain
+        * @return array Pair of component and domain
         */
         public function normalizeDomain($rawDomain)
         {
@@ -436,7 +481,7 @@ namespace Pi\Application\Service
          *
          * @param array|string $domain
          * @param string|null $locale
-         * @return I18n
+         * @return $this
          */
         public function load($domain, $locale = null)
         {
@@ -460,7 +505,7 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $module
          * @param string $locale
-         * @return I18n
+         * @return $this
          */
         public function loadModule($domain, $module = null, $locale = null)
         {
@@ -477,7 +522,7 @@ namespace Pi\Application\Service
          * @param string $domain
          * @param string $theme
          * @param string $locale
-         * @return I18n
+         * @return $this
          */
         public function loadTheme($domain, $theme = null, $locale = null)
         {
@@ -557,7 +602,7 @@ namespace Pi\Application\Service
          * @param string|null $timezone
          * @param int|string|null $calendar
          * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
-         * @return IntlDateFormatter
+         * @return IntlDateFormatter|null
          */
         public function getDateFormatter($locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null)
         {
@@ -613,7 +658,7 @@ namespace Pi\Application\Service
          * @param string|null $style
          * @param string|null $pattern
          * @param string|null $locale
-         * @return NumberFormatter
+         * @return NumberFormatter|null
          */
         public function getNumberFormatter($style = null, $pattern = null, $locale = null)
         {
@@ -711,6 +756,7 @@ namespace
      * @param string    $message    The string to be localized
      * @param string    $domain     (optional) textdomain to use
      * @param string    $locale     (optional) Locale/Language to use
+     * @return void
      */
     function _e($message, $domain = null, $locale = null)
     {
@@ -720,9 +766,8 @@ namespace
     /**
      * Register a message to translation queue
      *
-     *
      * @param string    $message    The string to be localized
-     * @return void
+     * @return string
      */
     function _t($message)
     {
@@ -731,6 +776,8 @@ namespace
 
     /**
      * Check if Intl functions are available
+     *
+     * @return bool
      */
     function _intl()
     {
@@ -740,13 +787,13 @@ namespace
     /**
      * Locale-dependent formatting/parsing of date-time using pattern strings and/or canned patterns
      *
-         * @param array|string|null $locale
-         * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timezone
-         * @param int|string|null $calendar
-         * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
-     * @param string|null $format           Legacy format for date() in case Intl is not available
+     * @param array|string|null $locale
+     * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+     * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+     * @param string|null $timezone
+     * @param int|string|null $calendar
+     * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
+     * @param string|null $format       Legacy format for date() in case Intl is not available
      * @return string
      */
     function _date($value = null, $locale = null, $datetype = null, $timetype = null, $timezone = null, $calendar = null, $pattern = null, $format = null)

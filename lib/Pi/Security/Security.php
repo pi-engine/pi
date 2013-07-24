@@ -12,10 +12,7 @@
  * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
  * @license         http://www.xoopsengine.org/license New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
- * @package         Pi\Kernel
- * @subpackage      Security
- * @version         $Id$
+ * @package         Pi\Security
  */
 
 namespace Pi\Security;

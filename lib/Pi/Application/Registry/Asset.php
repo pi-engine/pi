@@ -1,21 +1,11 @@
 <?php
 /**
- * Pi cache registry
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Registry
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Registry
  */
 
 namespace Pi\Application\Registry;
@@ -24,8 +14,16 @@ use Pi;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
+/**
+ * Asset list
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Asset extends AbstractRegistry
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function loadDynamic($options = array())
     {
         $files = array();
@@ -64,6 +62,9 @@ class Asset extends AbstractRegistry
         return $files;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setNamespace($meta)
     {
         if (is_string($meta)) {
@@ -74,23 +75,38 @@ class Asset extends AbstractRegistry
         return parent::setNamespace($namespace);
     }
 
-    public function read($module, $theme = null)
+    /**
+     * {@inheritDoc}
+     * @param string    $module
+     * @param string    $theme
+     */
+    public function read($module = '', $theme = '')
     {
         //$this->cache = false;
-        $theme = $theme ?: Pi::service('theme')->current();
+        $module = $module ?: Pi::service('module')->current();
+        $theme  = $theme ?: Pi::service('theme')->current();
         $options = compact('theme');
         $data = $this->loadData($options);
         return isset($data[$module]) ? $data[$module] : array();
     }
 
-    public function create($module, $theme = null)
+    /**
+     * {@inheritDoc}
+     * @param string    $module
+     * @param string    $theme
+     */
+    public function create($module = '', $theme = '')
     {
-        $theme = $theme ?: Pi::service('theme')->current();
+        $module = $module ?: Pi::service('module')->current();
+        $theme  = $theme ?: Pi::service('theme')->current();
         $this->clear($theme);
         $this->read($module, $theme);
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function flush()
     {
         $themes = Pi::service('registry')->themelist->read();

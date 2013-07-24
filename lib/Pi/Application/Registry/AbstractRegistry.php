@@ -1,33 +1,42 @@
 <?php
 /**
- * Pi registry abstraction
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Registry
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Registry
  */
 
 namespace Pi\Application\Registry;
+
 use Pi;
 use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
 
+/**
+ * Cache registry abstract class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 abstract class AbstractRegistry
 {
+    /**
+     * Tag for generating identifier
+     * @var string
+     */
     const TAG = 'registry';
 
+    /**
+     * Identifier
+     * @var string
+     */
     protected $registryKey;
 
+    /**
+     * Raw data generator
+     *
+     * @var Callback|null
+     */
     protected $generator;
 
     /**
@@ -44,15 +53,15 @@ abstract class AbstractRegistry
 
     /**
      * The meta tags used for namespace, thus will be skipped in key generator since the tags will be prefixed via namespace
-     * @var array
+     * @var string[]
      */
     protected $namespaceMeta = array();
 
     /**
      * Data generator
      *
-     * @param type $generator
-     * @return AbstractRegistry
+     * @param Callback $generator
+     * @return $this
      */
     public function setGenerator($generator)
     {
@@ -92,7 +101,7 @@ abstract class AbstractRegistry
      * Set namespace of current meta
      *
      * @param string|array $meta
-     * @return AbstractRegistry
+     * @return $this
      * @throws \Exception
      */
     public function setNamespace($meta)
@@ -167,7 +176,7 @@ abstract class AbstractRegistry
      * Set cache storage
      *
      * @param CacheAdapter $cache
-     * @return AbstractRegistry
+     * @return $this
      */
     public function setCache(CacheAdapter $cache)
     {
@@ -245,7 +254,7 @@ abstract class AbstractRegistry
      *
      * @param mixed $data
      * @param array $meta
-     * @return boolean
+     * @return bool
      */
     protected function saveCache($data, $meta = array())
     {
@@ -268,12 +277,24 @@ abstract class AbstractRegistry
         return $status;
     }
 
+    /**
+     * Set registry key
+     *
+     * @param string $key
+     * @return $this
+     */
     public function setKey($key)
     {
         $this->registryKey = $key;
         return $this;
     }
 
+    /**
+     * Clear cached content
+     *
+     * @param string $namespace
+     * @return $this
+     */
     public function clear($namespace = '')
     {
         /*
@@ -286,6 +307,11 @@ abstract class AbstractRegistry
         return $this;
     }
 
+    /**
+     * Flush all cached contents
+     *
+     * @return $this
+     */
     public function flush()
     {
         $this->flushByModules();
@@ -293,6 +319,11 @@ abstract class AbstractRegistry
         return $this;
     }
 
+    /**
+     * Flush cached contents by modules
+     *
+     * @return $this
+     */
     public function flushByModules()
     {
         $modules = Pi::service('module')->meta();
@@ -303,6 +334,11 @@ abstract class AbstractRegistry
         return $this;
     }
 
+    /**
+     * Flush cached contents by sections
+     *
+     * @return $this
+     */
     public function flushBySections()
     {
         $sections = array(
@@ -316,10 +352,20 @@ abstract class AbstractRegistry
 
         return $this;
     }
-    /*
-    public function read() {}
-    public function create() {}
-    public function delete() {}
-    public function flush() {}
-    */
+
+    /**
+     * Read data from cache storage
+     *
+     * In case data are not available in cache storage, they will be fetched and stored into cache storage
+     *
+     * @return array
+     */
+    abstract public function read();
+
+    /**
+     * Create data in cache storage
+     *
+     * @return bool
+     */
+    abstract public function create();
 }

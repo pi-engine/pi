@@ -1,50 +1,54 @@
 <?php
 /**
- * Pi User Account Model Row
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Model
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Model\User\RowGateway;
+
 use Pi;
 use Pi\Db\RowGateway\RowGateway;
 
 /**
- * Update credential
- * <code>
+ * User account row gateway
+ *
+ * Update credential:
+ *
+ * ```
  *  $row = $accountModel->createRow($dataAarray);
  *  $row->prepare()->save();
- * </code>
+ * ```
  *
  * Or
- * <code>
+ * ```
  *  $row = $accountModel->createRow($dataAarray);
  *  $row->createSalt();
  *  $row->setCredential($raw_credential);
  *  $row->save();
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Account extends RowGateway
 {
+    /**
+     * Get credential
+     * @return string
+     */
     public function getCredential()
     {
         return $this->offsetGet('credential');
     }
 
+    /**
+     * Setup edential with encrupt
+     *
+     * @param string $credential Raw credential
+     * @return $this
+     */
     public function setCredential($credential = null)
     {
         $credential = $credential ?: $this->offsetGet('credential');
@@ -55,6 +59,8 @@ class Account extends RowGateway
 
     /**
      * Create salt for credential hash
+     *
+     * @return $this
      */
     public function createSalt()
     {
@@ -67,7 +73,7 @@ class Account extends RowGateway
      *
      * @param string    $credential     Credential
      * @param string    $salt           Salt
-     * @return string treated credential value
+     * @return string Encrypted credential value
      */
     public function transformCredential($credential)
     {
@@ -78,7 +84,7 @@ class Account extends RowGateway
     /**
      * Prepare data for credential update: salt, encrypt credential
      *
-     * @return  Account
+     * @return $this
      */
     public function prepare()
     {

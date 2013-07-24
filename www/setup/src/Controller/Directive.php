@@ -2,22 +2,14 @@
 /**
  * Pi Engine Setup Controller
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Setup
- * @version         $Id$
  */
 
 namespace Pi\Setup\Controller;
+
 use Pi\Setup\Host;
 
 class Directive extends AbstractController
@@ -231,7 +223,7 @@ class Directive extends AbstractController
             $content .= '
                 <h3>' . _s('Configuration file copy error') . '</h3>
                 <p class=\'caption\'>' . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.') . '</p>
-                <div class=\'message error\'>
+                <div class=\'message alert\'>
                 <ul>';
             foreach ($errorsConfig as $file) {
                 $content .= '<li>' . $file . '</li>';
@@ -294,7 +286,7 @@ class Directive extends AbstractController
         $content = '
             <h2> <span class=\'' . (empty($valid) ? 'warning' : 'success') . '\'>' . _s('Persistent data container') . '</span> <a href=\'javascript:void(0);\' id=\'persist-label\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h2>
             <p class=\'caption\'>' . _s('Choose the proper backend container for persistent data') . '</p>
-            <div class=\'install-form advanced-form\' id=\'advanced-persist\'>' .
+            <div class=\'install-form advanced-form well\' id=\'advanced-persist\'>' .
             $content .
             '</div>';
 
@@ -387,7 +379,7 @@ SCRIPT;
     <p class='caption'>{$pathInfo[$item][1]}</p>
     <input type='text' name='$item' id='$item' value='{$controller->getPath($item)}' />
     <em id='{$item}-status' class='loading'>&nbsp;</em>
-    <p id='{$item}-message' class='path-message'>&nbsp;</p>
+    <p id='{$item}-message' class='alert'>&nbsp;</p>
     </div>
 HTML;
             return $content;
@@ -415,7 +407,7 @@ HTML;
         $contentBasic = '
             <h3 class=\'section\'><span id=\'path-basic-label\' class=\'' . $statusBasic . '\'>' . _s('Basic settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-basic-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
             <p class=\'caption\'>' . _s('Settings required by system') . '</p>
-            <div class=\'install-form advanced-form item-container\' id=\'path-basic\'>' .
+            <div class=\'install-form advanced-form item-container well\' id=\'path-basic\'>' .
             $content .
             '</div>';
 
@@ -430,7 +422,7 @@ HTML;
         $contentAdvanced = '
             <h3 class=\'section\'><span id=\'path-advanced-label\' class=\'' . $statusAdvanced . '\'>' . _s('Advanced settings') . '</span> <a href=\'javascript:void(0);\' id=\'path-advanced-toggle\'><span>[+]</span><span style=\'display: none;\'>[-]</span></a></h3>
             <p class=\'caption\'>' . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.') . '</p>
-            <div class=\'install-form advanced-form item-container\' id=\'path-advanced\'>' .
+            <div class=\'install-form advanced-form item-container well\' id=\'path-advanced\'>' .
             $content .
             '</div>';
 
@@ -447,14 +439,6 @@ HTML;
         // Add cascade style sheet and JavaScript to HTML head
         $this->headContent .=<<<"SCRIPT"
 <style type='text/css' media='screen'>
-    #paths .path-message {
-        display: none;
-        font-size: 80%;
-        background-color: yellow;
-        border: 1px solid #666;
-        margin-top: 5px;
-        padding-left: 5px;
-    }
     #paths .item {
         margin-top: 20px;
     }

@@ -1,21 +1,11 @@
 <?php
 /**
- * API call service
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
 namespace Pi\Application\Service;
@@ -26,17 +16,29 @@ use Pi\Application\AbstractApi;
 /**
  * Module API calls
  *
- * <code>
- *  // Call a module's specified API defined in its Api class in Module\ModuleName\Api\Api
+ * Samples:
+ *
+ * - Call a module's specified API defined in its API class in "Module\<ModuleName>\Api\Api"
+ *
+ * ```
  *  Pi::service('api')->demo('method', $args);
  *  Pi::service('api')->demo->method($args);
+ * ```
  *
- *  // Call a module's API defined in custom class in Module\ModuleName\Api\Callback
+ * - Call a module's API defined in custom class in "Module\<ModuleName>\Api\Callback"
+ *
+ * ```
  *  Pi::service('api')->demo(array('callback', 'method'), $args);
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Api extends AbstractService
 {
+    /**
+     * Container for module API handler
+     * @var array
+     */
     protected $container = array();
 
     /**
@@ -49,7 +51,7 @@ class Api extends AbstractService
     public function handler($module, $name = 'api')
     {
         $directory = Pi::service('module')->directory($module);
-        $class = sprintf('Module\\%s\\Api\\%s', ucfirst($directory), ucfirst($name));
+        $class = sprintf('Module\\%s\Api\\%s', ucfirst($directory), ucfirst($name));
         if (!isset($this->container[$class])) {
             $this->container[$class] = class_exists($class) ? new $class($module) : false;
         }
@@ -57,7 +59,13 @@ class Api extends AbstractService
     }
 
     /**
-     * Call a module API as Pi::service('api')->moduleName->apiMethod($args);
+     * Magic method to call a module API via varible
+     *
+     * Call a module API as
+     *
+     * <code>
+     *  Pi::service('api')-><module-name>-><api-method>($args);
+     * </code>
      *
      * @param string    $moduleName
      * @return AbstractApi|false
@@ -69,7 +77,13 @@ class Api extends AbstractService
     }
 
     /**
-     * Call a module API as Pi::service('api')->moduleName(array('class', 'method'), $args);
+     * Magic method to call a module API via function
+     *
+     * Call a module API as
+     *
+     * <code>
+     *  Pi::service('api')-><module-name>(array(<class>, <method>), <args>);
+     * </code>
      *
      * @param string    $moduleName
      * @param string    $class

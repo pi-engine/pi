@@ -2,19 +2,10 @@
 /**
  * Pi Engine Setup Controller
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
  * @package         Pi\Setup
- * @version         $Id$
  */
 
 namespace Pi\Setup\Controller;
@@ -70,7 +61,7 @@ class Admin extends AbstractController
                 // Drop all triggers
                 // ...
             } catch (\Exception $e) {
-                $this->content = '<p class="error">' . _s('System module uninstallation is failed. Please continue to try again.') . '</p>' .
+                $this->content = '<p class="alert">' . _s('System module uninstallation is failed. Please continue to try again.') . '</p>' .
                         $e->getMessage() .
                         '<input type="hidden" name="page" value="admin" />' .
                         '<input type="hidden" name="retry" value="1" />' .
@@ -130,7 +121,7 @@ class Admin extends AbstractController
         $ret = $installer->install('system');
         if (!$ret) {
             $this->hasForm = true;
-            $this->content = '<p class=\'error\'>' . _s('System module installation is failed. Please continue to try again.') . '</p>' .
+            $this->content = '<p class=\'alert\'>' . _s('System module installation is failed. Please continue to try again.') . '</p>' .
                         $installer->renderMessage() .
                         '<input type=\'hidden\' name=\'page\' value=\'admin\' />' .
                         '<input type=\'hidden\' name=\'retry\' value=\'1\' />' .
@@ -232,7 +223,7 @@ class Admin extends AbstractController
         $resource->execute();
         $count = $resource->rowCount();
         if ($count) {
-            $this->content = '<p class=\'error\'>' . _s('Deprected tables exist in the database. Please continue to re-install.') . '</p>' .
+            $this->content = '<p class=\'alert\'>' . _s('Deprected tables exist in the database. Please continue to re-install.') . '</p>' .
                         '<input type=\'hidden\' name=\'page\' value=\'admin\' />' .
                         '<input type=\'hidden\' name=\'retry\' value=\'1\' />' .
                         '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
@@ -260,12 +251,12 @@ class Admin extends AbstractController
                 <p class=\'capthion\'></p>
                 <input type=\'text\' name=\'' . $item . '\' id=\'' . $item . '\' value=\'' . $vars[$item] . '\' />
                 <em id=\'' . $item . '-status\' class=\'\'>&nbsp;</em>
-                <p id=\'' . $item . '-message\' class=\'admin-message\'>&nbsp;</p>
+                <p id=\'' . $item . '-message\' class=\'alert\'>&nbsp;</p>
                 </div>';
             return $content;
         };
 
-        $content = '<div class=\'install-form\'>';
+        $content = '<div class=\'install-form well\'>';
         $content .= '<h3 class=\'section\'>' . _s('Administrator account') . '</h3>';
         $content .= $displayItem('adminmail');
         $content .= $displayItem('adminusername');
@@ -283,7 +274,7 @@ class Admin extends AbstractController
             <p class=\'capthion\'></p>
             <input type=\'password\' name=\'' . $item . '\' id=\'' . $item . '\' value=\'' . $vars[$item] . '\' />
             <em id=\'adminpass-status\' class=\'\'>&nbsp;</em>
-            <p id=\'adminpass-message\' class=\'admin-message\'>&nbsp;</p>
+            <p id=\'adminpass-message\' class=\'alert\'>&nbsp;</p>
             </div>';
         $content .= '</div>';
 
@@ -291,14 +282,6 @@ class Admin extends AbstractController
 
         $this->headContent .=<<<'STYLE'
 <style type='text/css' media='screen'>
-    .admin-message {
-        display: none;
-        font-size: 80%;
-        background-color: yellow;
-        border: 1px solid #666;
-        margin-top: 5px;
-        padding-left: 5px;
-    }
     .item {
         margin-top: 20px;
     }

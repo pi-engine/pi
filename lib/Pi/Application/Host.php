@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi Engine host and path container class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application;
@@ -21,12 +13,16 @@ namespace Pi\Application;
  * Host handler
  *
  * Single host
- * 1. In www/boot.php:
- *  <code>
+ *
+ * - Specify host file in `www/boot.php`
+ *
+ *  ```
  *      define('PI_PATH_HOST', '/path/to/pi/var/config/host.php');
- *  </code>
- * 2. In /path/to/pi/var/config/host.php:
- *  <code>
+ *  ```
+ *
+ * - Define host specification details in the specified host file
+ *
+ *  ```
  *      return array(
  *          'uri'   => array(
  *              ...
@@ -35,25 +31,30 @@ namespace Pi\Application;
  *              ...
  *          ),
  *      );
- *  </code>
+ *  ```
  *
  * Multiple hosts
- * 1. In www/boot.php:
- *  <code>
- *      define('PI_PATH_HOST', '/path/to/pi/var/config/hosts.php');
- *  </code>
- * 2. In /path/to/pi/var/config/hosts.php, see /var/config/hosts.php
+ *
+ * - Specify hosts file in `www/boot.php`
+ *
+ *  ```
+ *      define('PI_PATH_HOST', '/path/to/pi/var/config/hosts-config.php');
+ *  ```
+ *
+ * - Define hosts specification details in the specified hosts file, {@see var/config/hosts.php} for sample
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Host
 {
     /**
-     * Base URL, segment after baseLocation in installed URL which is: ($scheme:://$hostName[:$port])$baseUrl with leading slash
+     * Base URL, segment after baseLocation in installed URL which is: (<scheme>:://<host-name>[:<port>])<baseUrl> with leading slash
      * @var string
      */
     protected $baseUrl = '';
 
     /**
-     * Base location: $scheme:://$hostName[:$port]
+     * Base location: `<scheme>:://<host-name>[:<port>]`
      * @var string
      */
     protected $baseLocation = '';
@@ -132,7 +133,8 @@ class Host
     /**
      * Lookup host configuration file path in central host configuration
      *
-     * @param  string    $hostIdentifier
+     * @param array     $config
+     * @param string    $hostIdentifier
      * @return array
      */
     protected function lookup($config, $hostIdentifier = '')
@@ -260,7 +262,7 @@ class Host
      * Get a protected variable
      *
      * @param  string    $var
-     * @return
+     * @return mixed
      */
     public function get($var)
     {
@@ -287,8 +289,8 @@ class Host
      * Convert Pi Engine path to corresponding physical one
      *
      * @param string    $url        Pi Engine path:
-     *                                  with ':' or leading slash '/' - absolute path, do not convert
-     *                                  First part as section, map to www if no section matched
+     *                                  with `:` or leading slash `/` - absolute path, do not convert;
+     *                                  First part as section, map to www if no section matched.
      * @param string
      */
     public function path($url)
@@ -334,9 +336,9 @@ class Host
      * Convert a Pi Engine path to an URL
      *
      * @param string    $url        Pi Engine URI:
-     *                                  With URI scheme '://' - absolute URI, do not convert
-     *                                  First part as section, map to www if no section matched
-     *                                  If section URI is relative, www URI will be appended
+     *                                  With URI scheme `://` - absolute URI, do not convert;
+     *                                  First part as section, map to www if no section matched;
+     *                                  If section URI is relative, www URI will be appended.
      * @param bool      $absolute   whether convert to full URI; relative URI is used by default, i.e. no hostname
      * @return string
      */

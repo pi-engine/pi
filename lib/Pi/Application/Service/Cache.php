@@ -1,21 +1,11 @@
 <?php
 /**
- * Cache service
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
 namespace Pi\Application\Service;
@@ -25,9 +15,20 @@ use Pi\Cache\Storage\AdapterPluginManager;
 use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 
+/**
+ * Cache handler servie
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Cache extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'cache';
+
+    /**
+     * Namespace delimiter
+     * @var string
+     */
     protected $nsDelimiter = '_';
 
     /**
@@ -76,11 +77,11 @@ class Cache extends AbstractService
     /**
      * Set namespace to current cache storage adapter
      *
-     * @param string $namespace
-     * @params AbstractAdapter $storage
-     * @return Cache
+     * @param string                $namespace
+     * @params AbstractAdapter|null $storage
+     * @return $this
      */
-    public function setNamespace($namespace = '', $storage = null)
+    public function setNamespace($namespace = '', AbstractAdapter $storage = null)
     {
         $namespace = $this->getNamespace($namespace);
         $storage = $storage ?: $this->storage();
@@ -102,11 +103,11 @@ class Cache extends AbstractService
     /**
      * Clear cache by namespace to current cache storage adapter
      *
-     * @param string $namespace
-     * @params AbstractAdapter $storage
-     * @return Cache
+     * @param string                $namespace
+     * @params AbstractAdapter|null $storage
+     * @return $this
      */
-    public function clearByNamespace($namespace = '', $storage = null)
+    public function clearByNamespace($namespace = '', AbstractAdapter $storage = null)
     {
         $namespace = $this->getNamespace($namespace);
         $storage = $storage ?: $this->storage();
@@ -119,8 +120,8 @@ class Cache extends AbstractService
     /**
      * Canonize cache key
      *
-     * @param string $key Raw key
-     * @param string $cacheLevel Cache level
+     * @param string $key           Raw key
+     * @param string $cacheLevel    Cache level
      * @return string
      */
     public function canonizeKey($key, $cacheLevel = '')
@@ -150,13 +151,13 @@ class Cache extends AbstractService
     /**
      * Set item with namespace
      *
-     * @param  string $key
-     * @param  mixed  $value
-     * @param  string|array $options
-     * @params AbstractAdapter $storage
+     * @param  string               $key
+     * @param  mixed                $value
+     * @param  string|array         $options
+     * @params AbstractAdapter|null $storage
      * @return Cache
      */
-    public function setItem($key, $value, $options = array(), $storage = null)
+    public function setItem($key, $value, $options = array(), AbstractAdapter $storage = null)
     {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
@@ -199,12 +200,12 @@ class Cache extends AbstractService
     /**
      * Get item with namespace
      *
-     * @param  string $key
-     * @param  string|array $options
-     * @params AbstractAdapter $storage
+     * @param  string               $key
+     * @param  string|array         $options
+     * @params AbstractAdapter|null $storage
      * @return mixed
      */
-    public function getItem($key, $options = array(), $storage = null)
+    public function getItem($key, $options = array(), AbstractAdapter $storage = null)
     {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
@@ -247,12 +248,12 @@ class Cache extends AbstractService
     /**
      * Remove item with namespace
      *
-     * @param  string $key
-     * @param  string|array $options
-     * @params AbstractAdapter $storage
-     * @return Cache
+     * @param  string               $key
+     * @param  string|array         $options
+     * @params AbstractAdapter|null $storage
+     * @return $this
      */
-    public function removeItem($key, $options = array(), $storage = null)
+    public function removeItem($key, $options = array(), AbstractAdapter $storage = null)
     {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();

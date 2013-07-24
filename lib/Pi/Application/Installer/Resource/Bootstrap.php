@@ -1,28 +1,29 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 
+/**
+ * Module bootstrap setup
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Bootstrap extends AbstractResource
 {
+    /**
+     * Canonize bootstrap data
+     *
+     * @param array $data
+     * @return array
+     */
     protected function canonize($data)
     {
         $config = array(
@@ -39,6 +40,9 @@ class Bootstrap extends AbstractResource
         return $config;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -54,6 +58,9 @@ class Bootstrap extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -80,6 +87,9 @@ class Bootstrap extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');

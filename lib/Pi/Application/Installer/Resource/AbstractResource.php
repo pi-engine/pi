@@ -1,21 +1,10 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -23,17 +12,35 @@ namespace Pi\Application\Installer\Resource;
 use Pi;
 use Zend\EventManager\Event;
 
+/**
+ * Pi module installer resource abstract class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class AbstractResource
 {
-    //protected $action;
+    /** @var Event */
     protected $event;
+
+    /** @var array Meta config data */
     protected $config;
 
+    /**
+     * Constructor
+     *
+     * @param array $config
+     */
     public function __construct($config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Set Event
+     *
+     * @param Event $event
+     * @return $this
+     */
     public function setEvent(Event $event)
     {
         $this->event = $event;
@@ -56,7 +63,7 @@ class AbstractResource
      * Check if module version is greater than configuration version
      *
      * @param string $operator
-     * @return boolean
+     * @return bool
      */
     protected function versionCompare($operator = '>=')
     {
@@ -69,16 +76,79 @@ class AbstractResource
         return false;
     }
 
-    public function fooAction()
+    /**
+     * Install resource
+     *
+     * Returns result as null, bool, or a message array
+     *
+     * <code>
+     *  array(
+     *      'status'    => <true|false>,
+     *      'message'   => <Message array>[],
+     *  );
+     * </code>
+     *
+     * @return null|bool|array
+     */
+    public function installAction()
     {
-        // Return full result with status and message
-        return array(
-            'status'    => true,
-            'message'   => 'Just for test'
-        );
-        // return status
-        return false;
-        // return void if no action performed
+        return;
+    }
+
+    /**
+     * Uninstall resource
+     *
+     * Returns result as null, bool, or a message array
+     *
+     * <code>
+     *  array(
+     *      'status'    => <true|false>,
+     *      'message'   => <Message array>[],
+     *  );
+     * </code>
+     *
+     * @return null|bool|array
+     */
+    public function uninstallAction()
+    {
+        return;
+    }
+
+    /**
+     * Activate resource
+     *
+     * Returns result as null, bool, or a message array
+     *
+     * <code>
+     *  array(
+     *      'status'    => <true|false>,
+     *      'message'   => <Message array>[],
+     *  );
+     * </code>
+     *
+     * @return null|bool|array
+     */
+    public function activateAction()
+    {
+        return;
+    }
+
+    /**
+     * Deactivate resource
+     *
+     * Returns result as null, bool, or a message array
+     *
+     * <code>
+     *  array(
+     *      'status'    => <true|false>,
+     *      'message'   => <Message array>[],
+     *  );
+     * </code>
+     *
+     * @return null|bool|array
+     */
+    public function deactivateAction()
+    {
         return;
     }
 }

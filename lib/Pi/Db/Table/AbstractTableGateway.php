@@ -1,21 +1,10 @@
 <?PHP
 /**
- * Pi Table Gateway
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Db
- * @subpackage      Table
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Db\Table;
@@ -27,10 +16,14 @@ use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
 use Zend\Db\Sql\Sql;
 use Zend\Db\ResultSet\ResultSet;
-//use Zend\Db\ResultSet\Row;
 use Zend\Db\Metadata\Metadata;
 use Pi\Db\Sql\Where;
 
+/**
+ * Pi Table Gateway
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 abstract class AbstractTableGateway extends ZendAbstractTableGateway
 {
     /**
@@ -46,7 +39,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     protected $rowClass;
 
     /**
-     * Columns to be endcoded/decoded during save/fetch with DB, only applicable to RowGateway
+     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB, specified as pairs of column name and bool value: true - to convert to associative array for decode; false - keep as array object.
      * @var array
      */
     protected $encodeColumns = array(
@@ -56,15 +49,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     );
 
     /**
-     * Primary key
+     * Primary key column
      * @var string
      */
     protected $primaryKeyColumn;
 
-    /**
-     *
-     * @var Metadata
-     */
+    /** @var Metadata */
     protected $metadata;
 
     /**
@@ -80,8 +70,9 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
     /**
      * Setup model
+     *
      * @param array $options
-     * @return AbstractTableGateway
+     * @return $this
      */
     public function setup($options = array())
     {
@@ -127,6 +118,9 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function initialize()
     {
         if ($this->isInitialized) {
@@ -152,6 +146,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Set adapter
      *
      * @param Adapter $adapter
+     * @return void
      */
     public function setAdapter(Adapter $adapter)
     {
@@ -159,10 +154,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     }
 
     /**
-     * Select
-     *
-     * @param  string $where
-     * @return type
+     * {@inheritDoc}
      */
     public function select($where = null)
     {
@@ -179,7 +171,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     /**
      * Creates Row object
      *
-     * @param  array $data
+     * @param array|null $data
      * @return RowGateway|Row
      */
     public function createRow($data = null)
@@ -204,7 +196,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Set columns to be encode/decode
      *
      * @param array $columns
-     * @return AbstractTableGateway
+     * @return $this
      */
     public function setEncodeColumns(array $columns)
     {
@@ -245,12 +237,15 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     }
 
     /**
-     * Fetches row(s) by primary key or specified column. The argument specifies one or more
-     * key value(s).  To find multiple rows, the argument must be an array.
+     * Fetches row(s) by primary key or specified column
+     *
+     * The argument specifies one or more key value(s).
+     * To find multiple rows, the argument must be an array.
      *
      * The find() method returns a ResultSet object if key array is provided or a Row object if a single key value is provided.
      *
-     * @param  array|string|int $key The value(s) of the key.
+     * @param array|string|int  $key    The value(s) of the key
+     * @param string|null       $column Column name of the key
      * @return ResultSet|Row Row(s) matching the criteria.
      */
     public function find($key, $column = null)
@@ -279,6 +274,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
     /**
      * Get Metadata
+     *
+     * @return Metadata
      */
     public function metadata()
     {
@@ -293,13 +290,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Add a feature to FeatureSet
      *
      * @param string $name
-     * @return AbstractTableGateway
+     * @return $this
      */
     public function addFeature($name)
     {
-        $featureClass = sprintf('%s\\Feature\\%sFeature', __NAMESPECE, $name);
+        $featureClass = sprintf('%s\Feature\\%sFeature', __NAMESPECE, $name);
         if (!class_exists($featureClass)) {
-            $featureClass = sprintf('Zend\Db\\TableGateway\\Feature\\%sFeature', $name);
+            $featureClass = sprintf('Zend\Db\TableGateway\Feature\\%sFeature', $name);
         }
         $this->featureSet->addFeature(new $featureClass);
         return $this;

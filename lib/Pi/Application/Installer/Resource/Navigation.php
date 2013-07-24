@@ -1,32 +1,28 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
+use Pi\Application\Model\Navigation\Node as NodeRow;
+use Pi\Application\Model\Model as NavigationRow;
 
 /**
- * Navigation configuration specs
+ * Navigation setup with configuration specs
  *
- * NOTE: module front navigation won't be updated upon module upgrade
+ * NOTE:
  *
- *  return array(
+ * - Module front navigation won't be updated upon module upgrade
+ * - Only top level items are shown in a non-system module admin menu
+ *
+ * ```
+ *  array(
  *      'meta' => array(
  *          'name' => array( // Unique name
  *              'title'     => 'Title',
@@ -92,12 +88,13 @@ use Pi;
  *          ),
  *      )
  *  );
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
-// NOTE: Only top level items are shown in a non-system module admin menu
-
 class Navigation extends AbstractResource
 {
+    /** @var string Current module identifier */
     protected $module;
 
     /**
@@ -106,6 +103,12 @@ class Navigation extends AbstractResource
      */
     protected $route = 'default';
 
+    /**
+     * Canonize page data
+     *
+     * @param array $page
+     * @return array
+     */
     protected function canonizePage($page)
     {
         // @see: Zend\Navigation\Page\AbstractPage for identifying MVC pages
@@ -139,6 +142,12 @@ class Navigation extends AbstractResource
         return $page;
     }
 
+    /**
+     * Canonize page list
+     *
+     * @param array $list
+     * @return void
+     */
     protected function canonizePages(&$list)
     {
         foreach ($list as $key => &$page) {
@@ -206,6 +215,9 @@ class Navigation extends AbstractResource
         return $result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         $module = $this->event->getParam('module');
@@ -242,6 +254,9 @@ class Navigation extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -319,6 +334,9 @@ class Navigation extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -349,6 +367,9 @@ class Navigation extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function activateAction()
     {
         $module = $this->event->getParam('module');
@@ -362,6 +383,9 @@ class Navigation extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
@@ -380,7 +404,7 @@ class Navigation extends AbstractResource
      *
      * @param array $node
      * @param array $message
-     * @return boolean
+     * @return bool
      */
     protected function insertNavigationNode($node, &$message)
     {
@@ -389,7 +413,14 @@ class Navigation extends AbstractResource
         return $row->id ? true : false;
     }
 
-    protected function deleteNavigationNode($node, &$message = null)
+    /**
+     * Delete a page node
+     *
+     * @param NodeRow $node
+     * @param array $message
+     * @return bool
+     */
+    protected function deleteNavigationNode(NodeRow $node, &$message = null)
     {
         $node->delete();
 
@@ -413,6 +444,13 @@ class Navigation extends AbstractResource
         return $navigations;
     }
 
+    /**
+     * Create a navigation
+     *
+     * @param array $navigation
+     * @param array $message
+     * @return bool
+     */
     protected function insertNavigation($navigation, &$message)
     {
         $model = Pi::model('navigation');
@@ -425,7 +463,14 @@ class Navigation extends AbstractResource
         return $row->id;
     }
 
-    protected function deleteNavigation($navigationRow, &$message)
+    /**
+     * Delete a navigation
+     *
+     * @param NavigationRow $navigationRow
+     * @param array $message
+     * @return bool
+     */
+    protected function deleteNavigation(NavigationRow $navigationRow, &$message)
     {
         try {
             $navigationRow->delete();

@@ -27,6 +27,7 @@ use Zend\Stdlib\ArrayUtils;
  *
  *
  * Usage inside a phtml template:
+ *
  * <code>
  *  // Canonize specific file
  *  $this->canonize('some.css');

@@ -1,19 +1,11 @@
 <?php
 /**
- * Pi Engine user service gateway
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
 namespace Pi\Application\Service;
@@ -27,13 +19,11 @@ use Pi\User\Model\AbstractModel as UserModel;
 
 
 /**
- * User service
+ * User service gateway
  *
  * Serves as a gateway to user account and profile data,
  * to proxy APIs to corresponding adapter, either Pi built-in user or Pi SSO or any third-party user service
- */
-
-/**
+ *
  * User APIs
  *
  * + Meta operations
@@ -107,6 +97,8 @@ use Pi\User\Model\AbstractModel as UserModel;
  *   - relation([$id])->hasRelation($uid, $relation)                                // Check if $id has relation with $uid: friend, follower, following
  *   - relation([$id])->add($uid, $relation)                                        // Add $uid as a relation: friend, follower, following
  *   - relation([$id])->delete([$uid[, $relation]])                                 // Delete $uid as relation: friend, follower, following
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractService
 {

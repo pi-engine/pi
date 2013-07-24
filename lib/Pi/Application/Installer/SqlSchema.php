@@ -1,26 +1,21 @@
 <?php
 /**
- * Installer SQL query class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer;
+
 use Pi;
 
+/**
+ * SQL schema query class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class SqlSchema
 {
     /**
@@ -28,11 +23,18 @@ class SqlSchema
      * @var string
      */
     protected $file;
+
     /**
      * Table types, core or specified module
+     * @var string
      */
     protected static $type;
 
+    /**
+     * Constructor
+     *
+     * @param string|null $file
+     */
     public function __construct($file = null)
     {
         if ($file) {
@@ -40,40 +42,68 @@ class SqlSchema
         }
     }
 
+    /**
+     * Set schema file
+     *
+     * @param string $file
+     * @return $this
+     */
     public function setFile($file)
     {
         $this->file = $file;
         return $this;
     }
 
+    /**
+     * Set schema type
+     *
+     * @param string $type
+     * @return void
+     */
     public static function setType($type)
     {
         static::$type = $type;
     }
 
-    public static function normalizeSchema($matches)
-    {
-        $name = $matches[1];
-        // Core tables: {core.user}
-        if (substr($name, 0, 6) == '{core.') {
-            $tableName = substr($name, 6, -1);
-            $tableName = Pi::db()->prefix($tableName, 'core');
-        // Module tables: {article}
-        } else {
-            $tableName = substr($name, 1, -1);
-            $tableName = Pi::db()->prefix($tableName, static::$type);
-        }
-        return $tableName;
-    }
-
+    /**
+     * Parse and canonize schema definition content
+     *
+     * @param string $content
+     * @return string
+     */
     public function parseContent($content)
     {
         // Remove comments to prevent from invalid syntax
         $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->', $content);
         // Normalize table prefix
-        return preg_replace_callback('|(\{[^\}]+\})|', 'static::normalizeSchema', $content);
+        //return preg_replace_callback('|(\{[^\}]+\})|', 'static::normalizeSchema', $content);
+
+        $type = static::$type;
+        $canonizePrefix = function ($matches) use ($type)
+        {
+            $name = $matches[1];
+            // Core tables: {core.<table_name>}
+            if (substr($name, 0, 6) == '{core.') {
+                $tableName = substr($name, 6, -1);
+                $tableName = Pi::db()->prefix($tableName, 'core');
+            // Module tables: {<module_table>}
+            } else {
+                $tableName = substr($name, 1, -1);
+                $tableName = Pi::db()->prefix($tableName, $type);
+            }
+            return $tableName;
+        };
+
+        $result = preg_replace_callback('|(\{[^\}]+\})|', $canonizePrefix, $content);
+        return $result;
     }
 
+    /**
+     * Performe query on content
+     *
+     * @param string $content
+     * @return bool
+     */
     public function queryContent($content = null)
     {
         $sql = $this->parseContent($content);
@@ -81,12 +111,25 @@ class SqlSchema
         return true;
     }
 
+    /**
+     * Query content from a file
+     *
+     * @param string $file
+     * @return bool
+     */
     public function queryFile($file = null)
     {
         $content = file_get_contents($file ?: $this->file);
         return $this->queryContent($content);
     }
 
+    /**
+     * Query a file with specified type
+     *
+     * @param string $file
+     * @param string $type
+     * @return bool
+     */
     public static function query($file, $type = 'core')
     {
         $schema = new self;

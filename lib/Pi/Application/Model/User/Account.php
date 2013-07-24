@@ -1,19 +1,10 @@
 <?php
 /**
- * Pi User Account Model
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Model
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Model\User;
@@ -21,9 +12,15 @@ namespace Pi\Application\Model\User;
 use Pi;
 use Pi\Application\Model\Model;
 
+/**
+ * User account model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Account extends Model
 {
-    protected $table = "user_account";
+    /** @var string */
+    protected $table = 'user_account';
 
     /**
      * Row gateway class
@@ -32,6 +29,11 @@ class Account extends Model
      */
     protected $rowClass = 'Pi\Application\Model\User\RowGateway\Account';
 
+    /**
+     * Get identity column
+     *
+     * @return string
+     */
     public function getIdentityColumn()
     {
         return 'identity';

@@ -2,12 +2,10 @@
 /**
  * Configuration for Pi Engine setup
  *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\setup
- * @since           3.0
- * @version         $Id$
+ * @package         Pi\Setup
  */
 
 $configs = array();

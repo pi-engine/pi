@@ -1,35 +1,125 @@
 <?php
 /**
- * Pi Engine auditing service
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Service
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
 namespace Pi\Application\Service;
 
 use Pi;
 
+/**
+ * Auditing service
+ *
+ * The service provides a variety of ways logging run-time structured data into files.
+ * An audit task could be specified in "var/config/service.audit.php" then called in applications,
+ * it could also be called directly in run-time in applications on fly.
+ *
+ * Definition of configuration:
+ *
+ * - Full specified mode with option array:
+ *   - file: path to the log file
+ *   - timeformat: time stamp format in log
+ *   - format: logged data format, for example "%time% %d %s [%s]"
+ *
+ * ```
+ *  'full-mode-audit'   => array(
+ *      'file'          => <path/to/full.log>,
+ *      'timeformat'    => <date-format>,
+ *      'format'        => '%time% %d %s [%s]',
+ *  )
+ * ```
+ *
+ * - CSV mode with option array:
+ *   - file: path to the log file
+ *   - timeformat: time stamp format in log
+ *   - format: "csv", data are stored in CSV format
+ *
+ * ```
+ *  'csv-mode-audit'    => array(
+ *      'file'          => <path/to/csv.log>,
+ *      'format'        => 'csv', // fixed
+ *      'timeformat'    => <date-format>,
+ *  ),
+ * ```
+ *
+ * - Custom mode with option array (could be empty):
+ *   - file: optional; if file is not specified, log data will be stored in "var/log/<audit-name>.log"
+ *   - timeformat: optional, default as "c"
+ *   - format: optional, default as "csv"
+ *
+ * ```
+ *  'custom-mode-audit'  => array(
+ *      ['file'          => <path/to/audit.log>,]
+ *      ['timeformat'    => <date-format>,]
+ *      ['format'        => <data-format>,]
+ *  )
+ * ```
+ *
+ * - Custom mode with string option:
+ *   - file: the specified string is used as log file
+ *   - timeformat: "c"
+ *   - format: "csv"
+ *
+ * ```
+ *  'audit-name' => <path/to/audit.log>
+ * ```
+ *
+ * Log data with an audit defined in var/config/service.audit.php:
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->log('full-mode-audit', $args);
+ *  Pi::service('audit')->log('csv-mode-audit', $args);
+ *  Pi::service('audit')->log('audit-name', $args);
+ * ```
+ *
+ * Log data directly to a log file on fly (not pre-defined):
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->log('audit-on-fly', $args);
+ * ```
+ *
+ * Define and attach an audit then write log data:
+ *
+ * ```
+ *  $args = array(rand(), 'var1', 'var, val and exp');
+ *  Pi::service('audit')->attach('custom-audit', array(
+ *      'file'  => <path/to/custom.csv>
+ *  ));
+ *  Pi::service('audit')->log('custom-audit', $args);
+ * ```
+ *
+ * @see var/config/service.audit.php for audit service configuration
+ * @see http://www.php.net/manual/en/function.date.php for date format
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Audit extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'audit';
+
+    /** @var string Time format for audit log */
     protected $timeformat = 'c';
+
+    /** @var string File content format for log */
     protected $format = 'csv';
+
+    /** @var array Log container */
     protected $logs = array();
+
+    /** @var array Log iterms */
     protected $items = array();
 
     /**
-     * Shutdown function, triggered by Pi::shutdown()
+     * Shutdown function, triggered by {@link Pi::shutdown()}
+     *
+     * @return void
      */
     public function shutdown()
     {
@@ -42,8 +132,8 @@ class Audit extends AbstractService
     /**
      * Attach a log
      *
-     * @param string $name
-     * @param array|string|null $options
+     * @param string                $name
+     * @param array|string|null     $options
      * @return void
      */
     public function attach($name, $options = null)
@@ -71,8 +161,8 @@ class Audit extends AbstractService
     /**
      * Write messages to a log
      *
-     * @param string $name
-     * @param array $messages
+     * @param string    $name
+     * @param array     $messages
      * @return bool
      */
     public function write($name, $messages)
@@ -113,12 +203,12 @@ class Audit extends AbstractService
     /**
      * Logs an operation
      *
-     * <code>
-     *   Pi::service('audit')->log('operation_name', array('val1', 'val2', 'val3'));
-     * </code>
+     * ```
+     *   Pi::service('audit')->log(<operation-name>, array(<val1>, <val2>, <val3>, ..., <valn>));
+     * ```
      *
-     * @param  string  $name  log name
-     * @param  array|string  $args  parameters to log
+     * @param  string       $name  Log name
+     * @param  array|string $args  Parameters to log
      * @return void
      */
     public function log($name, $args)

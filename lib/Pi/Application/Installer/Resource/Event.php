@@ -1,28 +1,23 @@
 <?php
 /**
- * Pi module installer resource
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Application
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Installer\Resource;
+
 use Pi;
 
 /**
- * Event meta:
+ * Event/Listner setup
+ *
+ * Event specifications:
+ *
+ * ```
+ * array(
  *  // Event list
  *  'events'    => array(
  *      // event name (unique)
@@ -36,30 +31,53 @@ use Pi;
  *      array(
  *          // event info: module, event name
  *          'event'     => array('pm', 'test'),
- *          // listener info: class, method
+ *          // listener callback: class, method
  *          'listener'  => array('event', 'message'),
  *      ),
  *  ),
+ * );
+ * ```
+ *
+ * API for listener callback:
+ *
+ * ```
+ *  class <ListenerClass>
+ *  {
+ *      static public function <listenerMethod>(<object>[, <module-name>])
+ *      {
+ *          // Do something;
+ *      }
+ *  }
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Event extends AbstractResource
 {
+    /**
+     * Canonize listener data
+     *
+     * @param array $listener
+     * @return array
+     */
     protected function canonize($listener)
     {
         $module = $this->event->getParam('module');
-        //$classPrefix = sprintf('Module\\%s', ucfirst($this->event->getParam('directory')));
         list($class, $method) = $listener['listener'];
         list($eventModule, $eventName) = $listener['event'];
+
         $data = array();
         $data['event_module']   = $eventModule;
         $data['event_name']     = $eventName;
         $data['module']         = $module;
-        //$data['class']          = $classPrefix . '\\' . $class;
         $data['class']          = ucfirst($class);
         $data['method']         = $method;
         return $data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function installAction()
     {
         if (empty($this->config)) {
@@ -68,6 +86,7 @@ class Event extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::service('registry')->event->clear($module);
 
+        // Install events
         $modelEvent = Pi::model('event');
         $events = isset($this->config['events']) ? $this->config['events'] : array();
         foreach ($events as $name => $event) {
@@ -82,6 +101,7 @@ class Event extends AbstractResource
             }
         }
 
+        // Install listeners
         $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
         $flushList = array();
         $modelListener = Pi::model('event_listener');
@@ -103,6 +123,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateAction()
     {
         $module = $this->event->getParam('module');
@@ -168,7 +191,6 @@ class Event extends AbstractResource
 
         $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
         $listenerList = array();
-        //$classPrefix = sprintf('Module\\%s', ucfirst($this->event->getParam('directory')));
         foreach ($listeners as $listener) {
             $data = $this->canonize($listener);
             $key = $data['event_module'] . '-' . $data['event_name'] . '-' . $data['class'] . '-' . $data['method'];
@@ -216,6 +238,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
@@ -233,6 +258,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function activateAction()
     {
         $module = $this->event->getParam('module');
@@ -251,6 +279,9 @@ class Event extends AbstractResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');

@@ -1,32 +1,60 @@
 <?php
 /**
- * Kernel debug
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Debug
 {
     use Pi;
 
+    /**
+     * Pi Debugger
+     *
+     * Syntactic sugar for debug APIs
+     *
+     * Display a var
+     *
+     *  ```
+     *      d($var);
+     *  ```
+     *
+     * Display call backtrace
+     *
+     *  ```
+     *      b();
+     *  ```
+     *
+     * Contitional display of a var
+     *
+     *  ```
+     *      $var = 'something ...';
+     *
+     *      dc($var);   // No output
+     *
+     *      denable();
+     *
+     *      dc($var);   // Output: something ...
+     *
+     *      denable(false);
+     *
+     *      dc($var);   // No putput
+     *  ```
+     *
+     * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+     */
     class Debug
     {
+        /** @var bool|null */
         protected static $inProcess = null;
 
         /**
          * Loads debugger, nothing to do at this moment
+         *
+         * @return void
          */
         public static function load()
         {}
@@ -35,6 +63,7 @@ namespace Pi\Debug
          * Enable/Disable conditional debugging
          *
          * @param bool $flag
+         * @return void
          */
         public static function enable($flag = true)
         {
@@ -48,7 +77,7 @@ namespace Pi\Debug
          *
          * @param mixed $data a variable or an object
          * @param int   $skip steps to skip
-         * @return string
+         * @return string|null
          */
         public static function conditional($data, $skip = 0)
         {
@@ -62,6 +91,7 @@ namespace Pi\Debug
          * Syntatic sugar for displaying debugger information
          *
          * @param mixed $data
+         * @return void
          */
         public static function e($data)
         {
@@ -85,6 +115,7 @@ namespace Pi\Debug
          * Displays debugger information
          *
          * @param mixed $data
+         * @return void
          */
         public static function display($data)
         {
@@ -144,6 +175,7 @@ namespace Pi\Debug
          *
          * @param bool  $display To display or return as a string
          * @param int   $skip steps to skip
+         * @return void|string
          */
         public static function backtrace($display = true, $skip = 0)
         {
@@ -182,15 +214,16 @@ namespace Pi\Debug
         }
 
         /**
-         * Debug helper function.  This is a wrapper for var_dump() that adds
-         * the <pre /> tags, cleans up newlines and indents, and runs
+         * Debug helper function
+         *
+         * This is a wrapper for var_dump() that adds the <pre /> tags, cleans up newlines and indents, and runs
          * htmlspecialchars() before output.
          *
-         * @see     Zend\Debug::dump()
-         * @param   mixed  $var   The variable to dump.
-         * @param   bool   $display  OPTIONAL echo output if true.
-         * @param   int   $skip steps to skip
-         * @return  string|void
+         * @see Zend\Debug::dump()
+         * @param mixed     $var        The variable to dump.
+         * @param bool      $display    OPTIONAL echo output if true.
+         * @param int       $skip       steps to skip
+         * @return string|void
          */
         public static function dump($var, $display = true, $skip = 1)
         {
@@ -234,19 +267,24 @@ namespace Pi\Debug
     }
 }
 
-/**#@+
- * Syntactic sugar for system API
+/**
+ * Syntactic sugar for debug APIs
  *
  * Display a var
- *  <code>
+ *
+ *  ```
  *      d($var);
- *  </code>
+ *  ```
+ *
  * Display call backtrace
- *  <code>
+ *
+ *  ```
  *      b();
- *  </code>
+ *  ```
+ *
  * Contitional display of a var
- *  <code>
+ *
+ *  ```
  *      $var = 'something ...';
  *      // ...
  *      dc($var);   // No output
@@ -258,7 +296,7 @@ namespace Pi\Debug
  *      denable(false);
  *      // ..
  *      dc($var);   // No putput
- *  </code>
+ *  ```
  */
 namespace
 {
@@ -268,6 +306,7 @@ namespace
      * Displays a debug message
      *
      * @param mixed $data a variable or an object
+     * @return void
      */
     function d($data = '')
     {
@@ -281,6 +320,8 @@ namespace
 
     /**
      * Displays backtrace messages
+     *
+     * @return void
      */
     function b()
     {
@@ -291,6 +332,7 @@ namespace
      * Displays a debug message during conditional debug
      *
      * @param mixed $data a variable or an object
+     * @return void
      */
     function dc($data = '')
     {
@@ -304,6 +346,7 @@ namespace
      * Enable for conditional debug
      *
      * @param bool $flag
+     * @return void
      */
     function denable($flag = true)
     {
@@ -312,6 +355,8 @@ namespace
 
     /**
      * Enable conditional debug
+     *
+     * @return void
      */
     function de()
     {
@@ -320,6 +365,8 @@ namespace
 
     /**
      * Disable conditional debug
+     *
+     * @return void
      */
     function df()
     {
@@ -327,7 +374,7 @@ namespace
     }
 
     /**
-     * Dump data with var_dump
+     * Dump data with var_dump()
      *
      * @param mixed $data
      * @return string
@@ -337,4 +384,3 @@ namespace
         return Debug::dump($data, true, 1);
     }
 }
-/**#@-*/

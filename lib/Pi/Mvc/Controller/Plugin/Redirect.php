@@ -1,20 +1,10 @@
 <?php
 /**
- * Controller plugin Redirect class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
@@ -22,17 +12,23 @@ namespace Pi\Mvc\Controller\Plugin;
 use Zend\Mvc\Controller\Plugin\Redirect as ZendRedirect;
 use Zend\Http\Response;
 
+/**
+ * Action redirect plugin for controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Redirect extends ZendRedirect
 {
+    /** @var int Response code */
     protected $responseCode;
 
     /**
      * Generates a URL based on a route
      *
-     * @param  string $route RouteInterface name
-     * @param  array $params Parameters to use in url generation, if any
-     * @param  array $options RouteInterface-specific options to use in url generation, if any
-     * @return Response|Redirect
+     * @param string    $route      RouteInterface name
+     * @param array     $params     Parameters to use in url generation, if any
+     * @param array     $options    RouteInterface-specific options to use in url generation, if any
+     * @return Response|$this
      */
     public function __invoke($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
     {
@@ -46,7 +42,7 @@ class Redirect extends ZendRedirect
      * Set response status code
      *
      * @param int $code
-     * @return Redirect
+     * @return $this
      */
     public function setStatusCode($code)
     {
@@ -57,9 +53,9 @@ class Redirect extends ZendRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param  string $route RouteInterface name
-     * @param  array $params Parameters to use in url generation, if any
-     * @param  array $options RouteInterface-specific options to use in url generation, if any
+     * @param string    $route      RouteInterface name
+     * @param array     $params     Parameters to use in url generation, if any
+     * @param array     $options    RouteInterface-specific options to use in url generation, if any
      * @return Response
      */
     public function toRoute($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
@@ -91,7 +87,7 @@ class Redirect extends ZendRedirect
     /**
      * Redirect to the given URL
      *
-     * @param  string $url
+     * @param string $url
      * @return Response
      */
     public function toUrl($url)

@@ -1,21 +1,10 @@
 <?php
 /**
- * User route implementation
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\Mvc
- * @subpackage      Router
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Mvc\Router\Http;
@@ -27,6 +16,7 @@ use Zend\Stdlib\RequestInterface as Request;
  * User route for Pi Engine
  *
  * Use cases:
+ *
  *  1. Login: user/login => Login::index
  *  2. Login process: user/login/process => Login::process
  *  3. Logout: user/logout  => Login::logout
@@ -39,14 +29,16 @@ use Zend\Stdlib\RequestInterface as Request;
  * 10. User profile via identity: user/profile/$user => Profile::index
  * 11. Personal account: user/account => Account::index
  * 12. Personal account edit: user/account/edit => Account::Edit
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends Standard
 {
+    /** @var string */
     protected $prefix = '/user';
 
     /**
      * Default values.
-     *
      * @var array
      */
     protected $defaults = array(
@@ -59,8 +51,9 @@ class User extends Standard
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  Request $request
-     * @return RouteMatch
+     * @param Request $request
+     * @param int|null  $pathOffset
+     * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
     {
@@ -103,7 +96,7 @@ class User extends Standard
      * @see    Route::assemble()
      * @param  array $params
      * @param  array $options
-     * @return mixed
+     * @return string
      */
     public function assemble(array $params = array(), array $options = array())
     {

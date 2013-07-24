@@ -41,7 +41,7 @@ return array(
         array(
             // event info: module, event name
             'event'     => array('system', 'module_install'),
-            // listener info: class, method
+            // listener callback: class, method
             'listener'  => array('event', 'moduleinstall'),
         ),
     ),

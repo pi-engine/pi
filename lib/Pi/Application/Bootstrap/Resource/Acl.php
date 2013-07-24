@@ -1,21 +1,10 @@
 <?php
 /**
- * Bootstrap resource
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @subpackage      Resource
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -24,12 +13,18 @@ use Pi;
 use Pi\Acl\Acl as AclManager;
 use Zend\Mvc\MvcEvent;
 
+/**
+ * ACL bootstrap resource
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Acl extends AbstractResource
 {
+    /** @var AclManager */
     protected $aclHandler;
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
     public function boot()
     {
@@ -39,6 +34,11 @@ class Acl extends AbstractResource
         $this->application->getEventManager()->attach('dispatch', array($this, 'checkAccess'), 9999);
     }
 
+    /**
+     * Load ACL handler
+     *
+     * @return void
+     */
     protected function loadAcl()
     {
         $this->engine->bootResource('user');
@@ -47,6 +47,12 @@ class Acl extends AbstractResource
         Pi::registry('acl', $this->aclHandler);
     }
 
+    /**
+     * Check if current access is allowed
+     *
+     * @param MvcEvent $e
+     * @return bool
+     */
     public function checkAccess(MvcEvent $e)
     {
         $denied = null;
