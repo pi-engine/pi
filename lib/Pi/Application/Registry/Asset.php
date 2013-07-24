@@ -77,13 +77,14 @@ class Asset extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $theme
+     * @param string    $module
+     * @param string    $theme
      */
-    public function read($module, $theme = null)
+    public function read($module = '', $theme = '')
     {
         //$this->cache = false;
-        $theme = $theme ?: Pi::service('theme')->current();
+        $module = $module ?: Pi::service('module')->current();
+        $theme  = $theme ?: Pi::service('theme')->current();
         $options = compact('theme');
         $data = $this->loadData($options);
         return isset($data[$module]) ? $data[$module] : array();
@@ -92,11 +93,12 @@ class Asset extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string    $module
-     * @param string|null   $theme
+     * @param string    $theme
      */
-    public function create($module, $theme = null)
+    public function create($module = '', $theme = '')
     {
-        $theme = $theme ?: Pi::service('theme')->current();
+        $module = $module ?: Pi::service('module')->current();
+        $theme  = $theme ?: Pi::service('theme')->current();
         $this->clear($theme);
         $this->read($module, $theme);
         return true;

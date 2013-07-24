@@ -34,7 +34,7 @@ class Role extends AbstractRegistry
      * {@inheritDoc}
      * @param string $role
      */
-    public function read($role)
+    public function read($role = '')
     {
         //$this->cache = false;
         $options = compact('role');
@@ -45,7 +45,7 @@ class Role extends AbstractRegistry
      * {@inheritDoc}
      * @param string $role
      */
-    public function create($role)
+    public function create($role = '')
     {
         $this->clear($role);
         $this->read($role);
@@ -55,7 +55,7 @@ class Role extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

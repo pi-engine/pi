@@ -24,7 +24,7 @@ class Search extends AbstractRegistry
      * @param   array   $options    Potential values for type: active, inactive, all
      * @return  array   Keys: dirname => callback, active
      */
-    protected function loadDynamic($options)
+    protected function loadDynamic($options = array())
     {
         $model = Pi::model('search');
 
@@ -67,7 +67,7 @@ class Search extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

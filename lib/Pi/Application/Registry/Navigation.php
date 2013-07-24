@@ -75,7 +75,7 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options)
+    protected function loadDynamic($options = array())
     {
         $name = $options['name'];
         if ('front' == $name) {
@@ -105,7 +105,7 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadNavigation($options)
+    protected function loadNavigation($options = array())
     {
         $name = $options['name'];
         $locale = $options['locale'];
@@ -139,7 +139,7 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadFront($options)
+    protected function loadFront($options = array())
     {
         $options['section'] = 'front';
         $options['name'] = 'system-front';
@@ -157,7 +157,7 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadAdmin($options)
+    protected function loadAdmin($options = array())
     {
         $options['section'] = 'admin';
         //$this->route = 'admin';
@@ -172,12 +172,12 @@ class Navigation extends AbstractRegistry
      * {@inheritDoc}
      *
      * @param string        $name
-     * @param string|null   $module
-     * @param string|null   $section
+     * @param string        $module
+     * @param string        $section
      * @param string|null   $role
      * @param string        $locale
      */
-    public function read($name, $module = null, $section = null, $role = null, $locale = '')
+    public function read($name = '', $module = '', $section = '', $role = null, $locale = '')
     {
         //$this->cache = false;
         if (null === $role) {
@@ -193,12 +193,12 @@ class Navigation extends AbstractRegistry
      * {@inheritDoc}
      *
      * @param string        $name
-     * @param string|null   $module
-     * @param string|null   $section
+     * @param string        $module
+     * @param string        $section
      * @param string|null   $role
      * @param string        $locale
      */
-    public function create($name, $module = null, $role = null, $locale = '')
+    public function create($name = '', $module = '', $role = null, $locale = '')
     {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
@@ -208,7 +208,7 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta = null)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

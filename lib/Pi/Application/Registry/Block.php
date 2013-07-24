@@ -110,12 +110,13 @@ class Block extends AbstractRegistry
      * @param string        $module
      * @param string|null   $role
      */
-    public function read($module, $role = null)
+    public function read($module = '', $role = null)
     {
         //$this->cache = false;
         if (null === $role) {
             $role = Pi::service('user')->getUser()->role;
         }
+        $module = $module ?: Pi::service('module')->current();
         $options = compact('module', 'role');
         return $this->loadData($options);
     }
@@ -125,8 +126,9 @@ class Block extends AbstractRegistry
      * @param string        $module
      * @param string|null   $role
      */
-    public function create($module, $role = null)
+    public function create($module = '', $role = null)
     {
+        $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $role);
         return true;

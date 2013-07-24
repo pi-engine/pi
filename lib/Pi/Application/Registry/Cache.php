@@ -51,8 +51,9 @@ class Cache extends AbstractRegistry
      * @param string $section
      * @param string $type
      */
-    public function read($module, $section, $type = 'action')
+    public function read($module = '', $section = 'front', $type = 'action')
     {
+        $module = $module ?: Pi::service('module')->current();
         $options = compact('module', 'section', 'type');
         return $this->loadData($options);
     }
@@ -62,7 +63,7 @@ class Cache extends AbstractRegistry
      * @param string $module
      * @param string $section
      */
-    public function create($module, $section)
+    public function create($module = '', $section = 'front')
     {
         $this->read($module, $section);
         return true;

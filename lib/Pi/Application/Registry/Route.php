@@ -55,7 +55,7 @@ class Route extends AbstractRegistry
      * @param string    $section
      * @param bool      $exclude    To exclude the specified section
      */
-    public function read($section, $exclude = false)
+    public function read($section = 'front', $exclude = false)
     {
         $options = compact('section', 'exclude');
         $data = $this->loadData($options);
@@ -67,7 +67,7 @@ class Route extends AbstractRegistry
      * @param string    $section
      * @param bool      $exclude    To exclude the specified section
      */
-    public function create($section, $exclude = false)
+    public function create($section = 'front', $exclude = false)
     {
         $this->clear($section);
         $this->read($section, $exclude);
@@ -77,7 +77,7 @@ class Route extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         if (is_string($meta)) {
             $namespace = $meta;

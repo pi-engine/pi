@@ -41,9 +41,9 @@ class Module extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string|null $module
+     * @param string $module
      */
-    public function read($module = null)
+    public function read($module = '')
     {
         $data = $this->loadData();
         $ret = empty($module)
@@ -56,9 +56,9 @@ class Module extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string|null $module
+     * @param string $module
      */
-    public function create($module = null)
+    public function create($module = '')
     {
         $this->clear($module);
         $this->read($module);
@@ -68,7 +68,7 @@ class Module extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta = null)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

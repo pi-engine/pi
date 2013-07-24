@@ -55,9 +55,10 @@ class Resource extends AbstractRegistry
      * @param string        $module    Module name
      * @param string|null   $type      system, page or other custom types by module
      */
-    public function read($section, $module, $type = null)
+    public function read($section = 'front', $module = '', $type = null)
     {
         //$this->cache = false;
+        $module = $module ?: Pi::service('module')->current();
         $options = compact('section', 'module', 'type');
         return $this->loadData($options);
     }
@@ -68,8 +69,9 @@ class Resource extends AbstractRegistry
      * @param string        $module    Module name
      * @param string|null   $type      system, page or other custom types by module
      */
-    public function create($section, $module, $type = null)
+    public function create($section = 'front', $module = '', $type = null)
     {
+        $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $section, $type);
         return true;

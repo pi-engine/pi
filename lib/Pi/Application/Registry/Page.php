@@ -46,11 +46,12 @@ class Page extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $section
-     * @param string|null   $module
+     * @param string $section
+     * @param string $module
      */
-    public function read($section, $module = null)
+    public function read($section = 'front', $module = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         $options = compact('section', 'module');
         return $this->loadData($options);
     }
@@ -60,8 +61,9 @@ class Page extends AbstractRegistry
      * @param string        $section
      * @param string|null   $module
      */
-    public function create($section, $module = null)
+    public function create($section = 'front', $module = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($section, $module);
         return true;

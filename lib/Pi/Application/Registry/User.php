@@ -181,7 +181,7 @@ class User extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

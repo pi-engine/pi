@@ -25,7 +25,7 @@ class Themelist extends AbstractRegistry
      * @param   array   $options potential values for type: front, admin, both
      * @return  array   keys: dirname => name, image, author, version
      */
-    protected function loadDynamic($options)
+    protected function loadDynamic($options = array())
     {
         $model = Pi::model('theme');
         $type = empty($options['type']) ? 'front' : $options['type'];
@@ -68,7 +68,7 @@ class Themelist extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }

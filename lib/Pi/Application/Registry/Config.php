@@ -56,7 +56,7 @@ class Config extends AbstractRegistry
      * @param string        $module
      * @param string|null   $category
      */
-    public function read($module, $category = null)
+    public function read($module = '', $category = null)
     {
         $module = $module ?: 'system';
         if ('system' == $module && null === $category) {
@@ -71,7 +71,7 @@ class Config extends AbstractRegistry
      * @param string        $module
      * @param string|null   $category
      */
-    public function create($module, $category = null)
+    public function create($module = '', $category = null)
     {
         $this->clear($module);
         $this->read($module, $category);

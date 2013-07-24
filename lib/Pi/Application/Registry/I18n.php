@@ -33,11 +33,13 @@ class I18n extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $rawDomain
-     * @param string    $locale
+     * @param string|array  $rawDomain
+     * @param string        $locale
      */
-    public function read($rawDomain, $locale)
+    public function read($rawDomain = '', $locale = '')
     {
+        $locale = $locale ?: Pi::service('i18n')->getLocale();
+
         if (is_array($rawDomain)) {
             if (!array_key_exists(0, $rawDomain)) {
                 extract($rawDomain);
@@ -63,7 +65,7 @@ class I18n extends AbstractRegistry
      * {@inheritDoc}
      * @param string    $domain
      */
-    public function create($domain)
+    public function create($domain = '')
     {
         $this->flush();
         $this->read($domain);
@@ -73,7 +75,7 @@ class I18n extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace($this->namespaceCustom);
     }

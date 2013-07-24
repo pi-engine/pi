@@ -58,8 +58,9 @@ class Event extends AbstractRegistry
      * @param string    $module
      * @param string    $event
      */
-    public function read($module, $event)
+    public function read($module = '', $event = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         if (empty($event)) return false;
         $options = compact('module', 'event');
         return $this->loadData($options);
@@ -67,11 +68,12 @@ class Event extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $event
+     * @param string    $module
+     * @param string    $event
      */
-    public function create($module, $event = null)
+    public function create($module = '', $event = '')
     {
+        $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $event);
         return true;

@@ -60,7 +60,7 @@ class Bootstrap extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    public function setNamespace($meta = null)
+    public function setNamespace($meta = '')
     {
         return parent::setNamespace('');
     }
