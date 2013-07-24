@@ -1,28 +1,22 @@
 <?php
 /**
- * Pi Engine user service abstract
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\User
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\User\Adapter;
 
 use Pi;
-
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Avatar\Factory as UserAvatar;
+
 /**
+ * User service abstract class
+ *
  * User APIs
  *
  * + Meta operations
@@ -63,6 +57,8 @@ use Pi\User\Avatar\Factory as UserAvatar;
  *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
  *   + Authentication
  *   - authenticate($identity, $credential[, $identityField])       // Authenticate a user
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractAdapter implements BindInterface
 {
@@ -93,7 +89,7 @@ abstract class AbstractAdapter implements BindInterface
     public function __get($var)
     {
         $result = null;
-        if ($this->model && isset($this->model->$var)) {
+        if ($this->model) {
             $result = $this->model->$var;
         }
 
@@ -127,7 +123,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user data objects
      *
-     * @param array             $ids         User ids
+     * @param int[] $ids User ids
      * @return array
      */
     abstract public function getUserList($ids);
@@ -249,6 +245,12 @@ abstract class AbstractAdapter implements BindInterface
      */
     /**
      * Get user URL
+     *
+     * - account: URI to user account page
+     * - profile: URI to user profile page
+     * - login: URI to user login page
+     * - logout: URI to user logout page
+     * - register (signup): URI to user register/signup page
      *
      * @param string        $type       Type of URLs: profile, login, logout, register, auth
      * @param int|null      $id

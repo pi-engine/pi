@@ -10,14 +10,14 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\Local as UserModel;
+use Pi\User\Model\System as UserModel;
 
 /**
- * Pi Engine local user service provided by user module
+ * Pi Engine built-in user service provided by system module
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends AbstractAdapter
+class System extends AbstractAdapter
 {
     /**#@+
      * Meta operations
@@ -27,7 +27,31 @@ class Local extends AbstractAdapter
      */
     public function getMeta($type = 'account')
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $metaAccount = array(
+            'id',
+            'identity',
+            'credential',
+            'salt',
+            'email',
+            'name',
+            'active',
+        );
+        $metaProfile = array(
+            'uid',
+        );
+        $meta = array();
+        switch ($type) {
+            case 'account':
+                $meta = $metaAccount;
+                break;
+            case 'profile':
+                $meta = $metaProfile;
+                break;
+            default:
+                $meta = $metaAccount + $metaProfile;
+                break;
+        }
+        return $meta;
     }
     /**#@-*/
 
@@ -167,8 +191,12 @@ class Local extends AbstractAdapter
     {
         switch ($type) {
             case 'account':
+                $url = Pi::service('url')->assemble('user', array(
+                    'controller'    => 'account',
+                    'id'            => $id,
+                ));
+                break;
             case 'profile':
-                $id = $id ?: $this->id;
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
                     'id'            => $id,

@@ -14,11 +14,11 @@ use Pi\Acl\Acl;
 use StdClass;
 
 /**
- * Local user model
+ * System user model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends AbstractModel
+class System extends AbstractModel
 {
     /**
      * {@inheritDoc}

@@ -84,10 +84,13 @@ return array(
         ),
     ),
 
-    // User route
+    // System user route
     'user'  => array(
-        'type'      => 'User',
+        'type'      => 'Module\System\Route\User',
         'priority'  => 5,
+        'options'   => array(
+            'route'    => '/system/user',
+        ),
     ),
 
     // Transition page jump route

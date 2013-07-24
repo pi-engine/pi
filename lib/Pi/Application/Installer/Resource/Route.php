@@ -14,6 +14,10 @@ use Pi;
 /**
  * Route setup
  *
+ * For a non-system module route, route name is prefixed with module name:
+ *  "<route-name>" transiliated to "<module-name>-<route-name>"
+ *
+ *
  * ```
  * array(
  *  // A specified route
@@ -39,12 +43,16 @@ use Pi;
  * );
  * ```
  *
+ * @see \Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute() for route name utilization
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Route extends AbstractResource
 {
     /**
-     * Canonizes route list: route name, prefix with module name for any module other than system
+     * Canonizes route config
+     *
+     * For a non-system module route, route name is prefixed with module name:
+     *  "<route-name>" transiliated to "<module-name>-<route-name>"
      *
      * @param array $configs
      * @return array
@@ -81,7 +89,8 @@ class Route extends AbstractResource
     }
 
     /**
-     * Canonize route data
+     * Canonize route specifications
+     *
      * @param array $data
      * @return array
      */

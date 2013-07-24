@@ -33,7 +33,7 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Page extends Standard
 {
-    protected $prefix = '/page';
+    //protected $prefix = '/page';
 
     /**
      * Default values.
@@ -135,7 +135,7 @@ class Page extends Standard
             $url = $action;
         } elseif (!empty($action)) {
             if ($action != 'index') {
-                $url = $action . $this->paramDelimiter . $url;  
+                $url = $action . $this->paramDelimiter . $url;
             }
         } else {
             $url = 'view' . $this->paramDelimiter . $url;

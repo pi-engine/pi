@@ -127,9 +127,7 @@ class TreeRouteStack extends RouteStack
         // Match aginst base URI
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
-
             foreach ($this->routes as $name => $route) {
-
                 //if (($match = $route->match($request, $baseUrlLength)) instanceof RouteMatch && $match->getLength() === $pathLength) {
                 $match = $route->match($request, $baseUrlLength);
                 if (!$match instanceof RouteMatch) {
@@ -309,15 +307,21 @@ class TreeRouteStack extends RouteStack
     }
 
     /**
-     * Canonizes relative module route by transliterate ".<route-name>" to "<module-name>-<route-name>"
+     * Canonizes relative module route
      *
+     * For a system route, transliterate ".<route-name>" to "<route-name>"
+     * For a non-system route, transliterate ".<route-name>" to "<module-name>-<route-name>"
+     *
+     * @see \Pi\Application\Installer\Resource\Route::canonize() for route name canonization
      * @param string $name
      * @return string
      */
     protected function canonizeRoute($name)
     {
         if ('.' == $name[0]) {
-            $name = Pi::service('module')->current() . '-' . substr($name, 1);
+            $module = Pi::service('module')->current();
+            $modulePrefix = ('system' == $module) ? '' : $module . '-';
+            $name = $modulePrefix . substr($name, 1);
         }
 
         return $name;

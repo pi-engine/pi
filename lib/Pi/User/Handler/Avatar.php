@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi Engine user avatar handler
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\User
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\User\Handler;
@@ -20,12 +12,16 @@ namespace Pi\User\Handler;
 use Pi;
 
 /**
+ * Avatar handler
+ *
  * Avatar APIs;
  *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
  *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
  *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
  *   - avatar([$id])->set($value[, $source])                                        // Set avatar for a user
  *   - avatar([$id])->delete()                                                      // Delete user avatar
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Avatar extends AbstractHandler
 {

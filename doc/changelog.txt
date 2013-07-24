@@ -31,6 +31,7 @@ June 24th, 2013
 26. Migrated to Bootstrap for setup by @voltan
 27. Added support for extra extensions with Extra namespace
 28. Added API engine and routes
+29. Added system user model (by system module) and local user model (by user module)
 
 
 June 19th, 2013

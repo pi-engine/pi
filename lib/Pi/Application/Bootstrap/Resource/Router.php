@@ -26,7 +26,7 @@ class Router extends AbstractResource
     public function boot()
     {
         $options = $this->options;
-        $routerClass = !empty($options['class']) ? $options['class'] : 'Pi\\Mvc\\Router\\Http\\TreeRouteStack';
+        $routerClass = !empty($options['class']) ? $options['class'] : 'Pi\Mvc\Router\Http\TreeRouteStack';
 
         $section = !empty($options['section']) ? $options['section'] : Pi::engine()->section();
         $routes = Pi::service('registry')->route->read($section, $exclude = 0);
