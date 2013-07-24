@@ -33,6 +33,7 @@ return array(
                 'ErrorStrategy'             => 'Pi\Mvc\View\Http\ErrorStrategy',
                 'ViewStrategyListener'      => 'Pi\Mvc\View\Http\ViewStrategyListener',
                 'FeedStrategyListener'      => 'Pi\Mvc\View\Http\FeedStrategyListener',
+                'ApiStrategyListener'       => 'Pi\Mvc\View\Http\ApiStrategyListener',
                 /**#@-*/
             ),
 

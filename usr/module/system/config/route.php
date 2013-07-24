@@ -63,7 +63,7 @@ return array(
     ),
 
     // API route
-    'admin' => array(
+    'api' => array(
         'section'   => 'api',
         'priority'  => 100,
 
