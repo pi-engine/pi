@@ -55,6 +55,7 @@ use Pi\Markup\Markup as Renderer;
  */
 class Markup extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'markup';
 
     /**

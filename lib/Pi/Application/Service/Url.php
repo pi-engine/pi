@@ -25,6 +25,7 @@ class Url extends AbstractService
 {
     /**
      * Router handler
+     *
      * @var RouteStackInterface
      */
     protected $router;

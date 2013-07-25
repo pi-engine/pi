@@ -46,7 +46,10 @@ use Pi\Application\Model\Nest as Model;
  */
 class Taxonomy extends AbstractService
 {
+    /** @var string Default domain */
     protected $defaultDomain = 'taxon';
+
+    /** @var string[] Taxon columns */
     protected $columnsTaxon = array('name', 'title', 'description');
 
     /**#@+
@@ -56,7 +59,8 @@ class Taxonomy extends AbstractService
      * Canonize taxon data
      *
      * @param array $data
-     * @see Pi\Db\Table\AbstractNest::convertFromNested
+     * @return void
+     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
      */
     protected function canonizeTaxon(&$data)
     {
@@ -143,13 +147,13 @@ class Taxonomy extends AbstractService
     /**
      * Add taxon data to a taxonomy domain
      *
-     * @param array $taxonData Nested taxon data
-     *                  string: name            Domain name, required
-     *                  string: title           Domain title, optional
-     *                  string: description     Domain description, optional
-     * @see Pi\Db\Table\AbstractNest::convertFromNested
+     * @param array $taxonData Nested taxon data =>
+     *                  string: name            Domain name, required;
+     *                  string: title           Domain title, optional;
+     *                  string: description     Domain description, optional.
      * @param string $domainName
      * @return bool
+     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
      */
     public function add($taxonData, $domainName = null)
     {
@@ -213,13 +217,13 @@ class Taxonomy extends AbstractService
     /**
      * Update taxa data for a domain
      *
-     * @param array $taxonData Nested taxon data
-     *                  string: name            Domain name, required
-     *                  string: title           Domain title, optional
-     *                  string: description     Domain description, optional
-     * @see Pi\Db\Table\AbstractNest::convertFromNested
+     * @param array $taxonData Nested taxon data =>
+     *                  string: name            Domain name, required;
+     *                  string: title           Domain title, optional;
+     *                  string: description     Domain description, optional.
      * @param string $domainName
      * @return bool
+     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
      */
     public function update($taxonData, $domainName = null)
     {
@@ -316,11 +320,11 @@ class Taxonomy extends AbstractService
     /**
      * Add a taxonomy domain, and add its taxa data if provided
      *
-     * @param array $domainData
-     *                  string: name            Domain name, required
-     *                  string: title           Domain title, optional
-     *                  string: description     Domain description, optional
-     *                  string: module          Module name, optional
+     * @param array $domainData =>
+     *                  string: name            Domain name, required;
+     *                  string: title           Domain title, optional;
+     *                  string: description     Domain description, optional;
+     *                  string: module          Module name, optional.
      * @param array|false $taxonData
      * @return int Created ID
      */
@@ -340,12 +344,12 @@ class Taxonomy extends AbstractService
     /**
      * Update a taxonomy domain, and update its taxa data if provided
      *
-     * @param array $domainData
-     *                  int:    id              Domain id, optional
-     *                  string: name            Domain name, required
-     *                  string: title           Domain title, optional
-     *                  string: description     Domain description, optional
-     *                  string: module          Module name, optional
+     * @param array $domainData =>
+     *                  int:    id              Domain id, optional;
+     *                  string: name            Domain name, required;
+     *                  string: title           Domain title, optional;
+     *                  string: description     Domain description, optional;
+     *                  string: module          Module name, optional.
      * @param array|false $taxonData
      * @return int Created ID
      */

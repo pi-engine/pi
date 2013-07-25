@@ -31,6 +31,8 @@ class Db
 {
     /**
      * Custom statement class for PDO
+     *
+     * @var string
      * @see http://www.php.net/manual/en/pdo.setattribute.php
      */
     const STATEMENT_CLASS = 'Pi\Db\Adapter\Driver\Statement';
@@ -42,18 +44,21 @@ class Db
 
     /**
      * Database schema
+     *
      * @var string
      */
     protected $schema;
 
     /**
      * Driver adapter
+     *
      * @var Adapter
      */
     protected $adapter;
 
     /**
      * Master-Slave adapters
+     *
      * @var array
      */
     protected $adapterMasterSlave = array(
@@ -63,30 +68,35 @@ class Db
 
     /**
      * Database metadata adapter
+     *
      * @var Metadata
      */
     protected $metadata;
 
     /**
      * Loaded models
+     *
      * @var array
      */
     protected $model = array();
 
     /**
      * Name prefix for all tables
+     *
      * @var string
      */
     protected $tablePrefix = '';
 
     /**
      * Name prefix for system tables
+     *
      * @var string
      */
     protected $corePrefix = 'core_';
 
     /**
      * DB profiling logger
+     *
      * @var DbProfiler
      */
     protected $profiler;
@@ -118,7 +128,7 @@ class Db
      * Loads adatpers
      *
      * @param array $options
-     * @return $this
+     * @return self
      */
     public function loadAdapter($options)
     {
@@ -138,7 +148,7 @@ class Db
      * Set table prefix
      *
      * @param string $prefix
-     * @return $this
+     * @return self
      */
     public function setTablePrefix($prefix)
     {
@@ -160,7 +170,7 @@ class Db
      * Set system table prefix
      *
      * @param string $prefix
-     * @return $this
+     * @return self
      */
     public function setCorePrefix($prefix)
     {
@@ -182,7 +192,7 @@ class Db
      * Set database schema
      *
      * @param string $schema
-     * @return $this
+     * @return self
      */
     public function setSchema($schema)
     {
@@ -203,6 +213,7 @@ class Db
     /**
      * Get database schema
      *
+     * @return void
      * @see getSchema()
      */
     public function schema()
@@ -242,7 +253,7 @@ class Db
      *
      * @param Adapter       $adapter
      * @param null|string   $type     `master` or `slave`, default as null
-     * @return Db
+     * @return self
      */
     public function setAdapter(Adapter $adapter, $type = null)
     {
@@ -389,7 +400,7 @@ class Db
      * Log a query information or load all log information
      *
      * @param DbProfiler|null $profiler
-     * @return DbProfiler|$this
+     * @return DbProfiler|self
      */
     public function profiler(DbProfiler $profiler = null)
     {

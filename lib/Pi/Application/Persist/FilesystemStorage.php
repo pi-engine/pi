@@ -20,6 +20,7 @@ class FilesystemStorage extends AbstractStorage
 {
     /**
      * Path to cached files
+     *
      * @var string
      */
     protected $cacheDir;

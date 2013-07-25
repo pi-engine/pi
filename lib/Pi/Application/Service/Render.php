@@ -51,6 +51,7 @@ class Render extends AbstractService
 
     /**
      * Cache meta
+     *
      * @var array
      */
     protected $meta = array(
@@ -62,12 +63,14 @@ class Render extends AbstractService
 
     /**
      * Cached contents
+     *
      * @var array
      */
     protected $cachedContent = array();
 
     /**
      * Generated content
+     *
      * @var string
      */
     protected $content;
@@ -190,7 +193,6 @@ class Render extends AbstractService
         if (!$this->isCachable() || null === $this->cachedContent()) {
             $isCached = false;
         }
-        // TODO
         return $isCached;
     }
 

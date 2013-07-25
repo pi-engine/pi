@@ -27,12 +27,14 @@ class Cache extends AbstractService
 
     /**
      * Namespace delimiter
+     *
      * @var string
      */
     protected $nsDelimiter = '_';
 
     /**
      * Cache storage adapter
+     *
      * @var AbstractAdapter
      */
     protected $storage;

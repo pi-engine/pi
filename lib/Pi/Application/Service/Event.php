@@ -41,6 +41,7 @@ class Event extends AbstractService
 {
     /*
      * Run-time attached observers
+     *
      * @var array
      */
     protected $container;

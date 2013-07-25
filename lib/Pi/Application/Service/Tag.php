@@ -45,6 +45,7 @@ class Tag extends AbstractService
 {
     /**
      * Whether or not the service is active, or tag module is activated
+     *
      * @var bool
      */
     protected $active = null;

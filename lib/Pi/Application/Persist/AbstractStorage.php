@@ -18,6 +18,7 @@ abstract class AbstractStorage
 {
     /**
      * Namespace for stored items
+     *
      * @var string
      */
     protected $namespace;

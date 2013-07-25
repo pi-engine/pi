@@ -19,7 +19,10 @@ use Pi;
  */
 class Theme extends AbstractService
 {
+    /** @var string Default theme name */
     const DEFAULT_THEME = 'default';
+
+    /** @var string Current theme name */
     protected $currentTheme;
 
     /**

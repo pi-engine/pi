@@ -133,7 +133,7 @@ class Pi
      */
     protected static $shutdown = array();
 
-    /*
+    /**
      * Start time
      * @var float
      */

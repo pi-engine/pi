@@ -29,46 +29,38 @@ namespace Pi\Application;
  */
 class Autoloader
 {
-    /**
-     * @var string Top namespace for modules
-     */
+    /** @var string Top namespace for modules */
     const TOP_NAMESPACE_MODULE = 'Module';
 
-    /**
-     * @var string Top namespace for extras
-     */
+    /** @var string Top namespace for extras */
     const TOP_NAMESPACE_EXTRA = 'Extra';
 
-    /**
-     * @var string Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/
-     *
-     */
+    /** @var string Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/ */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
      * Namespace speparator
+     *
      * @var string
      */
     const NS_SEPARATOR     = '\\';
 
-    /**
-     * @var array Top namespace/directory pairs to match; Pi, Zend added by default
-     */
+    /** @var array Top namespace/directory pairs to match; Pi, Zend added by default */
     protected $tops = array();
 
-    /**
-     * @var array Callbacks to locate class file
-     */
+    /** @var array Callbacks to locate class file */
     protected $callbacks = array();
 
     /**
      * Persist handler
+     *
      * @var string
      */
     protected $persist;
 
     /**
      * Directory of modules
+     *
      * @var string
      */
     protected $modulePath = '';
@@ -82,9 +74,7 @@ class Autoloader
     /**#@+
      * Factory variables
      */
-    /**
-     * @var array All autoloaders registered
-     */
+    /** @var array All autoloaders registered */
     protected $loaders = array();
     /**#@-*/
 
@@ -93,20 +83,20 @@ class Autoloader
      */
     /**
      * Registry of map files that have already been loaded
+     *
      * @var array
      */
     protected $mapsLoaded = array();
 
     /**
      * Class name/filename map
+     *
      * @var array
      */
     protected $map = array();
     /**#@-*/
 
-    /**
-     * @var array Namespace/directory pairs to search; ZF library added by default
-     */
+    /** @var array Namespace/directory pairs to search; ZF library added by default */
     protected $namespaces = array();
 
     /**

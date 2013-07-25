@@ -19,10 +19,16 @@ use Pi;
  */
 class Module extends AbstractService
 {
+    /** @var string File of installed module meta data */
     protected $fileMeta = 'module.meta.php';
+
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'module';
+
+    /** @var string Current module */
     protected $currentModule;
 
+    /** @var array Container of module meta */
     protected $container = array(
         // Meta of modules: directory, active, path
         'meta'  => array(),
@@ -35,7 +41,7 @@ class Module extends AbstractService
     /**
      * Constructor
      *
-     * @param array     $options    Parameters to send to the service during instanciation
+     * @param array $options Parameters to send to the service during instanciation
      */
     public function __construct($options = array())
     {
@@ -47,7 +53,7 @@ class Module extends AbstractService
      * Set current active module
      *
      * @param sring $module
-     * @return Module
+     * @return self
      */
     public function setModule($module)
     {
@@ -110,8 +116,8 @@ class Module extends AbstractService
     /**
      * Initialize the service: load meta data from meta file
      *
-     * @param bool $force
-     * @return boolean
+     * @param bool $force Force to re-generate module meta data
+     * @return bool
      */
     public function init($force = false)
     {
@@ -131,7 +137,7 @@ class Module extends AbstractService
      * Get module meta data
      *
      * @param string $module
-     * @return array|boolean
+     * @return array|bool
      */
     public function meta($module = null)
     {
@@ -211,7 +217,8 @@ class Module extends AbstractService
      * However, when module clone happends, which is implemented in Pi Engine or X3,
      * a module's directory is its parent or root module's folder name while folder or 'dirname' by tradition is its key name.
      *
-     * @param string $module a module's dirname or key name
+     * @param string $module Mmodule's dirname or identifier name
+     * @return string
      */
     public function directory($module = null)
     {
@@ -226,11 +233,12 @@ class Module extends AbstractService
     }
 
     /**
-     * Fetch content of an item from a type of moldule content by calling Module\ModuleName\Service::content()
+     * Fetch content of an item from a type of moldule content by calling
+     * `Module\<ModuleName>\Service::content()`
      *
      * @param array $variables array of variables to be returned: title, summary, uid, user, etc.
      * @param array $conditions associative array of conditions: item - item ID or ID list, module, type - optional, user, Where
-     * @return  array   associative array of returned content, or list of associative arry if $item is an array
+     * @return  array Associative array of returned content, or list of associative arry if $item is an array
      */
     public function content(array $variables, array $conditions)
     {

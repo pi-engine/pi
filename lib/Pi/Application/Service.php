@@ -20,6 +20,7 @@ class Service
 {
     /**
      * Loaded services
+     * 
      * @var Service\AbstractService[]
      */
     protected static $services = array();

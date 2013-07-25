@@ -21,12 +21,14 @@ class I18n extends AbstractRegistry
 {
     /**
      * Namespace for global
+     *
      * @var string
      */
     const NAMESPACE_GLOBAL = '_usr';
 
     /**
      * Custom namespace
+     *
      * @var string
      */
     protected $namespaceCustom = '';

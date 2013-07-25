@@ -22,7 +22,7 @@ abstract class AbstractService
     /** @var string Identifier for file name of config data */
     protected $fileIdentifier = '';
 
-    /** @var array */
+    /** @var array Options */
     protected $options = array();
 
     /**

@@ -21,6 +21,7 @@ abstract class AbstractProvider extends AbstractApi
 {
     /**
      * Get renderer
+     *
      * @return \Zend\View\Renderer
      */
     protected function getRenderer()

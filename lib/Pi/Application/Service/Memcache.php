@@ -21,7 +21,10 @@ use Memcache as MemcacheExtension;
  */
 class Memcache extends AbstractService
 {
+    /** @var array Instances */
     protected static $instances = array();
+
+    /** @var array Default options */
     protected $defaultOptions = array(
         'port'              => 11211,
         'persistent'        => true,
@@ -32,6 +35,12 @@ class Memcache extends AbstractService
         'failure_callback'  => null
     );
 
+    /**
+     * Load options
+     *
+     * @param string|array $config
+     * @return array
+     */
     protected function loadOptions($config)
     {
         if (is_string($config)) {
@@ -49,6 +58,13 @@ class Memcache extends AbstractService
         return $servers;
     }
 
+    /**
+     * Load an instance
+     *
+     * @param array|null $config
+     * @return MemcacheExtension
+     * @throws exception
+     */
     public function load($config = null)
     {
         if (!extension_loaded('memcache')) {

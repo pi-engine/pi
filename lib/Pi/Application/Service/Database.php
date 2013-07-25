@@ -25,6 +25,7 @@ class Database extends AbstractService
 
     /**
      * Database identifier
+     *
      * @var Db
      */
     protected $db;

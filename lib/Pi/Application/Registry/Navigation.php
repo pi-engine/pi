@@ -20,14 +20,15 @@ use Pi\Acl\Acl as AclManager;
  */
 class Navigation extends AbstractRegistry
 {
-    /** @var string */
+    /** @var string Module name */
     protected $module;
 
-    /** @var string */
+    /** @var string Section */
     protected $section = 'front';
 
     /**
      * Columns for URI pages
+     *
      * @var array
      */
     protected $uriColumns = array(
@@ -49,6 +50,7 @@ class Navigation extends AbstractRegistry
 
     /**
      * Columns for MVC pages
+     *
      * @var array
      */
     protected $mvcColumns = array(

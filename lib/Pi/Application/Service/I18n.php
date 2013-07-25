@@ -308,18 +308,21 @@ namespace Pi\Application\Service
 
         /**
          * Locale
+         *
          * @var string
          */
         protected $__locale = 'en';
 
         /**
          * Charset
+         *
          * @var string
          */
         protected $__charset;
 
         /**
          * Translator
+         *
          * @var Translator
          */
         protected $__translator;

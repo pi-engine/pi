@@ -23,6 +23,7 @@ class Config
 
     /**
      * Config file location
+     *
      * @var string
      */
     protected $fileLocation = '';

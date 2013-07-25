@@ -20,12 +20,14 @@ class Persist
 {
     /**
      * Currently active persist handler
+     *
      * @var Persist\StorageInterface
      */
     protected $handler;
 
     /**
      * Backend storage of currently active persist handler, potential types: Apc, Memcached, Memcache, Redis, File, etc.
+     *
      * @var string
      */
     protected $storage;
@@ -34,7 +36,6 @@ class Persist
      * Constructor
      *
      * @param array $config
-     * @return void
      */
     public function __construct($config = array())
     {
@@ -100,6 +101,10 @@ class Persist
      * @see Persist\AbstractStorage
      */
     /**
+     * Load an entity
+     *
+     * @param string $id
+     * @return mixed
      * @see Persist\AbstractStorage::load()
      */
     public function load($id)
@@ -108,6 +113,12 @@ class Persist
     }
 
     /**
+     * Save an entity
+     *
+     * @param mixed $data
+     * @param string $id
+     * @param int $ttl
+     * @return void
      * @see Persist\AbstractStorage::save()
      */
     public function save($data, $id, $ttl = 0)
@@ -116,6 +127,10 @@ class Persist
     }
 
     /**
+     * Remove an entity
+     *
+     * @param string $id
+     * @return bool
      * @see Persist\AbstractStorage::remove()
      */
     public function remove($id)
@@ -124,6 +139,9 @@ class Persist
     }
 
     /**
+     * Flush
+     *
+     * @return bool
      * @see Persist\AbstractStorage::flush()
      */
     public function flush()

@@ -59,12 +59,14 @@ class Authentication extends AbstractService
 
     /**
      * Adpater handler
+     *
      * @var Adapter
      */
     protected $adapter;
 
     /**
      * Storage handler
+     *
      * @var Storage
      */
     protected $storage;

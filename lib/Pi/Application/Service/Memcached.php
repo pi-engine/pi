@@ -21,10 +21,21 @@ use Memcached as MemcachedExtension;
  */
 class Memcached extends AbstractService
 {
+    /** @var array Instances */
     protected static $instances = array();
+
+    /** @var int Default port */
     const DEFAULT_PORT =  11211;
+
+    /** @var int Default weight */
     const DEFAULT_WEIGHT  = 1;
 
+    /**
+     * Load options
+     *
+     * @param string|array $config
+     * @return array
+     */
     protected function loadOptions($config)
     {
         if (is_string($config)) {
@@ -85,6 +96,13 @@ class Memcached extends AbstractService
         return $options;
     }
 
+    /**
+     * Load a memcached instance
+     *
+     * @param array|null $config
+     * @return MemcachedExtension
+     * @throws exception
+     */
     public function load($config = null)
     {
         if (!extension_loaded('memcached')) {

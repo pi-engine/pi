@@ -66,22 +66,26 @@ use Pi\User\Model\AbstractModel as UserModel;
  */
 class User extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'user';
 
     /**
      * Bound user data object
+     *
      * @var UserModel
      */
     protected $model;
 
     /**
      * User data object of current session
+     *
      * @var UserModel
      */
     protected $modelSession;
 
     /**
      * Service handler adapter
+     *
      * @var AbstractAdapter
      */
     protected $adapter;

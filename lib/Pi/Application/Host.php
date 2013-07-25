@@ -49,18 +49,21 @@ class Host
 {
     /**
      * Base URL, segment after baseLocation in installed URL which is: (<scheme>:://<host-name>[:<port>])<baseUrl> with leading slash
+     *
      * @var string
      */
     protected $baseUrl = '';
 
     /**
      * Base location: `<scheme>:://<host-name>[:<port>]`
+     *
      * @var string
      */
     protected $baseLocation = '';
 
     /**
      * Specified URIs
+     *
      * @var array
      */
     protected $uri = array(
@@ -72,6 +75,7 @@ class Host
 
     /**
      * Specified paths
+     *
      * @var array
      */
     protected $path = array(
@@ -183,7 +187,7 @@ class Host
      * Set host data based on passed config or data loaded from config file
      *
      * @param string|array  $config Host file path or array of path settings
-     * @return void
+     * @return self
      */
     public function setHost($config)
     {
@@ -277,7 +281,7 @@ class Host
      *
      * @param  string   $var
      * @param  mixed    $value
-     * @return
+     * @return self
      */
     public function set($var, $value = null)
     {
@@ -291,7 +295,7 @@ class Host
      * @param string    $url        Pi Engine path:
      *                                  with `:` or leading slash `/` - absolute path, do not convert;
      *                                  First part as section, map to www if no section matched.
-     * @param string
+     * @return string
      */
     public function path($url)
     {

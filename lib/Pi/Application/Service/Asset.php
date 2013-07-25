@@ -53,18 +53,21 @@ class Asset extends AbstractService
 {
     /**
      * Specified name for assets root folder of all components
+     *
      * @var string
      */
     const DIR_ASSET = 'asset';
 
     /**
      * Root path of assets folder
+     *
      * @var string
      */
     protected $basePath;
 
     /**
-     * URI to assets root
+     * URI to assets root directory
+     *
      * @var string
      */
     protected $baseUrl;

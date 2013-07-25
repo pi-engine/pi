@@ -37,6 +37,7 @@ class Api extends AbstractService
 {
     /**
      * Container for module API handler
+     *
      * @var array
      */
     protected $container = array();

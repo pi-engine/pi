@@ -100,10 +100,12 @@ use Zend\Mime;
  */
 class Mail extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'mail';
 
     /**
      * Default transport
+     *
      * @var MailHandler\Transport\TransportInterface
      */
     protected $transport;
@@ -223,11 +225,11 @@ class Mail extends AbstractService
     /**
      * Create message from template
      *
-     * @see Pi\Service\I18n for template path
+     * @see \Pi\Service\I18n for template path
      *
      * @param string|array $template
      * @param array $vars
-     * @return array of subject, body and format, etc.
+     * @return array Associative array of subject, body and format, etc.
      */
     public function template($template, $vars = array())
     {
@@ -292,8 +294,9 @@ class Mail extends AbstractService
      * Assign data to template
      *
      * Note:
-     *  1. Variables are tagged with %name% in templates
-     *  2. Variables provided by system by default:
+     *
+     *  - Variables are tagged with %name% in templates
+     *  - Variables provided by system by default:
      *      site_name, site_url, site_slogan, site_description, site_adminname, site_adminmail
      *
      * @param string $content
@@ -323,18 +326,24 @@ class Mail extends AbstractService
      * Parse content into required elements
      *
      * Template with element tag of subject, body and format:
-     *  Text
+     *
+     *  - Text
+     *
      *      <code>
      *          [subject]Mail from %site_name%[/subject]
      *          [body]Dear %username%, greetings from %site_name%...[/body]
      *      </code>
-     *  HTML
+     *
+     *  - HTML
+     *
      *      <code>
      *          [subject]Mail from %site_name%[/subject]
      *          [body]<div>Dear %username%,</div><p>Greetings from %site_name%...</p>[/body]
      *          [format]html[/html]
      *      </code>
+     *
      * Template text body only:
+     *
      *  <code>
      *   Dear %username%, greetings from %site_name%...
      *  </code>

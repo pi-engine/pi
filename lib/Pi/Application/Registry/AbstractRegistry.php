@@ -22,12 +22,14 @@ abstract class AbstractRegistry
 {
     /**
      * Tag for generating identifier
+     *
      * @var string
      */
     const TAG = 'registry';
 
     /**
      * Identifier
+     *
      * @var string
      */
     protected $registryKey;
@@ -41,18 +43,21 @@ abstract class AbstractRegistry
 
     /**
      * Cache storage
+     *
      * @var CacheAdapter
      */
     protected $cache;
 
    /**
      * Namespace of current registry
+    *
      * @var string
      */
     protected $namespace;
 
     /**
      * The meta tags used for namespace, thus will be skipped in key generator since the tags will be prefixed via namespace
+     *
      * @var string[]
      */
     protected $namespaceMeta = array();

@@ -21,15 +21,20 @@ use Zend\Session\Container;
  */
 class Session extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'session';
+
     /**
      * Session Manager
+     *
      * @var SessionManager
      */
     protected $manager;
 
     /**
      * Callback on shutdown
+     *
+     * @return void
      */
     public function shutdown()
     {
@@ -45,6 +50,7 @@ class Session extends AbstractService
 
     /**
      * Load session manager
+     *
      * @return SessionManager
      */
     public function manager()
@@ -109,6 +115,11 @@ class Session extends AbstractService
         return $this->container($name);
     }
 
+    /**
+     * Clear expired containers
+     *
+     * @return void
+     */
     public function clearExpirations()
     {
         $storage = $this->manager()->getStorage();

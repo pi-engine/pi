@@ -25,10 +25,14 @@ use Pi\Log\Writer\Debugger;
  */
 class Log extends AbstractService
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $fileIdentifier = 'log';
 
     /**
      * Whether or not to the service is active
+     *
      * @var bool
      */
     protected $active;

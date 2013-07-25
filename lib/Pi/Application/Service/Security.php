@@ -21,7 +21,10 @@ use Zend\Escaper\Escaper;
  */
 class Security extends AbstractService
 {
+    /** {@inheritDoc} */
     protected $fileIdentifier = 'security';
+
+    /** @var array Paths */
     protected $paths;
 
     /**
@@ -111,6 +114,9 @@ class Security extends AbstractService
 
     /**
      * Check for IPs
+     *
+     * @param array|null $options
+     * @return bool|null
      */
     public function ip($options = null)
     {
@@ -122,6 +128,9 @@ class Security extends AbstractService
 
     /**
      * Check for super globals
+     *
+     * @param array|null $options
+     * @return bool|null
      */
     public function globals($options = null)
     {
@@ -136,6 +145,7 @@ class Security extends AbstractService
      *
      * @param string $method The security setting to be checked
      * @param array  $args  arguments for the setting
+     * @return bool|null
      */
     public function __call($method, $args = array())
     {
