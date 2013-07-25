@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi version
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Version
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Version;
@@ -22,13 +14,15 @@ use Zend\Json\Json;
 
 /**
  * Class to store and retrieve Pi Engine version.
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @see http://semver.org/ for semantic versioning
  * @see Zend\Version\Version  Class to store and retrieve the version of Zend Framework.
  */
 class Version
 {
     /**
      * Pi Engine version identification - see compareVersion()
-     *
      * @var string
      * @see http://semver.org/ for semantic versioning
      */
@@ -36,28 +30,24 @@ class Version
 
     /**
      * The latest stable version Pi Engine available
-     *
      * @var string
      */
     protected static $latestVersion;
 
     /**
      * The latest master commit number from github
-     *
      * @var string
      */
     protected static $latestCommit;
 
     /**
      * API URL to retrieve latest commit from Github
-     *
      * @var string
      */
     protected static $githubApiCommit = 'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
 
     /**
      * API URL to retrieve release tags from Github
-     *
      * @var string
      */
     protected static $githubApiRelease = 'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
@@ -100,10 +90,8 @@ class Version
      * with the current Pi\Version::VERSION of Pi Engine.
      *
      * @param  string  $version  A version string (e.g. "0.7.1").
-     * @return int           -1 if the $version is older,
-     *                           0 if they are the same,
-     *                           and +1 if $version is newer.
-     *
+     * @return int
+     * @see http://www.php.net/manual/en/function.version-compare.php
      */
     public static function compareVersion($version)
     {

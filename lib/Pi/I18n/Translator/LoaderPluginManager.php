@@ -1,20 +1,10 @@
 <?php
 /**
- * Plugin manager implementation for translation loaders.
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\I18n
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\I18n\Translator;
@@ -28,20 +18,20 @@ use Zend\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
  * Loader\LoaderInterface. Additionally, it registers a number of default
  * loaders.
  *
+ * {@inheritDoc}
  * @see Zend\I18n\Translator\LoaderPluginManager
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class LoaderPluginManager extends ZendLoaderPluginManager
 {
     /**
      * Default set of loaders
-     *
      * @var array
      */
     protected $invokableClasses = array();
 
     /**
      * Default set of filters
-     *
      * @var array
      */
     protected $invokableList = array(
@@ -77,10 +67,10 @@ class LoaderPluginManager extends ZendLoaderPluginManager
             // Lookup in helper locations
             } else {
                 $class = str_replace(' ', '', ucwords(str_replace(array('-', '_', '\\', '/'), ' ', $name)));
-                if (class_exists('Pi\\I18n\\Translator\\Loader\\' . $class)) {
-                    $name = 'Pi\\I18n\\Translator\\Loader\\' . $class;
+                if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
+                    $name = 'Pi\I18n\Translator\Loader\\' . $class;
                 } else {
-                    $name = 'Zend\\I18n\\Translator\\Loader\\' . $class;
+                    $name = 'Zend\I18n\Translator\Loader\\' . $class;
                 }
             }
         }

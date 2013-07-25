@@ -1,35 +1,43 @@
 <?php
 /**
- * Pi Error Handler
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Log
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Log;
 
-define('ERROR_REPORTING_PRODUCTION', 0);    // Production mode, no error display
-define('ERROR_REPORTING_DEVELOPMENT', -1);  // Development mode, all possible
-define('ERROR_REPORTING_DEBUG', E_ALL & ~ (E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));   // Debug/test mode, all errors except deprecated/notice messages
+/** @var int Production mode, no error display */
+define('ERROR_REPORTING_PRODUCTION', 0);
+/** @var int Development mode, all possible */
+define('ERROR_REPORTING_DEVELOPMENT', -1);
+/** @var int Debug/test mode, all errors except deprecated/notice messages */
+define('ERROR_REPORTING_DEBUG', E_ALL & ~ (E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
 
+/**
+ * Custom error handler
+ *
+ * @link http://www.php.net/manual/en/function.set-error-handler.php
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class ErrorHandler
 {
+    /**
+     * Application error levels
+     * @var array
+     */
     static protected $errorLevel = array(
         'production'    => ERROR_REPORTING_PRODUCTION,
         'development'   => ERROR_REPORTING_DEVELOPMENT,
         'debug'         => ERROR_REPORTING_DEBUG
     );
+
+    /**
+     * Error level map against Logger priority
+     * @var array
+     */
     protected $errorHandlerMap = array(
         E_NOTICE            => Logger::NOTICE,
         E_USER_NOTICE       => Logger::NOTICE,
@@ -45,11 +53,16 @@ class ErrorHandler
         E_USER_DEPRECATED   => Logger::DEBUG
     );
 
+    /** @var bool */
     protected $active = true;
+
+    /** @var Logger */
     protected $logger;
 
     /**
-     * Initializes this instance
+     * Constructor
+     *
+     * @param array $options
      */
     public function __construct($options = array())
     {
@@ -76,10 +89,8 @@ class ErrorHandler
     /**
      * Register logging system as an error handler to log PHP errors
      *
-     * @link http://www.php.net/manual/en/function.set-error-handler.php
-     *
      * @param  Logger $logger
-     * @return boolean
+     * @return bool
      */
     public function register(Logger $logger = null)
     {
@@ -93,8 +104,9 @@ class ErrorHandler
     }
 
     /**
-     * Unregister error handler
+     * Restore error handler
      *
+     * @return void
      */
     public function unregister()
     {
@@ -102,9 +114,10 @@ class ErrorHandler
     }
 
     /**
-     * Set activity
+     * Set active
+     *
      * @param bool|null $flag
-     * @return ErrorHandler
+     * @return self|bool
      */
     public function active($flag = null)
     {
@@ -124,6 +137,17 @@ class ErrorHandler
         return $this;
     }
 
+    /**
+     * Log error information
+     *
+     * @param int       $errno
+     * @param string    $errstr
+     * @param string    $errfile
+     * @param int       $errline
+     * @param array     $errcontext
+     * @return bool
+     * @throws \Exception
+     */
     public function handleError($errno, $errstr = '', $errfile = '', $errline = 0, $errcontext = array())
     {
         if ($this->errorReporting & $errno) {
@@ -144,6 +168,6 @@ class ErrorHandler
                 throw $e;
             }
         }
-        return;
+        return true;
     }
 }

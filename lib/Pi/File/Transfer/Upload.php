@@ -137,6 +137,7 @@ class Upload extends Transfer
      *  If $value is a integer, it will be used as maximum file size
      *
      *  As Array is accepts the following keys:
+     *
      *      - 'min': Minimum file size
      *      - 'max': Maximum file size
      *      - 'useByteString': Use bytestring or real size for messages
@@ -154,6 +155,7 @@ class Upload extends Transfer
      * Set image size
      *
      *  Accepts the following attributes keys:
+     * 
      *  - minheight
      *  - minwidth
      *  - maxheight

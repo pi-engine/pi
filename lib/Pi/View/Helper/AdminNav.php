@@ -1,21 +1,11 @@
 <?php
 /**
- * Back Office navigation helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
@@ -25,12 +15,28 @@ use Pi\Acl\Acl;
 use Pi\Application\Bootstrap\Resource\AdminMode;
 use Zend\View\Helper\AbstractHelper;
 
+/**
+ * Back-office navigation helper
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class AdminNav extends AbstractHelper
 {
+    /** @var string Module name */
     protected $module;
+
+    /** @var string Side menu content */
     protected $side;
+
+    /** @var string Top menu content */
     protected $top;
 
+    /**
+     * Invoke for helper
+     *
+     * @param string $module
+     * @return self
+     */
     public function __invoke($module = 'system')
     {
         $this->module = $module;
@@ -38,14 +44,13 @@ class AdminNav extends AbstractHelper
     }
 
     /**
-     * Get back office run mode list
+     * Get back-office run mode list
      *
-     * @param string $module
+     * @param string|null $module
      * @return string
      */
     public function modes($module = null)
     {
-        //$mode = Pi::service('session')->backoffice->mode;
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $modules = Pi::service('registry')->modulelist->read();
@@ -108,9 +113,9 @@ class AdminNav extends AbstractHelper
     }
 
     /**
-     * Get back office side menu
+     * Get back-office side menu
      *
-     * @param string $module
+     * @param string|null $module
      * @return string
      */
     public function side($module = null)
@@ -194,9 +199,9 @@ class AdminNav extends AbstractHelper
     }
 
     /**
-     * Get back office top menu
+     * Get back-office top menu
      *
-     * @param string $module
+     * @param string|null $module
      * @return string
      */
     public function top($module = null)

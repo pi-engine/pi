@@ -17,6 +17,8 @@ use Zend\Mvc\Service;
 use Zend\ServiceManager\ServiceManager;
 
 /**
+ * Application handler
+ * 
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

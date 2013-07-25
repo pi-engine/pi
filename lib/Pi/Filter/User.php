@@ -16,7 +16,7 @@ use Zend\Filter\AbstractFilter;
  * User name filter
  *
  * Transiliate specified format of user identifier into tag links:
- * From @term to <a href="<user-profile-link>/term" title="User term">@term</a>
+ * From `@term` to `<a href="<user-profile-link>/term" title="User term">@term</a>`
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

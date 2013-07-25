@@ -1,21 +1,11 @@
 <?php
 /**
- * Navigation helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
@@ -23,49 +13,42 @@ namespace Pi\View\Helper;
 use Pi;
 use Pi\Navigation\Page\Mvc as MvcPage;
 use Pi\Navigation\Navigation as Container;
-//use Zend\Navigation\Navigation as Container;
 use Zend\View\Helper\AbstractHelper;
 use Zend\View\Helper\Navigation as NavigationHelper;
 use Zend\View\Helper\Navigation\AbstractHelper as AbstractNavigationHelper;
-//use Zend\Navigation\Page\Mvc as MvcPage;
-use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
 
 /**
  * Helper for loading navigation
  *
- * Usage inside a phtml template:
- * <code>
+ * Usage inside a phtml template
+ *
+ * ```
  *  $this->navigation()->render();
  *  $this->navigation('front')->render();
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Navigation extends NavigationHelper
 {
     /**
      * Cache container
-     *
-     * @var StdClass
+     * @var \StdClass
      */
     protected $cache;
 
     /**
      * Load a navigation
      *
-     * @param string|array    $name Navigation name or config
-     * @param array     $options    Options for navigation and caching
-     * @return  Navigation
+     * @param string|array  $name       Navigation name or config
+     * @param array         $options    Options for navigation and caching
+     * @return  self
      */
     public function __invoke($name = null, $options = array())
     {
         if (0 == func_num_args()) {
             return $this;
         }
-
-        //  Sets the default router for MVC pages
-        //$router = Pi::engine()->application()->getRouter();
-        //$routeMatch = Pi::engine()->application()->getRouteMatch();
-        //MvcPage::setDefaultRouter($router);
-        //MvcPage::setDefaultRouteMatch($routeMatch);
 
         if (is_string($name)) {
             if (isset($options['cache_ttl'])) {
@@ -104,8 +87,9 @@ class Navigation extends NavigationHelper
     /**
      * Magic overload: Proxy to other navigation helpers or the container
      *
-     * Examples of usage from a view script or layout:
-     * <code>
+     * Examples of usage from a view script or layout
+     *
+     * ```
      * // proxy to Menu helper and render container:
      * echo $this->navigation()->menu();
      *
@@ -114,12 +98,11 @@ class Navigation extends NavigationHelper
      *
      * // proxy to container and find all pages with 'blog' route:
      * $blogPages = $this->navigation()->findAllByRoute('blog');
-     * </code>
+     * ```
      *
-     * @param  string $method             helper name or method name in
-     *                                    container
-     * @param  array  $arguments          [optional] arguments to pass
-     * @return mixed                      returns what the proxied call returns
+     * @param  string $method       helper name or method name in container
+     * @param  array  $arguments    [optional] arguments to pass
+     * @return mixed                returns what the proxied call returns
      */
     public function __call($method, array $arguments = array())
     {
@@ -139,19 +122,11 @@ class Navigation extends NavigationHelper
     /**
      * Returns the helper matching $proxy
      *
-     * The helper must implement the interface
-     * {@link AbstractNavigationHelper}.
-     *
-     * @param string $proxy                        helper name
-     * @param bool   $strict                       [optional] whether
-     *                                             exceptions should be
-     *                                             thrown if something goes
-     *                                             wrong. Default is true.
+     * @param string $proxy     helper name
+     * @param bool   $strict    [optional] whether exceptions should be thrown if something goes wrong. Default is true.
      * @return AbstractNavigationHelper
-     * @throws \Exception  if $strict is true and
-     *         helper cannot be found
-     * @throws \InvalidArgumentException if $strict is true and
-     *         helper does not implement the specified interface
+     * @throws \Exception  if $strict is true and helper cannot be found
+     * @throws \InvalidArgumentException if $strict is true and helper does not implement the specified interface
      */
     public function findHelper($proxy, $strict = true)
     {
@@ -195,6 +170,14 @@ class Navigation extends NavigationHelper
         return $helper;
     }
 
+    /**
+     * Set navigation data container
+     *
+     * Register default router and RouteMatch to MvcPage
+     * 
+     * @param Container $container
+     * @return self
+     */
     public function setContainer($container = null)
     {
         //  Sets the default router for MVC pages

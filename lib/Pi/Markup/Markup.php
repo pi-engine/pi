@@ -1,20 +1,10 @@
 <?php
 /**
- * Pi Engine Markup
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           1.0
- * @package         Pi\Markup
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Markup;
@@ -24,23 +14,24 @@ use Pi\Markup\Parser\AbstractParser;
 use Pi\Markup\Renderer\AbstractRenderer;
 
 /**
+ * Markup handler
+ *
  * Renders content
  *
- * @see Pi\Application\Service\Markup
+ * @see \Pi\Application\Service\Markup
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Markup
 {
     /**
      * Encoding for renderer
-     *
      * @var string
      */
     protected static $encoding = 'UTF-8';
 
     /**
      * Default filters, potential: user, tag
-     *
-     * @var array()
+     * @var array
      */
     protected static $filters = array(
         /*
@@ -52,29 +43,19 @@ class Markup
     );
 
     /**
-     * The parser
-     *
-     * @var ParserInterface
-     */
-    //protected static $parser;
-
-    /**
-     * The renderer
-     *
+     * Renderer
      * @var AbstractRenderer
      */
     protected static $renderer;
 
     /**
      * Loaded parsers
-     *
      * @var array of AbstractParser
      */
     protected static $parsers = array();
 
     /**
      * Loaded renderers
-     *
      * @var array of AbstractRenderer
      */
     protected static $renderers = array();
@@ -88,6 +69,7 @@ class Markup
      * Set encoding
      *
      * @param string $encoding
+     * @return void
      */
     public static function setEncoding($encoding)
     {
@@ -98,6 +80,7 @@ class Markup
      * Set filters
      *
      * @param array $filters
+     * @return void
      */
     public static function setFilters($filters = array())
     {
@@ -105,24 +88,11 @@ class Markup
     }
 
     /**
-     * Set the parser
-     *
-     * @param string|AbstractParser $parser
-     * @param array $options
-     */
-    public static function ____setParser($parser, $options = array())
-    {
-        if (!$parser instanceof AbstractParser) {
-            $parser = static::loadParser($parser, $options);
-        }
-        static::$parser = $parser;
-    }
-
-    /**
      * Set the renderer
      *
      * @param string|AbstractRenderer $renderer
      * @param array $options
+     * @return void
      */
     public static function setRenderer($renderer, $options = array())
     {
@@ -192,19 +162,8 @@ class Markup
     }
 
     /**
-     * Get parser, load Raw as default parser if no one is set
-     * @return AbstractParser
-     */
-    public static function ____getParser()
-    {
-        if (!static::$parser) {
-            static::$parser = static::loadParser('raw');
-        }
-        return static::$parser;
-    }
-
-    /**
      * Get renderer, load Raw as default renderer if no one is set
+     *
      * @return AbstractRenderer
      */
     public static function getRenderer()
@@ -216,26 +175,9 @@ class Markup
     }
 
     /**
-     * Factory pattern
-     *
-     * @param  string $parser
-     * @param  string $renderer
-     * @param  array $parserOptions
-     * @param  array $rendererOptions
-     * @return AbstractRenderer
-     */
-    public static function ____factory($parser, $renderer = 'Html', array $parserOptions = array(), array $rendererOptions = array())
-    {
-        $parser     = static::loadParser($parser, $parserOptions);
-        $renderer   = static::loadRenderer($renderer, $rendererOptions);
-        $renderer->setParser($parser);
-
-        return $renderer;
-    }
-
-    /**
      * Render content
-     * @param string $content
+     *
+     * @param string $content   Raw content
      * @param string $renderer  Renderer type
      * @param string|null $parser
      * @param array $renderOptions
@@ -243,13 +185,6 @@ class Markup
      */
     public static function render($content, $renderer, $parser = false, $renderOptions = array())
     {
-        /*
-        if (!$parser) {
-            $parser = static::getParser();
-        } elseif (!$parser instanceof AbstractParser) {
-            $parser = static::loadParser($parser);
-        }
-        */
         if (!$renderer) {
             $renderer = static::getRenderer();
         } elseif (!$renderer instanceof AbstractRenderer) {

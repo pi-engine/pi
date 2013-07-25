@@ -16,7 +16,7 @@ use Zend\Filter\AbstractFilter;
  * Tag filter
  *
  * Transiliate specified format of text into tag links:
- * From #term# to <a href="<tag-link>/tag/term" title="term">#term#</a>
+ * From `#term#` to `<a href="<tag-link>/tag/term" title="term">#term#</a>`
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

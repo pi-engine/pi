@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi Audit Writer
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Log
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Log\Writer;
@@ -23,10 +15,20 @@ use Pi\Log\Formatter\Audit as AuditFormatter;
 use Zend\Log\Writer\AbstractWriter;
 use Zend\Log\Formatter\FormatterInterface;
 
+/**
+ * Audit writer
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Audit extends AbstractWriter
 {
+    /** @var array */
     protected $options = array();
+
+    /** @var array */
     protected $events = array();
+
+    /** @var array */
     protected $extra;
 
     /**
@@ -40,9 +42,9 @@ class Audit extends AbstractWriter
     }
 
     /**
-     * get formatter for loggder writer
+     * Get formatter for loggder writer
      *
-     * @param  Formatter $formatter
+     * @param Formatter $formatter
      * @return self
      */
     public function formatter()
@@ -64,7 +66,7 @@ class Audit extends AbstractWriter
     }
 
     /**
-     * Write a message to syslog.
+     * Register a message
      *
      * @param array $event event data
      * @return void
@@ -80,6 +82,8 @@ class Audit extends AbstractWriter
 
     /**
      * Store logged events into storage
+     *
+     * return void
      */
     protected function commit()
     {
@@ -100,17 +104,17 @@ class Audit extends AbstractWriter
     /**
      * Get extra information: Application user information, User-Agent, access page, URI, etc.
      *
-     * <url> Columns to record
-     *      <li>`section`: varchar(64), front or admin</li>
-     *      <li>`module`: varchar(64)</li>
-     *      <li>`controller`: varchar(64)</li>
-     *      <li>`action`: varchar(64)</li>
-     *      <li>`time`: int(10), time of the event</li>
-     *      <li>`user`: varchar(64), username</li>
-     *      <li>`ip`: varchar(15), IP of the operator</li>
-     *      <li>`message`: text, custom information</li>
-     *      <li>`extra`: text, extra information</li>
-     * </ul>
+     * Columns to record
+     *
+     * - section: varchar(64), front or admin
+     * - module: varchar(64)
+     * - controller: varchar(64)
+     * - action: varchar(64)
+     * - time: int(10), time of the event
+     * - user: varchar(64), username
+     * - ip: varchar(15), IP of the operator
+     * - message: text, custom information
+     * - extra: text, extra information
      *
      * @return array
      */

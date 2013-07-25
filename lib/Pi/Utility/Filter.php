@@ -1,28 +1,93 @@
 <?php
 /**
- * Kernel filter
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Filter
  */
 
 namespace Pi\Utility
 {
     use Pi;
 
+    /**
+     * Filter handling
+     *
+     * Syntactic sugar for system APIs
+     *
+     * - Retrieve a request variable
+     *
+     * ```
+     *  $paramGet = _get('var', 'int');
+     *  $paramPost = _post('var', 'email');
+     * ```
+     *
+     * - Filter a value
+     *
+     * ```
+     *  $paramFiltered = _filter('1234.5', 'int');
+     *  $paramFiltered = _filter('+1234.5', 'float');
+     *  $paramFiltered = _filter('+1234.5', 'float', FILTER_FLAG_ALLOW_THOUSAND);
+     *  $paramFiltered = _filter('+1234.5', 'float', 'allow_thousand');
+     *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => FILTER_FLAG_ALLOW_THOUSAND));
+     *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => 'allow_thousand'));
+     * ```
+     *
+     * - Filter a value with regexp, only alphabetic and numeric characters are allowed
+     *
+     * ```
+     *  $paramFiltered = _filter($paramRaw, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
+     *  $paramFiltered = _get($paramName, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
+     * ```
+     *
+     * - Sanitize a value:
+     *
+     * ```
+     *  $paramSanitized = _sanitize('1234.5', 'int');
+     *  $paramSanitized = _sanitize('+1234.5', 'float', FILTER_FLAG_ALLOW_FRACTION);
+     * ```
+     *
+     * - Escape a string
+     *
+     * ```
+     *  $stringEscaped = _escape('<p>Text demo</demo>');
+     *  $stringEscaped = _escape('<p>Text demo</demo>', 'html');
+     *  $stringEscaped = _escape('http://www.pialog.org/demo', 'url');
+     * ```
+     *
+     * - Strip a string
+     *
+     * ```
+     *  $stringStripped = _strip('<p>Text &^#%demo</demo>@!');
+     *
+     *  // For slug generation
+     *  $text = strtolower(trim($stringStripped));
+     *  $words = array_filter(explode(' ', $text));
+     *  $slug = implode('-', $words);
+     *
+     *  // For keywords generation
+     *  $text = strtolower(trim($stringStripped));
+     *  $words = array_unique(array_filter(explode(' ', $text)));
+     *  $keywords = implode(',', $words);
+     *
+     *  // For description generation
+     *  $text = strtolower(trim($stringStripped));
+     *  $description = preg_replace('/[\s]+/', ' ', $text);
+     * ```
+     * 
+     * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+     * @link http://www.php.net/manual/en/filter.filters.validate.php
+     * @link http://www.php.net/manual/en/filter.filters.sanitize.php
+     * @link http://www.php.net/manual/en/filter.filters.flags.php
+     */
     class Filter
     {
         /**
          * Loads filter methods, nothing to do at this moment
+         *
+         * @return void
          */
         public static function load()
         {}
@@ -98,10 +163,10 @@ namespace Pi\Utility
          * @param int|string $filter
          * @param mixed $options
          * @return mixed
+         * @link http://www.php.net/manual/en/filter.filters.validate.php
          */
         public static function filter($value, $filter = '', $options = null)
         {
-            // See @link http://www.php.net/manual/en/filter.filters.validate.php
             if (is_string($filter)) {
                 switch ($filter) {
                     case 'email':
@@ -125,10 +190,10 @@ namespace Pi\Utility
          * @param int|string $filter    Filter name or id, default as 'full_special_chars'
          * @param mixed $options
          * @return mixed
+         * @link http://www.php.net/manual/en/filter.filters.sanitize.php
          */
         public static function sanitize($value, $filter = '', $options = null)
         {
-            // See @link http://www.php.net/manual/en/filter.filters.sanitize.php
             if (!is_int($filter)) {
                 switch ($filter) {
                     case 'float':
@@ -148,7 +213,7 @@ namespace Pi\Utility
         /**
          * Get request container
          *
-         * @return \Zend\Stdlib\RequestInterface
+         * @return \Zend\Stdlib\RequestInterface|null
          */
         protected static function getRequest()
         {
@@ -157,9 +222,9 @@ namespace Pi\Utility
         }
 
         /**
-         * Get routeMatch
+         * Get RouteMatch
          *
-         * @return
+         * @return \Zend\Mvc\Router\RouteMatch|null
          */
         protected static function getRouteMatch()
         {
@@ -206,63 +271,6 @@ namespace Pi\Utility
     }
 }
 
-/**#@+
- * Syntactic sugar for system API
- *
- * Retrieve a request variable:
- * <code>
- *  $paramGet = _get('var', 'int');
- *  $paramPost = _post('var', 'email');
- * </code>
- *
- * Filter a value:
- * <code>
- *  $paramFiltered = _filter('1234.5', 'int');
- *  $paramFiltered = _filter('+1234.5', 'float');
- *  $paramFiltered = _filter('+1234.5', 'float', FILTER_FLAG_ALLOW_THOUSAND);
- *  $paramFiltered = _filter('+1234.5', 'float', 'allow_thousand');
- *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => FILTER_FLAG_ALLOW_THOUSAND));
- *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => 'allow_thousand'));
- * </code>
- *
- * Filter a value with regexp, only alphabetic and numeric characters are allowed:
- * <code>
- *  $paramFiltered = _filter($paramRaw, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
- *  $paramFiltered = _get($paramName, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
- * </code>
- *
- * Sanitize a value:
- * <code>
- *  $paramSanitized = _sanitize('1234.5', 'int');
- *  $paramSanitized = _sanitize('+1234.5', 'float', FILTER_FLAG_ALLOW_FRACTION);
- * </code>
- *
- * Escape a string:
- * <code>
- *  $stringEscaped = _escape('<p>Text demo</demo>');
- *  $stringEscaped = _escape('<p>Text demo</demo>', 'html');
- *  $stringEscaped = _escape('http://www.pialog.org/demo', 'url');
- * </code>
- *
- * Strip a string:
- * <code>
- *  $stringStripped = _strip('<p>Text &^#%demo</demo>@!');
- *
- *  // For slug generation
- *  $text = strtolower(trim($stringStripped));
- *  $words = array_filter(explode(' ', $text));
- *  $slug = implode('-', $words);
- *
- *  // For keywords generation
- *  $text = strtolower(trim($stringStripped));
- *  $words = array_unique(array_filter(explode(' ', $text)));
- *  $keywords = implode(',', $words);
- *
- *  // For description generation
- *  $text = strtolower(trim($stringStripped));
- *  $description = preg_replace('/[\s]+/', ' ', $text);
- * </code>
- */
 namespace
 {
     use Pi\Utility\Filter as FilterManager;
@@ -274,9 +282,9 @@ namespace
     /**
      * Retrieve a variable from query
      *
-     * @param string $variable
-     * @param int|string $filter
-     * @param mixed $options
+     * @param string            $variable   Variable name
+     * @param int|string        $filter     Filter name or filter_id
+     * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
     function _get($variable, $filter = '', $options = null)
@@ -288,9 +296,9 @@ namespace
     /**
      * Retrieve a variable from POST
      *
-     * @param string $variable
-     * @param int|string $filter
-     * @param mixed $options
+     * @param string            $variable   Variable name
+     * @param int|string        $filter     Filter name or filter_id
+     * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
     function _post($variable, $filter = '', $options = null)
@@ -302,9 +310,9 @@ namespace
     /**
      * Filter a value with PHP filter_var
      *
-     * @param string $variable
-     * @param int|string $filter
-     * @param mixed $options
+     * @param string            $variable   Variable name
+     * @param int|string        $filter     Filter name or filter_id
+     * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
     function _filter($value, $filter = '', $options = null)
@@ -316,9 +324,9 @@ namespace
     /**
      * Sanitize a value with PHP filter_var
      *
-     * @param string $variable
-     * @param int|string $filter    Filter name or id, default as 'full_special_chars'
-     * @param mixed $options
+     * @param string            $variable   Variable name
+     * @param int|string        $filter     Filter name or filter_id, default as 'full_special_chars'
+     * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
     function _sanitize($value, $filter = '', $options = null)
@@ -330,10 +338,10 @@ namespace
     /**
      * Escape a string for corresponding context
      *
-     * @see Zend\Escaper\Escaper
+     * @see \Zend\Escaper\Escaper
      * @param string $value
      * @param stribg $context   String context, valid value: html, htmlAttr, js, url, css
-     * @return stribg
+     * @return string
      */
     function _escape($value, $context = 'html')
     {
@@ -377,4 +385,4 @@ namespace
         return $text;
     }
 }
-/**#@-*/
+

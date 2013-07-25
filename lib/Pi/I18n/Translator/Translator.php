@@ -1,20 +1,10 @@
 <?php
 /**
- * Pi Engine translator
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\I18n
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\I18n\Translator;
@@ -24,39 +14,44 @@ use Zend\I18n\Translator\Translator as ZendTranslator;
 use Zend\I18n\Translator\Loader\FileLoaderInterface;
 use Zend\I18n\Translator\TextDomain;
 
+/**
+ * Translator handler
+ *
+ * {@inheritDoc}
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Translator extends ZendTranslator
 {
+    /** @var string Default locale */
     const DEFAULT_LOCALE = 'en';
 
     /**
-     * Previous locale.
-     *
+     * Previous set locale, for restore
      * @var string
      */
     protected $previousLocale;
 
     /**
      * Text domain
-     *
      * @var string
      */
     protected $textDomain = 'default';
 
     /**
-     * Previous text domain
-     *
+     * Previous text domain, for restore
      * @var string
      */
     protected $previousTextDomain = 'default';
 
     /**
      * Resource loader
-     *
      * @var FileLoaderInterface
      */
     protected $loader;
 
     /**
+     * Set locale
+     *
      * {@inheritDoc}
      */
     public function setLocale($locale)
@@ -69,6 +64,8 @@ class Translator extends ZendTranslator
     }
 
     /**
+     * Get locale
+     *
      * {@inheritDoc}
      */
     public function getLocale()
@@ -95,7 +92,7 @@ class Translator extends ZendTranslator
     /**
      * Restore the default locale.
      *
-     * @return Translator
+     * @return self
      */
     public function restoreLocale()
     {
@@ -107,7 +104,7 @@ class Translator extends ZendTranslator
      * Set the text doamin
      *
      * @param  string $textDoamin
-     * @return Translator
+     * @return self
      */
     public function setTextDomain($textDomain)
     {
@@ -131,7 +128,7 @@ class Translator extends ZendTranslator
     /**
      * Restore the text domain
      *
-     * @return Translator
+     * @return self
      */
     public function restoreTextDomain()
     {
@@ -140,9 +137,9 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Restore text domain and locale
+     * Restore text domain and locale to previous one
      *
-     * @return Translator
+     * @return self
      */
     public function restore()
     {
@@ -155,7 +152,7 @@ class Translator extends ZendTranslator
      * Set resource loader
      *
      * @param LoaderInterface $loader
-     * @return Translator
+     * @return self
      */
     public function setLoader($loader)
     {
@@ -174,6 +171,8 @@ class Translator extends ZendTranslator
     }
 
     /**
+     * Translate a message with specific domain and locale
+     *
      * {@inheritDoc}
      */
     public function translate($message, $textDomain = null, $locale = null)

@@ -1,19 +1,11 @@
 <?php
 /**
- * jQuery file helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\View
- * @subpackage      Helper
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
@@ -23,9 +15,9 @@ use Pi;
 /**
  * Helper for loading jQuery files
  *
+ * Usage inside a phtml template
  *
- * Usage inside a phtml template:
- * <code>
+ * ```
  *  // Load basic jQuery file
  *  $this->jQuery();
  *
@@ -36,21 +28,26 @@ use Pi;
  *  $this->jQuery('some.js', array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
- *  $this->bootstrap(array(
+ *  $this->jQuery(array(
  *      'some.css',
  *      'some.js',
  *  ));
  *
  *  // Load a list of files with corresponding attributes
- *  $this->bootstrap(array(
+ *  $this->jQuery(array(
  *      'some.css' => array('media' => '...', 'conditional' => '...'),
- *      'some.js' => array(),
+ *      'some.js',
  *  ));
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class JQuery extends AssetCanonize
 {
+    /** @var string Root dir of jQuery */
     const DIR_ROOT = 'vendor/jquery';
+
+    /** @var bool jQuery basic file is loaded */
     protected static $rootLoaded;
 
     /**
@@ -58,7 +55,7 @@ class JQuery extends AssetCanonize
      *
      * @param   null|string|array $files
      * @param   array $attributes
-     * @return  void
+     * @return  self
      */
     public function __invoke($files = null, $attributes = array())
     {
@@ -69,7 +66,7 @@ class JQuery extends AssetCanonize
             }
             static::$rootLoaded = true;
         }
-        
+
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);

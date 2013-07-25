@@ -19,13 +19,24 @@
 
 namespace Pi\Log;
 
+/**
+ * Custom exception handler
+ *
+ * @link http://www.php.net/manual/en/function.set-exception-handler.php
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class ExceptionHandler
 {
+    /** @var bool */
     protected $active = true;
+
+    /** @var Logger */
     protected $logger;
 
     /**
-     * Initializes this instance
+     * Constructor
+     *
+     * @param array $options
      */
     public function __construct($options = array())
     {
@@ -40,6 +51,12 @@ class ExceptionHandler
         return true;
     }
 
+    /**
+     * Set active
+     *
+     * @param bool|null $flag
+     * @return self|bool
+     */
     public function active($flag = null)
     {
         if (null === $flag) {
@@ -61,10 +78,8 @@ class ExceptionHandler
     /**
      * Register logging system as an exception handler to log PHP exceptions
      *
-     * @link http://www.php.net/manual/en/function.set-exception-handler.php
-     *
      * @param Logger $logger
-     * @return type
+     * @return bool
      */
     public function register(Logger $logger = null)
     {
@@ -90,7 +105,9 @@ class ExceptionHandler
     }
 
     /**
-     * Unregister exception handler
+     * Restore exception handler
+     *
+     * @return void
      */
     public function unregister()
     {

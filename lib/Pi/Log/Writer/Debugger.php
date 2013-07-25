@@ -1,18 +1,10 @@
 <?php
 /**
- * Pi Debugger Writer
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Log
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Log\Writer;
@@ -28,6 +20,11 @@ use Zend\Log\Formatter\FormatterInterface;
 use Zend\Log\Writer\AbstractWriter;
 use PDO;
 
+/**
+ * Debugger writer
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Debugger extends AbstractWriter
 {
     /**
@@ -35,10 +32,19 @@ class Debugger extends AbstractWriter
      */
     protected $errorsToExceptionsConversionLevel = E_ALL;
 
+    /** @var ProfilerFormatter */
     protected $profilerFormatter;
+
+    /** @var DbFormatter */
     protected $dbProfilerFormatter;
+
+    /** @var SystemInfoFormatter */
     protected $systemInfoFormatter;
 
+    /**
+     * Log messages container
+     * @var array
+     */
     protected $logger = array(
         'log'       => array(),
         'debug'     => array(),
@@ -47,13 +53,17 @@ class Debugger extends AbstractWriter
         'system'    => array(),
     );
 
+    /**
+     * The Debugger is muted
+     * @var bool
+     */
     protected $muted = false;
 
     /**
-     * Enable/disable
+     * Mute the debugger
      *
      * @param bool $flag
-     * @return bool return previous muted value
+     * @return bool Return previous muted value
      */
     public function mute($flag = true)
     {
@@ -65,10 +75,9 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * get formatter for loggder writer
+     * Get formatter for loggder writer
      *
-     * @param  Formatter $formatter
-     * @return self
+     * @return DebuggerFormatter
      */
     public function formatter()
     {
@@ -79,10 +88,9 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * get formatter for profiler writer
+     * Get formatter for profiler writer
      *
-     * @param  Formatter $formatter
-     * @return self
+     * @return ProfilerFormatter
      */
     public function profilerFormatter()
     {
@@ -93,10 +101,9 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * get formatter for DB profiler writer
+     * Get formatter for DB profiler writer
      *
-     * @param  Formatter $formatter
-     * @return self
+     * @return DbFormatter
      */
     public function dbProfilerFormatter()
     {
@@ -107,10 +114,9 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * get formatter for system info writer
+     * Get formatter for system info writer
      *
-     * @param  Formatter $formatter
-     * @return self
+     * @return SystemInfoFormatter
      */
     public function systemInfoFormatter()
     {
@@ -121,7 +127,7 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * Write a message to logger.
+     * Register a message to logger.
      *
      * @param array $event event data
      * @return void
@@ -147,7 +153,7 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * Write a message to profiler
+     * Register a message to profiler
      *
      * @param array $event event data
      * @return void
@@ -163,7 +169,7 @@ class Debugger extends AbstractWriter
     }
 
     /**
-     * Write a message to DB profiler
+     * Register a message to DB profiler
      *
      * @param array $event event data
      * @return void
@@ -177,6 +183,11 @@ class Debugger extends AbstractWriter
         $this->logger['db'][] = $message;
     }
 
+    /**
+     * Process system information and register to systeminfo writer
+     *
+     * @return void
+     */
     public function systemInfo()
     {
         $system = array();
@@ -277,6 +288,11 @@ class Debugger extends AbstractWriter
         }
     }
 
+    /**
+     * Render and display logged messages
+     *
+     * @return void
+     */
     public function render()
     {
         if ($this->muted) {

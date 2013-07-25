@@ -1,18 +1,10 @@
 <?php
 /**
- * Mvc page class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Navigation
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Navigation\Page;
@@ -26,7 +18,10 @@ use Zend\Navigation\Exception;
 use Zend\Mvc\ModuleRouteListener;
 
 /**
+ * Mvc page
+ *
  * {@inheritDoc}
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Mvc extends ZendMvcPage
 {
@@ -36,6 +31,7 @@ class Mvc extends ZendMvcPage
      */
     /**
      * {@inheritDoc}
+     * @var bool|null
      */
     protected $active = null;
     /**#@-*/
@@ -45,21 +41,18 @@ class Mvc extends ZendMvcPage
      */
     /**
      * Module name to use when assembling URL
-     *
      * @var string
      */
     protected $module;
 
     /**
      * Default RouteMatch to be used if RouteMatch is not given.
-     *
      * @var RouteMatch
      */
     protected static $defaultRouteMatch = null;
 
     /**
      * Default Router to be used if Router is not given.
-     *
      * @var RouteStackInterface
      */
     protected static $defaultRouter = null;
@@ -102,7 +95,7 @@ class Mvc extends ZendMvcPage
      * calling {@link Page\AbstractPage::setParent()}.
      *
      * @param  Page\AbstractPage|array|Traversable $page  page to add
-     * @return AbstractContainer fluent interface, returns self
+     * @return self
      * @throws Exception\InvalidArgumentException if page is invalid
      * @see Pi\Navigation\Navigation::addPage()
      * @see Pi\Navigation\Page\Uri::addPage()
