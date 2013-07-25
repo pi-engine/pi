@@ -1,26 +1,21 @@
 <?php
 /**
- * Pi Editor Factory
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Editor
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Editor;
 
 use Pi;
 
+/**
+ * Editor factory
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Factory
 {
     /**
@@ -61,9 +56,9 @@ class Factory
         if (file_exists($editorFile)) {
             include $editorFile;
         }
-        $rendererClass =  'Editor\\' . ucfirst($editor) . '\\Renderer';
-        if (!class_exists($rendererClass) || !is_subclass_of($rendererClass, 'Pi\\Editor\\AbstractRenderer')) {
-            $rendererClass = __NAMESPACE__ . '\\Pi\\Renderer';
+        $rendererClass =  'Editor\\' . ucfirst($editor) . '\Renderer';
+        if (!class_exists($rendererClass) || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')) {
+            $rendererClass = __NAMESPACE__ . '\Pi\Renderer';
         }
 
         $renderer = new $rendererClass($options);
@@ -71,6 +66,11 @@ class Factory
         return $renderer;
     }
 
+    /**
+     * Get available editor list
+     *
+     * @return array
+     */
     public static function getList()
     {
         $list = array('pi' => __('Pi Default Editor'));
@@ -80,18 +80,18 @@ class Factory
                 continue;
             }
             $name = $fileinfo->getFilename();
-            if (preg_match("/[^a-z0-9_]/i", $name)) {
+            if (preg_match('/[^a-z0-9_]/i', $name)) {
                 continue;
             }
-            $configFile = $fileinfo->getPathname() . "/config.php";
+            $configFile = $fileinfo->getPathname() . '/config.php';
             if (!file_exists($configFile)) {
                 $list[$name] = $name;
                 continue;
             }
             $info = include $configFile;
-            if (!empty($info["disable"])) continue;
-            if (!empty($info["name"])) {
-                $list[$name] = $info["name"];
+            if (!empty($info['disable'])) continue;
+            if (!empty($info['name'])) {
+                $list[$name] = $info['name'];
             }
         }
 
