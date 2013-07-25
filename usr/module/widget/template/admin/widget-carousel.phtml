@@ -29,169 +29,64 @@
 <?php } ?>
 
 <?php
-$form->prepare();
-echo $this->form()->openTag($form);
+    $form->prepare();
+    $form->setAttribute('id', 'widget-js-form');
+    echo $this->form()->openTag($form);
 
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('name'));
-echo $this->formRow($form->get('description'));
-echo $this->formRow($form->get('template'));
-
+    echo $this->formRow($form->get('title'));
+    echo $this->formRow($form->get('name'));
+    echo $this->formRow($form->get('description'));
+    echo $this->formRow($form->get('template'));
 /**
  * $content: model collection of 'caption', 'desc', 'image', 'link'
  */
 ?>
-<div class="controls" id="js-carousel">
-   <div class="upload-carousel-btn">
+<div class="controls" id="widget-js-carousel">
+    <div class="widget-upload-btn">
        <div class="upload-carousel-add">
          <i class="icon-plus fileinput-button">
             <input type="file" name="image" multiple style="width: 100%;" class="hide">
         </i>
        </div>
-   </div>
+    </div>
 </div>
 <?php
-$elements = $form->elementList();
-foreach ($elements['hidden'] as $element) {
-    echo $this->formElement($element);
-}
-
-echo $this->formRow($form->get('submit'));
-echo $this->form()->closeTag();
-
+    $elements = $form->elementList();
+    foreach ($elements['hidden'] as $element) {
+        echo $this->formElement($element);
+    }
+    echo $this->formRow($form->get('submit'));
+    echo $this->form()->closeTag();
 ?>
-<script id="temp-carousel" type="text/template">
+<script id="carousel-template" type="text/template">
     <i class="icon-remove-sign"></i>
-    <img src="<?php echo ''; /*$imageRoot;*/ ?><%= data.image %>" style="margin-bottom: 8px; height: 150px;">
+    <img src="<%= image %>">
     <div class="form-horizontal">
         <div class="control-group">
             <label class="control-label"><?php _e('Caption'); ?></label>
             <div class="controls">
-                <input type="text" style="width: 130px;" value="<%= data.caption %>" name="caption">
+                <input type="text" value="<%= caption %>" name="caption" class="input-medium">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label"><?php _e('Link'); ?></label>
             <div class="controls">
-                <input type="text" style="width: 130px;" value="<%= data.link %>" name="link">
+                <input type="text" value="<%= link %>" name="link" class="input-medium">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label"><?php _e('Desc'); ?></label>
             <div class="controls">
-                <textarea style="width: 130px;" name="desc"><%= data.desc %></textarea>
+                <textarea name="desc" class="input-medium" rows="5"><%= desc %></textarea>
             </div>
         </div>
     </div>
 </script>
+<script src="<?php echo $this->assetModule('script/widget-carousel.js'); ?>"></script>
 <script>
-var page = {
-    form: $("form#block"),
-    init: function() {
-        this.form.submit(function() {
-            var content = [];
-            page.form.find(".upload-carousel-item").each(function() {
-                var el = $(this);
-                 content.push({
-                    "caption": el.find("[name=caption]").val(),
-                    "image": el.find("img").attr("src").replace("<?php echo $imageRoot; ?>", ''),
-                    "link": el.find("[name=link]").val(),
-                    "desc": el.find("[name=desc]").val()
-                 });
-            });
-            page.form.find("[name=content]").val(JSON.stringify(content));
-        });
-    }
-}
-var carouselCollection = new Backbone.Collection(<?php echo $content ?: '[]'; ?>);
-var carouselItemView = Backbone.View.extend({
-    className: "upload-carousel-item",
-    events: {
-        "click .icon-remove-sign": "cancel"
-    },
-    initialize: function () {
-        this.model.on("destroy", this.remove, this);
-        this.model.on("change", this.render, this);
-    },
-    render: function () {
-        this.$el.html(_.template($("#temp-carousel").html(), this.model.toJSON(), {
-            variable: 'data'
-        }));
-        return this.el;
-    },
-    cancel: function () {
-        this.model.destroy();
-    }
+widgetCarouselAction({
+    imageRoot: '<?php echo $imageRoot; ?>',
+    imgs: <?php echo $content ?: '[]'; ?>,
+    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>'
 });
-var carouselListView = Backbone.View.extend({
-    el: $("#js-carousel"),
-    initialize: function () {
-        _.bindAll(this);
-        carouselCollection.on("add", this.addOne);
-        this.btn = this.$(".upload-carousel-btn");
-        this.render();
-        this.fileupload();
-        this.sortable();
-        this.btn.click(this.popup);
-        this.$('[name=image]').click(function(e) {
-            e.stopPropagation();
-        });
-    },
-    fileupload: function () {
-        var obj = {
-          url: '<?php echo $this->url('', array('action' => 'upload')); ?>',
-          formData: function() {
-              return [];
-          }
-        };
-        if ($.support.xhrFileUpload) { //html5 upload
-            this.$("[name=image]").fileupload(_.extend(obj, {
-                done: function(e, data) {
-                    var resp = $.parseJSON(data.jqXHR.responseText);
-                    if (resp.status == 1) {
-                        carouselCollection.add({
-                            image: resp.image
-                        });
-                    } else {
-                        alert(resp.message);
-                    }
-                }
-            }));
-        } else { //ie upload
-           this.$("[name=image]").fileupload(_.extend(obj, {
-               forceIframeTransport: true,
-               done: function(e, data) {
-                    var resp = $.parseJSON($.trim(data.result.contents().find('body').html()));
-                    if (resp.status == 1) {
-                        carouselCollection.add({
-                            image: resp.image
-                        });
-                    } else {
-                        alert(resp.message);
-                    }
-                }
-           }));
-        }
-    },
-    sortable: function() {
-       this.$el.sortable({
-           items: ".upload-carousel-item",
-           placeholder: "upload-carousel-item upload-carousel-sort",
-           tolerance: "pointer"
-       });
-    },
-    popup: function(e) {
-        this.$('[name=image]')[0].click();
-    },
-    render: function () {
-        carouselCollection.forEach(this.addOne, this);
-    },
-    addOne: function (model) {
-        $(new carouselItemView({
-            model: model
-        }).render()).insertBefore(this.btn);
-    }
-});
-new carouselListView;
-page.init();
 </script>
