@@ -1,21 +1,26 @@
 <?php
 /**
- * Pi Engine Setup host controller
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Setup
  */
 
 namespace Pi\Setup;
 
+/**
+ * Host handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Host
 {
     protected $wizard;
 
     /**
      * Detector file for detecting a path or URL
+     * @var array
      */
     protected $detector = array(
         'file'      => 'detector.gif',
@@ -24,8 +29,9 @@ class Host
 
     /**
      * List of section paths
+     * @var array
      */
-    public $paths = array(
+    protected $paths = array(
         'www'       => '',
         'lib'       => '',
         'var'       => '',
@@ -36,8 +42,8 @@ class Host
     );
 
     /**
-     * List of path validation
-     * 1 - valid; -1 - invalid; 0 - not check
+     * List of path validation: 1 - valid; -1 - invalid; 0 - not check.
+     * @var array
      */
     protected $validPath = array(
         'www'       => -1,
@@ -50,8 +56,8 @@ class Host
     );
 
     /**
-     * List of URI validation
-     * 1 - valid; -1 - invalid; 0 - not check
+     * List of URI validation: 1 - valid; -1 - invalid; 0 - not check.
+     * @var array
      */
     protected $validUrl = array(
         'asset'     => -1,
@@ -61,10 +67,16 @@ class Host
 
     /**
      * Permission error message list of paths
+     * @var array
      */
     protected $permErrors = array();
 
-    public function __construct($wizard)
+    /**
+     * Constructore
+     *
+     * @param Wizard $wizard
+     */
+    public function __construct(Wizard $wizard = null)
     {
         $this->wizard = $wizard;
     }
@@ -72,7 +84,8 @@ class Host
     /**
      * Initialize path information
      *
-     * @param boolean $initPath Wether initialize path URI based on config data
+     * @param bool $initPath Wether initialize path URI based on config data
+     * @return void
      */
     public function init($initPath = false)
     {
@@ -137,6 +150,11 @@ class Host
         }
     }
 
+    /**
+     * Setup request
+     *
+     * @return void
+     */
     protected function setRequest()
     {
         $request = $this->wizard->getRequest();
@@ -158,6 +176,8 @@ class Host
 
     /**
      * Validate all paths and URIs
+     *
+     * @return bool
      */
     public function validate()
     {
@@ -189,7 +209,7 @@ class Host
      * Checks if a section path exists
      *
      * @param string $path The key of path to be checked
-     * @return int  potenial values: 1 - valid; -1 - invalid; 0 - not check
+     * @return int  Potenial values: 1 - valid; -1 - invalid; 0 - not check
      */
     public function checkPath($path = '')
     {
@@ -211,6 +231,7 @@ class Host
      * Checks write permissions of a section path
      *
      * @param string $path The key of path to be checked
+     * @return void
      */
     private function checkPermissions($path)
     {
@@ -233,7 +254,7 @@ class Host
      * Checks if URI of a section is accessible
      *
      * @param string $key The key of URL to be checked
-     * @return int  potenial values: 1 - valid; -1 - invalid; 0 - not check
+     * @return int  Potenial values: 1 - valid; -1 - invalid; 0 - not check
      */
     public function checkUrl($key = '')
     {
@@ -266,7 +287,7 @@ class Host
      * Checks if a section path and sub paths are writable and attemps to set right permissions if not writable
      *
      * @param string    $path The key of path to be checked
-     * @return array    array of error messages
+     * @return array    Error messages
      */
     public function checkSub($path)
     {
@@ -295,8 +316,8 @@ class Host
      * Check if an image URI is valid
      *
      * @param string $url
-     * @param boolean $appendDetector Wether to append detector file to the URL
-     * @return boolean
+     * @param bool $appendDetector Wether to append detector file to the URL
+     * @return bool|null
      */
     private function validateImageUrl($url, $appendDetector = false)
     {
@@ -309,16 +330,34 @@ class Host
         return $ret;
     }
 
+    /**
+     * Check if asset URL if valid
+     *
+     * @param string $url
+     * @return bool|null
+     */
     private function validateUrlAsset($url)
     {
         return $this->validateImageUrl($url, true);
     }
 
+    /**
+     * Check if static URL is valid
+     *
+     * @param string $url
+     * @return bool|null
+     */
     private function validateUrlStatic($url)
     {
         return $this->validateImageUrl($url, true);
     }
 
+    /**
+     * Check if upload URL if valid
+     *
+     * @param string $url
+     * @return bool|null
+     */
     private function validateUrlUpload($url)
     {
         return $this->validateImageUrl($url, true);
@@ -327,7 +366,8 @@ class Host
     /**
      * Formulate a URI to a complete URI
      *
-     * @param string $url the URI to be formulated: '://' - already a complete URI, return directly; wit leading slash '/' - prepend protocal and host; w/o leading slash '/' - prepend Pi Engine 'www' URI
+     * @param string $url the URI to be formulated: '://' - already a complete URI, return directly; with leading slash '/' - prepend protocal and host; w/o leading slash '/' - prepend Pi Engine 'www' URI
+     * @return string
      */
     private function formulateUrl($url)
     {
@@ -351,7 +391,7 @@ class Host
      *
      * @param string $url
      * @param string $mimeType
-     * @return boolean
+     * @return bool|null
      */
     private function validateUrl($url = '', $mimeType = '')
     {
@@ -414,7 +454,8 @@ class Host
      *
      * @param string        $parent The key of parent path
      * @param string|array  $path   The key of path or array of paths/files to be checked
-     * @return array    array of error messages
+     * @param array         $error   Error messages
+     * @return void
      */
     private function setWritePermission($parent, $path, &$error)
     {
@@ -438,6 +479,7 @@ class Host
 
     /**
      * Write-enable the specified folder
+     *
      * @param string $path
      * @param bool $recurse
      * @param bool $create
@@ -477,12 +519,25 @@ class Host
         return $status;
     }
 
+    /**
+     * Get path
+     *
+     * @param string $name
+     * @return string|null
+     */
     public function getPath($name)
     {
         list($type, $key) = explode('_', $name, 2);
         return isset($this->paths[$key][$type]) ? $this->paths[$key][$type] : null;
     }
 
+    /**
+     * Set path
+     *
+     * @param string $name
+     * @param string $value
+     * @return void
+     */
     public function setPath($name, $value)
     {
         list($type, $key) = explode('_', $name, 2);

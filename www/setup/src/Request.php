@@ -1,26 +1,30 @@
 <?php
 /**
- * Pi Engine Setup Request
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Setup
  */
 
 namespace Pi\Setup;
 
+/**
+ * Request class
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Request
 {
     /**
      * Scheme for http
-     *
+     * @var string
      */
     const SCHEME_HTTP  = 'http';
 
     /**
      * Scheme for https
-     *
+     * @var string
      */
     const SCHEME_HTTPS = 'https';
 
@@ -32,7 +36,7 @@ class Request
 
     /**
      * Base URL of request
-     * @var string
+     * @var string|null
      */
     protected $baseUrl = null;
 
@@ -44,11 +48,6 @@ class Request
 
     /**
      * Constructor
-     *
-     * If a $uri is passed, the object will attempt to populate itself using
-     * that information.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -79,7 +78,7 @@ class Request
      *
      * If no $key is passed, returns the entire $_POST array.
      *
-     * @TODO How to retrieve from nested arrays
+     * @todo How to retrieve from nested arrays
      * @param string $key
      * @param mixed $default Default value to use if key not found
      * @return mixed Returns null if key does not exist
@@ -98,7 +97,7 @@ class Request
      *
      * If no $key is passed, returns the entire $_COOKIE array.
      *
-     * @TODO How to retrieve from nested arrays
+     * @todo How to retrieve from nested arrays
      * @param string $key
      * @param mixed $default Default value to use if key not found
      * @return mixed Returns null if key does not exist
@@ -155,7 +154,7 @@ class Request
      * $_SERVER['HTTP_X_REWRITE_URL'], or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
      *
      * @param string $requestUri
-     * @return
+     * @return self
      */
     public function setRequestUri($requestUri = null)
     {
@@ -212,12 +211,14 @@ class Request
      * Set the base URL of the request; i.e., the segment leading to the script name
      *
      * E.g.:
+     *
      * - /admin
      * - /myapp
      * - /subdir/index.php
      *
      * Do not use the full URI when providing the base. The following are
      * examples of what not to use:
+     *
      * - http://example.com/admin (should be just /admin)
      * - http://example.com/subdir/index.php (should be just /subdir/index.php)
      *
@@ -226,7 +227,7 @@ class Request
      * ORIG_SCRIPT_NAME in its determination.
      *
      * @param mixed $baseUrl
-     * @return
+     * @return self
      */
     public function setBaseUrl($baseUrl = null)
     {
@@ -384,7 +385,7 @@ class Request
      *
      * @param string $key
      * @param mixed $value
-     * @return
+     * @return self
      */
     public function setParam($key, $value)
     {
@@ -405,7 +406,7 @@ class Request
      * Null values will unset the associated key.
      *
      * @param array $array
-     * @return
+     * @return self
      */
     public function setParams(array $array)
     {
@@ -423,7 +424,7 @@ class Request
     /**
      * Unset all user parameters
      *
-     * @return
+     * @return self
      */
     public function clearParams()
     {
@@ -444,7 +445,7 @@ class Request
     /**
      * Was the request made by POST?
      *
-     * @return boolean
+     * @return bool
      */
     public function isPost()
     {
@@ -458,7 +459,7 @@ class Request
     /**
      * Was the request made by GET?
      *
-     * @return boolean
+     * @return bool
      */
     public function isGet()
     {
@@ -474,7 +475,7 @@ class Request
      *
      * Should work with Prototype/Script.aculo.us, possibly others.
      *
-     * @return boolean
+     * @return bool
      */
     public function isXmlHttpRequest()
     {
@@ -558,7 +559,7 @@ class Request
     /**
      * Get the client's IP addres
      *
-     * @param  boolean $checkProxy
+     * @param  bool $checkProxy
      * @return string
      */
     public function getClientIp($checkProxy = true)

@@ -1,11 +1,10 @@
 <?php
 /**
- * Pi Engine Setup Controller
+ * Pi Engine (http://pialog.org)
  *
+ * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Setup
  */
 
 namespace Pi\Setup\Controller;
@@ -13,6 +12,11 @@ namespace Pi\Setup\Controller;
 use PDO;
 use Pi;
 
+/**
+ * Database controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Database extends AbstractController
 {
     protected $vars;
