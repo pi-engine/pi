@@ -218,6 +218,10 @@ table td {
 pageBlcokAction({
     modules: <?php echo json_encode($modules); ?>,
     blocks: <?php echo json_encode($blocks); ?>,
-    page: <?php echo $page['id']; ?>
+    page: <?php echo $page['id']; ?>,
+    pageSaveUrl: '<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'save')); ?>',
+    getThemeUrl: '<?php echo $this->url('', array('action' => 'themelist')); ?>',
+    getZoneUrl: '<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => ''))?>',
+    blockListUrl: '<?php echo $this->url('', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '')); ?>'
 });
 </script>
