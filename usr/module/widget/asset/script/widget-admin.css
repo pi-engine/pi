@@ -2,6 +2,7 @@
 .ui-sortable .widget-hd {
     cursor: move;
 }
+
 .ellipsis {
     display: inline-block;
     overflow: hidden;
@@ -10,32 +11,37 @@
     vertical-align: middle;
 }
 /*carousel*/
-.upload-carousel-item, 
-.upload-carousel-btn,
+.widget-carousel-upload, 
+.widget-upload-btn,
 .widget-module-item li {
     display: inline-block;
     vertical-align: top;
 }
-.upload-carousel-btn {
+
+.widget-upload-btn {
     height: 120px;
     border: 2px dashed #ccc;
     width: 180px;
     margin-bottom: 10px;
     cursor: pointer;
 }
-.upload-carousel-btn .icon-plus {
+
+.widget-upload-btn .icon-plus {
     font-size: 56px;
     color: #999;
 }
+
 .upload-carousel-add {
     text-align: center;
     margin-top: 35px;
 }
+
 .fileinput-button {
     overflow: hidden;
     cursor: pointer;
     position: relative;
 }
+
 .fileinput-button input {
     opacity: 0;
     position: absolute;
@@ -43,45 +49,52 @@
     right: 0;
     filter: alpha(opacity=0);
 }
-.upload-carousel-item {
+
+.widget-carousel-upload {
     border: 2px solid #ccc;
     padding: 2px;
     background: #fff;
     margin: 0 10px 10px 0;
-    font-size: 10px;
-    width: 200px;
+    width: 240px;
     position: relative;
 }
-.upload-carousel-item .form-horizontal .control-label,
+
+.widget-carousel-upload .form-horizontal .control-label,
 .widget-tab-item.form-horizontal .control-label {
-    width: 40px;
+    width: 50px;
     font-size: 12px;
 }
-.upload-carousel-item .form-horizontal .controls,
+
+.widget-carousel-upload .form-horizontal .controls,
 .widget-tab-item.form-horizontal .controls {
-    margin-left: 45px;
+    margin-left: 55px;
 }
-.upload-carousel-item .form-horizontal .control-group,
+
+.widget-carousel-upload .form-horizontal .control-group,
 .widget-tab-item.form-horizontal .control-group {
     margin-bottom: 8px;
 }
-.upload-carousel-item .icon-remove-sign {
-    position: absolute;
-    right: 0;
+
+.widget-carousel-upload img {
+    display: block;
+    height: 180px;
+    margin: 0 auto 5px;
+    cursor: move;
+}
+
+.widget-carousel-upload .icon-remove-sign {
     font-size: 16px;
-    color: #555;
-    top: -6px;
     cursor: pointer;
-    float: none;
+    position: absolute;
+    right: -8px;
+    top: -8px;
 }
-.upload-carousel-sort {
-    border-style: dashed;
-    height: 280px;
-}
+
 /*admin widget tab*/
 .widget-tab-box {
     position: relative;
 }
+
 .widget-tab-form {
     width: 400px;
     border: 1px solid #ccc;
@@ -89,18 +102,25 @@
     margin-bottom: 10px;
     padding-top: 10px;
 }
+
 .widget-tab-item {
-   padding: 5px 10px 0;
-   margin: 0 20px 10px;
-   line-height: 18px;
-   border-radius: 3px;
-   background: #ECECEC;
-   cursor: move;
+    padding: 5px 10px 0;
+    margin: 0 20px 10px;
+    line-height: 18px;
+    border-radius: 3px;
+    background: #ECECEC;
+    cursor: move;
 }
+
+.widget-tab-item .icon-remove-sign {
+    float: right;
+}
+
 .widget-tab-item .btn {
     padding: 0 9px;
     height: 18px;
 }
+
 .widget-tab-module {
     position: absolute;
     width: 420px;
@@ -110,52 +130,58 @@
     left: 410px;
     padding-top: 10px;
 }
+
 .widget-module-item {
     margin-bottom: 4px;
 }
+
 .widget-module-item .icon-caret-down {
     display: none;
 }
+
 .active .icon-caret-down {
     display: inline-block;
 }
+
 .active .icon-caret-right {
     display: none;
 }
+
 .widget-module-item li {
-    margin:0 5px 5px 0;
+    margin: 0 5px 5px 0;
     cursor: pointer;
     background: #F3F3F3;
-    padding:1px 3px;
+    padding: 1px 3px;
     border: 1px solid #D9D9D9;
 }
+
 .widget-module-item ul {
     display: none;
 }
+
 .widget-module-item.active ul {
     display: block;
 }
+
 .widget-module-item .selected {
     background: #858585;
     color: #fff;
     text-shadow: 0 1px 0 rgba(0,0,0,.3);
 }
-.icon-remove-sign {
-    cursor: pointer;
-    float: right;
-    font-size: 16px;
-}
+
 /*widget-lsit*/
 .widget-list {
     min-height: 30px;
     margin-left: 0;
 }
+
 .widget-list li {
     display: inline-block;
     width: 260px;
-    margin:0 10px 10px 0;
+    margin: 0 10px 10px 0;
     vertical-align: top;
 }
+
 .widget-hd {
     background-color: #F1F1F1;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
@@ -167,18 +193,22 @@
     border: 1px solid #DFDFDF;
     overflow: hidden;
 }
+
 .widget-hd strong {
     width: 240px;
 }
+
 .widget-description {
     min-height: 40px;
     padding: 5px 8px;
     font-size: 12px;
 }
+
 .widget-placeholder {
     border: 1px dotted #333;
     height: 28px;
 }
+
 .widget-action .btn {
     padding: 1px 5px;
 }

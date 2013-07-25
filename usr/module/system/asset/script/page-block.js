@@ -1,4 +1,5 @@
 (function($) {
+  var options;
   var ModuleListItemView = Backbone.View.extend({
     template: _.template($("#module-temp").html()),
     templateBlock: _.template($("#module-block-temp").html()),
@@ -17,7 +18,7 @@
       var self = this;
       h.toggleClass("active");
       if (!h.attr("data-loaded")) {
-        $.getJSON('/admin/system/page/blocklist/name/' + this.model.get("name")).done(function(res) {
+        $.getJSON(options.blockListUrl + this.model.get("name")).done(function(res) {
           var data = res.data;
           if (data.length) {
             for (var i = 0, l = data.length; i < l; i++) {
@@ -93,7 +94,7 @@
       w.fadeToggle("200");
       this.$('.load-theme').toggleClass('active');
       if (!w.attr("data-load")) {
-        $.getJSON('/admin/system/page/themelist/').done(function(result) {
+        $.getJSON(options.getThemeUrl).done(function(result) {
           u.html(_.template(self.template, _.toArray(result), {
             variable: 'data'
           }));
@@ -119,7 +120,7 @@
           data.blocks[i] = ret;
         }
       }
-      $.post('/admin/system/page/save', data).done(function(res) {
+      $.post(options.pageSaveUrl, data).done(function(res) {
         res = $.parseJSON(res);
         if (res.status) {
           systemMessage.succ(res.message);
@@ -132,7 +133,7 @@
       this.$(".set-theme-item").removeClass("active");
       var tar = $(e.currentTarget);
       tar.addClass("active");
-      $.get('/admin/system/page/zonetemplate/theme/' + tar.attr("data-name")).done(function(res) {
+      $.get(options.getZoneUrl + tar.attr("data-name")).done(function(res) {
         var org = [];
         var i;
         for (i = 0; i < 100; i++) {
@@ -182,7 +183,8 @@
       });
     });
   };
-  this.pageBlcokAction = function(options) {
+  this.pageBlcokAction = function(opts) {
+    options = opts || {};
     new ModuleListView({
       collection: new Backbone.Collection(options.modules)
     });

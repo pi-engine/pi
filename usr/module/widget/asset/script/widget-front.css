@@ -9,6 +9,7 @@
     background-image: -webkit-linear-gradient(left,#0096d2,#195d9f);
     background-image: -o-linear-gradient(left,#0096d2,#195d9f);
 }
+
 .carousel-control-item {
     display: inline-block;
     *display: inline;
@@ -17,15 +18,18 @@
     height: 11px;
     margin: 0 8px 0 0;
     cursor: pointer;
-    background: url(../image/sprite2.png) no-repeat ;
+    background: url(../image/sprite2.png) no-repeat;
 }
+
 .carousel-control-bg .active1 {
-    background: url(../image/sprite3.png) no-repeat ;
+    background: url(../image/sprite3.png) no-repeat;
 }
+
 .block-body .carousel-caption h4 {
     margin: 0;
     font-size: 14px;
 }
+
 .block-body .carousel-caption {
     padding: 10px 20px;
     background: rgba(0,0,0,.5);
