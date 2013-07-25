@@ -25,6 +25,10 @@ use Pi;
  */
 class Relation extends AbstractHandler
 {
+    /**
+     * If relation module available
+     * @var bool|null
+     */
     protected $isAvailable = null;
 
     /**

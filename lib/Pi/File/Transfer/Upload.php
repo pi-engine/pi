@@ -1,18 +1,10 @@
 <?php
 /**
- * File upload
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\File
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\File\Transfer;
@@ -20,11 +12,15 @@ namespace Pi\File\Transfer;
 use Pi;
 use Pi\Filter\File\Rename;
 
+/**
+ * File upload
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Upload extends Transfer
 {
     /**
      * Destination path for uploaded files
-     *
      * @var string
      */
     protected $destination;
@@ -48,7 +44,7 @@ class Upload extends Transfer
     /**
      * Returns adapter
      *
-     * {@inheriteDoc}
+     * {@inheritDoc}
      * @note Zend\File\Transfer\Transfer does not support for $direction = 1 yet
      */
     public function getAdapter($direction = false)
@@ -60,9 +56,9 @@ class Upload extends Transfer
     /**
      * Set upload destination
      *
-     * @param string $value Absolute path to store files, or path relative to Pi::path('upload')
-     * @param bool $verify To very destination path availability
-     * @return Upload
+     * @param string    $value      Absolute path to store files, or path relative to Pi::path('upload')
+     * @param bool      $verify     To very destination path availability
+     * @return $this
      */
     public function setDestination($value, $verify = true)
     {
@@ -95,8 +91,9 @@ class Upload extends Transfer
     /**
      * Set upload rename filter
      *
-     * @param string|bool $value New name or renaming strategy in case '%' is found
-     * @return Upload
+     * @param string|bool $value New name or renaming strategy
+     * @return $this
+     * @see \Pi\Filter\File\Rename for supported renaming strategy
      */
     public function setRename($value = '')
     {
@@ -114,7 +111,7 @@ class Upload extends Transfer
      * Set upload extensions
      *
      * @param string|array $value
-     * @return Upload
+     * @return $this
      */
     public function setExtension($value)
     {
@@ -126,7 +123,7 @@ class Upload extends Transfer
      * Set upload excluding extensions
      *
      * @param string|array $value
-     * @return Upload
+     * @return $this
      */
     public function setExcludeExtension($value)
     {
@@ -137,13 +134,16 @@ class Upload extends Transfer
     /**
      * Set file size
      *
-     * @param int|array $value
      *  If $value is a integer, it will be used as maximum file size
+     *
      *  As Array is accepts the following keys:
-     *  'min': Minimum file size
-     *  'max': Maximum file size
-     *  'useByteString': Use bytestring or real size for messages
-     * @return Upload
+     *
+     *      - 'min': Minimum file size
+     *      - 'max': Maximum file size
+     *      - 'useByteString': Use bytestring or real size for messages
+     *
+     * @param int|array $value
+     * @return $this
      */
     public function setSize($value)
     {
@@ -154,13 +154,15 @@ class Upload extends Transfer
     /**
      * Set image size
      *
-     * @param array $value
-     *  Accepts the following option keys:
+     *  Accepts the following attributes keys:
+     * 
      *  - minheight
      *  - minwidth
      *  - maxheight
      *  - maxwidth
-     * @return Upload
+     *
+     * @param array $value
+     * @return $this
      */
     public function setImageSize($value)
     {
@@ -171,8 +173,8 @@ class Upload extends Transfer
     /**
      * Get uploaded file(s)
      *
-     * @param string $name  Variable name in upload form
-     * @param bool $path    To include full path
+     * @param string    $name  Variable name in upload form
+     * @param bool      $path  To include full path
      * @return array
      */
     public function getUploaded($name = null, $path = false)

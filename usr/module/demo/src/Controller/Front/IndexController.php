@@ -21,6 +21,7 @@ namespace Module\Demo\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 
 class IndexController extends ActionController
 {
@@ -72,13 +73,13 @@ class IndexController extends ActionController
         }
 
         //$data = $rowset->toArray();
-        $paginator = \Pi\Paginator\Paginator::factory($pages);
+        $paginator = Paginator::factory($pages);
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
             // Use router to build URL for each page
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
+            'page_param'    => 'p',
+            'total_param'   => 't',
             'router'        => $this->getEvent()->getRouter(),
             'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
             'params'        => array(
@@ -118,13 +119,13 @@ class IndexController extends ActionController
         $select = $model->select()->columns(array('count' => new \Zend\Db\Sql\Predicate\Expression('count(*)')))->where(array('flag' => $flag));
         $count = $model->selectWith($select)->current()->count;
 
-        $paginator = \Pi\Paginator\Paginator::factory(intval($count));
+        $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
             // Use router to build URL for each page
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
+            'page_param'    => 'p',
+            'total_param'   => 't',
             'router'        => $this->getEvent()->getRouter(),
             'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
             'params'        => array(

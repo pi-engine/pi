@@ -1,44 +1,34 @@
 <?php
 /**
- * Blocks helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace   Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHelper;
-use Zend\Mvc\MvcEvent;
 
 /**
  * Helper for fetching and rendering blocks on a page
- * @see Pi\Application\Registry\Block
  *
- * Usage:
- * In general PHP file:
- * <code>
+ * Usage
+ *
+ * - In general PHP file
+ *
+ * ```
  *  $blocksHelper = $this->plugin('blocks')->setEvent($mvcEvent);
  *  $leftBlocks = $blocksHelper('left');
  *  $rightBlcoks = $blocksHelper->load('right');
- * </code>
+ * ```
  *
- * In PHP template layout.phtml:
- * <code>
- *  <?php
+ * - In PHP template layout.phtml
+ *
+ * ```
  *      echo '<div class='block-left'>';
  *      foreach ($this->blocks('left') as $block) {
  *          echo '<div id='block-' . $block['id'] . ''>';
@@ -53,31 +43,15 @@ use Zend\Mvc\MvcEvent;
  *          echo '</div>';
  *      }
  *      echo '</div>';
- *  ?>
- * </code>
+ * ```
  *
- * In Smarty template:
- * <code>
- *  <{blocks assign=blocks}>
- *  <div class='block-left'>
- *      <{foreach item=block from=$blocks.left}>
- *      <div id='block-<{$block.id}>'>
- *          <{if !empty($block.title)}>
- *              <{if empty($block.link)}>
- *                  <div class='block-title'><{$block.title}></div>
- *              <{else}>
- *                  <div class='block-title'><a href='<{$block.link}>' title='<{$block.title}>'><{$block.title}></a></div>
- *          <{/if}>
- *          <div class='block-content'><{$block.content}></div>
- *      </div>
- *      <{/foreach}>
- *  </div>
- * </code>
+ * @see \Pi\Application\Registry\Block
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Blocks extends AbstractHelper
 {
     /**
-     * Zone map: zone index in database => zone in layout
+     * Zone map: zone index in database => zone in layout; 0 for head zone and 99 for foot zone
      * @var array
      */
     protected $zoneMap = array(
@@ -102,8 +76,8 @@ class Blocks extends AbstractHelper
     /**
      * Load blocks of a specified zone
      *
-     * @param  string $zone
-     * @return array|Blocks array of blocks
+     * @param string|null $zone
+     * @return array
      */
     public function __invoke($zone = null)
     {
@@ -118,7 +92,7 @@ class Blocks extends AbstractHelper
     /**
      * Build layout block contents
      *
-     * @param  string $zone
+     * @param string|null $zone
      * @return array    associative array of blocks
      */
     public function load($zone = null)

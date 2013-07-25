@@ -1,76 +1,47 @@
 <?php
 /**
- * Block helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
 use Pi\Db\RowGateway\RowGateway as BlockRow;
-use Pi\Mvc\CacheEvent;
-use Pi\Security;
 use Zend\View\Model\ViewModel;
 use Zend\View\Helper\AbstractHelper;
 use MarkdownDocument;
-//use Pi\Markup\Markup;
 
 /**
  * Helper for fetching and rendering a block
- * @see Pi\Application\Registry\Block
  *
- * Usage inside a phtml template:
- * <code>
+ * When cache is enabled for a block, its immediate data are cached instead of final rendered content
+ *
+ * Usage inside a phtml template
+ *
+ * ```
  *  $this->block('block-name', array('title_hidden' => 1, 'opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block('block-name', array('link' => '/link/to/a/URL', 'opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block('block-name', array('style' => 'specified-css-class', 'opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block(24, array('opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block()->load(24);
  *  $this->block()->render($blockModel);
- * </code>
+ * ```
+ *
+ * @see Pi\Application\Registry\Block
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Block extends AbstractHelper
 {
     /**
-     * Context specific CacheEvent
-     * @var /Pi/Mvc/CacheEvent
-     */
-    protected static $cacheEvent;
-
-    /**
-     * Get CacheEvent for block content cache
-     *
-     * NOTE: currently block intermediate data are cached instead of rendered content, thus the method is not used yet
-     *
-     * @return type
-     */
-    protected function cacheEvent()
-    {
-        if (!$this->cacheEvent) {
-            $this->cacheEvent = Pi::engine()->bootResource('cache')->cacheEvent('block');
-        }
-        return $this->cacheEvent;
-    }
-
-    /**
-     * Load a block model from database
+     * Load a block row from database
      *
      * @param string|int $id
-     * @return  BlockModel
+     * @return BlockRow
      */
     public function load($id)
     {
@@ -91,7 +62,7 @@ class Block extends AbstractHelper
      *
      * @param   string|int|BlockRow $block
      * @param   array $options
-     * @return  Block|array|BlockModel
+     * @return  self|array|false
      */
     public function __invoke($block = null, $options = array())
     {
@@ -209,9 +180,10 @@ class Block extends AbstractHelper
     }
 
     /**
-     * return the content of the block for output
+     * Build the content of the block for output
      *
      * @param BlockRow $blockRow
+     * @param array $configs
      * @return array|string Variable array for module blocks and string content for custom blocks
      */
     public function buildBlock(BlockRow $blockRow, $configs = array())

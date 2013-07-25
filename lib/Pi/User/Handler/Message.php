@@ -24,6 +24,10 @@ use Pi;
  */
 class Message extends AbstractHandler
 {
+    /**
+     * If message module available
+     * @var bool|null
+     */
     protected $isAvailable = null;
 
     /**

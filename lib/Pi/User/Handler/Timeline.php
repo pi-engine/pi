@@ -25,6 +25,10 @@ use Pi;
  */
 class Timeline extends AbstractHandler
 {
+    /**
+     * If user module available for time handling
+     * @var bool|null
+     */
     protected $isAvailable = null;
 
     /**

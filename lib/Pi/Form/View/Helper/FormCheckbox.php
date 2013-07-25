@@ -1,19 +1,11 @@
 <?php
 /**
- * Form Checkbox view helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Form
- * @subpackage      View
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
@@ -24,12 +16,27 @@ use Zend\Form\Exception;
 use Zend\Form\View\Helper\FormInput;
 use Zend\Form\View\Helper\FormLabel;
 
+/**
+ * Checkbox element helper
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class FormCheckbox extends FormInput
 {
+    /**
+     * Label position of append
+     * @var string
+     */
     const LABEL_APPEND  = 'append';
+
+    /**
+     * Label position of prepend
+     * @var string
+     */
     const LABEL_PREPEND = 'prepend';
 
     /**
+     * To render hidden element
      * @var bool
      */
     protected $useHiddenElement = true;
@@ -39,13 +46,11 @@ class FormCheckbox extends FormInput
      */
     protected $labelHelper;
 
-    /**
-     * @var string
-     */
+    /** @var string Label position */
     protected $labelPosition = self::LABEL_APPEND;
 
     /**
-     * @var array
+     * @var array Label attributes
      */
     protected $labelAttributes = array(
         'class' => 'checkbox',
@@ -55,7 +60,7 @@ class FormCheckbox extends FormInput
      * Set value for label position
      *
      * @param  string labelPosition
-     * @return FormCheckbox
+     * @return self
      */
     public function setLabelPosition($labelPosition)
     {
@@ -88,7 +93,7 @@ class FormCheckbox extends FormInput
      * Sets the attributes applied to option label.
      *
      * @param  array|null $attributes
-     * @return FormCheckbox
+     * @return self
      */
     public function setLabelAttributes($attributes)
     {
@@ -121,8 +126,8 @@ class FormCheckbox extends FormInput
      * Sets the option for prefixing the element with a hidden element
      * for the unset value.
      *
-     * @param  boolean $useHiddenElement
-     * @return FormCheckbox
+     * @param  bool $useHiddenElement
+     * @return self
      */
     public function setUseHiddenElement($useHiddenElement)
     {

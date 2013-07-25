@@ -13,6 +13,7 @@ use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Avatar\Factory as UserAvatar;
+use Zend\Db\Sql\Predicate\PredicateInterface;
 
 /**
  * User service abstract class
@@ -34,10 +35,13 @@ use Pi\User\Avatar\Factory as UserAvatar;
  *
  *   + Add
  *   - addUser($data)               // Add a new user with account and profile
+ *
  *   + Update
  *   - updateUser($data[, $id])     // Update a user for account and profile
+ *
  *   + Delete
  *   - deleteUser($id)              // Delete a user
+ *
  *   + Activate
  *   - activateUser($id)            // Activate a user
  *   - deactivateUser($id)          // Deactivate a user
@@ -131,18 +135,18 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user IDs subject to conditions
      *
-     * @param array     $condition
-     * @param int       $limit
-     * @param int       $offset
-     * @param string    $order
-     * @return array
+     * @param array|PredicateInterface  $condition
+     * @param int                       $limit
+     * @param int                       $offset
+     * @param string                    $order
+     * @return int[]
      */
     abstract public function getIds($condition = array(), $limit = 0, $offset = 0, $order = '');
 
     /**
      * Get user count subject to conditions
      *
-     * @param array     $condition
+     * @param array|PredicateInterface  $condition
      * @return int
      */
     abstract public function getCount($condition = array());

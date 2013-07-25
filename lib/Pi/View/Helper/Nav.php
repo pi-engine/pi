@@ -1,21 +1,11 @@
 <?php
 /**
- * Global navigation helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
@@ -31,15 +21,18 @@ use Zend\Navigation\Page\Mvc as MvcPage;
 /**
  * Helper for loading global navigation
  *
- * Usage inside a phtml template:
- * <code>
+ * Usage inside a phtml template
+ *
+ * ```
  *  $this->nav()->render();
  *
  *  $nav = $this->nav('front');
  *  if ($nav) {
  *      $nav->render();
  *  }
- * </code>
+ * ```
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Nav extends Navigation
 {
@@ -48,7 +41,7 @@ class Nav extends Navigation
      *
      * @param string    $name       navigation name
      * @param array     $options    Render options: cache_ttl, cache_level, cache_id
-     * @return  Nav
+     * @return  self|false
      */
     public function __invoke($name = null, $options = array())
     {

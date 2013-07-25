@@ -1,21 +1,11 @@
 <?php
 /**
- * Menu helper
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @subpackage      Helper
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ * @package         View
  */
 
 namespace Pi\View\Helper;
@@ -27,43 +17,58 @@ use Zend\View\Helper\AbstractHtmlElement;
 /**
  * Helper for rendering menu
  *
- * Usage inside a phtml template, default as vertical:
- * <code>
+ * Usage inside a phtml template, default as vertical
+ *
+ * ```
  *  $this->navMenu($data, 'horizontal');
  *  $this->navMenu($data);
- * </code>
+ * ```
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class NavMenu extends AbstractHtmlElement
 {
+    /**
+     * UL class definitions
+     * @var array
+     */
     protected $ulClass = array(
         'vertical'      => 'nav nav-tabs nav-stacked',
         'horizontal'    => 'nav nav-tabs',
     );
 
     /**
-     * Render
+     * Render a navigation menu
      *
-     * @param array         $items      navigation data, list of item data or list of assembled list
-     *                          array(
-     *                              array(
-     *                                  'href'      => $link,
-     *                                  'label'     => $label,
-     *                                  'active'    => 1,
-     *                              ),
-     *                              array(
-     *                                  'href'      => $link,
-     *                                  'label'     => $label,
-     *                              ),
-     *                          );
+     * With items:
      *
-     *                          array(
-     *                              '<li class="active"><a href="link" title="label">label</a></li>',
-     *                              '<li><a href="link" title="label">label</a></li>',
-     *                          );
+     * - List of item data
      *
-     * @param array|string  $attribs    ul attributes or type (vertical|horizontal)
-     * @param boolean       $escape     escape HTML tags
-     * @return  string
+     *  ```
+     *      array(
+     *          array(
+     *              'href'      => $link,
+     *              'label'     => $label,
+     *              'active'    => 1,
+     *          ),
+     *          array(
+     *              'href'      => $link,
+     *              'label'     => $label,
+     *          ),
+     *      );
+     *  ```
+     * - List of assembled data
+     *
+     *  ```
+     *      array(
+     *          '<li class="active"><a href="link" title="label">label</a></li>',
+     *          '<li><a href="link" title="label">label</a></li>',
+     *      );
+     *  ```
+     *
+     * @param array         $items      Navigation data, list of item data or list of assembled list
+     * @param array|string  $attribs    UL attributes or type (vertical|horizontal)
+     * @param bool          $escape     To escape HTML tags
+     * @return string
      */
     public function __invoke(array $items, $attribs = array())
     {

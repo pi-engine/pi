@@ -1,32 +1,39 @@
 <?php
 /**
- * Security check for Pi Engine
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Security
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Security;
 
+/**
+ * Cross site scripting check
+ *
+ * @link: http://ha.ckers.org/xss.html
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Xss extends AbstractAdapter
 {
+    /** @var string */
     const MESSAGE = "Access denied by XSS check";
+
+    /**
+     * To filter malicious code
+     * @var bool
+     */
     protected static $filter = true;
+
+    /**
+     * Minimum length of content to check
+     * @var int
+     */
     protected static $length = 0;
 
     /**
-     * Check security settings
-     *
-     * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
+     * {@inheritDoc}
      */
     public static function check($options = array())
     {
@@ -47,6 +54,11 @@ class Xss extends AbstractAdapter
         return null;
     }
 
+    /**
+     * Recursive check against XSS
+     *
+     * @return void
+     */
     public static function test()
     {
         $test = array(
@@ -60,6 +72,13 @@ class Xss extends AbstractAdapter
         static::checkXssRecursive($test);
     }
 
+    /**
+     * Check XSS recursively
+     *
+     * @param string|array  $content    Content string or associative array of contents
+     * @param bool          $filter     To filter malicious code
+     * @return bool
+     */
     public static function checkXssRecursive(& $content, $filter = true)
     {
         if (is_array($content)) {
@@ -76,18 +95,18 @@ class Xss extends AbstractAdapter
     /**
      * Check XSS code
      *
-     * @link: http://ha.ckers.org/xss.html
-     * Inspired by:
-     *  4images: http://phpxref.com/xref/4images/global.php.source.txt
-     *  Daniel Morris: http://www.phpclasses.org/browse/file/9402.html
-     *  kallahar@quickwired.com's RemoveXSS
-     *  htmlLawed
-     *  HTMLpurifier
-     *  etc.
      *
-     * @param string    $content the text to be checked
-     * @param bool      $filter to filter malicious code or just return status
-     * @return mixed
+     * Inspired by:
+     *
+     *  - 4images: http://phpxref.com/xref/4images/global.php.source.txt
+     *  - Daniel Morris: http://www.phpclasses.org/browse/file/9402.html
+     *  - kallahar@quickwired.com's RemoveXSS
+     *  - htmlLawed
+     *  - HTMLpurifier
+     *
+     * @param string    $content    Text to be checked
+     * @param bool      $filter     Filter malicious code or just return status
+     * @return string|null
      */
     public static function checkXss(&$content, $filter = true)
     {

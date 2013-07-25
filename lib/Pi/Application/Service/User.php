@@ -26,47 +26,10 @@ use Pi\User\Model\AbstractModel as UserModel;
  *
  * User APIs
  *
- * + Meta operations
- *   - getMeta([$type])                                     // Get meta list of user, type: account, profile, extra - extra profile non-structured
- *
- * + User operations
- *   + Bind
- *   - bind($id[, $field])                                  // Bind current user
- *   - restore()                                            // Restore bound user to current session user
- *
- *   + Read
- *   - getUser([$id])                                       // Get current user or specified user
- *   - getUserList($ids)                                    // List of users by ID list
- *   - getIds($condition[, $limit[, $offset[, $order]]])    // ID list subject to $condition
- *   - getCount([$condition])                               // User count to $condition
- *
- *   + Add
- *   - addUser($data)               // Add a new user with account and profile
- *   + Update
- *   - updateUser($data[, $id])     // Update a user for account and profile
- *   + Delete
- *   - deleteUser($id)              // Delete a user
- *   + Activate
- *   - activateUser($id)            // Activate a user
- *   - deactivateUser($id)          // Deactivate a user
- *
- * + User account/profile field operations
- *   + Read
- *   - get($key[, $id])             // Get user field(s)
- *   - getList($key, $ids)          // User field(s) of user list
- *
- *   + Update
- *   - set($key, $value[, $id])         // Update field of user
- *   - increment($key, $value[, $id])   // Increase value of field
- *   - setPassword($value[, $id])       // Update password
- *
- * + Utility
- *   + Collective URL
- *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
- *   + Authentication
- *   - authenticate($identity, $credential[, $identityField])       // Authenticate a user
+ * - restore()                                            // Restore bound user to current session user
  *
  * + External APIs
+ *
  * + Avatar
  *   - avatar([$id])                                                                // Get avatar handler
  *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
@@ -98,6 +61,7 @@ use Pi\User\Model\AbstractModel as UserModel;
  *   - relation([$id])->add($uid, $relation)                                        // Add $uid as a relation: friend, follower, following
  *   - relation([$id])->delete([$uid[, $relation]])                                 // Delete $uid as relation: friend, follower, following
  *
+ * @see \Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractService
@@ -291,6 +255,7 @@ class User extends AbstractService
     /**
      * Method adapter allows a shortcut
      *
+     * Call APIs defined in {@link \Pi\User\Adapter\AbstractAdapter}
      * @param  string  $method
      * @param  array  $args
      * @return mixed

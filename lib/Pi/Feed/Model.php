@@ -1,26 +1,28 @@
 <?php
 /**
- * Feed data model class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Feed
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\Feed;
 
 use Pi;
 
+/**
+ * Feed data model
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Model
 {
+    /**
+     * Constructor
+     *
+     * @param array $data
+     */
     public function __construct(array $data = array())
     {
         $this->initialize();
@@ -30,18 +32,35 @@ class Model
         }
     }
 
+    /**
+     * Set feed type
+     *
+     * @param string $type
+     * @return $this
+     */
     public function setType($type)
     {
         $this->feed_link['type'] = $type;
         return $this;
     }
 
+    /**
+     * Get feed type
+     *
+     * @return string|null
+     */
     public function getType()
     {
         $type = isset($this->feed_link['type']) ? $this->feed_link['type'] : null;
         return $type;
     }
 
+    /**
+     * Assign data to model
+     *
+     * @param array $data
+     * @return $this
+     */
     public function assign(array $data)
     {
         foreach ($data as $key => $val) {
@@ -50,6 +69,12 @@ class Model
         return $this;
     }
 
+    /**
+     * Magic method for unset
+     *
+     * @param string $var
+     * @return void
+     */
     public function __unset($var)
     {
         if (array_key_exists($var, $this->container)) {
@@ -57,6 +82,13 @@ class Model
         }
     }
 
+    /**
+     * Magic method for set
+     *
+     * @param string $var
+     * @param mixed $val
+     * @return mixed
+     */
     public function __set($var, $val)
     {
         switch ($var) {
@@ -75,6 +107,12 @@ class Model
         }
     }
 
+    /**
+     * Magic method for get
+     *
+     * @param string $var
+     * @return mixed
+     */
     public function __get($var)
     {
         $return = null;
@@ -91,6 +129,36 @@ class Model
         return $return;
     }
 
+    /**
+     * Initialize data model
+     *
+     * Attributes
+     *
+     *  - copyright
+     *  - description
+     *  - authors
+     *      - name
+     *      - email
+     *  - generator
+     *      - name
+     *      - version
+     *      - uri
+     *  - image
+     *      - uri
+     *      - title
+     *      - link
+     *  - language
+     *  - link
+     *  - feed_link
+     *      - link
+     *      - type
+     *  - title
+     *  - encoding
+     *  - base_url
+     *  - entries
+     *
+     * @return void
+     */
     public function initialize()
     {
         $this->assign(array(
@@ -105,7 +173,7 @@ class Model
             'generator'     => array(
                 'name'      => 'Pi Engine',
                 'version'   => Pi::config('version'),
-                'uri'       => 'http://www.xoopsengine.org',
+                'uri'       => 'http://pialog.org',
             ),
             'image'         => array(
                 'uri'       => Pi::url('static', true) . '/image/logo.png',

@@ -1,20 +1,10 @@
 <?php
 /**
- * Component template resolver
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Pi\View
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Pi\View\Resolver;
@@ -25,39 +15,30 @@ use Zend\View\Renderer\RendererInterface as Renderer;
 
 /**
  * Component template resolver
- * @see \Pi\View\Resolver\ModuleTemplate for theme template skeleton
- * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see \Pi\Application\Service\Asset for asset skeleton
  *
  * Componenet template folders/files skeleton
- * <ul>
- *          <li>Componet native templates:
- *              <code>lib/Pi/Captcha/Image/template/</code>
- *          </li>
- *          <li>Component custom templates:
- *              <code>theme/default/lib/Pi/Captcha/Image/template/</code>
- *          </li>
- * </ul>
- */
-
-/**
- * Resolves component view scripts
  *
- * @see Zend\View\Resolver\ResolverInterface
+ *  - Componet native templates
+ *    `lib/Pi/Captcha/Image/template/`
+ *
+ *  - Component custom templates
+ *    `theme/default/lib/Pi/Captcha/Image/template/`
+ *
+ * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see \Pi\Application\Service\Asset for asset skeleton
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ComponentTemplate implements ResolverInterface
 {
     /**
      * Theme template diretory
-     * @var type
+     * @var string
      */
     protected $templateDirectory = 'template';
 
     /**
-     * Suffix to use
-     *
-     * Appends this suffix if the template requested does not use it.
-     *
+     * Suffix to use: appends this suffix if the template requested does not use it.
      * @var string
      */
     protected $suffix = 'phtml';
@@ -66,7 +47,7 @@ class ComponentTemplate implements ResolverInterface
      * Set default file suffix
      *
      * @param  string $suffix
-     * @return ThemeTemplate
+     * @return self
      */
     public function setSuffix($suffix)
     {
@@ -88,7 +69,7 @@ class ComponentTemplate implements ResolverInterface
      * Canonize template
      *
      * @param string $name
-     * @return array
+     * @return array Pair of component name and template file
      */
     protected function canonizeTemplate($name)
     {
@@ -104,7 +85,7 @@ class ComponentTemplate implements ResolverInterface
      *
      * @param  string $name
      * @param  null|Renderer $renderer
-     * @return string
+     * @return string|false
       */
     public function resolve($name, Renderer $renderer = null)
     {
