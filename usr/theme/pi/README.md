@@ -3,7 +3,7 @@ Pi Theme
 
 Pi Engine theme
 
-Inherited from Default theme.
+Strict HTML 5 support, inherited from Default theme.
 
 
 **Folder and file skeleton**
