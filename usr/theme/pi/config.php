@@ -65,5 +65,5 @@ return array(
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => 'default',
     // Supported browsers
-    'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+; Safari: 5.1+; Opera: 9.8+;',
+    'browser'       => 'Internet Explorer: 8+; Chrome: latest; Firefox: latest; Safari: latest; Opera: latest;',
 );
