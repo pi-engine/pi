@@ -53,7 +53,7 @@
 // For tabbed block
 if (is_array($block['content'])) {
     $this->jQuery();
-    $this->bootstrap();
+    $this->bootstrap('js/bootstrap.min.js');
 }
 ?>
 
@@ -72,7 +72,7 @@ if (is_array($block['content'])) {
                 $i = 0;
                 foreach ($block['content'] as $tab) {
                 ?>
-                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>javascript:void(0)<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $this->escape($tab['caption']); ?></a>
+                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>#<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $this->escape($tab['caption']); ?></a>
                 <?php } ?>
             </ul>
         <?php } ?>
@@ -83,13 +83,13 @@ if (is_array($block['content'])) {
         <?php } ?>
 
         <?php /* Display title if available */ ?>
-        <h4 class="pi-block-header-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
+        <h4 class="pi-block-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
     </div>
     <?php } ?>
 
     <?php /* Display tab contents if available, i.e. content is an array */ ?>
     <?php if(!empty($block['content']) && is_array($block['content'])) { ?>
-    <div class="clearfix pi-block-body tab-content">
+    <div class="pi-block-body tab-content">
         <?php $i = 0;
         foreach ($block['content'] as $tab) {
         ?>
@@ -98,7 +98,7 @@ if (is_array($block['content'])) {
     </div>
     <?php /* Display regular content */ ?>
     <?php } else { ?>
-    <div class="clearfix pi-block-body">
+    <div class="pi-block-body">
         <?php echo $block['content']; ?>
     </div>
     <?php } ?>
