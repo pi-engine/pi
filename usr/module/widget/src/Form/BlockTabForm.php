@@ -89,6 +89,7 @@ class BlockTabForm extends BaseForm
             'type'  => 'hidden',
         ));
 
+        /*
         $this->add(array(
             'name'  => 'title_hidden',
             'type'  => 'hidden',
@@ -96,6 +97,7 @@ class BlockTabForm extends BaseForm
                 'value' => '1',
             ),
         ));
+        */
 
         $this->add(array(
             'name'  => 'content',
@@ -159,11 +161,13 @@ class BlockTabForm extends BaseForm
             'allow_empty'   => true,
         ));
 
+        /*
         $inputFilter->add(array(
             'name'          => 'title_hidden',
             'required'      => true,
             'allow_empty'   => true,
         ));
+        */
 
         return parent::isValid();
     }

@@ -19,17 +19,6 @@ $this->js(array(
         'conditional'   => 'lt IE 9',
     )
 ));
-/**#@+
- * For demonstration
- */
-/*
-// Load jQuerty
-$this->jQuery();
-// Load locale css/js, optional
-$this->css($this->assetLocale('rtl.css'));
-$this->js($this->assetLocale('rtl.js'));
-*/
-/**#@-*/
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -101,7 +90,7 @@ $this->js($this->assetLocale('rtl.js'));
             } ?>
         </aside>
         <?php } ?>
-        <article class="pi-main<?php 
+        <article class="pi-main<?php
         if (!empty($blocks['1'])) { echo ' pi-main-left'; }
         if (!empty($blocks['8'])) { echo ' pi-main-right'; }
         ?>">

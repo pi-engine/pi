@@ -119,11 +119,13 @@ class Block extends AbstractApi
         }
 
         // Build ACL rules
+        /*
         $dataRule = array(
             'resource'  => $rowBlock->id,
             'section'   => 'block',
             'module'    => $module,
         );
+        */
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
             $rule = isset($access[$role]) ? $access[$role] : 1;
@@ -149,7 +151,9 @@ class Block extends AbstractApi
     }
 
     /**
-     * Updates a block root and its entities
+     * Updates a block root and its instances and clones
+     *
+     * If only edit one single instance, use edit()
      *
      * @param int|RowGateway $entity
      * @param array $block
@@ -315,7 +319,7 @@ class Block extends AbstractApi
      *
      * @param int|RowGateway $entity
      * @param array $block
-     * @return array bool, message
+     * @return array Pair of status and message
      */
     public function edit($entity, $block)
     {
@@ -326,10 +330,9 @@ class Block extends AbstractApi
             $blockRow = $model->find($entity);
         }
 
-        //$block = $this->canonize($block);
         list($block, $root, $access) = $this->canonize($block);
 
-        // Update root
+        // Update block
         $blockRow->assign($block);
         $status = $blockRow->save();
 

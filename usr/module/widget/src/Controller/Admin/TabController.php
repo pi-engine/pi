@@ -90,7 +90,7 @@ class TabController extends WidgetController
             $blocks[] = array(
                 'id'            => $row->id,
                 'name'          => $row->name,
-                'caption'        => $row->title,
+                'caption'       => $row->title,
                 'description'   => $row->description,
             );
         }
