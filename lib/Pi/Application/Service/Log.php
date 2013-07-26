@@ -37,22 +37,22 @@ class Log extends AbstractService
      */
     protected $active;
 
-    /** @var Debugger */
+    /** @var Debugger Debugger writer */
     protected $debugger;
 
-    /** @var Logger */
+    /** @var Logger Log hanlder */
     protected $logger;
 
-    /** @var ErrorHandler */
+    /** @var ErrorHandler Error handler */
     protected $errorHandler;
 
-    /** @var ExceptionHandler */
+    /** @var ExceptionHandler Exception handler */
     protected $exceptionHandler;
 
-    /** @var Profiler */
+    /** @var Profiler Profiler writer */
     protected $profiler;
 
-    /** @var DbProfiler */
+    /** @var DbProfiler DbProfiler writer */
     protected $dbProfiler;
 
     /**

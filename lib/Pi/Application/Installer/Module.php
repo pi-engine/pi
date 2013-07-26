@@ -24,18 +24,19 @@ use Zend\EventManager\Event;
 class Module
 {
     /**
-     * Results of every operation in an associative array
+     * Results of every operation
+     *
      * @var array
      */
     protected $result;
 
-    /** @var array */
+    /** @var array Options */
     protected $options;
 
-    /** @var EventManagerInterface */
+    /** @var EventManagerInterface Installer event manager */
     protected $events;
 
-    /** @var Event */
+    /** @var Event Installer event */
     protected $event;
 
     /*

@@ -19,7 +19,7 @@ use Pi\Application\Model\Model;
  */
 class Account extends Model
 {
-    /** @var string */
+    /** @var string Table name */
     protected $table = 'user_account';
 
     /**
