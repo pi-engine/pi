@@ -31,7 +31,7 @@ class RedisStorage extends AbstractStorage
     /** @var int */
     const SERVER_TIMEOUT =  0;
 
-    /** @var Redis */
+    /** @var Redis Redis storage */
     protected $redis;
 
     /**

@@ -170,15 +170,15 @@ namespace Pi\Application\Service
  *  _t('Message to be translated and used later.');
  * </code>
  *
- *   - Use case, register module config
+ *  - Use case, register module config
  *
- *     - Registered in a module's config.php
+ *    - Registered in a module's config.php
  *
  * <code>
  *  $config['key'] = array('title' => _t('Config Title'), 'description' => _t('Config hint'), '...'));
  * </code>
  *
- *     - Load translated message in the module config setting page:
+ *    - Load translated message in the module config setting page:
  *       module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
  *       "Module\System\Form\ConfigForm::addElement()"
  *
@@ -227,7 +227,7 @@ namespace Pi\Application\Service
  *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
  * </code>
  *
- *   - Format defined in system intl config (`Pi::config('date_format', 'intl')`) will be used if format is not specified
+ *   - Format defined in system intl config (<pre>Pi::config('date_format', 'intl')</pre>) will be used if format is not specified
  *
  * <code>
  *  _date(time(), ...);
@@ -283,7 +283,7 @@ namespace Pi\Application\Service
  * </code>
  *
  * @link    http://www.php.net/manual/en/book.intl.php
- * @see     Pi\Application\Service\Asset for component disptach
+ * @see     \Pi\Application\Service\Asset for component disptach
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
     class I18n extends AbstractService
