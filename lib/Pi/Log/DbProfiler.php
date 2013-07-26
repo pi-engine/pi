@@ -21,6 +21,7 @@ class DbProfiler
 {
     /**
      * Writers
+     *
      * @var SplPriorityQueue
      */
     protected $writers;

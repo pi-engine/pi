@@ -16,7 +16,7 @@ namespace Pi\Markup\Parser;
  */
 abstract class AbstractParser
 {
-    /** @var array */
+    /** @var array Options */
     protected $options = array();
 
     /**

@@ -23,12 +23,14 @@ class DbTable implements AdapterInterface
 {
     /**
      * Table name to check
+     *
      * @var string
      */
     protected $tableName;
 
     /**
      * User account table
+     *
      * @var AccountModel
      */
     protected $table;
@@ -39,7 +41,7 @@ class DbTable implements AdapterInterface
     /** @var string Credential value */
     protected $credential = null;
 
-    /** @var array */
+    /** @var array Result meta */
     protected $authenticateResultInfo = null;
 
     /**

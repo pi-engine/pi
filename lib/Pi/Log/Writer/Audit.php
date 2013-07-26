@@ -22,13 +22,13 @@ use Zend\Log\Formatter\FormatterInterface;
  */
 class Audit extends AbstractWriter
 {
-    /** @var array */
+    /** @var array Options */
     protected $options = array();
 
-    /** @var array */
+    /** @var array Event container */
     protected $events = array();
 
-    /** @var array */
+    /** @var array Extra data meta */
     protected $extra;
 
     /**

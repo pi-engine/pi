@@ -23,17 +23,19 @@ class Statement extends PDOStatement
 {
     /**
      * DB profiling logger
+     *
      * @var DbProfiler
      */
     protected $profiler;
 
     /**
      * DB query counter
+     *
      * @var int
      */
     protected $counter = 0;
 
-    /** @var array */
+    /** @var array Bound parameters */
     protected $parameters = array();
 
     /**

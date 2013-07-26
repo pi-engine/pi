@@ -21,16 +21,16 @@ use Zend\EventManager\Event;
  */
 class Theme
 {
-    /** @var array */
+    /** @var array Operation result */
     protected $result;
 
-    /** @var array */
+    /** @var array Options */
     protected $options;
 
-    /** @var EventManager */
+    /** @var EventManager Installer event manager */
     protected $events;
 
-    /** @var Event */
+    /** @var Event Installer event */
     protected $event;
 
     /**

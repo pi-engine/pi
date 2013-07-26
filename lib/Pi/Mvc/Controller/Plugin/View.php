@@ -96,9 +96,7 @@ class View extends AbstractPlugin
      */
     protected $event;
 
-    /**
-     * @var ViewModel
-     */
+    /** @var ViewModel View model */
     protected $viewModel;
 
     /**

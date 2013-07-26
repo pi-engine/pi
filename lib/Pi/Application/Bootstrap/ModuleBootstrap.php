@@ -18,7 +18,7 @@ use Pi\Mvc\Application as Application;
  */
 abstract class ModuleBootstrap
 {
-    /** @var Application */
+    /** @var Application Application engine */
     protected $application;
 
     /**

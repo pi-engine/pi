@@ -21,13 +21,12 @@ use Zend\Mvc\InjectApplicationEventInterface;
  */
 class Cache extends AbstractPlugin
 {
-    /**
-     * @var CacheAdapter
-     */
+    /** @var CacheAdapter Cache storage */
     protected $cache;
 
     /**
      * Invoke as a functor
+     *
      * @return CacheAdapter
      */
     public function __invoke()

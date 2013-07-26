@@ -32,6 +32,7 @@ use Zend\Mvc\InjectApplicationEventInterface;
  */
 class Jump extends AbstractPlugin
 {
+    /** @var string Namespace for session */
     protected static $sessionNamespace = 'PI_JUMP';
 
     /**

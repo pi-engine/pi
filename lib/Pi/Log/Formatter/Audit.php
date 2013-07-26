@@ -36,7 +36,7 @@ class Audit implements FormatterInterface
         'extra'         => 'extra',
     );
 
-    /** @var string */
+    /** @var string DateTime forat */
     protected $dateTimeFormat = '';
 
     /**

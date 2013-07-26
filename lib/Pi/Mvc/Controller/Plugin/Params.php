@@ -37,7 +37,7 @@ class Params extends ZendParams
     /** @var array PUT params */
     protected $putParams;
 
-    /** @var array */
+    /** @var array Order to fetch variables */
     protected $variablesOrder = array(
         'query', 'request'
     );
@@ -194,7 +194,7 @@ class Params extends ZendParams
      *
      * @param mixed         $value      Value to be filtered
      * @param int|string    $filter     String for filter name or int for filter_id
-     * @param mixed         $options    
+     * @param mixed         $options
      * @return mixed
      */
     public function filter($value, $filter, $options = null)

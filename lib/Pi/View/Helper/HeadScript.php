@@ -48,7 +48,7 @@ class HeadScript extends ZendHeadScript
     /**#@+
      * Added by Taiwen Jiang
      */
-    /** @var string[] */
+    /** @var string[] Segment names for captch */
     protected static $captureNames = array();
     /**#@-*/
 

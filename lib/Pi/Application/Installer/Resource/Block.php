@@ -71,7 +71,7 @@ use Pi\Application\Model\Block\Root as RootRow;
 class Block extends AbstractResource
 {
     /** @var string */
-    protected $moduleSeperator = '-';
+    //protected $moduleSeperator = '-';
 
     /**
      * Canonize block data for creation

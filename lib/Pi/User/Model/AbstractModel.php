@@ -25,6 +25,7 @@ abstract class AbstractModel
      */
     protected $account;
 
+    /** @var array User account meta */
     protected $accountMeta = array(
         'id'        => 0,
         'identity'  => '',
@@ -33,12 +34,15 @@ abstract class AbstractModel
 
     /**
      * User profile property
+     *
      * @var StdClass
      */
     protected $profile;
 
+    /** @var array User profile meta */
     protected $profileMeta = array(
         'id'        => 0,
+        'uid'       => 0,
         'name'      => '',
     );
 

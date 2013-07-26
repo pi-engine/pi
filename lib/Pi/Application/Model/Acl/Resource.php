@@ -22,6 +22,7 @@ class Resource extends Nest
 {
     /**
      * Section name
+     *
      * @var string
      */
     protected $section;
@@ -29,7 +30,7 @@ class Resource extends Nest
     /** @var string Module name */
     protected $module;
 
-    /** @var string */
+    /** @var string Table name */
     protected $table = 'acl_resource';
 
     /**

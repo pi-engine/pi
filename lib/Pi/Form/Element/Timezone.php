@@ -22,6 +22,7 @@ use DateTimeZone;
  */
 class Timezone extends Select
 {
+    /** @var array Timezones */
     static protected $timezones = array();
 
     /**

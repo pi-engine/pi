@@ -19,19 +19,16 @@ use Zend\Log\Formatter\FormatterInterface;
  */
 class Debugger implements FormatterInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string Format specifier for log messages */
     protected $format;
 
-    /** @var string */
+    /** @var string DateTime format */
     protected $dateTimeFormat = 'H:i:s';
 
     /**
      * Class constructor
      *
      * @param  null|string  $format  Format specifier for log messages
-     * @throws \Exception
      */
     public function __construct($format = null)
     {

@@ -24,20 +24,22 @@ abstract class AbstractRenderer
 {
     /**
      * Parser
+     *
      * @var AbstractParser
      */
     protected $parser;
 
     /**
      * Encoding
+     *
      * @var string
      */
     protected $encoding = 'UTF-8';
 
-    /** @var array */
+    /** @var array Options */
     protected $options = array();
 
-    /** @var FilterChain */
+    /** @var FilterChain Filters */
     protected $filterChain;
 
     /**

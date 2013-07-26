@@ -20,10 +20,10 @@ use Zend\Db\Sql\Predicate\Predicate;
  */
 class Rule extends Model
 {
-    /** @var string */
+    /** @var string Section name */
     protected $section = '';
 
-    /** @var string */
+    /** @var string Table name */
     protected $table = 'acl_rule';
 
     /**

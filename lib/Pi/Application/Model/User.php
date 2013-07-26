@@ -18,7 +18,7 @@ use Pi;
  */
 class User extends Model
 {
-    /** @var string */
+    /** @var string Table name */
     protected $table = 'user_account';
 
     /**

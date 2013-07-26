@@ -19,6 +19,7 @@ use Zend\Mvc\Router\RoutePluginManager as ZendRoutePluginManager;
  */
 class RoutePluginManager extends ZendRoutePluginManager
 {
+    /** @var string Namespace for routes */
     protected $subNamespace = 'Http';
 
     /**
@@ -46,6 +47,12 @@ class RoutePluginManager extends ZendRoutePluginManager
         return parent::get($name, $options, $usePeeringServiceManagers);
     }
 
+    /**
+     * Set subnamespace
+     *
+     * @param string $namespace
+     * @return self
+     */
     public function setSubNamespace($namespace)
     {
         $this->subNamespace = $namespace;

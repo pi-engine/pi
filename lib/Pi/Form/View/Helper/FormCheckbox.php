@@ -25,25 +25,26 @@ class FormCheckbox extends FormInput
 {
     /**
      * Label position of append
+     *
      * @var string
      */
     const LABEL_APPEND  = 'append';
 
     /**
      * Label position of prepend
+     *
      * @var string
      */
     const LABEL_PREPEND = 'prepend';
 
     /**
      * To render hidden element
+     *
      * @var bool
      */
     protected $useHiddenElement = true;
 
-    /**
-     * @var FormLabel
-     */
+    /** @var FormLabel Lable render helper */
     protected $labelHelper;
 
     /** @var string Label position */

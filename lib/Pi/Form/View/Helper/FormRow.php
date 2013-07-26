@@ -24,9 +24,7 @@ use Zend\Form\FieldsetInterface;
  */
 class FormRow extends ZendFormRow
 {
-    /**
-     * @var string
-     */
+    /** @var string CSS class for error display */
     protected $inputErrorClass = 'input-error alert-error';
 
     /**

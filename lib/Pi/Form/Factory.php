@@ -23,7 +23,10 @@ use Zend\InputFilter\Factory as InputFilterFactory;
 class Factory extends ZendFactory
 {
     /**
+     * Get InputFilter factory
+     *
      * @{inheritdoc}
+     * @return InputFilterFactory
      */
     public function getInputFilterFactory()
     {
@@ -36,6 +39,8 @@ class Factory extends ZendFactory
     }
 
     /**
+     * Create a form or form element
+     * 
      * @{inheritdoc}
      */
     public function create($spec)

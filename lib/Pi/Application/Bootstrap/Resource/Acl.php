@@ -20,7 +20,7 @@ use Zend\Mvc\MvcEvent;
  */
 class Acl extends AbstractResource
 {
-    /** @var AclManager */
+    /** @var AclManager ACL handler */
     protected $aclHandler;
 
     /**

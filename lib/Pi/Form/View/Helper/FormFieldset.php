@@ -22,13 +22,12 @@ use Zend\Form\View\Helper\AbstractHelper;
  */
 class FormFieldset extends AbstractHelper
 {
-    /**
-     * @var FormRow
-     */
+    /** @var FormRow Row render helper */
     protected $rowHelper;
 
     /**
      * If set to true, collections are automatically wrapped around a fieldset
+     * 
      * @var bool
      */
     protected $shouldWrap = true;

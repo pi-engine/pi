@@ -30,11 +30,12 @@ use Zend\View\Helper\Url as ZendUrl;
  */
 class Url extends ZendUrl
 {
-    /** @var RouteStackInterface */
+    /** @var RouteStackInterface Router for URL assemble */
     protected $router;
 
     /**
      * RouteInterface match returned by the router.
+     *
      * @var RouteMatch.
      */
     protected $routeMatch;

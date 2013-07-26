@@ -19,7 +19,7 @@ use Pi\Log\DbProfiler;
 use Pi\Log\Writer\Debugger;
 
 /**
- * Loggin service
+ * Logging service
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -36,11 +36,23 @@ class Log extends AbstractService
      * @var bool
      */
     protected $active;
+
+    /** @var Debugger */
     protected $debugger;
+
+    /** @var Logger */
     protected $logger;
+
+    /** @var ErrorHandler */
     protected $errorHandler;
+
+    /** @var ExceptionHandler */
     protected $exceptionHandler;
+
+    /** @var Profiler */
     protected $profiler;
+
+    /** @var DbProfiler */
     protected $dbProfiler;
 
     /**
@@ -82,6 +94,8 @@ class Log extends AbstractService
 
     /**
      * Shutdown function, will be triggered by Pi::shutdown()
+     *
+     * @return void
      */
     public function shutdown()
     {
@@ -108,7 +122,7 @@ class Log extends AbstractService
     }
 
     /**
-     * Enable/disable or get activity
+     * Enable/disable or get activation
      *
      * @param bool|null $flag
      * @return bool

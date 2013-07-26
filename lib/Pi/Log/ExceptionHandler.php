@@ -17,10 +17,10 @@ namespace Pi\Log;
  */
 class ExceptionHandler
 {
-    /** @var bool */
+    /** @var bool The handler is enabled */
     protected $active = true;
 
-    /** @var Logger */
+    /** @var Logger Exception logger */
     protected $logger;
 
     /**

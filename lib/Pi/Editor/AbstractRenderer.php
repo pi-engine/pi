@@ -22,18 +22,20 @@ abstract class AbstractRenderer
 {
     /**
      * File name of config data
+     *
      * @var string
      */
     protected $configFile = '';
 
-    /** @var array */
+    /** @var array Options */
     protected $options = array();
 
-    /** @var array */
+    /** @var array Renderer attributes */
     protected $attributes = array();
 
     /**
      * View renderer
+     *
      * @var Renderer
      */
     protected $view;

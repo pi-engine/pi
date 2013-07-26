@@ -19,7 +19,7 @@ use Zend\EventManager\Event;
  */
 class AbstractResource
 {
-    /** @var Event */
+    /** @var Event Installer event */
     protected $event;
 
     /** @var array Meta config data */

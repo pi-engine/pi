@@ -21,10 +21,10 @@ use Zend\EventManager\Event;
  */
 class Resource implements ListenerAggregateInterface
 {
-    /** @var ListenerAggregateInterface */
+    /** @var ListenerAggregateInterface Listener container */
     protected $listener;
 
-    /** @var Event */
+    /** @var Event Installer event */
     protected $event;
 
     /**

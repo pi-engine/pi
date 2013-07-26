@@ -21,13 +21,12 @@ use Zend\Mvc\InjectApplicationEventInterface;
  */
 class Acl extends AbstractPlugin
 {
-    /**
-     * @var AclManager
-     */
+    /** @var AclManager ACL handler */
     protected $aclManager;
 
     /**
      * Invoke as a functor
+     *
      * @return aclManager
      */
     public function __invoke()

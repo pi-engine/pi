@@ -32,17 +32,18 @@ class Debugger extends AbstractWriter
      */
     protected $errorsToExceptionsConversionLevel = E_ALL;
 
-    /** @var ProfilerFormatter */
+    /** @var ProfilerFormatter Profile formatter */
     protected $profilerFormatter;
 
-    /** @var DbFormatter */
+    /** @var DbFormatter DbProfile formatter */
     protected $dbProfilerFormatter;
 
-    /** @var SystemInfoFormatter */
+    /** @var SystemInfoFormatter SystemInfo formatter */
     protected $systemInfoFormatter;
 
     /**
      * Log messages container
+     *
      * @var array
      */
     protected $logger = array(
@@ -55,6 +56,7 @@ class Debugger extends AbstractWriter
 
     /**
      * The Debugger is muted
+     *
      * @var bool
      */
     protected $muted = false;

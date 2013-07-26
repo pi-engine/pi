@@ -44,7 +44,10 @@ use Pi;
  */
 class Backbone extends AssetCanonize
 {
+    /** @var string Backbone root directory */
     const DIR_ROOT = 'vendor/backbone';
+
+    /** @var bool Backbone basic file is loaded */
     protected static $rootLoaded;
 
     /**
@@ -52,7 +55,7 @@ class Backbone extends AssetCanonize
      *
      * @param   null|string|array $files
      * @param   array $attributes
-     * @return  void
+     * @return  self
      */
     public function __invoke($files = null, $attributes = array())
     {

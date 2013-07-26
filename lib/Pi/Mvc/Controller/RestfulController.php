@@ -24,9 +24,7 @@ use Zend\Stdlib\ResponseInterface as Response;
  */
 abstract class RestfulController extends ActionController
 {
-    /**
-     * @var string
-     */
+    /** @var string Identifier for event attaching */
     protected $eventIdentifier = __CLASS__;
 
     /**

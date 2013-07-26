@@ -48,7 +48,7 @@ namespace Pi\Debug
      */
     class Debug
     {
-        /** @var bool|null */
+        /** @var bool|null In the process of conditional debug */
         protected static $inProcess = null;
 
         /**

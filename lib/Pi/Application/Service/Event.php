@@ -39,8 +39,8 @@ use Pi;
  */
 class Event extends AbstractService
 {
-    /*
-     * Run-time attached observers
+    /**
+     * Run-time attached listeners
      *
      * @var array
      */

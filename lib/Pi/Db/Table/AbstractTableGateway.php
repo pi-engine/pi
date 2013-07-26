@@ -28,18 +28,24 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 {
     /**
      * Class for select result prototype
+     *
      * @var string
      */
     protected $resultSetClass;
 
     /**
      * Class for row or row gateway
+     *
      * @var string
      */
     protected $rowClass;
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB, specified as pairs of column name and bool value: true - to convert to associative array for decode; false - keep as array object.
+     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB,
+     * specified as pairs of column name and bool value:
+     *
+     *  - true: to convert to associative array for decode;
+     *  - false: keep as array object.
      * @var array
      */
     protected $encodeColumns = array(
@@ -50,11 +56,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
     /**
      * Primary key column
+     *
      * @var string
      */
     protected $primaryKeyColumn;
 
-    /** @var Metadata */
+    /** @var Metadata Table metadata */
     protected $metadata;
 
     /**
@@ -227,6 +234,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     }
 
     /**
+     * Format parameter name
+     * 
      * @param string $name
      * @param string|null $type
      * @return string

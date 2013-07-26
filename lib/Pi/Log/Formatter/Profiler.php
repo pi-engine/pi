@@ -19,12 +19,10 @@ use Zend\Log\Formatter\FormatterInterface;
  */
 class Profiler implements FormatterInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string Format specifier for log messages */
     protected $format;
 
-    /** @var string */
+    /** @var string DateTime format */
     protected $dateTimeFormat = 'H:i:s';
 
     /**

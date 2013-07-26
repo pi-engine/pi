@@ -19,9 +19,7 @@ use Zend\Form\View\Helper\FormMultiCheckbox as ZendFormElement;
  */
 class FormMultiCheckbox extends ZendFormElement
 {
-    /**
-     * @var array
-     */
+    /** @var array Label attributes */
     protected $labelAttributes = array(
         'class' => 'checkbox',
     );

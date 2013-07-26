@@ -26,6 +26,7 @@ class ErrorHandler
 {
     /**
      * Application error levels
+     *
      * @var array
      */
     static protected $errorLevel = array(
@@ -36,6 +37,7 @@ class ErrorHandler
 
     /**
      * Error level map against Logger priority
+     *
      * @var array
      */
     protected $errorHandlerMap = array(
@@ -53,10 +55,10 @@ class ErrorHandler
         E_USER_DEPRECATED   => Logger::DEBUG
     );
 
-    /** @var bool */
+    /** @var bool The handler is enabled */
     protected $active = true;
 
-    /** @var Logger */
+    /** @var Logger Error logger */
     protected $logger;
 
     /**

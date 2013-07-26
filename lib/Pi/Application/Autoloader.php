@@ -593,6 +593,12 @@ class Autoloader
     /*#@-*/
 }
 
+/**
+ * Interface for autoloaders to be registered with "spl_autoload_register"
+ *
+ * @see http://php.net/manual/en/function.spl-autoload-register.php
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 interface SplAutoloader
 {
     /**

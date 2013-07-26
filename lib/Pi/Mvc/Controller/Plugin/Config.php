@@ -19,9 +19,7 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
  */
 class Config extends AbstractPlugin
 {
-    /**
-     * @var array
-     */
+    /** @var array Loaded configs */
     protected $configs;
 
     /**

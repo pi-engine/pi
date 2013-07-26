@@ -44,7 +44,7 @@ class HeadStyle extends ZendHeadStyle
     /**#@+
      * Added by Taiwen Jiang
      */
-    /** @var string[] */
+    /** @var string[] Segment names for captch */
     protected static $captureNames = array();
     /**#@-*/
 
@@ -63,7 +63,6 @@ class HeadStyle extends ZendHeadStyle
             ob_get_clean();
             $this->captureAttrs = null;
             $this->captureLock  = false;
-
             return;
         }
         static::$captureNames[] = $name;

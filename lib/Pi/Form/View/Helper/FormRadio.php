@@ -20,9 +20,7 @@ use Zend\Form\View\Helper\FormRadio as ZendFormElement;
  */
 class FormRadio extends ZendFormElement
 {
-    /**
-     * @var array
-     */
+    /** @var array Label attributes */
     protected $labelAttributes = array(
         'class' => 'radio',
     );

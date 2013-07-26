@@ -21,13 +21,13 @@ use Zend\EventManager\Event;
  */
 abstract class AbstractAction
 {
-    /** @var EventManager */
+    /** @var EventManager Installer event manager */
     protected $events;
 
-    /** @var Event */
+    /** @var Event Installer event */
     protected $event;
 
-    /** @var array */
+    /** @var array Module config */
     protected $config;
 
     /** @var string Module identifier */

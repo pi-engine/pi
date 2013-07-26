@@ -22,7 +22,7 @@ use Zend\Db\Sql\Select;
  */
 class Role extends Model
 {
-    /** @var string */
+    /** @var string Table name */
     protected $table = 'acl_role';
 
     /**
