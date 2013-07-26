@@ -52,14 +52,20 @@ class AssetCanonize extends AbstractHelper
     /**
      * Canonize attributes of a file
      *
+     * Note: asset type is detected via file extension thus attached versioning number should be removed for detection
+     *
      * @param string $file
      * @param array $attrs
      * @return array
+     * @see \Pi\Application\Service\Asset::versionStamp() for versioning information
      */
     protected function canonizeFile($file, $attrs = array())
     {
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
         $attrs['ext'] = $ext;
+        if (false !== ($pos = strpos($ext, '?'))) {
+            $ext = substr($ext, 0, $pos);
+        }
         switch ($ext) {
             case 'css':
                 if (!isset($attrs['href'])) {
