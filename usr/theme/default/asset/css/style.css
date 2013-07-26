@@ -1,118 +1,115 @@
 /* Bootstrap customization */
 
 /* Base */
-body {
-  background: #f5f5f5;
-}
 
 /* Elements */
 fieldset dl {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 form .icon-question-sign {
-  color: #0089D1;
-  float: left;
-  cursor: pointer;
-  margin: 6px 0 0 1px;
-  padding: 2px;
+    color: #0089D1;
+    float: left;
+    cursor: pointer;
+    margin: 6px 0 0 1px;
+    padding: 2px;
 }
 
 /* Components */
 .page-header {
-  margin: 0 0 15px 0;
+    margin: 0 0 15px 0;
 }
 
 .page-header h2 {
-  margin: 0;
-  font-size: 30px;
+    margin: 0;
+    font-size: 30px;
 }
 
 .page-header .nav {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .page-header .search-query {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 /** Pi Specific **/
 /* Elements */
 .dl-horizontal dt {
-  width: 120px;
+    width: 120px;
 }
 
 .dl-horizontal dd {
-  margin-left: 140px;
+    margin-left: 140px;
 }
 
 /* Components */
 .pi-divider {
-  font-family: serif,sans-serif;
-  margin: 0 6px;
-  color: #ccc;
+    font-family: serif,sans-serif;
+    margin: 0 6px;
+    color: #ccc;
 }
 
 .pi-legend {
-  display: block;
-  margin-bottom: 15px;
-  font-size: 18px;
-  padding: 9px 10px;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #d7d7d7;
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding: 9px 10px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #d7d7d7;
 }
 
 /* Box with border */
 .pi-widget {
-  margin-bottom: 20px;
-  border: 1px solid #d7d7d7;
+    margin-bottom: 20px;
+    border: 1px solid #d7d7d7;
 }
 
 .pi-widget-header {
-  padding: 5px 10px;
-  background: #F8F8F8;
-  border-bottom: 1px solid #d7d7d7;
+    padding: 5px 10px;
+    background: #F8F8F8;
+    border-bottom: 1px solid #d7d7d7;
 }
 
 .pi-widget-body {
-  padding: 18px 20px;
+    padding: 18px 20px;
 }
 
 .pi-widget-body >:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Avatar */
 /* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
 .pi-avatar {
-  width: 80px;
+    width: 80px;
 }
 
 .pi-avatar-mini {
-  width: 16px;
+    width: 16px;
 }
 
 .pi-avatar-xsmall {
-  width: 24px;
+    width: 24px;
 }
 
 .pi-avatar-small {
-  width: 28px;
+    width: 28px;
 }
 
 .pi-avatar-medium {
-  width: 46px;
+    width: 46px;
 }
 
 .pi-avatar-large {
-  width: 96px;
+    width: 96px;
 }
 
 .pi-avatar-xlarge {
-  width: 120px;
+    width: 120px;
 }
 
 .pi-avatar-xxlarge {
-  width: 214px;
+    width: 214px;
 }
