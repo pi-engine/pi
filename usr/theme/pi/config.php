@@ -61,7 +61,7 @@ return array(
     // License or theme images and scripts
     'license'       => 'Creative Common License http://creativecommons.org/licenses/by/3.0/',
     // Optional description
-    'description'   => 'Pi theme for Pi Engine',
+    'description'   => 'Pi theme for Pi Engine, HTML5 support',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => 'default',
     // Supported browsers
