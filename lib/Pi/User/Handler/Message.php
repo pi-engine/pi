@@ -15,6 +15,7 @@ use Pi;
  * Message handler
  *
  * Message APIs:
+ *
  *   - message([$id])->send($message, $from)                                        // Send message to a user
  *   - message([$id])->notify($message, $subject[, $tag])                           // Send notification to a user
  *   - message([$id])->getCount()                                                   // Get message total count of current user

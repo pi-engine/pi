@@ -15,6 +15,7 @@ use Pi;
  * User timeline handler
  *
  * Timeline APIs:
+ *
  *   - timeline([$id])->get($limit[, $offset[, $condition]])                        // Get timeline list
  *   - timeline([$id])->getCount([$condition]])                                     // Get timeline count subject to condition
  *   - timeline([$id])->add($message, $module[, $tag[, $time]])                     // Add activity to user timeline

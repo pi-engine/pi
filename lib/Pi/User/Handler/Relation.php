@@ -15,6 +15,7 @@ use Pi;
  * User relation handler
  *
  * Relation APIs:
+ *
  *   - relation([$id])->get($relation, $limit[, $offset[, $condition[, $order]]])   // Get IDs with relationship: friend, follower, following
  *   - relation([$id])->getCount($relation[, $condition]])                          // Get count with relationship: friend, follower, following
  *   - relation([$id])->hasRelation($uid, $relation)                                // Check if $id has relation with $uid: friend, follower, following

@@ -15,6 +15,7 @@ use Pi;
  * Avatar handler
  *
  * Avatar APIs;
+ * 
  *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
  *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
  *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
