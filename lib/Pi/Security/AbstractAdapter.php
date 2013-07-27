@@ -28,8 +28,12 @@ abstract class AbstractAdapter
      * - false: following evaluations will be terminated and current request is denied
      * - null: continue
      *
+     * @see http://www.php.net/manual/en/migration52.incompatible.php for "Dropped abstract static class functions"
      * @param array $options
      * @return bool|null
      */
-    abstract public static function check($options = null);
+    public static function check($options = null)
+    {
+        throw new \Exception('The method is not implemented.');
+    }
 }
