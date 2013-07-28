@@ -36,7 +36,7 @@ Working with forked repo
   * Create a local branch: ```git tag -a <new-tag>```
   * Push local tags to your repo: ```git push --tags```
   * Delete a local branch: ```git tag -d <old-tag>```
-  * Delete a tag from your repo: ```git push origin :ref/<old-tag>```
+  * Delete a tag from your repo: ```git push origin :refs/tag/<old-tag>```
 
 Working with upstream repo
 --------------------------
