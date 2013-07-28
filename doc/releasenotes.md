@@ -21,10 +21,9 @@ Some of the major changes:
 * Formulated view strategy with Json/Feed/Api data model and view model
 * Added new sugar syntactic _t() for translation and _scape()/_strip() for text processing
 * Forced prefix "pi-" for Pi specific class and id names for CSS/JavaScript and HTML
-
 * Config files:
-   + Modified: var/config/config.application.php
-   - Removed: var/config/service.authentication.php
+   * + Modified: var/config/config.application.php
+   * - Removed: var/config/service.authentication.php
 
 Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.2-rc/doc/changelog.txt) for details.
 
