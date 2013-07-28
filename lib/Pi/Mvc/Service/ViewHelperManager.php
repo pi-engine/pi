@@ -184,4 +184,15 @@ class ViewHelperManager extends HelperPluginManager
         }
         return parent::get($name, $options, $usePeeringServiceManagers);
     }
+
+    /**
+     * Skip translation for view helpers
+     *
+     * @param  Helper\HelperInterface $helper
+     * @return void
+     */
+    public function injectTranslator($helper)
+    {
+        return;
+    }
 }

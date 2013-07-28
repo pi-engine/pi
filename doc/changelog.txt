@@ -1,7 +1,7 @@
 Pi Engine Changelog
 
 
-June 24th, 2013
+July 28th, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
@@ -34,7 +34,8 @@ June 24th, 2013
 29. Added system user model (by system module) and local user model (by user module)
 30. Refactored Default theme with strict Bootstrap compliance and Pi theme with strict HTML 5 (@sexnothing, @voltan, @loidco, etc.)
 31. Improved inline comments following docblock standards and generated Pi API at http://api.pialog.org
-
+32. Upgraded Zend Framework to 2.2.2 as Issue #151
+33. Skipped translation for view helpers
 
 
 June 19th, 2013

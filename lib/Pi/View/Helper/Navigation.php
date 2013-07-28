@@ -134,9 +134,9 @@ class Navigation extends NavigationHelper
             return $this->helpers[$proxy];
         }
 
-        $class = __NAMESPACE__ . '\\Navigation\\' . ucfirst($proxy);
+        $class = __NAMESPACE__ . '\Navigation\\' . ucfirst($proxy);
         if (!class_exists($class)) {
-            $class = 'Zend\\View\\Helper\\Navigation\\' . ucfirst($proxy);
+            $class = 'Zend\View\Helper\Navigation\\' . ucfirst($proxy);
             if (!class_exists($class)) {
                 if ($strict) {
                     throw new \RuntimeException('Failed to find a class to proxy to');
@@ -174,7 +174,7 @@ class Navigation extends NavigationHelper
      * Set navigation data container
      *
      * Register default router and RouteMatch to MvcPage
-     * 
+     *
      * @param Container $container
      * @return self
      */
