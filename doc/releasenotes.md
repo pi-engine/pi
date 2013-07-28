@@ -1,45 +1,40 @@
-Pi Engine 2.2.0 Release
+Pi Engine 2.2.2 Release
 =======================
 
-The Pi Team is pleased to present the Pi Engine Summer Day Release (Pi 2.2.0), a role oriented application development engine based on Zend Framwork 2.
+The Pi Team is pleased to present Pi Engine 2.2.2 with a huge mount of updates
+on structure and functionality along Zend Framwork update to 2.2.2.
 
-Get the [Pi Summer Day Release](https://github.com/pi-engine/pi/archive/release-2.2.0.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
+Get the [Pi 2.2.2 Release](https://github.com/pi-engine/pi/archive/release-2.2.2.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
 
 What's New
 ==========
-During the months of intensive development, a lot of **[features](https://github.com/pi-engine/pi/blob/release-2.2.0/doc/changelog.txt)** have been introduced or improved with dedicated **[documentation](https://github.com/pi-engine/pi/wiki)**. Among of those exciting features, the One-Deployment-Multiple-Instance feature is demonstrated with three websites: Pi Engine Dialogue ([pialog.org](http://pialog.org) | [pialogue.org](http://pialogue.org)), Pi Engine Demo ([pi-demo.org](http://pi-demo.org)) and Xoops/Pi Demo ([demo.xoopsengine.org](http://demo.xoopsengine.org)).
+During the month of intensive development, the Pi Engine framework is improved significantly on standards and completeness of APIs with **[features](https://github.com/pi-engine/pi/blob/release-2.2.2/doc/changelog.txt)**
+Documentation is continuously improved and the Pi development [API site](http://api.pialog.org) is generated with phpdoc.
 
 Some of the major changes:
-* Third-party updated: Zend Framework 2.2.1; Bootstrap 1.0.0; Backbone 2.3.1; MakeItUp 1.1.14
-* MVC/View strategy cleaned up and Pi components aligned for compatibility with ZF components
-* Services introduced: mail service, application audit service, user service
-* L10n support introduced and locale folder name file format canonized
-* HTML head meta and title rendering improved for theme templates
-* Filesystem cache mechanism improved for convenient APIs
-* Variable filtering/sanitizing improved with convenient syntactic sugar
-* Theme inheritance introduced and module template inheritance improved
-* Module operation process improved with responsive messages
-* Module and front-end development documented massively
+* Significant improvements on documentation including front end manual on github wiki
+* PHP/CSS/HTML/JavaScript coding standards are confirmed and Pi PHP docblocks are validated with phpdoc
+* Identified coding standards and formulated major APIs for modules and themes
+* Refactored Default theme and rebuilt Pi theme as strict HTML 5 support
+* Refactored blocks by adding a head zone and a foot zone
+* Added complete user service APIs
+* Added extra path and Extra namespace to allow customization for modules
+* Formulated view strategy with Json/Feed/Api data model and view model
+* Added new sugar syntactic _t() for translation and _scape()/_strip() for text processing
+* Forced prefix "pi-" for Pi specific class and id names for CSS/JavaScript and HTML
+
 * Config files:
-   + Added: var/config/config.application.php
-   + Added: var/config/service.user.php
-   + Added: var/config/service.audit.php
-   + Added: var/config/service.mail.php
-   + Added: var/config/service.security.php
-   + Modified: var/config/service.markup.php
-   + Modified: var/config/resource.security.php
-   + Modified: var/config/application.front.php
-   + Modified: var/config/application.admin.php
-   + Modified: var/config/application.feed.php
+   + Modified: var/config/config.application.php
+   - Removed: var/config/service.authentication.php
 
-Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.0/doc/changelog.txt) for details from @taiwen, @sexnothing, @voltan, @MarcoXoops, @linzongshu, @kris and etc.
+Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.2/doc/changelog.txt) for details.
 
-Tutorials
-=========
-Aside from framework and module developments, **[tutorials](https://github.com/pi-engine/pi/wiki)** are being built up at Pi Wiki and a variety of development teams start to learn and build their applications on Pi Engine, for instance @linzongshu, @sexnothing and @9sheng with their teams respectively.
+Documentation
+=============
+Checkout Pi development manual and tutorials at [Github wiki](https://github.com/pi-engine/pi/wiki) and APIs and class charts at [Pi API](http://api.pialog.org).
 
 
 ---------------------
-[Taiwen Jiang](http://github.com/taiwen), [Pi Team](http://pi-engine.org) 
+[Taiwen Jiang](http://github.com/taiwen), [Pi Team](http://pi-engine.org)
 
-June 22nd, 2013 
+July 29th, 2013

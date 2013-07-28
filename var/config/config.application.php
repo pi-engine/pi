@@ -61,7 +61,7 @@ return array(
                 'HttpViewManager'                => 'Zend\Mvc\Service\HttpViewManagerFactory',
                 'HydratorManager'                => 'Zend\Mvc\Service\HydratorManagerFactory',
                 'InputFilterManager'             => 'Zend\Mvc\Service\InputFilterManagerFactory',
-                'MvcTranslator'                  => 'Zend\Mvc\Service\TranslatorServiceFactory',
+                //'MvcTranslator'                  => 'Zend\Mvc\Service\TranslatorServiceFactory',
                 'PaginatorPluginManager'         => 'Zend\Mvc\Service\PaginatorPluginManagerFactory',
                 'Request'                        => 'Zend\Mvc\Service\RequestFactory',
                 'Response'                       => 'Zend\Mvc\Service\ResponseFactory',
@@ -86,6 +86,7 @@ return array(
                 'Application'                   => 'Pi\Mvc\Service\ApplicationFactory',
                 'ControllerLoader'              => 'Pi\Mvc\Service\ControllerLoaderFactory',
                 'ControllerPluginManager'       => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
+                'MvcTranslator'                 => 'Pi\Mvc\Service\TranslatorServiceFactory',
                 'ViewResolver'                  => 'Pi\Mvc\Service\ViewResolverFactory',
                 /**#@-*/
             ),

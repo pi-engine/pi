@@ -1,7 +1,8 @@
 Pi Engine Changelog
 
 
-July 28th, 2013
+Pi 2.2.2:
+July 29th, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
@@ -38,6 +39,7 @@ July 28th, 2013
 33. Skipped translation for view helpers
 
 
+Pi 2.2.0: 3f6aba29a5bc28ba759e48fcf2e13781b64cab69
 June 19th, 2013
 =============================
 1. Upgraded ZF2 to 2.2.1
@@ -156,6 +158,7 @@ March 14th, 2013
 3. Announcement of Pi Day Release for Pi Engine
 
 
+Pi-Day: 484a82299ffcfe5d4f537ee8c435a46afcbe8216
 March 13th, 2013
 =============================
 1. Upgraded ZF2 to 2.1.1
