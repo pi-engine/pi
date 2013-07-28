@@ -1,10 +1,9 @@
-Pi Engine 2.2.2 Release
+Pi Engine 2.2.2 RC Release
 =======================
 
-The Pi Team is pleased to present Pi Engine 2.2.2 with a huge mount of updates
-on structure and functionality along Zend Framwork update to 2.2.2.
+The Pi Team is pleased to present Pi Engine 2.2.2 with a huge mount of updates on structure and functionality along Zend Framwork update to 2.2.2.
 
-Get the [Pi 2.2.2 Release](https://github.com/pi-engine/pi/archive/release-2.2.2.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
+Get the [Pi 2.2.2-rc Release](https://github.com/pi-engine/pi/archive/release-2.2.2-rc.zip) and report issues and requests to [Pi Issue Tracker](https://github.com/pi-engine/pi/issues).
 
 What's New
 ==========
@@ -27,7 +26,7 @@ Some of the major changes:
    + Modified: var/config/config.application.php
    - Removed: var/config/service.authentication.php
 
-Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.2/doc/changelog.txt) for details.
+Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.2.2-rc/doc/changelog.txt) for details.
 
 Documentation
 =============
