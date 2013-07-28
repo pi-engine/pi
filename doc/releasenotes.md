@@ -7,7 +7,7 @@ Get the [Pi 2.2.2-rc Release](https://github.com/pi-engine/pi/archive/release-2.
 
 What's New
 ==========
-During the month of intensive development, the Pi Engine framework is improved significantly on standards and completeness of APIs with **[features](https://github.com/pi-engine/pi/blob/release-2.2.2/doc/changelog.txt)**
+During the month of intensive development, the Pi Engine framework is improved significantly on standards and completeness of APIs with **[features](https://github.com/pi-engine/pi/blob/release-2.2.2/doc/changelog.txt)**.
 Documentation is continuously improved and the Pi development [API site](http://api.pialog.org) is generated with phpdoc.
 
 Some of the major changes:
