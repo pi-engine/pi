@@ -32,31 +32,39 @@ abstract class AbstractService
      */
     public function __construct($options = array())
     {
-        $this->setOptions($options);
+        // Load default options from config file
+        if ($this->fileIdentifier) {
+            $this->setOptions('service.' . $this->fileIdentifier . '.php');
+        }
+        if ($options) {
+            $this->setOptions($options);
+        }
     }
 
     /**
      * Set options
      *
-     * Options data will be loaded from config file if defined
-     *
-     * @param array $options
+     * @param array|string $options Array of options or config file name
      * @return void
      */
     public function setOptions($options = array())
     {
-        if ($this->fileIdentifier && empty($options)) {
-            $options = Pi::config()->load('service.' . $this->fileIdentifier . '.php');
-            /*
-            if ($options) {
-                $options = array_merge($opt, $options);
-            } else {
-                $options = $opt;
-            }
-            */
+        if (is_string($options)) {
+            $options = Pi::config()->load($options) ?: array();
         }
-
-        $this->options = array_merge($this->options, $options);
+        $this->options = $options;
+        /*
+        if ($options) {
+            if (!$this->options) {
+                $this->options = $options;
+            } else {
+                $config = new Config($this->options, true);
+                $config->merge(new Config($options, true));
+                $this->options = $config->toArray();
+            }
+            //$this->options = array_merge_recursive($this->options, $options);
+        }
+        */
     }
 
     /**

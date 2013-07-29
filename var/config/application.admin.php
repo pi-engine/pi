@@ -35,6 +35,7 @@ $config['resource']['acl'] = array(
 
 // Render caching
 $config['resource']['render'] = false;
+
 // Audit
 /*
  * Options for recording:
@@ -52,6 +53,11 @@ $config['resource']['audit'] = array(
 
 // Admin mode detection
 $config['resource']['adminmode'] = array();
+
+// Session settings
+$config['resource']['session'] = array(
+    'service'   => 'service.session-admin.php',
+);
 
 // Application service configuration
 $config['application']['view_manager']['layout'] = 'layout-admin';

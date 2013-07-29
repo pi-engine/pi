@@ -23,6 +23,11 @@ class Session extends AbstractResource
      */
     public function boot()
     {
+        // Set options for session service
+        if (!empty($this->options['service'])) {
+            Pi::service('session')->setOptions($this->options['service']);
+        }
+        
         try {
             // Attempt to start session
             Pi::service('session')->manager()->start();
