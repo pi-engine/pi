@@ -36,7 +36,7 @@ class PageFilter extends InputFilter
             ),
         ));
 
-        $this->add(array(
+        /* $this->add(array(
             'name'          => 'name',
             'required'      => false,
             'filters'       => array(
@@ -53,7 +53,7 @@ class PageFilter extends InputFilter
                 ),
                 new \Module\Page\Validator\PageNameDuplicate(),
             ),
-        ));
+        )); */
 
         $this->add(array(
             'name'          => 'slug',
@@ -89,10 +89,40 @@ class PageFilter extends InputFilter
                 ),
             ),
         ));
+        
+        $this->add(array(
+            'name'          => 'script',
+            'required'      => false,
+        ));
+        
+        $this->add(array(
+            'name'          => 'style',
+            'required'      => false,
+        ));
 
         $this->add(array(
             'name'          => 'id',
             'required'      => false,
+        ));
+        
+        $this->add(array(
+            'name'          => 'seo_keywords',
+            'required'      => false,
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
+                ),
+            ),
+        ));
+        
+        $this->add(array(
+            'name'          => 'seo_description',
+            'required'      => false,
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
+                ),
+            ),
         ));
     }
 }

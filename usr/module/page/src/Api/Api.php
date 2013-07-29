@@ -26,7 +26,7 @@ class Api extends AbstractApi
 {
     protected $module = 'page';
     protected $pageColumns = array(
-        'name', 'title', 'slug', 'content', 'markup', 'active', 'user', 'time_created'
+        'title', 'slug', 'content', 'markup', 'active', 'user', 'time_created', 'script', 'style'
     );
 
     /**
@@ -51,14 +51,14 @@ class Api extends AbstractApi
             return false;
         }
 
-        if (!$row->name) {
+        if (!$row->slug) {
             return true;
         }
         $page = array(
             'section'       => 'front',
             'module'        => $this->getModule(),
             'controller'    => 'index',
-            'action'        => $row->name,
+            'action'        => $row->slug,
             'title'         => $row->title,
             'block'         => 1,
             'custom'        => 0,
@@ -82,21 +82,21 @@ class Api extends AbstractApi
         if (is_int($name)) {
             $row = Pi::model('page', $this->getModule())->find($name);
         } else {
-            $row = Pi::model('page', $this->getModule())->find($name, 'name');
+            $row = Pi::model('page', $this->getModule())->find($name, 'slug');
         }
         if (!$row) {
             return false;
         }
         $row->delete();
 
-        if (!$row->name) {
+        if (!$row->slug) {
             return true;
         }
         $where = array(
             'section'       => 'front',
             'module'        => $this->getModule(),
             'controller'    => 'index',
-            'action'        => $row->name,
+            'action'        => $row->slug,
         );
         Pi::model('page')->delete($where);
 

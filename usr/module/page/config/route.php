@@ -20,15 +20,16 @@
 /**
  * Routes
  */
+
 return array(
     // route name
     'page'  => array(
         'section'   => 'front',
         'priority'  => 10,
 
-        'type'      => 'Module\Page\Route\Page',
+        'type'      => 'Module\\Page\\Route\\Page',
         'options'   => array(
-            'route'     => '/page',
+            'prefix'    => '/page',
             'defaults'  => array(
                 'module'        => 'page',
                 'controller'    => 'index',

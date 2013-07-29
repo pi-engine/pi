@@ -28,7 +28,7 @@ return array(
         // Description, for admin, optional
         'description'   => 'Page configurations for cache, blocks and ACL.',
         // Version number, required
-        'version'       => '1.0.0-beta.4',
+        'version'       => '1.0.0-beta.5',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -65,6 +65,8 @@ return array(
                     'stats'         => 'table',
                 )
             ),
+            // Module Config
+            'config'        => 'config.php',
             // Navigation definition
             'navigation'    => 'navigation.php',
             // Routes, first in last out; bigger priority earlier out

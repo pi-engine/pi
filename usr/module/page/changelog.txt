@@ -1,5 +1,19 @@
 Page module changelog
 
+July 31th, 2013
+=============================
+1. Versioned at 1.0.0-beta.5
+2. Add page-id ( Set on theme and customize theme body for each page )
+3. Add script and style fields 
+4. Add module config
+5. Add support social network
+6. Add support get filter on params
+7. Add slug auto make from input text on slug field
+8. Add seo_keywords and seo_description auto make from input field or title
+9. Improve URL system
+10. Improve Update and install script
+11. Improve templates
+12. Remove name field and use slug for add system page
 
 September 28th, 2012
 =============================
