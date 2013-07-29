@@ -77,7 +77,7 @@ class Session extends AbstractService
             $saveHandler = null;
             if (!empty($options['save_handler']) && !empty($options['save_handler']['class'])) {
                 $class  = $options['save_handler']['class'];
-                $opts = isset($options['storage']['options']) ? $options['storage']['options'] : array();
+                $opts = isset($options['save_handler']['options']) ? $options['save_handler']['options'] : array();
                 $saveHandler = new $class($opts);
             }
             $this->manager = new SessionManager($sessionConfig, $sessionStorage, $saveHandler);

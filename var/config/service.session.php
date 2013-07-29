@@ -4,7 +4,7 @@
 return array(
     // Configs
     'config'    => array(
-        'class'     => 'Zend\\Session\\Config\\SessionConfig',
+        'class'     => 'Zend\Session\Config\SessionConfig',
         // Runtime session configurations
         // @see http://www.php.net/manual/en/session.configuration.php
         'options'   => array(
@@ -30,25 +30,24 @@ return array(
         ),
         // Validators: validator class => data
         'validators'    => array(
-            'Zend\\Session\\Validator\\HttpUserAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
+            'Zend\Session\Validator\HttpUserAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
             // The following RemoteAddr validator must be disabled when "RememberMe" is enabled
-            //'Zend\\Session\\Validator\\RemoteAddr'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
+            //'Zend\Session\Validator\RemoteAddr'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
         ),
     ),
 
     // Storage
     'storage'   => array(
-        //'class' => 'Zend\\Session\\Storage\\SessionStorage',
-        'class' => 'Zend\\Session\\Storage\\SessionArrayStorage',
+        //'class' => 'Zend\Session\Storage\SessionStorage',
+        'class' => 'Zend\Session\Storage\SessionArrayStorage',
         'input' => array(
         ),
     ),
     // SaveHandler, DbTable
     'save_handler'  => array(
-        'class'     => 'Pi\\Session\\SaveHandler\\DbTable',
+        'class'     => 'Pi\Session\SaveHandler\DbTable',
         'options'   => array(
-            'remember_me_'
-        )
+        ),
     ),
     // Probability to clear expired containers, valid value: 1 - 100
     'clear_probability' => 10,
