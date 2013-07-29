@@ -29,11 +29,10 @@ use Zend\Stdlib\RequestInterface as Request;
  *
  *  1. ID: /url/page/view/123
  *  2. Slug: /url/page/view/my-slug
- *  3. Name via action: /url/page/name
  */
 class Page extends Standard
 {
-    //protected $prefix = '/page';
+    protected $prefix = '/page';
 
     /**
      * Default values.
@@ -59,45 +58,37 @@ class Page extends Standard
         if (null === $result) {
             return null;
         }
+
         list($path, $pathLength) = $result;
         if (empty($path)) {
             return null;
         }
 
-        $action = null;
-        $id = null;
-        $slug = null;
-        $name = null;
-        // Name via action: /url/page/name
-        if (false === strpos($path, $this->paramDelimiter)) {
-            if (preg_match('/[a-z0-9_]/', $path)) {
-                $action = $path;
-                //$name = $path;
-            } else {
-                return null;
-            }
-        // ID/Slug via: /url/page/view/id, /url/page/view/slug
-        // Action with ID/Slug via: /url/page/name/id, /url/page/name/slug
+        /* list($path1, $path2) = explode($this->paramDelimiter, $path, 2);
+        
+        if(empty($path2)) {
+	        if(is_numeric($path1)) {
+	            $matches['id'] = intval($path1);	
+	        } else {
+	            $matches['slug'] = urldecode($path1);
+	        }
         } else {
-            list($view, $param) = explode($this->paramDelimiter, $path, 2);
-            if ('view' != $view) {
-                $action = $view;
-            }
-            if (is_numeric($param)) {
-                $id = $slug;
-            } else {
-                $slug = $param;
-            }
-        }
+	        $matches['action'] = $path1;
+	        if(is_numeric($path2)) {
+	            $matches['id'] = intval($path2);	
+	        } else {
+	            $matches['slug'] = urldecode($path2);
+	        }
+        } */
+        
+        	list($url) = explode($this->paramDelimiter, $path, 1);
+        	
+        	if(is_numeric($url)) {
+	            $matches['id'] = intval($url);
+	        } else {
+	            $matches['action'] = $matches['slug'] = urldecode($url);
+	        }
 
-        $matches = array(
-            'name'          => $name,
-            'id'            => $id ? intval($id) : null,
-            'slug'          => $slug ? urldecode($slug) : null,
-        );
-        if ($action) {
-            $matches['action'] = $action;
-        }
 
         return new RouteMatch(array_merge($this->defaults, $matches), $pathLength);
     }
@@ -116,31 +107,31 @@ class Page extends Standard
         if (!$mergedParams) {
             return $this->prefix;
         }
-        $url = '';
+        
+        // Set path
         if (!empty($mergedParams['slug'])) {
             $url = urlencode($mergedParams['slug']);
-        } elseif (!empty($mergedParams['id'])) {
+            //$action = '';
+        } else {
             $url = intval($mergedParams['id']);
+            //$action = '';
         }
-        $action = '';
-        if (!empty($mergedParams['name'])) {
-            $action = $mergedParams['name'];
-        } elseif (!empty($mergedParams['action'])) {
-            $action = $mergedParams['action'];
-        }
-        if (empty($url) && empty($action)) {
+        
+        // Set action
+        /* if (!empty($mergedParams['name'])) {
+            $action = urlencode($mergedParams['name']);
+        } elseif (!empty($mergedParams['action']) && $mergedParams['action'] != 'index') {
+            $action = urlencode($mergedParams['action']);
+        } */
+
+        if (empty($url)/* && empty($action)*/) {
             return $this->prefix;
         }
-        if (empty($url)) {
-            $url = $action;
-        } elseif (!empty($action)) {
-            if ($action != 'index') {
-                $url = $action . $this->paramDelimiter . $url;
-            }
-        } else {
-            $url = 'view' . $this->paramDelimiter . $url;
-        }
-
+        
+        /* if(!empty($action)) {
+            $url = $action . $this->paramDelimiter . $url;	
+        } */
+        
         return $this->paramDelimiter . trim($this->prefix, $this->paramDelimiter) . $this->paramDelimiter . $url;
     }
 }

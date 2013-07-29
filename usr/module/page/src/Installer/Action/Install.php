@@ -49,23 +49,44 @@ class Install extends BasicInstall
 
         $meta = array_map('trim', file($metaFile));
         $meta = array_filter($meta);
-
-        $apiHandler = Pi::service('api')->handler('page')->setModule($module);
         $pages = array_chunk($meta, 3);
+        
+        $model = Pi::model($e->getParam('module'), 'page');
         foreach ($pages as $page) {
             if (count($page) < 3) {
                 break;
             }
-            list($name, $markup, $title) = $page;
-            $file = sprintf('%s/%s.txt', $path, $name);
+            list($slug, $markup, $title) = $page;
+            $file = sprintf('%s/%s.txt', $path, $slug);
             if (file_exists($file)) {
                 $content = file_get_contents($file);
                 $content = str_replace(array('SITE_URL', 'SITE_NAME'), array(Pi::url('www'), Pi::config('sitename')), $content);
             } else {
                 $content = '';
             }
-            $page = compact('name', 'markup', 'title', 'content');
-            $apiHandler->add($page);
+        
+            // Set keywords 
+            $keywords = _strip($title);
+            $keywords = strtolower(trim($keywords));
+            $keywords = array_unique(array_filter(explode(' ', $keywords)));
+            $seo_keywords = implode(',', $keywords);
+					
+            // Set description 
+            $description= _strip($title); 
+            $description = strtolower(trim($description));
+            $seo_description = preg_replace('/[\s]+/', ' ', $description);
+        
+            $data = array(
+	            'slug' => $slug,
+	            'markup' => $markup,
+	            'title' => $title,
+	            'content' => $content,
+	            'user' => 1,
+               'time_created' => time(),
+               'seo_keywords' => $seo_keywords,
+               'seo_description' => $seo_description,
+            );
+            $model->insert($data);
         }
 
         $result = array(

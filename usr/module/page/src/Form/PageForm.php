@@ -59,7 +59,7 @@ class PageForm extends BaseForm
             )
         ));
 
-        $this->add(array(
+        /* $this->add(array(
             'name'          => 'name',
             'options'       => array(
                 'label' => __('Unique name'),
@@ -68,7 +68,7 @@ class PageForm extends BaseForm
                 'type'  => 'text',
                 'description'   => __('For named call and custom page settings; Only alphabet, number and underscore allowed.'),
             ),
-        ));
+        )); */
 
         /*
         $this->add(array(
@@ -132,7 +132,79 @@ class PageForm extends BaseForm
                 'class'         => 'span6',
             ),
         ));
-
+        
+        $this->add(array(
+            'name'          => 'seo_keywords',
+            'options'       => array(
+                'label' => __('SEO Keywords'),
+            ),
+            'attributes'    => array(
+                'type'  => 'text',
+            )
+        ));
+        
+        $this->add(array(
+            'name'          => 'seo_description',
+            'options'       => array(
+                'label' => __('SEO Description'),
+            ),
+            'attributes'    => array(
+                'type'  => 'text',
+            )
+        ));
+        
+        if($this->markup == 'html') {
+        	
+	        $this->add(array(
+	            'name' => 'extra',
+	            'type' => 'fieldset',
+	            'options' => array(
+	                'label' => __('Extra options'),
+	            ),
+	        ));
+	        
+	        $this->add(array(
+	            'name'          => 'script',
+	            'options'       => array(
+	                'label'     => __('JavaScript codes'),
+	            ),
+	            'attributes'    => array(
+	                'type'          => 'textarea',
+	                'class'         => 'span6',
+	                'description'   => __('Add all needed JavaScript codes, that load as footer script'),
+	            ),
+	        ));
+	        
+	        $this->add(array(
+	            'name'          => 'style',
+	            'options'       => array(
+	                'label'     => __('Style Css codes'),
+	            ),
+	            'attributes'    => array(
+	                'type'          => 'textarea',
+	                'class'         => 'span6',
+	                'description'   => __('Add all needed style Css codes, that load as footer script'),
+	            ),
+	        ));
+	        
+        } else {
+        	
+	        $this->add(array(
+	            'name'          => 'script',
+	            'attributes'    => array(
+	                'type'  => 'hidden',
+	            )
+	        ));
+	        
+	        $this->add(array(
+	            'name'          => 'style',
+	            'attributes'    => array(
+	                'type'  => 'hidden',
+	            )
+	        ));
+	        
+        }
+     
         $this->add(array(
             'name'          => 'id',
             'attributes'    => array(

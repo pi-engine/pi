@@ -30,8 +30,78 @@ class Update extends BasicUpdate
     {
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
+        $events->attach('update.pre', array($this, 'update2'));
         parent::attachDefaultListeners();
         return $this;
+    }
+
+    public function update2(Event $e)
+    {
+        // Table modify  
+        $model = Pi::model('page', $this->module);
+        $table = $model->getTable();
+        $adapter = $model->getAdapter();
+
+        // Alter table add `script`  
+        $sql = sprintf('ALTER TABLE %s ADD `script` text', $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+            ));
+            return false;
+        }
+
+        // Alter table add `style`  
+        $sql = sprintf('ALTER TABLE %s ADD `style` text', $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+            ));
+            return false;
+        }
+
+        // Alter table add `seo_keywords`  
+        $sql = sprintf('ALTER TABLE %s ADD `seo_keywords` varchar(255) NOT NULL', $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+            ));
+            return false;
+        }
+
+        // Alter table add `seo_description`  
+        $sql = sprintf('ALTER TABLE %s ADD `seo_description` varchar(255) NOT NULL,', $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+            ));
+            return false;
+        }
+
+        // Drop not used table  
+        try {
+            $sql = sprintf('DROP TABLE IF EXISTS %s', Pi::model('stats', $this->module)->getTable());
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table drop failed: ' . $exception->getMessage(),
+            ));
+            return false;
+        }
+    
     }
 
     public function updateSchema(Event $e)
@@ -41,7 +111,7 @@ class Update extends BasicUpdate
             return true;
         }
 
-        // Add table of stats, not used yet; Solely for demonstration, will be dropped off by end of the udpate
+        // Add table of stats, not used yet; Solely for demonstration, will be dropped off by end of the udpate 
         $sql =<<<'EOD'
 CREATE TABLE `{stats}` (
   `id`      int(10) unsigned        NOT NULL auto_increment,
@@ -50,8 +120,9 @@ CREATE TABLE `{stats}` (
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `page` (`page`)
-);
+);'
 EOD;
+
         SqlSchema::setType($this->module);
         $sqlHandler = new SqlSchema;
         try {
@@ -64,12 +135,12 @@ EOD;
             return false;
         }
 
-        // Table modify
+        // Table modify 
         $model = Pi::model('page', $this->module);
         $table = $model->getTable();
         $adapter = $model->getAdapter();
 
-        // Alter table field `time` to `time_created`
+        // Alter table field `time` to `time_created` 
         $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10) unsigned NOT NULL default \'0\'', $table);
         try {
             $adapter->query($sql, 'execute');
@@ -81,7 +152,7 @@ EOD;
             return false;
         }
 
-        // Add table field `time_updated`
+        // Add table field `time_updated` 
         $sql = sprintf('ALTER TABLE %s ADD `time_updated` int(10) unsigned NOT NULL default \'0\' AFTER `time_created`', $table);
         try {
             $adapter->query($sql, 'execute');
@@ -92,7 +163,7 @@ EOD;
             ));
             return false;
         }
-        // Add table field `clicks`
+        // Add table field `clicks` 
         try {
             $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10) unsigned NOT NULL default \'0\'', $table);
             $adapter->query($sql, 'execute');
@@ -104,7 +175,7 @@ EOD;
             return false;
         }
 
-        // Drop not used table
+        // Drop not used table 
         try {
             $sql = sprintf('DROP TABLE IF EXISTS %s', Pi::model('stats', $this->module)->getTable());
             $adapter->query($sql, 'execute');

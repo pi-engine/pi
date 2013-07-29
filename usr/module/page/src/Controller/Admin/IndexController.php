@@ -31,7 +31,8 @@ use Module\Page\Form\PageFilter;
 class IndexController extends ActionController
 {
     protected $pageColumns = array(
-        'id', 'name', 'title', 'slug', 'content', 'markup', 'active', 'user', 'time'
+        'id', 'title', 'slug', 'content', 'markup', 'active', 'user', 'time', 
+        'style', 'script', 'seo_keywords', 'seo_description'
     );
 
     /**
@@ -48,8 +49,8 @@ class IndexController extends ActionController
         foreach ($rowset as $row) {
             $page = array(
                 'id'    => $row->id,
-                'name'  => $row->name,
-                'title' => $row->title,
+                //'name'  => $row->name, 
+                'title' => $row->title, 
                 'slug'  => $row->slug,
             );
             $page['url'] = $this->url('.page', $page);
@@ -71,7 +72,7 @@ class IndexController extends ActionController
     public function addAction()
     {
         $markup = 'text';
-        //$module = $this->getModule();
+        //$module = $this->getModule();  
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $markup = $data['markup'];
@@ -85,22 +86,45 @@ class IndexController extends ActionController
                         unset($values[$key]);
                     }
                 }
-                if (empty($values['name'])) {
+                /* if (empty($values['name'])) {
                     $values['name'] = null;
-                }
+                } */
+                
                 if (empty($values['slug'])) {
                     $values['slug'] = null;
-                }
+                } else {
+                    $stringStripped = _strip($values['slug']);
+                    $text = strtolower(trim($stringStripped));
+                    $words = array_filter(explode(' ', $text));
+                    $values['slug'] = implode('-', $words);
+                }	
+
+                // Set keywords 
+                $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
+                $keywords = _strip($keywords);
+                $keywords = strtolower(trim($keywords));
+                $keywords = array_unique(array_filter(explode(' ', $keywords)));
+                $values['seo_keywords'] = implode(',', $keywords);
+					
+                // Set description 
+                $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
+                $description= _strip($description); 
+                $description = strtolower(trim($description));
+                $values['seo_description'] = preg_replace('/[\s]+/', ' ', $description);
+
+                //$values['script'] = _escape($values['script'], 'js');
+                //$values['style'] = _escape($values['style'], 'css'); 
+                
                 $values['active'] = 1;
-                $values['user'] = Pi::service('user')->getUser()->id;
+                $values['user'] = Pi::registry('user')->id;
                 $values['time_created'] = time();
                 unset($values['id']);
 
                 $row = $this->getModel('page')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    if ($row->name) {
-                        $this->setPage($row->name, $row->title);
+                    if ($row->slug) {
+                        $this->setPage($row->slug, $row->title);
                     }
                     Pi::service('registry')->page->clear($this->getModule());
                     $message = __('Page data saved successfully.');
@@ -146,22 +170,41 @@ class IndexController extends ActionController
                     unset($values[$key]);
                 }
             }
-            if (empty($values['name'])) {
+            /* if (empty($values['name'])) {
                 $values['name'] = null;
-            }
+            } */
             if (empty($values['slug'])) {
                 $values['slug'] = null;
-            }
+            } else {
+                $stringStripped = _strip($values['slug']);
+                $text = strtolower(trim($stringStripped));
+                $words = array_filter(explode(' ', $text));
+                $values['slug'] = implode('-', $words);
+            }	
+            
+            // Set keywords 
+            $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
+            $keywords = _strip($keywords);
+            $keywords = strtolower(trim($keywords));
+            $keywords = array_unique(array_filter(explode(' ', $keywords)));
+            $values['seo_keywords'] = implode(',', $keywords);
+					
+            // Set description 
+            $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
+            $description= _strip($description); 
+            $description = strtolower(trim($description));
+            $values['seo_description'] = preg_replace('/[\s]+/', ' ', $description);
+                
             $values['active'] = 1;
-            $values['user'] = Pi::service('user')->getUser()->id;
+            $values['user'] = Pi::registry('user')->id;
             $values['time_created'] = time();
             unset($values['id']);
 
             $row = $this->getModel('page')->createRow($values);
             $row->save();
             if ($row->id) {
-                if ($row->name) {
-                    $this->setPage($row->name, $row->title);
+                if ($row->slug) {
+                    $this->setPage($row->slug, $row->title);
                 }
                 $message = __('Page added successfully.');
                 $page = array(
@@ -212,17 +255,36 @@ class IndexController extends ActionController
                         unset($values[$key]);
                     }
                 }
-                if (empty($values['name'])) {
+                /* if (empty($values['name'])) {
                     $values['name'] = null;
-                }
+                } */
                 if (empty($values['slug'])) {
                     $values['slug'] = null;
-                }
+                } else {
+                    $stringStripped = _strip($values['slug']);
+                    $text = strtolower(trim($stringStripped));
+                    $words = array_filter(explode(' ', $text));
+                    $values['slug'] = implode('-', $words);
+                }	
+
+                // Set keywords 
+                $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
+                $keywords = _strip($keywords);
+                $keywords = strtolower(trim($keywords));
+                $keywords = array_unique(array_filter(explode(' ', $keywords)));
+                $values['seo_keywords'] = implode(',', $keywords);
+					
+                // Set description 
+                $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
+                $description= _strip($description); 
+                $description = strtolower(trim($description));
+                $values['seo_description'] = preg_replace('/[\s]+/', ' ', $description);
+ 
                 $pageSet = array();
-                if ($row->name != $values['name']) {
+                if ($row->slug != $values['slug']) {
                     $pageSet = array(
-                        'remove'    => $row->name,
-                        'set'       => array($values['name'], $values['title']),
+                        'remove'    => $row->slug,
+                        'set'       => array($values['slug'], $values['title']),
                     );
                 }
                 $values['time_updated'] = time();
@@ -244,7 +306,7 @@ class IndexController extends ActionController
                 $message = __('Invalid data, please check and re-submit.');
             }
         } else {
-            $id = $this->params('id');
+            $id = $this->params()->get('id', 'int');
             $row = $this->getModel('page')->find($id);
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
@@ -282,17 +344,36 @@ class IndexController extends ActionController
                     unset($values[$key]);
                 }
             }
-            if (empty($values['name'])) {
+            /* if (empty($values['name'])) {
                 $values['name'] = null;
-            }
+            } */
             if (empty($values['slug'])) {
                 $values['slug'] = null;
-            }
+            } else {
+                $stringStripped = _strip($values['slug']);
+                $text = strtolower(trim($stringStripped));
+                $words = array_filter(explode(' ', $text));
+                $values['slug'] = implode('-', $words);
+            }	
+            
+            // Set keywords 
+            $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
+            $keywords = _strip($keywords);
+            $keywords = strtolower(trim($keywords));
+            $keywords = array_unique(array_filter(explode(' ', $keywords)));
+            $values['seo_keywords'] = implode(',', $keywords);
+					
+            // Set description 
+            $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
+            $description= _strip($description); 
+            $description = strtolower(trim($description));
+            $values['seo_description'] = preg_replace('/[\s]+/', ' ', $description);
+            
             $pageSet = array();
-            if ($row->name != $values['name']) {
+            if ($row->slug != $values['slug']) {
                 $pageSet = array(
-                    'remove'    => $row->name,
-                    'set'       => array($values['name'], $values['title']),
+                    'remove'    => $row->slug,
+                    'set'       => array($values['slug'], $values['title']),
                 );
             }
             $values['time_updated'] = time();
@@ -337,12 +418,12 @@ class IndexController extends ActionController
         $status     = 1;
         $message    = __('Page deleleted successfaully.');
 
-        $id = $this->params('id');
+        $id = $this->params()->get('id', 'int');
         $row = $this->getModel('page')->find($id);
         if ($row) {
             $row->delete();
-            if ($row->name) {
-                $this->removePage($row->name);
+            if ($row->slug) {
+                $this->removePage($row->slug);
             }
             Pi::service('registry')->page->clear($this->getModule());
         }
@@ -363,7 +444,7 @@ class IndexController extends ActionController
         $status     = 1;
         $message    = __('Page updated successfully.');
 
-        $id = $this->params('id');
+        $id = $this->params()->get('id', 'int');
         $row = $this->getModel('page')->find($id);
         if ($row) {
             $row->active = $row->active ? 0 : 1;
@@ -381,17 +462,17 @@ class IndexController extends ActionController
     /**
      * Add page settings to system
      *
-     * @param string $name
+     * @param string $slug
      * @param string $title
      * @return int
      */
-    protected function setPage($name, $title)
+    protected function setPage($slug, $title)
     {
         $page = array(
             'section'       => 'front',
             'module'        => $this->getModule(),
             'controller'    => 'index',
-            'action'        => $name,
+            'action'        => $slug,
             'title'         => $title,
             'block'         => 1,
             'custom'        => 0,
@@ -404,16 +485,16 @@ class IndexController extends ActionController
     /**
      * Remove from system page settings
      *
-     * @param stinr $name
+     * @param stinr $slug
      * @return int
      */
-    protected function removePage($name)
+    protected function removePage($slug)
     {
         $where = array(
             'section'       => 'front',
             'module'        => $this->getModule(),
             'controller'    => 'index',
-            'action'        => $name,
+            'action'        => $slug,
         );
         $count = Pi::model('page')->delete($where);
         return $count;

@@ -29,53 +29,60 @@ class IndexController extends ActionController
 {
     protected function render($row)
     {
-        $this->view()->setTemplate('page-view');
+        
         if (!$row instanceof RowGateway || !$row->active) {
             $title = __('Page request');
             $content = __('The page requested does not exist.');
         } else {
             $content = $row->content;
             if ($content) {
-                $content = Pi::service('markup')->render($content, $row->markup ?: 'text');
+                //$content = Pi::service('markup')->render($content, $row->markup ?: 'text');
+                $content = Pi::service('markup')->render($content, 'html', $row->markup ?: 'text');
             }
             $title = $row->title;
-            // Specify page head title
+            // Specify page head title 
             $this->view()->headTitle($row->title);
+            $this->view()->headDescription($row->seo_description, 'set');
+            $this->view()->headKeywords($row->seo_keywords, 'set');
+            // Update clicks
             $model = $this->getModel('page');
             $model->update(array('clicks' => new Expression('`clicks` + 1')), array('id' => $row->id));
+            // Add css and javascript  
+            $style = (!empty($row->style)) ? $row->style : '';
+            $script = (!empty($row->script)) ? $row->script : '';
+            // Module config 
+            $config = Pi::service('registry')->config->read($this->getModule());
         }
 
+        // Set view
+        $this->view()->setTemplate('page-view');
         $this->view()->assign(array(
             'title'     => $title,
             'content'   => $content,
+            'style'     => $style,
+            'script'    => $script,
+            'config'    => $config,
+            'page-id'   => sprintf('page-%s', $row->id), // Use page-id on <body> tag for custom each page
         ));
-        //return $content;
     }
 
     /**
      * Access a page via
      *  1. /url/page/123
      *  2. /url/page/my-slug
-     * Access a page via
-     *  1. /url/page/index/pagename
-     *  2. /url/page/view/pagename
+     *  3. /url/page/action/123
+     *  4. /url/page/action/my-slug
      */
     public function indexAction()
     {
-        $id = $this->params('id');
-        $slug = $this->params('slug');
-        $name = $this->params('name');
-        $action = $this->params('action');
+        $id = $this->params()->get('id', 'int');
+        $slug = $this->params('slug', 'StripTags');
 
         $row = null;
         if ($id) {
             $row = $this->getModel('page')->find($id);
-        } elseif ($name) {
-            $row = $this->getModel('page')->find($name, 'name');
         } elseif ($slug) {
             $row = $this->getModel('page')->find($slug, 'slug');
-        } elseif ($action) {
-            $row = $this->getModel('page')->find($action, 'name');
         }
 
         $this->render($row);
