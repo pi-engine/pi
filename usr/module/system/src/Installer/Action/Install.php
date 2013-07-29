@@ -90,11 +90,11 @@ class Install extends BasicInstall
             ),
             array(
                 'title' => 'Pi Engine Code',
-                'url'   => 'http://github.com/pi-engine/pi',
+                'url'   => 'http://code.pialog.org',
             ),
             array(
                 'title' => 'Pi Engine Doc',
-                'url'   => 'https://github.com/pi-engine/pi/wiki',
+                'url'   => 'http://doc.pialog.org',
             ),
             array(
                 'title' => 'Pi Engine Twitter',

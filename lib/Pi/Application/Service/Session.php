@@ -106,16 +106,6 @@ class Session extends AbstractService
     }
 
     /**
-     * Get container
-     *
-     * @return Container
-     */
-    public function __get($name)
-    {
-        return $this->container($name);
-    }
-
-    /**
      * Clear expired containers
      *
      * @return void
@@ -138,5 +128,28 @@ class Session extends AbstractService
                 $storage->clear($name);
             }
         }
+    }
+
+    /**
+     * Megaic method to get session container
+     *
+     * @param string $name
+     * @return Container
+     */
+    public function __get($name)
+    {
+        return $this->container($name);
+    }
+
+    /**
+     * Magic method to proxy calls to session manager
+     *
+     * @param string $method
+     * @param array $args
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        return call_user_func_array(array($this->manager(), $method), $args);
     }
 }

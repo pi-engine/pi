@@ -14,7 +14,7 @@ use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Handler\AbstractHandler;
 use Pi\User\Adapter\AbstractAdapter;
-use Pi\User\Adapter\Local as LocalAdapter;
+use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
 
 
@@ -129,7 +129,7 @@ class User extends AbstractService
             if (!empty($this->options['adapter'])) {
                 $this->adapter = new $this->options['adapter'];
             } else {
-                $this->adapter = new LocalAdapter;
+                $this->adapter = new DefaultAdapter;
             }
         }
         return $this->adapter;

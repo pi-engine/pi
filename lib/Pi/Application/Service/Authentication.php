@@ -36,7 +36,7 @@ use Zend\Authentication\Storage;
  *  }
  * ```
  *
- * Usage with default adapter:
+ * Usage with specified adapter:
  *
  * ```
  *  $adapter = new Adapter();
