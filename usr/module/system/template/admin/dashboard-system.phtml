@@ -133,6 +133,8 @@
 <script src="<?php echo $this->assetModule('/script/dashboard-system.js'); ?>"></script>
 <script>
 dashboardSystem({
-    quicLinkCollection: new Backbone.Collection(<?php echo json_encode($links); ?>)
+    quicLinkCollection: new Backbone.Collection(<?php echo json_encode($links); ?>),
+    messageUrl: '<?php echo $this->url('', array(action => 'message')); ?>',
+    linkUrl: '<?php echo $this->url('', array(action => 'link')); ?>'
 });
 </script>
