@@ -1,4 +1,5 @@
 (function($) {
+  var options;
   var NoticeView = Backbone.View.extend({
     el: $('#system-js-notice'),
     events: {
@@ -15,7 +16,7 @@
     },
     messageAction: function() {
       var v = $.trim(this.$('textarea').val());
-      $.post('/admin/system/dashboard/message', {
+      $.post(options.messageUrl, {
         content: v
       }).done(_.bind(function(data) {
         data = $.parseJSON(data);
@@ -127,7 +128,7 @@
       });
       this.$el.removeClass('system-quick-link-edit');
       this.hideAddForm();
-      $.post('/admin/system/dashboard/link', {
+      $.post(options.linkUrl, {
         content: data
       });
     }
@@ -143,7 +144,8 @@
     }
   });
 
-  this.dashboardSystem = function(options) {
+  this.dashboardSystem = function(opts) {
+    options = opts;
     new NoticeView();
     new LinkListView({
       collection: options.quicLinkCollection
