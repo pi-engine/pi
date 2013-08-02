@@ -19,6 +19,9 @@ use Zend\Authentication\Storage\Session as ZendSession;
  */
 class Session extends ZendSession
 {
+    /** @var array Options */
+    protected $options = array();
+
     /**
      * Constructor
      *
@@ -30,5 +33,14 @@ class Session extends ZendSession
         $member     = $options['member'];
         $sessionManager = isset($options['session_manager']) ? $options['session_manager'] : Pi::service('session')->manager();
         parent::__construct($namespace, $member, $sessionManager);
+        $this->setOptions($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions($options = array())
+    {
+        $this->options = $options;
     }
 }

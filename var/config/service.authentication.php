@@ -14,7 +14,12 @@ return array(
     'adapter'  => array(
         'class'     => 'Pi\Authentication\Adapter\DbTable',
         'options'   => array(
-        )
+            'table_name'        => 'user_account',
+            'identity_column'   => 'identity',
+            'credential_column' => 'credential',
+
+            'return_columns'    => null,
+            'omit_columns'      => array('credential', 'salt'),
+        ),
     ),
-    //
 );

@@ -24,7 +24,7 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *   - getMeta([$type])                                     // Get meta list of user, type: account, profile, extra - extra profile non-structured
  *
  * + User operations
- *   + Bind
+ *   + Binding
  *   - bind($id[, $field])                                  // Bind current user
  *
  *   + Read
@@ -60,17 +60,42 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *   + Collective URL
  *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
  *   + Authentication
- *   - authenticate($identity, $credential[, $identityField])       // Authenticate a user
+ *   - authenticate($identity, $credential)                         // Authenticate a user
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractAdapter implements BindInterface
 {
+    /** @var array Options */
+    protected $options = array();
+
     /**
      * Bound user account
      * @var UserModel
      */
     protected $model;
+
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct($options = array())
+    {
+        $this->setOptions($options);
+    }
+
+    /**
+     * Set options
+     *
+     * @param array $options
+     * @return self
+     */
+    public function setOptions($options = array())
+    {
+        $this->options = $options;
+        return $this;
+    }
 
     /**
      * Bind a user to service
@@ -108,6 +133,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param string $type
      * @return array
+     * @api
      */
     abstract public function getMeta($type = 'account');
     /**#@-*/
@@ -121,6 +147,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param int|string|null   $id         User id, identity
      * @param string            $field      Field of the identity: id, identity, email, etc.
      * @return UserModel
+     * @api
      */
     abstract public function getUser($id = null, $field = 'id');
 
@@ -129,6 +156,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param int[] $ids User ids
      * @return array
+     * @api
      */
     abstract public function getUserList($ids);
 
@@ -140,6 +168,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param int                       $offset
      * @param string                    $order
      * @return int[]
+     * @api
      */
     abstract public function getIds($condition = array(), $limit = 0, $offset = 0, $order = '');
 
@@ -148,6 +177,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param array|PredicateInterface  $condition
      * @return int
+     * @api
      */
     abstract public function getCount($condition = array());
 
@@ -156,6 +186,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param   array       $data
      * @return  int|false
+     * @api
      */
     abstract public function addUser($data);
 
@@ -165,6 +196,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param   array       $data
      * @param   int         $id
      * @return  int|false
+     * @api
      */
     abstract public function updateUser($data, $id = null);
 
@@ -173,6 +205,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param   int         $id
      * @return  bool
+     * @api
      */
     abstract public function deleteUser($id);
 
@@ -181,6 +214,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param   int         $id
      * @return  bool
+     * @api
      */
     abstract public function activateUser($id);
 
@@ -189,6 +223,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param   int         $id
      * @return  bool
+     * @api
      */
     abstract public function deactivateUser($id);
     /**#@-*/
@@ -202,6 +237,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param string|array      $key
      * @param string|int|null   $id
      * @return mixed
+     * @api
      */
     abstract public function get($key, $id = null);
 
@@ -211,6 +247,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param string|array      $key
      * @param array             $ids
      * @return array
+     * @api
      */
     abstract public function getList($key, $ids);
 
@@ -221,6 +258,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param midex             $value
      * @param string|int|null   $id
      * @return bool
+     * @api
      */
     abstract public function set($key, $value, $id = null);
 
@@ -231,6 +269,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param int               $value  Positive to increment or negative to decrement
      * @param string|int|null   $id
      * @return bool
+     * @api
      */
     abstract public function increment($key, $value, $id = null);
 
@@ -240,6 +279,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param string            $value
      * @param string|int|null   $id
      * @return bool
+     * @api
      */
     abstract public function setPassword($value, $id = null);
     /**#@-*/
@@ -259,18 +299,31 @@ abstract class AbstractAdapter implements BindInterface
      * @param string        $type       Type of URLs: profile, login, logout, register, auth
      * @param int|null      $id
      * @return string
+     * @api
      */
     abstract public function getUrl($type, $id = null);
 
     /**
      * Authenticate user
      *
+     * Authenticate a user and display corresponding message
+     *
+     * ```
+     *  $result = Pi::service('user')->authenticate(<identity>, <credential>);
+     *  if ($result->isValid()) {
+     *      echo 'User is logged on.';
+     *      Pi::service('user')->setPersist($result->getData();
+     *  } else {
+     *      echo implode('<br>', $result->getMessages());
+     *  }
+     * ```
+     *
      * @param string        $identity
      * @param string        $credential
-     * @param string        $field          Identity field: identity, email
-     * @return bool
+     * @return \Pi\Authentication\Result
+     * @api
      */
-    abstract public function authenticate($identity, $credential, $field = 'identity');
+    abstract public function authenticate($identity, $credential);
     /**#@-*/
 
     /**

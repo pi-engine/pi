@@ -11,8 +11,11 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Authentication\Adapter;
-use Zend\Authentication\Storage;
+use Pi\Authentication\Adapter\AdapterInterface;
+use Pi\Authentication\Storage\StorageInterface;
+//use Zend\Authentication\Adapter\DbTable\AbstractAdapter as DbTableAdapter;
+//use Zend\Authentication\Storage\StorageInterface;
+use Zend\Authentication\Result;
 
 /**
  * Authentication service
@@ -26,7 +29,7 @@ use Zend\Authentication\Storage;
  *  }
  * ```
  *
- * Usage with specified adapter:
+ * Usage with specified adapter via authenticate method:
  *
  * ```
  *  $adapter = new Adapter();
@@ -36,7 +39,7 @@ use Zend\Authentication\Storage;
  *  }
  * ```
  *
- * Usage with specified adapter:
+ * Usage with specified adapter via separate methods:
  *
  * ```
  *  $adapter = new Adapter();
@@ -60,14 +63,14 @@ class Authentication extends AbstractService
     /**
      * Adpater handler
      *
-     * @var Adapter
+     * @var AdapterInterface
      */
     protected $adapter;
 
     /**
      * Storage handler
      *
-     * @var Storage
+     * @var StorageInterface
      */
     protected $storage;
 
@@ -76,10 +79,11 @@ class Authentication extends AbstractService
      *
      * @param string $identity
      * @param string $credential
-     * @param Adapter $adapter
-     * @return Zend\Authentication\Result
+     * @param AdapterInterface $adapter
+     * @param StorageInterface $storage
+     * @return Result
      */
-    public function authenticate($identity, $credential, Adapter $adapter = null)
+    public function authenticate($identity, $credential, AdapterInterface $adapter = null, StorageInterface $storage = null)
     {
         $adapter = $adapter ?: $this->getAdapter();
         $adapter->setIdentity($identity);
@@ -91,7 +95,9 @@ class Authentication extends AbstractService
         }
 
         if ($result->isValid()) {
-            $this->getStorage()->write($result->getIdentity());
+            $storage = $storage ?: $this->getStorage();
+            $storage->write($result->getIdentity());
+            $result->setData($adapter->getResultRow());
         }
 
         return $result;
@@ -100,10 +106,10 @@ class Authentication extends AbstractService
     /**
      * Set adapter
      *
-     * @param Adapter $adapter
+     * @param AdapterInterface $adapter
      * @return $this
      */
-    public function setAdapter(Adapter $adapter)
+    public function setAdapter(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
         return $this;
@@ -112,24 +118,23 @@ class Authentication extends AbstractService
     /**
      * Get adapter
      *
-     * @return Adapter
+     * @return AdapterInterface
      */
     public function getAdapter()
     {
         if (!$this->adapter) {
-            $class      = $this->options['adapter']['class'];
-            $options    = isset($this->options['adapter']['options']) ? $this->options['adapter']['options'] : null;
-            $this->adapter = new $class($options);
+            $this->adapter = $this->loadAdapter($this->options['adapter']);
         }
         return $this->adapter;
     }
 
     /**
      * Set storage
-     * @param Storage $storage
+     *
+     * @param StorageInterface $storage
      * @return $this
      */
-    public function setStorage(Storage $storage)
+    public function setStorage(StorageInterface $storage)
     {
         $this->storage = $storage;
         return $this;
@@ -138,16 +143,46 @@ class Authentication extends AbstractService
     /**
      * Get storage
      *
-     * @return Stroage
+     * @return StorageInterface
      */
     public function getStorage()
     {
         if (!$this->storage) {
-            $class      = $this->options['storage']['class'];
-            $options    = isset($this->options['storage']['options']) ? $this->options['storage']['options'] : null;
-            $this->storage = new $class($options);
+            $this->storage = $this->loadStorage($this->options['storage']);
         }
         return $this->storage;
+    }
+
+    /**
+     * Load authentication adapter
+     *
+     * @param array $config
+     * @return AdapterInterface
+     */
+    public function loadAdapter($config = array())
+    {
+        $class      = $config['class'];
+        $options    = isset($config['options']) ? $config['options'] : array();
+        $adapter = new $class;
+        if ($options) {
+            $adapter->setOptions($options);
+        }
+
+        return $adapter;
+    }
+
+    /**
+     * Load authentication storage
+     *
+     * @param array $config
+     * @return StorageInterface
+     */
+    public function loadStorage($config = array())
+    {
+        $class      = $config['class'];
+        $options    = isset($config['options']) ? $config['options'] : array();
+        $storage = new $class($options);
+        return $storage;
     }
 
     /**

@@ -7,17 +7,18 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Handler;
+namespace Pi\User\Resource;
 
 use Pi;
 use Pi\User\Model\AbstractModel as UserModel;
+use Pi\User\BindInterface;
 
 /**
- * User avatar abstract class
+ * User resource handler abstraction
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractAvatar
+class AbstractResource implements BindInterface
 {
     /**
      * Bound user account
@@ -25,21 +26,31 @@ abstract class AbstractAvatar
      */
     protected $model;
 
+    /** @var array Options */
+    protected $options = array();
+
     /**
-     * Constructor
+     * Bind a user
      *
-     * @param UserModel $model
+     * @param UserModel $user
+     * @return AbstractHandler
      */
-    public function __construct(UserModel $model = null)
+    public function bind(UserModel $model = null)
     {
         $this->model = $model;
+        return $this;
     }
 
     /**
-     * Get user avatar link
+     * Set options
      *
-     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
-     * @return string
+     * @param array $options
+     * @return self
      */
-    abstract public function build($size = '');
+    public function setOptions($options = array())
+    {
+        $this->options = $options;
+        return $this;
+    }
+
 }

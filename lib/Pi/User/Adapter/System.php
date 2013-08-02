@@ -231,12 +231,17 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential, $field = 'identity')
+    public function authenticate($identity, $credential)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $options = array();
+        if (isset($this->options['authentication'])) {
+            $options = $this->options['authentication'];
+        }
+        $service = Pi::service()->load('authentication', $options);
+        $result = $service->authenticate($identity, $credential);
+        return $result;
     }
     /**#@-*/
-
 
     /**
      * Method handler allows a shortcut

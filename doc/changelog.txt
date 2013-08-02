@@ -3,7 +3,8 @@ Pi Engine Changelog
 Pi 2.2.3
 ============
 1. Added support for custom configuration
-
+2. Refactored user API service with support for persistent profile
+3. Modified config files: var/config/service.authentication.php; var/config/service.user.php
 
 Pi 2.2.2:
 July 29th, 2013

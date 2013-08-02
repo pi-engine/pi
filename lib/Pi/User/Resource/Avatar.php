@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Handler;
+namespace Pi\User\Resource;
 
 use Pi;
 
@@ -15,7 +15,7 @@ use Pi;
  * Avatar handler
  *
  * Avatar APIs;
- * 
+ *
  *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
  *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
  *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
@@ -24,7 +24,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Avatar extends AbstractHandler
+class Avatar extends AbstractResource
 {
     /**
      * Get avatar adapter

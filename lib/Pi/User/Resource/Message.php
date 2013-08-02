@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Handler;
+namespace Pi\User\Resource;
 
 use Pi;
 
@@ -23,7 +23,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Message extends AbstractHandler
+class Message extends AbstractResource
 {
     /**
      * If message module available

@@ -12,11 +12,10 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\User\BindInterface;
-use Pi\User\Handler\AbstractHandler;
 use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
-
+use Pi\User\Resource\AbstractResource;
 
 /**
  * User service gateway
@@ -26,9 +25,60 @@ use Pi\User\Model\AbstractModel as UserModel;
  *
  * User APIs
  *
- * - restore()                                            // Restore bound user to current session user
+ * Basic APIs defined by \Pi\User\Adapter\AbstractAdapter called via magic method __call()
+ * ---------------------------------------------------------------------------------------
  *
- * + External APIs
+ * + Meta operations
+ *   - getMeta([$type])                                     // Get meta list of user, type: account, profile, extra - extra profile non-structured
+ *
+ * + User operations
+ *   + Binding
+ *   - bind($id[, $field])                                  // Bind current user
+ *
+ *   + Read
+ *   - getUser([$id])                                       // Get current user or specified user
+ *   - getUserList($ids)                                    // List of users by ID list
+ *   - getIds($condition[, $limit[, $offset[, $order]]])    // ID list subject to $condition
+ *   - getCount([$condition])                               // User count subject to $condition
+ *
+ *   + Add
+ *   - addUser($data)               // Add a new user with account and profile
+ *
+ *   + Update
+ *   - updateUser($data[, $id])     // Update a user for account and profile
+ *
+ *   + Delete
+ *   - deleteUser($id)              // Delete a user
+ *
+ *   + Activate
+ *   - activateUser($id)            // Activate a user
+ *   - deactivateUser($id)          // Deactivate a user
+ *
+ * + User account/profile field operations
+ *   + Read
+ *   - get($key[, $id])             // Get user field(s)
+ *   - getList($key, $ids)          // User field(s) of user list
+ *
+ *   + Update
+ *   - set($key, $value[, $id])         // Update field of user
+ *   - increment($key, $value[, $id])   // Increase value of field
+ *   - setPassword($value[, $id])       // Update password
+ *
+ * + Utility
+ *   + Collective URL
+ *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
+ *   + Authentication
+ *   - authenticate($identity, $credential)                         // Authenticate a user
+ * ----------------------------------------------------------------------------------------------------------
+ *
+ * + User operations
+ *  - bind($identity[, $type])                                      // Bind a user
+ *  - restore()                                                     // Restore bound user to current session user
+ *  - destroy()                                                     // Destory current user session
+ *  - hasIdentity()                                                 // If user logged in
+ *  - getIdentity()                                                 // Get identity of the logged user
+ *
+ * + Resource APIs
  *
  * + Avatar
  *   - avatar([$id])                                                                // Get avatar handler
@@ -79,7 +129,7 @@ class User extends AbstractService
     /**
      * User data object of current session
      *
-     * @var UserModel
+     * @var UserModel|null|false
      */
     protected $modelSession;
 
@@ -91,11 +141,11 @@ class User extends AbstractService
     protected $adapter;
 
     /**
-     * External handlers
+     * Resource handlers
      *
      * @var array
      */
-    protected $handler = array(
+    protected $resource = array(
         'avatar'    => null,
         'message'   => null,
         'timeline'  => null,
@@ -106,7 +156,7 @@ class User extends AbstractService
      * Set service adapter
      *
      * @param AbstractAdapter $adapter
-     * @return User
+     * @return self
      */
     public function setAdapter(AbstractAdapter $adapter)
     {
@@ -126,81 +176,53 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
+            $options = isset($this->options['options']) ? $this->options['options'] : array();
             if (!empty($this->options['adapter'])) {
-                $this->adapter = new $this->options['adapter'];
+                $this->adapter = new $this->options['adapter']($options);
             } else {
-                $this->adapter = new DefaultAdapter;
+                $this->adapter = new DefaultAdapter($options);
             }
         }
         return $this->adapter;
     }
 
     /**
-     * Get external handler
+     * Get resource handler
      *
      * @param string $name
      * @param int|null $id
-     * @return AbstractHandler
+     * @return AbstractResource
      */
-    public function getHandler($name, $id = null)
+    public function getResource($name, $id = null)
     {
-        if (!$this->handler[$name] instanceof AbstractHandler) {
-            if (!empty($this->options['handler'][$name])) {
-                $class = $this->$this->options['handler'][$name];
-            } else {
-                $class = 'Pi\User\Handler\\' . ucfirst($name);
+        if (!$this->resource[$name] instanceof AbstractResource) {
+            $options = array();
+            $class = '';
+            if (!empty($this->options['resource'][$name])) {
+                if (is_string($this->$this->options['handler'][$name])) {
+                    $class = $this->$this->options['handler'][$name];
+                } else {
+                    if (isset($this->$this->options['handler'][$name]['class'])) {
+                        $class = $this->$this->options['handler'][$name]['class'];
+                    }
+                    if (isset($this->$this->options['handler'][$name]['options'])) {
+                        $options = $this->$this->options['handler'][$name]['options'];
+                    }
+                }
             }
-            $this->handler[$name] = new $class;
-            $this->handler[$name]->bind($this->getUser($id));
+            if (!$class) {
+                $class = 'Pi\User\Resource\\' . ucfirst($name);
+            }
+            $this->resource[$name] = new $class;
+            $this->resource[$name]->bind($this->getUser($id));
+            if ($options) {
+                $this->resource[$name]->setOptions($options);
+            }
         } elseif (null !== $id) {
-            $this->handler[$name]->bind($this->getUser($id));
+            $this->resource[$name]->bind($this->getUser($id));
         }
 
-        return $this->handler[$name];
-    }
-
-    /**
-     * Get avatar handler
-     *
-     * @param int|null $id
-     * @return AbstractHandler
-     */
-    public function avatar($id = null)
-    {
-        return $this->getHandler('avatar', $id);
-    }
-
-    /**
-     * Get message handler
-     *
-     * @param int|null $id
-     * @return AbstractHandler
-     */
-    public function message($id = null)
-    {
-        return $this->getHandler('message', $id);
-    }
-
-    /**
-     * Get timeline handler
-     *
-     * @param int|null $id
-     * @return AbstractHandler
-     */
-    public function timeline($id = null)
-    {
-        return $this->getHandler('timeline', $id);
-    }
-
-    /**
-     * Get relation handler
-     *
-     * @param int|null $id
-     * @return AbstractHandler
-     */
-    public function relation($id = null)
-    {
-        return $this->getHandler('relation', $id);
+        return $this->resource[$name];
     }
 
     /**
@@ -208,7 +230,7 @@ class User extends AbstractService
      *
      * @param UserModel|int|string|null $identity   User id, identity or data object
      * @param string                    $type       Type of the identity: id, identity, object
-     * @return User
+     * @return self
      */
     public function bind($identity = null, $type = '')
     {
@@ -226,7 +248,7 @@ class User extends AbstractService
             // Bind user model to service adapter
             $this->getAdapter()->bind($this->model);
             // Bind user model to handlers
-            foreach ($this->handler as $key => $handler) {
+            foreach ($this->resource as $key => $handler) {
                 if ($handler instanceof BindInterface) {
                     $handler->bind($this->model);
                 }
@@ -238,11 +260,54 @@ class User extends AbstractService
 
     /**
      * Restore user model to current session user
+     *
+     * @return self
      */
     public function restore()
     {
         $this->bind($this->modelSession);
         return $this;
+    }
+
+    /**
+     * Destory current user session
+     *
+     * @return self
+     */
+    public function destroy()
+    {
+        $this->modelSession = false;
+        $this->setPersist(false);
+        return $this;
+    }
+
+    /**
+     * Check if use has logged in
+     *
+     * @return bool
+     * @api
+     */
+    public function hasIdentity()
+    {
+        return $this->modelSession && $this->modelSession->get('id') ? true : false;
+    }
+
+    /**
+     * Get identity of current logged user
+     *
+     * @param bool $asId Return use id as identity; otherwise return user identity name
+     * @return null|int|string
+     * @api
+     */
+    public function getIdentity($asId = true)
+    {
+        if (!$this->hasIdentity()) {
+            $identity = null;
+        } else {
+            $identity = $asId ? $this->modelSession->getId() : $this->modelSession->getIdentity();
+        }
+
+        return $identity;
     }
 
     /**
@@ -260,6 +325,7 @@ class User extends AbstractService
      * Method adapter allows a shortcut
      *
      * Call APIs defined in {@link \Pi\User\Adapter\AbstractAdapter}
+     *
      * @param  string  $method
      * @param  array  $args
      * @return mixed
@@ -267,5 +333,90 @@ class User extends AbstractService
     public function __call($method, $args)
     {
         return call_user_func_array(array($this->getAdapter(), $method), $args);
+    }
+
+    /**
+     * Get avatar handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function avatar($id = null)
+    {
+        return $this->getResource('avatar', $id);
+    }
+
+    /**
+     * Get message handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function message($id = null)
+    {
+        return $this->getResource('message', $id);
+    }
+
+    /**
+     * Get timeline handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function timeline($id = null)
+    {
+        return $this->getResource('timeline', $id);
+    }
+
+    /**
+     * Get relation handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function relation($id = null)
+    {
+        return $this->getResource('relation', $id);
+    }
+
+    /**
+     * Set user persist profile
+     *
+     * Persistent user profile data
+     *
+     *  - uid: user id
+     *  - identity: identity or username
+     *  - name: user full name or display name
+     *  - email: email
+     *  - <extra fields>: specified by each adapter
+     *
+     * @param array|false $data
+     * @return self
+     */
+    public function setPersist($data = array())
+    {
+        $_SESSION['PI_USER'] = $data ? (array) $data : null;
+        return $this;
+    }
+
+    /**
+     * Get user persist profile
+     *
+     * @param string|null $name
+     * @return mixed|null
+     */
+    public function getPersist($name = null)
+    {
+        if (!$this->hasIdentity()) {
+            return false;
+        }
+        $data = (array) $_SESSION['PI_USER'];
+        if ($name) {
+            $result = isset($data[$name]) ? $data[$name] : null;
+        } else {
+            $result = $data;
+        }
+
+        return $result;
     }
 }

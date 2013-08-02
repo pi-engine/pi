@@ -203,7 +203,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential, $field = 'identity')
+    public function authenticate($identity, $credential)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }

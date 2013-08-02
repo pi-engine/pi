@@ -7,27 +7,27 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Handler;
+namespace Pi\User\Resource;
 
 use Pi;
 
 /**
- * User relation handler
+ * User timeline handler
  *
- * Relation APIs:
+ * Timeline APIs:
  *
- *   - relation([$id])->get($relation, $limit[, $offset[, $condition[, $order]]])   // Get IDs with relationship: friend, follower, following
- *   - relation([$id])->getCount($relation[, $condition]])                          // Get count with relationship: friend, follower, following
- *   - relation([$id])->hasRelation($uid, $relation)                                // Check if $id has relation with $uid: friend, follower, following
- *   - relation([$id])->add($uid, $relation)                                        // Add $uid as a relation: friend, follower, following
- *   - relation([$id])->delete([$uid[, $relation]])                                 // Delete $uid as relation: friend, follower, following
+ *   - timeline([$id])->get($limit[, $offset[, $condition]])                        // Get timeline list
+ *   - timeline([$id])->getCount([$condition]])                                     // Get timeline count subject to condition
+ *   - timeline([$id])->add($message, $module[, $tag[, $time]])                     // Add activity to user timeline
+ *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])         // Get activity list of a user
+ *   - timeline([$id])->delete([$condition])                                        // Delete timeline items subjecto to condition
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Relation extends AbstractHandler
+class Timeline extends AbstractResource
 {
     /**
-     * If relation module available
+     * If user module available for time handling
      * @var bool|null
      */
     protected $isAvailable = null;
@@ -40,7 +40,7 @@ class Relation extends AbstractHandler
     protected function isAvailable()
     {
         if (null === $this->isAvailable) {
-            $this->isAvailable = Pi::service('module')->isActive('relation');
+            $this->isAvailable = Pi::service('module')->isActive('user');
         }
         return $this->isAvailable;
     }

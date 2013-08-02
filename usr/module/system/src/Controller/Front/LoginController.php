@@ -35,7 +35,7 @@ class LoginController extends ActionController
         }
 
         // If already logged in
-        if (Pi::service('authentication')->hasIdentity()) {
+        if (Pi::service('user')->hasIdentity()) {
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
@@ -83,6 +83,7 @@ class LoginController extends ActionController
     public function logoutAction()
     {
         Pi::service('session')->manager()->destroy();
+        Pi::service('user')->destroy();
         $this->jump(array('route' => 'home'), __('You logged out successfully. Now go back to homepage.'));
     }
 
@@ -122,7 +123,7 @@ class LoginController extends ActionController
             }
         }
 
-        $result = Pi::service('authentication')->authenticate($identity, $credential);
+        $result = Pi::service('user')->authenticate($identity, $credential);
 
         if (!$result->isValid()) {
             if (!empty($configs['attempts'])) {
@@ -140,6 +141,7 @@ class LoginController extends ActionController
             Pi::service('session')->manager()->rememberme($configs['rememberme'] * 86400);
         }
         Pi::service('user')->bind($result->getIdentity(), 'identity');
+        Pi::service('user')->setPersist($result->getData());
         Pi::service('event')->trigger('login', $result->getIdentity());
 
         if (!empty($configs['attempts'])) {

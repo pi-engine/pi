@@ -107,6 +107,17 @@ abstract class AbstractModel
     }
 
     /**
+     * Get an attribute
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return $this->$name;
+    }
+
+    /**
      * Load user account from database
      *
      * @param int|string $data
