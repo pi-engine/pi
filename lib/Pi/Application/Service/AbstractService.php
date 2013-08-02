@@ -32,12 +32,12 @@ abstract class AbstractService
      */
     public function __construct($options = array())
     {
-        // Load default options from config file
-        if ($this->fileIdentifier) {
-            $this->setOptions('service.' . $this->fileIdentifier . '.php');
-        }
+        // Set specified options
         if ($options) {
             $this->setOptions($options);
+        // Load default options from config file
+        } elseif ($this->fileIdentifier) {
+            $this->setOptions('service.' . $this->fileIdentifier . '.php');
         }
     }
 

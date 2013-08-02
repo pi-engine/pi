@@ -26,7 +26,14 @@ class Config
      *
      * @var string
      */
-    protected $fileLocation = '';
+    protected $configLocation = '';
+
+    /**
+     * Custom file location
+     *
+     * @var string
+     */
+    protected $customLocation = '';
 
     /**
      * Container for config data:
@@ -42,11 +49,12 @@ class Config
     /**
      * Constructor
      *
-     * @param  string $fileLocation
+     * @param  string $configLocation
      */
-    public function __construct($fileLocation)
+    public function __construct($configLocation = '', $customLocation = '')
     {
-        $this->fileLocation = $fileLocation;
+        $this->configLocation = $configLocation ?: Pi::path('config');
+        $this->customLocation = $customLocation ?: Pi::path('custom');
     }
 
     /**
@@ -138,7 +146,7 @@ class Config
     }
 
     /**
-     * Load configuration data from var/config directory
+     * Load configuration data from custom or config directory
      *
      * @param string    $configFile Name for the config file located inside var/config and sub folders
      * @return array
@@ -146,8 +154,14 @@ class Config
     public function load($configFile)
     {
         $configs = array();
-        $file = $this->fileLocation . '/' . $configFile;
-        if (file_exists($file)) {
+        $file = $this->customLocation . '/' . $configFile;
+        if (!file_exists($file)) {
+            $file = $this->configLocation . '/' . $configFile;
+            if (!file_exists($file)) {
+                $file = false;
+            }
+        }
+        if ($file) {
             $configs = include $file;
         }
 

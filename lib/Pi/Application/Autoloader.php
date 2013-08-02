@@ -118,7 +118,7 @@ class Autoloader
     {
         // Include paths, adding vendor path
         if (!empty($options['include_path'])) {
-            set_include_path(get_include_path() . \PATH_SEPARATOR . $options['include_path']);
+            set_include_path(get_include_path() . PATH_SEPARATOR . $options['include_path']);
         }
         // Module directory
         if (!empty($options['module_path'])) {

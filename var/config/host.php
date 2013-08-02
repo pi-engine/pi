@@ -57,9 +57,10 @@ return array(
         'vendor'    => '/path/to/lib/vendor',
 
         // Dependent paths
-        // Note: optional, will be located in var if not specified
         // Path to global configuration directory
         'config'    => '/path/to/var/config',
+        // Path to custom configuration directory
+        'custom'    => '/path/to/var/custom',
         // Path to cache files directory
         'cache'     => '/path/to/var/cache',
         // Path to logs directory

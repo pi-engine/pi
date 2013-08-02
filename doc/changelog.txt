@@ -1,5 +1,9 @@
 Pi Engine Changelog
 
+Pi 2.2.3
+============
+1. Added support for custom configuration
+
 
 Pi 2.2.2:
 July 29th, 2013

@@ -50,6 +50,7 @@ return array(
                 'vendor'    => '/path/to/pi/vendor',
 
                 'config'    => '/path/to/pi/config',
+                'custom'    => '/path/to/pi/custom',
                 'cache'     => '/path/to/pi/cache',
                 'log'       => '/path/to/pi/log',
             ),

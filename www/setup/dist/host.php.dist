@@ -57,9 +57,10 @@ return array(
         'vendor'    => '%vendor_path%',
 
         // Dependent paths
-        // Note: optional, will be located in var if not specified
-        // Path to global configuration directory
+        // Path to global collective configuration directory
         'config'    => '%config_path%',
+        // Path to custom collective configuration directory
+        'custom'    => '%custom_path%',
         // Path to cache files directory
         'cache'     => '%cache_path%',
         // Path to logs directory
