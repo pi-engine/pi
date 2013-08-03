@@ -53,8 +53,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Canonize ViewModel for action
         $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($this, 'canonizeActionResult'), -70);
 
-        // Inject ViewModel, should be performed before injectTemplateListener
-        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($this, 'injectTemplate'), -85);
+        // Inject ViewModel, should be performed
+        // prior to Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate() whose priority is -90
+        // and skip following error status:
+        // NotFound handled by: Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel() whose priority is -90
+        // Error handled by: Pi\Mvc\View\Http\ErrorStrategy::prepareErrorViewModel() whose priority is --85
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($this, 'injectTemplate'), -89);
 
         // Render head metas for theme
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'renderThemeAssemble'), 10000);
@@ -377,7 +381,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 'action'        => $routeMatch->getParam('action'),
             ));
         }
-        if ($template) {
+        if ($template || $e->isError()) {
             return;
         }
 

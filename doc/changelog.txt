@@ -42,6 +42,7 @@ July 29th, 2013
 31. Improved inline comments following docblock standards and generated Pi API at http://api.pialog.org
 32. Upgraded Zend Framework to 2.2.2 as Issue #151
 33. Skipped translation for view helpers
+34. Fixed Isse #166: error strategy should be performed prior to \Zend\Mvc\View\Http\InjectTemplateListener
 
 
 Pi 2.2.0: 3f6aba29a5bc28ba759e48fcf2e13781b64cab69
