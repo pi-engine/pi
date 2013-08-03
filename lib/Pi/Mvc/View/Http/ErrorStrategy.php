@@ -20,6 +20,16 @@ use Zend\View\Model\ClearableModelInterface;
 /**
  * Erroneous strategy listener
  *
+ * Prepare for error ViewModel, should be performed prior to
+ *
+ * - \Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate() whose priority is -89
+ * - \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate() whose priority is -90
+ *
+ * RouteNotFound is handled by: Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel() whose priority is -90
+ *
+ * @see \Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
+ * @see \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+ * @see \Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ErrorStrategy extends AbstractListenerAggregate
@@ -29,7 +39,10 @@ class ErrorStrategy extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareErrorViewModel'), -90);
+        $sharedEvents = $events->getSharedManager();
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($this, 'prepareErrorViewModel'), -85);
+
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareErrorViewModel'), -85);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'prepareErrorViewModel'), 100);
     }
 
@@ -79,12 +92,15 @@ class ErrorStrategy extends AbstractListenerAggregate
         $viewModel = null;
         if (!$result instanceof ViewModel) {
             $viewModel = new ViewModel;
+        } else {
+            $viewModel = $result;
+        }
+
+        if (!$viewModel->getTemplate()) {
             $config  = $e->getApplication()->getServiceManager()->get('Config');
             $viewConfig = $config['view_manager'];
             $template = isset($viewConfig[$templateName]) ? $viewConfig[$templateName] : 'error';
             $viewModel->setTemplate($template);
-        } else {
-            $viewModel = $result;
         }
 
         if (!$viewModel->getVariable('message')) {
