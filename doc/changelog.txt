@@ -2,7 +2,7 @@ Pi Engine Changelog
 
 
 Pi 2.2.2:
-July 29th, 2013
+August 3rd, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
