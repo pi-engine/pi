@@ -6,8 +6,8 @@ Pi 2.2.3
 2. Refactored user API service with support for persistent profile
 3. Modified config files: var/config/service.authentication.php; var/config/service.user.php
 
-Pi 2.2.2:
-July 29th, 2013
+Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
+August 3rd, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
 2. Added Pi\File\Transfer\Download for file download and script/download.php for single file download
