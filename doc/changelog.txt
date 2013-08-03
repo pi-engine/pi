@@ -1,7 +1,7 @@
 Pi Engine Changelog
 
 
-Pi 2.2.2:
+Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
 August 3rd, 2013
 =============================
 1. Added doc "Pi Engine Architecture Diagram"
