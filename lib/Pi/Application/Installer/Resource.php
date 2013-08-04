@@ -129,7 +129,8 @@ class Resource implements ListenerAggregateInterface
         $config = $this->event->getParam('config');
         if (!empty($config['maintenance']['resource'])) {
             $resources = array_keys($config['maintenance']['resource']);
-            $resourceList = array_unique(array_merge($resources, $resourceList));
+            $resourceList = array_unique(array_merge($resources,
+                $resourceList));
         }
 
         return $resourceList;
