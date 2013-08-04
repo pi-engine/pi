@@ -46,6 +46,7 @@ class AssetModule extends AbstractHelper
             return $customAssets[$file];
         }
 
-        return Pi::service('asset')->getModuleAsset($file, $module, $versioning);
+        return Pi::service('asset')->getModuleAsset($file, $module,
+            $versioning);
     }
 }
