@@ -56,7 +56,9 @@ abstract class AbstractRegistry
     protected $namespace;
 
     /**
-     * The meta tags used for namespace, thus will be skipped in key generator since the tags will be prefixed via namespace
+     * The meta tags used for namespace,
+     * thus will be skipped in key generator
+     * since the tags will be prefixed via namespace
      *
      * @var string[]
      */
@@ -98,7 +100,6 @@ abstract class AbstractRegistry
      */
     protected function getNamespace($name)
     {
-        //return Pi::service('cache')->getNamespace(sprintf('%s_%s_%s', static::TAG, $this->registryKey, $name));
         return sprintf('%s_%s_%s', static::TAG, $this->registryKey, $name);
     }
 
@@ -119,7 +120,10 @@ abstract class AbstractRegistry
                 $namespace = $meta['module'];
                 $this->namespaceMeta = array('module');
             } else {
-                throw new \Exception('Custom namespace is required for registry ' . get_class($this));
+                throw new \Exception(
+                    'Custom namespace is required for registry '
+                        . get_class($this)
+                );
             }
             /*
             $namespace = $this->getNamespace($namespace);
@@ -219,11 +223,6 @@ abstract class AbstractRegistry
             //$isCached = false;
         }
 
-        /*
-        if (Pi::service()->hasService('log')) {
-            Pi::service('log')->info(sprintf('Registry %s is %s.', get_class($this), $isCached ? 'cached' : 'generated'));
-        }
-        */
         return $data;
     }
 
@@ -238,14 +237,6 @@ abstract class AbstractRegistry
         $data = null;
         if ($this->cache()) {
             $cacheKey = $this->createKey($meta);
-
-            /*
-            $namespace = $this->cache->getOptions()->getNamespace();
-            $this->cache->getOptions()->setNamespace($this->namespace);
-            $data = $this->cache->getItem($cacheKey);
-            $this->cache->getOptions()->setNamespace($namespace);
-            */
-
             $data = Pi::service('cache')->getItem($cacheKey, $this->namespace);
             if (null !== $data) {
                 $data = json_decode($data, true);
@@ -266,17 +257,14 @@ abstract class AbstractRegistry
         if ($data === false) {
             return false;
         }
-        //return $this->cache() ? $this->cache->setItem($this->createKey($meta), json_encode($data)) : false;
         $status = false;
         if ($this->cache()) {
-            /*
-            $namespace = $this->cache->getOptions()->getNamespace();
-            $this->cache->getOptions()->setNamespace($this->namespace);
-            $status = $this->cache->setItem($this->createKey($meta), json_encode($data));
-            $this->cache->getOptions()->setNamespace($namespace);
-            */
             $cacheKey = $this->createKey($meta);
-            $data = Pi::service('cache')->setItem($cacheKey, json_encode($data), $this->namespace);
+            $data = Pi::service('cache')->setItem(
+                $cacheKey,
+                json_encode($data),
+                $this->namespace
+            );
         }
 
         return $status;
@@ -302,11 +290,6 @@ abstract class AbstractRegistry
      */
     public function clear($namespace = '')
     {
-        /*
-        if ($this->cache() && method_exists($this->cache(), 'clearByNamespace')) {
-            $this->cache()->clearByNamespace($this->getNamespace($namespace));
-        }
-        */
         Pi::service('cache')->clearByNamespace($this->getNamespace($namespace));
 
         return $this;
@@ -361,7 +344,8 @@ abstract class AbstractRegistry
     /**
      * Read data from cache storage
      *
-     * In case data are not available in cache storage, they will be fetched and stored into cache storage
+     * In case data are not available in cache storage,
+     * they will be fetched and stored into cache storage
      *
      * @return array
      */

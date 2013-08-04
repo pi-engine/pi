@@ -67,7 +67,7 @@ abstract class AbstractStorage
     }
 
     /**
-     * Test if an item is available for the given id and (if yes) return it (false else)
+     * Test if an item is available for the given id
      *
      * @param  string  $id Item id
      * @return mixed|false Cached datas

@@ -75,8 +75,6 @@ class SqlSchema
     {
         // Remove comments to prevent from invalid syntax
         $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->', $content);
-        // Normalize table prefix
-        //return preg_replace_callback('|(\{[^\}]+\})|', 'static::normalizeSchema', $content);
 
         $type = static::$type;
         $canonizePrefix = function ($matches) use ($type)
@@ -94,7 +92,8 @@ class SqlSchema
             return $tableName;
         };
 
-        $result = preg_replace_callback('|(\{[^\}]+\})|', $canonizePrefix, $content);
+        $result = preg_replace_callback('|(\{[^\}]+\})|',
+            $canonizePrefix, $content);
         return $result;
     }
 

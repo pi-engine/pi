@@ -34,9 +34,9 @@ class Moduleperm extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $type Default as front:
-     *                              front - all active and allowed for front section;
-     *                              admin - all active and allowed for admin section;
-     *                              manage - all active and allowed for admin managed components.
+     *          front - all active and allowed for front section;
+     *          admin - all active and allowed for admin section;
+     *          manage - all active and allowed for admin managed components.
      *
      * @param string|null $role
      */
@@ -53,9 +53,9 @@ class Moduleperm extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $type Default as front:
-     *                              front - all active and allowed for front section;
-     *                              admin - all active and allowed for admin section;
-     *                              manage - all active and allowed for admin managed components.
+     *          front - all active and allowed for front section;
+     *          admin - all active and allowed for admin section;
+     *          manage - all active and allowed for admin managed components.
      *
      * @param string|null $role
      */

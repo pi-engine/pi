@@ -94,7 +94,8 @@ class Render extends AbstractService
      */
     protected function canonizeKey($key)
     {
-        return Pi::service('theme')->current() . '_' . $this->getType() . '_' . $key;
+        return Pi::service('theme')->current()
+            . '_' . $this->getType() . '_' . $key;
     }
 
     /**
@@ -119,7 +120,8 @@ class Render extends AbstractService
     public function getStorage()
     {
         if (!$this->storage instanceof AbstractAdapter) {
-            $storage = !empty($this->options['storage']) ? $this->options['storage'] : ($this->storage ?: '');
+            $storage = !empty($this->options['storage'])
+                ? $this->options['storage'] : ($this->storage ?: '');
             if ($storage) {
                 $storage = Pi::service('cache')->loadStorage($storage);
             } else {
@@ -249,7 +251,11 @@ class Render extends AbstractService
     {
         $key = $this->meta['key'];
         if (!isset($this->cachedContent[$key])) {
-            $this->cachedContent[$key] = Pi::service('cache')->getItem($this->meta['key'], $this->meta, $this->getStorage());
+            $this->cachedContent[$key] = Pi::service('cache')->getItem(
+                    $this->meta['key'],
+                    $this->meta,
+                    $this->getStorage()
+                );
         }
         return $this->cachedContent[$key];
     }
@@ -264,7 +270,12 @@ class Render extends AbstractService
     {
         $content = (null !== $content) ? $content : $this->content;
         if (null !== $content) {
-            Pi::service('cache')->setItem($this->meta['key'], $content, $this->meta, $this->getStorage());
+            Pi::service('cache')->setItem(
+                $this->meta['key'],
+                $content,
+                $this->meta,
+                $this->getStorage()
+            );
         }
         $this->opened = false;
         return $this;
@@ -281,20 +292,30 @@ class Render extends AbstractService
     {
         // Remove an item
         if (null !== $key) {
-            Pi::service('cache')->removeItem($namespace, $key, $this->getStorage());
+            Pi::service('cache')->removeItem(
+                $namespace,
+                $key,
+                $this->getStorage()
+            );
             return $this;
         }
 
         // Flush by namespace
         if (null !== $namespace) {
-            Pi::service('cache')->clearByNamespace($namespace, $this->getStorage());
+            Pi::service('cache')->clearByNamespace(
+                $namespace,
+                $this->getStorage()
+            );
             return $this;
         }
 
         // Flush all by modules
         $modules = Pi::service('module')->meta();
         foreach (array_keys($modules) as $module) {
-            Pi::service('cache')->clearByNamespace($module, $this->getStorage());
+            Pi::service('cache')->clearByNamespace(
+                $module,
+                $this->getStorage()
+            );
         }
     }
 }

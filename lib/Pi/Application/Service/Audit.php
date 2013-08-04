@@ -139,7 +139,8 @@ class Audit extends AbstractService
     public function attach($name, $options = null)
     {
         if (null === $options) {
-            $options = isset($this->options[$name]) ? $this->options[$name] : array();
+            $options = isset($this->options[$name])
+                ? $this->options[$name] : array();
         }
         $options = $options ?: array();
         if (is_string($options)) {

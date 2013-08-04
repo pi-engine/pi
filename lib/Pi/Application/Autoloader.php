@@ -35,7 +35,12 @@ class Autoloader
     /** @var string Top namespace for extras */
     const TOP_NAMESPACE_EXTRA = 'Extra';
 
-    /** @var string Directory for module and extra source code. Module classes are located in /usr/module/modulename/src/ and extra classes in /usr/extra/modulename/src/ */
+    /**
+     * Directory for module and extra source code.
+     * Module classes are located in `/usr/module/<module-name>/src/`
+     * and extra classes in `/usr/extra/<module-name>/src/`
+     * @var string
+     */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
@@ -45,7 +50,10 @@ class Autoloader
      */
     const NS_SEPARATOR     = '\\';
 
-    /** @var array Top namespace/directory pairs to match; Pi, Zend added by default */
+    /**
+     * Top namespace/directory pairs to match; Pi, Zend added by default
+     * @var array
+     */
     protected $tops = array();
 
     /** @var array Callbacks to locate class file */
@@ -96,7 +104,10 @@ class Autoloader
     protected $map = array();
     /**#@-*/
 
-    /** @var array Namespace/directory pairs to search; ZF library added by default */
+    /**
+     * Namespace/directory pairs to search; ZF library added by default
+     * @var array
+     */
     protected $namespaces = array();
 
     /**
@@ -118,7 +129,8 @@ class Autoloader
     {
         // Include paths, adding vendor path
         if (!empty($options['include_path'])) {
-            set_include_path(get_include_path() . PATH_SEPARATOR . $options['include_path']);
+            set_include_path(get_include_path() .
+                PATH_SEPARATOR . $options['include_path']);
         }
         // Module directory
         if (!empty($options['module_path'])) {
@@ -188,7 +200,8 @@ class Autoloader
     }
 
     /**
-     * Load by persist class map which is registered in standard autoloader or custom autoloader
+     * Load by persist class map which is registered in standard autoloader
+     * or custom autoloader
      *
      * @param  string $class
      * @return void
@@ -202,7 +215,8 @@ class Autoloader
         // If class is registered in persist and valid
         if (!empty($path)) {
             if (!include $path) {
-                trigger_error(sprintf('Class "%s" is not loaded from "%s"', $class, $path));
+                trigger_error(sprintf('Class "%s" is not loaded from "%s"',
+                    $class, $path));
             }
         }
     }
@@ -233,22 +247,31 @@ class Autoloader
         $top = substr($class, 0, $pos);
         // Module classes, Module\ModuleName\ClassNamespace\ClassName
         if (static::TOP_NAMESPACE_MODULE === $top) {
-            list($top, $module, $trimmedClass) = explode(static::NS_SEPARATOR, $class, 3);
-            $path = $this->modulePath . DIRECTORY_SEPARATOR . strtolower($module) . DIRECTORY_SEPARATOR . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
-            $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
+            list($top, $module, $trimmedClass)
+                = explode(static::NS_SEPARATOR, $class, 3);
+            $path = $this->modulePath . DIRECTORY_SEPARATOR .
+                strtolower($module) . DIRECTORY_SEPARATOR .
+                static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename($trimmedClass,
+                $path);
 
         // Extra classes, Extra\ModuleName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_EXTRA === $top) {
-            list($top, $module, $trimmedClass) = explode(static::NS_SEPARATOR, $class, 3);
-            $path = $this->extraPath . DIRECTORY_SEPARATOR . strtolower($module) . DIRECTORY_SEPARATOR . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
-            $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
+            list($top, $module, $trimmedClass)
+                = explode(static::NS_SEPARATOR, $class, 3);
+            $path = $this->extraPath . DIRECTORY_SEPARATOR .
+                strtolower($module) . DIRECTORY_SEPARATOR .
+                static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename($trimmedClass,
+                $path);
         // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
             $trimmedClass = substr($class, strlen($top . static::NS_SEPARATOR));
             $path = $this->tops[$top];
             // Get file full path
-            $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
+            $filePath = $this->transformClassNameToFilename($trimmedClass,
+                $path);
         /*#@-*/
 
         } else {
@@ -258,7 +281,9 @@ class Autoloader
                     // Trim off leader
                     $trimmedClass = substr($class, strlen($leader));
                     // Get file full path
-                    $filePath = $this->transformClassNameToFilename($trimmedClass, $path);
+                    $filePath = $this->transformClassNameToFilename(
+                        $trimmedClass,
+                        $path);
                     // Break
                     break;
                 }
@@ -316,7 +341,9 @@ class Autoloader
     public function registerTops($namespaces)
     {
         if (!is_array($namespaces) && !$namespaces instanceof \Traversable) {
-            throw new \InvalidArgumentException('Namespace pairs must be either an array or Traversable');
+            throw new \InvalidArgumentException(
+                'Namespace pairs must be either an array or Traversable'
+            );
         }
 
         foreach ($namespaces as $namespace => $directory) {
@@ -362,7 +389,7 @@ class Autoloader
     /**
      * Factory for autoloaders
      *
-     * Options should be an array or Traversable object of the following structure:
+     * Options should be an array or Traversable object with structure:
      *
      * <code>
      * array(
@@ -389,7 +416,7 @@ class Autoloader
     {
         if (!is_array($options) && !($options instanceof \Traversable)) {
             throw new \InvalidArgumentException(
-                             'Options provided must be an array or Traversable'
+                'Options provided must be an array or Traversable'
             );
         }
 
@@ -400,7 +427,7 @@ class Autoloader
             if (!isset($this->loaders[$class])) {
                 if (!class_exists($class)) {
                     throw new \InvalidArgumentException(
-                                sprintf('Autoloader class "%s" not loaded', $class)
+                        sprintf('Autoloader class "%s" not loaded', $class)
                     );
                 }
                 // Instantiate autoloader

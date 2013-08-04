@@ -100,7 +100,9 @@ abstract class AbstractEngine
     {
         if ($this->fileIdentifier) {
             // Load option data from var folder
-            $opt = Pi::config()->load(sprintf('application.%s.php', $this->fileIdentifier));
+            $opt = Pi::config()->load(
+                sprintf('application.%s.php', $this->fileIdentifier)
+            );
             // Set configs if available
             if (!empty($options['config'])) {
                 Pi::config()->setConfigs($options['config']);
@@ -112,7 +114,8 @@ abstract class AbstractEngine
             Pi::config()->setConfigs($options['config']);
             unset($options['config']);
         }
-        $this->options = $this->options ? array_merge_recursive($this->options, $options) : $options;
+        $this->options = $this->options
+            ? array_merge_recursive($this->options, $options) : $options;
 
         return $this;
     }

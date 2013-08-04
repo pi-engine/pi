@@ -21,7 +21,11 @@ class Security extends AbstractResource
     /**
      * Check security settings
      *
-     * Policy: quit the process and approve current request if TRUE is returned by a check; quit and deny the request if FALSE is return; continue with next check if NULL is returned
+     * Strategy:
+     *
+     * - quit the process and approve current request if TRUE is returned;
+     * - quit and deny the request if FALSE is return;
+     * - continue with next check if NULL is returned
      *
      * @return void|false
      */

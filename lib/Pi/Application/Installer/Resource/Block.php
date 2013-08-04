@@ -82,7 +82,8 @@ class Block extends AbstractResource
     protected function canonizeAdd($block)
     {
         $module = $this->event->getParam('module');
-        $classPrefix = 'Module\\' . ucfirst($this->event->getParam('directory'));
+        $classPrefix = 'Module\\'
+            . ucfirst($this->event->getParam('directory'));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
@@ -91,17 +92,19 @@ class Block extends AbstractResource
         $data = array(
             'name'          => $block['name'],
             'title'         => $block['title'],
-            'description'   => isset($block['description']) ? $block['description'] : '',
+            'description'   => isset($block['description'])
+                                ? $block['description'] : '',
 
             'module'        => $module,
             'render'        => $block['render'],
-            'template'      => isset($block['template']) ? $block['template'] : '',
-            'config'        => isset($block['config']) ? $block['config'] : array(),
-            'cache_level'   => isset($block['cache_level']) ? $block['cache_level'] : '',
-            'access'        => isset($block['access']) ? $block['access'] : array(),
-
-            //'link'          => isset($block['link']) ? $block['link'] : '',
-            //'class'         => isset($block['class']) ? $block['class'] : '',
+            'template'      => isset($block['template'])
+                                ? $block['template'] : '',
+            'config'        => isset($block['config'])
+                                ? $block['config'] : array(),
+            'cache_level'   => isset($block['cache_level'])
+                                ? $block['cache_level'] : '',
+            'access'        => isset($block['access'])
+                                ? $block['access'] : array(),
         );
 
         return $data;
@@ -116,7 +119,8 @@ class Block extends AbstractResource
     protected function canonizeUpdate($block)
     {
         $module = $this->event->getParam('module');
-        $classPrefix = 'Module\\' . ucfirst($this->event->getParam('directory'));
+        $classPrefix = 'Module\\'
+            . ucfirst($this->event->getParam('directory'));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
@@ -124,13 +128,18 @@ class Block extends AbstractResource
 
         $data = array(
             'title'         => $block['title'],
-            'description'   => isset($block['description']) ? $block['description'] : '',
+            'description'   => isset($block['description'])
+                                ? $block['description'] : '',
 
             'render'        => $block['render'],
-            'template'      => isset($block['template']) ? $block['template'] : '',
-            'config'        => isset($block['config']) ? $block['config'] : array(),
-            'cache_level'   => isset($block['cache_level']) ? $block['cache_level'] : '',
-            'access'        => isset($block['access']) ? $block['access'] : array(),
+            'template'      => isset($block['template'])
+                                ? $block['template'] : '',
+            'config'        => isset($block['config'])
+                                ? $block['config'] : array(),
+            'cache_level'   => isset($block['cache_level'])
+                                ? $block['cache_level'] : '',
+            'access'        => isset($block['access'])
+                                ? $block['access'] : array(),
 
             //'link'          => isset($block['link']) ? $block['link'] : '',
             //'class'         => isset($block['class']) ? $block['class'] : '',
@@ -233,7 +242,8 @@ class Block extends AbstractResource
                 $message = array();
                 $status = $this->deleteBlock($row, $message);
                 if (!$status) {
-                    $message[] = sprintf('Deprecated block "%s" is not updated.', $row->key);
+                    $message[] = sprintf('Deprecated block "%s" is not updated.',
+                        $row->key);
                     return array(
                         'status'    => false,
                         'message'   => $message,
@@ -265,7 +275,8 @@ class Block extends AbstractResource
     public function activateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::model('block')->update(array('active' => 1), array('module' => $module));
+        Pi::model('block')->update(array('active' => 1),
+            array('module' => $module));
 
         Pi::service('registry')->block->clear($module);
 
@@ -278,7 +289,8 @@ class Block extends AbstractResource
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::model('block')->update(array('active' => 0), array('module' => $module));
+        Pi::model('block')->update(array('active' => 0),
+            array('module' => $module));
 
         Pi::service('registry')->block->clear($module);
 
@@ -308,8 +320,8 @@ class Block extends AbstractResource
      */
     protected function updateBlock(RootRow $rootRow, $block, &$message)
     {
-        //return Pi::service('api')->system->block->update($rootRow, $block, $message);
-        $result = Pi::service('api')->system(array('block', 'update'), $rootRow, $block);
+        $result = Pi::service('api')->system(array('block', 'update'),
+            $rootRow, $block);
         return $result['status'];
     }
 
@@ -322,8 +334,8 @@ class Block extends AbstractResource
      */
     protected function deleteBlock(RootRow $rootRow, &$message)
     {
-        //return Pi::service('api')->system->block->delete($rootRow, $message);
-        $result = Pi::service('api')->system(array('block', 'delete'), $rootRow, true);
+        $result = Pi::service('api')->system(array('block', 'delete'),
+            $rootRow, true);
         return $result['status'];
     }
 }

@@ -35,6 +35,8 @@ class Memcached extends AbstractService
      *
      * @param string|array $config
      * @return array
+     * @see http://www.php.net/manual/en/memcached.constants.php
+     *      for Memcached predefined constants
      */
     protected function loadOptions($config)
     {
@@ -55,13 +57,15 @@ class Memcached extends AbstractService
                     if (defined($optConst)) {
                         $optId = constant($optConst);
                     } else {
-                        trigger_error(srpintf('Unknown memcached client option "%s" (%s)', $name, $optConst));
+                        $msg = 'Unknown memcached client option "%s" (%s)';
+                        trigger_error(srpintf($msg, $name, $optConst));
                     }
                 }
                 if ($optId) {
                     if (is_string($value)) {
                         $memcachedValue = 'Memcached::' . strtoupper($value);
-                        $value = defined($memcachedValue) ? constant($memcachedValue) : $value; // For Memcached predefined constants, see http://www.php.net/manual/en/memcached.constants.php
+                        $value = defined($memcachedValue)
+                            ? constant($memcachedValue) : $value;
                     }
                     $clients[$optId] = $value;
                 }
@@ -75,7 +79,8 @@ class Memcached extends AbstractService
         // setup memcached servers
         $serverList = isset($config['servers']) ? $config['servers'] : $config;
         if (isset($serverList['host'])) {
-            $serverList = array(0 => $serverList); // Transform it into associative arrays
+            // Transform it into associative arrays
+            $serverList = array(0 => $serverList);
         }
         $servers = array();
         foreach ($serverList as $idx => $server) {
@@ -85,7 +90,11 @@ class Memcached extends AbstractService
             if (!array_key_exists('weight', $server)) {
                 $server['weight'] = static::DEFAULT_WEIGHT;
             }
-            $servers[] = array($server['host'], $server['port'], $server['weight']);
+            $servers[] = array(
+                $server['host'],
+                $server['port'],
+                $server['weight']
+            );
         }
         if (!empty($servers)) {
             $options['servers'] = $servers;
@@ -128,7 +137,8 @@ class Memcached extends AbstractService
             // setup memcached client options
             foreach ($options['client'] as $optId => $value) {
                 if (!$memcached->setOption($optId, $value)) {
-                    trigger_error(sprintf('Setting memcached client option "%s" failed', $optId));
+                    $msg = 'Setting memcached client option "%s" failed';
+                    trigger_error(sprintf($msg, $optId));
                 }
             }
         }

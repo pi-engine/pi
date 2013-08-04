@@ -45,7 +45,8 @@ class Theme extends AbstractService
     public function current()
     {
         if (!$this->currentTheme) {
-            $this->currentTheme = ('front' == Pi::engine()->section()) ? Pi::config('theme') : Pi::config('theme_admin');
+            $this->currentTheme = ('front' == Pi::engine()->section())
+                    ? Pi::config('theme') : Pi::config('theme_admin');
             $this->currentTheme = $this->currentTheme ?: 'default';
         }
         return $this->currentTheme;
@@ -90,7 +91,9 @@ class Theme extends AbstractService
     {
         $theme = $theme ?: $this->current();
         $config = $this->loadConfig($theme);
-        $parent = !empty($config['parent']) ? $config['parent'] : ($theme == static::DEFAULT_THEME ? '' : static::DEFAULT_THEME);
+        $parent = !empty($config['parent'])
+            ? $config['parent']
+            : ($theme == static::DEFAULT_THEME ? '' : static::DEFAULT_THEME);
         return $parent;
     }
 }

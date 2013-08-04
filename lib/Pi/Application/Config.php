@@ -73,7 +73,8 @@ class Config
             $this->loadDomain($domain);
         }
 
-        if (isset($this->configs[$domain]) && isset($this->configs[$domain][$name])) {
+        if (isset($this->configs[$domain])
+            && isset($this->configs[$domain][$name])) {
             $value = $this->configs[$domain][$name];
         }
 
@@ -106,7 +107,8 @@ class Config
     {
         $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
         if (isset($this->configs[$domain])) {
-            $this->configs[$domain] = array_merge($this->configs[$domain], $configs);
+            $this->configs[$domain] =
+                array_merge($this->configs[$domain], $configs);
         } else {
             $this->configs[$domain] = $configs;
         }
@@ -140,7 +142,10 @@ class Config
     {
         $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
         // Load data from cache
-        $this->setConfigs((array) Pi::service('registry')->config->read('system', $domain), $domain);
+        $this->setConfigs(
+            (array) Pi::service('registry')->config->read('system', $domain),
+            $domain
+        );
 
         return $this;
     }

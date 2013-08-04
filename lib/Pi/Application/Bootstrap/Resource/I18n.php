@@ -28,8 +28,6 @@ class I18n extends AbstractResource
         $this->engine->bootResource('config');
 
         // Load options for locale and charset
-        //$locale = !empty($this->options['locale']) ? $this->options['locale'] : Pi::config('locale');
-        //$charset = !empty($this->options['charset']) ? $this->options['charset'] : Pi::config('charset');
         $locale = Pi::config('locale') ?: 'auto';
         $charset = Pi::config('charset') ?: 'utf-8';
 
@@ -47,13 +45,15 @@ class I18n extends AbstractResource
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->getTranslator();
             if (!empty($this->options['translator']['global'])) {
-                foreach ((array) $this->options['translator']['global'] as $domain) {
+                foreach ((array) $this->options['translator']['global']
+                    as $domain) {
                     $translator->load($domain);
                 }
             }
             // Register listener to load module translation
             if (!empty($this->options['translator']['module'])) {
-                $this->application->getEventManager()->attach('dispatch', array($this, 'loadTranslator'));
+                $this->application->getEventManager()->attach('dispatch',
+                    array($this, 'loadTranslator'));
             }
         }
     }

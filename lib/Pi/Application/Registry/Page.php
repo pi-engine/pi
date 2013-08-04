@@ -31,7 +31,8 @@ class Page extends AbstractRegistry
         ));
         $pages = array();
         foreach ($pageList as $page) {
-            list($module, $controller, $action) = array($page['module'], $page['controller'], $page['action']);
+            list($module, $controller, $action) =
+                array($page['module'], $page['controller'], $page['action']);
             $key = $page['module'];
             if (!empty($page['controller'])) {
                 $key .= '-' . $page['controller'];

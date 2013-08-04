@@ -62,14 +62,18 @@ class Module
      */
     public function __call($method, $args)
     {
-        if (!in_array($method, array('install', 'uninstall', 'update', 'activate', 'deactivate'))) {
-            throw new \InvalidArgumentException(sprintf('Invalid action "%s".', $method));
+        if (!in_array($method,
+            array('install', 'uninstall', 'update', 'activate', 'deactivate'))) {
+            throw new \InvalidArgumentException(
+                sprintf('Invalid action "%s".', $method)
+            );
         }
 
         $model = null;
         $module = array_shift($args);
         $options = empty($args) ? array() : array_shift($args);
-        $moduleVersion = isset($options['version']) ? $options['version'] : null;
+        $moduleVersion = isset($options['version'])
+            ? $options['version'] : null;
         $moduleTitle = isset($options['title']) ? $options['title'] : '';
         if ($module instanceof ModuleRow) {
             $model = $module;
@@ -79,7 +83,8 @@ class Module
             $moduleVersion = $moduleVersion ?: $model->version;
         } else {
             $moduleName = $module;
-            $moduleDirectory = isset($options['directory']) ? $options['directory'] : $module;
+            $moduleDirectory = isset($options['directory'])
+                ? $options['directory'] : $module;
         }
         $event = new Event;
         $event->setParams(array(
@@ -97,9 +102,11 @@ class Module
 
         $this->getEventManager()->trigger('start', null, $event);
 
-        $actionClass = sprintf('Module\\%s\Installer\Action\\%s', ucfirst($moduleDirectory), ucfirst($method));
+        $actionClass = sprintf('Module\\%s\Installer\Action\\%s',
+            ucfirst($moduleDirectory), ucfirst($method));
         if (!class_exists($actionClass)) {
-            $actionClass = sprintf('%s\Action\\%s', __NAMESPACE__, ucfirst($method));
+            $actionClass = sprintf('%s\Action\\%s',
+                __NAMESPACE__, ucfirst($method));
         }
         $action = new $actionClass($event);
         $action->setEvents($this->getEventManager());
@@ -111,7 +118,8 @@ class Module
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method), null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method),
+            null, $event, $shortCircuit);
         if ($result->stopped()) {
             return false;
         }
@@ -120,15 +128,17 @@ class Module
             return false;
         }
         //$resourceHandler = new Resource($event);
-        //$resourceHandler->attach($this->getEventManager());\
+        //$resourceHandler->attach($this->getEventManager());
         $this->attachResource();
-        $result = $this->getEventManager()->trigger('process', null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger('process',
+            null, $event, $shortCircuit);
         if ($result->stopped()) {
             $action->rollback();
             return false;
         }
 
-        $this->getEventManager()->trigger(sprintf('%s.post', $method), null, $event);
+        $this->getEventManager()->trigger(sprintf('%s.post', $method),
+            null, $event);
         $this->getEventManager()->trigger('finish', null, $event);
 
         $status = true;
@@ -216,9 +226,11 @@ class Module
         }
         $content = '';
         foreach ($message as $action => $state) {
-            $content .= $action  . ': ' . (($state['status'] === false) ? 'failed' : 'passed');
+            $content .= $action  . ': '
+                . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
-                $content .= '<br />&nbsp;&nbsp;' . implode('<br />&nbsp;&nbsp;', $state['message']);
+                $content .= '<br />&nbsp;&nbsp;'
+                . implode('<br />&nbsp;&nbsp;', $state['message']);
             }
         }
         return $content;

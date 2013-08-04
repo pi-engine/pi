@@ -41,14 +41,16 @@ namespace Pi\Application;
  *      define('PI_PATH_HOST', '/path/to/pi/var/config/hosts-config.php');
  *  ```
  *
- * - Define hosts specification details in the specified hosts file, {@see var/config/hosts.php} for sample
+ * - Define hosts specification details in the specified hosts file,
+ *  {@see var/config/hosts.php} for sample
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Host
 {
     /**
-     * Base URL, segment after baseLocation in installed URL which is: (<scheme>:://<host-name>[:<port>])<baseUrl> with leading slash
+     * Base URL, segment after baseLocation in installed URL
+     * which is: (<scheme>:://<host-name>[:<port>])<baseUrl> with leading slash
      *
      * @var string
      */
@@ -119,12 +121,14 @@ class Host
     protected function getBaseLocation()
     {
         // Build current request URI
-        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+            ? 'https' : 'http';
         $host   = $_SERVER['HTTP_HOST'];
         if (!$host) {
             $port = $_SERVER['SERVER_PORT'];
             $name = $_SERVER['SERVER_NAME'];
-            if (($scheme == 'http' && $port == 80) || ($scheme == 'https' && $port == 443)) {
+            if (($scheme == 'http' && $port == 80)
+                || ($scheme == 'https' && $port == 443)) {
                 $host = $name;
             } else {
                 $host = $name . ':' . $port;
@@ -154,8 +158,10 @@ class Host
         }
 
         // Build current request URI
-        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
-        $requestUri = rtrim($this->getBaseLocation() . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
+        $uri = isset($_SERVER['REQUEST_URI'])
+            ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
+        $requestUri = rtrim($this->getBaseLocation()
+            . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
 
         // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri)
@@ -223,12 +229,14 @@ class Host
         $configs = $this->lookup($config, $hostIdentifier);
         // Merge with custom host config
         if (isset($hostConfig['path'])) {
-            $hostConfig['path'] = array_merge($configs['path'], $hostConfig['path']);
+            $hostConfig['path'] =
+                array_merge($configs['path'], $hostConfig['path']);
         } else {
             $hostConfig['path'] = $configs['path'];
         }
         if (isset($hostConfig['uri'])) {
-            $hostConfig['uri'] = array_merge($configs['uri'], $hostConfig['uri']);
+            $hostConfig['uri'] =
+                array_merge($configs['uri'], $hostConfig['uri']);
         } else {
             $hostConfig['uri'] = $configs['uri'];
         }
@@ -292,10 +300,14 @@ class Host
     /**
      * Convert Pi Engine path to corresponding physical one
      *
-     * @param string    $url        Pi Engine path:
-     *                                  with `:` or leading slash `/` - absolute path, do not convert;
-     *                                  First part as section, map to www if no section matched.
+     * For path value to be examined:
+     *
+     *  - With `:` or leading slash `/` - absolute path, do not convert;
+     *  - Otherwise, first part as section, map to `www` if no section matched
+     *
+     * @param string $url
      * @return string
+     * @see \Pi::path()
      */
     public function path($url)
     {
@@ -327,7 +339,8 @@ class Host
                 $uri = $sectionUri;
             } else {
                 // Append www path to sectionUri if it is relative
-                $uri = $this->path['www'] . ($sectionUri ? '/' . $sectionUri : '');
+                $uri = $this->path['www']
+                    . ($sectionUri ? '/' . $sectionUri : '');
             }
             // Assemble full path
             $uri .= $path ? '/' . $path : '';
@@ -339,12 +352,17 @@ class Host
     /**
      * Convert a Pi Engine path to an URL
      *
-     * @param string    $url        Pi Engine URI:
-     *                                  With URI scheme `://` - absolute URI, do not convert;
-     *                                  First part as section, map to www if no section matched;
-     *                                  If section URI is relative, www URI will be appended.
-     * @param bool      $absolute   whether convert to full URI; relative URI is used by default, i.e. no hostname
+     * For URL to be examined:
+     *
+     *  - With URI scheme `://` - absolute URI, do not convert;
+     *  - First part as section, map to `www` if no section matched;
+     *  - If section URI is relative, `www` URI will be appended.
+     *
+     * @param string    $url
+     * @param bool      $absolute
+     *  Convert to full URI; Default as relative URI with no hostname
      * @return string
+     * @see \Pi::url()
      */
     public function url($url, $absolute = false)
     {
@@ -380,7 +398,8 @@ class Host
                 // Append baseUrl to sectionUri if it is relative
                 $uri = $this->baseUrl . ($sectionUri ? '/' . $sectionUri : '');
                 if ($absolute) {
-                    $uri = $this->baseLocation . ($uri ? '/' . ltrim($uri, '/') : '');
+                    $uri = $this->baseLocation
+                        . ($uri ? '/' . ltrim($uri, '/') : '');
                 }
             }
             // Assemble full URI

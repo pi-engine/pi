@@ -50,13 +50,15 @@ class AbstractResource
     /**
      * Determine whether to skip upgrade for current resource
      *
-     * Performe upgrade in anyway if system is in development mode; Skip upgrade if module version is already greater than configuration
+     * Performe upgrade in anyway if system is in development mode;
+     * Skip upgrade if module version is already greater than configuration
      *
      * @return bool
      */
     protected function skipUpgrade()
     {
-        return (Pi::environment() == 'development' || !$this->versionCompare()) ? false : true;
+        return (Pi::environment() == 'development' || !$this->versionCompare())
+            ? false : true;
     }
 
     /**

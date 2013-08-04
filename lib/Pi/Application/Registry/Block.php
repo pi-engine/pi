@@ -52,7 +52,8 @@ class Block extends AbstractRegistry
         }
 
         $modelLinks = Pi::model('page_block');
-        $select = $modelLinks->select()->order(array('zone', 'order'))->where(array('page' => array_values($pages)));
+        $select = $modelLinks->select()->order(array('zone', 'order'))
+            ->where(array('page' => array_values($pages)));
         $blockLinks = $modelLinks->selectWith($select)->toArray();
         $blocksId = array();
 
@@ -63,7 +64,8 @@ class Block extends AbstractRegistry
         // Check for active for blocks
         if (!empty($blocksId)) {
             $modelBlock = Pi::model('block');
-            $select = $modelBlock->select()->columns(array('id'))->where(array('id' => array_keys($blocksId), 'active' => 0));
+            $select = $modelBlock->select()->columns(array('id'))
+                ->where(array('id' => array_keys($blocksId), 'active' => 0));
             $rowset = $modelBlock->selectWith($select);
             foreach ($rowset as $row) {
                 unset($blocksId[$row->id]);
@@ -72,7 +74,8 @@ class Block extends AbstractRegistry
 
         // Filter blocks via ACL check
         $blocksAllowed = null;
-        if (null !== $role && $role != AclManager::ADMIN && !empty($blocksId)) {
+        if (null !== $role && $role != AclManager::ADMIN
+            && !empty($blocksId)) {
             $acl = new AclManager('block');
             $where = array('resource' => array_keys($blocksId));
             $blocksDenied = $acl->getResources($where, false);
@@ -86,11 +89,13 @@ class Block extends AbstractRegistry
             if (!isset($blocksId[$link['block']])) {
                 continue;
             }
-            if (null === $blocksAllowed || in_array($link['block'], $blocksAllowed)) {
+            if (null === $blocksAllowed
+                || in_array($link['block'], $blocksAllowed)) {
                 if (!isset($blocksByPageZone[$link['page']][$link['zone']])) {
                     $blocksByPageZone[$link['page']][$link['zone']] = array();
                 }
-                $blocksByPageZone[$link['page']][$link['zone']][] = $link['block'];
+                $blocksByPageZone[$link['page']][$link['zone']][] =
+                    $link['block'];
             }
         }
 

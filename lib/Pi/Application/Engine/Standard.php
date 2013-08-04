@@ -15,7 +15,11 @@ use Pi\Mvc\Application;
 /**
  * Pi standard application engine
  *
- * Tasks: load configs, default listeners, module manager, bootstrap, application; boot application; run application
+ * Tasks:
+ *
+ *  - load configs, default listeners, module manager, bootstrap, application;
+ * - boot application;
+ * - run application
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -86,16 +90,8 @@ class Standard extends AbstractEngine
     public function application()
     {
         if (!$this->application) {
-            $options = isset($this->options['application']) ? $this->options['application'] : array();
-            /*
-            // setup service manager
-            $smConfig = isset($options['service_manager']) ? $options['service_manager'] : array();
-            $serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
-            if (isset($this->options['application'])) {
-                $serviceManager->get('Configuration')->exchangeArray($this->options['application']);
-            }
-            $this->application = $serviceManager->get('Application');
-            */
+            $options = isset($this->options['application'])
+                ? $this->options['application'] : array();
             $this->application = Application::load($options);
             $this->application->setEngine($this)->setSection($this->section());
         }
@@ -115,7 +111,11 @@ class Standard extends AbstractEngine
                 try {
                     Pi::service($service, $options);
                 } catch (\Exception $e) {
-                    trigger_error(sprintf('Service "%s" failed: %s', $service, $e->getMessage()), E_USER_ERROR);
+                    trigger_error(
+                        sprintf('Service "%s" failed: %s',
+                            $service, $e->getMessage()),
+                        E_USER_ERROR
+                    );
                     return false;
                 }
             }
@@ -135,9 +135,11 @@ class Standard extends AbstractEngine
         foreach (array_keys($this->resources['options']) as $resource) {
             $result = $this->bootResource($resource);
             if (false === $result) {
-                trigger_error(sprintf('Resource "%s" failed', $resource), E_USER_ERROR);
+                trigger_error(
+                    sprintf('Resource "%s" failed', $resource),
+                    E_USER_ERROR
+                );
                 return false;
-                //throw new \Exception(sprintf('Process terminated in resource "%s"', $resource));
             }
         }
         return true;
@@ -154,13 +156,17 @@ class Standard extends AbstractEngine
     {
         if (!isset($this->resources['instances'][$resource])) {
             // Skip resource if disabled
-            if (isset($this->resources['options'][$resource]) && false === $this->resources['options'][$resource]) {
+            if (isset($this->resources['options'][$resource])
+                && false === $this->resources['options'][$resource]) {
                 $this->resources['instances'][$resource] = true;
             // Load resource with native and custom options
             } else {
                 if (!empty($this->resources['options'][$resource])) {
                     if (is_string($this->resources['options'][$resource])) {
-                        $opt = Pi::config()->load(sprintf('resource.%s.php', $this->resources['options'][$resource]));
+                        $opt = Pi::config()->load(
+                            sprintf('resource.%s.php',
+                                $this->resources['options'][$resource])
+                        );
                     } else {
                         $opt = $this->resources['options'][$resource];
                     }
@@ -168,11 +174,13 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
-                $class = sprintf('Pi\Application\Bootstrap\Resource\\%s', ucfirst($resource));
+                $class = sprintf('Pi\Application\Bootstrap\Resource\\%s',
+                    ucfirst($resource));
                 $resourceInstance = new $class($this, $options);
 
                 $result = $resourceInstance->boot();
-                $this->resources['instances'][$resource] = (null === $result) ? true : $result;
+                $this->resources['instances'][$resource] = (null === $result)
+                    ? true : $result;
             }
         }
         return $this->resources['instances'][$resource];

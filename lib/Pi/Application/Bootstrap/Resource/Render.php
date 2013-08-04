@@ -49,15 +49,19 @@ class Render extends AbstractResource
         // Setup page cache strategy
         if (!empty($this->options['page'])) {
             // Page cache check, must go after access check whose priority is 9999
-            $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkPage'), 1000);
+            $events->attach(MvcEvent::EVENT_DISPATCH,
+                array($this, 'checkPage'), 1000);
             // Page cache check, must go after access check whose priority is 9999
-            $events->attach(MvcEvent::EVENT_FINISH, array($this, 'savePage'), -9000);
+            $events->attach(MvcEvent::EVENT_FINISH,
+                array($this, 'savePage'), -9000);
         } elseif (!empty($this->options['action'])) {
             // Setup action cache strategy
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
-            $sharedEvents->attach('controller', MvcEvent::EVENT_DISPATCH, array($this, 'checkAction'), 999);
-            $sharedEvents->attach('controller', MvcEvent::EVENT_DISPATCH, array($this, 'saveAction'), -999);
+            $sharedEvents->attach('controller',
+                MvcEvent::EVENT_DISPATCH, array($this, 'checkAction'), 999);
+            $sharedEvents->attach('controller',
+                MvcEvent::EVENT_DISPATCH, array($this, 'saveAction'), -999);
         }
     }
 
@@ -72,14 +76,6 @@ class Render extends AbstractResource
     {
         if (empty($this->renderCache) || $create) {
             $this->renderCache = clone Pi::service('render');
-            /*
-            if (!empty($this->options['storage'])) {
-                $storage = Pi::service('cache')->loadStorage($this->options['storage']);
-            } else {
-                $storage = Pi::service('cache')->storage();
-            }
-            $this->renderCache->setStorage($storage);
-            */
         }
         if ($type) {
             $this->renderCache->setType($type);
@@ -89,7 +85,10 @@ class Render extends AbstractResource
     }
 
     /**
-     * Check if page content is cached: load cache if available, otherwise generated content will be stored to cache if page is cacable
+     * Check if page content is cached
+     *
+     * Load cache if available,
+     * otherwise generated content will be stored to cache if page is cacable
      *
      * @param MvcEvent $e
      * @return void
@@ -116,7 +115,8 @@ class Render extends AbstractResource
         $renderCache->meta('key', $cacheKey)
                    ->meta('namespace', $namespace)
                    ->meta('ttl', $cacheMeta['ttl']);
-        // Skip following dispatch events and render dispatch and set cached content directly if content is cached
+        // Skip following dispatch events and render dispatch
+        // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
             if (isset($_GET['CLEAR'])) {
                 Pi::service('log')->info('Page cache cleared');
@@ -124,7 +124,9 @@ class Render extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 Pi::service('log')->info('Page cached');
-                $response = $e->getResponse()->setContent($renderCache->cachedContent());
+                $response = $e->getResponse()->setContent(
+                    $renderCache->cachedContent()
+                );
                 return $response;
             }
         } else {
@@ -159,7 +161,10 @@ class Render extends AbstractResource
     }
 
     /**
-     * Check if action content is cached: load cache if available, otherwise generated content will be stored to cache if action is cacable
+     * Check if action content is cached
+     *
+     * Load cache if available,
+     * otherwise generated content will be stored to cache if action is cacable
      *
      * @param MvcEvent $e
      * @return void
@@ -188,7 +193,8 @@ class Render extends AbstractResource
         $renderCache->meta('key', $cacheKey)
                    ->meta('namespace', $namespace)
                    ->meta('ttl', $cacheMeta['ttl']);
-        // Skip following dispatch events and render dispatch and set cached content directly if content is cached
+        // Skip following dispatch events and render dispatch
+        // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
             if (isset($_GET['CLEAR'])) {
                 Pi::service('log')->info('Action cache cleared');
@@ -236,7 +242,8 @@ class Render extends AbstractResource
         if ($response instanceof ViewModel) {
             $content = (array) $response->getVariables();
             if (!$this->isCachable($content)) {
-                trigger_error('Action content is not cachable.', E_USER_WARNING);
+                trigger_error('Action content is not cachable.',
+                    E_USER_WARNING);
                 return;
             }
         } elseif (is_scalar($response)) {
@@ -264,13 +271,15 @@ class Render extends AbstractResource
         $action     = $route->getparam('action');
 
         $cacheInfo = false;
-        $info = Pi::service('registry')->cache->read($module, $this->application->getSection(), $type);
+        $info = Pi::service('registry')->cache->read($module,
+            $this->application->getSection(), $type);
         if (empty($info)) {
             return $cacheInfo;
         }
 
         if (isset($info[sprintf('%s-%s-%s', $module, $controller, $action)])) {
-            $cacheInfo = $info[sprintf('%s-%s-%s', $module, $controller, $action)];
+            $cacheInfo =
+                $info[sprintf('%s-%s-%s', $module, $controller, $action)];
         } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
             $cacheInfo = $info[sprintf('%s-%s', $module, $controller)];
         } elseif (isset($info[$module])) {

@@ -72,7 +72,8 @@ class Security extends AbstractService
                 continue;
             }
             // Replace full path with relative path to prevent path disclosure
-            $str  = str_replace(array($v . '/', realpath($v) . '/'), $root . '/', $str);
+            $str  = str_replace(array($v . '/', realpath($v) . '/'),
+                $root . '/', $str);
         }
 
         return $str;

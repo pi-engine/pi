@@ -49,7 +49,8 @@ class I18n extends AbstractRegistry
                 list($domain, $file) = $rawDomain;
             }
         } else {
-            list($domain, $file) = Pi::service('i18n')->normalizeDomain($rawDomain);
+            list($domain, $file) =
+                Pi::service('i18n')->normalizeDomain($rawDomain);
         }
         $moduleDomain = Pi::service('i18n')->moduleDomain;
         if ($moduleDomain == substr($domain, 0, strlen($moduleDomain))) {

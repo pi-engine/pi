@@ -39,7 +39,8 @@ class Profile extends RowGateway
         $meta =& static::$meta[$key];
         if (!empty($meta['method'])) {
             if (is_array($meta['method'])) {
-                if (!class_exists($meta['method'][0]) || !is_callable($meta['method'])) {
+                if (!class_exists($meta['method'][0])
+                    || !is_callable($meta['method'])) {
                     $meta['method'] = null;
                 }
             } else {

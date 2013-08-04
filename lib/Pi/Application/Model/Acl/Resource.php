@@ -99,7 +99,8 @@ class Resource extends Nest
         $result = parent::getAncestors($resource, (array) $cols);
         $parents = array();
         foreach ($result as $row) {
-            $parents[] = (is_string($cols) && $cols != '*') ? $row->$cols : $row->toArray();
+            $parents[] = (is_string($cols) && $cols != '*')
+                ? $row->$cols : $row->toArray();
         }
         return $parents;
     }
@@ -123,7 +124,8 @@ class Resource extends Nest
             //$resources[$resource->id] = $resource->module;
         } else {
             $resources = array();
-            if (!$list = $this->getChildren($resource, array('id', 'module'))) {
+            $list = $this->getChildren($resource, array('id', 'module'));
+            if (!$list) {
                 return false;
             }
             foreach ($list as $row) {
@@ -133,7 +135,9 @@ class Resource extends Nest
         $resources[$resource->id] = $resource->module;
         parent::remove($resource, $recursive);
         $modelRule = Pi::model('acl_rule');
-        $modelRule->delete(array('section' => $resource->section, 'module' => $resource->module, 'resource' => array_keys($resources)));
+        $modelRule->delete(array('section' => $resource->section,
+            'module' => $resource->module,
+            'resource' => array_keys($resources)));
         return true;
     }
 }

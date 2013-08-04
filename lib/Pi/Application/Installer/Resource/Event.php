@@ -88,30 +88,34 @@ class Event extends AbstractResource
 
         // Install events
         $modelEvent = Pi::model('event');
-        $events = isset($this->config['events']) ? $this->config['events'] : array();
+        $events = isset($this->config['events'])
+            ? $this->config['events'] : array();
         foreach ($events as $name => $event) {
             $event['module'] = $module;
             $event['name'] = $name;
             $status = $modelEvent->insert($event);
             if (!$status) {
+                $message = 'Event "%s" is not created.';
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Event "%s" is not created.', $name)
+                    'message'   => sprintf($message, $name),
                 );
             }
         }
 
         // Install listeners
-        $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
+        $listeners = isset($this->config['listeners'])
+            ? $this->config['listeners'] : array();
         $flushList = array();
         $modelListener = Pi::model('event_listener');
         foreach ($listeners as $listner) {
             $data = $this->canonize($listner);
             $status = $modelListener->insert($data);
             if (!$status) {
+                $message = 'Listener for event "%s" is not created.';
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Listener for event "%s" is not created.', $data['event_name'])
+                    'message'   => srpintf($message, $data['event_name']),
                 );
             }
             $flushList[$data['event_module']] = 1;
@@ -138,7 +142,8 @@ class Event extends AbstractResource
         $modelEvent = Pi::model('event');
         $modelListener = Pi::model('event_listener');
 
-        $events = isset($this->config['events']) ? $this->config['events'] : array();
+        $events = isset($this->config['events'])
+            ? $this->config['events'] : array();
         $eventList = $modelEvent->select(array('module' => $module));
         foreach ($eventList as $row) {
             // Delete deprecated events
@@ -146,18 +151,22 @@ class Event extends AbstractResource
                 $row->delete();
                 $status = true;
                 if (!$status) {
+                    $message = 'Deprecated event "%s" is not deleted.';
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Deprecated event "%s" is not deleted.', $row->name)
+                        'message'   => sprintf($message, $row->name),
                     );
                 }
                 // Delete listeners
-                $modelListener->delete(array('event_name' => $row->name, 'event_module' => $row->module));
+                $modelListener->delete(array('event_name' => $row->name,
+                    'event_module' => $row->module));
                 $status = true;
                 if (!$status) {
+                    $message =
+                        'Listeners for deprecated event "%s" are not deleted.';
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Listeners for deprecated event "%s" are not deleted.', $row->name)
+                        'message'   => sprintf($message, $row->name),
                     );
                 }
                 continue;
@@ -167,9 +176,10 @@ class Event extends AbstractResource
                 $row->title = $events[$row->name]['title'];
                 $status = $row->save();
                 if (!$status) {
+                    $message = 'Event "%s" is not updated.';
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Event "%s" is not updated.', $row->name)
+                        'message'   => sprintf($message, $row->name)
                     );
                 }
             }
@@ -182,34 +192,39 @@ class Event extends AbstractResource
             $row = $modelEvent->createRow($event);
             $status = $row->save();
             if (!$status) {
+                $message = 'Event "%s" is not created.';
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Event "%s" is not created.', $name)
+                    'message'   => sprintf($message, $name),
                 );
             }
         }
 
-        $listeners = isset($this->config['listeners']) ? $this->config['listeners'] : array();
+        $listeners = isset($this->config['listeners'])
+            ? $this->config['listeners'] : array();
         $listenerList = array();
         foreach ($listeners as $listener) {
             $data = $this->canonize($listener);
-            $key = $data['event_module'] . '-' . $data['event_name'] . '-' . $data['class'] . '-' . $data['method'];
+            $key = $data['event_module'] . '-' . $data['event_name']
+                . '-' . $data['class'] . '-' . $data['method'];
             $listenerList[$key] = $data;
         }
 
         $rowset = $modelListener->select(array('module' => $module));
         $flushList = array();
         foreach ($rowset as $row) {
-            $key = $row->event_module . '-' . $row->event_name . '-' . $row->class . '-' . $row->method;
+            $key = $row->event_module . '-' . $row->event_name .
+                '-' . $row->class . '-' . $row->method;
 
             // Delete deprecated listeners
             if (!isset($listenerList[$key])) {
                 $row->delete();
                 $status = true;
                 if (!$status) {
+                    $message = 'Deprecated listener "%s" is not deleted.';
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Deprecated listener "%s" is not deleted.', $key)
+                        'message'   => sprintf($message, $key),
                     );
                 }
                 $flushList[$row->event_module] = 1;
@@ -226,7 +241,8 @@ class Event extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Listener "%s" is not created.', $key)
+                    'message'   => sprintf('Listener "%s" is not created.',
+                                    $key)
                 );
             }
             $flushList[$data['event_module']] = 1;
@@ -269,7 +285,8 @@ class Event extends AbstractResource
         $modelEvent = Pi::model('event');
         $modelEvent->update(array('active' => 1), array('module' => $module));
         $modelListener = Pi::model('event_listener');
-        $modelListener->update(array('active' => 1), array('module' => $module));
+        $modelListener->update(array('active' => 1),
+            array('module' => $module));
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
             Pi::service('registry')->event->clear($row->event_module);
@@ -290,7 +307,8 @@ class Event extends AbstractResource
         $modelEvent = Pi::model('event');
         $modelEvent->update(array('active' => 0), array('module' => $module));
         $modelListener = Pi::model('event_listener');
-        $modelListener->update(array('active' => 0), array('module' => $module));
+        $modelListener->update(array('active' => 0),
+            array('module' => $module));
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
             Pi::service('registry')->event->clear($row->event_module);

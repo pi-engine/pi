@@ -39,17 +39,12 @@ class Theme extends AbstractRegistry
             $config = Pi::service('theme')->loadConfig($row->name);
             $themes[$row->name] = array(
                 'title'         => $config['title'],
-                'screenshot'    => !empty($config['screenshot']) ? Pi::service('asset')->getAssetUrl('theme/' . $row->name, $config['screenshot'], false) : Pi::url('static/image/theme.png'),
+                'screenshot'    => !empty($config['screenshot'])
+                    ? Pi::service('asset')->getAssetUrl('theme/' . $row->name,
+                        $config['screenshot'], false)
+                    : Pi::url('static/image/theme.png'),
             );
         }
-        /*
-        if (!isset($themes['default'])) {
-            $themes['default'] = array(
-                'title'         => 'Default',
-                'screenshot'    => Pi::service('asset')->getAssetUrl('theme/default', 'image/screenshot.png', false),
-            );
-        }
-        */
 
         return $themes;
     }

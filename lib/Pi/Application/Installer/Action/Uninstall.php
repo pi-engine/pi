@@ -24,10 +24,8 @@ class Uninstall extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        //$events->attach('install.pre', array($this, 'loadConfig'));
         $events->attach('uninstall.pre', array($this, 'checkDependent'));
         $events->attach('uninstall.post', array($this, 'removeDependency'));
-        //$events->attach('install.post', array($this->installer, 'updateMeta'));
         return $this;
     }
 

@@ -31,7 +31,11 @@ use Pi\Application\Installer\SqlSchema;
  *  ) ENGINE=InnoDB;
  * </pre>
  *
- * Translated format: global prefix 'pi_', module demo prefix 'demo_', system prefix 'core_'
+ * Translated format:
+ *
+ *  - global prefix 'pi_'
+ *  - module demo prefix 'demo_'
+ *  - system prefix 'core_'
  *
  * <pre>
  *  CREATE TABLE `pi_demo_test` (
@@ -64,7 +68,10 @@ class Database extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $sqlFile = sprintf('%s/%s/%s', Pi::path('module'), $this->event->getParam('directory'), $this->config['sqlfile']);
+        $sqlFile = sprintf('%s/%s/%s',
+            Pi::path('module'),
+            $this->event->getParam('directory'),
+            $this->config['sqlfile']);
         if (!file_exists($sqlFile)) {
             return array(
                 'status'    => false,
@@ -80,7 +87,8 @@ class Database extends AbstractResource
             );
         }
 
-        $schemaList = isset($this->config['schema']) ? $this->config['schema'] : array();
+        $schemaList = isset($this->config['schema'])
+            ? $this->config['schema'] : array();
         $modelSchema = Pi::model('module_schema');
         foreach($schemaList as $name => $type) {
             $status = $modelSchema->insert(array(
@@ -102,8 +110,9 @@ class Database extends AbstractResource
     /**
      * {@inheritDoc}
      *
-     * Module database table list is supposed to be updated during module upgrade,
-     * however we don't have a feasible solution yet. Thus module developers are encouraged to use $config['schema']
+     * Module database table list is supposed to be updated
+     * during module upgrade, however we don't have a feasible solution yet.
+     * Thus module developers are encouraged to use $config['schema']
      */
     public function updateAction()
     {
@@ -111,7 +120,8 @@ class Database extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $schemaList = isset($this->config['schema']) ? $this->config['schema'] : array();
+        $schemaList = isset($this->config['schema'])
+            ? $this->config['schema'] : array();
         $modelSchema = Pi::model('module_schema');
         $rowset = $modelSchema->select(array('module' => $module));
         foreach ($rowset as $row) {
@@ -122,7 +132,8 @@ class Database extends AbstractResource
                 if (!$status) {
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Deprecated schema "%s" is not removed.', $name)
+                        'message'   => sprintf('Deprecated schema "%s" is not removed.',
+                                        $name)
                     );
                 }
             } else {
@@ -155,7 +166,8 @@ class Database extends AbstractResource
         $modelSchema = Pi::model('module_schema');
         $rowset = $modelSchema->select(array('module' => $module));
         foreach ($rowset as $table) {
-            $sql = sprintf('DROP %s IF EXISTS %s', $table->type, Pi::db()->prefix($table->name, $module));
+            $sql = sprintf('DROP %s IF EXISTS %s',
+                $table->type, Pi::db()->prefix($table->name, $module));
             Pi::db()->adapter()->query($sql, 'execute');
         }
         $modelSchema->delete(array('module' => $module));

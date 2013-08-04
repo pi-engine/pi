@@ -67,7 +67,8 @@ class Event extends AbstractService
         $isStopped = false;
         foreach ($listeners as $listener) {
             $moduleName = array_pop($listener);
-            $result = call_user_func_array($listener, array($object, $moduleName));
+            $result = call_user_func_array($listener,
+                array($object, $moduleName));
             if ($shortcircuit) {
                 $status = call_user_func($shortcircuit, $result);
                 if ($status) {

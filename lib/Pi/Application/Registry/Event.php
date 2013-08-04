@@ -46,7 +46,9 @@ class Event extends AbstractRegistry
         $listenerList = $modelListener->selectWith($select);
         $directory = Pi::service('module')->directory($options['module']);
         foreach ($listenerList as $row) {
-            $class = sprintf('Module\\%s\\%s', ucfirst($directory), ucfirst($class));
+            $class = sprintf('Module\\%s\\%s',
+                ucfirst($directory),
+                ucfirst($class));
             $listeners[] = array($class, $row->method, $row->module);
         }
 

@@ -77,7 +77,10 @@ class Account extends RowGateway
      */
     public function transformCredential($credential)
     {
-        $credential = md5(sprintf('%s%s%s', $this->offsetGet('salt'), $credential, Pi::config('salt')));
+        $credential = md5(sprintf('%s%s%s',
+            $this->offsetGet('salt'),
+            $credential,
+            Pi::config('salt')));
         return $credential;
     }
 

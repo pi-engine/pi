@@ -86,12 +86,12 @@ use Pi;
  *              'description'   => '',
  *              'value'         => 'a config',
  *              'filter'        => 'text',
- *              'visible'       => 0,                       // Not show on edit page
+ *              'visible'       => 0, // Not show on edit page
  *          ),
  *          // Orphan configs
  *          'config_name_e' => array(
  *              'title'         => 'Config title E',
- *              'category'      => '',                      // Not managed by any category
+ *              'category'      => '', // Not managed by any category
  *              'description'   => '',
  *              'value'         => 'a config',
  *              'edit'          => 'SpecifiedEditElement',
@@ -144,8 +144,10 @@ class Config extends AbstractResource
             );
         } else {
             $ret = array(
-                'category'  => isset($config['category']) ? $config['category'] : array(),
-                'item'      => isset($config['item']) ? $config['item'] : array()
+                'category'  => isset($config['category'])
+                                ? $config['category'] : array(),
+                'item'      => isset($config['item'])
+                                ? $config['item'] : array()
             );
         }
 
@@ -214,7 +216,8 @@ class Config extends AbstractResource
                 if (!$status) {
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Category "%s" is not created.', $category['name'])
+                        'message'   => sprintf('Category "%s" is not created.',
+                                        $category['name'])
                     );
                 }
             };
@@ -234,7 +237,8 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is not created.', $item['name']),
+                    'message'   => sprintf('Config "%s" is not created.',
+                                    $item['name']),
                 );
             }
         }
@@ -272,7 +276,8 @@ class Config extends AbstractResource
                 if (!$status) {
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Category "%s" is not deleted.', $row->name)
+                        'message'   => sprintf('Category "%s" is not deleted.',
+                                        $row->name)
                     );
                 }
             } else {
@@ -294,7 +299,8 @@ class Config extends AbstractResource
                     if (!$status) {
                         return array(
                             'status'    => false,
-                            'message'   => sprintf('Category "%s" is not updated.', $row->name)
+                            'message'   => sprintf('Category "%s" is not updated.',
+                                            $row->name)
                         );
                     }
                 }
@@ -309,7 +315,8 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Category "%s" is not created.', $category['name'])
+                    'message'   => sprintf('Category "%s" is not created.',
+                                    $category['name'])
                 );
             }
         }
@@ -338,7 +345,8 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is failed to delete.', $row->name)
+                    'message'   => sprintf('Config "%s" is failed to delete.',
+                                    $row->name)
                 );
             }
         }
@@ -348,7 +356,8 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is not created.', $config['name']),
+                    'message'   => sprintf('Config "%s" is not created.',
+                                    $config['name']),
                 );
             }
         }

@@ -160,8 +160,9 @@ class Mail extends AbstractService
      * @param  MailHandler\Transport\TransportInterface $transport
      * @return Mail
      */
-    public function setTransport(MailHandler\Transport\TransportInterface $transport)
-    {
+    public function setTransport(
+        MailHandler\Transport\TransportInterface $transport
+    ) {
         $this->transport = $transport;
         return $this;
     }
@@ -260,8 +261,10 @@ class Mail extends AbstractService
         } else {
             // Canonize path from array('module' => , 'locale' => , 'file' => )
             if (is_array($template)) {
-                $module = isset($template['module']) ? $template['module'] : Pi::service('module')->directory();
-                $locale = isset($template['locale']) ? $template['locale'] : null;
+                $module = isset($template['module'])
+                    ? $template['module'] : Pi::service('module')->directory();
+                $locale = isset($template['locale'])
+                    ? $template['locale'] : null;
                 $file = $template['file'];
             // Canonize for current module
             } else {
@@ -276,11 +279,17 @@ class Mail extends AbstractService
             }
 
             // Assemble module mail template
-            $path = Pi::service('i18n')->getPath(array('module/' . $module, 'mail/' . $file), $locale);
+            $path = Pi::service('i18n')->getPath(
+                array('module/' . $module, 'mail/' . $file),
+                $locale
+            );
             // Load english template if current locale is not available
             if (!file_exists($path)) {
                 $locale = 'en';
-                $path = Pi::service('i18n')->getPath(array('module/' . $module, 'mail/' . $file), $locale);
+                $path = Pi::service('i18n')->getPath(
+                    array('module/' . $module, 'mail/' . $file),
+                    $locale
+                );
             }
         }
 
@@ -307,12 +316,14 @@ class Mail extends AbstractService
     {
         // Bind system variables
         $systemVars = array(
-            'site_adminmail'        => _sanitize(Pi::config('adminmail', 'mail')),
-            'site_adminname'        => _sanitize(Pi::config('adminname', 'mail')),
-            'site_name'             => _sanitize(Pi::config('sitename')),
-            'site_slogan'           => _sanitize(Pi::config('slogan')),
-            'site_description'      => _sanitize(Pi::config('description', 'meta')),
-            'site_url'              => Pi::url('www', true),
+            'site_adminmail'    => _sanitize(Pi::config('adminmail', 'mail')),
+            'site_adminname'    => _sanitize(Pi::config('adminname', 'mail')),
+            'site_name'         => _sanitize(Pi::config('sitename')),
+            'site_slogan'       => _sanitize(Pi::config('slogan')),
+            'site_description'  => _sanitize(
+                Pi::config('description', 'meta')
+            ),
+            'site_url'          => Pi::url('www', true),
         );
         $vars = array_merge($systemVars, $vars);
         // Assign variables

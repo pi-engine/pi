@@ -14,9 +14,11 @@ use Pi;
 /**
  * Application resource asset maintenance
  *
- * 1. Publish a module's assets: from a source path (module asset path) to target path (encrypted path inside www/asset)
- *    - Source path: module/demo/asset; theme/default/module/demo/asset
- * 2. Remove module published assets from www/asset/[encrypted path]/
+ * 1. Publish a module's assets:
+ *      from a source path (module asset path)
+ *      to target path (encrypted path inside `www/asset`)
+ *    - Source path: `module/demo/asset` or `theme/default/module/demo/asset`
+ * 2. Remove module published assets from `www/asset/<encrypted path>/`
  *
  * @see \Pi\Application\Service\Asset for asset maintenance
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -31,9 +33,8 @@ class Asset extends AbstractResource
         $module = $this->event->getParam('module');
         $directory = $this->event->getParam('directory');
         // Publish module native assets
-        Pi::service('asset')->publish('module/' . $directory, 'module/' . $module);
-        // Publish module custom assets in theme
-        //Pi::service('asset')->publish('theme/' . Pi::config('theme') . '/module/' . $directory, 'module/' . $module, false);
+        Pi::service('asset')->publish('module/' . $directory,
+            'module/' . $module);
 
         return true;
     }
@@ -49,9 +50,8 @@ class Asset extends AbstractResource
         $module = $this->event->getParam('module');
         $directory = $this->event->getParam('directory');
         // Publish module native assets
-        Pi::service('asset')->publish('module/' . $directory, 'module/' . $module);
-        // Publish module custom assets in theme
-        //Pi::service('asset')->publish('theme/' . Pi::config('theme') . '/module/' . $directory, 'module/' . $module, false);
+        Pi::service('asset')->publish('module/' . $directory,
+            'module/' . $module);
 
         return true;
     }
@@ -77,9 +77,8 @@ class Asset extends AbstractResource
         $module = $this->event->getParam('module');
         $directory = $this->event->getParam('directory');
         // Publish module native assets
-        Pi::service('asset')->publish('module/' . $directory, 'module/' . $module);
-        // Publish module custom assets in theme
-        //Pi::service('asset')->publish('theme/' . Pi::config('theme') . '/module/' . $directory, 'module/' . $module, false);
+        Pi::service('asset')->publish('module/' . $directory,
+            'module/' . $module);
     }
 
     /**

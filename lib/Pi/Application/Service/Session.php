@@ -62,28 +62,37 @@ class Session extends AbstractService
                 $class  = $options['config']['class'];
                 $sessionConfig = new $class;
                 if (isset($options['config']['options'])) {
-                    if (!isset($options['config']['options']['cookie_path']) && $baseUrl = Pi::host()->get('baseUrl')) {
-                        $options['config']['options']['cookie_path'] = rtrim($baseUrl, '/') . '/';
+                    if (!isset($options['config']['options']['cookie_path'])
+                        && $baseUrl = Pi::host()->get('baseUrl')) {
+                        $options['config']['options']['cookie_path'] =
+                            rtrim($baseUrl, '/') . '/';
                     }
                     $sessionConfig->setOptions($options['config']['options']);
                 }
             }
             $sessionStorage = null;
-            if (!empty($options['storage']) && !empty($options['storage']['class'])) {
+            if (!empty($options['storage'])
+                && !empty($options['storage']['class'])) {
                 $class  = $options['storage']['class'];
-                $input  = isset($options['storage']['input']) ? $options['storage']['input'] : null;
+                $input  = isset($options['storage']['input'])
+                    ? $options['storage']['input'] : null;
                 $sessionStorage = new $class($input);
             }
             $saveHandler = null;
-            if (!empty($options['save_handler']) && !empty($options['save_handler']['class'])) {
+            if (!empty($options['save_handler'])
+                && !empty($options['save_handler']['class'])) {
                 $class  = $options['save_handler']['class'];
-                $opts = isset($options['save_handler']['options']) ? $options['save_handler']['options'] : array();
+                $opts = isset($options['save_handler']['options'])
+                    ? $options['save_handler']['options'] : array();
                 $saveHandler = new $class($opts);
             }
-            $this->manager = new SessionManager($sessionConfig, $sessionStorage, $saveHandler);
+            $this->manager = new SessionManager($sessionConfig,
+                $sessionStorage, $saveHandler);
 
-            if (!empty($options['config']) && !empty($options['config']['validators'])) {
-                $this->manager->setValidators($options['config']['validators']);
+            if (!empty($options['config'])
+                && !empty($options['config']['validators'])) {
+                $this->manager
+                    ->setValidators($options['config']['validators']);
             }
 
             // Set default session manager in case Zend\Session is called directly
@@ -122,9 +131,11 @@ class Session extends AbstractService
             if (!is_array($metadata)) {
                 continue;
             }
-            if ((isset($metadata['EXPIRE']) && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
-                || (isset($metadata['EXPIRE_HOPS']) && $ts > $metadata['EXPIRE_HOPS']['ts'] && 0 >= $metadata['EXPIRE_HOPS']['hops'])
-            ) {
+            if ((isset($metadata['EXPIRE'])
+                && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
+                || (isset($metadata['EXPIRE_HOPS'])
+                    && $ts > $metadata['EXPIRE_HOPS']['ts']
+                    && 0 >= $metadata['EXPIRE_HOPS']['hops'])) {
                 $storage->clear($name);
             }
         }

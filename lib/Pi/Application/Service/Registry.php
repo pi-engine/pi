@@ -63,7 +63,8 @@ class Registry extends AbstractService
         if (empty($module)) {
             $class = sprintf('Pi\Application\Registry\\%s', ucfirst($name));
         } else {
-            $class = sprintf('Module\\%s\Registry\\%s', ucfirst($module), ucfirst($name));
+            $class = sprintf('Module\\%s\Registry\\%s',
+                ucfirst($module), ucfirst($name));
         }
         $handler = new $class;
         return $handler;
@@ -168,13 +169,16 @@ class Registry extends AbstractService
     public function getList()
     {
         $registryList = array();
-        $iterator = new \DirectoryIterator(Pi::path('lib/Pi/Application/Registry'));
+        $iterator = new \DirectoryIterator(
+            Pi::path('lib/Pi/Application/Registry')
+        );
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isFile() || $fileinfo->isDot()) {
                 continue;
             }
             $directory = $fileinfo->getFilename();
-            if ('AbstractRegistry.php' == $directory || !preg_match('/^[a-z0-9]+\.php/i', $directory)) {
+            if ('AbstractRegistry.php' == $directory
+                || !preg_match('/^[a-z0-9]+\.php/i', $directory)) {
                 continue;
             }
             $registryList[] = strtolower(basename($directory, '.php'));

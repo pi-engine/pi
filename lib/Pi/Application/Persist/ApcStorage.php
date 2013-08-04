@@ -27,7 +27,7 @@ class ApcStorage extends AbstractStorage
     public function __construct($options = array())
     {
         if (version_compare('3.1.6', phpversion('apc')) > 0) {
-            throw new \Exception("Missing ext/apc >= 3.1.6");
+            throw new \Exception('Missing ext/apc >= 3.1.6');
         }
 
         $enabled = ini_get('apc.enabled');
@@ -36,7 +36,9 @@ class ApcStorage extends AbstractStorage
         }
 
         if (!$enabled) {
-            throw new \Exception("ext/apc is disabled - see 'apc.enabled' and 'apc.enable_cli'");
+            throw new \Exception(
+                'ext/apc is disabled - see "apc.enabled" and "apc.enable_cli"'
+            );
         }
     }
 
@@ -81,6 +83,8 @@ class ApcStorage extends AbstractStorage
     public function flush()
     {
         $regex  = '/^' . preg_quote($this->prefix(), '/') . '+/';
-        return apc_delete(new APCIterator('user', $regex, 0, 1, \APC_LIST_ACTIVE));
+        return apc_delete(
+            new APCIterator('user', $regex, 0, 1, \APC_LIST_ACTIVE)
+        );
     }
 }

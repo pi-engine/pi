@@ -32,7 +32,8 @@ class Asset extends AbstractRegistry
         if (is_dir($path)) {
             $iterator = new \DirectoryIterator($path);
             foreach ($iterator as $fileinfo) {
-                if (!$fileinfo->isDir() && !$fileinfo->isLink() || $fileinfo->isDot()) {
+                if (!$fileinfo->isDir() && !$fileinfo->isLink()
+                    || $fileinfo->isDot()) {
                     continue;
                 }
                 $module = $fileinfo->getFilename();
@@ -41,7 +42,14 @@ class Asset extends AbstractRegistry
                 }
                 $modulePath = $path . '/' . $module . '/';
                 $modulePathLength = strlen($modulePath);
-                $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($modulePath, \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS), RecursiveIteratorIterator::SELF_FIRST);
+                $iterator = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator(
+                        $modulePath,
+                        \FilesystemIterator::SKIP_DOTS
+                            | \FilesystemIterator::FOLLOW_SYMLINKS
+                    ),
+                    RecursiveIteratorIterator::SELF_FIRST
+                );
                 foreach ($iterator as $fileData) {
                     if ($fileData->isFile() || $fileData->isLink()) {
                         $filePath = $fileData->getPathname();
@@ -49,10 +57,13 @@ class Asset extends AbstractRegistry
                             $filePath = strtr($filePath, '\\', '/');
                         }
                         $filePath = substr($filePath, $modulePathLength);
-                        if (preg_match('/(^[^a-z0-9\-]+|\/[^a-z0-9\-]+)/i', dirname($filePath))) {
+                        if (preg_match('/(^[^a-z0-9\-]+|\/[^a-z0-9\-]+)/i',
+                            dirname($filePath))) {
                             continue;
                         }
-                        $fileUrl = Pi::service('asset')->getCustomAsset($filePath, $module);
+                        $fileUrl =
+                            Pi::service('asset')->getCustomAsset($filePath,
+                                $module);
                         $files[$module][$filePath] = $fileUrl;
                     }
                 }

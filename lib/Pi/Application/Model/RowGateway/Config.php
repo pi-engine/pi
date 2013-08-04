@@ -36,7 +36,8 @@ class Config extends RowGateway
     protected function encode($data)
     {
         if (!empty($data['filter']) && isset($data['value'])) {
-            $data['value'] = $this->encodeValueColumn($data['value'], $data['filter']);
+            $data['value'] = $this->encodeValueColumn($data['value'],
+                $data['filter']);
         }
 
         return parent::encode($data);
@@ -51,7 +52,8 @@ class Config extends RowGateway
     public function decode($data)
     {
         if (!empty($data['filter'])) {
-            $data['value'] = $this->decodeValueColumn($data['value'], $data['filter']);
+            $data['value'] = $this->decodeValueColumn($data['value'],
+                $data['filter']);
         }
         return parent::decode($data);
     }
@@ -150,7 +152,8 @@ class Config extends RowGateway
             if (null === $options) {
                 $value = filter_var($value, $filterId);
             } else {
-                $value = filter_var($value, $filterId, array('options' => $options));
+                $value = filter_var($value, $filterId,
+                    array('options' => $options));
             }
         } elseif (is_callable($filter)) {
             $value = call_user_func($filter, $value);

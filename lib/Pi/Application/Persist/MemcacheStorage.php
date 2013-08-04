@@ -119,7 +119,8 @@ class MemcacheStorage extends AbstractStorage
         $value= $options['servers'];
         if (isset($value['host'])) {
             // in this case, $value seems to be a simple associative array (one server only)
-            $value = array(0 => $value); // let's transform it into a classical array of associative arrays
+            // let's transform it into a classical array of associative arrays
+            $value = array(0 => $value);
         }
         $options['servers'] = $value;
         foreach ($options['servers'] as $server) {
@@ -146,14 +147,25 @@ class MemcacheStorage extends AbstractStorage
             }
             if ($options['compatibility']) {
                 // No status for compatibility mode (#ZF-5887)
-                $this->memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
-                                        $server['retry_interval']);
+                $this->memcache->addServer(
+                    $server['host'],
+                    $server['port'],
+                    $server['persistent'],
+                    $server['weight'],
+                    $server['timeout'],
+                    $server['retry_interval']
+                );
             } else {
-                $this->memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
-                                        $server['retry_interval'],
-                                        $server['status'], $server['failure_callback']);
+                $this->memcache->addServer(
+                    $server['host'],
+                    $server['port'],
+                    $server['persistent'],
+                    $server['weight'],
+                    $server['timeout'],
+                    $server['retry_interval'],
+                    $server['status'],
+                    $server['failure_callback']
+                );
             }
         }
     }

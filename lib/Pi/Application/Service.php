@@ -20,7 +20,7 @@ class Service
 {
     /**
      * Loaded services
-     * 
+     *
      * @var Service\AbstractService[]
      */
     protected static $services = array();
@@ -41,13 +41,17 @@ class Service
             // Loads service
             $class = sprintf('%s\Service\\%s', __NAMESPACE__, ucfirst($name));
             if (!class_exists($class)) {
-                trigger_error(sprintf('Service class "%s" was not loaded.', $class), E_USER_ERROR);
+                trigger_error(
+                    sprintf('Service class "%s" was not loaded.', $class),
+                    E_USER_ERROR
+                );
                 return static::$services[$key];
             }
 
             static::$services[$key] = new $class($options);
             if (!(static::$services[$key] instanceof Service\AbstractService)) {
-                throw new \Exception(sprintf('Invalid service instantiation "%s"', $name));
+                throw new \Exception(
+                    sprintf('Invalid service instantiation "%s"', $name));
             }
             if (method_exists(static::$services[$key], 'shutdown')) {
                 Pi::registerShutdown(array(static::$services[$key], 'shutdown'));

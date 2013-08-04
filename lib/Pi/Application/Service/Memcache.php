@@ -48,7 +48,8 @@ class Memcache extends AbstractService
         }
 
         if (isset($config['host'])) {
-            $config = array(0 => $config); // Transform it into associative arrays
+            // Transform it into associative arrays
+            $config = array(0 => $config);
         }
         $servers = array();
         foreach ($config as $idx => $server) {

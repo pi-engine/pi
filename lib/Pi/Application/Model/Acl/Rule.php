@@ -58,7 +58,9 @@ class Rule extends Model
      * @param string|null $privilege
      * @return \Pi\Db\RowGateway\RowGateway
      */
-    public function getRules($roles = array(), $resources = array(), $privilege = null)
+    public function getRules($roles = array(),
+        $resources = array(),
+        $privilege = null)
     {
         $where = Pi::db()->where()->equalTo('section', $this->getSection());
         if (!empty($roles)) {
@@ -83,7 +85,8 @@ class Rule extends Model
     }
 
     /**
-     * Get resources to which a group of roles is allowed to access a given resource privilege
+     * Get resources to which a group of roles is allowed
+     * to access a given resource privilege
      *
      * @param array         $roles
      * @param array|Where   $where
@@ -116,7 +119,8 @@ class Rule extends Model
     }
 
     /**
-     * Check if a group of roles is allowed/denied to access a given resource privilege
+     * Check if a group of roles is allowed/denied
+     * to access a given resource privilege
      *
      * @param array|Where   $where
      * @param bool          $default Default permission in case not defined

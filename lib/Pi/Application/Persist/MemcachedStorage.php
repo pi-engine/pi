@@ -49,13 +49,16 @@ class MemcachedStorage extends AbstractStorage
     public function __construct($options = array())
     {
         if (!extension_loaded('memcached')) {
-            throw new \Exception('The memcached extension must be loaded for using this model !');
+            throw new \Exception(
+                'The memcached extension must be loaded for using this model !'
+            );
         }
         $this->memcached = new \memcached;
         $this->memcached->addServer(
             isset($options['host']) ? $options['host'] : static::SERVER_HOST,
             isset($options['port']) ? $options['port'] : static::SERVER_PORT,
-            isset($options['weight']) ? $options['weight'] : static::SERVER_WEIGHT
+            isset($options['weight'])
+                ? $options['weight'] : static::SERVER_WEIGHT
         );
     }
 

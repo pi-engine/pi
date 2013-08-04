@@ -115,7 +115,8 @@ class Asset extends AbstractService
     /**
      * Generates a canonical folder for component folder
      *
-     * sha1 or md5 is good for lower collisions but crc32 is good as a trade-off between collisions and hash length
+     * sha1 or md5 is good for lower collisions
+     * but crc32 is good as a trade-off between collisions and hash length
      *
      * @param string $path Folder name to be hashed
      * @return string
@@ -149,7 +150,8 @@ class Asset extends AbstractService
      */
     public function getPath($component)
     {
-        return $this->getBasePath() . DIRECTORY_SEPARATOR . $this->canonize($component);
+        return $this->getBasePath() . DIRECTORY_SEPARATOR
+            . $this->canonize($component);
     }
 
     /**
@@ -186,7 +188,10 @@ class Asset extends AbstractService
     public function getAssetUrl($component, $file, $versioning = true)
     {
         if ($versioning) {
-            $file = $this->versionStamp($this->getAssetPath($component, $file), $file);
+            $file = $this->versionStamp(
+                $this->getAssetPath($component, $file),
+                $file
+            );
         }
         return $this->getUrl($component) . '/' . $file;
     }
@@ -247,7 +252,8 @@ class Asset extends AbstractService
      */
     public function getSourcePath($component, $file = '')
     {
-        $sourcePath = Pi::path($component) . DIRECTORY_SEPARATOR . static::DIR_ASSET;
+        $sourcePath = Pi::path($component) . DIRECTORY_SEPARATOR
+            . static::DIR_ASSET;
         if (!empty($file)) {
             $sourcePath .= DIRECTORY_SEPARATOR . $file;
         }
@@ -268,7 +274,12 @@ class Asset extends AbstractService
     public function publishFile($sourceFile, $targetFile, $override = true)
     {
         try {
-            Pi::service('file')->symlink($sourceFile, $targetFile, true, $override);
+            Pi::service('file')->symlink(
+                $sourceFile,
+                $targetFile,
+                true,
+                $override
+            );
             $status = true;
         } catch (\Exception $e) {
             $status = false;
@@ -278,7 +289,8 @@ class Asset extends AbstractService
     }
 
     /**
-     * Publishes an asset of a component, only applicable for direct copy not for symbolic link
+     * Publishes an asset of a component,
+     * only applicable for direct copy not for symbolic link
      *
      * @param string    $component component name
      * @param string    $file      file path
@@ -325,7 +337,8 @@ class Asset extends AbstractService
         }
         $iterator = new \DirectoryIterator($path);
         foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() && !$fileinfo->isLink() || $fileinfo->isDot()) {
+            if (!$fileinfo->isDir() && !$fileinfo->isLink()
+                || $fileinfo->isDot()) {
                 continue;
             }
             $module = $fileinfo->getFilename();

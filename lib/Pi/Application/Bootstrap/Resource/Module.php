@@ -24,12 +24,15 @@ class Module extends AbstractResource
      */
     public function boot()
     {
-        // Setup module service and load module config right after access permission check
-        $this->application->getEventManager()->attach('dispatch', array($this, 'setup'), 999);
+        // Setup module service and load module config
+        // right after access permission check
+        $this->application->getEventManager()->attach('dispatch',
+            array($this, 'setup'), 999);
     }
 
     /**
-     * Set current module to module service and load module config after module is dispatched
+     * Set current module to module service
+     * and load module config after module is dispatched
      *
      * @param MvcEvent $e
      * @return void

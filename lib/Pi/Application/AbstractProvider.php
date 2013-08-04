@@ -26,7 +26,8 @@ abstract class AbstractProvider extends AbstractApi
      */
     protected function getRenderer()
     {
-        $renderer = Pi::engine()->application()->getServiceManager()->get('viewRenderer');
+        $renderer = Pi::engine()->application()
+            ->getServiceManager()->get('viewRenderer');
         return $renderer;
     }
 

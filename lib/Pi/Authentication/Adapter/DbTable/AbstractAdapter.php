@@ -156,20 +156,15 @@ abstract class AbstractAdapter
         $exception = null;
 
         if ($this->tableName == '') {
-            $exception = __('A table must be supplied
-                for the DbTable authentication adapter.');
+            $exception = __('A table must be supplied for the DbTable authentication adapter.');
         } elseif ($this->identityColumn == '') {
-            $exception = __('An identity column must be supplied
-                for the DbTable authentication adapter.');
+            $exception = __('An identity column must be supplied for the DbTable authentication adapter.');
         } elseif ($this->credentialColumn == '') {
-            $exception = __('A credential column must be supplied
-                for the DbTable authentication adapter.');
+            $exception = __('A credential column must be supplied for the DbTable authentication adapter.');
         } elseif ($this->identity == '') {
-            $exception = __('A value for the identity was not provided
-                prior to authentication with DbTable.');
+            $exception = __('A value for the identity was not provided prior to authentication with DbTable.');
         } elseif ($this->credential === null) {
-            $exception = __('A credential value was not provided
-                prior to authentication with DbTable.');
+            $exception = __('A credential value was not provided prior to authentication with DbTable.');
         }
 
         if (null !== $exception) {

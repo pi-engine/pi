@@ -100,7 +100,8 @@ abstract class AbstractAction
         $this->config       = $event->getParam('config');
         $this->module       = $event->getParam('module');
         $this->directory    = $event->getParam('directory');
-        $this->title        = $event->getParam('title') ?: $this->config['meta']['title'];
+        $this->title        = $event->getParam('title')
+                                ?: $this->config['meta']['title'];
         return $this;
     }
 
@@ -152,7 +153,9 @@ abstract class AbstractAction
     public function checkDependent(Event $e)
     {
         $model = Pi::model('module_dependency');
-        $rowset = $model->select(array('independent' => $e->getParam('module')));
+        $rowset = $model->select(array(
+            'independent' => $e->getParam('module')
+        ));
         if ($rowset->count() > 0) {
             $this->setResult('dependent', array(
                 'status'    => false,
@@ -186,7 +189,8 @@ abstract class AbstractAction
         if ($missing) {
             $this->setResult('Independent', array(
                 'status'    => false,
-                'message'   => 'Modules required by this module: ' . implode(', ', $missing)
+                'message'   => 'Modules required by this module: '
+                                . implode(', ', $missing)
             ));
             return false;
         }

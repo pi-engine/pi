@@ -23,7 +23,8 @@ use Pi\Log\DbProfiler;
  * Pi DB service hander
  *
  * Note:
- * In installation sql scripts, quote all database names with `{` and `}` so that all names can be easily prefixed on installation.
+ * In installation sql scripts, quote all database names with `{` and `}`
+ * so that all names can be canonized with prefix on installation.
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -106,7 +107,9 @@ class Db
      *
      * Build DB handler with options:
      *  - connection: Database connection parameters
-     *    - Single DB mode: 'driver', 'dsn', 'username', 'password', 'options'[, 'connect_onload']
+     *    - Single DB mode:
+     *      'driver', 'dsn', 'username', 'password', 'options'
+     *      [, 'connect_onload']
      *    - Master-Slave mode: 'master', 'slave'
      *  - table_prefix: database table prefix;
      *  - core_prefix: core table prefix
@@ -135,7 +138,8 @@ class Db
         if (isset($options['master'])) {
             $adapterMaster = $this->createAdapter($options['master']);
             $adapterSlave = $this->createAdapter($options['slave']);
-            $this->setAdapter($adapterMaster, 'master')->setAdapter($adapterSlave, 'slave');
+            $this->setAdapter($adapterMaster, 'master')
+                ->setAdapter($adapterSlave, 'slave');
         } else {
             $adapter = $this->createAdapter($options);
             $this->setAdapter($adapter);
@@ -224,23 +228,29 @@ class Db
     /**
      * Create adapter with configs
      *
+     * Configs are canonized to avoid violiation of `driver_options`
+     * in {@link \Zend\Db\Adapter\Driver\Pdo\Connection::connect()}
+     *
      * @param array                                 $config
      * @param \Zend\Db\Platform\PlatformInterface   $platform
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
     {
-        // Canonize config to avoid violiation of driver_options in Zend\Db\Adapter\Driver\Pdo\Connection::connect()
+        // Canonize config
         $options = array();
         if (isset($config['options'])) {
             $options = $config['options'];
             unset($config['options']);
         }
 
-        // Set user-supplied statement class derived from PDOStatement. Cannot be used with persistent PDO instances.
+        // Set user-supplied statement class derived from PDOStatement.
+        // Cannot be used with persistent PDO instances.
         // @see http://www.php.net/manual/en/pdo.setattribute.php
         if (!isset($config['driver_options'][PDO::ATTR_STATEMENT_CLASS])) {
-            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(static::STATEMENT_CLASS, array($this->profiler() ?: null));
+            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(
+                static::STATEMENT_CLASS,
+                array($this->profiler() ?: null));
         }
 
         $adapter = new Adapter($config, $platform);
@@ -301,7 +311,8 @@ class Db
      */
     public function prefix($table = '', $type = '')
     {
-        $typePrefix = empty($type) || $type == 'core' ? $this->corePrefix : $type . '_';
+        $typePrefix = empty($type) || $type == 'core'
+            ? $this->corePrefix : $type . '_';
         return sprintf('%s%s%s', $this->tablePrefix, $typePrefix, $table);
     }
 
@@ -309,9 +320,13 @@ class Db
      * Loads a model
      *
      * Sample:
-     *  - Load a normal model: `Pi::db()->model('block')`
-     *  - Load a model with no model class: `Pi::db()->model('page')`
-     *  - Load a nest model with no model class: `Pi::db()->model('test', array('type' => 'nest'))`
+     *
+     *  - Load a normal model:
+     *      `Pi::db()->model(<model-name>)`
+     *  - Load a model with no defined model class:
+     *      `Pi::db()->model(<model-name>)`
+     *  - Load a nest model with no defined model class:
+     *      `Pi::db()->model(<model-name>, array('type' => 'nest'))`
      *
      * @param string    $name
      * @param array     $options
@@ -329,9 +344,11 @@ class Db
                 $module = '';
                 $key = $name;
             }
-            $className = str_replace(' ', '\\', ucwords(str_replace('_', ' ', $key)));
+            $className = str_replace(' ', '\\',
+                ucwords(str_replace('_', ' ', $key)));
             if ($module) {
-                $className = sprintf('Module\\%s\Model\\%s', ucfirst($module), $className);
+                $className = sprintf('Module\\%s\Model\\%s',
+                    ucfirst($module), $className);
                 $options['prefix'] = static::prefix('', $module);
             } else {
                 $className = sprintf('Pi\Application\Model\\%s', $className);
@@ -347,7 +364,8 @@ class Db
                 $className = 'Pi\Application\Model\\' . $type;
             }
             $options['name'] = $key;
-            $options['adapter'] = empty($options['adapter']) ? $this->adapter() : $options['adapter'];
+            $options['adapter'] = empty($options['adapter'])
+                ? $this->adapter() : $options['adapter'];
             $model = new $className($options);
             if (!$model instanceof AbstractTableGateway) {
                 $model = false;
@@ -390,7 +408,8 @@ class Db
      * @param array         $types
      * @return Expression
      */
-    public function expression($expression = '', $parameters = null, array $types = array())
+    public function expression($expression = '',
+        $parameters = null, array $types = array())
     {
         $expression = new Expression($expression, $parameters, $types);
         return $expression;
@@ -406,7 +425,8 @@ class Db
     {
         if (null === $profiler) {
             if (null === $this->profiler) {
-                $this->profiler = Pi::service()->hasService('log') ? Pi::service('log')->dbProfiler() : false;
+                $this->profiler = Pi::service()->hasService('log')
+                    ? Pi::service('log')->dbProfiler() : false;
             }
             return $this->profiler;
         }

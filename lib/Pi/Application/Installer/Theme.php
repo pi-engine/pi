@@ -80,7 +80,9 @@ class Theme
     public function __call($method, $args)
     {
         if (!in_array($method, array('install', 'uninstall', 'update'))) {
-            throw new \InvalidArgumentException(sprintf('Invalid action "%s".', $method));
+            throw new \InvalidArgumentException(
+                sprintf('Invalid action "%s".', $method)
+            );
         }
 
         $name = array_shift($args);
@@ -106,7 +108,8 @@ class Theme
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method), null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method),
+            null, $event, $shortCircuit);
         if ($result->stopped()) {
             return false;
         }
@@ -117,12 +120,14 @@ class Theme
             $this->event->setParam('result', $ret);
             return false;
         }
-        $result = $this->getEventManager()->trigger('process', null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger('process',
+            null, $event, $shortCircuit);
         if ($result->stopped()) {
             return false;
         }
 
-        $this->getEventManager()->trigger(sprintf('%s.post', $method), null, $event);
+        $this->getEventManager()->trigger(sprintf('%s.post', $method),
+            null, $event);
         $this->getEventManager()->trigger('finish', null, $event);
 
         $status = true;
@@ -198,9 +203,11 @@ class Theme
         $content = '';
         foreach ($message as $action => $state) {
             $content .= '<p>';
-            $content .= $action . ': ' . (($state['status'] === false) ? 'failed' : 'passed');
+            $content .= $action . ': '
+                . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
-                $content .= '<br />&nbsp;&nbsp;' . implode('<br />&nbsp;&nbsp;', (array) $state['message']);
+                $content .= '<br />&nbsp;&nbsp;'
+                . implode('<br />&nbsp;&nbsp;', (array) $state['message']);
             }
             $content .= '</p>';
         }
@@ -214,7 +221,6 @@ class Theme
      */
     public function loadConfig(Event $e)
     {
-        //$config = include Pi::path('theme') . '/' . $e->getParam('name') . '/config.php';
         $config = Pi::service('theme')->loadConfig($e->getParam('name'));
         $e->setParam('config', $config);
     }
@@ -228,15 +234,11 @@ class Theme
     protected function canonizeData(array $data)
     {
         $return = array(
-            'name'          => isset($data['name']) ? $data['name'] : $this->event->getParam('name'),
-            'version'       => $data['version'],
-            'update'        => isset($data['update']) ? $data['update'] : time(),
-            'type'          => !empty($data['type']) ? $data['type'] : 'both',
-            /*
-            'title'         => $data['title'],
-            'author'        => $data['author'],
-            'screenshot'    => isset($data['screenshot']) ? $data['screenshot'] : '',
-            */
+            'name'      => isset($data['name'])
+                            ? $data['name'] : $this->event->getParam('name'),
+            'version'   => $data['version'],
+            'update'    => isset($data['update']) ? $data['update'] : time(),
+            'type'      => !empty($data['type']) ? $data['type'] : 'both',
         );
         return $return;
     }
@@ -255,7 +257,8 @@ class Theme
             'status'    => true,
             'message'   => ''
         );
-        if (empty($config['parent']) && $files = $this->checkFiles($name, $type)) {
+        if (empty($config['parent'])
+            && $files = $this->checkFiles($name, $type)) {
             $result = array(
                 'status'    => false,
                 'message'   => 'Files missing: ' . implode(' ', $files)
@@ -382,9 +385,13 @@ class Theme
         if (isset($fileList[$type])) {
             $files = $fileList[$type];
         } elseif ('both' == $type) {
-            $files = array_unique(array_merge($fileList['front'], $fileList['admin']));
+            $files = array_unique(
+                array_merge($fileList['front'], $fileList['admin'])
+            );
         } else {
-            throw new \Exception(sprintf('Wrong type "%s" configured.', $type));
+            throw new \Exception(
+                sprintf('Wrong type "%s" configured.', $type)
+            );
         }
         $missingFiles = array();
         foreach ($files as $file) {

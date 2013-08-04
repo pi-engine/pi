@@ -104,7 +104,8 @@ class Module extends AbstractService
         } elseif (!is_writable($configFile)) {
             @chmod($configFile, intval('0777', 8));
         }
-        $content = '<?php' . PHP_EOL . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
+        $content = '<?php' . PHP_EOL
+            . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
         file_put_contents($configFile, $content);
         @chmod($configFile, intval('0444', 8));
         clearstatcache();
@@ -161,7 +162,8 @@ class Module extends AbstractService
      */
     public function isActive($module)
     {
-        return empty($this->container['meta'][$module]['active']) ? false : true;
+        return empty($this->container['meta'][$module]['active'])
+            ? false : true;
     }
 
     /**
@@ -175,9 +177,12 @@ class Module extends AbstractService
     {
         $module = $module ?: $this->currentModule;
         if (!isset($this->container['config'][$module])) {
-            $this->container['config'][$module] = Pi::service('registry')->config->read($module);
+            $this->container['config'][$module] =
+                Pi::service('registry')->config->read($module);
         }
-        return $key ? $this->container['config'][$module][$key] : $this->container['config'][$module];
+        return $key
+            ? $this->container['config'][$module][$key]
+            : $this->container['config'][$module];
     }
 
     /**
@@ -189,7 +194,8 @@ class Module extends AbstractService
      */
     public function loadMeta($module, $type = null)
     {
-        Pi::service('i18n')->translator->load(sprintf('module/%s:meta', $module));
+        Pi::service('i18n')->translator
+            ->load(sprintf('module/%s:meta', $module));
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
         return $type ? $config[$type] : $config;
@@ -214,7 +220,7 @@ class Module extends AbstractService
      * Gets a module's physical directory name.
      *
      * Usually a module's directory is equal to its folder name.
-     * However, when module clone happends, which is implemented in Pi Engine or X3,
+     * However, when module clone happends, which is implemented in Pi Engine
      * a module's directory is its parent or root module's folder name while folder or 'dirname' by tradition is its key name.
      *
      * @param string $module Mmodule's dirname or identifier name
@@ -246,7 +252,7 @@ class Module extends AbstractService
             throw new \Exception('module is required.');
         }
         $directory = $this->directory($conditions['module']);
-        $class = sprintf('Module\\%s\\Service', ucfirst($directory));
+        $class = sprintf('Module\\%s\Service', ucfirst($directory));
         if (!class_exists($class)) {
             return false;
         }

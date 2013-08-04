@@ -37,7 +37,10 @@ class Themelist extends AbstractRegistry
         $themes = array();
         foreach ($rowset as $row) {
             $config = Pi::service('theme')->loadConfig($row->name);
-            $config['screenshot'] = !empty($config['screenshot']) ? Pi::service('asset')->getAssetUrl('theme/' . $row->name, $config['screenshot'], false) : Pi::url('static/image/theme.png');
+            $config['screenshot'] = !empty($config['screenshot'])
+                ? Pi::service('asset')->getAssetUrl('theme/' . $row->name,
+                    $config['screenshot'], false)
+                : Pi::url('static/image/theme.png');
             $themes[$row->name] = array_merge($config, $row->toArray());
         }
 

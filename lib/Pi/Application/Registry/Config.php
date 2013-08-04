@@ -41,7 +41,9 @@ class Config extends AbstractRegistry
         if (isset($category)) {
             $where['category'] = $category;
         }
-        $select = $modelConfig->select()->columns(array('name', 'value', 'filter'))->where($where);
+        $select = $modelConfig->select()
+            ->columns(array('name', 'value', 'filter'))
+            ->where($where);
         $rowset = $modelConfig->selectWith($select);
         $configs = array();
         foreach ($rowset as $row) {

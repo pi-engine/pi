@@ -80,7 +80,9 @@ class Log extends AbstractService
         }
         // Register exception handler
         if (isset($this->options['exception_handler'])) {
-            $this->registerExceptionHandler($this->options['exception_handler']);
+            $this->registerExceptionHandler(
+                $this->options['exception_handler']
+            );
         }
         // Set profiler
         if (isset($this->options['profiler'])) {
@@ -139,7 +141,9 @@ class Log extends AbstractService
             }
         } elseif (null === $this->active) {
             if (!empty($this->options['ip'])) {
-                $this->active = (bool) Pi::service('security')->ip(array('good' => $this->options['ip']));
+                $this->active = (bool) Pi::service('security')->ip(array(
+                    'good' => $this->options['ip'],
+                ));
             } else {
                 $this->active = true;
             }
@@ -151,7 +155,7 @@ class Log extends AbstractService
      * Enable/disable debugger
      *
      * @param bool $flag
-     * @return bool|null    return previous muted value or null if no debugger available
+     * @return bool|null Return previous muted value or null if no debugger available
      */
     public function mute($flag = true)
     {
@@ -197,8 +201,10 @@ class Log extends AbstractService
             return $this;
         }
         if (null === $this->debugger && isset($this->options['debugger'])) {
-            if (!isset($this->options['debugger']['active']) || false !== $this->options['debugger']['active']) {
-                $this->debugger = $this->logger()->writerPlugin('debugger', $this->options['debugger']);
+            if (!isset($this->options['debugger']['active'])
+                || false !== $this->options['debugger']['active']) {
+                $this->debugger = $this->logger()
+                    ->writerPlugin('debugger', $this->options['debugger']);
                 $this->logger()->addWriter($this->debugger);
             } else {
                 $this->debugger = false;
@@ -221,7 +227,8 @@ class Log extends AbstractService
             return $this;
         }
         if (null === $this->profiler && isset($this->options['profiler'])) {
-            if (!isset($this->options['profiler']['active']) || false !== $this->options['profiler']['active']) {
+            if (!isset($this->options['profiler']['active'])
+                || false !== $this->options['profiler']['active']) {
                 $this->profiler = new Profiler($this->options['profiler']);
                 if ($this->debugger()) {
                     $this->profiler->addWriter($this->debugger());
@@ -247,9 +254,12 @@ class Log extends AbstractService
             $this->dbProfiler = $dbProfiler;
             return $this;
         }
-        if (null === $this->dbProfiler && isset($this->options['db_profiler'])) {
-            if (!isset($this->options['db_profiler']['active']) || false !== $this->options['db_profiler']['active']) {
-                $this->dbProfiler = new DbProfiler($this->options['db_profiler']);
+        if (null === $this->dbProfiler
+            && isset($this->options['db_profiler'])) {
+            if (!isset($this->options['db_profiler']['active'])
+                || false !== $this->options['db_profiler']['active']) {
+                $this->dbProfiler =
+                    new DbProfiler($this->options['db_profiler']);
                 if ($this->debugger()) {
                     $this->dbProfiler->addWriter($this->debugger());
                 }

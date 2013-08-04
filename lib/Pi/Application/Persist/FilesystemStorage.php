@@ -32,7 +32,8 @@ class FilesystemStorage extends AbstractStorage
      */
     public function __construct($options = array())
     {
-        $this->cacheDir = isset($options['cache_dir']) ? $options['cache_dir'] : Pi::path('cache');
+        $this->cacheDir = isset($options['cache_dir'])
+            ? $options['cache_dir'] : Pi::path('cache');
     }
 
     /**
@@ -52,7 +53,9 @@ class FilesystemStorage extends AbstractStorage
      */
     protected function fileName($id, $hash = false)
     {
-        return sprintf('%s/%s.php', $this->cacheDir, $this->prefix(($hash ? md5($id) : $id)));
+        return sprintf('%s/%s.php',
+            $this->cacheDir,
+            $this->prefix(($hash ? md5($id) : $id)));
     }
 
     /**
@@ -74,7 +77,9 @@ class FilesystemStorage extends AbstractStorage
     {
         $cacheFile = $this->fileName($id);
         if (!$file = fopen($cacheFile, "w")) {
-            throw new \Exception(sprintf('Cache file "%s" can not be created.', $cacheFile));
+            throw new \Exception(
+                sprintf('Cache file "%s" can not be created.', $cacheFile)
+            );
         }
         $content = "<?php return " . var_export($data, true) . ";?>";
         fwrite($file, $content);

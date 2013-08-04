@@ -83,7 +83,8 @@ class Authentication extends AbstractService
      * @param StorageInterface $storage
      * @return Result
      */
-    public function authenticate($identity, $credential, AdapterInterface $adapter = null, StorageInterface $storage = null)
+    public function authenticate($identity, $credential,
+        AdapterInterface $adapter = null, StorageInterface $storage = null)
     {
         $adapter = $adapter ?: $this->getAdapter();
         $adapter->setIdentity($identity);

@@ -12,7 +12,11 @@ namespace Pi\Application\Engine;
 /**
  * Pi feed application engine
  *
- * Tasks: load configs, default listeners, module manager, bootstrap, application; boot application; run application
+ * Tasks:
+ *
+ *  - load configs, default listeners, module manager, bootstrap, application;
+ * - boot application;
+ * - run application
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

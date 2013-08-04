@@ -35,20 +35,6 @@ class Role extends Model
     {
         $parents = array();
         $model = Pi::model('acl_inherit');
-        /*
-        $table = $model->getTable();
-        $select = new Select;
-        $select->columns(array('grand' => 'parent'))
-                ->from(array('r' => $table))
-                ->join(array('c' => $table), 'r.child = c.parent', array('parent' => 'parent'))
-                ->where(array('c.child' => $role));
-
-        $statement = $model->sql->prepareStatementForSqlObject($select);
-        $result = $statement->execute();
-        if (empty($result)) {
-            return $parents;
-        }
-        */
         $rowset = $model->select(array('child' => $role));
 
         foreach ($rowset as $row) {

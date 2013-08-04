@@ -39,7 +39,8 @@ class Cache extends AbstractRegistry
                     $key .= '-' . $cache['action'];
                 }
             }
-            $caches[$key] = array('ttl' => $cache['cache_ttl'], 'level' => $cache['cache_level']);
+            $caches[$key] = array('ttl' => $cache['cache_ttl'],
+                'level' => $cache['cache_level']);
         }
 
         return $caches;

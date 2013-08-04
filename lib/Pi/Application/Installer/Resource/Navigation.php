@@ -112,7 +112,9 @@ class Navigation extends AbstractResource
     protected function canonizePage($page)
     {
         // @see: Zend\Navigation\Page\AbstractPage for identifying MVC pages
-        $isMvc = !empty($page['action']) || !empty($page['controller']) || !empty($page['route']);
+        $isMvc = !empty($page['action'])
+            || !empty($page['controller'])
+            || !empty($page['route']);
         if ($isMvc) {
             if (!isset($page['module'])) {
                 $page['module'] = $this->module;
@@ -122,7 +124,8 @@ class Navigation extends AbstractResource
             }
             // Canonize module relative route
             if ('.' == $page['route'][0]) {
-                $page['route'] = $page['module'] . '-' . substr($page['route'], 1);
+                $page['route'] = $page['module'] . '-'
+                    . substr($page['route'], 1);
             }
             if (isset($page['params']) && !is_array($page['params'])) {
                 $page['params'] = array();
@@ -228,7 +231,8 @@ class Navigation extends AbstractResource
         foreach ($navigationList['meta'] as $key => $navigation) {
             $status = $this->insertNavigation($navigation, $message);
             if (!$status) {
-                $message[] = sprintf('Navigation "%s" is not created.', $navigation['name']);
+                $msg = 'Navigation "%s" is not created.';
+                $message[] = sprintf($msg, $navigation['name']);
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -240,7 +244,8 @@ class Navigation extends AbstractResource
         foreach ($navigationList['node'] as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
-                $message[] = sprintf('Navigation data for "%s" is not created.', $node['navigation']);
+                $msg = 'Navigation data for "%s" is not created.';
+                $message[] = sprintf($msg, $node['navigation']);
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -281,7 +286,8 @@ class Navigation extends AbstractResource
             } else {
                 $status = $this->deleteNavigation($row, $message);
                 if (!$status) {
-                    $message[] = sprintf('Deprecated navigation "%s" is not deleted.', $row->name);
+                    $msg = 'Deprecated navigation "%s" is not deleted.';
+                    $message[] = sprintf($msg, $row->name);
                     return array(
                         'status'    => false,
                         'message'   => $message
@@ -293,7 +299,8 @@ class Navigation extends AbstractResource
         foreach ($navigations as $key => $navigation) {
             $status = $this->insertNavigation($navigation, $message);
             if (!$status) {
-                $message[] = sprintf('Navigation "%s" is not created.', $navigation['name']);
+                $msg = 'Navigation "%s" is not created.';
+                $message[] = sprintf($msg, $navigation['name']);
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -320,7 +327,8 @@ class Navigation extends AbstractResource
         foreach ($nodes as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
-                $message[] = sprintf('Navigation node "%s" is not created.', $node['navigation']);
+                $msg = 'Navigation node "%s" is not created.';
+                $message[] = sprintf($msg, $node['navigation']);
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -347,7 +355,8 @@ class Navigation extends AbstractResource
         foreach ($rowset as $row) {
             $status = $this->deleteNavigation($row, $message);
             if (!$status) {
-                $message[] = sprintf('Deprecated navigation "%s" is not deleted.', $row->name);
+                $msg = 'Deprecated navigation "%s" is not deleted.';
+                $message[] = sprintf($msg, $row->name);
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -470,7 +479,8 @@ class Navigation extends AbstractResource
      * @param array $message
      * @return bool
      */
-    protected function deleteNavigation(NavigationRow $navigationRow, &$message)
+    protected function deleteNavigation(NavigationRow $navigationRow,
+        &$message)
     {
         try {
             $navigationRow->delete();
@@ -478,7 +488,8 @@ class Navigation extends AbstractResource
             $message[] = $e->getMessage();
             return false;
         }
-        $row = Pi::model('navigation_node')->find($navigationRow->name, 'navigation');
+        $row = Pi::model('navigation_node')->find($navigationRow->name,
+            'navigation');
         if ($row) {
             $row->delete();
         }

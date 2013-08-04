@@ -43,18 +43,22 @@ class RedisStorage extends AbstractStorage
     public function __construct($options = array())
     {
         if (!extension_loaded('redis')) {
-            throw new \Exception('The redis extension must be loaded for using this model !');
+            throw new \Exception(
+                'The redis extension must be loaded for using this model !'
+            );
         }
         $redis = new Redis;
         $status = $redis->connect(
             isset($options['host']) ? $options['host'] : static::SERVER_HOST,
             isset($options['port']) ? $options['port'] : static::SERVER_PORT,
-            isset($options['timeout']) ? $options['timeout'] : static::SERVER_TIMEOUT
+            isset($options['timeout'])
+                ? $options['timeout'] : static::SERVER_TIMEOUT
         );
         if (!$status) {
             throw new \Exception('The redis server connection failed.');
         }
-        $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);   // use igBinary serialize/unserialize
+        // use igBinary serialize/unserialize
+        $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
         $this->redis = $redis;
     }
 
@@ -92,11 +96,6 @@ class RedisStorage extends AbstractStorage
     {
         $id = $this->prefix($id);
         $this->redis->sadd($this->namespace, $id);
-        /*
-        if ((is_string($data) && !is_numeric($data)) || is_object($data) || is_array($data)) {
-            $data = serialize($data);
-        }
-        */
         if ($ttl) {
             $result = $this->redis->setex($id, $data, $ttl);
         } else {

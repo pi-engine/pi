@@ -24,10 +24,8 @@ class Install extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        //$events->attach('install.pre', array($this, 'loadConfig'));
         $events->attach('install.pre', array($this, 'checkIndependent'));
         $events->attach('install.post', array($this, 'createDependency'));
-        //$events->attach('install.post', array($this->installer, 'updateMeta'));
         return $this;
     }
 

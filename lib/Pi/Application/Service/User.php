@@ -176,7 +176,8 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
-            $options = isset($this->options['options']) ? $this->options['options'] : array();
+            $options = isset($this->options['options'])
+                ? $this->options['options'] : array();
             if (!empty($this->options['adapter'])) {
                 $this->adapter = new $this->options['adapter']($options);
             } else {
@@ -199,14 +200,15 @@ class User extends AbstractService
             $options = array();
             $class = '';
             if (!empty($this->options['resource'][$name])) {
-                if (is_string($this->$this->options['handler'][$name])) {
-                    $class = $this->$this->options['handler'][$name];
+                if (is_string($this->options['resource'][$name])) {
+                    $class = $this->options['resource'][$name];
                 } else {
-                    if (isset($this->$this->options['handler'][$name]['class'])) {
-                        $class = $this->$this->options['handler'][$name]['class'];
+                    if (isset($this->options['resource'][$name]['class'])) {
+                        $class = $this->options['resource'][$name]['class'];
                     }
-                    if (isset($this->$this->options['handler'][$name]['options'])) {
-                        $options = $this->$this->options['handler'][$name]['options'];
+                    if (isset($this->options['resource'][$name]['options'])) {
+                        $options =
+                            $this->options['resource'][$name]['options'];
                     }
                 }
             }
@@ -289,7 +291,8 @@ class User extends AbstractService
      */
     public function hasIdentity()
     {
-        return $this->modelSession && $this->modelSession->get('id') ? true : false;
+        return $this->modelSession && $this->modelSession->get('id')
+            ? true : false;
     }
 
     /**
@@ -304,7 +307,9 @@ class User extends AbstractService
         if (!$this->hasIdentity()) {
             $identity = null;
         } else {
-            $identity = $asId ? $this->modelSession->getId() : $this->modelSession->getIdentity();
+            $identity = $asId
+                ? $this->modelSession->getId()
+                : $this->modelSession->getIdentity();
         }
 
         return $identity;
@@ -332,7 +337,8 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->getAdapter(), $method), $args);
+        return call_user_func_array(array($this->getAdapter(), $method),
+            $args);
     }
 
     /**

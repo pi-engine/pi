@@ -26,7 +26,8 @@ class Persist
     protected $handler;
 
     /**
-     * Backend storage of currently active persist handler, potential types: Apc, Memcached, Memcache, Redis, File, etc.
+     * Backend storage of currently active persist handler,
+     * potential types: Apc, Memcached, Memcache, Redis, File, etc.
      *
      * @var string
      */
@@ -40,9 +41,12 @@ class Persist
     public function __construct($config = array())
     {
         $storage = ucfirst($config['storage']);
-        $this->handler = $this->loadHandler($storage, isset($config['options']) ? $config['options'] : array());
+        $this->handler = $this->loadHandler($storage, isset($config['options'])
+            ? $config['options'] : array());
         if (!$this->handler) {
-            throw new \DomainException(sprintf('Storage "%s" is not supported.', $storage));
+            throw new \DomainException(
+                sprintf('Storage "%s" is not supported.', $storage)
+            );
         }
         $this->storage = $storage;
         $this->handler->setNamespace($config['namespace']);
@@ -57,7 +61,8 @@ class Persist
      */
     public function loadHandler($storage, $options = array())
     {
-        $class = __NAMESPACE__ . '\\' . sprintf('Persist\\%sStorage', $storage);
+        $class = __NAMESPACE__ . '\\'
+            . sprintf('Persist\\%sStorage', $storage);
         try {
             $handler = new $class($options);
         } catch (\Exception $e) {
@@ -83,7 +88,8 @@ class Persist
      */
     public function isValid()
     {
-        return (!empty($this->type) && $this->type != "Filesystem") ? true : false;
+        return (!empty($this->type) && $this->type != "Filesystem")
+            ? true : false;
     }
 
     /**

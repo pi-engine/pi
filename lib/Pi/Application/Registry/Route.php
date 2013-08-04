@@ -25,7 +25,8 @@ class Route extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $model = Pi::model('route');
-        $select = $model->select()->columns(array('name', 'data'))->order('priority ASC, id ASC');
+        $select = $model->select()->columns(array('name', 'data'))
+            ->order('priority ASC, id ASC');
         if (empty($options['exclude'])) {
             $select->where
                 ->equalTo('active', 1)

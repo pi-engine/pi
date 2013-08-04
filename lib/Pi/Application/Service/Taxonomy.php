@@ -80,7 +80,7 @@ class Taxonomy extends AbstractService
     }
 
     /**
-     * Create taxon data table for a damon and return corresponding model on success
+     * Create taxon data table for a damon and return corresponding model
      *
      * @param string $name Domain name
      * @return Model|false
@@ -359,7 +359,8 @@ class Taxonomy extends AbstractService
             $id = $domainData['id'];
             $row = Pi::model('taxonomy_domain')->find($id);
         } else {
-            $row = Pi::model('taxonomy_domain')->find($domainData['name'], 'name');
+            $row = Pi::model('taxonomy_domain')->find($domainData['name'],
+                'name');
         }
         $data = $this->canonizeDomain($domainData);
         $row->assign($data);

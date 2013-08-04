@@ -65,10 +65,13 @@ class Url extends AbstractService
      * @param  array   $options            Options for the route
      * @return string                   For the link href attribute
      */
-    public function assemble($route = null, array $params = array(), $options = array())
+    public function assemble($route = null,
+        array $params = array(), $options = array())
     {
         if (!$this->getRouter()) {
-            throw new \RuntimeException('No RouteStackInterface instance provided');
+            throw new \RuntimeException(
+                'No RouteStackInterface instance provided'
+            );
         }
         $options['name'] = $route ?: 'default';
         return $this->getRouter()->assemble($params, $options);
@@ -85,7 +88,9 @@ class Url extends AbstractService
     public function route($url)
     {
         if (!$this->getRouter()) {
-            throw new \RuntimeException('No RouteStackInterface instance provided');
+            throw new \RuntimeException(
+                'No RouteStackInterface instance provided'
+            );
         }
 
         $uri = new HttpUri($url);

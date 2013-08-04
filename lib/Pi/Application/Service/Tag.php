@@ -145,12 +145,14 @@ class Tag extends AbstractService
      * @param int    $offset        Offset
      * @return array|bool
      */
-    public function getList($module, $tag, $type = null, $limit = null, $offset = 0)
+    public function getList($module, $tag,
+        $type = null, $limit = null, $offset = 0)
     {
         if (!$this->active()) {
             return false;
         }
-        return TagService::getList($module, (array) $tag, $type, $limit, $offset);
+        return TagService::getList($module, (array) $tag,
+            $type, $limit, $offset);
     }
 
     /**

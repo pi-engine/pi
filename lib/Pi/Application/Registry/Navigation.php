@@ -94,7 +94,6 @@ class Navigation extends AbstractRegistry
                 //$this->route = 'default';
             } else {
                 $this->section = $nav->section;
-                //$this->route = ('admin' == $nav->section) ? 'admin' : 'default';
             }
         }
 
@@ -179,7 +178,8 @@ class Navigation extends AbstractRegistry
      * @param string|null   $role
      * @param string        $locale
      */
-    public function read($name = '', $module = '', $section = '', $role = null, $locale = '')
+    public function read($name = '', $module = '', $section = '',
+        $role = null, $locale = '')
     {
         //$this->cache = false;
         if (null === $role) {
@@ -200,7 +200,8 @@ class Navigation extends AbstractRegistry
      * @param string|null   $role
      * @param string        $locale
      */
-    public function create($name = '', $module = '', $role = null, $locale = '')
+    public function create($name = '', $module = '',
+        $role = null, $locale = '')
     {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
@@ -256,7 +257,9 @@ class Navigation extends AbstractRegistry
      * Canonize page data if callback is specified
      *
      * <ul>Note:
-     *  <li>Declaration: 'callback' must befined as a direct property of a page, as a direct method string, or an array of class and method
+     *  <li>Declaration:
+     *      'callback' must befined as a direct property of a page,
+     *      as a direct method string, or an array of class and method
      *      <ul>
      *          <li>Direct callback
      *
@@ -265,7 +268,7 @@ class Navigation extends AbstractRegistry
      *                  ...
      *                  'the-page'  => array(
      *                      'label' => 'The Page',
-     *                      'callback'  => 'Module\\Mymodule\\Navigation::thepage',
+     *                      'callback'  => 'Module\Mymodule\Navigation::thepage',
      *                  ),
      *                  ...
      *              );
@@ -284,7 +287,8 @@ class Navigation extends AbstractRegistry
      *              );
      *              </code>
      *
-     *          <li>Callback with direct class and method, the class will be transilated to the module in which the page spec is defined
+     *          <li>Callback with direct class and method,
+     *              the class will be transilated to the module in which the page spec is defined
      *
      *              <code>
      *              $pages = array(
@@ -381,8 +385,11 @@ class Navigation extends AbstractRegistry
             list($class, $method) = $page['callback'];
 
             if (!class_exists($class)) {
-                $module = empty($page['module']) ? $this->module : $page['module'];
-                $class = sprintf('Module\\%s\\%s', ucfirst(Pi::service('module')->directory($module)), ucfirst($class));
+                $module = empty($page['module'])
+                    ? $this->module : $page['module'];
+                $class = sprintf('Module\\%s\\%s',
+                    ucfirst(Pi::service('module')->directory($module)),
+                    ucfirst($class));
             }
 
             if (method_exists($class, $method)) {
@@ -450,7 +457,8 @@ class Navigation extends AbstractRegistry
      * @param array     $page   Page data to be canonized
      * @param array     $parent Sibling of parent page
      * @param string    $pKey   Key of parent in sibling
-     * @param bool      $isTop  If the page is top level, only top level menu is shown in non-system module admin
+     * @param bool      $isTop  If the page is top level,
+     *      only top level menu is shown in non-system module admin
      * @return array
      */
     protected function canonizePage($page, &$parent, $pKey, $isTop = false)
@@ -458,7 +466,9 @@ class Navigation extends AbstractRegistry
         $page = $this->canonizeCallback($page, $parent, $pKey);
 
         // @see: Zend\Navigation\Page\AbstractPage for identifying MVC pages
-        $isMvc = !empty($page['action']) || !empty($page['controller']) || !empty($page['route']);
+        $isMvc = !empty($page['action'])
+            || !empty($page['controller'])
+            || !empty($page['route']);
         if ($isMvc) {
             $validColumns = $this->mvcColumns;
         } else {
@@ -471,7 +481,8 @@ class Navigation extends AbstractRegistry
             }
         }
         // Only top level menu is shown in a non-system module back office
-        if ('admin' == $this->section && 'system' != $this->module && !$isTop) {
+        if ('admin' == $this->section
+            && 'system' != $this->module && !$isTop) {
             $page['visible'] = 0;
         }
 
@@ -484,7 +495,8 @@ class Navigation extends AbstractRegistry
      * @param array     $page   Page data to be canonized
      * @param array     $parent Sibling of parent page
      * @param string    $pKey   Key of parent in sibling
-     * @param bool      $isTop  If the page is top level, only top level menu is shown in non-system module admin
+     * @param bool      $isTop  If the page is top level,
+     *      only top level menu is shown in non-system module admin
      * @return array
      */
     protected function translatePage(&$page, &$parent, $pKey, $isTop = false)
@@ -540,7 +552,8 @@ class Navigation extends AbstractRegistry
     protected function isAllowedResource($params)
     {
         $module = null;
-        $section = empty($params['section']) ? $this->section : $params['section'];
+        $section = empty($params['section'])
+            ? $this->section : $params['section'];
         $resource = $params['resource'];
         if (!empty($params['item'])) {
             $resource = array($resource, $params['item']);
