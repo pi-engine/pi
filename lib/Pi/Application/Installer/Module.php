@@ -63,7 +63,8 @@ class Module
     public function __call($method, $args)
     {
         if (!in_array($method,
-            array('install', 'uninstall', 'update', 'activate', 'deactivate'))) {
+            array('install', 'uninstall', 'update', 'activate', 'deactivate'))
+            ) {
             throw new \InvalidArgumentException(
                 sprintf('Invalid action "%s".', $method)
             );

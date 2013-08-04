@@ -33,7 +33,8 @@ use Pi;
  *
  *  - null method: use raw data
  *  - empty method: hide the data
- *  - method is array(<module>, <element>): transform raw data via Module\Profile::method
+ *  - method is array(<module>, <element>):
+ *      transform raw data via Module\Profile::method
  */
 class User extends AbstractRegistry
 {

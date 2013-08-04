@@ -24,7 +24,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'controller'    => 'controllerName',
  *                  'cache_ttl'     => 0,
  *                  'cache_level'   => '',
- *                  // Block inheritance: 1 - specified; 0 - inherite from parent
+ *                  // Block inheritance:
+ *                  // 1 - specified; 0 - inherite from parent
  *                  'block'         => 0,
  *                  // Permission with specific role access rules
  *                  'permission'    => array(
@@ -40,7 +41,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'action'        => 'actionName',
  *                  'cache_ttl'     => 60,
  *                  'cache_level'   => 'role',
- *                  // Block inheritance: 1 - specified; 0 - inherite from parent
+ *                  // Block inheritance:
+ *                  // 1 - specified; 0 - inherite from parent
  *                  'block'         => 1,
  *                  // Don't set permission
  *                  'permission'    => false,
@@ -80,7 +82,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'action'        => 'actionName',
  *                  'cache_ttl'  => 0,
  *                  'cache_level'   => '',
- *                  // Permission with dispatchable parent resource or named resource from different section/module
+ *                  // Permission with dispatchable parent resource
+ *                  // or named resource from different section/module
  *                  'permission'    => array(
  *                      'parent'        => array(
  *                          'section'   => 'admin',
@@ -494,7 +497,8 @@ class Page extends AbstractResource
         $resourceRow = $modelResource->select($where)->current();
         if (!$resourceRow) {
             //trigger_error('Resource for page ' . $pageRow->id
-            //. ' is not found, perhaps it is deleted by its parent page resource.',
+            //. ' is not found, perhaps it is deleted by'
+            //. ' its parent page resource.',
             //E_USER_NOTICE);
             return;
         }

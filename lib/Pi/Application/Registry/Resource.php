@@ -53,7 +53,7 @@ class Resource extends AbstractRegistry
      *
      * @param string        $section   Section name: front, admin, module
      * @param string        $module    Module name
-     * @param string|null   $type      system, page or other custom types by module
+     * @param string|null   $type      system, page or other custom types
      */
     public function read($section = 'front', $module = '', $type = null)
     {
@@ -67,7 +67,7 @@ class Resource extends AbstractRegistry
      * {@inheritDoc}
      * @param string        $section   Section name: front, admin, module
      * @param string        $module    Module name
-     * @param string|null   $type      system, page or other custom types by module
+     * @param string|null   $type      system, page or other custom types
      */
     public function create($section = 'front', $module = '', $type = null)
     {

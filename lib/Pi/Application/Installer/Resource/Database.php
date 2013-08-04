@@ -130,10 +130,10 @@ class Database extends AbstractResource
                 $row->delete();
                 $status = true;
                 if (!$status) {
+                    $msg = 'Deprecated schema "%s" is not removed.';
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Deprecated schema "%s" is not removed.',
-                                        $name)
+                        'message'   => sprintf($msg, $name),
                     );
                 }
             } else {

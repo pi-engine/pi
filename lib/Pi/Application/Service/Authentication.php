@@ -13,8 +13,6 @@ namespace Pi\Application\Service;
 use Pi;
 use Pi\Authentication\Adapter\AdapterInterface;
 use Pi\Authentication\Storage\StorageInterface;
-//use Zend\Authentication\Adapter\DbTable\AbstractAdapter as DbTableAdapter;
-//use Zend\Authentication\Storage\StorageInterface;
 use Zend\Authentication\Result;
 
 /**
@@ -33,7 +31,8 @@ use Zend\Authentication\Result;
  *
  * ```
  *  $adapter = new Adapter();
- *  Pi::service('authentication')->authenticate(<identity>, <credential>, $adapter);
+ *  Pi::service('authentication')->authenticate(<identity>,
+ *      <credential>, $adapter);
  *  if ($rememberMe) {
  *      Pi::registry('session')->rememberMe();
  *  }

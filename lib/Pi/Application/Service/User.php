@@ -21,95 +21,97 @@ use Pi\User\Resource\AbstractResource;
  * User service gateway
  *
  * Serves as a gateway to user account and profile data,
- * to proxy APIs to corresponding adapter, either Pi built-in user or Pi SSO or any third-party user service
+ * to proxy APIs to corresponding adapter,
+ * either Pi built-in user or Pi SSO or any third-party user service
  *
  * User APIs
  *
- * Basic APIs defined by \Pi\User\Adapter\AbstractAdapter called via magic method __call()
- * ---------------------------------------------------------------------------------------
+ * Basic APIs defined by `\Pi\User\Adapter\AbstractAdapter`
+ * called via magic method __call()
+ * ----------------------------------------------------------------------------
  *
  * + Meta operations
- *   - getMeta([$type])                                     // Get meta list of user, type: account, profile, extra - extra profile non-structured
+ *   - getMeta([$type])
  *
  * + User operations
  *   + Binding
- *   - bind($id[, $field])                                  // Bind current user
+ *   - bind($id[, $field])
  *
  *   + Read
- *   - getUser([$id])                                       // Get current user or specified user
- *   - getUserList($ids)                                    // List of users by ID list
- *   - getIds($condition[, $limit[, $offset[, $order]]])    // ID list subject to $condition
- *   - getCount([$condition])                               // User count subject to $condition
+ *   - getUser([$id])
+ *   - getUserList($ids)
+ *   - getIds($condition[, $limit[, $offset[, $order]]])
+ *   - getCount([$condition])
  *
  *   + Add
- *   - addUser($data)               // Add a new user with account and profile
+ *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])     // Update a user for account and profile
+ *   - updateUser($data[, $id])
  *
  *   + Delete
- *   - deleteUser($id)              // Delete a user
+ *   - deleteUser($id)
  *
  *   + Activate
- *   - activateUser($id)            // Activate a user
- *   - deactivateUser($id)          // Deactivate a user
+ *   - activateUser($id)
+ *   - deactivateUser($id)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])             // Get user field(s)
- *   - getList($key, $ids)          // User field(s) of user list
+ *   - get($key[, $id])
+ *   - getList($key, $ids)
  *
  *   + Update
- *   - set($key, $value[, $id])         // Update field of user
- *   - increment($key, $value[, $id])   // Increase value of field
- *   - setPassword($value[, $id])       // Update password
+ *   - set($key, $value[, $id])
+ *   - increment($key, $value[, $id])
+ *   - setPassword($value[, $id])
  *
  * + Utility
  *   + Collective URL
- *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
+ *   - getUrl($type[, $id])
  *   + Authentication
- *   - authenticate($identity, $credential)                         // Authenticate a user
- * ----------------------------------------------------------------------------------------------------------
+ *   - authenticate($identity, $credential)
+ * ----------------------------------------------------------------------------
  *
  * + User operations
- *  - bind($identity[, $type])                                      // Bind a user
- *  - restore()                                                     // Restore bound user to current session user
- *  - destroy()                                                     // Destory current user session
- *  - hasIdentity()                                                 // If user logged in
- *  - getIdentity()                                                 // Get identity of the logged user
+ *  - bind($identity[, $type])
+ *  - restore()
+ *  - destroy()
+ *  - hasIdentity()
+ *  - getIdentity()
  *
  * + Resource APIs
  *
  * + Avatar
- *   - avatar([$id])                                                                // Get avatar handler
- *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
- *   - avatar([$id])->set($value[, $source])                                        // Set avatar for a user
- *   - avatar([$id])->delete()                                                      // Delete user avatar
+ *   - avatar([$id])
+ *   - avatar([$id])->setSource($source)
+ *   - avatar([$id])->get([$size[, $attributes[, $source]]])
+ *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
+ *   - avatar([$id])->set($value[, $source])
+ *   - avatar([$id])->delete()
  *
  * + Message
- *   - message([$id])                                                               // Get message handler
- *   - message([$id])->send($message, $from)                                        // Send message to a user
- *   - message([$id])->notify($message, $subject[, $tag])                           // Send notification to a user
- *   - message([$id])->getCount()                                                   // Get message total count of current user
- *   - message([$id])->getAlert()                                                   // Get message alert (new) count of current user
+ *   - message([$id])
+ *   - message([$id])->send($message, $from)
+ *   - message([$id])->notify($message, $subject[, $tag])
+ *   - message([$id])->getCount()
+ *   - message([$id])->getAlert()
  *
  * + Timeline/Activity
- *   - timeline([$id])                                                              // Get timeline handler
- *   - timeline([$id])->get($limit[, $offset[, $condition]])                        // Get timeline list
- *   - timeline([$id])->getCount([$condition]])                                     // Get timeline count subject to condition
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])                     // Add activity to user timeline
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])         // Get activity list of a user
- *   - timeline([$id])->delete([$condition])                                        // Delete timeline items subjecto to condition
+ *   - timeline([$id])
+ *   - timeline([$id])->get($limit[, $offset[, $condition]])
+ *   - timeline([$id])->getCount([$condition]])
+ *   - timeline([$id])->add($message, $module[, $tag[, $time]])
+ *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
+ *   - timeline([$id])->delete([$condition])
  *
  * + Relation
- *   - relation([$id])                                                              // Get relation handler
- *   - relation([$id])->get($relation, $limit[, $offset[, $condition[, $order]]])   // Get IDs with relationship: friend, follower, following
- *   - relation([$id])->getCount($relation[, $condition]])                          // Get count with relationship: friend, follower, following
- *   - relation([$id])->hasRelation($uid, $relation)                                // Check if $id has relation with $uid: friend, follower, following
- *   - relation([$id])->add($uid, $relation)                                        // Add $uid as a relation: friend, follower, following
- *   - relation([$id])->delete([$uid[, $relation]])                                 // Delete $uid as relation: friend, follower, following
+ *   - relation([$id])
+ *   - relation([$id])->get($relation, $limit[, $offset[, $condition[, $order]]])
+ *   - relation([$id])->getCount($relation[, $condition]])
+ *   - relation([$id])->hasRelation($uid, $relation)
+ *   - relation([$id])->add($uid, $relation)
+ *   - relation([$id])->delete([$uid[, $relation]])
  *
  * @see \Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -230,8 +232,10 @@ class User extends AbstractService
     /**
      * Bind a user to service
      *
-     * @param UserModel|int|string|null $identity   User id, identity or data object
-     * @param string                    $type       Type of the identity: id, identity, object
+     * @param UserModel|int|string|null $identity
+     *      User id, identity or data object
+     * @param string                    $type
+     *      Type of the identity: id, identity, object
      * @return self
      */
     public function bind($identity = null, $type = '')
@@ -298,7 +302,7 @@ class User extends AbstractService
     /**
      * Get identity of current logged user
      *
-     * @param bool $asId Return use id as identity; otherwise return user identity name
+     * @param bool $asId Return use id as identity or user identity name
      * @return null|int|string
      * @api
      */

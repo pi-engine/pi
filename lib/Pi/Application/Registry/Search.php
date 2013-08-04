@@ -21,7 +21,8 @@ class Search extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
-     * @param   array   $options    Potential values for type: active, inactive, all
+     * @param   array   $options    Potential values for type:
+     *      active, inactive, all
      * @return  array   Keys: dirname => callback, active
      */
     protected function loadDynamic($options = array())

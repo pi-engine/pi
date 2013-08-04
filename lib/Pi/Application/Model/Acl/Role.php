@@ -16,7 +16,8 @@ use Zend\Db\Sql\Select;
 /**
  * ACL role model
  *
- * The model follows DAG (Directed Acyclic Graph), i.e. one role could inherit from multiple parent roles
+ * The model follows DAG (Directed Acyclic Graph),
+ * i.e. one role could inherit from multiple parent roles
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

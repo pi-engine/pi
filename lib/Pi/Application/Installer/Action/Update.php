@@ -37,7 +37,9 @@ class Update extends AbstractAction
     public function process()
     {
         $model = Pi::model('module');
-        $row = $model->select(array('name' => $this->event->getParam('module')))->current();
+        $row = $model->select(array(
+            'name' => $this->event->getParam('module')
+        ))->current();
 
         $config = $this->event->getParam('config');
         $configVersion = $config['meta']['version'];
@@ -52,7 +54,8 @@ class Update extends AbstractAction
         $originalRow = clone $row;
         $config = $this->event->getParam('config');
         $meta = array('update' => time());
-        $moduleColumns = array('id', 'name', 'title', 'directory', 'version', 'update', 'active');
+        $moduleColumns = array('id', 'name', 'title', 'directory',
+            'version', 'update', 'active');
         foreach ($config['meta'] as $key => $value) {
             if (in_array($key, $moduleColumns)) {
                 $meta[$key] = $value;

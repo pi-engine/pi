@@ -41,7 +41,8 @@ class Module extends AbstractService
     /**
      * Constructor
      *
-     * @param array $options Parameters to send to the service during instanciation
+     * @param array $options
+     *      Parameters to send to the service during instanciation
      */
     public function __construct($options = array())
     {
@@ -221,7 +222,8 @@ class Module extends AbstractService
      *
      * Usually a module's directory is equal to its folder name.
      * However, when module clone happends, which is implemented in Pi Engine
-     * a module's directory is its parent or root module's folder name while folder or 'dirname' by tradition is its key name.
+     * a module's directory is its parent or root module's folder name
+     * while folder or `dirname` by tradition is its key name.
      *
      * @param string $module Mmodule's dirname or identifier name
      * @return string
@@ -242,9 +244,12 @@ class Module extends AbstractService
      * Fetch content of an item from a type of moldule content by calling
      * `Module\<ModuleName>\Service::content()`
      *
-     * @param array $variables array of variables to be returned: title, summary, uid, user, etc.
-     * @param array $conditions associative array of conditions: item - item ID or ID list, module, type - optional, user, Where
-     * @return  array Associative array of returned content, or list of associative arry if $item is an array
+     * @param array $variables array of variables to be returned:
+     *      title, summary, uid, user, etc.
+     * @param array $conditions associative array of conditions:
+     *      item - item ID or ID list, module, type - optional, user, Where
+     * @return  array Associative array of returned content,
+     *      or list of associative arry if $item is an array
      */
     public function content(array $variables, array $conditions)
     {

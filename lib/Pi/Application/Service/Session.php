@@ -58,7 +58,8 @@ class Session extends AbstractService
         if (!$this->manager) {
             $options = $this->options;
             $sessionConfig = null;
-            if (!empty($options['config']) && !empty($options['config']['class'])) {
+            if (!empty($options['config'])
+                && !empty($options['config']['class'])) {
                 $class  = $options['config']['class'];
                 $sessionConfig = new $class;
                 if (isset($options['config']['options'])) {
@@ -95,7 +96,7 @@ class Session extends AbstractService
                     ->setValidators($options['config']['validators']);
             }
 
-            // Set default session manager in case Zend\Session is called directly
+            // Set default session manager in case Zend\Session called directly
             Container::setDefaultManager($this->manager);
         }
 

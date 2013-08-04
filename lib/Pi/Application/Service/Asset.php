@@ -19,8 +19,11 @@ use Pi;
  *
  * - Source assts
  *   - Module native assets:
- *     - for both module "demo" and cloned "democlone": `module/demo/asset/`</li>
- *   - Module custom assets: (Note: the custom relationship is not maintained by the Asset service, it shall be addressed by module maintainer instead.)
+ *     - for both module "demo" and cloned "democlone":
+ *      `module/demo/asset/`</li>
+ *   - Module custom assets:
+ *      (Note: the custom relationship is not maintained by the Asset service,
+ *          it shall be addressed by module maintainer instead.)
  *     - for module "demo": `theme/default/module/demo/asset/`</li>
  *     - for module "democlone": `theme/default/module/democlone/asset/`
  *
@@ -309,7 +312,9 @@ class Asset extends AbstractService
      *
      * @param string    $component component name
      * @param string    $target target component
-     * @param bool      $override Force to override existent folder: true to remove existent folder/link and to recreate it; false to overwrite file by file
+     * @param bool      $override Force to override existent folder:
+     *  true to remove existent folder/link and to recreate it;
+     *  false to overwrite file by file
      * @return bool
      */
     public function publish($component, $target = '', $override = true)

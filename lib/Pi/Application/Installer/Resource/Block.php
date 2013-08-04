@@ -19,14 +19,22 @@ use Pi\Application\Model\Block\Root as RootRow;
  *  array(
  *      // Block with renderer and structured options
  *      'blockA' => array(
- *          'title'         => __('Block Title'),       // Required, translated
- *          //'link'          => '/link/to/a/URL',    // Optional
- *          //'class'         => 'css-class',         // Optional, specified stylesheet class for display
- *          'description'   => __('Desribing the block'),   // Optional, translated
- *          'render'        => array('class', 'method'),         // Required
- *          'template'      => 'template', // in module/template/block/, no suffix
- *          'cache_level'   => 'role', // Cache level type, optional: role, locale, user
- *          'access'        => array(), // ACL rules, optional
+ *          // Required, translated
+ *          'title'         => __('Block Title'),
+ *          // Optional
+ *          //'link'          => '/link/to/a/URL',
+ *          // Optional, specified stylesheet class for display
+ *          //'class'         => 'css-class',
+ *          // Optional, translated
+ *          'description'   => __('Desribing the block'),
+ *           // Required
+ *          'render'        => array('class', 'method'),
+ *          // in module/template/block/, no suffix
+ *          'template'      => 'template',
+ *          // Cache level type, optional: role, locale, user
+ *          'cache_level'   => 'role',
+ *          // ACL rules, optional
+ *          'access'        => array(),
  *          'config'        => array(
  *              'a' => array(
  *                  'title'         => 'Config A',
@@ -57,7 +65,7 @@ use Pi\Application\Model\Block\Root as RootRow;
  *                  'description'   => 'Config C hint',
  *                  'edit'          => 'input', // optional
  *                  'filter'        => 'string',
- *                  'value'         => __('sample text'), // translated
+ *                  'value'         => __('sample text'),
  *              ),
  *          ),
  *      ),

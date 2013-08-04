@@ -110,7 +110,9 @@ class Security extends AbstractService
     /**#@++
      * Check security settings
      *
-     * Policy: Returns TRUE will cause process quite and the current request will be approved; returns FALSE will cause process quit and request will be denied
+     * Policy: Returns TRUE will cause process quite
+     *  and the current request will be approved;
+     *  returns FALSE will cause process quit and request will be denied
      */
 
     /**

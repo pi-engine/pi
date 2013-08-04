@@ -140,7 +140,8 @@ namespace Pi\Application\Service
  *  __('A test message');
  * </code>
  *
- *   - From a specified text domain and restore previous domain after translation
+ *   - From a specified text domain and restore to previous domain
+ *      after translation
  *
  * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
@@ -148,7 +149,8 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->translator->restoreTextDomain();
  * </code>
  *
- *   - From a specified text domain and locale and restore previous domain/locale after translation
+ *   - From a specified text domain and locale and restore
+ *      to previous domain/locale after translation
  *
  * <code>
  *  Pi::service('i18n')->translator->setTextDomain('module/demo');
@@ -164,7 +166,8 @@ namespace Pi\Application\Service
  * </code>
  *
  *
- * - Register a message that will be translated in different lanauges, but not translated at the place where it is registered
+ * - Register a message that will be translated in different lanauges,
+ *      but not translated at the place where it is registered
  *
  * <code>
  *  _t('Message to be translated and used later.');
@@ -175,12 +178,17 @@ namespace Pi\Application\Service
  *    - Registered in a module's config.php
  *
  * <code>
- *  $config['key'] = array('title' => _t('Config Title'), 'description' => _t('Config hint'), '...'));
+ *  $config['key'] = array(
+ *      'title'         => _t('Config Title'),
+ *      'description'   => _t('Config hint'),
+ *      <...>
+ *  );
  * </code>
  *
  *    - Load translated message in the module config setting page:
- *       module/system/src/Controller/Admin/ConfigController.php calls ConfigForm.php:
- *       "Module\System\Form\ConfigForm::addElement()"
+ *       `module/system/src/Controller/Admin/ConfigController.php`
+ *      calls ConfigForm.php:
+ *       `Module\System\Form\ConfigForm::addElement()`
  *
  * <code>
  *  protected function addElement($config)
@@ -200,19 +208,32 @@ namespace Pi\Application\Service
  *
  * <code>
  *  _date(time(), 'fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
- *  _date(time(), array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
+ *  _date(time(), array(
+ *      'locale'    => 'fa-IR',
+ *      'datetype'  => 'long',
+ *      'timetype'  => 'short',
+ *      'timezone'  => 'Asia/Tehran',
+ *      'calendar'  => 'persian'
+ *  ));
  *
  *  _date(time(), null, 'long', 'short', 'Asia/Tehran', 'persian');
- *  _date(time(), array('datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
+ *  _date(time(), array('datetype' => 'long',
+ *      'timetype'  => 'short',
+ *      'timezone'  => 'Asia/Tehran',
+ *      'calendar'  => 'persian'));
  *
  *  _date(time(), 'fa-IR@calendar=persian', 'long', 'short', 'Asia/Tehran');
- *  _date(time(), array('locale' => 'fa-IR@calendar=persian', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran'));
+ *  _date(time(), array('locale' => 'fa-IR@calendar=persian',
+ *      'datetype'  => 'long',
+ *      'timetype'  => 'short',
+ *      'timezone'  => 'Asia/Tehran'));
  *
  *  _date(time(), null, null, null, null, 'persian');
  *  _date(time(), array('calendar' => 'persian'));
  *
  *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss');
- *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss'));
+ *  _date(time(), array('locale' => 'fa-IR',
+ *      'pattern' => 'yyyy-MM-dd HH:mm:ss'));
  *
  *  _date(time(), null, null, null, null, null, 'yyyy-MM-dd HH:mm:ss');
  *  _date(time(), array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
@@ -220,14 +241,19 @@ namespace Pi\Application\Service
  *  _date(time());
  * </code>
  *
- *   - In case Intl is not available, pass a format string for legacy date() function
+ *   - In case Intl not available,
+ *      pass a format string for legacy date() function
  *
  * <code>
- *  _date(time(), 'fa-IR', null, null, null, null, 'yyyy-MM-dd HH:mm:ss', 'Y-m-d H:i:s');
- *  _date(time(), array('locale' => 'fa-IR', 'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
+ *  _date(time(), 'fa-IR', null, null, null, null,
+ *      'yyyy-MM-dd HH:mm:ss', 'Y-m-d H:i:s');
+ *  _date(time(), array('locale' => 'fa-IR',
+ *      'pattern' => 'yyyy-MM-dd HH:mm:ss', 'format' => 'Y-m-d H:i:s'));
  * </code>
  *
- *   - Format defined in system intl config (<pre>Pi::config('date_format', 'intl')</pre>) will be used if format is not specified
+ *   - Format defined in system intl config
+ *      (<pre>Pi::config('date_format', 'intl')</pre>)
+ *      will be used if format is not specified
  *
  * <code>
  *  _date(time(), ...);
@@ -253,14 +279,26 @@ namespace Pi\Application\Service
  * - Get a date formatter
  *
  * <code>
- *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short', 'Asia/Tehran', 'persian');
- *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
+ *  Pi::service('i18n')->getDateFormatter('fa-IR', 'long', 'short',
+ *      'Asia/Tehran', 'persian');
+ *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR',
+ *      'datetype' => 'long', 'timetype' => 'short',
+ *      'timezone' => 'Asia/Tehran', 'calendar' => 'persian'));
  *
- *  Pi::service('i18n')->getDateFormatter('fa-IR@calendar=persian', 'long', 'short', 'Asia/Tehran');
- *  Pi::service('i18n')->getDateFormatter(array('locale' => 'fa-IR@calendar=persian', 'datetype' => 'long', 'timetype' => 'short', 'timezone' => 'Asia/Tehran'));
+ *  Pi::service('i18n')->getDateFormatter('fa-IR@calendar=persian',
+ *      'long', 'short', 'Asia/Tehran');
+ *  Pi::service('i18n')->getDateFormatter(array(
+ *      'locale'    => 'fa-IR@calendar=persian',
+ *      'datetype'  => 'long',
+ *      'timetype'  => 'short',
+ *      'timezone'  => 'Asia/Tehran'
+ *  ));
  *
- *  Pi::service('i18n')->getDateFormatter(null, null, null, null, null, 'yyyy-MM-dd HH:mm:ss');
- *  Pi::service('i18n')->getDateFormatter(array('pattern' => 'yyyy-MM-dd HH:mm:ss'));
+ *  Pi::service('i18n')->getDateFormatter(null, null, null, null, null,
+ *      'yyyy-MM-dd HH:mm:ss');
+ *  Pi::service('i18n')->getDateFormatter(array(
+ *      'pattern' => 'yyyy-MM-dd HH:mm:ss'
+ *  ));
  * </code>
  *
  * - Get a number formatter
@@ -468,11 +506,12 @@ namespace Pi\Application\Service
         }
 
         /**
-        * Normalize domain in Intl resources, including Translator, Locale, Date, NumberFormatter, etc.
-        *
-        * @param string $domain
-        * @return array Pair of component and domain
-        */
+         * Normalize domain in Intl resources,
+         * including Translator, Locale, Date, NumberFormatter, etc.
+         *
+         * @param string $domain
+         * @return array Pair of component and domain
+         */
         public function normalizeDomain($rawDomain)
         {
             if (false !== strpos($rawDomain, ':')) {
@@ -617,11 +656,15 @@ namespace Pi\Application\Service
          * @see IntlDateFormatter
          *
          * @param array|string|null $locale
-         * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $datetype
+         *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+         * @param string|null $timetype
+         *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
          * @param string|null $timezone
          * @param int|string|null $calendar
-         * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
+         * @param string|null $pattern
+         *      Be aware that both datetype and timetype are ignored
+         *      if the pattern is set.
          * @return IntlDateFormatter|null
          */
         public function getDateFormatter($locale = null, $datetype = null,
@@ -745,7 +788,8 @@ namespace Pi\Application\Service
         }
 
         /**
-         * Auto detect client supported language(s) from browser request header 'Accept-Language'
+         * Auto detect client supported language(s)
+         * from browser request header 'Accept-Language'
          *
          * @return string
          */
@@ -828,15 +872,20 @@ namespace
     }
 
     /**
-     * Locale-dependent formatting/parsing of date-time using pattern strings and/or canned patterns
+     * Locale-dependent formatting/parsing of date-time
+     * using pattern strings and/or canned patterns
      *
      * @param array|string|null $locale
-     * @param string|null $datetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timetype     Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+     * @param string|null $datetype
+     *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
+     * @param string|null $timetype
+     *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
      * @param string|null $timezone
      * @param int|string|null $calendar
-     * @param string|null $pattern      Be aware that both datetype and timetype are ignored if the pattern is set.
-     * @param string|null $format       Legacy format for date() in case Intl is not available
+     * @param string|null $pattern
+     *      Be aware that both datetype and timetype are ignored if the pattern is set.
+     * @param string|null $format
+     *      Legacy format for date() in case Intl is not available
      * @return string
      */
     function _date($value = null, $locale = null,
@@ -866,7 +915,8 @@ namespace
     }
 
     /**
-     * Locale-dependent formatting/parsing of number using pattern strings and/or canned patterns
+     * Locale-dependent formatting/parsing of number
+     * using pattern strings and/or canned patterns
      *
      * @param string|null $style
      * @param string|null $pattern
@@ -896,7 +946,8 @@ namespace
     }
 
     /**
-     * Locale-dependent formatting/parsing of number using pattern strings and/or canned patterns
+     * Locale-dependent formatting/parsing of number
+     * using pattern strings and/or canned patterns
      *
      * @param string|null $currency
      * @param string|null $locale

@@ -149,7 +149,7 @@ class Standard extends AbstractEngine
      * Loads a resource
      *
      * @param string    $resource
-     * @param array     $options    Custom options, will be merged with native options
+     * @param array     $options  Custom options
      * @return void
      */
     public function bootResource($resource, $options = array())

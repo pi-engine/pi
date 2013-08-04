@@ -290,7 +290,9 @@ abstract class AbstractRegistry
      */
     public function clear($namespace = '')
     {
-        Pi::service('cache')->clearByNamespace($this->getNamespace($namespace));
+        Pi::service('cache')->clearByNamespace(
+            $this->getNamespace($namespace)
+        );
 
         return $this;
     }

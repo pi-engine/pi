@@ -32,7 +32,8 @@ use Zend\Mime;
  *  $transport = Pi::service('mail')->transport();
  *  $transport->send($message);
  *  // Send with specified transport
- *  $transport = Pi::service('mail')->loadTransport('smtp', array('username' => '', 'password' => ''));
+ *  $transport = Pi::service('mail')->loadTransport('smtp',
+ *      array('username' => <username>, 'password' => <password>));
  *  $transport->send($message);
  *  // Or send with default transport directly
  *  Pi::service('mail')->send($message);
@@ -45,13 +46,22 @@ use Zend\Mime;
  *
  * <code>
  *  // Load from absolute template
- *  $data = Pi::service('mail')->template('/path/to/mail-template.txt', array());
+ *  $data = Pi::service('mail')->template('/path/to/mail-template.txt',
+ *      array());
  *  // Load from template relative to current module
  *  $data = Pi::service('mail')->template('mail-template[.txt]', array());
  *  // Load from template of specified module and locale
- *  $data = Pi::service('mail')->template(array('file' => 'mail-template[.txt]', 'module' => 'user', 'locale' => 'en'), array());
+ *  $data = Pi::service('mail')->template(
+ *      array(
+ *          'file'      => 'mail-template[.txt]',
+ *          'module'    => 'user',
+ *          'locale'    => 'en',
+ *      ),
+ *      array()
+ *  );
  *
- *  $message = Pi::service('mail')->message($data['subject'], $data['body'], $data['format']);
+ *  $message = Pi::service('mail')->message($data['subject'], $data['body'],
+ *      $data['format']);
  *  Pi::service('mail')->send($message);
  * </code>
  *
@@ -306,7 +316,12 @@ class Mail extends AbstractService
      *
      *  - Variables are tagged with %name% in templates
      *  - Variables provided by system by default:
-     *      site_name, site_url, site_slogan, site_description, site_adminname, site_adminmail
+     *      site_name,
+     *      site_url,
+     *      site_slogan,
+     *      site_description,
+     *      site_adminname,
+     *      site_adminmail
      *
      * @param string $content
      * @param array $vars
@@ -349,7 +364,9 @@ class Mail extends AbstractService
      *
      *      <code>
      *          [subject]Mail from %site_name%[/subject]
-     *          [body]<div>Dear %username%,</div><p>Greetings from %site_name%...</p>[/body]
+     *          [body]<div>Dear %username%,</div>
+     *                  <p>Greetings from %site_name%...</p>
+     *          [/body]
      *          [format]html[/html]
      *      </code>
      *

@@ -100,7 +100,8 @@ class Acl extends AbstractResource
                             && !in_array($moduleName, $modulesAllowed)) {
                             $denied = true;
                         }
-                    // Denied if action page is not allowed if check on page is enabled
+                    // Denied if action page is not allowed
+                    // if check on page is enabled
                     } elseif (!empty($this->options['check_page'])) {
                         if ($this->aclHandler->checkException($route)) {
                             $denied = false;
@@ -151,7 +152,8 @@ class Acl extends AbstractResource
 
         // Jump to denied page upon denial
         if ($denied) {
-            $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
+            $statusCode = Pi::service('user')->getUser()->isGuest()
+                ? 401 : 403;
             $e->getResponse()->setStatusCode($statusCode);
             $e->setError(true);
         }

@@ -43,29 +43,45 @@ class Theme
      */
     protected $fileList = array(
         'front' => array(
-            'template/layout-front.phtml',      // Complete layout template: header, footer, body, blocks, navigation
-            'template/layout-simple.phtml',     // Simple page layout: header, footer, body
-            'template/layout-style.phtml',      // Content with stylesheets
-            'template/layout-content.phtml',    // Raw content
+            // Complete layout template:
+            // header, footer, body, blocks, navigation
+            'template/layout-front.phtml',
+            // Simple page layout: header, footer, body
+            'template/layout-simple.phtml',
+            // Content with stylesheets
+            'template/layout-style.phtml',
+            // Raw content
+            'template/layout-content.phtml',
 
-            'template/paginator.phtml',         // Pagination template
+            // Pagination template
+            'template/paginator.phtml',
 
-            'template/error.phtml',             // Exception error template
-            'template/error-404.phtml',         // 404 error template
-            'template/error-denied.phtml',      // Denied error template
+            // Exception error template
+            'template/error.phtml',
+            // 404 error template
+            'template/error-404.phtml',
+            // Denied error template
+            'template/error-denied.phtml',
 
-            'asset/css/style.css',              // Main css file
+            // Main css file
+            'asset/css/style.css',
         ),
         'admin' => array(
-            'template/layout-admin.phtml',      // Backoffice layout
+            // Backoffice layout
+            'template/layout-admin.phtml',
 
-            'template/paginator.phtml',         // Pagination template
+            // Pagination template
+            'template/paginator.phtml',
 
-            'template/error.phtml',             // Exception error template
-            'template/error-404.phtml',         // 404 error template
-            'template/error-denied.phtml',      // Denied error template
+            // Exception error template
+            'template/error.phtml',
+            // 404 error template
+            'template/error-404.phtml',
+            // Denied error template
+            'template/error-denied.phtml',
 
-            'asset/css/style.css',              // Main css file
+            // Main css file
+            'asset/css/style.css',
         ),
     );
 

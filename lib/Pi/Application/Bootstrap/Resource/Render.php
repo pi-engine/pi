@@ -48,10 +48,12 @@ class Render extends AbstractResource
         $events = $this->application->getEventManager();
         // Setup page cache strategy
         if (!empty($this->options['page'])) {
-            // Page cache check, must go after access check whose priority is 9999
+            // Page cache check,
+            // must go after access check whose priority is 9999
             $events->attach(MvcEvent::EVENT_DISPATCH,
                 array($this, 'checkPage'), 1000);
-            // Page cache check, must go after access check whose priority is 9999
+            // Page cache check,
+            // must go after access check whose priority is 9999
             $events->attach(MvcEvent::EVENT_FINISH,
                 array($this, 'savePage'), -9000);
         } elseif (!empty($this->options['action'])) {

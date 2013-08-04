@@ -74,7 +74,8 @@ class SqlSchema
     public function parseContent($content)
     {
         // Remove comments to prevent from invalid syntax
-        $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->', $content);
+        $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->',
+            $content);
 
         $type = static::$type;
         $canonizePrefix = function ($matches) use ($type)

@@ -18,19 +18,25 @@ use Pi;
  * - Trigger an event with event name:
  *
  * ```
- *  Pi::service('event')->trigger(<event-name>[, <data-for-the-event>[, <shortcircuit-callback>]]);
+ *  Pi::service('event')->trigger(
+ *      <event-name>[, <data-for-the-event>[, <shortcircuit-callback>]]
+ *  );
  * ```
  *
  * - Trigger an event with module and event name:
  *
  * ```
- *  Pi::service('event')->trigger(array(<module-name>, <event-name>)[, <data-for-the-event>[, <shortcircuit-callback>]]);
+ *  Pi::service('event')->trigger(
+ *      array(<module-name>, <event-name>)
+ *      [, <data-for-the-event>[, <shortcircuit-callback>]]
+ *  );
  * ```
  *
  * - Attach a listener in run-time
  *
  * ```
- *  Pi::service('event')->attach(<module-name>, <event-name>, array(<callback-class>, <callback-method>[, <callback-module-name>]));
+ *  Pi::service('event')->attach(<module-name>, <event-name>,
+ *      array(<callback-class>, <callback-method>[, <callback-module-name>]));
  * ```
  *
  * @see \Pi\Application\Installer\Resource\Event for event specifications
@@ -51,7 +57,7 @@ class Event extends AbstractService
      *
      * @param string|array  $event          Event name or module event pair
      * @param mixed|null    $object         Object or array
-     * @param Callback|null $shortcircuit   Shortcircuit callback to stop the event trigger
+     * @param Callback|null $shortcircuit   Callback to stop the event trigger
      * @return bool
      */
     public function trigger($event, $object = null, $shortcircuit = null)
@@ -117,7 +123,8 @@ class Event extends AbstractService
      *
      * @param string    $module     Event module
      * @param string    $event      Event name
-     * @param array     $listener   Listener callback : array of <class>, <method>[, <module>]
+     * @param array     $listener   Listener callback:
+     *      <class>, <method>[, <module>]
      * @return $this
      */
     public function attach($module, $event, $listener)
@@ -132,7 +139,8 @@ class Event extends AbstractService
      *
      * @param string        $module     Event module
      * @param string        $event      Event name
-     * @param array|null    $listener   Listener callback : array of <class>, <method>, <module>
+     * @param array|null    $listener   Listener callback:
+     *      <class>, <method>, <module>
      * @return $this
      */
     public function detach($module, $event, $listener = null)

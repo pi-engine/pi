@@ -268,7 +268,8 @@ class Navigation extends AbstractRegistry
      *                  ...
      *                  'the-page'  => array(
      *                      'label' => 'The Page',
-     *                      'callback'  => 'Module\Mymodule\Navigation::thepage',
+     *                      'callback'  =>
+     *                          'Module\<ModuleName>\Navigation::thepage',
      *                  ),
      *                  ...
      *              );
@@ -281,14 +282,18 @@ class Navigation extends AbstractRegistry
      *                  ...
      *                  'the-page'  => array(
      *                      'label' => 'The Page',
-     *                      'callback'  => array('Module\\Mymodule\\Navigation', 'thepage'),
+     *                      'callback'  => array(
+     *                          'Module\<ModuleName>\Navigation',
+     *                          'thepage'
+     *                      ),
      *                  ),
      *                  ...
      *              );
      *              </code>
      *
      *          <li>Callback with direct class and method,
-     *              the class will be transilated to the module in which the page spec is defined
+     *              the class will be transilated to the module
+     *              in which the page spec is defined
      *
      *              <code>
      *              $pages = array(
@@ -302,7 +307,8 @@ class Navigation extends AbstractRegistry
      *              </code>
      *
      *      </ul>
-     *  <li>Return: the return array shall be for the page itself/subpages, or for its parent
+     *  <li>Return: the return array shall be for the page itself/subpages,
+     *      or for its parent
      *      <ul>
      *          <li>For the page
      *
@@ -318,7 +324,8 @@ class Navigation extends AbstractRegistry
      *              );
      *              </code>
      *
-     *          <li>For the page's parent with replacement: the page will be replaced with p1, p2, etc. in its parent
+     *          <li>For the page's parent with replacement:
+     *              the page will be replaced with p1, p2, etc. in its parent
      *
      *              <code>
      *              $return = array(
@@ -330,7 +337,9 @@ class Navigation extends AbstractRegistry
      *              );
      *              </code>
      *
-     *          <li>For the page's parent with insertion: the pages  p1, p2, etc. specified in 'pages' will be inserted into its parent before/after the page specified in 'position'
+     *          <li>For the page's parent with insertion: pages p1, p2, etc.
+     *              specified in 'pages' will be inserted into
+     *              its parent before/after the page specified in 'position'
      *
      *              <code>
      *              $return = array(
@@ -345,7 +354,10 @@ class Navigation extends AbstractRegistry
      *              );
      *              </code>
      *
-     *          <li>For the page itself and its parent with insertion: the pages  p1, p2, etc. specified in 'pages' will be inserted into its parent before/after the page specified in 'position'
+     *          <li>For the page itself and its parent with insertion:
+     *              the pages  p1, p2, etc.
+     *              specified in 'pages' will be inserted into
+     *              its parent before/after the page specified in 'position'
      *
      *              <code>
      *              $return = array(

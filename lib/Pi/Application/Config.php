@@ -153,7 +153,8 @@ class Config
     /**
      * Load configuration data from custom or config directory
      *
-     * @param string    $configFile Name for the config file located inside var/config and sub folders
+     * @param string    $configFile
+     *      Name for the config file located inside var/config and sub folders
      * @return array
      */
     public function load($configFile)

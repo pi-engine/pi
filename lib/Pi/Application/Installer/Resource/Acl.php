@@ -25,7 +25,8 @@ use Pi\Acl\Acl as AclHandler;
  *          'roleNameStaff' => array(
  *              'title'     => 'Title',
  *              'parents'   => array('parent'),
- *              'section'   => 'admin',         // Default as front if not specified
+ *              // Default as front if not specified
+ *              'section'   => 'admin',
  *          ),
  *          ...
  *      ),

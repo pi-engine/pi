@@ -284,7 +284,8 @@ class Render extends AbstractService
     /**
      * Flush render cache: a specific item, specified namespace or all
      *
-     * @param string|null $namespace    Namespace for cache storage, usually module name
+     * @param string|null $namespace Namespace for cache storage,
+     *      usually module name
      * @param string|null $key
      * @return Render
      */

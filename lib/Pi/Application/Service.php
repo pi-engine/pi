@@ -49,15 +49,19 @@ class Service
             }
 
             static::$services[$key] = new $class($options);
-            if (!(static::$services[$key] instanceof Service\AbstractService)) {
+            if (!static::$services[$key] instanceof Service\AbstractService) {
                 throw new \Exception(
                     sprintf('Invalid service instantiation "%s"', $name));
             }
             if (method_exists(static::$services[$key], 'shutdown')) {
-                Pi::registerShutdown(array(static::$services[$key], 'shutdown'));
+                Pi::registerShutdown(
+                    array(static::$services[$key], 'shutdown')
+                );
             }
             if ('log' != $name && $this->hasService('log')) {
-                $this->getService('log')->info(sprintf('Service "%s" is loaded', $name));
+                $this->getService('log')->info(
+                    sprintf('Service "%s" is loaded', $name)
+                );
             }
         }
 

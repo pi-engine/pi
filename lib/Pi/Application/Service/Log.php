@@ -155,7 +155,8 @@ class Log extends AbstractService
      * Enable/disable debugger
      *
      * @param bool $flag
-     * @return bool|null Return previous muted value or null if no debugger available
+     * @return bool|null Return previous muted value
+     *      or null if no debugger available
      */
     public function mute($flag = true)
     {

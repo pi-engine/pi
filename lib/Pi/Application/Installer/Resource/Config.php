@@ -297,10 +297,10 @@ class Config extends AbstractResource
                 if (!empty($isChanged)) {
                     $status = $row->save();
                     if (!$status) {
+                        $msg = 'Category "%s" is not updated.';
                         return array(
                             'status'    => false,
-                            'message'   => sprintf('Category "%s" is not updated.',
-                                            $row->name)
+                            'message'   => sprintf($msg, $row->name),
                         );
                     }
                 }

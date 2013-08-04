@@ -26,13 +26,14 @@ class File extends AbstractService
     /**
      * Copies a file.
      *
-     * This method only copies the file if the origin file is newer than the target file.
+     * This method only copies the file if the origin file is newer
+     * than the target file.
      *
      * By default, if the target already exists, it is not overridden.
      *
      * @param string    $originFile The original filename
      * @param string    $targetFile The target filename
-     * @param bool      $override   Whether to override an existing file or not
+     * @param bool      $override   Whether to override an existing file
      * @return $this
      *
      * @throws Exception When copy fails
@@ -87,7 +88,8 @@ class File extends AbstractService
     /**
      * Checks the existence of files or directories.
      *
-     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to check
+     * @param string|array|\Traversable $files A filename,
+     *      an array of files, or a \Traversable instance to check
      *
      * @return Bool
      */
@@ -105,9 +107,12 @@ class File extends AbstractService
     /**
      * Sets access and modification time of file.
      *
-     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to create
-     * @param int                       $time  The touch time as a unix timestamp
-     * @param int                       $atime The access time as a unix timestamp
+     * @param string|array|\Traversable $files
+     *      A filename, an array of files, or a \Traversable instance to create
+     * @param int                       $time
+     *      The touch time as a unix timestamp
+     * @param int                       $atime
+     *      The access time as a unix timestamp
      * @return $this
      *
      * @throws Exception When touch fails
@@ -149,7 +154,8 @@ class File extends AbstractService
     /**
      * Removes files or directories.
      *
-     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to remove
+     * @param string|array|\Traversable $files
+     *      A filename, an array of files, or a \Traversable instance to remove
      * @return $this
      *
      * @throws Exception When removal fails
@@ -195,10 +201,12 @@ class File extends AbstractService
     /**
      * Change mode for an array of files or directories.
      *
-     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change mode
+     * @param string|array|\Traversable $files
+     *      A filename, an array of files, or a \Traversable instance to change mode
      * @param int                       $mode      The new mode (octal)
      * @param int                       $umask     The mode mask (octal)
-     * @param Bool                      $recursive Whether change the mod recursively or not
+     * @param Bool                      $recursive
+     *      Whether change the mod recursively or not
      * @return $this
      *
      * @throws Exception When the change fail
@@ -225,9 +233,12 @@ class File extends AbstractService
     /**
      * Change the owner of an array of files or directories
      *
-     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change owner
+     * @param string|array|\Traversable $files
+     *      A filename, an array of files,
+     *      or a \Traversable instance to change owner
      * @param string                    $user      The new owner user name
-     * @param Bool                      $recursive Whether change the owner recursively or not
+     * @param Bool                      $recursive
+     *      Whether change the owner recursively or not
      * @return $this
      *
      * @throws Exception When the change fail
@@ -259,9 +270,12 @@ class File extends AbstractService
     /**
      * Change the group of an array of files or directories
      *
-     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change group
+     * @param string|array|\Traversable $files
+     *      A filename, an array of files,
+     *      or a \Traversable instance to change group
      * @param string                    $group     The group name
-     * @param Bool                      $recursive Whether change the group recursively or not
+     * @param Bool                      $recursive
+     *      Whether change the group recursively or not
      * @return $this
      *
      * @throws Exception When the change fail
@@ -325,7 +339,8 @@ class File extends AbstractService
      * @param string    $originDir     The origin directory path
      * @param string    $targetDir     The symbolic link name
      * @param Bool      $copyOnWindows Whether to copy files if on Windows
-     * @param Bool      $override      Whether to override existing files on copy if on Windows
+     * @param Bool      $override
+     *      Whether to override existing files on copy if on Windows
      * @return $this
      *
      * @throws Exception When symlink fails
@@ -360,10 +375,19 @@ class File extends AbstractService
                     if (defined('PHP_WINDOWS_VERSION_MAJOR')
                         && false !== strpos($report['message'],
                             'error code(1314)')) {
-                        throw new Exception('Unable to create symlink due to error code 1314: \'A required privilege is not held by the client\'. Do you have the required Administrator-rights?');
+                        throw new Exception(
+                            'Unable to create symlink due to error code 1314: '
+                            . '\'A required privilege is not held '
+                            . 'by the client\'. '
+                            . 'Do you have the required Administrator-rights?'
+                        );
                     }
                 }
-                throw new Exception(sprintf('Failed to create symbolic link from %s to %s', $originDir, $targetDir));
+                throw new Exception(
+                    sprintf('Failed to create symbolic link from %s to %s',
+                        $originDir,
+                        $targetDir)
+                );
             }
         }
 
@@ -371,7 +395,8 @@ class File extends AbstractService
     }
 
     /**
-     * Given an existing path, convert it to a path relative to a given starting path
+     * Given an existing path,
+     * convert it to a path relative to a given starting path
      *
      * @param string $endPath   Absolute path of target
      * @param string $startPath Absolute path where traversal begins
@@ -398,7 +423,8 @@ class File extends AbstractService
             $index++;
         }
 
-        // Determine how deep the start path is relative to the common path (ie, "web/bundles" = 2 levels)
+        // Determine how deep the start path is relative to the common path
+        // (ie, "web/bundles" = 2 levels)
         $depth = count($startPathArr) - $index;
 
         // Repeated "../" for each level need to reach the common path
@@ -406,7 +432,8 @@ class File extends AbstractService
 
         $endPathRemainder = implode('/', array_slice($endPathArr, $index));
 
-        // Construct $endPath from traversing to the common path, then to the remaining $endPath
+        // Construct $endPath from traversing to the common path,
+        // then to the remaining $endPath
         $relativePath = $traverser
         . (strlen($endPathRemainder) > 0
             ? $endPathRemainder . '/' : '');
@@ -417,12 +444,17 @@ class File extends AbstractService
     /**
      * Mirrors a directory to another.
      *
+     * With options
+     *
+     *  - override: Whether to override an existing file on copy
+     *      {@see copy()};
+     *  - copy_on_windows: Whether to copy files instead of links on Windows
+     *      {@see symlink()}.
+     *
      * @param string       $originDir The origin directory
      * @param string       $targetDir The target directory
      * @param \Traversable $iterator  A Traversable instance
-     * @param array        $options   An array of bool options:
-     *                                 - override: Whether to override an existing file on copy or not {@see copy()};
-     *                                 - copy_on_windows: Whether to copy files instead of links on Windows {@see symlink()}.
+     * @param array        $options   An array of bool options
      * @return $this
      *
      * @throws Exception When file type is unknown
@@ -451,7 +483,8 @@ class File extends AbstractService
         $originDir = rtrim($originDir, '/\\');
 
         foreach ($iterator as $file) {
-            $target = str_replace($originDir, $targetDir, $file->getPathname());
+            $target = str_replace($originDir, $targetDir,
+                $file->getPathname());
 
             if (is_dir($file)) {
                 $this->mkdir($target);
@@ -460,7 +493,8 @@ class File extends AbstractService
             } elseif (is_file($file) || ($copyOnWindows && is_link($file))) {
                 $this->copy($file,
                     $target,
-                    isset($options['override']) ? $options['override'] : false);
+                    isset($options['override'])
+                        ? $options['override'] : false);
             } else {
                 throw new Exception(
                     sprintf('Unable to guess "%s" file type.', $file)

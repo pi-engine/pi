@@ -23,7 +23,8 @@ use Pi\Markup\Markup as Renderer;
  *  Pi::service('markup')->render($content, 'html');
  *
  *  // Render as HTML with specified tags
- *  Pi::service('markup')->render($content, 'html', null, array('tags' => '<p><div>'));
+ *  Pi::service('markup')->render($content, 'html', null,
+ *      array('tags' => '<p><div>'));
  *
  *  // Render as HTML from markdown
  *  Pi::service('markup')->render($content, 'html', 'markdown');
@@ -31,14 +32,17 @@ use Pi\Markup\Markup as Renderer;
  *  // Render as plaintext with newline - htmlspecialchars
  *  Pi::service('markup')->render($content, 'text');
  *  Pi::service('markup')->render($content, 'text', 'text');
- *  Pi::service('markup')->render($content, 'text', null, array('newline' => true));
- *  Pi::service('markup')->render($content, 'text', 'text', array('newline' => true));
+ *  Pi::service('markup')->render($content, 'text', null,
+ *      array('newline' => true));
+ *  Pi::service('markup')->render($content, 'text', 'text',
+ *      array('newline' => true));
  *
  *  // Render as plaintext with newline from HTML - strip tags
  *  Pi::service('markup')->render($content, 'text', 'html');
  *
  *  // Render as plaintext w/o newline from markdown
- *  Pi::service('markup')->render($content, 'text', 'markdown', array('newline' => false));
+ *  Pi::service('markup')->render($content, 'text', 'markdown',
+ *      array('newline' => false));
  *
  *  // Render as plaintext w/o newline, with filters of user and tag support
  *  Pi::service('markup')->render($content, 'text', 'html', array(

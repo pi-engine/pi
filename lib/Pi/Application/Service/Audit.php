@@ -15,8 +15,10 @@ use Pi;
 /**
  * Auditing service
  *
- * The service provides a variety of ways logging run-time structured data into files.
- * An audit task could be specified in "var/config/service.audit.php" then called in applications,
+ * The service provides a variety of ways logging run-time structured data
+ * into files.
+ * An audit task could be specified in `var/config/service.audit.php`
+ * then called in applications,
  * it could also be called directly in run-time in applications on fly.
  *
  * Definition of configuration:
@@ -48,9 +50,10 @@ use Pi;
  * ```
  *
  * - Custom mode with option array (could be empty):
- *   - file: optional; if file is not specified, log data will be stored in "var/log/<audit-name>.log"
- *   - timeformat: optional, default as "c"
- *   - format: optional, default as "csv"
+ *   - file: optional; if file is not specified, log data will be stored in
+ *      `var/log/<audit-name>.log`
+ *   - timeformat: optional, default as `c`
+ *   - format: optional, default as `csv`
  *
  * ```
  *  'custom-mode-audit'  => array(
@@ -205,7 +208,8 @@ class Audit extends AbstractService
      * Logs an operation
      *
      * ```
-     *   Pi::service('audit')->log(<operation-name>, array(<val1>, <val2>, <val3>, ..., <valn>));
+     *   Pi::service('audit')->log(<operation-name>,
+     *      array(<val1>, <val2>, <val3>, ..., <valn>));
      * ```
      *
      * @param  string       $name  Log name

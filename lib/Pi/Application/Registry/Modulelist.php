@@ -38,7 +38,8 @@ class Modulelist extends AbstractRegistry
         }
         $rowset = $modelModule->select($where);
         foreach ($rowset as $module) {
-            $info = Pi::service('module')->loadMeta($module->directory, 'meta');
+            $info = Pi::service('module')->loadMeta($module->directory,
+                'meta');
             $modules[$module->name] = array(
                 'id'            => $module->id,
                 'name'          => $module->name,

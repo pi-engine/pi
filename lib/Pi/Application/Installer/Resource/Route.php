@@ -29,7 +29,8 @@ use Pi;
  *      // Type defined in \Pi\Mvc\Router\Route
  *      'type'      => 'Standard',
  *      'options'   =>array(
- *          'route' => '', // Used as prefix, which is different from Zend routes
+ *          // Used as prefix, which is different from Zend routes
+ *          'route' => '',
  *          'structure_delimiter'   => '/',
  *          'param_delimiter'       => '/',
  *          'key_value_delimiter'   => '-',
@@ -43,7 +44,8 @@ use Pi;
  * );
  * ```
  *
- * @see \Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute() for route name utilization
+ * @see \Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute()
+ *      for route name utilization
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Route extends AbstractResource

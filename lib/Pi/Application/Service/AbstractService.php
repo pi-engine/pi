@@ -28,7 +28,7 @@ abstract class AbstractService
     /**
      * Constructor
      *
-     * @param array $options Parameters to send to the service during instanciation
+     * @param array $options Parameters to send to the service
      */
     public function __construct($options = array())
     {

@@ -51,24 +51,33 @@ class MemcacheStorage extends AbstractStorage
      * Available options
      *
      * =====> (array) servers :
-     * an array of memcached server ; each memcached server is described by an associative array :
+     * an array of memcached server;
+     * each memcached server is described by an associative array :
      *
      * - 'host' => (string) : the name of the memcached server
      * - 'port' => (int) : the port of the memcached server
-     * - 'persistent' => (bool) : use or not persistent connections to this memcached server
-     * - 'weight' => (int) : number of buckets to create for this server which in turn control its
-     *                     probability of it being selected. The probability is relative to the total
-     *                     weight of all servers.
-     * - 'timeout' => (int) : value in seconds which will be used for connecting to the daemon. Think twice
-     *                      before changing the default value of 1 second - you can lose all the
-     *                      advantages of caching if your connection is too slow.
-     * - 'retry_interval' => (int) : controls how often a failed server will be retried, the default value
-     *                             is 15 seconds. Setting this parameter to -1 disables automatic retry.
-     * - 'status' => (bool) : controls if the server should be flagged as online.
-     * - 'failure_callback' => (callback) : Allows the user to specify a callback function to run upon
-     *                                    encountering an error. The callback is run before failover
-     *                                    is attempted. The function takes two parameters, the hostname
-     *                                    and port of the failed server.
+     * - 'persistent' => (bool) :
+     *      use or not persistent connections to this memcached server
+     * - 'weight' => (int) :
+     *      number of buckets to create for this server which in turn control
+     *      its probability of it being selected. The probability is relative
+     *      to the total weight of all servers.
+     * - 'timeout' => (int) :
+     *      value in seconds which will be used for connecting to the daemon.
+     *      Think twice before changing the default value of 1 second -
+     *      you can lose all the dvantages of caching if your connection is
+     *      too slow.
+     * - 'retry_interval' => (int) :
+     *      controls how often a failed server will be retried,
+     *      the default value is 15 seconds.
+     *      Setting this parameter to -1 disables automatic retry.
+     * - 'status' => (bool) :
+     *      controls if the server should be flagged as online.
+     * - 'failure_callback' => (callback) :
+     *      Allows the user to specify a callback function to run
+     *      upon encountering an error. The callback is run
+     *      before failover is attempted. The function takes two parameters,
+     *      the hostname and port of the failed server.
      *
      * =====> (boolean) compression :
      *
@@ -112,14 +121,15 @@ class MemcacheStorage extends AbstractStorage
     public function __construct($options = array())
     {
         if (!extension_loaded('memcache')) {
-            throw new \Exception('The memcache extension must be loaded for using this model !');
+            throw new \Exception(
+                'The memcache extension must be loaded for using this model !'
+            );
         }
         $this->memcache = new \memcache;
         $options = array_merge($this->options, $options);
         $value= $options['servers'];
         if (isset($value['host'])) {
-            // in this case, $value seems to be a simple associative array (one server only)
-            // let's transform it into a classical array of associative arrays
+            // Transform into a classical array of associative arrays
             $value = array(0 => $value);
         }
         $options['servers'] = $value;
