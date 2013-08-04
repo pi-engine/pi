@@ -197,7 +197,8 @@ class Translator extends ZendTranslator
         if (!$textDomain) {
             $textDomain = $this->getTextDomain();
         }
-        return parent::translatePlural($singular, $plural, $number, $textDomain, $locale);
+        return parent::translatePlural($singular, $plural, $number,
+            $textDomain, $locale);
     }
 
     /**
@@ -239,23 +240,24 @@ class Translator extends ZendTranslator
     public function load($domain, $locale = null)
     {
         // Array of ($textDomain, $file)
-        $domain = is_array($domain) ? $domain : Pi::service('i18n')->normalizeDomain($domain);
+        $domain = is_array($domain)
+            ? $domain : Pi::service('i18n')->normalizeDomain($domain);
         $this->setTextDomain($domain[0]);
         $this->setLocale($locale);
 
-        $messages = (array) Pi::service('registry')->i18n->setGenerator(array($this, 'loadResource'))->read($domain, $this->locale);
-        $this->messages[$this->textDomain][$this->locale] = new TextDomain($messages);
+        $messages = (array) Pi::service('registry')->i18n
+            ->setGenerator(array($this, 'loadResource'))
+            ->read($domain, $this->locale);
+        $this->messages[$this->textDomain][$this->locale] =
+            new TextDomain($messages);
         //$this->messages[$this->textDomain][$this->locale] = $messages;
         if ($this->textDomain && $messages) {
             if (!empty($this->messages[''][$this->locale])) {
                 foreach ($messages as $key => $val) {
                     $this->messages[''][$this->locale]->offsetSet($key, $val);
                 }
-                //$this->messages[''][$this->locale]->append($messages);
-                //$this->messages[''][$this->locale]->append($messages->getArrayCopy());
             } else {
                 $this->messages[''][$this->locale] = new TextDomain($messages);
-                //$this->messages[''][$this->locale] = $messages;
             }
         }
 
@@ -270,7 +272,8 @@ class Translator extends ZendTranslator
      */
     public function loadResource($options)
     {
-        $filename = Pi::service('i18n')->getPath(array($options['domain'], $options['file']), $options['locale']);
+        $filename = Pi::service('i18n')->getPath(array($options['domain'],
+            $options['file']), $options['locale']);
         try {
             $result = $this->loader->load($options['locale'], $filename);
         } catch (\Exception $e) {
@@ -278,7 +281,11 @@ class Translator extends ZendTranslator
         }
         if (false === $result) {
             if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(sprintf('Translation "%s-%s.%s" load failed.', $options['domain'], $options['file'], $options['locale']));
+                Pi::service()->getService('log')->info(
+                    sprintf('Translation "%s-%s.%s" load failed.',
+                        $options['domain'],
+                        $options['file'],
+                        $options['locale']));
             }
             $result = array();
         } else {

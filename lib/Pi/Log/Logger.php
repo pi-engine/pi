@@ -17,7 +17,8 @@ use Zend\Stdlib\ArrayUtils;
 /**
  * Logger
  *
- * With BSD Syslog message severities {@link http://tools.ietf.org/html/rfc3164}
+ * With BSD Syslog message severities
+ *  {@link http://tools.ietf.org/html/rfc3164}
  *
  *  - EMERG
  *  - ALERT
@@ -111,7 +112,8 @@ class Logger
      */
     public function priorityName($priorityValue)
     {
-        return isset($this->priorities[$priorityValue]) ? $this->priorities[$priorityValue] : null;
+        return isset($this->priorities[$priorityValue])
+            ? $this->priorities[$priorityValue] : null;
     }
 
     /**
@@ -176,7 +178,8 @@ class Logger
      * @param array $options
      * @return self
      */
-    public function addWriter($writer, $priority = 1, array $options = array())
+    public function addWriter($writer, $priority = 1,
+        array $options = array())
     {
         if (is_string($writer)) {
             $writer = $this->writerPlugin($writer, $options);
@@ -186,7 +189,9 @@ class Logger
                 is_object($writer) ? get_class($writer) : gettype($writer)
             ));
         }
-        $priority = is_int($options) ? $options : (isset($options['priority']) ? $options['priority'] : 1);
+        $priority = is_int($options)
+            ? $options
+            : (isset($options['priority']) ? $options['priority'] : 1);
         $this->writers->insert($writer, $priority);
 
         return $this;
@@ -212,11 +217,15 @@ class Logger
     public function setWriters($writers)
     {
         if (!$writers instanceof SplPriorityQueue) {
-            throw new \InvalidArgumentException('Writers must be a SplPriorityQueue of Zend\Log\Writer');
+            throw new \InvalidArgumentException(
+                'Writers must be a SplPriorityQueue of Zend\Log\Writer'
+            );
         }
         foreach ($writers->toArray() as $writer) {
             if (!$writer instanceof Writer\WriterInterface) {
-                throw new \InvalidArgumentException('Writers must be a SplPriorityQueue of Zend\Log\Writer');
+                throw new \InvalidArgumentException(
+                    'Writers must be a SplPriorityQueue of Zend\Log\Writer'
+                );
             }
         }
         $this->writers = $writers;

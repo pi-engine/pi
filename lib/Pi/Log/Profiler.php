@@ -112,9 +112,12 @@ class Profiler
         }
         $this->timers[$name]['stopped'] = true;
 
-        $this->timers[$name]['timer'] = microtime(true) - $this->timers[$name]['timer'];
-        $this->timers[$name]['realmem'] = memory_get_usage(true) - $this->timers[$name]['realmem'];
-        $this->timers[$name]['emalloc'] = memory_get_usage() - $this->timers[$name]['emalloc'];
+        $this->timers[$name]['timer'] = microtime(true)
+            - $this->timers[$name]['timer'];
+        $this->timers[$name]['realmem'] = memory_get_usage(true)
+            - $this->timers[$name]['realmem'];
+        $this->timers[$name]['emalloc'] = memory_get_usage()
+            - $this->timers[$name]['emalloc'];
 
         return $this;
     }

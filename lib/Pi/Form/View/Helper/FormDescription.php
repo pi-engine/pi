@@ -39,7 +39,8 @@ class FormDescription extends AbstractHelper
             $attributes = $attributesOrElement;
         }
 
-        return !empty($attributes) ? sprintf('<span %s>', $attributes) : '<span>';
+        return !empty($attributes)
+            ? sprintf('<span %s>', $attributes) : '<span>';
     }
 
     /**
@@ -59,7 +60,8 @@ class FormDescription extends AbstractHelper
      * @param  array $attributes
      * @return string|self
      */
-    public function __invoke(ElementInterface $element = null, array $attributes = array())
+    public function __invoke(ElementInterface $element = null,
+        array $attributes = array())
     {
         if (!$element) {
             return $this;
@@ -74,7 +76,8 @@ class FormDescription extends AbstractHelper
      * @param  array $attributes
      * @return string
      */
-    public function render(ElementInterface $element, array $attributes = array())
+    public function render(ElementInterface $element,
+        array $attributes = array())
     {
         $message = $element->getAttribute('description');
         if (!$message) {

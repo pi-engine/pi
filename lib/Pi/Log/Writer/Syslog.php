@@ -76,7 +76,8 @@ class Syslog extends AbstractWriter
     /**
      * Constructor
      *
-     * @param array $params Array of options; may include "application" and "facility" keys
+     * @param array $params
+     *      Array of options; may include "application" and "facility" keys
      */
     public function __construct(array $params = array())
     {
@@ -162,7 +163,9 @@ class Syslog extends AbstractWriter
 
         if (!in_array($facility, $this->validFacilities)) {
             throw new \InvalidArgumentException(
-            	'Invalid log facility provided; please see http://php.net/openlog for a list of valid facility values'
+            	'Invalid log facility provided;'
+                . ' please see http://php.net/openlog'
+                . ' for a list of valid facility values'
             );
         }
 

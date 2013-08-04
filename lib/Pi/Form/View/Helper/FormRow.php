@@ -72,7 +72,8 @@ class FormRow extends ZendFormRow
 
         // Does this element have errors ?
         if (count($element->getMessages()) > 0 && !empty($inputErrorClass)) {
-            $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
+            $classAttributes = ($element->hasAttribute('class')
+                ? $element->getAttribute('class') . ' ' : '');
             $classAttributes = $classAttributes . $inputErrorClass;
 
             $element->setAttribute('class', $classAttributes);
@@ -107,7 +108,8 @@ class FormRow extends ZendFormRow
             // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
             // labels. The semantic way is to group them inside a fieldset
             $type = $element->getAttribute('type');
-            if ($type === 'multi_checkbox' || $type === 'multicheckbox' || $type === 'radio') {
+            if ($type === 'multi_checkbox' || $type === 'multicheckbox'
+                || $type === 'radio') {
                 $markup = sprintf(
                     '<fieldset><legend>%s</legend>%s%s</fieldset>',
                     $label,
@@ -131,24 +133,28 @@ class FormRow extends ZendFormRow
                     $label = '<span>' . $label . '</span>';
                 }
 
-                // Button element is a special case, because label is always rendered inside it
+                // Button element is a special case,
+                // because label is always rendered inside it
                 if ($element instanceof Button) {
                     $labelOpen = $labelClose = $label = '';
                 }
 
                 switch ($this->labelPosition) {
                     case self::LABEL_PREPEND:
-                        $markup = $labelOpen . $label . $elementString . $labelClose;
+                        $markup = $labelOpen . $label . $elementString
+                            . $labelClose;
                         break;
                     case self::LABEL_APPEND:
                     default:
-                        $markup = $labelOpen . $elementString . $label . $labelClose;
+                        $markup = $labelOpen . $elementString . $label
+                            . $labelClose;
                         break;
                 }
                 /**#@+
                  * For description
                  */
-                $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>' . $elementDescription . $elementString;
+                $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>'
+                    . $elementDescription . $elementString;
                 /**#@-*/
             }
 

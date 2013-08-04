@@ -195,7 +195,8 @@ class Debugger extends AbstractWriter
         $system = array();
 
         // Execution time
-        $system['Execution time'] = sprintf('%.4f', microtime(true) - Pi::startTime()) . ' s';
+        $system['Execution time'] = sprintf('%.4f',
+            microtime(true) - Pi::startTime()) . ' s';
 
         // Included file count
         $files_included = get_included_files();
@@ -213,7 +214,8 @@ class Debugger extends AbstractWriter
             // Windows system
             if (strpos(strtolower(PHP_OS), 'win') !== false) {
                 $out = array();
-                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $out);
+                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',
+                    $out);
                 $memory = substr($out[5], strpos($out[5], ':') + 1);
             }
         }
@@ -221,14 +223,17 @@ class Debugger extends AbstractWriter
 
         // Sstem environments
         $system['OS'] = PHP_OS ?: 'Not detected';
-        $system['Web Server'] = $_SERVER['SERVER_SOFTWARE']; //PHP_SAPI ?: 'Not detected';
+        // PHP_SAPI ?: 'Not detected';
+        $system['Web Server'] = $_SERVER['SERVER_SOFTWARE'];
         $system['PHP Version'] = PHP_VERSION;
 
         // MySQL version
-        $pdo = Pi::db()->getAdapter()->getDriver()->getConnection()->connect()->getResource();
+        $pdo = Pi::db()->getAdapter()->getDriver()
+            ->getConnection()->connect()->getResource();
         $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
         $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
-        $system['MySQL Version'] = sprintf('Server: %s; Client: %s', $server_version, $client_version);
+        $system['MySQL Version'] = sprintf('Server: %s; Client: %s',
+            $server_version, $client_version);
 
         // Application versions
         $system['Pi Version'] = PiVersion::version();
@@ -286,7 +291,8 @@ class Debugger extends AbstractWriter
                 'name'  => $key,
                 'value' => $value,
             );
-            $this->logger['system'][] = $this->systemInfoFormatter()->format($event);
+            $this->logger['system'][] =
+                $this->systemInfoFormatter()->format($event);
         }
     }
 
@@ -312,13 +318,19 @@ EOT;
             $count = count($this->logger[$category]);
             $log .= PHP_EOL .
 <<<"EOT"
-        <span id="pi-logger-tab-{$category}"><a href="javascript:piLoggerToggleCategoryDisplay('{$category}')">{$category}({$count})</a></span> |
+        <span id="pi-logger-tab-{$category}">
+            <a href="javascript:piLoggerToggleCategoryDisplay('{$category}')">
+                {$category}({$count})
+            </a>
+        </span> |
 EOT;
         }
 
         $log .= PHP_EOL .
 <<<'EOT'
-        <span id="pi-logger-tab-all"><a href="javascript:piLoggerToggleCategoryDisplay('all')">all</a></span>
+        <span id="pi-logger-tab-all">
+            <a href="javascript:piLoggerToggleCategoryDisplay('all')">all</a>
+        </span>
     </div>
     <div id="pi-logger-categories">
 EOT;
@@ -430,7 +442,9 @@ EOT;
 </style>
 EOT;
 
-        $cookiePath = ($baseUrl = Pi::host()->get('baseUrl')) ? rtrim($baseUrl, '/') . '/' : '/';
+        $cookiePath = ($baseUrl = Pi::host()->get('baseUrl'))
+                ? rtrim($baseUrl, '/')
+            . '/' : '/';
         // Use heredoc for JavaScript contents
         $scripts_js =
 <<<"EOT"

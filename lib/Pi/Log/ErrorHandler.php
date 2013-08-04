@@ -14,7 +14,8 @@ define('ERROR_REPORTING_PRODUCTION', 0);
 /** @var int Development mode, all possible */
 define('ERROR_REPORTING_DEVELOPMENT', -1);
 /** @var int Debug/test mode, all errors except deprecated/notice messages */
-define('ERROR_REPORTING_DEBUG', E_ALL & ~ (E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
+define('ERROR_REPORTING_DEBUG',
+    E_ALL & ~ (E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
 
 /**
  * Custom error handler
@@ -71,7 +72,8 @@ class ErrorHandler
         $errorReporting = static::$errorLevel['development'];
         if (isset($options['error_reporting'])) {
             $errorReporting = $options['error_reporting'];
-        } elseif (isset($options['error_level']) && isset(static::$errorLevel[$options['error_level']])) {
+        } elseif (isset($options['error_level'])
+            && isset(static::$errorLevel[$options['error_level']])) {
             $errorReporting = static::$errorLevel[$options['error_level']];
         }
         $this->errorReporting = $errorReporting;
@@ -150,7 +152,8 @@ class ErrorHandler
      * @return bool
      * @throws \Exception
      */
-    public function handleError($errno, $errstr = '', $errfile = '', $errline = 0, $errcontext = array())
+    public function handleError($errno, $errstr = '', $errfile = '',
+        $errline = 0, $errcontext = array())
     {
         if ($this->errorReporting & $errno) {
             if (isset($this->errorHandlerMap[$errno])) {

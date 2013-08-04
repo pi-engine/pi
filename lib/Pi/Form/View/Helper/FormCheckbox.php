@@ -66,7 +66,8 @@ class FormCheckbox extends FormInput
     public function setLabelPosition($labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (!in_array($labelPosition, array(static::LABEL_APPEND, static::LABEL_PREPEND))) {
+        if (!in_array($labelPosition,
+            array(static::LABEL_APPEND, static::LABEL_PREPEND))) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s or %s; received "%s"',
                 __METHOD__,
@@ -148,7 +149,8 @@ class FormCheckbox extends FormInput
     {
         if (!$element instanceof CheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\Checkbox',
+                '%s requires that the element is of type'
+                . ' Zend\Form\Element\Checkbox',
                 __METHOD__
             ));
         }
@@ -156,7 +158,8 @@ class FormCheckbox extends FormInput
         $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has an assigned name; none discovered',
+                '%s requires that the element has an assigned name;'
+                . ' none discovered',
                 __METHOD__
             ));
         }
@@ -188,7 +191,8 @@ class FormCheckbox extends FormInput
         }
 
         $label = $element->getAttribute('description') ?: $element->getLabel();
-        $labelAttributes = $this->labelAttributes ?: $element->getLabelAttributes();
+        $labelAttributes = $this->labelAttributes
+                ?: $element->getLabelAttributes();
 
         if (null !== ($translator = $this->getTranslator())) {
             $label = $translator->translate(
@@ -210,7 +214,8 @@ class FormCheckbox extends FormInput
         }
 
         // Render hidden element
-        $useHiddenElement = (null !== $this->useHiddenElement) ? $this->useHiddenElement
+        $useHiddenElement = (null !== $this->useHiddenElement)
+            ? $this->useHiddenElement
             : (method_exists($element, 'useHiddenElement')
                 ? $element->useHiddenElement()
                 : false);

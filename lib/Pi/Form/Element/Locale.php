@@ -31,7 +31,9 @@ class Locale extends Select
     {
         if (empty($this->valueOptions)) {
             $this->valueOptions['auto'] = __('Auto-detection');
-            $iterator = new \DirectoryIterator(Pi::service('i18n')->getPath('', ''));
+            $iterator = new \DirectoryIterator(
+                Pi::service('i18n')->getPath('', '')
+            );
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                     continue;
@@ -39,7 +41,9 @@ class Locale extends Select
                 $directory = $fileinfo->getFilename();
                 $label = $directory;
                 if (class_exists('\\Locale')) {
-                    $label = \Locale::getDisplayName($directory, Pi::service('i18n')->locale) ?: $label;
+                    $label = \Locale::getDisplayName($directory,
+                        Pi::service('i18n')->locale)
+                        ?: $label;
                 }
                 $this->valueOptions[$directory] = $label;
             }

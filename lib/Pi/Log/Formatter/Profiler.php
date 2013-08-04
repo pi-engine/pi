@@ -34,10 +34,12 @@ class Profiler implements FormatterInterface
     public function __construct($format = null)
     {
         if ($format === null) {
-            $format = '<div class="pi-event">' . PHP_EOL .
-                        '<div class="time">%timestamp%</div>' . PHP_EOL .
-                        '<div class="message info">%name% - time: %timer%; realmem: %realmem%; emalloc: %emalloc%</div>' . PHP_EOL .
-                        '</div>' . PHP_EOL;
+            $format = '<div class="pi-event">' . PHP_EOL
+                . '<div class="time">%timestamp%</div>' . PHP_EOL
+                . '<div class="message info">'
+                . '%name% - time: %timer%; realmem: %realmem%;'
+                . ' emalloc: %emalloc%</div>' . PHP_EOL
+                . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -52,7 +54,12 @@ class Profiler implements FormatterInterface
     public function format($event)
     {
         $output = $this->format;
-        $event['timestamp'] = date($this->getDateTimeFormat(), intval($event['timestamp'])) . substr($event['timestamp'], strpos($event['timestamp'], '.'), 5);
+        $event['timestamp'] = date(
+                $this->getDateTimeFormat(),
+                intval($event['timestamp'])
+            )
+            . substr($event['timestamp'],
+                strpos($event['timestamp'], '.'), 5);
         $event['timer'] = sprintf('%.4f', $event['timer']);
         foreach ($event as $name => $value) {
             if (!is_scalar($value)) {

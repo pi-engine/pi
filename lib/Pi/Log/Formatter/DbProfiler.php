@@ -35,12 +35,13 @@ class DbProfiler implements FormatterInterface
     public function __construct($format = null)
     {
         if ($format === null) {
-            $format = '<div class="pi-event">' . PHP_EOL .
-                        '<div class="time">%timestamp%</div>' . PHP_EOL .
-                        '<div class="message %priorityName%" style="clear: both;">[%timer%] %message%</div>' . PHP_EOL .
-                        '<div class="message">query: %sql%</div>' . PHP_EOL .
-                        '<div class="message">params: %params%</div>' . PHP_EOL .
-                        '</div>' . PHP_EOL;
+            $format = '<div class="pi-event">' . PHP_EOL
+                . '<div class="time">%timestamp%</div>' . PHP_EOL
+                . '<div class="message %priorityName%" style="clear: both;">'
+                . '[%timer%] %message%</div>' . PHP_EOL
+                . '<div class="message">query: %sql%</div>' . PHP_EOL
+                . '<div class="message">params: %params%</div>' . PHP_EOL
+                . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -58,7 +59,8 @@ class DbProfiler implements FormatterInterface
         /**#@++
          * Remove DB table prefix for security considerations
          */
-        $event['message'] = isset($event['message']) ? Pi::service('security')->db($event['message']) : '';
+        $event['message'] = isset($event['message'])
+            ? Pi::service('security')->db($event['message']) : '';
         $event['sql'] = Pi::service('security')->db($event['sql']);
         /**#@-*/
 
@@ -67,10 +69,15 @@ class DbProfiler implements FormatterInterface
         foreach ($params as $key => $val) {
             $event['params'] .= '[' . $key . '] ' . $val . ';';
         }
-        $event['timestamp'] = date($this->getDateTimeFormat(), intval($event['start'])) . substr($event['start'], strpos($event['start'], '.'), 5);
+        $event['timestamp'] = date(
+                $this->getDateTimeFormat(),
+                intval($event['start'])
+            )
+            . substr($event['start'], strpos($event['start'], '.'), 5);
         $event['timer'] = sprintf('%.4f', $event['elapse']);
         if (!$event['status'] && empty($event['priorityName'])) {
-            $event['priorityName'] = Pi::service('log')->logger()->priorityName(Logger::ERR);
+            $event['priorityName'] = Pi::service('log')->logger()
+                ->priorityName(Logger::ERR);
         }
         if (!empty($event['priorityName'])) {
             $event['priorityName'] = strtolower($event['priorityName']);

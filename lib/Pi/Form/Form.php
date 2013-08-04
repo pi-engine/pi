@@ -21,11 +21,13 @@ use Zend\Form\Form as ZendForm;
  *       array(
  *          <group-name> => array(
  *              'label'     => 'Group Label',
- *              'elements'  => array('elementName', 'elementName', 'elementName', ...),
+ *              'elements'  => array('elementName', 'elementName',
+ *                  'elementName', <...>),
  *          ),
  *          <group-name> => array(
  *              'label'     => 'Group Label',
- *              'elements'  => array('elementName', 'elementName', 'elementName', ...),
+ *              'elements'  => array('elementName', 'elementName',
+ *                  'elementName', <...>),
  *          ),
  *      );
  * ```
@@ -140,7 +142,8 @@ class Form extends ZendForm
             if (!$messages) {
                 continue;
             }
-            if ($OnlyHidden && 'hidden' != $this->get($name)->getAttribute('type')) {
+            if ($OnlyHidden
+                && 'hidden' != $this->get($name)->getAttribute('type')) {
                 continue;
             }
             $list[] = implode($delimiter, array_values($messages));

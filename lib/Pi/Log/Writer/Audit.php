@@ -102,7 +102,8 @@ class Audit extends AbstractWriter
     }
 
     /**
-     * Get extra information: Application user information, User-Agent, access page, URI, etc.
+     * Get extra information:
+     *  Application user information, User-Agent, access page, URI, etc.
      *
      * Columns to record
      *
@@ -126,7 +127,8 @@ class Audit extends AbstractWriter
         $this->extra = false;
         $data = array();
         if (!empty($this->options['role'])) {
-            if (!in_array(Pi::service('user')->getUser()->role, $this->options['role'])) {
+            if (!in_array(Pi::service('user')->getUser()->role,
+                $this->options['role'])) {
                 return $this->extra;
             }
         }
@@ -148,9 +150,13 @@ class Audit extends AbstractWriter
         if (!empty($this->options['ip'])) {
             $segs = explode('.', $data['ip']);
             if (!in_array($segs[0] . '.*', $this->options['ip'])
-                && !in_array($segs[0] . '.' . $segs[1] . '.*', $this->options['ip'])
-                && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.*', $this->options['ip'])
-                && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.' . $segs[3], $this->options['ip'])
+                && !in_array($segs[0] . '.' . $segs[1] . '.*',
+                    $this->options['ip'])
+                && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.*',
+                    $this->options['ip'])
+                && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2]
+                        . '.' . $segs[3],
+                    $this->options['ip'])
             ) {
                 return $this->extra;
             }
@@ -177,8 +183,11 @@ class Audit extends AbstractWriter
             $data['action'] = $routeMatch->getParam('action');
             if (!empty($this->options['page'])) {
                 if (!in_array($data['module'], $this->options['page'])
-                    && !in_array($data['module'] . '-' . $data['controller'], $this->options['page'])
-                    && !in_array($data['module'] . '-' . $data['controller'] . '-' . $data['action'], $this->options['page'])
+                    && !in_array($data['module'] . '-' . $data['controller'],
+                        $this->options['page'])
+                    && !in_array($data['module'] . '-' . $data['controller']
+                            . '-' . $data['action'],
+                        $this->options['page'])
                 ) {
                     return $this->extra;
                 }

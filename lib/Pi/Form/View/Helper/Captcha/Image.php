@@ -34,7 +34,8 @@ class Image extends ZendHelperCaptchaImage
 
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute of type Zend\Captcha\Image; none found',
+                '%s requires that the element has a "captcha" attribute'
+                . ' of type Zend\Captcha\Image; none found',
                 __METHOD__
             ));
         }
@@ -46,11 +47,15 @@ class Image extends ZendHelperCaptchaImage
             'width'  => $captcha->getWidth(),
             'height' => $captcha->getHeight(),
             'alt'    => $captcha->getImgAlt(),
-            //'src'    => $captcha->getImgUrl() . $captcha->getId() . $captcha->getSuffix(),
+            //'src'    => $captcha->getImgUrl() . $captcha->getId()
+            //. $captcha->getSuffix(),
 
             'src'    => $imgSrc,
-            // For "click to refresh": <img src="$src" onclick="this.src='$src&refresh='+Math.random()">
-            'onclick'   => sprintf('this.src=\'%s&refresh=\'+Math.random()', $imgSrc),
+            // For "click to refresh":
+            // <img src="$src"
+            //  onclick="this.src='$src&refresh='+Math.random()">
+            'onclick'   => sprintf('this.src=\'%s&refresh=\'+Math.random()',
+                $imgSrc),
             'style'     => 'cursor: pointer; vertical-align: middle;',
         );
 
