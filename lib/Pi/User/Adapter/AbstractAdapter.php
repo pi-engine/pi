@@ -21,46 +21,46 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  * User APIs
  *
  * + Meta operations
- *   - getMeta([$type])                                     // Get meta list of user, type: account, profile, extra - extra profile non-structured
+ *   - getMeta([$type])
  *
  * + User operations
  *   + Binding
- *   - bind($id[, $field])                                  // Bind current user
+ *   - bind($id[, $field])
  *
  *   + Read
- *   - getUser([$id])                                       // Get current user or specified user
- *   - getUserList($ids)                                    // List of users by ID list
- *   - getIds($condition[, $limit[, $offset[, $order]]])    // ID list subject to $condition
- *   - getCount([$condition])                               // User count subject to $condition
+ *   - getUser([$id])
+ *   - getUserList($ids)
+ *   - getIds($condition[, $limit[, $offset[, $order]]])
+ *   - getCount([$condition])
  *
  *   + Add
- *   - addUser($data)               // Add a new user with account and profile
+ *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])     // Update a user for account and profile
+ *   - updateUser($data[, $id])
  *
  *   + Delete
- *   - deleteUser($id)              // Delete a user
+ *   - deleteUser($id)
  *
  *   + Activate
- *   - activateUser($id)            // Activate a user
- *   - deactivateUser($id)          // Deactivate a user
+ *   - activateUser($id)
+ *   - deactivateUser($id)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])             // Get user field(s)
- *   - getList($key, $ids)          // User field(s) of user list
+ *   - get($key[, $id])
+ *   - getList($key, $ids)
  *
  *   + Update
- *   - set($key, $value[, $id])         // Update field of user
- *   - increment($key, $value[, $id])   // Increase value of field
- *   - setPassword($value[, $id])       // Update password
+ *   - set($key, $value[, $id])
+ *   - increment($key, $value[, $id])
+ *   - setPassword($value[, $id])
  *
  * + Utility
  *   + Collective URL
- *   - getUrl($type[, $id])                                         // URLs with type: profile, login, logout, register, auth (authentication)
+ *   - getUrl($type[, $id])
  *   + Authentication
- *   - authenticate($identity, $credential)                         // Authenticate a user
+ *   - authenticate($identity, $credential)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -145,7 +145,8 @@ abstract class AbstractAdapter implements BindInterface
      * Get user data object
      *
      * @param int|string|null   $id         User id, identity
-     * @param string            $field      Field of the identity: id, identity, email, etc.
+     * @param string            $field      Field of the identity:
+     *      id, identity, email, etc.
      * @return UserModel
      * @api
      */
@@ -170,7 +171,8 @@ abstract class AbstractAdapter implements BindInterface
      * @return int[]
      * @api
      */
-    abstract public function getIds($condition = array(), $limit = 0, $offset = 0, $order = '');
+    abstract public function getIds($condition = array(),
+        $limit = 0, $offset = 0, $order = '');
 
     /**
      * Get user count subject to conditions
@@ -266,7 +268,8 @@ abstract class AbstractAdapter implements BindInterface
      * Incremetn/decrement a user field
      *
      * @param string            $key
-     * @param int               $value  Positive to increment or negative to decrement
+     * @param int               $value
+     *      Positive to increment or negative to decrement
      * @param string|int|null   $id
      * @return bool
      * @api
@@ -296,7 +299,8 @@ abstract class AbstractAdapter implements BindInterface
      * - logout: URI to user logout page
      * - register (signup): URI to user register/signup page
      *
-     * @param string        $type       Type of URLs: profile, login, logout, register, auth
+     * @param string        $type
+     *      Type of URLs: profile, login, logout, register, auth
      * @param int|null      $id
      * @return string
      * @api
@@ -335,7 +339,8 @@ abstract class AbstractAdapter implements BindInterface
      */
     public function __call($method, $args)
     {
-        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method), E_USER_NOTICE);
+        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method),
+            E_USER_NOTICE);
         return 'Not defined';
     }
 }

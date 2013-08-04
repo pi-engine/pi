@@ -35,12 +35,16 @@ class Twitter extends AbstractHtmlElement
     public function __invoke()
     {
         $content = <<<'EOT'
-<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button"
+    data-lang="en">Tweet</a>
 <script type="text/javascript">
    !function(d,s,id){
       var js,fjs=d.getElementsByTagName(s)[0];
       if(!d.getElementById(id)){
-         js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);
+         js=d.createElement(s);
+         js.id=id;
+         js.src="https://platform.twitter.com/widgets.js";
+         fjs.parentNode.insertBefore(js,fjs);
       }
    }(document,"script","twitter-wjs");
 </script>

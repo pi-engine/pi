@@ -56,7 +56,8 @@ class Message extends AbstractResource
         if (!$this->isAvailable) {
             return false;
         }
-        $id = Pi::service('api')->message->send($this->model->id, $message, $from);
+        $id = Pi::service('api')->message
+            ->send($this->model->id, $message, $from);
         return $id;
     }
 
@@ -73,7 +74,8 @@ class Message extends AbstractResource
         if (!$this->isAvailable) {
             return false;
         }
-        $id = Pi::service('api')->message->notify($this->model->id, $message, $subject, $tag);
+        $id = Pi::service('api')->message
+            ->notify($this->model->id, $message, $subject, $tag);
         return $id;
     }
 

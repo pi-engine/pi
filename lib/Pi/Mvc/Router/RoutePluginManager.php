@@ -34,12 +34,15 @@ class RoutePluginManager extends ZendRoutePluginManager
      * @param  bool $usePeeringServiceManagers
      * @return object
      */
-    public function get($name, $options = array(), $usePeeringServiceManagers = true)
+    public function get($name, $options = array(),
+        $usePeeringServiceManagers = true)
     {
         if (!$this->has($name) && !class_exists($name)) {
-            $class = sprintf('%s\\%s\\%s', __NAMESPACE__, $this->subNamespace, ucfirst($name));
+            $class = sprintf('%s\\%s\\%s', __NAMESPACE__,
+                $this->subNamespace, ucfirst($name));
             if (!class_exists($class)) {
-                $class = sprintf('Zend\Mvc\Router\\%s\\%s', $this->subNamespace, ucfirst($name));
+                $class = sprintf('Zend\Mvc\Router\\%s\\%s',
+                    $this->subNamespace, ucfirst($name));
             }
             $name = $class;
         }

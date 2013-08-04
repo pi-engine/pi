@@ -25,7 +25,8 @@ use Pi;
  *  $this->css('some.css', 'prepend');
  *
  *  // Load specific file with attributes
- *  $this->css('some.css', array('conditional' => '...', 'postion' => 'prepend'));
+ *  $this->css('some.css',
+ *      array('conditional' => '...', 'postion' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->css(array(
@@ -48,7 +49,10 @@ class Css extends AssetCanonize
      * Load CSS files
      *
      * @param   string|array $files
-     * @param   string|array $attributes    Only applicable when $files is scalar, default as string for position, append or prepend, default as 'append'
+     * @param   string|array $attributes
+     *      Only applicable when $files is scalar,
+     *      default as string for position,
+     *      append or prepend, default as 'append'
      * @return  self
      */
     public function __invoke($files = null, $attributes = 'append')
@@ -56,7 +60,8 @@ class Css extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headLink();
         foreach ($files as $file => $attrs) {
-            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            $position = isset($attrs['position'])
+                ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
                 $helper->prependStylesheet($attrs);
             } else {

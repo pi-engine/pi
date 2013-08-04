@@ -25,7 +25,8 @@ use Pi;
  *  $this->jQuery('some.js');
  *
  *  // Load specific file with attributes
- *  $this->jQuery('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *  $this->jQuery('some.js',
+ *      array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->jQuery(array(
@@ -62,7 +63,9 @@ class JQuery extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
             if (!isset($files['jquery.min.js'])) {
-                $files = array('jquery.min.js' => $this->canonizeFile('jquery.min.js')) + $files;
+                $files = array('jquery.min.js' =>
+                        $this->canonizeFile('jquery.min.js'))
+                    + $files;
             }
             static::$rootLoaded = true;
         }
@@ -70,7 +73,8 @@ class JQuery extends AssetCanonize
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            $position = isset($file['position']) ? $file['position'] : 'append';
+            $position = isset($file['position'])
+                ? $file['position'] : 'append';
             if ('css' == $attrs['ext']) {
                 $attrs['href'] = $url;
                 if ('prepend' == $position) {
@@ -80,9 +84,11 @@ class JQuery extends AssetCanonize
                 }
             } else {
                 if ('prepend' == $position) {
-                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->prependFile($url, 'text/javascript', $attrs);
                 } else {
-                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->appendFile($url, 'text/javascript', $attrs);
                 }
             }
         }

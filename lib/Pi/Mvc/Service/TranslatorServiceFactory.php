@@ -25,7 +25,8 @@ class TranslatorServiceFactory implements FactoryInterface
     /**
      * Create the translator service
      *
-     * Return Pi::service('i18n')->getTranslator() directly as the consistent translator API collection
+     * Return `Pi::service('i18n')->getTranslator()` directly
+     * as the consistent translator API collection
      *
      * @param  ServiceLocatorInterface $serviceLocator
      * @return \Pi\I18n\Translator

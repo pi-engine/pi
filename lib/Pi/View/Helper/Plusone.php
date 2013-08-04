@@ -39,29 +39,38 @@ class Plusone extends AbstractHtmlElement
         $attribs = array();
 
         // Set size
-        if (isset($config['data-size']) && in_array($config['data-size'], array('small', 'medium', 'tall'))) {
+        if (isset($config['data-size'])
+            && in_array($config['data-size'],
+                array('small', 'medium', 'tall'))) {
             $attribs['data-size'] = $config['data-size'];
         }
         // Set annotation
-        if (isset($config['data-annotation']) && in_array($config['data-annotation'], array('inline', 'none'))) {
+        if (isset($config['data-annotation'])
+            && in_array($config['data-annotation'], array('inline', 'none'))) {
             $attribs['data-annotation'] = $config['data-annotation'];
         }
         // Set width
-        if (isset($config['data-annotation'], $config['data-width']) && $config['data-annotation'] == 'inline' && is_numeric($config['data-width']) ) {
+        if (isset($config['data-annotation'], $config['data-width'])
+            && $config['data-annotation'] == 'inline'
+            && is_numeric($config['data-width']) ) {
             $attribs['data-width'] = $config['data-width'];
         }
         $attributeString = $attribs ? $this->htmlAttribs($attribs) : '';
 
-        $content = '<div class="g-plusone"' . ($attributeString ? ' ' . $attributeString : '') . '></div>' . PHP_EOL;
+        $content = '<div class="g-plusone"'
+            . ($attributeString ? ' ' . $attributeString : '')
+            . '></div>' . PHP_EOL;
         $content .= <<<'EOT'
 <script type="text/javascript">
   (function() {
-    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+    var po = document.createElement("script");
+    po.type = "text/javascript"; po.async = true;
     po.src = "https://apis.google.com/js/plusone.js";
-    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
-  })();' . self::EOL
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(po, s);
+  })();
 </script>
 EOT;
-         return $content;
+        return $content;
     }
 }

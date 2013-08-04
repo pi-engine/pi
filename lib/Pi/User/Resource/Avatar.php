@@ -71,8 +71,12 @@ class Avatar extends AbstractResource
     /**
      * Get user avatar img element
      *
-     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
-     * @param array|string|bool $attributes     Array for attributes of HTML img element of img, string for alt of img, false to return URL
+     * @param string            $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return URL
      * @return string
      */
     public function get($size = '', $attributes = array())
@@ -94,7 +98,9 @@ class Avatar extends AbstractResource
      * Get user avatar img element through Gravatar
      *
      * @param int               $size           Size of image to display
-     * @param array|string|bool $attributes     Array for attributes of HTML img element of img, string for alt of img, false to return URL
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return URL
      * @return string
      */
     public function getGravatar($size = 80, $attributes = array())

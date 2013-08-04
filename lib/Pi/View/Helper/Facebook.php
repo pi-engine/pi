@@ -21,7 +21,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  * ```
  *  $this->facebook();
  * ```
- * 
+ *
  * @author Hossein Azizabadi <djvoltan@gmail.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -37,8 +37,10 @@ class Facebook extends AbstractHtmlElement
     {
         $dataSend = isset($config['data-send']) ? $config['data-send'] : false;
         $dataSend = $dataSend ? 'true' : 'false';
-        $dataWidth = isset($config['data-width']) ? $config['data-width'] : 120;
-        $dataShowFaces = isset($config['data-show-faces']) ? $config['data-show-faces'] : false;
+        $dataWidth = isset($config['data-width'])
+            ? $config['data-width'] : 120;
+        $dataShowFaces = isset($config['data-show-faces'])
+            ? $config['data-show-faces'] : false;
         $dataShowFaces = $dataShowFaces ? 'true' : 'false';
 
         $content = <<<'EOT'
@@ -52,7 +54,8 @@ class Facebook extends AbstractHtmlElement
         fjs.parentNode.insertBefore(js, fjs);
     }(document, "script", "facebook-jssdk"));
 </script>
-<div class="fb-like" data-send="%s" data-layout="button_count" data-width="%d" data-show-faces="%s"></div>
+<div class="fb-like" data-send="%s" data-layout="button_count" data-width="%d"
+    data-show-faces="%s"></div>
 EOT;
         $content = sprintf($content, $dataSend, $dataWidth, $dataShowFaces);
         return $content;

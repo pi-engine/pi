@@ -45,10 +45,13 @@ class Url extends ZendUrl
      *
      * {@inheritdoc}
      */
-    public function __invoke($name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($name = null, $params = array(),
+        $options = array(), $reuseMatchedParams = false)
     {
         if (null === $this->router()) {
-            throw new \RuntimeException('No RouteStackInterface instance provided');
+            throw new \RuntimeException(
+                'No RouteStackInterface instance provided'
+            );
         }
 
         if (!$name) {
@@ -59,7 +62,9 @@ class Url extends ZendUrl
             $name = $this->routeMatch()->getMatchedRouteName();
 
             if ($name === null) {
-                throw new \RuntimeException('RouteMatch does not contain a matched route name');
+                throw new \RuntimeException(
+                    'RouteMatch does not contain a matched route name'
+                );
             }
         }
 

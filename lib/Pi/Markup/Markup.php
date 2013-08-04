@@ -183,7 +183,8 @@ class Markup
      * @param array $renderOptions
      * @return string
      */
-    public static function render($content, $renderer, $parser = false, $renderOptions = array())
+    public static function render($content, $renderer, $parser = false,
+        $renderOptions = array())
     {
         if (!$renderer) {
             $renderer = static::getRenderer();

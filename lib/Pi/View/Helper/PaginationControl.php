@@ -33,22 +33,30 @@ class PaginationControl extends ZendPaginationControl
      * @param  string $partial (Optional) View partial
      * @param  array|string $params (Optional) params to pass to the partial
      * @return string
-     * @throws Exception\RuntimeException if no paginator or no view partial provided
+     * @throws Exception\RuntimeException
+     *      if no paginator or no view partial provided
      * @throws Exception\InvalidArgumentException if partial is invalid array
      */
-    public function __invoke(Paginator $paginator = null, $scrollingStyle = null, $partial = null, $params = null)
+    public function __invoke(Paginator $paginator = null,
+        $scrollingStyle = null, $partial = null, $params = null)
     {
         if ($paginator === null) {
-            if (isset($this->view->paginator) and $this->view->paginator !== null and $this->view->paginator instanceof Paginator) {
+            if (isset($this->view->paginator)
+                && $this->view->paginator !== null
+                && $this->view->paginator instanceof Paginator) {
                 $paginator = $this->view->paginator;
             } else {
-                throw new Exception\RuntimeException('No paginator instance provided or incorrect type');
+                throw new Exception\RuntimeException(
+                    'No paginator instance provided or incorrect type'
+                );
             }
         }
 
         if ($partial === null) {
             if (static::$defaultViewPartial === null) {
-                throw new Exception\RuntimeException('No view partial provided and no default set');
+                throw new Exception\RuntimeException(
+                    'No view partial provided and no default set'
+                );
             }
 
             $partial = static::$defaultViewPartial;
@@ -67,7 +75,8 @@ class PaginationControl extends ZendPaginationControl
         if (is_array($partial)) {
             if (count($partial) != 2) {
                 throw new Exception\InvalidArgumentException(
-                    'A view partial supplied as an array must contain two values: the filename and its module'
+                    'A view partial supplied as an array must contain'
+                    . ' two values: the filename and its module'
                 );
             }
 

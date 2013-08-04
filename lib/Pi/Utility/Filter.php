@@ -29,24 +29,31 @@ namespace Pi\Utility
      * ```
      *  $paramFiltered = _filter('1234.5', 'int');
      *  $paramFiltered = _filter('+1234.5', 'float');
-     *  $paramFiltered = _filter('+1234.5', 'float', FILTER_FLAG_ALLOW_THOUSAND);
+     *  $paramFiltered = _filter('+1234.5', 'float',
+     *      FILTER_FLAG_ALLOW_THOUSAND);
      *  $paramFiltered = _filter('+1234.5', 'float', 'allow_thousand');
-     *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => FILTER_FLAG_ALLOW_THOUSAND));
-     *  $paramFiltered = _filter('+1234.5', 'float', array('flags' => 'allow_thousand'));
+     *  $paramFiltered = _filter('+1234.5', 'float',
+     *      array('flags' => FILTER_FLAG_ALLOW_THOUSAND));
+     *  $paramFiltered = _filter('+1234.5', 'float',
+     *      array('flags' => 'allow_thousand'));
      * ```
      *
-     * - Filter a value with regexp, only alphabetic and numeric characters are allowed
+     * - Filter a value with regexp,
+     *      only alphabetic and numeric characters are allowed
      *
      * ```
-     *  $paramFiltered = _filter($paramRaw, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
-     *  $paramFiltered = _get($paramName, , 'regexp', array('regexp' => '/^[a-z0-9]+$/'));
+     *  $paramFiltered = _filter($paramRaw, 'regexp',
+     *      array('regexp' => '/^[a-z0-9]+$/'));
+     *  $paramFiltered = _get($paramName, 'regexp',
+     *      array('regexp' => '/^[a-z0-9]+$/'));
      * ```
      *
      * - Sanitize a value:
      *
      * ```
      *  $paramSanitized = _sanitize('1234.5', 'int');
-     *  $paramSanitized = _sanitize('+1234.5', 'float', FILTER_FLAG_ALLOW_FRACTION);
+     *  $paramSanitized = _sanitize('+1234.5', 'float',
+     *      FILTER_FLAG_ALLOW_FRACTION);
      * ```
      *
      * - Escape a string
@@ -76,7 +83,7 @@ namespace Pi\Utility
      *  $text = strtolower(trim($stringStripped));
      *  $description = preg_replace('/[\s]+/', ' ', $text);
      * ```
-     * 
+     *
      * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
      * @link http://www.php.net/manual/en/filter.filters.validate.php
      * @link http://www.php.net/manual/en/filter.filters.sanitize.php
@@ -100,7 +107,8 @@ namespace Pi\Utility
          * @param mixed $options
          * @return mixed
          */
-        protected static function filterValue($value, $filter, $options = null)
+        protected static function filterValue($value, $filter,
+            $options = null)
         {
             if (empty($filter)) {
                 return $value;
@@ -130,7 +138,8 @@ namespace Pi\Utility
                     // Options are passed in an array
                     } elseif (isset($options['options'])) {
                         if (is_string($options['options'])) {
-                            $options['options'] = $filterFlag($options['options']);
+                            $options['options'] =
+                                $filterFlag($options['options']);
                         }
                     // Options are passed directly
                     } else {
@@ -187,7 +196,8 @@ namespace Pi\Utility
          * Sanitize value with filter_var
          *
          * @param mixed $value
-         * @param int|string $filter    Filter name or id, default as 'full_special_chars'
+         * @param int|string $filter
+         *      Filter name or id, default as 'full_special_chars'
          * @param mixed $options
          * @return mixed
          * @link http://www.php.net/manual/en/filter.filters.sanitize.php
@@ -325,7 +335,8 @@ namespace
      * Sanitize a value with PHP filter_var
      *
      * @param string            $variable   Variable name
-     * @param int|string        $filter     Filter name or filter_id, default as 'full_special_chars'
+     * @param int|string        $filter
+     *      Filter name or filter_id, default as 'full_special_chars'
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
@@ -340,7 +351,8 @@ namespace
      *
      * @see \Zend\Escaper\Escaper
      * @param string $value
-     * @param stribg $context   String context, valid value: html, htmlAttr, js, url, css
+     * @param stribg $context
+     *      String context, valid value: html, htmlAttr, js, url, css
      * @return string
      */
     function _escape($value, $context = 'html')
@@ -356,7 +368,8 @@ namespace
     }
 
     /**
-     * Clean a string by stripping HTML tags and removing unrecognizable characters
+     * Clean a string by stripping HTML tags
+     * and removing unrecognizable characters
      *
      * @param string        $text           Text to be cleaned
      * @param string|null   $replacement    Replacement for stripped characters
@@ -379,7 +392,12 @@ namespace
         // Clean up
         $text = $text ? preg_replace('`\[.*\]`U', '', $text) : '';
         $text = $text ? preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '', $text) : '';
-        $text = $text ? preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\\1', $text) : '';
+        $text = $text
+            ? preg_replace(
+                '`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i',
+                '\\1',
+                $text)
+            : '';
         $text = $text ? str_replace($pattern, $replacement, $text) : '';
 
         return $text;

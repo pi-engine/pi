@@ -58,9 +58,14 @@ class Navigation extends NavigationHelper
                     $cacheKey = $options['cache_id'];
                 } else {
                     $routeMatch = Pi::engine()->application()->getRouteMatch();
-                    $cacheKey = implode('-', array($name, $routeMatch->getParam('module'), $routeMatch->getParam('controller'), $routeMatch->getParam('action')));
-                    $cacheLevel = isset($options['cache_level']) ? $options['cache_level'] : '';
-                    $cacheKey = Pi::service('cache')->canonizeKey($cacheKey, $cacheLevel);
+                    $cacheKey = implode('-',
+                        array($name, $routeMatch->getParam('module'),
+                            $routeMatch->getParam('controller'),
+                            $routeMatch->getParam('action')));
+                    $cacheLevel = isset($options['cache_level'])
+                        ? $options['cache_level'] : '';
+                    $cacheKey = Pi::service('cache')->canonizeKey($cacheKey,
+                        $cacheLevel);
                 }
                 $cache          = clone Pi::service('cache')->storage();
                 Pi::service('cache')->setNamespace($cacheNamespace, $cache);
@@ -73,8 +78,11 @@ class Navigation extends NavigationHelper
                 $this->cache = null;
             }
             $module = Pi::service('module')->current();
-            $section = isset($options['section']) ? $options['section'] : null;
-            $navConfig = Pi::service('registry')->navigation->read($name, $module, $section) ?: array();
+            $section = isset($options['section'])
+                ? $options['section'] : null;
+            $navConfig = Pi::service('registry')->navigation->read($name,
+                    $module, $section)
+                ?: array();
         } else {
             $navConfig = $name;
         }
@@ -123,10 +131,14 @@ class Navigation extends NavigationHelper
      * Returns the helper matching $proxy
      *
      * @param string $proxy     helper name
-     * @param bool   $strict    [optional] whether exceptions should be thrown if something goes wrong. Default is true.
+     * @param bool   $strict
+     *      [optional] whether exceptions should be thrown
+     *      if something goes wrong. Default is true.
      * @return AbstractNavigationHelper
      * @throws \Exception  if $strict is true and helper cannot be found
-     * @throws \InvalidArgumentException if $strict is true and helper does not implement the specified interface
+     * @throws \InvalidArgumentException
+     *      if $strict is true and helper does not implement
+     *      the specified interface
      */
     public function findHelper($proxy, $strict = true)
     {
@@ -139,7 +151,9 @@ class Navigation extends NavigationHelper
             $class = 'Zend\View\Helper\Navigation\\' . ucfirst($proxy);
             if (!class_exists($class)) {
                 if ($strict) {
-                    throw new \RuntimeException('Failed to find a class to proxy to');
+                    throw new \RuntimeException(
+                        'Failed to find a class to proxy to'
+                    );
                 }
                 return false;
             }

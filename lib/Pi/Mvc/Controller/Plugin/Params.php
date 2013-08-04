@@ -72,8 +72,10 @@ class Params extends ZendParams
     /**
      * Return all put parameters or a single put parameter.
      *
-     * @param string|null   $param      Parameter name to retrieve, or null to get all.
-     * @param mixed         $default    Default value to use when the parameter is missing.
+     * @param string|null   $param
+     *      Parameter name to retrieve, or null to get all.
+     * @param mixed         $default
+     *      Default value to use when the parameter is missing.
      * @return mixed
      */
     public function fromPut($param = null, $default = null)
@@ -90,15 +92,18 @@ class Params extends ZendParams
         if ($param === null) {
             return $this->putParams;
         } else {
-            return isset($this->putParams[$param]) ? $this->putParams[$param] : $default;
+            return isset($this->putParams[$param])
+                ? $this->putParams[$param] : $default;
         }
     }
 
     /**
      * Return all parameters or a single parameter according to request method
      *
-     * @param string|null   $param      Parameter name to retrieve, or null to get all.
-     * @param mixed         $default    Default value to use when the parameter is missing.
+     * @param string|null   $param
+     *      Parameter name to retrieve, or null to get all.
+     * @param mixed         $default
+     *      Default value to use when the parameter is missing.
      * @return mixed
      */
     public function fromRequest($param = null, $default = null)
@@ -193,7 +198,8 @@ class Params extends ZendParams
      * Filter value with filter_var
      *
      * @param mixed         $value      Value to be filtered
-     * @param int|string    $filter     String for filter name or int for filter_id
+     * @param int|string    $filter
+     *      String for filter name or int for filter_id
      * @param mixed         $options
      * @return mixed
      */

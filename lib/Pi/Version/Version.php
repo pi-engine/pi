@@ -17,7 +17,8 @@ use Zend\Json\Json;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @see http://semver.org/ for semantic versioning
- * @see Zend\Version\Version  Class to store and retrieve the version of Zend Framework.
+ * @see Zend\Version\Version  Class to store and retrieve the version of
+ *      Zend Framework.
  */
 class Version
 {
@@ -44,13 +45,15 @@ class Version
      * API URL to retrieve latest commit from Github
      * @var string
      */
-    protected static $githubApiCommit = 'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
+    protected static $githubApiCommit =
+        'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
 
     /**
      * API URL to retrieve release tags from Github
      * @var string
      */
-    protected static $githubApiRelease = 'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
+    protected static $githubApiRelease =
+        'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
 
     /**
      * API URL to retrieve latest Pi release
@@ -103,18 +106,18 @@ class Version
     /**
      * Fetches the version of the latest stable release.
      *
-     * By Default, this uses the GitHub API (v3) and only returns refs that begin with
-     * 'tags/release-'. Because GitHub returns the refs in alphabetical order,
-     * we need to reduce the array to a single value, comparing the version
-     * numbers with version_compare().
+     * By Default, this uses the GitHub API (v3) and only returns refs that
+     * begin with 'tags/release-'. Because GitHub returns the refs in
+     * alphabetical order, we need to reduce the array to a single value,
+     * comparing the version numbers with version_compare().
      *
-     * If $service is set to VERSION_SERVICE_PI this will fall back to calling the
-     * classic style of version retreival.
+     * If $service is set to VERSION_SERVICE_PI this will fall back to
+     * calling the classic style of version retreival.
      *
      *
      * @see http://developer.github.com/v3/git/refs/#get-all-references
      * @link https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-
-     * @param string $service Version Service with which to retrieve the version
+     * @param string $service Version Service with which to retrieve version
      * @return string
      */
     public static function getLatest($service = 'PI')
@@ -125,17 +128,21 @@ class Version
             if ($service == 'GITHUB') {
                 $url  = static::$githubApiRelease;
 
-                $apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
+                $apiResponse = Json::decode(file_get_contents($url),
+                    Json::TYPE_ARRAY);
 
-                // Simplify the API response into a simple array of version numbers
+                // Simplify the API response into a simple array of
+                // version numbers
+                // Reliable because we're filtering on 'refs/tags/release-'
                 $tags = array_map(function ($tag) {
-                    return substr($tag['ref'], 18); // Reliable because we're filtering on 'refs/tags/release-'
+                    return substr($tag['ref'], 18);
                 }, $apiResponse);
 
                 // Fetch the latest version number from the array
-                static::$latestVersion = array_reduce($tags, function ($a, $b) {
-                    return version_compare($a, $b, '>') ? $a : $b;
-                });
+                static::$latestVersion = array_reduce($tags,
+                    function ($a, $b) {
+                        return version_compare($a, $b, '>') ? $a : $b;
+                    });
             } elseif ($service == 'PI') {
                 $handle = fopen(static::$piApiRelease, 'r');
                 if (false !== $handle) {
@@ -173,7 +180,8 @@ class Version
             static::$latestCommit = false;
             $url  = static::$githubApiCommit;
 
-            $apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
+            $apiResponse = Json::decode(file_get_contents($url),
+                Json::TYPE_ARRAY);
             $latestCommit = $apiResponse[0];
             static::$latestCommit = array(
                 'commit'    => $latestCommit['object']['sha'],

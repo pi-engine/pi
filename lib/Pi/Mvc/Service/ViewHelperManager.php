@@ -152,12 +152,15 @@ class ViewHelperManager extends HelperPluginManager
      * @param  bool $usePeeringServiceManagers
      * @return Helper\HelperInterface
      */
-    public function get($name, $options = array(), $usePeeringServiceManagers = true)
+    public function get($name, $options = array(),
+        $usePeeringServiceManagers = true)
     {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
-            $cname = strtolower(str_replace(array('-', '_', ' ', '\\', '/'), '', $name));
+            $cname = strtolower(
+                str_replace(array('-', '_', ' ', '\\', '/'), '', $name)
+            );
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
                 if (!class_exists($invokableClass)) {
@@ -166,7 +169,9 @@ class ViewHelperManager extends HelperPluginManager
                 $name = $invokableClass;
             // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '', ucwords(str_replace(array('-', '_', '\\', '/'), ' ', $name)));
+                $class = str_replace(' ', '', ucwords(
+                    str_replace(array('-', '_', '\\', '/'), ' ', $name)
+                ));
                 foreach ($this->helperLocations as $location) {
                     $invokableClass = 'Pi\\' . $location . '\\' . $class;
                     if (class_exists($invokableClass)) {

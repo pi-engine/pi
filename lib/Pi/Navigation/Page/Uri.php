@@ -50,7 +50,8 @@ class Uri extends ZendUriPage
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '
-                    . 'Zend\Navigation\Page\AbstractPage or Traversable, or an array'
+                    . 'Zend\Navigation\Page\AbstractPage or Traversable,'
+                    . ' or an array'
                 );
             }
             $page = AbstractPage::factory($page);

@@ -80,13 +80,16 @@ class TreeRouteStack extends RouteStack
         $route = parent::routeFromArray($specs);
 
         if (!$route instanceof RouteInterface) {
-            throw new \RuntimeException('Given route does not implement HTTP route interface');
+            throw new \RuntimeException(
+                'Given route does not implement HTTP route interface'
+            );
         }
 
         if (isset($specs['child_routes'])) {
             $options = array(
                 'route'         => $route,
-                'may_terminate' => (isset($specs['may_terminate']) && $specs['may_terminate']),
+                'may_terminate' => (isset($specs['may_terminate'])
+                    && $specs['may_terminate']),
                 'child_routes'  => $specs['child_routes'],
                 'route_plugins' => $this->routePluginManager,
             );
@@ -128,7 +131,6 @@ class TreeRouteStack extends RouteStack
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
             foreach ($this->routes as $name => $route) {
-                //if (($match = $route->match($request, $baseUrlLength)) instanceof RouteMatch && $match->getLength() === $pathLength) {
                 $match = $route->match($request, $baseUrlLength);
                 if (!$match instanceof RouteMatch) {
                     continue;
@@ -186,7 +188,7 @@ class TreeRouteStack extends RouteStack
         $route  = $this->routes->get($name);
 
         /**#@+
-         *  Load extra routes if called route is not found in current route list
+         *  Load extra routes if called route not found in current route list
          */
         if (!$route) {
             $route = $this->extraRoute($name);
@@ -194,7 +196,9 @@ class TreeRouteStack extends RouteStack
         /**#@-**/
 
         if (!$route) {
-            throw new \RuntimeException(sprintf('Route with name "%s" not found', $name));
+            throw new \RuntimeException(
+                sprintf('Route with name "%s" not found', $name)
+            );
         }
 
         if (isset($names[1])) {
@@ -203,13 +207,17 @@ class TreeRouteStack extends RouteStack
             unset($options['name']);
         }
 
-        if (!isset($options['only_return_path']) || !$options['only_return_path']) {
+        if (!isset($options['only_return_path'])
+            || !$options['only_return_path']) {
             if (!isset($options['uri'])) {
                 $uri = new HttpUri();
 
-                if (isset($options['force_canonical']) && $options['force_canonical']) {
+                if (isset($options['force_canonical'])
+                    && $options['force_canonical']) {
                     if ($this->requestUri === null) {
-                        throw new \RuntimeException('Request URI has not been set');
+                        throw new \RuntimeException(
+                            'Request URI has not been set'
+                        );
                     }
 
                     $uri->setScheme($this->requestUri->getScheme())
@@ -222,12 +230,18 @@ class TreeRouteStack extends RouteStack
                 $uri = $options['uri'];
             }
 
-            $path = $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
+            $path = $this->baseUrl
+                . $route->assemble(array_merge($this->defaultParams, $params),
+                    $options);
 
-            if ((isset($options['force_canonical']) && $options['force_canonical']) || $uri->getHost() !== null) {
+            if ((isset($options['force_canonical'])
+                && $options['force_canonical'])
+                || $uri->getHost() !== null) {
                 if ($uri->getScheme() === null) {
                     if ($this->requestUri === null) {
-                        throw new \RuntimeException('Request URI has not been set');
+                        throw new \RuntimeException(
+                            'Request URI has not been set'
+                        );
                     }
 
                     $uri->setScheme($this->requestUri->getScheme());
@@ -239,7 +253,9 @@ class TreeRouteStack extends RouteStack
             }
         }
 
-        return $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
+        return $this->baseUrl
+            . $route->assemble(array_merge($this->defaultParams, $params),
+                $options);
     }
 
     /**
@@ -287,7 +303,9 @@ class TreeRouteStack extends RouteStack
     }
 
     /**
-     * Get an extra route which does not belong to current section; If the extra routes stack is not loaded, load them from route registry cache
+     * Get an extra route which does not belong to current section;
+     * If the extra routes stack is not loaded,
+     * load them from route registry cache
      *
      * @param string $name
      * @return RouteInterface|null
@@ -296,7 +314,10 @@ class TreeRouteStack extends RouteStack
     {
         if (null == $this->routesExtra) {
             $this->routesExtra = new PriorityList();
-            $extraConfig = (array) Pi::service('registry')->route->read(Pi::engine()->section(), true);
+            $extraConfig = (array) Pi::service('registry')->route->read(
+                Pi::engine()->section(),
+                true
+            );
             foreach ($extraConfig as $key => $options) {
                 $route = $this->routeFromArray($options);
                 $priority = isset($route->priority) ? $route->priority : null;
@@ -309,10 +330,12 @@ class TreeRouteStack extends RouteStack
     /**
      * Canonizes relative module route
      *
-     * For a system route, transliterate ".<route-name>" to "<route-name>"
-     * For a non-system route, transliterate ".<route-name>" to "<module-name>-<route-name>"
+     * For a system route, transliterate `.<route-name>` to `<route-name>`
+     * For a non-system route, transliterate `.<route-name>`
+     * to `<module-name>-<route-name>`
      *
-     * @see \Pi\Application\Installer\Resource\Route::canonize() for route name canonization
+     * @see \Pi\Application\Installer\Resource\Route::canonize()
+     *      for route name canonization
      * @param string $name
      * @return string
      */

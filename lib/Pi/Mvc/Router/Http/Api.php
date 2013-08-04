@@ -25,8 +25,12 @@ use Zend\Stdlib\RequestInterface as Request;
  *   - Full mode: api/module/controller/action/key1-val1/key2-val2
  *   - Full structure only: api/module/controller/action
  * - Different structure delimiter:
- *   - Full mode: api/module-controller-action/key1/val1/key2/val2; api/module-controller-action/key1-val2/key2-val2
- *   - Default structure and parameters: api/module/key1/val1/key2/val2; api/module/key1-val1/key2-val2
+ *   - Full mode:
+ *      api/module-controller-action/key1/val1/key2/val2;
+ *      api/module-controller-action/key1-val2/key2-val2
+ *   - Default structure and parameters:
+ *      api/module/key1/val1/key2/val2;
+ *      api/module/key1-val1/key2-val2
  *   - Default structure: api/module-controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>

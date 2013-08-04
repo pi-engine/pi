@@ -34,7 +34,7 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
  *  ?>
  *  <...>
  *  <?php
- *  // The content will be discarded since the name of "MyScript" already exists
+ *  // Content will be discarded since the name of "MyScript" already exists
  *  $this->headScript()->captureTo('MyScript');
  *  ?>
  * ```
@@ -56,7 +56,8 @@ class HeadScript extends ZendHeadScript
      * Added by Taiwen Jiang
      */
     /**
-     * End capture action and store after checking against stored scripts. The content will be discarded if content with the name already exists
+     * End capture action and store after checking against stored scripts.
+     * The content will be discarded if content with the name already exists
      *
      * @params string $name
      * @return void

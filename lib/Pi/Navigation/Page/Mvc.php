@@ -62,8 +62,7 @@ class Mvc extends ZendMvcPage
      * Returns whether page should be considered active or not
      *
      * @param  bool $recursive  [optional] whether page should be considered
-     *                          active if any child pages are active. Default is
-     *                          false.
+     *      active if any child pages are active. Default is false.
      * @return bool             whether page should be considered active
      * @see Zend\Navigation\Page\AbstractPage::isActive()
      */
@@ -112,7 +111,8 @@ class Mvc extends ZendMvcPage
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '
-                    . 'Zend\Navigation\Page\AbstractPage or Traversable, or an array'
+                    . 'Zend\Navigation\Page\AbstractPage or Traversable,'
+                    . ' or an array'
                 );
             }
             $page = AbstractPage::factory($page);
@@ -158,8 +158,9 @@ class Mvc extends ZendMvcPage
             if ($this->routeMatch instanceof RouteMatch) {
                 $reqParams  = $this->routeMatch->getParams();
 
-                if (isset($reqParams[ModuleRouteListener::ORIGINAL_CONTROLLER])) {
-                    $reqParams['controller'] = $reqParams[ModuleRouteListener::ORIGINAL_CONTROLLER];
+                $originalController = ModuleRouteListener::ORIGINAL_CONTROLLER;
+                if (isset($reqParams[$originalController])) {
+                    $reqParams['controller'] = $reqParams[$originalController];
                 }
 
                 $myParams   = $this->params;
@@ -179,8 +180,10 @@ class Mvc extends ZendMvcPage
 
                 if (null !== $this->getRoute()) {
                     if (
-                        $this->routeMatch->getMatchedRouteName() === $this->getRoute()
-                        && (count(array_intersect_assoc($reqParams, $myParams)) == count($myParams))
+                        $this->routeMatch->getMatchedRouteName()
+                            === $this->getRoute()
+                        && (count(array_intersect_assoc($reqParams, $myParams))
+                                == count($myParams))
                     ) {
                         $this->active = true;
                         return $this->active;
@@ -214,7 +217,8 @@ class Mvc extends ZendMvcPage
                 $myParams['controller'] = $this->controller;
             } else {
                 /**
-                 * @todo In ZF1, this was configurable and pulled from the front controller
+                 * @todo In ZF1, this was configurable and pulled
+                 * from the front controller
                  */
                 $myParams['controller'] = 'index';
             }
@@ -223,12 +227,14 @@ class Mvc extends ZendMvcPage
                 $myParams['action'] = $this->action;
             } else {
                 /**
-                 * @todo In ZF1, this was configurable and pulled from the front controller
+                 * @todo In ZF1, this was configurable and pulled
+                 * from the front controller
                  */
                 $myParams['action'] = 'index';
             }
 
-            if (count(array_intersect_assoc($reqParams, $myParams)) == count($myParams)) {
+            if (count(array_intersect_assoc($reqParams, $myParams))
+                == count($myParams)) {
                 $this->active = true;
                 return true;
             }
@@ -264,7 +270,8 @@ class Mvc extends ZendMvcPage
         if (!$router instanceof RouteStackInterface) {
             throw new Exception\DomainException(
                 __METHOD__
-                . ' cannot execute as no Zend\Mvc\Router\RouteStackInterface instance is composed'
+                . ' cannot execute as no Zend\Mvc\Router\RouteStackInterface'
+                . ' instance is composed'
             );
         }
 
@@ -272,7 +279,8 @@ class Mvc extends ZendMvcPage
             $rmParams = $this->getRouteMatch()->getParams();
 
             if (isset($rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER])) {
-                $rmParams['controller'] = $rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER];
+                $rmParams['controller'] =
+                    $rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER];
                 unset($rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER]);
             }
 
@@ -310,7 +318,9 @@ class Mvc extends ZendMvcPage
                 $name = $this->getRouteMatch()->getMatchedRouteName();
                 break;
             default:
-                throw new Exception\DomainException('No route name could be found');
+                throw new Exception\DomainException(
+                    'No route name could be found'
+                );
         }
 
         $options = array('name' => $name);
@@ -350,7 +360,8 @@ class Mvc extends ZendMvcPage
      *
      * @param  string|null $module    module name
      * @return Mvc   fluent interface, returns self
-     * @throws Exception\InvalidArgumentException  if invalid module name is given
+     * @throws Exception\InvalidArgumentException
+     *      if invalid module name is given
      */
     public function setModule($module)
     {

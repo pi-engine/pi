@@ -58,7 +58,8 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getIds($condition = array(), $limit = 0, $offset = 0, $order = '')
+    public function getIds($condition = array(),
+        $limit = 0, $offset = 0, $order = '')
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -219,6 +220,7 @@ class Local extends AbstractAdapter
      */
     public function __call($method, $args)
     {
-        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method), E_USER_NOTICE);
+        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method),
+            E_USER_NOTICE);
     }
 }

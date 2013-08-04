@@ -24,13 +24,17 @@ class PluginManager extends ZendPluginManager
      * @var array
      */
     protected $____invokableClasses = array(
-        'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
-        'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
-        'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
+        'acceptableviewmodelselector' =>
+            'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
+        'filepostredirectget'         =>
+            'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
+        'flashmessenger'              =>
+            'Zend\Mvc\Controller\Plugin\FlashMessenger',
         'forward'                     => 'Zend\Mvc\Controller\Plugin\Forward',
         'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
         'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
-        'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
+        'postredirectget'             =>
+            'Zend\Mvc\Controller\Plugin\PostRedirectGet',
         'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
         'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
 
@@ -62,16 +66,19 @@ class PluginManager extends ZendPluginManager
 
         $invokableClass = null;
         if (false === strpos($name, '\\')) {
-            $invokableClass = sprintf('%s\\Plugin\\%s', __NAMESPACE__, ucfirst($name));
+            $invokableClass = sprintf('%s\Plugin\\%s',
+                __NAMESPACE__, ucfirst($name));
             if (!class_exists($invokableClass)) {
-                $invokableClass = sprintf('Zend\\Mvc\\Controller\\Plugin\\%s', ucfirst($name));
+                $invokableClass = sprintf('Zend\Mvc\Controller\Plugin\\%s',
+                    ucfirst($name));
             }
             $name = $invokableClass;
         }
 
         $cName = parent::canonicalizeName($name);
 
-        if ($invokableClass && !isset($this->invokableClasses[$cName]) && class_exists($invokableClass)) {
+        if ($invokableClass && !isset($this->invokableClasses[$cName])
+            && class_exists($invokableClass)) {
             $inCanonicalization = true;
             $this->setInvokableClass($cName, $invokableClass);
             $inCanonicalization = false;

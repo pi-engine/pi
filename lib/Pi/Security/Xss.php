@@ -37,8 +37,10 @@ class Xss extends AbstractAdapter
      */
     public static function check($options = array())
     {
-        $filter = isset($options['filter']) ? $options['filter'] : static::$filter;
-        static::$length = isset($options['length']) ? $options['length'] : static::$length;
+        $filter = isset($options['filter'])
+            ? $options['filter'] : static::$filter;
+        static::$length = isset($options['length'])
+            ? $options['length'] : static::$length;
 
         if (!empty($options['post']) && !empty($_POST)) {
             if (static::checkXssRecursive($_POST, $filter) && !$filter) {
@@ -75,7 +77,7 @@ class Xss extends AbstractAdapter
     /**
      * Check XSS recursively
      *
-     * @param string|array  $content    Content string or associative array of contents
+     * @param string|array  $content    String or associative array
      * @param bool          $filter     To filter malicious code
      * @return bool
      */
@@ -110,7 +112,8 @@ class Xss extends AbstractAdapter
      */
     public static function checkXss(&$content, $filter = true)
     {
-        if (!is_string($content) || (static::$length && strlen($content) < static::$length)) {
+        if (!is_string($content)
+            || (static::$length && strlen($content) < static::$length)) {
             return $filter ? $content : null;
         }
 
@@ -149,12 +152,10 @@ class Xss extends AbstractAdapter
 
         // <span style="width: expression|behaviour( ... );"></span>
         // for ie
-        //$patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]*).*(e{$c}x{$c}p{$c}r{$c}e{$c}s{$c}s{$c}i{$c}o{$c}n|b{$c}e{$c}h{$c}a{$c}v{$c}i{$c}o{$c}u{$c}r){$c}\([^>]*>/iU";
         $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*(e{$c}x{$c}p{$c}r{$c}e{$c}s{$c}s{$c}i{$c}o{$c}n|b{$c}e{$c}h{$c}a{$c}v{$c}i{$c}o{$c}u{$c}r){$c}\(.*\\2(.*)>/iU";
         $replaces[] = "\\1\\4>";
 
         // <span style="script: "></span>
-        //$patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]*).*s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}:*[^>]*>/iU";
         $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}: .*\\2(.*)>/iU";
         $replaces[] = "\\1\\3>";
 

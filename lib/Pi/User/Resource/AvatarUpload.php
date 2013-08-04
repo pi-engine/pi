@@ -34,7 +34,16 @@ class AvatarUpload extends AbstractAvatar
     {
         if (null === $size) {
             $path = array();
-            foreach (array('mini', 'xsmall', 'medium', 'normal', 'large', 'xlarge', 'xxlarge') as $key) {
+            foreach (
+                array('mini',
+                    'xsmall',
+                    'medium',
+                    'normal',
+                    'large',
+                    'xlarge',
+                    'xxlarge')
+                as $key
+            ) {
                 $path[$key] = Pi::Path($this->getRelativePath($key));
             }
         } else {

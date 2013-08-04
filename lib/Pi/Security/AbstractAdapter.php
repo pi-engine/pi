@@ -24,11 +24,14 @@ abstract class AbstractAdapter
      *
      * Policy with different result:
      *
-     * - true: following evaluations will be terminated and current request is approved
-     * - false: following evaluations will be terminated and current request is denied
+     * - true: following evaluations will be terminated and current request
+     *      is approved
+     * - false: following evaluations will be terminated and current request
+     *      is denied
      * - null: continue
      *
-     * @see http://www.php.net/manual/en/migration52.incompatible.php for "Dropped abstract static class functions"
+     * @see http://www.php.net/manual/en/migration52.incompatible.php
+     *      for "Dropped abstract static class functions"
      * @param array $options
      * @return bool|null
      */

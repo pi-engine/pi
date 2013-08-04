@@ -87,9 +87,10 @@ abstract class RestfulController extends ActionController
     /**
      * Dispatch a request
      *
-     * If the route match includes an "action" key, then this acts basically like
-     * a standard action controller. Otherwise, it introspects the HTTP method
-     * to determine how to handle the request, and which method to delegate to.
+     * If the route match includes an "action" key, then this acts
+     * basically like a standard action controller. Otherwise,
+     * it introspects the HTTP method to determine how to handle the request,
+     * and which method to delegate to.
      *
      * @events dispatch.pre, dispatch.post
      * @param  Request $request
@@ -100,7 +101,9 @@ abstract class RestfulController extends ActionController
     public function dispatch(Request $request, Response $response = null)
     {
         if (!$request instanceof HttpRequest) {
-            throw new Exception\InvalidArgumentException('Expected an HTTP request');
+            throw new Exception\InvalidArgumentException(
+                'Expected an HTTP request'
+            );
         }
 
         return parent::dispatch($request, $response);
@@ -111,7 +114,8 @@ abstract class RestfulController extends ActionController
      *
      * @param  MvcEvent $e
      * @return mixed
-     * @throws Exception\DomainException if no route matches in event or invalid HTTP method
+     * @throws Exception\DomainException if no route matches in event
+     *      or invalid HTTP method
      */
     public function onDispatch(MvcEvent $e)
     {
@@ -121,9 +125,12 @@ abstract class RestfulController extends ActionController
             if (!$routeMatch) {
                 /**
                 * @todo Determine requirements for when route match is missing.
-                *       Potentially allow pulling directly from request metadata?
+                *       Potentially allow pulling directly
+                 *      from request metadata?
                 */
-                throw new Exception\DomainException('Missing route matches; unsure how to retrieve action');
+                throw new Exception\DomainException(
+                    'Missing route matches; unsure how to retrieve action'
+                );
             }
 
             $request = $e->getRequest();
@@ -163,15 +170,20 @@ abstract class RestfulController extends ActionController
                         break;
                     case 'delete':
                         if (null === $id = $routeMatch->getParam('id')) {
-                            if (!($id = $request->getQuery()->get('id', false))) {
-                                throw new Exception\DomainException('Missing identifier');
+                            $id = $request->getQuery()->get('id', false);
+                            if (!$id) {
+                                throw new Exception\DomainException(
+                                    'Missing identifier'
+                                );
                             }
                         }
                         $action = 'delete';
                         $return = $this->delete($id);
                         break;
                     default:
-                        throw new Exception\DomainException('Invalid HTTP method!');
+                        throw new Exception\DomainException(
+                            'Invalid HTTP method!'
+                        );
                 }
 
                 $routeMatch->setParam('action', $action);

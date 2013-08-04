@@ -25,7 +25,8 @@ use Pi;
  *  $this->js('some.js', 'prepend');
  *
  *  // Load specific file with attributes
- *  $this->js('some.js', array('conditional' => '...', 'postion' => 'prepend'));
+ *  $this->js('some.js',
+ *      array('conditional' => '...', 'postion' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->js(array(
@@ -48,7 +49,10 @@ class Js extends AssetCanonize
      * Load JavaScript file
      *
      * @param   string|array $files
-     * @param   string|array $attributes    Only applicable when $files is scalar, default as string for position, append or prepend, default as 'append'
+     * @param   string|array $attributes
+     *      Only applicable when $files is scalar,
+     *      default as string for position,
+     *      append or prepend, default as 'append'
      * @return  self
      */
     public function __invoke($files = null, $attributes = 'append')
@@ -56,7 +60,8 @@ class Js extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headScript();
         foreach ($files as $file => $attrs) {
-            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            $position = isset($attrs['position'])
+                ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
                 $helper->prependFile($attrs['src'], 'text/javascript', $attrs);
             } else {

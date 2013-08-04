@@ -25,7 +25,8 @@ use Pi;
  *  $this->bootstrap('some.css');
  *
  *  // Load specific file with attributes
- *  $this->bootstrap('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *  $this->bootstrap('some.js',
+ *      array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->bootstrap(array(
@@ -62,14 +63,17 @@ class Bootstrap extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
             if (!isset($files['css/bootstrap.min.css'])) {
-                $files = array('css/bootstrap.min.css' => $this->canonizeFile('css/bootstrap.min.css')) + $files;
+                $files = array('css/bootstrap.min.css' =>
+                        $this->canonizeFile('css/bootstrap.min.css'))
+                    + $files;
             }
             static::$rootLoaded = true;
         }
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            $position = isset($attrs['position'])
+                ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {
                 $attrs['href'] = $url;
                 if ('prepend' == $position) {
@@ -79,9 +83,11 @@ class Bootstrap extends AssetCanonize
                 }
             } else {
                 if ('prepend' == $position) {
-                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->prependFile($url, 'text/javascript', $attrs);
                 } else {
-                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->appendFile($url, 'text/javascript', $attrs);
                 }
             }
         }

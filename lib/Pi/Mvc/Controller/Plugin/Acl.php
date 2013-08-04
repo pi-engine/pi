@@ -33,7 +33,9 @@ class Acl extends AbstractPlugin
     {
         if (!$this->aclManager) {
             $this->aclManager = new AclManager;
-            $this->aclManager->setSection("module")->setModule($this->getController()->getModule());
+            $this->aclManager->setSection("module")->setModule(
+                $this->getController()->getModule()
+            );
         }
         return $this->aclManager;
     }
@@ -52,7 +54,10 @@ class Acl extends AbstractPlugin
 
         $controller = $this->getController();
         if (!$controller instanceof InjectApplicationEventInterface) {
-            throw new \DomainException('ACL plugin requires a controller that implements InjectApplicationEventInterface');
+            throw new \DomainException(
+                'ACL plugin requires a controller that implements'
+                . ' InjectApplicationEventInterface'
+            );
         }
 
         $event = $controller->getEvent();

@@ -46,7 +46,8 @@ class System extends AbstractModel
     public function loadRole()
     {
         if ($this->account->id) {
-            $model = ('admin' == Pi::engine()->section()) ? Pi::model('user_staff') : Pi::model('user_role');
+            $model = ('admin' == Pi::engine()->section())
+                ? Pi::model('user_staff') : Pi::model('user_role');
             $role = $model->find($this->account->id, 'user');
             $this->role = $role ? $role->role : Acl::GUEST;
         } else {

@@ -36,14 +36,16 @@ class Agent extends AbstractAdapter
             $agent = apache_getenv($key, true);
         }
 
-        // No HTTP_USER_AGENT detected, return false upon DoS check, otherwise null.
+        // No HTTP_USER_AGENT detected, return false upon DoS check,
+        // otherwise null.
         if (empty($agent) || '-' == $agent) {
             return empty($options['dos']) ? null : false;
         }
 
         // Check bad bots
         if (!empty($options['bot'])) {
-            $pattern = is_array($options['bot']) ? implode("|", $options['bot']) : $options['bot'];
+            $pattern = is_array($options['bot'])
+                ? implode("|", $options['bot']) : $options['bot'];
             $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
             return $status;
         }

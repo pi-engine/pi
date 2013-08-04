@@ -25,7 +25,8 @@ use Pi;
  *  $this->backbone('some.js');
  *
  *  // Load specific file with attributes
- *  $this->backbone('some.js', array('conditional' => '...', 'position' => 'prepend'));
+ *  $this->backbone('some.js',
+ *      array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->backbone(array(
@@ -64,11 +65,16 @@ class Backbone extends AssetCanonize
             $autoLoad = array();
             // Required underscore js
             if (!isset($files['underscore.min.js'])) {
-                $autoLoad += array('underscore-min.js' => $this->canonizeFile('underscore-min.js'));
+                $autoLoad += array(
+                    'underscore-min.js' =>
+                        $this->canonizeFile('underscore-min.js')
+                );
             }
             // Required primary js
             if (!isset($files['backbone.min.js'])) {
-                $autoLoad += array('backbone-min.js' => $this->canonizeFile('backbone-min.js'));
+                $autoLoad += array(
+                    'backbone-min.js' => $this->canonizeFile('backbone-min.js')
+                );
             }
             $files = $autoLoad + $files;
             static::$rootLoaded = true;
@@ -77,7 +83,8 @@ class Backbone extends AssetCanonize
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $file);
-            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            $position = isset($attrs['position'])
+                ? $attrs['position'] : 'append';
             if ($attrs['ext'] == 'css') {
                 $attrs['href'] = $url;
                 if ('prepend' == $position) {
@@ -87,9 +94,11 @@ class Backbone extends AssetCanonize
                 }
             } else {
                 if ('prepend' == $position) {
-                    $this->view->headScript()->prependFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->prependFile($url, 'text/javascript', $attrs);
                 } else {
-                    $this->view->headScript()->appendFile($url, 'text/javascript', $attrs);
+                    $this->view->headScript()
+                        ->appendFile($url, 'text/javascript', $attrs);
                 }
             }
         }

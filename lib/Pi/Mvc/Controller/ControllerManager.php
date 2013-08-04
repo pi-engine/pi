@@ -36,28 +36,41 @@ class ControllerManager extends ZendControllerManager
 
         $invokableClass = null;
         if (false === strpos($name, '\\')) {
-            $routeMatch = $this->serviceLocator->get('Application')->getRouteMatch();
+            $application = $this->serviceLocator->get('Application');
+            $routeMatch = $application->getRouteMatch();
             if ($routeMatch) {
+                $module = $routeMatch->getParam('module');
                 /**#@+
                  * Only active module controller are accessible
                  */
-                if (!Pi::service('module')->isActive($routeMatch->getParam('module'))) {
+                if (!Pi::service('module')->isActive($module)) {
                     return '';
                 }
                 /**#@-*/
 
                 $params = array(
-                    'section'       => $this->serviceLocator->get('Application')->getSection(),
-                    'module'        => $routeMatch->getParam('module'),
+                    'section'       => $application->getSection(),
+                    'module'        => $module,
                     'controller'    => $routeMatch->getParam('controller'),
                 );
-                $directory = Pi::service('module')->directory($params['module']) ?: $params['module'];
+                $directory = Pi::service('module')->directory($module)
+                    ?: $module;
 
                 // Look up controller class in module folder
-                $invokableClass = sprintf('Module\\%s\\Controller\\%s\\%sController', ucfirst($directory), ucfirst($params['section']), ucfirst($params['controller']));
-                // Look up in system's shared admin controller folder for admin controller if not found in module fodler
-                if (!class_exists($invokableClass) && 'admin' == $params['section']) {
-                    $invokableClass = sprintf('Module\\System\\Controller\\Module\\%sController', ucfirst($params['controller']));
+                $invokableClass = sprintf(
+                    'Module\\%s\Controller\\%s\\%sController',
+                    ucfirst($directory),
+                    ucfirst($params['section']),
+                    ucfirst($params['controller'])
+                );
+                // Look up in system's shared admin controller folder
+                // for admin controller if not found in module fodler
+                if (!class_exists($invokableClass)
+                    && 'admin' == $params['section']) {
+                    $invokableClass = sprintf(
+                        'Module\System\Controller\Module\\%sController',
+                        ucfirst($params['controller'])
+                    );
                 }
                 $name = $invokableClass;
             }
@@ -65,7 +78,8 @@ class ControllerManager extends ZendControllerManager
 
         $cName = parent::canonicalizeName($name);
 
-        if ($invokableClass && !isset($this->invokableClasses[$cName]) && class_exists($invokableClass)) {
+        if ($invokableClass && !isset($this->invokableClasses[$cName])
+            && class_exists($invokableClass)) {
             $inCanonicalization = true;
             $this->setInvokableClass($cName, $invokableClass);
             $inCanonicalization = false;

@@ -53,9 +53,11 @@ use Zend\Mvc\InjectApplicationEventInterface;
  *  $this->view()->headKeywords('keyword, keyword, keyword', 'append');
  *  $this->view()->headKeywords('keyword, keyword, keyword', 'prepend');
  *
- *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword')[, 'set']);
- *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'append');
- *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'prepend');
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'), 'set');
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'),
+ *      'append');
+ *  $this->view()->headKeywords(array('keyword', 'keyword', 'keyword'),
+ *      'prepend');
  * ```
  *
  * Set head description, default as set by overwriting
@@ -131,7 +133,10 @@ class View extends AbstractPlugin
 
         $controller = $this->getController();
         if (!$controller instanceof InjectApplicationEventInterface) {
-            throw new \DomainException('ViewModel plugin requires a controller that implements InjectApplicationEventInterface');
+            throw new \DomainException(
+                'ViewModel plugin requires a controller that implements'
+                . ' InjectApplicationEventInterface'
+            );
         }
 
         $event = $controller->getEvent();
@@ -206,7 +211,9 @@ class View extends AbstractPlugin
         if ($template) {
             if (false === strpos($template, ':')) {
                 $module = $module ?: $this->getController()->getModule();
-                $template = $module . ':' . $this->getEvent()->getApplication()->getSection() . '/' . $template;
+                $template = $module . ':'
+                    . $this->getEvent()->getApplication()->getSection()
+                    . '/' . $template;
             }
         } else {
             $template = static::NULL_TEMPLATE;
@@ -270,7 +277,8 @@ class View extends AbstractPlugin
     public function headDescription($description, $placement = null)
     {
         $description = strip_tags($description);
-        $this->helper('headMeta')->__invoke($description, 'description', 'name', array(), $placement);
+        $this->helper('headMeta')->__invoke($description, 'description',
+            'name', array(), $placement);
         return $this;
     }
 
@@ -287,15 +295,16 @@ class View extends AbstractPlugin
             $keywords = implode(', ', $keywords);
         }
         $keywords = strip_tags($keywords);
-        $this->helper('headMeta')->__invoke($keywords, 'keywords', 'name', array(), $placement);
+        $this->helper('headMeta')->__invoke($keywords, 'keywords',
+            'name', array(), $placement);
         return $this;
     }
 
     /**
      * Overloading: proxy to helpers
      *
-     * Proxies to the attached plugin broker to retrieve, return, and potentially
-     * execute helpers.
+     * Proxies to the attached plugin broker to retrieve, return,
+     * and potentially execute helpers.
      *
      * - If the helper does not define __invoke, it will be returned
      * - If the helper does define __invoke, it will be called as a functor
@@ -321,7 +330,8 @@ class View extends AbstractPlugin
      */
     public function helper($name)
     {
-        $render = $this->getController()->getServiceLocator()->get('ViewManager')->getRenderer();
+        $render = $this->getController()->getServiceLocator()
+            ->get('ViewManager')->getRenderer();
         $helper = $render->plugin($name);
         return $helper;
     }

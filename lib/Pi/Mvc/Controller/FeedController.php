@@ -32,7 +32,10 @@ abstract class FeedController extends ActionController
             $routeMatch = $e->getRouteMatch();
             $feedType = $routeMatch->getParam('type', 'rss');
             $data['feed_link'] = array(
-                'link'      => Pi::url($this->url('feed', $routeMatch->getParams()), true),
+                'link'      => Pi::url(
+                    $this->url('feed', $routeMatch->getParams()),
+                    true
+                ),
                 'type'      => $feedType,
             );
         }

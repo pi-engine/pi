@@ -28,8 +28,12 @@ use Zend\Stdlib\RequestInterface as Request;
  *   - Full mode: /module/controller/action/key1-val1/key2-val2
  *   - Full structure only: /module/controller/action
  * - Different structure delimiter:
- *   - Full mode: /module-controller-action/key1/val1/key2/val2; /module-controller-action/key1-val2/key2-val2
- *   - Default structure and parameters: /module/key1/val1/key2/val2; /module/key1-val1/key2-val2
+ *   - Full mode:
+ *      /module-controller-action/key1/val1/key2/val2;
+ *      /module-controller-action/key1-val2/key2-val2
+ *   - Default structure and parameters:
+ *      /module/key1/val1/key2/val2;
+ *      /module/key1-val1/key2-val2
  *   - Default structure: /module-controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -87,9 +91,14 @@ class Standard implements RouteInterface
      * @param  array  $defaults
      * @return void
      */
-    public function __construct($prefix = null, $structureDelimiter = '/', $keyValueDelimiter = '/', $paramDelimiter = '/', array $defaults = array())
+    public function __construct($prefix = null,
+        $structureDelimiter = '/',
+        $keyValueDelimiter = '/',
+        $paramDelimiter = '/',
+        array $defaults = array())
     {
-        $this->prefix               = (null !== $prefix) ? $prefix : $this->prefix;
+        $this->prefix               = (null !== $prefix)
+            ? $prefix : $this->prefix;
         $this->structureDelimiter   = $structureDelimiter;
         $this->keyValueDelimiter    = $keyValueDelimiter;
         $this->paramDelimiter       = $paramDelimiter;
@@ -120,11 +129,13 @@ class Standard implements RouteInterface
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
         } elseif (!is_array($options)) {
-            throw new \InvalidArgumentException(__METHOD__ . ' expects an array or Traversable set of options');
+            throw new \InvalidArgumentException(__METHOD__
+                . ' expects an array or Traversable set of options');
         }
 
         if (!isset($options['prefix'])) {
-            $options['prefix'] = isset($options['route']) ? $options['route'] : null;
+            $options['prefix'] = isset($options['route'])
+                ? $options['route'] : null;
         }
 
         if (!isset($options['structure_delimiter'])) {
@@ -143,7 +154,11 @@ class Standard implements RouteInterface
             $options['defaults'] = array();
         }
 
-        $route = new static($options['prefix'], $options['structure_delimiter'], $options['key_value_delimiter'], $options['param_delimiter'], $options['defaults']);
+        $route = new static($options['prefix'],
+            $options['structure_delimiter'],
+            $options['key_value_delimiter'],
+            $options['param_delimiter'],
+            $options['defaults']);
         $route->setOptions($options);
         return $route;
     }
@@ -170,8 +185,10 @@ class Standard implements RouteInterface
         $pathLength = strlen($path);
 
         if ($this->prefix) {
-            $prefix = rtrim($this->prefix, $this->paramDelimiter) . $this->paramDelimiter;
-            $path = rtrim($path, $this->paramDelimiter) . $this->paramDelimiter;
+            $prefix = rtrim($this->prefix, $this->paramDelimiter)
+                . $this->paramDelimiter;
+            $path = rtrim($path, $this->paramDelimiter)
+                . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {
                 return null;
@@ -192,7 +209,10 @@ class Standard implements RouteInterface
     protected function parseParams($path)
     {
         $matches = array();
-        $params  = $path ? explode($this->paramDelimiter, trim($path, $this->paramDelimiter)) : array();
+        $params  = $path
+            ? explode($this->paramDelimiter,
+                trim($path, $this->paramDelimiter))
+            : array();
 
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('module', 'controller', 'action') as $key) {
@@ -215,7 +235,8 @@ class Standard implements RouteInterface
 
             for ($i = 0; $i < $count; $i += 2) {
                 if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] = urldecode($params[$i + 1]);
+                    $matches[urldecode($params[$i])] =
+                        urldecode($params[$i + 1]);
                 }
             }
         } else {
@@ -247,46 +268,6 @@ class Standard implements RouteInterface
             return null;
         }
         list($path, $pathLength) = $result;
-
-        /*
-        $matches = array();
-        $params  = $path ? explode($this->paramDelimiter, $path) : array();
-
-        if ($this->paramDelimiter === $this->structureDelimiter) {
-            foreach(array('module', 'controller', 'action') as $key) {
-                if (!empty($params)) {
-                    $matches[$key] = array_shift($params);
-                }
-            }
-        } else {
-            $mca = explode($this->structureDelimiter, $params[0]);
-            foreach(array('module', 'controller', 'action') as $key) {
-                if (!empty($mca)) {
-                    $matches[$key] = array_shift($mca);
-                }
-            }
-            array_shift($params);
-        }
-
-        if ($this->keyValueDelimiter === $this->paramDelimiter) {
-            $count = count($params);
-
-            for ($i = 0; $i < $count; $i += 2) {
-                if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] = urldecode($params[$i + 1]);
-                }
-            }
-        } else {
-            foreach ($params as $param) {
-                $param = explode($this->keyValueDelimiter, $param, 2);
-
-                if (isset($param[1])) {
-                    $matches[urldecode($param[0])] = urldecode($param[1]);
-                }
-            }
-        }
-        */
-
         $matches = $this->parseParams($path);
         if (!is_array($matches)) {
             return null;
@@ -322,30 +303,39 @@ class Standard implements RouteInterface
             if (null === $value) {
                 continue;
             }
-            $url .= $this->paramDelimiter . urlencode($key) . $this->keyValueDelimiter . urlencode($value);
+            $url .= $this->paramDelimiter . urlencode($key)
+                . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller', 'module') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
-                    $url = urlencode($mca[$key]) . $this->paramDelimiter . $url;
+                    $url = urlencode($mca[$key]) . $this->paramDelimiter
+                        . $url;
                 }
             }
         } else {
             $structure = urlencode($mca['module']);
             if ($mca['controller'] !== $this->defaults['controller']) {
-                $structure .= $this->structureDelimiter . urlencode($mca['controller']);
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['controller']);
                 if ($mca['action'] !== $this->defaults['action']) {
-                    $structure .= $this->structureDelimiter . urlencode($mca['action']);
+                    $structure .= $this->structureDelimiter
+                        . urlencode($mca['action']);
                 }
             } elseif ($mca['action'] !== $this->defaults['action']) {
-                $structure .= $this->structureDelimiter . urlencode($mca['controller']);
-                $structure .= $this->structureDelimiter . urlencode($mca['action']);
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['controller']);
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['action']);
             }
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }
 
-        $prefix = $this->prefix ? $this->paramDelimiter . trim($this->prefix, $this->paramDelimiter) : '';
+        $prefix = $this->prefix
+            ? $this->paramDelimiter
+                . trim($this->prefix, $this->paramDelimiter)
+            : '';
         return $prefix . $this->paramDelimiter . $url;
     }
 

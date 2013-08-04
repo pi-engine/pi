@@ -36,7 +36,8 @@ use Zend\Stdlib\ArrayUtils;
  *  $this->canonize('some.css', 'prepend');
  *
  *  // Canonize specific file with attributes
- *  $this->canonize('some.css', array('conditional' => '...', 'postion' => 'prepend'));
+ *  $this->canonize('some.css',
+ *      array('conditional' => '...', 'postion' => 'prepend'));
  *
  *  // Canonize a list of files with corresponding attributes
  *  $this->canonize(array(
@@ -52,12 +53,14 @@ class AssetCanonize extends AbstractHelper
     /**
      * Canonize attributes of a file
      *
-     * Note: asset type is detected via file extension thus attached versioning number should be removed for detection
+     * Note: asset type is detected via file extension thus
+     * attached versioning number should be removed for detection
      *
      * @param string $file
      * @param array $attrs
      * @return array
-     * @see \Pi\Application\Service\Asset::versionStamp() for versioning information
+     * @see \Pi\Application\Service\Asset::versionStamp()
+     *      for versioning information
      */
     protected function canonizeFile($file, $attrs = array())
     {

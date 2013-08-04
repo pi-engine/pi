@@ -59,14 +59,16 @@ class NavMenu extends AbstractHtmlElement
      * - List of assembled data
      *
      *  ```
-     *      array(
-     *          '<li class="active"><a href="link" title="label">label</a></li>',
-     *          '<li><a href="link" title="label">label</a></li>',
-     *      );
+     *  array(
+     *      '<li class="active"><a href="link" title="label">label</a></li>',
+     *      '<li><a href="link" title="label">label</a></li>',
+     * );
      *  ```
      *
-     * @param array         $items      Navigation data, list of item data or list of assembled list
-     * @param array|string  $attribs    UL attributes or type (vertical|horizontal)
+     * @param array         $items
+     *      Navigation data, list of item data or list of assembled list
+     * @param array|string  $attribs
+     *      UL attributes or type (vertical|horizontal)
      * @param bool          $escape     To escape HTML tags
      * @return string
      */
@@ -76,7 +78,7 @@ class NavMenu extends AbstractHtmlElement
         $escaper = $this->view->plugin('escapeHtml');
         foreach ($items as $item) {
             if (!is_array($item)) {
-                $list .= $item . static::EOL;
+                $list .= $item . PHP_EOL;
             } else {
                 $label = $item['label'];
                 unset($item['label']);
@@ -89,7 +91,8 @@ class NavMenu extends AbstractHtmlElement
                     unset($item['active']);
                 }
                 $attr = $this->htmlAttribs($item);
-                $list .= '<li' . $class . '><a' . $attr . '>' . $escaper($label) . '</a></li>' . static::EOL;
+                $list .= '<li' . $class . '><a' . $attr . '>'
+                    . $escaper($label) . '</a></li>' . PHP_EOL;
             }
         }
 
@@ -112,7 +115,7 @@ class NavMenu extends AbstractHtmlElement
         }
 
         $attribs = $this->htmlAttribs($attribs);
-        $menu = '<ul ' . $attribs . '>' . static::EOL . $list . '</ul>' . static::EOL;
+        $menu = '<ul ' . $attribs . '>' . PHP_EOL . $list . '</ul>' . PHP_EOL;
 
         return $menu;
     }

@@ -29,17 +29,20 @@ use Zend\View\Helper\AbstractHelper;
  * - In PHP template layout.phtml
  *
  * ```
- *      echo '<div class='block-left'>';
+ *      echo '<div class="block-left">';
  *      foreach ($this->blocks('left') as $block) {
- *          echo '<div id='block-' . $block['id'] . ''>';
+ *          echo '<div id="block-' . $block['id'] . '">';
  *          if (!empty($block['title'])) {
  *              if (empty($block['link'])) {
- *                  echo '<div class='block-title'>' . $block['title'] . '</div>';
+ *                  echo '<div class="block-title">'
+ *                      . $block['title'] . '</div>';
  *              } else {
- *                  echo '<div class='block-title'><a href='' . $block['link'] . '' title='Go to linked page'>' . $block['title'] . '</a></div>';
+ *                  echo '<div class="block-title"><a href=" . $block['link']
+ *                      . '" title="Go to linked page">' . $block['title']
+ *                      . '</a></div>';
  *              }
  *          }
- *          echo '<div class='block-content'>' . $block['content'] . '</div>';
+ *          echo '<div class="block-content">' . $block['content'] . '</div>';
  *          echo '</div>';
  *      }
  *      echo '</div>';
@@ -51,7 +54,8 @@ use Zend\View\Helper\AbstractHelper;
 class Blocks extends AbstractHelper
 {
     /**
-     * Zone map: zone index in database => zone in layout; 0 for head zone and 99 for foot zone
+     * Zone map: zone index in database =>
+     * zone in layout; 0 for head zone and 99 for foot zone
      * @var array
      */
     protected $zoneMap = array(
@@ -111,8 +115,10 @@ class Blocks extends AbstractHelper
             $info = Pi::service('registry')->block->read($module);
 
             $blocks = array();
-            if (isset($info[sprintf('%s-%s-%s', $module, $controller, $action)])) {
-                $blocks = $info[sprintf('%s-%s-%s', $module, $controller, $action)];
+            if (isset($info[sprintf('%s-%s-%s',
+                $module, $controller, $action)])) {
+                $blocks = $info[sprintf('%s-%s-%s',
+                    $module, $controller, $action)];
             } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
                 $blocks = $info[sprintf('%s-%s', $module, $controller)];
             } elseif (isset($info[$module])) {
@@ -129,7 +135,9 @@ class Blocks extends AbstractHelper
             if (!empty($blockIds)) {
                 $blockIds = array_unique($blockIds);
                 $modelBlock = Pi::model('block');
-                $select = $modelBlock->select()->where(array('id' => $blockIds));
+                $select = $modelBlock->select()->where(
+                    array('id' => $blockIds)
+                );
                 $result = $modelBlock->selectWith($select);
                 $blockRows = array();
                 foreach ($result as $row) {
@@ -141,7 +149,8 @@ class Blocks extends AbstractHelper
                         // Render block
                         $widget = $blockHelper->render($blockRows[$id]);
                         if ($widget) {
-                            $layoutBlocks[$this->zoneMap[$zoneKey]][] = $widget;
+                            $layoutBlocks[$this->zoneMap[$zoneKey]][] =
+                                $widget;
                         }
                     }
                 }
@@ -152,7 +161,9 @@ class Blocks extends AbstractHelper
             Pi::service('log')->end('BLOCKS');
         }
 
-        $blocks = (null === $zone) ? $this->blocks : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : array());
+        $blocks = (null === $zone)
+            ? $this->blocks
+            : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : array());
         return $blocks;
     }
 }

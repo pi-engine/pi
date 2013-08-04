@@ -49,7 +49,8 @@ class Assemble extends AbstractHelper
         if (null !== $indent) {
             $helper->setIndent($indent);
         }
-        $label = '<' . $section . ' id="' . md5(Pi::config('salt') . $section) . '" />';
+        $label = '<' . $section
+            . ' id="' . md5(Pi::config('salt') . $section) . '" />';
         $this->sectionLabel[$section] = $label;
         return $label;
     }
@@ -76,22 +77,28 @@ class Assemble extends AbstractHelper
 
         // Set Google Analytics scripts in case available
         if ($configGeneral['ga_account']) {
-            $this->view->footScript()->appendScript($this->view->ga($configGeneral['ga_account']));
+            $this->view->footScript()
+                ->appendScript($this->view->ga($configGeneral['ga_account']));
         }
         // Set foot scripts in case available
         if ($configGeneral['foot_script']) {
             if (false !== stripos($configGeneral['foot_script'], '<script ')) {
-                $this->view->footScript()->appendScript($configGeneral['foot_script'], 'raw');
+                $this->view->footScript()
+                    ->appendScript($configGeneral['foot_script'], 'raw');
             } else {
-                $this->view->footScript()->appendScript($configGeneral['foot_script']);
+                $this->view->footScript()
+                    ->appendScript($configGeneral['foot_script']);
             }
         }
         unset($configGeneral['ga_account'], $configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
-        $configGeneral['locale'] = Pi::service('i18n')->locale ?: $configGeneral['locale'];
-        $configGeneral['charset'] = Pi::service('i18n')->charset ?: $configGeneral['charset'];
-        $this->view->plugin('view_model')->getRoot()->setVariables($configGeneral);
+        $configGeneral['locale'] = Pi::service('i18n')->locale
+            ?: $configGeneral['locale'];
+        $configGeneral['charset'] = Pi::service('i18n')->charset
+            ?: $configGeneral['charset'];
+        $this->view->plugin('view_model')->getRoot()
+            ->setVariables($configGeneral);
     }
 
     /**
@@ -108,7 +115,8 @@ class Assemble extends AbstractHelper
         // Append module name for non-system module
         $currentModule = Pi::service('module')->current();
         if ($currentModule && 'system' != $currentModule) {
-            $moduleMeta = Pi::service('registry')->module->read($currentModule);
+            $moduleMeta = Pi::service('registry')->module
+                ->read($currentModule);
             $headTitle->append($moduleMeta['title']);
         }
         // Append site name
@@ -133,11 +141,17 @@ class Assemble extends AbstractHelper
          */
         $head = '';
 
-        foreach (array('headTitle', 'headMeta', 'headLink', 'headStyle', 'headScript') as $section) {
+        foreach (array('headTitle',
+            'headMeta',
+            'headLink',
+            'headStyle',
+            'headScript')
+            as $section) {
             $sectionContent = $this->view->plugin($section)->toString();
             $sectionContent .= $sectionContent ? PHP_EOL : '';
             if (!empty($this->sectionLabel[$section])) {
-                $content = str_replace($this->sectionLabel[$section], $sectionContent, $content);
+                $content = str_replace($this->sectionLabel[$section],
+                    $sectionContent, $content);
             } else {
                 $head .= $sectionContent . PHP_EOL;
             }
@@ -157,12 +171,14 @@ class Assemble extends AbstractHelper
         $section = 'footScript';
         $sectionContent = $this->view->plugin($section)->toString();
         if (!empty($this->sectionLabel[$section])) {
-            $content = str_replace($this->sectionLabel[$section], $sectionContent, $content);
+            $content = str_replace($this->sectionLabel[$section],
+                $sectionContent, $content);
         } elseif ($sectionContent) {
             $pos = stripos($content, '</body>');
             $preFoot = substr($content, 0, $pos);
             $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL . $postFoot;
+            $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
+                . $postFoot;
         }
         /**#@-*/
 

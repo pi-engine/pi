@@ -17,8 +17,10 @@ use Pi;
  *
  * Policy with different result from each adapter:
  *
- * - true: following evaluations will be terminated and current request is approved
- * - false: following evaluations will be terminated and current request is denied
+ * - true: following evaluations will be terminated and current request
+ *      is approved
+ * - false: following evaluations will be terminated and current request
+ *      is denied
  * - null: continue
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -51,7 +53,8 @@ class Security
 
         // Check upon bad IPs
         if (!empty($options['bad'])) {
-            $pattern = is_array($options['bad']) ? implode('|', $options['bad']) : $options['bad'];
+            $pattern = is_array($options['bad'])
+                ? implode('|', $options['bad']) : $options['bad'];
             foreach ($clientIp as $ip) {
                 if (preg_match('/' . $pattern . '/', $ip)) {
                     return false;
@@ -61,7 +64,8 @@ class Security
 
         // Check upon good IPs
         if (!empty($options['good'])) {
-            $pattern = is_array($options['good']) ? implode('|', $options['good']) : $options['good'];
+            $pattern = is_array($options['good'])
+                ? implode('|', $options['good']) : $options['good'];
             foreach ($clientIp as $ip) {
                 if (preg_match('/' . $pattern . '/', $ip)) {
                     return true;
@@ -101,7 +105,8 @@ class Security
     public static function __callStatic($method, $args = array())
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($method);
-        if (class_exists($class) && is_subclass_of($class, __NAMESPACE__ . '\AbstractAdapter')) {
+        if (class_exists($class)
+            && is_subclass_of($class, __NAMESPACE__ . '\AbstractAdapter')) {
             $options = $args[0];
             return $class::check($options);
         }

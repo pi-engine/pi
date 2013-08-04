@@ -26,11 +26,14 @@ class Redirect extends ZendRedirect
      * Generates a URL based on a route
      *
      * @param string    $route      RouteInterface name
-     * @param array     $params     Parameters to use in url generation, if any
-     * @param array     $options    RouteInterface-specific options to use in url generation, if any
+     * @param array     $params
+     *      Parameters to use in url generation, if any
+     * @param array     $options
+     *      RouteInterface-specific options to use in url generation, if any
      * @return Response|$this
      */
-    public function __invoke($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($route = null, array $params = array(),
+        $options = array(), $reuseMatchedParams = false)
     {
         if (!$route && !$params) {
             return $this;
@@ -54,11 +57,12 @@ class Redirect extends ZendRedirect
      * Generates a URL based on a route
      *
      * @param string    $route      RouteInterface name
-     * @param array     $params     Parameters to use in url generation, if any
-     * @param array     $options    RouteInterface-specific options to use in url generation, if any
+     * @param array     $params     Parameters to use in url generation
+     * @param array     $options    RouteInterface-specific options
      * @return Response
      */
-    public function toRoute($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function toRoute($route = null, array $params = array(),
+        $options = array(), $reuseMatchedParams = false)
     {
         $routeMatch = null;
         if (!$route) {
@@ -74,7 +78,8 @@ class Redirect extends ZendRedirect
         }
         $this->controller->view()->setTemplate(false);
 
-        $response = parent::toRoute($route, $params, $options, $reuseMatchedParams);
+        $response = parent::toRoute($route, $params,
+            $options, $reuseMatchedParams);
         if ($this->responseCode) {
             $response->setStatusCode($this->responseCode);
             $this->responseCode = null;

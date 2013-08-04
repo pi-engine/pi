@@ -24,9 +24,13 @@ use MarkdownDocument;
  * Usage inside a phtml template
  *
  * ```
- *  $this->block('block-name', array('title_hidden' => 1, 'opt1' => 'val1', 'opt2' => 'val2'));
- *  $this->block('block-name', array('link' => '/link/to/a/URL', 'opt1' => 'val1', 'opt2' => 'val2'));
- *  $this->block('block-name', array('style' => 'specified-css-class', 'opt1' => 'val1', 'opt2' => 'val2'));
+ *  $this->block('block-name',
+ *      array('title_hidden' => 1, 'opt1' => 'val1', 'opt2' => 'val2'));
+ *  $this->block('block-name',
+ *      array('link' => '/link/to/a/URL', 'opt1' => 'val1', 'opt2' => 'val2'));
+ *  $this->block('block-name',
+ *      array('style' => 'specified-css-class',
+ *      'opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block(24, array('opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->block()->load(24);
  *  $this->block()->render($blockModel);
@@ -106,7 +110,14 @@ class Block extends AbstractHelper
         $block = $blockRow->toArray();
 
         // Override with instant options
-        foreach (array('title', 'link', 'class', 'cache_ttl', 'cache_level', 'template', 'title_hidden') as $key) {
+        foreach (array('title',
+            'link',
+            'class',
+            'cache_ttl',
+            'cache_level',
+            'template',
+            'title_hidden')
+            as $key) {
             if (isset($options[$key])) {
                 $block[$key] = $options[$key];
             }
@@ -119,7 +130,8 @@ class Block extends AbstractHelper
         //$cacheOptions = null;
         $blockData = null;
         if ('tab' != $block['type'] && $block['cache_ttl']) {
-            $cacheKey = empty($options) ? md5($block['id']) : md5($block['id'] . serialize($options));
+            $cacheKey = empty($options)
+                ? md5($block['id']) : md5($block['id'] . serialize($options));
             $renderCache = Pi::service('render')->setType('block');
             $renderCache->meta('key', $cacheKey)
                     ->meta('namespace', $block['module'] ?: 'system')
@@ -147,7 +159,9 @@ class Block extends AbstractHelper
             }
         } else {
             if (Pi::service()->hasService('log')) {
-                Pi::service('log')->info(sprintf('Block "%s" is cached', $block['name']));
+                Pi::service('log')->info(
+                    sprintf('Block "%s" is cached', $block['name'])
+                );
             }
         }
 
@@ -159,7 +173,8 @@ class Block extends AbstractHelper
             if (!$block['template']) {
                 $template = 'module/system:block/dummy';
             } else {
-                $template = sprintf('module/%s:block/%s', $block['module'], $block['template']);
+                $template = sprintf('module/%s:block/%s',
+                    $block['module'], $block['template']);
                 /**#@+
                     * Preset variables
                     */
@@ -184,7 +199,8 @@ class Block extends AbstractHelper
      *
      * @param BlockRow $blockRow
      * @param array $configs
-     * @return array|string Variable array for module blocks and string content for custom blocks
+     * @return array|string Variable array for module blocks
+     *      and string content for custom blocks
      */
     public function buildBlock(BlockRow $blockRow, $configs = array())
     {
@@ -198,13 +214,15 @@ class Block extends AbstractHelper
             if (!empty($configs)) {
                 $options = array_merge($options, $configs);
             }
-            $result = call_user_func_array($block['render'], array($options, $block['module']));
+            $result = call_user_func_array($block['render'],
+                array($options, $block['module']));
         // Custom block, return string
         } elseif ($isCustom) {
             switch ($block['type']) {
                 // carousel
                 case 'carousel':
-                    $items = empty($block['content']) ? false : json_decode($block['content'], true);
+                    $items = empty($block['content'])
+                        ? false : json_decode($block['content'], true);
                     if ($items) {
                         $result = array(
                             'items'     => $items,
@@ -218,18 +236,21 @@ class Block extends AbstractHelper
                     break;
                 // static HTML
                 case 'html':
-                    $result = Pi::service('markup')->render($block['content'], 'html');
+                    $result = Pi::service('markup')->render($block['content'],
+                        'html');
                     $result = $this->transliterateGlobals($result);
                     break;
                 // static mardown
                 case 'markdown':
-                    $result = Pi::service('markup')->render($block['content'], 'html', 'markdown');
+                    $result = Pi::service('markup')->render($block['content'],
+                        'html', 'markdown');
                     $result = $this->transliterateGlobals($result);
                     break;
                 // static text
                 case 'text':
                 default:
-                    $result = Pi::service('markup')->render($block['content'], 'text');
+                    $result = Pi::service('markup')->render($block['content'],
+                        'text');
                     $result = $this->transliterateGlobals($result);
                     break;
             }
@@ -261,7 +282,8 @@ class Block extends AbstractHelper
                 continue;
             }
             $result[] = array(
-                'caption'   => !empty($tab['caption']) ? $tab['caption'] : $data['title'],
+                'caption'   => !empty($tab['caption'])
+                    ? $tab['caption'] : $data['title'],
                 'link'      => !empty($tab['link']) ? $tab['link'] : '',
                 'content'   => $data['content'],
             );
@@ -272,7 +294,8 @@ class Block extends AbstractHelper
 
 
     /**
-     * Transliterate global variables, allowed tags: %sitename%, %slogan%, %siteurl%
+     * Transliterate global variables, allowed tags:
+     * %sitename%, %slogan%, %siteurl%
      *
      * @param string $content
      * @return string

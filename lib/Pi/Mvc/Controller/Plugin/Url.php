@@ -28,12 +28,17 @@ class Url extends ZendUrl
      * Generates a URL based on a route
      *
      * @param string        $route                  RouteInterface name
-     * @param array         $params                 Parameters to use in url generation, if any
-     * @param array|bool    $options                RouteInterface-specific options to use in url generation, if any. If boolean, and no fourth argument, used as $reuseMatchedParams
-     * @param bool          $reuseMatchedParams     Whether to reuse matched parameters
+     * @param array         $params
+     *      Parameters to use in url generation, if any
+     * @param array|bool    $options
+     *      RouteInterface-specific options to use in url generation, if any.
+     *      If boolean, and no fourth argument, used as $reuseMatchedParams
+     * @param bool          $reuseMatchedParams
+     *      Whether to reuse matched parameters
      * @return string|$this
      */
-    public function __invoke($route = null, array $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($route = null, array $params = array(),
+        $options = array(), $reuseMatchedParams = false)
     {
         if (0 == func_num_args()) {
             return $this;
@@ -49,7 +54,8 @@ class Url extends ZendUrl
         }
 
         $route = $route ?: null;
-        $url = $this->fromRoute($route, $params, $options, $reuseMatchedParams);
+        $url = $this->fromRoute($route, $params,
+            $options, $reuseMatchedParams);
         return $url;
     }
 }

@@ -33,7 +33,8 @@ class ThemeTemplate implements ResolverInterface
     protected $templateDirectory = 'template';
 
     /**
-     * Suffix to use: appends this suffix if the template requested does not use it.
+     * Suffix to use: appends this suffix if the template requested
+     * does not use it.
      * @var string
      */
     protected $suffix = 'phtml';
@@ -74,7 +75,8 @@ class ThemeTemplate implements ResolverInterface
             $name = substr($name, 0, -6);
         }
         $theme = $theme ?: Pi::service('theme')->current();
-        $template = sprintf('%s/%s/%s/%s.%s', Pi::path('theme'), $theme, $this->templateDirectory, $name, $this->suffix);
+        $template = sprintf('%s/%s/%s/%s.%s', Pi::path('theme'), $theme,
+            $this->templateDirectory, $name, $this->suffix);
         return $template;
     }
 

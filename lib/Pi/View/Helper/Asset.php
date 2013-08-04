@@ -34,11 +34,12 @@ class Asset extends AbstractHelper
      *
      * @param   string  $component
      * @param   string  $file
-     * @param   bool    $versioning Flag to append version to generated asset URL
+     * @param   bool    $versioning Flag to append version to generated URL
      * @return  string
      */
     public function __invoke($component, $file, $versioning = true)
     {
-        return Pi::service('asset')->getAssetUrl($component, $file, $versioning);
+        return Pi::service('asset')->getAssetUrl($component, $file,
+            $versioning);
     }
 }

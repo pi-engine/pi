@@ -38,7 +38,9 @@ abstract class AbstractAvatar
     /**
      * Get user avatar link
      *
-     * @param string            $size           Size of image to display, integer for width, string for named size: 'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param string $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @return string
      */
     abstract public function build($size = '');

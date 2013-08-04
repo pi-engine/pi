@@ -33,7 +33,10 @@ class Cache extends AbstractPlugin
     {
         if (!$this->cache) {
             $this->cache = clone Pi::service('cache')->storage();
-            $this->cache->getOptions()->setNamespace($this->getEvent()->getRouteMatch()->getParam('module') . 'action');
+            $this->cache->getOptions()->setNamespace(
+                $this->getEvent()->getRouteMatch()->getParam('module')
+                . 'action'
+            );
         }
         return $this->cache;
     }
@@ -52,7 +55,10 @@ class Cache extends AbstractPlugin
 
         $controller = $this->getController();
         if (!$controller instanceof InjectApplicationEventInterface) {
-            throw new \DomainException('Cache plugin requires a controller that implements InjectApplicationEventInterface');
+            throw new \DomainException(
+                'Cache plugin requires a controller that implements'
+                . ' InjectApplicationEventInterface'
+            );
         }
 
         $event = $controller->getEvent();

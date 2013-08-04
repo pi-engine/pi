@@ -25,7 +25,8 @@ use Zend\Mvc\InjectApplicationEventInterface;
  *  $this->jump(<URI>, <Message>, <Transition time in seconds>);
  *
  *  // Jump to a routed URL
- *  $this->jump(array('route' => <route-name>, 'controller' => <controller-name>), <Message>);
+ *  $this->jump(array('route' => <route-name>,
+ *      'controller' => <controller-name>), <Message>);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -39,12 +40,15 @@ class Jump extends AbstractPlugin
      * Generates a URL based on a route
      *
      * @param string|array  $params         URI or params to assemble URI
-     * @param string        $message        Message to display on transition page
-     * @param int           $time           Time to wait on transition page before directed, in seconds
+     * @param string        $message
+     *      Message to display on transition page
+     * @param int           $time
+     *      Time to wait on transition page before directed, in seconds
      * @param bool          $allowExtenal   Allow external links
      * @return Response
      */
-    public function __invoke($params, $message = '', $time = 3, $allowExternal = false)
+    public function __invoke($params, $message = '', $time = 3,
+        $allowExternal = false)
     {
         $controller = $this->getController();
         if (is_array($params)) {
@@ -57,10 +61,12 @@ class Jump extends AbstractPlugin
                 unset($params['route']);
             }
             if (!isset($params['module'])) {
-                $routeMatch = $routeMatch ?: $this->getEvent()->getRouteMatch();
+                $routeMatch = $routeMatch
+                    ?: $this->getEvent()->getRouteMatch();
                 $params['module'] = $routeMatch->getParam('module');
                 if (!isset($params['controller'])) {
-                    $params['controller'] = $routeMatch->getParam('controller');
+                    $params['controller'] =
+                        $routeMatch->getParam('controller');
                 }
             }
             $urlPlugin = $controller->plugin('url');
@@ -68,7 +74,8 @@ class Jump extends AbstractPlugin
         } else {
             $url = $params;
             if (preg_match('/^(http[s]?:\/\/|\/\/)/i', $url)) {
-                if (!$allowExternal && '' !== stristr($url, Pi::url('www'), true)) {
+                if (!$allowExternal
+                    && '' !== stristr($url, Pi::url('www'), true)) {
                     $url = Pi::url('www');
                 }
             } elseif ('/' != $url[0]) {
@@ -81,10 +88,6 @@ class Jump extends AbstractPlugin
             'message'   => $message,
             'url'       => $url,
         );
-        /*
-        $session = Pi::service('session')->{static::$sessionNamespace}->setExpirationHops(1);
-        $session->params = $jumpParams;
-        */
         $_SESSION[static::$sessionNamespace] = $jumpParams;
 
         $this->controller->view()->setTemplate(false);
@@ -111,7 +114,10 @@ class Jump extends AbstractPlugin
 
         $controller = $this->getController();
         if (!$controller instanceof InjectApplicationEventInterface) {
-            throw new \DomainException('Controller plugin requires a controller that implements InjectApplicationEventInterface');
+            throw new \DomainException(
+                'Controller plugin requires a controller that implements'
+                . ' InjectApplicationEventInterface'
+            );
         }
 
         $event = $controller->getEvent();

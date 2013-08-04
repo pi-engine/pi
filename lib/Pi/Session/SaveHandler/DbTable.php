@@ -79,7 +79,8 @@ class DbTable implements SaveHandlerInterface
     }
 
     /**
-     * Set session lifetime and optional whether or not the lifetime of an existing session should be overridden
+     * Set session lifetime and optional whether or not the lifetime of
+     * an existing session should be overridden
      *
      * $lifetime === false resets lifetime to session.gc_maxlifetime
      *
@@ -90,7 +91,9 @@ class DbTable implements SaveHandlerInterface
     public function setLifetime($lifetime, $overrideLifetime = null)
     {
         if ($lifetime < 0) {
-            throw new \InvalidArgumentException('Lifetime must be greater than 0');
+            throw new \InvalidArgumentException(
+                'Lifetime must be greater than 0'
+            );
         } elseif (empty($lifetime)) {
             $this->lifetime = (int) ini_get('session.gc_maxlifetime');
         } else {
@@ -115,7 +118,8 @@ class DbTable implements SaveHandlerInterface
     }
 
     /**
-     * Set whether or not the lifetime of an existing session should be overridden
+     * Set whether or not the lifetime of an existing session should
+     * be overridden
      *
      * @param bool $overrideLifetime
      * @return self
@@ -128,7 +132,8 @@ class DbTable implements SaveHandlerInterface
     }
 
     /**
-     * Retrieve whether or not the lifetime of an existing session should be overridden
+     * Retrieve whether or not the lifetime of an existing session
+     * should be overridden
      *
      * @return bool
      */
@@ -176,7 +181,8 @@ class DbTable implements SaveHandlerInterface
         }
         $row = $this->model->find($id);
         if ($row) {
-            $lifetime = $this->overrideLifetime ? $this->lifetime : $row->lifetime;
+            $lifetime = $this->overrideLifetime
+                ? $this->lifetime : $row->lifetime;
             if ($row->modified + $lifetime > time()) {
                 $return = $row->data;
                 $this->row = $row;
@@ -200,7 +206,8 @@ class DbTable implements SaveHandlerInterface
         if (!$id) {
             return $return;
         }
-        $row = ($this->row && $id == $this->row->id) ? $this->row : $this->model->find($id);
+        $row = ($this->row && $id == $this->row->id)
+            ? $this->row : $this->model->find($id);
         $data = array('modified' => time(), 'data' => (string) $data);
 
         try {
@@ -214,7 +221,8 @@ class DbTable implements SaveHandlerInterface
                 $return = $row->save(false);
             }
         } catch (\Exception $e) {
-            trigger_error('Session write error: ' . $e->getMessage(), E_USER_ERROR);
+            trigger_error('Session write error: ' . $e->getMessage(),
+                E_USER_ERROR);
         }
 
         return $return;

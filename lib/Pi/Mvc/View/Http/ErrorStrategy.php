@@ -22,10 +22,14 @@ use Zend\View\Model\ClearableModelInterface;
  *
  * Prepare for error ViewModel, should be performed prior to
  *
- * - \Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate() whose priority is -89
- * - \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate() whose priority is -90
+ * - `\Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()`
+ *      whose priority is -89
+ * - `\Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()`
+ *      whose priority is -90
  *
- * RouteNotFound is handled by: Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel() whose priority is -90
+ * RouteNotFound is handled by:
+ *  `Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()`
+ *  whose priority is -90
  *
  * @see \Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
  * @see \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
@@ -40,10 +44,15 @@ class ErrorStrategy extends AbstractListenerAggregate
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($this, 'prepareErrorViewModel'), -85);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface',
+            MvcEvent::EVENT_DISPATCH,
+            array($this, 'prepareErrorViewModel'),
+            -85);
 
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'prepareErrorViewModel'), -85);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, array($this, 'prepareErrorViewModel'), 100);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH,
+            array($this, 'prepareErrorViewModel'), -85);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER,
+            array($this, 'prepareErrorViewModel'), 100);
     }
 
     /**
@@ -97,9 +106,10 @@ class ErrorStrategy extends AbstractListenerAggregate
         }
 
         if (!$viewModel->getTemplate()) {
-            $config  = $e->getApplication()->getServiceManager()->get('Config');
+            $config = $e->getApplication()->getServiceManager()->get('Config');
             $viewConfig = $config['view_manager'];
-            $template = isset($viewConfig[$templateName]) ? $viewConfig[$templateName] : 'error';
+            $template = isset($viewConfig[$templateName])
+                ? $viewConfig[$templateName] : 'error';
             $viewModel->setTemplate($template);
         }
 
@@ -114,7 +124,8 @@ class ErrorStrategy extends AbstractListenerAggregate
 
         $e->setResult($viewModel);
 
-        // Inject error ViewModel to root ViewModel in case InjectViewModelListener is not triggered
+        // Inject error ViewModel to root ViewModel in case
+        // InjectViewModelListener is not triggered
         $model = $e->getViewModel();
         if ($model instanceof ClearableModelInterface) {
             $model->clearChildren();

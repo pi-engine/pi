@@ -120,7 +120,8 @@ class Paginator extends Pagit
     protected $view = null;
 
     /**
-     * Options for URL assemble: template, page_param, total_param, params, router, route
+     * Options for URL assemble:
+     * template, page_param, total_param, params, router, route
      * @var array
      */
     protected $urlOptions = array(
@@ -153,7 +154,9 @@ class Paginator extends Pagit
             $adapter = 'null';
         } else {
             $type = (is_object($data)) ? get_class($data) : gettype($data);
-            throw new Exception\InvalidArgumentException('No adapter for type ' . $type);
+            throw new Exception\InvalidArgumentException(
+                'No adapter for type ' . $type
+            );
         }
 
         $adapter = static::createAdapter($adapter, $data);
@@ -173,7 +176,9 @@ class Paginator extends Pagit
             $config = ArrayUtils::iteratorToArray($config);
         }
         if (!is_array($config)) {
-            throw new Exception\InvalidArgumentException(__METHOD__ . ' expects an array or Traversable');
+            throw new Exception\InvalidArgumentException(
+                __METHOD__ . ' expects an array or Traversable'
+            );
         }
 
         static::$config = $config;
@@ -184,7 +189,8 @@ class Paginator extends Pagit
             static::setScrollingStylePluginManager($adapters);
         }
 
-        $scrollingStyle = isset($config['scrolling_style']) ? $config['scrolling_style'] : null;
+        $scrollingStyle = isset($config['scrolling_style'])
+            ? $config['scrolling_style'] : null;
 
         if ($scrollingStyle != null) {
             static::setDefaultScrollingStyle($scrollingStyle);
@@ -200,7 +206,7 @@ class Paginator extends Pagit
      */
     public static function createAdapter($adapter, $data)
     {
-        $adapterClass = '%s\\Paginator\\Adapter\\' . ucfirst($adapter);
+        $adapterClass = '%s\\Paginator\Adapter\\' . ucfirst($adapter);
         $class = sprintf($adapterClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($adapterClass, 'Zend');
@@ -216,7 +222,7 @@ class Paginator extends Pagit
      */
     protected function createScrollingStyle($style)
     {
-        $styleClass = '%s\\Paginator\\ScrollingStyle\\' . ucfirst($style);
+        $styleClass = '%s\\Paginator\ScrollingStyle\\' . ucfirst($style);
         $class = sprintf($styleClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($styleClass, 'Zend');
@@ -237,12 +243,15 @@ class Paginator extends Pagit
             $config = ArrayUtils::iteratorToArray($config);
         }
         if (!is_array($config)) {
-            throw new Exception\InvalidArgumentException(__METHOD__ . ' expects an array or Traversable');
+            throw new Exception\InvalidArgumentException(
+                __METHOD__ . ' expects an array or Traversable'
+            );
         }
 
         static::$config = $config;
 
-        $scrollingStyle = isset($config['scrolling_style']) ? $config['scrolling_style'] : null;
+        $scrollingStyle = isset($config['scrolling_style'])
+            ? $config['scrolling_style'] : null;
 
         if ($scrollingStyle != null) {
             static::setDefaultScrollingStyle($scrollingStyle);
@@ -286,7 +295,8 @@ class Paginator extends Pagit
      * @param string $scrollingStyle
      * @return void
      */
-    public static function setDefaultScrollingStyle($scrollingStyle = 'Sliding')
+    public static function setDefaultScrollingStyle(
+        $scrollingStyle = 'Sliding')
     {
         static::$defaultScrollingStyle = $scrollingStyle;
     }
@@ -305,8 +315,9 @@ class Paginator extends Pagit
             $this->adapter = $adapter->getPaginatorAdapter();
         } else {
             throw new Exception\InvalidArgumentException(
-                'Zend_Paginator only accepts instances of the type ' .
-                'Zend\Paginator\Adapter\AdapterInterface or Zend\Paginator\AdapterAggregateInterface.'
+                'Zend_Paginator only accepts instances of the type '
+                . 'Zend\Paginator\Adapter\AdapterInterface'
+                . ' or Zend\Paginator\AdapterAggregateInterface.'
             );
         }
 
@@ -375,7 +386,8 @@ class Paginator extends Pagit
      * @param  int $pageNumber Page number
      * @return int
      */
-    public function getAbsoluteItemNumber($relativeItemNumber, $pageNumber = null)
+    public function getAbsoluteItemNumber($relativeItemNumber,
+        $pageNumber = null)
     {
         $relativeItemNumber = $this->normalizeItemNumber($relativeItemNumber);
 
@@ -385,7 +397,8 @@ class Paginator extends Pagit
 
         $pageNumber = $this->normalizePageNumber($pageNumber);
 
-        return (($pageNumber - 1) * $this->getItemCountPerPage()) + $relativeItemNumber;
+        return (($pageNumber - 1) * $this->getItemCountPerPage())
+            + $relativeItemNumber;
     }
 
     /**
@@ -406,7 +419,8 @@ class Paginator extends Pagit
     public function getCurrentItemCount()
     {
         if ($this->currentItemCount === null) {
-            $this->currentItemCount = $this->getItemCount($this->getCurrentItems());
+            $this->currentItemCount =
+                $this->getItemCount($this->getCurrentItems());
         }
 
         return $this->currentItemCount;
@@ -420,7 +434,8 @@ class Paginator extends Pagit
     public function getCurrentItems()
     {
         if ($this->currentItems === null) {
-            $this->currentItems = $this->getItemsByPage($this->getCurrentPageNumber());
+            $this->currentItems =
+                $this->getItemsByPage($this->getCurrentPageNumber());
         }
 
         return $this->currentItems;
@@ -496,7 +511,9 @@ class Paginator extends Pagit
         $itemCount = $this->getItemCount($page);
 
         if ($itemCount == 0) {
-            throw new Exception\InvalidArgumentException('Page ' . $pageNumber . ' does not exist');
+            throw new Exception\InvalidArgumentException(
+                'Page ' . $pageNumber . ' does not exist'
+            );
         }
 
         if ($itemNumber < 0) {
@@ -506,8 +523,10 @@ class Paginator extends Pagit
         $itemNumber = $this->normalizeItemNumber($itemNumber);
 
         if ($itemNumber > $itemCount) {
-            throw new Exception\InvalidArgumentException('Page ' . $pageNumber . ' does not'
-                                             . ' contain item number ' . $itemNumber);
+            throw new Exception\InvalidArgumentException(
+                'Page ' . $pageNumber . ' does not'
+                . ' contain item number ' . $itemNumber
+            );
         }
 
         return $page[$itemNumber - 1];
@@ -558,7 +577,8 @@ class Paginator extends Pagit
 
         if (is_array($items) || $items instanceof Countable) {
             $itemCount = count($items);
-        } elseif ($items instanceof Traversable) { // $items is something like LimitIterator
+        } elseif ($items instanceof Traversable) {
+            // $items is something like LimitIterator
             $itemCount = iterator_count($items);
         }
 
@@ -577,7 +597,8 @@ class Paginator extends Pagit
 
         $offset = ($pageNumber - 1) * $this->getItemCountPerPage();
 
-        $items = $this->adapter->getItems($offset, $this->getItemCountPerPage());
+        $items =
+            $this->adapter->getItems($offset, $this->getItemCountPerPage());
 
         $filter = $this->getFilter();
 
@@ -603,7 +624,8 @@ class Paginator extends Pagit
         try {
             return $this->getCurrentItems();
         } catch (\Exception $e) {
-            throw new Exception\RuntimeException('Error producing an iterator', null, $e);
+            throw new Exception\RuntimeException('Error producing an iterator',
+                null, $e);
         }
     }
 
@@ -659,7 +681,9 @@ class Paginator extends Pagit
 
         $pages = array();
 
-        for ($pageNumber = $lowerBound; $pageNumber <= $upperBound; $pageNumber++) {
+        for ($pageNumber = $lowerBound;
+            $pageNumber <= $upperBound;
+            $pageNumber++) {
             $pages[$pageNumber] = (object) array(
                 'number'    => $pageNumber,
                 'url'       => $this->buildUrl($pageNumber),
@@ -782,7 +806,8 @@ class Paginator extends Pagit
      */
     protected function _calculatePageCount()
     {
-        return (integer) ceil($this->getAdapter()->count() / $this->getItemCountPerPage());
+        return (int) ceil($this->getAdapter()->count()
+            / $this->getItemCountPerPage());
     }
 
     /**
@@ -835,8 +860,10 @@ class Paginator extends Pagit
             $pages->currentItemCount = $this->getCurrentItemCount();
             $pages->itemCountPerPage = $this->getItemCountPerPage();
             $pages->totalItemCount   = $this->getTotalItemCount();
-            $pages->firstItemNumber  = (($currentPageNumber - 1) * $this->getItemCountPerPage()) + 1;
-            $pages->lastItemNumber   = $pages->firstItemNumber + $pages->currentItemCount - 1;
+            $pages->firstItemNumber  =
+                (($currentPageNumber - 1) * $this->getItemCountPerPage()) + 1;
+            $pages->lastItemNumber   =
+                $pages->firstItemNumber + $pages->currentItemCount - 1;
         }
 
         return $pages;
@@ -859,7 +886,9 @@ class Paginator extends Pagit
             case 'object':
                 if (!$scrollingStyle instanceof ScrollingStyleInterface) {
                     throw new Exception\InvalidArgumentException(
-                        'Scrolling style must implement Zend\Paginator\ScrollingStyle\ScrollingStyleInterface'
+                        'Scrolling style must implement'
+                        . ' Zend\Paginator\ScrollingStyle\\'
+                        . 'ScrollingStyleInterface'
                     );
                 }
 
@@ -873,8 +902,9 @@ class Paginator extends Pagit
 
             default:
                 throw new Exception\InvalidArgumentException(
-                    'Scrolling style must be a class ' .
-                    'name or object implementing Zend\Paginator\ScrollingStyle\ScrollingStyleInterface'
+                    'Scrolling style must be a class name or object'
+                    . ' implementing Zend\Paginator\ScrollingStyle\\'
+                    . 'ScrollingStyleInterface'
                 );
         }
     }
@@ -911,18 +941,28 @@ class Paginator extends Pagit
     public function buildUrl($page)
     {
         if (!empty($this->urlOptions['template'])) {
-            $url = str_replace(array('%page%', '%total%'), array($page, $this->count()), $this->urlOptions['template']);
+            $url = str_replace(array('%page%', '%total%'),
+                array($page, $this->count()), $this->urlOptions['template']);
             return $url;
         }
 
-        $params = isset($this->urlOptions['params']) ? $this->urlOptions['params'] : array();
+        $params = isset($this->urlOptions['params'])
+            ? $this->urlOptions['params'] : array();
         $params[$this->urlOptions['page_param']] = $page;
         if (!empty($this->urlOptions['total_param'])) {
             $params[$this->urlOptions['total_param']] = $this->count();
         }
 
-        $router = isset($this->urlOptions['router']) ? $this->urlOptions['router'] : (isset(static::$config['router']) ? static::$config['router'] : null);
-        $route = isset($this->urlOptions['route']) ? $this->urlOptions['route'] : (isset(static::$config['route']) ? static::$config['route'] : null);
+        $router = isset($this->urlOptions['router'])
+            ? $this->urlOptions['router']
+            : (isset(static::$config['router'])
+                ? static::$config['router']
+                : null);
+        $route = isset($this->urlOptions['route'])
+            ? $this->urlOptions['route']
+            : (isset(static::$config['route'])
+                ? static::$config['route']
+                : null);
 
         if (!$router || !$route) {
             return false;

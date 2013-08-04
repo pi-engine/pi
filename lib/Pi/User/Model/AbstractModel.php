@@ -158,7 +158,10 @@ abstract class AbstractModel
     /**
      * Set role or retrieve
      *
-     * @param null|string|true $role null: return current role; string: set role; true - retrieve from DB
+     * @param null|string|true $role
+     *      null: return current role;
+     *      string: set role;
+     *      true - retrieve from DB
      * @return User|string
      */
     public function role($role = null)

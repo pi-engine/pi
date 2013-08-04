@@ -31,7 +31,7 @@ use Zend\View\Helper\HeadStyle as ZendHeadStyle;
  * ?>
  * <...>
  * <?php
- *  // The content will be discarded since the name of "MyScript" already exists
+ *  // Content will be discarded since the name of "MyScript" already exists
  *  $this->headStyle()->captureTo('MyScript');
  * ?>
  * ```
@@ -52,7 +52,8 @@ class HeadStyle extends ZendHeadStyle
      * Added by Taiwen Jiang
      */
     /**
-     * End capture action and store after checking against stored scripts. The content will be discarded if content with the name already exists
+     * End capture action and store after checking against stored scripts.
+     * The content will be discarded if content with the name already exists
      *
      * @params string $name
      * @return void

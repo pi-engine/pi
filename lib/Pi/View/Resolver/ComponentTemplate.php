@@ -38,7 +38,8 @@ class ComponentTemplate implements ResolverInterface
     protected $templateDirectory = 'template';
 
     /**
-     * Suffix to use: appends this suffix if the template requested does not use it.
+     * Suffix to use: appends this suffix if the template requested
+     * does not use it.
      * @var string
      */
     protected $suffix = 'phtml';
@@ -94,12 +95,19 @@ class ComponentTemplate implements ResolverInterface
         }
         list($component, $template) = $this->canonizeTemplate($name);
         // Check custom template in theme
-        $path = sprintf('%s/%s/%s/%s/%s.%s', Pi::path('theme'), Pi::config('theme'), $component, $this->templateDirectory, $template, $this->suffix);
+        $path = sprintf('%s/%s/%s/%s/%s.%s',
+            Pi::path('theme'),
+            Pi::config('theme'),
+            $component,
+            $this->templateDirectory,
+            $template,
+            $this->suffix);
         if (file_exists($path)) {
             return $path;
         }
         // Check local template in module
-        $path = sprintf('%s/%s/%s.%s', Pi::path($component), $this->templateDirectory, $template, $this->suffix);
+        $path = sprintf('%s/%s/%s.%s', Pi::path($component),
+            $this->templateDirectory, $template, $this->suffix);
         if (file_exists($path)) {
             return $path;
         }
