@@ -883,7 +883,8 @@ namespace
      * @param string|null $timezone
      * @param int|string|null $calendar
      * @param string|null $pattern
-     *      Be aware that both datetype and timetype are ignored if the pattern is set.
+     *      Be aware that both datetype and timetype are ignored
+     *      if the pattern is set.
      * @param string|null $format
      *      Legacy format for date() in case Intl is not available
      * @return string

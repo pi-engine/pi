@@ -27,7 +27,7 @@ class Session extends AbstractResource
         if (!empty($this->options['service'])) {
             Pi::service('session')->setOptions($this->options['service']);
         }
-        
+
         try {
             // Attempt to start session
             Pi::service('session')->manager()->start();

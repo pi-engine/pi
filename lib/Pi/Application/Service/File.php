@@ -202,7 +202,8 @@ class File extends AbstractService
      * Change mode for an array of files or directories.
      *
      * @param string|array|\Traversable $files
-     *      A filename, an array of files, or a \Traversable instance to change mode
+     *      A filename, an array of files,
+     *      or a \Traversable instance to change mode
      * @param int                       $mode      The new mode (octal)
      * @param int                       $umask     The mode mask (octal)
      * @param Bool                      $recursive
@@ -345,7 +346,8 @@ class File extends AbstractService
      *
      * @throws Exception When symlink fails
      */
-    public function symlink($originDir, $targetDir, $copyOnWindows = true, $override = false)
+    public function symlink($originDir, $targetDir,
+        $copyOnWindows = true, $override = false)
     {
         if (!function_exists('symlink')
             || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)) {

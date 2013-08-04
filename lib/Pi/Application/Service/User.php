@@ -107,7 +107,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * + Relation
  *   - relation([$id])
- *   - relation([$id])->get($relation, $limit[, $offset[, $condition[, $order]]])
+ *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
  *   - relation([$id])->getCount($relation[, $condition]])
  *   - relation([$id])->hasRelation($uid, $relation)
  *   - relation([$id])->add($uid, $relation)

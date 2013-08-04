@@ -250,8 +250,10 @@ class Block extends AbstractResource
                 $message = array();
                 $status = $this->deleteBlock($row, $message);
                 if (!$status) {
-                    $message[] = sprintf('Deprecated block "%s" is not updated.',
-                        $row->key);
+                    $message[] = sprintf(
+                        'Deprecated block "%s" is not updated.',
+                        $row->key
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message,

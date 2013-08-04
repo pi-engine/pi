@@ -541,7 +541,8 @@ class Acl extends AbstractResource
         // Add resource
         $resourceId = $modelResource->add($data, $parent);
         if (!$resourceId) {
-            $message[] = sprintf('Resource "%s" is not created.', $data['name']);
+            $message[] = sprintf('Resource "%s" is not created.',
+                $data['name']);
             return false;
         }
 

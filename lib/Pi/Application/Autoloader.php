@@ -267,7 +267,8 @@ class Autoloader
         // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
-            $trimmedClass = substr($class, strlen($top . static::NS_SEPARATOR));
+            $trimmedClass = substr($class,
+                strlen($top . static::NS_SEPARATOR));
             $path = $this->tops[$top];
             // Get file full path
             $filePath = $this->transformClassNameToFilename($trimmedClass,
@@ -467,7 +468,9 @@ class Autoloader
         }
 
         if (!is_array($map)) {
-            throw new \InvalidArgumentException('Map file provided does not return a map');
+            throw new \InvalidArgumentException(
+                'Map file provided does not return a map'
+            );
         }
 
         $this->map = array_merge($this->map, $map);
@@ -488,7 +491,9 @@ class Autoloader
     public function registerAutoloadMaps($locations)
     {
         if (!is_array($locations) && !($locations instanceof \Traversable)) {
-            throw new \InvalidArgumentException('Map list must be an array or implement Traversable');
+            throw new \InvalidArgumentException(
+                'Map list must be an array or implement Traversable'
+            );
         }
         foreach ($locations as $location) {
             $this->registerAutoloadMap($location);
@@ -520,7 +525,9 @@ class Autoloader
     protected function loadMapFromFile($location)
     {
         if (!file_exists($location)) {
-            throw new \InvalidArgumentException('Map file provided does not exist');
+            throw new \InvalidArgumentException(
+                'Map file provided does not exist'
+            );
         }
 
         if (!$path = static::realPharPath($location)) {
@@ -550,8 +557,10 @@ class Autoloader
             return;
         }
 
-        $parts = explode('/', str_replace(array('/','\\'), '/', substr($path, 8)));
-        $parts = array_values(array_filter($parts, function($p) { return ($p !== '' && $p !== '.'); }));
+        $parts = explode('/', str_replace(array('/','\\'), '/',
+            substr($path, 8)));
+        $parts = array_values(array_filter($parts,
+            function($p) { return ($p !== '' && $p !== '.'); }));
 
         array_walk($parts, function ($value, $key) use (&$parts) {
             if ($value === '..') {
@@ -592,7 +601,9 @@ class Autoloader
     public function registerNamespaces($namespaces)
     {
         if (!is_array($namespaces) && !$namespaces instanceof \Traversable) {
-            throw new \InvalidArgumentException('Namespace pairs must be either an array or Traversable');
+            throw new \InvalidArgumentException(
+                'Namespace pairs must be either an array or Traversable'
+            );
         }
 
         foreach ($namespaces as $namespace => $directory) {
