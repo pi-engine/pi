@@ -20,7 +20,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 /**
  * View resolver factory
  *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn> 
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ViewResolverFactory implements FactoryInterface
 {

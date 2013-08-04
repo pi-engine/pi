@@ -41,7 +41,9 @@ class Sitemap extends ZendSitemap
     /**
      * Renders helper
      *
-     * @param  AbstractContainer $container [optional] container to render. Default is to render the container registered in the helper.
+     * @param  AbstractContainer $container
+     *      [optional] container to render.
+     *      Default is to render the container registered in the helper.
      * @return string
      */
     public function render($container = null)

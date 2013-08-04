@@ -19,7 +19,8 @@ use MarkdownDocument;
 /**
  * Helper for fetching and rendering a block
  *
- * When cache is enabled for a block, its immediate data are cached instead of final rendered content
+ * When cache is enabled for a block,
+ * its immediate data are cached instead of final rendered content
  *
  * Usage inside a phtml template
  *

@@ -48,8 +48,9 @@ class Breadcrumbs extends ZendBreadcrumbs
      *
      * Implements {@link HelperInterface::render()}.
      *
-     * @param  AbstractContainer $container [optional] container to render. Default is
-     *                              to render the container registered in the helper.
+     * @param  AbstractContainer $container
+     *      [optional] container to render. Default is
+     *      to render the container registered in the helper.
      * @return string
      */
     public function render($container = null)
@@ -62,7 +63,9 @@ class Breadcrumbs extends ZendBreadcrumbs
             $content = $this->cache->storage->getItem($cacheKey);
             if (null !== $content) {
                 if (Pi::service()->hasService('log')) {
-                    Pi::service('log')->info('Breadcrumbs is loaded from cache.');
+                    Pi::service('log')->info(
+                        'Breadcrumbs is loaded from cache.'
+                    );
                 }
                 return $content;
             }
