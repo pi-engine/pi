@@ -64,7 +64,10 @@ abstract class AbstractAdjacency extends AbstractTableGateway
         $select = $this->getAdapter()->select()
                     ->from(array('r' => $this->_name))
                     ->where(array('r.active' => 1))
-                    ->joinLeft(array('i' => $this->getAdapter()->prefix('acl_inherit', 'xo')), 'r.name = i.parent')
+                    ->joinLeft(array(
+                        'i' =>
+                            $this->getAdapter()->prefix('acl_inherit', 'xo')),
+                        'r.name = i.parent')
                     ->where(array('i.child' => $node));
                     //->order(array('i.order'));
         $result = $select->query()->fetchAll();

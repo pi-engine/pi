@@ -23,7 +23,8 @@ class Filesystem extends ZendFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalGetItem(& $normalizedKey, & $success = null, & $casToken = null)
+    protected function internalGetItem(& $normalizedKey,
+        & $success = null, & $casToken = null)
     {
         /**#@+
          * Skip extra file reading cost
@@ -47,7 +48,8 @@ class Filesystem extends ZendFilesystem
 
             // use filemtime + filesize as CAS token
             if (func_num_args() > 2) {
-                $casToken = filemtime($filespec . '.dat') . filesize($filespec . '.dat');
+                $casToken = filemtime($filespec . '.dat')
+                    . filesize($filespec . '.dat');
             }
             $success  = (null === $data) ? false : true;
             return $data;
@@ -64,7 +66,8 @@ class Filesystem extends ZendFilesystem
     protected function internalGetItems(array & $normalizedKeys)
     {
         $options = $this->getOptions();
-        $keys    = $normalizedKeys; // Don't change argument passed by reference
+        // Don't change argument passed by reference
+        $keys    = $normalizedKeys;
         $result  = array();
         while ($keys) {
 
@@ -89,8 +92,10 @@ class Filesystem extends ZendFilesystem
                 /**#@+
                  * Internal file content parsing
                  */
-                //$data     = $this->getFileContent($filespec . '.dat', $nonBlocking, $wouldblock);
-                $data     = $this->getFileData($filespec . '.dat', $nonBlocking, $wouldblock);
+                //$data     = $this->getFileContent($filespec . '.dat',
+                //$nonBlocking, $wouldblock);
+                $data     = $this->getFileData($filespec . '.dat',
+                    $nonBlocking, $wouldblock);
                 /**#-*/
                 if ($nonBlocking && $wouldblock) {
                     continue;
@@ -188,7 +193,8 @@ class Filesystem extends ZendFilesystem
                 /**#@+
                  * Internale content assemble
                  */
-                //$this->putFileContent($file, $content, $nonBlocking, $wouldblock);
+                //$this->putFileContent($file, $content, $nonBlocking,
+                //$wouldblock);
                 $this->putFileData($file, $content, $nonBlocking, $wouldblock);
                 /**#@-*/
                 if (!$nonBlocking || !$wouldblock) {
@@ -206,10 +212,12 @@ class Filesystem extends ZendFilesystem
      *
      * @param  string  $file        File complete path
      * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock  The optional argument is set to TRUE if the lock would block
+     * @param  bool $wouldblock  The optional argument is set to TRUE
+     *      if the lock would block
      * @return string|null
      */
-    protected function getFileData($file, $nonBlocking = false, & $wouldblock = null)
+    protected function getFileData($file, $nonBlocking = false,
+        & $wouldblock = null)
     {
         $result = null;
         if (file_exists($file)) {
@@ -229,10 +237,12 @@ class Filesystem extends ZendFilesystem
      * @param  string  $file        File complete path
      * @param  string  $data        Data to write
      * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock  The optional argument is set to TRUE if the lock would block
+     * @param  bool $wouldblock  The optional argument is set to TRUE
+     *      if the lock would block
      * @return void
      */
-    protected function putFileData($file, $data, $nonBlocking = false, & $wouldblock = null)
+    protected function putFileData($file, $data, $nonBlocking = false,
+        & $wouldblock = null)
     {
         $expire = 0;
         $options = $this->getOptions();

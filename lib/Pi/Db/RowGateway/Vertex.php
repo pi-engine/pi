@@ -51,7 +51,9 @@ class Vertex extends RowGateway
             if ($key && array_key_exists($key, $this->data)) {
                 return $this->data[$key];
             }
-            throw new \InvalidArgumentException('Not a valid column in this row: ' . $name);
+            throw new \InvalidArgumentException(
+                'Not a valid column in this row: ' . $name
+            );
         }
     }
 }

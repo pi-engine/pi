@@ -41,7 +41,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     protected $rowClass;
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB,
+     * Non-scalar columns to be endcoded before saving to DB
+     * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
      *
      *  - true: to convert to associative array for decode;
@@ -100,18 +101,24 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
                 $options['features'] = array($options['features']);
             }
             if (is_array($options['features'])) {
-                $this->featureSet = new Feature\FeatureSet($options['features']);
+                $this->featureSet = new Feature\FeatureSet(
+                    $options['features']
+                );
             } elseif ($options['features'] instanceof Feature\FeatureSet) {
                 $this->featureSet = $options['features'];
             } else {
                 throw new \InvalidArgumentException(
-                    'TableGateway expects $options["feature"] to be an instance of an AbstractFeature or a FeatureSet, or an array of AbstractFeatures'
+                    'TableGateway expects $options["feature"] to be'
+                    . ' an instance of an AbstractFeature or a FeatureSet, '
+                    . 'or an array of AbstractFeatures'
                 );
             }
             unset($options['features']);
         }
 
-        // Properties: table, schema, adapter, masterAdapter, slaveAdapter, sql, selectResultPrototype, resultSetClass, rowClass, primaryKeyColumn
+        // Properties: table, schema, adapter, masterAdapter, slaveAdapter,
+        // sql, selectResultPrototype, resultSetClass, rowClass,
+        // primaryKeyColumn
         foreach ($options as $key => $value) {
             $this->{$key} = $value;
         }
@@ -139,7 +146,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         if (!$this->resultSetPrototype) {
             $rowObjectPrototype = $this->createRow();
             if ($this->resultSetClass) {
-                $resultSetPrototype = new $this->resultSetClass(null, $rowObjectPrototype);
+                $resultSetPrototype =
+                    new $this->resultSetClass(null, $rowObjectPrototype);
             } else {
                 $resultSetPrototype = new ResultSet(null, $rowObjectPrototype);
             }
@@ -185,8 +193,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     {
         if (!$this->rowClass) {
             $row = new ArrayObject;
-        } elseif (is_subclass_of($this->rowClass, 'Zend\\Db\\RowGateway\\AbstractRowGateway')) {
-            $row = new $this->rowClass($this->primaryKeyColumn, $this->table, $this->sql);
+        } elseif (
+            is_subclass_of($this->rowClass,
+                'Zend\Db\RowGateway\AbstractRowGateway')
+            ) {
+            $row = new $this->rowClass($this->primaryKeyColumn,
+                $this->table, $this->sql);
             if ($this->encodeColumns) {
                 $row->setEncodeColumns($this->encodeColumns);
             }
@@ -235,7 +247,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
     /**
      * Format parameter name
-     * 
+     *
      * @param string $name
      * @param string|null $type
      * @return string
@@ -251,7 +263,9 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * The argument specifies one or more key value(s).
      * To find multiple rows, the argument must be an array.
      *
-     * The find() method returns a ResultSet object if key array is provided or a Row object if a single key value is provided.
+     * The find() method returns a ResultSet object
+     * if key array is provided or a Row object
+     * if a single key value is provided.
      *
      * @param array|string|int  $key    The value(s) of the key
      * @param string|null       $column Column name of the key
@@ -305,7 +319,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     {
         $featureClass = sprintf('%s\Feature\\%sFeature', __NAMESPECE, $name);
         if (!class_exists($featureClass)) {
-            $featureClass = sprintf('Zend\Db\TableGateway\Feature\\%sFeature', $name);
+            $featureClass = sprintf('Zend\Db\TableGateway\Feature\\%sFeature',
+                $name);
         }
         $this->featureSet->addFeature(new $featureClass);
         return $this;

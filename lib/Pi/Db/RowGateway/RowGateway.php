@@ -18,7 +18,8 @@ use Zend\Db\RowGateway\Exception;
 /**
  * Row gateway class
  *
- * Use 'encode' to serialize array and object data before saveing to database and use 'decode' after fetching from database
+ * Use 'encode' to serialize array and object data before saveing
+ * to database and use 'decode' after fetching from database
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -37,7 +38,11 @@ class RowGateway extends AbstractRowGateway
     protected $primaryKeyColumns = array();
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB and decoded after fetching from DB, specified as pairs of column name and bool value: true - to convert to associative array for decode; false - keep as array object.
+     * Non-scalar columns to be endcoded before saving to DB
+     * and decoded after fetching from DB,
+     * specified as pairs of column name and bool value:
+     * true - to convert to associative array for decode;
+     * false - keep as array object.
      * @var array
      */
     protected $encodeColumns = array();
@@ -49,7 +54,8 @@ class RowGateway extends AbstractRowGateway
      * @param string|\Zend\Db\Sql\TableIdentifier $table
      * @param Adapter|Sql $adapterOrSql
      */
-    public function __construct($primaryKeyColumn, $table, $adapterOrSql = null)
+    public function __construct($primaryKeyColumn, $table,
+        $adapterOrSql = null)
     {
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
@@ -63,11 +69,16 @@ class RowGateway extends AbstractRowGateway
         } elseif ($adapterOrSql instanceof Adapter) {
             $this->sql = new Sql($adapterOrSql, $this->table);
         } else {
-            throw new Exception\InvalidArgumentException('A valid Sql object was not provided.');
+            throw new Exception\InvalidArgumentException(
+                'A valid Sql object was not provided.'
+            );
         }
 
         if ($this->sql->getTable() !== $this->table) {
-            throw new Exception\InvalidArgumentException('The Sql object provided does not have a table that matches this row object');
+            throw new Exception\InvalidArgumentException(
+                'The Sql object provided does not have a table'
+                . ' that matches this row object'
+            );
         }
 
         $this->initialize();
@@ -91,12 +102,17 @@ class RowGateway extends AbstractRowGateway
         $this->featureSet->setRowGateway($this);
         $this->featureSet->apply('preInitialize', array());
 
-        if (!is_string($this->table) && !$this->table instanceof TableIdentifier) {
-            throw new Exception\RuntimeException('This row object does not have a valid table set.');
+        if (!is_string($this->table)
+            && !$this->table instanceof TableIdentifier) {
+            throw new Exception\RuntimeException(
+                'This row object does not have a valid table set.'
+            );
         }
 
         if ($this->primaryKeyColumn == null) {
-            throw new Exception\RuntimeException('This row object does not have a primary key column set.');
+            throw new Exception\RuntimeException(
+                'This row object does not have a primary key column set.'
+            );
         /*
         } elseif (is_string($this->primaryKeyColumn)) {
             $this->primaryKeyColumn = (array) $this->primaryKeyColumn;
@@ -109,7 +125,9 @@ class RowGateway extends AbstractRowGateway
         }
 
         if (!$this->sql instanceof Sql) {
-            throw new Exception\RuntimeException('This row object does not have a Sql object set.');
+            throw new Exception\RuntimeException(
+                'This row object does not have a Sql object set.'
+            );
         }
 
         $this->featureSet->apply('postInitialize', array());
@@ -163,7 +181,8 @@ class RowGateway extends AbstractRowGateway
      */
     protected function decodeValue($value, $assoc = true)
     {
-        return $value ? json_decode($value, $assoc) : ($assoc ? array() : $value);
+        return $value
+            ? json_decode($value, $assoc) : ($assoc ? array() : $value);
     }
 
     /**
@@ -286,7 +305,9 @@ class RowGateway extends AbstractRowGateway
                 }
             }
 
-            $statement = $this->sql->prepareStatementForSqlObject($this->sql->update()->set($data)->where($where));
+            $statement = $this->sql->prepareStatementForSqlObject(
+                $this->sql->update()->set($data)->where($where)
+            );
             $result = $statement->execute();
             $rowsAffected = $result->getAffectedRows();
             unset($statement, $result); // cleanup
@@ -300,10 +321,14 @@ class RowGateway extends AbstractRowGateway
             $statement = $this->sql->prepareStatementForSqlObject($insert);
 
             $result = $statement->execute();
-            if (($primaryKeyValue = $result->getGeneratedValue()) && count($this->primaryKeyColumns) == 1) {
-                $this->primaryKeyData = array($this->primaryKeyColumns[0] => $primaryKeyValue);
+            if (($primaryKeyValue = $result->getGeneratedValue())
+                && count($this->primaryKeyColumns) == 1) {
+                $this->primaryKeyData = array(
+                    $this->primaryKeyColumns[0] => $primaryKeyValue
+                );
             } else {
-                // make primary key data available so that $where can be complete
+                // make primary key data available so that
+                // $where can be complete
                 $this->processPrimaryKeyData();
             }
 
@@ -320,7 +345,9 @@ class RowGateway extends AbstractRowGateway
 
         if ($rePopulate) {
             // refresh data
-            $statement = $this->sql->prepareStatementForSqlObject($this->sql->select()->where($where));
+            $statement = $this->sql->prepareStatementForSqlObject(
+                $this->sql->select()->where($where)
+            );
             $result = $statement->execute();
             $rowData = $result->current();
             //$rowData = $result->getDatasource()->current();
@@ -349,9 +376,12 @@ class RowGateway extends AbstractRowGateway
             $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
         }
 
-        // @todo determine if we need to do a select to ensure 1 row will be affected
+        // @todo determine if we need to do a select
+        // to ensure 1 row will be affected
 
-        $statement = $this->sql->prepareStatementForSqlObject($this->sql->delete()->where($where));
+        $statement = $this->sql->prepareStatementForSqlObject(
+            $this->sql->delete()->where($where)
+        );
         $result = $statement->execute();
 
         /*
@@ -399,7 +429,11 @@ class RowGateway extends AbstractRowGateway
         foreach ($this->primaryKeyColumns as $column) {
             if (!isset($this->data[$column])) {
                 continue;
-                throw new Exception\RuntimeException('While processing primary key data, a known key ' . $this->table . '.' . $column . ' was not found in the data array');
+                throw new Exception\RuntimeException(
+                    'While processing primary key data, a known key '
+                    . $this->table . '.' . $column
+                    . ' was not found in the data array'
+                );
             }
             $this->primaryKeyData[$column] = $this->data[$column];
         }

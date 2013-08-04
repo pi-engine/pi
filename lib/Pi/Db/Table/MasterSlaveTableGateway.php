@@ -43,7 +43,9 @@ class MasterSlaveTableGateway extends AbstractTableGateway
         }
 
         if (!$this->masterAdapter && !$this->slaveAdapter) {
-            throw new \Exception('Master/Slave adapters must be configured in initialize()');
+            throw new \Exception(
+                'Master/Slave adapters must be configured in initialize()'
+            );
         }
         $this->adapter = $this->adapter ?: $this->slaveAdapter;
 
