@@ -10,7 +10,7 @@
 /**
  * Pi Engine
  *
- * Plays the role as system bootstrap and global interfaces to applications and modules
+ * System bootstrap and global interfaces to applications and modules
  *
  * Boot up process:
  *
@@ -150,11 +150,11 @@ class Pi
      *
      * Tasks:
      *
-     *  1. instantiate host handler and load host data
-     *  2. load engine general config data which applicable to all applications
-     *  3. instantiate persist handler with persist config data from general config
-     *  4. instantiate autoloader handler and load system autoloader with autoloader config data from general config
-     *  5. instantiate application engine with application config data from general config
+     *  1. Instantiate host handler and load host data
+     *  2. Load engine general config data which applicable to all applications
+     *  3. Load persist handler with persist config data from general config
+     *  4. Instantiate autoloader with config data from general config
+     *  5. Instantiate application engine with application config data
      */
     public static function init()
     {
@@ -183,7 +183,7 @@ class Pi
         /**#@-*/
 
         /**#@+
-         * Register autoloader, host and persist handler required,use autoloader config data from general config
+         * Register autoloader, host, persist and autoloader
          */
         $paths = static::host()->get('path');
         $options = array(
@@ -201,9 +201,11 @@ class Pi
             // Directory of modules
             'module_path'    => static::path('module'),
             // Directory of extras
-            'extra_path'    => !empty($paths['extra']) ? $paths['extra'] : static::path('usr') . '/extra',
+            'extra_path'    => !empty($paths['extra'])
+                ? $paths['extra'] : static::path('usr') . '/extra',
             // Vendor directory
-            'include_path'   => !empty($paths['vendor']) ? $paths['vendor'] : static::path('lib') . '/vendor',
+            'include_path'   => !empty($paths['vendor'])
+                ? $paths['vendor'] : static::path('lib') . '/vendor',
         );
         static::autoloader($options);
         /**#@-*/
@@ -224,7 +226,8 @@ class Pi
         /**#@+
          * Initialize Persist handler
          */
-        $persistConfig = empty($engineConfig['persist']) ? array() : $engineConfig['persist'];
+        $persistConfig = empty($engineConfig['persist'])
+            ? array() : $engineConfig['persist'];
         static::persist($persistConfig);
         // Set persist handler for class/file map
         if (static::persist()->isValid()) {
@@ -241,10 +244,12 @@ class Pi
      *
      * Priority of different entries
      *
-     *  1. Specified in file via `define('APPLICATION_ENV', 'somevalue')`;
-     *  2. Specified value via `Pi::environment('somevalue')`;
-     *  3. Specified via `getenv('APPLICATION_ENV')` - usually set in .htaccess via `SetEnv APPLICATION_ENV production`;
-     *  4. Set from system config via `Pi::config('environment')` set in `var/config/engine.php`.
+     *  1. Load specified in file via `define('APPLICATION_ENV', <evn-value>)`;
+     *  2. Load specified value via `Pi::environment('<env-value>')`;
+     *  3. Load via `getenv('APPLICATION_ENV')`
+     *      - set in `.htaccess` via `SetEnv APPLICATION_ENV <env-value>`;
+     *  4. Load from system config via `Pi::config('environment')`
+     *      - set in `var/config/engine.php`.
      *
      * @param string|null $environment
      * @return null|string
@@ -320,7 +325,7 @@ class Pi
     /**
      * Instantiate application host
      *
-     * @param string|array  $config Host file path or array of configuration data
+     * @param string|array $config Host file path or array of config data
      * @return Pi\Application\Host
      */
     public static function host($config = null)
@@ -375,7 +380,8 @@ class Pi
     {
         if (!isset(static::$engine)) {
             if (!$type) {
-                $type = defined('APPLICATION_ENGINE') ? APPLICATION_ENGINE : static::DEFAULT_APPLICATION_ENGINE;
+                $type = defined('APPLICATION_ENGINE')
+                    ? APPLICATION_ENGINE : static::DEFAULT_APPLICATION_ENGINE;
             }
             $appEngineClass = 'Pi\Application\Engine\\' . ucfirst($type);
             static::$engine = new $appEngineClass($config);
@@ -384,9 +390,9 @@ class Pi
     }
 
     /**
-     * Load a service by name or return service handler if name is not specified
+     * Load a service or service handler
      *
-     * If service is not loaded with specified name, a service placeholder will be returned
+     * If service name is not specified, a service placeholder will be returned
      *
      * @param string    $name
      * @param array     $options
@@ -452,7 +458,7 @@ class Pi
      *
      * @param string    $name       Name of the config element
      * @param string    $domain     Configuration domain
-     * @return mixed    configuration value or config handler if $name is not specified
+     * @return mixed    config value or config handler if $name not specified
      */
     public static function config($name = null, $domain = null)
     {
@@ -472,8 +478,11 @@ class Pi
     /**
      * Registry container for global variables
      *
-     * @param string    $index  The location to store the value, if value is not set, to load the value.
-     * @param mixed     $value  The object to store.
+     * Register a variable to global container, or fetch a glbal registry if
+     * variable value is not provided
+     *
+     * @param string    $index  Name of the value
+     * @param mixed     $value  The value to store.
      * @return mixed
      */
     public static function registry($index, $value = null)
@@ -482,15 +491,18 @@ class Pi
         if (null !== $value) {
             static::$registry[$index] = $value;
         } else {
-            return isset(static::$registry[$index]) ? static::$registry[$index] : null;
+            return isset(static::$registry[$index])
+                ? static::$registry[$index] : null;
         }
     }
 
     /**
      * Register a shutdown callback with FILO
      *
-     * @param string|array  $callback   Callback method to be called in shutdown
-     * @param bool          $toAppend   To append current callback to registered shutdown list, false to prepend
+     * @param string|array  $callback
+     *  Callback method to be called in shutdown
+     * @param bool          $toAppend
+     *  To append current callback to registered shutdown list, false to prepend
      * @return void
      */
     public static function registerShutdown($callback, $toAppend = false)
@@ -509,27 +521,33 @@ class Pi
     /**
      * Convert a path to a physical one, proxy to host handler
      *
-     * @see Pi\Application\Host::path()
+     * For path value to be examined:
      *
-     * @param string    $url        Pi Engine path:
-     *                                  with ':' or leading slash '/' - absolute path, do not convert;
-     *                                  otherwise, first part as section, map to www if no section matched
+     *  - With `:` or leading slash `/` - absolute path, do not convert;
+     *  - Otherwise, first part as section, map to `www` if no section matched
+     *
+     * @see \Pi\Application\Host::path()
+     * @param string $url  Path to be converted
      * @return string
      */
-    public static function path($url)
+    public static function path($path)
     {
-        return static::$host->path($url);
+        return static::$host->path($path);
     }
 
     /**
      * Convert a path to an URL, proxy to host handler
      *
+     * For URL to be examined:
+     *
+     *  - With URI scheme `://` - absolute URI, do not convert;
+     *  - First part as section, map to `www` if no section matched;
+     *  - If section URI is relative, `www` URI will be appended.
+     *
      * @see Pi\Application\Host::url()
-     * @param string    $url        Pi Engine URI:
-     *                                  - With URI scheme "://" - absolute URI, do not convert;
-     *                                  - First part as section, map to www if no section matched;
-     *                                  - If section URI is relative, www URI will be appended.
-     * @param bool      $absolute   Whether convert to full URI; relative URI is used by default, i.e. no hostname
+     * @param string    $url        URL to be converted
+     * @param bool      $absolute
+     *  Convert to full URI; Default as relative URI with no hostname
      * @return string
      */
     public static function url($url, $absolute = false)
