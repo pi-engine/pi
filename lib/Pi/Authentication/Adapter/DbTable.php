@@ -25,7 +25,8 @@ class DbTable extends DbTable\CallbackAdapter
     {
         if (!$this->callback) {
             $credentialColumn = $this->credentialColumn;
-            $this->callback = function($a, $b, $identity) use($credentialColumn) {
+            $this->callback = function($a, $b, $identity)
+                use ($credentialColumn) {
                 return $a === $identity->transformCredential($b);
             };
         }

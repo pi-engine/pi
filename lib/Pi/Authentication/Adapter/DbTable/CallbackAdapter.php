@@ -61,22 +61,31 @@ class CallbackAdapter extends AbstractAdapter
     protected function authenticateValidateResult($resultIdentity)
     {
         try {
-            $callbackResult = call_user_func($this->getCallback(), $resultIdentity[$this->credentialColumn], $this->credential, $resultIdentity);
+            $callbackResult = call_user_func($this->getCallback(),
+                $resultIdentity[$this->credentialColumn],
+                $this->credential,
+                $resultIdentity);
         } catch (\Exception $e) {
-            $this->authenticateResultInfo['code']       = AuthenticationResult::FAILURE_UNCATEGORIZED;
-            $this->authenticateResultInfo['messages'][] = $e->getMessage();
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::FAILURE_UNCATEGORIZED;
+            $this->authenticateResultInfo['messages'][]
+                = $e->getMessage();
             return $this->authenticateCreateAuthResult();
         }
         if ($callbackResult !== true) {
-            $this->authenticateResultInfo['code']       = AuthenticationResult::FAILURE_CREDENTIAL_INVALID;
-            $this->authenticateResultInfo['messages'][] = __('Supplied credential is invalid.');
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::FAILURE_CREDENTIAL_INVALID;
+            $this->authenticateResultInfo['messages'][]
+                = __('Supplied credential is invalid.');
             return $this->authenticateCreateAuthResult();
         }
 
         $this->setResultRow($resultIdentity);
 
-        $this->authenticateResultInfo['code']       = AuthenticationResult::SUCCESS;
-        $this->authenticateResultInfo['messages'][] = __('Authentication successful.');
+        $this->authenticateResultInfo['code']
+            = AuthenticationResult::SUCCESS;
+        $this->authenticateResultInfo['messages'][]
+            = __('Authentication successful.');
 
         return $this->authenticateCreateAuthResult();
     }

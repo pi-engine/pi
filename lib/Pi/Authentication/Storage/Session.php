@@ -31,7 +31,8 @@ class Session extends ZendSession
     {
         $namespace  = $options['namespace'];
         $member     = $options['member'];
-        $sessionManager = isset($options['session_manager']) ? $options['session_manager'] : Pi::service('session')->manager();
+        $sessionManager = isset($options['session_manager'])
+            ? $options['session_manager'] : Pi::service('session')->manager();
         parent::__construct($namespace, $member, $sessionManager);
         $this->setOptions($options);
     }

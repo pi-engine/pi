@@ -23,7 +23,9 @@ use Zend\Db\Adapter\Adapter as DbAdapter;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @see \Zend\Authentication\DbTable\AbstractAdapter
  */
-abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInterface
+abstract class AbstractAdapter
+    extends BaseAbstractAdapter
+    implements AdapterInterface
 {
     /**
      * Database Connection
@@ -61,9 +63,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
     protected $authenticateResultInfo = null;
 
     /**
-     * $ambiguityIdentity - Flag to indicate same Identity can be used with
-     * different credentials. Default is FALSE and need to be set to true to
-     * allow ambiguity usage.
+     * Flag to indicate same Identity can be used with different credentials.
+     * Default is FALSE and need to be set to true to allow ambiguity usage.
      *
      * @var bool
      */
@@ -155,15 +156,20 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
         $exception = null;
 
         if ($this->tableName == '') {
-            $exception = __('A table must be supplied for the DbTable authentication adapter.');
+            $exception = __('A table must be supplied
+                for the DbTable authentication adapter.');
         } elseif ($this->identityColumn == '') {
-            $exception = __('An identity column must be supplied for the DbTable authentication adapter.');
+            $exception = __('An identity column must be supplied
+                for the DbTable authentication adapter.');
         } elseif ($this->credentialColumn == '') {
-            $exception = __('A credential column must be supplied for the DbTable authentication adapter.');
+            $exception = __('A credential column must be supplied
+                for the DbTable authentication adapter.');
         } elseif ($this->identity == '') {
-            $exception = __('A value for the identity was not provided prior to authentication with DbTable.');
+            $exception = __('A value for the identity was not provided
+                prior to authentication with DbTable.');
         } elseif ($this->credential === null) {
-            $exception = __('A credential value was not provided prior to authentication with DbTable.');
+            $exception = __('A credential value was not provided
+                prior to authentication with DbTable.');
         }
 
         if (null !== $exception) {
@@ -190,12 +196,17 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
     protected function authenticateValidateResultSet(array $resultIdentities)
     {
         if (count($resultIdentities) < 1) {
-            $this->authenticateResultInfo['code']       = AuthenticationResult::FAILURE_IDENTITY_NOT_FOUND;
-            $this->authenticateResultInfo['messages'][] = __('A record with the supplied identity could not be found.');
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::FAILURE_IDENTITY_NOT_FOUND;
+            $this->authenticateResultInfo['messages'][]
+                = __('A record with the supplied identity could not be found.');
             return $this->authenticateCreateAuthResult();
-        } elseif (count($resultIdentities) > 1 && false === $this->getAmbiguityIdentity()) {
-            $this->authenticateResultInfo['code']       = AuthenticationResult::FAILURE_IDENTITY_AMBIGUOUS;
-            $this->authenticateResultInfo['messages'][] = __('More than one record matches the supplied identity.');
+        } elseif (count($resultIdentities) > 1
+            && false === $this->getAmbiguityIdentity()) {
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::FAILURE_IDENTITY_AMBIGUOUS;
+            $this->authenticateResultInfo['messages'][]
+                = __('More than one record matches the supplied identity.');
             return $this->authenticateCreateAuthResult();
         }
 
@@ -226,11 +237,13 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
         $this->authenticateSetup();
 
         $resultIdentities = $this->getQueryResult();
-        if (($authResult = $this->authenticateValidateResultSet($resultIdentities)) instanceof AuthenticationResult) {
+        if (($authResult = $this->authenticateValidateResultSet($resultIdentities))
+            instanceof AuthenticationResult) {
             return $authResult;
         }
 
-        // At this point, ambiguity is already done. Loop, check and break on success.
+        // At this point, ambiguity is already done.
+        // Loop, check and break on success.
         foreach ($resultIdentities as $identity) {
             $authResult = $this->authenticateValidateResult($identity);
             if ($authResult->isValid()) {
@@ -253,13 +266,15 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
             $options['adapter'] = $this->dbAdapter;
         }
         $model = Pi::model($this->tableName, '', $options);
-        $resultIdentities = $model->select(array($this->identityColumn => $this->identity));
+        $resultIdentities = $model->select(array(
+            $this->identityColumn => $this->identity
+        ));
         return $resultIdentities;
     }
 
     /**
-     * Validate that the record in the resultset is indeed a record that matched the
-     * identity provided to this adapter.
+     * Validate that the record in the resultset is indeed a record
+     * that matched the identity provided to this adapter.
      *
      * @param  array $resultIdentity
      * @return AuthenticationResult
@@ -276,7 +291,7 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements AdapterInt
         } else {
             $this->resultRow = (array) $resultRow;
         }
-        
+
         return $this;
     }
 

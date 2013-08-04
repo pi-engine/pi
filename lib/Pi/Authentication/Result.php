@@ -34,7 +34,8 @@ class Result extends BaseResult
      * @param array         $messages
      * @param array         $data
      */
-    public function __construct($code, $identity = '', array $messages = array(), array $data = array())
+    public function __construct($code, $identity = '',
+        array $messages = array(), array $data = array())
     {
         if (is_array($code)) {
             extract($code);

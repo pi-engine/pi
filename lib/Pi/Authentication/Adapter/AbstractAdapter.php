@@ -17,7 +17,9 @@ use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractAdapter extends ZendAbstractAdapter implements AdapterInterface
+abstract class AbstractAdapter
+    extends ZendAbstractAdapter
+    implements AdapterInterface
 {
     /** @var array Options */
     protected $options = array();
@@ -58,7 +60,8 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements AdapterInt
      */
     public function getResultRow($returnColumns = null, $omitColumns = null)
     {
-        if (null === $returnColumns && isset($this->options['return_columns'])) {
+        if (null === $returnColumns
+            && isset($this->options['return_columns'])) {
             $returnColumns = $this->options['return_columns'];
         }
         if (null === $omitColumns && isset($this->options['omit_columns'])) {
