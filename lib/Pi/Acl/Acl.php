@@ -19,11 +19,15 @@ use Zend\Db\Sql\Where;
  *
  * Handles:
  *
- *  - Role: follows DAG (Directed Acyclic Graph), i.e. one role could inherit from multiple parent roles; All permissions are checked through roles not users
+ *  - Role: follows DAG (Directed Acyclic Graph), i.e.
+ *    - One role could inherit from multiple parent roles;
+ *    - All permissions are checked through roles not users
  *  - Resource: one resource could inherit from one direct parent resource
  *    - Item: one resource could have multiple items
- *  - Privilege: one resource could have multiple privileges, or none as direct access
- *  - Rule: one rule specifies one role's access to one resource/item upon one specific priviledge, default as access
+ *  - Privilege: one resource could have multiple privileges,
+ *      or none as direct access
+ *  - Rule: one rule specifies one role's access to one resource/item
+ *      upon one specific priviledge, default as `access`
  */
 class Acl
 {
@@ -137,7 +141,8 @@ class Acl
         if (method_exists($this->models[$modelName], 'setSection')) {
             $this->models[$modelName]->setSection($this->getSection());
         }
-        if ($this->getSection() == 'module' && method_exists($this->models[$modelName], 'setModule')) {
+        if ($this->getSection() == 'module'
+            && method_exists($this->models[$modelName], 'setModule')) {
             $this->models[$modelName]->setModule($this->getModule());
         }
 
@@ -147,7 +152,12 @@ class Acl
     /**
      * Set section for resources
      *
-     * @param string $section  section name, potential values: front - 'front'; admin - 'admin'; block - 'block'
+     * Potentail secion names:
+     *  - front: for front controllers and resources
+     *  - admin: for admin controllers and resources
+     *  - block: for blocks
+     *
+     * @param string $section  Section name
      * @return $this
      */
     public function setSection($section)
@@ -244,7 +254,8 @@ class Acl
     public function getRole()
     {
         if (null === $this->role) {
-            $this->role = Pi::service('user')->getUser() ? Pi::service('user')->getUser()->role() : static::GUEST;
+            $this->role = Pi::service('user')->getUser()
+                ? Pi::service('user')->getUser()->role() : static::GUEST;
         }
         return $this->role;
     }
@@ -260,7 +271,8 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function addRule($allowed, $role, $section, $module, $resource, $privilege = null)
+    public static function addRule($allowed, $role, $section, $module,
+        $resource, $privilege = null)
     {
         $deny = ($allowed > 0) ? 0 : 1;
         $rule = array(
@@ -289,7 +301,8 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function removeRule($role, $section, $module, $resource, $privilege = null)
+    public static function removeRule($role, $section, $module,
+        $resource, $privilege = null)
     {
         $rule = array(
             'section'   => $section,
@@ -319,7 +332,8 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function setRule($allowed, $role, $section, $module, $resource, $privilege = null)
+    public static function setRule($allowed, $role, $section, $module,
+        $resource, $privilege = null)
     {
         $deny = ($allowed > 0) ? 0 : 1;
         $rule = array(
@@ -347,11 +361,19 @@ class Acl
     /**
      * Check access to a resource privilege for a given role
      *
+     * Support for two types of resources with `$resource`
+     *
+     *  - Named resources:
+     *      - 'name' => <resource-name>
+     *      - 'type' => <resource-type>
+     *  - Controller actions:
+     *      - 'module' => <module>
+     *      - 'controller' => <controller>
+     *      - 'action' => <action>
+     *
      * @param string $role
      * @param string|array|object   $resource  Resource name
-     *                                              or `array('name' => $name, 'type' => $type)`,
-     *                                              or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
-     * @param string                $privilege privilege name
+     * @param string                $privilege Privilege name
      * @return bool
      */
     public function isAllowed($role, $resource, $privilege = null)
@@ -389,10 +411,18 @@ class Acl
     /**
      * Check access to a resource privilege for a given role
      *
+     * Support for two types of resources with `$resource`
+     *
+     *  - Named resources:
+     *      - 'name' => <resource-name>
+     *      - 'type' => <resource-type>
+     *  - Controller actions:
+     *      - 'module' => <module>
+     *      - 'controller' => <controller>
+     *      - 'action' => <action>
+     *
      * @param string|array|object   $resource  Resource name
-     *                                              or `array('name' => $name, 'type' => $type)`,
-     *                                              or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
-     * @param string                $privilege privilege name
+     * @param string                $privilege Privilege name
      * @return bool
      */
     public function checkAccess($resource, $privilege = null)
@@ -403,7 +433,7 @@ class Acl
     /**
      * Check exceptions for admin page access to skip permission check
      *
-     * @param array $resource  array('module' => $module, 'controller' => $controller, 'action' => $action)
+     * @param array $resource Array of 'module', 'controller' and 'action'
      * @return bool
      */
     public function checkException($resource)
@@ -429,7 +459,8 @@ class Acl
     }
 
     /**
-     * Get resources to which a group of roles is allowed to access a given resource privilege
+     * Get resources to which a group of roles is allowed
+     * to access a given resource privilege
      *
      * @param array|Where   $where
      * @param bool          $allowed
@@ -456,7 +487,8 @@ class Acl
             return $roles;
         }
         if (null === $this->roles) {
-            $this->roles = Pi::service('registry')->role->read($this->getRole()) ?: array();
+            $this->roles = Pi::service('registry')->role->read($this->getRole())
+                ?: array();
             array_push($this->roles, $this->getRole());
         }
         return $this->roles;
@@ -465,9 +497,18 @@ class Acl
     /**
      * Load ancestors of a resource from database
      *
-     * @param string|array|Node  $resource  Resource name or `array('name' => $name, 'type' => $type)`
-     *                                          or `array('module' => $module, 'controller' => $controller, 'action' => $action)`
-     *                                          or {@link Node}
+     * Support for three types of resources with `$resource`
+     *
+     *  - Named resources:
+     *      - 'name' => <resource-name>
+     *      - 'type' => <resource-type>
+     *  - Controller actions:
+     *      - 'module' => <module>
+     *      - 'controller' => <controller>
+     *      - 'action' => <action>
+     *  - {@link Node}
+     *
+     * @param string|array|Node  $resource  Resource name
      * @return string[]
      */
     public function loadResources($resource)
@@ -478,9 +519,12 @@ class Acl
             $module = $resource['module'];
             $controller = $resource['controller'];
             $action = $resource['action'];
-            $section = empty($resource['section']) ? $this->getSection() : $resource['section'];
-            $resourceList = Pi::service('registry')->resource->read($section, $module, 'page');
-            $pageList = array_flip(Pi::service('registry')->page->read($section, $module));
+            $section = empty($resource['section'])
+                ? $this->getSection() : $resource['section'];
+            $resourceList = Pi::service('registry')->resource->read(
+                $section, $module, 'page');
+            $pageList = array_flip(Pi::service('registry')->page->read(
+                $section, $module));
 
             $resources = array();
             foreach ($resourceList as $page => $list) {
@@ -517,13 +561,13 @@ class Acl
             $name = $resource;
         }
 
-        $resourceList = Pi::service('registry')->resource->read($this->getSection(), $this->getModule(), $type);
+        $resourceList = Pi::service('registry')->resource->read(
+            $this->getSection(), $this->getModule(), $type);
         if (isset($resourceList[$name])) {
             $resources = $resourceList[$name];
         } else {
             $resources = array($name);
         }
-        //$resources = isset($resourceList[$name]) ? $resourceList[$name] : array();
         return $resources;
     }
 }
