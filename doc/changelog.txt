@@ -1,6 +1,7 @@
 Pi Engine Changelog
 
-Pi 2.2.3
+Pi 2.3
+August 4th, 2013
 ============
 1. Added support for custom configuration
 2. Refactored user API service with support for persistent profile
