@@ -237,8 +237,8 @@ abstract class AbstractAdapter
         $this->authenticateSetup();
 
         $resultIdentities = $this->getQueryResult();
-        if (($authResult = $this->authenticateValidateResultSet($resultIdentities))
-            instanceof AuthenticationResult) {
+        $authResult = $this->authenticateValidateResultSet($resultIdentities);
+        if ($authResult instanceof AuthenticationResult) {
             return $authResult;
         }
 
