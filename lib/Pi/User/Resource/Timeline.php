@@ -16,11 +16,11 @@ use Pi;
  *
  * Timeline APIs:
  *
- *   - timeline([$id])->get($limit[, $offset[, $condition]])                        // Get timeline list
- *   - timeline([$id])->getCount([$condition]])                                     // Get timeline count subject to condition
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])                     // Add activity to user timeline
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])         // Get activity list of a user
- *   - timeline([$id])->delete([$condition])                                        // Delete timeline items subjecto to condition
+ *   - timeline([$id])->get($limit[, $offset[, $condition]])
+ *   - timeline([$id])->getCount([$condition]])
+ *   - timeline([$id])->add($message, $module[, $tag[, $time]])
+ *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
+ *   - timeline([$id])->delete([$condition])                              
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

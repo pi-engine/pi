@@ -16,11 +16,11 @@ use Pi;
  *
  * Avatar APIs;
  *
- *   - avatar([$id])->setSource($source)                                            // Set avatar source: upload, gravatar, local, empty for auto
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])                        // Get avatar of a user
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])              // Get avatars of a list of users
- *   - avatar([$id])->set($value[, $source])                                        // Set avatar for a user
- *   - avatar([$id])->delete()                                                      // Delete user avatar
+ *   - avatar([$id])->setSource($source)
+ *   - avatar([$id])->get([$size[, $attributes[, $source]]])
+ *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
+ *   - avatar([$id])->set($value[, $source])
+ *   - avatar([$id])->delete()                                                   
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

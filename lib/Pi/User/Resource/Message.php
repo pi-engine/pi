@@ -16,10 +16,10 @@ use Pi;
  *
  * Message APIs:
  *
- *   - message([$id])->send($message, $from)                                        // Send message to a user
- *   - message([$id])->notify($message, $subject[, $tag])                           // Send notification to a user
- *   - message([$id])->getCount()                                                   // Get message total count of current user
- *   - message([$id])->getAlert()                                                   // Get message alert (new) count of current user
+ *   - message([$id])->send($message, $from)
+ *   - message([$id])->notify($message, $subject[, $tag])
+ *   - message([$id])->getCount()
+ *   - message([$id])->getAlert()                 
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

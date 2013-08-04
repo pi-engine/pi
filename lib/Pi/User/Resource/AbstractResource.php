@@ -52,5 +52,4 @@ class AbstractResource implements BindInterface
         $this->options = $options;
         return $this;
     }
-
 }

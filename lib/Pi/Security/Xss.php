@@ -142,21 +142,26 @@ class Xss extends AbstractAdapter
         $script = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
         $patterns[] = "/([a-z]*){$c}={$c}([\`\'\"]*){$c}{$script}{$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
-        $script = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t|x{$c}s{$c}s|-moz-binding";
+        $script = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t"
+            . "|x{$c}s{$c}s|-moz-binding";
         $patterns[] = "/([a-z]*){$c}={$c}([\'\"]*){$c}({$script}){$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
 
         // @import
-        $patterns[] = "/([a-z]*){$c}([\\\]*){$c}@([\\\]*){$c}i([\\\]*){$c}m([\\\]*){$c}p([\\\]*){$c}o([\\\]*){$c}r([\\\]*){$c}t/iU";
+        $patterns[] = "/([a-z]*){$c}([\\\]*){$c}@([\\\]*){$c}i([\\\]*){$c}m"
+            . "([\\\]*){$c}p([\\\]*){$c}o([\\\]*){$c}r([\\\]*){$c}t/iU";
         $replaces[] = '\\1@noimport';
 
         // <span style="width: expression|behaviour( ... );"></span>
         // for ie
-        $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*(e{$c}x{$c}p{$c}r{$c}e{$c}s{$c}s{$c}i{$c}o{$c}n|b{$c}e{$c}h{$c}a{$c}v{$c}i{$c}o{$c}u{$c}r){$c}\(.*\\2(.*)>/iU";
+        $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*"
+            . "(e{$c}x{$c}p{$c}r{$c}e{$c}s{$c}s{$c}i{$c}o{$c}n"
+            . "|b{$c}e{$c}h{$c}a{$c}v{$c}i{$c}o{$c}u{$c}r){$c}\(.*\\2(.*)>/iU";
         $replaces[] = "\\1\\4>";
 
         // <span style="script: "></span>
-        $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}: .*\\2(.*)>/iU";
+        $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*"
+            . "s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}: .*\\2(.*)>/iU";
         $replaces[] = "\\1\\3>";
 
         if ($filter) {

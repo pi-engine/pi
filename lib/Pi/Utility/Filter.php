@@ -394,8 +394,9 @@ namespace
         $text = $text ? preg_replace('`\[.*\]`U', '', $text) : '';
         $text = $text ? preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '', $text) : '';
         $text = $text
-            ?
-        preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i',
+            ? preg_replace(
+                '/&([a-z])'
+                . '(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);/i',
                 '\\1',
                 $text)
             : '';

@@ -17,10 +17,10 @@ use Pi;
  * Relation APIs:
  *
  *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
- *   - relation([$id])->getCount($relation[, $condition]])                          // Get count with relationship: friend, follower, following
- *   - relation([$id])->hasRelation($uid, $relation)                                // Check if $id has relation with $uid: friend, follower, following
- *   - relation([$id])->add($uid, $relation)                                        // Add $uid as a relation: friend, follower, following
- *   - relation([$id])->delete([$uid[, $relation]])                                 // Delete $uid as relation: friend, follower, following
+ *   - relation([$id])->getCount($relation[, $condition]])
+ *   - relation([$id])->hasRelation($uid, $relation)
+ *   - relation([$id])->add($uid, $relation)
+ *   - relation([$id])->delete([$uid[, $relation]])                   
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
