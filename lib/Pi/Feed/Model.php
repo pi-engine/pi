@@ -51,7 +51,8 @@ class Model
      */
     public function getType()
     {
-        $type = isset($this->feed_link['type']) ? $this->feed_link['type'] : null;
+        $type = isset($this->feed_link['type'])
+            ? $this->feed_link['type'] : null;
         return $type;
     }
 
@@ -162,8 +163,10 @@ class Model
     public function initialize()
     {
         $this->assign(array(
-            'copyright'     => Pi::config('copyright', 'meta') ?: Pi::config('sitename'),
-            'description'   => Pi::config('description', 'meta') ?: Pi::config('slogan'),
+            'copyright'     => Pi::config('copyright', 'meta')
+                ?: Pi::config('sitename'),
+            'description'   => Pi::config('description', 'meta')
+                ?: Pi::config('slogan'),
             'authors'       => array(
                 array(
                     'name'      => Pi::config('author', 'meta'),
@@ -187,7 +190,8 @@ class Model
                 'link'      => Pi::url('www', true),
                 'type'      => $this->type,
             ),
-            'title'         => sprintf(__('Feed of %s - %s'), Pi::config('sitename'), Pi::config('slogan')),
+            'title'         => sprintf(__('Feed of %s - %s'),
+                Pi::config('sitename'), Pi::config('slogan')),
             'encoding'      => Pi::service('i18n')->charset,
             'base_url'      => Pi::url('www', true),
             'entries'       => array(),

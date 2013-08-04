@@ -28,13 +28,11 @@ class Factory
     public static function load($type = null, $options = array())
     {
         if (empty($type)) {
-            //$type = Pi::config()->loadDomain('text')->get('editor', 'text') ?: 'pi';
             $type = Pi::config('editor', 'text') ?: 'pi';
         }
         $editor = '';
         switch ($type) {
             case 'html':
-                //$editor = Pi::config()->loadDomain('text')->get('editor', 'text') ?: 'ckeditor';
                 $editor = Pi::config('editor', 'text') ?: 'ckeditor';
                 break;
             /*
@@ -43,7 +41,6 @@ class Factory
             case 'wiki':
             case 'bbcode':
                 $options['set'] = $type;
-                //$editor = Pi::config()->loadDomain('text')->get('editor', 'text') ?: 'ckeditor';
                 $editor = Pi::config('editor', 'text') ?: 'ckeditor';
                 break;
             */
@@ -51,13 +48,15 @@ class Factory
                 $editor = $type;
                 break;
         }
-        $editorFile = Pi::path('usr') . '/editor/' . $editor . '/src/Renderer.php';
+        $editorFile = Pi::path('usr') . '/editor/' . $editor
+            . '/src/Renderer.php';
 
         if (file_exists($editorFile)) {
             include $editorFile;
         }
         $rendererClass =  'Editor\\' . ucfirst($editor) . '\Renderer';
-        if (!class_exists($rendererClass) || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')) {
+        if (!class_exists($rendererClass)
+            || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')) {
             $rendererClass = __NAMESPACE__ . '\Pi\Renderer';
         }
 

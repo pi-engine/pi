@@ -56,11 +56,13 @@ class Http extends ZendHttp
                         $filename = $directory . $filename;
                     }
 
-                    $key = array_search(get_class($rename), $this->files[$file]['filters']);
+                    $key = array_search(get_class($rename),
+                        $this->files[$file]['filters']);
                     unset($this->files[$file]['filters'][$key]);
                 }
 
-                // Should never return false when it's tested by the upload validator
+                // Should never return false
+                // when it's tested by the upload validator
                 if (!move_uploaded_file($content['tmp_name'], $filename)) {
                     if ($content['options']['ignoreNoFile']) {
                         $this->files[$file]['received'] = true;

@@ -51,14 +51,18 @@ abstract class AbstractRenderer
             $configDefault = Pi::config()->load($this->configFile);
             if (isset($configDefault['options'])) {
                 if (isset($config['options'])) {
-                    $config['options'] = array_merge($configDefault['options'], $config['options']);
+                    $config['options'] = array_merge($configDefault['options'],
+                        $config['options']);
                 } else {
                     $config['options'] = $configDefault['options'];
                 }
             }
             if (isset($configDefault['attributes'])) {
                 if (isset($config['attributes'])) {
-                    $config['attributes'] = array_merge($configDefault['attributes'], $config['attributes']);
+                    $config['attributes'] = array_merge(
+                        $configDefault['attributes'],
+                        $config['attributes']
+                    );
                 } else {
                     $config['attributes'] = $configDefault['attributes'];
                 }

@@ -35,7 +35,8 @@ class Upload extends Transfer
     {
         $direction = false;
         $rename = !empty($options['rename']) ? $options['rename'] : '';
-        $destination = !empty($options['destination']) ? $options['destination'] : Pi::service('module')->current();
+        $destination = !empty($options['destination'])
+            ? $options['destination'] : Pi::service('module')->current();
         $this->setAdapter($adapter, $direction, $options);
         $this->setDestination($destination);
         $this->setRename($rename);
@@ -45,7 +46,8 @@ class Upload extends Transfer
      * Returns adapter
      *
      * {@inheritDoc}
-     * @note Zend\File\Transfer\Transfer does not support for $direction = 1 yet
+     * @note \Zend\File\Transfer\Transfer does not support
+     *      for $direction = 1 yet
      */
     public function getAdapter($direction = false)
     {
@@ -56,7 +58,8 @@ class Upload extends Transfer
     /**
      * Set upload destination
      *
-     * @param string    $value      Absolute path to store files, or path relative to Pi::path('upload')
+     * @param string    $value      Absolute path to store files,
+     *      or path relative to Pi::path('upload')
      * @param bool      $verify     To very destination path availability
      * @return $this
      */
@@ -155,7 +158,7 @@ class Upload extends Transfer
      * Set image size
      *
      *  Accepts the following attributes keys:
-     * 
+     *
      *  - minheight
      *  - minwidth
      *  - maxheight

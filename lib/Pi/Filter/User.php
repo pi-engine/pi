@@ -16,7 +16,8 @@ use Zend\Filter\AbstractFilter;
  * User name filter
  *
  * Transiliate specified format of user identifier into tag links:
- * From `@term` to `<a href="<user-profile-link>/term" title="User term">@term</a>`
+ * From `@term` to
+ * `<a href="<user-profile-link>/term" title="User term">@term</a>`
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -31,7 +32,8 @@ class User extends AbstractFilter
         'tag'           => '%user%',
         // Pattern for user identity
         'pattern'       => '@([a-zA-Z0-9]{3,32})',
-        // Direct replacement for user identity: <a href="/url/to/user/%user%" title="%user%">%user%</a>
+        // Direct replacement for user identity:
+        // <a href="/url/to/user/%user%" title="%user%">%user%</a>
         'replacement'   => '',
         // Callback for user identity replacement if no direct replacement
         'callback'      => '',
@@ -45,13 +47,15 @@ class User extends AbstractFilter
     public function __construct($options = array())
     {
         $this->setOptions($options);
-        if (empty($this->options['replacement']) && empty($this->options['callback'])) {
+        if (empty($this->options['replacement'])
+            && empty($this->options['callback'])) {
             $this->options['callback'] = function ($identity) {
                 $service = Pi::service('user')->bind($identity, 'identity');
                 $url = $service->getProfileUrl();
                 $name = $service->getName();
                 $service->restore();
-                return sprintf('<a href="%s" title="%s">@%s</a>', $url, $name, $identity);
+                return sprintf('<a href="%s" title="%s">@%s</a>',
+                    $url, $name, $identity);
             };
         }
     }
@@ -76,7 +80,8 @@ class User extends AbstractFilter
                 return $func($m[1]);
             };
         }
-        $value = preg_replace_callback('`' . $this->options['pattern'] . '`', $callback, $value);
+        $value = preg_replace_callback('`' . $this->options['pattern'] . '`',
+            $callback, $value);
 
         return $value;
     }

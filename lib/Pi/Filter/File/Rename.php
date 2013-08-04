@@ -40,7 +40,8 @@ class Rename extends ZendRename
      * Class constructor
      *
      * {@inheritDoc}
-     * @param  string|Closure|array|Traversable $options Target file or directory to be renamed
+     * @param  string|Closure|array|Traversable $options
+     *      Target file or directory to be renamed
      */
     public function __construct($options)
     {
@@ -205,7 +206,8 @@ class Rename extends ZendRename
      */
     protected function parseStrategy(&$file)
     {
-        if (is_array($this->source) && $this->source['tmp_name'] == $file['source']) {
+        if (is_array($this->source)
+            && $this->source['tmp_name'] == $file['source']) {
             $name = $this->source['name'];
         } else {
             $name = $file['source'];
@@ -230,7 +232,9 @@ class Rename extends ZendRename
                 '%time%'        => time(),
                 '%microtime%'   => microtime(),
             );
-            $target = str_replace(array_keys($terms), array_values($terms), $file['target']) . $extension;
+            $target = str_replace(
+                    array_keys($terms), array_values($terms), $file['target']
+                ) . $extension;
         } else {
             return;
         }

@@ -68,7 +68,8 @@ namespace Pi\Debug
         public static function enable($flag = true)
         {
             static::$inProcess = $flag;
-            $message = static::render(sprintf('Conditional debug %s', $flag ? 'enabled' : 'disabled'), 2);
+            $message = static::render(sprintf('Conditional debug %s',
+                    $flag ? 'enabled' : 'disabled'), 2);
             Pi::service('log')->debug($message);
         }
 
@@ -133,7 +134,8 @@ namespace Pi\Debug
         public static function render($data, $skip = 0)
         {
             $time = microtime(true);
-            $location = date('H:i:s', $time) . substr($time, strpos($time, '.'), 5) . ' ';
+            $location = date('H:i:s', $time)
+                . substr($time, strpos($time, '.'), 5) . ' ';
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
@@ -155,14 +157,16 @@ namespace Pi\Debug
                 }
                 $result .= PHP_EOL;
             } else {
-                $result = '<div style="padding: .8em; margin-bottom: 1em; border: 2px solid #ddd;">';
+                $result = '<div style="padding: .8em;'
+                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 if (is_array($data) || is_object($data)) {
                     $result .= $location;
                     $result .= '<div><pre>';
                     $result .= print_r($data, true);
                     $result .= '</pre></div>';
                 } else {
-                    $result .= sprintf('<div>%s<pre>%s</pre></div>', $location, $data);
+                    $result .= sprintf('<div>%s<pre>%s</pre></div>',
+                        $location, $data);
                 }
                 $result .= '</div>';
             }
@@ -187,16 +191,29 @@ namespace Pi\Debug
                 $bt = PHP_EOL;
                 $bt .= 'Backtrace at: ' . microtime(true) . PHP_EOL . PHP_EOL;
                 foreach ($list as $backtrace) {
-                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
-                    $bt .= $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()' . PHP_EOL;
+                    $location = empty($backtrace['file'])
+                        ? 'Internal'
+                        : Pi::service('security')->path($backtrace['file'])
+                            . '(' . $backtrace['line'] . ')';
+                    $bt .= $location . ': '
+                        . (empty($backtrace['class'])
+                            ? '' : $backtrace['class'] . '::')
+                        . $backtrace['function'] . '()' . PHP_EOL;
                 }
                 $bt .= PHP_EOL;
             } else {
                 $bt = '<pre>';
-                $bt .= '<strong>Backtrace at: ' . microtime(true) . '</strong><ul>';
+                $bt .= '<strong>Backtrace at: ' . microtime(true)
+                    . '</strong><ul>';
                 foreach ($list as $backtrace) {
-                    $location = empty($backtrace['file']) ? 'Internal' : Pi::service('security')->path($backtrace['file']) . '(' . $backtrace['line'] . ')';
-                    $bt .= '<li>' . $location . ': ' . (empty($backtrace['class']) ? '' : $backtrace['class'] . '::') . $backtrace['function'] . '()</li>';
+                    $location = empty($backtrace['file'])
+                        ? 'Internal'
+                        : Pi::service('security')->path($backtrace['file'])
+                            . '(' . $backtrace['line'] . ')';
+                    $bt .= '<li>' . $location . ': '
+                        . (empty($backtrace['class'])
+                            ? '' : $backtrace['class'] . '::')
+                        . $backtrace['function'] . '()</li>';
                 }
                 $bt .= '</ul>';
                 $bt .= '</pre>';
@@ -216,7 +233,8 @@ namespace Pi\Debug
         /**
          * Debug helper function
          *
-         * This is a wrapper for var_dump() that adds the <pre /> tags, cleans up newlines and indents, and runs
+         * This is a wrapper for var_dump() that adds the <pre /> tags,
+         * cleans up newlines and indents, and runs
          * htmlspecialchars() before output.
          *
          * @see Zend\Debug::dump()
@@ -228,7 +246,8 @@ namespace Pi\Debug
         public static function dump($var, $display = true, $skip = 1)
         {
             $time = microtime(true);
-            $location = date('H:i:s', $time) . substr($time, strpos($time, '.'), 5) . ' ';
+            $location = date('H:i:s', $time)
+                . substr($time, strpos($time, '.'), 5) . ' ';
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
@@ -250,7 +269,8 @@ namespace Pi\Debug
                 if (!extension_loaded('xdebug')) {
                     $output = htmlspecialchars($output, ENT_QUOTES);
                 }
-                $result = '<div style="padding: .8em; margin-bottom: 1em; border: 2px solid #ddd;">';
+                $result = '<div style="padding: .8em;'
+                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 $result .= $location;
                 $result .= '<div><pre>';
                 $result .= $output;

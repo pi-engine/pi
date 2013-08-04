@@ -158,7 +158,8 @@ class Download
         if (isset($options['exit'])) {
             $this->exit = (bool) $options['exit'];
         }
-        $this->tmp = isset($options['tmp']) ? $options['tmp'] : Pi::path('cache');
+        $this->tmp = isset($options['tmp'])
+            ? $options['tmp'] : Pi::path('cache');
         return $this;
     }
 
@@ -178,7 +179,8 @@ class Download
         if (!$options) {
             return false;
         }
-        list($resource, $filename, $type, $contentType, $contentLength) = $options;
+        list($resource, $filename, $type, $contentType, $contentLength) =
+            $options;
         if ('string' == $type) {
             $source = $resource;
         } else {
@@ -221,9 +223,12 @@ class Download
         $source         = array();
         if (is_array($options) && isset($options['source'])) {
             $source         = (array) $options['source'];
-            $type           = isset($options['type']) ? $options['type'] : 'file';
-            $filename       = isset($options['filename']) ? $options['filename'] : '';
-            $contentType    = isset($options['content_type']) ? $options['content_type'] : '';
+            $type           = isset($options['type'])
+                ? $options['type'] : 'file';
+            $filename       = isset($options['filename'])
+                ? $options['filename'] : '';
+            $contentType    = isset($options['content_type'])
+                ? $options['content_type'] : '';
         } else {
             $source = (array) $options;
         }
@@ -259,7 +264,8 @@ class Download
                 $file       = null;
                 if (is_array($item)) {
                     $file       = $item['filename'];
-                    $localname  = isset($item['localname']) ? $item['localname'] : basename($file);
+                    $localname  = isset($item['localname'])
+                        ? $item['localname'] : basename($file);
                 } elseif (is_file($item)) {
                     $file       = $item;
                     $localname = basename($file);
@@ -273,7 +279,8 @@ class Download
             $contentLength = filesize($resource);
         }
 
-        return array($resource, $filename, $type, $contentType, $contentLength);
+        return array($resource, $filename, $type,
+            $contentType, $contentLength);
     }
 
     /**
@@ -285,11 +292,13 @@ class Download
      * @param int $contentLength
      * @return bool
      */
-    protected function download($source, $filename, $contentType, $contentLength = 0)
+    protected function download($source, $filename, $contentType,
+        $contentLength = 0)
     {
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
-        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Content-Disposition: attachment; filename="'
+            . $filename . '"');
         header('Content-Transfer-Encoding: chunked');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
