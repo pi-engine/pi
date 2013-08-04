@@ -5,6 +5,8 @@ Pi 2.2.3
 1. Added support for custom configuration
 2. Refactored user API service with support for persistent profile
 3. Modified config files: var/config/service.authentication.php; var/config/service.user.php
+4. Added config for PHP-CS-Fixer: .php_cs
+
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
 August 3rd, 2013
