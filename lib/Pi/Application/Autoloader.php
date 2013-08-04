@@ -526,7 +526,7 @@ class Autoloader
         $parts = explode('/', str_replace(array('/','\\'), '/', substr($path, 8)));
         $parts = array_values(array_filter($parts, function($p) { return ($p !== '' && $p !== '.'); }));
 
-        array_walk($parts, function ($value, $key) use(&$parts) {
+        array_walk($parts, function ($value, $key) use (&$parts) {
             if ($value === '..') {
                 unset($parts[$key], $parts[$key-1]);
                 $parts = array_values($parts);

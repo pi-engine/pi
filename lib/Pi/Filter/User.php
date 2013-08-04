@@ -67,12 +67,12 @@ class User extends AbstractFilter
         $replacement = $this->options['replacement'];
         if ($replacement) {
             $tag = $this->options['tag'];
-            $callback = function($m) use($replacement, $tag) {
+            $callback = function($m) use ($replacement, $tag) {
                 return str_replace($tag, $m[1], $replacement);
             };
         } else {
             $func = $this->options['callback'];
-            $callback = function($m) use($func) {
+            $callback = function($m) use ($func) {
                 return $func($m[1]);
             };
         }
