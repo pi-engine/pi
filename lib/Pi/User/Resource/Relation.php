@@ -20,7 +20,7 @@ use Pi;
  *   - relation([$id])->getCount($relation[, $condition]])
  *   - relation([$id])->hasRelation($uid, $relation)
  *   - relation([$id])->add($uid, $relation)
- *   - relation([$id])->delete([$uid[, $relation]])                   
+ *   - relation([$id])->delete([$uid[, $relation]])
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

@@ -20,7 +20,7 @@ use Pi;
  *   - timeline([$id])->getCount([$condition]])
  *   - timeline([$id])->add($message, $module[, $tag[, $time]])
  *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
- *   - timeline([$id])->delete([$condition])                              
+ *   - timeline([$id])->delete([$condition])
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

@@ -20,7 +20,7 @@ use Pi;
  *   - avatar([$id])->get([$size[, $attributes[, $source]]])
  *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
  *   - avatar([$id])->set($value[, $source])
- *   - avatar([$id])->delete()                                                   
+ *   - avatar([$id])->delete()
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

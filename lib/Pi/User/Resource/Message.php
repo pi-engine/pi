@@ -19,7 +19,7 @@ use Pi;
  *   - message([$id])->send($message, $from)
  *   - message([$id])->notify($message, $subject[, $tag])
  *   - message([$id])->getCount()
- *   - message([$id])->getAlert()                 
+ *   - message([$id])->getAlert()
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
