@@ -44,7 +44,9 @@ class Presetting extends AbstractController
     {
         $languageList = array();
 
-        $iterator = new \DirectoryIterator($this->wizard->getRoot() . '/locale/');
+        $iterator = new \DirectoryIterator(
+            $this->wizard->getRoot() . '/locale/'
+        );
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                 continue;
@@ -84,21 +86,20 @@ class Presetting extends AbstractController
     {
         $languageList = $this->getLanguages();
 
-        $content = '
-            <div class="well">
-	            <h2>' . _s('Language Selection') . '</h2>
-	            <p class="caption">' . _s('Choose the language for the installation and website') . '</p>
-	            <div class="install-form">
-	                <p>
-	                    <select id="language-selector" size="5" name="language">';
-	                        foreach ($languageList as $name => $language) {
-	                            $selected = ($name == $this->wizard->getLocale()) ? " selected='selected'" : "";
-	                            $content .= sprintf('<option value="%s"%s>%s</option>', $name, $selected, $language['title']);
-	                        }
-	                        $content .= '</select>
-	                </p>
-	            </div>
-            </div>';
+        $content = '<div class="well"><h2>'
+            . _s('Language Selection')
+            . '</h2><p class="caption">'
+            . _s('Choose the language for the installation and website')
+            . '</p>'
+            . '<div class="install-form"><p>'
+	        . '<select id="language-selector" size="5" name="language">';
+        foreach ($languageList as $name => $language) {
+            $selected = ($name == $this->wizard->getLocale())
+                ? ' selected="selected"' : '';
+            $content .= sprintf('<option value="%s"%s>%s</option>',
+                $name, $selected, $language['title']);
+        }
+        $content .= '</select></p></div></div>';
         $this->content .= $content;
 
         $this->headContent .=<<<'STYLE'
@@ -143,95 +144,108 @@ SCRIPT;
     {
         $this->verifyRequirement();
         if ($this->status < 0) {
-            $content = '<h2><span class="failure">' . _s('Sever setting detection') . '</span> <a href="javascript:void(0);" id="advanced-label"><span style="display: none;">[+]</span><span>[-]</span></a></h2>';
+            $content = '<h2><span class="failure">'
+                . _s('Sever setting detection')
+                . '</span> <a href="javascript:void(0);" id="advanced-label">'
+                . '<span style="display: none;">[+]</span><span>[-]</span></a>'
+                . '</h2>';
         } else {
-            $content = '<h2><span class="success">' . _s('Sever setting detection') . '</span> <a href="javascript:void(0);" id="advanced-label"><span>[+]</span><span style="display: none;">[-]</span></a></h2>';
+            $content = '<h2><span class="success">'
+                . _s('Sever setting detection')
+                . '</span> <a href="javascript:void(0);" id="advanced-label">'
+                . '<span>[+]</span><span style="display: none;">[-]</span></a>'
+                . '</h2>';
         }
-        $content .= '
-            <p class="caption">' . _s('Check server settings and extensions') . '</p>
-            <div class="install-form advanced-form well" id="advanced-form">
-                <h3 class="section">' . _s('System requirements') . '</h3>
-                <p class="caption">' . _s('Server settings and system extensions required by Pi Engine') . '</p>';
-                foreach ($this->result['system'] as $item => $result) {
-                    $value = $result['value'];
+        $content .= '<p class="caption">'
+            . _s('Check server settings and extensions')
+            . '</p><div class="install-form advanced-form well"'
+            . ' id="advanced-form"><h3 class="section">'
+            . _s('System requirements')
+            . '</h3><p class="caption">'
+            . _s('Server settings and system extensions required by Pi Engine')
+            . '</p>';
+        foreach ($this->result['system'] as $item => $result) {
+            $value = $result['value'];
+            $style = 'success';
+            switch ($result['status']) {
+                case -1:
+                    $style = 'failure';
+                    $value = $value ?: _s('Invalid');
+                    break;
+                case 0:
+                    $style = 'warning';
+                    $value = $value ?: _s('Not desired');
+                    break;
+                case 1:
+                default:
                     $style = 'success';
-                    switch ($result['status']) {
-                        case -1:
-                            $style = 'failure';
-                            $value = $value ?: _s('Invalid');
-                            break;
-                        case 0:
-                            $style = 'warning';
-                            $value = $value ?: _s('Not desired');
-                            break;
-                        case 1:
-                        default:
-                            $style = 'success';
-                            $value = $value ?: _s('Valid');
-                            break;
-                    }
-                    $content .= '
-                        <p><div class="label">' . $result['title'] . '</div>
-                        <div class="text"><span class="' . $style . '">' . $value . '</span>';
+                    $value = $value ?: _s('Valid');
+                    break;
+            }
+            $content .= '<p><div class="label">' . $result['title'] . '</div>'
+                . '<div class="text"><span class="' . $style . '">' . $value
+                . '</span>';
 
-                    if (!empty($result['message'])) {
-                        $content .= '<em class="message">' . $result['message'] . '</em>';
-                    }
-                    $content .= '</div></p>';
-                }
+            if (!empty($result['message'])) {
+                $content .= '<em class="message">' . $result['message']
+                    . '</em>';
+            }
+            $content .= '</div></p>';
+        }
 
-                $content .= '
-                <h3 class="section">' . _s('System extension recommendations') . '</h3>
-                <p class="caption">' . _s('Extesions recommended for better functionality or performance') . '</p>';
-                foreach ($this->result['extension'] as $item => $result) {
-                    $value = $result['value'];
+        $content .= '<h3 class="section">'
+            . _s('System extension recommendations')
+            . '</h3><p class="caption">'
+            . _s('Extesions recommended for better functionality or performance')
+            . '</p>';
+        foreach ($this->result['extension'] as $item => $result) {
+            $value = $result['value'];
+            $style = 'success';
+            switch ($result['status']) {
+                case -1:
+                    $style = 'failure';
+                    $value = $value ?: _s('Invalid');
+                    break;
+                case 0:
+                    $style = 'warning';
+                    $value = $value ?: _s('Not desired');
+                    break;
+                case 1:
+                default:
                     $style = 'success';
-                    switch ($result['status']) {
-                        case -1:
-                            $style = 'failure';
-                            $value = $value ?: _s('Invalid');
-                            break;
-                        case 0:
-                            $style = 'warning';
-                            $value = $value ?: _s('Not desired');
-                            break;
-                        case 1:
-                        default:
-                            $style = 'success';
-                            $value = $value ?: _s('Valid');
-                            break;
-                    }
-                    $content .= '
-                        <p><div class="label">' . $result['title'] . '</div>
-                        <div class="text"><span class="' . $style . '">' . $value . '</span>';
+                    $value = $value ?: _s('Valid');
+                    break;
+            }
+            $content .= '<p><div class="label">' . $result['title'] . '</div>'
+                . '<div class="text"><span class="' . $style . '">' . $value
+                . '</span>';
 
-                    if (!empty($result['message'])) {
-                        $content .= '<span class="message">' . $result['message'] . '</span>';
-                    }
-                    $content .= '</div></p>';
-                }
+            if (!empty($result['message'])) {
+                $content .= '<span class="message">' . $result['message']
+                    . '</span>';
+            }
+            $content .= '</div></p>';
+        }
 
-        $content .= '
-            </div>';
+        $content .= '</div>';
         $this->content .= $content;
 
+        $this->footContent .= '<script type="text/javascript">'
+            . PHP_EOL
+            . '$(function() {';
+        if ($this->status < 0) {
+            $this->footContent .= '
+                $("#advanced-form").slideToggle();
+                $("#advanced-label span.toggle-span").toggle();
+                ';
+        }
         $this->footContent .= '
-            <script type="text/javascript">
-            $(function() {' .
-                (($this->status < 0)
-                    ? '
-                        $("#advanced-form").slideToggle();
-                        $("#advanced-label span.toggle-span").toggle();
-                    '
-                    :''
-                ) .
-                '$("#advanced-label").click(function() {
-                    $("#advanced-form").slideToggle();
+            $("#advanced-label").click(function() {
+                $("#advanced-form").slideToggle();
                     $("#advanced-label span").toggle();
                 });
             })
             </script>';
-
     }
 
     protected function verifyRequirement()
@@ -273,7 +287,8 @@ SCRIPT;
         switch ($item) {
             case 'apc':
                 if ($status) {
-                    $value = class_exists('APCIterator', false) ? 'APCIterator available' : 'APCIterator unavailable';
+                    $value = class_exists('APCIterator', false)
+                        ? 'APCIterator available' : 'APCIterator unavailable';
                 }
                 break;
             case 'gd':
@@ -330,7 +345,8 @@ SCRIPT;
             $status = 1;
             $message = _s('Make sure that configurations have been set up correctly for nginx. Refer to <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> and <a href="http://dev.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine Dev</a> for instructions.');
         } elseif (stristr($_SERVER['SERVER_SOFTWARE'], 'apache')) {
-            // A debug was discovered by voltan that apache_get_modules could be not available
+            // A debug was discovered by voltan that
+            // apache_get_modules could be not available
             // See: http://php.net/manual/en/function.apache-get-modules.php
             if (function_exists('apache_get_modules')) {
                 $modules = apache_get_modules();
@@ -422,7 +438,10 @@ SCRIPT;
             $value = implode(', ', $items);
         } else {
             $status = 0;
-            $message = sprintf(_s('There is no recommended persist engine available. One of the following extensions is recommended: %s'), implode(', ', $persistList));
+            $message = sprintf(
+                _s('There is no recommended persist engine available. One of the following extensions is recommended: %s'),
+                implode(', ', $persistList)
+            );
         }
 
         $result = array(

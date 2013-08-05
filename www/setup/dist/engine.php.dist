@@ -14,13 +14,17 @@
 return array(
     // application configs
     'config'    => array(
-        //Site specific identifier, you should not change it after installation
+        // Site specific identifier, should not change it after installation
         'identifier'    => '%identifier%',
 
-        //Salt for hashing
+        // Salt for hashing
         'salt'          => '%salt%',
 
-        //Run mode. Potential values: production - for production, debug - for users debugging, development - for developers, close - for maintenance
+        // Run mode. Potential values:
+        // production - for production;
+        // debug - for users debugging;
+        // development - for developers;
+        // close - for maintenance
         'environment'   => '%environment%',
     ),
 

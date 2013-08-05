@@ -1,22 +1,15 @@
 <?php
 /**
- * Pi Engine download a single file
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 /**
  * Use case
+ *
  * <code>
  *  <a href="<?php echo Pi::url('www/script/download.php') . '?upload/file.ext'; ?>" title="Click to downoad">file.ext</a>
  * </code>
@@ -45,9 +38,9 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 if (empty($source) || !is_readable($source)) {
     if (substr(PHP_SAPI, 0, 3) == 'cgi') {
-        header("Status: 404 Not Found");
+        header('Status: 404 Not Found');
     } else {
-        header("HTTP/1.1 404 Not Found");
+        header('HTTP/1.1 404 Not Found');
     }
     return;
 }

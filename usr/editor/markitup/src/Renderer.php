@@ -16,7 +16,7 @@ use Zend\Form\ElementInterface;
 /**
  * Markitup renderer
  *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn> 
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Renderer extends AbstractRenderer
 {
@@ -31,7 +31,8 @@ class Renderer extends AbstractRenderer
     public function render(ElementInterface $element)
     {
         $options = array_merge($this->getOptions(), $element->getOptions());
-        $attributes = array_merge($this->getAttributes(), $element->getAttributes());
+        $attributes = array_merge($this->getAttributes(),
+            $element->getAttributes());
         $view = $this->view;
 
         // Set up set and skin
@@ -39,18 +40,22 @@ class Renderer extends AbstractRenderer
         $skin = isset($options['skin']) ? $options['skin'] : 'simple';
 
         // Set up CSS
-        $view->css(sprintf('%s/editor/markitup/skins/%s/style.css', Pi::url('script'), $skin));
-        $view->css(sprintf('%s/editor/markitup/sets/%s/style.css', Pi::url('script'), $set));
+        $view->css(sprintf('%s/editor/markitup/skins/%s/style.css',
+            Pi::url('script'), $skin));
+        $view->css(sprintf('%s/editor/markitup/sets/%s/style.css',
+            Pi::url('script'), $set));
         // Set up JavaScript
         $view->jQuery();
         $view->js(Pi::url('script') . '/editor/markitup/jquery.markitup.js');
-        $view->js(sprintf('%s/editor/markitup/sets/%s/set.js', Pi::url('script'), $set));
+        $view->js(sprintf('%s/editor/markitup/sets/%s/set.js',
+            Pi::url('script'), $set));
 
         $parserpath = '';
         if (!empty($options['sets'][$set]['parser_path'])) {
             $parserpath = $options['sets'][$set]['parser_path'];
         } else {
-            $path = sprintf('%s/editor/markitup/sets/%s/preview.php', Pi::path('script'), $set);
+            $path = sprintf('%s/editor/markitup/sets/%s/preview.php',
+                Pi::path('script'), $set);
             if (file_exists($path)) {
                 $parserpath = sprintf('~/sets/%s/preview.php', $set);
             }

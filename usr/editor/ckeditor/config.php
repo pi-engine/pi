@@ -9,11 +9,11 @@
 
 return array(
     // Version
-    "version"       => "3.6.4",
+    'version'       => '3.6.4',
     // Title of the editor
-    "name"          => "CKEditor",
+    'name'          => 'CKEditor',
     // Author who adopts the editor into Pi Engine: name, email, website
-    "author"        => "Taiwen Jiang <taiwenjiang@tsinghua.org.cn>",
+    'author'        => 'Taiwen Jiang <taiwenjiang@tsinghua.org.cn>',
     // Disable
-    "disable"      => false,
+    'disable'      => false,
 );

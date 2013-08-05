@@ -1,33 +1,34 @@
 <?php
 /**
- * Pi Engine internal file access
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Pi\Application
- * @todo            enhance security by protecting files with path filters besides mimetype filters
- * @todo            add symlink like pi.url/resource/app/mvc/my.css, pi.url/resource/plugin/comment/some.js
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
+/**
+ * Pi Engine internal file access
+ *
+ * @todo Enhance security by protecting files with path filters
+ *      besides mimetype filters
+ * @todo Add symlink like pi.url/resource/app/mvc/my.css,
+ *      pi.url/resource/plugin/comment/some.js
+ */
 
 /**#@+
- * Header for big file load, potential values:
+ * Header for big file load
+ *
+ * Potential values:
  * ACCEL_REDIRECT: nginx X-Accel-Redirect
  * SENDFILE: apache X-Sendfile, see https://tn123.org/mod_xsendfile/
  *
- * In order to use "X-Sendfile", both "XSendFile" and "XSendFilePath" must be configured correctly.
+ * In order to use "X-Sendfile", both "XSendFile" and "XSendFilePath"
+ * must be configured correctly.
  *
  * Note: No evidence is collected for so-called better performance yet.
  */
-//define("PI_HEADER_TYPE", 'SENDFILE');
+//define('PI_HEADER_TYPE', 'SENDFILE');
 /*#@-*/
 
 // Allowed file extensions
@@ -42,15 +43,16 @@ require __DIR__ . '/../boot.php';
 // Disable debugger message
 Pi::service('log')->mute();
 
-// Fetch path from query string if path is not set, i.e. through a direct request
+// Fetch path from query string if path is not set,
+// i.e. through a direct request
 if (!empty($_SERVER['QUERY_STRING'])) {
     $path = Pi::path(ltrim($_SERVER['QUERY_STRING'], '/'));
 }
 if (empty($path) || !is_readable($path)) {
     if (substr(PHP_SAPI, 0, 3) == 'cgi') {
-        header("Status: 404 Not Found");
+        header('Status: 404 Not Found');
     } else {
-        header("HTTP/1.1 404 Not Found");
+        header('HTTP/1.1 404 Not Found');
     }
     return;
 }
@@ -62,59 +64,60 @@ if (empty($path) || !is_readable($path)) {
  *  1. Only files in restricted paths are allowed to reach;
  *  2. Only files of specific mimetypes are allowed to reach.
  *
- * Currently the second policy is used and css/js/gif/jpg/png and image, text files are allowed.
+ * Currently the second policy is used and css/js/gif/jpg/png and image,
+ * text files are allowed.
  */
 $mimetypes = array(
-     "pdf"      => "application/pdf",
-     "js"       => "application/x-javascript",
-     "swf"      => "application/x-shockwave-flash",
-     "xhtml"    => "application/xhtml+xml",
-     "xht"      => "application/xhtml+xml",
-     "xhtml"    => "application/xml",
-     "ent"      => "application/xml-external-parsed-entity",
-     "dtd"      => "application/xml-dtd",
-     "mod"      => "application/xml-dtd",
-     "bmp"      => "image/bmp",
-     "gif"      => "image/gif",
-     "jpeg"     => "image/jpeg",
-     "jpg"      => "image/jpeg",
-     "jpe"      => "image/jpeg",
-     "png"      => "image/png",
-     "tiff"     => "image/tiff",
-     "tif"      => "image/tif",
-     "wbmp"     => "image/vnd.wap.wbmp",
-     "pnm"      => "image/x-portable-anymap",
-     "pbm"      => "image/x-portable-bitmap",
-     "pgm"      => "image/x-portable-graymap",
-     "ppm"      => "image/x-portable-pixmap",
-     "xbm"      => "image/x-xbitmap",
-     "xpm"      => "image/x-xpixmap",
-     "ics"      => "text/calendar",
-     "ifb"      => "text/calendar",
-     "css"      => "text/css",
-     "html"     => "text/html",
-     "htm"      => "text/html",
-     "asc"      => "text/plain",
-     "txt"      => "text/plain",
-     "rtf"      => "text/rtf",
-     "sgml"     => "text/x-sgml",
-     "sgm"      => "text/x-sgml",
-     "tsv"      => "text/tab-seperated-values",
-     "wml"      => "text/vnd.wap.wml",
-     "wmls"     => "text/vnd.wap.wmlscript",
-     "xsl"      => "text/xml",
+     'pdf'      => 'application/pdf',
+     'js'       => 'application/x-javascript',
+     'swf'      => 'application/x-shockwave-flash',
+     'xhtml'    => 'application/xhtml+xml',
+     'xht'      => 'application/xhtml+xml',
+     'xhtml'    => 'application/xml',
+     'ent'      => 'application/xml-external-parsed-entity',
+     'dtd'      => 'application/xml-dtd',
+     'mod'      => 'application/xml-dtd',
+     'bmp'      => 'image/bmp',
+     'gif'      => 'image/gif',
+     'jpeg'     => 'image/jpeg',
+     'jpg'      => 'image/jpeg',
+     'jpe'      => 'image/jpeg',
+     'png'      => 'image/png',
+     'tiff'     => 'image/tiff',
+     'tif'      => 'image/tif',
+     'wbmp'     => 'image/vnd.wap.wbmp',
+     'pnm'      => 'image/x-portable-anymap',
+     'pbm'      => 'image/x-portable-bitmap',
+     'pgm'      => 'image/x-portable-graymap',
+     'ppm'      => 'image/x-portable-pixmap',
+     'xbm'      => 'image/x-xbitmap',
+     'xpm'      => 'image/x-xpixmap',
+     'ics'      => 'text/calendar',
+     'ifb'      => 'text/calendar',
+     'css'      => 'text/css',
+     'html'     => 'text/html',
+     'htm'      => 'text/html',
+     'asc'      => 'text/plain',
+     'txt'      => 'text/plain',
+     'rtf'      => 'text/rtf',
+     'sgml'     => 'text/x-sgml',
+     'sgm'      => 'text/x-sgml',
+     'tsv'      => 'text/tab-seperated-values',
+     'wml'      => 'text/vnd.wap.wml',
+     'wmls'     => 'text/vnd.wap.wmlscript',
+     'xsl'      => 'text/xml',
 );
 
 $suffix = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 $contentType = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
 if (in_array($suffix, $allowedExtension)) {
 } else {
-    $contentTypeCategory = substr($contentType, 0, strpos($contentType, "/"));
+    $contentTypeCategory = substr($contentType, 0, strpos($contentType, '/'));
     if (!in_array($contentTypeCategory, array('image', 'text'))) {
         if (substr(PHP_SAPI, 0, 3) == 'cgi') {
-            header("Status: 403 Forbidden");
+            header('Status: 403 Forbidden');
         } else {
-            header("HTTP/1.1 403 Forbidden");
+            header('HTTP/1.1 403 Forbidden');
         }
         return;
     }
@@ -128,7 +131,8 @@ header('Content-type: ' . $contentType);
  */
 //header('Content-Length: ' . filesize($path));
 /**
- * If gzip is enabled, the filesize is not calcuated correctly thus it will cause browser problems like temporarily hanging.
+ * If gzip is enabled, the filesize is not calcuated correctly
+ * thus it will cause browser problems like temporarily hanging.
  * @see http://www.edginet.org/techie/website/http.html
  * A possible solution would be
  *  <code>
@@ -156,7 +160,7 @@ if (defined('PI_HEADER_TYPE')) {
     }
 }
 
-$handle = fopen($path, "rb");
+$handle = fopen($path, 'rb');
 if (!$handle) {
     return;
 }

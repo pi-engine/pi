@@ -9,11 +9,11 @@
 
 return array(
     // Version
-    "version"       => "1.1.12",
+    'version'       => '1.1.12',
     // Title of the editor
-    "name"          => "MarkItUp",
+    'name'          => 'MarkItUp',
     // Author who adopts the editor into Pi Engine: name, email, website
-    "author"        => "Taiwen Jiang <taiwenjiang@tsinghua.org.cn>",
+    'author'        => 'Taiwen Jiang <taiwenjiang@tsinghua.org.cn>',
     // Disable
-    "disable"      => false,
+    'disable'      => false,
 );

@@ -151,7 +151,8 @@ class Request
      * Set the REQUEST_URI on which the instance operates
      *
      * If no request URI is passed, uses the value in $_SERVER['REQUEST_URI'],
-     * $_SERVER['HTTP_X_REWRITE_URL'], or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
+     * $_SERVER['HTTP_X_REWRITE_URL'],
+     * or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
      *
      * @param string $requestUri
      * @return self
@@ -159,10 +160,12 @@ class Request
     public function setRequestUri($requestUri = null)
     {
         if ($requestUri === null) {
-            if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { // check this first so IIS will catch
+            // check this first so IIS will catch
+            if (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
                 $requestUri = $_SERVER['HTTP_X_REWRITE_URL'];
             } elseif (
-                // IIS7 with URL Rewrite: make sure we get the unencoded url (double slash problem)
+                // IIS7 with URL Rewrite:
+                // make sure we get the unencoded url (double slash problem)
                 isset($_SERVER['IIS_WasUrlRewritten'])
                 && $_SERVER['IIS_WasUrlRewritten'] == '1'
                 && isset($_SERVER['UNENCODED_URL'])
@@ -171,12 +174,16 @@ class Request
                 $requestUri = $_SERVER['UNENCODED_URL'];
             } elseif (isset($_SERVER['REQUEST_URI'])) {
                 $requestUri = $_SERVER['REQUEST_URI'];
-                // Http proxy reqs setup request uri with scheme and host [and port] + the url path, only use url path
-                $schemeAndHttpHost = $this->getScheme() . '://' . $this->getHttpHost();
+                // Http proxy reqs setup request uri with scheme
+                // and host [and port] + the url path, only use url path
+                $schemeAndHttpHost = $this->getScheme() . '://'
+                    . $this->getHttpHost();
                 if (strpos($requestUri, $schemeAndHttpHost) === 0) {
-                    $requestUri = substr($requestUri, strlen($schemeAndHttpHost));
+                    $requestUri = substr($requestUri,
+                        strlen($schemeAndHttpHost));
                 }
-            } elseif (isset($_SERVER['ORIG_PATH_INFO'])) { // IIS 5.0, PHP as CGI
+            // IIS 5.0, PHP as CGI
+            } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
                 $requestUri = $_SERVER['ORIG_PATH_INFO'];
                 if (!empty($_SERVER['QUERY_STRING'])) {
                     $requestUri .= '?' . $_SERVER['QUERY_STRING'];
@@ -208,7 +215,8 @@ class Request
     }
 
     /**
-     * Set the base URL of the request; i.e., the segment leading to the script name
+     * Set the base URL of the request; i.e.,
+     * the segment leading to the script name
      *
      * E.g.:
      *
@@ -236,19 +244,26 @@ class Request
         }
 
         if ($baseUrl === null) {
-            $filename = (isset($_SERVER['SCRIPT_FILENAME'])) ? basename($_SERVER['SCRIPT_FILENAME']) : '';
+            $filename = (isset($_SERVER['SCRIPT_FILENAME']))
+                ? basename($_SERVER['SCRIPT_FILENAME']) : '';
 
-            if (isset($_SERVER['SCRIPT_NAME']) && basename($_SERVER['SCRIPT_NAME']) === $filename) {
+            if (isset($_SERVER['SCRIPT_NAME'])
+                && basename($_SERVER['SCRIPT_NAME']) === $filename) {
                 $baseUrl = $_SERVER['SCRIPT_NAME'];
-            } elseif (isset($_SERVER['PHP_SELF']) && basename($_SERVER['PHP_SELF']) === $filename) {
+            } elseif (isset($_SERVER['PHP_SELF'])
+                && basename($_SERVER['PHP_SELF']) === $filename) {
                 $baseUrl = $_SERVER['PHP_SELF'];
-            } elseif (isset($_SERVER['ORIG_SCRIPT_NAME']) && basename($_SERVER['ORIG_SCRIPT_NAME']) === $filename) {
-                $baseUrl = $_SERVER['ORIG_SCRIPT_NAME']; // 1and1 shared hosting compatibility
+            } elseif (isset($_SERVER['ORIG_SCRIPT_NAME'])
+                && basename($_SERVER['ORIG_SCRIPT_NAME']) === $filename) {
+                // 1and1 shared hosting compatibility
+                $baseUrl = $_SERVER['ORIG_SCRIPT_NAME'];
             } else {
-                // Backtrack up the script_filename to find the portion matching
+                // Backtrack up script_filename to find the portion matching
                 // php_self
-                $path    = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
-                $file    = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+                $path    = isset($_SERVER['PHP_SELF'])
+                    ? $_SERVER['PHP_SELF'] : '';
+                $file    = isset($_SERVER['SCRIPT_FILENAME'])
+                    ? $_SERVER['SCRIPT_FILENAME'] : '';
                 $segs    = explode('/', trim($file, '/'));
                 $segs    = array_reverse($segs);
                 $index   = 0;
@@ -258,7 +273,9 @@ class Request
                     $seg     = $segs[$index];
                     $baseUrl = '/' . $seg . $baseUrl;
                     ++$index;
-                } while (($last > $index) && (false !== ($pos = strpos($path, $baseUrl))) && (0 != $pos));
+                } while (($last > $index)
+                    && (false !== ($pos = strpos($path, $baseUrl)))
+                    && (0 != $pos));
             }
 
             // Does the baseUrl have anything in common with the request_uri?
@@ -299,7 +316,8 @@ class Request
             // out of baseUrl. $pos !== 0 makes sure it is not matching a value
             // from PATH_INFO or QUERY_STRING
             if ((strlen($requestUri) >= strlen($baseUrl))
-                && ((false !== ($pos = strpos($requestUri, $baseUrl))) && ($pos !== 0)))
+                && ((false !== ($pos = strpos($requestUri, $baseUrl)))
+                    && ($pos !== 0)))
             {
                 $baseUrl = substr($requestUri, 0, $pos + strlen($baseUrl));
             }
@@ -523,7 +541,8 @@ class Request
      */
     public function getScheme()
     {
-        return ($this->getServer('HTTPS') == 'on') ? static::SCHEME_HTTPS : static::SCHEME_HTTP;
+        return ($this->getServer('HTTPS') == 'on')
+            ? static::SCHEME_HTTPS : static::SCHEME_HTTP;
     }
 
     /**
@@ -548,8 +567,8 @@ class Request
 
         if(null === $name) {
             return '';
-        }
-        elseif (($scheme == static::SCHEME_HTTP && $port == 80) || ($scheme == static::SCHEME_HTTPS && $port == 443)) {
+        } elseif (($scheme == static::SCHEME_HTTP && $port == 80)
+            || ($scheme == static::SCHEME_HTTPS && $port == 443)) {
             return $name;
         } else {
             return $name . ':' . $port;
@@ -566,7 +585,8 @@ class Request
     {
         if ($checkProxy && $this->getServer('HTTP_CLIENT_IP') != null) {
             $ip = $this->getServer('HTTP_CLIENT_IP');
-        } else if ($checkProxy && $this->getServer('HTTP_X_FORWARDED_FOR') != null) {
+        } elseif ($checkProxy
+            && $this->getServer('HTTP_X_FORWARDED_FOR') != null) {
             $ip = $this->getServer('HTTP_X_FORWARDED_FOR');
         } else {
             $ip = $this->getServer('REMOTE_ADDR');

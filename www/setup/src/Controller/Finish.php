@@ -41,10 +41,12 @@ class Finish extends AbstractController
         $content = file_get_contents($file_dist);
         foreach ($vars as $var => $val) {
             if (!empty($val['path'])) {
-                $content = str_replace('%' . $var . '%', $val['path'], $content);
+                $content = str_replace('%' . $var . '%',
+                    $val['path'], $content);
             }
         }
-        $content = str_replace('%host%', $vars['config']['path'] . '/host.php', $content);
+        $content = str_replace('%host%',
+            $vars['config']['path'] . '/host.php', $content);
         $configs[] = array('file' => $file, 'content' => $content);
         /**#@-*/
 
@@ -78,19 +80,22 @@ class Finish extends AbstractController
                 @chmod($file, 0644);
                 $readPaths .= '<li class="files">' . $section . '/' . $item . '</li>';
                 if (is_dir($file)) {
-                    $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($file), RecursiveIteratorIterator::CHILD_FIRST);
+                    $objects = new RecursiveIteratorIterator(
+                        new RecursiveDirectoryIterator($file),
+                        RecursiveIteratorIterator::CHILD_FIRST
+                    );
                     foreach ($objects as $object) {
                         @chmod($file, 0644);
                     }
                 }
             }
         }
-        $readPaths .= "</ul>";
+        $readPaths .= '</ul>';
 
-        $message = <<<'HTML'
+        $message = _s('
 <div class="well">
 <h3>Congratulatons!</h3>
-<p>The system is set up successfully. <a href='../index.php?redirect=0'>Click to visit your website!</a></p>
+<p>The system is set up successfully. <a href="../index.php?redirect=0">Click to visit your website!</a></p>
 </div>
 <div class="well">
 <h3>Security advisory</h3>
@@ -102,13 +107,16 @@ class Finish extends AbstractController
 </div>
 <div class="well">
 <h3>Support</h3>
-<p>Visit <a href='http://www.xoopsengine.org/' rel='external'>Pi Engine Development Site</a> in case you need any help.</p>
+<p>Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.</p>
 </div>
-HTML;
-        $this->content = sprintf(_s($message), $readPaths);
+');
+        $this->content = sprintf($message, $readPaths);
 
         $path = Pi::path('cache');
-        $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
+        $objects = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($path),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
         foreach ($objects as $object) {
             if ($object->isFile() && 'index.html' != $object->getFilename()) {
                 unlink($object->getPathname());

@@ -11,7 +11,9 @@
  */
 
 // Physical path to host configuration file
-// For performance consideration it is recommended to be specified if there is only one host; Otherwise it will be automatically looked up in central host specifications
+// For performance consideration it is recommended to be specified
+// if there is only one host;
+// Otherwise it will be automatically looked up in central host specifications
 define('PI_PATH_HOST', '%host%');
 
 // Physical path to default library directory WITHOUT trailing slash

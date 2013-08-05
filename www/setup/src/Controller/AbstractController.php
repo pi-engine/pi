@@ -37,13 +37,15 @@ abstract class AbstractController
             $vars = $wizard->getPersist('paths');
 
             // Physical path to host configuration file
-            // For performance consideration it is recommended to be specified if there is only one host; Otherwise it will be automatically looked up in central host specifications
+            // For performance consideration it is recommended to be specified
+            // if there is only one host; Otherwise it will be automatically
+            // looked up in central host specifications
             define('PI_PATH_HOST', $vars['config']['path'] . '/host.php');
 
             // Physical path to www directory WITHOUT trailing slash
             define('PI_PATH_WWW', $vars['www']['path']);
 
-            // Physical path to default library directory WITHOUT trailing slash
+            // Physical path to default lib directory WITHOUT trailing slash
             define('PI_PATH_LIB', $vars['lib']['path']);
             /**#@-*/
 

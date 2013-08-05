@@ -69,12 +69,17 @@ class Database extends AbstractController
         $vars = $this->normalizeParameters($this->vars);
         $options = array(
             //PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8',
-            PDO::MYSQL_ATTR_INIT_COMMAND    => sprintf('SET NAMES %s COLLATE %s', $dbConfig['charset'], $dbConfig['collate']),
+            PDO::MYSQL_ATTR_INIT_COMMAND    =>
+                sprintf('SET NAMES %s COLLATE %s', $dbConfig['charset'],
+                    $dbConfig['collate']),
             PDO::ATTR_PERSISTENT            => false,
         );
         try {
-            $this->dbLink = new PDO($vars['dsn'], $vars['username'], $vars['password'], $options);
-            $sql = sprintf('ALTER DATABASE `%s` DEFAULT CHARACTER SET %s COLLATE %s', $vars['schema'], $dbConfig['charset'], $dbConfig['collate']);
+            $this->dbLink = new PDO($vars['dsn'], $vars['username'],
+                $vars['password'], $options);
+            $sql = sprintf('ALTER DATABASE `%s` DEFAULT CHARACTER'
+                    . ' SET %s COLLATE %s',
+                $vars['schema'], $dbConfig['charset'], $dbConfig['collate']);
             $this->dbLink->exec($sql);
         } catch (\PDOexception $e) {
             echo $e->getMessage();
@@ -93,7 +98,7 @@ class Database extends AbstractController
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
         $this->wizard->setPersist('db-settings', $this->vars);
-        echo "1";
+        echo '1';
     }
 
     public function submitAction()
@@ -108,15 +113,15 @@ class Database extends AbstractController
         $params = array_merge($params, $dbConfig);
 
         $file = Pi::path('config') . '/service.database.php';
-        $file_dist = $this->wizard->getRoot() . '/dist/service.database.php.dist';
+        $file_dist = $this->wizard->getRoot()
+            . '/dist/service.database.php.dist';
         $content = file_get_contents($file_dist);
         foreach ($params as $var => $val) {
-            //$content = preg_replace('|(\'' . $var . '\'\s*=\>\s*)\'\'|', '\\1\'' . $val . '\'', $content);
             $content = str_replace('%' . $var . '%', $val, $content);
         }
 
         $error_dsn = false;
-        if (!$file = fopen($file, "w")) {
+        if (!$file = fopen($file, 'w')) {
             $error_dsn = true;
         } else {
             $result = fwrite($file, $content);
@@ -128,15 +133,18 @@ class Database extends AbstractController
         if (empty($error_dsn)) {
             $this->status = 1;
         } else {
-            $errorDsn = array("file" => $file, "content" => $content);
+            $errorDsn = array('file' => $file, 'content' => $content);
         }
 
         $content = '';
         if (!empty($errorDsn)) {
-            $content .= '
-                <h3>' . _s('Configuration file write error') . '</h3>
-                    <p class="caption" style="margin-top: 10px;">' . sprintf(_s('The configuration file "%s" is not written correctly.'), $errorDsn['file']) . '</p>
-                    <textarea cols="80" rows="10">' . $errorDsn['content'] . '</textarea>';
+            $content .= '<h3>' . _s('Configuration file write error') . '</h3>'
+                . '<p class="caption" style="margin-top: 10px;">'
+                . sprintf(_s(
+                    'The configuration file "%s" is not written correctly.'
+                    ), $errorDsn['file'])
+                . '</p><textarea cols="80" rows="10">' . $errorDsn['content']
+                . '</textarea>';
         }
         $this->content .= $content;
     }
@@ -178,12 +186,14 @@ class Database extends AbstractController
         );
 
         $displayInput = function ($item) use ($vars, $elementInfo) {
-            $content = '<div class="item">
-                <label for="' . $item . '" class="">' . $elementInfo[$item][0] . '</label>
-                <p class="caption">' . $elementInfo[$item][1] . '</p>
-                <input type="text" name="' . $item . '" id="' . $item . '" value="' . $vars[$item] . '" />
-                <em id="' . $item . '-status" class="">&nbsp;</em>
-                </div>';
+            $content = '<div class="item">'
+                . '<label for="' . $item . '" class="">'
+                . $elementInfo[$item][0] . '</label>'
+                . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
+                . '<input type="text" name="' . $item . '" id="'
+                . $item . '" value="' . $vars[$item] . '" />'
+                . '<em id="' . $item . '-status" class="">&nbsp;</em>'
+                . '</div>';
             return $content;
         };
 
@@ -192,21 +202,23 @@ class Database extends AbstractController
         $content .= $displayInput('DB_USER');
 
         $item = 'DB_PASS';
-        $content .= '<div class="item">
-            <label for="' . $item . '">' . $elementInfo[$item][0] . '</label>
-            <p class="caption">' . $elementInfo[$item][1] . '</p>
-            <input type="password" name="' . $item . '" id="' . $item . '" value="" />
-            </div>';
+        $content .= '<div class="item">'
+            . '<label for="' . $item . '">'
+            . $elementInfo[$item][0] . '</label>'
+            . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
+            . '<input type="password" name="' . $item . '" id="'
+            . $item . '" value="" />'
+            . '</div>';
 
         $content .= $displayInput('DB_DBNAME');
         $content .= $displayInput('DB_PREFIX');
 
-        $contentSetup = '
-            <div class="well">
-            <h2><span id="db-connection-label" class="">' . _s("Database setup") . '</span></h2>
-            <p class="caption">' . _s("Settings for database") . '</p>' .
-            $content .
-            '</div>';
+        $contentSetup = '<div class="well">'
+            . '<h2><span id="db-connection-label" class="">'
+            . _s('Database setup') . '</span></h2>'
+            . '<p class="caption">' . _s('Settings for database') . '</p>'
+            . $content
+            . '</div>';
 
         $this->content = $contentSetup;
 
@@ -253,7 +265,9 @@ function checkEmpty(id) {
 
 function updateConnection(v, val) {
     $("#db-connection-label").attr("class", "loading");
-    $.get(url, {"action": "set", "var": v, "val": val, "page": "database"}, function (data) {
+    $.get(url,
+        {"action": "set", "var": v, "val": val, "page": "database"},
+        function (data) {
         if (data) {
             checkConnection();
             checkEmpty(v);
@@ -262,7 +276,10 @@ function updateConnection(v, val) {
 }
 
 function update(id) {
-    $.get(url, {"action": "set", "var": id, "val": $("#" + id).val(), "page": "database"}, function (data) {
+    $.get(url,
+        {"action": "set", "var": id, "val": $("#" + id).val(),
+            "page": "database"},
+        function (data) {
         if (data) {
             checkEmpty(id);
         }

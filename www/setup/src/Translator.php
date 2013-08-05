@@ -40,7 +40,8 @@ class Translator
      */
     public static function translate($messageId)
     {
-        $message = isset(static::$data[static::$locale][$messageId]) ? static::$data[static::$locale][$messageId] : $messageId;
+        $message = isset(static::$data[static::$locale][$messageId])
+            ? static::$data[static::$locale][$messageId] : $messageId;
         return $message;
     }
 
@@ -74,7 +75,8 @@ class Translator
      */
     public static function loadDomain($domain)
     {
-        $filename = sprintf('%s/%s/%s.csv', static::$basePath, static::$locale, $domain);
+        $filename = sprintf('%s/%s/%s.csv',
+            static::$basePath, static::$locale, $domain);
         try {
             if (isset(static::$data[$domain])) {
                 static::$data[$domain] += (array) static::loadFile($filename);
@@ -89,7 +91,7 @@ class Translator
     /**
      * Load translation data (CSV file reader)
      *
-     * @param  string  $filename  CSV file to add, full path must be given for access
+     * @param  string  $filename  Full path to CSV file
      * @param  array   $option    OPTIONAL Options to use
      * @return array
      */
@@ -99,10 +101,14 @@ class Translator
         $options     = $options + static::$options;
         $file = @fopen($filename, 'rb');
         if (!$file) {
-            throw new \InvalidArgumentException('Error opening translation file \'' . $filename . '\'.');
+            throw new \InvalidArgumentException(
+                'Error opening translation file \'' . $filename . '\'.'
+            );
         }
 
-        while (($data = fgetcsv($file, $options['length'], $options['delimiter'], $options['enclosure'])) !== false) {
+        while (($data = fgetcsv($file, $options['length'],
+                $options['delimiter'], $options['enclosure']))
+            !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }

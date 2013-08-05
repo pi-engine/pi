@@ -13,4 +13,4 @@
 define('APPLICATION_ENGINE', getenv('APPLICATION_ENGINE') ?: 'Standard');
 define('PI_BOOT_ENABLE', 1);
 
-include __DIR__ . "/boot.php";
+include __DIR__ . '/boot.php';
