@@ -1,21 +1,10 @@
 <?php
 /**
- * Configuration form
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Form
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Form;
@@ -24,16 +13,26 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter;
 
+/**
+ * Config form
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class ConfigForm extends BaseForm
 {
+    /** @var string Module name */
     protected $module;
+
+    /** @var string Form name */
     protected $name = 'config';
+
+    /** @var array Configs */
     protected $configs;
 
     /**
      * Constructor
      *
-     * @param null|string|int $name Optional name for the element
+     * @param array $configs
      * @param string $module
      */
     public function __construct($configs, $module)
@@ -44,23 +43,8 @@ class ConfigForm extends BaseForm
     }
 
     /**
-     * Retrieve input filter used by this form.
-     *
-     * Attaches defaults from attached elements, if no corresponding input
-     * exists for the given element in the input filter.
-     *
-     * @return InputFilterInterface
+     * {@inheritDoc}
      */
-    /*
-    public function getInputFilter()
-    {
-        if (!$this->filter) {
-            $this->filter = new InputFilter;
-        }
-        return $this->filter;
-    }
-    */
-
     public function init()
     {
         foreach ($this->configs as $config) {
@@ -76,9 +60,11 @@ class ConfigForm extends BaseForm
         ));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isValid()
     {
-        //$this->setInputFilter(ConfigFilter);
         foreach ($this->configs as $config) {
             $this->addFilter($config);
         }
@@ -88,7 +74,8 @@ class ConfigForm extends BaseForm
 
     protected function addElement($config)
     {
-        $attributes = isset($config->edit['attributes']) ? $config->edit['attributes'] : array();
+        $attributes = isset($config->edit['attributes'])
+            ? $config->edit['attributes'] : array();
         $attributes['value'] = $config->value;
         //$attributes['label'] = __($config->title);
         $attributes['description'] = __($config->description);
@@ -112,6 +99,11 @@ class ConfigForm extends BaseForm
         $this->add($element);
     }
 
+    /**
+     * Add input filter
+     *
+     * @param \Pi\Db\RowGateway\RowGateway $config
+     */
     protected function addFilter($config)
     {
         $filter = array(

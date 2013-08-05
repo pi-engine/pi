@@ -1,20 +1,10 @@
 <?php
 /**
- * System module member manipulation API class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Api;
@@ -23,18 +13,42 @@ use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
 
+/**
+ * System user manipulation APIs
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Member extends AbstractApi
 {
+    /**
+     * Module name
+     * @var string
+     */
     protected $module = 'system';
 
+    /**
+     * Columns for account
+     * @var string[]
+     */
     protected $accountColumns = array(
         'id',
         'identity', 'name', 'email', 'active', 'credential', 'salt'
     );
+
+    /**
+     * Columns for profile
+     * @var string[]
+     */
     protected $roleColumns = array(
         'user', 'role', 'role_staff',
     );
 
+    /**
+     * Canonize user account and role data
+     *
+     * @param array $user
+     * @return array Pair of account and role data
+     */
     protected function canonize($user)
     {
         $account = array();
@@ -56,7 +70,7 @@ class Member extends AbstractApi
      * Adds a user and its role
      *
      * @param array $user
-     * @return user ID, status, message
+     * @return array User ID, status, message
      */
     public function add($user)
     {
@@ -70,7 +84,8 @@ class Member extends AbstractApi
         $row = Pi::model('user')->createRow($account);
         $row->prepare()->save();
         if (!$row->id) {
-            $return['message'] = sprintf('User account "%s" is not created.', $user['identity']);
+            $return['message'] = sprintf('User account "%s" is not created.',
+                $user['identity']);
             return $return;
         }
         if (!empty($role['role'])) {
@@ -90,7 +105,7 @@ class Member extends AbstractApi
      * Updates a user and its role
      *
      * @param array $user
-     * @return status, message
+     * @return array Result pair of status and message
      */
     public function update($user)
     {
@@ -109,7 +124,8 @@ class Member extends AbstractApi
             $row->assign($account);
             $row->save();
         } catch (\Exception $e) {
-            $return['message'] = sprintf('User account "%s" is not saved.', $user['identity']);
+            $return['message'] = sprintf('User account "%s" is not saved.',
+                $user['identity']);
             return $return;
         }
 
@@ -131,7 +147,7 @@ class Member extends AbstractApi
      * Deletes a user and its role
      *
      * @param int|RowGateway $entity
-     * @return array bool, message
+     * @return array Result pair of status and message
      */
     public function delete($entity, $isRoot = false)
     {
@@ -166,7 +182,8 @@ class Member extends AbstractApi
             Pi::model('user_role')->delete(array('user' => $id));
             Pi::model('user_staff')->delete(array('user' => $id));
         } catch (\Exception $e) {
-            $return['message'] = 'User role is not deleted: ' . $e->getMessage();
+            $return['message'] = 'User role is not deleted: '
+                . $e->getMessage();
             return $return;
         }
 
@@ -175,19 +192,42 @@ class Member extends AbstractApi
         return $return;
     }
 
+    /**
+     * Set user role for a member
+     *
+     * @param int $user
+     * @param string $role
+     * @return bool
+     */
     public function setUserRole($user, $role)
     {
         return $this->setRole($user, $role, 'user');
     }
 
+    /**
+     * Set staff (admin) role for a member
+     *
+     * @param int $user
+     * @param string $role
+     * @return bool
+     */
     public function setStaffRole($user, $role)
     {
         return $this->setRole($user, $role, 'staff');
     }
 
+    /**
+     * Set role for a user
+     *
+     * @param int $user
+     * @param string $role
+     * @param string $type
+     * @return bool
+     */
     protected function setRole($user, $role, $type = 'user')
     {
-        $model = ('staff' == $type) ? Pi::model('user_staff') : Pi::model('user_role');
+        $model = ('staff' == $type)
+            ? Pi::model('user_staff') : Pi::model('user_role');
         if (empty($role)) {
             $model->delete(array('user' => $user));
             return true;
@@ -212,5 +252,4 @@ class Member extends AbstractApi
         }
         return true;
    }
-
 }

@@ -1,20 +1,10 @@
 <?php
 /**
- * Member management controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -29,18 +19,32 @@ use Zend\Db\Sql\Predicate\Expression;
 use Pi\Paginator\Paginator;
 
 /**
+ * Member controller
+ *
  * Feature list:
+ *
  * 1. Member list
  * 2. Member account create
  * 2. Member account/profile edit
  * 3. Memeber delete
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class MemberController extends ActionController
 {
+    /**
+     * Columns for user account
+     * @var string[]
+     */
     protected $columns = array(
         'name', 'identity', 'email'
     );
 
+    /**
+     * Get role list
+     *
+     * @return array
+     */
     protected function getRoles()
     {
         $roles = array(
@@ -55,6 +59,9 @@ class MemberController extends ActionController
         return $roles;
     }
 
+    /**
+     * User list
+     */
     public function indexAction()
     {
         //$role = $this->params('role', null);
@@ -70,7 +77,8 @@ class MemberController extends ActionController
         if (null !== $active) {
             $where['active'] = (int) $active;
         }
-        $select = $model->select()->where($where)->order('id')->offset($offset)->limit($limit);
+        $select = $model->select()->where($where)->order('id')
+            ->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
         $users = array();
         foreach ($rowset as $row) {
@@ -82,7 +90,9 @@ class MemberController extends ActionController
                 'active'    => $row->active,
             );
         }
-        $select = $model->select()->columns(array('count' => new Expression('count(*)')))->where($where);
+        $select = $model->select()
+            ->columns(array('count' => new Expression('count(*)')))
+            ->where($where);
         $count = $model->selectWith($select)->current()->count;
 
         $roleList = array();
@@ -112,7 +122,8 @@ class MemberController extends ActionController
         */
         foreach ($users as $id => &$user) {
             $user['role'] = $roleList[$user['role']];
-            $user['role_staff'] = isset($user['role_staff']) ? $roleList[$user['role_staff']] : '';
+            $user['role_staff'] = isset($user['role_staff'])
+                ? $roleList[$user['role_staff']] : '';
         }
 
         $paginator = Paginator::factory(intval($count));
@@ -123,7 +134,8 @@ class MemberController extends ActionController
             'pageParam'     => 'p',
             'totalParam'    => 't',
             'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'route'         => $this->getEvent()->getRouteMatch()
+                ->getMatchedRouteName(),
             'params'        => array(
                 'module'        => $this->getModule(),
                 'controller'    => 'member',
@@ -140,6 +152,11 @@ class MemberController extends ActionController
         $this->view()->assign('roles', $roles);
     }
 
+    /**
+     * User list of a role
+     *
+     * @return void
+     */
     public function roleAction()
     {
         $role = $this->params('role', null);
@@ -169,7 +186,8 @@ class MemberController extends ActionController
         if (null !== $role) {
             $where['role'] = $role;
         }
-        $select = $model->select()->where($where)->order('user')->offset($offset)->limit($limit);
+        $select = $model->select()->where($where)->order('user')
+            ->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
         $users = array();
         foreach ($rowset as $row) {
@@ -177,12 +195,15 @@ class MemberController extends ActionController
                 'role'  => $row->role,
             );
         }
-        $select = $model->select()->columns(array('count' => new Expression('count(*)')))->where($where);
+        $select = $model->select()
+            ->columns(array('count' => new Expression('count(*)')))
+            ->where($where);
         $count = $model->selectWith($select)->current()->count;
 
         if ($users) {
             $roleList = array();
-            $rowset = Pi::model('user')->select(array('id' => array_keys($users)));
+            $rowset = Pi::model('user')
+                ->select(array('id' => array_keys($users)));
             $roleType = $isFront ? 'role' : 'role_staff';
             foreach ($rowset as $row) {
                 $userRole = $users[$row->id]['role'];
@@ -197,7 +218,8 @@ class MemberController extends ActionController
                 $roleList[$userRole] = '';
             }
 
-            $model = $isFront ? Pi::model('user_staff') : Pi::model('user_role');
+            $model = $isFront
+                ? Pi::model('user_staff') : Pi::model('user_role');
             $rowset = $model->select(array('user' => array_keys($users)));
             $roleType = $isFront ? 'role_staff' : 'role';
             foreach ($rowset as $row) {
@@ -211,7 +233,8 @@ class MemberController extends ActionController
 
             foreach ($users as $id => &$user) {
                 $user['role'] = $roleList[$user['role']];
-                $user['role_staff'] = isset($user['role_staff']) ? $roleList[$user['role_staff']] : '';
+                $user['role_staff'] = isset($user['role_staff'])
+                    ? $roleList[$user['role_staff']] : '';
             }
         }
 
@@ -223,7 +246,8 @@ class MemberController extends ActionController
             'pageParam'     => 'p',
             'totalParam'    => 't',
             'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'route'         => $this->getEvent()->getRouteMatch()
+                ->getMatchedRouteName(),
             'params'        => array(
                 'module'        => $this->getModule(),
                 'controller'    => 'member',
@@ -242,6 +266,11 @@ class MemberController extends ActionController
         $this->view()->setTemplate('member-index');
     }
 
+    /**
+     * Add a user
+     *
+     * @return void
+     */
     public function addAction()
     {
         $form = new MemberForm('member');
@@ -251,7 +280,8 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('member', 'add'), $values);
+                $result = Pi::service('api')->system(array('member', 'add'),
+                    $values);
                 if ($result['status']) {
                     $message = __('User created saved successfully.');
                     $this->jump(array('action' => 'index'));
@@ -260,7 +290,8 @@ class MemberController extends ActionController
                     $message = __('User not created.');
                 }
             } else {
-                $message = $form->getMessage() ?: __('Invalid data, please check and re-submit.');
+                $message = $form->getMessage()
+                    ?: __('Invalid data, please check and re-submit.');
             }
         } else {
             $message = '';
@@ -274,12 +305,18 @@ class MemberController extends ActionController
         ));
     }
 
+    /**
+     * Edit a user
+     *
+     * @return void
+     */
     public function editAction()
     {
         $id = $this->params('id');
         $row = Pi::model('user')->find($id);
         if (!$row) {
-            $this->jump(array('action' => 'index'), __('The user is not found.'));
+            $this->jump(array('action' => 'index'),
+                __('The user is not found.'));
         }
         $user = $row->toArray();
         $role = Pi::model('user_role')->find($row->id, 'user');
@@ -300,7 +337,8 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('member', 'update'), $values);
+                $result = Pi::service('api')->system(array('member', 'update'),
+                    $values);
                 if ($result['status']) {
                     $message = __('User data saved successfully.');
                     $this->jump(array('action' => 'index'));
@@ -309,7 +347,8 @@ class MemberController extends ActionController
                     $message = __('User data not saved.');
                 }
             } else {
-                $message = $form->getMessage() ?: __('Invalid data, please check and re-submit.');
+                $message = $form->getMessage()
+                    ?: __('Invalid data, please check and re-submit.');
             }
         } else {
             $message = '';
@@ -323,16 +362,23 @@ class MemberController extends ActionController
         ));
     }
 
+    /**
+     * Change password
+     *
+     * @return void
+     */
     public function passwordAction()
     {
         $id = $this->params('id');
         $row = Pi::model('user')->find($id);
         if (!$row) {
-            $this->jump(array('action' => 'index'), __('The user is not found.'));
+            $this->jump(array('action' => 'index'),
+                __('The user is not found.'));
         }
 
         $form = new PasswordForm('password');
-        $form->remove('credential')->setData(array('identity' => $row->identity));
+        $form->remove('credential')
+            ->setData(array('identity' => $row->identity));
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $filter = new PasswordFilter;
@@ -371,16 +417,23 @@ class MemberController extends ActionController
         ));
     }
 
+    /**
+     * Delete a uer
+     *
+     * @return void
+     */
     public function deleteAction()
     {
         $id = $this->params('id');
         if ($id == 1) {
-            $this->jump(array('action' => 'index'), __('The user is protected from deletion.'));
+            $this->jump(array('action' => 'index'),
+                __('The user is protected from deletion.'));
             return;
         }
         Pi::service('api')->system(array('member', 'delete'), $id);
 
-        $this->jump(array('action' => 'index'), __('The user is deleted successfully.'));
+        $this->jump(array('action' => 'index'),
+            __('The user is deleted successfully.'));
         $this->setTemplate('false');
     }
 }

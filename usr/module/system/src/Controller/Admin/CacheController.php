@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin cache controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -24,14 +13,21 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
+ * Cache maintenance
+ *
  * Feature list:
+ *
  *  1. List of cache types to maintain
  *  2. Flush a type of cache
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class CacheController extends ActionController
 {
     /**
      * List of caches
+     *
+     * @return void
      */
     public function indexAction()
     {
@@ -58,18 +54,23 @@ class CacheController extends ActionController
             $cacheList['apc'] .= ' (' . $totalCount . '-' . $totalSize . ')';
         }
         $cacheStorageClass = get_class(Pi::service('cache')->storage());
-        $cacheStorageName = substr($cacheStorageClass, strrpos($cacheStorageClass, '\\') + 1);
-        $cacheList['application'] = sprintf(__('Application cache [%s]'), $cacheStorageName);
+        $cacheStorageName = substr($cacheStorageClass,
+            strrpos($cacheStorageClass, '\\') + 1);
+        $cacheList['application'] = sprintf(__('Application cache [%s]'),
+            $cacheStorageName);
 
         $frontConfig = Pi::config()->load('application.front.php');
         if (!empty($frontConfig['resource']['cache'])) {
             if (!empty($frontConfig['resource']['cache']['storage'])) {
-                $cacheStorage = Pi::service('cache')->loadStorage($frontConfig['resource']['cache']['storage']);
+                $cacheStorage = Pi::service('cache')->loadStorage(
+                    $frontConfig['resource']['cache']['storage']
+                );
             } else {
                 $cacheStorage = Pi::service('cache')->storage();
             }
             $cacheStorageClass = get_class($cacheStorage);
-            $cacheStorageName = substr($cacheStorageClass, strrpos($cacheStorageClass, '\\') + 1);
+            $cacheStorageName = substr($cacheStorageClass,
+                strrpos($cacheStorageClass, '\\') + 1);
             $page['title'] = sprintf(__('Page cache [%s]'), $cacheStorageName);
             $modules = Pi::service('module')->meta();
             $page['modules'] = array_keys($modules);
@@ -88,6 +89,8 @@ class CacheController extends ActionController
 
     /**
      * Flush a type of cache
+     *
+     * @return array Result pair of status and message
      */
     public function flushAction()
     {
@@ -136,9 +139,13 @@ class CacheController extends ActionController
             'status'    => 1,
             'message'   => __('Cache is flushed successfully.'),
         );
-        //$this->redirect()->toRoute('', array('action' => 'index', 'type' => $type));
     }
 
+    /**
+     * Flush APC caches
+     *
+     * @return void
+     */
     protected function flushApc()
     {
         if (!function_exists('apc_clear_cache')) {
@@ -149,10 +156,18 @@ class CacheController extends ActionController
         return;
     }
 
+    /**
+     * Flush filesystem folders
+     *
+     * @return void
+     */
     protected function flushFolder()
     {
         $path = Pi::path('cache');
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::CHILD_FIRST);
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($path),
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
         foreach ($iterator as $object) {
             $filename = $object->getFilename();
             if ($object->isFile() && 'index.html' !== $filename) {
@@ -165,6 +180,11 @@ class CacheController extends ActionController
         return;
     }
 
+    /**
+     * Flush applications (modules)
+     *
+     * @return void
+     */
     protected function flushApplication()
     {
         Pi::service('cache')->clearByNamespace();
@@ -176,6 +196,12 @@ class CacheController extends ActionController
         return;
     }
 
+    /**
+     * Flush page caches
+     *
+     * @param string|null $namespace
+     * @return void
+     */
     protected function flushPage($namespace = null)
     {
         Pi::service('render')->flushCache($namespace ?: null);

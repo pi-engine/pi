@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin module controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -24,16 +13,29 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Rest\Client\RestClient;
 
+/**
+ * Check module/theme updates against repos
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class RepoController extends ActionController
 {
+    /**
+     * Client to access module repos
+     * @var object
+     */
     protected $repoClient;
-    protected $repoUrl = 'http://repo.xoopsengine.org/module';
-    protected $repoApi = 'http://api.xoopsengine.org/module';
+
+    /** @var string URL to module repos */
+    protected $repoUrl = 'http://repo.pialog.org/module';
+
+    /** @var string URL to module repo API */
+    protected $repoApi = 'http://api.pialog.org/module';
 
     /**
-     * Check update availability
+     * AJAX: Check update availability
      *
-     * parameters: type, name[s]
+     * @return array
      */
     public function checkAction()
     {
@@ -49,11 +51,13 @@ class RepoController extends ActionController
             $name = $this->params('name');
         }
         if (is_scalar($name)) {
-            $status = rand(-1, 1);      // 1 - update available; 0 - no update; -1 - error occurred
+            // 1 - update available; 0 - no update; -1 - error occurred
+            $status = rand(-1, 1);
             $version = '1.2.3';
             switch ($status) {
                 case 1:
-                    $message = sprintf(__('A new version %s is available'), $version);
+                    $message = sprintf(__('A new version %s is available'),
+                        $version);
                     break;
                 case 0:
                     $message = __('No update available');
@@ -69,11 +73,13 @@ class RepoController extends ActionController
             );
         } else {
             foreach ($name as $key) {
-                $status = rand(-1, 1);      // 1 - update available; 0 - no update; -1 - error occurred
+                // 1 - update available; 0 - no update; -1 - error occurred
+                $status = rand(-1, 1);
                 $version = '1.2.3';
                 switch ($status) {
                     case 1:
-                        $message = sprintf(__('A new version %s is available'), $version);
+                        $message = sprintf(__('A new version %s is available'),
+                            $version);
                         break;
                     case 0:
                         $message = __('No update available');

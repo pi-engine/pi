@@ -1,20 +1,10 @@
 <?php
 /**
- * User registration controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Front;
@@ -25,18 +15,30 @@ use Pi\Acl\Acl;
 use Module\System\Form\RegisterForm;
 use Module\System\Form\RegisterFilter;
 
+/**
+ * User register operations
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class RegisterController extends ActionController
 {
+    /**
+     * Register form
+     *
+     * @return void
+     */
     public function indexAction()
     {
         if (Pi::config('register_disable', 'user')) {
-            $this->jump(array('route' => 'home'), __('Registration is disabled. Please come back later.'), 5);
+            $this->jump(array('route' => 'home'),
+                __('Registration is disabled. Please come back later.'), 5);
             return;
         }
 
         // If already logged in
         if (Pi::service('authentication')->hasIdentity()) {
-            $this->redirect()->toRoute('user', array('controller' => 'account'));
+            $this->redirect()->toRoute('user',
+                array('controller' => 'account'));
             return;
         }
 
@@ -45,6 +47,11 @@ class RegisterController extends ActionController
         $this->renderForm($form);
     }
 
+    /**
+     * Render register form
+     *
+     * @param RegisterForm $form
+     */
     protected function renderForm($form)
     {
         $this->view()->setTemplate('register');
@@ -53,6 +60,11 @@ class RegisterController extends ActionController
         $this->view()->assign('form', $form);
     }
 
+    /**
+     * Process register submission
+     *
+     * @return void
+     */
     public function processAction()
     {
         if (Pi::config('register_disable', 'user')) {
@@ -70,7 +82,8 @@ class RegisterController extends ActionController
         $form->setInputFilter(new RegisterFilter);
 
         if (!$form->isValid()) {
-            $this->view()->assign('message', __('Invalid input, please try again.'));
+            $this->view()->assign('message',
+                __('Invalid input, please try again.'));
             $this->renderForm($form);
             return;
         }
@@ -85,36 +98,28 @@ class RegisterController extends ActionController
         );
         $result = Pi::service('api')->system(array('member', 'add'), $data);
         if (!$result['id']) {
-            $this->view()->assign('message', __('The account is not created in database, please try again.'));
+            $this->view()->assign(
+                'message',
+                __('The account is not created in database, please try again.')
+            );
             $this->renderForm($form);
             return;
         }
-
-        /*
-        $userRow = Pi::model('user')->createRow($data);
-        $userRow->prepare()->save();
-        if (!$userRow->id) {
-            $this->view()->assign('message', __('The account is not created in database, please try again.'));
-            $this->renderForm($form);
-            return;
-        }
-        // Create user role
-        $roleRow = Pi::model('user_role')->createRow(array(
-            'user'  => $userRow->id,
-            'role'  => Acl::MEMBER,
-        ));
-        $roleRow->save();
-        */
 
         $this->view()->setTemplate('register-success');
         $this->view()->assign('title', __('Register'));
     }
 
-    // register form
+    /**
+     * Load register form
+     *
+     * @return RegisterForm
+     */
     public function getForm()
     {
         $form = new RegisterForm('register');
-        $form->setAttribute('action', $this->url('', array('action' => 'process')));
+        $form->setAttribute('action',
+            $this->url('', array('action' => 'process')));
 
         return $form;
     }

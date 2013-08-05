@@ -1,20 +1,10 @@
 <?php
 /**
- * System module block manipulation API class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Api;
@@ -24,20 +14,46 @@ use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
 use Pi\Acl\Acl as AclHandler;
 
+/**
+ * Block manipulation APIs
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Block extends AbstractApi
 {
+    /** @var string Seperator for module block names */
     protected $moduleSeperator = '-';
+
+    /** @var string Module name */
     protected $module = 'system';
 
+    /**
+     * Columns for block
+     * @var string[]
+     */
     protected $blockColumns = array(
         'id',
-        'module', 'name', 'title', 'description', 'render', 'template', 'config', 'cache_level', 'type',
-        'root', 'cache_ttl', 'content', 'subline', 'class', 'title_hidden', 'active', 'cloned'
-    );
-    protected $rootColumns = array(
-        'module', 'name', 'title', 'description', 'render', 'template', 'config', 'cache_level', 'type',
+        'module', 'name', 'title', 'description', 'render', 'template',
+        'config', 'cache_level', 'type',
+        'root', 'cache_ttl', 'content', 'subline', 'class', 'title_hidden',
+        'active', 'cloned'
     );
 
+    /**
+     * Columns for root blocks
+     * @var string[]
+     */
+    protected $rootColumns = array(
+        'module', 'name', 'title', 'description', 'render', 'template',
+        'config', 'cache_level', 'type',
+    );
+
+    /**
+     * Canonize block specs
+     *
+     * @param array $block
+     * @return array
+     */
     protected function canonize($block)
     {
         $root = array();
@@ -66,7 +82,7 @@ class Block extends AbstractApi
      * Adds a block and its relevant options, ACL rules
      *
      * @param array $block
-     * @return array root block ID or false, message
+     * @return array Root block ID or false, message
      */
     public function add($block)
     {
@@ -97,7 +113,8 @@ class Block extends AbstractApi
             }
 
             // Create block view
-            $block['name'] = $block['name'] ? $module . $this->moduleSeperator . $block['name'] : null;
+            $block['name'] = $block['name']
+                ? $module . $this->moduleSeperator . $block['name'] : null;
         }
 
 
@@ -106,7 +123,8 @@ class Block extends AbstractApi
             $block['config'] = array();
         }
         foreach ($block['config'] as $name => $data) {
-            $config[$name] = is_scalar($data) ? $data : (isset($data['value']) ? $data['value'] : '');
+            $config[$name] = is_scalar($data)
+                ? $data : (isset($data['value']) ? $data['value'] : '');
         }
         $block['config'] = $config;
 
@@ -114,35 +132,16 @@ class Block extends AbstractApi
         $rowBlock = $modelBlock->createRow($block);
         $rowBlock->save();
         if (!$rowBlock->id) {
-            $return['message'] = sprintf('Block view "%s" is not created.', $block['name']);
+            $return['message'] = sprintf('Block view "%s" is not created.',
+                $block['name']);
             return $return;
         }
 
         // Build ACL rules
-        /*
-        $dataRule = array(
-            'resource'  => $rowBlock->id,
-            'section'   => 'block',
-            'module'    => $module,
-        );
-        */
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
             $rule = isset($access[$role]) ? $access[$role] : 1;
             AclHandler::addRule($rule, $role, 'block', $module, $rowBlock->id);
-            /*
-            $dataRule['role'] = $role;
-            if (isset($access[$role])) {
-                $dataRule['deny'] = empty($access[$role]) ? 1 : 0;
-            } else {
-                $dataRule['deny'] = 0;
-            }
-            $status = $modelRule->insert($dataRule);
-            if (!$status) {
-                $return['message'] = 'ACL rule is not created';
-                return $return;
-            }
-            */
         }
         $return['status'] = 1;
         $return['id'] = $rowBlock->id;
@@ -157,7 +156,7 @@ class Block extends AbstractApi
      *
      * @param int|RowGateway $entity
      * @param array $block
-     * @return array bool, message
+     * @return array  Result pair of status and message
      */
     public function update($entity, $block)
     {
@@ -195,9 +194,12 @@ class Block extends AbstractApi
 
         $update = array(
             'render'        => isset($block['render']) ? $block['render'] : '',
-            'template'      => isset($block['template']) ? $block['template'] : '',
-            'cache_level'   => isset($block['cache_level']) ? $block['cache_level'] : '',
-            'content'       => isset($block['content']) ? $block['content'] : '',
+            'template'      => isset($block['template'])
+                ? $block['template'] : '',
+            'cache_level'   => isset($block['cache_level'])
+                ? $block['cache_level'] : '',
+            'content'       => isset($block['content'])
+                ? $block['content'] : '',
         );
 
         // Update cloned blocks
@@ -227,7 +229,7 @@ class Block extends AbstractApi
      *
      * @param int|RowGateway $entity
      * @param bool $isRoot
-     * @return array bool, message
+     * @return array Result pair of status and message
      */
     public function delete($entity, $isRoot = false)
     {
@@ -255,7 +257,8 @@ class Block extends AbstractApi
             try {
                 $status = $modelRoot->delete(array('id' => $rootId));
             } catch (\Exception $e) {
-                $return['message'] = 'Block root is not deleted: ' . $e->getMessage();
+                $return['message'] = 'Block root is not deleted: '
+                    . $e->getMessage();
                 return $return;
             }
 
@@ -270,27 +273,34 @@ class Block extends AbstractApi
             try {
                 $status = $modelBlock->delete(array('id' => $blockRow->id));
             } catch (\Exception $e) {
-                $return['message'] = 'Block is not deleted: ' . $e->getMessage();
+                $return['message'] = 'Block is not deleted: '
+                    . $e->getMessage();
                 return $return;
             }
 
             // delete from rule table
             try {
-                $status = $modelRule->delete(array('resource' => $blockRow->id, 'section' => 'block'));
+                $status = $modelRule->delete(
+                    array('resource' => $blockRow->id, 'section' => 'block')
+                );
             } catch (\Exception $e) {
-                $return['message'] = 'ACL rules are not deleted: ' . $e->getMessage();
+                $return['message'] = 'ACL rules are not deleted: '
+                    . $e->getMessage();
                 return $return;
             }
 
             // delete page-block links from page_block table
-            $rowsetPage = $modelPageBlock->select(array('block' => $blockRow->id));
+            $rowsetPage = $modelPageBlock->select(
+                array('block' => $blockRow->id)
+            );
             $pages = array();
             foreach ($rowsetPage as $row) {
                 $pages[$row->page] = 1;
                 try {
                     $status = $row->delete();
                 } catch (\Exception $e) {
-                    $return['message'] = 'Page-block link is not deleted: ' . $e->getMessage();
+                    $return['message'] = 'Page-block link is not deleted: '
+                        . $e->getMessage();
                     return $return;
                 }
             }
@@ -319,7 +329,7 @@ class Block extends AbstractApi
      *
      * @param int|RowGateway $entity
      * @param array $block
-     * @return array Pair of status and message
+     * @return array Result pair of status and message
      */
     public function edit($entity, $block)
     {

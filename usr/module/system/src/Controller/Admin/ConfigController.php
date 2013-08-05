@@ -1,21 +1,10 @@
 <?php
 /**
- * Action controller class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -23,18 +12,26 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Module\System\Controller\ComponentController  as ActionController;
 use Module\System\Form\ConfigForm;
+use Zend\Db\Sql\Expression;
 
 /**
+ * Configuration controller
+ *
  * Feature list:
+ *
  *  1. List of system configuration categories
  *  2. List of modules
  *  3. Edit form of a module with category
  *  4. Configuration submission
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ConfigController extends ActionController
 {
     /**
      * Module configuration edit
+     *
+     * @return void
      */
     public function indexAction()
     {
@@ -51,7 +48,9 @@ class ConfigController extends ActionController
             Pi::service('i18n')->load('module/' . $module . ':config');
 
             $model = Pi::model('config');
-            $select = $model->select()->where(array('module' => $module, 'visible' => 1))->order(array('order ASC'));
+            $select = $model->select()
+                ->where(array('module' => $module, 'visible' => 1))
+                ->order(array('order ASC'));
             $rowset = $model->selectWith($select);
             $configs = array();
             foreach ($rowset as $row) {
@@ -60,8 +59,11 @@ class ConfigController extends ActionController
             if ($configs) {
                 $groups = array();
                 //$configsByCategory = array();
-                $select = Pi::model('config_category')->select()->where(array('module' => $module))->order(array('order ASC'));
-                $categories = Pi::model('config_category')->selectWith($select);
+                $select = Pi::model('config_category')->select()
+                    ->where(array('module' => $module))
+                    ->order(array('order ASC'));
+                $categories = Pi::model('config_category')
+                    ->selectWith($select);
                 if ($categories->count() > 1) {
                     foreach ($categories as $category) {
                         $groups[$category->name] = array(
@@ -70,14 +72,14 @@ class ConfigController extends ActionController
                         );
                     }
                     foreach ($configs as $config) {
-                        $groups[$config->category]['elements'][] = $config->name;
+                        $groups[$config->category]['elements'][] =
+                            $config->name;
                     }
                 }
                 $this->view()->assign('configs', $configs);
 
                 $form = $this->getForm($configs, $module);
                 $form->setGroups($groups);
-                //$form->setAttribute('action', $this->url('admin', array('action' => 'save')));
                 $form->add(array(
                     'name'          => 'name',
                     'attributes'    => array(
@@ -96,7 +98,8 @@ class ConfigController extends ActionController
                             $row->save();
                         }
                         Pi::service('registry')->config->clear($module);
-                        $messageSuccessful = __('Configuration data saved successfully.');
+                        $messageSuccessful =
+                            __('Configuration data saved successfully.');
                     }
                 }
 
@@ -107,29 +110,27 @@ class ConfigController extends ActionController
         $this->view()->assign('success', $messageSuccessful);
 
         $model = Pi::model('config');
-        $select = $model->select()->group('module')->columns(array('count' => new \Zend\Db\Sql\Expression('count(*)'), 'module'));
+        $select = $model->select()->group('module')
+            ->columns(array('count' => new Expression('count(*)'), 'module'));
         $rowset = $model->selectWith($select);
         $configCounts = array();
         foreach ($rowset as $row) {
             $configCounts[$row->module] = $row->count;
         }
 
-        /*
-        $modules = Pi::service('registry')->modulelist->read(array('active' => 1));
-        unset($modules['system']);
-        foreach (array_keys($modules) as $key) {
-            if (empty($configCounts[$key])) {
-                unset($modules[$key]);
-            }
-        }
-        $this->view()->assign('modules', $modules);
-        */
         $this->view()->assign('name', $module);
 
         $this->view()->assign('title', __('Module configurations'));
         //$this->view()->setTemplate('config-module');
     }
 
+    /**
+     * Get config edit form
+     *
+     * @param array $configs
+     * @param string $module
+     * @return ConfigForm
+     */
     protected function getForm($configs, $module)
     {
         $form = new ConfigForm($configs, $module);

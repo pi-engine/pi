@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin navigation controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -28,28 +17,41 @@ use Module\System\Form\NavPageFilter;
 use Module\System\Form\NavPageForm;
 
 /**
+ * Navigaiton controller
+ *
  * Feature list:
- *  1. Select global front/admin navigation
- *  2. Clone a system navigation
- *  3. Add/Rename/Delete a custom navigation
- *  4. Edit/Clone a custom navigation
- *  5. Navigation data manipulation
- *      5.1. Add
- *      5.2. Edit
- *      5.3. Rename
- *      5.4. Move
- *      5.5. Delete
+ *
+ *  - Select global front/admin navigation
+ *  - Clone a system navigation
+ *  - Add/Rename/Delete a custom navigation
+ *  - Edit/Clone a custom navigation
+ *  - Navigation data manipulation
+ *    - Add
+ *    - Edit
+ *    - Rename
+ *    - Move
+ *    - Delete
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class NavController extends ActionController
 {
+    /**
+     * Columns of navigation model
+     * @var string[]
+     */
     protected $navColumns = array(
         'id', 'name', 'title', 'section', 'active'
     );
+
+    /**
+     * Columns of page model
+     * @var string[]
+     */
     protected $pageColumns = array(
         'id',
-        //'left', 'right', 'depth',
-        //'active', 'custom', 'params',
-        'navigation', 'name', 'label', 'module', 'controller', 'action', 'route', 'uri', 'target', 'resource', 'visible'
+        'navigation', 'name', 'label', 'module', 'controller', 'action',
+        'route', 'uri', 'target', 'resource', 'visible'
     );
 
     /**
@@ -65,7 +67,8 @@ class NavController extends ActionController
             'module'    => 'system',
             'name'      => 'nav_front',
         ))->current()->value;
-        $rowset = Pi::model('navigation')->select(array('section' => 'front', 'active' => 1));
+        $rowset = Pi::model('navigation')->select(array('section' => 'front',
+            'active' => 1));
         foreach ($rowset as $row) {
             $navList[] = $row->toArray();
         }
@@ -97,7 +100,9 @@ class NavController extends ActionController
             'admin' => array(),
         );
 
-        $rowset = Pi::model('navigation')->select(array('module <> ?' => 'system', 'active' => 1));
+        $rowset = Pi::model('navigation')->select(
+            array('module <> ?' => 'system', 'active' => 1)
+        );
 
         foreach ($rowset as $row) {
             if ($row->module) {
@@ -123,6 +128,8 @@ class NavController extends ActionController
 
     /**
      * AJAX to apply navigations
+     *
+     * @return array Result pair of status and message
      */
     public function applyAction()
     {
@@ -199,14 +206,22 @@ class NavController extends ActionController
             );
         } else {
             $form = new NavForm('nav');
-            $form->setData(array('section' => $this->params('section', 'front')));
-            $form->setAttribute('action', $this->url('', array('action' => 'add')));
+            $form->setData(
+                array('section' => $this->params('section', 'front'))
+            );
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'add')));
         }
         $this->view()->assign('form', $form);
         $this->view()->assign('title', __('Add a navigation'));
         $this->view()->setTemplate('system:component/form-popup');
     }
 
+    /**
+     * Clone a navigation
+     *
+     * @return array|void
+     */
     public function cloneAction()
     {
         if ($this->request->isPost()) {
@@ -262,7 +277,8 @@ class NavController extends ActionController
                 'section'   => $parentRow->section,
                 'title'     => $parentRow->title,
             ));
-            $form->setAttribute('action', $this->url('', array('action' => 'clone')));
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'clone')));
             $form->add(array(
                 'name'          => 'parent',
                 'attributes'    => array(
@@ -278,7 +294,8 @@ class NavController extends ActionController
 
     /**
      * AJAX method to delete a nav
-     * @return array
+     *
+     * @return array Result pair of status and message
      */
     public function deleteAction()
     {
@@ -290,7 +307,8 @@ class NavController extends ActionController
         if ($nav == $navigation['front'] || $nav == $navigation['admin']) {
             $result = array(
                 'status'    => 0,
-                'message'   => __('The navigation is in use and not allowed to delete.'),
+                'message'   =>
+                    __('The navigation is in use and not allowed to delete.'),
             );
             return $result;
         }
@@ -312,11 +330,10 @@ class NavController extends ActionController
      *
      * @param string $parent
      * @param string $nav
-     * @return boolean
+     * @return bool
      */
     protected function cloneNode($parent, $nav)
     {
-        $model = Pi::model('navigation_node');
         $data = Pi::service('registry')->navigation->read($parent) ?: array();
         $node = array(
             'navigation'    => $nav,
@@ -328,7 +345,7 @@ class NavController extends ActionController
         return true;
     }
 
-    /**#@+
+    /**
      * Navigation page data manipulation
      */
     public function dataAction()
@@ -363,7 +380,8 @@ class NavController extends ActionController
             'navigation'    => $nav,
             'visible'       => '1',
         ));
-        $form->setAttribute('action', $this->url('', array('action' => 'update')));
+        $form->setAttribute('action',
+            $this->url('', array('action' => 'update')));
 
         if ($readonly) {
             $title = __('View of navigation details: %s');
@@ -383,6 +401,16 @@ class NavController extends ActionController
         $this->view()->setTemplate('nav-data');
     }
 
+    /**
+     * Transform navigation node data
+     *
+     * @param array $node
+     * @param array $plainList
+     * @param int $id
+     * @param int $pid
+     * @param int $depth
+     * @return void
+     */
     protected function transformNode(&$node, &$plainList, $id, $pid, $depth)
     {
         $node['id']     = $id;
@@ -407,6 +435,8 @@ class NavController extends ActionController
 
     /**
      * AJAX method to validate page node data
+     *
+     * @return array Result pair of status and message
      */
     public function pageAction()
     {
@@ -431,9 +461,11 @@ class NavController extends ActionController
     }
 
     /**
-     * Update DB to store manipulated data
+     * AJAX: Update DB to store manipulated data
      *
      * Re-create the whole navigation
+     *
+     * @return array Result pair of status and message
      */
     public function updateAction()
     {
@@ -448,7 +480,8 @@ class NavController extends ActionController
             $message = __('Navigation not found.');
         } elseif ($row->module) {
             $status = 0;
-            $message = __('Only custom navigations are allowed to manipulate.');
+            $message =
+                __('Only custom navigations are allowed to manipulate.');
         }
         if (!$status) {
             return array(
@@ -462,7 +495,9 @@ class NavController extends ActionController
 
         $row = Pi::model('navigation_node')->find($nav, 'navigation');
         if (!$row) {
-            $row = Pi::model('navigation_node')->createRow(array('navigation' => $nav, 'data' => $pages));
+            $row = Pi::model('navigation_node')->createRow(
+                array('navigation' => $nav, 'data' => $pages)
+            );
         }
         $row->data = $pages;
         $row->save();
@@ -475,6 +510,12 @@ class NavController extends ActionController
         );
     }
 
+    /**
+     * Canonize navigation page data
+     *
+     * @param array $pages
+     * @return array
+     */
     protected function canonizePages($pages)
     {
         $temp = array();
@@ -489,7 +530,8 @@ class NavController extends ActionController
 
         // Set up key container
         $keys = array_fill_keys(array_keys($temp), 1);
-        // Look up node list to append child node to its parent, until no child node is left in container
+        // Look up node list to append child node to its parent,
+        // until no child node is left in container
         $registered = array();
         do {
             foreach (array_keys($keys) as $key) {
@@ -528,5 +570,4 @@ class NavController extends ActionController
 
         return $list;
     }
-    /**#@-*/
 }

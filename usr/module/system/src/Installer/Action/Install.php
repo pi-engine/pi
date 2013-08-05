@@ -1,19 +1,10 @@
 <?php
 /**
- * Pi module installer action
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Module\System
- * @subpackage      Installer
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Installer\Action;
@@ -25,12 +16,17 @@ use Pi\Application\Installer\Theme as ThemeInstaller;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Zend\EventManager\Event;
 
+/**
+ * Install handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Install extends BasicInstall
 {
     /**
      * Modules to be installed upon system installation
      *
-     * @var array
+     * @var string[]
      */
     protected $preInstalledModules = array('page', 'widget');
 
@@ -40,12 +36,15 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'createSystemSchema'), 1000);
+        $events->attach('install.pre',
+            array($this, 'createSystemSchema'), 1000);
         $events->attach('install.post', array($this, 'installTheme'), 1);
         $events->attach('install.post', array($this, 'createSystemData'), -10);
-        $events->attach('install.post', array($this, 'installApplication'), -100);
+        $events->attach('install.post',
+            array($this, 'installApplication'), -100);
         $events->attach('install.post', array($this, 'dressupBlock'), -200);
         parent::attachDefaultListeners();
+
         return $this;
     }
 
@@ -63,7 +62,8 @@ class Install extends BasicInstall
         Pi::service('taxonomy')->addDomain(array(
             'name'          => 'taxon',
             'title'         => __('Default taxonomy'),
-            'description'   => __('Default global taxonomy domain. Not allowed to change.'),
+            'description'   =>
+                __('Default global taxonomy domain. Not allowed to change.'),
         ), false);
 
 
@@ -255,7 +255,5 @@ class Install extends BasicInstall
             );
             $modelLink->insert($data);
         }
-
     }
-
 }

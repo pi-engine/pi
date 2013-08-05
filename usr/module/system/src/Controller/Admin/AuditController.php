@@ -1,22 +1,10 @@
 <?php
 /**
- * System audit controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Zongshu Lin
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -26,8 +14,18 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Zend\Db\Sql\Predicate\Expression;
 
+/**
+ * Audit controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class AuditController extends ActionController
 {
+    /**
+     * List of audit logs
+     *
+     * @return void
+     */
     public function indexAction()
     {
         $limit = (int) $this->params('count', 20);
@@ -35,10 +33,12 @@ class AuditController extends ActionController
 
         $model = Pi::model('audit');
         $offset = (int) ($page - 1) * $limit;
-        $select = $model->select()->where(array())->order('id DESC')->offset($offset)->limit($limit);
+        $select = $model->select()->where(array())->order('id DESC')
+            ->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
 
-        $select = $model->select()->columns(array('count' => new Expression('count(*)')));
+        $select = $model->select()
+            ->columns(array('count' => new Expression('count(*)')));
         $count = (int) $model->selectWith($select)->current()->count;
 
         $paginator = Paginator::factory($count);
@@ -48,7 +48,8 @@ class AuditController extends ActionController
             'pageParam'     => 'p',
             'totalParam'    => 't',
             'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'route'         => $this->getEvent()->getRouteMatch()
+                ->getMatchedRouteName(),
             'params'        => array(
                 'module'       => $this->getModule(),
                 'controller'   => 'audit',

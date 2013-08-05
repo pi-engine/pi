@@ -1,36 +1,24 @@
 <?php
 /**
- * Action controller class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Front;
-use Pi\Mvc\Controller\ActionController;
+
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 
 /**
- * Public action controller
+ * Public index controller
  */
 class IndexController extends ActionController
 {
     /**
      * Default action if none provided
-     *
-     * @return ViewModel
      */
     public function indexAction()
     {
@@ -44,56 +32,21 @@ class IndexController extends ActionController
     /**
      * Action called if matched action is denied
      *
-     * @return ViewModel
+     * @return self
      */
     public function notAllowedAction()
     {
         return $this->jumpToDenied('Access to resource is denied.');
-
-        $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
-        $this->response->setStatusCode($statusCode);
-        $event = $this->getEvent();
-        //$event->setError(404);
-        $event->setError('Access to resource is denied.');//->setResponse($this->response);
-
-        /*
-        $statusCode = Pi::service('user')->getUser()->isGuest() ? 401 : 403;
-        $this->response->setStatusCode($statusCode);
-        $event      = $this->getEvent();
-        $routeMatch = $event->getRouteMatch();
-        $routeMatch->setParam('action', 'not-allowed');
-
-        return $this->view(array(
-            'content' => 'Access is not allowed.'
-        ));
-        */
     }
 
     /**
      * Action called if matched action does not exist
      *
-     * @return ViewModel
+     * @return self
      */
     public function notFoundAction()
     {
         return $this->jumpTo404('Required resource is not found.');
-
-        $statusCode = 404;
-        $this->response->setStatusCode($statusCode);
-        $event = $this->getEvent();
-        $event->setError(true);
-        $this->view()->assign('message', 'Required resource is not found.');
-        /*
-        $response   = $this->response;
-        $response->setStatusCode(404);
-        $event      = $this->getEvent();
-        $routeMatch = $event->getRouteMatch();
-        $routeMatch->setParam('action', 'not-found');
-
-        return $this->view(array(
-            'content' => 'Page not found'
-        ));
-        */
     }
 
     /**
@@ -115,14 +68,5 @@ class IndexController extends ActionController
             $params['url'] = Pi::url('www');
         }
         $this->view()->assign($params);
-
-        /*
-        $response = $this->response;
-
-        // It is weird the reponse will be failed in IE with successive redirect with 302
-        //$response->setStatusCode(302);
-        $headerRefresh = sprintf('%d; url=%s', intval($params['time']), $params['url']);
-        $response->getHeaders()->addHeaderLine('Refresh', $headerRefresh);
-        */
     }
 }

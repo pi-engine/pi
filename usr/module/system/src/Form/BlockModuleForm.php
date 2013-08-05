@@ -1,21 +1,10 @@
 <?php
 /**
- * Module block form
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Form
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Form;
@@ -25,8 +14,14 @@ use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter;
 use Pi\Db\RowGateway\RowGateway as BlockRow;
 
+/**
+ * Block module form
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class BlockModuleForm extends BaseForm
 {
+    /** @var BlockRow Root block model */
     protected $root;
 
     /**
@@ -42,23 +37,10 @@ class BlockModuleForm extends BaseForm
     }
 
     /**
-     * Retrieve input filter used by this form.
+     * Get block configs
      *
-     * Attaches defaults from attached elements, if no corresponding input
-     * exists for the given element in the input filter.
-     *
-     * @return InputFilterInterface
+     * @return string[]
      */
-    /*
-    public function getInputFilter()
-    {
-        if (!$this->filter) {
-            $this->filter = new InputFilter;
-        }
-        return $this->filter;
-    }
-    */
-
     public function getConfigs()
     {
         $configs = array();
@@ -68,6 +50,9 @@ class BlockModuleForm extends BaseForm
         return $configs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function init()
     {
         $this->add(array(
@@ -120,7 +105,8 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'textarea',
-                'description'   => __('For block header subline. HTML is allowed.'),
+                'description'   =>
+                    __('For block header subline. HTML is allowed.'),
             )
         ));
 
@@ -180,6 +166,11 @@ class BlockModuleForm extends BaseForm
         ));
     }
 
+    /**
+     * Add config fieldset
+     *
+     * @return void
+     */
     protected function addConfigFieldset()
     {
         if (!$this->root->config) {
@@ -205,9 +196,12 @@ class BlockModuleForm extends BaseForm
                     $edit = $config['edit'];
                 }
             }
-            $attributes = !empty($edit['attributes']) ? $edit['attributes'] : array();
-            $attributes['value'] = isset($config['value']) ? $config['value'] : null;
-            $attributes['description'] = empty($config['description']) ? '' : __($config['description']);
+            $attributes = !empty($edit['attributes'])
+                ? $edit['attributes'] : array();
+            $attributes['value'] = isset($config['value'])
+                ? $config['value'] : null;
+            $attributes['description'] = empty($config['description'])
+                ? '' : __($config['description']);
 
             $options = array(
                     'label'     => __($config['title']),
@@ -228,11 +222,11 @@ class BlockModuleForm extends BaseForm
 
             $configFieldset->add($element);
         }
-
-        //$configFieldset->prepareElement($this);
-        //$this->add($configFieldset);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isValid()
     {
         $inputFilter = $this->getInputFilter();
@@ -322,6 +316,12 @@ class BlockModuleForm extends BaseForm
         return parent::isValid();
     }
 
+    /**
+     * Add filter
+     *
+     * @param InputFilter $inputFilter
+     * @return void
+     */
     protected function addConfigFilter($inputFilter)
     {
         if (!$this->root->config) {

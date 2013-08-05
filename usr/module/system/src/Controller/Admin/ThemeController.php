@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin theme controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -25,7 +14,10 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Installer\Theme as ThemeInstaller;
 
 /**
+ * Theme controller
+ *
  * Feature list:
+ *
  *  0. Utilization of active themes
  *  1. List of active themes
  *  2. List of themes available for installation
@@ -33,6 +25,8 @@ use Pi\Application\Installer\Theme as ThemeInstaller;
  *  4. Theme installation
  *  5. Theme update
  *  6. Theme uninstallation
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ThemeController extends ActionController
 {
@@ -47,36 +41,10 @@ class ThemeController extends ActionController
         $type = ('_admin' == $section) ? 'admin' : 'front';
         $themes = Pi::service('registry')->themelist->read($type);
         foreach ($themes as $key => &$theme) {
-            //$screenshot = $theme['screenshot'] ? Pi::service('asset')->getAssetUrl('theme/' . $key, $theme['screenshot'], false) : Pi::url('static/image/theme.png');
-            //$theme['screenshot'] = $screenshot;
             $theme['name'] = $key;
         }
 
         $themeName = '';
-        $moduleTheme = '';
-        /*
-        // Get module list
-        $modules = array();
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        foreach ($moduleSet as $row) {
-            $modules[$row->name] = $row->title;
-        }
-
-
-        $moduleTheme = '';
-        if (isset($modules[$section])) {
-            $subject = $modules[$section];
-            //$themeList = Pi::config()->loadDomain('')->get('theme_module', '');
-            $themeList = Pi::config('theme_module', '');
-            $themeName = !empty($themeList[$section]) ? $themeList[$section] : '';
-            if (!$themeName) {
-                $themeName = Pi::config('theme');
-                $moduleTheme = false;
-            } else {
-                $moduleTheme = $themeName;
-            }
-        } else
-        */
         if ('_admin' == $section) {
             $subject = __('admin');
             $themeName = Pi::config('theme_admin');
@@ -84,7 +52,8 @@ class ThemeController extends ActionController
             $subject = __('front');
             $themeName = Pi::config('theme');
         }
-        $data = isset($themes[$themeName]) ? $themes[$themeName] : $themes['default'];
+        $data = isset($themes[$themeName])
+            ? $themes[$themeName] : $themes['default'];
         if (isset($themes[$themeName])) {
             unset($themes[$themeName]);
         }
@@ -92,13 +61,14 @@ class ThemeController extends ActionController
         $this->view()->assign('theme', $data);
         $this->view()->assign('section', $section);
         $this->view()->assign('themes', $themes);
-        //$this->view()->assign('modules', $modules);
-        $this->view()->assign('title', sprintf(__('Select theme for %s'), $subject));
-        //$this->view()->setTemplate('theme-select');
+        $this->view()->assign('title',
+            sprintf(__('Select theme for %s'), $subject));
     }
 
     /**
-     * AJAX to apply a theme to a section
+     * AJAX: Apply a theme to a section
+     *
+     * @return array
      */
     public function applyAction()
     {
@@ -146,12 +116,9 @@ class ThemeController extends ActionController
     {
         $themes = Pi::service('registry')->themelist->read();
         foreach ($themes as $key => &$theme) {
-            //$screenshot = $theme['screenshot'] ? Pi::service('asset')->getAssetUrl('theme/' . $key, $theme['screenshot'], false) : Pi::url('static/image/theme.png');
-            //$theme['screenshot'] = $screenshot;
             $theme['name'] = $key;
         }
         $this->view()->assign('themes', $themes);
-        //$this->view()->setTemplate('theme-installed');
         $this->view()->assign('title', __('Installed themes'));
     }
 
@@ -168,7 +135,8 @@ class ThemeController extends ActionController
                 continue;
             }
             $directory = $fileinfo->getFilename();
-            if (isset($themesInstalled[$directory]) || 'default' == $directory || preg_match('/[^a-z0-9_]/i', $directory)) {
+            if (isset($themesInstalled[$directory]) || 'default' == $directory
+                || preg_match('/[^a-z0-9_]/i', $directory)) {
                 continue;
             }
             $meta = Pi::service('theme')->loadConfig($directory);
@@ -176,16 +144,23 @@ class ThemeController extends ActionController
                 continue;
             }
             $meta['name'] = $directory;
-            $meta['screenshot'] = !empty($meta['screenshot']) ? Pi::url('script/browse.php') . '?' . sprintf('theme/%s/asset/%s', $directory, $meta['screenshot']) : Pi::url('static/image/theme.png');
+            $meta['screenshot'] = !empty($meta['screenshot'])
+                ? Pi::url('script/browse.php') . '?'
+                    . sprintf('theme/%s/asset/%s',
+                        $directory, $meta['screenshot'])
+                : Pi::url('static/image/theme.png');
             $themes[$directory] = $meta;
         }
 
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('title', __('Themes available for installation'));
+        $this->view()->assign('title',
+            __('Themes available for installation'));
     }
 
     /**
-     * Update a theme, and re-publish its asset
+     * AJAX: Update a theme, and re-publish its asset
+     *
+     * @return array
      */
     public function updateAction()
     {
@@ -196,20 +171,19 @@ class ThemeController extends ActionController
         $message = '';
         if (!$ret) {
             $status = 0;
-            $message = $installer->renderMessage() ?: sprintf(__('The theme "%s" is not updated.'), $themeName);
+            $message = $installer->renderMessage()
+                ?: sprintf(__('The theme "%s" is not updated.'), $themeName);
         }
-        $message = $message ?: sprintf(__('The theme "%s" is updated.'), $themeName);
-        /*
-        $this->view()->assign('message', $message);
-        $this->view()->assign('title', __('Theme update'));
-        $this->view()->setTemplate('theme-operation');
-        */
+        $message = $message
+            ?: sprintf(__('The theme "%s" is updated.'), $themeName);
         $themelist = Pi::service('registry')->themelist->read();
         return $themelist[$themeName];
     }
 
     /**
-     * AJAX to install a theme and publish its asset
+     * AJAX: Install a theme and publish its asset
+     *
+     * @return array
      */
     public function installAction()
     {
@@ -219,26 +193,23 @@ class ThemeController extends ActionController
         $status = 1;
         $message = '';
         if (!$ret) {
-            $message = $installer->renderMessage() ?: sprintf(__('The theme "%s" is not installed.'), $themeName);
+            $message = $installer->renderMessage()
+                ?: sprintf(__('The theme "%s" is not installed.'), $themeName);
             $status = 0;
         }
-        $message = $message ?: sprintf(__('The theme "%s" is installed.'), $themeName);
+        $message = $message
+            ?: sprintf(__('The theme "%s" is installed.'), $themeName);
 
         return array(
             'status'    => $status,
             'message'   => $message,
         );
-
-        /*
-        $this->view()->assign('message', $message);
-        $this->view()->assign('title', __('Theme installation'));
-        $this->view()->setTemplate('theme-operation');
-        */
-
     }
 
     /**
-     * AJAX to uninstall a theme and remove its asset
+     * AJAX: Uninstall a theme and remove its asset
+     *
+     * @return array
      */
     public function uninstallAction()
     {
@@ -253,15 +224,13 @@ class ThemeController extends ActionController
             $message = '';
             if (!$ret) {
                 $status = 0;
-                $message = $installer->renderMessage() ?: sprintf(__('The theme "%s" is not uninstalled.'), $themeName);
+                $message = $installer->renderMessage()
+                    ?: sprintf(__('The theme "%s" is not uninstalled.'),
+                        $themeName);
             }
         }
-        $message = $message ?: sprintf(__('The theme "%s" is uninstalled.'), $themeName);
-        /*
-        $this->view()->assign('message', $message);
-        $this->view()->assign('title', __('Theme uninstallaton'));
-        $this->view()->setTemplate('theme-operation');
-        */
+        $message = $message
+            ?: sprintf(__('The theme "%s" is uninstalled.'), $themeName);
         $result = array(
             'status'    => $status,
             'message'   => $message,

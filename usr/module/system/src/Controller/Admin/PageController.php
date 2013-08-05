@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin page controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -26,19 +15,30 @@ use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageAddFilter as AddFilter;
 use Module\System\Form\PageEditForm as EditForm;
 use Module\System\Form\PageEditFilter as EditFilter;
+use Zend\Db\Sql\Expression;
 
 /**
+ * Page controller
+ *
  * Feature list:
+ *
  *  1. List of pages of a section and module
  *  2. Edit a page
  *  3. Add a custom page to a section and module
  *  4. Delete a custom page
  *  5. Manage blocks on a page
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class PageController extends ActionController
 {
+    /**
+     * Columns for page model
+     * @var string[]
+     */
     protected $pageColumns = array(
-        'id', 'section', 'module', 'controller', 'action', 'block', 'custom', 'cache_ttl', 'cache_level', 'title'
+        'id', 'section', 'module', 'controller', 'action', 'block', 'custom',
+        'cache_ttl', 'cache_level', 'title'
     );
 
     /**
@@ -50,7 +50,9 @@ class PageController extends ActionController
         $name = $this->params('name', 'system');
 
         // Pages of the module
-        $select = Pi::model('page')->select()->where(array('module' => $name))->order(array('custom', 'controller', 'action', 'id'));
+        $select = Pi::model('page')->select()
+            ->where(array('module' => $name))
+            ->order(array('custom', 'controller', 'action', 'id'));
         $rowset = Pi::model('page')->selectWith($select);
         $sections = array(
             'front' => array(
@@ -77,7 +79,8 @@ class PageController extends ActionController
                 $title = $row->title ?: $key;
             } else {
                 $key = $row->module;
-                $title = sprintf(__('%s module wide'), $row->title ?: $row->module);
+                $title = sprintf(__('%s module wide'),
+                    $row->title ?: $row->module);
             }
 
             //$title = $row->title ?: ($key ?: __('Module wide'));
@@ -141,13 +144,15 @@ class PageController extends ActionController
                     );
                     if (!empty($values['action'])) {
                         $where['controller'] = $values['controller'];
-                        $pageParent = Pi::model('page')->select($where)->current();
+                        $pageParent = Pi::model('page')->select($where)
+                            ->current();
                         if (!$pageParent) {
                             $where['controller'] = '';
                         }
                     }
                     if (!$pageParent) {
-                        $pageParent = Pi::model('page')->select($where)->current();
+                        $pageParent = Pi::model('page')->select($where)
+                            ->current();
                     }
                     $where = array(
                         'section'       => $values['section'],
@@ -155,7 +160,8 @@ class PageController extends ActionController
                         'name'          => $pageParent->id,
                         'type'          => 'page',
                     );
-                    $parent = Pi::model('acl_resource')->select($where)->current();
+                    $parent = Pi::model('acl_resource')->select($where)
+                        ->current();
                     $resource = array(
                         'title'         => $values['title'],
                         'section'       => $values['section'],
@@ -163,10 +169,13 @@ class PageController extends ActionController
                         'name'          => $row->id,
                         'type'          => 'page',
                     );
-                    $resourceId = Pi::model('acl_resource')->add($resource, $parent);
+                    $resourceId =
+                        Pi::model('acl_resource')->add($resource, $parent);
 
                     Pi::service('registry')->page->clear($row->module);
-                    $this->redirect()->toRoute('', array('action' => 'index', 'name' => $values['module']));
+                    $this->redirect()->toRoute('',
+                        array('action' => 'index',
+                            'name' => $values['module']));
                     $this->view()->setTemplate(false);
                 } else {
                     $message = __('Page data not saved.');
@@ -176,7 +185,8 @@ class PageController extends ActionController
             }
         } else {
             $form = new AddForm('page-edit', $this->params('name'));
-            $form->setAttribute('action', $this->url('', array('action' => 'addsave')));
+            $form->setAttribute('action', $this->url('',
+                array('action' => 'addsave')));
             $message = '';
         }
 
@@ -189,6 +199,8 @@ class PageController extends ActionController
 
     /**
      * AJAX method for adding a page and its corresponding ACL resource
+     *
+     * @return array Result pair of status and message
      */
     public function addsaveAction()
     {
@@ -246,15 +258,19 @@ class PageController extends ActionController
                     'name'          => $row->id,
                     'type'          => 'page',
                 );
-                $resourceId = Pi::model('acl_resource')->add($resource, $parent);
+                $resourceId =
+                    Pi::model('acl_resource')->add($resource, $parent);
 
                 $id = $row->id;
                 $page = array(
                     'id'        => $row->id,
                     'title'     => $row->title,
-                    'edit'      => $this->url('', array('action' => 'edit', 'id' => $row->id)),
-                    'delete'    => $this->url('', array('action' => 'delete', 'id' => $row->id)),
-                    'dress'     => $this->url('', array('action' => 'block', 'page' => $row->id)),
+                    'edit'      => $this->url('',
+                        array('action' => 'edit', 'id' => $row->id)),
+                    'delete'    => $this->url('',
+                        array('action' => 'delete', 'id' => $row->id)),
+                    'dress'     => $this->url('',
+                        array('action' => 'block', 'page' => $row->id)),
                 );
                 Pi::service('registry')->page->clear($row->module);
 
@@ -309,7 +325,8 @@ class PageController extends ActionController
             $id = $this->params('id');
             $values = Pi::model('page')->find($id)->toArray();
             $form->setData($values);
-            $form->setAttribute('action', $this->url('', array('action' => 'editsave')));
+            $form->setAttribute('action', $this->url('',
+                array('action' => 'editsave')));
             $message = '';
         }
 
@@ -321,6 +338,8 @@ class PageController extends ActionController
 
     /**
      * AJAX for editing a page
+     *
+     * @return array Result pair of status and message
      */
     public function editsaveAction()
     {
@@ -370,6 +389,8 @@ class PageController extends ActionController
 
     /**
      * Delete a page and remove its corresponding ACL resource
+     *
+     * @return array Result pair of status and message
      */
     public function deleteAction()
     {
@@ -424,8 +445,7 @@ class PageController extends ActionController
         $page = $this->params('page', 0);
 
         $_this = clone $this;
-        $fallback = function () use ($_this)
-        {
+        $fallback = function() use ($_this) {
             $_this->view()->setTemplate(false);
             $_this->redirect()->toRoute('', array('action' => 'index'));
         };
@@ -456,7 +476,8 @@ class PageController extends ActionController
         );
 
         // Fetch all blocks on the page
-        $select = Pi::model('page_block')->select()->order('order')->where(array('page' => $page));
+        $select = Pi::model('page_block')->select()->order('order')
+            ->where(array('page' => $page));
         $rowset = Pi::model('page_block')->selectWith($select);
 
         // Get block IDs and block holder with block zone and order as
@@ -490,7 +511,8 @@ class PageController extends ActionController
         }
 
         $model = Pi::model('block');
-        $select = $model->select()->group('module')->columns(array('count' => new \Zend\Db\Sql\Expression('count(*)'), 'module'));
+        $select = $model->select()->group('module')
+            ->columns(array('count' => new Expression('count(*)'), 'module'));
         $rowset = $model->selectWith($select);
         $blockCounts = array();
         foreach ($rowset as $row) {
@@ -504,7 +526,8 @@ class PageController extends ActionController
             if (!empty($blockCounts[$row->name])) {
                 $modules[] = array(
                     'name'  => $row->name,
-                    'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
+                    'title' => $row->title
+                        . ' (' . $blockCounts[$row->name] . ')',
                 );
             }
         }
@@ -516,14 +539,15 @@ class PageController extends ActionController
         $this->view()->assign('modules', $modules);
         $this->view()->assign('name', $name);
         $this->view()->assign('pageZone', $this->getZoneTemplate());
-        $this->view()->assign('title', sprintf(__('%s blocks'), $pageData['title']));
+        $this->view()->assign('title',
+            sprintf(__('%s blocks'), $pageData['title']));
         $this->view()->setTemplate('page-block');
     }
 
     /**
      * AJAX methdod for getting blocks of a module
      *
-     * @return array
+     * @return array Result pair of status and message
      */
     public function blocklistAction()
     {
@@ -548,14 +572,17 @@ class PageController extends ActionController
 
     /**
      * AJAX method of saving blocks of a page:
-     * array(
-     *  page    => int,
-     *  blocks  => array(
-     *      zone    => array(),
-     *  ),
-     * );
      *
-     * @return array
+     * ```
+     *  array(
+     *      'page'    => <page-id>,
+     *      'blocks'  => array(
+     *          'zone'    => <block-id[]>,
+     *      ),
+     *  );
+     * ```
+     *
+     * @return array Result pair of status and message
      */
     public function saveAction()
     {
@@ -573,6 +600,7 @@ class PageController extends ActionController
                 'status'    => 0,
                 'message'   => __('Page is not found.'),
             );
+            
             return $result;
         }
 
@@ -597,6 +625,7 @@ class PageController extends ActionController
             'status'    => 1,
             'message'   => __('Page block links are updated.'),
         );
+
         return $result;
     }
 
@@ -615,13 +644,6 @@ class PageController extends ActionController
                 'name'  => $dirname,
                 'title' => $theme['title'],
             );
-            /*
-            if (empty($theme['screenshot'])) {
-                $data['screenshot'] = Pi::url('static/image/theme.png');
-            } else {
-                $data['screenshot'] = Pi::service('asset')->getThemeAsset($theme['screenshot'], $dirname);
-            }
-            */
             $themes[$dirname] = $data;
         }
 
@@ -637,7 +659,9 @@ class PageController extends ActionController
     {
         $module = $this->params('name');
         $controller = $this->params('ctrl');
-        $class = sprintf('Module\\%s\\Controller\Front\\%sController', ucfirst(Pi::service('module')->directory($module)), ucfirst($controller));
+        $class = sprintf('Module\\%s\Controller\Front\\%sController',
+            ucfirst(Pi::service('module')->directory($module)),
+            ucfirst($controller));
         $methods = get_class_methods($class);
         $actions = array();
         foreach ($methods as $method) {
@@ -646,6 +670,7 @@ class PageController extends ActionController
                 $actions[$actionName] = $actionName;
             }
         }
+
         return $actions;
     }
 
@@ -658,6 +683,7 @@ class PageController extends ActionController
     {
         $theme = $this->params('theme', null);
         $template = $this->getZoneTemplate($theme);
+
         return $template;
     }
 
@@ -672,7 +698,8 @@ class PageController extends ActionController
         $theme = $theme ?: Pi::config('theme');
 
         /**
-         * @todo: Here the template is located via hardcoded trick, is there any configurable way?
+         * @todo: Here the template is located via hardcoded trick,
+         * is there any configurable way?
          */
         $templatePath = Pi::path('theme') . '/%s/template/page-zone.phtml';
         $path = sprintf($templatePath, $theme);
@@ -682,11 +709,13 @@ class PageController extends ActionController
         }
         $template = file_get_contents($path);
 
-        // Convert zone ID from pi-zone-ID to pi-zone-ID-edit for block manipulation
-        $template = preg_replace('|\{([\d]+)\}|', '<div id="pi-zone-$1-edit"></div>', $template);
-        $template = str_replace('{content}', '<div id="pi-content-fixed"></div>', $template);
+        // Convert zone ID from pi-zone-ID to pi-zone-ID-edit
+        // for block manipulation
+        $template = preg_replace('|\{([\d]+)\}|',
+            '<div id="pi-zone-$1-edit"></div>', $template);
+        $template = str_replace('{content}',
+            '<div id="pi-content-fixed"></div>', $template);
 
         return $template;
-
     }
 }

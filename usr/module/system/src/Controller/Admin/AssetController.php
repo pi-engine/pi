@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin asset controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -24,14 +13,21 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
+ * Asset admin controller
+ *
  * Feature list:
- *  1. List of asset folders
- *  2. Publish a component's asset
+ *
+ *  - List of asset folders
+ *  - Publish a component's asset
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class AssetController extends ActionController
 {
     /**
      * List of assets
+     *
+     * @return void
      */
     public function indexAction()
     {
@@ -57,13 +53,16 @@ class AssetController extends ActionController
 
     /**
      * Publish assets of a comoponent
+     *
+     * @return array Result pair of status and message
      */
     public function publishAction()
     {
         $type = $this->params('type');
         $name = $this->params('name');
         if ('module' == $type) {
-            $source = sprintf('%s/%s', $type, Pi::service('module')->directory($name));
+            $source = sprintf('%s/%s', $type,
+                Pi::service('module')->directory($name));
         } else {
             $source = sprintf('%s/%s', $type, $name);
         }
@@ -90,6 +89,8 @@ class AssetController extends ActionController
 
     /**
      * Refresh assets of all modules and themes
+     *
+     * @return array Result pair of status and message
      */
     public function refreshAction()
     {
@@ -119,7 +120,9 @@ class AssetController extends ActionController
                 continue;
             }
             $directory = $fileinfo->getFilename();
-            if (('module-' == substr($directory, 0, 7) || 'theme-' == substr($directory, 0, 6)) && !isset($assetList[$directory])) {
+            if (('module-' == substr($directory, 0, 7)
+                || 'theme-' == substr($directory, 0, 6))
+                && !isset($assetList[$directory])) {
                 $component = str_replace('-', '/', $directory);
                 Pi::service('asset')->remove($component);
             }
@@ -141,7 +144,8 @@ class AssetController extends ActionController
 
         if ($erroneous) {
             $status = 0;
-            $message = __('There are errors with: %s.', implode(' | ', $erroneous));
+            $message = __('There are errors with: %s.',
+                implode(' | ', $erroneous));
         } else {
             $status = 1;
             $message = __('Assets re-published successfully.');

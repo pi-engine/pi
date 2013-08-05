@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin event controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -25,11 +14,16 @@ use Module\System\Controller\ComponentController  as ActionController;
 use Zend\Db\Sql\Expression;
 
 /**
+ * Event/listener controller
+ *
  * Feature list:
+ *
  *  1. List of events and registered events of a module
  *  2. List of listeners and registered to events of a module
  *  3. Activate/deactivate an event
  *  4. Activate/deactivate an listener
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class EventController extends ActionController
 {
@@ -54,7 +48,9 @@ class EventController extends ActionController
             );
         }
         if ($events) {
-            $rowset = Pi::model('event_listener')->select(array('event_module' => $name, 'event_name' => array_keys($events)));
+            $rowset = Pi::model('event_listener')
+                ->select(array('event_module' => $name,
+                    'event_name' => array_keys($events)));
             foreach ($rowset as $row) {
                 $events[$row->event_name]['listeners'][] = array(
                     'id'        => $row->id,
@@ -67,7 +63,9 @@ class EventController extends ActionController
         }
 
         // Listeners of the module
-        $select = Pi::model('event_listener')->select()->where(array('module' => $name))->order(array('event_module', 'event_name'));
+        $select = Pi::model('event_listener')->select()
+            ->where(array('module' => $name))
+            ->order(array('event_module', 'event_name'));
         $rowset = Pi::model('event_listener')->selectWith($select);
         $listeners = array();
         foreach ($rowset as $row) {
@@ -75,31 +73,14 @@ class EventController extends ActionController
                 'id'        => $row->id,
                 'active'    => $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
-                'event'     => sprintf('%s-%s', $row->event_module, $row->event_name),
+                'event'     => sprintf('%s-%s',
+                    $row->event_module, $row->event_name),
             );
         }
-
-        /*
-        // Get module list
-        $modules = array();
-        $select = Pi::model('event')->select()->columns(array('module' => new Expression('DISTINCT module')));
-        $rowset = Pi::model('event')->selectWith($select);
-        $moduleList = array();
-        foreach ($rowset as $row) {
-            $moduleList[] = $row->module;
-        }
-        if ($moduleList) {
-            $modules = Pi::model('module')->select(array('active' => 1, 'name' => $moduleList));
-        }
-        $this->view()->assign('modules', $modules);
-        */
 
         $this->view()->assign('events', $events);
         $this->view()->assign('listeners', $listeners);
         $this->view()->assign('name', $name);
-        //$this->view()->assign('title', sprintf(__('Events of module %s'), $name));
-
-        //$this->view()->setTemplate('event-list');
     }
 
     /**
@@ -111,7 +92,9 @@ class EventController extends ActionController
         $name = $this->params('name', 'system');
 
         // Listeners of the module
-        $select = Pi::model('event_listener')->select()->where(array('module' => $name))->order(array('event_module', 'event_name'));
+        $select = Pi::model('event_listener')->select()
+            ->where(array('module' => $name))
+            ->order(array('event_module', 'event_name'));
         $rowset = Pi::model('event_listener')->selectWith($select);
         $listeners = array();
         foreach ($rowset as $row) {
@@ -119,32 +102,38 @@ class EventController extends ActionController
                 'id'        => $row->id,
                 'active'    => $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
-                'event'     => sprintf('%s-%s', $row->event_module, $row->event_name),
+                'event'     => sprintf('%s-%s',
+                    $row->event_module, $row->event_name),
             );
         }
 
         // Get module list
         $modules = array();
-        $select = Pi::model('event_listener')->select()->columns(array('module' => new Expression('DISTINCT module')));
+        $select = Pi::model('event_listener')->select()
+            ->columns(array('module' => new Expression('DISTINCT module')));
         $rowset = Pi::model('event_listener')->selectWith($select);
         $moduleList = array();
         foreach ($rowset as $row) {
             $moduleList[] = $row->module;
         }
         if ($moduleList) {
-            $modules = Pi::model('module')->select(array('active' => 1, 'name' => $moduleList));
+            $modules = Pi::model('module')
+                ->select(array('active' => 1, 'name' => $moduleList));
         }
 
         $this->view()->assign('listeners', $listeners);
         $this->view()->assign('name', $name);
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', sprintf(__('Event listeners of module %s'), $name));
+        $this->view()->assign('title',
+            sprintf(__('Event listeners of module %s'), $name));
 
         $this->view()->setTemplate('event-listener');
     }
 
     /**
      * AJAX to Activate/Deactivate an event/listener
+     *
+     * @return array Result pair of status and message
      */
     public function activeAction()
     {
@@ -169,7 +158,8 @@ class EventController extends ActionController
             } else {
                 if (!Pi::service('module')->isActive($row->module)) {
                     $status = 0;
-                } elseif ('listener' == $type &&  $row->event_module && !Pi::service('module')->isActive($row->event_module)) {
+                } elseif ('listener' == $type && $row->event_module
+                    && !Pi::service('module')->isActive($row->event_module)) {
                     $status = 0;
                 }
                 if (!$status) {
@@ -182,7 +172,8 @@ class EventController extends ActionController
                 $row->save();
                 $message = __('The item updated successfully.');
 
-                $flush = 'listener' == $type ? $row->event_module : $row->module;
+                $flush = 'listener' == $type
+                    ? $row->event_module : $row->module;
                 Pi::service('registry')->event->clear($flush);
             }
         }

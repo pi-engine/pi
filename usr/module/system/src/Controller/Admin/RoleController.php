@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin role controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -26,30 +15,43 @@ use Module\System\Form\RoleForm;
 use Module\System\Form\RoleFilter;
 
 /**
+ * Role controller
+ *
  * Feature list:
+ *
  *  1. List of roles with inheritance
  *  2. Add a role
  *  3. Clone a role and its inheritance and rules
  *  4. Edit a role
  *  5. Activate/deactivate a role
  *  6. Delete a role
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class RoleController extends ActionController
 {
+    /**
+     * Columns for role model
+     *
+     * @var string[]
+     */
     protected $roleColumns = array(
         'id', 'section', 'module', 'custom', 'active', 'name', 'title'
     );
 
     /**
-     * Get role list with following structure
+     * Get role list
+     *
+     * Data structure
+     *
      *  - role
-     *      - id
-     *      - name
-     *      - title
-     *      - active
-     *      - custom
-     *      - module
-     *      - section
+     *    - id
+     *    - name
+     *    - title
+     *    - active
+     *    - custom
+     *    - module
+     *    - section
      *  - inherit
      *    - all
      *    - direct
@@ -77,21 +79,24 @@ class RoleController extends ActionController
             // Get all ancestors of the role from role registry
             $rels = Pi::service('registry')->role->read($role->name);
             foreach ($rels as $rel) {
-                // Add dependence (direct and inherited), will be indicated with "V" marker
+                // Add dependence (direct and inherited),
+                // will be indicated with "V" marker
                 if ($rel != $role->name) {
-                    $roles[$role->name]['inherit']['all'][] = $rel; // = -1;
+                    $roles[$role->name]['inherit']['all'][] = $rel;
                 }
             }
         }
 
-        $rowsetInherit = Pi::model('acl_inherit')->select(array('child' => array_keys($roles)));
+        $rowsetInherit = Pi::model('acl_inherit')
+            ->select(array('child' => array_keys($roles)));
         // Add direct dependence, i.e. parent dependence
         foreach ($rowsetInherit as $rel) {
-            $roles[$rel->child]['inherit']['direct'][] = $rel->parent; // $rel->id;
+            $roles[$rel->child]['inherit']['direct'][] = $rel->parent;
         }
         $result = array();
         foreach ($roles as $key => $data) {
-            $data['inherit']['indirect'] = array_diff($data['inherit']['all'], $data['inherit']['direct']);
+            $data['inherit']['indirect'] = array_diff($data['inherit']['all'],
+                $data['inherit']['direct']);
             $result[] = $data;
         }
 
@@ -109,12 +114,12 @@ class RoleController extends ActionController
         $this->view()->assign('type', $type);
         $this->view()->assign('roles', $roles);
         $this->view()->assign('title', __('Role list'));
-
-        //$this->view()->setTemplate('role-list');
     }
 
     /**
      * Add a custom role
+     *
+     * @return void|array
      */
     public function addAction()
     {
@@ -169,7 +174,8 @@ class RoleController extends ActionController
         } else {
             $type = $this->params('type', 'front');
             $form = new RoleForm('role', $type);
-            $form->setAttribute('action', $this->url('', array('action' => 'add')));
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'add')));
             $this->view()->assign('title', __('Add a role'));
             $this->view()->assign('form', $form);
             $this->view()->setTemplate('system:component/form-popup');
@@ -178,6 +184,8 @@ class RoleController extends ActionController
 
     /**
      * Edit a role
+     *
+     * @return array|void
      */
     public function editAction()
     {
@@ -222,7 +230,8 @@ class RoleController extends ActionController
             $section = $row->section;
             $data = $row->toArray();
             $form = new RoleForm('role', $section);
-            $form->setAttribute('action', $this->url('', array('action' => 'edit')));
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'edit')));
             $form->setData($data);
             $this->view()->assign('title', __('Edit a role'));
             $this->view()->assign('form', $form);
@@ -231,7 +240,9 @@ class RoleController extends ActionController
     }
 
     /**
-     * Add/remove an inheritance
+     * AJAX: Add/remove an inheritance
+     *
+     * @return array
      */
     public function inheritAction()
     {
@@ -287,7 +298,9 @@ class RoleController extends ActionController
     }
 
     /**
-     * Activate/deactivate a role
+     * AJAX: Activate/deactivate a role
+     *
+     * @return array
      */
     public function activateAction()
     {
@@ -298,7 +311,8 @@ class RoleController extends ActionController
         $row = Pi::model('acl_role')->find($id);
         if ($row->module) {
             $status = 0;
-            $message = __('Only custom roles are allowed to activate/deactivate.');
+            $message =
+                __('Only custom roles are allowed to activate/deactivate.');
         } else {
             if ($row->active) {
                 $row->active = 0;
@@ -318,7 +332,9 @@ class RoleController extends ActionController
     }
 
     /**
-     * Rename a role
+     * AJAX: Rename a role
+     *
+     * @return int
      */
     public function renameAction()
     {
@@ -332,7 +348,9 @@ class RoleController extends ActionController
     }
 
     /**
-     * Delete a role
+     * AJAX: Delete a role
+     *
+     * @return array
      */
     public function deleteAction()
     {

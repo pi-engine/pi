@@ -1,20 +1,10 @@
 <?php
 /**
- * Form element Controller select class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Module\System
- * @subpackage      Form
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Form\Element;
@@ -22,16 +12,24 @@ namespace Module\System\Form\Element;
 use Pi;
 use Zend\Form\Element\Select;
 
+/**
+ * Form element for controller selection
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Controller extends Select
 {
     /**
+     * Get value options for select
+     *
      * @return array
      */
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module');
-            $controllerPath = sprintf('%s/src/Controller/Front', Pi::service('module')->path($module));
+            $controllerPath = sprintf('%s/src/Controller/Front',
+                Pi::service('module')->path($module));
             $controllerList = array();
             if (is_dir($controllerPath)) {
                 $iterator = new \DirectoryIterator($controllerPath);
@@ -40,7 +38,8 @@ class Controller extends Select
                         continue;
                     }
                     $fileName = $fileinfo->getFilename();
-                    if (!preg_match('/^[A-Z][a-z0-9_]+Controller\.php$/', $fileName)) {
+                    if (!preg_match('/^[A-Z][a-z0-9_]+Controller\.php$/',
+                        $fileName)) {
                         continue;
                     }
                     $controllerName = strtolower(substr($fileName, 0, -14));

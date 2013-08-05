@@ -1,20 +1,10 @@
 <?php
 /**
- * Email controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Front;
@@ -23,12 +13,22 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
+ * Email operations
+ *
  * Feature list:
+ *
  * 1. Change email
  * 2. Send activation code
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class EmailController extends ActionController
 {
+    /**
+     * Change email
+     *
+     * @return void
+     */
     public function indexAction()
     {
         $identity = Pi::service('authentication')->getIdentity();
@@ -45,6 +45,9 @@ class EmailController extends ActionController
         $this->view()->setTemplate('email-change');
     }
 
+    /**
+     * Send activation email
+     */
     public function sendAction()
     {
         $title = __('Send activation');

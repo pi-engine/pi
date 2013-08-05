@@ -1,109 +1,17 @@
 <?php
 /**
- * System module ACL config
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Module\System
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 /**
- * ACL specs
+ * Permission ACL specs
  *
- *  return array(
- *      'roles' => array(
- *          'role_name'  => array(
- *              'title'     => 'Title',
- *              'parents'   => array('parent'),
- *          ),
- *          'role_name_staff' => array(
- *              'title'     => 'Title',
- *              'parents'   => array('parent'),
- *              'section'   => 'admin',         // Default as front if not specified
- *          ),
- *          ...
- *      ),
- *      'resources' => array(
- *          // Specified module resources
- *          'module' => array(
- *              'category' => array(
- *                  //'name'          => 'category',
- *                  'title'         => 'Category Title',
- *                  'parent'        => 'parentCategory'
- *                  // Access rules
- *                  'access'        => array(
- *                      'guest'     => 1,
- *                      'member'    => 1
- *                  ),
- *                  // privilege specific rules
- *                  'privileges'    => array(
- *                      'read'      => array(
- *                          'title' => 'Read articles',
- *                      ),
- *                      'post'      => array(
- *                          'title'     => 'Post articles',
- *                          'access'    => array(
- *                              'guest'     => 0,
- *                          ),
- *                      ),
- *                      'delete'    => array(
- *                          'title'     => 'Post articles',
- *                          'access'    => array(
- *                              'guest'     => 0,
- *                              'member'    => 0,
- *                          ),
- *                      ),
- *                  ),
- *              ),
- *              ...
- *          ),
- *          // Front resources specified by controller/action
- *          'front' => array(
- *              'somename'  => array(
- *                  //'name'          => 'Name',
- *                  'controller'    => 'controllerName',
- *                  'title'         => 'Title',
- *                  'parent'        => 'parentName'
- *              ),
- *              ...
- *          ),
- *          // Front resources specified by controller/action
- *          'admin'  => array(
- *              'somename'  => array(
- *                  //'name'          => 'Name',
- *                  'controller'    => 'controllerName',
- *                  'title'         => 'Title',
- *                  'parent'        => 'parentName'
- *                  'access'         => array(
- *                      'roleA' => 1,
- *                      'roleB' => 0
- *                  ),
- *                  'privileges'    => array(
- *                      'name_a'    => array(
- *                          'title' => 'privilegeName',
- *                          'access' => array(
- *                              'roleA' => 1,
- *                              'roleB' => 0
- *                          ),
- *                      ),
- *                  ),
- *              ),
- *              ...
- *          ),
- *          ...
- *      ),
- *  );
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
-// System settings, don't change
 return array(
     'roles' => array(
         /**#@+

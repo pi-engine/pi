@@ -1,21 +1,10 @@
 <?php
 /**
- * System admin block controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Controller\Admin;
@@ -23,22 +12,34 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Module\System\Controller\ComponentController  as ActionController;
 use Module\System\Form\BlockModuleForm as ModuleForm;
+use Zend\Db\Sql\Predicate\Expression;
 
 /**
+ * Block manipulation controller
+ *
  * Feature list:
+ *
  *  1. List of blocks of a module
  *  2. Manage a block
  *  3. Clone a block
- *  4. ? Add a custom block
+ *  4. Add a custom block
  *  5. Delete a block
  *  6. List of pages of a block
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class BlockController extends ActionController
 {
+    /**
+     * Get module list
+     *
+     * @return array
+     */
     protected function getModules()
     {
         $model = Pi::model('block');
-        $select = $model->select()->group('module')->columns(array('count' => new \Zend\Db\Sql\Expression('count(*)'), 'module'));
+        $select = $model->select()->group('module')
+            ->columns(array('count' => new Expression('count(*)'), 'module'));
         $rowset = $model->selectWith($select);
         $blockCounts = array();
         foreach ($rowset as $row) {
@@ -52,7 +53,8 @@ class BlockController extends ActionController
             if (!empty($blockCounts[$row->name])) {
                 $modules[] = array(
                     'name'  => $row->name,
-                    'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
+                    'title' => $row->title
+                        . ' (' . $blockCounts[$row->name] . ')',
                 );
             }
         }
@@ -62,6 +64,8 @@ class BlockController extends ActionController
 
     /**
      * List of blocks sorted by module
+     *
+     * @return void
      */
     public function indexAction()
     {
@@ -70,7 +74,8 @@ class BlockController extends ActionController
 
         // BLocks of the module
         $model = Pi::model('block');
-        $select = $model->select()->where(array('module' => $name))->order(array('id ASC'));
+        $select = $model->select()->where(array('module' => $name))
+            ->order(array('id ASC'));
         $rowset = $model->selectWith($select);
         $blocks = array();
         foreach ($rowset as $row) {
@@ -87,26 +92,6 @@ class BlockController extends ActionController
             );
         }
         ksort($blocks);
-        /*
-        $select = $model->select()->group('module')->columns(array('count' => new Expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $blockCounts = array();
-        foreach ($rowset as $row) {
-            $blockCounts[$row->module] = $row->count;
-        }
-
-        // Get module list
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        foreach ($moduleSet as $row) {
-            if (!empty($blockCounts[$row->name])) {
-                $modules[] = array(
-                    'name'  => $row->name,
-                    'title' => $row->title,
-                    'count' => $blockCounts[$row->name],
-                );
-            }
-        }
-        */
 
         //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('blocks', array_values($blocks));
@@ -118,6 +103,8 @@ class BlockController extends ActionController
 
     /**
      * Clone a block and default ACL rules
+     *
+     * @return void
      */
     public function cloneAction()
     {
@@ -126,7 +113,10 @@ class BlockController extends ActionController
             $rootRow = Pi::model('block_root')->find($data['root']);
             if (!$rootRow->render) {
                 $message = __('The block is not allowed to clone.');
-                $this->jump(array('action' => 'index', 'name' => $rootRow->module), $message);
+                $this->jump(
+                    array('action' => 'index', 'name' => $rootRow->module),
+                    $message
+                );
                 return;
             }
             $form = new ModuleForm('block-edit', $rootRow);
@@ -141,11 +131,15 @@ class BlockController extends ActionController
                 $values['render']   = $rootRow->render;
                 unset($values['id']);
 
-                $result = Pi::service('api')->system(array('block', 'add'), $values);
+                $result = Pi::service('api')->system(array('block', 'add'),
+                    $values);
                 extract($result);
                 if ($status) {
                     $message = __('Block data saved successfully.');
-                    $this->jump(array('action' => 'index', 'name' => $rootRow->module), $message);
+                    $this->jump(
+                        array('action' => 'index', 'name' => $rootRow->module),
+                        $message
+                    );
                     return;
                 } else {
                     $message = __('Block data not saved.');
@@ -158,7 +152,10 @@ class BlockController extends ActionController
             $rootRow = Pi::model('block_root')->find($root);
             if (!$rootRow->render) {
                 $message = __('The block is not allowed to clone.');
-                $this->jump(array('action' => 'index', 'name' => $rootRow->module), $message);
+                $this->jump(
+                    array('action' => 'index', 'name' => $rootRow->module),
+                    $message
+                );
                 return;
             }
             $form = new ModuleForm('block-edit', $rootRow);
@@ -180,15 +177,10 @@ class BlockController extends ActionController
             }
 
             $form->setData($data);
-            $form->setAttribute('action', $this->url('', array('action' => 'clone')));
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'clone')));
             $message = '';
         }
-        /*
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        foreach ($moduleSet as $row) {
-            $modules[$row->name] = $row->title;
-        }
-        */
 
         $title = sprintf(__('Block clone from: %s'), $rootRow->title);
 
@@ -202,6 +194,8 @@ class BlockController extends ActionController
 
     /**
      * Edit a block
+     *
+     * @return void
      */
     public function editAction()
     {
@@ -224,9 +218,13 @@ class BlockController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('block', 'edit'), $blockRow, $values);
+                $result = Pi::service('api')->system(array('block', 'edit'),
+                    $blockRow, $values);
                 $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => $blockRow->module), $message);
+                $this->jump(
+                    array('action' => 'index', 'name' => $blockRow->module),
+                    $message
+                );
                 return;
             } else {
                 $message = __('Invalid data, please check and re-submit.');
@@ -239,28 +237,14 @@ class BlockController extends ActionController
                 $this->jump(array('action' => 'index'), $message);
                 return;
             }
-            /*
-            if ($blockRow->module) {
-                $rootRow = Pi::model('block_root')->find($blockRow->root);
-                $form = new ModuleForm('block-edit', $rootRow);
-            } else {
-                $form = new CustomForm('block-custom', $blockRow->type);
-            }
-            */
             $rootRow = Pi::model('block_root')->find($blockRow->root);
             $form = new ModuleForm('block-edit', $rootRow);
             $values = $blockRow->toArray();
             $form->setData($values);
-            $form->setAttribute('action', $this->url('', array('action' => 'edit')));
+            $form->setAttribute('action',
+                $this->url('', array('action' => 'edit')));
             $message = '';
         }
-        /*
-         // Get module list
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        foreach ($moduleSet as $row) {
-            $modules[$row->name] = $row->title;
-        }
-        */
 
         $title = sprintf(__('Block edit: %s'), $blockRow->title);
 
@@ -273,18 +257,24 @@ class BlockController extends ActionController
     }
 
     /**
-     * AJAX for deleting a block and remove its page-block links and corresponding ACL rules
+     * AJAX for deleting a block and remove its page-block links
+     * and corresponding ACL rules
+     *
+     * @return int
      */
     public function deleteAction()
     {
         $id = $this->params('id');
-        $result = Pi::service('api')->system(array('block', 'delete'), $id, false);
+        $result = Pi::service('api')->system(array('block', 'delete'),
+            $id, false);
         extract($result);
         return $status;
     }
 
     /**
      * List of pages that have the block
+     *
+     * @return array
      */
     public function pageAction()
     {
@@ -303,13 +293,18 @@ class BlockController extends ActionController
                 'title' => __('Custom blocks'),
             );
             */
-            $select = Pi::model('page')->select()->where(array('id' => $pageIds))->order(array('module ASC', 'controller ASC', 'action ASC'));
+            $select = Pi::model('page')->select()
+                ->where(array('id' => $pageIds))
+                ->order(array('module ASC', 'controller ASC', 'action ASC'));
             $rowset = Pi::model('page')->selectWith($select);
             $pageList = array();
             foreach ($rowset as $row) {
                 $pageList[$row->module][] = array(
                     'title' => $row->title,
-                    'url'   => $this->url('', array('controller' => 'page', 'action' => 'block', 'page' => $row->id)),
+                    'url'   => $this->url('',
+                        array('controller' => 'page',
+                            'action' => 'block',
+                            'page' => $row->id)),
                 );
             }
 

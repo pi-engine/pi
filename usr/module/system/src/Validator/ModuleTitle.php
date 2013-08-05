@@ -1,21 +1,10 @@
 <?php
 /**
- * Module title validator
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Validator
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\System\Validator;
@@ -23,11 +12,18 @@ namespace Module\System\Validator;
 use Pi;
 use Zend\Validator\AbstractValidator;
 
+/**
+ * Module title check
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class ModuleTitle extends AbstractValidator
 {
+    /** @var string */
     const TAKEN     = 'moduleTitleTaken';
 
     /**
+     * Message templates
      * @var array
      */
     protected $messageTemplates = array(
@@ -39,7 +35,7 @@ class ModuleTitle extends AbstractValidator
      *
      * @param  mixed $value
      * @param  array $context
-     * @return boolean
+     * @return bool
      */
     public function isValid($value, $context = null)
     {

@@ -1,40 +1,44 @@
 <?php
 /**
- * Pi module installer action
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\System
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace   Module\System\Installer\Action;
+
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
 use Zend\EventManager\Event;
 use Pi\Application\Installer\SqlSchema;
 
+/**
+ * Module update handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Update extends BasicUpdate
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function attachDefaultListeners()
     {
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
         $events->attach('update.post', array($this, 'updateConfig'));
         parent::attachDefaultListeners();
+
         return $this;
     }
 
+    /**
+     * Update config
+     *
+     * @param Event $e
+     */
     public function updateConfig(Event $e)
     {
         $model = Pi::model('update', $this->module);
@@ -47,6 +51,12 @@ class Update extends BasicUpdate
         $model->insert($data);
     }
 
+    /**
+     * Update module table schema
+     *
+     * @param Event $e
+     * @return bool
+     */
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
@@ -69,7 +79,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+                'message'   => 'SQL schema query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -89,7 +100,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -102,7 +114,8 @@ EOD;
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
-                    'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
                 ));
                 return false;
             }
@@ -130,7 +143,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+                'message'   => 'SQL schema query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -148,7 +162,8 @@ EOD;
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
-                    'message'   => 'Table drop failed: ' . $exception->getMessage(),
+                    'message'   => 'Table drop failed: '
+                        . $exception->getMessage(),
                 ));
                 return false;
             }
@@ -164,13 +179,16 @@ EOD;
 
         // Add table field `section` to table acl_role
         $table = Pi::model('acl_role')->getTable();
-        $sql = sprintf('ALTER TABLE %s ADD `section` varchar(64) NOT NULL default \'front\' AFTER `module`', $table);
+        $sql = sprintf('ALTER TABLE %s ADD `section` varchar(64) NOT NULL'
+                . ' default \'front\' AFTER `module`',
+            $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -183,7 +201,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -193,17 +212,21 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
-        $sql = sprintf('ALTER TABLE %s ADD KEY `pair` UNIQUE KEY (`section`, `module`, `name`)', $table);
+        $sql = sprintf('ALTER TABLE %s ADD KEY `pair`'
+                . ' UNIQUE KEY (`section`, `module`, `name`)',
+            $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -216,7 +239,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table drop failed: ' . $exception->getMessage(),
+                'message'   => 'Table drop failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -243,7 +267,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+                'message'   => 'SQL schema query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
@@ -264,12 +289,15 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+                'message'   => 'SQL schema query failed: '
+                    . $exception->getMessage(),
             ));
             return false;
         }
 
-        $rowset = Pi::model('user_role')->select(array('role <> ?' => 'member'));
+        $rowset = Pi::model('user_role')->select(
+            array('role <> ?' => 'member')
+        );
         $modelStaff = Pi::model('user_staff');
         foreach ($rowset as $row) {
             $modelStaff->insert(array(
@@ -280,6 +308,5 @@ EOD;
         }
 
         endif;
-
     }
 }
