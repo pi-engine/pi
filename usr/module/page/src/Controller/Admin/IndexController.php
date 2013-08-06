@@ -1,21 +1,10 @@
 <?php
 /**
- * Action controller class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\Page
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Page\Controller\Admin;
@@ -31,7 +20,8 @@ use Module\Page\Form\PageFilter;
 class IndexController extends ActionController
 {
     protected $pageColumns = array(
-        'id', 'name', 'title', 'slug', 'content', 'markup', 'active', 'user', 'time'
+        'id', 'name', 'title', 'slug', 'content', 'markup', 'active',
+        'user', 'time'
     );
 
     /**
@@ -115,7 +105,8 @@ class IndexController extends ActionController
         } else {
             $markup = $this->params('type', 'text');
             $form = new PageForm('page-form', $markup);
-            $form->setAttribute('action', $this->url('', array('action' => 'add')));
+            $form->setAttribute('action',
+                                $this->url('', array('action' => 'add')));
             $message = '';
         }
 
@@ -168,8 +159,14 @@ class IndexController extends ActionController
                     'id'            => $row->id,
                     'title'         => $row->title,
                     'url'           => $this->url('page', $values),
-                    'edit'          => $this->url('', array('action' => 'edit', 'id' => $row->id)),
-                    'delete'        => $this->url('', array('action' => 'delete', 'id' => $row->id)),
+                    'edit'          => $this->url('', array(
+                        'action' => 'edit',
+                        'id' => $row->id
+                    )),
+                    'delete'        => $this->url('', array(
+                        'action' => 'delete',
+                        'id' => $row->id
+                    )),
                 );
                 Pi::service('registry')->page->clear($this->getModule());
             } else {
@@ -222,7 +219,8 @@ class IndexController extends ActionController
                 if ($row->name != $values['name']) {
                     $pageSet = array(
                         'remove'    => $row->name,
-                        'set'       => array($values['name'], $values['title']),
+                        'set'       => array($values['name'],
+                                             $values['title']),
                     );
                 }
                 $values['time_updated'] = time();
@@ -249,7 +247,8 @@ class IndexController extends ActionController
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
             $form->setData($data);
-            $form->setAttribute('action', $this->url('', array('action' => 'edit')));
+            $form->setAttribute('action',
+                                $this->url('', array('action' => 'edit')));
             $message = '';
         }
 

@@ -1,21 +1,10 @@
 <?php
 /**
- * Demo route controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\Demo
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Demo\Controller\Admin;
@@ -27,6 +16,7 @@ use Module\Demo\Form\RouteFilter;
 
 /**
  * Feature list:
+ *
  *  1. List of routes
  *  2. Edit a route
  *  5. Delete a route
@@ -43,7 +33,9 @@ class RouteController extends ActionController
     public function indexAction()
     {
         $module = $this->getModule();
-        $select = Pi::model('route')->select()->where(array('module' => $module, 'custom' => 1))->order(array('priority DESC'));
+        $select = Pi::model('route')->select()
+            ->where(array('module' => $module, 'custom' => 1))
+            ->order(array('priority DESC'));
         $rowset = Pi::model('route')->selectWith($select);
         $routes = array();
         foreach ($rowset as $row) {
@@ -105,7 +97,10 @@ class RouteController extends ActionController
             }
         } else {
             $form = new RouteForm('route');
-            $form->setAttribute('action', $this->url('', array('action' => 'add')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'add'))
+            );
             $form->setData(array(
                 'module'    => $module,
                 'section'   => 'front',
@@ -154,8 +149,14 @@ class RouteController extends ActionController
                 $route = array(
                     'id'            => $row->id,
                     'title'         => $row->title,
-                    'edit'          => $this->url('', array('action' => 'edit', 'id' => $row->id)),
-                    'delete'        => $this->url('', array('action' => 'delete', 'id' => $row->id)),
+                    'edit'          => $this->url(
+                        '',
+                        array('action' => 'edit', 'id' => $row->id)
+                    ),
+                    'delete'        => $this->url(
+                        '',
+                        array('action' => 'delete', 'id' => $row->id)
+                    ),
                 );
                 Pi::service('registry')->route->flush();
             } else {
@@ -218,7 +219,10 @@ class RouteController extends ActionController
             unset($data['data']);
             $form = new RouteForm('route');
             $form->setData($data);
-            $form->setAttribute('action', $this->url('', array('action' => 'edit')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'edit'))
+            );
             $message = '';
         }
 
@@ -262,8 +266,14 @@ class RouteController extends ActionController
             $route = array(
                 'id'            => $id,
                 'title'         => $row->title,
-                'edit'          => $this->url('', array('action' => 'edit', 'id' => $id)),
-                'delete'        => $this->url('', array('action' => 'delete', 'id' => $id)),
+                'edit'          => $this->url(
+                    '',
+                    array('action' => 'edit', 'id' => $id)
+                ),
+                'delete'        => $this->url('', array(
+                    'action'    => 'delete',
+                    'id'        => $id
+                )),
             );
         } else {
             $messages = $form->getMessages();

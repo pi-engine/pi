@@ -1,18 +1,10 @@
 <?php
 /**
- * Action controller class
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Module\Widget
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -55,7 +47,8 @@ class CarouselController extends WidgetController
             unset($block['type']);
         }
 
-        $result = Pi::service('api')->system(array('block', 'update'), $widgetRow->block, $block);
+        $result = Pi::service('api')->system(array('block', 'update'),
+                                             $widgetRow->block, $block);
         $status = $result['status'];
         if ($status) {
             $items = json_decode($widgetRow->meta, true);
@@ -163,7 +156,9 @@ class CarouselController extends WidgetController
         /**#@-*/
 
         $uploader = new Upload(array('rename' => $rename));
-        $uploader->setExtension('jpg,png,gif'); //->setRename('tmp.%random%'); //->setImageSize(array('maxWidth' => 600, 'maxHeight' => 500));
+        $uploader->setExtension('jpg,png,gif');
+        //->setRename('tmp.%random%');
+        //->setImageSize(array('maxWidth' => 600, 'maxHeight' => 500));
         if ($uploader->isValid()) {
             $uploader->receive();
             $file = $uploader->getUploaded('image');
@@ -230,7 +225,8 @@ class CarouselController extends WidgetController
         foreach ($content as $item) {
             if ($this->tmpPrefix == substr($item['image'], 0, $prefixLength)) {
                 $newName = substr($item['image'], $prefixLength);
-                $renamed = rename($pathRoot . '/' . $item['image'], $pathRoot . '/' . $newName);
+                $renamed = rename($pathRoot . '/' . $item['image'],
+                                  $pathRoot . '/' . $newName);
                 if ($renamed) {
                     $item['image'] = $newName;
                 }

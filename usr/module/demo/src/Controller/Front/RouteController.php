@@ -1,20 +1,10 @@
 <?php
 /**
- * Demo route controller
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\Demo
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Demo\Controller\Front;
@@ -24,11 +14,13 @@ use Pi\Mvc\Controller\ActionController;
 
 /**
  * Feature list:
+ *
  *  1. Default with ID: url/$id
  *  2. Slug with/without ID: url/$id-$slug; url/$slug
  *  3. Category with slug: url/$category/$id-$slug
  *  4. Time with slug: url/2012/08/23/$id-$slug
- *  5. Compound with category, time and slug: url/$category/2012/08/23/$id-$slug
+ *  5. Compound with category, time and slug:
+ *      url/$category/2012/08/23/$id-$slug
  */
 class RouteController extends ActionController
 {
@@ -115,7 +107,11 @@ class RouteController extends ActionController
             ),
         );
 
-        $rowset = Pi::model('route')->select(array('module' => $this->getModule(), 'custom' => 1, 'active' => 1));
+        $rowset = Pi::model('route')->select(array(
+            'module'    => $this->getModule(),
+            'custom'    => 1,
+            'active'    => 1
+        ));
         $routeList = array();
         foreach ($rowset as $row) {
             $routeList[$row->name] = $row->data;
@@ -160,7 +156,8 @@ class RouteController extends ActionController
         $params = $this->params()->fromRoute();
         $this->view()->assign('params', $params);
 
-        // Specify template, otherwise template will be set up as {controller}-{action}
+        // Specify template,
+        // otherwise template will be set up as {controller}-{action}
         $this->view()->setTemplate('demo-route');
 
         // Assign route list to template

@@ -1,28 +1,18 @@
 <?php
 /**
- * Pi module installer action
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\Page
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Page\Installer\Action;
+
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Zend\EventManager\Event;
 use Pi\Application\Installer\SqlSchema;
+use Zend\EventManager\Event;
 
 class Update extends BasicUpdate
 {
@@ -41,7 +31,8 @@ class Update extends BasicUpdate
             return true;
         }
 
-        // Add table of stats, not used yet; Solely for demonstration, will be dropped off by end of the udpate
+        // Add table of stats, not used yet;
+        // Solely for demonstration, will be dropped off by end of the udpate
         $sql =<<<'EOD'
 CREATE TABLE `{stats}` (
   `id`      int(10) unsigned        NOT NULL auto_increment,
@@ -59,7 +50,8 @@ EOD;
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $exception->getMessage(),
+                'message'   => 'SQL schema query failed: '
+                               . $exception->getMessage(),
             ));
             return false;
         }
@@ -70,48 +62,59 @@ EOD;
         $adapter = $model->getAdapter();
 
         // Alter table field `time` to `time_created`
-        $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10) unsigned NOT NULL default \'0\'', $table);
+        $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10)'
+                       . ' unsigned NOT NULL default \'0\'',
+                       $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
             ));
             return false;
         }
 
         // Add table field `time_updated`
-        $sql = sprintf('ALTER TABLE %s ADD `time_updated` int(10) unsigned NOT NULL default \'0\' AFTER `time_created`', $table);
+        $sql = sprintf('ALTER TABLE %s ADD `time_updated` int(10) unsigned'
+                       . ' NOT NULL default \'0\' AFTER `time_created`',
+                       $table);
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
             ));
             return false;
         }
         // Add table field `clicks`
         try {
-            $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10) unsigned NOT NULL default \'0\'', $table);
+            $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10)'
+                           . ' unsigned NOT NULL default \'0\'',
+                           $table);
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table alter query failed: ' . $exception->getMessage(),
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
             ));
             return false;
         }
 
         // Drop not used table
         try {
-            $sql = sprintf('DROP TABLE IF EXISTS %s', Pi::model('stats', $this->module)->getTable());
+            $sql = sprintf('DROP TABLE IF EXISTS %s',
+                           Pi::model('stats', $this->module)->getTable());
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->setResult('db', array(
                 'status'    => false,
-                'message'   => 'Table drop failed: ' . $exception->getMessage(),
+                'message'   => 'Table drop failed: '
+                               . $exception->getMessage(),
             ));
             return false;
         }

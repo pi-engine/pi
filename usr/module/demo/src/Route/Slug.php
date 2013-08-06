@@ -1,21 +1,10 @@
 <?php
 /**
- * Demo route implementation
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @since           3.0
- * @package         Module\Demo
- * @subpackage      Route
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\Demo\Route;
@@ -80,7 +69,8 @@ class Slug extends Standard
             'slug'          => urldecode($slug),
         );
 
-        return new RouteMatch(array_merge($this->defaults, $matches), $pathLength);
+        return new RouteMatch(array_merge($this->defaults, $matches),
+                              $pathLength);
     }
 
     /**
@@ -102,6 +92,8 @@ class Slug extends Standard
             $url .= ($url ? '-' : '') . urlencode($mergedParams['slug']);
         }
 
-        return $this->paramDelimiter . trim($this->prefix, $this->paramDelimiter) . $this->paramDelimiter . $url;
+        return $this->paramDelimiter
+            . trim($this->prefix, $this->paramDelimiter)
+            . $this->paramDelimiter . $url;
     }
 }
