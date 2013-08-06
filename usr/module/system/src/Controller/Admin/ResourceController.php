@@ -15,5 +15,4 @@ namespace Module\System\Controller\Admin;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ResourceController extends PermController
-{
-}
+{}

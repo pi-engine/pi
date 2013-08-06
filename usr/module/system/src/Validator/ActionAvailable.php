@@ -45,7 +45,8 @@ class ActionAvailable extends AbstractValidator
         $controller = $context['controller'];
         $action = $value;
 
-        $controllerClass = sprintf('Module\\%s\\Controller\\Front\\%sController', ucfirst($module), ucfirst($controller));
+        $controllerClass = sprintf('Module\\%s\Controller\Front\\%sController',
+            ucfirst($module), ucfirst($controller));
         $actionMethod = $action . 'Action';
         if (!method_exists($controllerClass, $actionMethod)) {
             $this->error(static::ACTION_UNAVAILABLE);

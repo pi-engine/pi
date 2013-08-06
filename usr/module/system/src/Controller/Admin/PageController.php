@@ -600,7 +600,7 @@ class PageController extends ActionController
                 'status'    => 0,
                 'message'   => __('Page is not found.'),
             );
-            
+
             return $result;
         }
 
