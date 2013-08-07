@@ -109,8 +109,10 @@ class FormRow extends ZendFormRow
             // as the HTML standard does not allow nested
             // labels. The semantic way is to group them inside a fieldset
             $type = $element->getAttribute('type');
-            if ($type === 'multi_checkbox' || $type === 'multicheckbox'
-                || $type === 'radio') {
+            if ($type === 'multi_checkbox'
+                || $type === 'multicheckbox'
+                || $type === 'radio'
+            ) {
                 $markup = sprintf(
                     '<fieldset><legend>%s</legend>%s%s</fieldset>',
                     $label,
@@ -143,19 +145,19 @@ class FormRow extends ZendFormRow
                 switch ($this->labelPosition) {
                     case self::LABEL_PREPEND:
                         $markup = $labelOpen . $label . $elementString
-                            . $labelClose;
+                                . $labelClose;
                         break;
                     case self::LABEL_APPEND:
                     default:
                         $markup = $labelOpen . $elementString . $label
-                            . $labelClose;
+                                . $labelClose;
                         break;
                 }
                 /**#@+
                  * For description
                  */
                 $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>'
-                    . $elementDescription . $elementString;
+                        . $elementDescription . $elementString;
                 /**#@-*/
             }
 

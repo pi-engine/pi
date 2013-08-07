@@ -51,8 +51,10 @@ abstract class AbstractRenderer
             $configDefault = Pi::config()->load($this->configFile);
             if (isset($configDefault['options'])) {
                 if (isset($config['options'])) {
-                    $config['options'] = array_merge($configDefault['options'],
-                        $config['options']);
+                    $config['options'] = array_merge(
+                        $configDefault['options'],
+                        $config['options']
+                    );
                 } else {
                     $config['options'] = $configDefault['options'];
                 }
@@ -85,6 +87,7 @@ abstract class AbstractRenderer
     public function setView(Renderer $view)
     {
         $this->view = $view;
+
         return $this;
     }
 
@@ -97,6 +100,7 @@ abstract class AbstractRenderer
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -134,6 +138,7 @@ abstract class AbstractRenderer
     public function setOption($name, $value)
     {
         $this->options[$name] = $value;
+
         return $this;
     }
 
@@ -147,6 +152,7 @@ abstract class AbstractRenderer
     public function setAttribute($key, $value)
     {
         $this->attributes[$key] = $value;
+
         return $this;
     }
 
@@ -161,6 +167,7 @@ abstract class AbstractRenderer
         if (!array_key_exists($key, $this->attributes)) {
             return null;
         }
+
         return $this->attributes[$key];
     }
 
@@ -188,6 +195,7 @@ abstract class AbstractRenderer
         foreach ($attributes as $key => $value) {
             $this->setAttribute($key, $value);
         }
+
         return $this;
     }
 

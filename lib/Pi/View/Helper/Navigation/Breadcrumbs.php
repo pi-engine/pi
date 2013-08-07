@@ -67,6 +67,7 @@ class Breadcrumbs extends ZendBreadcrumbs
                         'Breadcrumbs is loaded from cache.'
                     );
                 }
+
                 return $content;
             }
         }

@@ -36,6 +36,7 @@ class Module extends AbstractRegistry
                 'directory' => $module->directory,
             );
         }
+
         return $modules;
     }
 
@@ -51,6 +52,7 @@ class Module extends AbstractRegistry
                     : (isset($data[$module])
                         ? $data[$module]
                         : false);
+
         return $ret;
     }
 
@@ -62,6 +64,7 @@ class Module extends AbstractRegistry
     {
         $this->clear($module);
         $this->read($module);
+
         return true;
     }
 
@@ -79,6 +82,7 @@ class Module extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 

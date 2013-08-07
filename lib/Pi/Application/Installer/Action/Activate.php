@@ -26,6 +26,7 @@ class Activate extends AbstractAction
         $events = $this->events;
         $events->attach('activate.pre', array($this, 'checkIndependent'));
         $events->attach('activate.post', array($this, 'createDependency'));
+
         return $this;
     }
 
@@ -47,6 +48,7 @@ class Activate extends AbstractAction
         }
 
         $this->event->setParam('row', $row);
+
         return true;
     }
 
@@ -57,6 +59,7 @@ class Activate extends AbstractAction
     {
         $row = $this->event->getParam('row');
         $row->active = 0;
+        
         return $row->save();
     }
 }

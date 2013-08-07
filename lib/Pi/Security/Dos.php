@@ -38,6 +38,7 @@ class Dos extends AbstractAdapter
         if (empty($agent) || '-' == $agent) {
             return false;
         }
+
         return null;
     }
 }

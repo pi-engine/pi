@@ -45,8 +45,10 @@ class Resource implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listener = $events->attach('process',
-            array($this, 'processResources'));
+        $this->listener = $events->attach(
+            'process',
+            array($this, 'processResources')
+        );
     }
 
     /**
@@ -129,8 +131,9 @@ class Resource implements ListenerAggregateInterface
         $config = $this->event->getParam('config');
         if (!empty($config['maintenance']['resource'])) {
             $resources = array_keys($config['maintenance']['resource']);
-            $resourceList = array_unique(array_merge($resources,
-                $resourceList));
+            $resourceList = array_unique(
+                array_merge($resources, $resourceList)
+            );
         }
 
         return $resourceList;
@@ -156,11 +159,17 @@ class Resource implements ListenerAggregateInterface
         $e                  = $this->event;
         $config             = $e->getParam('config');
         $moduleDirectory    = $e->getParam('directory');
-        $resourceClass      = sprintf('Module\\%s\Installer\Resource\\%s',
-            ucfirst($moduleDirectory), ucfirst($resource));
+        $resourceClass      = sprintf(
+            'Module\\%s\Installer\Resource\\%s',
+            ucfirst($moduleDirectory),
+            ucfirst($resource)
+        );
         if (!class_exists($resourceClass)) {
-            $resourceClass = sprintf('%s\Resource\\%s',
-                __NAMESPACE__, ucfirst($resource));
+            $resourceClass = sprintf(
+                '%s\Resource\\%s',
+                __NAMESPACE__,
+                ucfirst($resource)
+            );
         }
         if (!class_exists($resourceClass)) {
             return;
@@ -172,8 +181,12 @@ class Resource implements ListenerAggregateInterface
         $options = isset($config['maintenance']['resource'][$resource])
             ? $config['maintenance']['resource'][$resource] : array();
         if (is_string($options)) {
-            $optionsFile = sprintf('%s/%s/config/%s',
-                Pi::path('module'), $moduleDirectory, $options);
+            $optionsFile = sprintf(
+                '%s/%s/config/%s',
+                Pi::path('module'),
+                $moduleDirectory,
+                $options
+            );
             $options = include $optionsFile;
             if (empty($options) || !is_array($options)) {
                 $options = array();

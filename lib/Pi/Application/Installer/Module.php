@@ -62,9 +62,11 @@ class Module
      */
     public function __call($method, $args)
     {
-        if (!in_array($method,
-            array('install', 'uninstall', 'update', 'activate', 'deactivate'))
-            ) {
+        if (!in_array(
+                $method,
+                array('install', 'uninstall', 'update', 'activate', 'deactivate')
+            )
+        ) {
             throw new \InvalidArgumentException(
                 sprintf('Invalid action "%s".', $method)
             );
@@ -103,11 +105,17 @@ class Module
 
         $this->getEventManager()->trigger('start', null, $event);
 
-        $actionClass = sprintf('Module\\%s\Installer\Action\\%s',
-            ucfirst($moduleDirectory), ucfirst($method));
+        $actionClass = sprintf(
+            'Module\\%s\Installer\Action\\%s',
+            ucfirst($moduleDirectory),
+            ucfirst($method)
+        );
         if (!class_exists($actionClass)) {
-            $actionClass = sprintf('%s\Action\\%s',
-                __NAMESPACE__, ucfirst($method));
+            $actionClass = sprintf(
+                '%s\Action\\%s',
+                __NAMESPACE__,
+                ucfirst($method)
+            );
         }
         $action = new $actionClass($event);
         $action->setEvents($this->getEventManager());
@@ -119,8 +127,12 @@ class Module
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method),
-            null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger(
+            sprintf('%s.pre', $method),
+            null,
+            $event,
+            $shortCircuit
+        );
         if ($result->stopped()) {
             return false;
         }
@@ -131,15 +143,15 @@ class Module
         //$resourceHandler = new Resource($event);
         //$resourceHandler->attach($this->getEventManager());
         $this->attachResource();
-        $result = $this->getEventManager()->trigger('process',
-            null, $event, $shortCircuit);
+        $result = $this->getEventManager()
+                       ->trigger('process', null, $event, $shortCircuit);
         if ($result->stopped()) {
             $action->rollback();
             return false;
         }
 
-        $this->getEventManager()->trigger(sprintf('%s.post', $method),
-            null, $event);
+        $this->getEventManager()
+             ->trigger(sprintf('%s.post', $method), null, $event);
         $this->getEventManager()->trigger('finish', null, $event);
 
         $status = true;
@@ -163,6 +175,7 @@ class Module
         if (!$this->events) {
             $this->events = new EventManager;
         }
+
         return $this->events;
     }
 
@@ -228,12 +241,13 @@ class Module
         $content = '';
         foreach ($message as $action => $state) {
             $content .= $action  . ': '
-                . (($state['status'] === false) ? 'failed' : 'passed');
+                      . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
                 $content .= '<br />&nbsp;&nbsp;'
-                . implode('<br />&nbsp;&nbsp;', $state['message']);
+                          . implode('<br />&nbsp;&nbsp;', $state['message']);
             }
         }
+
         return $content;
     }
 
@@ -246,6 +260,7 @@ class Module
     public function updateMeta(Event $e)
     {
         Pi::service('module')->createMeta();
+        
         return true;
     }
 

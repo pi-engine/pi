@@ -70,6 +70,7 @@ class Profiler
     public function addWriter(WriterInterface $writer, $priority = 1)
     {
         $this->writers->insert($writer, $priority);
+
         return $this;
     }
 
@@ -93,6 +94,7 @@ class Profiler
             'realmem'   => memory_get_usage(true),
             'emalloc'   => memory_get_usage(),
         );
+
         return $this;
     }
 

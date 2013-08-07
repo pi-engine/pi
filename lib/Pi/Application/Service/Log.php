@@ -148,6 +148,7 @@ class Log extends AbstractService
                 $this->active = true;
             }
         }
+
         return $this->active;
     }
 
@@ -164,6 +165,7 @@ class Log extends AbstractService
         if ($this->debugger) {
             $muted = $this->debugger->mute($flag);
         }
+
         return $muted;
     }
 
@@ -186,6 +188,7 @@ class Log extends AbstractService
             }
             $this->logger = new Logger($options);
         }
+
         return $this->logger;
     }
 
@@ -203,9 +206,12 @@ class Log extends AbstractService
         }
         if (null === $this->debugger && isset($this->options['debugger'])) {
             if (!isset($this->options['debugger']['active'])
-                || false !== $this->options['debugger']['active']) {
-                $this->debugger = $this->logger()
-                    ->writerPlugin('debugger', $this->options['debugger']);
+                || false !== $this->options['debugger']['active']
+            ) {
+                $this->debugger = $this->logger()->writerPlugin(
+                    'debugger',
+                    $this->options['debugger']
+                );
                 $this->logger()->addWriter($this->debugger);
             } else {
                 $this->debugger = false;
@@ -229,7 +235,8 @@ class Log extends AbstractService
         }
         if (null === $this->profiler && isset($this->options['profiler'])) {
             if (!isset($this->options['profiler']['active'])
-                || false !== $this->options['profiler']['active']) {
+                || false !== $this->options['profiler']['active']
+            ) {
                 $this->profiler = new Profiler($this->options['profiler']);
                 if ($this->debugger()) {
                     $this->profiler->addWriter($this->debugger());
@@ -256,11 +263,14 @@ class Log extends AbstractService
             return $this;
         }
         if (null === $this->dbProfiler
-            && isset($this->options['db_profiler'])) {
+            && isset($this->options['db_profiler'])
+        ) {
             if (!isset($this->options['db_profiler']['active'])
-                || false !== $this->options['db_profiler']['active']) {
-                $this->dbProfiler =
-                    new DbProfiler($this->options['db_profiler']);
+                || false !== $this->options['db_profiler']['active']
+            ) {
+                $this->dbProfiler = new DbProfiler(
+                    $this->options['db_profiler']
+                );
                 if ($this->debugger()) {
                     $this->dbProfiler->addWriter($this->debugger());
                 }
@@ -268,6 +278,7 @@ class Log extends AbstractService
                 $this->dbProfiler = false;
             }
         }
+
         return $this->dbProfiler;
     }
 
@@ -281,6 +292,7 @@ class Log extends AbstractService
     {
         $this->errorHandler = new ErrorHandler($options);
         $this->errorHandler->register($this->logger());
+
         return $this;
     }
 
@@ -294,6 +306,7 @@ class Log extends AbstractService
     {
         $this->exceptionHandler = new ExceptionHandler($options);
         $this->exceptionHandler->register($this->logger());
+
         return $this;
     }
 
@@ -309,6 +322,7 @@ class Log extends AbstractService
             return;
         }
         $this->dbProfiler() ? $this->dbProfiler()->log($info) : null;
+
         return $this;
     }
 
@@ -324,6 +338,7 @@ class Log extends AbstractService
             return;
         }
         $this->profiler() ? $this->profiler()->start($name) : null;
+
         return $this;
     }
 
@@ -339,6 +354,7 @@ class Log extends AbstractService
             return;
         }
         $this->profiler() ? $this->profiler()->end($name) : null;
+
         return $this;
     }
 
@@ -360,6 +376,7 @@ class Log extends AbstractService
         if (method_exists($this->logger, $method)) {
             call_user_func_array(array($this->logger, $method), $args);
         }
+
         return $this;
     }
 }

@@ -37,6 +37,7 @@ class Rule extends Model
         if (null !== $section) {
             $this->section = $section;
         }
+
         return $this;
     }
 
@@ -58,10 +59,11 @@ class Rule extends Model
      * @param string|null $privilege
      * @return \Pi\Db\RowGateway\RowGateway
      */
-    public function getRules($roles = array(),
-        $resources = array(),
-        $privilege = null)
-    {
+    public function getRules(
+        $roles      = array(),
+        $resources  = array(),
+        $privilege  = null
+    ) {
         $where = Pi::db()->where()->equalTo('section', $this->getSection());
         if (!empty($roles)) {
             if (count($roles) == 1) {
@@ -81,6 +83,7 @@ class Rule extends Model
             $where->equalTo('privilege', $privilege);
         }
         $rowset = $this->select($where);
+
         return $rowset;
     }
 
@@ -115,6 +118,7 @@ class Rule extends Model
         foreach ($rowset as $row) {
             $resources[] = $row->item;
         }
+
         return $resources;
     }
 

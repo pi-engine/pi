@@ -45,9 +45,12 @@ class Url extends ZendUrl
      *
      * {@inheritdoc}
      */
-    public function __invoke($name = null, $params = array(),
-        $options = array(), $reuseMatchedParams = false)
-    {
+    public function __invoke(
+        $name = null,
+        $params = array(),
+        $options = array(),
+        $reuseMatchedParams = false
+    ) {
         if (null === $this->router()) {
             throw new \RuntimeException(
                 'No RouteStackInterface instance provided'
@@ -97,6 +100,7 @@ class Url extends ZendUrl
         if (!$this->router) {
             $this->router = Pi::engine()->application()->getRouter();
         }
+
         return $this->router;
     }
 
@@ -110,6 +114,7 @@ class Url extends ZendUrl
         if (!$this->routeMatch) {
             $this->routeMatch = Pi::engine()->application()->getRouteMatch();
         }
+
         return $this->routeMatch;
     }
 }

@@ -49,6 +49,7 @@ abstract class AbstractStorage
     public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
+
         return $this;
     }
 
@@ -63,6 +64,7 @@ abstract class AbstractStorage
         if (null === $key) {
             return $this->namespace;
         }
+
         return $this->namespace . '.' . $key;
     }
 

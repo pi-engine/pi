@@ -56,6 +56,7 @@ class Ga extends AbstractHelper
 EOT;
         $account = $account ?: Pi::config('ga_account');
         $scripts = sprintf($gaScripts, $account);
+
         return $scripts;
     }
 }

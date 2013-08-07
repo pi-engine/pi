@@ -33,6 +33,7 @@ class HeadTitle extends ZendHeadTitle
         if (null !== $setType) {
             $setType = strtoupper($setType);
         }
+
         return parent::__invoke($title, $setType);
     }
 }

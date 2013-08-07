@@ -62,6 +62,7 @@ class DbProfiler
     public function addWriter(WriterInterface $writer, $priority = 1)
     {
         $this->writers->insert($writer, $priority);
+
         return $this;
     }
 
@@ -76,6 +77,7 @@ class DbProfiler
         foreach ($this->writers->toArray() as $writer) {
             $writer->doDb($info);
         }
+
         return $this;
     }
 }

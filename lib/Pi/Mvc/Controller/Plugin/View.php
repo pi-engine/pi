@@ -159,6 +159,7 @@ class View extends AbstractPlugin
     public function setViewModel(ViewModel $viewModel)
     {
         $this->viewModel = $viewModel;
+
         return $this;
     }
 
@@ -182,6 +183,7 @@ class View extends AbstractPlugin
                 $this->viewModel->setOptions($options);
             }
         }
+
         return $this->viewModel;
     }
 
@@ -194,6 +196,7 @@ class View extends AbstractPlugin
     public function setLayout($template)
     {
         $this->getEvent()->getViewModel()->setTemplate($template);
+
         return $this;
     }
 
@@ -212,13 +215,14 @@ class View extends AbstractPlugin
             if (false === strpos($template, ':')) {
                 $module = $module ?: $this->getController()->getModule();
                 $template = $module . ':'
-                    . $this->getEvent()->getApplication()->getSection()
-                    . '/' . $template;
+                          . $this->getEvent()->getApplication()->getSection()
+                          . '/' . $template;
             }
         } else {
             $template = static::NULL_TEMPLATE;
         }
         $this->getViewModel()->setTemplate($template);
+
         return $this;
     }
 
@@ -264,6 +268,7 @@ class View extends AbstractPlugin
         }
         $title = strip_tags($title);
         $this->helper('headTitle')->__invoke($title, $setType);
+
         return $this;
     }
 
@@ -277,8 +282,14 @@ class View extends AbstractPlugin
     public function headDescription($description, $placement = null)
     {
         $description = strip_tags($description);
-        $this->helper('headMeta')->__invoke($description, 'description',
-            'name', array(), $placement);
+        $this->helper('headMeta')->__invoke(
+            $description,
+            'description',
+            'name',
+            array(),
+            $placement
+        );
+
         return $this;
     }
 
@@ -295,8 +306,14 @@ class View extends AbstractPlugin
             $keywords = implode(', ', $keywords);
         }
         $keywords = strip_tags($keywords);
-        $this->helper('headMeta')->__invoke($keywords, 'keywords',
-            'name', array(), $placement);
+        $this->helper('headMeta')->__invoke(
+            $keywords,
+            'keywords',
+            'name',
+            array(),
+            $placement
+        );
+
         return $this;
     }
 
@@ -319,6 +336,7 @@ class View extends AbstractPlugin
         if (is_callable($helper)) {
             return call_user_func_array($helper, $argv);
         }
+
         return $helper;
     }
 
@@ -333,6 +351,7 @@ class View extends AbstractPlugin
         $render = $this->getController()->getServiceLocator()
             ->get('ViewManager')->getRenderer();
         $helper = $render->plugin($name);
+        
         return $helper;
     }
 }

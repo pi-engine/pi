@@ -42,6 +42,7 @@ class Timeline extends AbstractResource
         if (null === $this->isAvailable) {
             $this->isAvailable = Pi::service('module')->isActive('user');
         }
+
         return $this->isAvailable;
     }
 

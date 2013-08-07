@@ -38,9 +38,11 @@ class Search extends AbstractResource
         $model = Pi::model('search');
         $data = $this->config;
         $directory = $this->event->getParam('directory');
-        $data['callback'][0] = sprintf('Module\\%s\\%s',
+        $data['callback'][0] = sprintf(
+            'Module\\%s\\%s',
             ucfirst($directory),
-            $data['callback'][0]);
+            $data['callback'][0]
+        );
         $data['module'] = $module;
         $row = $model->createRow($data);
         $row->save();
@@ -70,9 +72,11 @@ class Search extends AbstractResource
         }
         $data = $this->config;
         $directory = $this->event->getParam('directory');
-        $data['callback'][0] = sprintf('Module\\%s\\%s',
+        $data['callback'][0] = sprintf(
+            'Module\\%s\\%s',
             ucfirst($directory),
-            $data['callback'][0]);
+            $data['callback'][0]
+        );
         $data['module'] = $module;
         if ($row) {
             $row->assign($data);
@@ -94,6 +98,7 @@ class Search extends AbstractResource
 
         $model = Pi::model('search');
         $model->delete(array('module' => $module));
+
         return true;
     }
 
@@ -106,6 +111,7 @@ class Search extends AbstractResource
         $model = Pi::model('search');
         $model->update(array('active' => 1), array('module' => $module));
         Pi::service('registry')->search->flush();
+
         return true;
     }
 
@@ -118,6 +124,7 @@ class Search extends AbstractResource
         $model = Pi::model('search');
         $model->update(array('active' => 0), array('module' => $module));
         Pi::service('registry')->search->flush();
+        
         return true;
     }
 }

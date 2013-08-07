@@ -37,6 +37,7 @@ class AvatarLocal extends AvatarUpload
     {
         $folder = $this->canonizeSize($size);
         $path = sprintf('static/avatar/%s.jpg', $folder);
+
         return $path;
     }
 }

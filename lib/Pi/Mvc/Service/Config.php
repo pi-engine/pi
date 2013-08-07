@@ -17,5 +17,4 @@ use ArrayObject;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Config extends ArrayObject
-{
-}
+{}

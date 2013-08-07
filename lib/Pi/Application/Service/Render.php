@@ -102,13 +102,14 @@ class Render extends AbstractService
      * Set cache storage
      *
      * @param AbstractAdapter
-     * @return Render
+     * @return self
      */
     public function setStorage($storage)
     {
         if ($storage instanceof AbstractAdapter) {
             $this->storage = $storage;
         }
+
         return $this;
     }
 
@@ -137,7 +138,7 @@ class Render extends AbstractService
      * Set rendering type
      *
      * @param string $type
-     * @return Render
+     * @return self
      */
     public function setType($type)
     {
@@ -159,28 +160,30 @@ class Render extends AbstractService
     /**
      * Check if content is allowed to cache in a specific context
      *
-     * @param boolean $flag
-     * @return boolean
+     * @param bool $flag
+     * @return bool
      */
     public function isCachable($flag = null)
     {
         if (null !== $flag) {
             $this->cachable = (bool) $flag;
         }
+
         return $this->cachable;
     }
 
     /**
      * Check if cache is opened in a specific context
      *
-     * @param boolean $flag
-     * @return boolean
+     * @param bool $flag
+     * @return bool
      */
     public function isOpened($flag = null)
     {
         if (null !== $flag) {
             $this->opened = (bool) $flag;
         }
+
         return $this->opened;
     }
 
@@ -195,6 +198,7 @@ class Render extends AbstractService
         if (!$this->isCachable() || null === $this->cachedContent()) {
             $isCached = false;
         }
+
         return $isCached;
     }
 
@@ -203,7 +207,7 @@ class Render extends AbstractService
      *
      * @param string        $meta
      * @param mixed|null    $value
-     * @return Render|mixed
+     * @return self|mixed
      */
     public function meta($meta, $value = null)
     {
@@ -217,6 +221,7 @@ class Render extends AbstractService
             $value = $this->canonizeKey($value);
         }
         $this->meta[$meta] = $value;
+
         return $this;
     }
 
@@ -224,11 +229,12 @@ class Render extends AbstractService
      * set generated content
      *
      * @param string $content
-     * @return Render
+     * @return self
      */
     public function setContent($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -252,11 +258,12 @@ class Render extends AbstractService
         $key = $this->meta['key'];
         if (!isset($this->cachedContent[$key])) {
             $this->cachedContent[$key] = Pi::service('cache')->getItem(
-                    $this->meta['key'],
-                    $this->meta,
-                    $this->getStorage()
-                );
+                $this->meta['key'],
+                $this->meta,
+                $this->getStorage()
+            );
         }
+
         return $this->cachedContent[$key];
     }
 
@@ -264,7 +271,7 @@ class Render extends AbstractService
      * Save content to cache storage
      *
      * @param string $content
-     * @return Render
+     * @return self
      */
     public function saveCache($content = null)
     {
@@ -278,6 +285,7 @@ class Render extends AbstractService
             );
         }
         $this->opened = false;
+
         return $this;
     }
 
@@ -287,7 +295,7 @@ class Render extends AbstractService
      * @param string|null $namespace Namespace for cache storage,
      *      usually module name
      * @param string|null $key
-     * @return Render
+     * @return self
      */
     public function flushCache($namespace = null, $key = null)
     {
@@ -298,6 +306,7 @@ class Render extends AbstractService
                 $key,
                 $this->getStorage()
             );
+
             return $this;
         }
 
@@ -307,6 +316,7 @@ class Render extends AbstractService
                 $namespace,
                 $this->getStorage()
             );
+
             return $this;
         }
 
@@ -318,5 +328,7 @@ class Render extends AbstractService
                 $this->getStorage()
             );
         }
+
+        return $this;
     }
 }

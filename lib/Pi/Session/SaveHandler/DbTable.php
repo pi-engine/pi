@@ -190,6 +190,7 @@ class DbTable implements SaveHandlerInterface
                 $this->destroy($id);
             }
         }
+
         return $return;
     }
 
@@ -221,8 +222,10 @@ class DbTable implements SaveHandlerInterface
                 $return = $row->save(false);
             }
         } catch (\Exception $e) {
-            trigger_error('Session write error: ' . $e->getMessage(),
-                E_USER_ERROR);
+            trigger_error(
+                'Session write error: ' . $e->getMessage(),
+                E_USER_ERROR
+            );
         }
 
         return $return;
@@ -254,8 +257,8 @@ class DbTable implements SaveHandlerInterface
     public function gc($maxlifetime)
     {
         $this->model->delete($this->model->quoteIdentifier('modified') . ' + '
-                    . $this->model->quoteIdentifier('lifetime') . ' < '
-                    . $this->model->quoteValue(time()));
+            . $this->model->quoteIdentifier('lifetime') . ' < '
+            . $this->model->quoteValue(time()));
 
         return true;
     }

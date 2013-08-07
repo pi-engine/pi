@@ -187,6 +187,7 @@ class ViewHelperManager extends HelperPluginManager
                 }
             }
         }
+
         return parent::get($name, $options, $usePeeringServiceManagers);
     }
 

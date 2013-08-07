@@ -88,9 +88,11 @@ class FilterPluginManager extends ZendFilterPluginManager
     /**
      * {@inheritDoc}
      */
-    public function get($name, $options = array(),
-        $usePeeringServiceManagers = true)
-    {
+    public function get(
+        $name,
+        $options = array(),
+        $usePeeringServiceManagers = true
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
@@ -105,10 +107,11 @@ class FilterPluginManager extends ZendFilterPluginManager
                 $name = $invokableClass;
             // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '',
-                    ucwords(str_replace(array('-', '_', '\\', '/'), ' ',
-                        $name))
-                );
+                $class = str_replace(' ', '', ucwords(str_replace(
+                    array('-', '_', '\\', '/'),
+                    ' ',
+                    $name
+                )));
                 if (class_exists('Pi\Filter\\' . $class)) {
                     $name = 'Pi\Filter\\' . $class;
                 } else {
@@ -117,6 +120,7 @@ class FilterPluginManager extends ZendFilterPluginManager
             }
         }
         $filter = parent::get($name, $options, $usePeeringServiceManagers);
+
         return $filter;
     }
 }

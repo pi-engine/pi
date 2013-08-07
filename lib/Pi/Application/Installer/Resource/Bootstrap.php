@@ -97,6 +97,7 @@ class Bootstrap extends AbstractResource
 
         $model = Pi::model('bootstrap');
         $model->delete(array('module' => $module));
+        
         return true;
     }
 }

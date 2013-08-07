@@ -40,13 +40,15 @@ class Profile extends RowGateway
         if (!empty($meta['method'])) {
             if (is_array($meta['method'])) {
                 if (!class_exists($meta['method'][0])
-                    || !is_callable($meta['method'])) {
+                    || !is_callable($meta['method'])
+                ) {
                     $meta['method'] = null;
                 }
             } else {
                 $meta['method'] = null;
             }
         }
+
         return $meta;
     }
 
@@ -98,6 +100,7 @@ class Profile extends RowGateway
                 //$value = null;
             }
         }
+
         return $value;
     }
 }

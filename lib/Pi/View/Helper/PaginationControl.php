@@ -37,13 +37,17 @@ class PaginationControl extends ZendPaginationControl
      *      if no paginator or no view partial provided
      * @throws Exception\InvalidArgumentException if partial is invalid array
      */
-    public function __invoke(Paginator $paginator = null,
-        $scrollingStyle = null, $partial = null, $params = null)
-    {
+    public function __invoke(
+        Paginator $paginator = null,
+        $scrollingStyle = null,
+        $partial = null,
+        $params = null
+    ) {
         if ($paginator === null) {
             if (isset($this->view->paginator)
                 && $this->view->paginator !== null
-                && $this->view->paginator instanceof Paginator) {
+                && $this->view->paginator instanceof Paginator
+            ) {
                 $paginator = $this->view->paginator;
             } else {
                 throw new Exception\RuntimeException(
@@ -89,6 +93,7 @@ class PaginationControl extends ZendPaginationControl
         }
 
         $partialHelper = $this->view->plugin('partial');
+
         return $partialHelper($partial, $pages);
     }
 }

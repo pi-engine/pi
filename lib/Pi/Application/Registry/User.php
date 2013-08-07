@@ -55,8 +55,7 @@ class User extends AbstractRegistry
             return $view;
         };
 
-        $parseEdit = function ($row, $action)
-        {
+        $parseEdit = function ($row, $action) {
             if ($action == 'admin') {
                 $input = is_null($row->admin) ? $row->edit : $row->admin;
             } else {
@@ -150,6 +149,7 @@ class User extends AbstractRegistry
             }
             $data[$row->key]['title'] = $row->title;
         }
+
         return $data;
     }
 
@@ -179,6 +179,7 @@ class User extends AbstractRegistry
     {
         $this->clear('');
         $this->read($action);
+        
         return true;
     }
 

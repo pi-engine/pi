@@ -102,6 +102,7 @@ class Backbone extends AssetCanonize
                 }
             }
         }
+
         return $this;
     }
 }

@@ -41,6 +41,7 @@ class AssetLocale extends AbstractHelper
     {
         $locale = $locale ?: Pi::service('i18n')->locale;
         $file = sprintf('locale/%s/%s', $locale, $file);
+
         return Pi::service('asset')->getThemeAsset($file, null, $versioning);
     }
 }

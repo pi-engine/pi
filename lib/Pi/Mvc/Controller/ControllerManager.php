@@ -66,7 +66,8 @@ class ControllerManager extends ZendControllerManager
                 // Look up in system's shared admin controller folder
                 // for admin controller if not found in module fodler
                 if (!class_exists($invokableClass)
-                    && 'admin' == $params['section']) {
+                    && 'admin' == $params['section']
+                ) {
                     $invokableClass = sprintf(
                         'Module\System\Controller\Module\\%sController',
                         ucfirst($params['controller'])
@@ -78,8 +79,10 @@ class ControllerManager extends ZendControllerManager
 
         $cName = parent::canonicalizeName($name);
 
-        if ($invokableClass && !isset($this->invokableClasses[$cName])
-            && class_exists($invokableClass)) {
+        if ($invokableClass
+            && !isset($this->invokableClasses[$cName])
+            && class_exists($invokableClass)
+        ) {
             $inCanonicalization = true;
             $this->setInvokableClass($cName, $invokableClass);
             $inCanonicalization = false;

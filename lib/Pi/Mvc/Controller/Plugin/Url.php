@@ -37,9 +37,12 @@ class Url extends ZendUrl
      *      Whether to reuse matched parameters
      * @return string|$this
      */
-    public function __invoke($route = null, array $params = array(),
-        $options = array(), $reuseMatchedParams = false)
-    {
+    public function __invoke(
+        $route = null,
+        array $params = array(),
+        $options = array(),
+        $reuseMatchedParams = false
+    ) {
         if (0 == func_num_args()) {
             return $this;
         }
@@ -55,7 +58,8 @@ class Url extends ZendUrl
 
         $route = $route ?: null;
         $url = $this->fromRoute($route, $params,
-            $options, $reuseMatchedParams);
+                                $options, $reuseMatchedParams);
+
         return $url;
     }
 }

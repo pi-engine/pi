@@ -118,7 +118,7 @@ class Blocks extends AbstractHelper
             if (isset($info[sprintf('%s-%s-%s',
                 $module, $controller, $action)])) {
                 $blocks = $info[sprintf('%s-%s-%s',
-                    $module, $controller, $action)];
+                                        $module, $controller, $action)];
             } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
                 $blocks = $info[sprintf('%s-%s', $module, $controller)];
             } elseif (isset($info[$module])) {
@@ -164,6 +164,7 @@ class Blocks extends AbstractHelper
         $blocks = (null === $zone)
             ? $this->blocks
             : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : array());
+
         return $blocks;
     }
 }

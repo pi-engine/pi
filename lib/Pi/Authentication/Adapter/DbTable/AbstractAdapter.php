@@ -23,9 +23,8 @@ use Zend\Db\Adapter\Adapter as DbAdapter;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @see \Zend\Authentication\DbTable\AbstractAdapter
  */
-abstract class AbstractAdapter
-    extends BaseAbstractAdapter
-    implements AdapterInterface
+abstract class AbstractAdapter extends BaseAbstractAdapter implements
+    AdapterInterface
 {
     /**
      * Database Connection
@@ -87,6 +86,7 @@ abstract class AbstractAdapter
     public function setTableName($tableName)
     {
         $this->tableName = $tableName;
+
         return $this;
     }
 
@@ -99,6 +99,7 @@ abstract class AbstractAdapter
     public function setIdentityColumn($identityColumn)
     {
         $this->identityColumn = $identityColumn;
+
         return $this;
     }
 
@@ -111,6 +112,7 @@ abstract class AbstractAdapter
     public function setCredentialColumn($credentialColumn)
     {
         $this->credentialColumn = $credentialColumn;
+
         return $this;
     }
 
@@ -129,6 +131,7 @@ abstract class AbstractAdapter
         } elseif (is_bool($flag)) {
             $this->ambiguityIdentity = $flag;
         }
+
         return $this;
     }
 
@@ -264,6 +267,7 @@ abstract class AbstractAdapter
         $resultIdentities = $model->select(array(
             $this->identityColumn => $this->identity
         ));
+
         return $resultIdentities;
     }
 

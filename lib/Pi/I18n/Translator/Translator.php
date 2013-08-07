@@ -60,6 +60,7 @@ class Translator extends ZendTranslator
             $this->previousLocale = $this->locale;
             $this->locale = $locale;
         }
+
         return $this;
     }
 
@@ -97,6 +98,7 @@ class Translator extends ZendTranslator
     public function restoreLocale()
     {
         $this->locale = $this->previousLocale ?: $this->locale;
+
         return $this;
     }
 
@@ -112,6 +114,7 @@ class Translator extends ZendTranslator
             $this->previoustextDomain = $this->textDomain;
             $this->textDomain = $textDomain;
         }
+
         return $this;
     }
 
@@ -133,6 +136,7 @@ class Translator extends ZendTranslator
     public function restoreTextDomain()
     {
         $this->textDomain = $this->previoustextDomain;
+
         return $this;
     }
 
@@ -145,6 +149,7 @@ class Translator extends ZendTranslator
     {
         $this->locale = $this->previousLocale ?: $this->locale;
         $this->textDomain = $this->previoustextDomain;
+
         return $this;
     }
 
@@ -157,6 +162,7 @@ class Translator extends ZendTranslator
     public function setLoader($loader)
     {
         $this->loader = $loader;
+
         return $this;
     }
 
@@ -181,6 +187,7 @@ class Translator extends ZendTranslator
             $textDomain = $this->getTextDomain();
         }
         //d($textDomain);
+
         return parent::translate($message, $textDomain, $locale);
     }
 
@@ -197,8 +204,9 @@ class Translator extends ZendTranslator
         if (!$textDomain) {
             $textDomain = $this->getTextDomain();
         }
+
         return parent::translatePlural($singular, $plural, $number,
-            $textDomain, $locale);
+                                       $textDomain, $locale);
     }
 
     /**
@@ -272,8 +280,11 @@ class Translator extends ZendTranslator
      */
     public function loadResource($options)
     {
-        $filename = Pi::service('i18n')->getPath(array($options['domain'],
-            $options['file']), $options['locale']);
+        $filename = Pi::service('i18n')->getPath(
+            array($options['domain'],
+            $options['file']),
+            $options['locale']
+        );
         try {
             $result = $this->loader->load($options['locale'], $filename);
         } catch (\Exception $e) {
@@ -281,16 +292,18 @@ class Translator extends ZendTranslator
         }
         if (false === $result) {
             if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(
-                    sprintf('Translation "%s-%s.%s" load failed.',
-                        $options['domain'],
-                        $options['file'],
-                        $options['locale']));
+                Pi::service()->getService('log')->info(sprintf(
+                    'Translation "%s-%s.%s" load failed.',
+                    $options['domain'],
+                    $options['file'],
+                    $options['locale']
+                ));
             }
             $result = array();
         } else {
             $result = (array) $result;
         }
+
         return $result;
     }
 }

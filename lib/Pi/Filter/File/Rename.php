@@ -135,6 +135,7 @@ class Rename extends ZendRename
         if (is_array($value)) {
             $this->setSource($value);
         }
+
         return parent::filter($value);
     }
 
@@ -234,7 +235,7 @@ class Rename extends ZendRename
             );
             $target = str_replace(
                     array_keys($terms), array_values($terms), $file['target']
-                ) . $extension;
+            ) . $extension;
         } else {
             return;
         }
@@ -250,6 +251,7 @@ class Rename extends ZendRename
     public function setSource($source)
     {
         $this->source = $source;
+
         return $this;
     }
     /**#@-*/

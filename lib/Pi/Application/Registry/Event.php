@@ -46,9 +46,11 @@ class Event extends AbstractRegistry
         $listenerList = $modelListener->selectWith($select);
         $directory = Pi::service('module')->directory($options['module']);
         foreach ($listenerList as $row) {
-            $class = sprintf('Module\\%s\\%s',
+            $class = sprintf(
+                'Module\\%s\\%s',
                 ucfirst($directory),
-                ucfirst($class));
+                ucfirst($class)
+            );
             $listeners[] = array($class, $row->method, $row->module);
         }
 
@@ -65,6 +67,7 @@ class Event extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         if (empty($event)) return false;
         $options = compact('module', 'event');
+
         return $this->loadData($options);
     }
 
@@ -78,6 +81,7 @@ class Event extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $event);
+
         return true;
     }
 }

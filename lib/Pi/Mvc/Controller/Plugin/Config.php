@@ -42,9 +42,12 @@ class Config extends AbstractPlugin
     public function getConfig($name = null)
     {
         if (null === $this->configs) {
-            $this->configs = Pi::service('module')->config('',
-                $this->getController()->getModule());
+            $this->configs = Pi::service('module')->config(
+                '',
+                $this->getController()->getModule()
+            );
         }
+
         return $name ? $this->configs[$name] : $this->configs;
     }
 }

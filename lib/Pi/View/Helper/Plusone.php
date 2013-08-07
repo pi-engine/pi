@@ -40,26 +40,28 @@ class Plusone extends AbstractHtmlElement
 
         // Set size
         if (isset($config['data-size'])
-            && in_array($config['data-size'],
-                array('small', 'medium', 'tall'))) {
+            && in_array($config['data-size'], array('small', 'medium', 'tall'))
+        ) {
             $attribs['data-size'] = $config['data-size'];
         }
         // Set annotation
         if (isset($config['data-annotation'])
-            && in_array($config['data-annotation'], array('inline', 'none'))) {
+            && in_array($config['data-annotation'], array('inline', 'none'))
+        ) {
             $attribs['data-annotation'] = $config['data-annotation'];
         }
         // Set width
         if (isset($config['data-annotation'], $config['data-width'])
             && $config['data-annotation'] == 'inline'
-            && is_numeric($config['data-width']) ) {
+            && is_numeric($config['data-width'])
+        ) {
             $attribs['data-width'] = $config['data-width'];
         }
         $attributeString = $attribs ? $this->htmlAttribs($attribs) : '';
 
         $content = '<div class="g-plusone"'
-            . ($attributeString ? ' ' . $attributeString : '')
-            . '></div>' . PHP_EOL;
+                 . ($attributeString ? ' ' . $attributeString : '')
+                 . '></div>' . PHP_EOL;
         $content .= <<<'EOT'
 <script type="text/javascript">
   (function() {
@@ -71,6 +73,7 @@ class Plusone extends AbstractHtmlElement
   })();
 </script>
 EOT;
+
         return $content;
     }
 }

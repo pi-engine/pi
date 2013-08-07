@@ -89,7 +89,8 @@ class TreeRouteStack extends RouteStack
             $options = array(
                 'route'         => $route,
                 'may_terminate' => (isset($specs['may_terminate'])
-                    && $specs['may_terminate']),
+                    && $specs['may_terminate']
+                ),
                 'child_routes'  => $specs['child_routes'],
                 'route_plugins' => $this->routePluginManager,
             );
@@ -208,12 +209,14 @@ class TreeRouteStack extends RouteStack
         }
 
         if (!isset($options['only_return_path'])
-            || !$options['only_return_path']) {
+            || !$options['only_return_path']
+        ) {
             if (!isset($options['uri'])) {
                 $uri = new HttpUri();
 
                 if (isset($options['force_canonical'])
-                    && $options['force_canonical']) {
+                    && $options['force_canonical']
+                ) {
                     if ($this->requestUri === null) {
                         throw new \RuntimeException(
                             'Request URI has not been set'
@@ -231,12 +234,16 @@ class TreeRouteStack extends RouteStack
             }
 
             $path = $this->baseUrl
-                . $route->assemble(array_merge($this->defaultParams, $params),
-                    $options);
+                  . $route->assemble(
+                      array_merge($this->defaultParams, $params),
+                        $options
+                    );
 
             if ((isset($options['force_canonical'])
-                && $options['force_canonical'])
-                || $uri->getHost() !== null) {
+                    && $options['force_canonical']
+                )
+                || $uri->getHost() !== null
+            ) {
                 if ($uri->getScheme() === null) {
                     if ($this->requestUri === null) {
                         throw new \RuntimeException(
@@ -254,8 +261,10 @@ class TreeRouteStack extends RouteStack
         }
 
         return $this->baseUrl
-            . $route->assemble(array_merge($this->defaultParams, $params),
-                $options);
+            . $route->assemble(
+                array_merge($this->defaultParams, $params),
+                $options
+            );
     }
 
     /**
@@ -267,6 +276,7 @@ class TreeRouteStack extends RouteStack
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
+
         return $this;
     }
 
@@ -289,6 +299,7 @@ class TreeRouteStack extends RouteStack
     public function setRequestUri(HttpUri $uri)
     {
         $this->requestUri = $uri;
+
         return $this;
     }
 
@@ -324,6 +335,7 @@ class TreeRouteStack extends RouteStack
                 $this->routesExtra->insert($key, $route, $priority);
             }
         }
+        
         return $this->routesExtra->get($name);
     }
 

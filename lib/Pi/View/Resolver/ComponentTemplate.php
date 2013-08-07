@@ -53,6 +53,7 @@ class ComponentTemplate implements ResolverInterface
     public function setSuffix($suffix)
     {
         $this->suffix = (string) $suffix;
+
         return $this;
     }
 
@@ -78,6 +79,7 @@ class ComponentTemplate implements ResolverInterface
             $name = substr($name, 0, -6);
         }
         list($component, $template) = explode(':', $name, 2);
+
         return array($component, $template);
     }
 
@@ -95,19 +97,26 @@ class ComponentTemplate implements ResolverInterface
         }
         list($component, $template) = $this->canonizeTemplate($name);
         // Check custom template in theme
-        $path = sprintf('%s/%s/%s/%s/%s.%s',
+        $path = sprintf(
+            '%s/%s/%s/%s/%s.%s',
             Pi::path('theme'),
             Pi::config('theme'),
             $component,
             $this->templateDirectory,
             $template,
-            $this->suffix);
+            $this->suffix
+        );
         if (file_exists($path)) {
             return $path;
         }
         // Check local template in module
-        $path = sprintf('%s/%s/%s.%s', Pi::path($component),
-            $this->templateDirectory, $template, $this->suffix);
+        $path = sprintf(
+            '%s/%s/%s.%s',
+            Pi::path($component),
+            $this->templateDirectory,
+            $template,
+            $this->suffix
+        );
         if (file_exists($path)) {
             return $path;
         }

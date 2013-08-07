@@ -38,8 +38,11 @@ class Themelist extends AbstractRegistry
         foreach ($rowset as $row) {
             $config = Pi::service('theme')->loadConfig($row->name);
             $config['screenshot'] = !empty($config['screenshot'])
-                ? Pi::service('asset')->getAssetUrl('theme/' . $row->name,
-                    $config['screenshot'], false)
+                ? Pi::service('asset')->getAssetUrl(
+                    'theme/' . $row->name,
+                    $config['screenshot'],
+                    false
+                )
                 : Pi::url('static/image/theme.png');
             $themes[$row->name] = array_merge($config, $row->toArray());
         }
@@ -54,6 +57,7 @@ class Themelist extends AbstractRegistry
     public function read($type = '')
     {
         $options = compact('type');
+
         return $this->loadData($options);
     }
 
@@ -65,6 +69,7 @@ class Themelist extends AbstractRegistry
     {
         $this->clear();
         $this->read($type);
+
         return true;
     }
 

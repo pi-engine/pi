@@ -48,6 +48,7 @@ class Csv implements FileLoaderInterface
     public function setOptions($options = array())
     {
         $this->options = array_merge($this->options, $options);
+
         return $this;
     }
 
@@ -69,15 +70,12 @@ class Csv implements FileLoaderInterface
             return false;
         }
 
-        while(
-            ($data =
-                fgetcsv($file,
-                    $this->options['length'],
-                    $this->options['delimiter'],
-                    $this->options['enclosure']
-                )
-            ) !== false
-            ) {
+        while(($data = fgetcsv(
+            $file,
+            $this->options['length'],
+            $this->options['delimiter'],
+            $this->options['enclosure']
+        )) !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }
@@ -95,6 +93,7 @@ class Csv implements FileLoaderInterface
         }
 
         $textDomain = new TextDomain($messages);
+
         return $textDomain;
     }
 }

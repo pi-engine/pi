@@ -41,6 +41,7 @@ class I18nModule extends AbstractHelper
     public function __invoke($domain, $module = null, $locale = null)
     {
         Pi::service('i18n')->loadModule($domain, $module, $locale);
+
         return $this;
     }
 }

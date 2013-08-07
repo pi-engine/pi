@@ -111,14 +111,15 @@ class Block extends AbstractHelper
         $block = $blockRow->toArray();
 
         // Override with instant options
-        foreach (array('title',
+        foreach (array(
+            'title',
             'link',
             'class',
             'cache_ttl',
             'cache_level',
             'template',
-            'title_hidden')
-            as $key) {
+            'title_hidden'
+        ) as $key) {
             if (isset($options[$key])) {
                 $block[$key] = $options[$key];
             }
@@ -174,8 +175,11 @@ class Block extends AbstractHelper
             if (!$block['template']) {
                 $template = 'module/system:block/dummy';
             } else {
-                $template = sprintf('module/%s:block/%s',
-                    $block['module'], $block['template']);
+                $template = sprintf(
+                    'module/%s:block/%s',
+                    $block['module'],
+                    $block['template']
+                );
                 /**#@+
                     * Preset variables
                     */
@@ -215,8 +219,10 @@ class Block extends AbstractHelper
             if (!empty($configs)) {
                 $options = array_merge($options, $configs);
             }
-            $result = call_user_func_array($block['render'],
-                array($options, $block['module']));
+            $result = call_user_func_array(
+                $block['render'],
+                array($options, $block['module'])
+            );
         // Custom block, return string
         } elseif ($isCustom) {
             switch ($block['type']) {
@@ -237,21 +243,28 @@ class Block extends AbstractHelper
                     break;
                 // static HTML
                 case 'html':
-                    $result = Pi::service('markup')->render($block['content'],
-                        'html');
+                    $result = Pi::service('markup')->render(
+                        $block['content'],
+                        'html'
+                    );
                     $result = $this->transliterateGlobals($result);
                     break;
                 // static mardown
                 case 'markdown':
-                    $result = Pi::service('markup')->render($block['content'],
-                        'html', 'markdown');
+                    $result = Pi::service('markup')->render(
+                        $block['content'],
+                        'html',
+                        'markdown'
+                    );
                     $result = $this->transliterateGlobals($result);
                     break;
                 // static text
                 case 'text':
                 default:
-                    $result = Pi::service('markup')->render($block['content'],
-                        'text');
+                    $result = Pi::service('markup')->render(
+                        $block['content'],
+                        'text'
+                    );
                     $result = $this->transliterateGlobals($result);
                     break;
             }

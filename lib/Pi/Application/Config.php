@@ -74,7 +74,8 @@ class Config
         }
 
         if (isset($this->configs[$domain])
-            && isset($this->configs[$domain][$name])) {
+            && isset($this->configs[$domain][$name])
+        ) {
             $value = $this->configs[$domain][$name];
         }
 
@@ -107,8 +108,10 @@ class Config
     {
         $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
         if (isset($this->configs[$domain])) {
-            $this->configs[$domain] =
-                array_merge($this->configs[$domain], $configs);
+            $this->configs[$domain] = array_merge(
+                $this->configs[$domain],
+                $configs
+            );
         } else {
             $this->configs[$domain] = $configs;
         }

@@ -31,6 +31,7 @@ class AvatarGravatar extends AbstractAvatar
         }
 
         $src = $this->getUrl($avatar, $size);
+
         return $src;
     }
 
@@ -88,6 +89,7 @@ class AvatarGravatar extends AbstractAvatar
                     break;
             }
         }
+
         return $size;
     }
 

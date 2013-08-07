@@ -60,6 +60,7 @@ class Tag extends AbstractService
         if (null === $this->active) {
             $this->active = Pi::service('module')->isActive('tag');
         }
+
         return $this->active;
     }
 
@@ -80,6 +81,7 @@ class Tag extends AbstractService
         }
         $time = $time ?: time();
         $tags = (array) $tags;
+
         return TagService::add($module, $item, $type, $tags, $time);
     }
 
@@ -100,6 +102,7 @@ class Tag extends AbstractService
         }
         $time = $time ?: time();
         $tags = (array) $tags;
+
         return TagService::update($module, $item, $type, $tags, $time);
     }
 
@@ -116,6 +119,7 @@ class Tag extends AbstractService
         if (!$this->active()) {
             return false;
         }
+
         return TagService::delete($module, $item, $type);
     }
 
@@ -132,6 +136,7 @@ class Tag extends AbstractService
         if (!$this->active()) {
             return false;
         }
+
         return TagService::get($module, $item, $type);
     }
 
@@ -145,14 +150,24 @@ class Tag extends AbstractService
      * @param int    $offset        Offset
      * @return array|bool
      */
-    public function getList($module, $tag,
-        $type = null, $limit = null, $offset = 0)
-    {
+    public function getList(
+        $module,
+        $tag,
+        $type = null,
+        $limit = null,
+        $offset = 0
+    ) {
         if (!$this->active()) {
             return false;
         }
-        return TagService::getList($module, (array) $tag,
-            $type, $limit, $offset);
+
+        return TagService::getList(
+            $module,
+            (array) $tag,
+            $type,
+            $limit,
+            $offset
+        );
     }
 
     /**
@@ -168,6 +183,7 @@ class Tag extends AbstractService
         if (!$this->active()) {
             return false;
         }
+
         return TagService::getCount($module, (array) $tag, $type);
     }
 
@@ -185,6 +201,7 @@ class Tag extends AbstractService
         if (!$this->active()) {
             return false;
         }
+
         return TagService::match($term, $limit, $module, $type);
     }
 
@@ -203,6 +220,7 @@ class Tag extends AbstractService
         if (method_exists('TagService', $method)) {
             return call_user_func_array(array('TagService', $method), $args);
         }
+        
         return null;
     }
 }

@@ -216,8 +216,10 @@ class Config extends AbstractResource
                 if (!$status) {
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Category "%s" is not created.',
-                                        $category['name'])
+                        'message'   => sprintf(
+                            'Category "%s" is not created.',
+                             $category['name']
+                        )
                     );
                 }
             };
@@ -237,8 +239,10 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is not created.',
-                                    $item['name']),
+                    'message'   => sprintf(
+                        'Config "%s" is not created.',
+                        $item['name']
+                    ),
                 );
             }
         }
@@ -276,8 +280,10 @@ class Config extends AbstractResource
                 if (!$status) {
                     return array(
                         'status'    => false,
-                        'message'   => sprintf('Category "%s" is not deleted.',
-                                        $row->name)
+                        'message'   => sprintf(
+                            'Category "%s" is not deleted.',
+                            $row->name
+                        )
                     );
                 }
             } else {
@@ -315,8 +321,10 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Category "%s" is not created.',
-                                    $category['name'])
+                    'message'   => sprintf(
+                        'Category "%s" is not created.',
+                        $category['name']
+                    )
                 );
             }
         }
@@ -345,8 +353,10 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is failed to delete.',
-                                    $row->name)
+                    'message'   => sprintf(
+                        'Config "%s" is failed to delete.',
+                        $row->name
+                    )
                 );
             }
         }
@@ -356,8 +366,10 @@ class Config extends AbstractResource
             if (!$status) {
                 return array(
                     'status'    => false,
-                    'message'   => sprintf('Config "%s" is not created.',
-                                    $config['name']),
+                    'message'   => sprintf(
+                        'Config "%s" is not created.',
+                        $config['name']
+                    ),
                 );
             }
         }
@@ -377,6 +389,7 @@ class Config extends AbstractResource
         $modelConfig = Pi::model('config');
         $modelCategory->delete(array('module' => $module));
         $modelConfig->delete(array('module' => $module));
+        
         return true;
     }
 }

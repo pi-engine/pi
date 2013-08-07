@@ -28,6 +28,7 @@ class Update extends AbstractAction
             $events->attach('update.post', array($this, 'removeDependency'));
             $events->attach('update.post', array($this, 'createDependency'));
         }
+
         return $this;
     }
 
@@ -55,7 +56,7 @@ class Update extends AbstractAction
         $config = $this->event->getParam('config');
         $meta = array('update' => time());
         $moduleColumns = array('id', 'name', 'title', 'directory',
-            'version', 'update', 'active');
+                               'version', 'update', 'active');
         foreach ($config['meta'] as $key => $value) {
             if (in_array($key, $moduleColumns)) {
                 $meta[$key] = $value;
@@ -87,6 +88,7 @@ class Update extends AbstractAction
         if ($row) {
             $row->save();
         }
+        
         return;
     }
 }

@@ -50,6 +50,7 @@ class ViewResolverFactory implements FactoryInterface
         /**#@-*/
 
         $resolver->attach($serviceLocator->get('ViewTemplatePathStack'));
+
         return $resolver;
     }
 }

@@ -69,8 +69,9 @@ class Cache extends AbstractService
         if (!isset($config['adapter']['options']['namespace'])) {
             $config['adapter']['options']['namespace'] = '';
         }
-        $config['adapter']['options']['namespace'] =
-            $this->getNamespace($config['adapter']['options']['namespace']);
+        $config['adapter']['options']['namespace'] = $this->getNamespace(
+            $config['adapter']['options']['namespace']
+        );
         StorageFactory::setAdapterPluginManager(new AdapterPluginManager);
         $storage = StorageFactory::factory($config);
 
@@ -84,12 +85,14 @@ class Cache extends AbstractService
      * @params AbstractAdapter|null $storage
      * @return $this
      */
-    public function setNamespace($namespace = '',
-        AbstractAdapter $storage = null)
-    {
+    public function setNamespace(
+        $namespace = '',
+        AbstractAdapter $storage = null
+    ) {
         $namespace = $this->getNamespace($namespace);
         $storage = $storage ?: $this->storage();
         $storage->getOptions()->setNamespace($namespace);
+
         return $this;
     }
 
@@ -112,14 +115,16 @@ class Cache extends AbstractService
      * @params AbstractAdapter|null $storage
      * @return $this
      */
-    public function clearByNamespace($namespace = '',
-        AbstractAdapter $storage = null)
-    {
+    public function clearByNamespace(
+        $namespace = '',
+        AbstractAdapter $storage = null
+    ) {
         $namespace = $this->getNamespace($namespace);
         $storage = $storage ?: $this->storage();
         if (method_exists($storage, 'clearByNamespace')) {
             $storage->clearByNamespace($namespace);
         }
+
         return $this;
     }
 
@@ -163,9 +168,12 @@ class Cache extends AbstractService
      * @params AbstractAdapter|null $storage
      * @return Cache
      */
-    public function setItem($key, $value, $options = array(),
-        AbstractAdapter $storage = null)
-    {
+    public function setItem(
+        $key,
+        $value,
+        $options = array(),
+        AbstractAdapter $storage = null
+    ) {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
@@ -212,9 +220,11 @@ class Cache extends AbstractService
      * @params AbstractAdapter|null $storage
      * @return mixed
      */
-    public function getItem($key, $options = array(),
-        AbstractAdapter $storage = null)
-    {
+    public function getItem(
+        $key,
+        $options = array(),
+        AbstractAdapter $storage = null
+    ) {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
@@ -261,9 +271,11 @@ class Cache extends AbstractService
      * @params AbstractAdapter|null $storage
      * @return $this
      */
-    public function removeItem($key, $options = array(),
-        AbstractAdapter $storage = null)
-    {
+    public function removeItem(
+        $key,
+        $options = array(),
+        AbstractAdapter $storage = null
+    ) {
         $storage = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 

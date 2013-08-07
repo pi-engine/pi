@@ -66,6 +66,7 @@ class Params extends ZendParams
                 }
             }
         }
+
         return $value;
     }
 
@@ -206,6 +207,7 @@ class Params extends ZendParams
     public function filter($value, $filter, $options = null)
     {
         $value = _filter($value, $filter, $options);
+
         return $value;
     }
     /**#@-*/

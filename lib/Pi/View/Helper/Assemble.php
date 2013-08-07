@@ -50,8 +50,9 @@ class Assemble extends AbstractHelper
             $helper->setIndent($indent);
         }
         $label = '<' . $section
-            . ' id="' . md5(Pi::config('salt') . $section) . '" />';
+               . ' id="' . md5(Pi::config('salt') . $section) . '" />';
         $this->sectionLabel[$section] = $label;
+
         return $label;
     }
 
@@ -141,17 +142,21 @@ class Assemble extends AbstractHelper
          */
         $head = '';
 
-        foreach (array('headTitle',
+        foreach (array(
+            'headTitle',
             'headMeta',
             'headLink',
             'headStyle',
-            'headScript')
-            as $section) {
+            'headScript'
+        ) as $section) {
             $sectionContent = $this->view->plugin($section)->toString();
             $sectionContent .= $sectionContent ? PHP_EOL : '';
             if (!empty($this->sectionLabel[$section])) {
-                $content = str_replace($this->sectionLabel[$section],
-                    $sectionContent, $content);
+                $content = str_replace(
+                    $this->sectionLabel[$section],
+                    $sectionContent,
+                    $content
+                );
             } else {
                 $head .= $sectionContent . PHP_EOL;
             }
@@ -171,14 +176,17 @@ class Assemble extends AbstractHelper
         $section = 'footScript';
         $sectionContent = $this->view->plugin($section)->toString();
         if (!empty($this->sectionLabel[$section])) {
-            $content = str_replace($this->sectionLabel[$section],
-                $sectionContent, $content);
+            $content = str_replace(
+                $this->sectionLabel[$section],
+                $sectionContent,
+                $content
+            );
         } elseif ($sectionContent) {
             $pos = stripos($content, '</body>');
             $preFoot = substr($content, 0, $pos);
             $postFoot = substr($content, $pos);
             $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
-                . $postFoot;
+                     . $postFoot;
         }
         /**#@-*/
 

@@ -94,6 +94,7 @@ class Acl extends AbstractResource
                 $data[$col] = $resource[$col];
             }
         }
+
         return $data;
     }
 
@@ -153,8 +154,13 @@ class Acl extends AbstractResource
         $modelRule = Pi::model('acl_rule');
         foreach ($modulePerms as $section => $access) {
             foreach ($access as $role => $rule) {
-                AclHandler::addRule($rule, $role,
-                    'module-' . $section, $module, $module);
+                AclHandler::addRule(
+                    $rule,
+                    $role,
+                    'module-' . $section,
+                    $module,
+                    $module
+                );
             }
         }
 
@@ -177,8 +183,10 @@ class Acl extends AbstractResource
                 $message = array();
                 $status = $this->insertRole($role, $message);
                 if (false === $status) {
-                    $message[] = sprintf('Role "%s" is not created.',
-                        $role['name']);
+                    $message[] = sprintf(
+                        'Role "%s" is not created.',
+                        $role['name']
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message
@@ -220,8 +228,10 @@ class Acl extends AbstractResource
                 $message = array();
                 $status = $this->insertResource($resource, $message);
                 if (!$status) {
-                    $message[] = sprintf('Resource "%s" is not created.',
-                        $resource['name']);
+                    $message[] = sprintf(
+                        'Resource "%s" is not created.',
+                        $resource['name']
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message,
@@ -283,8 +293,10 @@ class Acl extends AbstractResource
             $message = array();
             $status = $this->insertRole($role, $message);
             if (false === $status) {
-                $message[] = sprintf('Role "%s" is not created.',
-                    $role['name']);
+                $message[] = sprintf(
+                    'Role "%s" is not created.',
+                    $role['name']
+                );
                 return array(
                     'status'    => false,
                     'message'   => $message
@@ -352,8 +364,10 @@ class Acl extends AbstractResource
                     $status = $this->updateResource($resource, $message);
                     unset($resources_exist[$section][$name]);
                     if (!$status) {
-                        $message[] = sprintf('Resource "%s" is not updated.',
-                            $resource['name']);
+                        $message[] = sprintf(
+                            'Resource "%s" is not updated.',
+                            $resource['name']
+                        );
                         return array(
                             'status'    => false,
                             'message'   => $message,
@@ -365,8 +379,10 @@ class Acl extends AbstractResource
                 // Add new resource
                 $status = $this->insertResource($resource, $message);
                 if (!$status) {
-                    $message[] = sprintf('Resource "%s" is not created.',
-                        $resource['name']);
+                    $message[] = sprintf(
+                        'Resource "%s" is not created.',
+                        $resource['name']
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message,
@@ -381,8 +397,10 @@ class Acl extends AbstractResource
                 $message = array();
                 $status = $this->deleteResource($resource, $message);
                 if (!$status) {
-                    $message[] = sprintf('Resource "%s" is not deleted.',
-                        $resource['name']);
+                    $message[] = sprintf(
+                        'Resource "%s" is not deleted.',
+                        $resource['name']
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message,
@@ -393,6 +411,7 @@ class Acl extends AbstractResource
 
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
+
         return true;
     }
 
@@ -437,6 +456,7 @@ class Acl extends AbstractResource
         Pi::service('registry')->moduleperm->flush();
         Pi::service('registry')->role->flush();
         Pi::service('registry')->resource->flush();
+
         return true;
     }
 
@@ -484,6 +504,7 @@ class Acl extends AbstractResource
         $model = Pi::model('acl_role');
         $row = $model->createRow($role);
         $row->save();
+
         return $row->id ? true : false;
     }
 
@@ -499,6 +520,7 @@ class Acl extends AbstractResource
         $model = Pi::model('acl_inherit');
         $row = $model->createRow($pair);
         $row->save();
+
         return $row->id ? true : false;
     }
 
@@ -541,8 +563,10 @@ class Acl extends AbstractResource
         // Add resource
         $resourceId = $modelResource->add($data, $parent);
         if (!$resourceId) {
-            $message[] = sprintf('Resource "%s" is not created.',
-                $data['name']);
+            $message[] = sprintf(
+                'Resource "%s" is not created.',
+                $data['name']
+            );
             return false;
         }
 
@@ -553,27 +577,40 @@ class Acl extends AbstractResource
                     'module'    => $resource['module'],
                     'name'      => $name,
                     'title'     => isset($privilege['title'])
-                                    ? $privilege['title'] : $name,
+                                   ? $privilege['title'] : $name,
                 );
                 $row = $modelPrivilege->createRow($data);
                 $row->save();
                 if (!$row->id) {
-                    $message[] = sprintf('Privilege "%s" is not created.',
-                        implode('-', array_values($data)));
+                    $message[] = sprintf(
+                        'Privilege "%s" is not created.',
+                        implode('-', array_values($data))
+                    );
                     return false;
                 }
                 if (isset($privilege['access'])) {
                     foreach ($privilege['access'] as $role => $rule) {
-                        AclHandler::addRule($rule, $role, $resource['section'],
-                            $resource['module'], $resourceId, $name);
+                        AclHandler::addRule(
+                            $rule,
+                            $role,
+                            $resource['section'],
+                            $resource['module'],
+                            $resourceId,
+                            $name
+                        );
                     }
                 }
             }
         // Insert access rules
         } elseif (isset($resource['access'])) {
             foreach ($resource['access'] as $role => $rule) {
-                AclHandler::addRule($rule, $role, $resource['section'],
-                    $resource['module'], $resourceId);
+                AclHandler::addRule(
+                    $rule,
+                    $role,
+                    $resource['section'],
+                    $resource['module'],
+                    $resourceId
+                );
             }
         }
 
@@ -633,19 +670,27 @@ class Acl extends AbstractResource
                 'module'    => $resource['module'],
                 'name'      => $name,
                 'title'     => isset($privilege['title'])
-                                ? $privilege['title'] : $name,
+                               ? $privilege['title'] : $name,
             );
             $row = $modelPrivilege->createRow($data);
             $row->save();
             if (!$row->id) {
-                $message[] = sprintf('Privilege "%s" is not created.',
-                    implode('-', array_values($data)));
+                $message[] = sprintf(
+                    'Privilege "%s" is not created.',
+                    implode('-', array_values($data))
+                );
                 return false;
             }
             if (isset($privilege['access'])) {
                 foreach ($privilege['access'] as $role => $rule) {
-                    AclHandler::addRule($rule, $role, $resource['section'],
-                        $resource['module'], $resourceId, $name);
+                    AclHandler::addRule(
+                        $rule,
+                        $role,
+                        $resource['section'],
+                        $resource['module'],
+                        $resourceId,
+                        $name
+                    );
                 }
             }
         }
@@ -687,6 +732,7 @@ class Acl extends AbstractResource
             unset($data['section']);
             $modelPrivilege->delete($data);
         }
+        
         return true;
     }
 }

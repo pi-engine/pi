@@ -92,7 +92,7 @@ class NavMenu extends AbstractHtmlElement
                 }
                 $attr = $this->htmlAttribs($item);
                 $list .= '<li' . $class . '><a' . $attr . '>'
-                    . $escaper($label) . '</a></li>' . PHP_EOL;
+                       . $escaper($label) . '</a></li>' . PHP_EOL;
             }
         }
 

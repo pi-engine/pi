@@ -129,6 +129,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         if ($tablePrefix) {
             $this->table = $tablePrefix . $this->table;
         }
+
         return $this;
     }
 
@@ -179,6 +180,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         if (null === $where) {
            return $this->sql->select();
         }
+
         return parent::select($where);
     }
 
@@ -193,12 +195,15 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     {
         if (!$this->rowClass) {
             $row = new ArrayObject;
-        } elseif (
-            is_subclass_of($this->rowClass,
-                'Zend\Db\RowGateway\AbstractRowGateway')
-            ) {
-            $row = new $this->rowClass($this->primaryKeyColumn,
-                $this->table, $this->sql);
+        } elseif (is_subclass_of(
+            $this->rowClass,
+            'Zend\Db\RowGateway\AbstractRowGateway'
+        )) {
+            $row = new $this->rowClass(
+                $this->primaryKeyColumn,
+                $this->table,
+                $this->sql
+            );
             if ($this->encodeColumns) {
                 $row->setEncodeColumns($this->encodeColumns);
             }
@@ -208,6 +213,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         if (null !== $data) {
             $row->populate($data, false);
         }
+
         return $row;
     }
 
@@ -220,6 +226,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     public function setEncodeColumns(array $columns)
     {
         $this->encodeColumns = $columns;
+
         return $this;
     }
 
@@ -292,6 +299,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $resultSet = $this->selectWith($select);
 
         $result = $isScalar ? $resultSet->current() : $resultSet;
+
         return $result;
     }
 
@@ -319,10 +327,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     {
         $featureClass = sprintf('%s\Feature\\%sFeature', __NAMESPECE, $name);
         if (!class_exists($featureClass)) {
-            $featureClass = sprintf('Zend\Db\TableGateway\Feature\\%sFeature',
-                $name);
+            $featureClass = sprintf(
+                'Zend\Db\TableGateway\Feature\\%sFeature',
+                $name
+            );
         }
         $this->featureSet->addFeature(new $featureClass);
+
         return $this;
     }
 }

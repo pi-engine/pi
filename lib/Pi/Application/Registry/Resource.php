@@ -43,6 +43,7 @@ class Resource extends AbstractRegistry
             }
             */
         }
+
         return $ancestors;
     }
 
@@ -60,6 +61,7 @@ class Resource extends AbstractRegistry
         //$this->cache = false;
         $module = $module ?: Pi::service('module')->current();
         $options = compact('section', 'module', 'type');
+
         return $this->loadData($options);
     }
 
@@ -74,6 +76,7 @@ class Resource extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $section, $type);
+
         return true;
     }
 
@@ -84,6 +87,7 @@ class Resource extends AbstractRegistry
     {
         $this->clear('');
         $this->flushByModules();
+
         return $this;
     }
 }

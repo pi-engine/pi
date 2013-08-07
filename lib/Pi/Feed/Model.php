@@ -41,6 +41,7 @@ class Model
     public function setType($type)
     {
         $this->feed_link['type'] = $type;
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ class Model
     {
         $type = isset($this->feed_link['type'])
             ? $this->feed_link['type'] : null;
+
         return $type;
     }
 
@@ -67,6 +69,7 @@ class Model
         foreach ($data as $key => $val) {
             $this->__set($key, $val);
         }
+
         return $this;
     }
 
@@ -127,6 +130,7 @@ class Model
                 }
                 break;
         }
+
         return $return;
     }
 
@@ -190,8 +194,11 @@ class Model
                 'link'      => Pi::url('www', true),
                 'type'      => $this->type,
             ),
-            'title'         => sprintf(__('Feed of %s - %s'),
-                Pi::config('sitename'), Pi::config('slogan')),
+            'title'         => sprintf(
+                __('Feed of %s - %s'),
+                Pi::config('sitename'),
+                Pi::config('slogan')
+            ),
             'encoding'      => Pi::service('i18n')->charset,
             'base_url'      => Pi::url('www', true),
             'entries'       => array(),

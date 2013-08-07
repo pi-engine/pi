@@ -92,6 +92,7 @@ class SessionManager extends ZendSessionManager
     public function setValidators($validators = array())
     {
         $this->validators = $validators;
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ class SessionManager extends ZendSessionManager
         if (!isset($this->containers[$name])) {
             $this->containers[$name] = new Container($name, $this);
         }
+
         return $this->containers[$name];
     }
 
@@ -124,6 +126,7 @@ class SessionManager extends ZendSessionManager
         }
         $this->setSessionCookieLifetime($ttl);
         $this->saveHandler->setLifetime($ttl);
+
         return $this;
     }
 }

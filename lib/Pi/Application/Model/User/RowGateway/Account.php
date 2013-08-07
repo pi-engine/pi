@@ -54,6 +54,7 @@ class Account extends RowGateway
         $credential = $credential ?: $this->offsetGet('credential');
         $credential = $this->transformCredential($credential);
         $this->offsetSet('credential', $credential);
+
         return $this;
     }
 
@@ -65,6 +66,7 @@ class Account extends RowGateway
     public function createSalt()
     {
         $this->offsetSet('salt', uniqid(mt_rand(), 1));
+
         return $this;
     }
 
@@ -77,10 +79,13 @@ class Account extends RowGateway
      */
     public function transformCredential($credential)
     {
-        $credential = md5(sprintf('%s%s%s',
+        $credential = md5(sprintf(
+            '%s%s%s',
             $this->offsetGet('salt'),
             $credential,
-            Pi::config('salt')));
+            Pi::config('salt')
+        ));
+
         return $credential;
     }
 
@@ -93,6 +98,7 @@ class Account extends RowGateway
     {
         $this->createSalt();
         $this->setCredential();
+
         return $this;
     }
 }

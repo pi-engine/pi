@@ -385,13 +385,15 @@ namespace Pi\Application\Service
                     $pluginManager->get($this->options['translator']['type']);
                 $translator->setLoader($loader);
                 if (!empty($this->options['translator']['options'])
-                    && is_callable(array($loader, 'setOptions'))) {
+                    && is_callable(array($loader, 'setOptions'))
+                ) {
                     $loader->setOptions(
                         $this->options['translator']['options']
                     );
                 }
                 $this->__translator = $translator;
             }
+
             return $this->__translator;
         }
 
@@ -405,6 +407,7 @@ namespace Pi\Application\Service
         {
             $this->__translator = $translator;
             $this->__translator->setLocale($this->getLocale());
+
             return $this;
         }
 
@@ -421,6 +424,7 @@ namespace Pi\Application\Service
                 $this->__locale = $locale;
                 $this->getTranslator()->setLocale($locale);
             }
+
             return $this;
         }
 
@@ -434,6 +438,7 @@ namespace Pi\Application\Service
             if (!$this->__locale) {
                 $this->__locale = Pi::config('locale');
             }
+
             return $this->__locale;
         }
 
@@ -446,6 +451,7 @@ namespace Pi\Application\Service
         public function setCharset($charset)
         {
             $this->__charset = $charset;
+
             return $this;
         }
 
@@ -459,6 +465,7 @@ namespace Pi\Application\Service
             if (!$this->__charset) {
                 $this->__charset = Pi::config('charset') ?: 'utf-8';
             }
+
             return $this->__charset;
         }
 
@@ -521,6 +528,7 @@ namespace Pi\Application\Service
                 $domain = (null !== $rawDomain)
                     ? $rawDomain : static::FILE_DEFAULT;
             }
+
             return array($component, $domain);
         }
 
@@ -540,12 +548,16 @@ namespace Pi\Application\Service
 
             if (Pi::service()->hasService('log')) {
                 $message = $result
-                    ? sprintf('Translation "%s.%s" is loaded.',
+                    ? sprintf(
+                        'Translation "%s.%s" is loaded.',
                         implode(':', $domain),
-                        $locale)
-                    : sprintf('Translation "%s.%s" is empty.',
+                        $locale
+                    )
+                    : sprintf(
+                        'Translation "%s.%s" is empty.',
                         implode(':', $domain),
-                        $locale);
+                        $locale
+                    );
                 Pi::service()->getService('log')->info($message);
             }
 
@@ -602,12 +614,14 @@ namespace Pi\Application\Service
                     $this->normalizeDomain($domain);
             }
             $locale = (null === $locale) ? $this->getLocale() : $locale;
-            $path = sprintf('%s/%s',
+            $path = sprintf(
+                '%s/%s',
                 Pi::path($component),
-                static::DIR_RESOURCE);
+                static::DIR_RESOURCE
+            );
             if ($locale) {
                 $path .= '/' . $locale
-                    . ($normalizedDomain ? '/' . $normalizedDomain : '');
+                       . ($normalizedDomain ? '/' . $normalizedDomain : '');
             }
 
             return $path;
@@ -645,9 +659,11 @@ namespace Pi\Application\Service
                 $domain = $this->normalizeDomain($domain);
             }
 
-            return $this->getTranslator()->translate($message,
+            return $this->getTranslator()->translate(
+                $message,
                 $domain,
-                $locale);
+                $locale
+            );
         }
 
         /**
@@ -667,10 +683,14 @@ namespace Pi\Application\Service
          *      if the pattern is set.
          * @return IntlDateFormatter|null
          */
-        public function getDateFormatter($locale = null, $datetype = null,
-            $timetype = null, $timezone = null,
-            $calendar = null, $pattern = null)
-        {
+        public function getDateFormatter(
+            $locale = null,
+            $datetype = null,
+            $timetype = null,
+            $timezone = null,
+            $calendar = null,
+            $pattern = null
+        ) {
             if (!class_exists('IntlDateFormatter')) {
                 return null;
             }
@@ -709,16 +729,23 @@ namespace Pi\Application\Service
                 $calendar = IntlDateFormatter::GREGORIAN;
             }
 
-            $datetype = constant('IntlDateFormatter::'
-                . strtoupper($datetype
-                    ?: Pi::config('date_datetype', 'intl')));
-            $timetype = constant('IntlDateFormatter::'
-                . strtoupper($timetype
-                    ?: Pi::config('date_timetype', 'intl')));
+            $datetype = constant(
+                'IntlDateFormatter::'
+                . strtoupper($datetype ?: Pi::config('date_datetype', 'intl'))
+            );
+            $timetype = constant(
+                'IntlDateFormatter::'
+                . strtoupper($timetype ?: Pi::config('date_timetype', 'intl'))
+            );
             $timezone = $timezone ?: Pi::config('timezone');
 
-            $formatter = new IntlDateFormatter($locale,
-                $datetype, $timetype, $timezone, $calendar);
+            $formatter = new IntlDateFormatter(
+                $locale,
+                $datetype,
+                $timetype,
+                $timezone,
+                $calendar
+            );
 
             if ($pattern) {
                 $formatter->setPattern($pattern);
@@ -737,9 +764,11 @@ namespace Pi\Application\Service
          * @param string|null $locale
          * @return NumberFormatter|null
          */
-        public function getNumberFormatter($style = null, $pattern = null,
-            $locale = null)
-        {
+        public function getNumberFormatter(
+            $style = null,
+            $pattern = null,
+            $locale = null
+        ) {
             if (!class_exists('NumberFormatter')) {
                 return null;
             }
@@ -784,6 +813,7 @@ namespace Pi\Application\Service
                     }
                 }
             }
+
             return $canonizedLocale;
         }
 
@@ -889,10 +919,16 @@ namespace
      *      Legacy format for date() in case Intl is not available
      * @return string
      */
-    function _date($value = null, $locale = null,
-        $datetype = null, $timetype = null, $timezone = null,
-        $calendar = null, $pattern = null, $format = null)
-    {
+    function _date(
+        $value      = null,
+        $locale     = null,
+        $datetype   = null,
+        $timetype   = null,
+        $timezone   = null,
+        $calendar   = null,
+        $pattern    = null,
+        $format     = null
+    ) {
         $value = intval(null === $value ? time() : $value);
         // Formatted using date() in case Intl is not available
         if (!_intl()) {
@@ -925,17 +961,23 @@ namespace
      * @param string|null $type
      * @return mixed
      */
-    function _number($value, $style = null, $pattern = null,
-        $locale = null, $type = null)
-    {
+    function _number(
+        $value,
+        $style      = null,
+        $pattern    = null,
+        $locale     = null,
+        $type       = null
+    ) {
         // Return raw data in case Intl is not available
         if (!_intl()) {
             return $value;
         }
 
-        $formatter = Pi::service('i18n')->getNumberFormatter($style,
+        $formatter = Pi::service('i18n')->getNumberFormatter(
+            $style,
             $pattern,
-            $locale);
+            $locale
+        );
         if ($type) {
             $type = constant('NumberFormatter::TYPE_' . strtoupper($type));
             $result = $formatter->format($value, $type);
@@ -964,8 +1006,10 @@ namespace
             ? Pi::config('number_currency', 'intl') : $currency;
         if ($currency) {
             $style = 'CURRENCY';
-            $formatter = Pi::service('i18n')->getNumberFormatter($style,
-                $locale);
+            $formatter = Pi::service('i18n')->getNumberFormatter(
+                $style,
+                $locale
+            );
             $result = $formatter->formatCurrency($value, $currency);
         }
 

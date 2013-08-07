@@ -26,6 +26,7 @@ class Install extends AbstractAction
         $events = $this->events;
         $events->attach('install.pre', array($this, 'checkIndependent'));
         $events->attach('install.post', array($this, 'createDependency'));
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ class Install extends AbstractAction
         }
 
         $this->event->setParam('row', $row);
+
         return true;
     }
 
@@ -62,6 +64,7 @@ class Install extends AbstractAction
     public function rollback()
     {
         $row = $this->event->getParam('row');
+
         return $row->delete();
     }
 }

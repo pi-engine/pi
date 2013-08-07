@@ -91,12 +91,13 @@ class Standard implements RouteInterface
      * @param  array  $defaults
      * @return void
      */
-    public function __construct($prefix = null,
+    public function __construct(
+        $prefix = null,
         $structureDelimiter = '/',
         $keyValueDelimiter = '/',
         $paramDelimiter = '/',
-        array $defaults = array())
-    {
+        array $defaults = array()
+    ) {
         $this->prefix               = (null !== $prefix)
             ? $prefix : $this->prefix;
         $this->structureDelimiter   = $structureDelimiter;
@@ -114,6 +115,7 @@ class Standard implements RouteInterface
     public function setOptions($options = array())
     {
         $this->options = array_merge($this->options, $options);
+
         return $this;
     }
 
@@ -154,12 +156,15 @@ class Standard implements RouteInterface
             $options['defaults'] = array();
         }
 
-        $route = new static($options['prefix'],
+        $route = new static(
+            $options['prefix'],
             $options['structure_delimiter'],
             $options['key_value_delimiter'],
             $options['param_delimiter'],
-            $options['defaults']);
+            $options['defaults']
+        );
         $route->setOptions($options);
+
         return $route;
     }
 
@@ -186,9 +191,9 @@ class Standard implements RouteInterface
 
         if ($this->prefix) {
             $prefix = rtrim($this->prefix, $this->paramDelimiter)
-                . $this->paramDelimiter;
+                    . $this->paramDelimiter;
             $path = rtrim($path, $this->paramDelimiter)
-                . $this->paramDelimiter;
+                  . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {
                 return null;
@@ -235,14 +240,14 @@ class Standard implements RouteInterface
 
             for ($i = 0; $i < $count; $i += 2) {
                 if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] =
-                        urldecode($params[$i + 1]);
+                    $matches[urldecode($params[$i])] = urldecode(
+                        $params[$i + 1]
+                    );
                 }
             }
         } else {
             foreach ($params as $param) {
                 $param = explode($this->keyValueDelimiter, $param, 2);
-
                 if (isset($param[1])) {
                     $matches[urldecode($param[0])] = urldecode($param[1]);
                 }
@@ -250,6 +255,7 @@ class Standard implements RouteInterface
         }
 
         $matches = array_merge($this->defaults, $matches);
+
         return $matches;
     }
 
@@ -272,6 +278,7 @@ class Standard implements RouteInterface
         if (!is_array($matches)) {
             return null;
         }
+
         return new RouteMatch($matches, $pathLength);
     }
 
@@ -304,30 +311,30 @@ class Standard implements RouteInterface
                 continue;
             }
             $url .= $this->paramDelimiter . urlencode($key)
-                . $this->keyValueDelimiter . urlencode($value);
+                  . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller', 'module') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
                     $url = urlencode($mca[$key]) . $this->paramDelimiter
-                        . $url;
+                         . $url;
                 }
             }
         } else {
             $structure = urlencode($mca['module']);
             if ($mca['controller'] !== $this->defaults['controller']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                            . urlencode($mca['controller']);
                 if ($mca['action'] !== $this->defaults['action']) {
                     $structure .= $this->structureDelimiter
-                        . urlencode($mca['action']);
+                                . urlencode($mca['action']);
                 }
             } elseif ($mca['action'] !== $this->defaults['action']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                            . urlencode($mca['controller']);
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['action']);
+                            . urlencode($mca['action']);
             }
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }
@@ -336,6 +343,7 @@ class Standard implements RouteInterface
             ? $this->paramDelimiter
                 . trim($this->prefix, $this->paramDelimiter)
             : '';
+
         return $prefix . $this->paramDelimiter . $url;
     }
 

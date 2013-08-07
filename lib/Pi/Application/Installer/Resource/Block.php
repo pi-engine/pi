@@ -91,7 +91,7 @@ class Block extends AbstractResource
     {
         $module = $this->event->getParam('module');
         $classPrefix = 'Module\\'
-            . ucfirst($this->event->getParam('directory'));
+                     . ucfirst($this->event->getParam('directory'));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
@@ -128,7 +128,7 @@ class Block extends AbstractResource
     {
         $module = $this->event->getParam('module');
         $classPrefix = 'Module\\'
-            . ucfirst($this->event->getParam('directory'));
+                     . ucfirst($this->event->getParam('directory'));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
@@ -186,6 +186,7 @@ class Block extends AbstractResource
         }
 
         Pi::service('registry')->block->clear($module);
+
         return true;
     }
 
@@ -285,8 +286,10 @@ class Block extends AbstractResource
     public function activateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::model('block')->update(array('active' => 1),
-            array('module' => $module));
+        Pi::model('block')->update(
+            array('active' => 1),
+            array('module' => $module)
+        );
 
         Pi::service('registry')->block->clear($module);
 
@@ -299,8 +302,10 @@ class Block extends AbstractResource
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::model('block')->update(array('active' => 0),
-            array('module' => $module));
+        Pi::model('block')->update(
+            array('active' => 0),
+            array('module' => $module)
+        );
 
         Pi::service('registry')->block->clear($module);
 
@@ -317,6 +322,7 @@ class Block extends AbstractResource
     protected function addBlock($block, &$message)
     {
         $result = Pi::service('api')->system(array('block', 'add'), $block);
+
         return $result['status'];
     }
 
@@ -330,8 +336,12 @@ class Block extends AbstractResource
      */
     protected function updateBlock(RootRow $rootRow, $block, &$message)
     {
-        $result = Pi::service('api')->system(array('block', 'update'),
-            $rootRow, $block);
+        $result = Pi::service('api')->system(
+            array('block', 'update'),
+            $rootRow,
+            $block
+        );
+
         return $result['status'];
     }
 
@@ -344,8 +354,12 @@ class Block extends AbstractResource
      */
     protected function deleteBlock(RootRow $rootRow, &$message)
     {
-        $result = Pi::service('api')->system(array('block', 'delete'),
-            $rootRow, true);
+        $result = Pi::service('api')->system(
+            array('block', 'delete'),
+            $rootRow,
+            true
+        );
+
         return $result['status'];
     }
 }

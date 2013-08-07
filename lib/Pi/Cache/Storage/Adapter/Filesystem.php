@@ -23,9 +23,11 @@ class Filesystem extends ZendFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalGetItem(& $normalizedKey,
-        & $success = null, & $casToken = null)
-    {
+    protected function internalGetItem(
+        &$normalizedKey,
+        &$success = null,
+        &$casToken = null
+    ) {
         /**#@+
          * Skip extra file reading cost
          */
@@ -49,7 +51,7 @@ class Filesystem extends ZendFilesystem
             // use filemtime + filesize as CAS token
             if (func_num_args() > 2) {
                 $casToken = filemtime($filespec . '.dat')
-                    . filesize($filespec . '.dat');
+                          . filesize($filespec . '.dat');
             }
             $success  = (null === $data) ? false : true;
             return $data;
@@ -94,8 +96,10 @@ class Filesystem extends ZendFilesystem
                  */
                 //$data     = $this->getFileContent($filespec . '.dat',
                 //$nonBlocking, $wouldblock);
-                $data     = $this->getFileData($filespec . '.dat',
-                    $nonBlocking, $wouldblock);
+                $data     = $this->getFileData(
+                    $filespec . '.dat',
+                    $nonBlocking, $wouldblock
+                );
                 /**#-*/
                 if ($nonBlocking && $wouldblock) {
                     continue;
@@ -216,9 +220,11 @@ class Filesystem extends ZendFilesystem
      *      if the lock would block
      * @return string|null
      */
-    protected function getFileData($file, $nonBlocking = false,
-        & $wouldblock = null)
-    {
+    protected function getFileData(
+        $file,
+        $nonBlocking = false,
+        &$wouldblock = null
+    ) {
         $result = null;
         if (file_exists($file)) {
             $content = $this->getFileContent($file, $nonBlocking, $wouldblock);
@@ -241,9 +247,12 @@ class Filesystem extends ZendFilesystem
      *      if the lock would block
      * @return void
      */
-    protected function putFileData($file, $data, $nonBlocking = false,
-        & $wouldblock = null)
-    {
+    protected function putFileData(
+        $file,
+        $data,
+        $nonBlocking = false,
+        &$wouldblock = null
+    ) {
         $expire = 0;
         $options = $this->getOptions();
         if ($options->ttl) {

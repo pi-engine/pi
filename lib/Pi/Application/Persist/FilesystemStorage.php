@@ -53,9 +53,11 @@ class FilesystemStorage extends AbstractStorage
      */
     protected function fileName($id, $hash = false)
     {
-        return sprintf('%s/%s.php',
+        return sprintf(
+            '%s/%s.php',
             $this->cacheDir,
-            $this->prefix(($hash ? md5($id) : $id)));
+            $this->prefix(($hash ? md5($id) : $id))
+        );
     }
 
     /**
@@ -67,6 +69,7 @@ class FilesystemStorage extends AbstractStorage
         if (file_exists($cacheFile)) {
             return include $cacheFile;
         }
+
         return false;
     }
 
@@ -84,6 +87,7 @@ class FilesystemStorage extends AbstractStorage
         $content = "<?php return " . var_export($data, true) . ";?>";
         fwrite($file, $content);
         fclose($file);
+
         return true;
     }
 
@@ -93,6 +97,7 @@ class FilesystemStorage extends AbstractStorage
     public function remove($id)
     {
         $cacheFile = $this->fileName($id);
+
         return unlink($cacheFile);
     }
 
@@ -108,6 +113,7 @@ class FilesystemStorage extends AbstractStorage
                 unlink($file);
             }
         }
+
         return true;
     }
 }

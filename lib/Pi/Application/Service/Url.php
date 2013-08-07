@@ -39,6 +39,7 @@ class Url extends AbstractService
     public function setRouter(RouteStackInterface $router)
     {
         $this->router = $router;
+
         return $this;
     }
 
@@ -65,8 +66,10 @@ class Url extends AbstractService
      * @param  array   $options            Options for the route
      * @return string                   For the link href attribute
      */
-    public function assemble($route = null,
-        array $params = array(), $options = array())
+    public function assemble(
+        $route = null,
+        array $params = array(),
+        $options = array())
     {
         if (!$this->getRouter()) {
             throw new \RuntimeException(
@@ -74,6 +77,7 @@ class Url extends AbstractService
             );
         }
         $options['name'] = $route ?: 'default';
+
         return $this->getRouter()->assemble($params, $options);
     }
 

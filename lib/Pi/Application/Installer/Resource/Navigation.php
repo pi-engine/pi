@@ -125,7 +125,7 @@ class Navigation extends AbstractResource
             // Canonize module relative route
             if ('.' == $page['route'][0]) {
                 $page['route'] = $page['module'] . '-'
-                    . substr($page['route'], 1);
+                               . substr($page['route'], 1);
             }
             if (isset($page['params']) && !is_array($page['params'])) {
                 $page['params'] = array();
@@ -419,6 +419,7 @@ class Navigation extends AbstractResource
     {
         $row = Pi::model('navigation_node')->createRow($node);
         $row->save();
+
         return $row->id ? true : false;
     }
 
@@ -479,17 +480,20 @@ class Navigation extends AbstractResource
      * @param array $message
      * @return bool
      */
-    protected function deleteNavigation(NavigationRow $navigationRow,
-        &$message)
-    {
+    protected function deleteNavigation(
+        NavigationRow $navigationRow,
+        &$message
+    ) {
         try {
             $navigationRow->delete();
         } catch (\Exception $e) {
             $message[] = $e->getMessage();
             return false;
         }
-        $row = Pi::model('navigation_node')->find($navigationRow->name,
-            'navigation');
+        $row = Pi::model('navigation_node')->find(
+            $navigationRow->name,
+            'navigation'
+        );
         if ($row) {
             $row->delete();
         }

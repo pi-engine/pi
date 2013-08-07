@@ -46,7 +46,8 @@ class ControllerLoaderFactory implements FactoryInterface
         $config = $serviceLocator->get('Config');
 
         if (isset($config['di']) && isset($config['di']['allowed_controllers'])
-            && $serviceLocator->has('Di')) {
+            && $serviceLocator->has('Di')
+        ) {
             $controllerLoader->addAbstractFactory(
                 $serviceLocator->get('DiStrictAbstractServiceFactory')
             );

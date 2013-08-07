@@ -86,6 +86,7 @@ class Modulelist extends AbstractRegistry
     {
         $this->clear('');
         $this->read($type);
+
         return true;
     }
 
@@ -103,6 +104,7 @@ class Modulelist extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 

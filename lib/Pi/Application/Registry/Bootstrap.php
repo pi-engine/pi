@@ -55,6 +55,7 @@ class Bootstrap extends AbstractRegistry
     {
         $this->flush();
         $this->read();
+
         return true;
     }
 
@@ -72,6 +73,7 @@ class Bootstrap extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 

@@ -94,6 +94,7 @@ abstract class AbstractAdapter implements BindInterface
     public function setOptions($options = array())
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ abstract class AbstractAdapter implements BindInterface
     public function bind(UserModel $user = null)
     {
         $this->model = $user;
+
         return $this;
     }
 
@@ -339,8 +341,11 @@ abstract class AbstractAdapter implements BindInterface
      */
     public function __call($method, $args)
     {
-        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE);
+        trigger_error(
+            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
+            E_USER_NOTICE
+        );
+
         return 'Not defined';
     }
 }

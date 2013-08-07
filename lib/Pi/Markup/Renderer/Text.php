@@ -33,7 +33,8 @@ class Text extends AbstractRenderer
             $content = Pi::service('security')->escape($content);
         }
         if (!isset($this->options['newline'])
-            || !empty($this->options['newline'])) {
+            || !empty($this->options['newline'])
+        ) {
             $content = nl2br($content);
         }
 

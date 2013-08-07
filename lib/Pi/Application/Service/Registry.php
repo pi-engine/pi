@@ -63,10 +63,14 @@ class Registry extends AbstractService
         if (empty($module)) {
             $class = sprintf('Pi\Application\Registry\\%s', ucfirst($name));
         } else {
-            $class = sprintf('Module\\%s\Registry\\%s',
-                ucfirst($module), ucfirst($name));
+            $class = sprintf(
+                'Module\\%s\Registry\\%s',
+                ucfirst($module),
+                ucfirst($name)
+            );
         }
         $handler = new $class;
+
         return $handler;
     }
 
@@ -87,6 +91,7 @@ class Registry extends AbstractService
                 $handler->flush();
             }
         }
+
         return $this;
     }
 
@@ -102,6 +107,7 @@ class Registry extends AbstractService
     public function __get($handlerName)
     {
         $handler = $this->handler($handlerName);
+
         return $handler;
     }
 
@@ -158,6 +164,7 @@ class Registry extends AbstractService
         if (!isset($this->cache)) {
             $this->cache = $this->defaultCache();
         }
+
         return $this->cache;
     }
 
@@ -178,7 +185,8 @@ class Registry extends AbstractService
             }
             $directory = $fileinfo->getFilename();
             if ('AbstractRegistry.php' == $directory
-                || !preg_match('/^[a-z0-9]+\.php/i', $directory)) {
+                || !preg_match('/^[a-z0-9]+\.php/i', $directory)
+            ) {
                 continue;
             }
             $registryList[] = strtolower(basename($directory, '.php'));

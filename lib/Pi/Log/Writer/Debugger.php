@@ -73,6 +73,7 @@ class Debugger extends AbstractWriter
         if (null !== $flag) {
             $this->muted = (bool) $flag;
         }
+
         return $muted;
     }
 
@@ -86,6 +87,7 @@ class Debugger extends AbstractWriter
         if (!$this->formatter) {
             $this->formatter = new DebuggerFormatter;
         }
+
         return $this->formatter;
     }
 
@@ -99,6 +101,7 @@ class Debugger extends AbstractWriter
         if (!$this->profilerFormatter) {
             $this->profilerFormatter = new ProfilerFormatter;
         }
+
         return $this->profilerFormatter;
     }
 
@@ -112,6 +115,7 @@ class Debugger extends AbstractWriter
         if (!$this->dbProfilerFormatter) {
             $this->dbProfilerFormatter = new DbFormatter;
         }
+
         return $this->dbProfilerFormatter;
     }
 
@@ -125,6 +129,7 @@ class Debugger extends AbstractWriter
         if (!$this->systemInfoFormatter) {
             $this->systemInfoFormatter = new SystemInfoFormatter;
         }
+
         return $this->systemInfoFormatter;
     }
 
@@ -195,8 +200,10 @@ class Debugger extends AbstractWriter
         $system = array();
 
         // Execution time
-        $system['Execution time'] = sprintf('%.4f',
-            microtime(true) - Pi::startTime()) . ' s';
+        $system['Execution time'] = sprintf(
+            '%.4f',
+            microtime(true) - Pi::startTime()
+        ) . ' s';
 
         // Included file count
         $files_included = get_included_files();
@@ -214,8 +221,10 @@ class Debugger extends AbstractWriter
             // Windows system
             if (strpos(strtolower(PHP_OS), 'win') !== false) {
                 $out = array();
-                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',
-                    $out);
+                exec(
+                    'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',
+                    $out
+                );
                 $memory = substr($out[5], strpos($out[5], ':') + 1);
             }
         }
@@ -443,8 +452,8 @@ EOT;
 EOT;
 
         $cookiePath = ($baseUrl = Pi::host()->get('baseUrl'))
-                ? rtrim($baseUrl, '/')
-            . '/' : '/';
+                        ? rtrim($baseUrl, '/')
+                    . '/' : '/';
         // Use heredoc for JavaScript contents
         $scripts_js =
 <<<"EOT"

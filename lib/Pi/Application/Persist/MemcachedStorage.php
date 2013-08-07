@@ -84,6 +84,7 @@ class MemcachedStorage extends AbstractStorage
     public function load($id)
     {
         $id = $this->prefix($id);
+
         return $this->memcached->get($id);
     }
 
@@ -96,6 +97,7 @@ class MemcachedStorage extends AbstractStorage
         if (!($result = $this->memcached->add($id, $data, $ttl))) {
             $result = $this->memcached->set($id, $data, $ttl);
         }
+
         return $result;
     }
 
@@ -105,6 +107,7 @@ class MemcachedStorage extends AbstractStorage
     public function remove($id)
     {
         $id = $this->prefix($id);
+        
         return $this->memcached->delete($id);
     }
 

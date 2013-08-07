@@ -53,6 +53,7 @@ class Local extends AbstractModel
         } else {
             $this->role = Acl::GUEST;
         }
+
         return $this->role;
     }
 
@@ -63,6 +64,7 @@ class Local extends AbstractModel
     {
         $row = Pi::model('user_profile')->find($this->id);
         $this->profile = $row ? (object) $row->toArray() : new StdClass;
+
         return $this->profile;
     }
 
@@ -104,6 +106,7 @@ class Local extends AbstractModel
     public function hasRole($role)
     {
         $roles = Pi::service('registry')->role->read($this->role());
+
         return in_array($role, $roles) ? true : false;
     }
 }

@@ -139,7 +139,7 @@ class Db
             $adapterMaster = $this->createAdapter($options['master']);
             $adapterSlave = $this->createAdapter($options['slave']);
             $this->setAdapter($adapterMaster, 'master')
-                ->setAdapter($adapterSlave, 'slave');
+                 ->setAdapter($adapterSlave, 'slave');
         } else {
             $adapter = $this->createAdapter($options);
             $this->setAdapter($adapter);
@@ -157,6 +157,7 @@ class Db
     public function setTablePrefix($prefix)
     {
         $this->tablePrefix = $prefix;
+
         return $this;
     }
 
@@ -201,6 +202,7 @@ class Db
     public function setSchema($schema)
     {
         $this->schema = $schema;
+
         return $this;
     }
 
@@ -250,7 +252,8 @@ class Db
         if (!isset($config['driver_options'][PDO::ATTR_STATEMENT_CLASS])) {
             $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(
                 static::STATEMENT_CLASS,
-                array($this->profiler() ?: null));
+                array($this->profiler() ?: null)
+            );
         }
 
         $adapter = new Adapter($config, $platform);
@@ -312,7 +315,7 @@ class Db
     public function prefix($table = '', $type = '')
     {
         $typePrefix = empty($type) || $type == 'core'
-            ? $this->corePrefix : $type . '_';
+                      ? $this->corePrefix : $type . '_';
         return sprintf('%s%s%s', $this->tablePrefix, $typePrefix, $table);
     }
 
@@ -344,11 +347,17 @@ class Db
                 $module = '';
                 $key = $name;
             }
-            $className = str_replace(' ', '\\',
-                ucwords(str_replace('_', ' ', $key)));
+            $className = str_replace(
+                ' ',
+                '\\',
+                ucwords(str_replace('_', ' ', $key))
+            );
             if ($module) {
-                $className = sprintf('Module\\%s\Model\\%s',
-                    ucfirst($module), $className);
+                $className = sprintf(
+                    'Module\\%s\Model\\%s',
+                    ucfirst($module),
+                    $className
+                );
                 $options['prefix'] = static::prefix('', $module);
             } else {
                 $className = sprintf('Pi\Application\Model\\%s', $className);
@@ -365,7 +374,7 @@ class Db
             }
             $options['name'] = $key;
             $options['adapter'] = empty($options['adapter'])
-                ? $this->adapter() : $options['adapter'];
+                                ? $this->adapter() : $options['adapter'];
             $model = new $className($options);
             if (!$model instanceof AbstractTableGateway) {
                 $model = false;
@@ -373,6 +382,7 @@ class Db
 
             $this->model[$name] = $model;
         }
+
         return $this->model[$name];
     }
 
@@ -386,6 +396,7 @@ class Db
         if (!$this->metadata) {
             $this->metadata = new Metadata($this->getAdapter());
         }
+
         return $this->metadata;
     }
 
@@ -408,10 +419,13 @@ class Db
      * @param array         $types
      * @return Expression
      */
-    public function expression($expression = '',
-        $parameters = null, array $types = array())
-    {
+    public function expression(
+        $expression = '',
+        $parameters = null,
+        array $types = array()
+    ) {
         $expression = new Expression($expression, $parameters, $types);
+
         return $expression;
     }
 
@@ -426,11 +440,13 @@ class Db
         if (null === $profiler) {
             if (null === $this->profiler) {
                 $this->profiler = Pi::service()->hasService('log')
-                    ? Pi::service('log')->dbProfiler() : false;
+                                ? Pi::service('log')->dbProfiler() : false;
             }
+
             return $this->profiler;
         }
         $this->profiler = $profiler;
+
         return $this;
     }
 }

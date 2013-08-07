@@ -28,6 +28,7 @@ class Fieldset extends ZendFieldset
         if (null === $this->factory) {
             $this->setFormFactory(new Factory());
         }
+
         return $this->factory;
     }
 

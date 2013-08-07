@@ -91,6 +91,7 @@ class Bootstrap extends AssetCanonize
                 }
             }
         }
+
         return $this;
     }
 }

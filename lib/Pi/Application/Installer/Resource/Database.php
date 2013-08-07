@@ -68,10 +68,12 @@ class Database extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $sqlFile = sprintf('%s/%s/%s',
+        $sqlFile = sprintf(
+            '%s/%s/%s',
             Pi::path('module'),
             $this->event->getParam('directory'),
-            $this->config['sqlfile']);
+            $this->config['sqlfile']
+        );
         if (!file_exists($sqlFile)) {
             return array(
                 'status'    => false,
@@ -166,11 +168,15 @@ class Database extends AbstractResource
         $modelSchema = Pi::model('module_schema');
         $rowset = $modelSchema->select(array('module' => $module));
         foreach ($rowset as $table) {
-            $sql = sprintf('DROP %s IF EXISTS %s',
-                $table->type, Pi::db()->prefix($table->name, $module));
+            $sql = sprintf(
+                'DROP %s IF EXISTS %s',
+                $table->type,
+                Pi::db()->prefix($table->name, $module)
+            );
             Pi::db()->adapter()->query($sql, 'execute');
         }
         $modelSchema->delete(array('module' => $module));
+
         return true;
     }
 }

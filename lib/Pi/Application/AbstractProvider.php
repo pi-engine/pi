@@ -28,6 +28,7 @@ abstract class AbstractProvider extends AbstractApi
     {
         $renderer = Pi::engine()->application()
             ->getServiceManager()->get('viewRenderer');
+
         return $renderer;
     }
 
@@ -41,6 +42,7 @@ abstract class AbstractProvider extends AbstractApi
     protected function getViewModel($data = null, $options = null)
     {
         $viewModel = new ViewModel($data, $options);
+
         return $viewModel;
     }
 

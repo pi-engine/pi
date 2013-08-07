@@ -28,9 +28,10 @@ class Where extends ZendWhere
      * @param  string $defaultCombination
      *      One of the OP_* constants from Predicate\PredicateSet
      */
-    public function __construct($predicates = null,
-        $defaultCombination = self::COMBINED_BY_AND)
-    {
+    public function __construct(
+        $predicates = null,
+        $defaultCombination = self::COMBINED_BY_AND
+    ) {
         if ($predicates) {
             $predicates = $this->canonize($predicates);
         }
@@ -91,8 +92,11 @@ class Where extends ZendWhere
                         } else {
                             // otherwise assume that array('foo' => 'bar')
                             // means "foo" = 'bar'
-                            $predicate = new Predicate\Operator($pkey,
-                                Predicate\Operator::OP_EQ, $pvalue);
+                            $predicate = new Predicate\Operator(
+                                $pkey,
+                                Predicate\Operator::OP_EQ,
+                                $pvalue
+                            );
                         }
                     } elseif (
                         $pvalue instanceof Predicate\PredicateInterface

@@ -74,12 +74,14 @@ class SqlSchema
     public function parseContent($content)
     {
         // Remove comments to prevent from invalid syntax
-        $content = preg_replace('|(#.*)|', '# <-- Comment skipped -->',
-            $content);
+        $content = preg_replace(
+            '|(#.*)|',
+            '# <-- Comment skipped -->',
+            $content
+        );
 
         $type = static::$type;
-        $canonizePrefix = function ($matches) use ($type)
-        {
+        $canonizePrefix = function ($matches) use ($type) {
             $name = $matches[1];
             // Core tables: {core.<table_name>}
             if (substr($name, 0, 6) == '{core.') {
@@ -93,8 +95,12 @@ class SqlSchema
             return $tableName;
         };
 
-        $result = preg_replace_callback('|(\{[^\}]+\})|',
-            $canonizePrefix, $content);
+        $result = preg_replace_callback(
+            '|(\{[^\}]+\})|',
+            $canonizePrefix,
+            $content
+        );
+
         return $result;
     }
 
@@ -108,6 +114,7 @@ class SqlSchema
     {
         $sql = $this->parseContent($content);
         Pi::db()->adapter()->query($sql, 'execute');
+        
         return true;
     }
 

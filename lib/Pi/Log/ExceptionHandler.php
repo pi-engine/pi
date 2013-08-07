@@ -38,6 +38,7 @@ class ExceptionHandler
         if (extension_loaded('xdebug')) {
             $this->active = false;
         }
+
         return true;
     }
 
@@ -62,6 +63,7 @@ class ExceptionHandler
             $this->active = false;
             $this->unregister();
         }
+
         return $this;
     }
 
@@ -91,6 +93,7 @@ class ExceptionHandler
             }
             $logger->log(Logger::ERR, $exception->getMessage(), $extra);
         });
+
         return true;
     }
 

@@ -38,6 +38,7 @@ class AbstractResource implements BindInterface
     public function bind(UserModel $model = null)
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -50,6 +51,7 @@ class AbstractResource implements BindInterface
     public function setOptions($options = array())
     {
         $this->options = $options;
+
         return $this;
     }
 }

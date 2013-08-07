@@ -49,6 +49,7 @@ class Twitter extends AbstractHtmlElement
    }(document,"script","twitter-wjs");
 </script>
 EOT;
+
         return $content;
     }
 }

@@ -34,11 +34,12 @@ class Debugger implements FormatterInterface
     {
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
-                . '<div class="time">%timestamp%</div>' . PHP_EOL
-                . '<div class="message %priorityName%" style="clear: both;">'
-                . '[%priorityName%] %location%</div>' . PHP_EOL
-                . '<div class="message">%message%</div>' . PHP_EOL
-                . '</div>' . PHP_EOL;
+                    . '<div class="time">%timestamp%</div>' . PHP_EOL
+                    . '<div class="message %priorityName%"'
+                    . ' style="clear: both;">'
+                    . '[%priorityName%] %location%</div>' . PHP_EOL
+                    . '<div class="message">%message%</div>' . PHP_EOL
+                    . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -57,9 +58,8 @@ class Debugger implements FormatterInterface
             $event['timestamp'] = date(
                     $this->getDateTimeFormat(),
                     intval($event['timestamp'])
-                )
-                . substr($event['timestamp'],
-                    strpos($event['timestamp'], '.'), 5);
+            ) . substr($event['timestamp'],
+                       strpos($event['timestamp'], '.'), 5);
         }
         if (!empty($event['priorityName'])) {
             $event['priorityName'] = strtolower($event['priorityName']);
@@ -86,6 +86,7 @@ class Debugger implements FormatterInterface
             }
             $output = str_replace('%' . $name . '%', $value, $output);
         }
+
         return $output;
     }
 
@@ -104,6 +105,7 @@ class Debugger implements FormatterInterface
     public function setDateTimeFormat($dateTimeFormat)
     {
         $this->dateTimeFormat = (string) $dateTimeFormat;
+
         return $this;
     }
 }

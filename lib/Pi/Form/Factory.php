@@ -35,6 +35,7 @@ class Factory extends ZendFactory
         if (!$factory->getDefaultFilterChain() instanceof FilterChain) {
             $factory->setDefaultFilterChain(new FilterChain);
         }
+
         return $factory;
     }
 

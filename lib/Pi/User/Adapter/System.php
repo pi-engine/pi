@@ -51,6 +51,7 @@ class System extends AbstractAdapter
                 $meta = $metaAccount + $metaProfile;
                 break;
         }
+
         return $meta;
     }
     /**#@-*/
@@ -68,6 +69,7 @@ class System extends AbstractAdapter
         } else {
             $model = $this->model;
         }
+
         return $model;
     }
 
@@ -82,9 +84,12 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getIds($condition = array(),
-        $limit = 0, $offset = 0, $order = '')
-    {
+    public function getIds(
+        $condition = array(),
+        $limit = 0,
+        $offset = 0,
+        $order = ''
+    ) {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
 
@@ -226,6 +231,7 @@ class System extends AbstractAdapter
                 $url = '';
                 break;
         }
+
         return $url;
     }
 
@@ -240,6 +246,7 @@ class System extends AbstractAdapter
         }
         $service = Pi::service()->load('authentication', $options);
         $result = $service->authenticate($identity, $credential);
+
         return $result;
     }
     /**#@-*/
@@ -253,7 +260,9 @@ class System extends AbstractAdapter
      */
     public function __call($method, $args)
     {
-        trigger_error(sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE);
+        trigger_error(
+            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
+            E_USER_NOTICE
+        );
     }
 }

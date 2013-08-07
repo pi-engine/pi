@@ -52,6 +52,7 @@ class Upload extends Transfer
     public function getAdapter($direction = false)
     {
         $direction = false;
+
         return parent::getAdapter($direction);
     }
 
@@ -78,6 +79,7 @@ class Upload extends Transfer
         }
         $this->destination = $value;
         $this->getAdapter()->setDestination($path);
+
         return $this;
     }
 
@@ -107,6 +109,7 @@ class Upload extends Transfer
             $this->getAdapter()->removeFilter('rename');
             $this->getAdapter()->addFilter(new Rename($value));
         }
+
         return $this;
     }
 
@@ -119,6 +122,7 @@ class Upload extends Transfer
     public function setExtension($value)
     {
         $this->getAdapter()->addValidator('extension', false, $value);
+
         return $this;
     }
 
@@ -131,6 +135,7 @@ class Upload extends Transfer
     public function setExcludeExtension($value)
     {
         $this->getAdapter()->addValidator('excludeextension', false, $value);
+
         return $this;
     }
 
@@ -151,6 +156,7 @@ class Upload extends Transfer
     public function setSize($value)
     {
         $this->getAdapter()->addValidator('size', false, $value);
+
         return $this;
     }
 
@@ -170,6 +176,7 @@ class Upload extends Transfer
     public function setImageSize($value)
     {
         $this->getAdapter()->addValidator('imagesize', false, $value);
+
         return $this;
     }
 
@@ -206,6 +213,7 @@ class Upload extends Transfer
                 $value = $this->getUploaded($key, $path);
             }
         }
+
         return $result;
     }
 }

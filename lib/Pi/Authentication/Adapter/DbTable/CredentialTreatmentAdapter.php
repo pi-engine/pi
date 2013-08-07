@@ -26,5 +26,4 @@ class CredentialTreatmentAdapter extends AbstractAdapter
     {
         throw new \Exception('Not implemented yet.');
     }
-
 }

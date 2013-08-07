@@ -50,6 +50,7 @@ class FootScript extends HeadScript
         if ('raw' == $item->type) {
             return $item->source;
         }
+
         return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
     }
 }

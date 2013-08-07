@@ -63,7 +63,8 @@ class Audit extends AbstractResource
         }
 
         $message = $e->getRequest()->isPost()
-            ? $e->getRequest()->toString() : $e->getRequest()->getRequestUri();
+                   ? $e->getRequest()->toString()
+                   : $e->getRequest()->getRequestUri();
         Pi::service('log')->audit($message);
     }
 }

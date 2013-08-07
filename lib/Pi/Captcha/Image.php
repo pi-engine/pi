@@ -28,6 +28,7 @@ class Image extends ZendImage
     public function setImgUrl($imgUrl)
     {
         $this->imgUrl = $imgUrl;
+
         return $this;
     }
 
@@ -48,6 +49,7 @@ class Image extends ZendImage
         $this->setWord($word);
         //$word = $this->getWord();
         $image = $this->generateImage($id, $word);
+
         return $image;
     }
 
@@ -65,6 +67,7 @@ class Image extends ZendImage
             //$this->session->setExpirationHops(1);
             //$this->session->setExpirationSeconds($this->getTimeout());
         }
+
         return $this->session;
     }
 
@@ -82,6 +85,7 @@ class Image extends ZendImage
         /**#@-*/
         $session->word = $word;
         $this->word    = $word;
+
         return $this;
     }
 
@@ -97,6 +101,7 @@ class Image extends ZendImage
         $this->setId($id);
         //$word = $this->generateWord();
         //$this->setWord($word);
+
         return $id;
     }
 
@@ -148,11 +153,11 @@ class Image extends ZendImage
         // generate noise
         for ($i=0; $i < $this->dotNoiseLevel; $i++) {
            imagefilledellipse($img, mt_rand(0,$w), mt_rand(0,$h), 2, 2,
-               $text_color);
+                              $text_color);
         }
         for ($i=0; $i < $this->lineNoiseLevel; $i++) {
            imageline($img, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w),
-               mt_rand(0,$h), $text_color);
+                     mt_rand(0,$h), $text_color);
         }
 
         // transformed image
@@ -195,11 +200,13 @@ class Image extends ZendImage
                 }
 
                 if ($color == 255 && $color_x == 255 && $color_y == 255
-                    && $color_xy == 255) {
+                    && $color_xy == 255
+                ) {
                     // ignore background
                     continue;
                 } elseif ($color == 0 && $color_x == 0 && $color_y == 0
-                    && $color_xy == 0) {
+                    && $color_xy == 0
+                ) {
                     // transfer inside of the image as-is
                     $newcolor = 0;
                 } else {
@@ -216,7 +223,7 @@ class Image extends ZendImage
                 }
 
                 imagesetpixel($img2, $x, $y, imagecolorallocate($img2,
-                    $newcolor, $newcolor, $newcolor));
+                              $newcolor, $newcolor, $newcolor));
             }
         }
 
@@ -228,7 +235,7 @@ class Image extends ZendImage
 
         for ($i=0; $i<$this->lineNoiseLevel; $i++) {
            imageline($img2, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w),
-               mt_rand(0,$h), $text_color);
+                     mt_rand(0,$h), $text_color);
         }
 
         /*
@@ -238,6 +245,7 @@ class Image extends ZendImage
         */
 
         imagedestroy($img);
+        
         return $img2;
     }
 }

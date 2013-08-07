@@ -147,6 +147,7 @@ class RowGateway extends AbstractRowGateway
     public function setEncodeColumns(array $columns)
     {
         $this->encodeColumns = $columns;
+
         return $this;
     }
 
@@ -169,6 +170,7 @@ class RowGateway extends AbstractRowGateway
     protected function encodeValue($value)
     {
         $value = $value ?: array();
+
         return json_encode($value);
     }
 

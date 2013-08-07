@@ -115,7 +115,8 @@ abstract class AbstractEngine
             unset($options['config']);
         }
         $this->options = $this->options
-            ? array_merge_recursive($this->options, $options) : $options;
+                         ? array_merge_recursive($this->options, $options)
+                         : $options;
 
         return $this;
     }

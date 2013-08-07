@@ -60,6 +60,7 @@ class Route extends AbstractRegistry
     {
         $options = compact('section', 'exclude');
         $data = $this->loadData($options);
+
         return $data;
     }
 
@@ -72,6 +73,7 @@ class Route extends AbstractRegistry
     {
         $this->clear($section);
         $this->read($section, $exclude);
+
         return true;
     }
 
@@ -85,6 +87,7 @@ class Route extends AbstractRegistry
         } else {
             $namespace = $meta['section'];
         }
+
         return parent::setNamespace($namespace);
     }
 
@@ -94,6 +97,7 @@ class Route extends AbstractRegistry
     public function flush()
     {
         $this->flushBySections();
+
         return $this;
     }
 }

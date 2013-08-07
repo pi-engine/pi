@@ -35,6 +35,7 @@ class ControllerPluginManagerFactory extends AbstractPluginManagerFactory
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $plugins = parent::createService($serviceLocator);
+
         return $plugins;
     }
 }

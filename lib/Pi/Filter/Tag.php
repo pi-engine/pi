@@ -53,11 +53,13 @@ class Tag extends AbstractFilter
     {
         $tag = $this->options['tag'];
         $replacement = $this->options['replacement'];
-        $value = preg_replace_callback('`' . $this->options['pattern'] . '`',
-            function($m) use ($replacement, $tag) {
+        $value = preg_replace_callback(
+            '`' . $this->options['pattern'] . '`',
+            function ($m) use ($replacement, $tag) {
                 return str_replace($tag, $m[1], $replacement);
             },
-            $value);
+            $value
+        );
 
         return $value;
     }

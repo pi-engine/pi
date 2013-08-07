@@ -47,6 +47,7 @@ class Moduleperm extends AbstractRegistry
             $role = Pi::service('user')->getUser()->role();
         }
         $options = compact('type', 'role');
+
         return $this->loadData($options);
     }
 
@@ -63,6 +64,7 @@ class Moduleperm extends AbstractRegistry
     {
         $this->clear('');
         $this->read($type, $role);
+
         return true;
     }
 
@@ -80,6 +82,7 @@ class Moduleperm extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 

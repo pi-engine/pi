@@ -107,9 +107,11 @@ namespace Pi\Utility
          * @param mixed $options
          * @return mixed
          */
-        protected static function filterValue($value, $filter,
-            $options = null)
-        {
+        protected static function filterValue(
+            $value,
+            $filter,
+            $options = null
+        ) {
             if (empty($filter)) {
                 return $value;
             }
@@ -122,6 +124,7 @@ namespace Pi\Utility
                 if (defined($filterName)) {
                     $flag = constant($filterName);
                 }
+
                 return $flag;
             };
 
@@ -138,8 +141,9 @@ namespace Pi\Utility
                     // Options are passed in an array
                     } elseif (isset($options['options'])) {
                         if (is_string($options['options'])) {
-                            $options['options'] =
-                                $filterFlag($options['options']);
+                            $options['options'] = $filterFlag(
+                                $options['options']
+                            );
                         }
                     // Options are passed directly
                     } else {
@@ -189,6 +193,7 @@ namespace Pi\Utility
                 }
             }
             $value = static::filterValue($value, $filter, $options);
+
             return $value;
         }
 
@@ -217,6 +222,7 @@ namespace Pi\Utility
                 }
             }
             $value = static::filterValue($value, $filter, $options);
+
             return $value;
         }
 
@@ -228,6 +234,7 @@ namespace Pi\Utility
         protected static function getRequest()
         {
             $event = Pi::engine()->application()->getMvcEvent();
+
             return $event ? $event->getRequest() : null;
         }
 
@@ -239,6 +246,7 @@ namespace Pi\Utility
         protected static function getRouteMatch()
         {
             $event = Pi::engine()->application()->getMvcEvent();
+
             return $event ? $event->getRouteMatch() : null;
         }
 
@@ -300,6 +308,7 @@ namespace
     function _get($variable, $filter = '', $options = null)
     {
         $value = FilterManager::fromGet($variable, $filter, $options);
+
         return $value;
     }
 
@@ -314,6 +323,7 @@ namespace
     function _post($variable, $filter = '', $options = null)
     {
         $value = FilterManager::fromPost($variable, $filter, $options);
+
         return $value;
     }
 
@@ -328,6 +338,7 @@ namespace
     function _filter($value, $filter = '', $options = null)
     {
         $value = FilterManager::filter($value, $filter, $options);
+
         return $value;
     }
 
@@ -343,6 +354,7 @@ namespace
     function _sanitize($value, $filter = '', $options = null)
     {
         $value = FilterManager::sanitize($value, $filter, $options);
+
         return $value;
     }
 

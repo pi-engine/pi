@@ -161,6 +161,7 @@ class Mail extends AbstractService
         if (!$this->transport) {
             $this->transport = $this->loadTransport();
         }
+
         return $this->transport;
     }
 
@@ -174,6 +175,7 @@ class Mail extends AbstractService
         MailHandler\Transport\TransportInterface $transport
     ) {
         $this->transport = $transport;
+
         return $this;
     }
 
@@ -192,6 +194,7 @@ class Mail extends AbstractService
             trigger_error($e->getMessage());
             return false;
         }
+
         return true;
     }
 
@@ -230,6 +233,7 @@ class Mail extends AbstractService
             }
             $message->setBody($body);
         }
+
         return $message;
     }
 
@@ -345,6 +349,7 @@ class Mail extends AbstractService
         foreach ($vars as $key => $val) {
             $content = str_replace('%' . $key . '%', $val, $content);
         }
+
         return $content;
     }
 
@@ -401,6 +406,7 @@ class Mail extends AbstractService
         if (!$tagged && in_array('body', $elements)) {
             $result['body'] = $content;
         }
+
         return $result;
     }
 

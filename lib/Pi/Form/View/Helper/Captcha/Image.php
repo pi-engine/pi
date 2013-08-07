@@ -54,8 +54,10 @@ class Image extends ZendHelperCaptchaImage
             // For "click to refresh":
             // <img src="$src"
             //  onclick="this.src='$src&refresh='+Math.random()">
-            'onclick'   => sprintf('this.src=\'%s&refresh=\'+Math.random()',
-                $imgSrc),
+            'onclick'   => sprintf(
+                'this.src=\'%s&refresh=\'+Math.random()',
+                $imgSrc
+            ),
             'style'     => 'cursor: pointer; vertical-align: middle;',
         );
 

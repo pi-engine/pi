@@ -94,8 +94,9 @@ class Feed extends Standard
 
             for ($i = 0; $i < $count; $i += 2) {
                 if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] =
-                        urldecode($params[$i + 1]);
+                    $matches[urldecode($params[$i])] = urldecode(
+                        $params[$i + 1]
+                    );
                 }
             }
         } else {
@@ -108,8 +109,10 @@ class Feed extends Standard
             }
         }
 
-        return new RouteMatch(array_merge($this->defaults, $matches),
-            $pathLength);
+        return new RouteMatch(
+            array_merge($this->defaults, $matches),
+            $pathLength
+        );
     }
 
     /**
@@ -144,40 +147,40 @@ class Feed extends Standard
         $url = '';
         foreach ($mergedParams as $key => $value) {
             $url .= $this->paramDelimiter . urlencode($key)
-                . $this->keyValueDelimiter . urlencode($value);
+                  . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller', 'module') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
-                    $url = urlencode($mca[$key]) .
-                        $this->paramDelimiter . $url;
+                    $url = urlencode($mca[$key])
+                         . $this->paramDelimiter . $url;
                 }
             }
         } else {
             $structure = urlencode($mca['module']);
             if ($mca['controller'] !== $this->defaults['controller']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                            . urlencode($mca['controller']);
                 if ($mca['action'] !== $this->defaults['action']) {
                     $structure .= $this->structureDelimiter
-                        . urlencode($mca['action']);
+                                . urlencode($mca['action']);
                 }
             } elseif ($mca['action'] !== $this->defaults['action']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                            . urlencode($mca['controller']);
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['action']);
+                            . urlencode($mca['action']);
             }
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }
 
         $url = $this->paramDelimiter
-            . trim($this->prefix, $this->paramDelimiter)
-            . ($url ? $this->paramDelimiter . $url : '');
+             . trim($this->prefix, $this->paramDelimiter)
+             . ($url ? $this->paramDelimiter . $url : '');
         if ($type) {
             $url = rtrim($url, $this->paramDelimiter)
-                . $this->paramDelimiter . $type;
+                 . $this->paramDelimiter . $type;
         }
 
         return $url;

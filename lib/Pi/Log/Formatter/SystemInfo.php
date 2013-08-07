@@ -34,11 +34,11 @@ class SystemInfo implements FormatterInterface
     {
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
-                . '<div class="message info">'
-                . '<span class="label">%name%</span>'
-                . '<span class="text">%value%</span>'
-                . '</div>' . PHP_EOL
-                . '</div>' . PHP_EOL;
+                    . '<div class="message info">'
+                    . '<span class="label">%name%</span>'
+                    . '<span class="text">%value%</span>'
+                    . '</div>' . PHP_EOL
+                    . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -59,6 +59,7 @@ class SystemInfo implements FormatterInterface
             }
             $output = str_replace('%' . $name . '%', $value, $output);
         }
+
         return $output;
     }
 
@@ -76,6 +77,7 @@ class SystemInfo implements FormatterInterface
     public function setDateTimeFormat($dateTimeFormat)
     {
         $this->dateTimeFormat = (string) $dateTimeFormat;
+
         return $this;
     }
 }

@@ -42,6 +42,7 @@ class Relation extends AbstractResource
         if (null === $this->isAvailable) {
             $this->isAvailable = Pi::service('module')->isActive('relation');
         }
+
         return $this->isAvailable;
     }
 

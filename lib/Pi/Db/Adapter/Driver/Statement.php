@@ -102,14 +102,24 @@ class Statement extends PDOStatement
     /**
      * {@inheritDoc}
      */
-    public function bindParam($parameter, &$variable,
-        $data_type = PDO::PARAM_STR, $length = null, $driver_options = null)
-    {
-        $result = parent::bindParam($parameter, $variable,
-            $data_type, $length, $driver_options);
+    public function bindParam(
+        $parameter,
+        &$variable,
+        $data_type = PDO::PARAM_STR,
+        $length = null,
+        $driver_options = null
+    ) {
+        $result = parent::bindParam(
+            $parameter,
+            $variable,
+            $data_type,
+            $length,
+            $driver_options
+        );
         if ($this->profiler) {
             $this->parameters[$parameter] = $variable;
         }
+
         return $result;
     }
 

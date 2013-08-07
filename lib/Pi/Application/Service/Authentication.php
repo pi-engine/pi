@@ -82,9 +82,12 @@ class Authentication extends AbstractService
      * @param StorageInterface $storage
      * @return Result
      */
-    public function authenticate($identity, $credential,
-        AdapterInterface $adapter = null, StorageInterface $storage = null)
-    {
+    public function authenticate(
+        $identity,
+        $credential,
+        AdapterInterface $adapter = null,
+        StorageInterface $storage = null
+    ) {
         $adapter = $adapter ?: $this->getAdapter();
         $adapter->setIdentity($identity);
         $adapter->setCredential($credential);
@@ -112,6 +115,7 @@ class Authentication extends AbstractService
     public function setAdapter(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
+
         return $this;
     }
 
@@ -125,6 +129,7 @@ class Authentication extends AbstractService
         if (!$this->adapter) {
             $this->adapter = $this->loadAdapter($this->options['adapter']);
         }
+
         return $this->adapter;
     }
 
@@ -137,6 +142,7 @@ class Authentication extends AbstractService
     public function setStorage(StorageInterface $storage)
     {
         $this->storage = $storage;
+
         return $this;
     }
 
@@ -150,6 +156,7 @@ class Authentication extends AbstractService
         if (!$this->storage) {
             $this->storage = $this->loadStorage($this->options['storage']);
         }
+
         return $this->storage;
     }
 
@@ -182,6 +189,7 @@ class Authentication extends AbstractService
         $class      = $config['class'];
         $options    = isset($config['options']) ? $config['options'] : array();
         $storage = new $class($options);
+
         return $storage;
     }
 

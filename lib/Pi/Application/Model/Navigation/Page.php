@@ -42,6 +42,7 @@ class Page extends Nest
         if (null !== $navigation) {
             $this->navigation = $navigation;
         }
+
         return $this;
     }
 
@@ -63,11 +64,14 @@ class Page extends Nest
      */
     public function removeByNavigation($nav)
     {
-        $pageRoots = $this->getRoots(array('navigation' => $nav),
-            array($this->column('left') . ' DESC'));
+        $pageRoots = $this->getRoots(
+            array('navigation' => $nav),
+            array($this->column('left') . ' DESC')
+        );
         foreach ($pageRoots as $root) {
             $this->remove($root);
         }
+
         return true;
     }
 }

@@ -160,6 +160,7 @@ class Download
         }
         $this->tmp = isset($options['tmp'])
             ? $options['tmp'] : Pi::path('cache');
+
         return $this;
     }
 
@@ -204,6 +205,7 @@ class Download
             // Exit request to avoid extra output
             exit;
         }
+
         return true;
     }
 
@@ -280,7 +282,7 @@ class Download
         }
 
         return array($resource, $filename, $type,
-            $contentType, $contentLength);
+                     $contentType, $contentLength);
     }
 
     /**
@@ -292,9 +294,12 @@ class Download
      * @param int $contentLength
      * @return bool
      */
-    protected function download($source, $filename, $contentType,
-        $contentLength = 0)
-    {
+    protected function download(
+        $source,
+        $filename,
+        $contentType,
+        $contentLength = 0
+    ) {
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
         header('Content-Disposition: attachment; filename="'

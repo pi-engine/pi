@@ -124,8 +124,12 @@ class Theme
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(sprintf('%s.pre', $method),
-            null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger(
+            sprintf('%s.pre', $method),
+            null,
+            $event,
+            $shortCircuit
+        );
         if ($result->stopped()) {
             return false;
         }
@@ -136,14 +140,21 @@ class Theme
             $this->event->setParam('result', $ret);
             return false;
         }
-        $result = $this->getEventManager()->trigger('process',
-            null, $event, $shortCircuit);
+        $result = $this->getEventManager()->trigger(
+            'process',
+            null,
+            $event,
+            $shortCircuit
+        );
         if ($result->stopped()) {
             return false;
         }
 
-        $this->getEventManager()->trigger(sprintf('%s.post', $method),
-            null, $event);
+        $this->getEventManager()->trigger(
+            sprintf('%s.post', $method),
+            null,
+            $event
+        );
         $this->getEventManager()->trigger('finish', null, $event);
 
         $status = true;
@@ -154,6 +165,7 @@ class Theme
                 //break;
             }
         //}
+
         return $status;
     }
 
@@ -167,6 +179,7 @@ class Theme
         if (!$this->events) {
             $this->events = new EventManager;
         }
+
         return $this->events;
     }
 
@@ -220,13 +233,18 @@ class Theme
         foreach ($message as $action => $state) {
             $content .= '<p>';
             $content .= $action . ': '
-                . (($state['status'] === false) ? 'failed' : 'passed');
+                      . (($state['status'] === false)
+                         ? 'failed' : 'passed'
+                      );
             if (!empty($state['message'])) {
-                $content .= '<br />&nbsp;&nbsp;'
-                . implode('<br />&nbsp;&nbsp;', (array) $state['message']);
+                $content .= '<br />&nbsp;&nbsp;' . implode(
+                    '<br />&nbsp;&nbsp;',
+                    (array) $state['message']
+                );
             }
             $content .= '</p>';
         }
+
         return $content;
     }
 
@@ -256,6 +274,7 @@ class Theme
             'update'    => isset($data['update']) ? $data['update'] : time(),
             'type'      => !empty($data['type']) ? $data['type'] : 'both',
         );
+        
         return $return;
     }
 
@@ -274,7 +293,8 @@ class Theme
             'message'   => ''
         );
         if (empty($config['parent'])
-            && $files = $this->checkFiles($name, $type)) {
+            && $files = $this->checkFiles($name, $type)
+        ) {
             $result = array(
                 'status'    => false,
                 'message'   => 'Files missing: ' . implode(' ', $files)
@@ -301,6 +321,7 @@ class Theme
                 Pi::service('asset')->publishCustom($name);
             }
         }
+
         return $result;
     }
 

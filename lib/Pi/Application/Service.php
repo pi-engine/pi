@@ -71,7 +71,7 @@ class Service
     /**
      * Check if a services is loaded
      *
-     * @param string @name
+     * @param string $name
      * @return bool
      */
     public function hasService($name)

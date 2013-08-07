@@ -41,6 +41,7 @@ class I18nTheme extends AbstractHelper
     public function __invoke($domain, $theme = null, $locale = null)
     {
         Pi::service('i18n')->loadTheme($domain, $theme, $locale);
+
         return $this;
     }
 }

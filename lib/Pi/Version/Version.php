@@ -85,6 +85,7 @@ class Version
                 $version = static::VERSION;
                 break;
         }
+
         return strtolower($version);
     }
 
@@ -100,6 +101,7 @@ class Version
     {
         $version = strtolower($version);
         $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
+
         return version_compare($version, strtolower(static::VERSION));
     }
 
@@ -128,8 +130,10 @@ class Version
             if ($service == 'GITHUB') {
                 $url  = static::$githubApiRelease;
 
-                $apiResponse = Json::decode(file_get_contents($url),
-                    Json::TYPE_ARRAY);
+                $apiResponse = Json::decode(
+                    file_get_contents($url),
+                    Json::TYPE_ARRAY
+                );
 
                 // Simplify the API response into a simple array of
                 // version numbers
@@ -139,10 +143,12 @@ class Version
                 }, $apiResponse);
 
                 // Fetch the latest version number from the array
-                static::$latestVersion = array_reduce($tags,
+                static::$latestVersion = array_reduce(
+                    $tags,
                     function ($a, $b) {
                         return version_compare($a, $b, '>') ? $a : $b;
-                    });
+                    }
+                );
             } elseif ($service == 'PI') {
                 $handle = fopen(static::$piApiRelease, 'r');
                 if (false !== $handle) {
@@ -180,8 +186,10 @@ class Version
             static::$latestCommit = false;
             $url  = static::$githubApiCommit;
 
-            $apiResponse = Json::decode(file_get_contents($url),
-                Json::TYPE_ARRAY);
+            $apiResponse = Json::decode(
+                file_get_contents($url),
+                Json::TYPE_ARRAY
+            );
             $latestCommit = $apiResponse[0];
             static::$latestCommit = array(
                 'commit'    => $latestCommit['object']['sha'],

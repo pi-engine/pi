@@ -40,6 +40,7 @@ class AdminNav extends AbstractHelper
     public function __invoke($module = 'system')
     {
         $this->module = $module;
+
         return $this;
     }
 
@@ -72,8 +73,10 @@ class AdminNav extends AbstractHelper
         if (isset($modes[$mode])) {
             $modes[$mode]['active'] = 1;
         }
-        foreach (array(AdminMode::MODE_ADMIN, AdminMode::MODE_SETTING)
-            as $type) {
+        foreach (array(
+            AdminMode::MODE_ADMIN,
+            AdminMode::MODE_SETTING
+        ) as $type) {
             $allowed = Pi::service('registry')->moduleperm->read($type);
             if (null === $allowed || !is_array($allowed)) {
                 $allowed = $moduleList;

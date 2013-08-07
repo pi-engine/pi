@@ -89,9 +89,12 @@ class Menu extends ZendMenu
 
         $_this = $this;
         $_eol = static::EOL;
-        $render = function ($container, $options = array(), $limitDepth = null,
-            &$return = array()) use ($_this, $_eol, $foundPage)
-        {
+        $render = function (
+            $container,
+            $options = array(),
+            $limitDepth = null,
+            &$return = array()
+        ) use ($_this, $_eol, $foundPage) {
             extract($options);
 
             $html = '';
@@ -117,7 +120,8 @@ class Menu extends ZendMenu
                     // page is in the deepest branch
                     $accept = true;
                 } elseif ($depth > $minDepth && $onlyActiveBranch
-                    && !$isActive) {
+                    && !$isActive
+                ) {
                     // page is not active itself,
                     // but might be in the active branch
                     $accept = false;
@@ -130,7 +134,8 @@ class Menu extends ZendMenu
                             // page is a sibling of the active page...
                             if (!$foundPage->hasPages()
                                 || is_int($maxDepth)
-                                && $foundDepth + 1 > $maxDepth) {
+                                && $foundDepth + 1 > $maxDepth
+                            ) {
                                 // accept if active page has no children,
                                 // or the children are too deep to be rendered
                                 $accept = true;
@@ -172,8 +177,8 @@ class Menu extends ZendMenu
                 // render li tag and page
                 $liClass = $isActive ? ' class="active"' : '';
                 $html .= $myIndent . '    <li' . $liClass . '>' . $_eol
-                    . $myIndent . '        '
-                    . $_this->htmlify($page, $escapeLabels) . $_eol;
+                       . $myIndent . '        '
+                       . $_this->htmlify($page, $escapeLabels) . $_eol;
 
                 // store as previous depth for next iteration
                 $prevDepth = $depth;
@@ -189,7 +194,7 @@ class Menu extends ZendMenu
                 for ($i = $prevDepth + 1; $i > 0; $i--) {
                     $myIndent = $indent . str_repeat('        ', $i-1);
                     $html .= $myIndent . '    </li>' . $_eol
-                        . $myIndent . '</ul>' . $_eol;
+                           . $myIndent . '</ul>' . $_eol;
                 }
                 $html = rtrim($html, $_eol);
             }
@@ -256,7 +261,7 @@ class Menu extends ZendMenu
             if (!$subPage->getLabel()) {
                 $liClass = $subPage->getClass() ?: 'divider';
                 $html .= $indent . '    <li class="' . $liClass . '" />'
-                    . self::EOL;
+                       . self::EOL;
                 continue;
             }
             /**#@-*/
@@ -276,8 +281,8 @@ class Menu extends ZendMenu
 
             $html .= $indent . '    <li' . $liClass . '>' . self::EOL;
             $html .= $indent . '        '
-                . $this->htmlify($subPage, $escapeLabels, $addClassToListItem)
-                . self::EOL;
+                   . $this->htmlify($subPage, $escapeLabels, $addClassToListItem)
+                   . self::EOL;
             $html .= $indent . '    </li>' . self::EOL;
         }
 
@@ -311,8 +316,10 @@ class Menu extends ZendMenu
         }
 
         // create iterator
-        $iterator = new RecursiveIteratorIterator($container,
-            RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(
+            $container,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
         if (is_int($maxDepth)) {
             $iterator->setMaxDepth($maxDepth);
         }
@@ -336,7 +343,8 @@ class Menu extends ZendMenu
                         // page is a sibling of the active page...
                         if (!$foundPage->hasPages()
                             || is_int($maxDepth)
-                            && $foundDepth + 1 > $maxDepth) {
+                            && $foundDepth + 1 > $maxDepth
+                        ) {
                             // accept if active page has no children, or the
                             // children are too deep to be rendered
                             $accept = true;
@@ -381,7 +389,7 @@ class Menu extends ZendMenu
             if (!$page->getLabel()) {
                 $liClass = $page->getClass() ?: 'divider';
                 $html .= $myIndent . '    <li class="' . $liClass . '" />'
-                    . self::EOL;
+                       . self::EOL;
                 $prevDepth = $depth;
                 continue;
             }
@@ -401,9 +409,9 @@ class Menu extends ZendMenu
                 ? '' : ' class="' . implode(' ', $liClasses) . '"';
 
             $html .= $myIndent . '    <li' . $liClass . '>' . self::EOL
-                . $myIndent . '        '
-                . $this->htmlify($page, $escapeLabels, $addClassToListItem)
-                . self::EOL;
+                   . $myIndent . '        '
+                   . $this->htmlify($page, $escapeLabels, $addClassToListItem)
+                   . self::EOL;
 
             // store as previous depth for next iteration
             $prevDepth = $depth;
@@ -414,7 +422,7 @@ class Menu extends ZendMenu
             for ($i = $prevDepth+1; $i > 0; $i--) {
                 $myIndent = $indent . str_repeat('        ', $i-1);
                 $html .= $myIndent . '    </li>' . self::EOL
-                    . $myIndent . '</ul>' . self::EOL;
+                       . $myIndent . '</ul>' . self::EOL;
             }
             $html = rtrim($html, self::EOL);
         }

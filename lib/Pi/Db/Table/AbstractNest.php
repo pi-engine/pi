@@ -241,9 +241,11 @@ abstract class AbstractNest extends AbstractTableGateway
                     $where, $column, $right_end);
             }
             $order = sprintf('%s %s', $column, $direction);
-            $sql = sprintf('UPDATE %s SET %s = %s %s %d WHERE %s ORDER BY %s',
+            $sql = sprintf(
+                'UPDATE %s SET %s = %s %s %d WHERE %s ORDER BY %s',
                 $this->quoteIdentifier($this->table),
-                $column, $column, $operator, $value, $where, $order);
+                $column, $column, $operator, $value, $where, $order
+            );
             $this->adapter->query($sql, 'execute');
         }
         return true;
@@ -420,8 +422,10 @@ abstract class AbstractNest extends AbstractTableGateway
         $select->where($where);
         $rowset = $this->selectWith($select);
         foreach ($rowset as $row) {
-            $this->update(array($this->column('depth') => $row->depth_cal),
-                array($this->primaryKeyColumn => $row->id));
+            $this->update(
+                array($this->column('depth') => $row->depth_cal),
+                array($this->primaryKeyColumn => $row->id)
+            );
         }
     }
 
@@ -455,6 +459,7 @@ abstract class AbstractNest extends AbstractTableGateway
             $row->depth = $this->getDepth($row);
         }
         $row->save();
+
         return $row->id;
         //return $this->insert($data);
     }
@@ -589,8 +594,11 @@ abstract class AbstractNest extends AbstractTableGateway
         if (!$this->shift($rightExtreme + 1, $incrementPlaceholder)) {
             return false;
         }
-        $this->reconcile($dest['left'],
-            $dest['left'] + $row->right - $row->left);
+        $this->reconcile(
+            $dest['left'],
+            $dest['left'] + $row->right - $row->left
+        );
+
         return true;
     }
 
@@ -618,6 +626,7 @@ abstract class AbstractNest extends AbstractTableGateway
         if (!$result) {
             return false;
         }
+
         return $result->depth;
     }
 
@@ -638,6 +647,7 @@ abstract class AbstractNest extends AbstractTableGateway
         $order = $order ?: array($this->column['left'] . ' ASC');
 
         $select = $this->select()->where($clause)->order($order);
+
         return $this->selectWith($select);
     }
 
@@ -739,6 +749,7 @@ abstract class AbstractNest extends AbstractTableGateway
             ));
             $this->insert($data);
         }
+
         return true;
     }
 
@@ -803,9 +814,12 @@ abstract class AbstractNest extends AbstractTableGateway
      * @param int   $right  Right value
      * @return array List of formulated associative array
      */
-    public function convertFromNested($nodes, $left = 1,
-        $depth = 0, &$right = null)
-    {
+    public function convertFromNested(
+        $nodes,
+        $left = 1,
+        $depth = 0,
+        &$right = null
+    ) {
         $list = array();
         $right = 0;
         foreach ($nodes as $node) {
@@ -817,8 +831,12 @@ abstract class AbstractNest extends AbstractTableGateway
             $node['depth']  = $depth;
             // Set children if available
             if (isset($node['child'])) {
-                $children = $this->convertFromNested($node['child'],
-                    $left + 1, $depth + 1, $right);
+                $children = $this->convertFromNested(
+                    $node['child'],
+                    $left + 1,
+                    $depth + 1,
+                    $right
+                );
                 $right++;
                 // Reset right value based on children's right
                 $node['right'] = $right;
@@ -1073,6 +1091,7 @@ abstract class AbstractNest extends AbstractTableGateway
         if (empty($plain) && !$singleRoot && !empty($ret)) {
             $result += $ret;
         }
+
         return $result;
     }
 }

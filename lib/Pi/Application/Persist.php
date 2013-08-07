@@ -21,7 +21,7 @@ class Persist
     /**
      * Currently active persist handler
      *
-     * @var Persist\StorageInterface
+     * @var Persist\AbstractStorage
      */
     protected $handler;
 
@@ -57,12 +57,12 @@ class Persist
      *
      * @param string    $storage
      * @param array     $options
-     * @return Persist\StorageInterface|false
+     * @return Persist\AbstractStorage|false
      */
     public function loadHandler($storage, $options = array())
     {
         $class = __NAMESPACE__ . '\\'
-            . sprintf('Persist\\%sStorage', $storage);
+               . sprintf('Persist\\%sStorage', $storage);
         try {
             $handler = new $class($options);
         } catch (\Exception $e) {
@@ -74,7 +74,7 @@ class Persist
     /**
      * Gets currently active backend handler
      *
-     * @return Persist\StorageInterface|false
+     * @return Persist\AbstractStorage|false
      */
     public function getHandler()
     {

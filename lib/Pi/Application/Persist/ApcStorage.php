@@ -56,6 +56,7 @@ class ApcStorage extends AbstractStorage
     public function load($id)
     {
         $id = $this->prefix($id);
+
         return apc_fetch($this->prefix($id));
     }
 
@@ -65,6 +66,7 @@ class ApcStorage extends AbstractStorage
     public function save($data, $id, $ttl = 0)
     {
         $id = $this->prefix($id);
+
         return apc_store($id, $data, $ttl);
     }
 
@@ -74,6 +76,7 @@ class ApcStorage extends AbstractStorage
     public function remove($id)
     {
         $id = $this->prefix($id);
+
         return apc_delete($id);
     }
 
@@ -83,6 +86,7 @@ class ApcStorage extends AbstractStorage
     public function flush()
     {
         $regex  = '/^' . preg_quote($this->prefix(), '/') . '+/';
+
         return apc_delete(
             new APCIterator('user', $regex, 0, 1, \APC_LIST_ACTIVE)
         );

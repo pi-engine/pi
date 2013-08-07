@@ -131,6 +131,7 @@ class Event extends AbstractService
     {
         $key = implode('-', $listener);
         $this->container[$module][$event][$key] = $listener;
+
         return $this;
     }
 
@@ -151,6 +152,7 @@ class Event extends AbstractService
         } else {
             $this->container[$module][$event] = null;
         }
+
         return $this;
     }
 }

@@ -68,6 +68,7 @@ class Js extends AssetCanonize
                 $helper->appendFile($attrs['src'], 'text/javascript', $attrs);
             }
         }
+
         return $this;
     }
 }

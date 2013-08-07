@@ -34,9 +34,12 @@ class Result extends BaseResult
      * @param array         $messages
      * @param array         $data
      */
-    public function __construct($code, $identity = '',
-        array $messages = array(), array $data = array())
-    {
+    public function __construct(
+        $code,
+        $identity = '',
+        array $messages = array(),
+        array $data = array()
+    ) {
         if (is_array($code)) {
             extract($code);
         }
@@ -55,6 +58,7 @@ class Result extends BaseResult
     public function setData($data)
     {
         $this->data = (array) $data;
+
         return $this;
     }
 
@@ -71,6 +75,7 @@ class Result extends BaseResult
         } else {
             $return = isset($this->data[$column]) ? $this->data[$column] : null;
         }
+
         return $return;
     }
 }

@@ -142,7 +142,8 @@ class Acl
             $this->models[$modelName]->setSection($this->getSection());
         }
         if ($this->getSection() == 'module'
-            && method_exists($this->models[$modelName], 'setModule')) {
+            && method_exists($this->models[$modelName], 'setModule')
+        ) {
             $this->models[$modelName]->setModule($this->getModule());
         }
 
@@ -271,9 +272,14 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function addRule($allowed, $role, $section, $module,
-        $resource, $privilege = null)
-    {
+    public static function addRule(
+        $allowed,
+        $role,
+        $section,
+        $module,
+        $resource,
+        $privilege = null
+    ) {
         $deny = ($allowed > 0) ? 0 : 1;
         $rule = array(
             'section'   => $section,
@@ -301,9 +307,13 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function removeRule($role, $section, $module,
-        $resource, $privilege = null)
-    {
+    public static function removeRule(
+        $role,
+        $section,
+        $module,
+        $resource,
+        $privilege = null
+    ) {
         $rule = array(
             'section'   => $section,
             'role'      => $role,
@@ -332,9 +342,14 @@ class Acl
      * @param string|null   $privilege
      * @return bool
      */
-    public static function setRule($allowed, $role, $section, $module,
-        $resource, $privilege = null)
-    {
+    public static function setRule(
+        $allowed,
+        $role,
+        $section,
+        $module,
+        $resource,
+        $privilege = null
+    ) {
         $deny = ($allowed > 0) ? 0 : 1;
         $rule = array(
             'section'   => $section,
@@ -455,6 +470,7 @@ class Acl
         if (isset($pageList[$module])) {
             return true;
         }
+
         return false;
     }
 
@@ -491,6 +507,7 @@ class Acl
                 ?: array();
             array_push($this->roles, $this->getRole());
         }
+
         return $this->roles;
     }
 
@@ -522,9 +539,14 @@ class Acl
             $section = empty($resource['section'])
                 ? $this->getSection() : $resource['section'];
             $resourceList = Pi::service('registry')->resource->read(
-                $section, $module, 'page');
+                $section,
+                $module,
+                'page'
+            );
             $pageList = array_flip(Pi::service('registry')->page->read(
-                $section, $module));
+                $section,
+                $module
+            ));
 
             $resources = array();
             foreach ($resourceList as $page => $list) {
@@ -545,6 +567,7 @@ class Acl
             if (isset($resources[$module])) {
                 return $resources[$module];
             }
+
             return $resources;
         }
 
@@ -562,12 +585,16 @@ class Acl
         }
 
         $resourceList = Pi::service('registry')->resource->read(
-            $this->getSection(), $this->getModule(), $type);
+            $this->getSection(),
+            $this->getModule(),
+            $type
+        );
         if (isset($resourceList[$name])) {
             $resources = $resourceList[$name];
         } else {
             $resources = array($name);
         }
+
         return $resources;
     }
 }

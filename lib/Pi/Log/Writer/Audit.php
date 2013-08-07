@@ -52,6 +52,7 @@ class Audit extends AbstractWriter
         if (!$this->formatter) {
             $this->formatter = new AuditFormatter;
         }
+
         return $this->formatter;
     }
 
@@ -204,6 +205,7 @@ class Audit extends AbstractWriter
         $data['section'] = Pi::engine()->section();
 
         $this->extra = $data;
+
         return $this->extra;
     }
 }

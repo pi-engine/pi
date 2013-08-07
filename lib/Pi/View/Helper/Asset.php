@@ -39,7 +39,10 @@ class Asset extends AbstractHelper
      */
     public function __invoke($component, $file, $versioning = true)
     {
-        return Pi::service('asset')->getAssetUrl($component, $file,
-            $versioning);
+        return Pi::service('asset')->getAssetUrl(
+            $component,
+            $file,
+            $versioning
+        );
     }
 }

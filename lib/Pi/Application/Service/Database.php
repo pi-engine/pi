@@ -46,6 +46,7 @@ class Database extends AbstractService
         } elseif (!$this->db) {
             $this->db = $this->loadDb();
         }
+
         return $this->db;
     }
 

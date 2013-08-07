@@ -31,8 +31,11 @@ class Acl extends AbstractResource
         // Load global ACL handler
         $this->loadAcl();
         // Check access permission before any other action is performed
-        $this->application->getEventManager()->attach('dispatch',
-            array($this, 'checkAccess'), 9999);
+        $this->application->getEventManager()->attach(
+            'dispatch',
+            array($this, 'checkAccess'),
+            9999
+        );
     }
 
     /**
@@ -43,9 +46,10 @@ class Acl extends AbstractResource
     protected function loadAcl()
     {
         $this->engine->bootResource('user');
-        $this->aclHandler = new AclManager($this->engine->section(),
-            isset($this->options['default'])
-                ? $this->options['default'] : null);
+        $this->aclHandler = new AclManager(
+            $this->engine->section(),
+            isset($this->options['default']) ? $this->options['default'] : null
+        );
         $this->aclHandler->setRole(Pi::service('user')->getUser()->role());
         Pi::registry('acl', $this->aclHandler);
     }
@@ -78,7 +82,7 @@ class Acl extends AbstractResource
                     'name'  => 'admin',
                 );
                 $denied = $this->aclHandler->checkAccess($resource)
-                    ? false : true;
+                          ? false : true;
             // Check for managed components
             } elseif (
                 in_array($route['controller'], $this->options['component'])) {
@@ -89,7 +93,7 @@ class Acl extends AbstractResource
                     $denied = true;
                 } else {
                     $moduleName = $routeMatch->getParam('name')
-                        ?: $e->getRequest()->getPost('name');
+                                  ?: $e->getRequest()->getPost('name');
                     if ($moduleName) {
                         $denied = false;
                         // Get allowed modules
@@ -97,7 +101,8 @@ class Acl extends AbstractResource
                         Pi::service('registry')->moduleperm->read('manage');
                         // Denied if module is not allowed
                         if (null !== $modulesAllowed
-                            && !in_array($moduleName, $modulesAllowed)) {
+                            && !in_array($moduleName, $modulesAllowed)
+                        ) {
                             $denied = true;
                         }
                     // Denied if action page is not allowed
@@ -114,23 +119,26 @@ class Acl extends AbstractResource
         // Check for module access
         if (null === $denied) {
             // Get allowed modules
-            $modulesAllowed =
-                Pi::service('registry')->moduleperm->read($section);
+            $modulesAllowed = Pi::service('registry')->moduleperm
+                ->read($section);
             // Automatically allowed for not defined cases
             if (!isset($this->options['default'])
-                || !empty($this->options['default'])) {
+                || !empty($this->options['default'])
+            ) {
                 // Get all active modules
                 $modulesActive = Pi::service('registry')->modulelist->read();
                 // Denied if is explicitly not allowed installed modules
                 if (isset($modulesActive[$route['module']])
-                    && !in_array($route['module'], $modulesAllowed)) {
+                    && !in_array($route['module'], $modulesAllowed)
+                ) {
                     $denied = true;
                 }
             // Automatically denied for not defined cases
             } else {
                 // Denied if module is not allowed
                 if (null !== $modulesAllowed
-                    && !in_array($route['module'], $modulesAllowed)) {
+                    && !in_array($route['module'], $modulesAllowed)
+                ) {
                     $denied = true;
                 }
             }
@@ -140,9 +148,11 @@ class Acl extends AbstractResource
         if (null === $denied) {
             // Denied if action page is not allowed if check on page is enabled
             if (!empty($this->options['check_page'])
-                && 'dashboard' != $route['controller']) {
+                && 'dashboard' != $route['controller']
+            ) {
                 if ('admin' == $section
-                    && $this->aclHandler->checkException($route)) {
+                    && $this->aclHandler->checkException($route)
+                ) {
                     $denied = false;
                 } elseif (!$this->aclHandler->checkAccess($route)) {
                     $denied = true;
@@ -153,7 +163,7 @@ class Acl extends AbstractResource
         // Jump to denied page upon denial
         if ($denied) {
             $statusCode = Pi::service('user')->getUser()->isGuest()
-                ? 401 : 403;
+                          ? 401 : 403;
             $e->getResponse()->setStatusCode($statusCode);
             $e->setError(true);
         }

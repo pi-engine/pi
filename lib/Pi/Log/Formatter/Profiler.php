@@ -35,11 +35,11 @@ class Profiler implements FormatterInterface
     {
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
-                . '<div class="time">%timestamp%</div>' . PHP_EOL
-                . '<div class="message info">'
-                . '%name% - time: %timer%; realmem: %realmem%;'
-                . ' emalloc: %emalloc%</div>' . PHP_EOL
-                . '</div>' . PHP_EOL;
+                    . '<div class="time">%timestamp%</div>' . PHP_EOL
+                    . '<div class="message info">'
+                    . '%name% - time: %timer%; realmem: %realmem%;'
+                    . ' emalloc: %emalloc%</div>' . PHP_EOL
+                    . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -57,9 +57,7 @@ class Profiler implements FormatterInterface
         $event['timestamp'] = date(
                 $this->getDateTimeFormat(),
                 intval($event['timestamp'])
-            )
-            . substr($event['timestamp'],
-                strpos($event['timestamp'], '.'), 5);
+        ) . substr($event['timestamp'], strpos($event['timestamp'], '.'), 5);
         $event['timer'] = sprintf('%.4f', $event['timer']);
         foreach ($event as $name => $value) {
             if (!is_scalar($value)) {
@@ -67,6 +65,7 @@ class Profiler implements FormatterInterface
             }
             $output = str_replace('%' . $name . '%', $value, $output);
         }
+
         return $output;
     }
 
@@ -84,6 +83,7 @@ class Profiler implements FormatterInterface
     public function setDateTimeFormat($dateTimeFormat)
     {
         $this->dateTimeFormat = (string) $dateTimeFormat;
+
         return $this;
     }
 }

@@ -160,6 +160,7 @@ class Paginator extends Pagit
         }
 
         $adapter = static::createAdapter($adapter, $data);
+
         return new self($adapter);
     }
 
@@ -211,6 +212,7 @@ class Paginator extends Pagit
         if (!class_exists($class)) {
             $class = sprintf($adapterClass, 'Zend');
         }
+
         return new $class($data);
     }
 
@@ -227,6 +229,7 @@ class Paginator extends Pagit
         if (!class_exists($class)) {
             $class = sprintf($styleClass, 'Zend');
         }
+
         return new $class;
     }
 
@@ -594,11 +597,11 @@ class Paginator extends Pagit
     public function getItemsByPage($pageNumber)
     {
         $pageNumber = $this->normalizePageNumber($pageNumber);
-
         $offset = ($pageNumber - 1) * $this->getItemCountPerPage();
-
-        $items =
-            $this->adapter->getItems($offset, $this->getItemCountPerPage());
+        $items = $this->adapter->getItems(
+            $offset,
+            $this->getItemCountPerPage()
+        );
 
         $filter = $this->getFilter();
 
@@ -941,8 +944,12 @@ class Paginator extends Pagit
     public function buildUrl($page)
     {
         if (!empty($this->urlOptions['template'])) {
-            $url = str_replace(array('%page%', '%total%'),
-                array($page, $this->count()), $this->urlOptions['template']);
+            $url = str_replace(
+                array('%page%', '%total%'),
+                array($page, $this->count()),
+                $this->urlOptions['template']
+            );
+
             return $url;
         }
 

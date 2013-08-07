@@ -73,6 +73,7 @@ abstract class AbstractRegistry
     public function setGenerator($generator)
     {
         $this->generator = $generator;
+
         return $this;
     }
 
@@ -122,7 +123,7 @@ abstract class AbstractRegistry
             } else {
                 throw new \Exception(
                     'Custom namespace is required for registry '
-                        . get_class($this)
+                    . get_class($this)
                 );
             }
             /*
@@ -178,6 +179,7 @@ abstract class AbstractRegistry
             }
         }
         $key = $key ?: static::TAG;
+
         return $key;
     }
 
@@ -190,6 +192,7 @@ abstract class AbstractRegistry
     public function setCache(CacheAdapter $cache)
     {
         $this->cache = clone $cache;
+
         return $this;
     }
 
@@ -242,6 +245,7 @@ abstract class AbstractRegistry
                 $data = json_decode($data, true);
             }
         }
+
         return $data;
     }
 
@@ -279,6 +283,7 @@ abstract class AbstractRegistry
     public function setKey($key)
     {
         $this->registryKey = $key;
+
         return $this;
     }
 

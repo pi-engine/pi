@@ -75,7 +75,8 @@ class Block extends AbstractRegistry
         // Filter blocks via ACL check
         $blocksAllowed = null;
         if (null !== $role && $role != AclManager::ADMIN
-            && !empty($blocksId)) {
+            && !empty($blocksId)
+        ) {
             $acl = new AclManager('block');
             $where = array('resource' => array_keys($blocksId));
             $blocksDenied = $acl->getResources($where, false);
@@ -90,7 +91,8 @@ class Block extends AbstractRegistry
                 continue;
             }
             if (null === $blocksAllowed
-                || in_array($link['block'], $blocksAllowed)) {
+                || in_array($link['block'], $blocksAllowed)
+            ) {
                 if (!isset($blocksByPageZone[$link['page']][$link['zone']])) {
                     $blocksByPageZone[$link['page']][$link['zone']] = array();
                 }
@@ -123,6 +125,7 @@ class Block extends AbstractRegistry
         }
         $module = $module ?: Pi::service('module')->current();
         $options = compact('module', 'role');
+
         return $this->loadData($options);
     }
 
@@ -136,6 +139,7 @@ class Block extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($module, $role);
+
         return true;
     }
 
@@ -146,6 +150,7 @@ class Block extends AbstractRegistry
     {
         $this->clear('');
         $this->flushByModules();
+
         return $this;
     }
 }

@@ -129,8 +129,9 @@ class Autoloader
     {
         // Include paths, adding vendor path
         if (!empty($options['include_path'])) {
-            set_include_path(get_include_path() .
-                PATH_SEPARATOR . $options['include_path']);
+            set_include_path(
+                get_include_path() . PATH_SEPARATOR . $options['include_path']
+            );
         }
         // Module directory
         if (!empty($options['module_path'])) {
@@ -164,6 +165,7 @@ class Autoloader
     public function setPersist(Persist\PersistInterface $persist)
     {
         $this->persist = $persist;
+
         return $this;
     }
 
@@ -215,8 +217,11 @@ class Autoloader
         // If class is registered in persist and valid
         if (!empty($path)) {
             if (!include $path) {
-                trigger_error(sprintf('Class "%s" is not loaded from "%s"',
-                    $class, $path));
+                trigger_error(sprintf(
+                    'Class "%s" is not loaded from "%s"',
+                    $class,
+                    $path
+                ));
             }
         }
     }
@@ -247,32 +252,46 @@ class Autoloader
         $top = substr($class, 0, $pos);
         // Module classes, Module\ModuleName\ClassNamespace\ClassName
         if (static::TOP_NAMESPACE_MODULE === $top) {
-            list($top, $module, $trimmedClass)
-                = explode(static::NS_SEPARATOR, $class, 3);
-            $path = $this->modulePath . DIRECTORY_SEPARATOR .
-                strtolower($module) . DIRECTORY_SEPARATOR .
-                static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
-            $filePath = $this->transformClassNameToFilename($trimmedClass,
-                $path);
+            list($top, $module, $trimmedClass) = explode(
+                static::NS_SEPARATOR,
+                $class,
+                3
+            );
+            $path = $this->modulePath . DIRECTORY_SEPARATOR
+                  . strtolower($module) . DIRECTORY_SEPARATOR
+                  . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename(
+                $trimmedClass,
+                $path
+            );
 
         // Extra classes, Extra\ModuleName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_EXTRA === $top) {
-            list($top, $module, $trimmedClass)
-                = explode(static::NS_SEPARATOR, $class, 3);
-            $path = $this->extraPath . DIRECTORY_SEPARATOR .
-                strtolower($module) . DIRECTORY_SEPARATOR .
-                static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
-            $filePath = $this->transformClassNameToFilename($trimmedClass,
-                $path);
+            list($top, $module, $trimmedClass) = explode(
+                static::NS_SEPARATOR,
+                $class,
+                3
+            );
+            $path = $this->extraPath . DIRECTORY_SEPARATOR
+                  . strtolower($module) . DIRECTORY_SEPARATOR
+                  . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename(
+                $trimmedClass,
+                $path
+            );
         // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
-            $trimmedClass = substr($class,
-                strlen($top . static::NS_SEPARATOR));
+            $trimmedClass = substr(
+                $class,
+                strlen($top . static::NS_SEPARATOR)
+            );
             $path = $this->tops[$top];
             // Get file full path
-            $filePath = $this->transformClassNameToFilename($trimmedClass,
-                $path);
+            $filePath = $this->transformClassNameToFilename(
+                $trimmedClass,
+                $path
+            );
         /*#@-*/
 
         } else {
@@ -284,7 +303,8 @@ class Autoloader
                     // Get file full path
                     $filePath = $this->transformClassNameToFilename(
                         $trimmedClass,
-                        $path);
+                        $path
+                    );
                     // Break
                     break;
                 }
@@ -330,6 +350,7 @@ class Autoloader
         } else {
             array_unshift($this->callbacks, $callback);
         }
+
         return $this;
     }
 
@@ -350,6 +371,7 @@ class Autoloader
         foreach ($namespaces as $namespace => $directory) {
             $this->registerTop($namespace, $directory);
         }
+
         return $this;
     }
 
@@ -363,6 +385,7 @@ class Autoloader
     public function registerTop($namespace, $directory)
     {
         $this->tops[$namespace] = $this->normalizeDirectory($directory);
+
         return $this;
     }
 
@@ -498,6 +521,7 @@ class Autoloader
         foreach ($locations as $location) {
             $this->registerAutoloadMap($location);
         }
+
         return $this;
     }
 
@@ -554,13 +578,19 @@ class Autoloader
     public static function realPharPath($path)
     {
         if (strpos($path, 'phar:///') !== 0) {
-            return;
+            return '';
         }
 
-        $parts = explode('/', str_replace(array('/','\\'), '/',
-            substr($path, 8)));
-        $parts = array_values(array_filter($parts,
-            function($p) { return ($p !== '' && $p !== '.'); }));
+        $parts = explode(
+            '/',
+            str_replace(array('/','\\'), '/', substr($path, 8))
+        );
+        $parts = array_values(array_filter(
+            $parts,
+            function($p) {
+                return ($p !== '' && $p !== '.');
+            }
+        ));
 
         array_walk($parts, function ($value, $key) use (&$parts) {
             if ($value === '..') {
@@ -572,6 +602,8 @@ class Autoloader
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
         }
+
+        return '';
     }
     /*#@-*/
 
@@ -589,6 +621,7 @@ class Autoloader
     {
         $namespace = $namespace . static::NS_SEPARATOR;
         $this->namespaces[$namespace] = $this->normalizeDirectory($directory);
+
         return $this;
     }
 
@@ -609,6 +642,7 @@ class Autoloader
         foreach ($namespaces as $namespace => $directory) {
             $this->registerNamespace($namespace, $directory);
         }
+
         return $this;
     }
 
@@ -626,6 +660,7 @@ class Autoloader
             return $directory;
         }
         $directory .= DIRECTORY_SEPARATOR;
+
         return $directory;
     }
     /*#@-*/

@@ -75,6 +75,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function select($where = null)
     {
         $this->adapter = $this->slaveAdapter;
+
         return parent::select($where);
     }
 
@@ -84,6 +85,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function insert($set)
     {
         $this->adapter = $this->masterAdapter;
+
         return parent::insert($set);
     }
 
@@ -93,6 +95,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function update($set, $where = null)
     {
         $this->adapter = $this->masterAdapter;
+
         return parent::update($set, $where);
     }
 
@@ -102,6 +105,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function delete($where)
     {
         $this->adapter = $this->masterAdapter;
+        
         return parent::delete($where);
     }
 }

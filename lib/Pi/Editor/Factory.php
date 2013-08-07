@@ -49,14 +49,15 @@ class Factory
                 break;
         }
         $editorFile = Pi::path('usr') . '/editor/' . $editor
-            . '/src/Renderer.php';
+                    . '/src/Renderer.php';
 
         if (file_exists($editorFile)) {
             include $editorFile;
         }
         $rendererClass =  'Editor\\' . ucfirst($editor) . '\Renderer';
         if (!class_exists($rendererClass)
-            || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')) {
+            || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')
+        ) {
             $rendererClass = __NAMESPACE__ . '\Pi\Renderer';
         }
 

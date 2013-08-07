@@ -91,7 +91,7 @@ class Standard extends AbstractEngine
     {
         if (!$this->application) {
             $options = isset($this->options['application'])
-                ? $this->options['application'] : array();
+                       ? $this->options['application'] : array();
             $this->application = Application::load($options);
             $this->application->setEngine($this)->setSection($this->section());
         }
@@ -111,15 +111,16 @@ class Standard extends AbstractEngine
                 try {
                     Pi::service($service, $options);
                 } catch (\Exception $e) {
-                    trigger_error(
-                        sprintf('Service "%s" failed: %s',
-                            $service, $e->getMessage()),
-                        E_USER_ERROR
-                    );
+                    trigger_error(sprintf(
+                        'Service "%s" failed: %s',
+                        $service,
+                        $e->getMessage()
+                    ), E_USER_ERROR);
                     return false;
                 }
             }
         }
+
         return true;
     }
 
@@ -142,6 +143,7 @@ class Standard extends AbstractEngine
                 return false;
             }
         }
+
         return true;
     }
 
@@ -157,7 +159,8 @@ class Standard extends AbstractEngine
         if (!isset($this->resources['instances'][$resource])) {
             // Skip resource if disabled
             if (isset($this->resources['options'][$resource])
-                && false === $this->resources['options'][$resource]) {
+                && false === $this->resources['options'][$resource]
+            ) {
                 $this->resources['instances'][$resource] = true;
             // Load resource with native and custom options
             } else {
@@ -174,8 +177,10 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
-                $class = sprintf('Pi\Application\Bootstrap\Resource\\%s',
-                    ucfirst($resource));
+                $class = sprintf(
+                    'Pi\Application\Bootstrap\Resource\\%s',
+                    ucfirst($resource)
+                );
                 $resourceInstance = new $class($this, $options);
 
                 $result = $resourceInstance->boot();

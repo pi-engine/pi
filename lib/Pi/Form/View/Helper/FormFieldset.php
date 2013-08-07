@@ -61,6 +61,7 @@ class FormFieldset extends AbstractHelper
     public function setShouldWrap($wrap)
     {
         $this->shouldWrap = (bool) $wrap;
+
         return $this;
     }
 

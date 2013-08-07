@@ -78,6 +78,7 @@ abstract class AbstractModel
     public function createAccount($vars = array())
     {
         $account = array_merge($this->accountMeta, $vars);
+
         return (object) $account;
     }
 

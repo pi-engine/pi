@@ -59,6 +59,7 @@ class Module extends AbstractService
     public function setModule($module)
     {
         $this->currentModule = $module;
+
         return $this;
     }
 
@@ -106,12 +107,13 @@ class Module extends AbstractService
             @chmod($configFile, intval('0777', 8));
         }
         $content = '<?php' . PHP_EOL
-            . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
+                 . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
         file_put_contents($configFile, $content);
         @chmod($configFile, intval('0444', 8));
         clearstatcache();
 
         $this->init(true);
+
         return $meta;
     }
 
@@ -132,6 +134,7 @@ class Module extends AbstractService
             */
             $this->container['meta'] = $list;
         }
+
         return true;
     }
 
@@ -199,6 +202,7 @@ class Module extends AbstractService
             ->load(sprintf('module/%s:meta', $module));
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
+
         return $type ? $config[$type] : $config;
     }
 
@@ -214,6 +218,7 @@ class Module extends AbstractService
             $module = $this->container['meta'][$module]['directory'];
         }
         $path = Pi::path('module') . '/' . $module;
+
         return $path;
     }
 
@@ -237,6 +242,7 @@ class Module extends AbstractService
         } else {
             $directory = $module;
         }
+
         return $directory;
     }
 
@@ -261,6 +267,7 @@ class Module extends AbstractService
         if (!class_exists($class)) {
             return false;
         }
+
         return $class::content($variables, $conditions);
     }
 }

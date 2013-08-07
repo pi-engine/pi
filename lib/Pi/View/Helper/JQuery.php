@@ -92,6 +92,7 @@ class JQuery extends AssetCanonize
                 }
             }
         }
+
         return $this;
     }
 }

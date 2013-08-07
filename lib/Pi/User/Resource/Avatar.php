@@ -36,6 +36,7 @@ class Avatar extends AbstractResource
     {
         $class = __NAMESPACE__ . '\Avatar' . ucfirst($adapter);
         $adapter = new $class($this->model);
+
         return $adapter;
     }
 
@@ -65,6 +66,7 @@ class Avatar extends AbstractResource
             $img = '<img src="%s"%s />';
             $result = sprintf($img, $src, $attrs);
         }
+
         return $result;
     }
 
@@ -91,6 +93,7 @@ class Avatar extends AbstractResource
         }
         $src = $this->getAdapter($adapter)->build($size);
         $avatar = $this->build($src, $attributes);
+
         return $avatar;
     }
 
@@ -107,6 +110,7 @@ class Avatar extends AbstractResource
     {
         $src = $this->getAdapter('gravatar')->build($size, $attributes);
         $avatar = $this->build($src, $attributes);
+
         return $avatar;
     }
 
@@ -119,6 +123,7 @@ class Avatar extends AbstractResource
     public function getPath($size = null)
     {
         $path = $this->getAdapter('upload')->getpath($size);
+
         return $path;
     }
 }

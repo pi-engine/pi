@@ -33,6 +33,7 @@ class Captcha extends ZendCaptcha
             $captcha = Pi::service('captcha')->load();
             $this->setCaptcha($captcha);
         }
+
         return $this->captcha;
     }
 }

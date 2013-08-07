@@ -61,6 +61,7 @@ class I18n extends AbstractRegistry
 
         $this->namespaceCustom = $namespace;
         $options = compact('domain', 'file', 'locale');
+
         return $this->loadData($options);
     }
 
@@ -72,6 +73,7 @@ class I18n extends AbstractRegistry
     {
         $this->flush();
         $this->read($domain);
+
         return true;
     }
 
@@ -90,6 +92,7 @@ class I18n extends AbstractRegistry
     {
         $this->clear(static::NAMESPACE_GLOBAL);
         $this->flushByModules();
+
         return $this;
     }
 }

@@ -44,15 +44,23 @@ class ErrorStrategy extends AbstractListenerAggregate
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface',
+        $sharedEvents->attach(
+            'Zend\Stdlib\DispatchableInterface',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'prepareErrorViewModel'),
-            -85);
+            -85
+        );
 
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH,
-            array($this, 'prepareErrorViewModel'), -85);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER,
-            array($this, 'prepareErrorViewModel'), 100);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_DISPATCH,
+            array($this, 'prepareErrorViewModel'),
+            -85
+        );
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_RENDER,
+            array($this, 'prepareErrorViewModel'),
+            100
+        );
     }
 
     /**

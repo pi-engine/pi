@@ -41,6 +41,7 @@ class Message extends AbstractResource
         if (null === $this->isAvailable) {
             $this->isAvailable = Pi::service('module')->isActive('message');
         }
+
         return $this->isAvailable;
     }
 
@@ -56,8 +57,12 @@ class Message extends AbstractResource
         if (!$this->isAvailable) {
             return false;
         }
-        $id = Pi::service('api')->message
-            ->send($this->model->id, $message, $from);
+        $id = Pi::service('api')->message->send(
+            $this->model->id,
+            $message,
+            $from
+        );
+
         return $id;
     }
 
@@ -74,8 +79,13 @@ class Message extends AbstractResource
         if (!$this->isAvailable) {
             return false;
         }
-        $id = Pi::service('api')->message
-            ->notify($this->model->id, $message, $subject, $tag);
+        $id = Pi::service('api')->message->notify(
+            $this->model->id,
+            $message,
+            $subject,
+            $tag
+        );
+
         return $id;
     }
 
@@ -90,6 +100,7 @@ class Message extends AbstractResource
             return false;
         }
         $result = Pi::service('api')->message->getAccount($this->model->id);
+
         return $result;
     }
 
@@ -104,6 +115,7 @@ class Message extends AbstractResource
             return false;
         }
         $result = Pi::service('api')->message->getAlert($this->model->id);
+
         return $result;
     }
 }

@@ -62,6 +62,7 @@ class Form extends ZendForm
         if (null === $this->factory) {
             $this->setFormFactory(new Factory());
         }
+
         return $this->factory;
     }
 
@@ -143,11 +144,13 @@ class Form extends ZendForm
                 continue;
             }
             if ($OnlyHidden
-                && 'hidden' != $this->get($name)->getAttribute('type')) {
+                && 'hidden' != $this->get($name)->getAttribute('type')
+            ) {
                 continue;
             }
             $list[] = implode($delimiter, array_values($messages));
         }
+
         return implode($delimiter, $list);
     }
 }

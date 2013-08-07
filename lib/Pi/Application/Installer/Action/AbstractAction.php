@@ -85,6 +85,7 @@ abstract class AbstractAction
     {
         $this->events = $events;
         $this->attachDefaultListeners();
+
         return $this;
     }
 
@@ -132,6 +133,7 @@ abstract class AbstractAction
         $result = $this->event->getParam('result');
         $result[$name] = $data;
         $this->event->setParam('result', $result);
+
         return $this;
     }
 
@@ -163,6 +165,7 @@ abstract class AbstractAction
             ));
             return false;
         }
+
         return true;
     }
 
@@ -190,10 +193,11 @@ abstract class AbstractAction
             $this->setResult('Independent', array(
                 'status'    => false,
                 'message'   => 'Modules required by this module: '
-                                . implode(', ', $missing)
+                               . implode(', ', $missing)
             ));
             return false;
         }
+
         return true;
     }
 
@@ -225,6 +229,7 @@ abstract class AbstractAction
                 return false;
             }
         }
+        
         return true;
     }
 

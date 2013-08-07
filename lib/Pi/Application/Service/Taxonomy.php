@@ -386,6 +386,7 @@ class Taxonomy extends AbstractService
         } else {
             $row = Pi::model('taxonomy_domain')->find($entity, 'name');
         }
+
         return $row ? $row->toArray() : false;
     }
 
@@ -416,6 +417,7 @@ class Taxonomy extends AbstractService
         if ($deleteTaxa) {
             $status = $this->delete($row->name);
         }
+
         return $status;
     }
     /**#@-*/

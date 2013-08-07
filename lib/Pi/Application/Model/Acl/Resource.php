@@ -44,6 +44,7 @@ class Resource extends Nest
         if (!is_null($section)) {
             $this->section = $section;
         }
+
         return $this;
     }
 
@@ -68,6 +69,7 @@ class Resource extends Nest
         if (!is_null($module)) {
             $this->module = $module;
         }
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class Resource extends Nest
             $parents[] = (is_string($cols) && $cols != '*')
                 ? $row->$cols : $row->toArray();
         }
+
         return $parents;
     }
 
@@ -135,9 +138,12 @@ class Resource extends Nest
         $resources[$resource->id] = $resource->module;
         parent::remove($resource, $recursive);
         $modelRule = Pi::model('acl_rule');
-        $modelRule->delete(array('section' => $resource->section,
-            'module' => $resource->module,
-            'resource' => array_keys($resources)));
+        $modelRule->delete(array(
+            'section'   => $resource->section,
+            'module'    => $resource->module,
+            'resource'  => array_keys($resources)
+        ));
+
         return true;
     }
 }

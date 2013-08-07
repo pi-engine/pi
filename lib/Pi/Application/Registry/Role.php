@@ -38,6 +38,7 @@ class Role extends AbstractRegistry
     {
         //$this->cache = false;
         $options = compact('role');
+
         return $this->loadData($options);
     }
 
@@ -49,6 +50,7 @@ class Role extends AbstractRegistry
     {
         $this->clear($role);
         $this->read($role);
+
         return true;
     }
 
@@ -66,6 +68,7 @@ class Role extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 
@@ -75,6 +78,7 @@ class Role extends AbstractRegistry
     public function flush()
     {
         $this->clear('');
+
         return $this;
     }
 }

@@ -47,9 +47,12 @@ class Jump extends AbstractPlugin
      * @param bool          $allowExtenal   Allow external links
      * @return Response
      */
-    public function __invoke($params, $message = '', $time = 3,
-        $allowExternal = false)
-    {
+    public function __invoke(
+        $params,
+        $message = '',
+        $time = 3,
+        $allowExternal = false
+    ) {
         $controller = $this->getController();
         if (is_array($params)) {
             $routeMatch = null;
@@ -75,7 +78,8 @@ class Jump extends AbstractPlugin
             $url = $params;
             if (preg_match('/^(http[s]?:\/\/|\/\/)/i', $url)) {
                 if (!$allowExternal
-                    && '' !== stristr($url, Pi::url('www'), true)) {
+                    && '' !== stristr($url, Pi::url('www'), true)
+                ) {
                     $url = Pi::url('www');
                 }
             } elseif ('/' != $url[0]) {
@@ -95,6 +99,7 @@ class Jump extends AbstractPlugin
         if ($response instanceof Response) {
             $response->send();
         }
+
         return $response;
         //$response->send();
         //exit();

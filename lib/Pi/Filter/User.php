@@ -48,14 +48,15 @@ class User extends AbstractFilter
     {
         $this->setOptions($options);
         if (empty($this->options['replacement'])
-            && empty($this->options['callback'])) {
+            && empty($this->options['callback'])
+        ) {
             $this->options['callback'] = function ($identity) {
                 $service = Pi::service('user')->bind($identity, 'identity');
                 $url = $service->getProfileUrl();
                 $name = $service->getName();
                 $service->restore();
                 return sprintf('<a href="%s" title="%s">@%s</a>',
-                    $url, $name, $identity);
+                               $url, $name, $identity);
             };
         }
     }
@@ -71,7 +72,7 @@ class User extends AbstractFilter
         $replacement = $this->options['replacement'];
         if ($replacement) {
             $tag = $this->options['tag'];
-            $callback = function($m) use ($replacement, $tag) {
+            $callback = function ($m) use ($replacement, $tag) {
                 return str_replace($tag, $m[1], $replacement);
             };
         } else {
@@ -80,8 +81,11 @@ class User extends AbstractFilter
                 return $func($m[1]);
             };
         }
-        $value = preg_replace_callback('`' . $this->options['pattern'] . '`',
-            $callback, $value);
+        $value = preg_replace_callback(
+            '`' . $this->options['pattern'] . '`',
+            $callback,
+            $value
+        );
 
         return $value;
     }

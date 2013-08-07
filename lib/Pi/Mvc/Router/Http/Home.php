@@ -65,17 +65,21 @@ class Home extends Standard
                     || empty($params[0])
                     || ($params[0] == 'system' && empty($params[1]))
                     || ($params[0] == 'system' && $params[1] == 'index'
-                        && empty($params[2]))
+                        && empty($params[2])
+                    )
                     || ($params[0] == 'system' && $params[1] == 'index'
-                        && $params[2] == 'index')
-                    ) {
+                        && $params[2] == 'index'
+                    )
+            ) {
             } else {
                 return false;
             }
         }
 
-        return new RouteMatch(array_merge($this->defaults, $matches),
-            $pathLength);
+        return new RouteMatch(
+            array_merge($this->defaults, $matches),
+            $pathLength
+        );
     }
 
     /**

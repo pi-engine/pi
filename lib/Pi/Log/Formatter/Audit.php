@@ -81,6 +81,7 @@ class Audit implements FormatterInterface
     public function setDateTimeFormat($dateTimeFormat)
     {
         $this->dateTimeFormat = (string) $dateTimeFormat;
+
         return $this;
     }
 }

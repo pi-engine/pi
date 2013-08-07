@@ -56,6 +56,7 @@ class Theme extends AbstractRegistry
     public function read($type = 'front')
     {
         $options = compact('type');
+
         return $this->loadData($options);
     }
 
@@ -67,6 +68,7 @@ class Theme extends AbstractRegistry
     {
         $this->clear();
         $this->read($type);
+
         return true;
     }
 

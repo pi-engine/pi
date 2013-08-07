@@ -68,6 +68,7 @@ class Css extends AssetCanonize
                 $helper->appendStylesheet($attrs);
             }
         }
+
         return $this;
     }
 }

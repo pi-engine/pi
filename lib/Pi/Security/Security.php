@@ -106,10 +106,12 @@ class Security
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($method);
         if (class_exists($class)
-            && is_subclass_of($class, __NAMESPACE__ . '\AbstractAdapter')) {
+            && is_subclass_of($class, __NAMESPACE__ . '\AbstractAdapter')
+        ) {
             $options = $args[0];
             return $class::check($options);
         }
+
         return null;
     }
     /*#@-*/

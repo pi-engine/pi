@@ -52,14 +52,17 @@ class LoaderPluginManager extends ZendLoaderPluginManager
      * @param  bool $usePeeringServiceManagers
      * @return object
      */
-    public function get($name, $options = array(),
-        $usePeeringServiceManagers = true)
-    {
+    public function get(
+        $name,
+        $options = array(),
+        $usePeeringServiceManagers = true
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
-            $cname = strtolower(str_replace(array('-', '_', ' ', '\\', '/'),
-                '', $name));
+            $cname = strtolower(
+                str_replace(array('-', '_', ' ', '\\', '/'), '', $name)
+            );
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
                 if (!class_exists($invokableClass)) {
@@ -68,9 +71,9 @@ class LoaderPluginManager extends ZendLoaderPluginManager
                 $name = $invokableClass;
             // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '',
-                    ucwords(str_replace(array('-', '_', '\\', '/'),
-                        ' ', $name)));
+                $class = str_replace(' ', '', ucwords(
+                    str_replace(array('-', '_', '\\', '/'), ' ', $name)
+                ));
                 if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
                     $name = 'Pi\I18n\Translator\Loader\\' . $class;
                 } else {
@@ -79,6 +82,7 @@ class LoaderPluginManager extends ZendLoaderPluginManager
             }
         }
         $filter = parent::get($name, $options, $usePeeringServiceManagers);
+
         return $filter;
     }
 }

@@ -66,8 +66,10 @@ class FormCheckbox extends FormInput
     public function setLabelPosition($labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (!in_array($labelPosition,
-            array(static::LABEL_APPEND, static::LABEL_PREPEND))) {
+        if (!in_array(
+            $labelPosition,
+            array(static::LABEL_APPEND, static::LABEL_PREPEND)
+        )) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s or %s; received "%s"',
                 __METHOD__,
@@ -100,6 +102,7 @@ class FormCheckbox extends FormInput
     public function setLabelAttributes($attributes)
     {
         $this->labelAttributes = $attributes;
+
         return $this;
     }
 
@@ -134,6 +137,7 @@ class FormCheckbox extends FormInput
     public function setUseHiddenElement($useHiddenElement)
     {
         $this->useHiddenElement = (bool) $useHiddenElement;
+
         return $this;
     }
 

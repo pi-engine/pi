@@ -65,6 +65,7 @@ class Config extends AbstractRegistry
             $category = 'general';
         }
         $options = compact('module', 'category');
+
         return $this->loadData($options);
     }
 
@@ -77,6 +78,7 @@ class Config extends AbstractRegistry
     {
         $this->clear($module);
         $this->read($module, $category);
+
         return true;
     }
 
@@ -87,6 +89,7 @@ class Config extends AbstractRegistry
     {
         $namespace = $namespace ?: 'system';
         parent::clear($namespace);
+
         return $this;
     }
 }

@@ -179,11 +179,11 @@ class Mvc extends ZendMvcPage
                 }
 
                 if (null !== $this->getRoute()) {
-                    if (
-                        $this->routeMatch->getMatchedRouteName()
+                    if ($this->routeMatch->getMatchedRouteName()
                             === $this->getRoute()
                         && (count(array_intersect_assoc($reqParams, $myParams))
-                                == count($myParams))
+                            == count($myParams)
+                        )
                     ) {
                         $this->active = true;
                         return $this->active;
@@ -234,7 +234,8 @@ class Mvc extends ZendMvcPage
             }
 
             if (count(array_intersect_assoc($reqParams, $myParams))
-                == count($myParams)) {
+                == count($myParams)
+            ) {
                 $this->active = true;
                 return true;
             }
@@ -373,6 +374,7 @@ class Mvc extends ZendMvcPage
 
         $this->module = $module;
         $this->hrefCache  = null;
+
         return $this;
     }
 

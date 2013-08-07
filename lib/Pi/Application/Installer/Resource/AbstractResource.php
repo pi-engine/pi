@@ -44,6 +44,7 @@ class AbstractResource
     public function setEvent(Event $event)
     {
         $this->event = $event;
+
         return $this;
     }
 
@@ -75,6 +76,7 @@ class AbstractResource
         if (version_compare($moduleVersion, $configVersion, $operator)) {
             return true;
         }
+
         return false;
     }
 

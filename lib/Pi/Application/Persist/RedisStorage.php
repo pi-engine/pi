@@ -101,6 +101,7 @@ class RedisStorage extends AbstractStorage
         } else {
             $result = $this->redis->set($id, $data);
         }
+
         return $result;
     }
 
@@ -110,6 +111,7 @@ class RedisStorage extends AbstractStorage
     public function remove($id)
     {
         $id = $this->prefix($id);
+        
         return $this->redis->delete($id);
     }
 

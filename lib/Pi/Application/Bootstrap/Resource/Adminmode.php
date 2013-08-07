@@ -70,8 +70,11 @@ class Adminmode extends AbstractResource
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module
-                && in_array($controller,
-                    array('block', 'config', 'page', 'resource', 'event'))) {
+                && in_array(
+                    $controller,
+                    array('block', 'config', 'page', 'resource', 'event')
+                )
+            ) {
                 $mode = static::MODE_SETTING;
             } else {
                 $mode = static::MODE_ADMIN;

@@ -122,19 +122,21 @@ class Host
     {
         // Build current request URI
         $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-            ? 'https' : 'http';
+                  ? 'https' : 'http';
         $host   = $_SERVER['HTTP_HOST'];
         if (!$host) {
             $port = $_SERVER['SERVER_PORT'];
             $name = $_SERVER['SERVER_NAME'];
             if (($scheme == 'http' && $port == 80)
-                || ($scheme == 'https' && $port == 443)) {
+                || ($scheme == 'https' && $port == 443)
+            ) {
                 $host = $name;
             } else {
                 $host = $name . ':' . $port;
             }
         }
         $baseLocation = $scheme . '://' . $host;
+
         return $baseLocation;
     }
 
@@ -159,19 +161,19 @@ class Host
 
         // Build current request URI
         $uri = isset($_SERVER['REQUEST_URI'])
-            ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
+               ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
         $requestUri = rtrim($this->getBaseLocation()
-            . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
+                    . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
 
         // Lookup identifier against alias list
-        $lookup = function ($conf) use ($requestUri)
-        {
+        $lookup = function ($conf) use ($requestUri) {
             foreach($conf as $uri => $identifier) {
                 $uri = rtrim($uri, '/') . '/';
                 if (0 === strpos($requestUri, $uri)) {
                     return $identifier;
                 }
             }
+
             return false;
         };
 
@@ -229,14 +231,18 @@ class Host
         $configs = $this->lookup($config, $hostIdentifier);
         // Merge with custom host config
         if (isset($hostConfig['path'])) {
-            $hostConfig['path'] =
-                array_merge($configs['path'], $hostConfig['path']);
+            $hostConfig['path'] = array_merge(
+                $configs['path'],
+                $hostConfig['path']
+            );
         } else {
             $hostConfig['path'] = $configs['path'];
         }
         if (isset($hostConfig['uri'])) {
-            $hostConfig['uri'] =
-                array_merge($configs['uri'], $hostConfig['uri']);
+            $hostConfig['uri'] = array_merge(
+                $configs['uri'],
+                $hostConfig['uri']
+            );
         } else {
             $hostConfig['uri'] = $configs['uri'];
         }
@@ -281,6 +287,7 @@ class Host
         if (isset($this->$var)) {
             return $this->$var;
         }
+
         return null;
     }
 
@@ -294,6 +301,7 @@ class Host
     public function set($var, $value = null)
     {
         $this->$var = $value;
+
         return $this;
     }
 
@@ -340,7 +348,7 @@ class Host
             } else {
                 // Append www path to sectionUri if it is relative
                 $uri = $this->path['www']
-                    . ($sectionUri ? '/' . $sectionUri : '');
+                     . ($sectionUri ? '/' . $sectionUri : '');
             }
             // Assemble full path
             $uri .= $path ? '/' . $path : '';
@@ -399,7 +407,7 @@ class Host
                 $uri = $this->baseUrl . ($sectionUri ? '/' . $sectionUri : '');
                 if ($absolute) {
                     $uri = $this->baseLocation
-                        . ($uri ? '/' . ltrim($uri, '/') : '');
+                         . ($uri ? '/' . ltrim($uri, '/') : '');
                 }
             }
             // Assemble full URI

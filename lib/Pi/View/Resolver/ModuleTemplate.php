@@ -68,6 +68,7 @@ class ModuleTemplate implements ResolverInterface
     public function setSuffix($suffix)
     {
         $this->suffix = (string) $suffix;
+
         return $this;
     }
 
@@ -110,6 +111,7 @@ class ModuleTemplate implements ResolverInterface
             $module = Pi::service('module')->current();
             $template = $name;
         }
+
         return array($module, $template);
     }
 
@@ -129,16 +131,27 @@ class ModuleTemplate implements ResolverInterface
         }
         list($module, $template) = $return;
         // Check custom template in theme
-        $path = sprintf('%s/%s/module/%s/%s/%s.%s', Pi::path('theme'),
-            Pi::service('theme')->current(), $module, $this->templateDirectory,
-            $template, $this->suffix);
+        $path = sprintf(
+            '%s/%s/module/%s/%s/%s.%s',
+            Pi::path('theme'),
+            Pi::service('theme')->current(),
+            $module,
+            $this->templateDirectory,
+            $template,
+            $this->suffix
+        );
         if (file_exists($path)) {
             return $path;
         }
         // Check local template in module
-        $path = sprintf('%s/%s/%s/%s.%s', Pi::path('module'),
+        $path = sprintf(
+            '%s/%s/%s/%s.%s',
+            Pi::path('module'),
             Pi::service('module')->directory($module),
-            $this->templateDirectory, $template, $this->suffix);
+            $this->templateDirectory,
+            $template,
+            $this->suffix
+        );
         if (file_exists($path)) {
             return $path;
         }

@@ -290,11 +290,13 @@ class Page extends AbstractResource
                 $controller = isset($page['controller'])
                     ? $page['controller'] : '';
                 $action = isset($page['action']) ? $page['action'] : '';
-                $key = sprintf('%s:%s:%s:%s',
+                $key = sprintf(
+                    '%s:%s:%s:%s',
                     $section,
                     $page['module'],
                     $controller,
-                    $action);
+                    $action
+                );
                 //echo ' [' . $key . '] ';
                 if (isset($pages_exist[$key])) {
                     $page_exist = $pages_exist[$key];
@@ -306,8 +308,10 @@ class Page extends AbstractResource
                         $data['title'] = $page['title'];
                     }
                     if (!empty($data)) {
-                        $status = $model->update($data,
-                            array('id' => $page_exist['id']));
+                        $status = $model->update(
+                            $data,
+                            array('id' => $page_exist['id'])
+                        );
                         if (!$status) {
                             $msg = 'Page "%s" is not updated.';
                             return array(
@@ -323,8 +327,10 @@ class Page extends AbstractResource
                 $message = array();
                 $status = $this->insertPage($page, $message);
                 if (!$status) {
-                    $message[] = sprintf('Page "%s" is not created.',
-                        $page['title']);
+                    $message[] = sprintf(
+                        'Page "%s" is not created.',
+                        $page['title']
+                    );
                     return array(
                         'status'    => false,
                         'message'   => $message
@@ -338,14 +344,17 @@ class Page extends AbstractResource
             $message = array();
             $status = $this->deletePage($page, $message);
             if (false === $status) {
-                $message[] = sprintf('Deprecated page "%s" is not deleted.',
-                    $page['title']);
+                $message[] = sprintf(
+                    'Deprecated page "%s" is not deleted.',
+                    $page['title']
+                );
                 return array(
                     'status'    => false,
                     'message'   => $message
                 );
             }
         }
+
         return true;
     }
 
@@ -363,6 +372,7 @@ class Page extends AbstractResource
             $message = array();
             $this->deletePage($row, $message);
         }
+
         return;
     }
 
@@ -379,11 +389,15 @@ class Page extends AbstractResource
         $modelPage = Pi::model('page');
         $modelResource = Pi::model('acl_resource');
         $modelRule = Pi::model('acl_rule');
-        $columnsPage = array('title',
+        $columnsPage = array(
+            'title',
             'section', 'module', 'controller', 'action',
-            'cache_ttl', 'cache_level', 'block', 'custom');
-        $columnsResource = array('section', 'name', 'item', 'title',
-            'module', 'type');
+            'cache_ttl', 'cache_level', 'block', 'custom'
+        );
+        $columnsResource = array(
+            'section', 'name', 'item', 'title',
+            'module', 'type'
+        );
 
         $data = array();
         foreach ($page as $col => $val) {
@@ -455,15 +469,22 @@ class Page extends AbstractResource
         // Add resource
         $resourceId = $modelResource->add($resource, $parent);
         if (!$resourceId) {
-            $message[] = sprintf('Resource "%s" is not created.',
-                $resource['name']);
+            $message[] = sprintf(
+                'Resource "%s" is not created.',
+                $resource['name']
+            );
             return false;
         }
         // Set rules of accessing the resource by each role
         if (isset($page['permission']['access'])) {
             foreach ($page['permission']['access'] as $role => $rule) {
-                AclHandler::addRule($rule, $role,
-                    $resource['section'], $module, $resourceId);
+                AclHandler::addRule(
+                    $rule,
+                    $role,
+                    $resource['section'],
+                    $module,
+                    $resourceId
+                );
             }
         }
 
@@ -507,8 +528,10 @@ class Page extends AbstractResource
         foreach ($resourceRows as $row) {
             $resources[] = $row->id;
         }
-        $modelRule->delete(array('section' => $pageRow->section,
-            'resource' => $resources));
+        $modelRule->delete(array(
+            'section'   => $pageRow->section,
+            'resource'  => $resources,
+        ));
         $modelResource->remove($resourceRow, true);
 
         //$pageRow->delete();

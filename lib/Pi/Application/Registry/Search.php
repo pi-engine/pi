@@ -51,6 +51,7 @@ class Search extends AbstractRegistry
     public function read($active = true)
     {
         $options = compact('active');
+
         return $this->loadData($options);
     }
 
@@ -62,6 +63,7 @@ class Search extends AbstractRegistry
     {
         $this->clear('');
         $this->read($active);
+
         return true;
     }
 

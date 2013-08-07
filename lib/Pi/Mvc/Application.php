@@ -45,8 +45,10 @@ class Application extends ZendApplication
     public function setListeners(array $listeners = array())
     {
         if ($listeners) {
-            $this->defaultListeners = array_merge($this->defaultListeners,
-                $listeners);
+            $this->defaultListeners = array_merge(
+                $this->defaultListeners,
+                $listeners
+            );
         }
 
         return $this;
@@ -69,6 +71,7 @@ class Application extends ZendApplication
         );
         //$serviceManager->setService('Configuration', $configuration);
         $serviceManager->get('Configuration')->exchangeArray($configuration);
+
         return $serviceManager->get('Application')->setListeners($listeners);
     }
 
@@ -81,6 +84,7 @@ class Application extends ZendApplication
     public function setSection($section = null)
     {
         $this->section = $section;
+
         return $this;
     }
 
@@ -103,6 +107,7 @@ class Application extends ZendApplication
     public function setEngine(AbstractEngine $engine = null)
     {
         $this->engine = $engine;
+
         return $this;
     }
 
@@ -154,13 +159,13 @@ class Application extends ZendApplication
          */
         if (Pi::service()->hasService('log')) {
             if ($this->getRouteMatch()) {
-                Pi::service('log')->info(
-                    sprintf('Route: %s:%s-%s-%s.',
-                        $this->getSection(),
-                        $this->getRouteMatch()->getParam('module'),
-                        $this->getRouteMatch()->getParam('controller'),
-                        $this->getRouteMatch()->getParam('action'))
-                );
+                Pi::service('log')->info(sprintf(
+                    'Route: %s:%s-%s-%s.',
+                    $this->getSection(),
+                    $this->getRouteMatch()->getParam('module'),
+                    $this->getRouteMatch()->getParam('controller'),
+                    $this->getRouteMatch()->getParam('action')
+                ));
             } else {
                 Pi::service('log')->err($event->getError());
             }

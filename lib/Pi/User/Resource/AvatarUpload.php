@@ -24,6 +24,7 @@ class AvatarUpload extends AbstractAvatar
     public function build($size = '')
     {
         $src = Pi::url($this->getRelativePath($size));
+
         return $src;
     }
 
@@ -64,6 +65,7 @@ class AvatarUpload extends AbstractAvatar
         $folder = $this->canonizeSize($size);
         $avatar = $this->model->avatar;
         $path = sprintf('upload/avatar/%s/%s', $folder, $avatar);
+
         return $path;
     }
 
@@ -92,6 +94,7 @@ class AvatarUpload extends AbstractAvatar
                 $folder = 'normal';
                 break;
         }
+
         return $folder;
     }
 }

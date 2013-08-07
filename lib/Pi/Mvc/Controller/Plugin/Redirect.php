@@ -32,12 +32,16 @@ class Redirect extends ZendRedirect
      *      RouteInterface-specific options to use in url generation, if any
      * @return Response|$this
      */
-    public function __invoke($route = null, array $params = array(),
-        $options = array(), $reuseMatchedParams = false)
-    {
+    public function __invoke(
+        $route = null,
+        array $params = array(),
+        $options = array(),
+        $reuseMatchedParams = false
+    ) {
         if (!$route && !$params) {
             return $this;
         }
+
         return $this->toRoute($route, $params, $options, $reuseMatchedParams);
     }
 
@@ -50,6 +54,7 @@ class Redirect extends ZendRedirect
     public function setStatusCode($code)
     {
         $this->responseCode = $code;
+
         return $this;
     }
 
@@ -61,9 +66,12 @@ class Redirect extends ZendRedirect
      * @param array     $options    RouteInterface-specific options
      * @return Response
      */
-    public function toRoute($route = null, array $params = array(),
-        $options = array(), $reuseMatchedParams = false)
-    {
+    public function toRoute(
+        $route = null,
+        array $params = array(),
+        $options = array(),
+        $reuseMatchedParams = false
+    ) {
         $routeMatch = null;
         if (!$route) {
             $routeMatch = $this->getEvent()->getRouteMatch();
@@ -85,6 +93,7 @@ class Redirect extends ZendRedirect
             $this->responseCode = null;
         }
         $response->send();
+
         return $response;
         //exit();
     }
@@ -104,6 +113,7 @@ class Redirect extends ZendRedirect
             $this->responseCode = null;
         }
         $response->send();
+
         return $response;
     }
 }

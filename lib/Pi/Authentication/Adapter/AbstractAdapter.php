@@ -52,6 +52,7 @@ abstract class AbstractAdapter
     public function setResultRow($resultRow = array())
     {
         $this->resultRow = (array) $resultRow;
+
         return $this;
     }
 
@@ -61,7 +62,8 @@ abstract class AbstractAdapter
     public function getResultRow($returnColumns = null, $omitColumns = null)
     {
         if (null === $returnColumns
-            && isset($this->options['return_columns'])) {
+            && isset($this->options['return_columns'])
+        ) {
             $returnColumns = $this->options['return_columns'];
         }
         if (null === $omitColumns && isset($this->options['omit_columns'])) {

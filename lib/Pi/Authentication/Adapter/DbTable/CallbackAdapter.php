@@ -52,6 +52,7 @@ class CallbackAdapter extends AbstractAdapter
                 return $a === md5($b);
             };
         }
+
         return $this->callback;
     }
 
@@ -61,10 +62,12 @@ class CallbackAdapter extends AbstractAdapter
     protected function authenticateValidateResult($resultIdentity)
     {
         try {
-            $callbackResult = call_user_func($this->getCallback(),
+            $callbackResult = call_user_func(
+                $this->getCallback(),
                 $resultIdentity[$this->credentialColumn],
                 $this->credential,
-                $resultIdentity);
+                $resultIdentity
+            );
         } catch (\Exception $e) {
             $this->authenticateResultInfo['code']
                 = AuthenticationResult::FAILURE_UNCATEGORIZED;

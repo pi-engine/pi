@@ -40,6 +40,7 @@ abstract class AbstractApi
     public function setModule($module)
     {
         $this->module = $module;
+
         return $this;
     }
 

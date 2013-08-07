@@ -179,6 +179,7 @@ class Syslog extends AbstractWriter
 
         $this->facility = $facility;
         $this->initializeSyslog();
+
         return $this;
     }
 
@@ -196,6 +197,7 @@ class Syslog extends AbstractWriter
 
         $this->appName = $appName;
         $this->initializeSyslog();
+
         return $this;
     }
 

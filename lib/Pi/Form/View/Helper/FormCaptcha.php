@@ -30,12 +30,14 @@ class FormCaptcha extends AbstractHelper
      * @param  array $options
      * @return string|self
      */
-    public function __invoke(ElementInterface $element = null,
-        $options = array())
-    {
+    public function __invoke(
+        ElementInterface $element = null,
+        $options = array()
+    ) {
         if (null === $element) {
             return $this;
         }
+
         return $this->render($element, $options);
     }
 
@@ -105,6 +107,7 @@ class FormCaptcha extends AbstractHelper
     public function setSeparator($separator)
     {
         $this->separator = $separator;
+
         return $this;
     }
 
@@ -118,6 +121,7 @@ class FormCaptcha extends AbstractHelper
     public function setCaptchaPosition($position)
     {
         $this->captchaPosition = $position;
+
         return $this;
     }
 }

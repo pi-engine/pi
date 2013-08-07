@@ -37,6 +37,7 @@ class Acl extends AbstractPlugin
                 $this->getController()->getModule()
             );
         }
+
         return $this->aclManager;
     }
 

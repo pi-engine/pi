@@ -41,23 +41,34 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $sharedEvents = $events->getSharedManager();
 
         // Detect request type and disable debug in case necessary
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP,
-            array($this, 'prepareRequestType'),  99999);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_BOOTSTRAP,
+            array($this, 'prepareRequestType'),
+            99999
+         );
 
         // Prepare root ViewModel for MvcEvent
         // Must be triggered before ViewManager
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP,
-            array($this, 'prepareRootModel'), 20000);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_BOOTSTRAP,
+            array($this, 'prepareRootModel'),
+            20000
+        );
 
         // Preload variables from system config for theme
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE,
-            array($this, 'initThemeAssemble'), 10000);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_ROUTE,
+            array($this, 'initThemeAssemble'),
+            10000
+        );
 
         // Canonize ViewModel for action
-        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface',
+        $sharedEvents->attach(
+            'Zend\Stdlib\DispatchableInterface',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'canonizeActionResult'),
-            -70);
+            -70
+        );
 
         // Inject ViewModel, should be performed
         // prior to Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
@@ -69,26 +80,45 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Error handled by:
         // Pi\Mvc\View\Http\ErrorStrategy::prepareErrorViewModel()
         // whose priority is --85
-        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface',
-            MvcEvent::EVENT_DISPATCH, array($this, 'injectTemplate'), -89);
+        $sharedEvents->attach(
+            'Zend\Stdlib\DispatchableInterface',
+            MvcEvent::EVENT_DISPATCH,
+            array($this, 'injectTemplate'),
+            -89
+        );
 
         // Render head metas for theme
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER,
-            array($this, 'renderThemeAssemble'), 10000);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR,
-            array($this, 'renderThemeAssemble'), 10000);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_RENDER,
+            array($this, 'renderThemeAssemble'),
+            10000
+        );
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_RENDER_ERROR,
+            array($this, 'renderThemeAssemble'),
+            10000
+        );
 
         // Canonize ViewModel for error/exception
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER,
-            array($this, 'canonizeErrorResult'), 10);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_RENDER,
+            array($this, 'canonizeErrorResult'),
+            10
+        );
 
         // Canonize theme layout if necessary
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER,
-            array($this, 'canonizeThemeLayout'), 5);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_RENDER,
+            array($this, 'canonizeThemeLayout'),
+            5
+        );
 
         // Complete meta assemble for theme
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_FINISH,
-            array($this, 'completeThemeAssemble'), 10000);
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_FINISH,
+            array($this, 'completeThemeAssemble'),
+            10000
+        );
     }
 
     /**
@@ -100,6 +130,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -195,6 +226,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 $viewModel->setVariables($variables);
                 $viewModel->setOptions($options);
                 $e->setResult($viewModel);
+
                 return;
             }
         }
@@ -220,8 +252,10 @@ class ViewStrategyListener extends AbstractListenerAggregate
                             $options = $viewModel->getOptions();
                         }
                         if (ArrayUtils::hasStringKeys($result, true)) {
-                            $variables = array_merge_recursive($variables,
-                                $result);
+                            $variables = array_merge_recursive(
+                                $variables,
+                                $result
+                            );
                         }
                     }
                     $model = new FeedModel($variables, $options);
@@ -243,8 +277,10 @@ class ViewStrategyListener extends AbstractListenerAggregate
                             $options = $viewModel->getOptions();
                         }
                         if (ArrayUtils::hasStringKeys($result, true)) {
-                            $variables = array_merge_recursive($variables,
-                                $result);
+                            $variables = array_merge_recursive(
+                                $variables,
+                                $result
+                            );
                         }
                     }
                     $model = new JsonModel($variables, $options);
@@ -267,7 +303,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 if (null !== $result) {
                     $template = $model->getTemplate();
                     if ($this->type
-                        && (!$template || '__NULL_' == $template)) {
+                        && (!$template || '__NULL_' == $template)
+                    ) {
                         $model->setVariable('content', is_scalar($result)
                             ? $result : json_encode($result));
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
@@ -413,11 +450,13 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Set template for regular module-controller-action request:
         // module:section/controller-action
         $engine = $e->getApplication()->getEngine();
-        $template = sprintf('%s:%s/%s-%s',
+        $template = sprintf(
+            '%s:%s/%s-%s',
             $routeMatch->getParam('module'),
             $engine->section(),
             $routeMatch->getParam('controller'),
-            $routeMatch->getParam('action'));
+            $routeMatch->getParam('action')
+        );
         $model->setTemplate($template);
     }
 
@@ -438,7 +477,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Skip for JsonModel/FeedModel which do not need template
         if (!$viewModel instanceof ViewModel
             || $viewModel instanceof JsonModel
-            || $viewModel instanceof FeedModel) {
+            || $viewModel instanceof FeedMode
+        ) {
             return;
         }
 
@@ -552,23 +592,23 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $accept  = $headers->get('Accept');
 
         // Json
-        if (
-            ($match
-                = $accept->match('application/json, application/javascript')
-            ) != false) {
+        if (($match = $accept->match(
+            'application/json, application/javascript'
+        )) != false) {
             $typeString = $match->getTypeString();
             if ('application/json' == $typeString
-                || 'application/javascript' == $typeString) {
+                || 'application/javascript' == $typeString
+            ) {
                 $this->type = 'json';
             }
         // Feed
-        } elseif (
-            ($match =
-                $accept->match('application/rss+xml, application/atom+xml')
-            ) != false) {
+        } elseif (($match = $accept->match(
+            'application/rss+xml, application/atom+xml'
+        )) != false) {
             $typeString = $match->getTypeString();
             if ('application/rss+xml' == $typeString
-                || 'application/atom+xml' == $typeString) {
+                || 'application/atom+xml' == $typeString
+            ) {
                 $this->type = 'feed';
             }
         }

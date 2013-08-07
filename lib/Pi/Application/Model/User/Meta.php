@@ -18,5 +18,4 @@ use Pi\Application\Model\Model;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Meta extends Model
-{
-}
+{}

@@ -7,6 +7,19 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
+use Pi\Application\Host;
+use Pi\Application\Persist;
+use Pi\Application\Autoloader;
+use Pi\Application\Engine\AbstractEngine;
+use Pi\Application\Service;
+use Pi\Application\Service\AbstractService;
+use Pi\Application\Config;
+use Pi\Application\Db;
+use Pi\Debug\Debug;
+use Pi\Utility\Filter;
+use Pi\Application\Service\User;
+use Pi\Application\Model\Model;
+
 /**
  * Pi Engine
  *
@@ -81,43 +94,43 @@ class Pi
 
     /**
      * Reference to application host
-     * @var Pi\Application\Host
+     * @var Host
      */
     protected static $host = null;
 
     /**
      * Reference to persist handler
-     * @var Pi\Application\Persist
+     * @var Persist
      */
     protected static $persist = null;
 
     /**
      * Reference to autoloader handler
-     * @var Pi\Application\Autoloader
+     * @var Autoloader
      */
     protected static $autoloader = null;
 
     /**
      * Reference to application engine
-     * @var array of Pi\Application\Engine
+     * @var AbstractEngine
      */
     protected static $engine = null;
 
     /**
      * Reference to service handler
-     * @var Pi\Application\Service
+     * @var Service
      */
     protected static $service = null;
 
     /**
      * Reference to config handler
-     * @var Pi\Application\Config
+     * @var Config
      */
     protected static $config = null;
 
     /**
      * Reference to Db handler
-     * @var Pi\Application\Db
+     * @var Db
      */
     protected static $db = null;
 
@@ -188,31 +201,33 @@ class Pi
         $paths = static::host()->get('path');
         $options = array(
             // Top namespaces
-            'top'       => array(
+            'top'           => array(
                 'Pi'    => static::path('lib') . '/Pi',
                 'Zend'  => static::path('lib') . '/Zend',
             ),
             // Regular namespaces
-            'namespace' => array(
+            'namespace'     => array(
             ),
             // Class map
-            'class_map'  => array(
+            'class_map'     => array(
             ),
             // Directory of modules
-            'module_path'    => static::path('module'),
+            'module_path'   => static::path('module'),
             // Directory of extras
             'extra_path'    => !empty($paths['extra'])
-                ? $paths['extra'] : static::path('usr') . '/extra',
+                               ? $paths['extra']
+                               : static::path('usr') . '/extra',
             // Vendor directory
-            'include_path'   => !empty($paths['vendor'])
-                ? $paths['vendor'] : static::path('lib') . '/vendor',
+            'include_path'  => !empty($paths['vendor'])
+                               ? $paths['vendor']
+                               : static::path('lib') . '/vendor',
         );
         static::autoloader($options);
         /**#@-*/
 
         // Load debugger and filter
-        Pi\Debug\Debug::load();
-        Pi\Utility\Filter::load();
+        Debug::load();
+        Filter::load();
 
         /**#@+
          * Load engine global config
@@ -227,7 +242,7 @@ class Pi
          * Initialize Persist handler
          */
         $persistConfig = empty($engineConfig['persist'])
-            ? array() : $engineConfig['persist'];
+                         ? array() : $engineConfig['persist'];
         static::persist($persistConfig);
         // Set persist handler for class/file map
         if (static::persist()->isValid()) {
@@ -253,6 +268,7 @@ class Pi
      *
      * @param string|null $environment
      * @return null|string
+     * @api
      */
     public static function environment($environment = null)
     {
@@ -271,6 +287,7 @@ class Pi
         } elseif (static::config('environment')) {
             $result = static::config('environment');
         }
+
         return $result;
     }
 
@@ -326,7 +343,8 @@ class Pi
      * Instantiate application host
      *
      * @param string|array $config Host file path or array of config data
-     * @return Pi\Application\Host
+     * @return Host
+     * @api
      */
     public static function host($config = null)
     {
@@ -334,38 +352,42 @@ class Pi
             if (!class_exists('Pi\Application\Host', false)) {
                 require static::PATH_LIB . '/Pi/Application/Host.php';
             }
-            static::$host = new Pi\Application\Host($config);
+            static::$host = new Host($config);
         }
+
         return static::$host;
     }
 
     /**
      * Loads persistent data handler
      *
-     * @param array     $config    Config for the persist handler
-     * @return Pi\Application\Persist\PersistInterface
+     * @param array $config Config for the persist handler
+     * @return Persist
+     * @api
      */
     public static function persist($config = array())
     {
         if (!isset(static::$persist)) {
-            static::$persist = new Pi\Application\Persist($config);
+            static::$persist = new Persist($config);
         }
+
         return static::$persist;
     }
 
     /**
      * Loads autoloader handler
      *
-     * @return Pi\Application\Autoloader
+     * @return  Autoloader
      */
     public static function autoloader($options = array())
     {
         if (!isset(static::$autoloader)) {
-            if (!class_exists('Pi\\Application\\Autoloader', false)) {
+            if (!class_exists('Pi\Application\Autoloader', false)) {
                 require static::PATH_LIB . '/Pi/Application/Autoloader.php';
             }
-            static::$autoloader = new Pi\Application\Autoloader($options);
+            static::$autoloader = new Autoloader($options);
         }
+
         return static::$autoloader;
     }
 
@@ -374,7 +396,8 @@ class Pi
      *
      * @param string    $type       Application type
      * @param array     $config     Config data for the application
-     * @return Pi\Application\Engine\AbstractEngine
+     * @return AbstractEngine
+     * @api
      */
     public static function engine($type = '', $config = array())
     {
@@ -386,6 +409,7 @@ class Pi
             $appEngineClass = 'Pi\Application\Engine\\' . ucfirst($type);
             static::$engine = new $appEngineClass($config);
         }
+
         return static::$engine;
     }
 
@@ -396,13 +420,14 @@ class Pi
      *
      * @param string    $name
      * @param array     $options
-     * @return Pi\Application\Service\ServiceAbstract|Pi\Application\Service
+     * @return Service|AbstractService
+     * @api
      */
     public static function service($name = null, $options = array())
     {
         // service handler
         if (!isset(static::$service)) {
-            static::$service = new Pi\Application\Service;
+            static::$service = new Service;
         }
         // Return service handler
         if (null === $name) {
@@ -410,13 +435,15 @@ class Pi
         }
         // Load a service
         $service = static::$service->load($name, $options);
+
         return $service;
     }
 
     /**
      * Load user service
      *
-     * @return Pi\Application\Service\User
+     * @return User
+     * @api
      */
     public static function user()
     {
@@ -426,7 +453,8 @@ class Pi
     /**
      * Load database identifier
      *
-     * @return Pi\Application\Db
+     * @return Db
+     * @api
      */
     public static function db()
     {
@@ -434,6 +462,7 @@ class Pi
         if (!isset(static::$db)) {
             static::$db = static::service('database')->db();
         }
+
         return static::$db;
     }
 
@@ -443,7 +472,8 @@ class Pi
      * @param string    $name
      * @param string    $module
      * @param array     $options
-     * @return Pi\Application\Model\ModelAbstract
+     * @return Model
+     * @api
      */
     public static function model($name, $module = '', $options = array())
     {
@@ -458,13 +488,16 @@ class Pi
      *
      * @param string    $name       Name of the config element
      * @param string    $domain     Configuration domain
-     * @return mixed    config value or config handler if $name not specified
+     * @return Config|mixed    config value or config handler if $name not specified
+     * @api
      */
     public static function config($name = null, $domain = null)
     {
         // config handler
         if (!isset(static::$config)) {
-            static::$config = new Pi\Application\Config(static::path('config'));
+            static::$config = new Config(
+                static::path('config')
+            );
         }
         // Return config handler
         if (null === $name) {
@@ -472,6 +505,7 @@ class Pi
         }
         // Read a config
         $value = static::$config->get($name, $domain);
+
         return $value;
     }
 
@@ -484,6 +518,7 @@ class Pi
      * @param string    $index  Name of the value
      * @param mixed     $value  The value to store.
      * @return mixed
+     * @api
      */
     public static function registry($index, $value = null)
     {
@@ -526,9 +561,10 @@ class Pi
      *  - With `:` or leading slash `/` - absolute path, do not convert;
      *  - Otherwise, first part as section, map to `www` if no section matched
      *
-     * @see \Pi\Application\Host::path()
+     * @see Host::path()
      * @param string $url  Path to be converted
      * @return string
+     * @api
      */
     public static function path($path)
     {
@@ -544,11 +580,12 @@ class Pi
      *  - First part as section, map to `www` if no section matched;
      *  - If section URI is relative, `www` URI will be appended.
      *
-     * @see Pi\Application\Host::url()
+     * @see Host::url()
      * @param string    $url        URL to be converted
      * @param bool      $absolute
      *  Convert to full URI; Default as relative URI with no hostname
      * @return string
+     * @api
      */
     public static function url($url, $absolute = false)
     {
@@ -561,6 +598,7 @@ class Pi
      * @param string            $message
      * @param array|Traversable $extra
      * @return void
+     * @api
      */
     public static function log($message, $extra = array())
     {

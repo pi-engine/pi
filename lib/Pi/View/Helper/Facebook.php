@@ -58,6 +58,7 @@ class Facebook extends AbstractHtmlElement
     data-show-faces="%s"></div>
 EOT;
         $content = sprintf($content, $dataSend, $dataWidth, $dataShowFaces);
+
         return $content;
     }
 }

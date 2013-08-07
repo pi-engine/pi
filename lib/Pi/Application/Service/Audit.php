@@ -129,6 +129,7 @@ class Audit extends AbstractService
         foreach ($this->items as $name => $messages) {
             $this->write($name, $messages);
         }
+
         return;
     }
 

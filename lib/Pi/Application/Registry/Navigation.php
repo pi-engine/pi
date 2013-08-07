@@ -178,9 +178,13 @@ class Navigation extends AbstractRegistry
      * @param string|null   $role
      * @param string        $locale
      */
-    public function read($name = '', $module = '', $section = '',
-        $role = null, $locale = '')
-    {
+    public function read(
+        $name = '',
+        $module = '',
+        $section = '',
+        $role = null,
+        $locale = ''
+    ) {
         //$this->cache = false;
         if (null === $role) {
             $role = Pi::service('user')->getUser()->role;
@@ -200,11 +204,15 @@ class Navigation extends AbstractRegistry
      * @param string|null   $role
      * @param string        $locale
      */
-    public function create($name = '', $module = '',
-        $role = null, $locale = '')
-    {
+    public function create(
+        $name = '',
+        $module = '',
+        $role = null,
+        $locale = ''
+    ) {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
+
         return true;
     }
 
@@ -222,6 +230,7 @@ class Navigation extends AbstractRegistry
     public function clear($namespace = '')
     {
         parent::clear('');
+
         return $this;
     }
 
@@ -399,9 +408,11 @@ class Navigation extends AbstractRegistry
             if (!class_exists($class)) {
                 $module = empty($page['module'])
                     ? $this->module : $page['module'];
-                $class = sprintf('Module\\%s\\%s',
+                $class = sprintf(
+                    'Module\\%s\\%s',
                     ucfirst(Pi::service('module')->directory($module)),
-                    ucfirst($class));
+                    ucfirst($class)
+                );
             }
 
             if (method_exists($class, $method)) {
@@ -494,7 +505,9 @@ class Navigation extends AbstractRegistry
         }
         // Only top level menu is shown in a non-system module back office
         if ('admin' == $this->section
-            && 'system' != $this->module && !$isTop) {
+            && 'system' != $this->module
+            && !$isTop
+        ) {
             $page['visible'] = 0;
         }
 
@@ -552,6 +565,7 @@ class Navigation extends AbstractRegistry
         if (!empty($page['resource'])) {
             return $this->isAllowedResource($page['resource']);
         }
+
         return true;
     }
 
@@ -576,6 +590,7 @@ class Navigation extends AbstractRegistry
         $acl = new AclManager($section);
         $acl->setModule($module);
         $result = $acl->checkAccess($resource, $privilege);
+
         return $result;
     }
 }

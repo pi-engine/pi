@@ -142,6 +142,7 @@ class Asset extends AbstractService
         if ($version) {
             $url .= '?' . $version;
         }
+
         return $url;
     }
 
@@ -196,6 +197,7 @@ class Asset extends AbstractService
                 $file
             );
         }
+
         return $this->getUrl($component) . '/' . $file;
     }
 
@@ -211,6 +213,7 @@ class Asset extends AbstractService
     {
         $module = $module ?: Pi::service('module')->current();
         $component = 'module/' . $module;
+
         return $this->getAssetUrl($component, $file, $versioning);
     }
 
@@ -226,6 +229,7 @@ class Asset extends AbstractService
     {
         $theme = $theme ?: Pi::service('theme')->current();
         $component = 'theme/' . $theme;
+
         return $this->getAssetUrl($component, $file, $versioning);
     }
 
@@ -243,6 +247,7 @@ class Asset extends AbstractService
         $file = $module . '/' . $file;
         $theme = Pi::service('theme')->current();
         $component = 'custom/' . $theme;
+
         return $this->getAssetUrl($component, $file, $versioning);
     }
 
@@ -256,10 +261,11 @@ class Asset extends AbstractService
     public function getSourcePath($component, $file = '')
     {
         $sourcePath = Pi::path($component) . DIRECTORY_SEPARATOR
-            . static::DIR_ASSET;
+                    . static::DIR_ASSET;
         if (!empty($file)) {
             $sourcePath .= DIRECTORY_SEPARATOR . $file;
         }
+
         return $sourcePath;
     }
 
@@ -304,6 +310,7 @@ class Asset extends AbstractService
     {
         $sourceFile = $this->getSourcePath($component, $file);
         $targetFile = $this->getAssetPath($component, $file);
+
         return $this->publishFile($sourceFile, $targetFile, $override);
     }
 
@@ -325,6 +332,7 @@ class Asset extends AbstractService
         if (!is_dir($sourceFolder) && !is_link($sourceFolder)) {
             return true;
         }
+
         return $this->publishFile($sourceFolder, $targetFolder, $override);
     }
 
@@ -343,7 +351,8 @@ class Asset extends AbstractService
         $iterator = new \DirectoryIterator($path);
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isDir() && !$fileinfo->isLink()
-                || $fileinfo->isDot()) {
+                || $fileinfo->isDot()
+            ) {
                 continue;
             }
             $module = $fileinfo->getFilename();
@@ -357,6 +366,7 @@ class Asset extends AbstractService
             $targetPath = $this->getPath('custom/' . $theme) . '/' . $module;
             $this->publishFile($sourcePath, $targetPath);
         }
+
         return true;
     }
 
@@ -417,6 +427,7 @@ class Asset extends AbstractService
         if ($versioning) {
             $file = $this->versionStamp($this->getStaticPath($file), $file);
         }
+
         return Pi::url('static') . '/' . $file;
     }
 }

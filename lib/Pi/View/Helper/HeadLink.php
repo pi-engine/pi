@@ -27,10 +27,12 @@ class HeadLink extends ZendHeadLink
      * {@inheritDoc}
      * @return self
      */
-    public function __invoke(array $attributes = null,
-        $placement = Placeholder\Container\AbstractContainer::APPEND)
-    {
+    public function __invoke(
+        array $attributes = null,
+        $placement = Placeholder\Container\AbstractContainer::APPEND
+    ) {
         parent::__invoke($attributes, strtoupper($placement));
+
         return $this;
     }
 

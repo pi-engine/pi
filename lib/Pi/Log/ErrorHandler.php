@@ -73,7 +73,8 @@ class ErrorHandler
         if (isset($options['error_reporting'])) {
             $errorReporting = $options['error_reporting'];
         } elseif (isset($options['error_level'])
-            && isset(static::$errorLevel[$options['error_level']])) {
+            && isset(static::$errorLevel[$options['error_level']])
+        ) {
             $errorReporting = static::$errorLevel[$options['error_level']];
         }
         $this->errorReporting = $errorReporting;
@@ -87,6 +88,7 @@ class ErrorHandler
             $this->active = false;
         }
         */
+
         return true;
     }
 
@@ -138,6 +140,7 @@ class ErrorHandler
             $this->active = false;
             $this->unregister();
         }
+
         return $this;
     }
 
@@ -152,9 +155,13 @@ class ErrorHandler
      * @return bool
      * @throws \Exception
      */
-    public function handleError($errno, $errstr = '', $errfile = '',
-        $errline = 0, $errcontext = array())
-    {
+    public function handleError(
+        $errno,
+        $errstr = '',
+        $errfile = '',
+        $errline = 0,
+        $errcontext = array()
+    ) {
         if ($this->errorReporting & $errno) {
             if (isset($this->errorHandlerMap[$errno])) {
                 $priority = $this->errorHandlerMap[$errno];
@@ -173,6 +180,7 @@ class ErrorHandler
                 throw $e;
             }
         }
+
         return true;
     }
 }

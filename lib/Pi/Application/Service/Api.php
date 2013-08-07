@@ -54,13 +54,16 @@ class Api extends AbstractService
     public function handler($module, $name = 'api')
     {
         $directory = Pi::service('module')->directory($module);
-        $class = sprintf('Module\\%s\Api\\%s',
+        $class = sprintf(
+            'Module\\%s\Api\\%s',
             ucfirst($directory),
-            ucfirst($name));
+            ucfirst($name)
+        );
         if (!isset($this->container[$class])) {
             $this->container[$class] = class_exists($class)
                 ? new $class($module) : false;
         }
+
         return $this->container[$class];
     }
 
@@ -79,6 +82,7 @@ class Api extends AbstractService
     public function __get($moduleName)
     {
         $handler = $this->handler($moduleName, 'api');
+
         return $handler;
     }
 
@@ -107,9 +111,11 @@ class Api extends AbstractService
         }
         $handler = $this->handler($moduleName, $class);
         if ($handler instanceof AbstractApi
-            && is_callable(array($handler, $method))) {
+            && is_callable(array($handler, $method))
+        ) {
             return call_user_func_array(array($handler, $method), $args);
         }
+
         return null;
     }
 }

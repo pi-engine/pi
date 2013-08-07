@@ -72,8 +72,11 @@ class Security extends AbstractService
                 continue;
             }
             // Replace full path with relative path to prevent path disclosure
-            $str  = str_replace(array($v . '/', realpath($v) . '/'),
-                $root . '/', $str);
+            $str  = str_replace(
+                array($v . '/', realpath($v) . '/'),
+                $root . '/',
+                $str
+            );
         }
 
         return $str;
@@ -89,6 +92,7 @@ class Security extends AbstractService
     {
         $pattern = '/\b' . preg_quote(Pi::db()->getTablePrefix()) . '/i';
         $return = preg_replace($pattern, '', $str);
+
         return $return;
     }
 
@@ -104,6 +108,7 @@ class Security extends AbstractService
         if (null === $content) {
             return $escaper;
         }
+
         return $escaper->escapeHtml($content);
     }
 
@@ -126,6 +131,7 @@ class Security extends AbstractService
         if (!is_array($options) && isset($this->options['ip'])) {
             $options = $this->options['ip'];
         }
+
         return SecurityUtility::ip($options);
     }
 
@@ -140,6 +146,7 @@ class Security extends AbstractService
         if (!is_array($options) && isset($this->options['globals'])) {
             $options = $this->options['globals'];
         }
+
         return SecurityUtility::globals($options);
     }
 
@@ -156,6 +163,7 @@ class Security extends AbstractService
         if (!is_array($options) && isset($this->options[$method])) {
             $options = $this->options[$method];
         }
+
         return SecurityUtility::$method($options);
     }
     /*#@-*/

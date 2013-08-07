@@ -25,9 +25,11 @@ class Transfer extends TransferHandler
     /**
      * {@inheritDoc}
      */
-    public function setAdapter($adapter, $direction = false,
-        $options = array())
-    {
+    public function setAdapter(
+        $adapter,
+        $direction = false,
+        $options = array()
+    ) {
         if (!is_string($adapter)) {
             throw new Exception\InvalidArgumentException(
                 'Adapter must be a string'

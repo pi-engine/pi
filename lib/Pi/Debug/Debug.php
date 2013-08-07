@@ -68,8 +68,11 @@ namespace Pi\Debug
         public static function enable($flag = true)
         {
             static::$inProcess = $flag;
-            $message = static::render(sprintf('Conditional debug %s',
-                    $flag ? 'enabled' : 'disabled'), 2);
+            $message = static::render(sprintf(
+                'Conditional debug %s',
+                $flag ? 'enabled' : 'disabled'),
+                2
+            );
             Pi::service('log')->debug($message);
         }
 
@@ -85,6 +88,7 @@ namespace Pi\Debug
             if (true !== static::$inProcess) {
                 return null;
             }
+
             return static::render($data, $skip);
         }
 
@@ -135,7 +139,7 @@ namespace Pi\Debug
         {
             $time = microtime(true);
             $location = date('H:i:s', $time)
-                . substr($time, strpos($time, '.'), 5) . ' ';
+                      . substr($time, strpos($time, '.'), 5) . ' ';
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
@@ -158,15 +162,18 @@ namespace Pi\Debug
                 $result .= PHP_EOL;
             } else {
                 $result = '<div style="padding: .8em;'
-                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
+                        . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 if (is_array($data) || is_object($data)) {
                     $result .= $location;
                     $result .= '<div><pre>';
                     $result .= print_r($data, true);
                     $result .= '</pre></div>';
                 } else {
-                    $result .= sprintf('<div>%s<pre>%s</pre></div>',
-                        $location, $data);
+                    $result .= sprintf(
+                        '<div>%s<pre>%s</pre></div>',
+                        $location,
+                        $data
+                    );
                 }
                 $result .= '</div>';
             }
@@ -196,9 +203,9 @@ namespace Pi\Debug
                         : Pi::service('security')->path($backtrace['file'])
                             . '(' . $backtrace['line'] . ')';
                     $bt .= $location . ': '
-                        . (empty($backtrace['class'])
+                         . (empty($backtrace['class'])
                             ? '' : $backtrace['class'] . '::')
-                        . $backtrace['function'] . '()' . PHP_EOL;
+                         . $backtrace['function'] . '()' . PHP_EOL;
                 }
                 $bt .= PHP_EOL;
             } else {
@@ -211,9 +218,9 @@ namespace Pi\Debug
                         : Pi::service('security')->path($backtrace['file'])
                             . '(' . $backtrace['line'] . ')';
                     $bt .= '<li>' . $location . ': '
-                        . (empty($backtrace['class'])
+                         . (empty($backtrace['class'])
                             ? '' : $backtrace['class'] . '::')
-                        . $backtrace['function'] . '()</li>';
+                         . $backtrace['function'] . '()</li>';
                 }
                 $bt .= '</ul>';
                 $bt .= '</pre>';
@@ -247,7 +254,7 @@ namespace Pi\Debug
         {
             $time = microtime(true);
             $location = date('H:i:s', $time)
-                . substr($time, strpos($time, '.'), 5) . ' ';
+                      . substr($time, strpos($time, '.'), 5) . ' ';
             $list = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
@@ -270,7 +277,7 @@ namespace Pi\Debug
                     $output = htmlspecialchars($output, ENT_QUOTES);
                 }
                 $result = '<div style="padding: .8em;'
-                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
+                        . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 $result .= $location;
                 $result .= '<div><pre>';
                 $result .= $output;

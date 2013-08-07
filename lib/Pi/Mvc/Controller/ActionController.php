@@ -104,6 +104,7 @@ abstract class ActionController extends AbstractActionController
         $event = $this->getEvent();
         $event->setError(true);
         $this->view()->assign('message', $message);
+
         return $this;
     }
 
@@ -119,6 +120,7 @@ abstract class ActionController extends AbstractActionController
         $this->response->setStatusCode($statusCode);
         $event = $this->getEvent();
         $event->setError($message ?: true);
+
         return $this;
     }
 
@@ -136,6 +138,7 @@ abstract class ActionController extends AbstractActionController
         }
         $event = $this->getEvent();
         $event->setError($message ?: true);
+
         return $this;
     }
 }

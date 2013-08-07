@@ -49,6 +49,7 @@ class Theme extends AbstractService
                     ? Pi::config('theme') : Pi::config('theme_admin');
             $this->currentTheme = $this->currentTheme ?: 'default';
         }
+
         return $this->currentTheme;
     }
 
@@ -66,6 +67,7 @@ class Theme extends AbstractService
         } else {
             $config = array();
         }
+
         return $config;
     }
 
@@ -78,6 +80,7 @@ class Theme extends AbstractService
     public function path($theme)
     {
         $path = Pi::path('theme') . '/' . $theme;
+
         return $path;
     }
 
@@ -94,6 +97,7 @@ class Theme extends AbstractService
         $parent = !empty($config['parent'])
             ? $config['parent']
             : ($theme == static::DEFAULT_THEME ? '' : static::DEFAULT_THEME);
+
         return $parent;
     }
 }

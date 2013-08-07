@@ -186,6 +186,7 @@ class User extends AbstractService
                 $this->adapter = new DefaultAdapter($options);
             }
         }
+
         return $this->adapter;
     }
 
@@ -272,6 +273,7 @@ class User extends AbstractService
     public function restore()
     {
         $this->bind($this->modelSession);
+
         return $this;
     }
 
@@ -284,6 +286,7 @@ class User extends AbstractService
     {
         $this->modelSession = false;
         $this->setPersist(false);
+
         return $this;
     }
 
@@ -341,8 +344,10 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->getAdapter(), $method),
-            $args);
+        return call_user_func_array(
+            array($this->getAdapter(), $method),
+            $args
+        );
     }
 
     /**
@@ -406,6 +411,7 @@ class User extends AbstractService
     public function setPersist($data = array())
     {
         $_SESSION['PI_USER'] = $data ? (array) $data : null;
+
         return $this;
     }
 

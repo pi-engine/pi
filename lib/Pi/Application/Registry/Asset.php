@@ -33,7 +33,8 @@ class Asset extends AbstractRegistry
             $iterator = new \DirectoryIterator($path);
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() && !$fileinfo->isLink()
-                    || $fileinfo->isDot()) {
+                    || $fileinfo->isDot()
+                ) {
                     continue;
                 }
                 $module = $fileinfo->getFilename();
@@ -57,13 +58,16 @@ class Asset extends AbstractRegistry
                             $filePath = strtr($filePath, '\\', '/');
                         }
                         $filePath = substr($filePath, $modulePathLength);
-                        if (preg_match('/(^[^a-z0-9\-]+|\/[^a-z0-9\-]+)/i',
-                            dirname($filePath))) {
+                        if (preg_match(
+                            '/(^[^a-z0-9\-]+|\/[^a-z0-9\-]+)/i',
+                            dirname($filePath)
+                        )) {
                             continue;
                         }
-                        $fileUrl =
-                            Pi::service('asset')->getCustomAsset($filePath,
-                                $module);
+                        $fileUrl = Pi::service('asset')->getCustomAsset(
+                            $filePath,
+                            $module
+                        );
                         $files[$module][$filePath] = $fileUrl;
                     }
                 }
@@ -83,6 +87,7 @@ class Asset extends AbstractRegistry
         } else {
             $namespace = $meta['theme'];
         }
+
         return parent::setNamespace($namespace);
     }
 
@@ -98,6 +103,7 @@ class Asset extends AbstractRegistry
         $theme  = $theme ?: Pi::service('theme')->current();
         $options = compact('theme');
         $data = $this->loadData($options);
+
         return isset($data[$module]) ? $data[$module] : array();
     }
 
@@ -112,6 +118,7 @@ class Asset extends AbstractRegistry
         $theme  = $theme ?: Pi::service('theme')->current();
         $this->clear($theme);
         $this->read($module, $theme);
+
         return true;
     }
 
@@ -124,6 +131,7 @@ class Asset extends AbstractRegistry
         foreach (array_keys($themes) as $theme) {
             $this->clear($theme);
         }
+        
         return $this;
     }
 }

@@ -42,6 +42,7 @@ class Page extends AbstractRegistry
             }
             $pages[$key] = $page['id'];
         }
+
         return $pages;
     }
 
@@ -54,6 +55,7 @@ class Page extends AbstractRegistry
     {
         $module = $module ?: Pi::service('module')->current();
         $options = compact('section', 'module');
+
         return $this->loadData($options);
     }
 
@@ -67,6 +69,7 @@ class Page extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $this->clear($module);
         $this->read($section, $module);
+
         return true;
     }
 
@@ -78,6 +81,7 @@ class Page extends AbstractRegistry
         Pi::service('registry')->cache->flush($namespace);
         Pi::service('registry')->block->flush($namespace);
         Pi::service('registry')->resource->flush($namespace);
+
         return $this;
     }
 
@@ -88,6 +92,7 @@ class Page extends AbstractRegistry
     {
         $this->clear('');
         $this->flushByModules();
+
         return $this;
     }
 }

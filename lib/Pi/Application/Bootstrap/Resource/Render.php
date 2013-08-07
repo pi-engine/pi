@@ -50,18 +50,28 @@ class Render extends AbstractResource
         if (!empty($this->options['page'])) {
             // Page cache check,
             // must go after access check whose priority is 9999
-            $events->attach(MvcEvent::EVENT_DISPATCH,
-                array($this, 'checkPage'), 1000);
+            $events->attach(
+                MvcEvent::EVENT_DISPATCH,
+                array($this, 'checkPage'),
+                1000
+            );
             // Page cache check,
             // must go after access check whose priority is 9999
-            $events->attach(MvcEvent::EVENT_FINISH,
-                array($this, 'savePage'), -9000);
+            $events->attach(
+                MvcEvent::EVENT_FINISH,
+                array($this, 'savePage'),
+                -9000
+            );
         } elseif (!empty($this->options['action'])) {
             // Setup action cache strategy
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
-            $sharedEvents->attach('controller',
-                MvcEvent::EVENT_DISPATCH, array($this, 'checkAction'), 999);
+            $sharedEvents->attach(
+                'controller',
+                MvcEvent::EVENT_DISPATCH,
+                array($this, 'checkAction'),
+                999
+            );
             $sharedEvents->attach('controller',
                 MvcEvent::EVENT_DISPATCH, array($this, 'saveAction'), -999);
         }
@@ -115,8 +125,8 @@ class Render extends AbstractResource
         $cacheKey = md5($e->getRequest()->getRequestUri());
         $namespace = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                   ->meta('namespace', $namespace)
-                   ->meta('ttl', $cacheMeta['ttl']);
+                    ->meta('namespace', $namespace)
+                    ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -159,6 +169,7 @@ class Render extends AbstractResource
 
         $content = $response->getContent();
         $this->renderCache()->saveCache($content);
+
         return;
     }
 
@@ -187,14 +198,14 @@ class Render extends AbstractResource
             return;
         }
 
-        $renderCache = $this->renderCache('action');
-        $viewModel = $e->getTarget()->view()->getViewModel();
+        $renderCache    = $this->renderCache('action');
+        $viewModel      = $e->getTarget()->view()->getViewModel();
 
-        $cacheKey = md5($e->getRequest()->getRequestUri());
-        $namespace = $e->getRouteMatch()->getParam('module');
+        $cacheKey       = md5($e->getRequest()->getRequestUri());
+        $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                   ->meta('namespace', $namespace)
-                   ->meta('ttl', $cacheMeta['ttl']);
+                    ->meta('namespace', $namespace)
+                    ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -255,6 +266,7 @@ class Render extends AbstractResource
         }
 
         $this-renderCache()->saveCache($content);
+
         return;
     }
 
@@ -280,8 +292,10 @@ class Render extends AbstractResource
         }
 
         if (isset($info[sprintf('%s-%s-%s', $module, $controller, $action)])) {
-            $cacheInfo =
-                $info[sprintf('%s-%s-%s', $module, $controller, $action)];
+            $cacheInfo = $info[sprintf('%s-%s-%s',
+                                       $module,
+                                       $controller,
+                                       $action)];
         } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
             $cacheInfo = $info[sprintf('%s-%s', $module, $controller)];
         } elseif (isset($info[$module])) {
@@ -311,6 +325,7 @@ class Render extends AbstractResource
                 return false;
             }
         }
+        
         return true;
     }
 }

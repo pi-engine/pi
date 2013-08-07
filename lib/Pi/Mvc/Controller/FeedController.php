@@ -41,6 +41,7 @@ abstract class FeedController extends ActionController
         }
 
         $model = new DataModel($data);
+
         return $model;
     }
 }

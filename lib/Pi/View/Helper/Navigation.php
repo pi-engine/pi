@@ -58,16 +58,23 @@ class Navigation extends NavigationHelper
                     $cacheKey = $options['cache_id'];
                 } else {
                     $routeMatch = Pi::engine()->application()->getRouteMatch();
-                    $cacheKey = implode('-',
-                        array($name, $routeMatch->getParam('module'),
+                    $cacheKey = implode(
+                        '-',
+                        array(
+                            $name,
+                            $routeMatch->getParam('module'),
                             $routeMatch->getParam('controller'),
-                            $routeMatch->getParam('action')));
+                            $routeMatch->getParam('action')
+                        )
+                    );
                     $cacheLevel = isset($options['cache_level'])
                         ? $options['cache_level'] : '';
-                    $cacheKey = Pi::service('cache')->canonizeKey($cacheKey,
-                        $cacheLevel);
+                    $cacheKey = Pi::service('cache')->canonizeKey(
+                        $cacheKey,
+                        $cacheLevel
+                    );
                 }
-                $cache          = clone Pi::service('cache')->storage();
+                $cache = clone Pi::service('cache')->storage();
                 Pi::service('cache')->setNamespace($cacheNamespace, $cache);
                 $this->cache = (object) array(
                     'storage'   => $cache,
@@ -80,9 +87,11 @@ class Navigation extends NavigationHelper
             $module = Pi::service('module')->current();
             $section = isset($options['section'])
                 ? $options['section'] : null;
-            $navConfig = Pi::service('registry')->navigation->read($name,
-                    $module, $section)
-                ?: array();
+            $navConfig = Pi::service('registry')->navigation->read(
+                $name,
+                $module,
+                $section
+            ) ?: array();
         } else {
             $navConfig = $name;
         }
@@ -205,6 +214,7 @@ class Navigation extends NavigationHelper
         }
 
         parent::setContainer($container);
+
         return $this;
     }
 }

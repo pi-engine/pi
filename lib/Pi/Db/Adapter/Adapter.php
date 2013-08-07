@@ -26,12 +26,16 @@ class Adapter extends ZendAdapter
         $parametersOrQueryMode = self::QUERY_MODE_PREPARE)
     {
         if (is_string($parametersOrQueryMode)
-            && in_array($parametersOrQueryMode,
-                array(self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE))) {
+            && in_array(
+                $parametersOrQueryMode,
+                array(self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE)
+            )
+        ) {
             $mode = $parametersOrQueryMode;
             $parameters = null;
         } elseif (is_array($parametersOrQueryMode)
-            || $parametersOrQueryMode instanceof ParameterContainer) {
+            || $parametersOrQueryMode instanceof ParameterContainer
+        ) {
             $mode = self::QUERY_MODE_PREPARE;
             $parameters = $parametersOrQueryMode;
         } else {
@@ -47,7 +51,8 @@ class Adapter extends ZendAdapter
                 $this->driver->createStatement($sql);
             $this->lastPreparedStatement->prepare();
             if (is_array($parameters)
-                || $parameters instanceof ParameterContainer) {
+                || $parameters instanceof ParameterContainer
+            ) {
                 $this->lastPreparedStatement
                     ->setParameterContainer((is_array($parameters))
                         ? new ParameterContainer($parameters) : $parameters);
@@ -68,7 +73,8 @@ class Adapter extends ZendAdapter
         }
 
         if ($result instanceof Driver\ResultInterface
-            && $result->isQueryResult()) {
+            && $result->isQueryResult()
+        ) {
             $resultSet = clone $this->queryResultSetPrototype;
             $resultSet->initialize($result);
             return $resultSet;

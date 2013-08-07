@@ -38,6 +38,7 @@ class Cache extends AbstractPlugin
                 . 'action'
             );
         }
+
         return $this->cache;
     }
 

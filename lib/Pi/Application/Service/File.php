@@ -50,11 +50,11 @@ class File extends AbstractService
 
         if ($doCopy) {
             if (true !== @copy($originFile, $targetFile)) {
-                throw new Exception(
-                    sprintf('Failed to copy %s to %s',
-                        $originFile,
-                        $targetFile)
-                );
+                throw new Exception(sprintf(
+                    'Failed to copy %s to %s',
+                    $originFile,
+                    $targetFile
+                ));
             }
         }
 
@@ -319,10 +319,10 @@ class File extends AbstractService
     {
         // we check that target does not exist
         if (is_readable($target)) {
-            throw new Exception(
-                sprintf('Cannot rename because the target "%s" already exist.',
-                    $target)
-            );
+            throw new Exception(sprintf(
+                'Cannot rename because the target "%s" already exist.',
+                $target
+            ));
         }
 
         if (true !== @rename($origin, $target)) {
@@ -350,7 +350,8 @@ class File extends AbstractService
         $copyOnWindows = true, $override = false)
     {
         if (!function_exists('symlink')
-            || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)) {
+            || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)
+        ) {
             $this->mirror($originDir, $targetDir, null, array(
                 'copy_on_windows'   => $copyOnWindows,
                 'override'          => $override,
@@ -375,8 +376,11 @@ class File extends AbstractService
                 $report = error_get_last();
                 if (is_array($report)) {
                     if (defined('PHP_WINDOWS_VERSION_MAJOR')
-                        && false !== strpos($report['message'],
-                            'error code(1314)')) {
+                        && false !== strpos(
+                            $report['message'],
+                            'error code(1314)'
+                        )
+                    ) {
                         throw new Exception(
                             'Unable to create symlink due to error code 1314: '
                             . '\'A required privilege is not held '
@@ -385,11 +389,11 @@ class File extends AbstractService
                         );
                     }
                 }
-                throw new Exception(
-                    sprintf('Failed to create symbolic link from %s to %s',
-                        $originDir,
-                        $targetDir)
-                );
+                throw new Exception(sprintf(
+                    'Failed to create symbolic link from %s to %s',
+                    $originDir,
+                    $targetDir
+                ));
             }
         }
 
@@ -420,8 +424,9 @@ class File extends AbstractService
         // Find for which directory the common path stops
         $index = 0;
         while (isset($startPathArr[$index])
-            && isset($endPathArr[$index])
-            && $startPathArr[$index] === $endPathArr[$index]) {
+               && isset($endPathArr[$index])
+               && $startPathArr[$index] === $endPathArr[$index]
+        ) {
             $index++;
         }
 
@@ -437,8 +442,8 @@ class File extends AbstractService
         // Construct $endPath from traversing to the common path,
         // then to the remaining $endPath
         $relativePath = $traverser
-        . (strlen($endPathRemainder) > 0
-            ? $endPathRemainder . '/' : '');
+                      . (strlen($endPathRemainder) > 0
+                         ? $endPathRemainder . '/' : '');
 
         return (strlen($relativePath) === 0) ? './' : $relativePath;
     }
@@ -461,12 +466,16 @@ class File extends AbstractService
      *
      * @throws Exception When file type is unknown
      */
-    public function mirror($originDir, $targetDir,
-        \Traversable $iterator = null, $options = array())
-    {
+    public function mirror(
+        $originDir,
+        $targetDir,
+        \Traversable $iterator = null,
+        $options = array()
+    ) {
         $copyOnWindows = true;
         if (isset($options['copy_on_windows'])
-            && defined('PHP_WINDOWS_VERSION_MAJOR')) {
+            && defined('PHP_WINDOWS_VERSION_MAJOR')
+        ) {
             $copyOnWindows = $options['copy_on_windows'];
         }
 
@@ -485,18 +494,22 @@ class File extends AbstractService
         $originDir = rtrim($originDir, '/\\');
 
         foreach ($iterator as $file) {
-            $target = str_replace($originDir, $targetDir,
-                $file->getPathname());
+            $target = str_replace(
+                $originDir,
+                $targetDir,
+                $file->getPathname()
+            );
 
             if (is_dir($file)) {
                 $this->mkdir($target);
             } elseif (!$copyOnWindows && is_link($file)) {
                 $this->symlink($file, $target);
             } elseif (is_file($file) || ($copyOnWindows && is_link($file))) {
-                $this->copy($file,
+                $this->copy(
+                    $file,
                     $target,
-                    isset($options['override'])
-                        ? $options['override'] : false);
+                    isset($options['override']) ? $options['override'] : false
+                );
             } else {
                 throw new Exception(
                     sprintf('Unable to guess "%s" file type.', $file)

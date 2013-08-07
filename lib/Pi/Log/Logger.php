@@ -151,6 +151,7 @@ class Logger
     public function setDateTimeFormat($format)
     {
         $this->dateTimeFormat = (string) $format;
+
         return $this;
     }
 
@@ -167,6 +168,7 @@ class Logger
         if (!class_exists($class)) {
             $class = 'Zend\Log\Writer\\' . ucfirst($name);
         }
+
         return new $class($options);
     }
 
@@ -229,6 +231,7 @@ class Logger
             }
         }
         $this->writers = $writers;
+
         return $this;
     }
 

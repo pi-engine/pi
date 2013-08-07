@@ -26,6 +26,7 @@ class Deactivate extends AbstractAction
         $events = $this->events;
         $events->attach('deactivate.pre', array($this, 'checkDependent'));
         $events->attach('deactivate.post', array($this, 'removeDependency'));
+
         return $this;
     }
 
@@ -47,6 +48,7 @@ class Deactivate extends AbstractAction
         }
 
         $this->event->setParam('row', $row);
+
         return true;
     }
 
@@ -57,6 +59,7 @@ class Deactivate extends AbstractAction
     {
         $row = $this->event->getParam('row');
         $row->active = 1;
+
         return $row->save();
     }
 }

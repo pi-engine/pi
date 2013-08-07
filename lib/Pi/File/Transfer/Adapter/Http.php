@@ -56,8 +56,10 @@ class Http extends ZendHttp
                         $filename = $directory . $filename;
                     }
 
-                    $key = array_search(get_class($rename),
-                        $this->files[$file]['filters']);
+                    $key = array_search(
+                        get_class($rename),
+                        $this->files[$file]['filters']
+                    );
                     unset($this->files[$file]['filters'][$key]);
                 }
 

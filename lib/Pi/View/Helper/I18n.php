@@ -39,6 +39,7 @@ class I18n extends AbstractHelper
     public function __invoke($component, $file)
     {
         Pi::service('i18n')->load($component, $file);
+
         return $this;
     }
 }

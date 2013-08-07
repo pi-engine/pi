@@ -48,6 +48,7 @@ class ThemeTemplate implements ResolverInterface
     public function setSuffix($suffix)
     {
         $this->suffix = (string) $suffix;
+
         return $this;
     }
 
@@ -75,8 +76,15 @@ class ThemeTemplate implements ResolverInterface
             $name = substr($name, 0, -6);
         }
         $theme = $theme ?: Pi::service('theme')->current();
-        $template = sprintf('%s/%s/%s/%s.%s', Pi::path('theme'), $theme,
-            $this->templateDirectory, $name, $this->suffix);
+        $template = sprintf(
+            '%s/%s/%s/%s.%s',
+            Pi::path('theme'),
+            $theme,
+            $this->templateDirectory,
+            $name,
+            $this->suffix
+        );
+
         return $template;
     }
 
