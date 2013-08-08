@@ -54,8 +54,10 @@ class Admin extends AbstractController
 
             try {
                 // Drop all tables
-                $sql = sprintf('SHOW TABLES LIKE %s',
-                    $adapter->getPlatform()->quoteValue($tablePrefix . '%%'));
+                $sql = sprintf(
+                    'SHOW TABLES LIKE %s',
+                    $adapter->getPlatform()->quoteValue($tablePrefix . '%%')
+                );
                 $resource = $adapter->query($sql)->getResource();
                 $resource->execute();
                 while ($row = $resource->fetch(\PDO::FETCH_NUM)) {
@@ -67,12 +69,13 @@ class Admin extends AbstractController
                 // ...
             } catch (\Exception $e) {
                 $this->content = '<p class="alert">'
-                    . _s('System module uninstallation is failed. Please continue to try again.')
-                    . '</p>'
-                    . $e->getMessage()
-                    . '<input type="hidden" name="page" value="admin" />'
-                    . '<input type="hidden" name="retry" value="1" />'
-                    . '<input type="hidden" name="action" value="clear" />';
+                               . _s('System module uninstallation is failed. Please continue to try again.')
+                               . '</p>'
+                               . $e->getMessage()
+                               . '<input type="hidden" name="page" value="admin" />'
+                               . '<input type="hidden" name="retry" value="1" />'
+                               . '<input type="hidden" name="action" value="clear" />';
+
                 return;
             }
             $this->loadForm();
@@ -85,6 +88,7 @@ class Admin extends AbstractController
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
         $this->wizard->setPersist('siteconfig', $this->vars);
+
         echo 1;
     }
 
@@ -129,12 +133,13 @@ class Admin extends AbstractController
         if (!$ret) {
             $this->hasForm = true;
             $this->content = '<p class=\'alert\'>'
-                . _s('System module installation is failed. Please continue to try again.')
-                . '</p>'
-                . $installer->renderMessage()
-                . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
-                . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
-                . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
+                           . _s('System module installation is failed. Please continue to try again.')
+                           . '</p>'
+                           . $installer->renderMessage()
+                           . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
+                           . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
+                           . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
+
             return;
         }
 
@@ -168,10 +173,14 @@ class Admin extends AbstractController
         if (!$error) {
             // Update global contact email
             $configModel = Pi::model('config');
-            $configModel->update(array('value' => $vars['adminmail']),
-                array('name' => 'adminmail'));
-            $configModel->update(array('value' => $vars['adminname']),
-                array('name' => 'adminname'));
+            $configModel->update(
+                array('value' => $vars['adminmail']),
+                array('name' => 'adminmail')
+            );
+            $configModel->update(
+                array('value' => $vars['adminname']),
+                array('name' => 'adminname')
+            );
 
             // Create root admin user
             $userData = array(
@@ -183,8 +192,10 @@ class Admin extends AbstractController
                 'role'          => Acl::MEMBER,
                 'role_staff'    => Acl::ADMIN,
             );
-            $result = Pi::service('api')->system(array('member', 'add'),
-                $userData);
+            $result = Pi::service('api')->system(
+                array('member', 'add'),
+                $userData
+            );
             $this->status = $result['status'];
 
             // Create system accounts
@@ -230,18 +241,20 @@ class Admin extends AbstractController
 
         $adapter = Pi::registry('db')->adapter();
         $tablePrefix = Pi::registry('db')->getTablePrefix();
-        $sql = sprintf('SHOW TABLES LIKE %s',
-            $adapter->getPlatform()->quoteValue($tablePrefix . '%'));
+        $sql = sprintf(
+            'SHOW TABLES LIKE %s',
+            $adapter->getPlatform()->quoteValue($tablePrefix . '%')
+        );
         $resource = $adapter->query($sql)->getResource();
         $resource->execute();
         $count = $resource->rowCount();
         if ($count) {
             $this->content = '<p class=\'alert\'>'
-                . _s('Deprected tables exist in the database. Please continue to re-install.')
-                . '</p>'
-                . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
-                . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
-                . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
+                           . _s('Deprected tables exist in the database. Please continue to re-install.')
+                           . '</p>'
+                           . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
+                           . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
+                           . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
         } else {
             $this->loadForm();
         }
@@ -262,39 +275,40 @@ class Admin extends AbstractController
         );
         $displayItem = function ($item) use ($vars, $elementInfo) {
             $content = '<div class=\'item\'>'
-                . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-                . '</label><p class=\'capthion\'></p>'
-                . '<input type=\'text\' name=\'' . $item . '\' id=\''
-                . $item . '\' value=\'' . $vars[$item] . '\' />'
-                . '<em id=\'' . $item . '-status\' class=\'\'>&nbsp;</em>'
-                . '<p id=\'' . $item . '-message\' class=\'alert\'>&nbsp;</p>'
-                . '</div>';
+                     . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
+                     . '</label><p class=\'capthion\'></p>'
+                     . '<input type=\'text\' name=\'' . $item . '\' id=\''
+                     . $item . '\' value=\'' . $vars[$item] . '\' />'
+                     . '<em id=\'' . $item . '-status\' class=\'\'>&nbsp;</em>'
+                     . '<p id=\'' . $item . '-message\' class=\'alert\'>&nbsp;'
+                     . '</p></div>';
+
             return $content;
         };
 
         $content = '<div class=\'install-form well\'>';
         $content .= '<h3 class=\'section\'>' . _s('Administrator account')
-            . '</h3>';
+                  . '</h3>';
         $content .= $displayItem('adminmail');
         $content .= $displayItem('adminusername');
         $content .= $displayItem('adminname');
 
         $item = 'adminpass';
         $content .= '<div class=\'item\'>'
-            . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-            . '</label><p class=\'capthion\'></p>'
-            . '<input type=\'password\' name=\'' . $item . '\' id=\''
-            . $item . '\' value=\'' . $vars[$item] . '\' />'
-            . '</div>';
+                  . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
+                  . '</label><p class=\'capthion\'></p>'
+                  . '<input type=\'password\' name=\'' . $item . '\' id=\''
+                  . $item . '\' value=\'' . $vars[$item] . '\' />'
+                  . '</div>';
         $item = 'adminpass2';
         $content .= '<div class=\'item\'>'
-            . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-            . '</label><p class=\'capthion\'></p>'
-            . '<input type=\'password\' name=\'' . $item . '\' id=\''
-            . $item . '\' value=\'' . $vars[$item] . '\' />'
-            . '<em id=\'adminpass-status\' class=\'\'>&nbsp;</em>'
-            . '<p id=\'adminpass-message\' class=\'alert\'>&nbsp;</p>'
-            . '</div>';
+                  . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
+                  . '</label><p class=\'capthion\'></p>'
+                  . '<input type=\'password\' name=\'' . $item . '\' id=\''
+                  . $item . '\' value=\'' . $vars[$item] . '\' />'
+                  . '<em id=\'adminpass-status\' class=\'\'>&nbsp;</em>'
+                  . '<p id=\'adminpass-message\' class=\'alert\'>&nbsp;</p>'
+                  . '</div>';
         $content .= '</div>';
 
         $this->content = $content;

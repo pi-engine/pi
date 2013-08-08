@@ -23,6 +23,7 @@ class Block extends BasicBlock
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->block->clear($module);
+
         return true;
     }
 }

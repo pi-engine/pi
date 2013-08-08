@@ -42,6 +42,7 @@ class Translator
     {
         $message = isset(static::$data[static::$locale][$messageId])
             ? static::$data[static::$locale][$messageId] : $messageId;
+
         return $message;
     }
 
@@ -75,8 +76,12 @@ class Translator
      */
     public static function loadDomain($domain)
     {
-        $filename = sprintf('%s/%s/%s.csv',
-            static::$basePath, static::$locale, $domain);
+        $filename = sprintf(
+            '%s/%s/%s.csv',
+            static::$basePath,
+            static::$locale,
+            $domain
+        );
         try {
             if (isset(static::$data[$domain])) {
                 static::$data[$domain] += (array) static::loadFile($filename);
@@ -85,6 +90,7 @@ class Translator
             }
         } catch (\Exception $e) {
         }
+
         return;
     }
 
@@ -98,7 +104,7 @@ class Translator
     protected static function loadFile($filename, array $options = array())
     {
         $result = array();
-        $options     = $options + static::$options;
+        $options = $options + static::$options;
         $file = @fopen($filename, 'rb');
         if (!$file) {
             throw new \InvalidArgumentException(
@@ -107,8 +113,9 @@ class Translator
         }
 
         while (($data = fgetcsv($file, $options['length'],
-                $options['delimiter'], $options['enclosure']))
-            !== false) {
+                $options['delimiter'], $options['enclosure'])
+            ) !== false
+        ) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }

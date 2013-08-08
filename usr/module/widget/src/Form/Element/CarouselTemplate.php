@@ -17,10 +17,11 @@ class CarouselTemplate extends Select
     protected function getStyles()
     {
         $styles = array(
-            'carousel-bootstrap'     => __('Bootstrap slide'),
+            'carousel-bootstrap'    => __('Bootstrap slide'),
             'carousel-jcarousel'    => __('jCarousel riding Carousel'),
-            'carousel-parallax'    => __('Parallax Content Slider'),
+            'carousel-parallax'     => __('Parallax Content Slider'),
         );
+
         return $styles;
     }
 

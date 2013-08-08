@@ -87,17 +87,21 @@ class Presetting extends AbstractController
         $languageList = $this->getLanguages();
 
         $content = '<div class="well"><h2>'
-            . _s('Language Selection')
-            . '</h2><p class="caption">'
-            . _s('Choose the language for the installation and website')
-            . '</p>'
-            . '<div class="install-form"><p>'
-	        . '<select id="language-selector" size="5" name="language">';
+                 . _s('Language Selection')
+                 . '</h2><p class="caption">'
+                 . _s('Choose the language for the installation and website')
+                 . '</p>'
+                 . '<div class="install-form"><p>'
+                 . '<select id="language-selector" size="5" name="language">';
         foreach ($languageList as $name => $language) {
             $selected = ($name == $this->wizard->getLocale())
                 ? ' selected="selected"' : '';
-            $content .= sprintf('<option value="%s"%s>%s</option>',
-                $name, $selected, $language['title']);
+            $content .= sprintf(
+                '<option value="%s"%s>%s</option>',
+                $name,
+                $selected,
+                $language['title']
+            );
         }
         $content .= '</select></p></div></div>';
         $this->content .= $content;
@@ -145,25 +149,27 @@ SCRIPT;
         $this->verifyRequirement();
         if ($this->status < 0) {
             $content = '<h2><span class="failure">'
-                . _s('Sever setting detection')
-                . '</span> <a href="javascript:void(0);" id="advanced-label">'
-                . '<span style="display: none;">[+]</span><span>[-]</span></a>'
-                . '</h2>';
+                     . _s('Sever setting detection')
+                     . '</span> <a href="javascript:void(0);"'
+                     . ' id="advanced-label">'
+                     . '<span style="display: none;">[+]</span>'
+                     . '<span>[-]</span></a></h2>';
         } else {
             $content = '<h2><span class="success">'
-                . _s('Sever setting detection')
-                . '</span> <a href="javascript:void(0);" id="advanced-label">'
-                . '<span>[+]</span><span style="display: none;">[-]</span></a>'
-                . '</h2>';
+                     . _s('Sever setting detection')
+                     . '</span> <a href="javascript:void(0);"'
+                     . ' id="advanced-label">'
+                     . '<span>[+]</span><span style="display: none;">'
+                     . '[-]</span></a></h2>';
         }
         $content .= '<p class="caption">'
-            . _s('Check server settings and extensions')
-            . '</p><div class="install-form advanced-form well"'
-            . ' id="advanced-form"><h3 class="section">'
-            . _s('System requirements')
-            . '</h3><p class="caption">'
-            . _s('Server settings and system extensions required by Pi Engine')
-            . '</p>';
+                  . _s('Check server settings and extensions')
+                  . '</p><div class="install-form advanced-form well"'
+                  . ' id="advanced-form"><h3 class="section">'
+                  . _s('System requirements')
+                  . '</h3><p class="caption">'
+                  . _s('Server settings and system extensions required by Pi Engine')
+                  . '</p>';
         foreach ($this->result['system'] as $item => $result) {
             $value = $result['value'];
             $style = 'success';
@@ -183,21 +189,21 @@ SCRIPT;
                     break;
             }
             $content .= '<p><div class="label">' . $result['title'] . '</div>'
-                . '<div class="text"><span class="' . $style . '">' . $value
-                . '</span>';
+                      . '<div class="text"><span class="' . $style . '">'
+                      . $value . '</span>';
 
             if (!empty($result['message'])) {
                 $content .= '<em class="message">' . $result['message']
-                    . '</em>';
+                          . '</em>';
             }
             $content .= '</div></p>';
         }
 
         $content .= '<h3 class="section">'
-            . _s('System extension recommendations')
-            . '</h3><p class="caption">'
-            . _s('Extesions recommended for better functionality or performance')
-            . '</p>';
+                  . _s('System extension recommendations')
+                  . '</h3><p class="caption">'
+                  . _s('Extesions recommended for better functionality or performance')
+                  . '</p>';
         foreach ($this->result['extension'] as $item => $result) {
             $value = $result['value'];
             $style = 'success';
@@ -217,12 +223,12 @@ SCRIPT;
                     break;
             }
             $content .= '<p><div class="label">' . $result['title'] . '</div>'
-                . '<div class="text"><span class="' . $style . '">' . $value
-                . '</span>';
+                      . '<div class="text"><span class="' . $style . '">'
+                      . $value . '</span>';
 
             if (!empty($result['message'])) {
                 $content .= '<span class="message">' . $result['message']
-                    . '</span>';
+                          . '</span>';
             }
             $content .= '</div></p>';
         }
@@ -231,8 +237,8 @@ SCRIPT;
         $this->content .= $content;
 
         $this->footContent .= '<script type="text/javascript">'
-            . PHP_EOL
-            . '$(function() {';
+                            . PHP_EOL
+                            . '$(function() {';
         if ($this->status < 0) {
             $this->footContent .= '
                 $("#advanced-form").slideToggle();

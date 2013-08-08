@@ -42,7 +42,7 @@ EOT;
 
         $content['site name'] = __('site name');
         $content['locale'] = Pi::service('i18n')->locale
-            . ' ' . Pi::service('i18n')->charset;
+                           . ' ' . Pi::service('i18n')->charset;
 
         Pi::service('user')->test('ss');
 
@@ -64,6 +64,7 @@ EOT;
 
         trigger_error('test notice message', E_USER_NOTICE);
         trigger_error('test warning message', E_USER_WARNING);
+
         return $display;
     }
 

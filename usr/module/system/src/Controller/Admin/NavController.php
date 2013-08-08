@@ -67,8 +67,10 @@ class NavController extends ActionController
             'module'    => 'system',
             'name'      => 'nav_front',
         ))->current()->value;
-        $rowset = Pi::model('navigation')->select(array('section' => 'front',
-            'active' => 1));
+        $rowset = Pi::model('navigation')->select(array(
+            'section'   => 'front',
+            'active'    => 1
+        ));
         foreach ($rowset as $row) {
             $navList[] = $row->toArray();
         }
@@ -156,6 +158,7 @@ class NavController extends ActionController
             'status'    => 1,
             'message'   => __('Navigation set up successfully.'),
         );
+
         return $result;
     }
 
@@ -209,8 +212,10 @@ class NavController extends ActionController
             $form->setData(
                 array('section' => $this->params('section', 'front'))
             );
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'add')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'add'))
+            );
         }
         $this->view()->assign('form', $form);
         $this->view()->assign('title', __('Add a navigation'));
@@ -277,8 +282,10 @@ class NavController extends ActionController
                 'section'   => $parentRow->section,
                 'title'     => $parentRow->title,
             ));
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'clone')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'clone'))
+            );
             $form->add(array(
                 'name'          => 'parent',
                 'attributes'    => array(
@@ -322,6 +329,7 @@ class NavController extends ActionController
             'status'    => 1,
             'message'   => __('The navigation is deleted successfully.'),
         );
+
         return $result;
     }
 
@@ -380,8 +388,10 @@ class NavController extends ActionController
             'navigation'    => $nav,
             'visible'       => '1',
         ));
-        $form->setAttribute('action',
-            $this->url('', array('action' => 'update')));
+        $form->setAttribute(
+            'action',
+            $this->url('', array('action' => 'update'))
+        );
 
         if ($readonly) {
             $title = __('View of navigation details: %s');
@@ -430,6 +440,7 @@ class NavController extends ActionController
                 $this->transformNode($page, $plainList, $cid, $id, $depth);
             }
         }
+
         return;
     }
 
@@ -454,6 +465,7 @@ class NavController extends ActionController
                 $message[$key] = array_values($msg);
             }
         }
+
         return array(
             'status'        => $status,
             'message'       => $message,

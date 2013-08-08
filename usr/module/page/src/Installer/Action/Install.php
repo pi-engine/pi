@@ -34,9 +34,10 @@ class Install extends BasicInstall
         $path = Pi::service('i18n')->getPath(array('module/page', ''))
               . '/install';
         if (!is_dir($path)) {
-            $path = Pi::service('i18n')->getPath(array('module/page', ''),
-                                                 'en')
-                  . '/install';
+            $path = Pi::service('i18n')->getPath(
+                array('module/page', ''),
+                'en'
+            ) . '/install';
         }
         $metaFile = $path . '/meta.txt';
 

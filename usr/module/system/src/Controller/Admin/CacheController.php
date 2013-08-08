@@ -54,10 +54,14 @@ class CacheController extends ActionController
             $cacheList['apc'] .= ' (' . $totalCount . '-' . $totalSize . ')';
         }
         $cacheStorageClass = get_class(Pi::service('cache')->storage());
-        $cacheStorageName = substr($cacheStorageClass,
-            strrpos($cacheStorageClass, '\\') + 1);
-        $cacheList['application'] = sprintf(__('Application cache [%s]'),
-            $cacheStorageName);
+        $cacheStorageName = substr(
+            $cacheStorageClass,
+            strrpos($cacheStorageClass, '\\') + 1
+        );
+        $cacheList['application'] = sprintf(
+            __('Application cache [%s]'),
+            $cacheStorageName
+        );
 
         $frontConfig = Pi::config()->load('application.front.php');
         if (!empty($frontConfig['resource']['cache'])) {
@@ -69,8 +73,10 @@ class CacheController extends ActionController
                 $cacheStorage = Pi::service('cache')->storage();
             }
             $cacheStorageClass = get_class($cacheStorage);
-            $cacheStorageName = substr($cacheStorageClass,
-                strrpos($cacheStorageClass, '\\') + 1);
+            $cacheStorageName = substr(
+                $cacheStorageClass,
+                strrpos($cacheStorageClass, '\\') + 1
+            );
             $page['title'] = sprintf(__('Page cache [%s]'), $cacheStorageName);
             $modules = Pi::service('module')->meta();
             $page['modules'] = array_keys($modules);
@@ -205,6 +211,7 @@ class CacheController extends ActionController
     protected function flushPage($namespace = null)
     {
         Pi::service('render')->flushCache($namespace ?: null);
+
         return;
     }
 }

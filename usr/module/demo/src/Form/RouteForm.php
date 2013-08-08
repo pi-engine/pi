@@ -19,6 +19,7 @@ class RouteForm extends BaseForm
         if (!$this->filter) {
             $this->filter = new RouteFilter;
         }
+
         return $this->filter;
     }
 

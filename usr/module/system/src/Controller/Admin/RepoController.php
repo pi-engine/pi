@@ -56,8 +56,10 @@ class RepoController extends ActionController
             $version = '1.2.3';
             switch ($status) {
                 case 1:
-                    $message = sprintf(__('A new version %s is available'),
-                        $version);
+                    $message = sprintf(
+                        __('A new version %s is available'),
+                        $version
+                    );
                     break;
                 case 0:
                     $message = __('No update available');
@@ -78,8 +80,10 @@ class RepoController extends ActionController
                 $version = '1.2.3';
                 switch ($status) {
                     case 1:
-                        $message = sprintf(__('A new version %s is available'),
-                            $version);
+                        $message = sprintf(
+                            __('A new version %s is available'),
+                            $version
+                        );
                         break;
                     case 0:
                         $message = __('No update available');

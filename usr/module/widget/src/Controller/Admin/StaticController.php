@@ -97,6 +97,7 @@ class StaticController extends WidgetController
                 $message = __('Block data saved successfully.');
                 $this->jump(array('action' => 'index', 'name' => ''),
                             $message);
+
                 return;
             } elseif ($status < 0) {
                 $message = __('Block data not saved.');

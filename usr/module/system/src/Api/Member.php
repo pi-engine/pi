@@ -31,8 +31,7 @@ class Member extends AbstractApi
      * @var string[]
      */
     protected $accountColumns = array(
-        'id',
-        'identity', 'name', 'email', 'active', 'credential', 'salt'
+        'id', 'identity', 'name', 'email', 'active', 'credential', 'salt'
     );
 
     /**
@@ -124,8 +123,10 @@ class Member extends AbstractApi
             $row->assign($account);
             $row->save();
         } catch (\Exception $e) {
-            $return['message'] = sprintf('User account "%s" is not saved.',
-                $user['identity']);
+            $return['message'] = sprintf(
+                'User account "%s" is not saved.',
+                $user['identity']
+            );
             return $return;
         }
 
@@ -183,7 +184,7 @@ class Member extends AbstractApi
             Pi::model('user_staff')->delete(array('user' => $id));
         } catch (\Exception $e) {
             $return['message'] = 'User role is not deleted: '
-                . $e->getMessage();
+                               . $e->getMessage();
             return $return;
         }
 
@@ -250,6 +251,7 @@ class Member extends AbstractApi
         } catch (\Exception $e) {
             return false;
         }
+        
         return true;
    }
 }

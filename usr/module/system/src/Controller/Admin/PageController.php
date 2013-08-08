@@ -79,8 +79,10 @@ class PageController extends ActionController
                 $title = $row->title ?: $key;
             } else {
                 $key = $row->module;
-                $title = sprintf(__('%s module wide'),
-                    $row->title ?: $row->module);
+                $title = sprintf(
+                    __('%s module wide'),
+                    $row->title ?: $row->module
+                );
             }
 
             //$title = $row->title ?: ($key ?: __('Module wide'));
@@ -173,9 +175,13 @@ class PageController extends ActionController
                         Pi::model('acl_resource')->add($resource, $parent);
 
                     Pi::service('registry')->page->clear($row->module);
-                    $this->redirect()->toRoute('',
-                        array('action' => 'index',
-                            'name' => $values['module']));
+                    $this->redirect()->toRoute(
+                        '',
+                        array(
+                            'action' => 'index',
+                            'name' => $values['module']
+                        )
+                    );
                     $this->view()->setTemplate(false);
                 } else {
                     $message = __('Page data not saved.');
@@ -186,7 +192,7 @@ class PageController extends ActionController
         } else {
             $form = new AddForm('page-edit', $this->params('name'));
             $form->setAttribute('action', $this->url('',
-                array('action' => 'addsave')));
+                                array('action' => 'addsave')));
             $message = '';
         }
 
@@ -265,12 +271,18 @@ class PageController extends ActionController
                 $page = array(
                     'id'        => $row->id,
                     'title'     => $row->title,
-                    'edit'      => $this->url('',
-                        array('action' => 'edit', 'id' => $row->id)),
-                    'delete'    => $this->url('',
-                        array('action' => 'delete', 'id' => $row->id)),
-                    'dress'     => $this->url('',
-                        array('action' => 'block', 'page' => $row->id)),
+                    'edit'      => $this->url(
+                        '',
+                        array('action' => 'edit', 'id' => $row->id)
+                    ),
+                    'delete'    => $this->url(
+                        '',
+                        array('action' => 'delete', 'id' => $row->id)
+                    ),
+                    'dress'     => $this->url(
+                        '',
+                        array('action' => 'block', 'page' => $row->id)
+                    ),
                 );
                 Pi::service('registry')->page->clear($row->module);
 
@@ -325,8 +337,10 @@ class PageController extends ActionController
             $id = $this->params('id');
             $values = Pi::model('page')->find($id)->toArray();
             $form->setData($values);
-            $form->setAttribute('action', $this->url('',
-                array('action' => 'editsave')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'editsave'))
+            );
             $message = '';
         }
 
@@ -445,7 +459,7 @@ class PageController extends ActionController
         $page = $this->params('page', 0);
 
         $_this = clone $this;
-        $fallback = function() use ($_this) {
+        $fallback = function () use ($_this) {
             $_this->view()->setTemplate(false);
             $_this->redirect()->toRoute('', array('action' => 'index'));
         };
@@ -527,7 +541,7 @@ class PageController extends ActionController
                 $modules[] = array(
                     'name'  => $row->name,
                     'title' => $row->title
-                        . ' (' . $blockCounts[$row->name] . ')',
+                               . ' (' . $blockCounts[$row->name] . ')',
                 );
             }
         }
@@ -540,7 +554,7 @@ class PageController extends ActionController
         $this->view()->assign('name', $name);
         $this->view()->assign('pageZone', $this->getZoneTemplate());
         $this->view()->assign('title',
-            sprintf(__('%s blocks'), $pageData['title']));
+                              sprintf(__('%s blocks'), $pageData['title']));
         $this->view()->setTemplate('page-block');
     }
 
@@ -659,9 +673,11 @@ class PageController extends ActionController
     {
         $module = $this->params('name');
         $controller = $this->params('ctrl');
-        $class = sprintf('Module\\%s\Controller\Front\\%sController',
+        $class = sprintf(
+            'Module\\%s\Controller\Front\\%sController',
             ucfirst(Pi::service('module')->directory($module)),
-            ucfirst($controller));
+            ucfirst($controller)
+        );
         $methods = get_class_methods($class);
         $actions = array();
         foreach ($methods as $method) {
@@ -711,10 +727,16 @@ class PageController extends ActionController
 
         // Convert zone ID from pi-zone-ID to pi-zone-ID-edit
         // for block manipulation
-        $template = preg_replace('|\{([\d]+)\}|',
-            '<div id="pi-zone-$1-edit"></div>', $template);
-        $template = str_replace('{content}',
-            '<div id="pi-content-fixed"></div>', $template);
+        $template = preg_replace(
+            '|\{([\d]+)\}|',
+            '<div id="pi-zone-$1-edit"></div>',
+            $template
+        );
+        $template = str_replace(
+            '{content}',
+            '<div id="pi-content-fixed"></div>',
+            $template
+        );
 
         return $template;
     }

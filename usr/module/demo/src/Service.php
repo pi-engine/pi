@@ -28,6 +28,7 @@ class Service
     {
         $module = empty($conditions['module'])
             ? static::$module : $conditions['module'];
+
         return array();
     }
 }

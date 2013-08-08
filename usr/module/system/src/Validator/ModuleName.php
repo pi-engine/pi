@@ -41,8 +41,10 @@ class ModuleName extends AbstractValidator
     protected $options = array(
         // Reserved module name which could be
         // potentially conflicted with system
-        'backlist'  => array('pi', 'zend', 'module', 'service', 'theme',
-            'application', 'event', 'registry', 'config'),
+        'backlist'  => array(
+            'pi', 'zend', 'module', 'service', 'theme',
+            'application', 'event', 'registry', 'config'
+        ),
     );
 
     /**

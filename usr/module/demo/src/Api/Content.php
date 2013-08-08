@@ -30,6 +30,7 @@ class Content extends AbstractApi
     {
         $module = empty($conditions['module'])
             ? static::$module : $conditions['module'];
+
         return array();
     }
 }

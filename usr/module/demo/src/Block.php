@@ -19,6 +19,7 @@ class Block
                                    __METHOD__),
             'options'   => $options,
         );
+
         return $block;
     }
 
@@ -30,6 +31,7 @@ class Block
                                    __METHOD__),
             'options'   => $options,
         );
+
         return $block;
     }
 

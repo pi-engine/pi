@@ -33,6 +33,7 @@ class PageForm extends BaseForm
         if (!$this->filter) {
             $this->filter = new PageFilter;
         }
+
         return $this->filter;
     }
 

@@ -75,8 +75,8 @@ $configs['paths'] = array(
         'path'  => array('asset', '../asset'),
         'url'   => array(
             '%www/asset',
-            'http://asset.'
-                . preg_replace('/^(www\.)/i', '', $_SERVER['HTTP_HOST']),
+            'http://asset.' . preg_replace('/^(www\.)/i', '',
+                                           $_SERVER['HTTP_HOST']),
         ),
     ),
     // To remove?
@@ -84,16 +84,16 @@ $configs['paths'] = array(
         'path'  => array('static', '../static'),
         'url'   => array(
             '%www/static',
-            'http://static.'
-                . preg_replace('/^(www\.)/i', '', $_SERVER['HTTP_HOST']),
+            'http://static.' . preg_replace('/^(www\.)/i', '',
+                                            $_SERVER['HTTP_HOST']),
         ),
     ),
     'upload'        => array(
         'path'  => array('upload', '../upload'),
         'url'   => array(
             '%www/upload',
-            'http://upload.'
-                . preg_replace('/^(www\.)/i', '', $_SERVER['HTTP_HOST']),
+            'http://upload.' . preg_replace('/^(www\.)/i', '',
+                                            $_SERVER['HTTP_HOST']),
         ),
     ),
 );

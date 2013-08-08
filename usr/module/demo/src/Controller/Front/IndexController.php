@@ -156,6 +156,7 @@ class IndexController extends ActionController
         );
         // Disable template
         $this->view()->setTemplate(false);
+
         return $content;
     }
 
@@ -164,6 +165,7 @@ class IndexController extends ActionController
         $content = __('Test for user_call event');
         Pi::service('event')->trigger('user_call');
         $this->view()->setTemplate(false);
+
         return $content;
     }
 

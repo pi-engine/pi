@@ -28,8 +28,11 @@ class ProfileController extends ActionController
     {
         $id = $this->params('id');
         if (!$id) {
-            $this->redirect()->toRoute('user',
-                array('controller' => 'account'));
+            $this->redirect()->toRoute(
+                'user',
+                array('controller' => 'account')
+            );
+
             return;
         }
         if (is_numeric($id)) {

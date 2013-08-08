@@ -316,7 +316,7 @@ class MemberController extends ActionController
         $row = Pi::model('user')->find($id);
         if (!$row) {
             $this->jump(array('action' => 'index'),
-                __('The user is not found.'));
+                        __('The user is not found.'));
         }
         $user = $row->toArray();
         $role = Pi::model('user_role')->find($row->id, 'user');
@@ -337,8 +337,10 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('member', 'update'),
-                    $values);
+                $result = Pi::service('api')->system(
+                    array('member', 'update'),
+                    $values
+                );
                 if ($result['status']) {
                     $message = __('User data saved successfully.');
                     $this->jump(array('action' => 'index'));
@@ -426,14 +428,18 @@ class MemberController extends ActionController
     {
         $id = $this->params('id');
         if ($id == 1) {
-            $this->jump(array('action' => 'index'),
-                __('The user is protected from deletion.'));
+            $this->jump(
+                array('action' => 'index'),
+                __('The user is protected from deletion.')
+            );
             return;
         }
         Pi::service('api')->system(array('member', 'delete'), $id);
 
-        $this->jump(array('action' => 'index'),
-            __('The user is deleted successfully.'));
+        $this->jump(
+            array('action' => 'index'),
+            __('The user is deleted successfully.')
+        );
         $this->setTemplate('false');
     }
 }

@@ -132,8 +132,10 @@ class Block extends AbstractApi
         $rowBlock = $modelBlock->createRow($block);
         $rowBlock->save();
         if (!$rowBlock->id) {
-            $return['message'] = sprintf('Block view "%s" is not created.',
-                $block['name']);
+            $return['message'] = sprintf(
+                'Block view "%s" is not created.',
+                $block['name']
+            );
             return $return;
         }
 
@@ -258,7 +260,7 @@ class Block extends AbstractApi
                 $status = $modelRoot->delete(array('id' => $rootId));
             } catch (\Exception $e) {
                 $return['message'] = 'Block root is not deleted: '
-                    . $e->getMessage();
+                                   . $e->getMessage();
                 return $return;
             }
 
@@ -274,7 +276,7 @@ class Block extends AbstractApi
                 $status = $modelBlock->delete(array('id' => $blockRow->id));
             } catch (\Exception $e) {
                 $return['message'] = 'Block is not deleted: '
-                    . $e->getMessage();
+                                   . $e->getMessage();
                 return $return;
             }
 
@@ -285,7 +287,7 @@ class Block extends AbstractApi
                 );
             } catch (\Exception $e) {
                 $return['message'] = 'ACL rules are not deleted: '
-                    . $e->getMessage();
+                                   . $e->getMessage();
                 return $return;
             }
 
@@ -300,7 +302,7 @@ class Block extends AbstractApi
                     $status = $row->delete();
                 } catch (\Exception $e) {
                     $return['message'] = 'Page-block link is not deleted: '
-                        . $e->getMessage();
+                                       . $e->getMessage();
                     return $return;
                 }
             }

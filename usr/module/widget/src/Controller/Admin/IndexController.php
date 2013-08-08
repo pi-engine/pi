@@ -105,6 +105,7 @@ class IndexController extends WidgetController
         } else {
             $message = sprintf(__('The widget "%s" is not installed.'), $name);
         }
+
         return array(
             'status'    => $status,
             'message'   => $message,

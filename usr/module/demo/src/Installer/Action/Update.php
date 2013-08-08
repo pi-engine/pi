@@ -20,6 +20,7 @@ class Update extends BasicUpdate
         $events = $this->events;
         $events->attach('install.post', array($this, 'postUpdate'));
         parent::attachDefaultListeners();
+
         return $this;
     }
 

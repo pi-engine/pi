@@ -41,6 +41,7 @@ if (empty($image)) {
     } else {
         header('HTTP/1.1 404 Not Found');
     }
+
     return;
 }
 

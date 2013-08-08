@@ -36,12 +36,18 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre',
-            array($this, 'createSystemSchema'), 1000);
+        $events->attach(
+            'install.pre',
+            array($this, 'createSystemSchema'),
+            1000
+        );
         $events->attach('install.post', array($this, 'installTheme'), 1);
         $events->attach('install.post', array($this, 'createSystemData'), -10);
-        $events->attach('install.post',
-            array($this, 'installApplication'), -100);
+        $events->attach(
+            'install.post',
+            array($this, 'installApplication'),
+            -100
+        );
         $events->attach('install.post', array($this, 'dressupBlock'), -200);
         parent::attachDefaultListeners();
 

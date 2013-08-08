@@ -42,6 +42,7 @@ if (empty($source) || !is_readable($source)) {
     } else {
         header('HTTP/1.1 404 Not Found');
     }
+    
     return;
 }
 

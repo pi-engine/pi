@@ -61,8 +61,10 @@ class ThemeController extends ActionController
         $this->view()->assign('theme', $data);
         $this->view()->assign('section', $section);
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('title',
-            sprintf(__('Select theme for %s'), $subject));
+        $this->view()->assign(
+            'title',
+            sprintf(__('Select theme for %s'), $subject)
+        );
     }
 
     /**
@@ -136,7 +138,8 @@ class ThemeController extends ActionController
             }
             $directory = $fileinfo->getFilename();
             if (isset($themesInstalled[$directory]) || 'default' == $directory
-                || preg_match('/[^a-z0-9_]/i', $directory)) {
+                || preg_match('/[^a-z0-9_]/i', $directory)
+            ) {
                 continue;
             }
             $meta = Pi::service('theme')->loadConfig($directory);
@@ -145,16 +148,19 @@ class ThemeController extends ActionController
             }
             $meta['name'] = $directory;
             $meta['screenshot'] = !empty($meta['screenshot'])
-                ? Pi::url('script/browse.php') . '?'
-                    . sprintf('theme/%s/asset/%s',
-                        $directory, $meta['screenshot'])
+                ? Pi::url('script/browse.php') . '?' . sprintf(
+                    'theme/%s/asset/%s',
+                    $directory, $meta['screenshot']
+                )
                 : Pi::url('static/image/theme.png');
             $themes[$directory] = $meta;
         }
 
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('title',
-            __('Themes available for installation'));
+        $this->view()->assign(
+            'title',
+            __('Themes available for installation')
+        );
     }
 
     /**
@@ -177,6 +183,7 @@ class ThemeController extends ActionController
         $message = $message
             ?: sprintf(__('The theme "%s" is updated.'), $themeName);
         $themelist = Pi::service('registry')->themelist->read();
+
         return $themelist[$themeName];
     }
 
@@ -225,8 +232,10 @@ class ThemeController extends ActionController
             if (!$ret) {
                 $status = 0;
                 $message = $installer->renderMessage()
-                    ?: sprintf(__('The theme "%s" is not uninstalled.'),
-                        $themeName);
+                    ?: sprintf(
+                        __('The theme "%s" is not uninstalled.'),
+                        $themeName
+                    );
             }
         }
         $message = $message

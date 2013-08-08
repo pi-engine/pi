@@ -134,6 +134,7 @@ class ConfigController extends ActionController
     protected function getForm($configs, $module)
     {
         $form = new ConfigForm($configs, $module);
+
         return $form;
     }
 }

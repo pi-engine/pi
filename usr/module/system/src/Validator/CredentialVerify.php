@@ -46,7 +46,8 @@ class CredentialVerify extends AbstractValidator
 
         $userRow = Pi::model('user')->find($identity, 'identity');
         if ($userRow->transformCredential($credential)
-            != $userRow->getCredential()) {
+            != $userRow->getCredential()
+        ) {
             $this->error(static::INVALID);
             return false;
         }

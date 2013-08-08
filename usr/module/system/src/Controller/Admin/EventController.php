@@ -38,7 +38,6 @@ class EventController extends ActionController
         // Events of the module
         $events = array();
         $rowset = Pi::model('event')->select(array('module' => $name));
-        $eventNames = array();
         foreach ($rowset as $row) {
             $events[$row->name] = array(
                 'id'        => $row->id,
@@ -49,8 +48,10 @@ class EventController extends ActionController
         }
         if ($events) {
             $rowset = Pi::model('event_listener')
-                ->select(array('event_module' => $name,
-                    'event_name' => array_keys($events)));
+                ->select(array(
+                    'event_module' => $name,
+                    'event_name' => array_keys($events)
+                ));
             foreach ($rowset as $row) {
                 $events[$row->event_name]['listeners'][] = array(
                     'id'        => $row->id,
@@ -74,7 +75,7 @@ class EventController extends ActionController
                 'active'    => $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
                 'event'     => sprintf('%s-%s',
-                    $row->event_module, $row->event_name),
+                                       $row->event_module, $row->event_name),
             );
         }
 
@@ -103,7 +104,7 @@ class EventController extends ActionController
                 'active'    => $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
                 'event'     => sprintf('%s-%s',
-                    $row->event_module, $row->event_name),
+                                       $row->event_module, $row->event_name),
             );
         }
 
@@ -124,8 +125,10 @@ class EventController extends ActionController
         $this->view()->assign('listeners', $listeners);
         $this->view()->assign('name', $name);
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('title',
-            sprintf(__('Event listeners of module %s'), $name));
+        $this->view()->assign(
+            'title',
+            sprintf(__('Event listeners of module %s'), $name)
+        );
 
         $this->view()->setTemplate('event-listener');
     }
@@ -159,7 +162,8 @@ class EventController extends ActionController
                 if (!Pi::service('module')->isActive($row->module)) {
                     $status = 0;
                 } elseif ('listener' == $type && $row->event_module
-                    && !Pi::service('module')->isActive($row->event_module)) {
+                    && !Pi::service('module')->isActive($row->event_module)
+                ) {
                     $status = 0;
                 }
                 if (!$status) {
@@ -177,6 +181,7 @@ class EventController extends ActionController
                 Pi::service('registry')->event->clear($flush);
             }
         }
+        
         return array(
             'status'    => $status,
             'message'   => $message,

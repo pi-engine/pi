@@ -81,8 +81,11 @@ class DashboardController extends ActionController
                 break;
         }
         if (!$link) {
-            $this->jump(array('action' => 'system'),
-                __('No permitted operation available.'));
+            $this->jump(
+                array('action' => 'system'),
+                __('No permitted operation available.')
+            );
+
             return;
         }
         //d($link);exit;
@@ -113,7 +116,8 @@ class DashboardController extends ActionController
         $modulesPermitted = Pi::service('registry')->moduleperm->read('admin');
         foreach (array_keys($modules) as $name) {
             if (null !== $modulesPermitted
-                && !in_array($name, $modulesPermitted)) {
+                && !in_array($name, $modulesPermitted)
+            ) {
                 unset($modules[$name]);
             }
         }
@@ -122,9 +126,11 @@ class DashboardController extends ActionController
         // Get hidden modules
         $summaryList = array();
         $list = array();
-        $row = Pi::model('user_repo')->select((array('user' => $user,
-                'module' => 'system', 'type' => 'module-summary')))
-            ->current();
+        $row = Pi::model('user_repo')->select(array(
+            'user' => $user,
+            'module' => 'system',
+            'type' => 'module-summary'
+        ))->current();
         if ($row) {
             $list = (array) $row->content;
         }
@@ -133,14 +139,18 @@ class DashboardController extends ActionController
         $summaryHidden = array();
         // Enabled explicitly
         if (isset($list['active'])) {
-            $summaryEnabled = array_intersect((array) $list['active'],
-                array_keys($modules));
+            $summaryEnabled = array_intersect(
+                (array) $list['active'],
+                array_keys($modules)
+            );
             $summaryEnabled = array_unique($summaryEnabled);
         }
         // Disabled expicitly
         if (isset($list['inactive'])) {
-            $summaryHidden = array_intersect((array) $list['inactive'],
-                array_keys($modules));
+            $summaryHidden = array_intersect(
+                (array) $list['inactive'],
+                array_keys($modules)
+            );
             $summaryHidden = array_unique($summaryHidden);
         }
         $new = $list
@@ -149,8 +159,10 @@ class DashboardController extends ActionController
         $keys = array_unique($summaryEnabled + $new);
 
         foreach ($keys as $name) {
-            $callback = sprintf('Module\\%s\Dashboard::summary',
-                ucfirst($modules[$name]['directory']));
+            $callback = sprintf(
+                'Module\\%s\Dashboard::summary',
+                ucfirst($modules[$name]['directory'])
+            );
             if (is_callable($callback)) {
                 $summaryList[] = array(
                     'name'      => $name,
@@ -162,8 +174,10 @@ class DashboardController extends ActionController
             }
         }
         foreach ($summaryHidden as $name) {
-            $callback = sprintf('Module\\%s\Dashboard::summary',
-                ucfirst($modules[$name]['directory']));
+            $callback = sprintf(
+                'Module\\%s\Dashboard::summary',
+                ucfirst($modules[$name]['directory'])
+            );
             if (is_callable($callback)) {
                 $summaryList['inactive'][] = array(
                     'name'      => $name,
@@ -175,28 +189,34 @@ class DashboardController extends ActionController
 
         // Get user quick links
         $links = array();
-        $row = Pi::model('user_repo')->select((array('user' => $user,
-                'module' => 'system', 'type' => 'admin-link')))
-            ->current();
+        $row = Pi::model('user_repo')->select(array(
+            'user'      => $user,
+            'module'    => 'system',
+            'type'      => 'admin-link'
+        ))->current();
         if ($row) {
             $links = (array) $row->content;
         }
 
         // Get system message, only admins have access
         $message = array();
-        $row = Pi::model('user_repo')->select((array('module' => 'system',
-                'type' => 'admin-message')))
-            ->current();
+        $row = Pi::model('user_repo')->select(array(
+            'module' => 'system',
+            'type' => 'admin-message'
+        ))->current();
         if (!$row || !$row->content) {
-            $row = Pi::model('user_repo')->select((array('module' => 'system',
-                    'type' => 'admin-welcome')))
-                ->current();
+            $row = Pi::model('user_repo')->select(array(
+                'module'    => 'system',
+                'type'      => 'admin-welcome'
+            ))->current();
         }
         $content = $row->content;
         $message = array(
             'time'      => _date($content['time']),
-            'content'   => Pi::service('markup')->render($content['content'],
-                'text'),
+            'content'   => Pi::service('markup')->render(
+                $content['content'],
+                'text'
+            ),
         );
         $messagePerm = false;
         if (Pi::service('user')->getUser()->isAdmin()) {
@@ -224,8 +244,10 @@ class DashboardController extends ActionController
         }
 
         $directory = Pi::service('module')->directory($module);
-        $callback = sprintf('Module\\%s\Dashboard::summary',
-            ucfirst($directory));
+        $callback = sprintf(
+            'Module\\%s\Dashboard::summary',
+            ucfirst($directory)
+        );
         $summary = '';
         if (is_callable($callback)) {
             $summary = call_user_func($callback, $module);
@@ -240,8 +262,11 @@ class DashboardController extends ActionController
         if (empty($meta['logo'])) {
             $data['logo'] = Pi::url('static/image/module.png');
         } else {
-            $data['logo'] = Pi::service('asset')->getModuleAsset($meta['logo'],
-                $module, false);
+            $data['logo'] = Pi::service('asset')->getModuleAsset(
+                $meta['logo'],
+                $module,
+                false
+            );
         }
         if (empty($data['update'])) {
             $data['update'] = __('Never updated.');
@@ -290,13 +315,16 @@ class DashboardController extends ActionController
         $name = $this->params()->fromPost('name');
 
         $directory = Pi::service('module')->directory($name);
-        $callback = sprintf('Module\\%s\Dashboard::summary',
-            ucfirst($directory));
+        $callback = sprintf(
+            'Module\\%s\Dashboard::summary',
+            ucfirst($directory)
+        );
         if (is_callable($callback)) {
             $content = call_user_func($callback, $name);
         } else {
             $content = '';
         }
+
         return $content;
     }
 
@@ -349,15 +377,17 @@ class DashboardController extends ActionController
         if (!$data) {
             $row = Pi::model('user_repo')
                 ->select((array('module' => 'system',
-                    'type' => 'admin-welcome')))
+                                'type' => 'admin-welcome')))
                 ->current();
             $data = $row->content;
         }
 
         $message = array(
             'time'      => _date($data['time']),
-            'content'   => Pi::service('markup')->render($data['content'],
-                'text'),
+            'content'   => Pi::service('markup')->render(
+                $data['content'],
+                'text'
+            ),
         );
 
         return $message;
@@ -381,7 +411,7 @@ class DashboardController extends ActionController
         );
         $row = Pi::model('user_repo')
             ->select((array('user' => $user, 'module' => $module,
-                'type' => $type)))
+                            'type' => $type)))
             ->current();
         if ($row) {
             $row->content = $data;
@@ -417,7 +447,7 @@ class DashboardController extends ActionController
         $content = $this->params()->fromPost('content');
         $row = Pi::model('user_repo')
             ->select((array('user' => $user, 'module' => $module,
-                'type' => $type)))
+                            'type' => $type)))
             ->current();
         if ($row) {
             $row->content = $content;

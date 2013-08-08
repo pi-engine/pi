@@ -57,6 +57,7 @@ class User extends Standard
     {
         $path = $this->defaults['module'] . $this->structureDelimiter . $path;
         $matches = parent::parseParams($path);
+
         return $matches;
     }
 
@@ -68,18 +69,20 @@ class User extends Standard
      * @param  array $options
      * @return string
      */
-    public function assemble(array $params = array(),
-        array $options = array())
-    {
+    public function assemble(
+        array $params = array(),
+        array $options = array()
+    ) {
         if (!$params) {
             return $this->prefix;
         }
 
         $url = parent::assemble($params, $options);
         $urlPrefix = $this->prefix . $this->paramDelimiter
-            . $this->defaults['module'];
+                   . $this->defaults['module'];
         $urlSuffix = substr($url, strlen($urlPrefix));
         $url = $this->prefix . $urlSuffix;
+
         return $url;
     }
 }

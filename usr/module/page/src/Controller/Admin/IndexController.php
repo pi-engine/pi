@@ -397,6 +397,7 @@ class IndexController extends ActionController
         );
         $row = Pi::model('page')->createRow($page);
         $row->save();
+
         return $row->id;
     }
 
@@ -415,6 +416,7 @@ class IndexController extends ActionController
             'action'        => $name,
         );
         $count = Pi::model('page')->delete($where);
+
         return $count;
     }
 }

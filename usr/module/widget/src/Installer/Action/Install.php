@@ -24,6 +24,7 @@ class Install extends BasicInstall
         $events = $this->events;
         $events->attach('install.post', array($this, 'createBlock'));
         parent::attachDefaultListeners();
+
         return $this;
     }
 
@@ -131,7 +132,6 @@ class Install extends BasicInstall
             $row = $model->createRow($widget);
             $row->save();
         }
-
     }
 
 }

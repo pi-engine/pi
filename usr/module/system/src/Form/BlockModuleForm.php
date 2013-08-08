@@ -204,8 +204,8 @@ class BlockModuleForm extends BaseForm
                 ? '' : __($config['description']);
 
             $options = array(
-                    'label'     => __($config['title']),
-                    'module'    => $this->root->module,
+                'label'     => __($config['title']),
+                'module'    => $this->root->module,
             );
             if (!empty($edit['options'])) {
                 $options = array_merge($edit['options'], $options);

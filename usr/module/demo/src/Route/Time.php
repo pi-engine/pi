@@ -81,7 +81,8 @@ class Time extends Standard
         }
         if (!is_numeric($y) || $y > 2050 || $y < 1970
             || !is_numeric($m) || $m < 0 || $m > 12
-            || !is_numeric($d) || $d < 0 || $d > 31) {
+            || !is_numeric($d) || $d < 0 || $d > 31
+        ) {
             return null;
         }
         $time = array($y, $m, $d);

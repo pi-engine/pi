@@ -30,6 +30,7 @@ class BlockCarouselForm extends BaseForm
         if (!$this->filter) {
             $this->filter = new InputFilter;
         }
+
         return $this->filter;
     }
 

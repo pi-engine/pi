@@ -109,7 +109,7 @@ class Host
             // Initialize www path and URI
             $request = $this->wizard->getRequest();
             $baseUrl = $request->getScheme() . '://'
-                . $request->getHttpHost() . $request->getBaseUrl();
+                     . $request->getHttpHost() . $request->getBaseUrl();
             $this->paths['www'] = array(
                 'path'  => dirname($this->wizard->getRoot()),
                 'url'   => dirname($baseUrl)
@@ -133,7 +133,8 @@ class Host
                 $this->paths[$key]['path'] = $path;
 
                 if (empty($initPath) || !isset($inits['url'])
-                    || false === $inits['url']) {
+                    || false === $inits['url']
+                ) {
                     continue;
                 }
                 // Initialize URI
@@ -166,14 +167,20 @@ class Host
         foreach ($this->paths as $key => &$path) {
             $reqKey = 'path_' . $key;
             if (null !== $request->getPost($reqKey)) {
-                $req = str_replace('\\', '/',
-                    trim($request->getPost($reqKey)));
+                $req = str_replace(
+                    '\\',
+                    '/',
+                    trim($request->getPost($reqKey))
+                );
                 $paths[$key]['path'] = rtrim($req, '/');
             }
             $reqKey = 'url_' . $key;
             if (null !== $request->getPost($reqKey)) {
-                $req = str_replace('\\', '/',
-                    trim($request->getPost($reqKey)));
+                $req = str_replace(
+                    '\\',
+                    '/',
+                    trim($request->getPost($reqKey))
+                );
                 $paths[$key]['url'] = rtrim($req, '/');
             }
         }
@@ -208,6 +215,7 @@ class Host
                 }
             }
         }
+
         return $ret;
     }
 
@@ -222,7 +230,8 @@ class Host
         if (isset($this->paths[$path]['path'])) {
             // Path is found and readable
             if (is_dir($this->paths[$path]['path'])
-                && is_readable($this->paths[$path]['path'])) {
+                && is_readable($this->paths[$path]['path'])
+            ) {
                 $this->validPath[$path] = 1;
             } elseif (!empty($this->paths[$path]['path'])) {
                 $this->validPath[$path] = -1;
@@ -231,6 +240,7 @@ class Host
         } else {
             $ret = -1;
         }
+
         return $ret;
     }
 
@@ -250,11 +260,15 @@ class Host
         }
         $writablePaths = $this->wizard->getConfig('writable');
         $errors = array();
-        $this->setWritePermission($this->paths[$path]['path'],
-            $writablePaths[$path], $errors);
+        $this->setWritePermission(
+            $this->paths[$path]['path'],
+            $writablePaths[$path],
+            $errors
+        );
         if (!empty($errors) && in_array(0, array_values($errors))) {
             $this->permErrors[$path] = $errors;
         }
+
         return;
     }
 
@@ -311,14 +325,18 @@ class Host
             return array();
         }
         $errors = array();
-        $this->setWritePermission($this->paths[$path]['path'],
-            $writablePaths[$path], $errors);
+        $this->setWritePermission(
+            $this->paths[$path]['path'],
+            $writablePaths[$path],
+            $errors
+        );
         foreach ($errors as $key => $status) {
             if ($status != 0) {
                 unset($errors[$key]);
             }
         }
         $this->permErrors[$path] = $errors;
+
         return $this->permErrors[$path];
     }
 
@@ -337,6 +355,7 @@ class Host
         }
 
         $ret = $this->validateUrl($url, $mimeType);
+
         return $ret;
     }
 
@@ -393,12 +412,12 @@ class Host
 
         if ($url{0} != '/') {
             $url = (isset($this->paths['www']['url'])
-                ? $this->paths['www']['url'] : '') . '/' . $url;
+                 ? $this->paths['www']['url'] : '') . '/' . $url;
         } else {
-            $proto    = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+            $proto  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
                 ? 'https' : 'http';
-            $host    = $_SERVER['HTTP_HOST'];
-            $url = $proto . '://' .  $host . $url;
+            $host   = $_SERVER['HTTP_HOST'];
+            $url    = $proto . '://' .  $host . $url;
         }
 
         return $url;
@@ -437,7 +456,7 @@ class Host
                 if (!empty($mimeType)) {
                     $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
                     $ret = (strpos($contentType, $mimeType) !== false)
-                        ? true : false;
+                         ? true : false;
                 } else {
                     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     $ret = ($httpCode == 200) ? true : false;
@@ -460,11 +479,11 @@ class Host
             $result = @get_headers($url, 1);
             // Check if HTTP code is 200
             $ret = preg_match('#HTTP/[^\s]+[\s]200([\s]?)#i', $result[0],
-                $matches);
+                              $matches);
             // Check content type match if specified
             if ($ret && !empty($contentType)) {
                 $ret = strpos($result['Content-Type'], $contentType) !== false
-                    ? true : false;
+                     ? true : false;
             }
         }
 
@@ -489,7 +508,7 @@ class Host
                     if (empty($path[$item])) continue;
                     foreach ($path[$item] as $child) {
                         $this->setWritePermission($parent . '/' . $item,
-                            $child, $error);
+                                                  $child, $error);
                     }
                 } else {
                     $error[$parent . '/' . $path[$item]] =
@@ -500,6 +519,7 @@ class Host
             $error[$parent . '/' . $path] =
                 $this->makeWritable($parent . '/' . $path);
         }
+
         return;
     }
 
@@ -536,9 +556,11 @@ class Host
                 if ($fileinfo->isDot()) {
                     continue;
                 }
-                $status = $status
-                    * $this->makeWritable($fileinfo->getPathname(),
-                        $recurse, $create);
+                $status = $status * $this->makeWritable(
+                    $fileinfo->getPathname(),
+                    $recurse,
+                    $create
+                );
                 if (!$status) {
                     break;
                 }

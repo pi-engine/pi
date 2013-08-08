@@ -82,6 +82,7 @@ EOD;
                 'message'   => 'SQL schema query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -103,6 +104,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -117,6 +119,7 @@ EOD;
                     'message'   => 'Table alter query failed: '
                         . $exception->getMessage(),
                 ));
+
                 return false;
             }
         }
@@ -146,6 +149,7 @@ EOD;
                 'message'   => 'SQL schema query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -165,6 +169,7 @@ EOD;
                     'message'   => 'Table drop failed: '
                         . $exception->getMessage(),
                 ));
+
                 return false;
             }
         }
@@ -190,6 +195,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -204,6 +210,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
         $sql = sprintf('ALTER TABLE %s DROP KEY `pair`', $table);
@@ -215,11 +222,14 @@ EOD;
                 'message'   => 'Table alter query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
-        $sql = sprintf('ALTER TABLE %s ADD KEY `pair`'
+        $sql = sprintf(
+            'ALTER TABLE %s ADD KEY `pair`'
                 . ' UNIQUE KEY (`section`, `module`, `name`)',
-            $table);
+            $table
+        );
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
@@ -228,6 +238,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -242,6 +253,7 @@ EOD;
                 'message'   => 'Table drop failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -270,6 +282,7 @@ EOD;
                 'message'   => 'SQL schema query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -292,6 +305,7 @@ EOD;
                 'message'   => 'SQL schema query failed: '
                     . $exception->getMessage(),
             ));
+
             return false;
         }
 

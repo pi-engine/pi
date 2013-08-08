@@ -16,6 +16,7 @@ class Bootstrap extends ModuleBootstrap
     public function bootstrap($module = null)
     {
         $message = sprintf('%s: module - %s', __METHOD__, $module);
+
         return $message;
     }
 }

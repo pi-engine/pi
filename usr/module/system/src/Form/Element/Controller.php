@@ -28,8 +28,10 @@ class Controller extends Select
     {
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module');
-            $controllerPath = sprintf('%s/src/Controller/Front',
-                Pi::service('module')->path($module));
+            $controllerPath = sprintf(
+                '%s/src/Controller/Front',
+                Pi::service('module')->path($module)
+            );
             $controllerList = array();
             if (is_dir($controllerPath)) {
                 $iterator = new \DirectoryIterator($controllerPath);
@@ -38,8 +40,10 @@ class Controller extends Select
                         continue;
                     }
                     $fileName = $fileinfo->getFilename();
-                    if (!preg_match('/^[A-Z][a-z0-9_]+Controller\.php$/',
-                        $fileName)) {
+                    if (!preg_match(
+                        '/^[A-Z][a-z0-9_]+Controller\.php$/',
+                        $fileName
+                    )) {
                         continue;
                     }
                     $controllerName = strtolower(substr($fileName, 0, -14));

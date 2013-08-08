@@ -51,13 +51,15 @@ class Wizard
     public static function autoload($class)
     {
         if (static::BASE_NAMESPACE !==
-            substr($class, 0, strlen(static::BASE_NAMESPACE))) {
+            substr($class, 0, strlen(static::BASE_NAMESPACE))
+        ) {
             return;
         }
         $class = substr($class, strlen(static::BASE_NAMESPACE) + 1);
         $classFile = static::$root . DIRECTORY_SEPARATOR . static::DIR_CLASS
-            . DIRECTORY_SEPARATOR
-            . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+                   . DIRECTORY_SEPARATOR
+                   . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+
         include $classFile;
     }
 
@@ -194,7 +196,8 @@ class Wizard
         $content = $this->controller->getContent();
         if ($this->request->isXmlHttpRequest()) {
             if ($this->controller->hasBootstrap()
-                && Pi::service()->hasService('log')) {
+                && Pi::service()->hasService('log')
+            ) {
                 Pi::service('log')->mute();
             } else {
                 error_reporting(0);
@@ -220,7 +223,7 @@ class Wizard
         $currentPage['key'] = $pageList[$pageIndex];
 
         $title = $currentPage['title'] . ' - ' . _s('Pi Engine Setup Wizard')
-            . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
+               . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
         $desc = $currentPage['desc'];
 
         if ($pageIndex > 0) {
@@ -234,9 +237,11 @@ class Wizard
         $footContent = $this->controller->footContent();
         $baseUrl = $this->request->getBaseUrl();
 
-        $data = compact('status', 'locale', 'charset', 'title', 'desc',
+        $data = compact(
+            'status', 'locale', 'charset', 'title', 'desc',
             'baseUrl', 'navPages', 'pageIndex', 'currentPage', 'previousUrl',
-            'nextUrl', 'pageHasForm', 'content', 'headContent', 'footContent');
+            'nextUrl', 'pageHasForm', 'content', 'headContent', 'footContent'
+        );
         ob_start();
         include static::$root . '/include/template.phtml';
         $content = ob_get_contents();
@@ -256,6 +261,7 @@ class Wizard
         }
         $query = http_build_query($params);
         $url = $this->request->getBaseUrl() . ($query ? '?' . $query : '');
+
         return $url;
     }
 
@@ -263,7 +269,8 @@ class Wizard
     {
         $url = $this->url($page, $params);
         header('Location: ' . $this->request->getScheme() . '://'
-            . $this->request->getHttpHost() . $url);
+               . $this->request->getHttpHost() . $url);
+
         exit();
     }
 
@@ -291,12 +298,14 @@ class Wizard
     public function destroyPersist()
     {
         $this->persistentData = array();
+
         return true;
     }
 
     public function setPersist($key, $value)
     {
         $this->persistentData[$key] = $value;
+
         return $this;
     }
 
@@ -309,7 +318,9 @@ class Wizard
     public function shutdown()
     {
         return;
+
         $this->destroyPersist();
+
         return true;
     }
 }

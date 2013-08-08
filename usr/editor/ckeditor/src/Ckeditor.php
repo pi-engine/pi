@@ -70,15 +70,18 @@ class Ckeditor extends CkBase
      * @param array $events Event listeners for this editor instance
      * @return string
      */
-    public function editor($name, $value = '', $config = array(),
-        $events = array())
-    {
+    public function editor(
+        $name,
+        $value = '',
+        $config = array(),
+        $events = array()
+    ) {
         $attr = '';
         foreach ($this->textareaAttributes as $key => $val) {
-            $attr.= ' ' . $key . '="' . str_replace('"', '&quot;', $val) . '"';
+            $attr .= ' ' . $key . '="' . str_replace('"', '&quot;', $val) . '"';
         }
         $out = '<textarea name="' . $name . '"' . $attr . '>'
-            . htmlspecialchars($value) . '</textarea>\n';
+             . htmlspecialchars($value) . '</textarea>\n';
         if (!$this->initialized) {
             $out .= $this->init();
         }
@@ -93,16 +96,17 @@ class Ckeditor extends CkBase
         /**#@-*/
 
         $js = $this->returnGlobalEvents();
-        if (!empty($_config))
+        if (!empty($_config)) {
             $js .= 'CKEDITOR.replace("' . $name . '", '
-                . $this->jsEncode($_config) . ');';
-        else
+                 . $this->jsEncode($_config) . ');';
+        } else {
             $js .= 'CKEDITOR.replace("' . $name . '");';
+        }
 
         $out .= $this->script($js);
 
         if (!$this->returnOutput) {
-            print $out;
+            echo $out;
             $out = '';
         }
 
@@ -157,14 +161,12 @@ class Ckeditor extends CkBase
         }
 
         if (!empty($_events)) {
-            foreach($_events as $eventName => $handlers) {
+            foreach ($_events as $eventName => $handlers) {
                 if (empty($handlers)) {
                     continue;
-                }
-                else if (count($handlers) == 1) {
+                } elseif (count($handlers) == 1) {
                     $_config['on'][$eventName] = '@@' . $handlers[0];
-                }
-                else {
+                } else {
                     $_config['on'][$eventName] = '@@function (ev){';
                     foreach ($handlers as $handler => $code) {
                         $_config['on'][$eventName] .= '(' . $code . ')(ev);';
@@ -200,7 +202,7 @@ class Ckeditor extends CkBase
                     // Return only new events
                     if (!in_array($code, $returnedEvents[$eventName])) {
                         $out .= ($code ? '\n' : '')
-                            . 'CKEDITOR.on("' . $eventName . '", {$code});';
+                              . 'CKEDITOR.on("' . $eventName . '", {$code});';
                         $returnedEvents[$eventName][] = $code;
                     }
                 }
@@ -244,17 +246,18 @@ class Ckeditor extends CkBase
 
         // Skip relative paths...
         if (strpos($ckeditorPath, '..') !== 0) {
-            $out .= $this->script('window.CKEDITOR_BASEPATH="' . $ckeditorPath
-                . '";');
+            $out .= $this->script(
+                'window.CKEDITOR_BASEPATH="' . $ckeditorPath . '";'
+            );
         }
 
         $out .= '<script type="text/javascript" src="'
-            . $ckeditorPath . 'ckeditor.js' . $args . '"></script>\n';
+              . $ckeditorPath . 'ckeditor.js' . $args . '"></script>\n';
 
         $extraCode = '';
         if ($this->timestamp != static::timestamp) {
             $extraCode .= ($extraCode ? '\n' : '')
-                . 'CKEDITOR.timestamp = "' . $this->timestamp . '";';
+                        . 'CKEDITOR.timestamp = "' . $this->timestamp . '";';
         }
         if ($extraCode) {
             $out .= $this->script($extraCode);
@@ -287,8 +290,7 @@ class Ckeditor extends CkBase
          */
         if (isset($_SERVER['SCRIPT_FILENAME'])) {
             $realPath = dirname($_SERVER['SCRIPT_FILENAME']);
-        }
-        else {
+        } else {
             /**
              * realpath - Returns canonicalized absolute pathname
              */
@@ -310,7 +312,7 @@ class Ckeditor extends CkBase
         }
 
         $documentRoot = substr($realPath, 0, strlen($realPath)
-            - strlen($selfPath));
+                      - strlen($selfPath));
         $fileUrl = substr($file, strlen($documentRoot));
         $ckeditorUrl = str_replace('ckeditor_php5.php', '', $fileUrl);
 
@@ -353,7 +355,7 @@ class Ckeditor extends CkBase
                 static $jsonReplaces = array(
                     array('\\', '/', '\n', '\t', '\r', '\b', '\f', '"'),
                     array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f',
-                        '\"'),
+                          '\"'),
                 );
 
                 $val = str_replace($jsonReplaces[0], $jsonReplaces[1], $val);

@@ -30,8 +30,11 @@ class LoginController extends ActionController
     public function indexAction()
     {
         if (Pi::config('login_disable', 'user')) {
-            $this->jump(array('route' => 'home'),
-                __('Login is disabled. Please come back later.'), 5);
+            $this->jump(
+                array('route' => 'home'),
+                __('Login is disabled. Please come back later.'),
+                5
+            );
             return;
         }
 
@@ -83,8 +86,10 @@ class LoginController extends ActionController
                     $this->view()->setTemplate('login-suspended');
                 } else {
                     $remaining = $configs['attempts'] - $attempts;
-                    $message = sprintf(__('You have %d times to try.'),
-                        $remaining);
+                    $message = sprintf(
+                        __('You have %d times to try.'),
+                        $remaining
+                    );
                 }
             }
         }
@@ -100,8 +105,10 @@ class LoginController extends ActionController
     {
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
-        $this->jump(array('route' => 'home'),
-            __('You logged out successfully. Now go back to homepage.'));
+        $this->jump(
+            array('route' => 'home'),
+            __('You logged out successfully. Now go back to homepage.')
+        );
     }
 
     /**
@@ -113,12 +120,14 @@ class LoginController extends ActionController
     {
         if (Pi::config('login_disable', 'user')) {
             $this->jump(array('route' => 'home'),
-                __('Login is closed. Please try later.'), 5);
+                        __('Login is closed. Please try later.'), 5);
+
             return;
         }
 
         if (!$this->request->isPost()) {
             $this->jump(array('action' => 'index'), __('Invalid request.'));
+
             return;
         }
 
@@ -129,6 +138,7 @@ class LoginController extends ActionController
 
         if (!$form->isValid()) {
             $this->renderForm($form, __('Invalid input, please try again.'));
+
             return;
         }
 
@@ -142,9 +152,14 @@ class LoginController extends ActionController
             $sessionLogin = isset($_SESSION['PI_LOGIN'])
                 ? $_SESSION['PI_LOGIN'] : array();
             if (!empty($sessionLogin['attempts'])
-                && $sessionLogin['attempts'] >= $configs['attempts']) {
-                $this->jump(array('route' => 'home'),
-                    __('You have tried too many times. Please try later.'), 5);
+                && $sessionLogin['attempts'] >= $configs['attempts']
+            ) {
+                $this->jump(
+                    array('route' => 'home'),
+                    __('You have tried too many times. Please try later.'),
+                    5
+                );
+
                 return;
             }
         }
@@ -162,6 +177,7 @@ class LoginController extends ActionController
             }
             $message = __('Invalid credentials provided, please try again.');
             $this->renderForm($form, $message);
+
             return;
         }
 
@@ -194,8 +210,10 @@ class LoginController extends ActionController
     public function getForm()
     {
         $form = new LoginForm('login');
-        $form->setAttribute('action',
-            $this->url('', array('action' => 'process')));
+        $form->setAttribute(
+            'action',
+            $this->url('', array('action' => 'process'))
+        );
 
         return $form;
     }

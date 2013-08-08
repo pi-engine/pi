@@ -41,12 +41,18 @@ class Finish extends AbstractController
         $content = file_get_contents($file_dist);
         foreach ($vars as $var => $val) {
             if (!empty($val['path'])) {
-                $content = str_replace('%' . $var . '%',
-                    $val['path'], $content);
+                $content = str_replace(
+                    '%' . $var . '%',
+                    $val['path'],
+                    $content
+                );
             }
         }
-        $content = str_replace('%host%',
-            $vars['config']['path'] . '/host.php', $content);
+        $content = str_replace(
+            '%host%',
+            $vars['config']['path'] . '/host.php',
+            $content
+        );
         $configs[] = array('file' => $file, 'content' => $content);
         /**#@-*/
 

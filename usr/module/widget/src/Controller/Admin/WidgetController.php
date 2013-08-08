@@ -51,6 +51,7 @@ abstract class WidgetController extends ActionController
                 Pi::service('registry')->block->clear($module);
             }
         }
+
         return $status;
     }
 
@@ -71,6 +72,7 @@ abstract class WidgetController extends ActionController
             $widgetRow->time = time();
             $widgetRow->save();
         }
+
         return $status;
     }
 
@@ -176,6 +178,7 @@ abstract class WidgetController extends ActionController
                 $message = __('Block data saved successfully.');
                 $this->jump(array('action' => 'index', 'name' => ''),
                             $message);
+
                 return;
             } elseif ($status < 0) {
                 $message = __('Block data not saved.');
@@ -209,6 +212,7 @@ abstract class WidgetController extends ActionController
                 $message = __('Block data saved successfully.');
                 $this->jump(array('action' => 'index', 'name' => ''),
                             $message);
+
                 return;
             } elseif ($status < 0) {
                 $message = __('Block data not saved.');

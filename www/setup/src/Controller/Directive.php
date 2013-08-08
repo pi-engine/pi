@@ -78,6 +78,7 @@ class Directive extends AbstractController
     {
         $persist = $this->request->getParam('persist');
         $this->wizard->setPersist('persist', $persist);
+
         echo '1';
     }
 
@@ -99,6 +100,7 @@ class Directive extends AbstractController
             $status = $this->host->checkPath($key);
         }
         echo $status;
+
         return;
     }
 
@@ -231,23 +233,27 @@ class Directive extends AbstractController
         $content = '';
         // Display saving error messages
         if (!empty($errorsSave)) {
-            $content .=
-                '<h3>' . _s('Configuration file write error') . '</h3>';
+            $content .= '<h3>' . _s('Configuration file write error')
+                      . '</h3>';
             foreach ($errorsSave as $error) {
                 $content .= '<p class=\'caption\' style=\'margin-top: 10px;\'>'
-                    . sprintf(_s('The configuration file "%s" is not written correctly.'), $error['file'])
-                    . '</p>'
-                    . '<textarea cols=\'80\' rows=\'10\'>' . $error['content']
-                    . '</textarea>';
+                          . sprintf(
+                              _s('The configuration file "%s" is not written correctly.'),
+                              $error['file']
+                            )
+                          . '</p>'
+                          . '<textarea cols=\'80\' rows=\'10\'>'
+                          . $error['content']
+                          . '</textarea>';
             }
         // Display config file error messages
         } elseif (!empty($errorsConfig)) {
             $content .= '<h3>' . _s('Configuration file copy error') . '</h3>'
-                . '<p class=\'caption\'>'
-                . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.')
-                . '</p>'
-                . '<div class=\'message alert\'>'
-                . '<ul>';
+                      . '<p class=\'caption\'>'
+                      . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.')
+                      . '</p>'
+                      . '<div class=\'message alert\'>'
+                      . '<ul>';
             foreach ($errorsConfig as $file) {
                 $content .= '<li>' . $file . '</li>';
             }
@@ -271,19 +277,20 @@ class Directive extends AbstractController
             $checkedString = 'disabled';
         }
         $content .= '<div><input type=\'radio\' name=\'persist\''
-            . ' value=\'apc\' ' . $checkedString . ' />'
-            . $config['apc']['title'] . '</div>'
-            . '<p class=\'caption\'>' . $config['apc']['message'] . '</p>';
+                  . ' value=\'apc\' ' . $checkedString . ' />'
+                  . $config['apc']['title'] . '</div>'
+                  . '<p class=\'caption\'>' . $config['apc']['message']
+                  . '</p>';
 
         if (extension_loaded('redis')) {
             $persist = $persist ?: 'redis';
             $valid = true;
             $checkedString = ($persist == 'redis') ? 'checked' : '';
             $content .= '<div><input type=\'radio\' name=\'persist\''
-                . ' value=\'redis\' ' . $checkedString . ' />'
-                . $config['redis']['title'] . '</div>'
-                . '<p class=\'caption\'>' . $config['redis']['message']
-                . '</p>';
+                      . ' value=\'redis\' ' . $checkedString . ' />'
+                      . $config['redis']['title'] . '</div>'
+                      . '<p class=\'caption\'>' . $config['redis']['message']
+                      . '</p>';
         }
 
         if (extension_loaded('memcached')) {
@@ -294,10 +301,10 @@ class Directive extends AbstractController
             $checkedString = ' disabled';
         }
         $content .= '<div><input type=\'radio\' name=\'persist\''
-            . ' value=\'memcached\' ' . $checkedString . ' />'
-            . $config['memcached']['title'] . '</div>'
-            . '<p class=\'caption\'>' . $config['memcached']['message']
-            . '</p>';
+                  . ' value=\'memcached\' ' . $checkedString . ' />'
+                  . $config['memcached']['title'] . '</div>'
+                  . '<p class=\'caption\'>' . $config['memcached']['message']
+                  . '</p>';
 
         if (extension_loaded('memcache')) {
             $persist = $persist ?: 'memcache';
@@ -307,28 +314,28 @@ class Directive extends AbstractController
             $checkedString = ' disabled';
         }
         $content .= '<div><input type=\'radio\' name=\'persist\''
-            . ' value=\'memcache\' ' . $checkedString . ' />'
-            . $config['memcache']['title'] . '</div>'
-            . '<p class=\'caption\'>' . $config['memcache']['message']
-            . '</p>';
+                  . ' value=\'memcache\' ' . $checkedString . ' />'
+                  . $config['memcache']['title'] . '</div>'
+                  . '<p class=\'caption\'>' . $config['memcache']['message']
+                  . '</p>';
 
         $checkedString = ($persist == 'filesystem') ? 'checked' : '';
         $content .= '<div><input type=\'radio\' name=\'persist\''
-            . ' value=\'filesystem\' ' . $checkedString . ' />'
-            . _s('File system') . '</div>'
-            . '<p class=\'caption warning\'>'
-            . _s('Caching storage with files is not recommended. You are highly adviced to check recommended extensions to ensure they are installed and configured correctly.')
-            . '</p></div>';
+                  . ' value=\'filesystem\' ' . $checkedString . ' />'
+                  . _s('File system') . '</div>'
+                  . '<p class=\'caption warning\'>'
+                  . _s('Caching storage with files is not recommended. You are highly adviced to check recommended extensions to ensure they are installed and configured correctly.')
+                  . '</p></div>';
 
         $content = '<h2> <span class=\''
-            . (empty($valid) ? 'warning' : 'success') . '\'>'
-            . _s('Persistent data container')
-            . '</span> <a href=\'javascript:void(0);\' id=\'persist-label\'>'
-            . '<span>[+]</span><span style=\'display: none;\'>[-]</span></a>'
-            . '</h2><p class=\'caption\'>'
-            . _s('Choose the proper backend container for persistent data')
-            . '</p><div class=\'install-form advanced-form well\''
-            . ' id=\'advanced-persist\'>' . $content . '</div>';
+                 . (empty($valid) ? 'warning' : 'success') . '\'>'
+                 . _s('Persistent data container')
+                 . '</span> <a href=\'javascript:void(0);\' id=\'persist-label\'>'
+                 . '<span>[+]</span><span style=\'display: none;\'>[-]</span></a>'
+                 . '</h2><p class=\'caption\'>'
+                 . _s('Choose the proper backend container for persistent data')
+                 . '</p><div class=\'install-form advanced-form well\''
+                 . ' id=\'advanced-persist\'>' . $content . '</div>';
 
         $this->content .= $content;
 
@@ -426,6 +433,7 @@ SCRIPT;
     <p id='{$item}-message' class='alert'>&nbsp;</p>
     </div>
 HTML;
+
             return $content;
         };
 
@@ -450,47 +458,54 @@ HTML;
 
         // Assemble basic section which is composed of www path and URI
         $contentBasic = '<h3 class=\'section\'><span id=\'path-basic-label\''
-            . ' class=\'' . $statusBasic . '\'>' . _s('Basic settings')
-            . '</span><a href=\'javascript:void(0);\''
-            . ' id=\'path-basic-toggle\'><span>[+]</span>'
-            . '<span style=\'display: none;\'>[-]</span></a></h3>'
-            . '<p class=\'caption\'>'
-            . _s('Settings required by system')
-            . '</p>'
-            . '<div class=\'install-form advanced-form item-container well\''
-            . ' id=\'path-basic\'>' . $content . '</div>';
+                     . ' class=\'' . $statusBasic . '\'>'
+                     . _s('Basic settings')
+                     . '</span><a href=\'javascript:void(0);\''
+                     . ' id=\'path-basic-toggle\'><span>[+]</span>'
+                     . '<span style=\'display: none;\'>[-]</span></a></h3>'
+                     . '<p class=\'caption\'>'
+                     . _s('Settings required by system')
+                     . '</p>'
+                     . '<div class=\'install-form advanced-form item-container'
+                     . ' well\' id=\'path-basic\'>' . $content . '</div>';
 
         $content = '';
         // Advanced item elements
-        $itemList = array('path_lib', 'path_var', 'path_usr', 'path_asset',
+        $itemList = array(
+            'path_lib', 'path_var', 'path_usr', 'path_asset',
             'url_asset', 'path_upload', 'url_upload', 'path_static',
-            'url_static');
+            'url_static'
+        );
         foreach ($itemList as $item) {
             $content .= $displayItem($item);
         }
 
         // Assemble advanced section by including the advanced items
         $contentAdvanced = '<h3 class=\'section\'>'
-            . '<span id=\'path-advanced-label\' class=\'' . $statusAdvanced
-            . '\'>' . _s('Advanced settings') . '</span>'
-            . '<a href=\'javascript:void(0);\' id=\'path-advanced-toggle\'>'
-            . '<span>[+]</span><span style=\'display: none;\'>[-]</span></a>'
-            . '</h3><p class=\'caption\'>'
-            . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.')
-            . '</p>'
-            . '<div class=\'install-form advanced-form item-container well\''
-            . ' id=\'path-advanced\'>' . $content . '</div>';
+                         . '<span id=\'path-advanced-label\' class=\''
+                         . $statusAdvanced
+                         . '\'>' . _s('Advanced settings') . '</span>'
+                         . '<a href=\'javascript:void(0);\''
+                         . ' id=\'path-advanced-toggle\'>'
+                         . '<span>[+]</span><span style=\'display: none;\'>[-]'
+                         . '</span></a></h3><p class=\'caption\'>'
+                         . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.')
+                         . '</p>'
+                         . '<div class=\'install-form advanced-form'
+                         . ' item-container well\' id=\'path-advanced\'>'
+                         . $content . '</div>';
 
         // Assemble content by combining basic and advanced sections
         $content = '<h2><span id=\'paths-label\' class=\'' . $status . '\'>'
-            . _s('Path settings') . '</span>'
-            . '<a href=\'javascript:void(0);\' id=\'paths-toggle\'>'
-            . '<span>[+]</span><span style=\'display: none;\'>[-]</span></a>'
-            . '</h2><p class=\'caption\'>'
-            . _s('Path and URL settings')
-            . '</p>'
-            . '<div class=\'install-form advanced-form item-container\''
-            . ' id=\'paths\'>' . $contentBasic . $contentAdvanced . '</div>';
+                 . _s('Path settings') . '</span>'
+                 . '<a href=\'javascript:void(0);\' id=\'paths-toggle\'>'
+                 . '<span>[+]</span><span style=\'display: none;\'>[-]</span>'
+                 . '</a></h2><p class=\'caption\'>'
+                 . _s('Path and URL settings')
+                 . '</p>'
+                 . '<div class=\'install-form advanced-form item-container\''
+                 . ' id=\'paths\'>' . $contentBasic . $contentAdvanced
+                 . '</div>';
 
         $this->content .= $content;
 

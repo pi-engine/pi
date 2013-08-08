@@ -95,8 +95,10 @@ class RoleController extends ActionController
         }
         $result = array();
         foreach ($roles as $key => $data) {
-            $data['inherit']['indirect'] = array_diff($data['inherit']['all'],
-                $data['inherit']['direct']);
+            $data['inherit']['indirect'] = array_diff(
+                $data['inherit']['all'],
+                $data['inherit']['direct']
+            );
             $result[] = $data;
         }
 
@@ -174,8 +176,10 @@ class RoleController extends ActionController
         } else {
             $type = $this->params('type', 'front');
             $form = new RoleForm('role', $type);
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'add')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'add'))
+            );
             $this->view()->assign('title', __('Add a role'));
             $this->view()->assign('form', $form);
             $this->view()->setTemplate('system:component/form-popup');
@@ -230,8 +234,10 @@ class RoleController extends ActionController
             $section = $row->section;
             $data = $row->toArray();
             $form = new RoleForm('role', $section);
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'edit')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'edit'))
+            );
             $form->setData($data);
             $this->view()->assign('title', __('Edit a role'));
             $this->view()->assign('form', $form);

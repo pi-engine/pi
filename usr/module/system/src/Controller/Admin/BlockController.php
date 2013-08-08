@@ -54,7 +54,7 @@ class BlockController extends ActionController
                 $modules[] = array(
                     'name'  => $row->name,
                     'title' => $row->title
-                        . ' (' . $blockCounts[$row->name] . ')',
+                               . ' (' . $blockCounts[$row->name] . ')',
                 );
             }
         }
@@ -131,8 +131,10 @@ class BlockController extends ActionController
                 $values['render']   = $rootRow->render;
                 unset($values['id']);
 
-                $result = Pi::service('api')->system(array('block', 'add'),
-                    $values);
+                $result = Pi::service('api')->system(
+                    array('block', 'add'),
+                    $values
+                );
                 extract($result);
                 if ($status) {
                     $message = __('Block data saved successfully.');
@@ -177,8 +179,10 @@ class BlockController extends ActionController
             }
 
             $form->setData($data);
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'clone')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'clone'))
+            );
             $message = '';
         }
 
@@ -218,8 +222,11 @@ class BlockController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('block', 'edit'),
-                    $blockRow, $values);
+                $result = Pi::service('api')->system(
+                    array('block', 'edit'),
+                    $blockRow,
+                    $values
+                );
                 $message = __('Block data saved successfully.');
                 $this->jump(
                     array('action' => 'index', 'name' => $blockRow->module),
@@ -241,8 +248,10 @@ class BlockController extends ActionController
             $form = new ModuleForm('block-edit', $rootRow);
             $values = $blockRow->toArray();
             $form->setData($values);
-            $form->setAttribute('action',
-                $this->url('', array('action' => 'edit')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'edit'))
+            );
             $message = '';
         }
 
@@ -265,8 +274,11 @@ class BlockController extends ActionController
     public function deleteAction()
     {
         $id = $this->params('id');
-        $result = Pi::service('api')->system(array('block', 'delete'),
-            $id, false);
+        $result = Pi::service('api')->system(
+            array('block', 'delete'),
+            $id,
+            false
+        );
         extract($result);
         return $status;
     }
@@ -301,10 +313,11 @@ class BlockController extends ActionController
             foreach ($rowset as $row) {
                 $pageList[$row->module][] = array(
                     'title' => $row->title,
-                    'url'   => $this->url('',
-                        array('controller' => 'page',
-                            'action' => 'block',
-                            'page' => $row->id)),
+                    'url'   => $this->url('', array(
+                        'controller'    => 'page',
+                        'action'        => 'block',
+                        'page'          => $row->id
+                    )),
                 );
             }
 

@@ -37,6 +37,7 @@ class PasswordController extends ActionController
         // Redirect login page if not logged in
         if (!$identity) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
+
             return;
         }
 
@@ -52,8 +53,11 @@ class PasswordController extends ActionController
                 $row->prepare()->save();
                 if ($row->id) {
                     $message = __('Password changed successfully.');
-                    $this->redirect()->toRoute('',
-                        array('controller' => 'account', 'action' => 'index'));
+                    $this->redirect()->toRoute(
+                        '',
+                        array('controller' => 'account', 'action' => 'index')
+                    );
+
                     return;
                 } else {
                     $message = __('Password not changed.');

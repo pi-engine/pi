@@ -41,6 +41,7 @@ class Search extends AbstractSearch
             );
             $results[] = $item;
         }
+
         return $results;
     }
 }

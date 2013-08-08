@@ -21,6 +21,7 @@ class Install extends BasicInstall
         $events->attach('install.pre', array($this, 'preInstall'), 1000);
         $events->attach('install.post', array($this, 'postInstall'), 1);
         parent::attachDefaultListeners();
+
         return $this;
     }
 

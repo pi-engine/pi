@@ -29,6 +29,7 @@ class Uninstall extends BasicUninstall
         $events->attach('install.pre', array($this, 'checkModules'), 1000);
         $events->attach('install.post', array($this, 'dropTables'), -1000);
         parent::attachDefaultListeners();
+
         return $this;
     }
 
@@ -49,8 +50,10 @@ class Uninstall extends BasicUninstall
                 'message'   => 'Modules are not unistalled completely.'
             );
             $e->setParam('result', $result);
+
             return false;
         }
+
         return true;
     }
 
@@ -67,9 +70,10 @@ class Uninstall extends BasicUninstall
         $rowset = $modelTable->select(array('module' => $module));
         foreach ($rowset as $row) {
             Pi::db()->adapter()
-                ->query('DROP TABLE IF EXISTS '
-                    . Pi::db()->prefix($row->name, ''),
-                    'execute');
+                ->query(
+                    'DROP TABLE IF EXISTS ' . Pi::db()->prefix($row->name, ''),
+                    'execute'
+                );
         }
         return;
     }

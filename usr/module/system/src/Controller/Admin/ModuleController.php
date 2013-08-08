@@ -59,19 +59,25 @@ class ModuleController extends ActionController
 
         $modules = array_merge($active, $inactive);
         foreach ($modules as $name => &$data) {
-            $meta = Pi::service('module')->loadMeta($data['directory'],
-                'meta');
-            $author = Pi::service('module')->loadMeta($data['directory'],
-                'author');
+            $meta = Pi::service('module')->loadMeta(
+                $data['directory'],
+                'meta'
+            );
+            $author = Pi::service('module')->loadMeta(
+                $data['directory'],
+                'author'
+            );
             $data['description'] = $meta['description'];
             $data['author'] = $author;
             $data['active'] = isset($active[$name]) ? true : false;
             if (empty($meta['logo'])) {
                 $data['logo'] = Pi::url('static/image/module.png');
             } elseif (empty($data['active'])) {
-                $data['logo'] = Pi::url('script/browse.php')
-                    . '?' . sprintf('module/%s/asset/%s',
-                        $data['directory'], $meta['logo']);
+                $data['logo'] = Pi::url('script/browse.php') . '?' . sprintf(
+                    'module/%s/asset/%s',
+                    $data['directory'],
+                    $meta['logo']
+                );
             } else {
                 $data['logo'] = Pi::service('asset')->getModuleAsset(
                     $meta['logo'],
@@ -114,8 +120,7 @@ class ModuleController extends ActionController
             //$clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
             //$meta['installed'] = in_array($directory, $modulesInstalled);
             $meta['installed'] = Pi::service('registry')->module
-                    ->read($directory)
-                ? true : false;
+                    ->read($directory) ? true : false;
             if (empty($meta['clonable']) && $meta['installed']) {
                 continue;
             }
@@ -138,12 +143,12 @@ class ModuleController extends ActionController
      */
     public function installAction()
     {
-        $directory  = _get('directory', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
-        $name       = _get('name', 'regexp',
-                array('regexp' => '/^[a-z0-9_]+$/i'))
+        $directory = _get('directory', 'regexp', array(
+            'regexp' => '/^[a-z0-9_]+$/i')
+        );
+        $name = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'))
             ?: $directory;
-        $title      = _get('title');
+        $title = _get('title');
 
         $result     = false;
         $error      = '';
@@ -160,8 +165,10 @@ class ModuleController extends ActionController
         if (!$error) {
             $meta = Pi::service('module')->loadMeta($directory, 'meta');
             if (!$meta) {
-                $error = sprintf(__('Meta data are not loaded for "%s".'),
-                    $directory);
+                $error = sprintf(
+                    __('Meta data are not loaded for "%s".'),
+                    $directory
+                );
             }
         }
         if (!$error) {
@@ -170,7 +177,8 @@ class ModuleController extends ActionController
             if (!$installed) {
                 $installedModules = $this->installedModules();
                 if (in_array($directory, $installedModules)
-                    && empty($meta['clonable'])) {
+                    && empty($meta['clonable'])
+                ) {
                     $installed = false;
                 }
             }
@@ -189,11 +197,15 @@ class ModuleController extends ActionController
             $details = $installer->getResult();
         }
         if ($result) {
-            $message = sprintf(__('Module "%s" is installed successfully.'),
-                $name ?: $directory);
+            $message = sprintf(
+                __('Module "%s" is installed successfully.'),
+                $name ?: $directory
+            );
         } elseif ($directory) {
-            $message = sprintf(__('Module "%s" is not installed.'),
-                $name ?: $directory);
+            $message = sprintf(
+                __('Module "%s" is not installed.'),
+                $name ?: $directory
+            );
         } else {
             $message = __('Module is not installed.');
         }
@@ -249,8 +261,10 @@ class ModuleController extends ActionController
                 'title'     => $meta['title'],
             ));
         }
-        $form->setAttribute('action', $this->url('',
-            array('action' => 'clone')));
+        $form->setAttribute(
+            'action',
+            $this->url('', array('action' => 'clone'))
+        );
         $this->view()->assign('title', __('Module installation'));
         $this->view()->setTemplate('system:component/form-popup');
     }
@@ -262,7 +276,7 @@ class ModuleController extends ActionController
     {
         $id         = _get('id', 'int');
         $name       = _get('name', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
+                           array('regexp' => '/^[a-z0-9_]+$/i'));
 
         $result     = false;
         $error      = '';
@@ -291,13 +305,13 @@ class ModuleController extends ActionController
         }
         if ($result) {
             $message = sprintf(__('Module "%s" is uninstalled successfully.'),
-                $row->title);
+                               $row->title);
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not uninstalled.'),
-                $row->title);
+                               $row->title);
         } elseif ($id || $name) {
             $message = sprintf(__('Module "%s" is not uninstalled.'),
-                $name ?: $id);
+                               $name ?: $id);
         } else {
             $message = __('Module is not uninstalled.');
         }
@@ -321,7 +335,7 @@ class ModuleController extends ActionController
     {
         $id         = _get('id', 'int');
         $name       = _get('name', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
+                           array('regexp' => '/^[a-z0-9_]+$/i'));
 
         $result     = false;
         $error      = '';
@@ -348,12 +362,12 @@ class ModuleController extends ActionController
         }
         if ($result) {
             $message = sprintf(__('Module "%s" is updated successfully.'),
-                $row->title);
+                               $row->title);
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not updated.'), $row->title);
         } elseif ($id || $name) {
             $message = sprintf(__('Module "%s" is not updated.'),
-                $name ?: $id);
+                               $name ?: $id);
         } else {
             $message = __('Module is not updated.');
         }
@@ -377,7 +391,7 @@ class ModuleController extends ActionController
     {
         $id         = _get('id', 'int');
         $name       = _get('name', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
+                           array('regexp' => '/^[a-z0-9_]+$/i'));
         $active     = _get('active', 'int');
 
         $result     = false;
@@ -410,26 +424,26 @@ class ModuleController extends ActionController
         if ($active) {
             if ($result) {
                 $message = sprintf(__('Module "%s" is enabled successfully.'),
-                    $row->title);
+                                   $row->title);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not enabled.'),
-                    $row->title);
+                                   $row->title);
             } elseif ($id || $name) {
                 $message = sprintf(__('Module "%s" is not enabled.'),
-                    $name ?: $id);
+                                   $name ?: $id);
             } else {
                 $message = __('Module is not enabled.');
             }
         } else {
             if ($result) {
                 $message = sprintf(__('Module "%s" is disabled successfully.'),
-                    $row->title);
+                                  $row->title);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not disabled.'),
-                    $row->title);
+                                   $row->title);
             } elseif ($id || $name) {
                 $message = sprintf(__('Module "%s" is not disabled.'),
-                    $name ?: $id);
+                                   $name ?: $id);
             } else {
                 $message = __('Module is not disabled.');
             }
@@ -464,7 +478,7 @@ class ModuleController extends ActionController
         }
         $id     = _post('id', 'int');
         $name   = _post('name', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
+                        array('regexp' => '/^[a-z0-9_]+$/i'));
         if ($id) {
             $row = Pi::model('module')->find($id);
         } else {

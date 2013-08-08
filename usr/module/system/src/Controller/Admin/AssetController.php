@@ -61,8 +61,11 @@ class AssetController extends ActionController
         $type = $this->params('type');
         $name = $this->params('name');
         if ('module' == $type) {
-            $source = sprintf('%s/%s', $type,
-                Pi::service('module')->directory($name));
+            $source = sprintf(
+                '%s/%s',
+                $type,
+                Pi::service('module')->directory($name)
+            );
         } else {
             $source = sprintf('%s/%s', $type, $name);
         }
@@ -122,7 +125,8 @@ class AssetController extends ActionController
             $directory = $fileinfo->getFilename();
             if (('module-' == substr($directory, 0, 7)
                 || 'theme-' == substr($directory, 0, 6))
-                && !isset($assetList[$directory])) {
+                && !isset($assetList[$directory])
+            ) {
                 $component = str_replace('-', '/', $directory);
                 Pi::service('asset')->remove($component);
             }
@@ -144,8 +148,10 @@ class AssetController extends ActionController
 
         if ($erroneous) {
             $status = 0;
-            $message = __('There are errors with: %s.',
-                implode(' | ', $erroneous));
+            $message = sprintf(
+                __('There are errors with: %s.'),
+                implode(' | ', $erroneous)
+            );
         } else {
             $status = 1;
             $message = __('Assets re-published successfully.');

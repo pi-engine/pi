@@ -38,15 +38,17 @@ class Renderer extends AbstractRenderer
     public function render(ElementInterface $element)
     {
         $options = array_merge($this->getOptions(), $element->getOptions());
-        $attributes = array_merge($this->getAttributes(),
-            $element->getAttributes());
+        $attributes = array_merge(
+            $this->getAttributes(),
+            $element->getAttributes()
+        );
 
         // Set up language
         if (!isset($options['language'])) {
             $options['language'] = Pi::service('i18n')->locale;
         }
-        $options['language'] =
-            strtolower(str_replace('_', '-', $options['language']));
+        $options['language'] = strtolower(str_replace('_', '-',
+                                                      $options['language']));
 
         $basePath = isset($options['base_path'])
             ? $options['base_path']
@@ -58,13 +60,15 @@ class Renderer extends AbstractRenderer
             : Pi::url('www') . '/script/editor/ckeditor/';
         $ckEditor = new Ckeditor($baseUrl);
         $ckEditor->returnOutput = true;
-        $ckEditor->textareaAttributes =
-            array_merge($ckEditor->textareaAttributes, $attributes);
+        $ckEditor->textareaAttributes = array_merge(
+            $ckEditor->textareaAttributes,
+            $attributes
+        );
 
         $this->setupFinder($ckEditor, $options);
 
         return $ckEditor->editor($element->getName(), $element->getValue(),
-            $options);
+                                 $options);
     }
 
     protected function setupFinder($ckEditor)
@@ -79,13 +83,14 @@ class Renderer extends AbstractRenderer
             $uploadPath = Pi::path('upload') . '/ckeditor';
             $uploadUrl = Pi::url('upload') . '/ckeditor';
         } elseif (false === strpos($uploadConfig['path'], ':')
-            && $uploadConfig['path']{0} !== '/')  {
+            && $uploadConfig['path']{0} !== '/'
+        )  {
             $uploadPath = Pi::path('upload') . '/'
-                . Pi::service('module')->current() . '/'
-                . $uploadConfig['path'];
+                        . Pi::service('module')->current() . '/'
+                        . $uploadConfig['path'];
             $uploadUrl = Pi::url('upload') . '/'
-                . Pi::service('module')->current() . '/'
-                . $uploadConfig['path'];
+                       . Pi::service('module')->current() . '/'
+                       . $uploadConfig['path'];
         } else {
             $uploadPath = $uploadConfig['path'];
             $uploadUrl = $uploadConfig['url'];

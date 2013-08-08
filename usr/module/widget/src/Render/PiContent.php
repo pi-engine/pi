@@ -21,6 +21,7 @@ class PiContent
             'github'    => isset($options['show_github'])
                 ? 'Commit activities at github.' : 'custom github',
         );
+
         return $block;
     }
 
@@ -30,6 +31,7 @@ class PiContent
             'subline'   => 'test',
             'github'    => 'test',
         );
+
         return $block;
     }
 

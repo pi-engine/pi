@@ -54,6 +54,7 @@ if (empty($path) || !is_readable($path)) {
     } else {
         header('HTTP/1.1 404 Not Found');
     }
+
     return;
 }
 
@@ -119,6 +120,7 @@ if (in_array($suffix, $allowedExtension)) {
         } else {
             header('HTTP/1.1 403 Forbidden');
         }
+
         return;
     }
 }
@@ -152,10 +154,12 @@ if (defined('PI_HEADER_TYPE')) {
     // For nginx X-Accel-Redirect
     if ('ACCEL_REDIRECT' === PI_HEADER_TYPE) {
         header('X-Accel-Redirect: ' . $path);
+
         return;
     // For apache X-Sendfile
     } elseif ('SENDFILE' === PI_HEADER_TYPE) {
         header('X-Sendfile: ' . $path);
+
         return;
     }
 }

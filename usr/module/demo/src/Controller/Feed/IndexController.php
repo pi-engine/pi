@@ -24,6 +24,7 @@ class IndexController extends FeedController
         $feed = array(
             'title' =>  'Feed from ' . __METHOD__,
         );
+
         return $feed;
     }
 }

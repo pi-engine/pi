@@ -9,6 +9,7 @@
  */
 
 use Pi\Setup;
+
 require dirname(__DIR__) . '/src/Wizard.php';
 
 // Set default timezone if not available in php.ini

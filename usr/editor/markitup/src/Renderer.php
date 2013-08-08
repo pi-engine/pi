@@ -31,8 +31,10 @@ class Renderer extends AbstractRenderer
     public function render(ElementInterface $element)
     {
         $options = array_merge($this->getOptions(), $element->getOptions());
-        $attributes = array_merge($this->getAttributes(),
-            $element->getAttributes());
+        $attributes = array_merge(
+            $this->getAttributes(),
+            $element->getAttributes()
+        );
         $view = $this->view;
 
         // Set up set and skin
@@ -41,21 +43,21 @@ class Renderer extends AbstractRenderer
 
         // Set up CSS
         $view->css(sprintf('%s/editor/markitup/skins/%s/style.css',
-            Pi::url('script'), $skin));
+                           Pi::url('script'), $skin));
         $view->css(sprintf('%s/editor/markitup/sets/%s/style.css',
-            Pi::url('script'), $set));
+                           Pi::url('script'), $set));
         // Set up JavaScript
         $view->jQuery();
         $view->js(Pi::url('script') . '/editor/markitup/jquery.markitup.js');
         $view->js(sprintf('%s/editor/markitup/sets/%s/set.js',
-            Pi::url('script'), $set));
+                          Pi::url('script'), $set));
 
         $parserpath = '';
         if (!empty($options['sets'][$set]['parser_path'])) {
             $parserpath = $options['sets'][$set]['parser_path'];
         } else {
             $path = sprintf('%s/editor/markitup/sets/%s/preview.php',
-                Pi::path('script'), $set);
+                            Pi::path('script'), $set);
             if (file_exists($path)) {
                 $parserpath = sprintf('~/sets/%s/preview.php', $set);
             }

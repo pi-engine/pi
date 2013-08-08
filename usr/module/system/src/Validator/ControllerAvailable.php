@@ -44,8 +44,11 @@ class ControllerAvailable extends AbstractValidator
         $module = $context['module'];
         $controller = $value;
 
-        $controllerClass = sprintf('Module\\%s\Controller\Front\\%sController',
-            ucfirst($module), ucfirst($controller));
+        $controllerClass = sprintf(
+            'Module\\%s\Controller\Front\\%sController',
+            ucfirst($module),
+            ucfirst($controller)
+        );
         if (!class_exists($controllerClass)) {
             $this->error(static::CONTROLLER_UNAVAILABLE);
             return false;

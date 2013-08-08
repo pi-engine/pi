@@ -17,6 +17,7 @@ class Page extends BasicPage
     {
         $module = $this->event->getParam('module');
         Pi::service('registry')->page->clear($module);
+
         return true;
     }
 }

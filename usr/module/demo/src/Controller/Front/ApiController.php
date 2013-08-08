@@ -16,6 +16,7 @@ class ApiController extends ActionController
     public function indexAction()
     {
         $this->view()->setTemplate(false);
+
         return sprintf('Called from %s', __METHOD__);
     }
 

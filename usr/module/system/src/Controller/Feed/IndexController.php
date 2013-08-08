@@ -44,6 +44,7 @@ class IndexController extends FeedController
             $entry['link'] = $this->getHref($row);
             $feed->entry = $entry;
         }
+
         return $feed;
     }
 
@@ -55,8 +56,8 @@ class IndexController extends FeedController
      */
     protected function getHref($row)
     {
-        $uri = $row->uri ?:
-            $this->url(
+        $uri = $row->uri
+            ?: $this->url(
                 $row->route ? $row->route : 'default',
                 array(
                     'module'        => $row->module,

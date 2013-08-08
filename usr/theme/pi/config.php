@@ -22,19 +22,19 @@ return array(
     'title'         => 'Pi Theme',
     // Author information: name, email, website
     'author'        => 'Architecture:'
-            . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>,'
-            . ' Hossein Azizabadi <djvoltan@gmail.com>;'
-            . ' Front-end: @sexnothing; Resources: @loidco',
+                     . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>,'
+                     . ' Hossein Azizabadi <djvoltan@gmail.com>;'
+                     . ' Front-end: @sexnothing; Resources: @loidco',
     // Screenshot image
     'screenshot'    => 'image/screenshot.png',
     // License or theme images and scripts
     'license'       => 'Creative Common License'
-            . ' http://creativecommons.org/licenses/by/3.0/',
+                     . ' http://creativecommons.org/licenses/by/3.0/',
     // Optional description
     'description'   => 'Pi theme for Pi Engine, HTML5 support',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => 'default',
     // Supported browsers
     'browser'       => 'Internet Explorer: 8+; Chrome: latest;'
-            . ' Firefox: latest; Safari: latest; Opera: latest;',
+                     . ' Firefox: latest; Safari: latest; Opera: latest;',
 );

@@ -21,6 +21,7 @@ class Update extends BasicUpdate
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
         parent::attachDefaultListeners();
+        
         return $this;
     }
 
@@ -53,6 +54,7 @@ EOD;
                 'message'   => 'SQL schema query failed: '
                                . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -73,6 +75,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                                . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -88,6 +91,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                                . $exception->getMessage(),
             ));
+
             return false;
         }
         // Add table field `clicks`
@@ -102,6 +106,7 @@ EOD;
                 'message'   => 'Table alter query failed: '
                                . $exception->getMessage(),
             ));
+
             return false;
         }
 
@@ -116,6 +121,7 @@ EOD;
                 'message'   => 'Table drop failed: '
                                . $exception->getMessage(),
             ));
+
             return false;
         }
 

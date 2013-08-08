@@ -28,6 +28,7 @@ class CarouselController extends WidgetController
     protected function getForm()
     {
         $this->form = $this->form ?: new BlockForm('block');
+
         return $this->form;
     }
 
@@ -36,6 +37,7 @@ class CarouselController extends WidgetController
         if (!$this->urlRoot) {
             $this->urlRoot = Pi::url('upload') . '/' . $this->getModule();
         }
+
         return $this->urlRoot;
     }
 
@@ -71,6 +73,7 @@ class CarouselController extends WidgetController
             $this->deleteImages($imageList);
 
         }
+
         return $status;
     }
 
@@ -213,6 +216,7 @@ class CarouselController extends WidgetController
             }
             $items[] = $item;
         }
+
         return json_encode($items);
     }
 
@@ -234,6 +238,7 @@ class CarouselController extends WidgetController
 
             $items[] = $item;
         }
+
         return json_encode($items);
     }
 
@@ -261,12 +266,14 @@ class CarouselController extends WidgetController
             }
             //$values[] = $item;
         }
+
         return $data;
     }
 
     protected function isAbsoluteUrl($link)
     {
         $uri = new Uri($link);
+
         return $uri->isAbsolute();
     }
 }

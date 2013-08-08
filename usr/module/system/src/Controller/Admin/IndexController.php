@@ -26,17 +26,11 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $this->redirect()->toRoute('',
-            array('controller' => 'dashboard', 'action' => 'system'));
-        return;
+        $this->redirect()->toRoute(
+            '',
+            array('controller' => 'dashboard', 'action' => 'system')
+        );
 
-        $mode = $this->params('mode');
-        if ($mode) {
-            $this->redirect()->toRoute('',
-                array('controller' => 'dashboard', 'mode' => $mode));
-        } else {
-            $this->redirect()->toRoute('', array('controller' => 'dashboard'));
-        }
         return;
     }
 }

@@ -30,15 +30,22 @@ class RegisterController extends ActionController
     public function indexAction()
     {
         if (Pi::config('register_disable', 'user')) {
-            $this->jump(array('route' => 'home'),
-                __('Registration is disabled. Please come back later.'), 5);
+            $this->jump(
+                array('route' => 'home'),
+                __('Registration is disabled. Please come back later.'),
+                5
+            );
+
             return;
         }
 
         // If already logged in
         if (Pi::service('authentication')->hasIdentity()) {
-            $this->redirect()->toRoute('user',
-                array('controller' => 'account'));
+            $this->redirect()->toRoute(
+                'user',
+                array('controller' => 'account')
+            );
+
             return;
         }
 
@@ -69,6 +76,7 @@ class RegisterController extends ActionController
     {
         if (Pi::config('register_disable', 'user')) {
             $this->redirect()->toRoute('home');
+
             return;
         }
 
@@ -82,9 +90,12 @@ class RegisterController extends ActionController
         $form->setInputFilter(new RegisterFilter);
 
         if (!$form->isValid()) {
-            $this->view()->assign('message',
-                __('Invalid input, please try again.'));
+            $this->view()->assign(
+                'message',
+                __('Invalid input, please try again.')
+            );
             $this->renderForm($form);
+
             return;
         }
         $values = $form->getData();
@@ -103,6 +114,7 @@ class RegisterController extends ActionController
                 __('The account is not created in database, please try again.')
             );
             $this->renderForm($form);
+
             return;
         }
 
@@ -118,8 +130,10 @@ class RegisterController extends ActionController
     public function getForm()
     {
         $form = new RegisterForm('register');
-        $form->setAttribute('action',
-            $this->url('', array('action' => 'process')));
+        $form->setAttribute(
+            'action',
+            $this->url('', array('action' => 'process'))
+        );
 
         return $form;
     }
