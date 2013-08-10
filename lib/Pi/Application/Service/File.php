@@ -346,9 +346,12 @@ class File extends AbstractService
      *
      * @throws Exception When symlink fails
      */
-    public function symlink($originDir, $targetDir,
-        $copyOnWindows = true, $override = false)
-    {
+    public function symlink(
+        $originDir,
+        $targetDir,
+        $copyOnWindows = true,
+        $override = false
+    ) {
         if (!function_exists('symlink')
             || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)
         ) {
@@ -533,7 +536,7 @@ class File extends AbstractService
             || (strlen($file) > 3 && ctype_alpha($file[0])
                 && substr($file, 1, 1) === ':'
                 && (strspn($file, '/\\', 2, 1))
-            )
+               )
             || null !== parse_url($file, PHP_URL_SCHEME)
         ) {
             return true;

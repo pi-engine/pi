@@ -100,6 +100,7 @@ class Resource implements ListenerAggregateInterface
             }
         }
         $this->event->setParam('result', $result);
+
         return;
     }
 
@@ -111,22 +112,22 @@ class Resource implements ListenerAggregateInterface
     protected function resourceList()
     {
         $resourceList = array();
-        $iterator = new \DirectoryIterator(__DIR__ . "/Resource");
+        $iterator = new \DirectoryIterator(__DIR__ . '/Resource');
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isFile()) {
                 continue;
             }
             $fileName = $fileinfo->getFilename();
-            if (!preg_match("/^([^\.]+)\.php$/", $fileName, $matches)) {
+            if (!preg_match('/^([^\.]+)\.php$/', $fileName, $matches)) {
                 continue;
             }
             $resource = strtolower($matches[1]);
-            if ($resource == "config" || $resource == 'abstractresource') {
+            if ($resource == 'config' || $resource == 'abstractresource') {
                 continue;
             }
             $resourceList[] = $resource;
         }
-        $resourceList[] = "config";
+        $resourceList[] = 'config';
 
         $config = $this->event->getParam('config');
         if (!empty($config['maintenance']['resource'])) {

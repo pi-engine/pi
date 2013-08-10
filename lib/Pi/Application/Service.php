@@ -77,6 +77,7 @@ class Service
     public function hasService($name)
     {
         $name = strtolower($name);
+        
         return isset(static::$services[$name]) && static::$services[$name];
     }
 

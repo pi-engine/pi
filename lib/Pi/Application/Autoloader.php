@@ -403,7 +403,7 @@ class Autoloader
                 static::NS_SEPARATOR,
                 DIRECTORY_SEPARATOR,
                 $class
-            )
+              )
             . '.php';
     }
 

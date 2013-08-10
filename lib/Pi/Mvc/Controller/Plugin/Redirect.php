@@ -86,8 +86,9 @@ class Redirect extends ZendRedirect
         }
         $this->controller->view()->setTemplate(false);
 
-        $response = parent::toRoute($route, $params,
-            $options, $reuseMatchedParams);
+        $response = parent::toRoute(
+            $route, $params, $options, $reuseMatchedParams
+        );
         if ($this->responseCode) {
             $response->setStatusCode($this->responseCode);
             $this->responseCode = null;

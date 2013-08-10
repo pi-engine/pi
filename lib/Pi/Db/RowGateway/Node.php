@@ -14,7 +14,7 @@ use Pi\Db\Table\AbstractTableGateway;
 /**
  * Node row gateway class for nested rowset
  *
- * @see \Pi\Db\Table\AbstractNest
+ * @see Pi\Db\Table\AbstractNest
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Node extends RowGateway

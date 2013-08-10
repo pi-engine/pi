@@ -335,7 +335,7 @@ class TreeRouteStack extends RouteStack
                 $this->routesExtra->insert($key, $route, $priority);
             }
         }
-        
+
         return $this->routesExtra->get($name);
     }
 
@@ -346,7 +346,7 @@ class TreeRouteStack extends RouteStack
      * For a non-system route, transliterate `.<route-name>`
      * to `<module-name>-<route-name>`
      *
-     * @see \Pi\Application\Installer\Resource\Route::canonize()
+     * @see Pi\Application\Installer\Resource\Route::canonize()
      *      for route name canonization
      * @param string $name
      * @return string

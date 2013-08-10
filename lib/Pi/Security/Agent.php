@@ -17,7 +17,7 @@ namespace Pi\Security;
 class Agent extends AbstractAdapter
 {
     /** @var string */
-    const MESSAGE = "Access denied by HTTP_USER_AGENT check";
+    const MESSAGE = 'Access denied by HTTP_USER_AGENT check';
 
     /**
      * {@inheritDoc}
@@ -45,7 +45,7 @@ class Agent extends AbstractAdapter
         // Check bad bots
         if (!empty($options['bot'])) {
             $pattern = is_array($options['bot'])
-                ? implode("|", $options['bot']) : $options['bot'];
+                ? implode('|', $options['bot']) : $options['bot'];
             $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
             return $status;
         }

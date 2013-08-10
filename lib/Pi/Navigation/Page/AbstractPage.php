@@ -66,6 +66,7 @@ abstract class AbstractPage extends ZendAbstractPage
                         )
                     );
                 }
+
                 return $page;
             }
         }

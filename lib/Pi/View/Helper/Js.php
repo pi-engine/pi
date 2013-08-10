@@ -26,7 +26,7 @@ use Pi;
  *
  *  // Load specific file with attributes
  *  $this->js('some.js',
- *      array('conditional' => '...', 'postion' => 'prepend'));
+ *            array('conditional' => '...', 'postion' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->js(array(

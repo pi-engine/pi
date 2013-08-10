@@ -24,8 +24,8 @@ use Zend\View\Helper\AbstractHelper;
  *  $this->i18nModule('block', null, 'en');
  * ```
  *
- * @see \Pi\Application\Service\I18n
- * @see \Pi\Application\Service\Asset
+ * @see Pi\Application\Service\I18n
+ * @see Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class I18nModule extends AbstractHelper

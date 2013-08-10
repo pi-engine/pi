@@ -20,7 +20,7 @@ use Pi;
  *    - Source path: `module/demo/asset` or `theme/default/module/demo/asset`
  * 2. Remove module published assets from `www/asset/<encrypted path>/`
  *
- * @see \Pi\Application\Service\Asset for asset maintenance
+ * @see Pi\Application\Service\Asset for asset maintenance
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractResource
@@ -93,7 +93,7 @@ class Asset extends AbstractResource
     public function deactivateAction()
     {
         return;
-        
+
         $module = $this->event->getParam('module');
         // Remove published assets
         Pi::service('asset')->remove('module/' . $module);

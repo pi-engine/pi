@@ -115,6 +115,7 @@ class Form extends ZendForm
     public function setGroups(array $groups)
     {
         $this->groups = $groups;
+
         return $this;
     }
 

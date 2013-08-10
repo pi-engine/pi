@@ -15,8 +15,8 @@ use Pi;
 /**
  * Event/Listener list
  *
- * @see \Pi\Application\Installer\Resource\Event for event specifications
- * @see \Pi\Application\Service\Event for event trigger
+ * @see Pi\Application\Installer\Resource\Event for event specifications
+ * @see Pi\Application\Service\Event for event trigger
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractRegistry

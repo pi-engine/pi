@@ -45,9 +45,8 @@ class I18n extends AbstractResource
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->getTranslator();
             if (!empty($this->options['translator']['global'])) {
-                foreach (
-                    (array) $this->options['translator']['global']
-                    as $domain
+                foreach ((array) $this->options['translator']['global']
+                         as $domain
                 ) {
                     $translator->load($domain);
                 }

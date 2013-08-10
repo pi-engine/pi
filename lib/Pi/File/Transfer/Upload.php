@@ -98,7 +98,7 @@ class Upload extends Transfer
      *
      * @param string|bool $value New name or renaming strategy
      * @return $this
-     * @see \Pi\Filter\File\Rename for supported renaming strategy
+     * @see Pi\Filter\File\Rename for supported renaming strategy
      */
     public function setRename($value = '')
     {

@@ -315,7 +315,7 @@ class Host
      *
      * @param string $url
      * @return string
-     * @see \Pi::path()
+     * @see Pi::path()
      */
     public function path($url)
     {
@@ -370,7 +370,7 @@ class Host
      * @param bool      $absolute
      *  Convert to full URI; Default as relative URI with no hostname
      * @return string
-     * @see \Pi::url()
+     * @see Pi::url()
      */
     public function url($url, $absolute = false)
     {

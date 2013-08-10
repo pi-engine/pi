@@ -24,7 +24,7 @@ class Role extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $model = Pi::model("acl_role");
+        $model = Pi::model('acl_role');
         $ancestors = $model->getAncestors($options['role']);
 
         return $ancestors;

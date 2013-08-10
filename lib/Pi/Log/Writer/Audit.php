@@ -152,12 +152,12 @@ class Audit extends AbstractWriter
             $segs = explode('.', $data['ip']);
             if (!in_array($segs[0] . '.*', $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.*',
-                    $this->options['ip'])
+                             $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.*',
-                    $this->options['ip'])
+                             $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2]
-                        . '.' . $segs[3],
-                    $this->options['ip'])
+                                . '.' . $segs[3],
+                             $this->options['ip'])
             ) {
                 return $this->extra;
             }
@@ -185,10 +185,10 @@ class Audit extends AbstractWriter
             if (!empty($this->options['page'])) {
                 if (!in_array($data['module'], $this->options['page'])
                     && !in_array($data['module'] . '-' . $data['controller'],
-                        $this->options['page'])
+                                 $this->options['page'])
                     && !in_array($data['module'] . '-' . $data['controller']
-                            . '-' . $data['action'],
-                        $this->options['page'])
+                                    . '-' . $data['action'],
+                                 $this->options['page'])
                 ) {
                     return $this->extra;
                 }

@@ -173,8 +173,12 @@ abstract class AbstractAdapter implements BindInterface
      * @return int[]
      * @api
      */
-    abstract public function getIds($condition = array(),
-        $limit = 0, $offset = 0, $order = '');
+    abstract public function getIds(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = ''
+    );
 
     /**
      * Get user count subject to conditions
@@ -326,7 +330,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param string        $identity
      * @param string        $credential
-     * @return \Pi\Authentication\Result
+     * @return Pi\Authentication\Result
      * @api
      */
     abstract public function authenticate($identity, $credential);

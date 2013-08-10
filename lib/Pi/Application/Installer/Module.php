@@ -162,6 +162,7 @@ class Module
                 break;
             }
         }
+
         return $status;
     }
 
@@ -260,7 +261,7 @@ class Module
     public function updateMeta(Event $e)
     {
         Pi::service('module')->createMeta();
-        
+
         return true;
     }
 

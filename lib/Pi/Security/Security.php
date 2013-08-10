@@ -114,5 +114,4 @@ class Security
 
         return null;
     }
-    /*#@-*/
 }

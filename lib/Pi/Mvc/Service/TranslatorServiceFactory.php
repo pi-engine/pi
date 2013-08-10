@@ -29,7 +29,7 @@ class TranslatorServiceFactory implements FactoryInterface
      * as the consistent translator API collection
      *
      * @param  ServiceLocatorInterface $serviceLocator
-     * @return \Pi\I18n\Translator
+     * @return Pi\I18n\Translator
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

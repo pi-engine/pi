@@ -70,12 +70,11 @@ class Debugger implements FormatterInterface
                 $location .= sprintf('#%d', $event['extra']['line']);
             }
             if (!empty($event['extra']['file'])) {
-                /**#@++
-                * Remove path prefix for security concerns
-                */
-                $location .= sprintf(' in %s',
-                    Pi::service('security')->path($event['extra']['file']));
-                /**#@-*/
+                // Remove path prefix for security concerns
+                $location .= sprintf(
+                    ' in %s',
+                    Pi::service('security')->path($event['extra']['file'])
+                );
             }
             $event['location'] = $location;
             unset($event['extra']);

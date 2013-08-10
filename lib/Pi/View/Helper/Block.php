@@ -136,8 +136,8 @@ class Block extends AbstractHelper
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
             $renderCache = Pi::service('render')->setType('block');
             $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $block['module'] ?: 'system')
-                    ->meta('ttl', $block['cache_ttl']);
+                        ->meta('namespace', $block['module'] ?: 'system')
+                        ->meta('ttl', $block['cache_ttl']);
             $blockData = $renderCache->cachedContent();
             if (null !== $blockData) {
                 $blockData = json_decode($blockData, true);
@@ -297,7 +297,7 @@ class Block extends AbstractHelper
             }
             $result[] = array(
                 'caption'   => !empty($tab['caption'])
-                    ? $tab['caption'] : $data['title'],
+                               ? $tab['caption'] : $data['title'],
                 'link'      => !empty($tab['link']) ? $tab['link'] : '',
                 'content'   => $data['content'],
             );

@@ -73,7 +73,8 @@ class Result extends BaseResult
         if (null === $column) {
             $return = $this->data;
         } else {
-            $return = isset($this->data[$column]) ? $this->data[$column] : null;
+            $return = isset($this->data[$column])
+                ? $this->data[$column] : null;
         }
 
         return $return;

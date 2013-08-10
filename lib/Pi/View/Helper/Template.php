@@ -24,9 +24,9 @@ use Zend\View\Helper\AbstractHelper;
  *  include $this->template('header.phtml');
  * ```
  *
- * @see \Pi\View\Resolver\ModuleTemplate
- * @see \Pi\View\Resolver\ThemeTemplate
- * @see \Pi\View\Resolver\ComponentTemplate
+ * @see Pi\View\Resolver\ModuleTemplate
+ * @see Pi\View\Resolver\ThemeTemplate
+ * @see Pi\View\Resolver\ComponentTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Template extends AbstractHelper

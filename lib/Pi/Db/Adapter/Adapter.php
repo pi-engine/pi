@@ -22,14 +22,15 @@ class Adapter extends ZendAdapter
     /**
      * {@inheritDoc}
      */
-    public function query($sql,
-        $parametersOrQueryMode = self::QUERY_MODE_PREPARE)
-    {
+    public function query(
+        $sql,
+        $parametersOrQueryMode = self::QUERY_MODE_PREPARE
+    ) {
         if (is_string($parametersOrQueryMode)
             && in_array(
                 $parametersOrQueryMode,
                 array(self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE)
-            )
+              )
         ) {
             $mode = $parametersOrQueryMode;
             $parameters = null;

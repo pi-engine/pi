@@ -23,7 +23,7 @@ use Pi;
  *  include $this->templateComponent('form-popup');
  * ```
  *
- * @see \Pi\View\Resolver\ModuleTemplate
+ * @see Pi\View\Resolver\ModuleTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateComponent extends TemplateModule

@@ -18,7 +18,7 @@ namespace Pi\Security;
 class Xss extends AbstractAdapter
 {
     /** @var string */
-    const MESSAGE = "Access denied by XSS check";
+    const MESSAGE = 'Access denied by XSS check';
 
     /**
      * To filter malicious code
@@ -169,7 +169,7 @@ class Xss extends AbstractAdapter
 
         if ($filter) {
             $content = preg_replace($patterns, $replaces, $content);
-            
+
             return $content;
         } else {
             return null;

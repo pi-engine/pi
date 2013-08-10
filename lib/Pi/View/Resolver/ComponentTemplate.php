@@ -24,9 +24,9 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *  - Component custom templates
  *    `theme/default/lib/Pi/Captcha/Image/template/`
  *
- * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see \Pi\Application\Service\Asset for asset skeleton
+ * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ComponentTemplate implements ResolverInterface

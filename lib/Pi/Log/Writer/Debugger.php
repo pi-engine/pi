@@ -452,8 +452,7 @@ EOT;
 EOT;
 
         $cookiePath = ($baseUrl = Pi::host()->get('baseUrl'))
-                        ? rtrim($baseUrl, '/')
-                    . '/' : '/';
+                        ? rtrim($baseUrl, '/') . '/' : '/';
         // Use heredoc for JavaScript contents
         $scripts_js =
 <<<"EOT"

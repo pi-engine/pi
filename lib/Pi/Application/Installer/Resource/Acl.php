@@ -640,7 +640,7 @@ class Acl extends AbstractResource
 
         $privileges_exist = $modelPrivilege->select(array(
             'resource' => $resource['id'],
-            ));
+        ));
         $privileges_new = isset($resource['privileges'])
             ? $resource['privileges'] : array();
         $privileges_remove = array();
@@ -732,7 +732,7 @@ class Acl extends AbstractResource
             unset($data['section']);
             $modelPrivilege->delete($data);
         }
-        
+
         return true;
     }
 }

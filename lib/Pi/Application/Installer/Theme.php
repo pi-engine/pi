@@ -16,7 +16,7 @@ use Zend\EventManager\Event;
 /**
  * Theme maintenance
  *
- * @see \Pi\Application\Service\Asset for asset maintenance
+ * @see Pi\Application\Service\Asset for asset maintenance
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Theme
@@ -274,7 +274,7 @@ class Theme
             'update'    => isset($data['update']) ? $data['update'] : time(),
             'type'      => !empty($data['type']) ? $data['type'] : 'both',
         );
-        
+
         return $return;
     }
 

@@ -32,7 +32,7 @@ abstract class AbstractResource
 
     /**
      * Pi Application handler
-     * @var \Pi\Mvc\Application
+     * @var Pi\Mvc\Application
      */
     protected $application;
 

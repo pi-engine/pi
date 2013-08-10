@@ -72,8 +72,12 @@ class Render extends AbstractResource
                 array($this, 'checkAction'),
                 999
             );
-            $sharedEvents->attach('controller',
-                MvcEvent::EVENT_DISPATCH, array($this, 'saveAction'), -999);
+            $sharedEvents->attach(
+                'controller',
+                MvcEvent::EVENT_DISPATCH,
+                array($this, 'saveAction'),
+                -999
+            );
         }
     }
 
@@ -121,9 +125,9 @@ class Render extends AbstractResource
             return;
         }
 
-        $renderCache = $this->renderCache('page');
-        $cacheKey = md5($e->getRequest()->getRequestUri());
-        $namespace = $e->getRouteMatch()->getParam('module');
+        $renderCache    = $this->renderCache('page');
+        $cacheKey       = md5($e->getRequest()->getRequestUri());
+        $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
                     ->meta('namespace', $namespace)
                     ->meta('ttl', $cacheMeta['ttl']);
@@ -256,7 +260,7 @@ class Render extends AbstractResource
             $content = (array) $response->getVariables();
             if (!$this->isCachable($content)) {
                 trigger_error('Action content is not cachable.',
-                    E_USER_WARNING);
+                              E_USER_WARNING);
                 return;
             }
         } elseif (is_scalar($response)) {
@@ -303,6 +307,7 @@ class Render extends AbstractResource
         } else {
             return $cacheInfo;
         }
+        
         return $cacheInfo;
     }
 
@@ -325,7 +330,7 @@ class Render extends AbstractResource
                 return false;
             }
         }
-        
+
         return true;
     }
 }

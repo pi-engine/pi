@@ -26,7 +26,7 @@ use Pi;
  *      'section'   => 'front',
  *      // order to call
  *      'priority'  => -999,
- *      // Type defined in \Pi\Mvc\Router\Route
+ *      // Type defined in `Pi\Mvc\Router\Route`
  *      'type'      => 'Standard',
  *      'options'   =>array(
  *          // Used as prefix, which is different from Zend routes
@@ -44,7 +44,7 @@ use Pi;
  * );
  * ```
  *
- * @see \Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute()
+ * @see Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute()
  *      for route name utilization
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

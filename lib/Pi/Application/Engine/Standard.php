@@ -188,6 +188,7 @@ class Standard extends AbstractEngine
                     ? true : $result;
             }
         }
+
         return $this->resources['instances'][$resource];
     }
 }

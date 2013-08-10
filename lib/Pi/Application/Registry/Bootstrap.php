@@ -33,7 +33,7 @@ class Bootstrap extends AbstractRegistry
         foreach ($rowset as $row) {
             $module = $row->module;
             $directory = Pi::service('module')->directory($module);
-            $class = sprintf('Module\\%s\\Bootstrap', ucfirst($directory));
+            $class = sprintf('Module\\%s\Bootstrap', ucfirst($directory));
             $configs[$module] = $class;
         }
 

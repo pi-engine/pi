@@ -120,6 +120,7 @@ abstract class AbstractNest extends AbstractTableGateway
         } else {
             $result = $this->find($node);
         }
+
         return $result;
     }
 
@@ -248,6 +249,7 @@ abstract class AbstractNest extends AbstractTableGateway
             );
             $this->adapter->query($sql, 'execute');
         }
+
         return true;
     }
 
@@ -264,7 +266,7 @@ abstract class AbstractNest extends AbstractTableGateway
         $select = $this->select()
             ->where(array($this->quoteColumn('left') . ' >= ?' => $start))
             ->where(array($this->quoteColumn('right') . ' >= ?' => $start),
-                'OR')
+                    'OR')
             ->order($this->column['left'] . ' ASC');
         $rowRight = $this->selectWith($select)->current();
         if (!$rowRight) {
@@ -403,13 +405,15 @@ abstract class AbstractNest extends AbstractTableGateway
             ->from($node)
             ->join(
                 array($parent => $this->table),
-                sprintf('%s.%s BETWEEN %s.%s AND %s.%s',
+                sprintf(
+                    '%s.%s BETWEEN %s.%s AND %s.%s',
                     $parent,
                     $this->column('left'),
                     $node,
                     $this->column('left'),
                     $node,
-                    $this->column('right'))
+                    $this->column('right')
+                )
               )
             ->group($parent . '.' . $this->primaryKeyColumn);
         $where = array();
@@ -726,7 +730,8 @@ abstract class AbstractNest extends AbstractTableGateway
     public function graft($nodes, $objective = 0, $position = 'lastOf')
     {
         if (empty($nodes)
-            || !$node = $this->getPosition($objective, $position)) {
+            || !$node = $this->getPosition($objective, $position)
+        ) {
             return false;
         }
         $node_left = 1;
@@ -1013,7 +1018,7 @@ abstract class AbstractNest extends AbstractTableGateway
                 }
                 $stack = array();
                 $select->where(array(
-                    $this->quoteColumn('left') . ' > ?' => $row->left
+                        $this->quoteColumn('left') . ' > ?' => $row->left
                     ))
                     ->where(array(
                         $this->quoteColumn('right') . ' < ?' => $row->right

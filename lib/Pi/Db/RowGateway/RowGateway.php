@@ -54,9 +54,11 @@ class RowGateway extends AbstractRowGateway
      * @param string|\Zend\Db\Sql\TableIdentifier $table
      * @param Adapter|Sql $adapterOrSql
      */
-    public function __construct($primaryKeyColumn, $table,
-        $adapterOrSql = null)
-    {
+    public function __construct(
+        $primaryKeyColumn,
+        $table,
+        $adapterOrSql = null
+    ) {
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
 
@@ -324,7 +326,8 @@ class RowGateway extends AbstractRowGateway
 
             $result = $statement->execute();
             if (($primaryKeyValue = $result->getGeneratedValue())
-                && count($this->primaryKeyColumns) == 1) {
+                && count($this->primaryKeyColumns) == 1
+            ) {
                 $this->primaryKeyData = array(
                     $this->primaryKeyColumns[0] => $primaryKeyValue
                 );

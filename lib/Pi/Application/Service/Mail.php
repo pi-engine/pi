@@ -240,7 +240,7 @@ class Mail extends AbstractService
     /**
      * Create message from template
      *
-     * @see \Pi\Service\I18n for template path
+     * @see Pi\Service\I18n for template path
      *
      * @param string|array $template
      * @param array $vars
@@ -419,8 +419,7 @@ class Mail extends AbstractService
     public function mimeMessage($data, $type = null)
     {
         $_this = $this;
-        $createPart = function ($content) use ($_this)
-        {
+        $createPart = function ($content) use ($_this) {
             if (is_string($content)) {
                 $content = new Mime\Part($content);
             } elseif (is_array($content)) {

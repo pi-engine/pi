@@ -121,7 +121,8 @@ class FormRow extends ZendFormRow
                      */
                     $elementDescription,
                     /**#@-*/
-                    $elementString);
+                    $elementString
+                );
             } else {
                 if ($element->hasAttribute('id')) {
                     $labelOpen = $labelHelper($element);

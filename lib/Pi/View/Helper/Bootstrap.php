@@ -26,7 +26,7 @@ use Pi;
  *
  *  // Load specific file with attributes
  *  $this->bootstrap('some.js',
- *      array('conditional' => '...', 'position' => 'prepend'));
+ *                   array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->bootstrap(array(

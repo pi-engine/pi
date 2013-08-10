@@ -26,7 +26,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * User APIs
  *
- * Basic APIs defined by `\Pi\User\Adapter\AbstractAdapter`
+ * Basic APIs defined by `Pi\User\Adapter\AbstractAdapter`
  * called via magic method __call()
  * ----------------------------------------------------------------------------
  *
@@ -113,7 +113,7 @@ use Pi\User\Resource\AbstractResource;
  *   - relation([$id])->add($uid, $relation)
  *   - relation([$id])->delete([$uid[, $relation]])
  *
- * @see \Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
+ * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractService
@@ -336,7 +336,7 @@ class User extends AbstractService
     /**
      * Method adapter allows a shortcut
      *
-     * Call APIs defined in {@link \Pi\User\Adapter\AbstractAdapter}
+     * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
      *
      * @param  string  $method
      * @param  array  $args

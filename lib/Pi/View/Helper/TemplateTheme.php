@@ -22,7 +22,7 @@ use Zend\View\Helper\AbstractHelper;
  *  include $this->templateTheme('header.phtml');
  * ```
  *
- * @see \Pi\View\Resolver\ThemeTemplate
+ * @see Pi\View\Resolver\ThemeTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateTheme extends AbstractHelper

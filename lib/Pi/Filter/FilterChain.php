@@ -29,6 +29,7 @@ class FilterChain extends ZendFilterChain
         if (!$this->plugins) {
             $this->setPluginManager(new FilterPluginManager());
         }
+
         return $this->plugins;
     }
 }

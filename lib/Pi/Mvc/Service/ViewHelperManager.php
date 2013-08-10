@@ -152,9 +152,11 @@ class ViewHelperManager extends HelperPluginManager
      * @param  bool $usePeeringServiceManagers
      * @return Helper\HelperInterface
      */
-    public function get($name, $options = array(),
-        $usePeeringServiceManagers = true)
-    {
+    public function get(
+        $name,
+        $options = array(),
+        $usePeeringServiceManagers = true
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list

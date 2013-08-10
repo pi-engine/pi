@@ -53,7 +53,7 @@ class Database extends AbstractService
     /**
      * Creates a database handler
      *
-     * @see \Pi\Application\Db
+     * @see Pi\Application\Db
      * @param array $options
      * @return Db
      */

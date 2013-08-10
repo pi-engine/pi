@@ -117,8 +117,7 @@ namespace Pi\Utility
             }
 
             // Canonize filter flag
-            $filterFlag = function ($name)
-            {
+            $filterFlag = function ($name) {
                 $flag = null;
                 $filterName = 'FILTER_FLAG_' . strtoupper($name);
                 if (defined($filterName)) {

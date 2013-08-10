@@ -18,7 +18,7 @@ use Pi\Markup\Renderer\AbstractRenderer;
  *
  * Renders content
  *
- * @see \Pi\Application\Service\Markup
+ * @see Pi\Application\Service\Markup
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Markup
@@ -113,7 +113,7 @@ class Markup
     {
         $parser = ucfirst($parserName);
         if (!isset(static::$parsers[$parser])) {
-            $className = '%s\\Markup\\Parser\\' . $parser;
+            $className = '%s\Markup\Parser\\' . $parser;
             $class = sprintf($className, 'Pi');
             if (!class_exists($class)) {
                 $class = sprintf($className, 'Zend');
@@ -142,7 +142,7 @@ class Markup
     {
         $renderer = ucfirst($renderer);
         if (!isset(static::$renderers[$renderer])) {
-            $className = '%s\\Markup\\Renderer\\' . $renderer;
+            $className = '%s\Markup\Renderer\\' . $renderer;
             $class = sprintf($className, 'Pi');
             if (!class_exists($class)) {
                 $class = sprintf($className, 'Zend');
@@ -183,9 +183,12 @@ class Markup
      * @param array $renderOptions
      * @return string
      */
-    public static function render($content, $renderer, $parser = false,
-        $renderOptions = array())
-    {
+    public static function render(
+        $content,
+        $renderer,
+        $parser = false,
+        $renderOptions = array()
+    ) {
         if (!$renderer) {
             $renderer = static::getRenderer();
         } elseif (!$renderer instanceof AbstractRenderer) {

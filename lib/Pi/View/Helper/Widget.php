@@ -18,20 +18,26 @@ use Pi\Db\RowGateway\RowGateway as BlockModel;
  * Usage inside a pthml template
  *
  * ```
- *  $this->widget('block-name',
+ *  $this->widget(
+ *      'block-name',
  *      array('title_hidden' => 1, 'opt1' => 'val1', 'opt2' => 'val2',
- *          'cache_ttl' => 300, 'cache_level' => 'role'));
- *  $this->widget('block-name',
- *      array('link' => '/link/to/a/URL', 'opt1' => 'val1', 'opt2' => 'val2'));
- *  $this->widget('block-name',
+ *            'cache_ttl' => 300, 'cache_level' => 'role')
+ *  );
+ *  $this->widget(
+ *      'block-name',
+ *      array('link' => '/link/to/a/URL', 'opt1' => 'val1', 'opt2' => 'val2')
+ *  );
+ *  $this->widget(
+ *      'block-name',
  *      array('style' => 'specified-css-class', 'opt1' => 'val1',
- *          'opt2' => 'val2'));
+ *            'opt2' => 'val2')
+ *  );
  *  $this->widget(24, array('opt1' => 'val1', 'opt2' => 'val2'));
  *  $this->widget()->load(24);
  *  $this->widget()->render($blockModel);
  * ```
  *
- * @see \Pi\Application\Registry\Block
+ * @see Pi\Application\Registry\Block
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Widget extends Block

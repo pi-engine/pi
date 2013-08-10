@@ -17,7 +17,7 @@ namespace Pi\Security;
 class Dos extends AbstractAdapter
 {
     /** @var string */
-    const MESSAGE = "Access denied by DoS check";
+    const MESSAGE = 'Access denied by DoS check';
 
     /**
      * {@inheritDoc}

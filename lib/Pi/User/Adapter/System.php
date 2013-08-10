@@ -85,10 +85,10 @@ class System extends AbstractAdapter
      * {@inheritDoc}
      */
     public function getIds(
-        $condition = array(),
-        $limit = 0,
-        $offset = 0,
-        $order = ''
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = ''
     ) {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }

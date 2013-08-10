@@ -14,7 +14,7 @@ use Pi\Db\Table\AbstractTableGateway;
 /**
  * Vertex row gateway class for DAG rowset
  *
- * @see \Pi\Db\Table\AbstractDag
+ * @see Pi\Db\Table\AbstractDag
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Vertex extends RowGateway

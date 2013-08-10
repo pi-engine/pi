@@ -17,7 +17,7 @@ namespace Pi\Security;
 abstract class AbstractAdapter
 {
     /** @var string Prompt message */
-    const MESSAGE = "DEFINE SPECIFIC MESSAGE";
+    const MESSAGE = 'DEFINE SPECIFIC MESSAGE';
 
     /**
      * Check against security settings

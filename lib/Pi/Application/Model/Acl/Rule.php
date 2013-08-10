@@ -57,7 +57,7 @@ class Rule extends Model
      * @param array $roles
      * @param array $resources
      * @param string|null $privilege
-     * @return \Pi\Db\RowGateway\RowGateway
+     * @return Pi\Db\RowGateway\RowGateway
      */
     public function getRules(
         $roles      = array(),

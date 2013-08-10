@@ -102,7 +102,7 @@ class ConfigForm extends BaseForm
     /**
      * Add input filter
      *
-     * @param \Pi\Db\RowGateway\RowGateway $config
+     * @param Pi\Db\RowGateway\RowGateway $config
      */
     protected function addFilter($config)
     {

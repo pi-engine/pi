@@ -60,7 +60,7 @@ class Taxonomy extends AbstractService
      *
      * @param array $data
      * @return void
-     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
+     * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
     protected function canonizeTaxon(&$data)
     {
@@ -153,7 +153,7 @@ class Taxonomy extends AbstractService
      *                  string: description     Domain description, optional.
      * @param string $domainName
      * @return bool
-     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
+     * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
     public function add($taxonData, $domainName = null)
     {
@@ -223,7 +223,7 @@ class Taxonomy extends AbstractService
      *                  string: description     Domain description, optional.
      * @param string $domainName
      * @return bool
-     * @see \Pi\Db\Table\AbstractNest::convertFromNested()
+     * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
     public function update($taxonData, $domainName = null)
     {
@@ -359,8 +359,10 @@ class Taxonomy extends AbstractService
             $id = $domainData['id'];
             $row = Pi::model('taxonomy_domain')->find($id);
         } else {
-            $row = Pi::model('taxonomy_domain')->find($domainData['name'],
-                'name');
+            $row = Pi::model('taxonomy_domain')->find(
+                $domainData['name'],
+                'name'
+            );
         }
         $data = $this->canonizeDomain($domainData);
         $row->assign($data);

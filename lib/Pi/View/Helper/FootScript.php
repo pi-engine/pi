@@ -25,7 +25,7 @@ use Pi;
  *  }
  * ```
  *
- * @see \Pi\View\Helper\HeadScript for details.
+ * @see Pi\View\Helper\HeadScript for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class FootScript extends HeadScript

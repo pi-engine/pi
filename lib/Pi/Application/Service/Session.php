@@ -147,7 +147,7 @@ class Session extends AbstractService
                 || (isset($metadata['EXPIRE_HOPS'])
                     && $ts > $metadata['EXPIRE_HOPS']['ts']
                     && 0 >= $metadata['EXPIRE_HOPS']['hops']
-                )
+                   )
             ) {
                 $storage->clear($name);
             }

@@ -40,8 +40,11 @@ class Theme extends AbstractRegistry
             $themes[$row->name] = array(
                 'title'         => $config['title'],
                 'screenshot'    => !empty($config['screenshot'])
-                    ? Pi::service('asset')->getAssetUrl('theme/' . $row->name,
-                        $config['screenshot'], false)
+                    ? Pi::service('asset')->getAssetUrl(
+                        'theme/' . $row->name,
+                        $config['screenshot'],
+                        false
+                      )
                     : Pi::url('static/image/theme.png'),
             );
         }

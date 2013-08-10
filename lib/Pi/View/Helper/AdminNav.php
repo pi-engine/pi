@@ -150,7 +150,8 @@ class AdminNav extends AbstractHelper
             // Shall be limited?
             foreach ($modules as $name => $item) {
                 if (is_array($managedAllowed)
-                    && !in_array($name, $managedAllowed)) {
+                    && !in_array($name, $managedAllowed)
+                ) {
                     continue;
                 }
                 $navConfig[$name] = array(
@@ -236,9 +237,12 @@ class AdminNav extends AbstractHelper
         } elseif (AdminMode::MODE_ADMIN == $mode) {
             $modulesAllowed = Pi::service('registry')->moduleperm->read($mode);
             if (null === $modulesAllowed
-                || in_array($module, $modulesAllowed)) {
-                $navigation = $this->view->navigation($module . '-admin',
-                    array('section' => 'admin'));
+                || in_array($module, $modulesAllowed)
+            ) {
+                $navigation = $this->view->navigation(
+                    $module . '-admin',
+                    array('section' => 'admin')
+                );
             } else {
                 $navigation = $this->view->navigation(array());
             }

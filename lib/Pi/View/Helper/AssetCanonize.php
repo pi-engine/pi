@@ -59,7 +59,7 @@ class AssetCanonize extends AbstractHelper
      * @param string $file
      * @param array $attrs
      * @return array
-     * @see \Pi\Application\Service\Asset::versionStamp()
+     * @see Pi\Application\Service\Asset::versionStamp()
      *      for versioning information
      */
     protected function canonizeFile($file, $attrs = array())

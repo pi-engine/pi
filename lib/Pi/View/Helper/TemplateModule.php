@@ -24,7 +24,7 @@ use Zend\View\Helper\AbstractHelper;
  *  include $this->templateModule('admin/public-index.phtml', <module-name>);
  * ```
  *
- * @see \Pi\View\Resolver\ModuleTemplate
+ * @see Pi\View\Resolver\ModuleTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateModule extends AbstractHelper

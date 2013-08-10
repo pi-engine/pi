@@ -133,7 +133,7 @@ use Pi\Acl\Acl as AclHandler;
  *  );
  *  ```
  *
- * @link \Pi\Acl\Acl\Resource
+ * @link Pi\Acl\Acl\Resource
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Page extends AbstractResource
@@ -265,11 +265,13 @@ class Page extends AbstractResource
         $rowset = $model->select(array('module' => $module));
         $pages_exist = array();
         foreach ($rowset as $page) {
-            $key = sprintf('%s:%s:%s:%s',
+            $key = sprintf(
+                '%s:%s:%s:%s',
                 $page['section'],
                 $page['module'],
                 $page['controller'],
-                $page['action']);
+                $page['action']
+            );
             $pages_exist[$key] = $page;
         }
 
@@ -493,7 +495,7 @@ class Page extends AbstractResource
 
     /**
      * Delete a page
-     * @param int|\Pi\Application\Model\Model $page
+     * @param int|Pi\Application\Model\Model $page
      * @param array $message
      * @return bool
      */

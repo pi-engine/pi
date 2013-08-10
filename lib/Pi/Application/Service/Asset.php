@@ -47,9 +47,9 @@ use Pi;
  * - Published assets
  *   - `www/asset/<encrypted "path/to/component">/`
  *
- * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see \Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractService

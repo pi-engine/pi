@@ -39,9 +39,9 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *   - for both module "demo" and cloned "democlone":
  *      `module/demo/template/[front/template.html]`
  *
- * @see \Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see \Pi\View\Resolver\ComponentTemplate for component template skeleton
- * @see \Pi\Application\Service\Asset for asset skeleton
+ * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ModuleTemplate implements ResolverInterface

@@ -116,6 +116,7 @@ class View extends AbstractPlugin
         if (null !== $variables || null !== $options) {
             return $this->getViewModel($variables, $options);
         }
+
         return $this;
     }
 
@@ -351,7 +352,7 @@ class View extends AbstractPlugin
         $render = $this->getController()->getServiceLocator()
             ->get('ViewManager')->getRenderer();
         $helper = $render->plugin($name);
-        
+
         return $helper;
     }
 }

@@ -42,7 +42,7 @@ class Themelist extends AbstractRegistry
                     'theme/' . $row->name,
                     $config['screenshot'],
                     false
-                )
+                  )
                 : Pi::url('static/image/theme.png');
             $themes[$row->name] = array_merge($config, $row->toArray());
         }

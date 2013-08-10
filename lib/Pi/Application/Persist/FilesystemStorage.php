@@ -79,12 +79,12 @@ class FilesystemStorage extends AbstractStorage
     public function save($data, $id, $ttl = 0)
     {
         $cacheFile = $this->fileName($id);
-        if (!$file = fopen($cacheFile, "w")) {
+        if (!$file = fopen($cacheFile, 'w')) {
             throw new \Exception(
                 sprintf('Cache file "%s" can not be created.', $cacheFile)
             );
         }
-        $content = "<?php return " . var_export($data, true) . ";?>";
+        $content = '<?php return ' . var_export($data, true) . ';?>';
         fwrite($file, $content);
         fclose($file);
 

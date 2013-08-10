@@ -166,6 +166,7 @@ class Acl
         if (null !== $section) {
             $this->section = $section;
         }
+
         return $this;
     }
 
@@ -190,6 +191,7 @@ class Acl
         if (null !== $default) {
             $this->default = (bool) $default;
         }
+
         return $this;
     }
 
@@ -203,6 +205,7 @@ class Acl
         if (null === $this->default) {
             return 'admin' == $this->section ? false : true;
         }
+
         return $this->default;
     }
 
@@ -217,6 +220,7 @@ class Acl
         if (!is_null($module)) {
             $this->module = $module;
         }
+
         return $this;
     }
 
@@ -244,6 +248,7 @@ class Acl
             }
             $this->role = $role;
         }
+
         return $this;
     }
 
@@ -258,6 +263,7 @@ class Acl
             $this->role = Pi::service('user')->getUser()
                 ? Pi::service('user')->getUser()->role() : static::GUEST;
         }
+
         return $this->role;
     }
 
@@ -486,6 +492,7 @@ class Acl
     {
         if ($this->getRole() == static::ADMIN) return null;
         $roles = $this->loadRoles();
+
         return $this->getModel('rule')->getResources($roles, $where, $allowed);
     }
 
@@ -503,9 +510,9 @@ class Acl
             return $roles;
         }
         if (null === $this->roles) {
-            $this->roles = Pi::service('registry')->role->read($this->getRole())
-                ?: array();
-            array_push($this->roles, $this->getRole());
+            $this->roles = Pi::service('registry')->role->read(
+                $this->getRole()
+            ) ?: array(); array_push($this->roles, $this->getRole());
         }
 
         return $this->roles;

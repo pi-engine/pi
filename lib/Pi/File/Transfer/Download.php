@@ -303,7 +303,7 @@ class Download
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
         header('Content-Disposition: attachment; filename="'
-            . $filename . '"');
+               . $filename . '"');
         header('Content-Transfer-Encoding: chunked');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

@@ -23,7 +23,7 @@ use Zend\Log\Formatter\FormatterInterface;
 class Syslog extends AbstractWriter
 {
     /**
-     * Maps \Pi\Log\Logger priorities to PHP's Syslog priorities
+     * Maps Pi\Log\Logger priorities to PHP's Syslog priorities
      * @var array
      */
     protected $priorities = array(

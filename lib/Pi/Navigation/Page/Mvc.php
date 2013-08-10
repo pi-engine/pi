@@ -193,6 +193,7 @@ class Mvc extends ZendMvcPage
                          */
                         return $this->isAbstractActive($recursive);
                         /**#@-*/
+
                         return parent::isActive($recursive);
                     }
                 }

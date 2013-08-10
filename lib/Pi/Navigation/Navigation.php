@@ -26,8 +26,8 @@ class Navigation extends ZendNavigation
      * Add a page
      *
      * {@inheritDoc}
-     * @see \Pi\Navigation\Page\Mvc::addPage()
-     * @see \Pi\Navigation\Page\Uri::addPage()
+     * @see Pi\Navigation\Page\Mvc::addPage()
+     * @see Pi\Navigation\Page\Uri::addPage()
      */
     public function addPage($page)
     {

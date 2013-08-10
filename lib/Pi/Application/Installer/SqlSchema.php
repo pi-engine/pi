@@ -114,7 +114,7 @@ class SqlSchema
     {
         $sql = $this->parseContent($content);
         Pi::db()->adapter()->query($sql, 'execute');
-        
+
         return true;
     }
 
@@ -127,6 +127,7 @@ class SqlSchema
     public function queryFile($file = null)
     {
         $content = file_get_contents($file ?: $this->file);
+
         return $this->queryContent($content);
     }
 
@@ -141,6 +142,7 @@ class SqlSchema
     {
         $schema = new self;
         static::setType($type);
+        
         return $schema->queryFile($file);
     }
 }

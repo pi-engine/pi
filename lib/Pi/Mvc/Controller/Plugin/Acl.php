@@ -33,7 +33,7 @@ class Acl extends AbstractPlugin
     {
         if (!$this->aclManager) {
             $this->aclManager = new AclManager;
-            $this->aclManager->setSection("module")->setModule(
+            $this->aclManager->setSection('module')->setModule(
                 $this->getController()->getModule()
             );
         }

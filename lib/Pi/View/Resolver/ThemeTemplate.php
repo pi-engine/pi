@@ -19,9 +19,9 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  * Theme template folders/files skeleton:
  *  `theme/default/template/`
  *
- * @see \Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see \Pi\View\Resolver\ComponentTemplate for component template skeleton
- * @see \Pi\Application\Service\Asset for asset skeleton
+ * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ThemeTemplate implements ResolverInterface

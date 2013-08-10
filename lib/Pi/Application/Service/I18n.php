@@ -321,7 +321,7 @@ namespace Pi\Application\Service
  * </code>
  *
  * @link    http://www.php.net/manual/en/book.intl.php
- * @see     \Pi\Application\Service\Asset for component disptach
+ * @see     Pi\Application\Service\Asset for component disptach
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
     class I18n extends AbstractService
@@ -552,12 +552,12 @@ namespace Pi\Application\Service
                         'Translation "%s.%s" is loaded.',
                         implode(':', $domain),
                         $locale
-                    )
+                      )
                     : sprintf(
                         'Translation "%s.%s" is empty.',
                         implode(':', $domain),
                         $locale
-                    );
+                      );
                 Pi::service()->getService('log')->info($message);
             }
 
@@ -704,7 +704,7 @@ namespace Pi\Application\Service
                     'timezone',
                     'calendar',
                     'pattern'
-                    ) as $key) {
+                ) as $key) {
                     ${$key} = isset($params[$key]) ? $params[$key] : null;
                 }
             }
@@ -944,8 +944,10 @@ namespace
             return $result;
         }
 
-        $formatter = Pi::service('i18n')->getDateFormatter($locale, $datetype,
-            $timetype, $timezone, $calendar, $pattern);
+        $formatter = Pi::service('i18n')->getDateFormatter(
+            $locale, $datetype,
+            $timetype, $timezone, $calendar, $pattern
+        );
         $result = $formatter->format($value);
 
         return $result;

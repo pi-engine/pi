@@ -39,8 +39,8 @@ use Pi;
  *      array(<callback-class>, <callback-method>[, <callback-module-name>]));
  * ```
  *
- * @see \Pi\Application\Installer\Resource\Event for event specifications
- * @see \Pi\Application\Registry\Event for event listing
+ * @see Pi\Application\Installer\Resource\Event for event specifications
+ * @see Pi\Application\Registry\Event for event listing
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractService

@@ -207,7 +207,7 @@ class Paginator extends Pagit
      */
     public static function createAdapter($adapter, $data)
     {
-        $adapterClass = '%s\\Paginator\Adapter\\' . ucfirst($adapter);
+        $adapterClass = '%s\Paginator\Adapter\\' . ucfirst($adapter);
         $class = sprintf($adapterClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($adapterClass, 'Zend');
@@ -224,7 +224,7 @@ class Paginator extends Pagit
      */
     protected function createScrollingStyle($style)
     {
-        $styleClass = '%s\\Paginator\ScrollingStyle\\' . ucfirst($style);
+        $styleClass = '%s\Paginator\ScrollingStyle\\' . ucfirst($style);
         $class = sprintf($styleClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($styleClass, 'Zend');
@@ -299,8 +299,8 @@ class Paginator extends Pagit
      * @return void
      */
     public static function setDefaultScrollingStyle(
-        $scrollingStyle = 'Sliding')
-    {
+        $scrollingStyle = 'Sliding'
+    ) {
         static::$defaultScrollingStyle = $scrollingStyle;
     }
 
@@ -389,9 +389,10 @@ class Paginator extends Pagit
      * @param  int $pageNumber Page number
      * @return int
      */
-    public function getAbsoluteItemNumber($relativeItemNumber,
-        $pageNumber = null)
-    {
+    public function getAbsoluteItemNumber(
+        $relativeItemNumber,
+        $pageNumber = null
+    ) {
         $relativeItemNumber = $this->normalizeItemNumber($relativeItemNumber);
 
         if ($pageNumber == null) {
@@ -628,7 +629,7 @@ class Paginator extends Pagit
             return $this->getCurrentItems();
         } catch (\Exception $e) {
             throw new Exception\RuntimeException('Error producing an iterator',
-                null, $e);
+                                                 null, $e);
         }
     }
 
@@ -809,8 +810,9 @@ class Paginator extends Pagit
      */
     protected function _calculatePageCount()
     {
-        return (int) ceil($this->getAdapter()->count()
-            / $this->getItemCountPerPage());
+        return (int) ceil(
+            $this->getAdapter()->count() / $this->getItemCountPerPage()
+        );
     }
 
     /**

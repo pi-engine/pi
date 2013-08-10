@@ -22,7 +22,7 @@ use Zend\View\Model\ClearableModelInterface;
  *
  * Prepare for error ViewModel, should be performed prior to
  *
- * - `\Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()`
+ * - `Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()`
  *      whose priority is -89
  * - `\Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()`
  *      whose priority is -90
@@ -31,7 +31,7 @@ use Zend\View\Model\ClearableModelInterface;
  *  `Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()`
  *  whose priority is -90
  *
- * @see \Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
+ * @see Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
  * @see \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
  * @see \Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>

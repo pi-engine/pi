@@ -48,17 +48,25 @@ class Factory extends ZendFactory
     {
         // Canonize type
         if (isset($spec['type']) && is_string($spec['type'])
-            && false === strpos($spec['type'], '\\')) {
+            && false === strpos($spec['type'], '\\')
+        ) {
             $type = strtolower($spec['type']);
             if ($type == 'form' || $type == 'fieldset') {
-                $spec['type'] = sprintf('%s\\%s',
-                    __NAMESPACE__, ucfirst($type));
+                $spec['type'] = sprintf(
+                    '%s\\%s',
+                    __NAMESPACE__, ucfirst($type)
+                );
             } else {
-                $type = sprintf('%s\Element\\%s',
-                    __NAMESPACE__, ucfirst($spec['type']));
+                $type = sprintf(
+                    '%s\Element\\%s',
+                    __NAMESPACE__,
+                    ucfirst($spec['type'])
+                );
                 if (!class_exists($type)) {
-                    $type = sprintf('Zend\Form\Element\\%s',
-                        ucfirst($spec['type']));
+                    $type = sprintf(
+                        'Zend\Form\Element\\%s',
+                        ucfirst($spec['type'])
+                    );
                     if (class_exists($type)) {
                         $spec['type'] = $type;
                     }

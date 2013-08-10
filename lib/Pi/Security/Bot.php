@@ -17,7 +17,7 @@ namespace Pi\Security;
 class Bot extends AbstractAdapter
 {
     /** @var string */
-    const MESSAGE = "Access denied by bot check";
+    const MESSAGE = 'Access denied by bot check';
 
     /**
      * {@inheritDoc}
@@ -39,7 +39,7 @@ class Bot extends AbstractAdapter
             return null;
         }
         // Check bad bots
-        $pattern = implode("|", $options);
+        $pattern = implode('|', $options);
         $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
 
         return $status;

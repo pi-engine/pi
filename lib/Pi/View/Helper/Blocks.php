@@ -48,7 +48,7 @@ use Zend\View\Helper\AbstractHelper;
  *      echo '</div>';
  * ```
  *
- * @see \Pi\Application\Registry\Block
+ * @see Pi\Application\Registry\Block
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Blocks extends AbstractHelper
