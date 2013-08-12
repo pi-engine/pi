@@ -21,7 +21,6 @@ return array(
             'title' => __('Identity'),
             // Edit element specs
             'edit'  => array(
-                'element'       => 'text',
                 'validators'    => array(
                     array(
                         'name'      => 'StringLength',
@@ -44,16 +43,16 @@ return array(
         'credential'    => array(
             'title' => __('Credential'),
             'edit'      => array(
+                'element'       => 'password',
+                'validators'    => array(
+
+                ),
             ),
-            'is_edit'   => false,
         ),
         'email'    => array(
             'title' => __('Email'),
             'edit'  => array(
-                    'element'   => array(
-
-                    ),
-                    'filters'   => array(
+                    'validators'    => array(
                     ),
             ),
         ),
@@ -61,17 +60,15 @@ return array(
     'profile' => array(
         'fullname'  => array(
             'title' => __('Full name'),
-            'edit'  => 'text',
         ),
         'birthdate'  => array(
             'title' => __('Birth date'),
             'edit'  => array(
-                'element'   => array(
-                    'type'  => 'Module\User\Form\Element\Birthdate',
+                'element'       => 'Module\User\Form\Element\Birthdate',
+                'filters'       => array(
                 ),
-            ),
-            'filter'    => array(
-
+                'validators'   => array(
+                ),
             ),
         ),
         'bio'  => array(

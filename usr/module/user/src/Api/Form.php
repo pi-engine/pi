@@ -7,23 +7,20 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
+namespace Module\User\Api;
+
+use Pi;
+use Pi\Application\AbstractApi;
+use Pi\Db\RowGateway\RowGateway;
+
 /**
- * User custom profile and resource specs
+ * User profile form manipulation APIs
  *
- * @see Pi\Application\Installer\Resource\User
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'field'     => array(
+class Form extends AbstractApi
+{
+    /** @var string Module name */
+    protected $module = 'user';
 
-    ),
-    'timeline'  => array(
-
-    ),
-    'activity'  => array(
-
-    ),
-    'quicklink' => array(
-
-    ),
-);
+}
