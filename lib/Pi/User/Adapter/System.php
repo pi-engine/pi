@@ -25,7 +25,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getMeta($type = 'account')
+    public function getMeta($type = '', $action = '')
     {
         $metaAccount = array(
             'id',
@@ -39,6 +39,9 @@ class System extends AbstractAdapter
         $metaProfile = array(
             'uid',
         );
+        $metaCustom = array(
+        );
+        
         $meta = array();
         switch ($type) {
             case 'account':
@@ -47,8 +50,11 @@ class System extends AbstractAdapter
             case 'profile':
                 $meta = $metaProfile;
                 break;
+            case 'custom':
+                $meta = $metaCustom;
+                break;
             default:
-                $meta = $metaAccount + $metaProfile;
+                $meta = $metaAccount + $metaProfile + $metaCustom;
                 break;
         }
 

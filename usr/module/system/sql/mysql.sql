@@ -1,4 +1,7 @@
-# $Id$
+# Pi Engine schema
+# http://pialog.org
+# Author: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+# --------------------------------------------------------
 
 CREATE TABLE `{update}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,

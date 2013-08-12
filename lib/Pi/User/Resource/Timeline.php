@@ -18,9 +18,15 @@ use Pi;
  *
  *   - timeline([$id])->get($limit[, $offset[, $condition]])
  *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
+ *   - timeline([$id])->add(array(
+ *          'message'   => <message>,
+ *          'module'    => <module-name>,
+ *          'type'      => <type>,
+ *          'link'      => <link-href>,
+ *          'time'      => <timestamp>,
+ *     ))
  *   - timeline([$id])->delete([$condition])
+ *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

@@ -25,7 +25,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getMeta($type = 'account')
+    public function getMeta($type = '', $action = '')
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }

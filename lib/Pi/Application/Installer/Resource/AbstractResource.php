@@ -155,4 +155,16 @@ class AbstractResource
     {
         return;
     }
+
+    /**
+     * Get identifier of current module
+     *
+     * @return string
+     */
+    protected function getModule()
+    {
+        $module = $this->event ? $this->event->getParam('module') : null;
+        
+        return $module;
+    }
 }

@@ -105,7 +105,7 @@ class Local extends AbstractModel
      */
     public function hasRole($role)
     {
-        $roles = Pi::service('registry')->role->read($this->role());
+        $roles = Pi::registry('role')->read($this->role());
 
         return in_array($role, $roles) ? true : false;
     }

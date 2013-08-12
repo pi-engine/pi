@@ -21,7 +21,7 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  * User APIs
  *
  * + Meta operations
- *   - getMeta([$type])
+ *   - getMeta($type, $action)
  *
  * + User operations
  *   + Binding
@@ -131,13 +131,17 @@ abstract class AbstractAdapter implements BindInterface
      * Meta operations
      */
     /**
-     * Get meta with type: account, profile, extra
+     * Get meta with type and action
+     *
+     * - Available types: `account`, `profile`, `custom`
+     * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
+     * @param string $action
      * @return array
      * @api
      */
-    abstract public function getMeta($type = 'account');
+    abstract public function getMeta($type = 'account', $action = 'display');
     /**#@-*/
 
     /**#@+
