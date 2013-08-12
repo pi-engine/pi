@@ -19,6 +19,11 @@ define('PI_PATH_HOST', '%host%');
 // Physical path to default library directory WITHOUT trailing slash
 define('PI_PATH_LIB', '%lib%');
 
+// Set default timezone if not available in php.ini
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
+}
+
 include PI_PATH_LIB . '/Pi.php';
 if (defined('PI_BOOT_ENABLE') && constant('PI_BOOT_ENABLE')) {
     return Pi::boot();

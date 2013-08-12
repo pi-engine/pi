@@ -171,17 +171,10 @@ class Pi
      */
     public static function init()
     {
-        // Set default timezone if not available in php.ini
-        if (!ini_get('date.timezone')) {
-            date_default_timezone_set('UTC');
-        }
-
         // Set start time
         static::$start = microtime(true);
 
-        /**#@+
-         * Initialize Host
-         */
+        // Initialize Host
         $config = array(
             'host'  => array(
                 'path'  => array(
@@ -193,11 +186,8 @@ class Pi
             $config['file'] = constant('PI_PATH_HOST');
         }
         static::host($config);
-        /**#@-*/
 
-        /**#@+
-         * Register autoloader, host, persist and autoloader
-         */
+        // Register autoloader, host, persist and autoloader
         $paths = static::host()->get('path');
         $options = array(
             // Top namespaces
@@ -223,24 +213,18 @@ class Pi
                                : static::path('lib') . '/vendor',
         );
         static::autoloader($options);
-        /**#@-*/
 
         // Load debugger and filter
         Debug::load();
         Filter::load();
 
-        /**#@+
-         * Load engine global config
-         */
+        // Load engine global config
         $engineConfig = static::config()->load('engine.php');
         if (isset($engineConfig['config'])) {
             static::config()->setConfigs($engineConfig['config']);
         }
-        /**#@-*/
 
-        /**#@+
-         * Initialize Persist handler
-         */
+        // Initialize Persist handler
         $persistConfig = empty($engineConfig['persist'])
                          ? array() : $engineConfig['persist'];
         static::persist($persistConfig);
@@ -248,7 +232,6 @@ class Pi
         if (static::persist()->isValid()) {
             static::autoloader()->setPersist(static::persist());
         }
-        /*#@-*/
 
         // Register shutdown functions
         register_shutdown_function(__CLASS__ . '::shutdown');
