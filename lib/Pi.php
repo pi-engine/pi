@@ -65,7 +65,7 @@ use Pi\Application\Model\Model;
  *  - path()
  *  - persist()
  *  - registerShutdown()
- *  - registry()
+ *  - entity()
  *  - service()
  *  - url()
  *  - user()
@@ -135,10 +135,10 @@ class Pi
     protected static $db = null;
 
     /**
-     * Registry container
+     * Entity container
      * @var array
      */
-    protected static $registry = array();
+    protected static $entity = array();
 
     /**
      * Shutdown callback container
@@ -493,24 +493,24 @@ class Pi
     }
 
     /**
-     * Registry container for global variables
+     * Container for global entities
      *
-     * Register a variable to global container, or fetch a glbal registry if
+     * Register a variable to global container, or fetch a glbal entity if
      * variable value is not provided
      *
-     * @param string    $index  Name of the value
+     * @param string    $index  Name of the entity
      * @param mixed     $value  The value to store.
-     * @return mixed
+     * @return void|mixed
      * @api
      */
-    public static function registry($index, $value = null)
+    public static function entity($index, $value = null)
     {
         $index = strtolower($index);
         if (null !== $value) {
-            static::$registry[$index] = $value;
+            static::$entity[$index] = $value;
         } else {
-            return isset(static::$registry[$index])
-                ? static::$registry[$index] : null;
+            return isset(static::$entity[$index])
+                ? static::$entity[$index] : null;
         }
     }
 

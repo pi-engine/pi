@@ -25,7 +25,7 @@ class Admin extends AbstractController
     public function init()
     {
         $db = Pi::service('database')->db();
-        Pi::registry('db', $db);
+        Pi::entity('db', $db);
 
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
@@ -49,8 +49,8 @@ class Admin extends AbstractController
     {
         $this->hasForm = true;
         if ($this->request->getPost('retry')) {
-            $adapter = Pi::registry('db')->adapter();
-            $tablePrefix = Pi::registry('db')->getTablePrefix();
+            $adapter = Pi::entity('db')->adapter();
+            $tablePrefix = Pi::entity('db')->getTablePrefix();
 
             try {
                 // Drop all tables
@@ -239,8 +239,8 @@ class Admin extends AbstractController
     {
         $this->hasForm = true;
 
-        $adapter = Pi::registry('db')->adapter();
-        $tablePrefix = Pi::registry('db')->getTablePrefix();
+        $adapter = Pi::entity('db')->adapter();
+        $tablePrefix = Pi::entity('db')->getTablePrefix();
         $sql = sprintf(
             'SHOW TABLES LIKE %s',
             $adapter->getPlatform()->quoteValue($tablePrefix . '%')

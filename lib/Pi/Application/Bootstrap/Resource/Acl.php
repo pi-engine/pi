@@ -51,7 +51,7 @@ class Acl extends AbstractResource
             isset($this->options['default']) ? $this->options['default'] : null
         );
         $this->aclHandler->setRole(Pi::service('user')->getUser()->role());
-        Pi::registry('acl', $this->aclHandler);
+        Pi::entity('acl', $this->aclHandler);
     }
 
     /**

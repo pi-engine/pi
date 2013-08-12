@@ -23,7 +23,7 @@ use Zend\Authentication\Result;
  * ```
  *  Pi::service('authentication')->authenticate(<identity>, <credential>);
  *  if ($rememberMe) {
- *      Pi::registry('session')->rememberMe();
+ *      Pi::service('session')->rememberMe();
  *  }
  * ```
  *
@@ -34,7 +34,7 @@ use Zend\Authentication\Result;
  *  Pi::service('authentication')->authenticate(<identity>,
  *      <credential>, $adapter);
  *  if ($rememberMe) {
- *      Pi::registry('session')->rememberMe();
+ *      Pi::service('session')->rememberMe();
  *  }
  * ```
  *
@@ -45,7 +45,7 @@ use Zend\Authentication\Result;
  *  Pi::serivce('authentication')->setAdapter($adapter);
  *  Pi::service('authentication')->authenticate(<identity>, <credential>);
  *  if ($rememberMe) {
- *      Pi::registry('session')->rememberMe();
+ *      Pi::service('session')->rememberMe();
  *  }
  * ```
  *
