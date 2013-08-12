@@ -164,7 +164,7 @@ class Acl extends AbstractResource
             }
         }
 
-        Pi::service('registry')->moduleperm->flush();
+        Pi::registry('moduleperm')->flush();
 
         if (empty($this->config)) {
             return true;
@@ -240,8 +240,8 @@ class Acl extends AbstractResource
             }
         }
 
-        Pi::service('registry')->role->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::registry('role')->flush();
+        Pi::registry('resource')->flush();
 
         return true;
     }
@@ -409,8 +409,8 @@ class Acl extends AbstractResource
             }
         }
 
-        Pi::service('registry')->role->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::registry('role')->flush();
+        Pi::registry('resource')->flush();
 
         return true;
     }
@@ -453,9 +453,9 @@ class Acl extends AbstractResource
         */
         Pi::model('acl_rule')->delete(array('module' => $module));
 
-        Pi::service('registry')->moduleperm->flush();
-        Pi::service('registry')->role->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::registry('moduleperm')->flush();
+        Pi::registry('role')->flush();
+        Pi::registry('resource')->flush();
 
         return true;
     }
@@ -470,8 +470,8 @@ class Acl extends AbstractResource
         $model = Pi::model('acl_role');
         $model->update(array('active' => 1), $where);
 
-        Pi::service('registry')->role->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::registry('role')->flush();
+        Pi::registry('resource')->flush();
 
         return true;
     }
@@ -486,8 +486,8 @@ class Acl extends AbstractResource
         $model = Pi::model('acl_role');
         $model->update(array('active' => 0), $where);
 
-        Pi::service('registry')->role->flush();
-        Pi::service('registry')->resource->flush();
+        Pi::registry('role')->flush();
+        Pi::registry('resource')->flush();
 
         return true;
     }

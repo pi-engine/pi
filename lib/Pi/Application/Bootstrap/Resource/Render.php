@@ -289,8 +289,11 @@ class Render extends AbstractResource
         $action     = $route->getparam('action');
 
         $cacheInfo = false;
-        $info = Pi::service('registry')->cache->read($module,
-            $this->application->getSection(), $type);
+        $info = Pi::registry('cache')->read(
+            $module,
+            $this->application->getSection(),
+            $type
+        );
         if (empty($info)) {
             return $cacheInfo;
         }
@@ -307,7 +310,7 @@ class Render extends AbstractResource
         } else {
             return $cacheInfo;
         }
-        
+
         return $cacheInfo;
     }
 

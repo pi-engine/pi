@@ -23,17 +23,21 @@ class Registry extends AbstractService
 {
     /**
      * Cache storage
-     *
      * @var CacheStorage
      */
     protected $cache;
 
     /**
      * Default cache storage
-     *
      * @var CacheStorage
      */
     protected $defaultCache;
+
+    /**
+     * Handler container
+     * @var AbstractRegistry[]
+     */
+    protected $handler = array();
 
     /**
      * Get registry handler
@@ -45,10 +49,13 @@ class Registry extends AbstractService
     public function handler($name, $module = null)
     {
         $key = empty($module) ? $name : $module . '_' . $name;
-        $handler = $this->loadHandler($name, $module);
-        $handler->setCache($this->getCache())->setKey($key);
+        if (!isset($this->handler[$key])) {
+            $handler = $this->loadHandler($name, $module);
+            $handler->setCache($this->getCache())->setKey($key);
+            $this->handler[$key] = $handler;
+        }
 
-        return $handler;
+        return $this->handler[$key];
     }
 
     /**

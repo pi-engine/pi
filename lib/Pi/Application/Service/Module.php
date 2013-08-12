@@ -182,7 +182,7 @@ class Module extends AbstractService
         $module = $module ?: $this->currentModule;
         if (!isset($this->container['config'][$module])) {
             $this->container['config'][$module] =
-                Pi::service('registry')->config->read($module);
+                Pi::registry('config')->read($module);
         }
         return $key
             ? $this->container['config'][$module][$key]

@@ -57,7 +57,7 @@ class Api extends AbstractApi
         $row = Pi::model('page')->createRow($page);
         $row->save();
 
-        Pi::service('registry')->page->clear($this->getModule());
+        Pi::registry('page')->clear($this->getModule());
 
         return $row->id ? true : false;
     }
@@ -91,7 +91,7 @@ class Api extends AbstractApi
         );
         Pi::model('page')->delete($where);
 
-        Pi::service('registry')->page->clear($this->getModule());
+        Pi::registry('page')->clear($this->getModule());
 
         return true;
     }

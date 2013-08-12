@@ -462,7 +462,7 @@ class Acl
         $module = $resource['module'];
         $controller = $resource['controller'];
         $action = $resource['action'];
-        $pageList = Pi::service('registry')->page->read('exception', $module);
+        $pageList = Pi::registry('page')->read('exception', $module);
 
         // Page resource
         $key = sprintf('%s-%s-%s', $module, $controller, $action);
@@ -505,12 +505,12 @@ class Acl
     public function loadRoles($role = null)
     {
         if (null !== $role && $role != $this->getRole()) {
-            $roles = Pi::service('registry')->role->read($role);
+            $roles = Pi::registry('role')->read($role);
             array_push($roles, $role);
             return $roles;
         }
         if (null === $this->roles) {
-            $this->roles = Pi::service('registry')->role->read(
+            $this->roles = Pi::registry('role')->read(
                 $this->getRole()
             ) ?: array(); array_push($this->roles, $this->getRole());
         }
@@ -545,12 +545,12 @@ class Acl
             $action = $resource['action'];
             $section = empty($resource['section'])
                 ? $this->getSection() : $resource['section'];
-            $resourceList = Pi::service('registry')->resource->read(
+            $resourceList = Pi::registry('resource')->read(
                 $section,
                 $module,
                 'page'
             );
-            $pageList = array_flip(Pi::service('registry')->page->read(
+            $pageList = array_flip(Pi::registry('page')->read(
                 $section,
                 $module
             ));
@@ -591,7 +591,7 @@ class Acl
             $name = $resource;
         }
 
-        $resourceList = Pi::service('registry')->resource->read(
+        $resourceList = Pi::registry('resource')->read(
             $this->getSection(),
             $this->getModule(),
             $type

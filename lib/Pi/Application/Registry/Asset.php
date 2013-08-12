@@ -127,11 +127,11 @@ class Asset extends AbstractRegistry
      */
     public function flush()
     {
-        $themes = Pi::service('registry')->themelist->read();
+        $themes = Pi::registry('themelist')->read();
         foreach (array_keys($themes) as $theme) {
             $this->clear($theme);
         }
-        
+
         return $this;
     }
 }

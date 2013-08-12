@@ -87,7 +87,7 @@ class Navigation extends NavigationHelper
             $module = Pi::service('module')->current();
             $section = isset($options['section'])
                 ? $options['section'] : null;
-            $navConfig = Pi::service('registry')->navigation->read(
+            $navConfig = Pi::registry('navigation')->read(
                 $name,
                 $module,
                 $section

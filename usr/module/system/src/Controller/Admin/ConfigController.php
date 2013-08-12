@@ -97,7 +97,7 @@ class ConfigController extends ActionController
                             $row->value = $values[$row->name];
                             $row->save();
                         }
-                        Pi::service('registry')->config->clear($module);
+                        Pi::registry('config')->clear($module);
                         $messageSuccessful =
                             __('Configuration data saved successfully.');
                     }

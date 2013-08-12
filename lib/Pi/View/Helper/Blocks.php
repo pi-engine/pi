@@ -112,7 +112,7 @@ class Blocks extends AbstractHelper
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             $action     = $route->getparam('action');
-            $info = Pi::service('registry')->block->read($module);
+            $info = Pi::registry('block')->read($module);
 
             $blocks = array();
             if (isset($info[sprintf('%s-%s-%s',

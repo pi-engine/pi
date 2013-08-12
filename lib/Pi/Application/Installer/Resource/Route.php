@@ -143,7 +143,7 @@ class Route extends AbstractResource
                 );
             }
         }
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
 
         return true;
     }
@@ -154,7 +154,7 @@ class Route extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
         if ($this->skipUpgrade()) {
             return;
         }
@@ -173,7 +173,7 @@ class Route extends AbstractResource
                 );
             }
         }
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
 
         return true;
     }
@@ -186,7 +186,7 @@ class Route extends AbstractResource
         $module = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
         $modelRoute->delete(array('module' => $module));
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
 
         return true;
     }
@@ -199,7 +199,7 @@ class Route extends AbstractResource
         $module = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
         $modelRoute->update(array('active' => 1), array('module' => $module));
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
 
         return true;
     }
@@ -212,7 +212,7 @@ class Route extends AbstractResource
         $module = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
         $modelRoute->update(array('active' => 0), array('module' => $module));
-        Pi::service('registry')->route->flush();
+        Pi::registry('route')->flush();
 
         return true;
     }

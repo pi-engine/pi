@@ -299,7 +299,7 @@ class BlockController extends ActionController
         }
         if ($pageIds) {
 
-            $modules = Pi::service('registry')->module->read();
+            $modules = Pi::registry('module')->read();
             /*
             $modules[''] = array(
                 'title' => __('Custom blocks'),

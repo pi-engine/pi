@@ -59,7 +59,7 @@ class NavController extends ActionController
      */
     public function indexAction()
     {
-        $modules = Pi::service('registry')->module->read();
+        $modules = Pi::registry('module')->read();
         $modules[''] = array('title' => __('Custom'));
 
         $navList = array();
@@ -86,7 +86,7 @@ class NavController extends ActionController
      */
     public function listAction()
     {
-        $modules = Pi::service('registry')->module->read();
+        $modules = Pi::registry('module')->read();
         $modules[''] = array('title' => __('Custom'));
 
         $navGlobal = array(
@@ -152,7 +152,7 @@ class NavController extends ActionController
         $row->value = $nav_admin;
         $row->save();
 
-        Pi::service('registry')->config->clear('system');
+        Pi::registry('config')->clear('system');
 
         $result = array(
             'status'    => 1,
@@ -342,7 +342,7 @@ class NavController extends ActionController
      */
     protected function cloneNode($parent, $nav)
     {
-        $data = Pi::service('registry')->navigation->read($parent) ?: array();
+        $data = Pi::registry('navigation')->read($parent) ?: array();
         $node = array(
             'navigation'    => $nav,
             'data'          => $data,
@@ -364,7 +364,7 @@ class NavController extends ActionController
         //$row = Pi::model('navigation_node')->find($nav, 'navigation');
         //$pages = $row->data;
 
-        $pages = Pi::service('registry')->navigation->read($nav) ?: array();
+        $pages = Pi::registry('navigation')->read($nav) ?: array();
         $plainList = array();
         $no     = 1;
         $depth  = 0;
@@ -514,7 +514,7 @@ class NavController extends ActionController
         $row->data = $pages;
         $row->save();
 
-        Pi::service('registry')->navigation->flush();
+        Pi::registry('navigation')->flush();
 
         return array(
             'status'    => $status,

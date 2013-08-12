@@ -77,7 +77,7 @@ class RoleController extends ActionController
             );
             $roles[$role->name] = $data;
             // Get all ancestors of the role from role registry
-            $rels = Pi::service('registry')->role->read($role->name);
+            $rels = Pi::registry('role')->read($role->name);
             foreach ($rels as $rel) {
                 // Add dependence (direct and inherited),
                 // will be indicated with "V" marker
@@ -148,7 +148,7 @@ class RoleController extends ActionController
                 $row = Pi::model('acl_role')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    Pi::service('registry')->role->flush();
+                    Pi::registry('role')->flush();
                     $roleData = $row->toArray();
                     $roleData['inherit'] = array(
                         'direct'    => array(),
@@ -208,7 +208,7 @@ class RoleController extends ActionController
                 $row->assign($values);
                 try {
                     $row->save();
-                    Pi::service('registry')->role->flush();
+                    Pi::registry('role')->flush();
                     $roleData = $row->toArray();
                     $message = __('Role data saved successfully.');
                 } catch (\Exception $e) {
@@ -293,7 +293,7 @@ class RoleController extends ActionController
                 $message = $e->getMessage();
             }
         }
-        Pi::service('registry')->role->flush();
+        Pi::registry('role')->flush();
         $data = $this->getRoles($roleChild->section);
 
         return array(
@@ -327,7 +327,7 @@ class RoleController extends ActionController
             }
             $data = $row->active;
             $row->save();
-            Pi::service('registry')->role->flush();
+            Pi::registry('role')->flush();
             $message = __('Role updated successfully.');
         }
         return array(
@@ -372,7 +372,7 @@ class RoleController extends ActionController
             Pi::model('acl_inherit')->delete(array('parent' => $row->name));
             Pi::model('acl_rule')->delete(array('role' => $row->name));
             $row->delete();
-            Pi::service('registry')->role->flush();
+            Pi::registry('role')->flush();
             $message = __('Role deleted successfully.');
         }
 

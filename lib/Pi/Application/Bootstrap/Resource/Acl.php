@@ -98,7 +98,7 @@ class Acl extends AbstractResource
                         $denied = false;
                         // Get allowed modules
                         $modulesAllowed =
-                        Pi::service('registry')->moduleperm->read('manage');
+                        Pi::registry('moduleperm')->read('manage');
                         // Denied if module is not allowed
                         if (null !== $modulesAllowed
                             && !in_array($moduleName, $modulesAllowed)
@@ -119,14 +119,13 @@ class Acl extends AbstractResource
         // Check for module access
         if (null === $denied) {
             // Get allowed modules
-            $modulesAllowed = Pi::service('registry')->moduleperm
-                ->read($section);
+            $modulesAllowed = Pi::registry('moduleperm')->read($section);
             // Automatically allowed for not defined cases
             if (!isset($this->options['default'])
                 || !empty($this->options['default'])
             ) {
                 // Get all active modules
-                $modulesActive = Pi::service('registry')->modulelist->read();
+                $modulesActive = Pi::registry('modulelist')->read();
                 // Denied if is explicitly not allowed installed modules
                 if (isset($modulesActive[$route['module']])
                     && !in_array($route['module'], $modulesAllowed)

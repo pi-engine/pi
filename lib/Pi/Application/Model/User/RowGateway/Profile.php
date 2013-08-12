@@ -34,7 +34,7 @@ class Profile extends RowGateway
     protected function getMeta($key)
     {
         if (!isset(static::$meta)) {
-            static::$meta = Pi::service('registry')->user->read();
+            static::$meta = Pi::registry('user')->read();
         }
         $meta =& static::$meta[$key];
         if (!empty($meta['method'])) {

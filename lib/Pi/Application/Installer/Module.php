@@ -203,8 +203,8 @@ class Module
     {
         Pi::persist()->flush();
         Pi::service('cache')->clearByNamespace($e->getParam('module'));
-        Pi::service('registry')->module->clear($e->getParam('module'));
-        Pi::service('registry')->modulelist->clear($e->getParam('module'));
+        Pi::registry('module')->clear($e->getParam('module'));
+        Pi::registry('modulelist')->clear($e->getParam('module'));
     }
 
     /**

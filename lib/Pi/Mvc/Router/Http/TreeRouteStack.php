@@ -325,7 +325,7 @@ class TreeRouteStack extends RouteStack
     {
         if (null == $this->routesExtra) {
             $this->routesExtra = new PriorityList();
-            $extraConfig = (array) Pi::service('registry')->route->read(
+            $extraConfig = (array) Pi::registry('route')->read(
                 Pi::engine()->section(),
                 true
             );

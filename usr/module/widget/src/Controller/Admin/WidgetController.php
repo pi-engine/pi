@@ -48,7 +48,7 @@ abstract class WidgetController extends ActionController
             $row->save();
             if ($row->id) {
                 $status = 1;
-                Pi::service('registry')->block->clear($module);
+                Pi::registry('block')->clear($module);
             }
         }
 
@@ -94,7 +94,7 @@ abstract class WidgetController extends ActionController
             extract($result);
             if ($status) {
                 $row->delete();
-                Pi::service('registry')->block->clear($this->getModule());
+                Pi::registry('block')->clear($this->getModule());
                 $message = sprintf(__('The widget "%s" is uninstalled.'),
                                    $row->name);
             } else {

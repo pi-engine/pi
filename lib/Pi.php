@@ -19,6 +19,7 @@ use Pi\Debug\Debug;
 use Pi\Utility\Filter;
 use Pi\Application\Service\User;
 use Pi\Application\Model\Model;
+use Pi\Application\Registry\AbstractRegistry;
 
 /**
  * Pi Engine
@@ -69,6 +70,7 @@ use Pi\Application\Model\Model;
  *  - service()
  *  - url()
  *  - user()
+ *  - registry()
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -431,6 +433,31 @@ class Pi
     public static function user()
     {
         return static::service('user');
+    }
+
+    /**
+     * Load registry service
+     *
+     * Usage
+     *
+     * ```
+     *  // Global registry
+     *  Pi::registry(<name>)->read(<...>);
+     *  // Alias of
+     *  Pi::service('registry')-><name>->read(<...>);
+     *
+     *  // Module registry
+     *  Pi::registry(<name>, <module>)->read(<...>);
+     *  // Alias of
+     *  Pi::service('registry')->handler(<name>, <module>)->read(<...>);
+     * ```
+     * 
+     * @return AbstractRegistry
+     * @api
+     */
+    public static function registry($name, $module = null)
+    {
+        return static::service('registry')->handler($name, $module);
     }
 
     /**

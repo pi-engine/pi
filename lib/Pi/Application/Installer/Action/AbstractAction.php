@@ -182,7 +182,7 @@ abstract class AbstractAction
             return true;
         }
         $independents = $config['dependency'];
-        $modules = Pi::service('registry')->modulelist->read();
+        $modules = Pi::registry('modulelist')->read();
         $missing = array();
         foreach ($independents as $indenpendent) {
             if (!isset($modules[$indenpendent])) {
@@ -255,7 +255,7 @@ abstract class AbstractAction
             return false;
         }
         */
-        
+
         return true;
     }
 

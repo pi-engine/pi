@@ -39,7 +39,7 @@ class ThemeController extends ActionController
 
         // Themes
         $type = ('_admin' == $section) ? 'admin' : 'front';
-        $themes = Pi::service('registry')->themelist->read($type);
+        $themes = Pi::registry('themelist')->read($type);
         foreach ($themes as $key => &$theme) {
             $theme['name'] = $key;
         }
@@ -102,7 +102,7 @@ class ThemeController extends ActionController
         }
         $row->value = $configValue;
         $row->save();
-        Pi::service('registry')->config->clear('system');
+        Pi::registry('config')->clear('system');
 
         $result = array(
             'status'    => 1,
@@ -116,7 +116,7 @@ class ThemeController extends ActionController
      */
     public function installedAction()
     {
-        $themes = Pi::service('registry')->themelist->read();
+        $themes = Pi::registry('themelist')->read();
         foreach ($themes as $key => &$theme) {
             $theme['name'] = $key;
         }
@@ -130,7 +130,7 @@ class ThemeController extends ActionController
     public function availableAction()
     {
         $themes = array();
-        $themesInstalled = Pi::service('registry')->themelist->read();
+        $themesInstalled = Pi::registry('themelist')->read();
         $iterator = new \DirectoryIterator(Pi::path('theme'));
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isDir() || $fileinfo->isDot()) {
@@ -182,7 +182,7 @@ class ThemeController extends ActionController
         }
         $message = $message
             ?: sprintf(__('The theme "%s" is updated.'), $themeName);
-        $themelist = Pi::service('registry')->themelist->read();
+        $themelist = Pi::registry('themelist')->read();
 
         return $themelist[$themeName];
     }

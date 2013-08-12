@@ -185,7 +185,7 @@ class Block extends AbstractResource
             }
         }
 
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         return true;
     }
@@ -196,7 +196,7 @@ class Block extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         if ($this->skipUpgrade()) {
             return;
@@ -275,7 +275,7 @@ class Block extends AbstractResource
 
         Pi::model('block')->delete(array('module' => $module));
         Pi::model('block_root')->delete(array('module' => $module));
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         return true;
     }
@@ -291,7 +291,7 @@ class Block extends AbstractResource
             array('module' => $module)
         );
 
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         return true;
     }
@@ -307,7 +307,7 @@ class Block extends AbstractResource
             array('module' => $module)
         );
 
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         return true;
     }

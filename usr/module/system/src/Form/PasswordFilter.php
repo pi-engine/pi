@@ -25,7 +25,7 @@ class PasswordFilter extends InputFilter
      */
     public function __construct()
     {
-        $config = Pi::service('registry')->config->read('', 'user');
+        $config = Pi::registry('config')->read('', 'user');
 
         $this->add(array(
             'name'          => 'credential',

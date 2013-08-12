@@ -308,7 +308,7 @@ class Block extends AbstractApi
             }
             // Clean module block caches
             if (isset($pages[0])) {
-                Pi::service('registry')->block->flush();
+                Pi::registry('block')->flush();
             } else {
                 $modules = array();
                 foreach (array_keys($pages) as $page) {
@@ -317,7 +317,7 @@ class Block extends AbstractApi
                 }
                 foreach (array_keys($modules) as $mod) {
                     if ($module == $mod) continue;
-                    Pi::service('registry')->block->flush($mod);
+                    Pi::registry('block')->flush($mod);
                 }
             }
         }

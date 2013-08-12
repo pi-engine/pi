@@ -178,10 +178,10 @@ class EventController extends ActionController
 
                 $flush = 'listener' == $type
                     ? $row->event_module : $row->module;
-                Pi::service('registry')->event->clear($flush);
+                Pi::registry('event')->clear($flush);
             }
         }
-        
+
         return array(
             'status'    => $status,
             'message'   => $message,

@@ -31,10 +31,10 @@ class Navigation
             'parent' => array(),
         );
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
-            $node = Pi::service('registry')->navigation->read($key . '-front')
+            $node = Pi::registry('navigation')->read($key . '-front')
                 ?: array();
             if (!$node) {
                 continue;
@@ -67,7 +67,7 @@ class Navigation
             'parent' => &$pages,
         );
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
             $pages[$key] = array(
@@ -102,7 +102,7 @@ class Navigation
             $configCounts[$row->module] = $row->count;
         }
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
             if (!empty($configCounts[$key])) {
@@ -144,7 +144,7 @@ class Navigation
             $blockCounts[$row->module] = $row->count;
         }
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         foreach ($modules as $key => $data) {
             if (empty($blockCounts[$key])) {
                 continue;
@@ -200,7 +200,7 @@ class Navigation
             'pages'     => &$pages,
         );
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         $systemModule = $modules['system'];
         unset($modules['system']);
         $modules = array('system' => $systemModule) + $modules;

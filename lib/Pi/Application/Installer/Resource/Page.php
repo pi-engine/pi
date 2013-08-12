@@ -181,7 +181,7 @@ class Page extends AbstractResource
         }
         $module = $this->event->getParam('module');
         //$moduleTitle = $this->event->getParam('title');
-        Pi::service('registry')->page->clear($module);
+        Pi::registry('page')->clear($module);
         $pages = $this->canonizePage($this->config);
 
         foreach (array_keys($pages) as $section) {
@@ -248,7 +248,7 @@ class Page extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->page->clear($module);
+        Pi::registry('page')->clear($module);
         if ($this->skipUpgrade()) {
             return;
         }
@@ -366,7 +366,7 @@ class Page extends AbstractResource
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->page->clear($module);
+        Pi::registry('page')->clear($module);
 
         $model = Pi::model('page');
         $rowset = $model->select(array('module' => $module));

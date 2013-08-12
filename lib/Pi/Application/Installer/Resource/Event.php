@@ -85,7 +85,7 @@ class Event extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         // Install events
         $modelEvent = Pi::model('event');
@@ -122,7 +122,7 @@ class Event extends AbstractResource
             $flushList[$data['event_module']] = 1;
         }
         foreach (array_keys($flushList) as $moduleName) {
-            Pi::service('registry')->event->clear($moduleName);
+            Pi::registry('event')->clear($moduleName);
         }
 
         return true;
@@ -134,7 +134,7 @@ class Event extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         if ($this->skipUpgrade()) {
             return;
@@ -253,7 +253,7 @@ class Event extends AbstractResource
             $flushList[$data['event_module']] = 1;
         }
         foreach (array_keys($flushList) as $moduleName) {
-            Pi::service('registry')->event->clear($moduleName);
+            Pi::registry('event')->clear($moduleName);
         }
 
         return true;
@@ -265,7 +265,7 @@ class Event extends AbstractResource
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         $modelEvent = Pi::model('event');
         $modelListener = Pi::model('event_listener');
@@ -273,7 +273,7 @@ class Event extends AbstractResource
         $rowset = $modelListener->select(array('module' => $module));
         $modelListener->delete(array('module' => $module));
         foreach ($rowset as $row) {
-            Pi::service('registry')->event->clear($row->event_module);
+            Pi::registry('event')->clear($row->event_module);
         }
 
         return true;
@@ -285,7 +285,7 @@ class Event extends AbstractResource
     public function activateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         $modelEvent = Pi::model('event');
         $modelEvent->update(array('active' => 1), array('module' => $module));
@@ -296,9 +296,9 @@ class Event extends AbstractResource
         );
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
-            Pi::service('registry')->event->clear($row->event_module);
+            Pi::registry('event')->clear($row->event_module);
         }
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         return true;
     }
@@ -309,7 +309,7 @@ class Event extends AbstractResource
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         $modelEvent = Pi::model('event');
         $modelEvent->update(array('active' => 0), array('module' => $module));
@@ -320,9 +320,9 @@ class Event extends AbstractResource
         );
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
-            Pi::service('registry')->event->clear($row->event_module);
+            Pi::registry('event')->clear($row->event_module);
         }
-        Pi::service('registry')->event->clear($module);
+        Pi::registry('event')->clear($module);
 
         return true;
     }

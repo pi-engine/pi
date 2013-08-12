@@ -31,7 +31,7 @@ class Router extends AbstractResource
 
         $section = !empty($options['section'])
                    ? $options['section'] : Pi::engine()->section();
-        $routes = Pi::service('registry')->route->read($section, $exclude = 0);
+        $routes = Pi::registry('route')->read($section, $exclude = 0);
         if (!empty($options['routes'])) {
             $routes = array_merge($routes, $options['routes']);
         }

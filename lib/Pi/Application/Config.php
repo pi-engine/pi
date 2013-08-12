@@ -146,7 +146,7 @@ class Config
         $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
         // Load data from cache
         $this->setConfigs(
-            (array) Pi::service('registry')->config->read('system', $domain),
+            (array) Pi::registry('config')->read('system', $domain),
             $domain
         );
 

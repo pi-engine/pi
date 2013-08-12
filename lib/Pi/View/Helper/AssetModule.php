@@ -41,7 +41,7 @@ class AssetModule extends AbstractHelper
         $module = $module ?: Pi::service('module')->current();
 
         // Check if customized asset available in current theme
-        $customAssets = Pi::service('registry')->asset->read($module);
+        $customAssets = Pi::registry('asset')->read($module);
         if (!empty($customAssets[$file])) {
             return $customAssets[$file];
         }

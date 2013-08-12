@@ -54,8 +54,8 @@ class ModuleController extends ActionController
      */
     public function indexAction()
     {
-        $active = Pi::service('registry')->modulelist->read('active');
-        $inactive = Pi::service('registry')->modulelist->read('inactive');
+        $active = Pi::registry('modulelist')->read('active');
+        $inactive = Pi::registry('modulelist')->read('inactive');
 
         $modules = array_merge($active, $inactive);
         foreach ($modules as $name => &$data) {
@@ -119,7 +119,7 @@ class ModuleController extends ActionController
             $author = Pi::service('module')->loadMeta($directory, 'author');
             //$clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
             //$meta['installed'] = in_array($directory, $modulesInstalled);
-            $meta['installed'] = Pi::service('registry')->module
+            $meta['installed'] = Pi::registry('module')
                     ->read($directory) ? true : false;
             if (empty($meta['clonable']) && $meta['installed']) {
                 continue;
@@ -172,7 +172,7 @@ class ModuleController extends ActionController
             }
         }
         if (!$error) {
-            $installed = Pi::service('registry')->module->read($name)
+            $installed = Pi::registry('module')->read($name)
                 ? true : false;
             if (!$installed) {
                 $installedModules = $this->installedModules();
@@ -493,8 +493,8 @@ class ModuleController extends ActionController
 
         $row->title = $title;
         $row->save();
-        Pi::service('registry')->module->clear();
-        Pi::service('registry')->modulelist->clear();
+        Pi::registry('module')->clear();
+        Pi::registry('modulelist')->clear();
 
         return array(
             'status'    => 1,

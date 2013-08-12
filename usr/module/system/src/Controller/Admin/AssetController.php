@@ -97,8 +97,8 @@ class AssetController extends ActionController
      */
     public function refreshAction()
     {
-        $modules = Pi::service('registry')->module->read();
-        $themes = Pi::service('registry')->theme->read();
+        $modules = Pi::registry('module')->read();
+        $themes = Pi::registry('theme')->read();
 
         $assetList = array();
         $assetCustom = array();

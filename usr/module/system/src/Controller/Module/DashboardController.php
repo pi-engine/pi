@@ -36,9 +36,9 @@ class DashboardController extends ActionController
             );
         }
 
-        $modules = Pi::service('registry')->modulelist->read();
+        $modules = Pi::registry('modulelist')->read();
         $moduleList = array_keys($modules);
-        $allowed = Pi::service('registry')->moduleperm->read($mode);
+        $allowed = Pi::registry('moduleperm')->read($mode);
         if (null === $allowed || !is_array($allowed)) {
             $allowed = $moduleList;
         } else {
@@ -60,7 +60,7 @@ class DashboardController extends ActionController
                 break;
             case AdminMode::MODE_SETTING:
                 $controller = '';
-                $navConfig = Pi::service('registry')->navigation
+                $navConfig = Pi::registry('navigation')
                     ->read('system-component') ?: array();
                 foreach ($navConfig as $key => $item) {
                     if (!isset($item['visible']) || $item['visible']) {
@@ -112,8 +112,8 @@ class DashboardController extends ActionController
         );
 
         // Fetch all permitted modules
-        $modules = Pi::service('registry')->modulelist->read('active');
-        $modulesPermitted = Pi::service('registry')->moduleperm->read('admin');
+        $modules = Pi::registry('modulelist')->read('active');
+        $modulesPermitted = Pi::registry('moduleperm')->read('admin');
         foreach (array_keys($modules) as $name) {
             if (null !== $modulesPermitted
                 && !in_array($name, $modulesPermitted)
@@ -253,7 +253,7 @@ class DashboardController extends ActionController
             $summary = call_user_func($callback, $module);
         }
 
-        $modules = Pi::service('registry')->modulelist->read();
+        $modules = Pi::registry('modulelist')->read();
         $data = $modules[$module];
         $meta = Pi::service('module')->loadMeta($directory, 'meta');
         $author = Pi::service('module')->loadMeta($directory, 'author');

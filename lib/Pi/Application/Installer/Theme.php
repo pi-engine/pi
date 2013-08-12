@@ -203,8 +203,8 @@ class Theme
      */
     public function clearCache(Event $e)
     {
-        Pi::service('registry')->theme->flush();
-        Pi::service('registry')->themelist->flush();
+        Pi::registry('theme')->flush();
+        Pi::registry('themelist')->flush();
     }
 
     /**

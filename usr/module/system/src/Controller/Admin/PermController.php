@@ -129,7 +129,7 @@ class PermController extends ActionController
             AclHandler::setRule($perm, $role, $section, $module, $resource);
         }
 
-        Pi::service('registry')->moduleperm->flush();
+        Pi::registry('moduleperm')->flush();
 
         $aclHandler = new AclHandler($section);
         $aclHandler->setModule($module)->setRole($role);
@@ -138,7 +138,7 @@ class PermController extends ActionController
             array('admin', 'module-admin', 'module-manage')
         )) {
             $aclHandler->setDefault(false);
-            Pi::service('registry')->navigation->flush();
+            Pi::registry('navigation')->flush();
         } else {
             $aclHandler->setDefault(true);
         }
@@ -169,7 +169,7 @@ class PermController extends ActionController
 
         $roles = $this->getRoles($section, $role);
 
-        $modules = Pi::service('registry')->modulelist->read();
+        $modules = Pi::registry('modulelist')->read();
         foreach (array_keys($modules) as $key) {
             $modules[$key]['section'] = 'module-' . $section;
             $modules[$key]['resource'] = $key;
@@ -188,7 +188,7 @@ class PermController extends ActionController
             $modules[$row->resource]['direct'] = $perm;
         }
 
-        $modulesAllowed = Pi::service('registry')->moduleperm
+        $modulesAllowed = Pi::registry('moduleperm')
             ->read($section, $role);
         if (null !== $modulesAllowed && is_array($modulesAllowed)) {
             foreach (array_keys($modules) as $key) {
@@ -273,7 +273,7 @@ class PermController extends ActionController
 
         $roles = $this->getRoles($section, $role);
 
-        $modulesInstalled = Pi::service('registry')->modulelist->read();
+        $modulesInstalled = Pi::registry('modulelist')->read();
         foreach (array_keys($modulesInstalled) as $key) {
             $modulesInstalled[$key]['name'] = $key;
             $modulesInstalled[$key]['resource'] = $key;
@@ -300,7 +300,7 @@ class PermController extends ActionController
                 $modules[$row->resource]['direct'] = $perm;
             }
 
-            $modulesAllowed = Pi::service('registry')->moduleperm
+            $modulesAllowed = Pi::registry('moduleperm')
                 ->read($section, $role);
             if (null !== $modulesAllowed && is_array($modulesAllowed)) {
                 foreach (array_keys($modules) as $key) {

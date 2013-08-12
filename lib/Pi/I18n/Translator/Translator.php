@@ -253,7 +253,7 @@ class Translator extends ZendTranslator
         $this->setTextDomain($domain[0]);
         $this->setLocale($locale);
 
-        $messages = (array) Pi::service('registry')->i18n
+        $messages = (array) Pi::registry('i18n')
             ->setGenerator(array($this, 'loadResource'))
             ->read($domain, $this->locale);
         $this->messages[$this->textDomain][$this->locale] =

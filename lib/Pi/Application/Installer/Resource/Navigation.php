@@ -253,7 +253,7 @@ class Navigation extends AbstractResource
             }
         }
 
-        Pi::service('registry')->navigation->clear($module);
+        Pi::registry('navigation')->clear($module);
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;
@@ -336,7 +336,7 @@ class Navigation extends AbstractResource
             }
         }
 
-        Pi::service('registry')->navigation->clear($module);
+        Pi::registry('navigation')->clear($module);
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;
@@ -370,7 +370,7 @@ class Navigation extends AbstractResource
             $row->delete();
         }
 
-        Pi::service('registry')->navigation->flush();
+        Pi::registry('navigation')->flush();
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;
@@ -386,7 +386,7 @@ class Navigation extends AbstractResource
         // update role active => 1
         $where = array('module' => $module);
         Pi::model('navigation')->update(array('active' => 1), $where);
-        Pi::service('registry')->navigation->flush();
+        Pi::registry('navigation')->flush();
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;
@@ -402,7 +402,7 @@ class Navigation extends AbstractResource
         // update role active => 1
         $where = array('module' => $module);
         Pi::model('navigation')->update(array('active' => 0), $where);
-        Pi::service('registry')->navigation->flush();
+        Pi::registry('navigation')->flush();
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;

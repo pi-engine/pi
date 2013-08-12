@@ -115,7 +115,7 @@ class Event extends AbstractService
      */
     public function loadListeners($module, $event)
     {
-        return Pi::service('registry')->event->read($module, $event);
+        return Pi::registry('event')->read($module, $event);
     }
 
     /**

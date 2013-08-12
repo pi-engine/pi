@@ -92,7 +92,7 @@ class IndexController extends ActionController
                     if ($row->name) {
                         $this->setPage($row->name, $row->title);
                     }
-                    Pi::service('registry')->page->clear($this->getModule());
+                    Pi::registry('page')->clear($this->getModule());
                     $message = __('Page data saved successfully.');
                     $this->jump(array('action' => 'index'), $message);
                     return;
@@ -168,7 +168,7 @@ class IndexController extends ActionController
                         'id' => $row->id
                     )),
                 );
-                Pi::service('registry')->page->clear($this->getModule());
+                Pi::registry('page')->clear($this->getModule());
             } else {
                 $message = __('Page data not saved.');
                 $status = 0;
@@ -234,7 +234,7 @@ class IndexController extends ActionController
                         $this->removePage($pageSet['remove']);
                     }
                 }
-                Pi::service('registry')->page->clear($this->getModule());
+                Pi::registry('page')->clear($this->getModule());
                 $message = __('Page data saved successfully.');
                 $this->jump(array('action' => 'index'), $message);
                 return;
@@ -310,7 +310,7 @@ class IndexController extends ActionController
                 'id'            => $id,
                 'title'         => $row->title,
             );
-            Pi::service('registry')->page->clear($this->getModule());
+            Pi::registry('page')->clear($this->getModule());
         } else {
             $messages = $form->getMessages();
             $message = array();
@@ -343,7 +343,7 @@ class IndexController extends ActionController
             if ($row->name) {
                 $this->removePage($row->name);
             }
-            Pi::service('registry')->page->clear($this->getModule());
+            Pi::registry('page')->clear($this->getModule());
         }
         //$this->redirect()->toRoute('', array('action' => 'index'));
 
@@ -367,7 +367,7 @@ class IndexController extends ActionController
         if ($row) {
             $row->active = $row->active ? 0 : 1;
             $row->save();
-            Pi::service('registry')->page->clear($this->getModule());
+            Pi::registry('page')->clear($this->getModule());
         }
         //$this->redirect()->toRoute('', array('action' => 'index'));
 

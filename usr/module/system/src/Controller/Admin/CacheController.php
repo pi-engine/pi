@@ -124,7 +124,7 @@ class CacheController extends ActionController
                 break;
             case 'registry':
                 if (!empty($item)) {
-                    Pi::service('registry')->{$item}->flush();
+                    Pi::registry($item)->flush();
                 } else {
                     Pi::service('registry')->flush();
                 }

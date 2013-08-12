@@ -5,11 +5,12 @@ August 4th, 2013
 ============
 1. Added support for custom configuration
 2. Refactored user API service with support for persistent profile
-3. Modified config files: var/config/service.authentication.php; var/config/service.user.php
+3. Modified config files: `var/config/service.authentication.php`; `var/config/service.user.php`
 4. Added config for PHP-CS-Fixer: .php_cs
-5. Moved timezone initialization from Pi class to boot.php for PSR "side effect" compliance
-6. Changed config file: boot.php
-7. Changed Pi::registry API to Pi::entity
+5. Moved timezone initialization from `Pi` class to `boot.php` for PSR "side effect" compliance
+6. Modified boot file: `boot.php`
+7. Changed `Pi::registry` API to `Pi::entity`
+8. Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

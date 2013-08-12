@@ -19,7 +19,7 @@ class Navigation
             'pages'     => array(),
         );
 
-        $modules = Pi::service('registry')->modulelist->read('active');
+        $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
             $nav['pages'][$key] = array(

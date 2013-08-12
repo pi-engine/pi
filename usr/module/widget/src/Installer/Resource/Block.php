@@ -22,7 +22,7 @@ class Block extends BasicBlock
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->block->clear($module);
+        Pi::registry('block')->clear($module);
 
         return true;
     }

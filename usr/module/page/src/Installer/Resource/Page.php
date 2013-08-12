@@ -16,7 +16,7 @@ class Page extends BasicPage
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->page->clear($module);
+        Pi::registry('page')->clear($module);
 
         return true;
     }

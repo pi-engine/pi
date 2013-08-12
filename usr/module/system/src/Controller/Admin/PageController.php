@@ -174,7 +174,7 @@ class PageController extends ActionController
                     $resourceId =
                         Pi::model('acl_resource')->add($resource, $parent);
 
-                    Pi::service('registry')->page->clear($row->module);
+                    Pi::registry('page')->clear($row->module);
                     $this->redirect()->toRoute(
                         '',
                         array(
@@ -284,7 +284,7 @@ class PageController extends ActionController
                         array('action' => 'block', 'page' => $row->id)
                     ),
                 );
-                Pi::service('registry')->page->clear($row->module);
+                Pi::registry('page')->clear($row->module);
 
             } else {
                 $message = __('Page data not saved.');
@@ -328,7 +328,7 @@ class PageController extends ActionController
                 $row = Pi::model('page')->find($id);
                 $row->assign($values);
                 $row->save();
-                Pi::service('registry')->page->clear($row->module);
+                Pi::registry('page')->clear($row->module);
                 $message = __('Page data saved successfully.');
             } else {
                 $message = __('Invalid data, please check and re-submit.');
@@ -383,7 +383,7 @@ class PageController extends ActionController
                 'id'    => $row->id,
                 'title' => $row->title,
             );
-            Pi::service('registry')->page->clear($row->module);
+            Pi::registry('page')->clear($row->module);
 
         } else {
             $messages = $form->getMessages();
@@ -433,7 +433,7 @@ class PageController extends ActionController
 
             // Remove page
             $row->delete();
-            Pi::service('registry')->page->clear($row->module);
+            Pi::registry('page')->clear($row->module);
             $result = array(
                 'status'    => 0,
                 'message'   => __('Page is not found.'),
@@ -634,7 +634,7 @@ class PageController extends ActionController
         }
 
         // Clear cache of the page module
-        Pi::service('registry')->block->clear($row->module);
+        Pi::registry('block')->clear($row->module);
         $result = array(
             'status'    => 1,
             'message'   => __('Page block links are updated.'),
@@ -650,7 +650,7 @@ class PageController extends ActionController
      */
     public function themelistAction()
     {
-        $themeList = Pi::service('registry')->themelist->read('front');
+        $themeList = Pi::registry('themelist')->read('front');
         $themes = array();
 
         foreach ($themeList as $dirname => $theme) {

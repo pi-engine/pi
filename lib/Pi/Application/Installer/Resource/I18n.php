@@ -24,7 +24,7 @@ class I18n extends AbstractResource
     public function installAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->i18n->clear($module);
+        Pi::registry('i18n')->clear($module);
     }
 
     /**
@@ -34,9 +34,9 @@ class I18n extends AbstractResource
     {
         $module = $this->event->getParam('module');
         if ('system' == $module) {
-            Pi::service('registry')->i18n->flush();
+            Pi::registry('i18n')->flush();
         } else {
-            Pi::service('registry')->i18n->clear($module);
+            Pi::registry('i18n')->clear($module);
         }
     }
 
@@ -46,7 +46,7 @@ class I18n extends AbstractResource
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->i18n->clear($module);
+        Pi::registry('i18n')->clear($module);
     }
 
     /**
@@ -55,7 +55,7 @@ class I18n extends AbstractResource
     public function activateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->i18n->clear($module);
+        Pi::registry('i18n')->clear($module);
     }
 
     /**
@@ -64,6 +64,6 @@ class I18n extends AbstractResource
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->i18n->clear($module);
+        Pi::registry('i18n')->clear($module);
     }
 }

@@ -24,7 +24,7 @@ class Modules extends AbstractResource
      */
     public function boot()
     {
-        $bootstraps = Pi::service('registry')->bootstrap->read();
+        $bootstraps = Pi::registry('bootstrap')->read();
         if (empty($bootstraps)) {
             return;
         }

@@ -30,7 +30,7 @@ class Theme extends Select
     {
         if (empty($this->valueOptions)) {
             $type = $this->getOption('section');
-            $themes = Pi::service('registry')->theme->read($type);
+            $themes = Pi::registry('theme')->read($type);
             foreach($themes as $name => $theme) {
                 $this->valueOptions[$name] = $theme['title'];
             }

@@ -199,7 +199,7 @@ class Config extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        Pi::service('registry')->config->clear($module);
+        Pi::registry('config')->clear($module);
 
         $config = $this->canonize($this->config);
         if (!empty($config['category'])) {
@@ -256,7 +256,7 @@ class Config extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->config->clear($module);
+        Pi::registry('config')->clear($module);
 
         if ($this->skipUpgrade()) {
             return;
@@ -383,13 +383,13 @@ class Config extends AbstractResource
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
-        Pi::service('registry')->config->clear($module);
+        Pi::registry('config')->clear($module);
 
         $modelCategory = Pi::model('config_category');
         $modelConfig = Pi::model('config');
         $modelCategory->delete(array('module' => $module));
         $modelConfig->delete(array('module' => $module));
-        
+
         return true;
     }
 }

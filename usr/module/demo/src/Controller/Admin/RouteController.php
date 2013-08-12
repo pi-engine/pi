@@ -84,7 +84,7 @@ class RouteController extends ActionController
                 $row->save();
                 if ($row->id) {
                     $message = __('Route data saved successfully.');
-                    Pi::service('registry')->route->flush();
+                    Pi::registry('route')->flush();
 
                     //$this->view()->setTemplate(false);
                     $this->redirect()->toRoute('', array('action' => 'index'));
@@ -158,7 +158,7 @@ class RouteController extends ActionController
                         array('action' => 'delete', 'id' => $row->id)
                     ),
                 );
-                Pi::service('registry')->route->flush();
+                Pi::registry('route')->flush();
             } else {
                 $message = __('Route data not saved.');
                 $status = 0;
