@@ -12,7 +12,6 @@ namespace Pi\User\Adapter;
 use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
-use Pi\User\Avatar\Factory as UserAvatar;
 use Zend\Db\Sql\Predicate\PredicateInterface;
 
 /**
@@ -248,7 +247,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param string|array      $key
      * @param string|int|null   $id
-     * @return mixed
+     * @return mixed|mixed[]
      * @api
      */
     abstract public function get($key, $id = null);

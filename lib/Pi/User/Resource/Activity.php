@@ -12,24 +12,15 @@ namespace Pi\User\Resource;
 use Pi;
 
 /**
- * User timeline handler
+ * User activity handler
  *
- * Timeline APIs:
+ * Activity APIs:
  *
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add(array(
- *          'message'   => <message>,
- *          'module'    => <module-name>,
- *          'type'      => <type>,
- *          'link'      => <link-href>,
- *          'time'      => <timestamp>,
- *     ))
- *   - timeline([$id])->delete([$condition])
+ *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Timeline extends AbstractResource
+class Activity extends AbstractResource
 {
     /**
      * If user module available for time handling

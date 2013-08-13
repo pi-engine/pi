@@ -107,7 +107,7 @@ class RegisterController extends ActionController
             'active'        => 1,
             'role'          => Acl::MEMBER,
         );
-        $result = Pi::service('api')->system(array('member', 'add'), $data);
+        $result = Pi::api('system', 'member')->add($data);
         if (!$result['id']) {
             $this->view()->assign(
                 'message',

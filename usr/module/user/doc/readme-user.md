@@ -66,7 +66,7 @@ CREATE TABLE `{field}` (
 );
 
 # Timeline meta
-CREATE TABLE `{timeline_type}` (
+CREATE TABLE `{timeline}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
@@ -104,10 +104,10 @@ CREATE TABLE `{quicklink}` (
 );
 
 # Timeline for user activities
-CREATE TABLE `{timeline}` (
+CREATE TABLE `{timeline_log}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `type`            varchar(64)     NOT NULL    default '',
+  `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
   `link`            text,

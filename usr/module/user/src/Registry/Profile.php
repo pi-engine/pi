@@ -20,12 +20,48 @@ use Pi\Application\Registry\AbstractRegistry;
  */
 class Profile extends AbstractRegistry
 {
+    /** @var string Module name */
+    protected $module = 'user';
+
     /**
      * {@inheritDoc}
      */
     protected function loadDynamic($options = array())
     {
         $fields = array();
+
+        $columns = array();
+        $where = array('active' => 1);
+        if ($options['type']) {
+            $where['type'] = $options['type'];
+        }
+
+        switch ($options['action']) {
+            case 'display':
+                $columns = array('name', 'title', 'filter');
+                $where['is_display'] = 1;
+                break;
+            case 'edit':
+                $columns = array('name', 'title', 'edit');
+                $where['is_edit'] = 1;
+                break;
+            case 'search':
+                $columns = array('name', 'title');
+                $where['is_search'] = 1;
+                break;
+            default:
+                break;
+        }
+        $model = Pi::model('field', $this->module);
+        $select = $model->select()->where($where);
+        if ($columns) {
+            $select->columns($columns);
+        }
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $fields[$row->name] = $row->toArray();
+        }
+
         return $fields;
     }
 
@@ -40,7 +76,7 @@ class Profile extends AbstractRegistry
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 
-        return $result;
+        return $data;
     }
 
     /**

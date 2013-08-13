@@ -10,7 +10,8 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\Local as UserModel;
+use Pi\User\Model\Local as LocalModel;
+use Module\User\Api\Profile as ProfileApi;
 
 /**
  * Pi Engine local user service provided by user module
@@ -27,6 +28,7 @@ class Local extends AbstractAdapter
      */
     public function getMeta($type = '', $action = '')
     {
+
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
     /**#@-*/
@@ -40,7 +42,7 @@ class Local extends AbstractAdapter
     public function getUser($id = null, $field = 'id')
     {
         if (null !== $id) {
-            $model = new UserModel($id, $field);
+            $model = new LocalModel($id, $field);
         } else {
             $model = $this->model;
         }

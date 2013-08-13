@@ -10,7 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\System as UserModel;
+use Pi\User\Model\System as SystemModel;
 
 /**
  * Pi Engine built-in user service provided by system module
@@ -41,7 +41,7 @@ class System extends AbstractAdapter
         );
         $metaCustom = array(
         );
-        
+
         $meta = array();
         switch ($type) {
             case 'account':
@@ -71,7 +71,7 @@ class System extends AbstractAdapter
     public function getUser($id = null, $field = 'id')
     {
         if (null !== $id) {
-            $model = new UserModel($id, $field);
+            $model = new SystemModel($id, $field);
         } else {
             $model = $this->model;
         }

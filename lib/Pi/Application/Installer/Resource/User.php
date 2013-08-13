@@ -145,15 +145,16 @@ class User extends AbstractResource
             'quicklink'     => array(),
         );
 
+        // Canonize fields
         if (isset($config['field'])) {
-            foreach ($config['field'] as $key => &$spec) {
+            foreach ($config['field'] as $key => $spec) {
+                $spec['name'] = $key;
                 $spec = $this->canonizeField($spec);
+                $ret['field'][$spec['name']] = $spec;
             }
         }
 
-        foreach (array('field','timeline', 'activity', 'quicklink')
-            as $op
-        ) {
+        foreach (array('timeline', 'activity', 'quicklink') as $op) {
             if (isset($config[$op])) {
                 foreach ($config[$op] as $key => $spec) {
                     $ret[$op][$key] = array_merge($spec, array(
@@ -170,11 +171,36 @@ class User extends AbstractResource
     /**
      * Canonize a profile field specs
      *
+     * 1. Field name:
+     * custom (module) profile field names are prefixed with module name
+     * and delimited by underscore `_` as `<module-name>_<field_name>`
+     *
+     * 2. Edit specs:
+     * Transform
+     * `'edit' => <type>` and `'edit' => array('element' => <type>)`
+     * to
+     * ```
+     *  'edit' => array(
+     *      'element'   => array(
+     *          'type'  => <type>,
+     *          <...>,
+     *      ),
+     *      <...>,
+     *  ),
+     * ```
+     *
+     * 3. Add edit specs if `is_edit` is `true` or not specified
+     *
      * @param array $spec
      * @return array
+     * @see Pi\Application\Service\User::canonizeField()
      */
     protected function canonizeField($spec)
     {
+        // Canonize field name
+        $spec['name'] = $this->getModule() . '_' . $spec['name'];
+        $spec['module'] = $this->getModule();
+
         // Canonize editable, display and searchable, default as true
         foreach (array('is_edit', 'is_display', 'is_search') as $key) {
             if (!isset($spec[$key])) {
@@ -224,9 +250,10 @@ class User extends AbstractResource
         if (empty($this->config)) {
             return;
         }
+        Pi::registry('profile')->clear();
 
         $config = $this->canonize($this->config);
-        foreach (array('field','timeline', 'activity', 'quicklink')
+        foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
         ) {
             $model = Pi::model($op, 'user');
@@ -258,123 +285,62 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('user')->clear($module);
+        Pi::registry('profile')->clear();
 
         if ($this->skipUpgrade()) {
             return;
         }
 
+        $itemsDeleted = array();
         $config = $this->canonize($this->config);
-
-        $modelCategory = Pi::model('config_category');
-        $modelConfig = Pi::model('config');
-        $categories = array();
-        foreach ($config['category'] as $category) {
-            $categories[$category['name']] = $category;
-        }
-
-        $rowsetCategory = $modelCategory->select(array('module' => $module));
-        foreach ($rowsetCategory as $row) {
-            $key = $row->name;
-            // Delete unused category
-            if (!isset($categories[$key])) {
-                $row->delete();
-                $status = true;
+        foreach (array('field', 'timeline', 'activity', 'quicklink')
+            as $op
+        ) {
+            $model = Pi::model($op, 'user');
+            $rowset = $model->select(array('module' => $module));
+            $items = $config[$op];
+            $itemsDeleted[$op] = array();
+            foreach ($rowset as $row) {
+                // Update existent item
+                if (isset($items[$row->name])) {
+                    $row->assign($items[$row->name]);
+                    $row->save();
+                    unset($items[$row->name]);
+                // Delete deprecated items
+                } else {
+                    $itemsDeleted[$op][] = $row->name;
+                    $row->delete();
+                }
+            }
+            // Add new items
+            foreach ($items as $key => $spec) {
+                $row = $model->creatRow($spec);
+                $status = $row->save();
                 if (!$status) {
                     return array(
                         'status'    => false,
                         'message'   => sprintf(
-                            'Category "%s" is not deleted.',
-                            $row->name
-                        )
+                            '%s "%s" is not created.',
+                            $op,
+                            $key
+                        ),
                     );
                 }
-            } else {
-                // Get existent category id
-                $categories[$key]['id'] = $row->id;
-
-                $isChanged = false;
-                if ($categories[$key]['name'] != $row->name) {
-                    $row->name = $categories[$key]['name'];
-                    $isChanged = true;
-                }
-                if ($categories[$key]['order'] != $row->order) {
-                    $row->order = $categories[$key]['order'];
-                    $isChanged = true;
-                }
-                // Update existent category
-                if (!empty($isChanged)) {
-                    $status = $row->save();
-                    if (!$status) {
-                        $msg = 'Category "%s" is not updated.';
-                        return array(
-                            'status'    => false,
-                            'message'   => sprintf($msg, $row->name),
-                        );
-                    }
-                }
-            }
-        }
-        foreach ($categories as $key => $category) {
-            // Skip existent category
-            if (isset($category['id'])) continue;
-            // Insert new category
-            $category['module'] = $module;
-            $status = $modelCategory->insert($category);
-            if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf(
-                        'Category "%s" is not created.',
-                        $category['name']
-                    )
-                );
             }
         }
 
-        $configList = array();
-        foreach ($config['item'] as $item) {
-            $item = $this->canonizeConfig($item);
-            $configList[$item['name']] = $item;
+        // Delete deprecated user custom profile data
+        if ($itemsDeleted['field']) {
+            Pi::model('custom', 'user')->delete(array(
+                'field' => $itemsDeleted['field'],
+            ));
         }
-        $rowsetConfig = $modelConfig->select(array('module' => $module));
-        foreach ($rowsetConfig as $row) {
-            // Update existent config
-            if (isset($configList[$row->name])) {
-                // Skip value to avoid overwriting
-                if (isset($configList[$row->name]['value'])) {
-                    unset($configList[$row->name]['value']);
-                }
-                $row->assign($configList[$row->name]);
-                $row->save();
-                unset($configList[$row->name]);
-                continue;
-            }
-            // Delete deprecated config
-            $row->delete();
-            $status = true;
-            if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf(
-                        'Config "%s" is failed to delete.',
-                        $row->name
-                    )
-                );
-            }
-        }
-        foreach ($configList as $name => $config) {
-            $row = $modelConfig->createRow($config);
-            $status = $row->save();
-            if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf(
-                        'Config "%s" is not created.',
-                        $config['name']
-                    ),
-                );
-            }
+
+        // Delete deprecated timeline log
+        if ($itemsDeleted['timeline']) {
+            Pi::model('timeline_log', 'user')->delete(array(
+                'timeline' => $itemsDeleted['timeline'],
+            ));
         }
 
         return true;
@@ -388,14 +354,68 @@ class User extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        $module = $this->event->getParam('module');
-        Pi::registry('config')->clear($module);
+        $module = $this->getModule();
+        Pi::registry('profile')->clear();
 
-        $modelCategory = Pi::model('config_category');
-        $modelConfig = Pi::model('config');
-        $modelCategory->delete(array('module' => $module));
-        $modelConfig->delete(array('module' => $module));
+        $fields = array();
+        $rowset = Pi::model('field', 'user')->select(array('module' => $module));
+        foreach ($rowset as $row) {
+            $fields[] = $row->name;
+        }
+        if ($fields) {
+            Pi::model('custom', 'user')->delete(array('field' => $fields));
+        }
+
+        foreach (array('field', 'timeline', 'activity', 'quicklink', 'timeline_log')
+            as $op
+        ) {
+            $model = Pi::model($op, 'user');
+            $model->delete(array('module' => $module));
+        }
 
         return true;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function activateAction()
+    {
+        if (!$this->isActive()) {
+            return;
+        }
+        $module = $this->getModule();
+        Pi::registry('profile')->clear();
+
+        foreach (array('field', 'timeline', 'activity', 'quicklink')
+            as $op
+        ) {
+            $model = Pi::model($op, 'user');
+            $model->update(array('active' => 1), array('module' => $module));
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deactivateAction()
+    {
+        if (!$this->isActive()) {
+            return;
+        }
+        $module = $this->getModule();
+        Pi::registry('profile')->clear();
+
+        foreach (array('field', 'timeline', 'activity', 'quicklink')
+            as $op
+        ) {
+            $model = Pi::model($op, 'user');
+            $model->update(array('active' => 0), array('module' => $module));
+        }
+
+        return true;
+    }
+
 }

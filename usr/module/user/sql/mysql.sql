@@ -18,12 +18,15 @@ CREATE TABLE `{account}` (
   `credential`      varchar(255)    NOT NULL default '',    # Credential hash
   `salt`            varchar(255)    NOT NULL default '',    # Hash salt
   `email`           varchar(64)     NOT NULL,
-  `name`            varchar(255)    NOT NULL default '',
+  `name`            varchar(255)    NOT NULL,
+
   `active`          tinyint(1)      NOT NULL default '0',
+  `disabled`        tinyint(1)      NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `identity` (`identity`),
-  UNIQUE KEY `email` (`email`)
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `name` (`name`),
 );
 
 # Profile schema for basic fields
@@ -69,16 +72,17 @@ CREATE TABLE `{field}` (
   `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `name` (`module`, `name`)
+  UNIQUE KEY  `name` (`name`)
 );
 
 # Timeline meta
-CREATE TABLE `{timeline_type}` (
+CREATE TABLE `{timeline}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `icon`            text,
+  `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -92,6 +96,7 @@ CREATE TABLE `{activity}` (
   `module`          varchar(64)     NOT NULL    default '',
   `link`            text,
   `icon`            text,
+  `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -105,16 +110,17 @@ CREATE TABLE `{quicklink}` (
   `module`          varchar(64)     NOT NULL    default '',
   `link`            text,
   `icon`            text,
+  `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
 );
 
 # Timeline for user activities
-CREATE TABLE `{timeline}` (
+CREATE TABLE `{timeline_log}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `type`            varchar(64)     NOT NULL    default '',
+  `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
   `link`            text,

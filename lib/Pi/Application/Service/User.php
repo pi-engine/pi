@@ -80,6 +80,12 @@ use Pi\User\Resource\AbstractResource;
  *  - hasIdentity()
  *  - getIdentity()
  *
+ * + User account/profile field operations
+ *  - getByModule($module, $key[, $id])
+ *  - getListByModule($module, $key, $ids)
+ *  - setByModule($module, $key, $value[, $id])
+ *  - incrementByModule($module, $key, $value[, $id])
+ *
  * + Resource APIs
  *
  * + Avatar
@@ -97,7 +103,7 @@ use Pi\User\Resource\AbstractResource;
  *   - message([$id])->getCount()
  *   - message([$id])->getAlert()
  *
- * + Timeline/Activity
+ * + Timeline
  *   - timeline([$id])
  *   - timeline([$id])->get($limit[, $offset[, $condition]])
  *   - timeline([$id])->getCount([$condition]])
@@ -109,7 +115,9 @@ use Pi\User\Resource\AbstractResource;
  *          'time'      => <timestamp>,
  *     ))
  *   - timeline([$id])->delete([$condition])
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
+ *
+ * + Activity
+ *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
  *
  * + Relation
  *   - relation([$id])
@@ -326,6 +334,97 @@ class User extends AbstractService
         }
 
         return $identity;
+    }
+
+    /**
+     * Canonize field name(s) of a module
+     *
+     * Note: custom (module) profile field names are prefixed with module name
+     * and delimited by underscore `_` as `<module-name>_<field_name>`
+     *
+     * @param string $module
+     * @param string|string[] $key
+     * @return string|string[]
+     * @see Pi\Application\Installer\Resource\User::canonizeField()
+     */
+    protected function canonizeField($module, $key)
+    {
+        if (is_array($key)) {
+            foreach ($key as $idx => &$val) {
+                $val = $module . '_' . $val;
+            }
+        } else {
+            $key = $module . '_' . $key;
+        }
+
+        return $key;
+    }
+
+    /**
+     * Get field value(s) of a user field(s) belonging to a module
+     *
+     * @param string            $module
+     * @param string|array      $key
+     * @param string|int|null   $id
+     * @return mixed|mixed[]
+     * @api
+     */
+    public function getByModule($module, $key, $id = null)
+    {
+        $key = $this->canonizeField($module, $key);
+
+        return $this->get($key, $id);
+    }
+
+    /**
+     * Get field value(s) of a list of user of a module
+     *
+     * @param string            $module
+     * @param string|array      $key
+     * @param array             $ids
+     * @return array
+     * @api
+     */
+    public function getListByModule($module, $key, $ids)
+    {
+        $key = $this->canonizeField($module, $key);
+
+        return $this->getList($key, $ids);
+    }
+
+    /**
+     * Set value of a user field belonging to a module
+     *
+     * @param string            $module
+     * @param string            $key
+     * @param midex             $value
+     * @param string|int|null   $id
+     * @return bool
+     * @api
+     */
+    public function setByModule($module, $key, $value, $id = null)
+    {
+        $key = $this->canonizeField($module, $key);
+
+        return $this->set($key, $value, $id);
+    }
+
+    /**
+     * Incremetn/decrement a user field belonging to a module
+     *
+     * @param string            $module
+     * @param string            $key
+     * @param int               $value
+     *      Positive to increment or negative to decrement
+     * @param string|int|null   $id
+     * @return bool
+     * @api
+     */
+    public function incrementByModule($module, $key, $value, $id = null)
+    {
+        $key = $this->canonizeField($module, $key);
+
+        return $this->increment($key, $value, $id);
     }
 
     /**
