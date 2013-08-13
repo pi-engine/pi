@@ -98,10 +98,11 @@ use Pi;
  *
  *      'activity'      => array(
  *          <name>  => array(
- *              'title' => __('Activity Title'),
- *              'link'  => <link-to-full-list>,
+ *              'title'     => __('Activity Title'),
+ *              'callback'  => <callback>
+ *              'link'      => <link-to-full-list>,
  *
- *              ['icon'  => <img-src>,]
+ *              ['icon'     => <img-src>,]
  *          ),
  *          <...>
  *      ),

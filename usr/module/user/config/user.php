@@ -15,13 +15,21 @@
  */
 return array(
     'field'     => array(
-
+        'language'  => array(
+            'title' => __('Language'),
+            'edit'  => 'Locale',
+        ),
     ),
-    'timeline'  => array(
 
+    'timeline'  => array(
+        'action'    => array(
+            'title' => __('User action'),
+        ),
     ),
     'activity'  => array(
+        'member'    => array(
 
+        ),
     ),
     'quicklink' => array(
 

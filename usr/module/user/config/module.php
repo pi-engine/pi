@@ -26,10 +26,4 @@ return array(
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
     ),
-    // Module dependency: list of module directory names, optional
-    'dependency'    => array(
-        'widget',
-        'demo',
-        'page',
-    ),
 );

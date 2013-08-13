@@ -14,25 +14,25 @@ CREATE TABLE `{account}` (
   `name`            varchar(255)    NOT NULL,
 
   `active`          tinyint(1)      NOT NULL default '0',
-  `disabled`        tinyint(1)      NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `identity` (`identity`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `name` (`name`),
+  KEY `status` (`active`)
 );
 
 # Profile schema for basic fields
 CREATE TABLE `{profile}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `gender`          varchar(255)    NOT NULL default '',
+  `gender`          enum('f', 'm', 'u'),
   `fullname`        varchar(255)    NOT NULL default '',
   `birthdate`       varchar(10)     NOT NULL default '',    # YYYY-mm-dd
   `location`        varchar(255)    NOT NULL default '',
   `signature`       varchar(255)    NOT NULL default '',
+  `avatar`          varchar(255)    NOT NULL default '',
   `bio`             text,
-  `avatar`          text,           # Link to avatar image, or email for gravatar
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user` (`uid`)
@@ -47,6 +47,31 @@ CREATE TABLE `{custom}` (
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `field` (`uid`, `field`)
+);
+
+# User meta data
+CREATE TABLE `{meta}` (
+  `uid`             int(10)             unsigned NOT NULL,
+  `register_ip`     varchar(15)         NOT NULL default '',
+  `time_registered` int(10)             unsigned NOT NULL default '0',
+  `time_activated`  int(10)             unsigned NOT NULL default '0',
+  `time_completed`  int(10)             unsigned NOT NULL default '0',
+  `time_disabled`   int(10)             unsigned NOT NULL default '0',
+  `time_deleted`    int(10)             unsigned NOT NULL default '0',
+
+  PRIMARY KEY (`uid`)
+);
+
+# User action log
+CREATE TABLE `{log}` (
+  `id`              int(10)             unsigned NOT NULL auto_increment,
+  `uid`             int(10)             unsigned NOT NULL,
+  `time_update`     int(10)             unsigned NOT NULL default '0',
+  `time_login`      int(10)             unsigned NOT NULL default '0',
+  `login_ip`        varchar(15)         NOT NULL default '',
+
+  PRIMARY KEY (`id`),
+  UNIQUE  KEY `uid` (`uid`)
 );
 
 # Entity meta for all profile fields: account, basic profile and custom fields
@@ -83,13 +108,35 @@ CREATE TABLE `{compound_field}` (
   UNIQUE KEY  `name` (`compound`, `name`)
 );
 
+# Display group for profile fields
+CREATE TABLE `{display_group}` (
+  `id`          int(10) unsigned        NOT NULL auto_increment,
+  `name`        varchar(64)             NOT NULL default '',
+  `title`       varchar(255)            NOT NULL default '',
+  `order`       smallint(5) unsigned    NOT NULL default '0',
+
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+);
+
+# Display grouping and order of field
+CREATE TABLE `{field_display}` (
+  `id`         int(10) unsigned         NOT NULL auto_increment,
+  `field`      varchar(64)              NOT NULL default '',
+  `group`      varchar(64)              NOT NULL default '',
+  `order`      smallint(5) unsigned     NOT NULL default '0',
+
+  PRIMARY KEY (`id`)
+);
+
+
 # Timeline meta
 CREATE TABLE `{timeline}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
-  `icon`            text,
+  `icon`            varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
@@ -101,10 +148,11 @@ CREATE TABLE `{activity}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
+  `callback`        varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL    default '',
-  `link`            text,
-  `icon`            text,
-  `active`          tinyint(1)      NOT NULL default '0',   # Is active
+  `link`            varchar(255)    NOT NULL    default '',
+  `icon`            varchar(255)    NOT NULL    default '',
+  `active`          tinyint(1)      NOT NULL    default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -116,9 +164,9 @@ CREATE TABLE `{quicklink}` (
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
-  `link`            text,
-  `icon`            text,
-  `active`          tinyint(1)      NOT NULL default '0',   # Is active
+  `link`            varchar(255)    NOT NULL    default '',
+  `icon`            varchar(255)    NOT NULL    default '',
+  `active`          tinyint(1)      NOT NULL    default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -131,7 +179,7 @@ CREATE TABLE `{timeline_log}` (
   `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
-  `link`            text,
+  `link`            varchar(255)    NOT NULL    default '',
   `time`            int(11)         unsigned    NOT NULL,
 
   PRIMARY KEY  (`id`),
@@ -143,8 +191,8 @@ CREATE TABLE `{timeline_log}` (
 CREATE TABLE `{tool}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `title`           varchar(64)     NOT NULL    default '',
-  `identitifer`     text,
+  `title`           varchar(64)     NOT NULL,
+  `identitifer`     varchar(255)    NOT NULL,
   `order`           int(11)         unsigned    NOT NULL,
 
   PRIMARY KEY  (`id`),
@@ -187,8 +235,8 @@ CREATE TABLE `{education}` (
 CREATE TABLE `{work}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `company`         varchar(64)     NOT NULL    default '',
-  `departmetn`      varchar(64)     NOT NULL    default '',
+  `company`         varchar(64)     NOT NULL,
+  `department`      varchar(64)     NOT NULL    default '',
   `title`           varchar(64)     NOT NULL    default '',
   `description`     text,
   `start`           varchar(64)     NOT NULL    default '',
@@ -218,7 +266,7 @@ CREATE TABLE `{role}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
   `role`            varchar(64)     NOT NULL    default '',
-   `section`        varchar(64)     NOT NULL    default 'front',
+  `section`         varchar(64)     NOT NULL    default 'front',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user` (`section`, `uid`)
