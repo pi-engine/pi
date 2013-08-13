@@ -192,10 +192,7 @@ class Admin extends AbstractController
                 'role'          => Acl::MEMBER,
                 'role_staff'    => Acl::ADMIN,
             );
-            $result = Pi::service('api')->system(
-                array('member', 'add'),
-                $userData
-            );
+            $result = Pi::api('system', 'member')->add($userData);
             $this->status = $result['status'];
 
             // Create system accounts
@@ -226,7 +223,7 @@ class Admin extends AbstractController
                 $data['identity']   = $identity;
                 $data['email']      = $identity . '@' . $hostname;
                 $data = array_merge($userData, $data);
-                Pi::service('api')->system(array('member', 'add'), $data);
+                Pi::api('system', 'member')->add($data);
             }
         }
 

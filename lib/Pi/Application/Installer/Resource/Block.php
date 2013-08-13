@@ -321,7 +321,7 @@ class Block extends AbstractResource
      */
     protected function addBlock($block, &$message)
     {
-        $result = Pi::service('api')->system(array('block', 'add'), $block);
+        $result = Pi::api('system', 'block')->add($block);
 
         return $result['status'];
     }
@@ -336,11 +336,7 @@ class Block extends AbstractResource
      */
     protected function updateBlock(RootRow $rootRow, $block, &$message)
     {
-        $result = Pi::service('api')->system(
-            array('block', 'update'),
-            $rootRow,
-            $block
-        );
+        $result = Pi::api('system', 'block')->update($rootRow, $block);
 
         return $result['status'];
     }
@@ -354,11 +350,7 @@ class Block extends AbstractResource
      */
     protected function deleteBlock(RootRow $rootRow, &$message)
     {
-        $result = Pi::service('api')->system(
-            array('block', 'delete'),
-            $rootRow,
-            true
-        );
+        $result = Pi::api('system', 'block')->delete($rootRow, true);
 
         return $result['status'];
     }

@@ -20,6 +20,7 @@ use Pi\Utility\Filter;
 use Pi\Application\Service\User;
 use Pi\Application\Model\Model;
 use Pi\Application\Registry\AbstractRegistry;
+use Pi\Application\AbstractApi;
 
 /**
  * Pi Engine
@@ -71,6 +72,7 @@ use Pi\Application\Registry\AbstractRegistry;
  *  - url()
  *  - user()
  *  - registry()
+ *  - api()
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -436,7 +438,7 @@ class Pi
     }
 
     /**
-     * Load registry service
+     * Load registry
      *
      * Usage
      *
@@ -451,13 +453,38 @@ class Pi
      *  // Alias of
      *  Pi::service('registry')->handler(<name>, <module>)->read(<...>);
      * ```
-     * 
+     *
      * @return AbstractRegistry
      * @api
      */
     public static function registry($name, $module = null)
     {
         return static::service('registry')->handler($name, $module);
+    }
+
+    /**
+     * Load module API
+     *
+     * Usage
+     *
+     * ```
+     *  // Module default API
+     *  Pi::api(<module-name>)->{<method>}(<args>);
+     *  // Alias of
+     *  Pi::service('api')->handler(<module-name>, 'api')->{<method>}(<args>);
+     *
+     *  // Module specific API
+     *  Pi::api(<module-name>, <api-name>)->{<method>}(<args>);
+     *  // Alias of
+     *  Pi::service('api')->handler(<module-name>, <api-name>)->{<method>}(<args>);
+     * ```
+     *
+     * @return AbstractApi
+     * @api
+     */
+    public static function api($module, $api = 'api')
+    {
+        return static::service('api')->handler($module, $api);
     }
 
     /**

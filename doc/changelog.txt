@@ -11,6 +11,7 @@ August 4th, 2013
 6. Modified boot file: `boot.php`
 7. Changed `Pi::registry` API to `Pi::entity`
 8. Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
+9. Added API `Pi::api()` as alias for `Pi::service('api')->handler()`
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

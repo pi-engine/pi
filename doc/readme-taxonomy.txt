@@ -100,5 +100,5 @@ class Provider extends AbstractProvider
 }
 
 <?php
-$providerHandler = Pi::service('api')->handler('provider', 'provider');
+$providerHandler = Pi::api('provider', 'provider');
 $entityContent = $providerHandler->renderEntity($id);

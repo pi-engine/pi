@@ -34,7 +34,7 @@ abstract class WidgetController extends ActionController
         $widgetMeta = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
 
-        $result = Pi::service('api')->system(array('block', 'add'), $block);
+        $result = Pi::api('system', 'block')->add($block);
         $id = $result['root'];
         if ($id) {
             $widget = array(
@@ -63,8 +63,10 @@ abstract class WidgetController extends ActionController
             unset($block['type']);
         }
 
-        $result = Pi::service('api')->system(array('block', 'update'),
-                                             $widgetRow->block, $block);
+        $result = Pi::api('system', 'block')->update(
+            $widgetRow->block,
+            $block
+        );
         $status = $result['status'];
         if ($status) {
             $widgetRow->name = $block['name'];
@@ -89,8 +91,7 @@ abstract class WidgetController extends ActionController
             $status = 0;
             $message = __('The widget does not exist.');
         } else {
-            $result = Pi::service('api')->system(array('block', 'delete'),
-                                                 $row->block, true);
+            $result = Pi::api('system', 'block')->delete($row->block, true);
             extract($result);
             if ($status) {
                 $row->delete();

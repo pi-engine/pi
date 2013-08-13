@@ -47,7 +47,7 @@ class Install extends BasicInstall
             'type'          => 'html',
             'content'       => __('WIDGET_PI_ENGINE_FEATURE'),
         );
-        $result = Pi::service('api')->system(array('block', 'add'), $block);
+        $result = Pi::api('system', 'block')->add($block);
         $id = $result['root'];
         if ($id) {
             $widget = array(
@@ -119,7 +119,7 @@ class Install extends BasicInstall
         );
         $block['content'] = json_encode($images);
 
-        $result = Pi::service('api')->system(array('block', 'add'), $block);
+        $result = Pi::api('system', 'block')->add($block);
         $id = $result['root'];
         if ($id) {
             $widget = array(
