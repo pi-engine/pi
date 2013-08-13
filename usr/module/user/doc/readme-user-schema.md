@@ -164,7 +164,7 @@ CREATE TABLE `{address}` (
   `order`           int(11)         unsigned    NOT NULL defualt '5',
 
   PRIMARY KEY  (`id`),
-  KEY (`uid`)
+  UNIQUE KEY (`uid`)
 );
 
 # Education
