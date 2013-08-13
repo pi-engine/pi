@@ -49,8 +49,10 @@ class CarouselController extends WidgetController
             unset($block['type']);
         }
 
-        $result = Pi::service('api')->system(array('block', 'update'),
-                                             $widgetRow->block, $block);
+        $result = Pi::api('system', 'block')->update(
+            $widgetRow->block,
+            $block
+        );
         $status = $result['status'];
         if ($status) {
             $items = json_decode($widgetRow->meta, true);
