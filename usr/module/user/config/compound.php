@@ -19,6 +19,7 @@ return array(
     'tool'      => array(
         'name'  => 'tool',
         'title' => __('Social tools'),
+        'table' => 'tool',
 
         'field' => array(
             'title'         => array(
@@ -34,6 +35,7 @@ return array(
     'address'   => array(
         'name'  => 'address',
         'title' => __('Address'),
+        'table' => 'address',
 
         'field' => array(
             'postcode'   => array(
@@ -61,6 +63,7 @@ return array(
     'education'  => array(
         'name'  => 'education',
         'title' => __('Education'),
+        'table' => 'education',
 
         'field' => array(
             'school'    => array(
@@ -88,6 +91,7 @@ return array(
     'work'      => array(
         'name'  => 'work',
         'title' => __('Work'),
+        'table' => 'work',
 
         'field' => array(
             'company'    => array(
