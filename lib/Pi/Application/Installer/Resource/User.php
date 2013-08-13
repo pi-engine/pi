@@ -26,6 +26,7 @@ use Pi;
  *      'field' => array(
  *          // Field with simple text input
  *          'field_name_a' => array(
+ *              'name'          => <specified_field_name>,
  *              'title'         => __('Field Name A'),
  *              'description'   => __('Description of field A.'),
  *              'value'         => 'field value',
@@ -171,9 +172,9 @@ class User extends AbstractResource
     /**
      * Canonize a profile field specs
      *
-     * 1. Field name:
-     * custom (module) profile field names are prefixed with module name
-     * and delimited by underscore `_` as `<module-name>_<field_name>`
+     * 1. Field name: if field `name` is not specified, `name` will be defined
+     * as module name followed by field key and delimited by underscore `_`
+     * as `<module-name>_<field_key>`
      *
      * 2. Edit specs:
      * Transform
@@ -192,13 +193,16 @@ class User extends AbstractResource
      * 3. Add edit specs if `is_edit` is `true` or not specified
      *
      * @param array $spec
+     * @param string $key
      * @return array
      * @see Pi\Application\Service\User::canonizeField()
      */
-    protected function canonizeField($spec)
+    protected function canonizeField($spec, $key)
     {
         // Canonize field name
-        $spec['name'] = $this->getModule() . '_' . $spec['name'];
+        $spec['name'] = !empty($spec['name'])
+            ? $spec['name']
+            : $this->getModule() . '_' . $key;
         $spec['module'] = $this->getModule();
 
         // Canonize editable, display and searchable, default as true
@@ -417,5 +421,4 @@ class User extends AbstractResource
 
         return true;
     }
-
 }

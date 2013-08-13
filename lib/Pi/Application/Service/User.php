@@ -340,7 +340,7 @@ class User extends AbstractService
      * Canonize field name(s) of a module
      *
      * Note: custom (module) profile field names are prefixed with module name
-     * and delimited by underscore `_` as `<module-name>_<field_name>`
+     * and delimited by underscore `_` as `<module-name>_<field_key>`
      *
      * @param string $module
      * @param string|string[] $key

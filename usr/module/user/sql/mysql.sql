@@ -65,7 +65,7 @@ CREATE TABLE `{field}` (
   `edit`            text,           # callback options for edit
   `filter`          text,           # callback options for output filtering
 
-  `type`            ENUM('custom', 'account', 'profile'),   # Field type, default as custom
+  `type`            ENUM('custom', 'account', 'profile', 'compound'),   # Field type, default as custom
   `is_edit`         tinyint(1)      NOT NULL default '0',   # Is editable by user
   `is_search`       tinyint(1)      NOT NULL default '0',   # Is searchable
   `is_display`      tinyint(1)      NOT NULL default '0',   # Display on profile page
@@ -73,6 +73,21 @@ CREATE TABLE `{field}` (
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`name`)
+);
+
+# Entity meta compound fields
+CREATE TABLE `{compound_field}` (
+  `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
+  `name`            varchar(64)     NOT NULL,
+  `compound`        varchar(64)     NOT NULL default '',
+  `title`           varchar(255)    NOT NULL default '',
+  `edit`            text,           # callback options for edit
+  `filter`          text,           # callback options for output filtering
+
+  `active`          tinyint(1)      NOT NULL default '0',   # Is active
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY  `name` (`compound`, `name`)
 );
 
 # Timeline meta

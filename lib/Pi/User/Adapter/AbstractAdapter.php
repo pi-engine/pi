@@ -126,21 +126,26 @@ abstract class AbstractAdapter implements BindInterface
         return $result;
     }
 
+    protected function verifyId(&$id)
+    {
+        $id = $id ?: $this->id;
+    }
+
     /**#@+
      * Meta operations
      */
     /**
-     * Get meta with type and action
+     * Get field names of specific type and action
      *
      * - Available types: `account`, `profile`, `custom`
      * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
      * @param string $action
-     * @return array
+     * @return string[]
      * @api
      */
-    abstract public function getMeta($type = 'account', $action = 'display');
+    abstract public function getMeta($type = '', $action = '');
     /**#@-*/
 
     /**#@+

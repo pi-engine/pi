@@ -67,7 +67,7 @@ class Profile extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $type Field types: account, profile, custom
+     * @param string $type Field types: account, profile, custom, compound
      * @param string $action Actions: display, edit, search
      * @param array
      */

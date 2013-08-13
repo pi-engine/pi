@@ -32,5 +32,4 @@ return array(
         'demo',
         'page',
     ),
-
 );
