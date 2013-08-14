@@ -251,6 +251,7 @@ return $result;
 
 ### Add user
 * Call by `UserApi::add(array $data)` return `<uid>`
+
 ```
 $data = UserApi::canonizeUser($data);
 $uid = UserApi::addAccount($data['account']);
@@ -263,6 +264,7 @@ return $uid;
 ```
 
 * Add user account `UserApi::addAccount(array $account)` return `<uid>`
+
 ```
 $row = Pi::model('account', 'user')->createRow($account);
 $uid = $row->save();
@@ -271,6 +273,7 @@ return $uid;
 ```
 
 * Add user profile `UserApi::addProfile(array $profile, $uid)` return `<profile-id>`
+
 ```
 $profile['uid'] = $uid;
 $row = Pi::model('profile', 'user')->createRow($profile);
@@ -280,6 +283,7 @@ return $id;
 ```
 
 * Add user custom entities `UserApi::addCustom($custom, $uid)` return `<bool[]>`
+
 ```
 $result = array();
 foreach (custom as $key => $value) {
@@ -291,6 +295,7 @@ return $result;
 ```
 
 * Add user custom entity `UserApi::addEntity($name, $value, $uid)` return `<entity-id>`
+
 ```
 $entity = array(
     'uid'   => $uid,
@@ -305,6 +310,7 @@ return $id;
 
 ### Update user
 * Call by `UserApi::update(array $data, $uid)` return `<bool>`
+
 ```
 $data = UserApi::canonizeUser($data);
 $status = UserApi::updateAccount($data['account'], $uid);
@@ -315,16 +321,19 @@ return $status;
 ```
 
 * Update user account `UserApi::updateAccount(array $account, $uid)` return `<bool>`
+
 ```
 $status = Pi::model('account', 'user')->update($account, array('id' => $uid));
 ```
 
 * Update user profile `UserApi::updateProfile(array $profile, $uid)` return `<bool>`
+
 ```
 $status = Pi::model('profile', 'user')->update($profile, array('uid' => $uid));
 ```
 
 * Update user custom profile `UserApi::updateCustom(array $custom, $uid)` return `<bool>`
+
 ```
 foreach (custom as $key => $value) {
     $status = UserApi::updateEntity($key, $value, $uid);
@@ -332,6 +341,7 @@ foreach (custom as $key => $value) {
 ```
 
 * Update user custom entity `UserApi::updateEntity($name, $value, $uid)` return `<bool>`
+
 ```
 $status = Pi::model('custom', 'user')->update(
     array('value' => $value),
@@ -344,6 +354,7 @@ $status = Pi::model('custom', 'user')->update(
 
 ### Delete user
 * Call by `UserApi::delete($uid)` return `<bool>`
+
 ```
 $status = UserApi::deleteAccount($uid);
 $status = UserApi::deleteProfile($uid);
@@ -353,23 +364,27 @@ return $status;
 ```
 
 * Delete user account `UserApi::deleteAccount($uid)` return `<bool>`
+
 ```
 $status = Pi::model('account', 'user')->delete(array('id' => $uid));
 ```
 
 * Delete user profile `UserApi::deleteProfile($uid)` return `<bool>`
+
 ```
 $status = Pi::model('profile', 'user')->delete(array('uid' => $uid));
 ```
 
 * Delete user custom profile `UserApi::deleteCustom($uid)`
 return `<bool>`
+
 ```
 $status = Pi::model('custom', 'user')->delete(array('uid' => $uid));
 ```
 
 * Delete user custom entity `UserApi::deleteEntity($name, $uid)`
 return `<bool>`
+
 ```
 $status = Pi::model('custom', 'user')->delete(
     array(
@@ -382,6 +397,7 @@ $status = Pi::model('custom', 'user')->delete(
 ### Get user data with specific fields
 * Call by `UserApi::get($uid, $action = null, array $fields = null)`
 return associative array
+
 ```
 $account = array();
 $profile = array();
@@ -395,6 +411,7 @@ $result = $account + $profile + $custom;
 ```
 
 * Get user account `UserApi::getAccount($uid, $action = null, array $fields = null)`
+
 ```
 $type = 'account';
 $model = Pi::model('account', 'user');
@@ -427,6 +444,7 @@ if ('display' == $action) {
 ```
 
 * Get user profile `UserApi::getProfile($uid, $action = null, array $fields = null)`
+
 ```
 $type = 'account';
 $model = Pi::model('account', 'user');
@@ -437,6 +455,7 @@ $where = array('uid' = $uid);
 ```
 
 * Get user custom profile `UserApi::getCustom($uid, $action = null, array $fields = null)`
+
 ```
 $type = 'custom';
 $model = Pi::model('custom', 'user');
@@ -474,6 +493,7 @@ if ('display' == $action) {
 
 ### Get user profile field
 * Call by `UserApi::getField($uid, $field, $action = '', $type = '')`
+
 ```
 $columns = Pi::registry('profile', 'user')->read($type, $action);
 if (!isset($columns[$field])) {
@@ -535,12 +555,14 @@ foreach ($rowset as $row) {
 
 ### Load fields editable by user
 * Identified by `is_edit` attribute
+
 ```
 $fields = Pi::registry('profile', 'user')->read('', 'edit');
 ```
 
 ### Load fields editable by admin
 * Identified by non-empty `edit` attribute
+
 ```
 $fields = Pi::registry('profile', 'user')->read();
 foreach ($fields as $key => $data) {
