@@ -146,7 +146,7 @@ return array(
             'title' => __('Location'),
         ),
 
-        'signation'  => array(
+        'signature'  => array(
             'type'  => 'profile',
             'name'  => 'signature',
             'title' => __('Signature'),

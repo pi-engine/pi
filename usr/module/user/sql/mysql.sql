@@ -201,19 +201,20 @@ CREATE TABLE `{log}` (
   KEY (`uid`)
 );
 
-# ------------------------------------------------------
-
 # user custom contents
-CREATE TABLE `{repo}` (
+CREATE TABLE `{data}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL default '0',
   `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '',
+  `name`            varchar(64)     NOT NULL,
+  `time`            int(10)         unsigned    NOT NULL default '0',
   `content`         text,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user_content` (`uid`, `module`, `type`)
 );
+
+# ------------------------------------------------------
 
 # user-role links for regular
 CREATE TABLE `{role}` (
