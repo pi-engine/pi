@@ -280,8 +280,7 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(array('member', 'add'),
-                    $values);
+                $result = Pi::api('system', 'member')->add($values);
                 if ($result['status']) {
                     $message = __('User created saved successfully.');
                     $this->jump(array('action' => 'index'));
@@ -337,10 +336,7 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::service('api')->system(
-                    array('member', 'update'),
-                    $values
-                );
+                $result = Pi::api('system', 'member')->update($values);
                 if ($result['status']) {
                     $message = __('User data saved successfully.');
                     $this->jump(array('action' => 'index'));
@@ -434,7 +430,7 @@ class MemberController extends ActionController
             );
             return;
         }
-        Pi::service('api')->system(array('member', 'delete'), $id);
+        Pi::api('system', 'member')->delete($id);
 
         $this->jump(
             array('action' => 'index'),

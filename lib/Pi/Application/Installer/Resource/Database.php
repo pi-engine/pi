@@ -89,8 +89,11 @@ class Database extends AbstractResource
             );
         }
 
-        $schemaList = isset($this->config['schema'])
-            ? $this->config['schema'] : array();
+        if (isset($this->config['schema'])) {
+            $schemaList = $this->config['schema'];
+        } else {
+            $schemaList = SqlSchema::fetchSchema($sqlFile);
+        }
         $modelSchema = Pi::model('module_schema');
         foreach($schemaList as $name => $type) {
             $status = $modelSchema->insert(array(
@@ -122,8 +125,25 @@ class Database extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $schemaList = isset($this->config['schema'])
-            ? $this->config['schema'] : array();
+
+        if (isset($this->config['schema'])) {
+            $schemaList = $this->config['schema'];
+        } elseif (empty($this->config['sqlfile'])) {
+            $schemaList = array();
+        } else {
+            $sqlFile = sprintf(
+                '%s/%s/%s',
+                Pi::path('module'),
+                $this->event->getParam('directory'),
+                $this->config['sqlfile']
+            );
+            if (!file_exists($sqlFile)) {
+                $schemaList = array();
+            } else {
+                $schemaList = SqlSchema::fetchSchema($sqlFile);
+            }
+        }
+
         $modelSchema = Pi::model('module_schema');
         $rowset = $modelSchema->select(array('module' => $module));
         foreach ($rowset as $row) {
@@ -173,7 +193,10 @@ class Database extends AbstractResource
                 $table->type,
                 Pi::db()->prefix($table->name, $module)
             );
-            Pi::db()->adapter()->query($sql, 'execute');
+            try {
+                Pi::db()->adapter()->query($sql, 'execute');
+            } catch (\Exception $e) {
+            }
         }
         $modelSchema->delete(array('module' => $module));
 

@@ -24,6 +24,7 @@ use Pi\Application\AbstractApi;
  * ```
  *  Pi::service('api')->demo('method', $args);
  *  Pi::service('api')->demo->method($args);
+ *  Pi::api('demo')->method($args);
  * ```
  *
  * - Call a module's API defined in custom class in
@@ -31,6 +32,7 @@ use Pi\Application\AbstractApi;
  *
  * ```
  *  Pi::service('api')->demo(array('callback', 'method'), $args);
+ *  Pi::api('demo', 'callback')->method($args);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
