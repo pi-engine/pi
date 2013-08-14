@@ -23,6 +23,34 @@ class User extends AbstractApi
     /** @var string Module name */
     protected $module = 'user';
 
+    public function canonizeUser($rawdata)
+    {
+        $result = array(
+            'account'   => array(),
+            'profile'   => array(),
+            'custom'    => array(),
+            'compound'  => array(),
+        );
+
+        $fields = Pi::registry('profile', 'user')->read();
+        foreach ($rawData as $key => $value) {
+            if (isset($fields[$key])) {
+                $type = $fields[$key]['type'];
+                $result[$type][$key] = $rawData[$key];
+            }
+        }
+        foreach ($result as $type => &$data) {
+            $fields = Pi::service('user')->getMeta($type);
+            foreach ($rawData as $key => $value) {
+                if (in_array($key, $fields)) {
+                    $data[$type][$key] = $rawData[$key];
+                }
+            }
+        }
+
+        return $result;
+    }
+
     /**
      * Get user data object
      *
@@ -76,7 +104,10 @@ class User extends AbstractApi
      * @return  int|false
      * @api
      */
-    abstract public function addUser($data);
+    public function addUser($data)
+    {
+
+    }
 
     /**
      * Update a user

@@ -17,15 +17,21 @@ use Pi;
  * Meta data registered to user module
  *
  * - Profile field registry
+ * - Profile compound field registry
  * - Timeline registry
  * - Activity registry
  * - Quicklink registry
  *
  * <code>
  *  array(
+ *      // Profile field
  *      'field' => array(
  *          // Field with simple text input
- *          'field_name_a' => array(
+ *          <field-key> => array(
+ *              // Field type, optional, default as 'custom'
+ *              'type'          => 'custom',
+ *              // Field name, optional, will be set as <module>_<field-key>
+ *              // if not specified
  *              'name'          => <specified_field_name>,
  *              'title'         => __('Field Name A'),
  *              'description'   => __('Description of field A.'),
@@ -44,7 +50,7 @@ use Pi;
  *              'is_search'     => false,
  *          ),
  *          // Field with specified edit with form element and filter
- *          'field_name_b' => array(
+ *          <field-key> => array(
  *              'title'         => __('Field Name B'),
  *              'description'   => __('Description of field B.'),
  *              'value'         => 1,
@@ -66,7 +72,7 @@ use Pi;
  *              'filter'        => 'int',
  *          ),
  *          // Field with specified edit with simple element
- *          'field_name_c' => array(
+ *          <field-key> => array(
  *              'title'         => __('Field Name C'),
  *              'description'   => __('Description of field C.'),
  *              'value'         => 1,
@@ -79,15 +85,38 @@ use Pi;
  *          ),
  *
  *          // Field with no edit element, it will be handled as 'text'
- *          'field_name_d' => array(
+ *          <field-key> => array(
  *              'title'         => __('Field Name D'),
  *              'description'   => __('Description of field D.'),
  *              'value'         => <field-value>,
  *          ),
  *
  *          <...>,
+ *
+ *          // Compound
+ *          <compound-field-key> => array(
+ *              // Field type, MUST be 'compound'
+ *              'type'          => 'compound',
+ *              // Field name, optional, will be set as <module>_<field-key>
+ *              // if not specified
+ *              'name'          => <specified_field_name>,
+ *              'title'         => __('Compound Field'),
+ *
+ *              'field' => array(
+ *                  <field-key> => array(
+ *                      'title'         => __('Compound Field Item'),
+ *
+ *                      // Edit element specs
+ *                      'edit'          => 'text',
+ *                      // Filter for value processing for output
+ *                      'filter'        => <output-filter>
+ *                  ),
+ *                  <...>,
+ *              ),
+ *          ),
  *      ),
  *
+ *      // Timeline
  *      'timeline'      => array(
  *          <name>  => array(
  *              'title' => __('Timeline Title'),
@@ -96,6 +125,7 @@ use Pi;
  *          <...>
  *      ),
  *
+ *      // Activity
  *      'activity'      => array(
  *          <name>  => array(
  *              'title'     => __('Activity Title'),
@@ -107,6 +137,7 @@ use Pi;
  *          <...>
  *      ),
  *
+ *      // Quicklink
  *      'quicklink'     => array(
  *          <name>  => array(
  *              'title' => __('Link Title'),
@@ -135,6 +166,10 @@ class User extends AbstractResource
     /**
      * Canonize user specs for profile, timeline, activity meta and quicklinks
      *
+     * Field name: if field `name` is not specified, `name` will be defined
+     * as module name followed by field key and delimited by underscore `_`
+     * as `<module-name>_<field_key>`
+     *
      * @param array $config
      * @return array
      */
@@ -147,21 +182,32 @@ class User extends AbstractResource
             'quicklink'     => array(),
         );
 
+        $module = $this->getModule();
         // Canonize fields
         if (isset($config['field'])) {
-            foreach ($config['field'] as $key => $spec) {
-                $spec['name'] = $key;
-                $spec = $this->canonizeField($spec);
-                $ret['field'][$spec['name']] = $spec;
+            $profile = $this->canonizeProfile($config['field']);
+            $config['field'] = $profile['field'];
+            if (isset($profile['compound'])) {
+                $config['compound'] = $profile['compound'];
             }
+            /*
+            foreach ($config['field'] as $key => &$spec) {
+                $spec = $this->canonizeField($spec);
+            }
+            */
         }
 
-        foreach (array('timeline', 'activity', 'quicklink') as $op) {
+        foreach (array('field', 'timeline', 'activity', 'quicklink') as $op) {
             if (isset($config[$op])) {
                 foreach ($config[$op] as $key => $spec) {
-                    $ret[$op][$key] = array_merge($spec, array(
-                        'name'      => $key,
-                        'module'    => $this->getModule(),
+                    // Canonize field name
+                    $name = !empty($spec['name'])
+                        ? $spec['name']
+                        : $module . '_' . $key;
+
+                    $ret[$op][$name] = array_merge($spec, array(
+                        'name'      => $name,
+                        'module'    => $module,
                     ));
                 }
             }
@@ -173,11 +219,7 @@ class User extends AbstractResource
     /**
      * Canonize a profile field specs
      *
-     * 1. Field name: if field `name` is not specified, `name` will be defined
-     * as module name followed by field key and delimited by underscore `_`
-     * as `<module-name>_<field_key>`
-     *
-     * 2. Edit specs:
+     * Edit specs:
      * Transform
      * `'edit' => <type>` and `'edit' => array('element' => <type>)`
      * to
@@ -194,17 +236,24 @@ class User extends AbstractResource
      * 3. Add edit specs if `is_edit` is `true` or not specified
      *
      * @param array $spec
-     * @param string $key
      * @return array
      * @see Pi\Application\Service\User::canonizeField()
      */
-    protected function canonizeField($spec, $key)
+    protected function canonizeField($spec)
     {
-        // Canonize field name
-        $spec['name'] = !empty($spec['name'])
-            ? $spec['name']
-            : $this->getModule() . '_' . $key;
-        $spec['module'] = $this->getModule();
+        if (isset($spec['field'])) {
+            $spec['type'] = 'compound';
+        }
+        if (!isset($spec['type'])) {
+            $spec['type'] = 'custom';
+        }
+        if ('compound' == $spec['type']) {
+            $spec['is_edit'] = 0;
+            $spec['is_display'] = 0;
+            $spec['is_search'] = 0;
+            
+            return $spec;
+        }
 
         // Canonize editable, display and searchable, default as true
         foreach (array('is_edit', 'is_display', 'is_search') as $key) {
@@ -308,6 +357,13 @@ class User extends AbstractResource
             foreach ($rowset as $row) {
                 // Update existent item
                 if (isset($items[$row->name])) {
+                    // Titles are editable by admin, don't overwrite
+                    unset($items[$row->name]['name']);
+                    unset($items[$row->name]['title']);
+                    if (isset($items[$row->name]['value'])) {
+                        unset($items[$row->name]['value']);
+                    }
+
                     $row->assign($items[$row->name]);
                     $row->save();
                     unset($items[$row->name]);
@@ -339,6 +395,12 @@ class User extends AbstractResource
             Pi::model('custom', 'user')->delete(array(
                 'field' => $itemsDeleted['field'],
             ));
+            Pi::model('compound_field', 'user')->delete(array(
+                'compound' => $itemsDeleted['field'],
+            ));
+            Pi::model('compound', 'user')->delete(array(
+                'compound' => $itemsDeleted['field'],
+            ));
         }
 
         // Delete deprecated timeline log
@@ -362,18 +424,40 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('profile')->clear();
 
+        $model = Pi::model('field', 'user');
         $fields = array();
-        $rowset = Pi::model('field', 'user')->select(array('module' => $module));
+        $rowset = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
             $fields[] = $row->name;
         }
+        // Remove module profile data
         if ($fields) {
             Pi::model('custom', 'user')->delete(array('field' => $fields));
         }
 
-        foreach (array('field', 'timeline', 'activity', 'quicklink', 'timeline_log')
-            as $op
-        ) {
+        $compounds = array();
+        $rowset = $model->select(array(
+            'module'    => $module,
+            'type'      => 'compound',
+        ));
+        foreach ($rowset as $row) {
+            $compounds[] = $row->name;
+        }
+        // Remove module profile data
+        if ($compounds) {
+            Pi::model('compound', 'user')->delete(array(
+                'compound'  => $compounds,
+            ));
+        }
+
+        foreach (array(
+            'field',
+            'compound_field',
+            'timeline',
+            'activity',
+            'quicklink',
+            'timeline_log'
+        ) as $op) {
             $model = Pi::model($op, 'user');
             $model->delete(array('module' => $module));
         }

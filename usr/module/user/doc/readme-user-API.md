@@ -50,10 +50,11 @@
 ```
 
 ### Compound fields registry in user module `config/compound.php`
-* Compound name will be defined as **<module-name>_<field-key>** if not specified
+* Compound name will be defined as **<module-name>_<compound-key>** if not specified
 * Compound entities will be inserted into `field` table with `type` as **compound**
+* Compound field name will be defined as **<compound-name>-<field-key>**
 * Fields of compounds will be inserted into `compound_field` table
-* User data for the compounds will be inserted into compound tables respectively
+* User data for the compound entities will be inserted into `compound` table
 
 ```
     // Social networking tools
