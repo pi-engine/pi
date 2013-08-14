@@ -2,9 +2,9 @@
 
 
 ### Fields for **account** and basic **profile** registry in user module `config/profile.php`
-  * Field name will be defined as **<module-name>_<field-key>** if not specified
-  * The entities will be inserted into `field` table with `type` as **account** or **profile**
-  * User account data and profile data for the fields will be inserted into **account** and **profile** respectively
+* Field name will be defined as **<module-name>_<field-key>** if not specified
+* The entities will be inserted into `field` table with `type` as **account** or **profile**
+* User account data and profile data for the fields will be inserted into **account** and **profile** respectively
 
 ```
     array(
@@ -50,10 +50,11 @@
 ```
 
 ### Compound fields registry in user module `config/compound.php`
-  * Compound name will be defined as **<module-name>_<field-key>** if not specified
-  * Compound entities will be inserted into `field` table with `type` as **compound**
-  * Fields of compounds will be inserted into `compound_field` table
-  * User data for the compounds will be inserted into compound tables respectively
+* Compound name will be defined as **<module-name>_<field-key>** if not specified
+* Compound entities will be inserted into `field` table with `type` as **compound**
+* Fields of compounds will be inserted into `compound_field` table
+* User data for the compounds will be inserted into compound tables respectively
+
 ```
     // Social networking tools
     'tool'      => array(
@@ -159,14 +160,14 @@
 ```
 
 ### Compound fields by **user** module
-  * Load `field` from `extra/user/config/compound.php` if file available, otherwise
-  * Load `field` from `module/user/config/compound.php`
+* Load `field` from `extra/user/config/compound.php` if file available, otherwise
+* Load `field` from `module/user/config/compound.php`
 
 ### Custom profile field registry in a module `config/user.php` with key `profile`
-  * The entities will be inserted into `field` table with:
-    * Field name will be defined as **<module-name>_<field-key>** if not specified
-    * Field type is set: `type` as **custom**
-  * User profile data for active fields will be inserted into `custom` table
+* The entities will be inserted into `field` table with:
+  * Field name will be defined as **<module-name>_<field-key>** if not specified
+  * Field type is set: `type` as **custom**
+* User profile data for active fields will be inserted into `custom` table
 
 ```
     array(
@@ -193,8 +194,8 @@
 ```
 
 ### Custom profile fields by **user** module
-  * Load `field` from `extra/user/config/user.php` if file available, otherwise
-  * Load `field` from `module/user/config/user.php`
+* Load `field` from `extra/user/config/user.php` if file available, otherwise
+* Load `field` from `module/user/config/user.php`
 
 ## User module API
 

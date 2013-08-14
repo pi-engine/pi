@@ -54,7 +54,7 @@ class Message extends AbstractResource
      */
     public function send($message, $from)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         $id = Pi::api('message')->send(
@@ -76,7 +76,7 @@ class Message extends AbstractResource
      */
     public function notify($message, $subject, $tag = '')
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         $id = Pi::api('message')->notify(
@@ -96,7 +96,7 @@ class Message extends AbstractResource
      */
     public function getAccount()
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         $result = Pi::api('message')->getAccount($this->model->id);
@@ -111,7 +111,7 @@ class Message extends AbstractResource
      */
     public function getAlert()
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         $result = Pi::api('message')->getAlert($this->model->id);

@@ -52,6 +52,37 @@ class Timeline extends AbstractResource
     }
 
     /**
+     * Write a timeline log
+     *
+     * Log array:
+     *  - message
+     *  - type
+     *  - module
+     *  - link
+     *  - time
+     *
+     * @param array $log
+     * @return bool
+     */
+    public function add($log)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+
+        if (!isset($log['uid'])) {
+            $log['uid'] = $this->model->id;
+        }
+        if (!isset($log['time'])) {
+            $log['time'] = time();
+        }
+        $row = Pi::model('time_log', 'user')->createRow($log);
+        $id = $row->save();
+
+        return $id;
+    }
+
+    /**
      * Placeholder for APIs
      *
      * @param string $method
@@ -60,7 +91,7 @@ class Timeline extends AbstractResource
      */
     public function __call($method, $args)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);

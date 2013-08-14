@@ -119,6 +119,11 @@ use Pi\User\Resource\AbstractResource;
  * + Activity
  *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
  *
+ * + Log
+ *   - log([$id])->add($action, $data[, $time])
+ *   - log([$id])->get($action, $limit[, $offset[, $condition]])
+ *   - log([$id])->getLast($action)
+ *
  * + Relation
  *   - relation([$id])
  *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
@@ -486,6 +491,28 @@ class User extends AbstractService
     public function timeline($id = null)
     {
         return $this->getResource('timeline', $id);
+    }
+
+    /**
+     * Get activity handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function activity($id = null)
+    {
+        return $this->getResource('activity', $id);
+    }
+
+    /**
+     * Get action log handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function log($id = null)
+    {
+        return $this->getResource('log', $id);
     }
 
     /**

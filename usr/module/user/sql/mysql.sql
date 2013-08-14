@@ -33,7 +33,7 @@ CREATE TABLE `{account}` (
 CREATE TABLE `{profile}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `gender`          enum('f', 'm', 'u'),
+  `gender`          enum('male', 'female', 'unknown'),
   `fullname`        varchar(255)    NOT NULL default '',
   `birthdate`       varchar(10)     NOT NULL default '',    # YYYY-mm-dd
   `location`        varchar(255)    NOT NULL default '',
@@ -67,18 +67,6 @@ CREATE TABLE `{meta}` (
   `time_deleted`    int(10)             unsigned NOT NULL default '0',
 
   PRIMARY KEY (`uid`)
-);
-
-# User action log
-CREATE TABLE `{log}` (
-  `id`              int(10)             unsigned NOT NULL auto_increment,
-  `uid`             int(10)             unsigned NOT NULL,
-  `time_update`     int(10)             unsigned NOT NULL default '0',
-  `time_login`      int(10)             unsigned NOT NULL default '0',
-  `login_ip`        varchar(15)         NOT NULL default '',
-
-  PRIMARY KEY (`id`),
-  UNIQUE  KEY `uid` (`uid`)
 );
 
 # Entity meta for all profile fields: account, basic profile and custom fields
@@ -135,7 +123,6 @@ CREATE TABLE `{field_display}` (
 
   PRIMARY KEY (`id`)
 );
-
 
 # Timeline meta
 CREATE TABLE `{timeline}` (
@@ -251,6 +238,19 @@ CREATE TABLE `{work}` (
   `order`           int(11)         unsigned    NOT NULL defualt '5',
 
   PRIMARY KEY  (`id`),
+  KEY (`uid`)
+);
+
+# User action log
+CREATE TABLE `{log}` (
+  `id`              int(10)             unsigned NOT NULL auto_increment,
+  `uid`             int(10)             unsigned NOT NULL,
+  `time`            int(10)             unsigned NOT NULL default '0',
+  `data`            varchar(255)        NOT NULL default '',
+  `action`          varchar(64)         NOT NULL default '',
+  `module`          varchar(64)         NOT NULL default '',
+
+  PRIMARY KEY (`id`),
   KEY (`uid`)
 );
 

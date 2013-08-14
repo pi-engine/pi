@@ -12,15 +12,17 @@ namespace Pi\User\Resource;
 use Pi;
 
 /**
- * User activity handler
+ * User action log handler
  *
- * Activity APIs:
+ * Log APIs:
  *
- *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
+ * - log([$id])->add($action, $data[, $time])
+ * - log([$id])->get($action, $limit[, $offset[, $condition]])
+ * - log([$id])->getLast($action)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Activity extends AbstractResource
+class Log extends AbstractResource
 {
     /**
      * If user module available for time handling
@@ -40,6 +42,31 @@ class Activity extends AbstractResource
         }
 
         return $this->isAvailable;
+    }
+
+    /**
+     * Write an action log
+     *
+     * @param string $action
+     * @param string $data
+     * @param int $time
+     * @return int
+     */
+    public function add($action, $data = '', $time = null)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+
+        $row = Pi::model('log', 'user')->createRow(array(
+            'uid'       => $this->model->id,
+            'action'    => $acion,
+            'data'      => $data,
+            'time'      => $time ?: time(),
+        ));
+        $id = $row->save();
+
+        return $id;
     }
 
     /**
