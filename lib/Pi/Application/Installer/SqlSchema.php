@@ -142,7 +142,48 @@ class SqlSchema
     {
         $schema = new self;
         static::setType($type);
-        
+
         return $schema->queryFile($file);
+    }
+
+    /**
+     * Fetch schema from a file
+     *
+     * @param string $file
+     * @param bool $isCore  Fetch core schema, default as false
+     * @return array
+     */
+    public static function fetchSchema($file, $isCore = false)
+    {
+        $content = file_get_contents($file);
+
+        return static::parseSchema($content, $isCore);
+    }
+
+    /**
+     * Parse schema names and types
+     *
+     * @param string $content
+     * @param bool $isCore  Fetch core schema, default as false
+     * @return array
+     */
+    public static function parseSchema($content, $isCore = false)
+    {
+        $result     = array();
+        // Remove comments to prevent from invalid syntax
+        $content    = preg_replace('|(#.*)|', '', $content);
+
+        $pattern    = '/create\s+(table|view|trigger)\s+\`\{'
+                    . ($isCore ? 'core\.' : '')
+                    . '([a-z0-9_]+)\}\`/i';
+        $matches    = array();
+        preg_match_all($pattern, $content, $matches);
+        if ($matches) {
+            foreach ($matches[2] as $key => $schema) {
+                $result[$schema] = $matches[1][$key];
+            }
+        }
+
+        return $result;
     }
 }
