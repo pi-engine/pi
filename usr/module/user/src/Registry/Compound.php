@@ -14,11 +14,11 @@ use Pi;
 use Pi\Application\Registry\AbstractRegistry;
 
 /**
- * Pi user profile field registry
+ * Pi user profile compound field registry
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Profile extends AbstractRegistry
+class Compound extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'user';
@@ -30,33 +30,10 @@ class Profile extends AbstractRegistry
     {
         $fields = array();
 
-        $columns = array();
+        $columns = array('name', 'title', 'compound', 'edit', 'filter');
         $where = array('active' => 1);
-        if ($options['type']) {
-            $where['type'] = $options['type'];
-        }
-
-        switch ($options['action']) {
-            case 'display':
-                $columns = array('name', 'title', 'filter');
-                $where['is_display'] = 1;
-                break;
-            case 'edit':
-                $columns = array('name', 'title', 'edit');
-                $where['is_edit'] = 1;
-                break;
-            case 'search':
-                $columns = array('name', 'title');
-                $where['is_search'] = 1;
-                break;
-            default:
-                break;
-        }
-        $model = Pi::model('field', $this->module);
-        $select = $model->select()->where($where);
-        if ($columns) {
-            $select->columns($columns);
-        }
+        $model = Pi::model('compound_field', $this->module);
+        $select = $model->select()->where($where)->columns($columns);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $fields[$row->name] = $row->toArray();
@@ -67,26 +44,27 @@ class Profile extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $type Field types: account, profile, custom, compound
+     * @param string $compound Compound name: tool, address, education, wrok
      * @param string $action Actions: display, edit, search
      * @param array
      */
-    public function read($type = '', $action = '')
+    public function read($compound)
     {
-        $options = compact('type', 'action');
+        $options = array();
         $data = $this->loadData($options);
+        $result = isset($data[$compound]) ? $data[$compound] : array();
 
-        return $data;
+        return $result;
     }
 
     /**
      * {@inheritDoc}
-     * @param string $action
+     * @param string $compound
      */
-    public function create($action = '')
+    public function create($compound = '')
     {
         $this->clear('');
-        $this->read($action);
+        $this->read($compound);
 
         return true;
     }

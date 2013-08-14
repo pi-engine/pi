@@ -24,6 +24,42 @@ class Form extends AbstractApi
     protected $module = 'user';
 
     /**
+     * Canonize form element for a field
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function canonizeElement($data)
+    {
+        $element = $data['edit']['element'];
+        $element['name'] = $data['name'];
+        $element['options']['label'] = $data['title'];
+
+        return $element;
+    }
+
+    /**
+     * Canonize form element filter for a field
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function canonizeFilter($data)
+    {
+        $result = array(
+            'name'  => $data['name'],
+        );
+        if (isset($data['edit']['filters'])) {
+            $result['filters'] = $data['edit']['filters'];
+        }
+        if (isset($data['edit']['validators'])) {
+            $result['validators'] = $data['edit']['validators'];
+        }
+
+        return $result;
+    }
+
+    /**
      * Get form element for field
      *
      * @param string $name
@@ -34,9 +70,7 @@ class Form extends AbstractApi
         $element = array();
         $elements = Pi::registry('profile', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
-            $element = $elements[$name]['edit']['element'];
-            $element['name'] = $name;
-            $element['options']['label'] = $edit['title'];
+            $element = $this->canonizeElement($elements[$name]);
         }
 
         return $element;
@@ -55,11 +89,56 @@ class Form extends AbstractApi
         );
         $elements = Pi::registry('profile', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
-            if (isset($elements[$name]['edit']['filters'])) {
-                $result['filters'] = $elements[$name]['edit']['filters'];
+            $result = $this->canonizeFilter($elements[$name]);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get a compound field element if specified, or a compound's all fields
+     * if field name is not specified
+     *
+     * @param string $compound
+     * @param string $field
+     * @return array
+     */
+    public function getCompoundElement($compound, $field = '')
+    {
+        $result = array();
+        $elements = Pi::registry('compound', $this->module)->read($compound);
+        if ($field) {
+            if (isset($elements[$field])) {
+                $result = $this->canonizeElement($elements[$field]);
             }
-            if (isset($elements[$name]['edit']['validators'])) {
-                $result['validators'] = $elements[$name]['edit']['validators'];
+        } else {
+            foreach ($elements as $key => $element) {
+                $result[$key] = $this->canonizeElement($element);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get a compound field element if specified, or a compound's all fields
+     * if field name is not specified
+     *
+     * @param string $compound
+     * @param string $field
+     * @return array
+     */
+    public function getCompoundFilter($compound, $field = '')
+    {
+        $result = array();
+        $elements = Pi::registry('compound', $this->module)->read($compound);
+        if ($field) {
+            if (isset($elements[$field])) {
+                $result = $this->canonizeFilter($elements[$field]);
+            }
+        } else {
+            foreach ($elements as $key => $element) {
+                $result[$key] = $this->canonizeFilter($element);
             }
         }
 
