@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Test',
+        'title'         => 'User',
         // Description, for admin, optional
-        'description'   => 'Test for module dependency.',
+        'description'   => 'User profile and services.',
         // Version number, required
         'version'       => '1.0.0',
         // Distribution license, required
@@ -25,5 +25,18 @@ return array(
         'name'      => 'Taiwen Jiang',
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
+    ),
+
+    // Maintenance actions
+    'maintenance'   => array(
+        // resource
+        'resource' => array(
+            // Database meta
+            'database'  => array(
+                // SQL schema/data file
+                'sqlfile'   => 'sql/mysql.sql',
+            ),
+            'user'  => 'user.php',
+        ),
     ),
 );

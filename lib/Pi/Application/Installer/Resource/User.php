@@ -177,6 +177,7 @@ class User extends AbstractResource
     {
         $ret = array(
             'field'         => array(),
+            'compound'      => array(),
             'timeline'      => array(),
             'activity'      => array(),
             'quicklink'     => array(),
@@ -188,7 +189,7 @@ class User extends AbstractResource
             $profile = $this->canonizeProfile($config['field']);
             $config['field'] = $profile['field'];
             if (isset($profile['compound'])) {
-                $config['compound'] = $profile['compound'];
+                $ret['compound'] = $profile['compound'];
             }
             /*
             foreach ($config['field'] as $key => &$spec) {
@@ -204,7 +205,9 @@ class User extends AbstractResource
                     $name = !empty($spec['name'])
                         ? $spec['name']
                         : $module . '_' . $key;
-
+                    if (!isset($spec['active'])) {
+                        $spec['active'] = 1;
+                    }
                     $ret[$op][$name] = array_merge($spec, array(
                         'name'      => $name,
                         'module'    => $module,
@@ -215,6 +218,39 @@ class User extends AbstractResource
 
         return $ret;
     }
+
+    /**
+     * Canonize user profile specs
+     *
+     * Canonize profile fields and compound fields.
+     * Use <compound-name>-<field-name> as compound field key (not field name).
+     *
+     * @param array $config
+     * @return array
+     */
+    public function canonizeProfile(array $config)
+    {
+        $profile = array(
+            'field'             => array(),
+            'compound_field'    => array(),
+        );
+
+        //$module = $this->getModule();
+        foreach ($config as $key => $data) {
+            $data = $this->canonizeField($data);
+            if (isset($data['field'])) {
+                $profile['compound_field'] += $this->canonizeCompoundField(
+                    $data['field'],
+                    $data['name']
+                );
+                unset($data['field']);
+            }
+            $profile['field'][$data['name']] = $data;
+        }
+
+        return $profile;
+    }
+
 
     /**
      * Canonize a profile field specs
@@ -251,7 +287,7 @@ class User extends AbstractResource
             $spec['is_edit'] = 0;
             $spec['is_display'] = 0;
             $spec['is_search'] = 0;
-            
+
             return $spec;
         }
 
@@ -265,32 +301,67 @@ class User extends AbstractResource
         }
 
         if (!isset($spec['edit']) && $spec['is_edit']) {
-            $spec['edit'] = array(
-                'element'   => array(
-                    'type'  => 'text',
-                ),
-            );
+            $spec['edit'] = 'text';
         }
 
         if (isset($spec['edit'])) {
-            if (is_string($spec['edit'])) {
-                $spec['edit'] = array(
-                    'element'   => array(
-                        'type'  => $spec['edit'],
-                    ),
-                );
-            } elseif (!$spec['edit']['element']) {
-                $spec['edit']['element'] = array(
-                    'type'  => 'text',
-                );
-            } elseif (is_string($spec['edit']['element'])) {
-                $spec['edit']['element'] = array(
-                    'type'  => $spec['edit']['element'],
-                );
-            }
+            $spec['edit'] = $this->canonizeFieldEdit($spec['edit']);
         }
 
         return $spec;
+    }
+
+    /**
+     * Canonize compound field
+     *
+     * Indexing compound field with <compound-name>-<field-name>
+     *
+     * @param array $config
+     * @param string $compound
+     * @return array
+     */
+    protected function canonizeCompoundField(array $config, $compound)
+    {
+        $fields = array();
+        $module = $this->getModule();
+        foreach ($config as $key => &$data) {
+            if (isset($data['edit'])) {
+                $data['edit'] = 'text';
+            }
+            $data['edit'] = $this->canonizeFieldEdit($data['edit']);
+            $data['module'] = $module;
+            $data['compound'] = $compound;
+            $fields[$compound . '-' . $key] = $data;
+        }
+
+        return $fields;
+    }
+
+    /**
+     * Canonize field element edit
+     *
+     * @param string|array $edit
+     * @return array
+     */
+    protected function canonizeFieldEdit($edit)
+    {
+        if (is_string($edit)) {
+            $spec['edit'] = array(
+                'element'   => array(
+                    'type'  => $edit,
+                ),
+            );
+        } elseif (!isset($edit['element'])) {
+            $edit['element'] = array(
+                'type'  => 'text',
+            );
+        } elseif (is_string($edit['element'])) {
+            $edit['element'] = array(
+                'type'  => $edit['element'],
+            );
+        }
+
+        return $edit;
     }
 
     /**
@@ -304,15 +375,19 @@ class User extends AbstractResource
         if (empty($this->config)) {
             return;
         }
-        Pi::registry('profile')->clear();
+        Pi::registry('profile', 'user')->clear();
 
         $config = $this->canonize($this->config);
-        foreach (array('field', 'timeline', 'activity', 'quicklink')
-            as $op
-        ) {
+        foreach (array(
+            'field',
+            'compound_field',
+            'timeline',
+            'activity',
+            'quicklink'
+        ) as $op) {
             $model = Pi::model($op, 'user');
             foreach ($config[$op] as $key => $spec) {
-                $row = $model->creatRow($spec);
+                $row = $model->createRow($spec);
                 $status = $row->save();
                 if (!$status) {
                     return array(
@@ -339,7 +414,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile')->clear();
+        Pi::registry('profile', 'user')->clear();
 
         if ($this->skipUpgrade()) {
             return;
@@ -347,35 +422,45 @@ class User extends AbstractResource
 
         $itemsDeleted = array();
         $config = $this->canonize($this->config);
-        foreach (array('field', 'timeline', 'activity', 'quicklink')
-            as $op
-        ) {
+        foreach (array(
+            'field',
+            'compound_field',
+            'timeline',
+            'activity',
+            'quicklink'
+        ) as $op) {
             $model = Pi::model($op, 'user');
             $rowset = $model->select(array('module' => $module));
             $items = $config[$op];
             $itemsDeleted[$op] = array();
             foreach ($rowset as $row) {
+                if ('compound_field' == $op) {
+                    $key = $row->compound . '-' . $row->name;
+                } else {
+                    $row->name;
+                }
                 // Update existent item
-                if (isset($items[$row->name])) {
+                if (isset($items[$key])) {
                     // Titles are editable by admin, don't overwrite
-                    unset($items[$row->name]['name']);
-                    unset($items[$row->name]['title']);
-                    if (isset($items[$row->name]['value'])) {
-                        unset($items[$row->name]['value']);
+                    unset($items[$key]['name']);
+                    unset($items[$key]['title']);
+                    unset($items[$key]['active']);
+                    if (isset($items[$key]['value'])) {
+                        unset($items[$key]['value']);
                     }
 
-                    $row->assign($items[$row->name]);
+                    $row->assign($items[$key]);
                     $row->save();
-                    unset($items[$row->name]);
+                    unset($items[$key]);
                 // Delete deprecated items
                 } else {
-                    $itemsDeleted[$op][] = $row->name;
+                    $itemsDeleted[$op][] = $key;
                     $row->delete();
                 }
             }
             // Add new items
             foreach ($items as $key => $spec) {
-                $row = $model->creatRow($spec);
+                $row = $model->createRow($spec);
                 $status = $row->save();
                 if (!$status) {
                     return array(
@@ -403,6 +488,17 @@ class User extends AbstractResource
             ));
         }
 
+        // Delete deprecated user compound profile data
+        if ($itemsDeleted['compound_field']) {
+            foreach ($itemsDeleted['compound_field'] as $key) {
+                list($compound, $field) = explode('-', $key);
+                Pi::model('compound', 'user')->delete(array(
+                    'compound' => $compound,
+                    'field'     => $field,
+                ));
+            }
+        }
+
         // Delete deprecated timeline log
         if ($itemsDeleted['timeline']) {
             Pi::model('timeline_log', 'user')->delete(array(
@@ -422,7 +518,10 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile')->clear();
+        if ('user' == $module) {
+            return;
+        }
+        Pi::registry('profile', 'user')->clear();
 
         $model = Pi::model('field', 'user');
         $fields = array();
@@ -474,7 +573,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile')->clear();
+        Pi::registry('profile', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -495,7 +594,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile')->clear();
+        Pi::registry('profile', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op

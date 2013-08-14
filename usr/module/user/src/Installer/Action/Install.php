@@ -12,6 +12,7 @@ namespace Module\User\Installer\Action;
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicInstall;
 use Pi\Application\Installer\Module as ModuleInstaller;
+use Pi\Application\Installer\Resource\User as UserResource;
 use Zend\EventManager\Event;
 
 class Install extends BasicInstall
@@ -22,22 +23,10 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.post', array($this, 'checkProfile'), 1000);
         $events->attach('install.post', array($this, 'checkModules'), 1);
         parent::attachDefaultListeners();
 
         return $this;
-    }
-
-    /**
-     * Prepare for account/profile/compound fields
-     *
-     * @param Event $e
-     * @return void
-     */
-    public function checkProfile(Event $e)
-    {
-
     }
 
     /**
@@ -48,7 +37,38 @@ class Install extends BasicInstall
      */
     public function checkModules(Event $e)
     {
+        $module = $e->getParam('module');
 
+        $modules = Pi::registry('module')->read();
+        if (isset($modules['user'])) {
+            unset($modules['user']);
+        }
+        $moduleList = array_keys($modules);
+        foreach ($moduleList as $mod) {
+            $meta = Pi::service('module')->loadMeta($mod, 'maintenance');
+            if (empty($meta['resource']['user'])) {
+                continue;
+            }
+            $options = $meta['resource']['user'];
+            if (is_string($options)) {
+                $optionsFile = sprintf(
+                    '%s/%s/config/%s',
+                    Pi::path('module'),
+                    Pi::service('module')->directory($mode),
+                    $options
+                );
+                $options = include $optionsFile;
+                if (empty($options) || !is_array($options)) {
+                    continue;
+                }
+            }
+
+            $resourceHandler = new UserResource($options);
+            $e->setParam('module', $mod);
+            $resourceHandler->setEvent($e);
+            $resourceHandler->installAction();
+        }
+
+        $e->setParam('module', $module);
     }
-
 }
