@@ -10,11 +10,16 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-//Host definition file
-//Paths/URLs to system folders
-//URIs without a leading slash are considered relative to the current Pi Engine host location
-//URIs with a leading slash are considered semi-relative (you must setup proper rewriting rules in your server conf)
-
+/**
+ * Host definition file
+ *
+ * Paths/URLs to system folders
+ *
+ * - URIs without a leading slash are considered relative
+ *      to the current Pi Engine host location
+ * - URIs with a leading slash are considered semi-relative
+ *      requires proper rewriting rules in server conf
+ */
 return array(
     // URIs to resources
     // If URI is a relative one then www root URI will be prepended
