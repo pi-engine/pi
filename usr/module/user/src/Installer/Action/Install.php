@@ -54,7 +54,7 @@ class Install extends BasicInstall
                 $optionsFile = sprintf(
                     '%s/%s/config/%s',
                     Pi::path('module'),
-                    Pi::service('module')->directory($mode),
+                    Pi::service('module')->directory($mod),
                     $options
                 );
                 $options = include $optionsFile;
