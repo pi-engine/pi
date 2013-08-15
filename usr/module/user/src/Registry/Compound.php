@@ -47,7 +47,7 @@ class Compound extends AbstractRegistry
      * @param string $compound Compound name: tool, address, education, wrok
      * @param array
      */
-    public function read($compound)
+    public function read($compound = '')
     {
         $options = array('compound' => $compound);
         $data = $this->loadData($options);

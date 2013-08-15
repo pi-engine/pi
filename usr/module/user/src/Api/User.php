@@ -12,6 +12,7 @@ namespace Module\User\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * User account manipulation APIs
@@ -23,7 +24,18 @@ class User extends AbstractApi
     /** @var string Module name */
     protected $module = 'user';
 
-    public function canonizeUser($rawdata)
+    public function canonizeCompound($compound, array $rawData)
+    {
+        $meta = Pi::registry('profile', 'user')->read($compound);
+        $metaList = array_keys($meta);
+        foreach ($rawData as $key => $list) {
+            if (is_int($key)) {
+
+            }
+        }
+    }
+
+    public function canonizeUser(array $rawData)
     {
         $result = array(
             'account'   => array(),
@@ -36,14 +48,13 @@ class User extends AbstractApi
         foreach ($rawData as $key => $value) {
             if (isset($fields[$key])) {
                 $type = $fields[$key]['type'];
-                $result[$type][$key] = $rawData[$key];
-            }
-        }
-        foreach ($result as $type => &$data) {
-            $fields = Pi::service('user')->getMeta($type);
-            foreach ($rawData as $key => $value) {
-                if (in_array($key, $fields)) {
-                    $data[$type][$key] = $rawData[$key];
+                if ('compound' == $type) {
+                    $result[$type][$key] = $this->canonizeCompound(
+                        $key,
+                        $value
+                    );
+                } else {
+                    $result[$type][$key] = $value;
                 }
             }
         }
@@ -106,7 +117,7 @@ class User extends AbstractApi
      */
     public function addUser($data)
     {
-
+        $data = $this->canonizeUser($data);
     }
 
     /**

@@ -68,7 +68,7 @@ CREATE TABLE `{compound}` (
   `uid`             int(10)         unsigned    NOT NULL,
   `compound`        varchar(64)     NOT NULL,
                     # Compound name
-  `set`             varchar(64)     default NULL,
+  `set`             smallint(5)     unsigned    NOT NULL default '0',
                     # Field set key
   `field`           varchar(64)     NOT NULL,
                     # Compound field name
