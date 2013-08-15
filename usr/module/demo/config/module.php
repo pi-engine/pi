@@ -89,6 +89,14 @@ return array(
             'test'      => array(
                 'config'    => 'For test',
             ),
+
+            'user'  => array(
+                'field' => array(
+                    'sample'    => array(
+                        'title' => __('Sample field'),
+                    ),
+                ),
+            ),
         ),
     ),
 );

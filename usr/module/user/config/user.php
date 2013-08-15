@@ -27,19 +27,19 @@ return array(
                 'validators'    => array(
                     array(
                         'name'      => 'StringLength',
-                        'options'   => array(
-                            'encoding'  => 'UTF-8',
-                            'min'       => $config['uname_min'],
-                            'max'       => $config['uname_max'],
-                        ),
                     ),
                     array(
                         'name'      => 'Module\User\Validator\Username',
+                        /*
                         'options'   => array(
+                            'encoding'          => 'UTF-8',
+                            'min'               => $config['uname_min'],
+                            'max'               => $config['uname_max'],
                             'format'            => $config['uname_format'],
                             'backlist'          => $config['uname_backlist'],
                             'checkDuplication'  => true,
                         ),
+                        */
                     ),
                 ),
             ),
@@ -54,12 +54,14 @@ return array(
                 'element'       => 'password',
                 'validators'    => array(
                     array(
-                        'name'      => 'StringLength',
+                        'name'      => 'Module\User\Validator\Password',
+                        /*
                         'options'   => array(
                             'encoding'  => 'UTF-8',
                             'min'       => $config['password_min'],
                             'max'       => $config['password_max'],
                         ),
+                        */
                     ),
                 ),
             ),
@@ -80,10 +82,12 @@ return array(
                     ),
                     array(
                         'name'      => 'Module\User\Validator\UserEmail',
+                        /*
                         'options'   => array(
                             'backlist'          => $config['email_backlist'],
                             'checkDuplication'  => true,
                         ),
+                        */
                     ),
                 ),
             ),
@@ -96,19 +100,16 @@ return array(
             'edit'  => array(
                 'validators'    => array(
                     array(
-                        'name'      => 'StringLength',
-                        'options'   => array(
-                            'encoding'  => 'UTF-8',
-                            'min'       => $config['name_min'],
-                            'max'       => $config['name_max'],
-                        ),
-                    ),
-                    array(
                         'name'      => 'Module\User\Validator\Name',
+                        /*
                         'options'   => array(
+                            'encoding'          => 'UTF-8',
+                            'min'               => $config['name_min'],
+                            'max'               => $config['name_max'],
                             'backlist'          => $config['name_backlist'],
                             'checkDuplication'  => true,
                         ),
+                        */
                     ),
                 ),
             ),

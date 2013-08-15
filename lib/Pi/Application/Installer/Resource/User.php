@@ -166,7 +166,7 @@ class User extends AbstractResource
     /**
      * Canonize user specs for profile, timeline, activity meta and quicklinks
      *
-     * Field name: if field `name` is not specified, `name` will be defined
+     * Resource name: if `name` is not specified, `name` will be defined
      * as module name followed by field key and delimited by underscore `_`
      * as `<module-name>_<field_key>`
      *
@@ -175,21 +175,21 @@ class User extends AbstractResource
      */
     protected function canonize($config)
     {
-        $ret = array(
-            'field'         => array(),
-            'compound'      => array(),
-            'timeline'      => array(),
-            'activity'      => array(),
-            'quicklink'     => array(),
+        $result = array(
+            'field'             => array(),
+            'compound_field'     => array(),
+            'timeline'          => array(),
+            'activity'          => array(),
+            'quicklink'         => array(),
         );
 
         $module = $this->getModule();
         // Canonize fields
         if (isset($config['field'])) {
             $profile = $this->canonizeProfile($config['field']);
-            $config['field'] = $profile['field'];
-            if (isset($profile['compound'])) {
-                $ret['compound'] = $profile['compound'];
+            $result['field'] = $profile['field'];
+            if (isset($profile['compound_field'])) {
+                $result['compound_field'] = $profile['compound_field'];
             }
             /*
             foreach ($config['field'] as $key => &$spec) {
@@ -198,7 +198,7 @@ class User extends AbstractResource
             */
         }
 
-        foreach (array('field', 'timeline', 'activity', 'quicklink') as $op) {
+        foreach (array('timeline', 'activity', 'quicklink') as $op) {
             if (isset($config[$op])) {
                 foreach ($config[$op] as $key => $spec) {
                     // Canonize field name
@@ -208,7 +208,7 @@ class User extends AbstractResource
                     if (!isset($spec['active'])) {
                         $spec['active'] = 1;
                     }
-                    $ret[$op][$name] = array_merge($spec, array(
+                    $result[$op][$name] = array_merge($spec, array(
                         'name'      => $name,
                         'module'    => $module,
                     ));
@@ -216,11 +216,15 @@ class User extends AbstractResource
             }
         }
 
-        return $ret;
+        return $result;
     }
 
     /**
      * Canonize user profile specs
+     *
+     * Field name: if field `name` is not specified, `name` will be defined
+     * as module name followed by field key and delimited by underscore `_`
+     * as `<module-name>_<field_key>`
      *
      * Canonize profile fields and compound fields.
      * Use <compound-name>-<field-name> as compound field key (not field name).
@@ -235,9 +239,18 @@ class User extends AbstractResource
             'compound_field'    => array(),
         );
 
-        //$module = $this->getModule();
+        $module = $this->getModule();
         foreach ($config as $key => $data) {
             $data = $this->canonizeField($data);
+            if (!isset($data['active'])) {
+                $data['active'] = 1;
+            }
+            if (!isset($data['module'])) {
+                $data['module'] = $module;
+            }
+            if (!isset($data['name'])) {
+                $data['name'] = $data['module'] . '_' . $key;
+            }
             if (isset($data['field'])) {
                 $profile['compound_field'] += $this->canonizeCompoundField(
                     $data['field'],
@@ -325,7 +338,10 @@ class User extends AbstractResource
         $fields = array();
         $module = $this->getModule();
         foreach ($config as $key => &$data) {
-            if (isset($data['edit'])) {
+            if (!isset($data['name'])) {
+                $data['name'] = $key;
+            }
+            if (!isset($data['edit'])) {
                 $data['edit'] = 'text';
             }
             $data['edit'] = $this->canonizeFieldEdit($data['edit']);
@@ -346,7 +362,7 @@ class User extends AbstractResource
     protected function canonizeFieldEdit($edit)
     {
         if (is_string($edit)) {
-            $spec['edit'] = array(
+            $edit = array(
                 'element'   => array(
                     'type'  => $edit,
                 ),
@@ -369,9 +385,6 @@ class User extends AbstractResource
      */
     public function installAction()
     {
-        if (!$this->isActive()) {
-            return;
-        }
         if (empty($this->config)) {
             return;
         }

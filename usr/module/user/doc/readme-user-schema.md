@@ -24,7 +24,7 @@ CREATE TABLE `{account}` (
   `credential`      varchar(255)    NOT NULL default '',    # Credential hash
   `salt`            varchar(255)    NOT NULL default '',    # Hash salt
   `email`           varchar(64)     NOT NULL,
-  `name`            varchar(255)    NOT NULL,
+  `name`            varchar(255)    default NULL,
 
   `active`          tinyint(1)      unsigned NOT NULL default '0',
 
@@ -60,7 +60,8 @@ CREATE TABLE `{profile}` (
 CREATE TABLE `{custom}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `field`           varchar(64)     NOT NULL,   # Custom field name
+  `field`           varchar(64)     NOT NULL,
+                    # Custom field name
   `value`           text,
 
   PRIMARY KEY  (`id`),
@@ -71,9 +72,12 @@ CREATE TABLE `{custom}` (
 CREATE TABLE `{compound}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `compound`        varchar(64)     NOT NULL,   # Compound name
-  `set`             varchar(64)     default NULL, # Field set key
-  `field`           varchar(64)     NOT NULL,   # Compound field name
+  `compound`        varchar(64)     NOT NULL,
+                    # Compound name
+  `set`             varchar(64)     default NULL,
+                    # Field set key
+  `field`           varchar(64)     NOT NULL,
+                    # Compound field name
   `value`           text,
 
   PRIMARY KEY  (`id`),
@@ -86,16 +90,23 @@ CREATE TABLE `{field}` (
   `name`            varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',
-  `edit`            text,           # callback options for edit
-  `filter`          text,           # callback options for output filtering
+  `edit`            text,
+                    # callback options for edit
+  `filter`          text,
+                    # callback options for output filtering
 
-  `type`            enum('custom', 'account', 'profile', 'compound'),   # Field type, default as custom
+  `type`            enum('custom', 'account', 'profile', 'compound'),
+                    # Field type, default as custom
 
-  `is_edit`         tinyint(1)      NOT NULL default '0',   # Is editable by user
-  `is_search`       tinyint(1)      NOT NULL default '0',   # Is searchable
-  `is_display`      tinyint(1)      NOT NULL default '0',   # Display on profile page
+  `is_edit`         tinyint(1)      unsigned NOT NULL default '0',
+                    # Is editable by user
+  `is_search`       tinyint(1)      unsigned NOT NULL default '0',
+                    # Is searchable
+  `is_display`      tinyint(1)      unsigned NOT NULL default '0',
+                    # Display on profile page
 
-  `active`          tinyint(1)      NOT NULL default '0',   # Is active
+  `active`          tinyint(1)      unsigned NOT NULL default '0',
+                    # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`name`)
@@ -105,13 +116,11 @@ CREATE TABLE `{field}` (
 CREATE TABLE `{compound_field}` (
   `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL,
-  `compound`        varchar(64)     NOT NULL default '',
+  `compound`        varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',
   `edit`            text,           # callback options for edit
   `filter`          text,           # callback options for output filtering
-
-  `active`          tinyint(1)      NOT NULL default '0',   # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`compound`, `name`)
@@ -160,7 +169,7 @@ CREATE TABLE `{activity}` (
   `module`          varchar(64)     NOT NULL    default '',
   `link`            varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      NOT NULL    default '0',   # Is active
+  `active`          tinyint(1)      unsigned NOT NULL    default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -174,7 +183,7 @@ CREATE TABLE `{quicklink}` (
   `module`          varchar(64)     NOT NULL    default '',
   `link`            varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      NOT NULL    default '0',   # Is active
+  `active`          tinyint(1)      unsigned NOT NULL    default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -207,19 +216,20 @@ CREATE TABLE `{log}` (
   KEY (`uid`)
 );
 
-# ------------------------------------------------------
-
 # user custom contents
-CREATE TABLE `{repo}` (
+CREATE TABLE `{data}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL default '0',
   `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '',
+  `name`            varchar(64)     NOT NULL,
+  `time`            int(10)         unsigned    NOT NULL default '0',
   `content`         text,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user_content` (`uid`, `module`, `type`)
 );
+
+# ------------------------------------------------------
 
 # user-role links for regular
 CREATE TABLE `{role}` (
