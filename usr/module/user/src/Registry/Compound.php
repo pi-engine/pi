@@ -31,7 +31,7 @@ class Compound extends AbstractRegistry
         $fields = array();
 
         $columns = array('name', 'title', 'compound', 'edit', 'filter');
-        $where = array('active' => 1);
+        $where = array('compound' => $options['compound']);
         $model = Pi::model('compound_field', $this->module);
         $select = $model->select()->where($where)->columns($columns);
         $rowset = $model->selectWith($select);
@@ -45,16 +45,14 @@ class Compound extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $compound Compound name: tool, address, education, wrok
-     * @param string $action Actions: display, edit, search
      * @param array
      */
     public function read($compound)
     {
-        $options = array();
+        $options = array('compound' => $compound);
         $data = $this->loadData($options);
-        $result = isset($data[$compound]) ? $data[$compound] : array();
 
-        return $result;
+        return $data;
     }
 
     /**

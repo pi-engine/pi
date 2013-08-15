@@ -26,7 +26,7 @@ class Profile extends AbstractApi
     /**
      * Get field names of specific type and action
      *
-     * - Available types: `account`, `profile`, `custom`
+     * - Available types: `account`, `profile`, `custom`, `compound`
      * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
