@@ -43,7 +43,7 @@ Working with upstream repo
 * Add Pi Engine Repo as upstream: ```git remote add upstream https://github.com/pi-engine/pi.git```
 * Fetch changes from Pi Engine Repo: ```git fetch upstream```
 * Merge Pi Engine changes into local repo: ```git merge upstream/<branch-name>```
-* Synchronize your repo with Pi Engine Repo: ```git merge upstream/<branch-name>``` + ```git push origin/<branch-name>```
+* Synchronize your repo with Pi Engine Repo: ```git merge upstream/<branch-name>``` + ```git push origin <branch-name>```
 
 
 Pi Engine Github Skeleton
