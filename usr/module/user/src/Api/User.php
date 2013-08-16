@@ -26,13 +26,29 @@ class User extends AbstractApi
 
     public function canonizeCompound($compound, array $rawData)
     {
-        $meta = Pi::registry('profile', 'user')->read($compound);
-        $metaList = array_keys($meta);
-        foreach ($rawData as $key => $list) {
-            if (is_int($key)) {
-
+        $fields = Pi::registry('profile', 'user')->read($compound);
+        $meta = array_keys($fields);
+        $canonizeSet = function ($data) use ($meta) {
+            foreach (array_keys($data) as $key) {
+                if (!in_array($key, $meta)) {
+                    unset($data[$key]);
+                }
             }
+            return $data;
+        };
+
+        $result = array();
+        $keys = array_keys($rawData);
+        if (is_int($keys[0])) {
+            $set = 0;
+            foreach ($rawData as $key => $data) {
+                $result[$set++] = $canonizeSet($data);
+            }
+        } else {
+            $result[] = $canonizeSet($rawData);
         }
+
+        return $result;
     }
 
     public function canonizeUser(array $rawData)
@@ -48,6 +64,8 @@ class User extends AbstractApi
         foreach ($rawData as $key => $value) {
             if (isset($fields[$key])) {
                 $type = $fields[$key]['type'];
+                $result[$type][$key] = $value;
+                /*
                 if ('compound' == $type) {
                     $result[$type][$key] = $this->canonizeCompound(
                         $key,
@@ -56,6 +74,7 @@ class User extends AbstractApi
                 } else {
                     $result[$type][$key] = $value;
                 }
+                */
             }
         }
 
@@ -118,6 +137,61 @@ class User extends AbstractApi
     public function addUser($data)
     {
         $data = $this->canonizeUser($data);
+        $uid = $this->addAccount($data['account']);
+        $status = $this->addProfile($data['profile'], $uid);
+        $status = $this->addCustom($data['custom'], $uid);
+        $status = $this->addCompound($data['compound'], $uid);
+
+        return $uid;
+    }
+
+    public function addAccount($data)
+    {
+        if (!isset($data['time_registered'])) {
+            $data['time_registered'] = time();
+        }
+        $row = Pi::model('account', 'user')->createRow($data);
+        $row->save();
+
+        return $row->id;
+    }
+
+    public function addProfile($data, $uid)
+    {
+        $data['uid'] = $uid;
+        $row = Pi::model('profile', 'user')->createRow($row);
+        $row->save();
+
+        return true;
+    }
+
+    public function addCustom($data, $uid)
+    {
+        $model = Pi::model('custom', 'user');
+        foreach ($data as $key => $value) {
+            $row = $model->createRow(array(
+                'field' => $key,
+                'value' => $value,
+                'uid'   => $uid,
+            ));
+            $row->save();
+        }
+
+        return true;
+    }
+
+    public function addCompound($data, $uid)
+    {
+        $model = Pi::model('compound', 'user');
+        foreach ($data as $key => $value) {
+            $compoundSet = $this->canonizeCompound($uid, $key, $value);
+            foreach ($compoundSet as $spec) {
+                $row = $model->createRow($spec);
+                $row->save();
+            }
+        }
+        
+        return true;
     }
 
     /**

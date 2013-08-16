@@ -71,6 +71,7 @@ return array(
             'name'  => 'email',
             'title' => __('Email'),
             'edit'  => array(
+                'element'       => 'email',
                 'validators'    => array(
                     array(
                         'name'      => 'EmailAddress',
@@ -122,6 +123,13 @@ return array(
             'title' => __('Full name'),
         ),
 
+        'gender'    => array(
+            'type'  => 'profile',
+            'name'  => 'gender',
+            'title' => __('Gender'),
+            'edit'  => 'Module\User\Form\Element\Gender',
+        ),
+
         'birthdate'  => array(
             'type'  => 'profile',
             'name'  => 'birthdate',
@@ -162,8 +170,9 @@ return array(
 
         // Custom fields
         'language'  => array(
+            'name'  => 'language',
             'title' => __('Language'),
-            'edit'  => 'Locale',
+            'edit'  => 'locale',
         ),
 
         // Compound fields
@@ -203,8 +212,8 @@ return array(
                 'street'   => array(
                     'title' => __('Street'),
                 ),
-                'office'   => array(
-                    'title' => __('Office'),
+                'room'      => array(
+                    'title' => __('Room'),
                 ),
             ),
         ),
