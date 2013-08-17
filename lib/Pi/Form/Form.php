@@ -140,8 +140,8 @@ class Form extends ZendForm
     {
         $messages = $this->getMessages();
         $list = array();
-        foreach ($messages as $name => $messages) {
-            if (!$messages) {
+        foreach ($messages as $name => $msgs) {
+            if (!$msgs) {
                 continue;
             }
             if ($OnlyHidden
@@ -149,7 +149,7 @@ class Form extends ZendForm
             ) {
                 continue;
             }
-            $list[] = implode($delimiter, array_values($messages));
+            $list[] = implode($delimiter, array_values($msgs));
         }
 
         return implode($delimiter, $list);
