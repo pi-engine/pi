@@ -68,10 +68,10 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUser($id = null, $field = 'id')
+    public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $id) {
-            $model = new SystemModel($id, $field);
+        if (null !== $uid) {
+            $model = new SystemModel($uid, $field);
         } else {
             $model = $this->model;
         }
@@ -82,7 +82,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUserList($ids)
+    public function getUserList($uids)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -118,7 +118,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $id = null)
+    public function updateUser($data, $uid = null)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -126,7 +126,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function deleteUser($id)
+    public function deleteUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -134,7 +134,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function activateUser($id)
+    public function activateUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -142,7 +142,15 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function deactivateUser($id)
+    public function enableUser($uid)
+    {
+        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function disableUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -155,7 +163,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($key, $id = null)
+    public function get($key, $uid = null)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -163,7 +171,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $ids)
+    public function getList($key, $uids)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -171,7 +179,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $id = null)
+    public function set($key, $value, $uid = null)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -179,15 +187,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function increment($key, $value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPassword($value, $id = null)
+    public function increment($key, $value, $uid = null)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -199,19 +199,19 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $id = null)
+    public function getUrl($type, $uid = null)
     {
         switch ($type) {
             case 'account':
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'account',
-                    'id'            => $id,
+                    'id'            => $uid,
                 ));
                 break;
             case 'profile':
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
-                    'id'            => $id,
+                    'id'            => $uid,
                 ));
                 break;
             case 'login':

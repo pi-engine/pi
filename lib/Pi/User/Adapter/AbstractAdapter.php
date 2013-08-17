@@ -19,45 +19,46 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *
  * User APIs
  *
- * + Meta operations
+ * + Field meta operations
  *   - getMeta($type, $action)
  *
  * + User operations
  *   + Binding
- *   - bind($id[, $field])
+ *   - bind($uid[, $field])
  *
  *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
+ *   - getUser(<uid>|array(<field>))
+ *   - getUids($condition, $limit, $offset, $order)
+ *   - getCount($condition)
  *
  *   + Add
  *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])
+ *   - updateUser($data, $uid)
  *
  *   + Delete
- *   - deleteUser($id)
+ *   - deleteUser($uid)
  *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
+ *   + Activate account
+ *   - activateUser($uid)
+ *
+ *   + Enable/Disable
+ *   - enableUser($uid)
+ *   - disableUser($uid)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
+ *   - get($key, $uid)
+ *   - getList($key, $uids)
  *
  *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
+ *   - set($key, $value, $uid)
+ *   - increment($key, $value, $uid)
  *
  * + Utility
  *   + Collective URL
- *   - getUrl($type[, $id])
+ *   - getUrl($type[, $uid])
  *   + Authentication
  *   - authenticate($identity, $credential)
  *
@@ -126,9 +127,9 @@ abstract class AbstractAdapter implements BindInterface
         return $result;
     }
 
-    protected function verifyId(&$id)
+    protected function verifyId(&$uid)
     {
-        $id = $id ?: $this->id;
+        $uid = $uid ?: $this->id;
     }
 
     /**#@+
@@ -154,22 +155,23 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user data object
      *
-     * @param int|string|null   $id         User id, identity
-     * @param string            $field      Field of the identity:
-     *      id, identity, email, etc.
+     * Use different type of identity: id, identity, email, etc.
+     *
+     * @param int|string|null   $uid         User id, identity
+     * @param string            $field      Field of the identity
      * @return UserModel
      * @api
      */
-    abstract public function getUser($id = null, $field = 'id');
+    abstract public function getUser($uid = null, $field = 'id');
 
     /**
      * Get user data objects
      *
-     * @param int[] $ids User ids
+     * @param int[] $uids User ids
      * @return array
      * @api
      */
-    abstract public function getUserList($ids);
+    abstract public function getUserList($uids);
 
     /**
      * Get user IDs subject to conditions
@@ -210,38 +212,47 @@ abstract class AbstractAdapter implements BindInterface
      * Update a user
      *
      * @param   array       $data
-     * @param   int         $id
+     * @param   int         $uid
      * @return  int|false
      * @api
      */
-    abstract public function updateUser($data, $id = null);
+    abstract public function updateUser($data, $uid = null);
 
     /**
      * Delete a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function deleteUser($id);
+    abstract public function deleteUser($uid);
 
     /**
      * Activate a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function activateUser($id);
+    abstract public function activateUser($uid);
 
     /**
-     * Deactivate a user
+     * Enable a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function deactivateUser($id);
+    abstract public function enableUser($uid);
+
+    /**
+     * Disable a user
+     *
+     * @param   int         $uid
+     * @return  bool
+     * @api
+     */
+    abstract public function disableUser($uid);
     /**#@-*/
 
     /**#@+
@@ -251,32 +262,32 @@ abstract class AbstractAdapter implements BindInterface
      * Get field value(s) of a user field(s)
      *
      * @param string|array      $key
-     * @param string|int|null   $id
+     * @param string|int|null   $uid
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($key, $id = null);
+    abstract public function get($key, $uid = null);
 
     /**
      * Get field value(s) of a list of user
      *
      * @param string|array      $key
-     * @param array             $ids
+     * @param array             $uids
      * @return array
      * @api
      */
-    abstract public function getList($key, $ids);
+    abstract public function getList($key, $uids);
 
     /**
      * Set value of a user field
      *
      * @param string            $key
      * @param midex             $value
-     * @param string|int|null   $id
+     * @param string|int|null   $uid
      * @return bool
      * @api
      */
-    abstract public function set($key, $value, $id = null);
+    abstract public function set($key, $value, $uid = null);
 
     /**
      * Incremetn/decrement a user field
@@ -284,21 +295,11 @@ abstract class AbstractAdapter implements BindInterface
      * @param string            $key
      * @param int               $value
      *      Positive to increment or negative to decrement
-     * @param string|int|null   $id
+     * @param string|int|null   $uid
      * @return bool
      * @api
      */
-    abstract public function increment($key, $value, $id = null);
-
-    /**
-     * Set a user password
-     *
-     * @param string            $value
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    abstract public function setPassword($value, $id = null);
+    abstract public function increment($key, $value, $uid = null);
     /**#@-*/
 
     /**#@+
@@ -315,11 +316,11 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param string        $type
      *      Type of URLs: profile, login, logout, register, auth
-     * @param int|null      $id
+     * @param int|null      $uid
      * @return string
      * @api
      */
-    abstract public function getUrl($type, $id = null);
+    abstract public function getUrl($type, $uid = null);
 
     /**
      * Authenticate user

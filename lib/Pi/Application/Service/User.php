@@ -30,45 +30,46 @@ use Pi\User\Resource\AbstractResource;
  * called via magic method __call()
  * ----------------------------------------------------------------------------
  *
- * + Meta operations
+ * + Field meta operations
  *   - getMeta($type, $action)
  *
  * + User operations
  *   + Binding
- *   - bind($id[, $field])
+ *   - bind($uid[, $field])
  *
  *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
+ *   - getUser(<uid>|array(<field>))
+ *   - getUids($condition, $limit, $offset, $order)
+ *   - getCount($condition)
  *
  *   + Add
  *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])
+ *   - updateUser($data, $uid)
  *
  *   + Delete
- *   - deleteUser($id)
+ *   - deleteUser($uid)
  *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
+ *   + Activate account
+ *   - activateUser($uid)
+ *
+ *   + Enable/Disable
+ *   - enableUser($uid)
+ *   - disableUser($uid)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
+ *   - get($key, $uid)
+ *   - getList($key, $uids)
  *
  *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
+ *   - set($key, $value, $uid)
+ *   - increment($key, $value, $uid)
  *
  * + Utility
  *   + Collective URL
- *   - getUrl($type[, $id])
+ *   - getUrl($type[, $uid])
  *   + Authentication
  *   - authenticate($identity, $credential)
  * ----------------------------------------------------------------------------

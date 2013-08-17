@@ -31,6 +31,7 @@ CREATE TABLE `{account}` (
   UNIQUE KEY `identity` (`identity`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `name` (`name`),
+
   KEY `status` (`active`)
 );
 

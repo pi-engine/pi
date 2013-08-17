@@ -27,7 +27,7 @@ class Local extends AbstractAdapter
      */
     public function getMeta($type = '', $action = '')
     {
-        return Pi::api('user', 'profile')->getMeta($type, $action);
+        return Pi::api('user', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -37,10 +37,10 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUser($id = null, $field = 'id')
+    public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $id) {
-            $model = new LocalModel($id, $field);
+        if (null !== $uid) {
+            $model = new LocalModel($uid, $field);
         } else {
             $model = $this->model;
         }
@@ -51,21 +51,20 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUserList($ids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIds(
+    public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
         $order      = ''
     ) {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+
+        return $result;
     }
 
     /**
@@ -73,7 +72,9 @@ class Local extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getCount($condition);
+
+        return $result;
     }
 
     /**
@@ -81,40 +82,48 @@ class Local extends AbstractAdapter
      */
     public function addUser($data)
     {
-        return Pi::api('user', 'profile')->addUser($data);
+        return Pi::api('user', 'user')->addUser($data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $id = null)
+    public function updateUser($data, $uid = null)
     {
-        $this->verifyId($id);
-        return Pi::api('user', 'user')->updateUser($data, $id);
+        $this->verifyId($uid);
+        return Pi::api('user', 'user')->updateUser($data, $uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteUser($id)
+    public function deleteUser($uid)
     {
-        return Pi::api('user', 'user')->deleteUser($id);
+        return Pi::api('user', 'user')->deleteUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function activateUser($id)
+    public function activateUser($uid)
     {
-        return Pi::api('user', 'user')->activateUser($id);
+        return Pi::api('user', 'user')->activateUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deactivateUser($id)
+    public function enableUser($uid)
     {
-        return Pi::api('user', 'user')->deactivateUser($id);
+        return Pi::api('user', 'user')->enableUser($uid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function disableUser($uid)
+    {
+        return Pi::api('user', 'user')->disableUser($uid);
     }
     /**#@-*/
 
@@ -124,41 +133,33 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($key, $id = null)
+    public function get($key, $uid = null)
     {
-        $this->verifyId($id);
-        return Pi::api('user', 'user')->get($key, $id);
+        $this->verifyId($uid);
+        return Pi::api('user', 'user')->get($key, $uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $ids)
+    public function getList($key, $uids)
     {
-        return Pi::api('user', 'profile')->getList($key, $ids);
+        return Pi::api('user', 'user')->getList($key, $uids);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $id = null)
+    public function set($key, $value, $uid = null)
     {
-        $this->verifyId($id);
-        return Pi::api('user', 'profile')->set($key, $value, $id);
+        $this->verifyId($uid);
+        return Pi::api('user', 'user')->set($key, $value, $uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function increment($key, $value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPassword($value, $id = null)
+    public function increment($key, $value, $uid = null)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
     }
@@ -170,15 +171,15 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $id = null)
+    public function getUrl($type, $uid = null)
     {
         switch ($type) {
             case 'account':
             case 'profile':
-                $id = $id ?: $this->id;
+                $uid = $uid ?: $this->id;
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
-                    'id'            => $id,
+                    'id'            => $uid,
                 ));
                 break;
             case 'login':

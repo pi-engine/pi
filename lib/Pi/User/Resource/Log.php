@@ -60,7 +60,7 @@ class Log extends AbstractResource
 
         $row = Pi::model('log', 'user')->createRow(array(
             'uid'       => $this->model->id,
-            'action'    => $acion,
+            'action'    => $action,
             'data'      => $data,
             'time'      => $time ?: time(),
         ));
