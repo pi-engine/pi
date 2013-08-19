@@ -25,7 +25,6 @@ use Pi;
  *          'link'      => <link-href>,
  *          'time'      => <timestamp>,
  *     ))
- *   - timeline([$id])->delete([$condition])
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -36,6 +35,56 @@ class Timeline extends AbstractResource
      * @var bool|null
      */
     protected $isAvailable = null;
+
+    /**
+     * Get timeline log list
+     *
+     * @param int   $limit
+     * @param int   $offset
+     * @param array|string $type
+     * @return array
+     */
+    public function get($limit, $offset = 0, array $type = array())
+    {
+        $result = array();
+
+        if (!$this->isAvailable()) {
+            return $result;
+        }
+        $model = Pi::model('timeline_log', 'user');
+        $select = $model->select();
+        if ($type) {
+            $select->where(array('timeline' => $type));
+        }
+        $select->setLimit($limit)->setOffset($offset)->setOrder('time DESC');
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = $row->__toArray();
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get timeline log count subject to type(s)
+     *
+     * @param array|string $type
+     *
+     * @return int
+     */
+    public function getCount(array $type = array())
+    {
+        $model = Pi::model('timeline_log', 'user');
+        $select = $model->select();
+        if ($type) {
+            $select->where(array('timeline' => $type));
+        }
+        $rowset = $model->selectWith($select);
+        $result = $rowset->count();
+
+        return $result;
+
+    }
 
     /**
      * Check if relation function available

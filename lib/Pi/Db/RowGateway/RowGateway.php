@@ -38,7 +38,7 @@ class RowGateway extends AbstractRowGateway
     protected $primaryKeyColumns = array();
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB
+     * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
      * true - to convert to associative array for decode;

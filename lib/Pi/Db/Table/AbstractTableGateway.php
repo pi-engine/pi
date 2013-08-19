@@ -14,6 +14,7 @@ use Pi;
 use Pi\Application\Db;
 use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
+use Zend\Db\TableGateway\Feature;
 use Zend\Db\Sql\Sql;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\Metadata\Metadata;
@@ -41,7 +42,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     protected $rowClass;
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB
+     * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
      *
@@ -277,6 +278,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * @param array|string|int  $key    The value(s) of the key
      * @param string|null       $column Column name of the key
      * @return ResultSet|Row Row(s) matching the criteria.
+     * @throws \Exception Throw exception if column is not specified
      */
     public function find($key, $column = null)
     {

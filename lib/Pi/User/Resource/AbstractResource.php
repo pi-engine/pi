@@ -32,8 +32,8 @@ class AbstractResource implements BindInterface
     /**
      * Bind a user
      *
-     * @param UserModel $user
-     * @return AbstractHandler
+     * @param UserModel|null $model
+     * @return self
      */
     public function bind(UserModel $model = null)
     {

@@ -106,8 +106,8 @@ use Pi\User\Resource\AbstractResource;
  *
  * + Timeline
  *   - timeline([$id])
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
+ *   - timeline([$id])->get($limit[, $offset[, $types]])
+ *   - timeline([$id])->getCount($types)
  *   - timeline([$id])->add(array(
  *          'message'   => <message>,
  *          'module'    => <module-name>,
@@ -115,7 +115,6 @@ use Pi\User\Resource\AbstractResource;
  *          'link'      => <link-href>,
  *          'time'      => <timestamp>,
  *     ))
- *   - timeline([$id])->delete([$condition])
  *
  * + Activity
  *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
