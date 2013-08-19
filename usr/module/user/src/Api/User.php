@@ -94,17 +94,29 @@ class User extends AbstractApi
      *
      * @param   array       $data
      *
-     * @return  int|false
+     * @return  array   uid and status of profile/custom/compound
      * @api
      */
     public function addUser($data)
     {
+        $result = array();
         $uid = $this->addAccount($data);
-        $status = $this->addProfile($data, $uid);
-        $status = $this->addCustom($data, $uid);
-        $status = $this->addCompound($data, $uid);
+        if ($uid) {
+            $status = $this->addProfile($data, $uid);
+            if (!$status) {
+                $result['profile'] = false;
+            }
+            $status = $this->addCustom($data, $uid);
+            if (!$status) {
+                $result['custom'] = false;
+            }
+            $status = $this->addCompound($data, $uid);
+            if (!$status) {
+                $result['compound'] = false;
+            }
+        }
 
-        return $uid;
+        return array($uid, $result);
     }
 
     /**
@@ -113,32 +125,57 @@ class User extends AbstractApi
      * @param   array       $data
      * @param   int         $uid
      *
-     * @return  bool
+     * @return  bool[]
      * @api
      */
     public function updateUser($data, $uid)
     {
+        $result = array();
         $status = $this->updateAccount($data, $uid);
+        if (!$status) {
+            $result['account'] = false;
+        }
         $status = $this->updateProfile($data, $uid);
+        if (!$status) {
+            $result['profile'] = false;
+        }
         $status = $this->updateCustom($data, $uid);
+        if (!$status) {
+            $result['custom'] = false;
+        }
         $status = $this->updateCompound($data, $uid);
+        if (!$status) {
+            $result['compound'] = false;
+        }
 
-        return $status;
+        return $result;
     }
 
     /**
      * Delete a user
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool[]
      * @api
      */
     public function deleteUser($uid)
     {
         $status = $this->deleteAccount($uid);
+        if (!$status) {
+            $result['account'] = false;
+        }
         $status = $this->deleteProfile($uid);
+        if (!$status) {
+            $result['profile'] = false;
+        }
         $status = $this->deleteCustom($uid);
+        if (!$status) {
+            $result['custom'] = false;
+        }
         $status = $this->deleteCompound($uid);
+        if (!$status) {
+            $result['compound'] = false;
+        }
 
         return $status;
     }
@@ -262,24 +299,41 @@ class User extends AbstractApi
      *
      * Positive to increment or negative to decrement
      *
-     * @param string    $key
+     * @param string    $field
      * @param int       $value
      * @param int       $uid
      *
      * @return bool
      * @api
      */
-    public function increment($key, $value, $uid)
+    public function increment($field, $value, $uid)
     {
         $fieldMeta = Pi::registry('profile', 'user')->read();
-        if (isset($fieldMeta[$key])) {
-            $type = $fieldMeta[$key];
-            $result = $this->incrementField($type, $key, $value, $uid);
-        } else {
-            $result = false;
+        if (!isset($fieldMeta[$field])) {
+            return false;
         }
 
-        return $result;
+        $type = $fieldMeta[$field];
+        $model = Pi::model($type, 'user');
+        if ($value > 0) {
+            $string = '+' . $value;
+        } else {
+            $string = '-' . abs($value);
+        }
+        if ('account' == $type || 'profile' == $type) {
+            $sql = 'UPDATE ' . $model->getTable()
+                . ' SET `' . $field . '`=`' . $field . '`' . $string
+                . ' WHERE `uid`=' . $uid;
+            Pi::db()->getAdapter()->query($sql);
+        } elseif ('custom' == $type) {
+            $sql = 'UPDATE ' . $model->getTable()
+                . ' SET `value`=`value`' . $string
+                . ' WHERE `uid`=' . $uid
+                . ' AND `field`=' . $field;
+            Pi::db()->getAdapter()->query($sql);
+        }
+
+        return true;
     }
 
     /**
@@ -334,7 +388,7 @@ class User extends AbstractApi
      *  $compound = array(
      *      array(
      *          'uid'       => <uid>,
-     *          'çompound'  => <compound>,
+     *          'compound'  => <compound>,
      *          'field'     => <field-name>,
      *          'set'       => <set-value>,
      *          'value'     => <field-value>
@@ -620,7 +674,7 @@ class User extends AbstractApi
                 'uid'   => $uid,
                 'field' => $key,
             ))->current();
-            $row = assign(array(
+            $row->assign(array(
                 'value' => $value,
             ));
             $row->save();
@@ -726,7 +780,7 @@ class User extends AbstractApi
                 ->columns($fields);
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
-                $result[$row->{$primaryKey}] = $row->toArray();
+                $result[$row->{$primaryKey}] = $row->__toArray();
             }
         } elseif ('custom' == $type) {
             $model = Pi::model($type, 'user');
@@ -754,5 +808,34 @@ class User extends AbstractApi
         }
 
         return $result;
+    }
+
+    /**
+     * Set field for a account/profile/custom type
+     *
+     * @param int $uid
+     * @param string $type
+     * @param string $field
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function setField($uid, $type, $field, $value)
+    {
+        if ('account' == $type || 'profile' == $type) {
+            $row = Pi::model($type, 'user')->find($uid);
+            $row->{$field} = $value;
+            $row->save();
+        } elseif ('custom' == $type) {
+            $model = Pi::model($type, 'user');
+            $row = $model->select(array(
+                'uid'   => $uid,
+                'field' => $field
+            ))->current();
+            $row->value = $value;
+            $row->save();
+        }
+
+        return true;
     }
 }
