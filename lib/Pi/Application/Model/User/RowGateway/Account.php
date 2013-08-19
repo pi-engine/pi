@@ -44,7 +44,7 @@ class Account extends RowGateway
     }
 
     /**
-     * Setup edential with encrupt
+     * Setup credential with encrypt
      *
      * @param string $credential Raw credential
      * @return $this

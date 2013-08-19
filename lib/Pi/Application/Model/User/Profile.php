@@ -20,7 +20,7 @@ use Pi\Application\Model\Model;
 class Profile extends Model
 {
     /**
-     * Classname for row
+     * Class name for row
      *
      * @var string
      */

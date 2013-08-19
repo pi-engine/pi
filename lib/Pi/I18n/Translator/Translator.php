@@ -103,9 +103,9 @@ class Translator extends ZendTranslator
     }
 
     /**
-     * Set the text doamin
+     * Set the text domain
      *
-     * @param  string $textDoamin
+     * @param  string $textDomain
      * @return self
      */
     public function setTextDomain($textDomain)
@@ -135,7 +135,7 @@ class Translator extends ZendTranslator
      */
     public function restoreTextDomain()
     {
-        $this->textDomain = $this->previoustextDomain;
+        $this->textDomain = $this->previousTextDomain;
 
         return $this;
     }
@@ -148,7 +148,7 @@ class Translator extends ZendTranslator
     public function restore()
     {
         $this->locale = $this->previousLocale ?: $this->locale;
-        $this->textDomain = $this->previoustextDomain;
+        $this->textDomain = $this->previousTextDomain;
 
         return $this;
     }
@@ -156,7 +156,7 @@ class Translator extends ZendTranslator
     /**
      * Set resource loader
      *
-     * @param LoaderInterface $loader
+     * @param FileLoaderInterface $loader
      * @return self
      */
     public function setLoader($loader)
@@ -169,7 +169,7 @@ class Translator extends ZendTranslator
     /**
      * Get resource loader
      *
-     * @return LoaderInterface
+     * @return FileLoaderInterface
      */
     public function getLoader()
     {
