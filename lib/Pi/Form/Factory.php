@@ -62,16 +62,21 @@ class Factory extends ZendFactory
                     __NAMESPACE__,
                     ucfirst($spec['type'])
                 );
-                if (!class_exists($type)) {
+                if (class_exists($type)) {
+                    $spec['type'] = $type;
+                } else {
                     $type = sprintf(
                         'Zend\Form\Element\\%s',
                         ucfirst($spec['type'])
                     );
                     if (class_exists($type)) {
                         $spec['type'] = $type;
+                    } else {
+                        if (!isset($spec['attributes']['type'])) {
+                            $spec['attributes']['type'] = $spec['type'];
+                        }
+                        unset($spec['type']);
                     }
-                } else {
-                    $spec['type'] = $type;
                 }
             }
         }

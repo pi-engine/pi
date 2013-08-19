@@ -234,7 +234,7 @@ class Db
      * in {@link \Zend\Db\Adapter\Driver\Pdo\Connection::connect()}
      *
      * @param array                                 $config
-     * @param \Zend\Db\Platform\PlatformInterface   $platform
+     * @param \Zend\Db\Adapter\AdapterInterface   $platform
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
