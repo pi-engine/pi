@@ -90,8 +90,10 @@ class Local extends AbstractAdapter
      */
     public function updateUser($data, $uid = null)
     {
-        $this->verifyId($uid);
-        return Pi::api('user', 'user')->updateUser($data, $uid);
+        return Pi::api('user', 'user')->updateUser(
+            $data,
+            $this->verifyUid($uid)
+        );
     }
 
     /**
@@ -136,7 +138,7 @@ class Local extends AbstractAdapter
     public function get($key, $uid = null)
     {
         $this->verifyId($uid);
-        return Pi::api('user', 'user')->get($key, $uid);
+        return Pi::api('user', 'user')->get($key, $this->verifyUid($uid));
     }
 
     /**
@@ -152,8 +154,11 @@ class Local extends AbstractAdapter
      */
     public function set($key, $value, $uid = null)
     {
-        $this->verifyId($uid);
-        return Pi::api('user', 'user')->set($key, $value, $uid);
+        return Pi::api('user', 'user')->set(
+            $key,
+            $value,
+            $this->verifyUid($uid)
+        );
     }
 
     /**
@@ -161,7 +166,11 @@ class Local extends AbstractAdapter
      */
     public function increment($key, $value, $uid = null)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->increment(
+            $key,
+            $value,
+            $this->verifyUid($uid)
+        );
     }
     /**#@-*/
 
@@ -176,7 +185,7 @@ class Local extends AbstractAdapter
         switch ($type) {
             case 'account':
             case 'profile':
-                $uid = $uid ?: $this->id;
+            $uid = $this->verifyUid($uid);
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
                     'id'            => $uid,
@@ -214,7 +223,14 @@ class Local extends AbstractAdapter
      */
     public function authenticate($identity, $credential)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $options = array();
+        if (isset($this->options['authentication'])) {
+            $options = $this->options['authentication'];
+        }
+        $service = Pi::service()->load('authentication', $options);
+        $result = $service->authenticate($identity, $credential);
+
+        return $result;
     }
     /**#@-*/
 

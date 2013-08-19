@@ -56,10 +56,10 @@ class Timeline extends AbstractResource
         if ($type) {
             $select->where(array('timeline' => $type));
         }
-        $select->setLimit($limit)->setOffset($offset)->setOrder('time DESC');
+        $select->limit($limit)->offset($offset)->order('time DESC');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $result[] = $row->__toArray();
+            $result[] = (array) $row;
         }
 
         return $result;
@@ -144,5 +144,7 @@ class Timeline extends AbstractResource
             return false;
         }
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+
+        return null;
     }
 }

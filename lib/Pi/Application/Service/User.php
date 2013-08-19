@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
@@ -132,6 +131,24 @@ use Pi\User\Resource\AbstractResource;
  *   - relation([$id])->add($uid, $relation)
  *   - relation([$id])->delete([$uid[, $relation]])
  *
+ * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $field)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
+ * @method \Pi\User\Adapter\AbstractAdapter::addUser($data)
+ * @method \Pi\User\Adapter\AbstractAdapter::updateUser($data, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::deleteUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::activateUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::enableUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::get($key, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::getList($key, $uids)
+ * @method \Pi\User\Adapter\AbstractAdapter::set($key, $value, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::increment($key, $value, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
+ *
+ *
  * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -150,7 +167,7 @@ class User extends AbstractService
     /**
      * User data object of current session
      *
-     * @var UserModel|null|false
+     * @var UserModel|null|bool
      */
     protected $modelSession;
 
@@ -243,7 +260,7 @@ class User extends AbstractService
                 $this->resource[$name]->setOptions($options);
             }
         } elseif (null !== $id) {
-            $this->resource[$name]->bind($this->getUser($id));
+            $this->resource[$name]->bind($this->getAdapter()->getUser($id));
         }
 
         return $this->resource[$name];
@@ -264,7 +281,7 @@ class User extends AbstractService
             if ($identity instanceof UserModel) {
                 $this->model = $identity;
             } else {
-                $this->model = $this->getUser($identity, $type);
+                $this->model = $this->getAdapter()->getUser($identity, $type);
             }
             // Store current session user model for first time
             if (null === $this->modelSession) {
@@ -334,102 +351,11 @@ class User extends AbstractService
             $identity = null;
         } else {
             $identity = $asId
-                ? $this->modelSession->getId()
-                : $this->modelSession->getIdentity();
+                ? $this->modelSession->id
+                : $this->modelSession->identity;
         }
 
         return $identity;
-    }
-
-    /**
-     * Canonize field name(s) of a module
-     *
-     * Note: custom (module) profile field names are prefixed with module name
-     * and delimited by underscore `_` as `<module-name>_<field_key>`
-     *
-     * @param string $module
-     * @param string|string[] $key
-     * @return string|string[]
-     * @see Pi\Application\Installer\Resource\User::canonizeField()
-     */
-    protected function canonizeField($module, $key)
-    {
-        if (is_array($key)) {
-            foreach ($key as $idx => &$val) {
-                $val = $module . '_' . $val;
-            }
-        } else {
-            $key = $module . '_' . $key;
-        }
-
-        return $key;
-    }
-
-    /**
-     * Get field value(s) of a user field(s) belonging to a module
-     *
-     * @param string            $module
-     * @param string|array      $key
-     * @param string|int|null   $id
-     * @return mixed|mixed[]
-     * @api
-     */
-    public function getByModule($module, $key, $id = null)
-    {
-        $key = $this->canonizeField($module, $key);
-
-        return $this->get($key, $id);
-    }
-
-    /**
-     * Get field value(s) of a list of user of a module
-     *
-     * @param string            $module
-     * @param string|array      $key
-     * @param array             $ids
-     * @return array
-     * @api
-     */
-    public function getListByModule($module, $key, $ids)
-    {
-        $key = $this->canonizeField($module, $key);
-
-        return $this->getList($key, $ids);
-    }
-
-    /**
-     * Set value of a user field belonging to a module
-     *
-     * @param string            $module
-     * @param string            $key
-     * @param midex             $value
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    public function setByModule($module, $key, $value, $id = null)
-    {
-        $key = $this->canonizeField($module, $key);
-
-        return $this->set($key, $value, $id);
-    }
-
-    /**
-     * Incremetn/decrement a user field belonging to a module
-     *
-     * @param string            $module
-     * @param string            $key
-     * @param int               $value
-     *      Positive to increment or negative to decrement
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    public function incrementByModule($module, $key, $value, $id = null)
-    {
-        $key = $this->canonizeField($module, $key);
-
-        return $this->increment($key, $value, $id);
     }
 
     /**
@@ -537,7 +463,7 @@ class User extends AbstractService
      *  - email: email
      *  - <extra fields>: specified by each adapter
      *
-     * @param array|false $data
+     * @param array|bool $data
      * @return self
      */
     public function setPersist($data = array())

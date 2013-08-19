@@ -127,9 +127,17 @@ abstract class AbstractAdapter implements BindInterface
         return $result;
     }
 
-    protected function verifyId(&$uid)
+    /**
+     * Verify uid paramter
+     *
+     * @param $uid
+     * @return int
+     */
+    protected function verifyUid($uid)
     {
-        $uid = $uid ?: $this->id;
+        $uid = $uid ? intval($uid) : $this->__get($uid);
+
+        return $uid;
     }
 
     /**#@+
@@ -165,15 +173,6 @@ abstract class AbstractAdapter implements BindInterface
     abstract public function getUser($uid = null, $field = 'id');
 
     /**
-     * Get user data objects
-     *
-     * @param int[] $uids User ids
-     * @return array
-     * @api
-     */
-    abstract public function getUserList($uids);
-
-    /**
      * Get user IDs subject to conditions
      *
      * @param array|PredicateInterface  $condition
@@ -183,7 +182,7 @@ abstract class AbstractAdapter implements BindInterface
      * @return int[]
      * @api
      */
-    abstract public function getIds(
+    abstract public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
@@ -203,7 +202,7 @@ abstract class AbstractAdapter implements BindInterface
      * Add a user
      *
      * @param   array       $data
-     * @return  int|false
+     * @return  int|bool
      * @api
      */
     abstract public function addUser($data);
@@ -213,7 +212,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param   array       $data
      * @param   int         $uid
-     * @return  int|false
+     * @return  int|bool
      * @api
      */
     abstract public function updateUser($data, $uid = null);
@@ -282,7 +281,7 @@ abstract class AbstractAdapter implements BindInterface
      * Set value of a user field
      *
      * @param string            $key
-     * @param midex             $value
+     * @param mixed             $value
      * @param string|int|null   $uid
      * @return bool
      * @api

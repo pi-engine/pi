@@ -8,7 +8,7 @@ return array(
     // Followings are optional
     'options'   => array(
         'authentication'    => 'service.authentication.php',
-        //'authentication'    => 'custom.authentication.php',
+        //'authentication'    => 'service.authentication.local.php',
     ),
 
     'avatar'            => array(

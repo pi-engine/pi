@@ -90,7 +90,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getIds(
+    public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
@@ -203,6 +203,7 @@ class System extends AbstractAdapter
     {
         switch ($type) {
             case 'account':
+                $uid = $this->verifyUid($uid);
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'account',
                     'id'            => $uid,
