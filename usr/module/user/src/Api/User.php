@@ -11,8 +11,6 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
-//use Pi\Db\RowGateway\RowGateway;
-//use Zend\Stdlib\ArrayUtils;
 
 /**
  * User account manipulation APIs
@@ -45,10 +43,10 @@ class User extends AbstractApi
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|PredicateInterface  $condition
-     * @param int                       $limit
-     * @param int                       $offset
-     * @param string                    $order
+     * @param array     $condition
+     * @param int       $limit
+     * @param int       $offset
+     * @param string    $order
      * @return int[]
      * @api
      */
@@ -60,7 +58,55 @@ class User extends AbstractApi
     ) {
         $result = array();
 
-        trigger_error(__METHOD__ . ' not implemented yet.');
+        $data = $this->canonizeUser($condition);
+        $data['account']['active'] = 1;
+        $modelAccount = Pi::model('account', 'user');
+        $select = $modelAccount->select();
+        if (count($data) == 1) {
+            $dataAccount = $data['account'];
+            $select->column('id');
+            $select->where($dataAccount);
+            if ($limit) {
+                $select->limit($limit);
+            }
+            if ($offset) {
+                $select->offset($offset);
+            }
+            if ($order) {
+                $select->order($order);
+            }
+            $rowset = $modelAccount->selectWith($dataAccount);
+            foreach ($rowset as $row) {
+                $result[] = $row->id;
+            }
+        } else {
+            $select->from(array('account' => $modelAccount->getTable()));
+            $select->column('account.id');
+
+            $canonizeColumn = function ($data, $type) {
+                $result = array();
+                foreach ($data as $col => $val) {
+                    $result[$type . '.' . $col] = $val;
+                }
+                return $result;
+            };
+            $where = $canonizeColumn($data['account'], 'account');
+            unset($data['account']);
+
+            foreach ($data as $type => $list) {
+                $where += $canonizeColumn($list, $type);
+                $model = Pi::model($type, 'user');
+                $select->join(
+                    array($type => $model->getTable()),
+                    $type . '.uid=account.id'
+                );
+            }
+            $select->where($where);
+            $rowset = $modelAccount->selectWith($dataAccount);
+            foreach ($rowset as $row) {
+                $result[] = $row->id;
+            }
+        }
 
         return $result;
     }
@@ -68,16 +114,45 @@ class User extends AbstractApi
     /**
      * Get user count subject to conditions
      *
-     * @param array|PredicateInterface  $condition
+     * @param array  $condition
      *
      * @return int
      * @api
      */
     public function getCount($condition = array())
     {
-        $count = 0;
+        $data = $this->canonizeUser($condition);
+        $data['account']['active'] = 1;
+        if (count($data) == 1) {
+            $dataAccount = $data['account'];
+            $rowset = Pi::model('account', 'user')->select($dataAccount);
+            $count = $rowset->count();
+        } else {
+            $modelAccount = Pi::model('account', 'user');
+            $select = $modelAccount->select();
+            $select->from(array('account' => $modelAccount->getTable()));
 
-        trigger_error(__METHOD__ . ' not implemented yet.');
+            $canonizeColumn = function ($data, $type) {
+                $result = array();
+                foreach ($data as $col => $val) {
+                    $result[$type . '.' . $col] = $val;
+                }
+                return $result;
+            };
+            $where = $canonizeColumn($data['account'], 'account');
+            unset($data['account']);
+
+            foreach ($data as $type => $list) {
+                $where += $canonizeColumn($list, $type);
+                $model = Pi::model($type, 'user');
+                $select->join(
+                    array($type => $model->getTable()),
+                    $type . '.uid=account.id'
+                );
+            }
+            $select->where($where);
+            $count = $modelAccount->selectWith($select)->count();
+        }
 
         return $count;
     }
@@ -368,7 +443,7 @@ class User extends AbstractApi
      *  $compound = array(
      *      array(
      *          'uid'       => <uid>,
-     *          'çompound'  => <compound>,
+     *          'compound'  => <compound>,
      *          'field'     => <field-name>,
      *          'set'       => <set-value>,
      *          'value'     => <field-value>
@@ -431,10 +506,9 @@ class User extends AbstractApi
         };
 
         $result = array();
-        $keys = array_keys($rawData);
-        if (is_int($keys[0])) {
+        if (is_int(key($rawData))) {
             $set = 0;
-            foreach ($rawData as $key => $data) {
+            foreach ($rawData as $data) {
                 $result += $canonizeSet($data, $set);
                 $set++;
             }

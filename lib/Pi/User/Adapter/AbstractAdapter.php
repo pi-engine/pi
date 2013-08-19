@@ -128,7 +128,7 @@ abstract class AbstractAdapter implements BindInterface
     }
 
     /**
-     * Verify uid paramter
+     * Verify 'uid' parameter
      *
      * @param $uid
      * @return int
