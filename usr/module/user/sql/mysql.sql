@@ -14,17 +14,28 @@
 # User account and authentication data
 CREATE TABLE `{account}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  -- Account name
   `identity`        varchar(32)     NOT NULL,
-  `credential`      varchar(255)    NOT NULL default '',    # Credential hash
-  `salt`            varchar(255)    NOT NULL default '',    # Hash salt
+  -- Credential/password hash
+  `credential`      varchar(255)    NOT NULL default '',
+  -- Salt for credential hash
+  `salt`            varchar(255)    NOT NULL default '',
   `email`           varchar(64)     NOT NULL,
+  -- Display name
   `name`            varchar(255)    default NULL,
 
+  -- Synchronized availability of account
+  -- 1: time_activated > 0 && time_disabled == 0 && time_deleted == 0
+  -- 0: time_activated == 0 || time_disabled > 0 || time_deleted > 0
   `active`          tinyint(1)      unsigned NOT NULL default '0',
 
+  -- Time for account registration
   `time_created`    int(10)         unsigned NOT NULL default '0',
+  -- Time for account activation
   `time_activated`  int(10)         unsigned NOT NULL default '0',
+  -- Time for account disabling
   `time_disabled`   int(10)         unsigned NOT NULL default '0',
+  -- Time for account deletion, can not be reset
   `time_deleted`    int(10)         unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
@@ -38,13 +49,18 @@ CREATE TABLE `{account}` (
 # Profile schema for basic fields
 CREATE TABLE `{profile}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  -- user.id
   `uid`             int(10)         unsigned    NOT NULL,
   `gender`          enum('male', 'female', 'unknown'),
+  -- Full name
   `fullname`        varchar(255)    NOT NULL default '',
-  `birthdate`       varchar(10)     NOT NULL default '',    # YYYY-mm-dd
+  -- Birth date with format 'YYYY-mm-dd'
+  `birthdate`       varchar(10)     NOT NULL default '',
   `location`        varchar(255)    NOT NULL default '',
   `signature`       varchar(255)    NOT NULL default '',
+  -- Avatar image src
   `avatar`          varchar(255)    NOT NULL default '',
+  -- Short bio
   `bio`             text,
 
   PRIMARY KEY  (`id`),
@@ -55,8 +71,8 @@ CREATE TABLE `{profile}` (
 CREATE TABLE `{custom}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
+  -- Custom profile field
   `field`           varchar(64)     NOT NULL,
-                    # Custom field name
   `value`           text,
 
   PRIMARY KEY  (`id`),
@@ -67,12 +83,12 @@ CREATE TABLE `{custom}` (
 CREATE TABLE `{compound}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
+  -- Compound name, stored in table `field`
   `compound`        varchar(64)     NOT NULL,
-                    # Compound name
+  -- Field set key, integer
   `set`             smallint(5)     unsigned    NOT NULL default '0',
-                    # Field set key
+  -- Compound field name, stored in table `compound_field`
   `field`           varchar(64)     NOT NULL,
-                    # Compound field name
   `value`           text,
 
   PRIMARY KEY  (`id`),
@@ -85,23 +101,23 @@ CREATE TABLE `{field}` (
   `name`            varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',
+  -- Specs for edit form element, filters and validators, encoded with json
   `edit`            text,
-                    # callback options for edit
+  -- Filter for display value
   `filter`          text,
-                    # callback options for output filtering
 
+  -- Field type, default as 'custom'
   `type`            enum('custom', 'account', 'profile', 'compound'),
-                    # Field type, default as custom
 
+  -- Is editable by user
   `is_edit`         tinyint(1)      unsigned NOT NULL default '0',
-                    # Is editable by user
+  -- Is capable for searching user
   `is_search`       tinyint(1)      unsigned NOT NULL default '0',
-                    # Is searchable
+  -- Available for display
   `is_display`      tinyint(1)      unsigned NOT NULL default '0',
-                    # Display on profile page
 
+  -- Available, usually set by module activation/deactivation
   `active`          tinyint(1)      unsigned NOT NULL default '0',
-                    # Is active
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`name`)
@@ -114,8 +130,9 @@ CREATE TABLE `{compound_field}` (
   `compound`        varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',
-  `edit`            text,           # callback options for edit
-  `filter`          text,           # callback options for output filtering
+
+  `edit`            text,
+  `filter`          text,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`compound`, `name`)
@@ -149,7 +166,7 @@ CREATE TABLE `{timeline}` (
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      NOT NULL default '0',   # Is active
+  `active`          tinyint(1)      NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -160,11 +177,14 @@ CREATE TABLE `{activity}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
-  `callback`        varchar(64)     NOT NULL,
   `module`          varchar(64)     NOT NULL    default '',
+  -- Link to 'Get more'
   `link`            varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      unsigned NOT NULL    default '0',
+
+  -- Callback to get user activity messages
+  `callback`        varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`module`, `name`)
@@ -188,6 +208,7 @@ CREATE TABLE `{quicklink}` (
 CREATE TABLE `{timeline_log}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
+  -- Timeline name, defined in table `timeline`
   `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
