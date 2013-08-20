@@ -221,7 +221,7 @@ CREATE TABLE `{data}` (
   `content`         text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`uid`, `module`, `type`)
+  UNIQUE KEY `user_content` (`uid`, `module`, `name`)
 );
 
 # ------------------------------------------------------

@@ -43,6 +43,8 @@ class User extends AbstractApi
     /**
      * Get user IDs subject to conditions
      *
+     * @fixme: `$order` should be prefixed with type if multi-type involved
+     *
      * @param array     $condition
      * @param int       $limit
      * @param int       $offset
@@ -62,22 +64,13 @@ class User extends AbstractApi
         $data['account']['active'] = 1;
         $modelAccount = Pi::model('account', 'user');
         $select = $modelAccount->select();
+
         if (count($data) == 1) {
             $dataAccount = $data['account'];
             $select->column('id');
             $select->where($dataAccount);
-            if ($limit) {
-                $select->limit($limit);
-            }
-            if ($offset) {
-                $select->offset($offset);
-            }
             if ($order) {
                 $select->order($order);
-            }
-            $rowset = $modelAccount->selectWith($dataAccount);
-            foreach ($rowset as $row) {
-                $result[] = $row->id;
             }
         } else {
             $select->from(array('account' => $modelAccount->getTable()));
@@ -102,10 +95,38 @@ class User extends AbstractApi
                 );
             }
             $select->where($where);
-            $rowset = $modelAccount->selectWith($dataAccount);
-            foreach ($rowset as $row) {
-                $result[] = $row->id;
+            if ($order) {
+                if (is_array($order)) {
+                    $fields = Pi::registry('profile', 'user')->read();
+                    $result = array();
+                    foreach ($order as $key => $val) {
+                        if (is_string($key)) {
+                            if (isset($fields[$key])) {
+                                $key = $fields[$key]['type'] . '.' . $key;
+                                $result[$key] = $val;
+                            }
+                        } else {
+                            if (isset($fields[$val])) {
+                                $val = $fields[$val]['type'] . '.' . $val;
+                                $result[$key] = $val;
+                            }
+                        }
+                    }
+                    $order = $result;
+                }
+                $select->order($order);
             }
+        }
+
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+        $rowset = $modelAccount->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = $row->id;
         }
 
         return $result;
@@ -558,6 +579,23 @@ class User extends AbstractApi
         $row->save();
 
         return $row->id;
+    }
+
+    /**
+     * Update user account data
+     *
+     * @param array $data
+     * @param int $uid
+     *
+     * @return bool
+     */
+    public function updateAccount(array $data, $uid)
+    {
+        $type = 'account';
+        $data = $this->canonizeUser($data, $type);
+        $status = Pi::model($type, 'user')->update($data, array('id' => $uid));
+
+        return $status;
     }
 
     /**
