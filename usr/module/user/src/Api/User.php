@@ -43,6 +43,17 @@ class User extends AbstractApi
     /**
      * Get user IDs subject to conditions
      *
+     * Usage
+     *
+     * ```
+     *  Pi::service('user')->getUids(
+     *      array('location' => 'beijing', 'active' => 1),
+     *      10,
+     *      0,
+     *      array('time_created' => 'desc', 'fullname')
+     *  );
+     * ```
+     *
      * @fixme: `$order` should be prefixed with type if multi-type involved
      *
      * @param array     $condition
@@ -61,10 +72,13 @@ class User extends AbstractApi
         $result = array();
 
         $data = $this->canonizeUser($condition);
-        $data['account']['active'] = 1;
+        if (!isset($data['account']['active'])) {
+            $data['account']['active'] = 1;
+        }
         $modelAccount = Pi::model('account', 'user');
         $select = $modelAccount->select();
 
+        // Only account fields
         if (count($data) == 1) {
             $dataAccount = $data['account'];
             $select->column('id');
@@ -72,6 +86,7 @@ class User extends AbstractApi
             if ($order) {
                 $select->order($order);
             }
+        // Multi-types
         } else {
             $select->from(array('account' => $modelAccount->getTable()));
             $select->column('account.id');
@@ -143,7 +158,9 @@ class User extends AbstractApi
     public function getCount($condition = array())
     {
         $data = $this->canonizeUser($condition);
-        $data['account']['active'] = 1;
+        if (!isset($data['account']['active'])) {
+            $data['account']['active'] = 1;
+        }
         if (count($data) == 1) {
             $dataAccount = $data['account'];
             $rowset = Pi::model('account', 'user')->select($dataAccount);
