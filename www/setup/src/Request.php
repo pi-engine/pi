@@ -369,8 +369,8 @@ class Request
      */
     public function getParam($key, $default = null)
     {
-        if (isset($this->_params[$key])) {
-            return $this->_params[$key];
+        if (isset($this->params[$key])) {
+            return $this->params[$key];
         } elseif (isset($_GET[$key])) {
             return $_GET[$key];
         } elseif (isset($_POST[$key])) {
@@ -391,7 +391,7 @@ class Request
      */
     public function getParams()
     {
-        $return = $this->_params;
+        $return = $this->params;
         if (isset($_GET)
             && is_array($_GET)
         ) {

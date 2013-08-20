@@ -132,13 +132,13 @@ class Admin extends AbstractController
         $ret = $installer->install('system');
         if (!$ret) {
             $this->hasForm = true;
-            $this->content = '<p class=\'alert\'>'
+            $this->content = '<p class="alert">'
                            . _s('System module installation is failed. Please continue to try again.')
                            . '</p>'
                            . $installer->renderMessage()
-                           . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
-                           . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
-                           . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
+                           . '<input type="hidden" name="page" value="admin" />'
+                           . '<input type="hidden" name="retry" value="1" />'
+                           . '<input type="hidden" name="action" value="clear" />';
 
             return;
         }
@@ -246,12 +246,12 @@ class Admin extends AbstractController
         $resource->execute();
         $count = $resource->rowCount();
         if ($count) {
-            $this->content = '<p class=\'alert\'>'
-                           . _s('Deprected tables exist in the database. Please continue to re-install.')
+            $this->content = '<p class="alert">'
+                           . _s('Deprecated tables exist in the database. Please continue to re-install.')
                            . '</p>'
-                           . '<input type=\'hidden\' name=\'page\' value=\'admin\' />'
-                           . '<input type=\'hidden\' name=\'retry\' value=\'1\' />'
-                           . '<input type=\'hidden\' name=\'action\' value=\'clear\' />';
+                           . '<input type="hidden" name="page" value="admin" />'
+                           . '<input type="hidden" name="retry" value="1" />'
+                           . '<input type="hidden" name="action" value="clear" />';
         } else {
             $this->loadForm();
         }
@@ -271,40 +271,40 @@ class Admin extends AbstractController
             'adminpass2'    => _s('Confirm password'),
         );
         $displayItem = function ($item) use ($vars, $elementInfo) {
-            $content = '<div class=\'item\'>'
-                     . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-                     . '</label><p class=\'capthion\'></p>'
-                     . '<input type=\'text\' name=\'' . $item . '\' id=\''
-                     . $item . '\' value=\'' . $vars[$item] . '\' />'
-                     . '<em id=\'' . $item . '-status\' class=\'\'>&nbsp;</em>'
-                     . '<p id=\'' . $item . '-message\' class=\'alert\'>&nbsp;'
+            $content = '<div class="item">'
+                     . '<label for="' . $item . '">' . $elementInfo[$item]
+                     . '</label><p class="caption"></p>'
+                     . '<input type="text" name="' . $item . '" id="'
+                     . $item . '" value="' . $vars[$item] . '" />'
+                     . '<em id="' . $item . '-status" class="">&nbsp;</em>'
+                     . '<p id="' . $item . '-message" class="alert">&nbsp;'
                      . '</p></div>';
 
             return $content;
         };
 
-        $content = '<div class=\'install-form well\'>';
-        $content .= '<h3 class=\'section\'>' . _s('Administrator account')
+        $content = '<div class="install-form well">';
+        $content .= '<h3 class="section">' . _s('Administrator account')
                   . '</h3>';
         $content .= $displayItem('adminmail');
         $content .= $displayItem('adminusername');
         $content .= $displayItem('adminname');
 
         $item = 'adminpass';
-        $content .= '<div class=\'item\'>'
-                  . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-                  . '</label><p class=\'capthion\'></p>'
-                  . '<input type=\'password\' name=\'' . $item . '\' id=\''
-                  . $item . '\' value=\'' . $vars[$item] . '\' />'
+        $content .= '<div class="item">'
+                  . '<label for="' . $item . '">' . $elementInfo[$item]
+                  . '</label><p class="caption"></p>'
+                  . '<input type="password" name="' . $item . '" id="'
+                  . $item . '" value="' . $vars[$item] . '" />'
                   . '</div>';
         $item = 'adminpass2';
-        $content .= '<div class=\'item\'>'
-                  . '<label for=\'' . $item . '\'>' . $elementInfo[$item]
-                  . '</label><p class=\'capthion\'></p>'
-                  . '<input type=\'password\' name=\'' . $item . '\' id=\''
-                  . $item . '\' value=\'' . $vars[$item] . '\' />'
-                  . '<em id=\'adminpass-status\' class=\'\'>&nbsp;</em>'
-                  . '<p id=\'adminpass-message\' class=\'alert\'>&nbsp;</p>'
+        $content .= '<div class="item">'
+                  . '<label for="' . $item . '">' . $elementInfo[$item]
+                  . '</label><p class="caption"></p>'
+                  . '<input type="password" name="' . $item . '" id="'
+                  . $item . '" value="' . $vars[$item] . '" />'
+                  . '<em id="adminpass-status" class="">&nbsp;</em>'
+                  . '<p id="adminpass-message" class="alert">&nbsp;</p>'
                   . '</div>';
         $content .= '</div>';
 
