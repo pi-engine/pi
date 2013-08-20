@@ -74,11 +74,7 @@ class SqlSchema
     public function parseContent($content)
     {
         // Remove comments to prevent from invalid syntax
-        $content = preg_replace(
-            '|(#.*)|',
-            '# <-- Comment skipped -->',
-            $content
-        );
+        $content = preg_replace('/(#.*|-- .*)/', '', $content);
 
         $type = static::$type;
         $canonizePrefix = function ($matches) use ($type) {
@@ -171,7 +167,7 @@ class SqlSchema
     {
         $result     = array();
         // Remove comments to prevent from invalid syntax
-        $content    = preg_replace('|(#.*)|', '', $content);
+        $content    = preg_replace('/(#.*|-- .*)/', '', $content);
 
         $pattern    = '/create\s+(table|view|trigger)\s+\`\{'
                     . ($isCore ? 'core\.' : '')
