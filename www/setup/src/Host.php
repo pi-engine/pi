@@ -223,7 +223,7 @@ class Host
      * Checks if a section path exists
      *
      * @param string $path The key of path to be checked
-     * @return int  Potenial values: 1 - valid; -1 - invalid; 0 - not check
+     * @return int  Potential values: 1 - valid; -1 - invalid; 0 - not check
      */
     public function checkPath($path = '')
     {
@@ -529,7 +529,7 @@ class Host
      * @param string $path
      * @param bool $recurse
      * @param bool $create
-     * @return int  1 for successfu; 0 for failed
+     * @return int  1 for successful; 0 for failed
      */
     private function makeWritable($path, $recurse = true, $create = true)
     {

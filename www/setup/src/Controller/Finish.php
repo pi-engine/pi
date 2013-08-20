@@ -100,7 +100,7 @@ class Finish extends AbstractController
 
         $message = _s('
 <div class="well">
-<h3>Congratulatons!</h3>
+<h3>Congratulations!</h3>
 <p>The system is set up successfully. <a href="../index.php?redirect=0">Click to visit your website!</a></p>
 </div>
 <div class="well">

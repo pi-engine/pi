@@ -202,7 +202,7 @@ SCRIPT;
         $content .= '<h3 class="section">'
                   . _s('System extension recommendations')
                   . '</h3><p class="caption">'
-                  . _s('Extesions recommended for better functionality or performance')
+                  . _s('Extensions recommended for better functionality or performance')
                   . '</p>';
         foreach ($this->result['extension'] as $item => $result) {
             $value = $result['value'];

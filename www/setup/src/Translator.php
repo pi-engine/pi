@@ -98,8 +98,9 @@ class Translator
      * Load translation data (CSV file reader)
      *
      * @param  string  $filename  Full path to CSV file
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  array   $options   OPTIONAL Options to use
      * @return array
+     * @throws \InvalidArgumentException for file failure
      */
     protected static function loadFile($filename, array $options = array())
     {
