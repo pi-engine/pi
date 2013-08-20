@@ -500,7 +500,7 @@ HTML;
                          . ' id="path-advanced-toggle">'
                          . '<span>[+]</span><span style="display: none;">[-]'
                          . '</span></a></h3><p class="caption">'
-                         . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.')
+                         . _s('Settings that can help improve security, deployment flexibility, etc. If you are unsure about it, leave as it is.')
                          . '</p>'
                          . '<div class="install-form advanced-form'
                          . ' item-container well" id="path-advanced">'
