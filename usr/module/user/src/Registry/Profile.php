@@ -57,6 +57,7 @@ class Profile extends AbstractRegistry
         if ($columns) {
             $select->columns($columns);
         }
+        $select->order('id');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $fields[$row->name] = $row->toArray();

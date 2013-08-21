@@ -33,7 +33,9 @@ class Compound extends AbstractRegistry
         $columns = array('name', 'title', 'compound', 'edit', 'filter');
         $where = array('compound' => $options['compound']);
         $model = Pi::model('compound_field', $this->module);
-        $select = $model->select()->where($where)->columns($columns);
+        $select = $model->select()->where($where)
+            ->columns($columns)
+            ->order('id');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $fields[$row->name] = $row->toArray();

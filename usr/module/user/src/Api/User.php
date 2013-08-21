@@ -523,13 +523,14 @@ class User extends AbstractApi
         array $rawData,
         $set = 0
     ) {
-        $fields = Pi::registry('profile', 'user')->read($compound);
+        $fields = Pi::registry('compound', 'user')->read($compound);
         $meta = array_keys($fields);
         $canonizeSet = function ($data, $set) use ($uid, $compound, $meta) {
             $result = array();
             foreach (array_keys($data) as $key) {
                 if (!in_array($key, $meta)) {
                     unset($data[$key]);
+                    continue;
                 }
                 $result[] = array(
                     'uid'       => $uid,
@@ -547,7 +548,7 @@ class User extends AbstractApi
         if (is_int(key($rawData))) {
             $set = 0;
             foreach ($rawData as $data) {
-                $result += $canonizeSet($data, $set);
+                $result = array_merge($result, $canonizeSet($data, $set));
                 $set++;
             }
         } else {

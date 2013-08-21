@@ -90,13 +90,7 @@ return array(
                 'config'    => 'For test',
             ),
 
-            'user'  => array(
-                'field' => array(
-                    'sample'    => array(
-                        'title' => __('Sample field'),
-                    ),
-                ),
-            ),
+            'user'      => 'user.php',
         ),
     ),
 );
