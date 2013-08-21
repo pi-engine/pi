@@ -162,22 +162,26 @@ class TestController extends ActionController
     public function getAction()
     {
         $this->view()->setTemplate(false);
-        $field = _get('field');
+        $field = explode(',', _get('field'));
         $uid = _get('uid');
 
-        //vd($field);
 
-        /*
         $conditions = array(
             'active'    => 0,
-            'birthdate' => '',
+            'birthdate' => '1901-2-2',
         );
         $uids = Pi::user()->getUids($conditions);
         vd($uids);
-        */
+        //$conditions = array('active' => 0);
+        $count = Pi::user()->getCount($conditions);
+        vd($count);
 
+
+        $field[] = 'birthdate';
+        //$field = Pi::user()->getMeta();
         $fields = Pi::user()->get($field, $uid);
         vd($fields);
+
     }
 
     public function activateAction()

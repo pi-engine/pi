@@ -91,7 +91,7 @@ class User extends AbstractApi
         } else {
             $select = Pi::db()->select();
             $select->from(array('account' => $modelAccount->getTable()));
-            $select->columns(array('account.id'));
+            $select->columns(array('id'));
 
             $canonizeColumn = function ($data, $type) {
                 $result = array();
@@ -108,7 +108,8 @@ class User extends AbstractApi
                 $model = Pi::model($type, 'user');
                 $select->join(
                     array($type => $model->getTable()),
-                    $type . '.uid=account.id'
+                    $type . '.uid=account.id',
+                    array()
                 );
             }
             $select->where($where);
@@ -147,7 +148,7 @@ class User extends AbstractApi
             $rowset = Pi::db()->execute($select);
         }
         foreach ($rowset as $row) {
-            $result[] = $row->id;
+            $result[] = (int) $row['id'];
         }
 
         return $result;
@@ -167,15 +168,24 @@ class User extends AbstractApi
         if (!isset($data['account']['active'])) {
             $data['account']['active'] = 1;
         }
-        if (count($data) == 1) {
-            $dataAccount = $data['account'];
-            $rowset = Pi::model('account', 'user')->select($dataAccount);
-            $count = $rowset->count();
-        } else {
-            $modelAccount = Pi::model('account', 'user');
-            $select = $modelAccount->select();
-            $select->from(array('account' => $modelAccount->getTable()));
 
+        $modelAccount = Pi::model('account', 'user');
+        // Only account fields
+        $accountOnly = count($data) == 1 ? true : false;
+        if ($accountOnly) {
+            $dataAccount = $data['account'];
+            $select = $modelAccount->select()->where($dataAccount)
+                ->columns(array(
+                    'count' => Pi::db()->expression('COUNT(*)')
+                ));
+            $row = $modelAccount->selectWith($select)->current();
+            $count = (int) $row['count'];
+        } else {
+            $select = Pi::db()->select();
+            $select->from(array('account' => $modelAccount->getTable()));
+            $select->columns(array(
+                'count' => Pi::db()->expression('COUNT(account.id)'),
+            ));
             $canonizeColumn = function ($data, $type) {
                 $result = array();
                 foreach ($data as $col => $val) {
@@ -187,15 +197,17 @@ class User extends AbstractApi
             unset($data['account']);
 
             foreach ($data as $type => $list) {
-                $where += $canonizeColumn($list, $type);
+                $where = array_merge($where, $canonizeColumn($list, $type));
                 $model = Pi::model($type, 'user');
                 $select->join(
                     array($type => $model->getTable()),
-                    $type . '.uid=account.id'
+                    $type . '.uid=account.id',
+                    array()
                 );
             }
             $select->where($where);
-            $count = $modelAccount->selectWith($select)->count();
+            $row = Pi::db()->execute($select)->current();
+            $count = (int) $row['count'];
         }
 
         return $count;
@@ -581,7 +593,7 @@ class User extends AbstractApi
                 if ($type) {
                     $result[$key] = $value;
                 } else {
-                    $result[$fields[$key]['type']][$key] = $type;
+                    $result[$fields[$key]['type']][$key] = $value;
                 }
             }
         }
