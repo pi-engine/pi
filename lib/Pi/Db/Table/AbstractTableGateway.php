@@ -82,6 +82,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *
      * @param array $options
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function setup($options = array())
     {

@@ -13,14 +13,19 @@ use PDO;
 use Pi;
 use Pi\Db\Sql\Where;
 use Pi\Db\Adapter\Adapter;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Predicate;
-use Zend\Db\Metadata\Metadata;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Log\DbProfiler;
+use Zend\Db\Metadata\Metadata;
+use Zend\Db\Sql\Expression;
+use Zend\Db\Sql\Predicate;
+use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Select;
+use Zend\Db\Sql\Insert;
+use Zend\Db\Sql\Delete;
+use Zend\Db\Sql\Update;
 
 /**
- * Pi DB service hander
+ * Pi DB service gateway
  *
  * Note:
  * In installation sql scripts, quote all database names with `{` and `}`
@@ -401,9 +406,9 @@ class Db
     }
 
     /**
-     * Creates Where object
+     * Creates `Where` object
      *
-     * @param string|array|null $params
+     * @param string|array|null $predicate
      * @return Where
      */
     public function where($predicate = null)
@@ -448,5 +453,90 @@ class Db
         $this->profiler = $profiler;
 
         return $this;
+    }
+
+    /**
+     * Create SQL
+     *
+     * @param Adapter $adapter
+     * @param string  $table
+     *
+     * @return Sql
+     */
+    public function sql(Adapter $adapter = null, $table = '')
+    {
+        $sql = new Sql($adapter ?: $this->getAdapter(), $table);
+
+        return $sql;
+    }
+
+    /**
+     * Create select SQL
+     *
+     * @param string  $table
+     *
+     * @return Select
+     */
+    public function select($table = '')
+    {
+        $sql = new Select($table);
+
+        return $sql;
+    }
+
+    /**
+     * Create insert SQL
+     *
+     * @param string $table
+     *
+     * @return Insert
+     */
+    public function insert($table = '')
+    {
+        $sql = new insert($table);
+
+        return $sql;
+    }
+
+    /**
+     * Create update SQL
+     *
+     * @param string $table
+     *
+     * @return Update
+     */
+    public function update($table = '')
+    {
+        $sql = new update($table);
+
+        return $sql;
+    }
+
+    /**
+     * Create delete SQL
+     *
+     * @param string $table
+     *
+     * @return Delete
+     */
+    public function delete($table = '')
+    {
+        $sql = new delete($table);
+
+        return $sql;
+    }
+
+    /**
+     * Execute a sql query
+     *
+     * @param Sql|Select|Update|Delete $sql
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
+    public function execute($sql)
+    {
+        $statement = $this->getAdapter()->query($sql);
+        $result = $statement->execute();
+
+        return $result;
     }
 }
