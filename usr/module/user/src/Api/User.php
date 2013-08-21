@@ -75,21 +75,23 @@ class User extends AbstractApi
         if (!isset($data['account']['active'])) {
             $data['account']['active'] = 1;
         }
-        $modelAccount = Pi::model('account', 'user');
-        $select = $modelAccount->select();
 
+        $modelAccount = Pi::model('account', 'user');
         // Only account fields
-        if (count($data) == 1) {
+        $accountOnly = count($data) == 1 ? true : false;
+        if ($accountOnly) {
+            $select = $modelAccount->select();
             $dataAccount = $data['account'];
-            $select->column('id');
+            $select->columns(array('id'));
             $select->where($dataAccount);
             if ($order) {
                 $select->order($order);
             }
         // Multi-types
         } else {
+            $select = Pi::db()->select();
             $select->from(array('account' => $modelAccount->getTable()));
-            $select->column('account.id');
+            $select->columns(array('account.id'));
 
             $canonizeColumn = function ($data, $type) {
                 $result = array();
@@ -102,7 +104,7 @@ class User extends AbstractApi
             unset($data['account']);
 
             foreach ($data as $type => $list) {
-                $where += $canonizeColumn($list, $type);
+                $where = array_merge($where, $canonizeColumn($list, $type));
                 $model = Pi::model($type, 'user');
                 $select->join(
                     array($type => $model->getTable()),
@@ -139,7 +141,11 @@ class User extends AbstractApi
         if ($offset) {
             $select->offset($offset);
         }
-        $rowset = $modelAccount->selectWith($select);
+        if ($accountOnly) {
+            $rowset = $modelAccount->selectWith($select);
+        } else {
+            $rowset = Pi::db()->execute($select);
+        }
         foreach ($rowset as $row) {
             $result[] = $row->id;
         }
@@ -352,7 +358,7 @@ class User extends AbstractApi
         $result = array();
         foreach ($meta as $type => $fields) {
             $fields = $this->getFields($uid, $type, $fields);
-            $result += $fields;
+            $result = array_merge($result, $fields);
         }
         if (is_string($key)) {
             $result = isset($result[$key]) ? $result[$key] : null;
@@ -452,7 +458,7 @@ class User extends AbstractApi
     /**
      * Canonize profile field list to group by types
      *
-     * @param array $fields
+     * @param string[] $fields
      *
      * @return array
      */
@@ -572,7 +578,11 @@ class User extends AbstractApi
         $fields = Pi::registry('profile', 'user')->read($type);
         foreach ($rawData as $key => $value) {
             if (isset($fields[$key])) {
-                $result[$key] = $value;
+                if ($type) {
+                    $result[$key] = $value;
+                } else {
+                    $result[$fields[$key]['type']][$key] = $type;
+                }
             }
         }
 
@@ -887,35 +897,34 @@ class User extends AbstractApi
     /**
      * Get a type of field value(s) of a list of user
      *
-     * @param array     $uids
+     * @param int[]|int $uid
      * @param string    $type
-     * @param array     $fields
+     * @param string[]  $fields
      * @return array
      * @api
      */
-    public function getFields(array $uids, $type, $fields = array())
+    public function getFields(array $uid, $type, $fields = array())
     {
         $result = array();
-        if ($fields) {
-            $fields = $this->canonizeMeta($fields, $type);
-        } else {
-            $fields = Pi::registry('profile', 'user')->read($type);
+        $uids = (array) $uid;
+        if (!$fields) {
+            $fields = $this->getMeta($type);
         }
 
         if ('account' == $type || 'profile' == $type) {
             $primaryKey = 'account' == $type ? 'id' : 'uid';
             $fields[] = $primaryKey;
             $model = Pi::model($type, 'user');
-            $select = $model->select()->where(array('uid' => $uids))
+            $select = $model->select()->where(array($primaryKey => $uids))
                 ->columns($fields);
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
-                $result[$row->{$primaryKey}] = $row->__toArray();
+                $result[$row->{$primaryKey}] = $row->toArray();
             }
         } elseif ('custom' == $type) {
             $model = Pi::model($type, 'user');
             $where = array(
-                'uid'   => $type,
+                'uid'   => $uids,
                 'field' => $fields,
             );
             $columns = array('uid', 'field', 'value');
@@ -927,13 +936,20 @@ class User extends AbstractApi
         } elseif ('compound' == $type) {
             $model = Pi::model($type, 'user');
             $where = array(
-                'uid'       => $type,
+                'uid'       => $uids,
                 'compound'  => $fields,
             );
             $rowset = $model->select($where);
             foreach ($rowset as $row) {
                 $result[$row->uid][$row->compound][$row->set][$row->field]
                     = $row->value;
+            }
+        }
+        if (is_int($uid)) {
+            if (isset($result[$uid])) {
+                $result = $result[$uid];
+            } else {
+                $result = null;
             }
         }
 

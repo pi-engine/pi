@@ -140,10 +140,12 @@ CREATE TABLE `{compound_field}` (
 
 # Display group for profile fields
 CREATE TABLE `{display_group}` (
-  `id`          int(10) unsigned        NOT NULL auto_increment,
-  `name`        varchar(64)             NOT NULL default '',
-  `title`       varchar(255)            NOT NULL default '',
-  `order`       smallint(5) unsigned    NOT NULL default '0',
+  `id`            int(10) unsigned        NOT NULL auto_increment,
+  `name`          varchar(64)             NOT NULL default '',
+  `title`         varchar(255)            NOT NULL default '',
+  `order`         smallint(5) unsigned    NOT NULL default '0',
+  -- Compound name;
+  `compound`      varchar(64)     default NULL,
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -152,6 +154,8 @@ CREATE TABLE `{display_group}` (
 # Display grouping and order of field
 CREATE TABLE `{field_display}` (
   `id`         int(10) unsigned         NOT NULL auto_increment,
+  -- Profile field name;
+  -- Or compound field name if `compound` is specified in table 'display_group'
   `field`      varchar(64)              NOT NULL default '',
   `group`      varchar(64)              NOT NULL default '',
   `order`      smallint(5) unsigned     NOT NULL default '0',

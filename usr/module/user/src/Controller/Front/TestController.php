@@ -50,8 +50,8 @@ class TestController extends ActionController
 
         $users = array();
 
-        $prefix = $this->params('prefix') ?: 'pi';
-        $count  = $this->params('count') ?: 10;
+        $prefix = _get('prefix') ?: 'pi';
+        $count  = _get('count') ?: 10;
 
 
         $genderMap      = array('male', 'female', 'unknown');
@@ -157,6 +157,27 @@ class TestController extends ActionController
         }
 
         vd($users);
+    }
+
+    public function getAction()
+    {
+        $this->view()->setTemplate(false);
+        $field = _get('field');
+        $uid = _get('uid');
+
+        //vd($field);
+
+        /*
+        $conditions = array(
+            'active'    => 0,
+            'birthdate' => '',
+        );
+        $uids = Pi::user()->getUids($conditions);
+        vd($uids);
+        */
+
+        $fields = Pi::user()->get($field, $uid);
+        vd($fields);
     }
 
     public function activateAction()
