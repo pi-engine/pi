@@ -534,7 +534,7 @@ class Db
      */
     public function execute($sql)
     {
-        $statement = $this->getAdapter()->query($sql);
+        $statement = $this->sql()->prepareStatementForSqlObject($sql);
         $result = $statement->execute();
 
         return $result;
