@@ -287,9 +287,9 @@ class Directive extends AbstractController
         } else {
             $checkedString = 'disabled';
         }
-        $content .= '<div><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="persist"'
                   . ' value="apc" ' . $checkedString . ' />'
-                  . $config['apc']['title'] . '</div>'
+                  . $config['apc']['title'] . '</label>'
                   . '<p class="caption">' . $config['apc']['message']
                   . '</p>';
 
@@ -297,9 +297,9 @@ class Directive extends AbstractController
             $persist = $persist ?: 'redis';
             $valid = true;
             $checkedString = ($persist == 'redis') ? 'checked' : '';
-            $content .= '<div><input type="radio" name="persist"'
+            $content .= '<label class="radio"><input type="radio" name="persist"'
                       . ' value="redis" ' . $checkedString . ' />'
-                      . $config['redis']['title'] . '</div>'
+                      . $config['redis']['title'] . '</label>'
                       . '<p class="caption">' . $config['redis']['message']
                       . '</p>';
         }
@@ -311,9 +311,9 @@ class Directive extends AbstractController
         } else {
             $checkedString = ' disabled';
         }
-        $content .= '<div><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="persist"'
                   . ' value="memcached" ' . $checkedString . ' />'
-                  . $config['memcached']['title'] . '</div>'
+                  . $config['memcached']['title'] . '</label>'
                   . '<p class="caption">' . $config['memcached']['message']
                   . '</p>';
 
@@ -324,22 +324,21 @@ class Directive extends AbstractController
         } else {
             $checkedString = ' disabled';
         }
-        $content .= '<div><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="persist"'
                   . ' value="memcache" ' . $checkedString . ' />'
-                  . $config['memcache']['title'] . '</div>'
+                  . $config['memcache']['title'] . '</label>'
                   . '<p class="caption">' . $config['memcache']['message']
                   . '</p>';
 
         $checkedString = ($persist == 'filesystem') ? 'checked' : '';
-        $content .= '<div><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="persist"'
                   . ' value="filesystem" ' . $checkedString . ' />'
-                  . _s('File system') . '</div>'
-                  . '<p class="caption warning">'
-                  . _s('Caching storage with files is not recommended. You are highly adviced to check recommended extensions to ensure they are installed and configured correctly.')
+                  . _s('File system') . '</label>'
+                  . '<p class="caption">'
+                  . _s('Caching storage with files on disks specified in following steps.')
                   . '</p></div>';
 
-        $content = '<h2> <span class="'
-                 . (empty($valid) ? 'warning' : 'success') . '">'
+        $content = '<h2> <span class="success">'
                  . _s('Persistent data container')
                  . '</span> <a href="javascript:void(0);" id="persist-label">'
                  . '<span>[+]</span><span style="display: none;">[-]</span></a>'
@@ -500,7 +499,7 @@ HTML;
                          . ' id="path-advanced-toggle">'
                          . '<span>[+]</span><span style="display: none;">[-]'
                          . '</span></a></h3><p class="caption">'
-                         . _s('Settings that can help improve security, depolyment flexibility, etc. If you are unsure about it, leave as it is.')
+                         . _s('Settings that can help improve security, deployment flexibility, etc. If you are unsure about it, leave as it is.')
                          . '</p>'
                          . '<div class="install-form advanced-form'
                          . ' item-container well" id="path-advanced">'
