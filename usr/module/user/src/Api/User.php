@@ -145,7 +145,7 @@ class User extends AbstractApi
         if ($accountOnly) {
             $rowset = $modelAccount->selectWith($select);
         } else {
-            $rowset = Pi::db()->execute($select);
+            $rowset = Pi::db()->query($select);
         }
         foreach ($rowset as $row) {
             $result[] = (int) $row['id'];
@@ -206,7 +206,7 @@ class User extends AbstractApi
                 );
             }
             $select->where($where);
-            $row = Pi::db()->execute($select)->current();
+            $row = Pi::db()->query($select)->current();
             $count = (int) $row['count'];
         }
 
