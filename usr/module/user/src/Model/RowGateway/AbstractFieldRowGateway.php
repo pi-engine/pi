@@ -22,13 +22,13 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     FilterInterface
 {
     /** @var string Model type */
-    protected static $type = '';
+    protected $type = '';
 
     /**
      * Profile meta data
      * @var array
      */
-    protected static $meta;
+    protected $meta;
 
     /**
      * Filter handler
@@ -44,15 +44,15 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
      */
     protected function getMeta($key = null)
     {
-        if (!isset(static::$meta)) {
-            static::$meta = Pi::registry('profile', 'user')->read(
-                static::$type
+        if (!isset($this->meta)) {
+            $this->meta = Pi::registry('profile', 'user')->read(
+                $this->type
             );
         }
         if ($key) {
-            $result = isset(static::$meta[$key]) ? static::$meta[$key] : null;
+            $result = isset($this->meta[$key]) ? $this->meta[$key] : null;
         } else {
-            $result = static::$meta;
+            $result = $this->meta;
         }
 
         return $result;
@@ -68,7 +68,7 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     {
         $result = array();
         if (!$col) {
-            $cols = array_keys(static::getMeta());
+            $cols = array_keys($this->getMeta());
         } else {
             $cols = (array) $col;
         }
@@ -97,7 +97,7 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     {
         $value = $this[$field];
         if (null !== $value) {
-            $meta = static::getMeta($field);
+            $meta = $this->getMeta($field);
             if (isset($meta['filter'])) {
                 $value = $this->getFilter($meta['filter'])->filter($value);
             }

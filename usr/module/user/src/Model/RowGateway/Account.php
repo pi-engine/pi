@@ -35,7 +35,7 @@ use Pi;
 class Account extends AbstractFieldRowGateway
 {
     /** @var string Model type */
-    protected static $type = 'account';
+    protected $type = 'account';
 
     /**
      * Get credential

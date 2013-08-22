@@ -932,7 +932,6 @@ class User extends AbstractApi
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
                 $id = (int) $row[$primaryKey];
-                vd($id);
                 if ($filter) {
                     $result[$id] = $row->filter($fields);
                 } else {

@@ -20,5 +20,5 @@ use Pi\Db\RowGateway\RowGateway;
 class Profile extends AbstractFieldRowGateway
 {
     /** @var string Model type */
-    protected static $type = 'profile';
+    protected $type = 'profile';
 }

@@ -20,20 +20,29 @@ use Pi;
 class Compound extends AbstractFieldRowGateway
 {
     /** @var string Model type */
-    protected static $type = 'compound';
+    protected $type = 'compound';
 
     /**
      * {@inheritDoc}
      */
     protected function getMeta($key = null)
     {
-        if (!isset(static::$meta)) {
-            static::$meta = Pi::registry('compound', 'user')->read(
+        if (!isset($this->meta)) {
+            $this->meta = Pi::registry('compound', 'user')->read(
                 $this['compound']
             );
         }
         $key = $this['field'];
         return parent::getMeta($key);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filter($col = null)
+    {
+        $col = $this['field'];
+        return parent::filter($col);
     }
 
     /**

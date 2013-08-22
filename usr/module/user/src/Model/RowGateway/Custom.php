@@ -20,7 +20,7 @@ use Pi;
 class Custom extends AbstractFieldRowGateway
 {
     /** @var string Model type */
-    protected static $type = 'custom';
+    protected $type = 'custom';
 
     /**
      * {@inheritDoc}
@@ -29,6 +29,15 @@ class Custom extends AbstractFieldRowGateway
     {
         $key = $this['field'];
         return parent::getMeta($key);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filter($col = null)
+    {
+        $col = $this['field'];
+        return parent::filter($col);
     }
 
     /**
