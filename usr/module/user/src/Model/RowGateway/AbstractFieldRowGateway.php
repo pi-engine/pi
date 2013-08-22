@@ -31,12 +31,6 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     protected $meta;
 
     /**
-     * Filter handler
-     * @var FilterChain
-     */
-    protected static $filterChain;
-
-    /**
      * Get meta data of a key or all set
      *
      * @param string|null $key
@@ -109,17 +103,18 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     /**
      * Load filter handler
      *
-     * @param $filter
+     * @param array $filters
      *
-     * @return \Zend\Filter\FilterInterface
+     * @return FilterChain
      */
-    protected function getFilter($filter)
+    protected function getFilter($filters)
     {
-        if (!static::$filterChain) {
-            static::$filterChain = new FilterChain;
-        }
-        $filterHandler = static::$filterChain->plugin($filter);
 
-        return $filterHandler;
+        $filterChain = new FilterChain;
+        foreach ($filters as $filter) {
+            $filterChain->attachByName($filter);
+        }
+
+        return $filterChain;
     }
 }

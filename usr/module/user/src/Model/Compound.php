@@ -12,19 +12,16 @@ namespace Module\User\Model;
 use Pi\Application\Model\Model as BasicModel;
 
 /**
- * User field model
+ * User compound profile model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Field extends BasicModel
+class Compound extends BasicModel
 {
     /**
-     * Columns to be encoded
+     * Row gateway class
      *
-     * @var array
+     * @var string
      */
-    protected $encodeColumns = array(
-        'edit'      => true,
-        'filter'    => true,
-    );
+    protected $rowClass = 'Module\User\Model\RowGateway\Compound';
 }

@@ -126,7 +126,7 @@ return array(
             'name'      => 'active',
             'title'     => __('Active'),
             'edit'      => 'text',
-            'filter'    => 'Module\User\Filter\YesNo',
+            'filter'    => 'YesNo',
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -137,7 +137,7 @@ return array(
             'name'      => 'time_created',
             'title'     => __('Register time'),
             'edit'      => 'text',
-            'filter'    => 'Module\User\Filter\DateTimeFormatter',
+            'filter'    => array('Int', 'DateTimeFormatter'),
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -148,7 +148,7 @@ return array(
             'name'      => 'time_activated',
             'title'     => __('Activation time'),
             'edit'      => 'text',
-            'filter'    => 'Module\User\Filter\DateTimeFormatter',
+            'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -159,7 +159,7 @@ return array(
             'name'      => 'time_disabled',
             'title'     => __('Disabled time'),
             'edit'      => 'text',
-            'filter'    => 'Module\User\Filter\DateTimeFormatter',
+            'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
             'is_display'    => false,

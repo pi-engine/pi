@@ -657,7 +657,7 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ((int) $row['time_deleted'] > 0) {
+        if (!$row || (int) $row['time_deleted'] > 0) {
             return false;
         }
         $row->assign(array(
@@ -683,7 +683,7 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ((int) $row['time_activated'] > 0 || (int) $row['time_deleted'] > 0) {
+        if (!$row || (int) $row['time_activated'] > 0 || (int) $row['time_deleted'] > 0) {
             return false;
         }
         $row->assign(array(
@@ -713,7 +713,7 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ((int) $row['time_activated'] < 1 || (int) $row['time_deleted'] > 0) {
+        if (!$row || (int) $row['time_activated'] < 1 || (int) $row['time_deleted'] > 0) {
             return false;
         }
         if (($flag && (int) $row['time_disabled'] < 0)

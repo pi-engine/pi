@@ -321,6 +321,14 @@ class User extends AbstractResource
             $spec['edit'] = $this->canonizeFieldEdit($spec['edit']);
         }
 
+        if (isset($spec['filter'])) {
+            if (empty($spec['filter'])) {
+                $spec['filter'] = array();
+            } else {
+                $spec['filter'] = (array) $spec['filter'];
+            }
+        }
+
         return $spec;
     }
 
@@ -345,6 +353,13 @@ class User extends AbstractResource
                 $data['edit'] = 'text';
             }
             $data['edit'] = $this->canonizeFieldEdit($data['edit']);
+            if (isset($data['filter'])) {
+                if (empty($data['filter'])) {
+                    $data['filter'] = array();
+                } else {
+                    $data['filter'] = (array) $data['filter'];
+                }
+            }
             $data['module'] = $module;
             $data['compound'] = $compound;
             $fields[$compound . '-' . $key] = $data;

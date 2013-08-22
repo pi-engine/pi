@@ -182,7 +182,7 @@ class TestController extends ActionController
         //$field = Pi::user()->getMeta();
         vd($field);
         $fields = Pi::user()->get($uid, $field);
-        vd($fields);
+        d($fields);
 
     }
 
@@ -193,7 +193,11 @@ class TestController extends ActionController
         $uid = _get('uid');
         Pi::user()->activateUser($uid);
 
-        $fields = Pi::user()->get($uid);
+        $row = Pi::model('account', 'user')->find($uid);
+        //vd($row);
+        //vd($row->active);
+        $fields = Pi::user()->get($uid, array('active', 'time_activated'));
+        d($fields);
     }
 
     // enableAction
