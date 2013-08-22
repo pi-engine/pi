@@ -233,15 +233,15 @@ class User extends AbstractApi
         $result = array();
         $uid = $this->addAccount($data);
         if ($uid) {
-            $status = $this->addProfile($data, $uid);
+            $status = $this->addProfile($uid, $data);
             if (!$status) {
                 $result['profile'] = false;
             }
-            $status = $this->addCustom($data, $uid);
+            $status = $this->addCustom($uid, $data);
             if (!$status) {
                 $result['custom'] = false;
             }
-            $status = $this->addCompound($data, $uid);
+            $status = $this->addCompound($uid, $data);
             if (!$status) {
                 $result['compound'] = false;
             }
@@ -250,31 +250,37 @@ class User extends AbstractApi
         return array($uid, $result);
     }
 
+    public function getUser($uid, $field = 'id')
+    {
+        $data = array();
+
+    }
+
     /**
      * Update a user
      *
-     * @param   array       $data
      * @param   int         $uid
+     * @param   array       $data
      *
      * @return  bool[]
      * @api
      */
-    public function updateUser($data, $uid)
+    public function updateUser($uid, array $data)
     {
         $result = array();
-        $status = $this->updateAccount($data, $uid);
+        $status = $this->updateAccount($uid, $data);
         if (!$status) {
             $result['account'] = false;
         }
-        $status = $this->updateProfile($data, $uid);
+        $status = $this->updateProfile($uid, $data);
         if (!$status) {
             $result['profile'] = false;
         }
-        $status = $this->updateCustom($data, $uid);
+        $status = $this->updateCustom($uid, $data);
         if (!$status) {
             $result['custom'] = false;
         }
-        $status = $this->updateCompound($data, $uid);
+        $status = $this->updateCompound($uid, $data);
         if (!$status) {
             $result['compound'] = false;
         }
@@ -358,46 +364,38 @@ class User extends AbstractApi
     /**
      * Get field value(s) of a user field(s)
      *
-     * @param string|array      $key
-     * @param string|int|null   $uid
+     * @param int|int[]         $uid
+     * @param string|string[]   $field
+     * @param bool              $filter
      * @return mixed|mixed[]
      * @api
      */
-    public function get($key, $uid)
+    public function get($uid, $field, $filter = true)
     {
-        $keys   = (array) $key;
-        $meta   = $this->canonizeMeta($keys);
         $result = array();
-        foreach ($meta as $type => $fields) {
-            $fields = $this->getFields($uid, $type, $fields);
-            $result = array_merge($result, $fields);
-        }
-        if (is_string($key)) {
-            $result = isset($result[$key]) ? $result[$key] : null;
-        }
+        $keys   = (array) $field;
+        $uids   = (array) $uid;
 
-        return $result;
-    }
-
-    /**
-     * Get field value(s) of a list of user
-     *
-     * @param string|array      $key
-     * @param array             $uids
-     * @return array
-     * @api
-     */
-    public function getList($key, array $uids)
-    {
-        $keys   = (array) $key;
         $meta   = $this->canonizeMeta($keys);
-        $result = array();
         foreach ($meta as $type => $fields) {
-            $fields = $this->getFields($uids, $type, $fields);
-            $result = array_merge($result, $fields);
+            $fields = $this->getFields($uids, $type, $fields, $filter);
+            foreach ($fields as $id => $data) {
+                if (isset($result[$id])) {
+                    $result[$id] += $data;
+                } else {
+                    $result[$id] = $data;
+                }
+            }
         }
-        if (is_string($key)) {
-            $result = isset($result[$key]) ? $result[$key] : null;
+        if (is_scalar($uid)) {
+            $result = isset($result[$uid]) ? $result[$uid] : array();
+            if (is_scalar($field)) {
+                $result = isset($result[$field]) ? $result[$field] : array();
+            }
+        } elseif (is_scalar($field)) {
+            foreach ($result as $id => &$data) {
+                $data = isset($data[$field]) ? $data[$field] : array();
+            }
         }
 
         return $result;
@@ -406,18 +404,18 @@ class User extends AbstractApi
     /**
      * Set value of a user field
      *
-     * @param string    $key
-     * @param mixed     $value
      * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
      * @return bool
      * @api
      */
-    public function set($key, $value, $uid)
+    public function set($uid, $field, $value)
     {
         $fieldMeta = Pi::registry('profile', 'user')->read();
-        if (isset($fieldMeta[$key])) {
-            $type = $fieldMeta[$key];
-            $result = $this->setField($type, $key, $value, $uid);
+        if (isset($fieldMeta[$field])) {
+            $type = $fieldMeta[$field];
+            $result = $this->setTypeField($uid, $type, $field, $value);
         } else {
             $result = false;
         }
@@ -430,14 +428,14 @@ class User extends AbstractApi
      *
      * Positive to increment or negative to decrement
      *
+     * @param int       $uid
      * @param string    $field
      * @param int       $value
-     * @param int       $uid
      *
      * @return bool
      * @api
      */
-    public function increment($field, $value, $uid)
+    public function increment($uid, $field, $value)
     {
         $fieldMeta = Pi::registry('profile', 'user')->read();
         if (!isset($fieldMeta[$field])) {
@@ -618,18 +616,18 @@ class User extends AbstractApi
         $row = Pi::model($type, 'user')->createRow($data);
         $row->save();
 
-        return $row->id;
+        return (int) $row['id'];
     }
 
     /**
      * Update user account data
      *
-     * @param array $data
      * @param int $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function updateAccount(array $data, $uid)
+    public function updateAccount($uid, array $data)
     {
         $type = 'account';
         $data = $this->canonizeUser($data, $type);
@@ -651,7 +649,7 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ($row->time_deleted > 0) {
+        if ((int) $row['time_deleted'] > 0) {
             return false;
         }
         $row->assign(array(
@@ -677,7 +675,7 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ($row->time_activated > 0 || $row->time_deleted > 0) {
+        if ((int) $row['time_activated'] > 0 || (int) $row['time_deleted'] > 0) {
             return false;
         }
         $row->assign(array(
@@ -707,11 +705,11 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if ($row->time_activated < 0 || $row->time_deleted > 0) {
+        if ((int) $row['time_activated'] < 1 || (int) $row['time_deleted'] > 0) {
             return false;
         }
-        if (($flag && $row->time_disabled < 0)
-            || (!$flag && $row->time_disabled > 0)
+        if (($flag && (int) $row['time_disabled'] < 0)
+            || (!$flag && (int) $row['time_disabled'] > 0)
         ) {
             return false;
         }
@@ -735,12 +733,12 @@ class User extends AbstractApi
     /**
      * Add user profile data
      *
-     * @param array $data
      * @param int   $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function addProfile(array $data, $uid)
+    public function addProfile($uid, array $data)
     {
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
@@ -754,12 +752,12 @@ class User extends AbstractApi
     /**
      * Update user basic profile data
      *
+     * @param int   $uid
      * @param array $data
-     * @param int $uid
      *
      * @return bool
      */
-    public function updateProfile(array $data, $uid)
+    public function updateProfile($uid, array $data)
     {
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
@@ -786,19 +784,19 @@ class User extends AbstractApi
     /**
      * Add user custom profile
      *
-     * @param array $data
      * @param int   $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function addCustom(array $data, $uid)
+    public function addCustom($uid, array $data)
     {
         $type = 'custom';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
-        foreach ($data as $key => $value) {
+        foreach ($data as $field => $value) {
             $row = $model->createRow(array(
-                'field' => $key,
+                'field' => $field,
                 'value' => $value,
                 'uid'   => $uid,
             ));
@@ -811,20 +809,20 @@ class User extends AbstractApi
     /**
      * Update custom profile fields
      *
-     * @param array $data
      * @param int   $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function updateCustom(array $data, $uid)
+    public function updateCustom($uid, array $data)
     {
         $type = 'custom';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
-        foreach ($data as $key => $value) {
+        foreach ($data as $field => $value) {
             $row = $model->select(array(
                 'uid'   => $uid,
-                'field' => $key,
+                'field' => $field,
             ))->current();
             $row->assign(array(
                 'value' => $value,
@@ -853,12 +851,12 @@ class User extends AbstractApi
     /**
      * Add user compound profile
      *
-     * @param array $data
      * @param int   $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function addCompound(array $data, $uid)
+    public function addCompound($uid, array $data)
     {
         $type = 'compound';
         $data = $this->canonizeUser($data, $type);
@@ -877,16 +875,15 @@ class User extends AbstractApi
     /**
      * Update compound fields
      *
-     * @param array $data
      * @param int   $uid
+     * @param array $data
      *
      * @return bool
      */
-    public function updateCompound(array $data, $uid)
+    public function updateCompound($uid, array $data)
     {
-        $type = 'compound';
         $this->deleteCompound($uid);
-        $this->addCompound($data, $uid);
+        $this->addCompound($uid, $data);
 
         return true;
     }
@@ -912,15 +909,18 @@ class User extends AbstractApi
      * @param int[]|int $uid
      * @param string    $type
      * @param string[]  $fields
+     * @param bool      $filter     To filter for display
      * @return array
      * @api
      */
-    public function getFields(array $uid, $type, $fields = array())
+    public function getFields($uid, $type, $fields = array(), $filter = true)
     {
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
             $fields = $this->getMeta($type);
+        } else {
+            $fields = array_unique($fields);
         }
 
         if ('account' == $type || 'profile' == $type) {
@@ -931,7 +931,13 @@ class User extends AbstractApi
                 ->columns($fields);
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
-                $result[$row->{$primaryKey}] = $row->toArray();
+                $id = (int) $row[$primaryKey];
+                vd($id);
+                if ($filter) {
+                    $result[$id] = $row->filter($fields);
+                } else {
+                    $result[$id] = $row->toArray();
+                }
             }
         } elseif ('custom' == $type) {
             $model = Pi::model($type, 'user');
@@ -943,7 +949,12 @@ class User extends AbstractApi
             $select = $model->select()->where($where)->columns($columns);
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
-                $result[$row->uid][$row->field] = $row->value;
+                if ($filter) {
+                    $value = $row->filter();
+                } else {
+                    $value = $row['value'];
+                }
+                $result[(int) $row['uid']][$row['field']] = $value;
             }
         } elseif ('compound' == $type) {
             $model = Pi::model($type, 'user');
@@ -953,15 +964,20 @@ class User extends AbstractApi
             );
             $rowset = $model->select($where);
             foreach ($rowset as $row) {
-                $result[$row->uid][$row->compound][$row->set][$row->field]
-                    = $row->value;
+                if ($filter) {
+                    $value = $row->filter();
+                } else {
+                    $value = $row['value'];
+                }
+                $result[(int) $row['uid']][$row['compound']][$row['set']][$row['field']]
+                    = $value;
             }
         }
-        if (is_int($uid)) {
+        if (is_scalar($uid)) {
             if (isset($result[$uid])) {
                 $result = $result[$uid];
             } else {
-                $result = null;
+                $result = array();
             }
         }
 
@@ -978,11 +994,11 @@ class User extends AbstractApi
      *
      * @return bool
      */
-    public function setField($uid, $type, $field, $value)
+    public function setTypeField($uid, $type, $field, $value)
     {
         if ('account' == $type || 'profile' == $type) {
             $row = Pi::model($type, 'user')->find($uid);
-            $row->{$field} = $value;
+            $row[$field] = $value;
             $row->save();
         } elseif ('custom' == $type) {
             $model = Pi::model($type, 'user');
@@ -990,7 +1006,7 @@ class User extends AbstractApi
                 'uid'   => $uid,
                 'field' => $field
             ))->current();
-            $row->value = $value;
+            $row['value'] = $value;
             $row->save();
         }
 

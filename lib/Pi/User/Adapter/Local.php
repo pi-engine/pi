@@ -88,12 +88,9 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $uid = null)
+    public function updateUser($uid, $data)
     {
-        return Pi::api('user', 'user')->updateUser(
-            $data,
-            $this->verifyUid($uid)
-        );
+        return Pi::api('user', 'user')->updateUser($uid, $data);
     }
 
     /**
@@ -135,42 +132,25 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($key, $uid = null)
+    public function get($uid, $field, $filter = true)
     {
-        $this->verifyId($uid);
-        return Pi::api('user', 'user')->get($key, $this->verifyUid($uid));
+        return Pi::api('user', 'user')->get($uid, $field, $filter);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $uids)
+    public function set($uid, $field, $value)
     {
-        return Pi::api('user', 'user')->getList($key, $uids);
+        return Pi::api('user', 'user')->set($uid, $field, $value);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $uid = null)
+    public function increment($uid, $field, $value)
     {
-        return Pi::api('user', 'user')->set(
-            $key,
-            $value,
-            $this->verifyUid($uid)
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function increment($key, $value, $uid = null)
-    {
-        return Pi::api('user', 'user')->increment(
-            $key,
-            $value,
-            $this->verifyUid($uid)
-        );
+        return Pi::api('user', 'user')->increment($uid, $field, $value);
     }
     /**#@-*/
 

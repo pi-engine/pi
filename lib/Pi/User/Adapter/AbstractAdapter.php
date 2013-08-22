@@ -22,20 +22,18 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  * + Field meta operations
  *   - getMeta($type, $action)
  *
- * + User operations
+ * + Single user account operations
  *   + Binding
  *   - bind($uid[, $field])
  *
  *   + Read
- *   - getUser(<uid>|array(<field>))
- *   - getUids($condition, $limit, $offset, $order)
- *   - getCount($condition)
+ *   - getUser($uid, $fields)
  *
  *   + Add
  *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data, $uid)
+ *   - updateUser($uid, $data)
  *
  *   + Delete
  *   - deleteUser($uid)
@@ -49,12 +47,13 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key, $uid)
- *   - getList($key, $uids)
+ *   - getUids($condition, $limit, $offset, $order)
+ *   - getCount($condition)
+ *   - get($uid, $field, $filter)
  *
  *   + Update
- *   - set($key, $value, $uid)
- *   - increment($key, $value, $uid)
+ *   - set($uid, $field, $value)
+ *   - increment($uid, $field, $value)
  *
  * + Utility
  *   + Collective URL
@@ -160,25 +159,14 @@ abstract class AbstractAdapter implements BindInterface
     /**#@+
      * User operations
      */
-    /**
-     * Get user data object
-     *
-     * Use different type of identity: id, identity, email, etc.
-     *
-     * @param int|string|null   $uid         User id, identity
-     * @param string            $field      Field of the identity
-     * @return UserModel
-     * @api
-     */
-    abstract public function getUser($uid = null, $field = 'id');
 
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|PredicateInterface  $condition
-     * @param int                       $limit
-     * @param int                       $offset
-     * @param string                    $order
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string        $order
      * @return int[]
      * @api
      */
@@ -192,7 +180,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user count subject to conditions
      *
-     * @param array|PredicateInterface  $condition
+     * @param array  $condition
      * @return int
      * @api
      */
@@ -201,21 +189,31 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Add a user
      *
-     * @param   array       $data
+     * @param   array       $fields
      * @return  int|bool
      * @api
      */
-    abstract public function addUser($data);
+    abstract public function addUser($fields);
+
+    /**
+     * Get user data
+     *
+     * @param int|string|null   $uid         User id, identity
+     * @param string            $field      Field of the identity
+     * @return UserModel
+     * @api
+     */
+    abstract public function getUser($uid, $field = 'id');
 
     /**
      * Update a user
      *
-     * @param   array       $data
      * @param   int         $uid
+     * @param   array       $fields
      * @return  int|bool
      * @api
      */
-    abstract public function updateUser($data, $uid = null);
+    abstract public function updateUser($uid, $fields);
 
     /**
      * Delete a user
@@ -258,47 +256,77 @@ abstract class AbstractAdapter implements BindInterface
      * User account/Profile fields operations
      */
     /**
-     * Get field value(s) of a user field(s)
+     * Get field value(s) of user(s) per operation actions
      *
-     * @param string|array      $key
-     * @param string|int|null   $uid
+     * Usage:
+     *
+     * - Get single-user-single-field
+     *
+     * ```
+     *  // Raw data
+     *  $fields = Pi::api('user', 'user')->get(12, 'gender', false);
+     *  // Output: 'male' (or 'female', 'unknown')
+     *
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(123, 'gender');
+     *  // Output: 'Male' (or 'Female', 'Unknown')
+     * ```
+     *
+     * - Get multi-user-multi-field for display
+     *
+     * ```
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(
+     *      array(12, 34, 56),
+     *      array('name', 'gender'),
+     *  );
+     *  // Output:
+     *  array(
+     *      12  => array(
+     *          'name'      => 'John',
+     *          'gender'    => 'Male',
+     *      ),
+     *      34  => array(
+     *          'name'      => 'Joe',
+     *          'gender'    => 'Unknown',
+     *      ),
+     *      56  => array(
+     *          'name'      => 'Rose',
+     *          'gender'    => 'Female',
+     *      ),
+     *  );
+     * ```
+     *
+     * @param int|int[]         $uid
+     * @param string|string[]   $field
+     * @param bool              $filter
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($key, $uid = null);
-
-    /**
-     * Get field value(s) of a list of user
-     *
-     * @param string|array      $key
-     * @param array             $uids
-     * @return array
-     * @api
-     */
-    abstract public function getList($key, $uids);
+    abstract public function get($uid, $field, $filter = true);
 
     /**
      * Set value of a user field
      *
-     * @param string            $key
-     * @param mixed             $value
-     * @param string|int|null   $uid
+     * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
      * @return bool
      * @api
      */
-    abstract public function set($key, $value, $uid = null);
+    abstract public function set($uid, $field, $value);
 
     /**
      * Incremetn/decrement a user field
      *
-     * @param string            $key
-     * @param int               $value
+     * @param int       $uid
+     * @param string    $field
+     * @param int       $value
      *      Positive to increment or negative to decrement
-     * @param string|int|null   $uid
      * @return bool
      * @api
      */
-    abstract public function increment($key, $value, $uid = null);
+    abstract public function increment($uid, $field, $value);
     /**#@-*/
 
     /**#@+

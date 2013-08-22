@@ -27,50 +27,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * Basic APIs defined by `Pi\User\Adapter\AbstractAdapter`
  * called via magic method __call()
- * ----------------------------------------------------------------------------
  *
- * + Field meta operations
- *   - getMeta($type, $action)
- *
- * + User operations
- *   + Binding
- *   - bind($uid[, $field])
- *
- *   + Read
- *   - getUser(<uid>|array(<field>))
- *   - getUids($condition, $limit, $offset, $order)
- *   - getCount($condition)
- *
- *   + Add
- *   - addUser($data)
- *
- *   + Update
- *   - updateUser($data, $uid)
- *
- *   + Delete
- *   - deleteUser($uid)
- *
- *   + Activate account
- *   - activateUser($uid)
- *
- *   + Enable/Disable
- *   - enableUser($uid)
- *   - disableUser($uid)
- *
- * + User account/profile field operations
- *   + Read
- *   - get($key, $uid)
- *   - getList($key, $uids)
- *
- *   + Update
- *   - set($key, $value, $uid)
- *   - increment($key, $value, $uid)
- *
- * + Utility
- *   + Collective URL
- *   - getUrl($type[, $uid])
- *   + Authentication
- *   - authenticate($identity, $credential)
  * ----------------------------------------------------------------------------
  *
  * + User operations
@@ -132,19 +89,20 @@ use Pi\User\Resource\AbstractResource;
  *   - relation([$id])->delete([$uid[, $relation]])
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
- * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $field)
- * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
- * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
- * @method \Pi\User\Adapter\AbstractAdapter::addUser($data)
- * @method \Pi\User\Adapter\AbstractAdapter::updateUser($data, $uid = null)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)
  * @method \Pi\User\Adapter\AbstractAdapter::deleteUser($uid)
  * @method \Pi\User\Adapter\AbstractAdapter::activateUser($uid)
  * @method \Pi\User\Adapter\AbstractAdapter::enableUser($uid)
  * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
- * @method \Pi\User\Adapter\AbstractAdapter::get($key, $uid = null)
- * @method \Pi\User\Adapter\AbstractAdapter::getList($key, $uids)
- * @method \Pi\User\Adapter\AbstractAdapter::set($key, $value, $uid = null)
- * @method \Pi\User\Adapter\AbstractAdapter::increment($key, $value, $uid = null)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
+ * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
  *

@@ -19,6 +19,13 @@ use Pi\Application\Model\Model as BasicModel;
 class Field extends BasicModel
 {
     /**
+     * Row gateway class
+     *
+     * @var string
+     */
+    protected $rowClass = 'Module\User\Model\RowGateway\Compound';
+
+    /**
      * Columns to be encoded
      *
      * @var array

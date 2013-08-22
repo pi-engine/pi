@@ -16,13 +16,13 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-interface DisplayInterface
+interface FilterInterface
 {
     /**
-     * Get value of a column or all columns for display
+     * Filter value of column(s) for display purposes
      *
-     * @param string $col
-     * @return string|mixed[]
+     * @param string|string[] $col
+     * @return mixed|mixed[]
      */
-    public function display($col = null);
+    public function filter($col = null);
 }

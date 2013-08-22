@@ -171,7 +171,7 @@ return array(
             'name'      => 'time_deleted',
             'title'     => __('Deleted time'),
             'edit'      => 'text',
-            'filter'    => 'Module\User\Filter\DateTimeFormatter',
+            'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -182,16 +182,17 @@ return array(
 
         // Profile: Full name
         'fullname'  => array(
-            'type'  => 'profile',
-            'name'  => 'fullname',
-            'title' => __('Full name'),
+            'type'      => 'profile',
+            'name'      => 'fullname',
+            'title'     => __('Full name'),
         ),
         // Profile: gender
         'gender'    => array(
-            'type'  => 'profile',
-            'name'  => 'gender',
-            'title' => __('Gender'),
-            'edit'  => 'Module\User\Form\Element\Gender',
+            'type'      => 'profile',
+            'name'      => 'gender',
+            'title'     => __('Gender'),
+            'edit'      => 'Module\User\Form\Element\Gender',
+            'filter'    => 'Gender',
         ),
         // Profile: birth date
         'birthdate'  => array(

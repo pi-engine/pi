@@ -162,8 +162,9 @@ class TestController extends ActionController
     public function getAction()
     {
         $this->view()->setTemplate(false);
+
         $field = explode(',', _get('field'));
-        $uid = _get('uid');
+        $uid = explode(',', _get('uid'));
 
 
         $conditions = array(
@@ -179,16 +180,20 @@ class TestController extends ActionController
 
         $field[] = 'birthdate';
         //$field = Pi::user()->getMeta();
-        $fields = Pi::user()->get($field, $uid);
+        vd($field);
+        $fields = Pi::user()->get($uid, $field);
         vd($fields);
 
     }
 
     public function activateAction()
     {
-        $offset = _get('offset') ?: 0;
-        $limit  = _get('limit') ?: 10;
+        $this->view()->setTemplate(false);
 
+        $uid = _get('uid');
+        Pi::user()->activateUser($uid);
+
+        $fields = Pi::user()->get($uid);
     }
 
     // enableAction
