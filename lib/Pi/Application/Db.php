@@ -532,7 +532,7 @@ class Db
      * @param Sql|Select|Update|Delete $sql
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function execute($sql)
+    public function query($sql)
     {
         $statement = $this->sql()->prepareStatementForSqlObject($sql);
         $result = $statement->execute();
