@@ -631,7 +631,15 @@ class User extends AbstractApi
     {
         $type = 'account';
         $data = $this->canonizeUser($data, $type);
-        $status = Pi::model($type, 'user')->update($data, array('id' => $uid));
+        $row = Pi::model($type, 'user')->find($uid);
+        if ($row) {
+            $row->assign($data);
+            //if (isset($data['credential']))
+            $row->prepare()->save();
+            $status = true;
+        } else {
+            $status = false;
+        }
 
         return $status;
     }
