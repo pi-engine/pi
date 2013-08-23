@@ -683,7 +683,10 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if (!$row || (int) $row['time_activated'] > 0 || (int) $row['time_deleted'] > 0) {
+        if (!$row
+            || (int) $row['time_activated'] > 0
+            || (int) $row['time_deleted'] > 0
+        ) {
             return false;
         }
         $row->assign(array(
@@ -713,7 +716,10 @@ class User extends AbstractApi
     {
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if (!$row || (int) $row['time_activated'] < 1 || (int) $row['time_deleted'] > 0) {
+        if (!$row
+            || (int) $row['time_activated'] < 1
+            || (int) $row['time_deleted'] > 0
+        ) {
             return false;
         }
         if (($flag && (int) $row['time_disabled'] < 0)
@@ -869,8 +875,8 @@ class User extends AbstractApi
         $type = 'compound';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
-        foreach ($data as $key => $value) {
-            $compoundSet = $this->canonizeCompound($uid, $key, $value);
+        foreach ($data as $compound => $value) {
+            $compoundSet = $this->canonizeCompound($uid, $compound, $value);
             foreach ($compoundSet as $field) {
                 $row = $model->createRow($field);
                 $row->save();

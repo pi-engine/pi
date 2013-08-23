@@ -24,4 +24,43 @@ class Compound extends BasicModel
      * @var string
      */
     protected $rowClass = 'Module\User\Model\RowGateway\Compound';
+
+    /**
+     * Append a compound set
+     *
+     * @param int       $uid
+     * @param string    $compound
+     * @param array     $data
+     *
+     * @return bool
+     */
+    public function appendSet($uid, $compound, $data)
+    {
+        $select = $this->select();
+        $select->columns(array(
+            'maxset'    => Pi::db()->expression(
+                'MAX(' . $this->quoteIdentifier('set') . ')'
+            )
+        ));
+        $select->where(array(
+            'uid'       => $uid,
+            'compound'  => $compound,
+        ));
+        $result = $this->selectWith($select);
+        $maxSet = $result->current()->maxset;
+        $set = (int) $maxSet + 1;
+        foreach ($data as $field => $value) {
+            $specs = array(
+                'uid'       => $uid,
+                'compound'  => $compound,
+                'set'       => $set,
+                'field'     => $field,
+                'value'     => $value,
+            );
+            $row = $this->createRow($specs);
+            $row->save();
+        }
+
+        return true;
+    }
 }
