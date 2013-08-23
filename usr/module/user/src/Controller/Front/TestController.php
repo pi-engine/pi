@@ -32,6 +32,9 @@ class TestController extends ActionController
         vd($fields);
         $fields = Pi::registry('compound', 'user')->read('education');
         vd($fields);
+
+        vd(Pi::user()->hasIdentity());
+        vd(Pi::user()->getUrl('register'));
     }
 
     protected function flushUsers()

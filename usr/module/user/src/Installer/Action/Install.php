@@ -45,11 +45,10 @@ class Install extends BasicInstall
         }
         $moduleList = array_keys($modules);
         foreach ($moduleList as $mod) {
-            $meta = Pi::service('module')->loadMeta($mod, 'maintenance');
-            if (empty($meta['resource']['user'])) {
+            $options = Pi::service('module')->loadMeta($mod, 'user');
+            if (empty($options)) {
                 continue;
             }
-            $options = $meta['resource']['user'];
             if (is_string($options)) {
                 $optionsFile = sprintf(
                     '%s/%s/config/%s',

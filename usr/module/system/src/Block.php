@@ -82,11 +82,11 @@ class Block
         $form->setAttribute(
             'action',
             Pi::service('url')->assemble(
-                'user',
+                'sysuser',
                 array(
-                    'module' => 'system',
-                    'controller' => 'login',
-                    'action' => 'process',
+                    'module'        => 'system',
+                    'controller'    => 'login',
+                    'action'        => 'process',
                 )
             )
         );

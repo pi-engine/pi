@@ -21,7 +21,7 @@ return array(
         'description'   =>
             __('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.2.2',
+        'version'       => '3.2.3',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -50,29 +50,26 @@ return array(
         // Credits and aknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-            ),
-            // System config
-            'config'    => 'config.php',
-            // ACL specs
-            'acl'       => 'acl.php',
-            // Block definition
-            'block'     => 'block.php',
-            // Event specs
-            'event'     => 'event.php',
-            // View pages
-            'page'      => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'     => 'route.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'      => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+        ),
+        // System config
+        'config'        => 'config.php',
+        // ACL specs
+        'acl'           => 'acl.php',
+        // Block definition
+        'block'         => 'block.php',
+        // Event specs
+        'event'         => 'event.php',
+        // View pages
+        'page'          => 'page.php',
+        // Navigation definition
+        'navigation'    => 'navigation.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'         => 'route.php',
+    ),
 );

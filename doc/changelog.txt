@@ -16,6 +16,8 @@ August 4th, 2013
 11. Added HTML5/CSS detection `modernizr` as a jQuery extension
 12. Upgraded Zend Framework to 2.2.3
 13. Added filters: `YesNo`, `Gender`, `DateTimeFormatter`
+14. Changed route spec to support route name definition
+15. Added API to fetch module resource meta directly
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

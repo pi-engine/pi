@@ -23,37 +23,37 @@ return array(
     // Account
     'account'   => array(
         'label'         => _t('Account'),
-        'route'         => 'user',
+        'route'         => 'sysuser',
         'controller'    => 'account',
         //'visible'       => 0,
         'pages'         => array(
             'profile'     => array(
                 'label'         => _t('Profile'),
-                'route'         => 'user',
+                'route'         => 'sysuser',
                 'controller'    => 'profile',
                 'visible'       => 0,
             ),
             'login'     => array(
                 'label'         => _t('Login'),
-                'route'         => 'user',
+                'route'         => 'sysuser',
                 'controller'    => 'login',
                 'visible'       => 0,
             ),
             'register'     => array(
                 'label'         => _t('Register'),
-                'route'         => 'user',
+                'route'         => 'sysuser',
                 'controller'    => 'register',
                 'visible'       => 0,
             ),
             'password'     => array(
                 'label'         => _t('Password'),
-                'route'         => 'user',
+                'route'         => 'sysuser',
                 'controller'    => 'password',
                 'visible'       => 0,
             ),
             'email'     => array(
                 'label'         => _t('Email'),
-                'route'         => 'user',
+                'route'         => 'sysuser',
                 'controller'    => 'email',
                 'visible'       => 0,
             ),

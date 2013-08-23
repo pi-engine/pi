@@ -162,10 +162,11 @@ class Local extends AbstractAdapter
      */
     public function getUrl($type, $uid = null)
     {
+        vd($type);
         switch ($type) {
             case 'account':
             case 'profile':
-            $uid = $this->verifyUid($uid);
+                $uid = $this->verifyUid($uid);
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
                     'id'            => $uid,
@@ -213,20 +214,4 @@ class Local extends AbstractAdapter
         return $result;
     }
     /**#@-*/
-
-
-    /**
-     * Method handler allows a shortcut
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     */
-    public function __call($method, $args)
-    {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
-    }
 }

@@ -29,7 +29,7 @@ class ProfileController extends ActionController
         $id = $this->params('id');
         if (!$id) {
             $this->redirect()->toRoute(
-                'user',
+                'sysuser',
                 array('controller' => 'account')
             );
 

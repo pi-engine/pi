@@ -42,7 +42,7 @@ class RegisterController extends ActionController
         // If already logged in
         if (Pi::service('authentication')->hasIdentity()) {
             $this->redirect()->toRoute(
-                'user',
+                'sysuser',
                 array('controller' => 'account')
             );
 

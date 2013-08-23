@@ -27,16 +27,14 @@ return array(
         'email'     => 'taiwenjiang@tsinghua.org.cn',
     ),
 
-    // Maintenance actions
-    'maintenance'   => array(
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-            ),
-            'user'  => 'user.php',
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
         ),
+        'user'  => 'user.php',
+        'route' => 'route.php',
     ),
 );

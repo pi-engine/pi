@@ -205,7 +205,27 @@ class Module extends AbstractService
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
 
-        return $type ? $config[$type] : $config;
+        // For backward compat
+        if (isset($config['maintenance'])) {
+            if (isset($config['maintenance']['resource'])) {
+                $config['resource'] = $config['maintenance']['resource'];
+            }
+            unset($config['maintenance']);
+        }
+
+        if ($type) {
+            if (isset($config[$type])) {
+                $result = $config[$type];
+            } elseif (isset($config['resource'][$type])) {
+                $result = $config['resource'][$type];
+            } else {
+                $result = array();
+            }
+        } else {
+            $result = $config;
+        }
+
+        return $result;
     }
 
     /**

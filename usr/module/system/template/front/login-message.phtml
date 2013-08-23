@@ -4,7 +4,7 @@
 
 <div class="login-message">
     <?php
-    $logoutUrl = $this->url('user', array('controller' => 'login', 'action' => 'logout'));
+    $logoutUrl = $this->url('sysuser', array('controller' => 'login', 'action' => 'logout'));
     $logoutString = sprintf('<a href="%s" title="%s">%s</a>', $logoutUrl, __('logout'), __('logout'));
     echo sprintf(__('You have been logged on with account <strong>%s</strong>, please %s to re-login.'), $identity, $logoutString);
     ?>

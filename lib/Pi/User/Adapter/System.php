@@ -82,14 +82,6 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUserList($uids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getUids(
         $condition  = array(),
         $limit      = 0,
@@ -97,6 +89,7 @@ class System extends AbstractAdapter
         $order      = ''
     ) {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
@@ -105,6 +98,7 @@ class System extends AbstractAdapter
     public function getCount($condition = array())
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
@@ -113,14 +107,16 @@ class System extends AbstractAdapter
     public function addUser($data)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $uid = null)
+    public function updateUser($uid, $data)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
@@ -129,6 +125,7 @@ class System extends AbstractAdapter
     public function deleteUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
@@ -137,6 +134,7 @@ class System extends AbstractAdapter
     public function activateUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
@@ -144,7 +142,7 @@ class System extends AbstractAdapter
      */
     public function enableUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->enableUser($uid);
     }
 
     /**
@@ -153,43 +151,38 @@ class System extends AbstractAdapter
     public function disableUser($uid)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
-
     /**
      * {@inheritDoc}
      */
-    public function get($key, $uid = null)
+    public function get($uid, $field, $filter = true)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $uids)
+    public function set($uid, $field, $value)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $uid = null)
+    public function increment($uid, $field, $value)
     {
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function increment($key, $value, $uid = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return;
     }
     /**#@-*/
 
@@ -204,33 +197,33 @@ class System extends AbstractAdapter
         switch ($type) {
             case 'account':
                 $uid = $this->verifyUid($uid);
-                $url = Pi::service('url')->assemble('user', array(
+                $url = Pi::service('url')->assemble('sysuser', array(
                     'controller'    => 'account',
                     'id'            => $uid,
                 ));
                 break;
             case 'profile':
-                $url = Pi::service('url')->assemble('user', array(
+                $url = Pi::service('url')->assemble('sysuser', array(
                     'controller'    => 'profile',
                     'id'            => $uid,
                 ));
                 break;
             case 'login':
             case 'signin':
-                $url = Pi::service('url')->assemble('user', array(
+                $url = Pi::service('url')->assemble('sysuser', array(
                     'controller'    => 'login'
                 ));
                 break;
             case 'logout':
             case 'signout':
-                $url = Pi::service('url')->assemble('user', array(
+                $url = Pi::service('url')->assemble('sysuser', array(
                     'controller'    => 'login',
                     'action'        => 'logout',
                 ));
                 break;
             case 'register':
             case 'signup':
-                $url = Pi::service('url')->assemble('user', array(
+                $url = Pi::service('url')->assemble('sysuser', array(
                     'controller'    => 'register',
                 ));
                 break;

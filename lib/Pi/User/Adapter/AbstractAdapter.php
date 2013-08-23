@@ -371,21 +371,4 @@ abstract class AbstractAdapter implements BindInterface
      */
     abstract public function authenticate($identity, $credential);
     /**#@-*/
-
-    /**
-     * Method handler allows a shortcut
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     */
-    public function __call($method, $args)
-    {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
-
-        return 'Not defined';
-    }
 }
