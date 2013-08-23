@@ -81,8 +81,10 @@ class Cache extends AbstractService
     /**
      * Set namespace to current cache storage adapter
      *
-     * @param string                $namespace
+     * @param string                                      $namespace
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function setNamespace(
@@ -111,8 +113,10 @@ class Cache extends AbstractService
     /**
      * Clear cache by namespace to current cache storage adapter
      *
-     * @param string                $namespace
+     * @param string                                      $namespace
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function clearByNamespace(
@@ -162,10 +166,12 @@ class Cache extends AbstractService
     /**
      * Set item with namespace
      *
-     * @param  string               $key
-     * @param  mixed                $value
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  mixed                                      $value
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return Cache
      */
     public function setItem(
@@ -215,9 +221,11 @@ class Cache extends AbstractService
     /**
      * Get item with namespace
      *
-     * @param  string               $key
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return mixed
      */
     public function getItem(
@@ -266,9 +274,11 @@ class Cache extends AbstractService
     /**
      * Remove item with namespace
      *
-     * @param  string               $key
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function removeItem(

@@ -10,8 +10,6 @@
 namespace Module\User\Route;
 
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
 
 /**
  * User route

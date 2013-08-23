@@ -53,7 +53,7 @@ class Module extends AbstractService
     /**
      * Set current active module
      *
-     * @param sring $module
+     * @param string $module
      * @return self
      */
     public function setModule($module)
@@ -272,10 +272,12 @@ class Module extends AbstractService
      * Fetch content of an item from a type of moldule content by calling
      * `Module\<ModuleName>\Service::content()`
      *
-     * @param array $variables array of variables to be returned:
-     *      title, summary, uid, user, etc.
+     * @param array $variables  array of variables to be returned:
+     *                          title, summary, uid, user, etc.
      * @param array $conditions associative array of conditions:
-     *      item - item ID or ID list, module, type - optional, user, Where
+     *                          item - item ID or ID list, module, type - optional, user, Where
+     *
+     * @throws \Exception
      * @return  array Associative array of returned content,
      *      or list of associative arry if $item is an array
      */

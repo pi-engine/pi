@@ -82,10 +82,12 @@ class Markup extends AbstractService
 
     /**
      * Render content
-     * @param string $content
-     * @param string $renderer  Renderer type, valid type: html, text
-     * @param string|null $parser
-     * @param array $renderOptions
+     *
+     * @param string           $content
+     * @param string           $renderer  Renderer type, valid type: html, text
+     * @param bool|null|string $parser
+     * @param array            $renderOptions
+     *
      * @return string
      */
     public function render(
