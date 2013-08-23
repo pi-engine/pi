@@ -1,0 +1,13 @@
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<?php if ($type == 'register') { ?>
+<p>
+    <?php _e('A register link has been sent to your email'); ?><br>
+    <?php _e('Please check it in 24 hours.'); ?>
+</p>
+<p>
+    <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $data['uid'])); ?>">
+        <?php _e('Resend a email'); ?>
+    </a>
+</p>
+<?php } ?>

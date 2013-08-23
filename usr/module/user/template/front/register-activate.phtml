@@ -1,0 +1,9 @@
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<?php if ($data['status']) { ?>
+    <p><?php _e('Congratulation'); ?></p>
+    <p><?php _e('Your account has been activated'); ?></p>
+<?php } else { ?>
+    <p><?php _e('Sorry'); ?></p>
+    <p><?php _e('Your account has been activated'); ?></p>
+<?php } ?>
