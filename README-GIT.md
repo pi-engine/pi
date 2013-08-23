@@ -17,33 +17,34 @@ Make a new fork
 
 Working with forked repo
 ------------------------
-* Checkout code to local computer as working repo: ```git clone https://github.com/<your-account>/pi```
+* Checkout code to local computer as working repo: `git clone https://github.com/<your-account>/pi`
 * Working with commits
-  * Synchronize code from your repo: ```git pull``` or ```git fetch```
-  * Add local changes: ```git add --all```
-  * Commit local changes: ```git commit -a -m 'Commit log message.'```
-  * Push commits to your repo: ```git push```
+  * Synchronize code from your repo: `git pull` or `git fetch`
+  * Add local changes: `git add --all`
+  * Commit local changes: `git commit -a -m 'Commit log message.'`
+  * Push commits to your repo: `git push`
+  * Revert the last commit before push: `git reset --soft HEAD`
 * Working with branches
-  * Check local branches: ```git branch```
-  * Create a local branch: ```git branch -a <new-branch>```
-  * Push a local branch to your repo: ```git push```
-  * Swtich to a branch: ```git checkout <another-branch>```
-  * Merge code from another branch: ```git merge <another-branch>```
-  * Delete a local branch: ```git branch -d <old-branch>```
-  * Delete a branch from your repo: ```git push origin :<old-branch>```
+  * Check local branches: `git branch`
+  * Create a local branch: `git branch -a <new-branch>`
+  * Push a local branch to your repo: `git push`
+  * Swtich to a branch: `git checkout <another-branch>`
+  * Merge code from another branch: `git merge <another-branch>`
+  * Delete a local branch: `git branch -d <old-branch>`
+  * Delete a branch from your repo: `git push origin :<old-branch>`
 * Working with tags
-  * Check local branches: ```git tag```
-  * Create a local branch: ```git tag -a <new-tag>```
-  * Push local tags to your repo: ```git push --tags```
-  * Delete a local branch: ```git tag -d <old-tag>```
-  * Delete a tag from your repo: ```git push origin :<old-tag>```
+  * Check local branches: `git tag`
+  * Create a local branch: `git tag -a <new-tag>`
+  * Push local tags to your repo: `git push --tags`
+  * Delete a local branch: `git tag -d <old-tag>`
+  * Delete a tag from your repo: `git push origin :<old-tag>`
 
 Working with upstream repo
 --------------------------
-* Add Pi Engine Repo as upstream: ```git remote add upstream https://github.com/pi-engine/pi.git```
-* Fetch changes from Pi Engine Repo: ```git fetch upstream```
-* Merge Pi Engine changes into local repo: ```git merge upstream/<branch-name>```
-* Synchronize your repo with Pi Engine Repo: ```git merge upstream/<branch-name>``` + ```git push origin <branch-name>```
+* Add Pi Engine Repo as upstream: `git remote add upstream https://github.com/pi-engine/pi.git`
+* Fetch changes from Pi Engine Repo: `git fetch upstream`
+* Merge Pi Engine changes into local repo: `git merge upstream/<branch-name>`
+* Synchronize your repo with Pi Engine Repo: `git merge upstream/<branch-name>` + `git push origin <branch-name>`
 
 
 Pi Engine Github Skeleton
