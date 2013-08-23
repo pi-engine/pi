@@ -1,0 +1,14 @@
+<h2 class="page-header"><?php _e('Profile'); ?></h2>
+
+<?php foreach ($data as $row) { ?>
+<div class="pi-legend"><?php echo $this->escape($row['title']); ?></div>
+<a href="<?php echo $this->url('', array('action' => $row['compound'] ? 'edit.compound' : 'edit.profile', 'group' => $row['name'])); ?>"><?php _e('Edit');?></a>
+<div>
+    <dl class="dl-horizontal">
+    <?php foreach ($row['fields'] as $field) { ?>
+        <dt><?php echo $this->escape($field['title']); ?></dt>
+        <dd><?php echo $this->escape($field['value']); ?></dd>
+    <?php  } ?>
+    </dl>
+</div>
+<?php  } ?>
