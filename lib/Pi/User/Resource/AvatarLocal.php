@@ -20,7 +20,7 @@ class AvatarLocal extends AvatarUpload
 {
     /**
      * {@inheritDoc}
-     * @return false
+     * @return bool
      */
     public function getPath($size = null)
     {

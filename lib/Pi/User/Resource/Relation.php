@@ -55,7 +55,7 @@ class Relation extends AbstractResource
      */
     public function __call($method, $args)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
         trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);

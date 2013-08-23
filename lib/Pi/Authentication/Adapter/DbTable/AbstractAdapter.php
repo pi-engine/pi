@@ -9,13 +9,11 @@
 
 namespace Pi\Authentication\Adapter\DbTable;
 
-use StdClass;
 use Pi;
 use Pi\Authentication\Adapter\AbstractAdapter as BaseAbstractAdapter;
 use Pi\Authentication\Result as AuthenticationResult;
 use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\Adapter\Adapter as DbAdapter;
-//use Zend\Authentication\Result as AuthenticationResult;
 
 /**
  * Pi authentication db table abstract adapter
@@ -36,7 +34,7 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     /**
      * Table name to check
      *
-     * @var string
+     * @var string|array
      */
     protected $tableName;
 
@@ -263,7 +261,12 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
         if ($this->dbAdapter instanceof DbAdapter) {
             $options['adapter'] = $this->dbAdapter;
         }
-        $model = Pi::model($this->tableName, '', $options);
+        if (is_array($this->tableName)) {
+            list($modelName, $module) = $this->tableName;
+        } else {
+            list($modelName, $module) = array($this->tableName, '');
+        }
+        $model = Pi::model($modelName, $module, $options);
         $resultIdentities = $model->select(array(
             $this->identityColumn => $this->identity
         ));

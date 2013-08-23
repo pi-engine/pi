@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
@@ -28,49 +27,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * Basic APIs defined by `Pi\User\Adapter\AbstractAdapter`
  * called via magic method __call()
- * ----------------------------------------------------------------------------
  *
- * + Meta operations
- *   - getMeta([$type])
- *
- * + User operations
- *   + Binding
- *   - bind($id[, $field])
- *
- *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
- *
- *   + Add
- *   - addUser($data)
- *
- *   + Update
- *   - updateUser($data[, $id])
- *
- *   + Delete
- *   - deleteUser($id)
- *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
- *
- * + User account/profile field operations
- *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
- *
- *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
- *
- * + Utility
- *   + Collective URL
- *   - getUrl($type[, $id])
- *   + Authentication
- *   - authenticate($identity, $credential)
  * ----------------------------------------------------------------------------
  *
  * + User operations
@@ -79,6 +36,12 @@ use Pi\User\Resource\AbstractResource;
  *  - destroy()
  *  - hasIdentity()
  *  - getIdentity()
+ *
+ * + User account/profile field operations
+ *  - getByModule($module, $key[, $id])
+ *  - getListByModule($module, $key, $ids)
+ *  - setByModule($module, $key, $value[, $id])
+ *  - incrementByModule($module, $key, $value[, $id])
  *
  * + Resource APIs
  *
@@ -97,13 +60,25 @@ use Pi\User\Resource\AbstractResource;
  *   - message([$id])->getCount()
  *   - message([$id])->getAlert()
  *
- * + Timeline/Activity
+ * + Timeline
  *   - timeline([$id])
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
- *   - timeline([$id])->delete([$condition])
+ *   - timeline([$id])->get($limit[, $offset[, $types]])
+ *   - timeline([$id])->getCount($types)
+ *   - timeline([$id])->add(array(
+ *          'message'   => <message>,
+ *          'module'    => <module-name>,
+ *          'type'      => <type>,
+ *          'link'      => <link-href>,
+ *          'time'      => <timestamp>,
+ *     ))
+ *
+ * + Activity
+ *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
+ *
+ * + Log
+ *   - log([$id])->add($action, $data[, $time])
+ *   - log([$id])->get($action, $limit[, $offset[, $condition]])
+ *   - log([$id])->getLast($action)
  *
  * + Relation
  *   - relation([$id])
@@ -112,6 +87,25 @@ use Pi\User\Resource\AbstractResource;
  *   - relation([$id])->hasRelation($uid, $relation)
  *   - relation([$id])->add($uid, $relation)
  *   - relation([$id])->delete([$uid[, $relation]])
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::deleteUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::activateUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::enableUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
+ * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
+ *
  *
  * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -131,7 +125,7 @@ class User extends AbstractService
     /**
      * User data object of current session
      *
-     * @var UserModel|null|false
+     * @var UserModel|null|bool
      */
     protected $modelSession;
 
@@ -224,7 +218,7 @@ class User extends AbstractService
                 $this->resource[$name]->setOptions($options);
             }
         } elseif (null !== $id) {
-            $this->resource[$name]->bind($this->getUser($id));
+            $this->resource[$name]->bind($this->getAdapter()->getUser($id));
         }
 
         return $this->resource[$name];
@@ -245,7 +239,7 @@ class User extends AbstractService
             if ($identity instanceof UserModel) {
                 $this->model = $identity;
             } else {
-                $this->model = $this->getUser($identity, $type);
+                $this->model = $this->getAdapter()->getUser($identity, $type);
             }
             // Store current session user model for first time
             if (null === $this->modelSession) {
@@ -315,8 +309,8 @@ class User extends AbstractService
             $identity = null;
         } else {
             $identity = $asId
-                ? $this->modelSession->getId()
-                : $this->modelSession->getIdentity();
+                ? $this->modelSession->id
+                : $this->modelSession->identity;
         }
 
         return $identity;
@@ -384,6 +378,28 @@ class User extends AbstractService
     }
 
     /**
+     * Get activity handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function activity($id = null)
+    {
+        return $this->getResource('activity', $id);
+    }
+
+    /**
+     * Get action log handler
+     *
+     * @param int|null $id
+     * @return AbstractResource
+     */
+    public function log($id = null)
+    {
+        return $this->getResource('log', $id);
+    }
+
+    /**
      * Get relation handler
      *
      * @param int|null $id
@@ -405,7 +421,7 @@ class User extends AbstractService
      *  - email: email
      *  - <extra fields>: specified by each adapter
      *
-     * @param array|false $data
+     * @param array|bool $data
      * @return self
      */
     public function setPersist($data = array())

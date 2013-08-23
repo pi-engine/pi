@@ -89,6 +89,8 @@ return array(
             'test'      => array(
                 'config'    => 'For test',
             ),
+
+            'user'      => 'user.php',
         ),
     ),
 );

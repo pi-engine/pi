@@ -37,7 +37,7 @@ class AvatarGravatar extends AbstractAvatar
 
     /**
      * {@inheritDoc}
-     * @return false
+     * @return bool
      */
     public function getPath($size = null)
     {

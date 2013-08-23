@@ -10,7 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\Local as UserModel;
+use Pi\User\Model\Local as LocalModel;
 
 /**
  * Pi Engine local user service provided by user module
@@ -25,9 +25,9 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getMeta($type = 'account')
+    public function getMeta($type = '', $action = '')
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -37,10 +37,10 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUser($id = null, $field = 'id')
+    public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $id) {
-            $model = new UserModel($id, $field);
+        if (null !== $uid) {
+            $model = new LocalModel($uid, $field);
         } else {
             $model = $this->model;
         }
@@ -51,21 +51,20 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUserList($ids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIds(
+    public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
         $order      = ''
     ) {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+
+        return $result;
     }
 
     /**
@@ -73,7 +72,9 @@ class Local extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getCount($condition);
+
+        return $result;
     }
 
     /**
@@ -81,84 +82,75 @@ class Local extends AbstractAdapter
      */
     public function addUser($data)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->addUser($data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $id = null)
+    public function updateUser($uid, $data)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->updateUser($uid, $data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteUser($id)
+    public function deleteUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->deleteUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function activateUser($id)
+    public function activateUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->activateUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deactivateUser($id)
+    public function enableUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->enableUser($uid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function disableUser($uid)
+    {
+        return Pi::api('user', 'user')->disableUser($uid);
     }
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
-
     /**
      * {@inheritDoc}
      */
-    public function get($key, $id = null)
+    public function get($uid, $field, $filter = true)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->get($uid, $field, $filter);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $ids)
+    public function set($uid, $field, $value)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->set($uid, $field, $value);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $id = null)
+    public function increment($uid, $field, $value)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function increment($key, $value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPassword($value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->increment($uid, $field, $value);
     }
     /**#@-*/
 
@@ -168,15 +160,15 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $id = null)
+    public function getUrl($type, $uid = null)
     {
         switch ($type) {
             case 'account':
             case 'profile':
-                $id = $id ?: $this->id;
+            $uid = $this->verifyUid($uid);
                 $url = Pi::service('url')->assemble('user', array(
                     'controller'    => 'profile',
-                    'id'            => $id,
+                    'id'            => $uid,
                 ));
                 break;
             case 'login':
@@ -211,7 +203,14 @@ class Local extends AbstractAdapter
      */
     public function authenticate($identity, $credential)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $options = array();
+        if (isset($this->options['authentication'])) {
+            $options = $this->options['authentication'];
+        }
+        $service = Pi::service()->load('authentication', $options);
+        $result = $service->authenticate($identity, $credential);
+
+        return $result;
     }
     /**#@-*/
 
