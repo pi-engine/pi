@@ -24,7 +24,7 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *
  * + Single user account operations
  *   + Binding
- *   - bind($uid[, $field])
+ *   - bind($uid, $field)
  *
  *   + Read
  *   - getUser($uid, $fields)
@@ -56,8 +56,10 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *   - increment($uid, $field, $value)
  *
  * + Utility
+ *   + Route for URL assembing
+ *   - getRoute()
  *   + Collective URL
- *   - getUrl($type[, $uid])
+ *   - getUrl($type, $uid = null)
  *   + Authentication
  *   - authenticate($identity, $credential)
  *
@@ -143,14 +145,14 @@ abstract class AbstractAdapter implements BindInterface
      * Meta operations
      */
     /**
-     * Get field names of specific type and action
+     * Get fields specs of specific type and action
      *
      * - Available types: `account`, `profile`, `custom`
      * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
      * @param string $action
-     * @return string[]
+     * @return array
      * @api
      */
     abstract public function getMeta($type = '', $action = '');
@@ -332,6 +334,13 @@ abstract class AbstractAdapter implements BindInterface
     /**#@+
      * Utility APIs
      */
+    /**
+     * Get route for URL assembling
+     *
+     * @return string
+     */
+    abstract public function getRoute();
+
     /**
      * Get user URL
      *

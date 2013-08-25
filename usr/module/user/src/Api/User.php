@@ -23,21 +23,21 @@ class User extends AbstractApi
     protected $module = 'user';
 
     /**
-     * Get field names of specific type and action
+     * Get fields specs of specific type and action
      *
-     * - Available types: `account`, `profile`, `custom`, `compound`
+     * - Available types: `account`, `profile`, `compound`
      * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
      * @param string $action
-     * @return string[]
+     * @return array
      * @api
      */
     public function getMeta($type = '', $action = '')
     {
         $fields = Pi::registry('profile', 'user')->read($type, $action);
 
-        return array_keys($fields);
+        return $fields;
     }
 
     /**
@@ -219,11 +219,10 @@ class User extends AbstractApi
      * Full procedure:
      *
      * - Add account data and get uid
-     * - Add profile data
-     * - Add custom data, multiple
+     * - Add custom profile data
      * - Add compound data, multiple, if any
      *
-     * @param   array       $data
+     * @param   array   $data
      *
      * @return  array   uid and status of profile/custom/compound
      * @api
@@ -236,10 +235,6 @@ class User extends AbstractApi
             $status = $this->addProfile($uid, $data);
             if (!$status) {
                 $result['profile'] = false;
-            }
-            $status = $this->addCustom($uid, $data);
-            if (!$status) {
-                $result['custom'] = false;
             }
             $status = $this->addCompound($uid, $data);
             if (!$status) {
@@ -276,10 +271,6 @@ class User extends AbstractApi
         if (!$status) {
             $result['profile'] = false;
         }
-        $status = $this->updateCustom($uid, $data);
-        if (!$status) {
-            $result['custom'] = false;
-        }
         $status = $this->updateCompound($uid, $data);
         if (!$status) {
             $result['compound'] = false;
@@ -304,10 +295,6 @@ class User extends AbstractApi
         $status = $this->deleteProfile($uid);
         if (!$status) {
             $result['profile'] = false;
-        }
-        $status = $this->deleteCustom($uid);
-        if (!$status) {
-            $result['custom'] = false;
         }
         $status = $this->deleteCompound($uid);
         if (!$status) {
@@ -428,9 +415,9 @@ class User extends AbstractApi
      *
      * Positive to increment or negative to decrement
      *
-     * @param int       $uid
-     * @param string    $field
-     * @param int       $value
+     * @param int    $uid
+     * @param string $field
+     * @param int    $value
      *
      * @return bool
      * @api
@@ -449,12 +436,12 @@ class User extends AbstractApi
         } else {
             $string = '-' . abs($value);
         }
-        if ('account' == $type || 'profile' == $type) {
+        if ('account' == $type) {
             $sql = 'UPDATE ' . $model->getTable()
                 . ' SET `' . $field . '`=`' . $field . '`' . $string
                 . ' WHERE `uid`=' . $uid;
             Pi::db()->getAdapter()->query($sql);
-        } elseif ('custom' == $type) {
+        } elseif ('profile' == $type) {
             $sql = 'UPDATE ' . $model->getTable()
                 . ' SET `value`=`value`' . $string
                 . ' WHERE `uid`=' . $uid
@@ -745,7 +732,7 @@ class User extends AbstractApi
     }
 
     /**
-     * Add user profile data
+     * Add user custom profile
      *
      * @param int   $uid
      * @param array $data
@@ -755,57 +742,6 @@ class User extends AbstractApi
     public function addProfile($uid, array $data)
     {
         $type = 'profile';
-        $data = $this->canonizeUser($data, $type);
-        $data['uid'] = $uid;
-        $row = Pi::model($type, 'user')->createRow($data);
-        $row->save();
-
-        return true;
-    }
-
-    /**
-     * Update user basic profile data
-     *
-     * @param int   $uid
-     * @param array $data
-     *
-     * @return bool
-     */
-    public function updateProfile($uid, array $data)
-    {
-        $type = 'profile';
-        $data = $this->canonizeUser($data, $type);
-        $status = Pi::model($type, 'user')->update($data, array('uid' => $uid));
-
-        return $status;
-    }
-
-    /**
-     * Delete user profile data
-     *
-     * @param int $uid
-     *
-     * @return bool
-     */
-    public function deleteProfile($uid)
-    {
-        $type = 'profile';
-        $status = Pi::model($type, 'user')->delete(array('uid' => $uid));
-
-        return $status;
-    }
-
-    /**
-     * Add user custom profile
-     *
-     * @param int   $uid
-     * @param array $data
-     *
-     * @return bool
-     */
-    public function addCustom($uid, array $data)
-    {
-        $type = 'custom';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
         foreach ($data as $field => $value) {
@@ -828,9 +764,9 @@ class User extends AbstractApi
      *
      * @return bool
      */
-    public function updateCustom($uid, array $data)
+    public function updateProfile($uid, array $data)
     {
-        $type = 'custom';
+        $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
         foreach ($data as $field => $value) {
@@ -854,9 +790,9 @@ class User extends AbstractApi
      *
      * @return bool
      */
-    public function deleteCustom($uid)
+    public function deleteProfile($uid)
     {
-        $type = 'custom';
+        $type = 'profile';
         $status = Pi::model($type, 'user')->delete(array('uid' => $uid));
 
         return $status;
@@ -932,7 +868,7 @@ class User extends AbstractApi
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
-            $fields = $this->getMeta($type);
+            $fields = array_keys($this->getMeta($type));
         } else {
             $fields = array_unique($fields);
         }
@@ -998,7 +934,7 @@ class User extends AbstractApi
     }
 
     /**
-     * Set field for a account/profile/custom type
+     * Set field for a account/profile type
      *
      * @param int $uid
      * @param string $type
@@ -1009,11 +945,11 @@ class User extends AbstractApi
      */
     public function setTypeField($uid, $type, $field, $value)
     {
-        if ('account' == $type || 'profile' == $type) {
+        if ('account' == $type) {
             $row = Pi::model($type, 'user')->find($uid);
             $row[$field] = $value;
             $row->save();
-        } elseif ('custom' == $type) {
+        } elseif ('profile' == $type) {
             $model = Pi::model($type, 'user');
             $row = $model->select(array(
                 'uid'   => $uid,

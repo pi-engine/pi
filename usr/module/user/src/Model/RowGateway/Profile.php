@@ -9,16 +9,47 @@
 
 namespace Module\User\Model\RowGateway;
 
-use Pi;
-use Pi\Db\RowGateway\RowGateway;
+use Pi\Application\Model\User\RowGateway\AbstractFieldRowGateway;
 
 /**
- * User profile row gateway
+ * User custom profile row gateway
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Profile extends AbstractFieldRowGateway
 {
-    /** @var string Model type */
-    protected $type = 'profile';
+    /**
+     * {@inheritDoc}
+     */
+    protected function getMetaList()
+    {
+        return Pi::registry('profile', 'user')->read('profile');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getMeta($key = null)
+    {
+        $key = $this['field'];
+        return parent::getMeta($key);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filter($col = null)
+    {
+        $col = $this['field'];
+        return parent::filter($col);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function filterField($field)
+    {
+        $field = 'value';
+        return parent::filterField($field);
+    }
 }

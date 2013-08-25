@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User\Model\RowGateway;
+namespace Pi\Application\Model\User\RowGateway;
 
 use Pi;
 use Pi\Db\RowGateway\RowGateway;
@@ -18,17 +18,20 @@ use Pi\Filter\FilterChain;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractFieldRowGateway extends RowGateway implements
-    FilterInterface
+abstract class AbstractFieldRowGateway extends RowGateway
 {
-    /** @var string Model type */
-    protected $type = '';
-
     /**
      * Profile meta data
      * @var array
      */
     protected $meta;
+
+    /**
+     * Get field meta list
+     *
+     * @return array
+     */
+    abstract protected function getMetaList();
 
     /**
      * Get meta data of a key or all set
@@ -39,10 +42,9 @@ abstract class AbstractFieldRowGateway extends RowGateway implements
     protected function getMeta($key = null)
     {
         if (!isset($this->meta)) {
-            $this->meta = Pi::registry('profile', 'user')->read(
-                $this->type
-            );
+            $this->meta = $this->getMetaList();
         }
+
         if ($key) {
             $result = isset($this->meta[$key]) ? $this->meta[$key] : null;
         } else {
