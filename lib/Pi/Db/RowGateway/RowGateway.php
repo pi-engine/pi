@@ -370,47 +370,6 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
-     * Delete a row
-     *
-     * @return int
-     */
-    public function delete()
-    {
-        $this->initialize();
-
-        $where = array();
-        // primary key is always an array even if its a single column
-        foreach ($this->primaryKeyColumns as $pkColumn) {
-            $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
-        }
-
-        // @todo determine if we need to do a select
-        // to ensure 1 row will be affected
-
-        $statement = $this->sql->prepareStatementForSqlObject(
-            $this->sql->delete()->where($where)
-        );
-        $result = $statement->execute();
-
-        /*
-        if ($result->getAffectedRows() == 1) {
-            // detach from database
-            $this->primaryKeyData = null;
-        }
-        */
-
-        $result = $statement->execute();
-        $affectedRows = $result->getAffectedRows();
-
-        if ($affectedRows == 1) {
-            // detach from database
-            $this->primaryKeyData = null;
-        }
-
-        return $affectedRows;
-    }
-
-    /**
      * Assign data
      *
      * @param array $data

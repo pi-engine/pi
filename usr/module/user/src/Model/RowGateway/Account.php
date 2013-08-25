@@ -9,110 +9,20 @@
 
 namespace Module\User\Model\RowGateway;
 
-use Pi;
-//use Pi\Db\RowGateway\RowGateway;
+use Pi\Application\Model\User\RowGateway\Account as AccountRowGateway;
 
 /**
- * User account row gateway
- *
- * Update credential:
- *
- * ```
- *  $row = $accountModel->createRow($dataAarray);
- *  $row->prepare()->save();
- * ```
- *
- * Or
- * ```
- *  $row = $accountModel->createRow($dataAarray);
- *  $row->createSalt();
- *  $row->setCredential($raw_credential);
- *  $row->save();
- * ```
+ * User account profile row gateway
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Account extends AbstractFieldRowGateway
+class Account extends AccountRowGateway
 {
-    /** @var string Model type */
-    protected $type = 'account';
-
-    /**
-     * Get credential
-     * @return string
-     */
-    public function getCredential()
-    {
-        return $this->offsetGet('credential');
-    }
-
-    /**
-     * Setup credential with encrypt
-     *
-     * @param string $credential Raw credential
-     * @return $this
-     */
-    public function setCredential($credential = null)
-    {
-        $credential = $credential ?: $this->offsetGet('credential');
-        $credential = $this->transformCredential($credential);
-        $this->offsetSet('credential', $credential);
-
-        return $this;
-    }
-
-    /**
-     * Create salt for credential hash
-     *
-     * @return $this
-     */
-    public function createSalt()
-    {
-        $this->offsetSet('salt', uniqid(mt_rand(), 1));
-
-        return $this;
-    }
-
-    /**
-     * Transform credential upon raw data
-     *
-     * @param string    $credential     Credential
-     * @return string Encrypted credential value
-     */
-    public function transformCredential($credential)
-    {
-        $credential = md5(sprintf(
-            '%s%s%s',
-            $this->offsetGet('salt'),
-            $credential,
-            Pi::config('salt')
-        ));
-
-        return $credential;
-    }
-
-    /**
-     * Prepare data for credential update: salt, encrypt credential
-     *
-     * @return $this
-     */
-    public function prepare()
-    {
-        $this->createSalt();
-        $this->setCredential();
-
-        return $this;
-    }
-
     /**
      * {@inheritDoc}
      */
-    public function save($rePopulate = true)
+    protected function getMetaList()
     {
-        if (isset($this['credential'])) {
-            $this->prepare();
-        }
-
-        return parent::save($rePopulate);
+        return Pi::registry('profile', 'user')->read('account');
     }
 }

@@ -28,8 +28,9 @@ use Pi;
  *      'field' => array(
  *          // Field with simple text input
  *          <field-key> => array(
- *              // Field type, optional, default as 'custom'
- *              'type'          => 'custom',
+ *              // Field type, optional, default as 'profile'
+ *              // For non-user module, only 'profile' is accepted
+ *              'type'          => 'profile',
  *              // Field name, optional, will be set as <module>_<field-key>
  *              // if not specified
  *              'name'          => <specified_field_name>,
@@ -293,8 +294,10 @@ class User extends AbstractResource
         if (isset($spec['field'])) {
             $spec['type'] = 'compound';
         }
-        if (!isset($spec['type'])) {
-            $spec['type'] = 'custom';
+        if (!isset($spec['type'])
+            || ('user' != $this->getModule() && 'compound' != $spec['type'])
+        ) {
+            $spec['type'] = 'profile';
         }
         if ('compound' == $spec['type']) {
             $spec['is_edit'] = 0;
@@ -400,6 +403,9 @@ class User extends AbstractResource
      */
     public function installAction()
     {
+        if ('user' != $this->getModule && !$this->isActive()) {
+            return;
+        }
         if (empty($this->config)) {
             return;
         }
@@ -505,7 +511,7 @@ class User extends AbstractResource
 
         // Delete deprecated user custom profile data
         if ($itemsDeleted['field']) {
-            Pi::model('custom', 'user')->delete(array(
+            Pi::model('profile', 'user')->delete(array(
                 'field' => $itemsDeleted['field'],
             ));
             Pi::model('compound_field', 'user')->delete(array(
@@ -559,7 +565,7 @@ class User extends AbstractResource
         }
         // Remove module profile data
         if ($fields) {
-            Pi::model('custom', 'user')->delete(array('field' => $fields));
+            Pi::model('profile', 'user')->delete(array('field' => $fields));
         }
 
         $compounds = array();

@@ -1,36 +1,19 @@
 <?php
 /**
- * User module configs
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) http://www.eefocus.com
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Liu Chuang <liuchuag@eefocus.com>
- * @since           1.0
- * @package         Module\User
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
-$config = array();
+/**
+ * Route specs
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 
-// Config categories
-$config['category'] = array(
-    array(
-        'name'     => 'general',
-        'title'    => _t('General'),
-    ),
-);
-
-// Config items
-
-$config['item'] = array(
-    // General section
-
+$config = array(
     'uname_format'  => array(
         'title'         => _t('Username format'),
         'description'   => _t('Format of username for registration.'),
@@ -50,26 +33,29 @@ $config['item'] = array(
     ),
 
     'uname_min'     => array(
-        'title'         => _t('Minmum username'),
-        'description'   => _t('Minmum length of username for user registration'),
+        'title'         => _t('Minimum username'),
+        'description'   =>
+            _t('Minimum length of username for user registration'),
         'value'         => 3,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
     'uname_max'     => array(
         'title'         => _t('Maximum username'),
-        'description'   => _t('Maximum length of username for user registration'),
+        'description'   =>
+            _t('Maximum length of username for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
     'password_min'  => array(
-        'title'         => _t('Minmum password'),
-        'description'   => _t('Minmum length of password for user registration'),
+        'title'         => _t('Minimum password'),
+        'description'   =>
+            _t('Minimum length of password for user registration'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
@@ -77,7 +63,7 @@ $config['item'] = array(
         'title'         => _t('Maximum password'),
         'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
@@ -101,7 +87,7 @@ $config['item'] = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
@@ -109,7 +95,7 @@ $config['item'] = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
@@ -118,7 +104,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 
@@ -127,7 +113,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'general',
     ),
 );

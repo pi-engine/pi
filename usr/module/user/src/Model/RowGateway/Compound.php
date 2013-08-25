@@ -10,7 +10,7 @@
 namespace Module\User\Model\RowGateway;
 
 use Pi;
-//use Pi\Db\RowGateway\RowGateway;
+use Pi\Application\Model\User\RowGateway\AbstractFieldRowGateway;
 
 /**
  * User compound profile row gateway
@@ -19,19 +19,19 @@ use Pi;
  */
 class Compound extends AbstractFieldRowGateway
 {
-    /** @var string Model type */
-    protected $type = 'compound';
+    /**
+     * {@inheritDoc}
+     */
+    protected function getMetaList()
+    {
+        return Pi::registry('compound', 'user')->read($this['compound']);
+    }
 
     /**
      * {@inheritDoc}
      */
     protected function getMeta($key = null)
     {
-        if (!isset($this->meta)) {
-            $this->meta = Pi::registry('compound', 'user')->read(
-                $this['compound']
-            );
-        }
         $key = $this['field'];
         return parent::getMeta($key);
     }

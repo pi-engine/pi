@@ -17,8 +17,11 @@ use Pi\User\Model\Local as LocalModel;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends AbstractAdapter
+class Local extends System
 {
+    /** @var string Route for user URLs */
+    protected $route = 'user';
+
     /**#@+
      * Meta operations
      */
@@ -160,43 +163,17 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
+    public function getRoute()
+    {
+        return parent::getRoute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUrl($type, $uid = null)
     {
-        vd($type);
-        switch ($type) {
-            case 'account':
-            case 'profile':
-                $uid = $this->verifyUid($uid);
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'profile',
-                    'id'            => $uid,
-                ));
-                break;
-            case 'login':
-            case 'signin':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login'
-                ));
-                break;
-            case 'logout':
-            case 'signout':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login',
-                    'action'        => 'logout',
-                ));
-                break;
-            case 'register':
-            case 'signup':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'register',
-                ));
-                break;
-            default:
-                $url = '';
-                break;
-        }
-
-        return $url;
+        return parent::getUrl($type, $uid);
     }
 
     /**
@@ -204,14 +181,7 @@ class Local extends AbstractAdapter
      */
     public function authenticate($identity, $credential)
     {
-        $options = array();
-        if (isset($this->options['authentication'])) {
-            $options = $this->options['authentication'];
-        }
-        $service = Pi::service()->load('authentication', $options);
-        $result = $service->authenticate($identity, $credential);
-
-        return $result;
+        return parent::authenticate($identity, $credential);
     }
     /**#@-*/
 }
