@@ -496,7 +496,7 @@ class User extends AbstractApi
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
-            $fields = $this->getMeta();
+            $fields = array_keys($this->getMeta());
         } else {
             $fields = array_unique($fields);
         }
