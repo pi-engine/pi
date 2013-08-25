@@ -3,6 +3,7 @@
 # Author: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
 # --------------------------------------------------------
 
+
 CREATE TABLE `{update}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,
   `title`       varchar(255)    default NULL,

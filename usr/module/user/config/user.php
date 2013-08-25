@@ -120,6 +120,43 @@ return array(
                 ),
             ),
         ),
+        // Account: gender
+        'gender'    => array(
+            'type'      => 'account',
+            'name'      => 'gender',
+            'title'     => __('Gender'),
+            'edit'      => 'Module\User\Form\Element\Gender',
+            'filter'    => 'Gender',
+        ),
+        // Account: birth date
+        'birthdate'  => array(
+            'type'  => 'account',
+            'name'  => 'birthdate',
+            'title' => __('Birth date'),
+            'edit'  => array(
+                'element'       => 'DateTimeSelect',
+                'filters'       => array(
+                    array(
+                        'name'  => 'Module\User\Filter\Birthdate',
+                    ),
+                ),
+                'validators'   => array(
+                    array(
+                        'name'  => 'Module\User\Validator\Birthdate',
+                    ),
+                ),
+            ),
+        ),
+        // Account: avatar
+        'avatar'    => array(
+            'type'      => 'account',
+            'name'      => 'avatar',
+            'title'     => __('Avatar'),
+
+            'is_edit'   => false,
+            'is_search' => false,
+        ),
+
         // Account: Collective status
         'active'    => array(
             'type'      => 'account',
@@ -178,64 +215,30 @@ return array(
             'is_search'     => false,
         ),
 
-        // Profile fields
+        // Custom profile fields
 
         // Profile: Full name
         'fullname'  => array(
-            'type'      => 'profile',
             'name'      => 'fullname',
             'title'     => __('Full name'),
         ),
-        // Profile: gender
-        'gender'    => array(
-            'type'      => 'profile',
-            'name'      => 'gender',
-            'title'     => __('Gender'),
-            'edit'      => 'Module\User\Form\Element\Gender',
-            'filter'    => 'Gender',
-        ),
-        // Profile: birth date
-        'birthdate'  => array(
-            'type'  => 'profile',
-            'name'  => 'birthdate',
-            'title' => __('Birth date'),
-            'edit'  => array(
-                'element'       => 'DateTimeSelect',
-                'filters'       => array(
-                    array(
-                        'name'  => 'Module\User\Filter\Birthdate',
-                    ),
-                ),
-                'validators'   => array(
-                    array(
-                        'name'  => 'Module\User\Validator\Birthdate',
-                    ),
-                ),
-            ),
-        ),
         // Profile: location
         'location'  => array(
-            'type'  => 'profile',
             'name'  => 'location',
             'title' => __('Location'),
         ),
-        // Profile: signature
-        'signature'  => array(
-            'type'  => 'profile',
-            'name'  => 'signature',
-            'title' => __('Signature'),
-        ),
         // Profile: bio
         'bio'  => array(
-            'type'  => 'profile',
             'name'  => 'bio',
             'title' => __('Short bio'),
             'edit'  => 'textarea',
         ),
-
-        // Custom fields
-
-        // Custom: language
+        // Profile: signature
+        'signature'  => array(
+            'name'  => 'signature',
+            'title' => __('Signature'),
+        ),
+        // Profile: language
         'language'  => array(
             'name'  => 'language',
             'title' => __('Language'),
@@ -243,7 +246,6 @@ return array(
         ),
 
         // Compound fields
-
         // Compound: Social networking tools
         'tool'      => array(
             'name'  => 'tool',

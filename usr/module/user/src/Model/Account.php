@@ -10,14 +10,14 @@
 namespace Module\User\Model;
 
 use Pi;
-use Pi\Application\Model\Model as BasicModel;
+use Pi\Application\Model\User\Account as AccountUserModel;
 
 /**
  * User account model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Account extends BasicModel
+class Account extends AccountUserModel
 {
     /**
      * Row gateway class
@@ -27,12 +27,13 @@ class Account extends BasicModel
     protected $rowClass = 'Module\User\Model\RowGateway\Account';
 
     /**
-     * Get identity column
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function getIdentityColumn()
+    public function setup(array $options = array())
     {
-        return 'identity';
+        $options['prefix'] = Pi::db()->prefix('', 'core');
+        parent::setup($options);
+
+        return $this;
     }
 }

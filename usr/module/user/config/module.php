@@ -8,16 +8,12 @@
  */
 
 return array(
-    // Module meta
     'meta'  => array(
-        // Module title, required
         'title'         => 'User',
-        // Description, for admin, optional
         'description'   => 'User profile and services.',
-        // Version number, required
-        'version'       => '1.0.0',
-        // Distribution license, required
+        'version'       => '1.0.0-alpha',
         'license'       => 'New BSD',
+        'demo'          => 'http://demo.pialog.org'
     ),
     // Author information
     'author'    => array(
@@ -34,7 +30,9 @@ return array(
             // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
         ),
-        'user'  => 'user.php',
-        'route' => 'route.php',
+        'config'    => 'config.php',
+        'user'      => 'user.php',
+        'route'     => 'route.php',
+        'nav'       => 'nav.php',
     ),
 );

@@ -72,7 +72,7 @@ return array(
         // View pages
         'page'      => 'page.php',
         // Navigation definition
-        'navigation'    => 'navigation.php',
+        'nav'       => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
         'route'     => 'route.php',
         // Callback for stats and monitoring

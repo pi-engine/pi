@@ -37,12 +37,6 @@ use Pi\User\Resource\AbstractResource;
  *  - hasIdentity()
  *  - getIdentity()
  *
- * + User account/profile field operations
- *  - getByModule($module, $key[, $id])
- *  - getListByModule($module, $key, $ids)
- *  - setByModule($module, $key, $value[, $id])
- *  - incrementByModule($module, $key, $value[, $id])
- *
  * + Resource APIs
  *
  * + Avatar
@@ -103,6 +97,7 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
  *

@@ -35,10 +35,10 @@ return array(
     ),
     'item' => array(
         // Front navigation items
-        'front' => include __DIR__ . '/navigation.front.php',
+        'front' => include __DIR__ . '/nav.front.php',
         // Admin navigation items
-        'admin' => include __DIR__ . '/navigation.admin.php',
+        'admin' => include __DIR__ . '/nav.admin.php',
         // Managed component items
-        'component' => include __DIR__ . '/navigation.component.php',
+        'component' => include __DIR__ . '/nav.component.php',
     )
 );

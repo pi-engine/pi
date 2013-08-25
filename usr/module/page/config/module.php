@@ -51,7 +51,7 @@ return array(
             )
         ),
         // Navigation definition
-        'navigation'    => 'navigation.php',
+        'nav'           => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
         'route'         => 'route.php',
         // View pages

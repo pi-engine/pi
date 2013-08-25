@@ -12,14 +12,14 @@ namespace Module\User\Model;
 use Pi\Application\Model\Model as BasicModel;
 
 /**
- * User profile model
+ * User custom profile model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Profile extends BasicModel
 {
     /**
-     * Class name for row
+     * Row gateway class
      *
      * @var string
      */
