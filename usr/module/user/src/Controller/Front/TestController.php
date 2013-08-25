@@ -202,7 +202,6 @@ class TestController extends ActionController
         $fields = Pi::user()->get($uid, array('active', 'time_activated'));
         d($fields);
     }
-
     // enableAction
     // disableAction
     // deleteAction

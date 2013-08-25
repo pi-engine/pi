@@ -36,5 +36,6 @@ return array(
         ),
         'user'  => 'user.php',
         'route' => 'route.php',
+        'config' => 'config.php',
     ),
 );

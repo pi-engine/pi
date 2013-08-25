@@ -34,7 +34,7 @@ class LoginController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity()
+                'identity'  => Pi::service('user')->getIdentity(false)
             ));
             return;
         }
@@ -61,7 +61,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $config = Pi::service('registry')->config->read('user', 'general');
+        $configs = Pi::service('registry')->config->read('user', 'general');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -125,7 +125,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $config = Pi::service('registry')->config->read('user', 'general');
+        $configs = Pi::service('registry')->config->read('user', 'general');
 
         $values = $form->getData();
         $identity = $values['identity'];
@@ -204,12 +204,5 @@ class LoginController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-//        vd(Pi::service('user')->hasIdentity());
-//        vd(Pi::service('user')->getUrl('login'));
-//        $url = Pi::service('url')->assemble('default', array(
-//            'controller'    => 'login',
-//            'action' => 'index',
-//        ));
-//        vd($url);
     }
 }

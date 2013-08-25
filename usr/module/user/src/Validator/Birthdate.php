@@ -1,6 +1,6 @@
 <?php
 /**
- * Profile edit form input filter
+ * Birthdate verification validator
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -14,23 +14,19 @@
  * @author          Liu Chuang <liuchuang@eefocus.com>
  * @since           3.0
  * @package         Module\User
- * @subpackage      Form
+ * @subpackage      Validator
  * @version         $Id$
  */
 
-namespace Module\User\Form;
+namespace Module\User\Validator;
 
 use Pi;
-use Zend\InputFilter\InputFilter;
+use Zend\Validator\AbstractValidator;
 
-class ProfileEditFilter extends InputFilter
+class Birthdate extends AbstractValidator
 {
-    public function __construct($filters)
+    public function isValid($value, $context = null)
     {
-        foreach ($filters as $filter) {
-            if ($filter) {
-                $this->add($filter);
-            }
-        }
+
     }
 }

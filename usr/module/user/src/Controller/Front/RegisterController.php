@@ -36,6 +36,17 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
+
+        // If already login
+        if (Pi::service('user')->hasIdentity()) {
+            $this->view()->assign('title', __('User login'));
+            $this->view()->setTemplate('login-message');
+            $this->view()->assign(array(
+                'identity'  => Pi::service('user')->getIdentity(false)
+            ));
+            return;
+        }
+
         list($fields, $filters) = $this->canonizeForm('register.form');
         $form = $this->getForm($fields);
 
@@ -53,8 +64,8 @@ class RegisterController extends ActionController
                     'credential' => $values['credential'],
                 );
 
-                $uid = Pi::api('user', 'user')->addUser($data);
-
+                $result = Pi::api('user', 'user')->addUser($data);
+                $uid    = $result[0];
                 // Set user role
                 $this->createRole($uid);
                 // Set user data
@@ -74,7 +85,7 @@ class RegisterController extends ActionController
                 $url = $this->url('', array(
                     'action' => 'activate',
                     'id'     => md5($uid),
-                    'token'  => $result['token']
+                    'token'  => $result['content']
                     )
                 );
 
@@ -128,7 +139,7 @@ class RegisterController extends ActionController
 
                     if ($result) {
                         // Delete user data
-                        Pi::api('user', 'userdata')->deletData($userData['id']);
+                        Pi::api('user', 'userdata')->deleteData($userData['id']);
                         $data['status'] = true;
                         $data['title']  = __('Register done');
                     }
@@ -223,10 +234,8 @@ class RegisterController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-        return $this->jump(
-            array('action' => 'index'),
-            'just test'
-        );
+
+
     }
 
     /**
