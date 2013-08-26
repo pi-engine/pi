@@ -84,7 +84,7 @@ class Avatar extends AbstractResource
     public function get($size = '', $attributes = array())
     {
         $avatar = $this->model ? $this->model->avatar : '';
-        if (false !== strpos('@', $avatar)) {
+        if (false !== strpos($avatar, '@')) {
             $adapter = 'gravatar';
         } elseif ($avatar) {
             $adapter = 'upload';

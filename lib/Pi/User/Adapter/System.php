@@ -10,7 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\System as SystemModel;
+use Pi\User\Model\System as UserModel;
 
 /**
  * Pi Engine built-in user service provided by system module
@@ -43,7 +43,7 @@ class System extends AbstractAdapter
     public function getUser($uid = null, $field = 'id')
     {
         if (null !== $uid) {
-            $model = new SystemModel($uid, $field);
+            $model = $this->getUserModel($uid, $field);
         } else {
             $model = $this->model;
         }
@@ -225,4 +225,19 @@ class System extends AbstractAdapter
         return $result;
     }
     /**#@-*/
+
+    /**
+     * Get user data model
+     *
+     * @param int       $uid
+     * @param string    $field
+     *
+     * @return UserModel
+     */
+    protected function getUserModel($uid, $field = 'id')
+    {
+        $model = new UserModel($uid, $field);
+
+        return $model;
+    }
 }

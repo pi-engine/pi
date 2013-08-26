@@ -16,4 +16,18 @@ namespace Pi\User\Model;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Local extends System
-{}
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function get($name)
+    {
+        $result = parent::get($name);
+        if (null === $result) {
+            $result = Pi::api('user', 'user')->get($this->get('id'), $name);
+            $this->data[$name] = $result;
+        }
+
+        return $result;
+    }
+}
