@@ -474,7 +474,7 @@ CREATE TABLE `{core.theme}` (
 # all local data of a user should be indexed by user ID
 
 # User account and authentication data
-CREATE TABLE `{user}` (
+CREATE TABLE `{core.user_account}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   -- Account name
   `identity`        varchar(32)     NOT NULL,
@@ -483,14 +483,15 @@ CREATE TABLE `{user}` (
   -- Salt for credential hash
   `salt`            varchar(255)    NOT NULL default '',
   `email`           varchar(64)     NOT NULL,
+
   -- Display name
   `name`            varchar(255)    default NULL,
-
+  -- Avatar image src
+  `avatar`          varchar(255)    NOT NULL default '',
+  -- Gender
   `gender`          enum('male', 'female', 'unknown'),
   -- Birth date with format 'YYYY-mm-dd'
   `birthdate`       varchar(10)     NOT NULL default '',
-  -- Avatar image src
-  `avatar`          varchar(255)    NOT NULL default '',
 
   -- Synchronized availability of account
   -- 1: time_activated > 0 && time_disabled == 0 && time_deleted == 0
@@ -515,26 +516,27 @@ CREATE TABLE `{user}` (
 );
 
 # user custom contents
-CREATE TABLE `{core.user_repo}` (
+CREATE TABLE `{core.user_data}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL default '0',
+  `uid`             int(10)         unsigned    NOT NULL default '0',
   `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '',
+  `name`            varchar(64)     NOT NULL,
+  `time`            int(10)         unsigned    NOT NULL default '0',
   `content`         text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`user`, `module`, `type`)
+  UNIQUE KEY `user_content` (`uid`, `module`, `name`)
 );
 
 # user-role links
 CREATE TABLE `{core.user_role}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL,
-  `role`            varchar(64)     NOT NULL    default '',
+  `uid`             int(10)         unsigned    NOT NULL,
+  `role`            varchar(64)     NOT NULL,
   `section`         varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `section_user` (`section`, `user`)
+  UNIQUE KEY `section_user` (`section`, `uid`)
 );
 
 # ------------------------------------------------------

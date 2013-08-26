@@ -189,10 +189,10 @@ class DashboardController extends ActionController
 
         // Get user quick links
         $links = array();
-        $row = Pi::model('user_repo')->select(array(
-            'user'      => $user,
+        $row = Pi::model('user_data')->select(array(
+            'uid'       => $user,
             'module'    => 'system',
-            'type'      => 'admin-link'
+            'name'      => 'admin-link'
         ))->current();
         if ($row) {
             $links = (array) $row->content;
@@ -200,14 +200,14 @@ class DashboardController extends ActionController
 
         // Get system message, only admins have access
         $message = array();
-        $row = Pi::model('user_repo')->select(array(
+        $row = Pi::model('user_data')->select(array(
             'module' => 'system',
-            'type' => 'admin-message'
+            'name' => 'admin-message'
         ))->current();
         if (!$row || !$row->content) {
-            $row = Pi::model('user_repo')->select(array(
+            $row = Pi::model('user_data')->select(array(
                 'module'    => 'system',
-                'type'      => 'admin-welcome'
+                'name'      => 'admin-welcome'
             ))->current();
         }
         $content = $row->content;
@@ -347,7 +347,7 @@ class DashboardController extends ActionController
      */
     public function messageAction()
     {
-        $type = 'admin-message';
+        $name = 'admin-message';
 
         $data = array();
         $content = $this->params()->fromPost('content');
@@ -357,17 +357,17 @@ class DashboardController extends ActionController
                 'time'      => time(),
             );
         }
-        $row = Pi::model('user_repo')
-            ->select((array('module' => 'system', 'type' => $type)))
+        $row = Pi::model('user_data')
+            ->select((array('module' => 'system', 'name' => $name)))
             ->current();
 
         if (Pi::service('user')->getUser()->isAdmin()) {
             if ($row) {
                 $row->content = $data;
             } else {
-                $row = Pi::model('user_repo')->createRow(array(
+                $row = Pi::model('user_data')->createRow(array(
                     'module'    => 'system',
-                    'type'      => $type,
+                    'name'      => $name,
                     'content'   => $data,
                 ));
             }
@@ -375,9 +375,11 @@ class DashboardController extends ActionController
         }
 
         if (!$data) {
-            $row = Pi::model('user_repo')
-                ->select((array('module' => 'system',
-                                'type' => 'admin-welcome')))
+            $row = Pi::model('user_data')
+                ->select(array(
+                    'module'    => 'system',
+                    'name'      => 'admin-welcome'
+                ))
                 ->current();
             $data = $row->content;
         }

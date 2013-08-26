@@ -43,29 +43,29 @@ class Local extends AbstractModel
     /**
      * {@inheritDoc}
      */
-    public function loadRole()
+    public function loadProfile()
     {
-        if ($this->account->id) {
-            $model = ('admin' == Pi::engine()->section())
-                ? Pi::model('user_staff') : Pi::model('user_role');
-            $role = $model->find($this->account->id, 'user');
-            $this->role = $role ? $role->role : Acl::GUEST;
-        } else {
-            $this->role = Acl::GUEST;
-        }
+        $this->profile = new StdClass;
 
-        return $this->role;
+        return $this->profile;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function loadProfile()
+    public function loadRole()
     {
-        $row = Pi::model('user_profile')->find($this->id);
-        $this->profile = $row ? (object) $row->toArray() : new StdClass;
+        if ($this->account->id) {
+            $row = Pi::model('user_role')->select(array(
+                'uid'       => $this->account->id,
+                'section'   => 'front',
+            ))->current();
+            $this->role = $row ? $row['role'] : Acl::GUEST;
+        } else {
+            $this->role = Acl::GUEST;
+        }
 
-        return $this->profile;
+        return $this->role;
     }
 
     /**

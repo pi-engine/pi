@@ -10,7 +10,7 @@
 # all local data of a user should be indexed by user ID
 
 # User account and authentication data
-CREATE TABLE `{user}` (
+CREATE TABLE `{core.user_account}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   -- Account name
   `identity`        varchar(32)     NOT NULL,
