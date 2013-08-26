@@ -107,7 +107,7 @@ class ProfileController extends ActionController
         $isOwner = false;
 
         if (!$uid && !$isLogin) {
-            $this->jumpTo404();
+            $this->jumpTo404('An error occur');
         }
 
         $loginUid = Pi::service('user')->getIdentity();
@@ -116,28 +116,26 @@ class ProfileController extends ActionController
             $isOwner = true;
         }
 
-        // Test display (uid = 1)
         // Get user information
-
-        $user['name'] = Pi::api('user')
-            ->getAccount($uid, 'display', array('name'));
-
-        $fields  = array('gender', 'birthdate');
-        $profile = PgetProfile($uid, 'display', $fields);
-        $user['gender']    = $profile['gender'];
-        $user['birthdate'] = $profile['birthdate'];
+        $user = array(
+            'name'     => Pi::api('user', 'user')->get($uid, 'name'),
+            'gender'   => Pi::api('user', 'user')->get($uid, 'gender'),
+            'birthday' => Pi::api('user', 'user')->get($uid, 'birthday'),
+        );
 
         // Get timeline
         $count    = Pi::service('user')->timeline($uid)->getCount();
         $timeline = Pi::service('user')->timeline($uid)->get($limit, $offset);
 
+        // Get activity
+
         // Set paginator
         $paginatorOption = array(
-            'count' => $count,
-            'limit' => $limit,
-            'page'  => $page,
-            'controller' => 'account',
-            'action'     => 'index'
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+            'controller' => 'profile',
+            'action'     => 'home'
         );
         $paginator = $this->setPaginator($paginatorOption);
 

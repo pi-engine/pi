@@ -17,7 +17,7 @@ use Zend\InputFilter\InputFilter;
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class RegisterFilter extends InputFilter
+class PerfectInformationFilter extends InputFilter
 {
     public function __construct($filters)
     {

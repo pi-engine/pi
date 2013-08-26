@@ -119,7 +119,7 @@ class PasswordController extends ActionController
 
                 // Send verify email
                 $result = Pi::api('user', 'userdata')
-                    ->setData($uid, 'find-password', 'user');
+                    ->setMailData($uid, 'find-password', 'user');
 
                 $to = $userRow->email;
                 $baseLocation = Pi::host()->get('baseLocation');
@@ -171,7 +171,7 @@ class PasswordController extends ActionController
             return;
         }
 
-        $userData = Pi::api('user', 'userdata')->getDataByContent($token);
+        $userData = Pi::api('user', 'userdata')->getMailDataByContent($token);
 
         if ($userData) {
             $hashUid = md5($userData['uid']);
