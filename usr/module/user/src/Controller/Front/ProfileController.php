@@ -26,8 +26,10 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $uid = $this->params('id');
+        $uid     = $this->params('id');
         $isLogin = Pi::service('user')->hasIdentity();
+        $isOwner = false;
+        $data    = array();
 
         if (!$uid && !$isLogin) {
             $this->jumpTo404();
@@ -38,6 +40,9 @@ class ProfileController extends ActionController
             $uid = Pi::service('user')->getIdentity();
             $isOwner = true;
         }
+
+        // Get user information
+        $user = $this->getUser($uid);
 
         // Get display group
         $model  = $this->getModel('display_group');
@@ -85,7 +90,8 @@ class ProfileController extends ActionController
         }
 
         $this->view()->assign(array(
-            'data' => $data,
+            'data'    => $data,
+            'isOwner' => $isOwner,
         ));
     }
 
@@ -117,17 +123,22 @@ class ProfileController extends ActionController
         }
 
         // Get user information
-        $user = array(
-            'name'     => Pi::api('user', 'user')->get($uid, 'name'),
-            'gender'   => Pi::api('user', 'user')->get($uid, 'gender'),
-            'birthday' => Pi::api('user', 'user')->get($uid, 'birthday'),
-        );
+        $user = $this->getUser($uid);
 
         // Get timeline
         $count    = Pi::service('user')->timeline($uid)->getCount();
         $timeline = Pi::service('user')->timeline($uid)->get($limit, $offset);
 
-        // Get activity
+        // Set timeline meta
+        foreach ($timeline as &$item) {
+            $timelineMeta = Pi::service('user')
+                          ->timeline()
+                          ->getMeta($item['module'], $item['timeline']);
+            $item['icon'] = $timelineMeta['icon'];
+        }
+
+        // Get activity meta
+        $activityMeta = $this->getActivityMeta();
 
         // Set paginator
         $paginatorOption = array(
@@ -144,6 +155,7 @@ class ProfileController extends ActionController
             'timeline'  => $timeline,
             'paginator' => $paginator,
             'isOwner'   => $isOwner,
+            'activity'  => $activityMeta,
         ));
     }
 
@@ -291,5 +303,41 @@ class ProfileController extends ActionController
             }
             return array($elements, $filters);
         }
+    }
+
+    /**
+     * Get activity meta
+     *
+     * @return array active meta
+     */
+    protected function getActivityMeta()
+    {
+        $result = array();
+        $model  = $this->getModel('activity');
+        $select = $model->select()->where(array('active' => 1));
+        $rowset = $model->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $result[$row->name] = $row->array();
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * Get user information for profile page head display
+     * @param $uid
+     * @return array user information
+     */
+    protected function getUser($uid)
+    {
+        $result = array(
+            'name'     => Pi::api('user', 'user')->get($uid, 'name'),
+            'gender'   => Pi::api('user', 'user')->get($uid, 'gender'),
+            'birthday' => Pi::api('user', 'user')->get($uid, 'birthday'),
+        );
+
+        return $result;
     }
 }
