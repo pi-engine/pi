@@ -429,7 +429,7 @@ class User extends AbstractApi
             $data['time_created'] = time();
         }
         $row = Pi::model('user_account')->createRow($data);
-        $row->save();
+        $row->prepare()->save();
 
         return (int) $row['id'];
     }
@@ -448,7 +448,9 @@ class User extends AbstractApi
         $row = Pi::model('user_account')->find($uid);
         if ($row) {
             $row->assign($data);
-            //if (isset($data['credential']))
+            if (isset($data['credential'])) {
+                $row->prepare();
+            }
             $row->save();
             $status = true;
         } else {

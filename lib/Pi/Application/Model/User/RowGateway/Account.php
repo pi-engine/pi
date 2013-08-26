@@ -113,9 +113,11 @@ class Account extends AbstractFieldRowGateway
      */
     public function save($rePopulate = true)
     {
+        /*
         if (isset($this['credential'])) {
             $this->prepare();
         }
+        */
 
         return parent::save($rePopulate);
     }

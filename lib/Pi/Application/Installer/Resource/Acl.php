@@ -18,17 +18,28 @@ use Pi\Acl\Acl as AclHandler;
  * ```
  *  array(
  *      'roles' => array(
- *          'roleName'  => array(
- *              'title'     => 'Title',
- *              'parents'   => array('parent'),
+ *          'admin' => array(
+ *              <role-name>  => array(
+ *                  'title'     => 'Title',
+ *                  'parents'   => array('parent'),
+ *              ),
+ *              <role-name> => array(
+ *                  'title'     => 'Title',
+ *                  'parents'   => array('parent'),
+ *              ),
+ *              <...>
  *          ),
- *          'roleNameStaff' => array(
- *              'title'     => 'Title',
- *              'parents'   => array('parent'),
- *              // Default as front if not specified
- *              'section'   => 'admin',
+ *          'front' => array(
+ *              <role-name>  => array(
+ *                  'title'     => 'Title',
+ *                  'parents'   => array('parent'),
+ *              ),
+ *              <role-name> => array(
+ *                  'title'     => 'Title',
+ *                  'parents'   => array('parent'),
+ *              ),
+ *              <...>
  *          ),
- *          ...
  *      ),
  *      'resources' => array(
  *          // Front resources
@@ -96,6 +107,30 @@ class Acl extends AbstractResource
         }
 
         return $data;
+    }
+
+    /**
+     * Canonize role data
+     *
+     * @param array $roles
+     *
+     * @return array
+     */
+    protected function canonizeRole(array $roles)
+    {
+        $module = $this->getModule();
+        $result = array();
+        foreach ($roles as $section => $list) {
+            foreach ($list as $name => $role) {
+                $result[$name] = array_merge(array(
+                    'name'      => $name,
+                    'module'    => $module,
+                    'section'   => $section,
+                ), $role);
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -173,9 +208,10 @@ class Acl extends AbstractResource
         // Add roles
         if (!empty($this->config['roles'])) {
             $inheritance = array();
-            foreach ($this->config['roles'] as $name => $role) {
-                $role['name'] = $name;
-                $role['module'] = $module;
+            $roles = $this->canonizeRole($this->config['roles']);
+            foreach ($roles as $key => $role) {
+                //$role['name'] = $name;
+                //$role['module'] = $module;
                 if (isset($role['parents'])) {
                     $inheritance[$role['name']] = $role['parents'];
                     unset($role['parents']);
@@ -185,7 +221,7 @@ class Acl extends AbstractResource
                 if (false === $status) {
                     $message[] = sprintf(
                         'Role "%s" is not created.',
-                        $role['name']
+                        $key
                     );
                     return array(
                         'status'    => false,
@@ -257,8 +293,8 @@ class Acl extends AbstractResource
         }
 
         // Update roles
-        $rolesNew = isset($this->config['roles'])
-            ? $this->config['roles'] : array();
+        $roles = $this->canonizeRole($this->config['roles']);
+        $rolesNew = $roles;
 
         $model = Pi::model('acl_role');
         $rowset = $model->select(array(
@@ -271,9 +307,9 @@ class Acl extends AbstractResource
         }
         $inheritanceNew = array();
         //$inheritanceDelete = array();
-        foreach ($rolesNew as $name => $role) {
-            $role['name'] = $name;
-            $role['module'] = $module;
+        foreach ($rolesNew as $key => $role) {
+            //$role['name'] = $name;
+            //$role['module'] = $module;
             if (isset($role['parents'])) {
                 foreach ($role['parents'] as $parent) {
                     $inheritanceNew[$role['name']][$parent] = 1;
@@ -281,12 +317,12 @@ class Acl extends AbstractResource
                 unset($role['parents']);
             }
             // Update existent role
-            if (isset($rolesExist[$name])) {
-                if ($rolesExist[$name]->title != $role['title']) {
-                    $rolesExist[$name]->title = $role['title'];
-                    $rolesExist[$name]->save();
+            if (isset($rolesExist[$key])) {
+                if ($rolesExist[$key]->title != $role['title']) {
+                    $rolesExist[$key]->title = $role['title'];
+                    $rolesExist[$key]->save();
                 }
-                unset($rolesExist[$name]);
+                unset($rolesExist[$key]);
                 continue;
             }
             // Add new role
@@ -295,7 +331,7 @@ class Acl extends AbstractResource
             if (false === $status) {
                 $message[] = sprintf(
                     'Role "%s" is not created.',
-                    $role['name']
+                    $key
                 );
                 return array(
                     'status'    => false,
@@ -688,7 +724,7 @@ class Acl extends AbstractResource
                         $role,
                         $resource['section'],
                         $resource['module'],
-                        $resourceId,
+                        $resource['id'],
                         $name
                     );
                 }

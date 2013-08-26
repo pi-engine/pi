@@ -23,12 +23,17 @@ class DbTable extends DbTable\CallbackAdapter
     protected function getCallback()
     {
         if (!$this->callback) {
+            /*
             $credentialColumn = $this->credentialColumn;
             $this->callback = function (
                 $a,
                 $b,
                 $identity
             ) use ($credentialColumn) {
+                return $a === $identity->transformCredential($b);
+            };
+            */
+            $this->callback = function ($a, $b, $identity) {
                 return $a === $identity->transformCredential($b);
             };
         }
