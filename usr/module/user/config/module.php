@@ -7,6 +7,11 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
+/**
+ * User module meta
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 return array(
     'meta'  => array(
         'title'         => 'User',
@@ -18,9 +23,11 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Taiwen Jiang',
+        'dev'       => 'Taiwen Jiang; Liu Chuang',
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'architect' => 'Taiwen Jiang',
+        'design'    => '@voltan, @zhangsimon'
     ),
 
     // Resource
