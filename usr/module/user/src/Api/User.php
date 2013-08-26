@@ -363,7 +363,7 @@ class User extends AbstractApi
         $keys   = (array) $field;
         $uids   = (array) $uid;
 
-        $meta   = $this->canonizeMeta($keys);
+        $meta   = $this->canonizeField($keys);
         foreach ($meta as $type => $fields) {
             $fields = $this->getFields($uids, $type, $fields, $filter);
             foreach ($fields as $id => $data) {
@@ -453,16 +453,86 @@ class User extends AbstractApi
     }
 
     /**
+     * Set user role(s)
+     *
+     * @param int          $uid
+     * @param string|array $role
+     * @param string       $section
+     *
+     * @return bool
+     */
+    public function setRole($uid, $role, $section = '')
+    {
+        if (is_string($role)) {
+            $section = $section ?: 'front';
+            $role = array(
+                $section    => $role,
+            );
+        }
+        $model = Pi::model('user_role');
+        $rowset = $model->select(array(
+            'uid'       => $uid,
+            'section'   => array_keys($role),
+        ));
+        foreach ($rowset as $row) {
+            $row['role'] = $role[$row['section']];
+            $row->save();
+            unset($role[$row['section']]);
+        }
+        foreach ($role as $section => $roleValue) {
+            $row = $model->createRow(array(
+                'uid'       => $uid,
+                'section'   => $section,
+                'role'      => $roleValue,
+            ));
+            $row->save();
+        }
+
+        return true;
+    }
+
+    /**
+     * Get user role
+     *
+     * Section: `admin`, `front`
+     * If section is specified, returns the role;
+     * if not, return associative array of roles.
+     *
+     * @param        $uid
+     * @param string $section   Section name: admin, front
+     *
+     * @return string|array
+     */
+    public function getRole($uid, $section = '')
+    {
+        $where = array('uid' => $uid);
+        if ($section) {
+            $where['section'] = $section;
+        }
+        $rowset = Pi::model('user_role')->select($where);
+        if ($section) {
+            $result = $rowset->current()->role;
+        } else {
+            $result = array();
+            foreach ($rowset as $row) {
+                $result[$row['section']] = $row['role'];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Canonize profile field list to group by types
      *
      * @param string[] $fields
      *
      * @return array
      */
-    public function canonizeMeta(array $fields)
+    public function canonizeField(array $fields)
     {
         $meta = array();
-        $fieldMeta = Pi::registry('profile', 'user')->read();
+        $fieldMeta = $this->getMeta();
         foreach ($fields as $field) {
             if (isset($fieldMeta[$field])) {
                 $meta[$fieldMeta[$field]['type']][] = $field;
@@ -526,12 +596,11 @@ class User extends AbstractApi
         array $rawData,
         $set = 0
     ) {
-        $fields = Pi::registry('compound', 'user')->read($compound);
-        $meta = array_keys($fields);
+        $meta = Pi::registry('compound', 'user')->read($compound);
         $canonizeSet = function ($data, $set) use ($uid, $compound, $meta) {
             $result = array();
             foreach (array_keys($data) as $key) {
-                if (!in_array($key, $meta)) {
+                if (!isset($meta[$key])) {
                     unset($data[$key]);
                     continue;
                 }
@@ -572,13 +641,13 @@ class User extends AbstractApi
     {
         $result = array();
 
-        $fields = Pi::registry('profile', 'user')->read($type);
+        $meta = $this->getMeta($type);
         foreach ($rawData as $key => $value) {
-            if (isset($fields[$key])) {
+            if (isset($meta[$key])) {
                 if ($type) {
                     $result[$key] = $value;
                 } else {
-                    $result[$fields[$key]['type']][$key] = $value;
+                    $result[$meta[$key]['type']][$key] = $value;
                 }
             }
         }

@@ -9,15 +9,14 @@
 
 namespace Pi\Application\Model\User;
 
-use Pi;
 use Pi\Application\Model\Model;
 
 /**
- * User repo model
+ * User data model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Repo extends Model
+class Data extends Model
 {
     /**
      * Columns to be encoded
