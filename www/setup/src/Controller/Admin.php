@@ -194,43 +194,43 @@ class Admin extends AbstractController
             Pi::api('system', 'user')->activateUser($uid);
             Pi::api('system', 'user')->setRole($uid, array(
                 'admin' => 'admin',
-                'front' => 'admin'
+                'front' => 'webmaster',
             ));
 
             // Create system accounts
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             $accounts = array(
                 'manager'   => array(
-                    'name'          => __('Manager'),
-                    'role'      => array(
+                    'name'  => __('Manager'),
+                    'role'  => array(
                         'admin' => 'manager',
                         'front' => 'member',
                     ),
                 ),
-                'moderator'   => array(
-                    'name'          => __('Moderator'),
-                    'role'      => array(
+                'moderator' => array(
+                    'name'  => __('Moderator'),
+                    'role'  => array(
                         'admin' => 'moderator',
                         'front' => 'member',
                     ),
                 ),
-                'editor'   => array(
-                    'name'          => __('Editor'),
-                    'role'      => array(
+                'editor'    => array(
+                    'name'  => __('Editor'),
+                    'role'  => array(
                         'admin' => 'editor',
                         'front' => 'member',
                     ),
                 ),
-                'staff'   => array(
-                    'name'          => __('Staff'),
-                    'role'      => array(
+                'staff'     => array(
+                    'name'  => __('Staff'),
+                    'role'  => array(
                         'admin' => 'staff',
                         'front' => 'member',
                     ),
                 ),
-                'member'   => array(
-                    'name'          => __('Member'),
-                    'role'      => 'member',
+                'member'    => array(
+                    'name'  => __('Member'),
+                    'role'  => 'member',
                 ),
             );
             foreach ($accounts as $identity => $data) {

@@ -66,7 +66,7 @@ CREATE TABLE `{core.acl_resource}` (
   UNIQUE KEY `pair` (`section`, `module`, `name`)
 );
 
-# ACL roles
+# Roles
 # See http://en.wikipedia.org/wiki/Role-based_access_control
 CREATE TABLE `{core.acl_role}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
