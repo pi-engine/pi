@@ -403,7 +403,7 @@ class User extends AbstractResource
      */
     public function installAction()
     {
-        if ('user' != $this->getModule && !$this->isActive()) {
+        if ('user' != $this->getModule() && !$this->isActive()) {
             return;
         }
         if (empty($this->config)) {

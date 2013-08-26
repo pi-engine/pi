@@ -30,38 +30,7 @@ class System extends AbstractAdapter
      */
     public function getMeta($type = '', $action = '')
     {
-        $metaAccount = array(
-            'id',
-            'identity',
-            'credential',
-            'salt',
-            'email',
-            'name',
-            'active',
-        );
-        $metaProfile = array(
-            'uid',
-        );
-        $metaCustom = array(
-        );
-
-        $meta = array();
-        switch ($type) {
-            case 'account':
-                $meta = $metaAccount;
-                break;
-            case 'profile':
-                $meta = $metaProfile;
-                break;
-            case 'custom':
-                $meta = $metaCustom;
-                break;
-            default:
-                $meta = $metaAccount + $metaProfile + $metaCustom;
-                break;
-        }
-
-        return $meta;
+        return Pi::api('system', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 

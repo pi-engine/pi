@@ -183,47 +183,66 @@ class Admin extends AbstractController
             );
 
             // Create root admin user
-            $userData = array(
+            $adminData = array(
                 'identity'      => $vars['adminusername'],
                 'credential'    => $vars['adminpass'],
                 'email'         => $vars['adminmail'],
                 'name'          => $vars['adminname'],
-                'active'        => 1,
-                'role'          => Acl::MEMBER,
-                'role_staff'    => Acl::ADMIN,
             );
-            $result = Pi::api('system', 'member')->add($userData);
-            $this->status = $result['status'];
+            $uid = Pi::api('system', 'user')->addUser($adminData);
+            $this->status = $uid ? true : false;
+            Pi::api('system', 'user')->activateUser($uid);
+            Pi::api('system', 'user')->setRole($uid, array(
+                'admin' => 'admin',
+                'front' => 'admin'
+            ));
 
             // Create system accounts
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             $accounts = array(
                 'manager'   => array(
                     'name'          => __('Manager'),
-                    'role_staff'    => 'manager',
+                    'role'      => array(
+                        'admin' => 'manager',
+                        'front' => 'member',
+                    ),
                 ),
                 'moderator'   => array(
                     'name'          => __('Moderator'),
-                    'role_staff'    => 'moderator',
+                    'role'      => array(
+                        'admin' => 'moderator',
+                        'front' => 'member',
+                    ),
                 ),
                 'editor'   => array(
                     'name'          => __('Editor'),
-                    'role_staff'    => 'editor',
+                    'role'      => array(
+                        'admin' => 'editor',
+                        'front' => 'member',
+                    ),
                 ),
                 'staff'   => array(
                     'name'          => __('Staff'),
-                    'role_staff'    => 'staff',
+                    'role'      => array(
+                        'admin' => 'staff',
+                        'front' => 'member',
+                    ),
                 ),
                 'member'   => array(
                     'name'          => __('Member'),
-                    'role_staff'    => '',
+                    'role'      => 'member',
                 ),
             );
             foreach ($accounts as $identity => $data) {
-                $data['identity']   = $identity;
-                $data['email']      = $identity . '@' . $hostname;
-                $data = array_merge($userData, $data);
-                Pi::api('system', 'member')->add($data);
+                $userData = array(
+                    'identity'      => $identity,
+                    'email'         => $identity . '@' . $hostname,
+                    'credential'    => $adminData['credential'],
+                    'name'          => $data['name'],
+                );
+                $uid = Pi::api('system', 'user')->addUser($userData);
+                Pi::api('system', 'user')->activateUser($uid);
+                Pi::api('system', 'user')->setRole($uid, $data['role']);
             }
         }
 

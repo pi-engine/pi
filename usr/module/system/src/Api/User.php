@@ -38,6 +38,13 @@ class User extends AbstractApi
         $meta = array(
             'identity'      => array(),
             'credential'    => array(),
+            'salt'          => array(),
+            'email'         => array(),
+            'name'          => array(),
+            'avatar'        => array(),
+            'birthdate'     => array(),
+            'gender'        => array(),
+            'active'        => array(),
         );
 
         return $meta;
@@ -125,7 +132,6 @@ class User extends AbstractApi
      */
     public function addUser($data)
     {
-        $result = array();
         $uid = $this->addAccount($data);
 
         return $uid;
@@ -297,6 +303,76 @@ class User extends AbstractApi
         Pi::db()->getAdapter()->query($sql);
 
         return true;
+    }
+
+    /**
+     * Set user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     * @param string        $section
+     *
+     * @return bool
+     */
+    public function setRole($uid, $role, $section = '')
+    {
+        if (is_string($role)) {
+            $section = $section ?: 'front';
+            $role = array(
+                $section    => $role,
+            );
+        }
+        $model = Pi::model('user_role');
+        $rowset = $model->select(array(
+            'uid'       => $uid,
+            'section'   => array_keys($role),
+        ));
+        foreach ($rowset as $row) {
+            $row['role'] = $role[$row['section']];
+            $row->save();
+            unset($role[$row['section']]);
+        }
+        foreach ($role as $section => $roleValue) {
+            $row = $model->createRow(array(
+                'uid'       => $uid,
+                'section'   => $section,
+                'role'      => $roleValue,
+            ));
+            $row->save();
+        }
+
+        return true;
+    }
+
+    /**
+     * Get user role
+     *
+     * Section: `admin`, `front`
+     * If section is specified, returns the role;
+     * if not, return associative array of roles.
+     *
+     * @param        $uid
+     * @param string $section   Section name: admin, front
+     *
+     * @return string|array
+     */
+    public function getRole($uid, $section = '')
+    {
+        $where = array('uid' => $uid);
+        if ($section) {
+            $where['section'] = $section;
+        }
+        $rowset = Pi::model('user_role')->select($where);
+        if ($section) {
+            $result = $rowset->current()->role;
+        } else {
+            $result = array();
+            foreach ($rowset as $row) {
+                $result[$row['section']] = $row['role'];
+            }
+        }
+
+        return $result;
     }
 
     /**
