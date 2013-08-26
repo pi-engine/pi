@@ -8,22 +8,53 @@
         <li><?php echo $this->escape($user['birthdate']); ?></li>
         <li><?php echo __('Profile completion: ') . $this->escape($user['completion']); ?></li>
     </ul>
+    <!--  Short cut list  -->
+    <ul>
+        <?php if ($isOwner) { ?>
+        <li><a href=""><?php _e('Account settings'); ?></a></li>
+        <li><a href=""><?php _e('Update profile'); ?></a></li>
+        <?php } else { ?>
+        <li><a href=""><?php _e('Send message'); ?></a></li>
+        <?php }?>
+    </ul>
 </div>
 <div>
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>"><?php _e('Homepage');?></a>
+            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'index')); ?>"><?php _e('Homepage');?></a>
         </li>
         <li><a href="#"><?php _e('Profile'); ?></a></li>
+        <?php foreach ($activity as $row) {?>
+        <li>
+            <a href="<?php echo $this->url('default', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
+            <?php echo $this->escape($row['title']); ?>
+            </a>
+        </li>
+        <?php } ?>
         <li><a href="#"><?php _e('Activity'); ?></a></li>
     </ul>
-    <?php foreach ($timeline as $item) { ?>
+
     <div>
-        <ul class="inline">
-            <li><?php echo $this->escape($item['timeline']['title']);?></li>
-            <li><?php echo $this->escape($item['time']); ?></li>
-        </ul>
-        <p><?php echo $this->escape($item['message']);?></p>
+        <?php foreach ($timeline as $item) { ?>
+        <div>
+            <ul class="inline">
+                <?php if ($item['icon']) { ?>
+                <?php echo $this->escape($item['icon']);?>
+                <?php } ?>
+                <li>
+                    <p>
+                        <?php echo $this->escape($item['message']);?>
+                    </p>
+                </li>
+                <li><?php echo $this->escape($item['time']); ?></li>
+            </ul>
+        </div>
+        <?php } ?>
     </div>
-    <?php } ?>
+
+    <?php
+    if ($paginator) {
+        echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-right'));
+    }
+    ?>
 </div>
