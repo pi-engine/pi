@@ -19,7 +19,17 @@ use Pi\Application\AbstractApi;
  */
 class UserData extends AbstractApi
 {
+    /**
+     * Module name
+     *
+     * @var string
+     */
     protected $module = 'user';
+
+    /**
+     * Perfect information flag
+     */
+    const PERFECT_INFORMATION_FLAG = 'perfect-information-flag';
 
     /**
      * Get user data
@@ -56,7 +66,7 @@ class UserData extends AbstractApi
      * @param $content
      * @return array|string
      */
-    public function getDataByContent($content)
+    public function getMailDataByContent($content)
     {
         $result = '';
         $row = Pi::model('data', 'user')->find($content, 'content');
@@ -75,7 +85,7 @@ class UserData extends AbstractApi
      * @param null $module Default user
      * @return array
      */
-    public function setData($uid, $name, $module = null)
+    public function setMailData($uid, $name, $module = null)
     {
         $return = array(
             'content'   => '',
@@ -125,6 +135,55 @@ class UserData extends AbstractApi
         $return['message'] = __('success');
 
         return $return;
+    }
+
+    /**
+     * Set perfect information flag
+     *
+     * @param $uid
+     * @return mixed
+     */
+    public function setPerfectInformationFlag($uid)
+    {
+        $name = self::PERFECT_INFORMATION_FLAG;
+        $data = array(
+            'uid'     => $uid,
+            'name'    => $name,
+            'module'  => $this->module,
+            'time'    => time(),
+            'content' => 'yes',
+
+        );
+
+        $row = Pi::model('data', 'user')->createRow($data);
+        $row->save();
+
+        return $row['id'];
+    }
+
+    /**
+     * Check user has perfect information
+     *
+     * @param $uid
+     * @return bool
+     */
+    public function hasPerfectInformationFlag($uid)
+    {
+        $name = self::PERFECT_INFORMATION_FLAG;
+        $mode = Pi::model('data', 'user');
+        $where = array(
+            'uid' => $uid,
+            'name' => $name,
+        );
+
+        $select = $mode->select()->where($where);
+        $row = $mode->selectWith($select)->count();
+
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

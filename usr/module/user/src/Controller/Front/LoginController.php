@@ -182,6 +182,22 @@ class LoginController extends ActionController
             $redirect = urldecode($values['redirect']);
         }
 
+        // Check user has perfect information
+        $uid = Pi::service('user')->getIdentity();
+        $hasPerfectInformation = Pi::api('user', 'userdata')
+                                 ->hasPerfectInformationFlag($uid);
+        if (!$hasPerfectInformation) {
+            $this->redirect()->toRoute(
+                'user',
+                array(
+                    'controller' => 'register',
+                    'action' => 'prefect.information',
+                    'redirect' => urlencode($redirect),
+                )
+            );
+            return;
+        }
+
         $this->jump($redirect, __('You have logged in successfully.'), 2);
     }
 
