@@ -10,8 +10,6 @@
 namespace Pi\User\Model;
 
 use Pi;
-use Pi\Acl\Acl;
-use StdClass;
 
 /**
  * System user model
@@ -23,19 +21,26 @@ class System extends AbstractModel
     /**
      * {@inheritDoc}
      */
-    public function load($data, $column = 'id')
+    public function get($name)
     {
-        $model = Pi::model('user_account');
+        $result = null;
+        if ('role' == $name) {
+            $result = $this->role();
+        } elseif (isset($this->data[$name])) {
+            $result = $this->data[$name];
+        }
 
-        if ('id' == $column) {
-            $user = $model->find(intval($data));
-        } else {
-            $user = $model->select(array($column => $data))->current();
-        }
-        if ($user && $user->active) {
-            $this->assign($user);
-        }
-        $this->role = null;
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function load($uid, $field = 'id')
+    {
+        $row = Pi::model('user_account')->find($uid, $field);
+        $data = $row->toArray();
+        $this->assign($data);
 
         return $this;
     }
@@ -43,26 +48,16 @@ class System extends AbstractModel
     /**
      * {@inheritDoc}
      */
-    public function loadProfile()
-    {
-        $this->profile = new StdClass;
-
-        return $this->profile;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function loadRole()
     {
-        if ($this->account->id) {
+        if ($uid = $this->get('id')) {
             $row = Pi::model('user_role')->select(array(
-                'uid'       => $this->account->id,
+                'uid'       => $uid,
                 'section'   => Pi::engine()->application()->getSection(),
             ))->current();
-            $this->role = $row ? $row['role'] : Acl::GUEST;
+            $this->role = $row ? $row['role'] : '';
         } else {
-            $this->role = Acl::GUEST;
+            $this->role = '';
         }
 
         return $this->role;
@@ -73,7 +68,7 @@ class System extends AbstractModel
      */
     public function isGuest()
     {
-        return $this->account->id ? false : true;
+        return $this->get('id') ? false : true;
     }
 
     /**
@@ -81,23 +76,7 @@ class System extends AbstractModel
      */
     public function isAdmin()
     {
-        return $this->role() == Acl::ADMIN ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isMember()
-    {
-        return $this->hasRole(Acl::MEMBER)  ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isStaff()
-    {
-        return $this->hasRole(Acl::STAFF)  ? true : false;
+        return 'admin' == $this->role() ? true : false;
     }
 
     /**

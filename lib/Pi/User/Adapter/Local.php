@@ -10,7 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\Local as LocalModel;
+use Pi\User\Model\Local as UserModel;
 
 /**
  * Pi Engine local user service provided by user module
@@ -42,13 +42,7 @@ class Local extends System
      */
     public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $uid) {
-            $model = new LocalModel($uid, $field);
-        } else {
-            $model = $this->model;
-        }
-
-        return $model;
+        return parent::getUser($uid, $field);
     }
 
     /**
@@ -184,4 +178,19 @@ class Local extends System
         return parent::authenticate($identity, $credential);
     }
     /**#@-*/
+
+    /**
+     * Get user data model
+     *
+     * @param int       $uid
+     * @param string    $field
+     *
+     * @return UserModel
+     */
+    protected function getUserModel($uid, $field = 'id')
+    {
+        $model = new UserModel($uid, $field);
+
+        return $model;
+    }
 }
