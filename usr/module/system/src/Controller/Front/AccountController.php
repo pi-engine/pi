@@ -48,14 +48,16 @@ class AccountController extends ActionController
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
-        $row = Pi::model('user')->find($identity, 'identity');
-        $role = Pi::model('user_role')->find($row->id, 'user')->role;
+        $user = Pi::api('system', 'user')->getUser($identity, 'identity');
+        $role = $user->role();
+        //$row = Pi::model('user_account')->find($identity, 'identity');
+        //$role = Pi::model('user_role')->find($row->id, 'user')->role;
         $roleRow = Pi::model('acl_role')->find($role, 'name');
         $user = array(
-            __('ID')        => $row->id,
-            __('Identity')  => $row->identity,
-            __('Email')     => $row->email,
-            __('Name')      => $row->name,
+            __('ID')        => $user['id'],
+            __('Identity')  => $user['identity'],
+            __('Email')     => $user['email'],
+            __('Name')      => $user['name'],
             __('Role')      => __($roleRow->title),
         );
 
@@ -80,7 +82,7 @@ class AccountController extends ActionController
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
-        $row = Pi::model('user')->find($identity, 'identity');
+        $row = Pi::model('user_account')->find($identity, 'identity');
         $form = new AccountForm('user-edit', $row);
         if ($this->request->isPost()) {
             $data = $this->request->getPost();

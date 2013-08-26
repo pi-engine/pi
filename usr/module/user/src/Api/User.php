@@ -11,6 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
+use Pi\User\Model\Local as UserModel;
 
 /**
  * User account manipulation APIs
@@ -38,6 +39,21 @@ class User extends AbstractApi
         $meta = Pi::registry('profile', 'user')->read($type, $action);
 
         return $meta;
+    }
+
+    /**
+     * Get user model
+     *
+     * @param int       $uid
+     * @param string    $field
+     *
+     * @return UserModel
+     */
+    public function getUser($uid, $field = 'id')
+    {
+        $user = new UserModel($uid, $field);
+
+        return $user;
     }
 
     /**
@@ -243,12 +259,6 @@ class User extends AbstractApi
         }
 
         return array($uid, $result);
-    }
-
-    public function getUser($uid, $field = 'id')
-    {
-        $data = array();
-
     }
 
     /**

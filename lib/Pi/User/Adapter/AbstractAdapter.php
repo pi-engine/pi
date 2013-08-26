@@ -12,7 +12,6 @@ namespace Pi\User\Adapter;
 use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
-use Zend\Db\Sql\Predicate\PredicateInterface;
 
 /**
  * User service abstract class
@@ -27,7 +26,7 @@ use Zend\Db\Sql\Predicate\PredicateInterface;
  *   - bind($uid, $field)
  *
  *   + Read
- *   - getUser($uid, $fields)
+ *   - getUser($uid, $field)
  *
  *   + Add
  *   - addUser($data)
@@ -122,7 +121,7 @@ abstract class AbstractAdapter implements BindInterface
     {
         $result = null;
         if ($this->model) {
-            $result = $this->model->$var;
+            $result = $this->model[$var];
         }
 
         return $result;
@@ -163,6 +162,16 @@ abstract class AbstractAdapter implements BindInterface
      */
 
     /**
+     * Get user data model
+     *
+     * @param int|string|null   $uid    User id, identity
+     * @param string            $field  Field of the identity
+     * @return UserModel
+     * @api
+     */
+    abstract public function getUser($uid, $field = 'id');
+
+    /**
      * Get user IDs subject to conditions
      *
      * @param array         $condition
@@ -196,16 +205,6 @@ abstract class AbstractAdapter implements BindInterface
      * @api
      */
     abstract public function addUser($fields);
-
-    /**
-     * Get user data
-     *
-     * @param int|string|null   $uid         User id, identity
-     * @param string            $field      Field of the identity
-     * @return UserModel
-     * @api
-     */
-    abstract public function getUser($uid, $field = 'id');
 
     /**
      * Update a user
