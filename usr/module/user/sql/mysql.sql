@@ -189,6 +189,28 @@ CREATE TABLE `{data}` (
   UNIQUE KEY `user_content` (`uid`, `module`, `name`)
 );
 
+#Privacy control
+CREATE TABLE `{privacy}` (
+  `id`        int(10)              unsigned NOT NULL auto_increment,
+  `uid`       int(10)              unsigned NOT NULL,
+  `name`      varchar(64)          NOT NULL default '',
+  `value`     varchar(64)          NOT NULL default '',
+  `visitor`   varchar(64)          NOT NULL default '',
+
+  PRIMARY KEY (`id`)
+);
+
+#Privacy field controller
+CREATE TABLE `{privacy_field}` (
+  `id`        int(10)              unsigned NOT NULL auto_increment,
+  `name`      varchar(64)          NOT NULL default '',
+  `value`     varchar(64)          NOT NULL default '',
+  `force`     tinyint(1)           NOT NULL default '0',
+  `visible`   tinyint(1)           NOT NULL default '0',
+
+  PRIMARY KEY (`id`)
+);
+
 # ------------------------------------------------------
 
 # user-role links for regular
