@@ -27,7 +27,7 @@ use Zend\Db\Sql\Where;
  *  - Privilege: one resource could have multiple privileges,
  *      or none as direct access
  *  - Rule: one rule specifies one role's access to one resource/item
- *      upon one specific priviledge, default as `access`
+ *      upon one specific privilege, default as `access`
  */
 class Acl
 {
@@ -65,13 +65,13 @@ class Acl
      * Banned account role
      * @var string
      */
-    const BANNED    = 'banned';
+    const DISABLED    = 'disabled';
 
     /**
      * Pending account role
      * @var string
      */
-    const INACTIVE  = 'inactive';
+    const PENDING  = 'pending';
 
     /**
      * Application section
@@ -153,7 +153,7 @@ class Acl
     /**
      * Set section for resources
      *
-     * Potentail secion names:
+     * Potential section names:
      *  - front: for front controllers and resources
      *  - admin: for admin controllers and resources
      *  - block: for blocks
@@ -578,7 +578,7 @@ class Acl
             return $resources;
         }
 
-        // Appliction resource
+        // Application resource
         if (is_numeric($resource)) {
             $resources = array($resource);
             return $resources;

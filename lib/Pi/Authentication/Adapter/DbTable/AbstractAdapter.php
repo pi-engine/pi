@@ -267,9 +267,13 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
             list($modelName, $module) = array($this->tableName, '');
         }
         $model = Pi::model($modelName, $module, $options);
-        $resultIdentities = $model->select(array(
+        $rowset = $model->select(array(
             $this->identityColumn => $this->identity
         ));
+        $resultIdentities = array();
+        foreach($rowset as $row) {
+            $resultIdentities[] = $row;
+        }
 
         return $resultIdentities;
     }

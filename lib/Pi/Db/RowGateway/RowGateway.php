@@ -50,11 +50,12 @@ class RowGateway extends AbstractRowGateway
     /**
      * Constructor
      *
-     * @param string $primaryKeyColumn
+     * @param string                              $primaryKeyColumn
      * @param string|\Zend\Db\Sql\TableIdentifier $table
-     * @param Adapter|Sql $adapterOrSql
-     * @return void
-     * @throws Exception\InvalidArgumentException
+     * @param Adapter|Sql                         $adapterOrSql
+     *
+     * @throws \Zend\Db\RowGateway\Exception\InvalidArgumentException
+     * @return \Pi\Db\RowGateway\RowGateway
      */
     public function __construct(
         $primaryKeyColumn,

@@ -126,10 +126,10 @@ class DashboardController extends ActionController
         // Get hidden modules
         $summaryList = array();
         $list = array();
-        $row = Pi::model('user_repo')->select(array(
-            'user' => $user,
-            'module' => 'system',
-            'type' => 'module-summary'
+        $row = Pi::model('user_data')->select(array(
+            'uid'       => $user,
+            'module'    => 'system',
+            'name'      => 'module-summary'
         ))->current();
         if ($row) {
             $list = (array) $row->content;
@@ -411,17 +411,20 @@ class DashboardController extends ActionController
             'content'   => $content,
             'time'      => time(),
         );
-        $row = Pi::model('user_repo')
-            ->select((array('user' => $user, 'module' => $module,
-                            'type' => $type)))
+        $row = Pi::model('user_data')
+            ->select((array(
+                'uid'       => $user,
+                'module'    => $module,
+                'name'      => $type
+            )))
             ->current();
         if ($row) {
             $row->content = $data;
         } else {
-            $row = Pi::model('user_repo')->createRow(array(
-                'user'      => $user,
+            $row = Pi::model('user_data')->createRow(array(
+                'uid'       => $user,
                 'module'    => $module,
-                'type'      => $type,
+                'name'      => $type,
                 'content'   => $data,
             ));
         }
@@ -447,17 +450,20 @@ class DashboardController extends ActionController
         $user   = Pi::service('user')->getUser()->id;
 
         $content = $this->params()->fromPost('content');
-        $row = Pi::model('user_repo')
-            ->select((array('user' => $user, 'module' => $module,
-                            'type' => $type)))
+        $row = Pi::model('user_data')
+            ->select((array(
+                'user'      => $user,
+                'module'    => $module,
+                'name'      => $type,
+            )))
             ->current();
         if ($row) {
             $row->content = $content;
         } else {
-            $row = Pi::model('user_repo')->createRow(array(
-                'user'      => $user,
+            $row = Pi::model('user_data')->createRow(array(
+                'uid'       => $user,
                 'module'    => $module,
-                'type'      => $type,
+                'name'      => $type,
                 'content'   => $content,
             ));
         }

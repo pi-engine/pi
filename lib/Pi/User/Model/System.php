@@ -58,7 +58,7 @@ class System extends AbstractModel
         if ($this->account->id) {
             $row = Pi::model('user_role')->select(array(
                 'uid'       => $this->account->id,
-                'section'   => 'front',
+                'section'   => Pi::engine()->application()->getSection(),
             ))->current();
             $this->role = $row ? $row['role'] : Acl::GUEST;
         } else {
