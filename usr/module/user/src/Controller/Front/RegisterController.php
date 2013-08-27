@@ -72,8 +72,9 @@ class RegisterController extends ActionController
                 // Set user role
                 $this->createRole($uid);
                 // Set user data
+                $content = md5($uid . $data['name']);
                 $result = Pi::api('user', 'userdata')
-                    ->setMailData($uid, 'register', 'user');
+                    ->setData($uid, $this->getModule(), 'register', $content);
                 if (!$result) {
                     $message = $result['message'];
                     $this->jump(
@@ -88,7 +89,7 @@ class RegisterController extends ActionController
                 $url = $this->url('', array(
                     'action' => 'activate',
                     'id'     => md5($uid),
-                    'token'  => $result['content']
+                    'token'  => $content,
                     )
                 );
 
@@ -130,7 +131,9 @@ class RegisterController extends ActionController
             return $this->jumpTo404('Required resource is not found');
         }
 
-        $userData = Pi::api('user', 'userdata')->getMailDataByContent($token);
+        $userData = Pi::api('user', 'userdata')
+                    ->getData(array('content' => $token));
+        $userData = array_pop($userData);
 
         if ($userData) {
             $hashUid = md5($userData['uid']);
@@ -200,15 +203,16 @@ class RegisterController extends ActionController
            return $this->jumpTo404('An error occur');
         }
 
+        $content = md5($account['id'] . $account['name']);
         $result = Pi::api('user', 'userdata')
-            ->setMailData($uid, 'register', 'user');
+            ->setData($uid, $this->getModule(), 'register', $content);
 
         $to = $account['email'];
         $baseLocation = Pi::host()->get('baseLocation');
         $url = $this->url('', array(
                 'action' => 'activate',
                 'id'     => md5($account['id']),
-                'token'  => $result['token']
+                'token'  => $content
             )
         );
 
@@ -280,7 +284,7 @@ class RegisterController extends ActionController
                 }
 
                 // Set perfect information flag in user table
-                Pi::api('user', 'userdata')->setPerfectInformationFlag($uid);
+                $this->setPerfectInformationFlag($uid);
 
                 return $this->jump(
                     $redirect,
@@ -419,5 +423,29 @@ class RegisterController extends ActionController
         $type = $data['format'];
 
         return array($subject, $body, $type);
+    }
+
+    /**
+     * Set perfect information flag
+     *
+     * @param $uid
+     * @return mixed
+     */
+    public function setPerfectInformationFlag($uid)
+    {
+        $name = 'perfect-information-flag';
+        $data = array(
+            'uid'     => $uid,
+            'name'    => $name,
+            'module'  => $this->module,
+            'time'    => time(),
+            'content' => 'yes',
+
+        );
+
+        $row = Pi::model('data', 'user')->createRow($data);
+        $row->save();
+
+        return $row['id'];
     }
 }

@@ -13,6 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\ProfileEditForm;
 use Module\User\Form\ProfileEditFilter;
+use Module\User\Form\CompoundForm;
+use Module\User\Form\CompoundFilter;
 
 class ProfileController extends ActionController
 {
@@ -50,6 +52,7 @@ class ProfileController extends ActionController
         $select->columns('name', 'title', 'order');
         $select->order('order ASC');
         $groups = $model->selectWith($select);
+
         foreach ($groups as $group) {
             $data[$group->name] = array(
                 'name'     => $group->name,
@@ -58,27 +61,28 @@ class ProfileController extends ActionController
             );
 
             $compound = $group->compound;
-            $model = $this->getModel('field_display');
-            $select = $model->select()
-                ->where(array('group' => $group->name));
+            $model    = $this->getModel('field_display');
+            $select   = $model->select()
+                        ->where(array('group' => $group->name));
             $select->order('order ASC');
             $fields = $model->selectWith($select);
 
             foreach ($fields as $field) {
                 $data[$group->name]['fields'][$field->name] = array(
-                    'name' => $field->field,
+                    'name'  => $field->field,
                     'order' => $field->order,
-                    'value' => Pi::api('user', 'user')->get($field->name, $uid),
+                    'value' => Pi::api('user', 'user')->get($uid, $field->name),
                 );
 
-                // Profile group
                 if (!$compound) {
+                    // Profile group
                     $profileFields = Pi::registry('profile', 'user')->read();
                     if (isset($profileFields[$field->field])) {
                         $title = $profileFields[$field->field]['title'];
                     }
                     $data[$group->name]['fields'][$field->name]['title'] = $title;
                 } else {
+                    // Compound group
                     $compoundFields = Pi::registry('compound', 'user')
                         ->read($compound);
                     if (isset($compoundFields[$field->field])) {
@@ -91,6 +95,7 @@ class ProfileController extends ActionController
 
         $this->view()->assign(array(
             'data'    => $data,
+            'uid'     => $uid,
             'isOwner' => $isOwner,
         ));
     }
@@ -186,6 +191,10 @@ class ProfileController extends ActionController
         return $paginator;
     }
 
+    /**
+     * Edit profile action
+     *
+     */
     public function editProfileAction()
     {
         $uid = Pi::service('user')->getIdentity();
@@ -205,20 +214,14 @@ class ProfileController extends ActionController
                 'value' => $uid,
             ),
         );
-        $fields[] = array(
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => array(
-                'value' => 'submit'
-            ),
-        );
 
         $form = new ProfileEditForm('profile', $fields);
         $form->setAttributes(array(
-            'action' => $this->url('',
+            'action' => $this->url('default',
                 array(
                     'controller' => 'profile',
-                    'action' => 'editProfile'
+                    'action'     => 'edit.profile',
+                    'group'      => $groupName,
                 )),
         ));
 
@@ -235,7 +238,7 @@ class ProfileController extends ActionController
                 // Redirect to profile page
                 if ($status) {
                     return $this->redirect(
-                        '',
+                        'default',
                         array('controller' => 'profile', 'action' => 'index')
                     );
                 }
@@ -248,44 +251,97 @@ class ProfileController extends ActionController
             foreach ($result as $row) {
                 $data[] = $row->field;
             }
-            $profileData = Pi::api('user', 'user')->get($data, $uid);
+            $profileData = Pi::api('user', 'user')->get($uid, $data);
             $form->setData($profileData);
+        }
+
+        $this->view()->assign('title', $groupName);
+        $this->view()->setTemplate('profile-edit');
+    }
+
+    /**
+     * Edit compound action
+     */
+    public function editCompoundAction()
+    {
+        $groupName = $this->params('group', '');
+        $uid       = Pi::service('user')->getIdentity();
+
+        if ($this->request->isPost()) {
+            $groupName = _post('group');
+        }
+
+        // Get compound name
+        $rowset = $this->getModel('display_group')->find($groupName, 'name');
+        $compound = $rowset ? $rowset->compound : '';
+
+        if (!$groupName || !$uid || !$compound) {
+            return $this->jumpTo404();
+        }
+
+        // Get compound element for edit
+        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+
+
+        // Get user compound
+        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
+
+        // Generate compound edit form
+        $form = array();
+        foreach ($compoundData[$uid][$compound] as $set => $row) {
+            $formName = 'compound' . $set;
+            $form[$set] = new CompoundForm($formName, $compoundElements);
+            // Set form data
+            $row += array('set' => $set);
+            $form[$set]->setData($row);
+        }
+
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $set = $post['set'];
+            $currentForm = $form[$set];
+            $currentForm->setInputFilter(new CompoundFilter($compoundFilters));
+
+            if ($currentForm->isValid()) {
+                //
+                $data = $currentForm->getData();
+                $curSet = $data['set'];
+
+                // Replace compound
+                $compoundData[$uid][$compound][$curSet] = $data;
+
+                // Update compound
+                Pi::api('user', 'user')->updateCompound($compoundData[$uid]);
+                //$ = __('Save successfully');
+            }
         }
     }
 
     /**
-     * Edit compound
+     * Get display group elements
      *
+     * @param $groupNname
+     * @param string $compound
+     * @return array
      */
-    public function editCompoundAction()
-    {
-        $compound = $this->params('group', '');
-        $uid = Pi::service('user')->getIdentity();
-        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
-        if (!in_array($compound, $compoundMeta) || !$uid) {
-            return $this->jumpTo404();
-        }
-    }
-
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
-    }
-
-    protected function getGroupElements($groupNmae, $compound = '')
+    protected function getGroupElements($groupName, $compound = '')
     {
         $fieldsModel = $this->getModel('field_display');
-        $select = $fieldsModel->select()->where(array('group' => $groupNmae));
-        $select->order('order ASC');
-        $rowset = $fieldsModel->selectWith($select);
+        $select      = $fieldsModel
+                       ->select()
+                       ->where(array('group' => $groupName));
 
+        $select->order('order ASC');
+        $rowset   = $fieldsModel->selectWith($select);
         $elements = array();
         $filters  = array();
-        // Profile
+
         if (!$compound) {
+            // Profile
             foreach ($rowset as $row) {
-                $element = Pi::api('user', 'form')->getElement($row->field);
-                $filter = Pi::api('user', 'form')->getFilter($row->field);
+                $element    = Pi::api('user', 'form')->getElement($row->field);
+                $filter     = Pi::api('user', 'form')->getFilter($row->field);
                 $elements[] = $element;
                 $filters[]  = $filter;
             }
@@ -340,4 +396,18 @@ class ProfileController extends ActionController
 
         return $result;
     }
+
+//    public function testAction()
+//    {
+//        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
+//        //vd($compoundMeta);
+//        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
+//
+//        //vd($compoundElements);
+//        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
+//        vd($compoundElements);
+//
+//
+//        $this->view()->setTemplate(false);
+//    }
 }
