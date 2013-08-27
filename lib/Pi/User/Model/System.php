@@ -38,8 +38,12 @@ class System extends AbstractModel
      */
     public function load($uid, $field = 'id')
     {
-        $row = Pi::model('user_account')->find($uid, $field);
-        $data = $row->toArray();
+        if ($uid) {
+            $row = Pi::model('user_account')->find($uid, $field);
+            $data = $row->toArray();
+        } else {
+            $data = array();
+        }
         $this->assign($data);
 
         return $this;
@@ -55,9 +59,9 @@ class System extends AbstractModel
                 'uid'       => $uid,
                 'section'   => Pi::engine()->application()->getSection(),
             ))->current();
-            $this->role = $row ? $row['role'] : '';
+            $this->role = $row ? $row['role'] : 'guest';
         } else {
-            $this->role = '';
+            $this->role = 'guest';
         }
 
         return $this->role;
