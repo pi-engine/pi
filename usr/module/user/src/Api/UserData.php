@@ -26,53 +26,55 @@ class UserData extends AbstractApi
      */
     protected $module = 'user';
 
-    /**
-     * Perfect information flag
-     */
-    const PERFECT_INFORMATION_FLAG = 'perfect-information-flag';
+    protected $meta = array(
+        'id',
+        'module',
+        'name',
+        'time',
+        'content',
+    );
 
     /**
-     * Get user data
-     * @param $uid
-     * @param null $name
-     * @param null $content
-     * @return array
-     */
-    public function getData($uid, $name = null, $content = null)
-    {
-        $result = array();
-        $where['uid'] = $uid;
-        if ($name) {
-            $where['name'] = $name;
-        }
-        if ($content) {
-            $where['content'] = $content;
-        }
-
-        $model  = Pi::model('data', 'user');
-        $select = $model->select()->where($where);
-        $rowset = $model->selectWith($select);
-
-        foreach ($rowset as $row) {
-            $result = $row->toArray();
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get user data by content
+     * Get user data to conditions
      *
-     * @param $content
-     * @return array|string
+     * @param array $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string $order
+     * @return mixed
      */
-    public function getMailDataByContent($content)
-    {
-        $result = '';
-        $row = Pi::model('data', 'user')->find($content, 'content');
-        if ($row) {
-            $result = $row->toArray();
+    public function getData(
+        $condition = array(),
+        $limit     = 0,
+        $offset    = 0,
+        $order     = ''
+    ){
+        $meta = $this->meta;
+        $result = array();
+        $data = array();
+        foreach ($condition as $key => $value) {
+            if (isset($meta[$key])) {
+                $data[$key] = $value;
+            }
         }
+
+        $model = Pi::model('user', 'userdata');
+
+        $select = $model->select();
+        if ($data) {
+            $select->where($data);
+        }
+        if ($order) {
+            $select->order($order);
+        }
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+
+        $result = $model->selectWith($select)->toArray();
 
         return $result;
     }
@@ -80,110 +82,100 @@ class UserData extends AbstractApi
     /**
      * Set user data
      *
-     * @param $uid  User id
-     * @param $name Data type
-     * @param null $module Default user
-     * @return array
+     * @param $uid
+     * @param $module
+     * @param $name
+     * @param $content
      */
-    public function setMailData($uid, $name, $module = null)
+    public function setData($uid, $module, $name, $content, $time = '')
     {
-        $return = array(
-            'content'   => '',
-            'message' => '',
-            'status'  => 0,
+        if (!$time) {
+            $time = time();
+        }
 
-        );
-
-        $time    = time();
-        $content = md5(sprintf('%s%s%s', $uid, $name, $time));
-        $module = $module ? $module : 'user';
-
-        $model = Pi::model('data', $this->module);
+        $model = Pi::model('user', 'userdata');
         $where = array(
-            'uid'  => $uid,
-            'name' => $name,
+            'uid'     => $uid,
+            'module'  => $module,
+            'name'    => $name,
+            'content' => $content,
+            'time'    => $time,
         );
-
         $select = $model->select()->where($where);
-        $row = $model->selectWith($select)->current();
+        $rowset = $model->selectWith($select)->current();
 
-        if (!$row->id) {
-            // Insert a new data
-            $row = $model->createRow(array(
-                'uid'     => $uid,
-                'module'  => $module,
-                'name'    => $name,
-                'time'    => time(),
-                'content' => $content,
-            ));
+        $result = array();
+        if (!$rowset->id) {
+            // Insert data
+            $result = $this->insertData($uid, $model, $name, $content);
         } else {
-            // Update
-            $row = Pi::model('data', $this->module)->find($row->id, 'id');
-            $row->time    = time();
-            $row->content = $content;
+            // Update data
+            $result = $this->updateData($uid, $model, $name, $content);
         }
 
-        try {
-            $row->save();
-        }  catch(\Exception $e) {
-            $return['message'] = __('Set token failed');
-            return $return;
-        }
-
-        $return['content'] = $content;
-        $return['status']  = 1;
-        $return['message'] = __('success');
-
-        return $return;
+        return $result;
     }
 
     /**
-     * Set perfect information flag
+     * Add a new data
      *
      * @param $uid
+     * @param $module
+     * @param $name
+     * @param $content
+     * @param string $time
      * @return mixed
      */
-    public function setPerfectInformationFlag($uid)
+    public function insertData($uid, $module, $name, $content, $time = '')
     {
-        $name = self::PERFECT_INFORMATION_FLAG;
+        if (!$time) {
+            $time = time();
+        }
+        $model = Pi::model('user', 'userdata');
         $data = array(
             'uid'     => $uid,
+            'module'  => $module,
             'name'    => $name,
-            'module'  => $this->module,
-            'time'    => time(),
-            'content' => 'yes',
-
+            'content' => $content,
+            'time'    => $time,
         );
-
-        $row = Pi::model('data', 'user')->createRow($data);
+        $row = $model->createRow($data);
         $row->save();
 
-        return $row['id'];
+        return $row->toArray();
     }
 
     /**
-     * Check user has perfect information
+     * Update user data
      *
      * @param $uid
-     * @return bool
+     * @param $module
+     * @param $name
+     * @param $content
+     * @param string $time
+     * @return mixed
      */
-    public function hasPerfectInformationFlag($uid)
+    public function updateData($uid, $module, $name, $content, $time = '')
     {
-        $name = self::PERFECT_INFORMATION_FLAG;
-        $mode = Pi::model('data', 'user');
-        $where = array(
-            'uid' => $uid,
-            'name' => $name,
-        );
-
-        $select = $mode->select()->where($where);
-        $row = $mode->selectWith($select)->count();
-
-        if ($row) {
-            return true;
-        } else {
-            return false;
+        if (!$time) {
+            $time = time();
         }
+
+        $model = Pi::model('user', 'userdata');
+        $row = $model->select(array(
+            'uid'    => $uid,
+            'module' => $module,
+            'name'   => $name,
+            'time'   => $time,
+        ))->current();
+
+        $row->assign(array(
+            'content' => $content,
+        ));
+
+        $row->save();
+
+        return $row->toArray();
     }
 
     /**

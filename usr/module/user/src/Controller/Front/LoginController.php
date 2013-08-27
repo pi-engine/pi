@@ -184,8 +184,7 @@ class LoginController extends ActionController
 
         // Check user has perfect information
         $uid = Pi::service('user')->getIdentity();
-        $hasPerfectInformation = Pi::api('user', 'userdata')
-                                 ->hasPerfectInformationFlag($uid);
+        $hasPerfectInformation = $this->hasPerfectInformationFlag($uid);
         if (!$hasPerfectInformation) {
             $this->redirect()->toRoute(
                 'user',
@@ -206,7 +205,7 @@ class LoginController extends ActionController
      *
      * @return LoginForm
      */
-    public function getForm()
+    protected function getForm()
     {
         $form = new LoginForm('login');
         $form->setAttribute(
@@ -217,8 +216,28 @@ class LoginController extends ActionController
         return $form;
     }
 
-    public function testAction()
+    /**
+     * Check user has perfect information
+     *
+     * @param $uid
+     * @return bool
+     */
+    public function hasPerfectInformationFlag($uid)
     {
-        $this->view()->setTemplate(false);
+        $name = 'perfect-information-flag';
+        $mode = Pi::model('data', 'user');
+        $where = array(
+            'uid' => $uid,
+            'name' => $name,
+        );
+
+        $select = $mode->select()->where($where);
+        $row = $mode->selectWith($select)->count();
+
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -13,11 +13,11 @@ use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Register form filter
+ * Compound form filter
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class PerfectInformationFilter extends InputFilter
+class CompoundFilter extends InputFilter
 {
     public function __construct($filters)
     {

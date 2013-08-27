@@ -13,11 +13,11 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Perfect informationForm form
+ * Compound form
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class PerfectInformationForm extends BaseForm
+class CompoundForm extends BaseForm
 {
     protected $fields;
     protected $name;
@@ -34,6 +34,22 @@ class PerfectInformationForm extends BaseForm
         foreach ($this->fields as $field) {
             $this->add($field);
         }
+
+        $this->add(array(
+            'name'       => 'set',
+            'type'       => 'hidden',
+            'attributes' => array(
+                'value' => 0,
+            ),
+        ));
+
+        $this->add(array(
+            'name'       => 'group',
+            'type'       => 'hidden',
+            'attributes' => array(
+                'value' => '',
+            ),
+        ));
 
         $this->add(array(
             'name'       => 'submit',
