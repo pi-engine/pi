@@ -12,17 +12,16 @@ namespace Pi\User\Resource;
 use Pi;
 
 /**
- * User action log handler
+ * User data handler
  *
- * Log APIs:
+ * Data APIs:
  *
- * - add($uid, $action, $data, $time)
- * - get($uid, $action, $limit, $offset)
- * - getLast($uid, $action)
+ * - add($uid, $name, $content, $module, $time)
+ * - get($uid, $name)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Log extends AbstractResource
+class Data extends AbstractResource
 {
     /**
      * Get user log list
