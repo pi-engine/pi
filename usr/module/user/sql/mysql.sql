@@ -166,19 +166,6 @@ CREATE TABLE `{timeline_log}` (
   KEY (`uid`)
 );
 
-# user custom contents, from any module
-CREATE TABLE `{data}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL default '0',
-  `module`          varchar(64)     NOT NULL    default '',
-  `name`            varchar(64)     NOT NULL,
-  `time`            int(10)         unsigned    NOT NULL default '0',
-  `content`         text,
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`uid`, `name`)
-);
-
 #Privacy control
 CREATE TABLE `{privacy}` (
   `id`        int(10)              unsigned NOT NULL auto_increment,

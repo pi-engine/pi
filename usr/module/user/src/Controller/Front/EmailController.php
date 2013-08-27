@@ -57,9 +57,12 @@ class EmailController extends ActionController
                 $values = $form->getData();
                 $uid = Pi::service('user')->getUser()->id;
 
-                $content = md5($uid . time());
-                $result = Pi::api('user', 'userdata')
-                    ->setData($uid, $this->getModule(), 'change-email', $content);
+                $token = md5(uniqid($uid));
+                $result = Pi::user()->data()->add(
+                    $uid,
+                    'change-email',
+                    $token
+                );
 
                 if (!$result) {
                     $this->jump($this->url(
@@ -71,16 +74,16 @@ class EmailController extends ActionController
                 }
 
                 $to = $values['email-new'];
-                $baseLocation = Pi::host()->get('baseLocation');
+                //$baseLocation = Pi::host()->get('baseLocation');
                 $url = $this->url('', array(
                         'action'=> 'process',
                         'id'    => md5($uid),
-                        'token' => $content,
+                        'token' => $token,
                         'new'   => urlencode($values['email-new'])
                     )
                 );
 
-                $link = $baseLocation . $url;
+                $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
                     $values['username'],
                     $link
@@ -133,9 +136,15 @@ class EmailController extends ActionController
             return;
         }
 
+        /*
         $userData = Pi::api('user', 'userdata')
                     ->getData(array('content' => $token));
         $userData = array_pop($userData);
+        */
+        $userData = Pi::user()->data()->find(array(
+            'content'   => $token,
+            'name'      => 'change-email',
+        ));
         if ($userData) {
             $hashUid = md5($userData['uid']);
             $userRow = $this->getModel('account')->find($userData['uid'], 'id');
@@ -151,11 +160,12 @@ class EmailController extends ActionController
                         'email' => $newEmail,
                     );
 
-                    Pi::api('user', 'user')->updateUser($user, $userData['uid']);
+                    Pi::api('user', 'user')->updateUser($userData['uid'], $user);
                 }
 
                 // Delete change email verify link
-                Pi::api('user', 'userdata')->deletData($userData['id']);
+                //Pi::api('user', 'userdata')->deletData($userData['id']);
+                Pi::user()->delete($userData['uid'], 'change-email');
                 $data['message'] = __('Change success');
                 $data['status']  = 1;
                 $this->view()->assign('data', $data);
