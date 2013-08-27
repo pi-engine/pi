@@ -57,10 +57,11 @@ class EmailController extends ActionController
                 $values = $form->getData();
                 $uid = Pi::service('user')->getUser()->id;
 
+                $content = md5($uid . time());
                 $result = Pi::api('user', 'userdata')
-                    ->setMailData($uid, 'change-email', 'user');
+                    ->setData($uid, $this->getModule(), 'change-email', $content);
 
-                if (!$result['content']) {
+                if (!$result) {
                     $this->jump($this->url(
                         'default',
                         array('controller' => 'email', 'action' => 'index')),
@@ -74,7 +75,7 @@ class EmailController extends ActionController
                 $url = $this->url('', array(
                         'action'=> 'process',
                         'id'    => md5($uid),
-                        'token' => $result['content'],
+                        'token' => $content,
                         'new'   => urlencode($values['email-new'])
                     )
                 );
@@ -132,7 +133,9 @@ class EmailController extends ActionController
             return;
         }
 
-        $userData = Pi::api('user', 'userdata')->getMailDataByContent($token);
+        $userData = Pi::api('user', 'userdata')
+                    ->getData(array('content' => $token));
+        $userData = array_pop($userData);
         if ($userData) {
             $hashUid = md5($userData['uid']);
             $userRow = $this->getModel('account')->find($userData['uid'], 'id');
