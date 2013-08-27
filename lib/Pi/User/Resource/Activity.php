@@ -39,7 +39,7 @@ class Activity extends AbstractResource
         if (!$this->isAvailable()) {
             return $result;
         }
-        $result = Pi::api('activity', 'user')->get($uid, $name, $limit, $offset);
+        $result = Pi::api('user', 'activity')->get($uid, $name, $limit, $offset);
 
         return $result;
     }
