@@ -24,57 +24,69 @@ use Pi;
 class Data extends AbstractResource
 {
     /**
-     * Get user log list
+     * Get user data
      *
-     * @param int          $uid
-     * @param int          $limit
-     * @param int          $offset
+     * @param int       $uid
+     * @param string    $name
      *
-     * @return array
+     * @return mixed
      */
-    public function get($uid, $limit, $offset = 0)
+    public function get($uid, $name)
     {
         $result = array();
 
         if (!$this->isAvailable()) {
             return $result;
         }
-        $result = Pi::api('log', 'user')->get($uid, $limit, $offset);
+        $result = Pi::api('user', 'data')->get($uid, $name);
 
         return $result;
     }
 
     /**
-     * Get last log content
+     * Delete user data
      *
-     * @param int $uid
-     * @param string $action
+     * @param int       $uid
+     * @param string    $name
      *
-     * @return mixed
+     * @return bool
      */
-    public function getLast($uid, $action)
+    public function delete($uid, $name)
     {
-        $list = $this->get($uid, $action, 1);
-        $result = array_pop($list);
+        $result = false;
+
+        if (!$this->isAvailable()) {
+            return $result;
+        }
+        $result = Pi::api('user', 'data')->delete($uid, $name);
 
         return $result;
     }
 
     /**
-     * Write an action log
+     * Write user data
      *
      * @param int $uid
-     * @param string $action
-     * @param string $data
+     * @param string $name
+     * @param mixed $data
+     * @param string $module
      * @param int $time
      * @return bool
      */
-    public function add($uid, $action, $data = '', $time = null)
+    public function add($uid, $name, $data, $module = '', $time = null)
     {
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('log', 'user')->add($uid, $action, $data, $time);
+        $module = $module ?: Pi::service('module')->current();
+        $time = $time ?: time();
+        $result = Pi::api('user', 'data')->add(
+            $uid,
+            $name,
+            $data,
+            $module,
+            $time
+        );
 
         return $result;
     }

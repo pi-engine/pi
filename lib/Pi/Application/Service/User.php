@@ -72,6 +72,7 @@ use Pi\User\Resource\AbstractResource;
  * + Data
  *   - data()->add($uid, $name, $content, $module = '', $time = null)
  *   - data()->get($uid, $name)
+ *   - data()->delete($uid, $name)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *

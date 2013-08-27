@@ -47,7 +47,7 @@ class Timeline extends AbstractResource
         if (!$this->isAvailable()) {
             return $result;
         }
-        $result = Pi::api('timeline', 'user')->get($uid, $limit, $offset);
+        $result = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
 
         return $result;
     }
@@ -66,7 +66,7 @@ class Timeline extends AbstractResource
         if (!$this->isAvailable()) {
             return $result;
         }
-        $result = Pi::api('timeline', 'user')->getCount($uid);
+        $result = Pi::api('user', 'timeline')->getCount($uid);
 
         return $result;
     }
@@ -89,7 +89,7 @@ class Timeline extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('timeline', 'user')->add($log);
+        $result = Pi::api('user', 'timeline')->add($log);
 
         return $result;
     }
