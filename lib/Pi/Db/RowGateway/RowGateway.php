@@ -204,9 +204,11 @@ class RowGateway extends AbstractRowGateway
         foreach (array_keys($this->encodeColumns) as $column) {
             if (array_key_exists($column, $data)) {
                 // Escape if already a scalar
+                /*
                 if (is_scalar($data[$column])) {
                     continue;
                 }
+                */
                 $data[$column] = $this->encodeValue($data[$column]);
             }
         }

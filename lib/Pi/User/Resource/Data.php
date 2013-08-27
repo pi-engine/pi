@@ -26,19 +26,31 @@ class Data extends AbstractResource
     /**
      * Get user data
      *
-     * @param int       $uid
-     * @param string    $name
+     * @param int    $uid
+     * @param string $name
+     * @param bool   $returnArray
      *
-     * @return mixed
+     * @return mixed|array
      */
-    public function get($uid, $name)
+    public function get($uid, $name, $returnArray = false)
     {
-        $result = array();
-
-        if (!$this->isAvailable()) {
-            return $result;
+        $result = false;
+        $where = array(
+            'uid'   => (int) $uid,
+            'name'  => $name,
+        );
+        $row = Pi::model('user_data')->select($where)->current();
+        if ($row) {
+            if (!$returnArray) {
+                $result = $row['content'];
+            } else {
+                $result = array(
+                    'time'      => $row['time'],
+                    'content'   => $row['content'],
+                    'module'    => $row['module'],
+                );
+            }
         }
-        $result = Pi::api('user', 'data')->get($uid, $name);
 
         return $result;
     }
@@ -53,41 +65,54 @@ class Data extends AbstractResource
      */
     public function delete($uid, $name)
     {
-        $result = false;
+        $where = array(
+            'uid'   => (int) $uid,
+            'name'  => $name,
+        );
+        Pi::model('user_data')->delete($where);
 
-        if (!$this->isAvailable()) {
-            return $result;
-        }
-        $result = Pi::api('user', 'data')->delete($uid, $name);
-
-        return $result;
+        return true;
     }
 
     /**
      * Write user data
      *
-     * @param int $uid
+     * @param int|array $uid
      * @param string $name
-     * @param mixed $data
+     * @param mixed $content
      * @param string $module
      * @param int $time
      * @return bool
      */
-    public function add($uid, $name, $data, $module = '', $time = null)
+    public function add($uid, $name = null, $content = null, $module = '', $time = null)
     {
-        if (!$this->isAvailable()) {
-            return false;
+        if (is_array($uid)) {
+            $id = isset($uid['uid']) ? (int) $uid['uid'] : 0;
+            extract($uid);
+            $uid = $id;
         }
         $module = $module ?: Pi::service('module')->current();
         $time = $time ?: time();
-        $result = Pi::api('user', 'data')->add(
-            $uid,
-            $name,
-            $data,
-            $module,
-            $time
+        $vars = array(
+            'uid'       => (int) $uid,
+            'name'      => $name,
+            'content'   => $content,
+            'module'    => $module,
+            'time'      => $time,
         );
 
-        return $result;
+        $where = array(
+            'uid'   => (int) $uid,
+            'name'  => $name,
+        );
+        $row = Pi::model('user_data')->select($where)->current();
+        if ($row) {
+            $row->assign($vars);
+        } else {
+            $row = Pi::model('user_data')->createRow($vars);
+        }
+        $row->save();
+
+        return true;
     }
 }

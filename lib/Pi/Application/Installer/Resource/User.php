@@ -548,11 +548,10 @@ class User extends AbstractResource
      */
     public function uninstallAction()
     {
-        if (!$this->isActive()) {
-            return;
-        }
         $module = $this->getModule();
-        if ('user' == $module) {
+        Pi::model('user_data')->delete(array('module' => $module));
+
+        if (!$this->isActive() || 'user' == $module) {
             return;
         }
         Pi::registry('profile', 'user')->clear();
@@ -589,8 +588,7 @@ class User extends AbstractResource
             'timeline',
             'activity',
             'quicklink',
-            'timeline_log',
-            'data'
+            'timeline_log'
         ) as $op) {
             $model = Pi::model($op, 'user');
             $model->delete(array('module' => $module));
