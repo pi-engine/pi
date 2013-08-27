@@ -184,9 +184,8 @@ class LoginController extends ActionController
 
         // Check user has perfect information
         $uid = Pi::service('user')->getIdentity();
-        //$hasPerfectInformation = $this->hasPerfectInformationFlag($uid);
-        $hasCompleteProfile = Pi::user()->data()->get($uid, 'profile-complete');
-        if (!$hasCompleteProfile) {
+        $hasPerfectInformation = $this->hasPerfectInformationFlag($uid);
+        if (!$hasPerfectInformation) {
             $this->redirect()->toRoute(
                 'user',
                 array(
