@@ -69,10 +69,9 @@ use Pi\User\Resource\AbstractResource;
  * + Activity
  *   - activity()->get($uid, $name, $limit, $offset)
  *
- * + Log
- *   - log()->add($uid, $action, $data, $time)
- *   - log()->get($uid, $action, $limit, $offset)
- *   - log()->getLast($uid, $action)
+ * + Data
+ *   - data()->add($uid, $name, $content, $module = '', $time = null)
+ *   - data()->get($uid, $name)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
@@ -370,13 +369,13 @@ class User extends AbstractService
     }
 
     /**
-     * Get action log handler
+     * Get user data handler
      *
      * @return AbstractResource
      */
-    public function log()
+    public function data()
     {
-        return $this->getResource('log');
+        return $this->getResource('data');
     }
 
     /**

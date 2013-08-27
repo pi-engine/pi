@@ -176,7 +176,7 @@ CREATE TABLE `{data}` (
   `content`         text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`uid`, `module`, `name`)
+  UNIQUE KEY `user_content` (`uid`, `name`)
 );
 
 #Privacy control
