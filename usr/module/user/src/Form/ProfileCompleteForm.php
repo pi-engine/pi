@@ -13,11 +13,11 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Perfect informationForm form
+ * Profile complete form
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class PerfectInformationForm extends BaseForm
+class ProfileCompleteForm extends BaseForm
 {
     protected $fields;
     protected $name;

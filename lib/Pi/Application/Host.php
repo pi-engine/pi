@@ -105,8 +105,9 @@ class Host
     /**
      * Constructor
      *
-     * @param string|array  $config Host file path or array of path settings
-     * @return void
+     * @param string|array $config Host file path or array of path settings
+     *
+     * @return \Pi\Application\Host
      */
     public function __construct($config = array())
     {

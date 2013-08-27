@@ -14,8 +14,8 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Acl\Acl;
 use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
-use Module\User\Form\PerfectInformationForm;
-use Module\User\Form\PerfectInformationFilter;
+use Module\User\Form\ProfileCompleteForm;
+use Module\User\Form\ProfileCompleteFilter;
 
 
 /**
@@ -72,9 +72,16 @@ class RegisterController extends ActionController
                 // Set user role
                 $this->createRole($uid);
                 // Set user data
-                $content = md5($uid . $data['name']);
+                $content = md5(uniqid($uid . $data['name']));
+                /*
                 $result = Pi::api('user', 'userdata')
                     ->setData($uid, $this->getModule(), 'register', $content);
+                */
+                $result = Pi::user()->data()->add(
+                    $uid,
+                    'register-activation',
+                    $content
+                );
                 if (!$result) {
                     $message = $result['message'];
                     $this->jump(
@@ -85,7 +92,7 @@ class RegisterController extends ActionController
 
                 // Send activity email
                 $to = $values['email'];
-                $baseLocation = Pi::host()->get('baseLocation');
+                //$baseLocation = Pi::host()->get('baseLocation');
                 $url = $this->url('', array(
                     'action' => 'activate',
                     'id'     => md5($uid),
@@ -93,7 +100,7 @@ class RegisterController extends ActionController
                     )
                 );
 
-                $link = $baseLocation . $url;
+                $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
                     $values['username'],
                     $link
@@ -131,13 +138,18 @@ class RegisterController extends ActionController
             return $this->jumpTo404('Required resource is not found');
         }
 
+        /*
         $userData = Pi::api('user', 'userdata')
                     ->getData(array('content' => $token));
         $userData = array_pop($userData);
-
+        */
+        $userData = Pi::user()->data()->find(array(
+            'name'      => 'register-activation',
+            'content'   => $token,
+        ));
         if ($userData) {
             $hashUid = md5($userData['uid']);
-            $userRow = $this->getModel('account')->find($userData['uid'], 'id');
+            $userRow = $this->getModel('account')->find($userData['uid']);
 
             if ($userRow && $hashUid == $key) {
                 $expire  = $userData['time'] + 24 * 3600;
@@ -150,6 +162,10 @@ class RegisterController extends ActionController
                     if ($result) {
                         // Delete user data
                         Pi::api('user', 'userdata')->deleteData($userData['id']);
+                        Pi::user()->data()->delete(
+                            $userData['uid'],
+                            'register-activation'
+                        );
                         $data['status'] = true;
                         $data['title']  = __('Register done');
                     }
@@ -203,10 +219,12 @@ class RegisterController extends ActionController
            return $this->jumpTo404('An error occur');
         }
 
-        $content = md5($account['id'] . $account['name']);
+        $content = md5(uniqid($account['id'] . $account['name']));
+        /*
         $result = Pi::api('user', 'userdata')
             ->setData($uid, $this->getModule(), 'register', $content);
-
+        */
+        Pi::user()->data()->add($uid, 'register-activation', $content);
         $to = $account['email'];
         $baseLocation = Pi::host()->get('baseLocation');
         $url = $this->url('', array(
@@ -228,13 +246,13 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Perfect information action
+     * Profile complete action
      *
-     * 1. Display perfect information form
+     * 1. Display profile complete form
      * 2. Save user information
      * 3. Sign user data
      */
-    public function perfectInformationAction()
+    public function completeProfileAction()
     {
         // Get redirect
         $redirect = $this->params('redirect', '');
@@ -263,13 +281,13 @@ class RegisterController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get fields for generate form
-        list($fields, $filters) = $this->canonizeForm('prefect.information');
+        list($fields, $filters) = $this->canonizeForm('profileComplete');
 
         $form = $this->getPerfectInformationForm($fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new PerfectInformationFilter($filters));
+            $form->setInputFilter(new ProfileCompleteFilter($filters));
             $form->setData($post);
 
             if ($form->isValid()) {
@@ -284,7 +302,8 @@ class RegisterController extends ActionController
                 }
 
                 // Set perfect information flag in user table
-                $this->setPerfectInformationFlag($uid);
+                //$this->setPerfectInformationFlag($uid);
+                Pi::user()->data()->add($uid, 'profile-complete', 1);
 
                 return $this->jump(
                     $redirect,
@@ -297,7 +316,7 @@ class RegisterController extends ActionController
             'form' => $form,
         ));
 
-        $this->view()->setTemplate('register-prefect-information');
+        $this->view()->setTemplate('register-complete-profile');
     }
 
     public function testAction()
@@ -347,18 +366,18 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Get prefect information form
+     * Get profile complete form
      *
-     * @param array $fields custom prefect information form fields
+     * @param array $fields custom profile complete form fields
      * @param string $name form name
-     * @return \Module\User\Form\PerfectInformationForm
+     * @return \Module\User\Form\ProfileCompleteForm
      */
-    protected function getPerfectInformationForm($fields, $name = 'prefectInformation')
+    protected function getProfileCompleteForm($fields, $name = 'profileComplete')
     {
-        $form = new PerfectInformationForm($name, $fields);
+        $form = new ProfileCompleteForm($name, $fields);
         $form->setAttribute(
             'action',
-            $this->url('default', array('action' => 'prefect.information'))
+            $this->url('default', array('action' => 'complete-profile'))
         );
 
         return $form;
@@ -367,7 +386,8 @@ class RegisterController extends ActionController
     /**
      * Canonize data to element
      *
-     * @param $data
+     * @param string $file
+     *
      * @return array
      */
     protected function canonizeForm($file)
@@ -431,6 +451,7 @@ class RegisterController extends ActionController
      * @param $uid
      * @return mixed
      */
+    /*
     public function setPerfectInformationFlag($uid)
     {
         $name = 'perfect-information-flag';
@@ -448,4 +469,5 @@ class RegisterController extends ActionController
 
         return $row['id'];
     }
+    */
 }
