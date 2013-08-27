@@ -589,7 +589,8 @@ class User extends AbstractResource
             'timeline',
             'activity',
             'quicklink',
-            'timeline_log'
+            'timeline_log',
+            'data'
         ) as $op) {
             $model = Pi::model($op, 'user');
             $model->delete(array('module' => $module));

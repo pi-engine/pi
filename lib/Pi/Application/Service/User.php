@@ -48,39 +48,31 @@ use Pi\User\Resource\AbstractResource;
  *   - avatar([$id])->delete()
  *
  * + Message
- *   - message([$id])
- *   - message([$id])->send($message, $from)
- *   - message([$id])->notify($message, $subject[, $tag])
- *   - message([$id])->getCount()
- *   - message([$id])->getAlert()
+ *   - message()
+ *   - message()->send($ui, $message, $from)
+ *   - message()->notify($uid, $message, $subject, $tag)
+ *   - message()->getCount($uid)
+ *   - message()->getAlert($uid)
  *
  * + Timeline
- *   - timeline([$id])
- *   - timeline([$id])->get($limit[, $offset[, $types]])
- *   - timeline([$id])->getCount($types)
- *   - timeline([$id])->add(array(
+ *   - timeline()->get($uid, $limit, $offset)
+ *   - timeline()->getCount($uid)
+ *   - timeline()->add(array(
+ *          'uid'       => <uid>,
  *          'message'   => <message>,
  *          'module'    => <module-name>,
- *          'type'      => <type>,
+ *          'timeline'  => <timeline-name>,
  *          'link'      => <link-href>,
  *          'time'      => <timestamp>,
- *     ))
+ *     ));
  *
  * + Activity
- *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
+ *   - activity()->get($uid, $name, $limit, $offset)
  *
  * + Log
- *   - log([$id])->add($action, $data[, $time])
- *   - log([$id])->get($action, $limit[, $offset[, $condition]])
- *   - log([$id])->getLast($action)
- *
- * + Relation
- *   - relation([$id])
- *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
- *   - relation([$id])->getCount($relation[, $condition]])
- *   - relation([$id])->hasRelation($uid, $relation)
- *   - relation([$id])->add($uid, $relation)
- *   - relation([$id])->delete([$uid[, $relation]])
+ *   - log()->add($uid, $action, $data, $time)
+ *   - log()->get($uid, $action, $limit, $offset)
+ *   - log()->getLast($uid, $action)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
@@ -183,10 +175,10 @@ class User extends AbstractService
      * Get resource handler
      *
      * @param string $name
-     * @param int|null $id
+     *
      * @return AbstractResource
      */
-    public function getResource($name, $id = null)
+    public function getResource($name)
     {
         if (!$this->resource[$name] instanceof AbstractResource) {
             $options = array();
@@ -208,12 +200,9 @@ class User extends AbstractService
                 $class = 'Pi\User\Resource\\' . ucfirst($name);
             }
             $this->resource[$name] = new $class;
-            $this->resource[$name]->bind($this->getUser($id));
             if ($options) {
                 $this->resource[$name]->setOptions($options);
             }
-        } elseif (null !== $id) {
-            $this->resource[$name]->bind($this->getAdapter()->getUser($id));
         }
 
         return $this->resource[$name];
@@ -294,7 +283,8 @@ class User extends AbstractService
     /**
      * Get identity of current logged user
      *
-     * @param bool $asId Return use id as identity or user identity name
+     * @param bool $asId    Return use id as identity or user identity name
+     *
      * @return null|int|string
      * @api
      */
@@ -342,67 +332,51 @@ class User extends AbstractService
     /**
      * Get avatar handler
      *
-     * @param int|null $id
      * @return AbstractResource
      */
-    public function avatar($id = null)
+    public function avatar()
     {
-        return $this->getResource('avatar', $id);
+        return $this->getResource('avatar');
     }
 
     /**
      * Get message handler
      *
-     * @param int|null $id
      * @return AbstractResource
      */
-    public function message($id = null)
+    public function message()
     {
-        return $this->getResource('message', $id);
+        return $this->getResource('message');
     }
 
     /**
      * Get timeline handler
      *
-     * @param int|null $id
      * @return AbstractResource
      */
-    public function timeline($id = null)
+    public function timeline()
     {
-        return $this->getResource('timeline', $id);
+        return $this->getResource('timeline');
     }
 
     /**
      * Get activity handler
      *
-     * @param int|null $id
      * @return AbstractResource
      */
-    public function activity($id = null)
+    public function activity()
     {
-        return $this->getResource('activity', $id);
+        return $this->getResource('activity');
     }
 
     /**
      * Get action log handler
      *
-     * @param int|null $id
      * @return AbstractResource
      */
-    public function log($id = null)
+    public function log()
     {
-        return $this->getResource('log', $id);
-    }
-
-    /**
-     * Get relation handler
-     *
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function relation($id = null)
-    {
-        return $this->getResource('relation', $id);
+        return $this->getResource('log');
     }
 
     /**
