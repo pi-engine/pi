@@ -180,7 +180,7 @@ class User extends AbstractService
      */
     public function getResource($name)
     {
-        if (!$this->resource[$name] instanceof AbstractResource) {
+        if (!isset($this->resource[$name])) {
             $options = array();
             $class = '';
             if (!empty($this->options['resource'][$name])) {
