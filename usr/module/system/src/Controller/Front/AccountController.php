@@ -48,16 +48,17 @@ class AccountController extends ActionController
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
-        $user = Pi::api('system', 'user')->getUser($identity, 'identity');
-        $role = $user->role();
-        //$row = Pi::model('user_account')->find($identity, 'identity');
+        //$user = Pi::api('system', 'user')->getUser($identity, 'identity');
+        //$role = $user->role();
+        $row = Pi::model('user_account')->find($identity, 'identity');
         //$role = Pi::model('user_role')->find($row->id, 'user')->role;
+        $role = Pi::api('system', 'user')->getRole($row['id'], 'front');
         $roleRow = Pi::model('acl_role')->find($role, 'name');
         $user = array(
-            __('ID')        => $user['id'],
-            __('Identity')  => $user['identity'],
-            __('Email')     => $user['email'],
-            __('Name')      => $user['name'],
+            __('ID')        => $row['id'],
+            __('Identity')  => $row['identity'],
+            __('Email')     => $row['email'],
+            __('Name')      => $row['name'],
             __('Role')      => __($roleRow->title),
         );
 
@@ -105,7 +106,7 @@ class AccountController extends ActionController
                         Pi::service('authentication')->clearIdentity();
                     }
 
-                    $this->redirect()->toRoute('', array('action' => 'index'));
+                    $this->redirect()->toRoute('', array('action' => 'index'), $message);
                     return;
                 } else {
                     $message = __('User data not saved.');

@@ -16,44 +16,31 @@ use Pi;
  *
  * Activity APIs:
  *
- *   - activity([$id])->get($name, $limit[, $offset[, $condition]])
+ *   - get($uid, $name, $limit, $offset)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Activity extends AbstractResource
 {
     /**
-     * If user module available for time handling
-     * @var bool|null
-     */
-    protected $isAvailable = null;
-
-    /**
-     * Check if relation function available
+     * Get activity log list
      *
-     * @return bool
-     */
-    protected function isAvailable()
-    {
-        if (null === $this->isAvailable) {
-            $this->isAvailable = Pi::service('module')->isActive('user');
-        }
-
-        return $this->isAvailable;
-    }
-
-    /**
-     * Placeholder for APIs
+     * @param int       $uid
+     * @param string    $name
+     * @param int       $limit
+     * @param int       $offset
      *
-     * @param string $method
-     * @param array $args
-     * @return bool|void
+     * @return array
      */
-    public function __call($method, $args)
+    public function get($uid, $name, $limit, $offset = 0)
     {
+        $result = array();
+
         if (!$this->isAvailable()) {
-            return false;
+            return $result;
         }
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('activity', 'user')->get($uid, $name, $limit, $offset);
+
+        return $result;
     }
 }

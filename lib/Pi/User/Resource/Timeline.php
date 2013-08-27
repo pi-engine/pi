@@ -16,12 +16,13 @@ use Pi;
  *
  * Timeline APIs:
  *
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add(array(
+ *   - get($limit[, $offset[, $condition]])
+ *   - getCount([$condition]])
+ *   - add(array(
+ *          'uid'       => <uid>,
  *          'message'   => <message>,
  *          'module'    => <module-name>,
- *          'type'      => <type>,
+ *          'timeline'  => <timeline-name>,
  *          'link'      => <link-href>,
  *          'time'      => <timestamp>,
  *     ))
@@ -31,36 +32,22 @@ use Pi;
 class Timeline extends AbstractResource
 {
     /**
-     * If user module available for time handling
-     * @var bool|null
-     */
-    protected $isAvailable = null;
-
-    /**
      * Get timeline log list
      *
-     * @param int   $limit
-     * @param int   $offset
-     * @param array|string $type
+     * @param int          $uid
+     * @param int          $limit
+     * @param int          $offset
+     *
      * @return array
      */
-    public function get($limit, $offset = 0, array $type = array())
+    public function get($uid, $limit, $offset = 0)
     {
         $result = array();
 
         if (!$this->isAvailable()) {
             return $result;
         }
-        $model = Pi::model('timeline_log', 'user');
-        $select = $model->select();
-        if ($type) {
-            $select->where(array('timeline' => $type));
-        }
-        $select->limit($limit)->offset($offset)->order('time DESC');
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $result[] = (array) $row;
-        }
+        $result = Pi::api('timeline', 'user')->get($uid, $limit, $offset);
 
         return $result;
     }
@@ -68,36 +55,20 @@ class Timeline extends AbstractResource
     /**
      * Get timeline log count subject to type(s)
      *
-     * @param array|string $type
+     * @param int           $uid
      *
      * @return int
      */
-    public function getCount(array $type = array())
+    public function getCount($uid)
     {
-        $model = Pi::model('timeline_log', 'user');
-        $select = $model->select();
-        if ($type) {
-            $select->where(array('timeline' => $type));
+        $result = 0;
+
+        if (!$this->isAvailable()) {
+            return $result;
         }
-        $rowset = $model->selectWith($select);
-        $result = $rowset->count();
+        $result = Pi::api('timeline', 'user')->getCount($uid);
 
         return $result;
-
-    }
-
-    /**
-     * Check if relation function available
-     *
-     * @return bool
-     */
-    protected function isAvailable()
-    {
-        if (null === $this->isAvailable) {
-            $this->isAvailable = Pi::service('module')->isActive('user');
-        }
-
-        return $this->isAvailable;
     }
 
     /**
@@ -105,7 +76,7 @@ class Timeline extends AbstractResource
      *
      * Log array:
      *  - message
-     *  - type
+     *  - timeline
      *  - module
      *  - link
      *  - time
@@ -113,38 +84,13 @@ class Timeline extends AbstractResource
      * @param array $log
      * @return bool
      */
-    public function add($log)
+    public function add(array $log)
     {
         if (!$this->isAvailable()) {
             return false;
         }
+        $result = Pi::api('timeline', 'user')->add($log);
 
-        if (!isset($log['uid'])) {
-            $log['uid'] = $this->model->id;
-        }
-        if (!isset($log['time'])) {
-            $log['time'] = time();
-        }
-        $row = Pi::model('time_log', 'user')->createRow($log);
-        $id = $row->save();
-
-        return $id;
-    }
-
-    /**
-     * Placeholder for APIs
-     *
-     * @param string $method
-     * @param array $args
-     * @return bool|void
-     */
-    public function __call($method, $args)
-    {
-        if (!$this->isAvailable()) {
-            return false;
-        }
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-
-        return null;
+        return $result;
     }
 }

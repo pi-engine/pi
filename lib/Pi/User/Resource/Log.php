@@ -16,71 +16,67 @@ use Pi;
  *
  * Log APIs:
  *
- * - log([$id])->add($action, $data[, $time])
- * - log([$id])->get($action, $limit[, $offset[, $condition]])
- * - log([$id])->getLast($action)
+ * - add($uid, $action, $data, $time)
+ * - get($uid, $action, $limit, $offset)
+ * - getLast($uid, $action)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Log extends AbstractResource
 {
     /**
-     * If user module available for time handling
-     * @var bool|null
+     * Get user log list
+     *
+     * @param int          $uid
+     * @param int          $limit
+     * @param int          $offset
+     *
+     * @return array
      */
-    protected $isAvailable = null;
+    public function get($uid, $limit, $offset = 0)
+    {
+        $result = array();
+
+        if (!$this->isAvailable()) {
+            return $result;
+        }
+        $result = Pi::api('log', 'user')->get($uid, $limit, $offset);
+
+        return $result;
+    }
 
     /**
-     * Check if relation function available
+     * Get last log content
      *
-     * @return bool
+     * @param int $uid
+     * @param string $action
+     *
+     * @return mixed
      */
-    protected function isAvailable()
+    public function getLast($uid, $action)
     {
-        if (null === $this->isAvailable) {
-            $this->isAvailable = Pi::service('module')->isActive('user');
-        }
+        $list = $this->get($uid, $action, 1);
+        $result = array_pop($list);
 
-        return $this->isAvailable;
+        return $result;
     }
 
     /**
      * Write an action log
      *
+     * @param int $uid
      * @param string $action
      * @param string $data
      * @param int $time
-     * @return int
+     * @return bool
      */
-    public function add($action, $data = '', $time = null)
+    public function add($uid, $action, $data = '', $time = null)
     {
         if (!$this->isAvailable()) {
             return false;
         }
+        $result = Pi::api('log', 'user')->add($uid, $action, $data, $time);
 
-        $row = Pi::model('log', 'user')->createRow(array(
-            'uid'       => $this->model->id,
-            'action'    => $action,
-            'data'      => $data,
-            'time'      => $time ?: time(),
-        ));
-        $id = $row->save();
-
-        return $id;
-    }
-
-    /**
-     * Placeholder for APIs
-     *
-     * @param string $method
-     * @param array $args
-     * @return bool|void
-     */
-    public function __call($method, $args)
-    {
-        if (!$this->isAvailable()) {
-            return false;
-        }
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return $result;
     }
 }
