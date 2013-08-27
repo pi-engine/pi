@@ -115,4 +115,23 @@ class Data extends AbstractResource
 
         return true;
     }
+
+    /**
+     * Find a data subject to conditions
+     *
+     * @param array $conditions
+     *
+     * @return array|bool
+     */
+    public function find(array $conditions)
+    {
+        $result = false;
+        $rowset = Pi::model('user_data')->select($conditions);
+        $row = $rowset->current();
+        if ($row) {
+            $result = $row->toArray();
+        }
+
+        return $result;
+    }
 }
