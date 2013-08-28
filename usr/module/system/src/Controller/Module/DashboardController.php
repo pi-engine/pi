@@ -125,18 +125,7 @@ class DashboardController extends ActionController
         // Get module summary callbacks
         // Get hidden modules
         $summaryList = array();
-        /*
-        $list = array();
-        $row = Pi::model('user_data')->select(array(
-            'uid'       => $user,
-            'module'    => 'system',
-            'name'      => 'module-summary'
-        ))->current();
-        if ($row) {
-            $list = (array) $row->content;
-        }
-        */
-        $list = (array) Pi::user()->data()->get($user, 'module-summary');
+        $list = (array) Pi::user()->data->get($user, 'module-summary');
 
         $summaryEnabled = array();
         $summaryHidden = array();
@@ -191,37 +180,12 @@ class DashboardController extends ActionController
         }
 
         // Get user quick links
-        /*
-        $links = array();
-        $row = Pi::model('user_data')->select(array(
-            'uid'       => $user,
-            'module'    => 'system',
-            'name'      => 'admin-link'
-        ))->current();
-        if ($row) {
-            $links = (array) $row->content;
-        }
-        */
-        $links = (array) Pi::user()->data()->get($user, 'admin-link');
+        $links = (array) Pi::user()->data->get($user, 'admin-link');
 
         // Get system message, only admins have access
-        $message = array();
-        /*
-        $row = Pi::model('user_data')->select(array(
-            'module' => 'system',
-            'name' => 'admin-message'
-        ))->current();
-        if (!$row || !$row->content) {
-            $row = Pi::model('user_data')->select(array(
-                'module'    => 'system',
-                'name'      => 'admin-welcome'
-            ))->current();
-        }
-        $content = $row->content;
-        */
-        $content = Pi::user()->data()->get(0, 'admin-message', true);
+        $content = Pi::user()->data->get(0, 'admin-message', true);
         if (!$content) {
-            $content = Pi::user()->data()->get(0, 'admin-welcome', true);
+            $content = Pi::user()->data->get(0, 'admin-welcome', true);
         }
 
         $message = array(
@@ -362,53 +326,18 @@ class DashboardController extends ActionController
     {
         $name = 'admin-message';
 
-        //$data = array();
         $content = $this->params()->fromPost('content');
-        /*
-        if ($content) {
-            $data = array(
-                'content'   => $content,
-                'time'      => time(),
-            );
-        }
-        $row = Pi::model('user_data')
-            ->select((array('module' => 'system', 'name' => $name)))
-            ->current();
-        */
         if (Pi::service('user')->getUser()->isAdmin()) {
-            /*
-            if ($row) {
-                $row->content = $data;
-            } else {
-                $row = Pi::model('user_data')->createRow(array(
-                    'module'    => 'system',
-                    'name'      => $name,
-                    'content'   => $data,
-                ));
-            }
-            $row->save();
-            */
-            Pi::user()->data()->set(0, $name, $content);
+            Pi::user()->data->set(0, $name, $content);
         }
 
-        /*
-        if (!$data) {
-            $row = Pi::model('user_data')
-                ->select(array(
-                    'module'    => 'system',
-                    'name'      => 'admin-welcome'
-                ))
-                ->current();
-            $data = $row->content;
-        }
-        */
         if ($content) {
             $data = array(
                 'content'   => $content,
                 'time'      => time(),
             );
         } else {
-            $data = Pi::user()->data()->get(0, 'admin-welcome', true);
+            $data = Pi::user()->data->get(0, 'admin-welcome', true);
         }
 
         $message = array(
@@ -438,27 +367,7 @@ class DashboardController extends ActionController
             'content'   => $content,
             'time'      => time(),
         );
-        /*
-        $row = Pi::model('user_data')
-            ->select((array(
-                'uid'       => $user,
-                'module'    => $module,
-                'name'      => $type
-            )))
-            ->current();
-        if ($row) {
-            $row->content = $data;
-        } else {
-            $row = Pi::model('user_data')->createRow(array(
-                'uid'       => $user,
-                'module'    => $module,
-                'name'      => $type,
-                'content'   => $data,
-            ));
-        }
-        $row->save();
-        */
-        Pi::user()->data()->set($user, $type, $content);
+        Pi::user()->data->set($user, $type, $content);
 
         $memo = array(
             'time'      => _date($data['time']),
@@ -476,31 +385,9 @@ class DashboardController extends ActionController
      */
     protected function saveAjax($type)
     {
-        $module = $this->params('module');
         $user   = Pi::service('user')->getUser()->id;
-
         $content = $this->params()->fromPost('content');
-        /*
-        $row = Pi::model('user_data')
-            ->select((array(
-                'user'      => $user,
-                'module'    => $module,
-                'name'      => $type,
-            )))
-            ->current();
-        if ($row) {
-            $row->content = $content;
-        } else {
-            $row = Pi::model('user_data')->createRow(array(
-                'uid'       => $user,
-                'module'    => $module,
-                'name'      => $type,
-                'content'   => $content,
-            ));
-        }
-        $row->save();
-        */
-        Pi::user()->data()->set($user, $type, $content);
+        Pi::user()->data->set($user, $type, $content);
 
         return true;
     }
