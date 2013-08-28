@@ -16,11 +16,11 @@ use Pi;
  *
  * Avatar APIs;
  *
- *   - avatar([$id])->setSource($source)
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
- *   - avatar([$id])->set($value[, $source])
- *   - avatar([$id])->delete()
+ *   - avatar->get($uid, [$size[, $attributes[, $source]]])
+ *   - avatar->getList($ids[, $size[, $attributes[, $source]]])
+ *   - avatar->setSource($uid, $source)
+ *   - avatar->set($uid, $value[, $source])
+ *   - avatar->delete($uid)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -34,7 +34,7 @@ class Avatar extends AbstractResource
      */
     public function getAdapter($adapter)
     {
-        $class = __NAMESPACE__ . '\Avatar' . ucfirst($adapter);
+        $class = 'Pi\User\Avatar\\' . ucfirst($adapter);
         $adapter = new $class($this->model);
 
         return $adapter;
@@ -73,15 +73,17 @@ class Avatar extends AbstractResource
     /**
      * Get user avatar img element
      *
+     * @param int               $uid
      * @param string            $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
      *      Array for attributes of HTML img element of img,
      *      string for alt of img, false to return URL
+     *
      * @return string
      */
-    public function get($size = '', $attributes = array())
+    public function get($uid, $size = '', $attributes = array())
     {
         $avatar = $this->model ? $this->model->avatar : '';
         if (false !== strpos($avatar, '@')) {

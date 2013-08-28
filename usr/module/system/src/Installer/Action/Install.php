@@ -76,7 +76,7 @@ class Install extends BasicInstall
         // Add system messages
         $name       = 'admin-welcome';
         $message    = __('Welcome to Pi powered system.');
-        Pi::user()->data()->add(array(
+        Pi::user()->data->set(array(
             'module'    => $module,
             'name'      => $name,
             'content'   => $message,
@@ -112,7 +112,7 @@ class Install extends BasicInstall
                 'url'   => 'https://twitter.com/PiEnable',
             ),
         );
-        Pi::user()->data()->add(array(
+        Pi::user()->data->set(array(
             'uid'       => $user,
             'module'    => $module,
             'name'      => $name,
