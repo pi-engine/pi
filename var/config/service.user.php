@@ -10,8 +10,13 @@ return array(
         'authentication'    => 'service.authentication.php',
     ),
 
-    'avatar'            => array(
-        'class'         => '',
-        'options'       => array(),
+    'resource'  => array(
+        'avatar'            => array(
+            'class'         => '',
+            'options'       => array(
+                'adapter'       => 'gravatar',
+                'options'       => array(),
+            ),
+        ),
     ),
 );
