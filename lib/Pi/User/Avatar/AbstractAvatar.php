@@ -9,6 +9,8 @@
 
 namespace Pi\User\Avatar;
 
+use Pi\User\Resource\Avatar as AvatarResource;
+
 /**
  * User avatar abstract class
  *
@@ -16,6 +18,9 @@ namespace Pi\User\Avatar;
  */
 abstract class AbstractAvatar
 {
+    /** @var AvatarResource Avatar resource handler */
+    protected $resource;
+
     /**
      * Options
      * @var array
@@ -25,11 +30,33 @@ abstract class AbstractAvatar
     /**
      * Constructor
      *
-     * @param array $options
+     * @param \Pi\User\Resource\Avatar $resource
+     * @param array                    $options
      */
-    public function __construct(array $options = array())
+    public function __construct(
+        AvatarResource $resource = null,
+        array $options = array()
+    ) {
+        if ($resource) {
+            $this->setResource($resource);
+        }
+        if ($options) {
+            $this->setOptions($options);
+        }
+    }
+
+    /**
+     * Set resource handler
+     *
+     * @param AvatarResource $resource
+     *
+     * @return $this
+     */
+    public function setResource(AvatarResource $resource)
     {
-        $this->setOptions($options);
+        $this->resource = $resource;
+
+        return $this;
     }
 
     /**
@@ -99,7 +126,21 @@ abstract class AbstractAvatar
 
 
     /**
+     * Build user avatar link from corresponding source
+     *
+     * @param string $source
+     * @param string $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     *
+     * @return string
+     */
+    abstract public function build($source, $size = '');
+
+    /**
      * Canonize sie
+     *
+     * Convert named size to numeric size or convert from number to named size
      *
      * @param string|int $size
      *
@@ -110,7 +151,10 @@ abstract class AbstractAvatar
     protected function canonizeSize($size, $toInt = true)
     {
         $sizeMap = $this->options['size_map'];
+
+        // Get numeric size
         if ($toInt) {
+            // From named to numeric
             if (!is_numeric($size)) {
                 if (!isset($sizeMap[$size])) {
                     $size = $sizeMap['normal'];
@@ -120,17 +164,32 @@ abstract class AbstractAvatar
                         $size = $sizeMap[$size];
                     }
                 }
+            // Canonize numeric to defined numeric
+            } else {
+                foreach ($sizeMap as $name => $number) {
+                    if (!is_numeric($number) || $number < $size) {
+                        continue;
+                    } elseif ($number >= $size) {
+                        break;
+                    }
+                }
+                $size = $number;
             }
+        // Get named size
         } else {
+            // From numeric to named size
             if (is_numeric($size)) {
                 foreach ($sizeMap as $name => $number) {
                     if (!is_numeric($number) || $number < $size) {
                         continue;
-                    } elseif ($number == $size) {
+                    } elseif ($number >= $size) {
                         break;
                     }
                 }
                 $size = $name;
+            // Convert to defined named size
+            } elseif (!isset($sizeMap[$size])) {
+                $size = 'normal';
             }
         }
 

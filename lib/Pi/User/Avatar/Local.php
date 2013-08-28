@@ -16,28 +16,27 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends Upload
+class Local extends AbstractAvatar
 {
     /**
      * {@inheritDoc}
-     * @return bool
      */
     public function getSource($uid, $size = '')
     {
-        return Pi::url($this->getRelativePath($size));
+        $src = $this->build('', $size);
+
+        return $src;
     }
 
     /**
-     * Get relative path
-     *
-     * @param string $size
-     * @return string
+     * {@inheritDoc}
      */
-    protected function getRelativePath($size = '')
+    public function build($source, $size = '')
     {
-        $folder = $this->canonizeSize($size);
-        $path = sprintf('static/avatar/%s.jpg', $folder);
+        $folder = $this->canonizeSize($size, false);
+        $path = sprintf('static/avatar/%s.png', $folder);
+        $src = Pi::url($path);
 
-        return $path;
+        return $src;
     }
 }

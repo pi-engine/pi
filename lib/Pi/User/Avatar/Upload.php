@@ -23,25 +23,28 @@ class Upload extends AbstractAvatar
      */
     public function getSource($uid, $size = '')
     {
-        $src = Pi::url($this->getRelativePath($uid, $size));
+        $src = '';
+        if (!$uid) {
+            return $src;
+        }
+
+        $avatar = Pi::user()->get($uid, 'avatar');
+        if ($avatar) {
+            $src = $this->build($avatar, $size);
+        }
 
         return $src;
     }
 
     /**
-     * Get relative path
-     *
-     * @param int $uid
-     * @param string $size
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    protected function getRelativePath($uid, $size = '')
+    public function build($source, $size = '')
     {
         $folder = $this->canonizeSize($size, false);
-        $avatar = $this->model->avatar;
-        $path = sprintf('upload/avatar/%s/%s', $folder, $avatar);
+        $path = sprintf('upload/avatar/%s/%s', $folder, $source);
+        $src = Pi::url($path);
 
-        return $path;
+        return $src;
     }
 }

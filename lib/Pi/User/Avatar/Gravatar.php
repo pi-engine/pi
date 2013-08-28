@@ -35,8 +35,18 @@ class Gravatar extends AbstractAvatar
             }
         }
 
+        $src = $this->build($gravatar, $size);
+
+        return $src;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function build($source, $size = '')
+    {
         $size = $this->canonizeSize($size);
-        $src = $this->getUrl($gravatar, $size);
+        $src = $this->getUrl($source, $size);
 
         return $src;
     }
@@ -48,15 +58,16 @@ class Gravatar extends AbstractAvatar
     {
         $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&d=%s&r=%s';
         $hash = md5(strtolower($email));
+        $options = $this->options['gravatar'];
         $src = sprintf(
             $src,
-            !empty($this->options['secure']) ? 'https' : 'http',
+            !empty($options['secure']) ? 'https' : 'http',
             $hash,
-            isset($this->options['extension'])
-                ? '.' . $this->options['extension'] : '',
+            isset($options['extension'])
+                ? '.' . $options['extension'] : '',
             $size,
-            isset($this->options['default']) ? $this->options['default'] : 'mm',
-            isset($this->options['rate']) ? $this->options['rate'] : 'g'
+            isset($options['default']) ? $options['default'] : 'mm',
+            isset($options['rate']) ? $options['rate'] : 'g'
         );
 
         return $src;

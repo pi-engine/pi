@@ -46,7 +46,9 @@ class Avatar extends AbstractResource
     public function get($uid, $size = '', $attributes = array())
     {
         $avatar = $this->getAdapter()->get($uid, $size, $attributes);
-        //$avatar = $this->build($src, $attributes);
+        if (!$avatar) {
+            $avatar = $this->getAdapter('local')->get($uid, $size, $attributes);
+        }
 
         return $avatar;
     }
@@ -57,17 +59,17 @@ class Avatar extends AbstractResource
      * @param string $adapter
      * @return AbstractAvatar
      */
-    protected function getAdapter($adapter = '')
+    public function getAdapter($adapter = '')
     {
         $adapterName = $adapter ?: $this->options['adapter'];
-        //vd($this->options);
-        if (!$this->adapter[$adapterName]) {
+
+        if (empty($this->adapter[$adapterName])) {
             if (false === strpos($adapterName, '\\')) {
                 $class = 'Pi\User\Avatar\\' . ucfirst($adapterName);
             } else {
                 $class = $adapterName;
             }
-            $adapter = new $class;
+            $adapter = new $class($this);
             if (isset($this->options['options'])) {
                 $adapter->setOptions((array) $this->options['options']);
             }

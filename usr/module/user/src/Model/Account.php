@@ -29,7 +29,7 @@ class Account extends AccountUserModel
     /**
      * {@inheritDoc}
      */
-    public function setup(array $options = array())
+    public function setup($options = array())
     {
         $options['prefix'] = Pi::db()->prefix('', 'core');
         parent::setup($options);

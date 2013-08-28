@@ -24,9 +24,12 @@ class Local extends System
     public function get($name)
     {
         $result = parent::get($name);
-        if (null === $result) {
-            $result = Pi::api('user', 'user')->get($this->get('id'), $name);
-            $this->data[$name] = $result;
+        if (null === $result && 'id' != $name) {
+            $uid = $this->get('id');
+            if ($uid) {
+                $result = Pi::api('user', 'user')->get($uid, $name);
+                $this->data[$name] = $result;
+            }
         }
 
         return $result;
