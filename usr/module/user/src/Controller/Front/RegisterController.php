@@ -71,12 +71,10 @@ class RegisterController extends ActionController
 
                 // Set user role
                 $this->createRole($uid);
+                Pi::api('user', 'user')->setRole($uid, Acl::MEMBER);
+
                 // Set user data
                 $content = md5(uniqid($uid . $data['name']));
-                /*
-                $result = Pi::api('user', 'userdata')
-                    ->setData($uid, $this->getModule(), 'register', $content);
-                */
                 $result = Pi::user()->data()->add(
                     $uid,
                     'register-activation',
@@ -92,7 +90,6 @@ class RegisterController extends ActionController
 
                 // Send activity email
                 $to = $values['email'];
-                //$baseLocation = Pi::host()->get('baseLocation');
                 $url = $this->url('', array(
                     'action' => 'activate',
                     'id'     => md5($uid),
@@ -105,6 +102,7 @@ class RegisterController extends ActionController
                     $values['username'],
                     $link
                 );
+
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
                 $this->redirect()->toUrl($this->url('',
                     array(
@@ -156,12 +154,12 @@ class RegisterController extends ActionController
                 $current = time();
                 if ($current < $expire) {
                     // Activate user
-                    $result = Pi::api('user', 'user')
-                        ->activateUser($userData['uid']);
+                    $result = Pi::api('user', 'user')->activateUser(
+                        $userData['uid']
+                    );
 
                     if ($result) {
                         // Delete user data
-                        Pi::api('user', 'userdata')->deleteData($userData['id']);
                         Pi::user()->data()->delete(
                             $userData['uid'],
                             'register-activation'
@@ -214,32 +212,38 @@ class RegisterController extends ActionController
             return $this->jumpTo404('An error occur');
         }
 
-        $account = Pi::api('user', 'user')->getAccount($uid);
+        // Get account info
+        $account = Pi::api('user', 'user')->get(
+            $uid,
+            array('id', 'name', 'email')
+        );
         if (!$account) {
            return $this->jumpTo404('An error occur');
         }
 
+        // Set user data form send mail
         $content = md5(uniqid($account['id'] . $account['name']));
-        /*
-        $result = Pi::api('user', 'userdata')
-            ->setData($uid, $this->getModule(), 'register', $content);
-        */
         Pi::user()->data()->add($uid, 'register-activation', $content);
+
+        // Set mail params and send verify mail
         $to = $account['email'];
-        $baseLocation = Pi::host()->get('baseLocation');
+        //Set verify link
         $url = $this->url('', array(
                 'action' => 'activate',
                 'id'     => md5($account['id']),
                 'token'  => $content
             )
         );
-
-        $link = $baseLocation . $url;
+        $link = Pi::url($url, true);
+        // Set send mail params
         list($subject, $body, $type) = $this->setMailParams(
-            $account['username'],
+            $account['name'],
             $link
         );
+        // Send...
         Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+
+        // Display result message
         $this->redirect()->toUrl($this->url('',
             array('action' => 'display', 'type' => 'register', 'uid' => $uid)
         ));
@@ -302,7 +306,6 @@ class RegisterController extends ActionController
                 }
 
                 // Set perfect information flag in user table
-                //$this->setPerfectInformationFlag($uid);
                 Pi::user()->data()->add($uid, 'profile-complete', 1);
 
                 return $this->jump(
@@ -318,33 +321,6 @@ class RegisterController extends ActionController
 
         $this->view()->setTemplate('register-complete-profile');
     }
-
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
-
-
-    }
-
-    /**
-     * Create role for register user
-     *
-     * @param $uid
-     * @param string $role
-     * @param string $section
-     * @return mixed
-     */
-    protected function createRole($uid, $role = Acl::MEMBER, $section = 'front')
-    {
-        $roleModel = $this->getModel('role');
-        $row = $roleModel->createRow(array(
-            'uid'     => $uid,
-            'role'    => $role,
-            'section' => $section,
-        ));
-        return $row->save();
-    }
-
 
     /**
      * Get register form
@@ -387,7 +363,6 @@ class RegisterController extends ActionController
      * Canonize data to element
      *
      * @param string $file
-     *
      * @return array
      */
     protected function canonizeForm($file)
@@ -444,30 +419,4 @@ class RegisterController extends ActionController
 
         return array($subject, $body, $type);
     }
-
-    /**
-     * Set perfect information flag
-     *
-     * @param $uid
-     * @return mixed
-     */
-    /*
-    public function setPerfectInformationFlag($uid)
-    {
-        $name = 'perfect-information-flag';
-        $data = array(
-            'uid'     => $uid,
-            'name'    => $name,
-            'module'  => $this->module,
-            'time'    => time(),
-            'content' => 'yes',
-
-        );
-
-        $row = Pi::model('data', 'user')->createRow($data);
-        $row->save();
-
-        return $row['id'];
-    }
-    */
 }

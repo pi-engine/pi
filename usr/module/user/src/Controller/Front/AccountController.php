@@ -32,8 +32,11 @@ class AccountController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get username and email
-        $usename      = Pi::api('user', 'user')->get($uid, 'identity');
-        $email        = Pi::api('user', 'user')->get($uid, 'email');
+        list($usename, $email) = Pi::api('user', 'user')->get(
+            $uid,
+            array('identity', 'email')
+        );
+
         $errorMsg     = '';
         $updateStatus = '';
 
