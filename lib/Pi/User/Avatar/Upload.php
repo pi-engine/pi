@@ -21,9 +21,9 @@ class Upload extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($size = '')
+    public function getSource($uid, $size = '')
     {
-        $src = Pi::url($this->getRelativePath($size));
+        $src = Pi::url($this->getRelativePath($uid, $size));
 
         return $src;
     }
@@ -31,7 +31,7 @@ class Upload extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function getPath($size = null)
+    public function getPath($uid, $size = null)
     {
         if (null === $size) {
             $path = array();
@@ -45,10 +45,10 @@ class Upload extends AbstractAvatar
                     'xxlarge'
                 ) as $key
             ) {
-                $path[$key] = Pi::Path($this->getRelativePath($key));
+                $path[$key] = Pi::Path($this->getRelativePath($uid, $key));
             }
         } else {
-            $path = Pi::Path($this->getRelativePath($size));
+            $path = Pi::Path($this->getRelativePath($uid, $size));
         }
 
         return $path;
@@ -60,7 +60,7 @@ class Upload extends AbstractAvatar
      * @param string $size
      * @return string
      */
-    protected function getRelativePath($size = '')
+    protected function getRelativePath($uid, $size = '')
     {
         $folder = $this->canonizeSize($size);
         $avatar = $this->model->avatar;

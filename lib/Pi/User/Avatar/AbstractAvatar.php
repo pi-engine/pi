@@ -9,9 +9,6 @@
 
 namespace Pi\User\Avatar;
 
-use Pi;
-use Pi\User\Model\AbstractModel as UserModel;
-
 /**
  * User avatar abstract class
  *
@@ -20,28 +17,56 @@ use Pi\User\Model\AbstractModel as UserModel;
 abstract class AbstractAvatar
 {
     /**
-     * Bound user account
-     * @var UserModel
+     * Options
+     * @var array
      */
-    protected $model;
+    protected $options;
 
     /**
      * Constructor
      *
-     * @param UserModel $model
+     * @param array $options
      */
-    public function __construct(UserModel $model = null)
+    public function __construct(array $options = array())
     {
-        $this->model = $model;
+        $this->setOptions($options);
+    }
+
+    /**
+     * Set options
+     *
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options = array())
+    {
+        $this->options = $options;
+
+        return $this;
     }
 
     /**
      * Get user avatar link
      *
+     * @param int    $uid
      * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     *
      * @return string
      */
-    abstract public function build($size = '');
+    abstract public function getSource($uid, $size = '');
+
+    /**
+     * Get user avatar path
+     *
+     * @param int    $uid
+     * @param string $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     *
+     * @return string
+     */
+    abstract public function getPath($uid, $size = '');
 }

@@ -9,6 +9,7 @@
 
 namespace Pi\User\Model;
 
+use Pi;
 
 /**
  * Local user model
