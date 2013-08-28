@@ -165,33 +165,6 @@ class ProfileController extends ActionController
     }
 
     /**
-     * Set paginator
-     *
-     * @param $option
-     * @return \Pi\Paginator\Paginator
-     */
-    protected function setPaginator($option)
-    {
-        $paginator = Paginator::factory(intval($option['count']));
-        $paginator->setItemCountPerPage($option['limit']);
-        $paginator->setCurrentPageNumber($option['page']);
-        $paginator->setUrlOptions(array(
-            // Use router to build URL for each page
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => $option['controller'],
-                'action'        => $option['action'],
-            ),
-        ));
-
-        return $paginator;
-    }
-
-    /**
      * Edit profile action
      *
      */
@@ -264,8 +237,9 @@ class ProfileController extends ActionController
      */
     public function editCompoundAction()
     {
-        $groupName = $this->params('group', '');
-        $uid       = Pi::service('user')->getIdentity();
+        $groupName    = $this->params('group', '');
+        $uid          = Pi::service('user')->getIdentity();
+        $errorMsg     = '';
 
         if ($this->request->isPost()) {
             $groupName = _post('group');
@@ -288,19 +262,19 @@ class ProfileController extends ActionController
         $compoundData = Pi::api('user', 'user')->get($uid, $compound);
 
         // Generate compound edit form
-        $form = array();
+        $forms = array();
         foreach ($compoundData[$uid][$compound] as $set => $row) {
             $formName = 'compound' . $set;
-            $form[$set] = new CompoundForm($formName, $compoundElements);
+            $forms[$set] = new CompoundForm($formName, $compoundElements);
             // Set form data
             $row += array('set' => $set);
-            $form[$set]->setData($row);
+            $forms[$set]->setData($row);
         }
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $set = $post['set'];
-            $currentForm = $form[$set];
+            $currentForm = $forms[$set];
             $currentForm->setInputFilter(new CompoundFilter($compoundFilters));
 
             if ($currentForm->isValid()) {
@@ -312,10 +286,45 @@ class ProfileController extends ActionController
                 $compoundData[$uid][$compound][$curSet] = $data;
 
                 // Update compound
-                Pi::api('user', 'user')->updateCompound($compoundData[$uid]);
-                //$ = __('Save successfully');
+                $status = Pi::api('user', 'user')->updateCompound($uid, $compoundData[$uid]);
+                $errorMsg = $status ? '' : __('Update error occur');
+            } else {
+                $errorMsg = __('Input data invalid');
             }
         }
+
+        $this->view()->setTemplate('profile-edit-compound');
+        $this->view()->assign(array(
+            'form' => $forms,
+            'errorMsg' => $errorMsg,
+        ));
+    }
+
+    /**
+     * Set paginator
+     *
+     * @param $option
+     * @return \Pi\Paginator\Paginator
+     */
+    protected function setPaginator($option)
+    {
+        $paginator = Paginator::factory(intval($option['count']));
+        $paginator->setItemCountPerPage($option['limit']);
+        $paginator->setCurrentPageNumber($option['page']);
+        $paginator->setUrlOptions(array(
+            // Use router to build URL for each page
+            'pageParam'     => 'p',
+            'totalParam'    => 't',
+            'router'        => $this->getEvent()->getRouter(),
+            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params'        => array(
+                'module'        => $this->getModule(),
+                'controller'    => $option['controller'],
+                'action'        => $option['action'],
+            ),
+        ));
+
+        return $paginator;
     }
 
     /**
@@ -397,17 +406,17 @@ class ProfileController extends ActionController
         return $result;
     }
 
-//    public function testAction()
-//    {
-//        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
-//        //vd($compoundMeta);
-//        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
-//
-//        //vd($compoundElements);
-//        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
-//        vd($compoundElements);
-//
-//
-//        $this->view()->setTemplate(false);
-//    }
+    public function testAction()
+    {
+        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
+        //vd($compoundMeta);
+        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
+
+        //vd($compoundElements);
+        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
+        vd($compoundElements);
+
+
+        $this->view()->setTemplate(false);
+    }
 }
