@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Resource;
+namespace Pi\User\Avatar;
 
 use Pi;
 
@@ -16,7 +16,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class AvatarUpload extends AbstractAvatar
+class Upload extends AbstractAvatar
 {
     /**
      * {@inheritDoc}

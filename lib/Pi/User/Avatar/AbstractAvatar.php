@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Resource;
+namespace Pi\User\Avatar;
 
 use Pi;
 use Pi\User\Model\AbstractModel as UserModel;
