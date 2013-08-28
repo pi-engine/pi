@@ -47,6 +47,7 @@ class EmailController extends ActionController
             __('Username')  => $identity,
             __('Email')     => $email,
         );
+        $message = '';
 
         $form = new EmailForm('change-email');
         if ($this->request->isPost()) {
@@ -105,6 +106,7 @@ class EmailController extends ActionController
             'title'   => $title,
             'form'    => $form,
             'message' => $message,
+            'user'    => $user,
         ));
     }
 

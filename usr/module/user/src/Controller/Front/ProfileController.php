@@ -23,6 +23,8 @@ class ProfileController extends ActionController
      * User profile page
      * 1. Owner profile view
      * 2. Other profile view
+     * 3. Display user time line
+     * 4. Display activity title
      *
      * @return array|void
      */
@@ -37,6 +39,7 @@ class ProfileController extends ActionController
             $this->jumpTo404();
         }
 
+        // Check owner
         $loginUid = Pi::service('user')->getIdentity();
         if (!$uid || $uid == $loginUid) {
             $uid = Pi::service('user')->getIdentity();
@@ -114,16 +117,16 @@ class ProfileController extends ActionController
         $offset = (int) ($page -1) * $limit;
 
         $uid = $this->params('uid', '');
-        $isLogin = Pi::service('user')->hasIdentity();
+        $isLogin = Pi::user()->hasIdentity();
         $isOwner = false;
 
         if (!$uid && !$isLogin) {
             $this->jumpTo404('An error occur');
         }
 
-        $loginUid = Pi::service('user')->getIdentity();
+        $loginUid = Pi::user()->getIdentity();
         if (!$uid || $uid == $loginUid) {
-            $uid = Pi::service('user')->getIdentity();
+            $uid = Pi::user()->getIdentity();
             $isOwner = true;
         }
 
@@ -131,19 +134,20 @@ class ProfileController extends ActionController
         $user = $this->getUser($uid);
 
         // Get timeline
-        $count    = Pi::service('user')->timeline($uid)->getCount();
-        $timeline = Pi::service('user')->timeline($uid)->get($limit, $offset);
+        $count    = Pi::api('user', 'timeline')->getCount();
+        $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
+
+        // Get timeline meta list
+        $timelineMetaList = Pi::api('user', 'timeline')->getList();
 
         // Set timeline meta
         foreach ($timeline as &$item) {
-            $timelineMeta = Pi::service('user')
-                          ->timeline()
-                          ->getMeta($item['module'], $item['timeline']);
-            $item['icon'] = $timelineMeta['icon'];
+            $item['icon']  = $timelineMeta[$item['timeline']]['icon'];
+            $item['title'] = $timelineMeta[$item['timeline']]['title'];
         }
 
-        // Get activity meta
-        $activityMeta = $this->getActivityMeta();
+        // Get activity meta for nav display
+        $activityList = Pi::api('user', 'activity')->getList();
 
         // Set paginator
         $paginatorOption = array(
@@ -151,16 +155,17 @@ class ProfileController extends ActionController
             'limit'      => $limit,
             'page'       => $page,
             'controller' => 'profile',
-            'action'     => 'home'
+            'action'     => 'home',
+            'uid'        => $uid,
         );
         $paginator = $this->setPaginator($paginatorOption);
 
         $this->view()->assign(array(
-            'user'      => $user,
-            'timeline'  => $timeline,
-            'paginator' => $paginator,
-            'isOwner'   => $isOwner,
-            'activity'  => $activityMeta,
+            'user'         => $user,
+            'timeline'     => $timeline,
+            'paginator'    => $paginator,
+            'isOwner'      => $isOwner,
+            'activityList' => $activityList,
         ));
     }
 
@@ -297,6 +302,7 @@ class ProfileController extends ActionController
         $this->view()->assign(array(
             'form' => $forms,
             'errorMsg' => $errorMsg,
+            'curGroup' => $groupName,
         ));
     }
 
@@ -392,15 +398,15 @@ class ProfileController extends ActionController
 
     /**
      * Get user information for profile page head display
+     *
      * @param $uid
      * @return array user information
      */
     protected function getUser($uid)
     {
-        $result = array(
-            'name'     => Pi::api('user', 'user')->get($uid, 'name'),
-            'gender'   => Pi::api('user', 'user')->get($uid, 'gender'),
-            'birthday' => Pi::api('user', 'user')->get($uid, 'birthday'),
+        $result = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthday')
         );
 
         return $result;
