@@ -53,7 +53,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::api('message', 'message')->send(
+        $id = Pi::api('message')->send(
             $uid,
             $message,
             $from
@@ -77,7 +77,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::api('message', 'message')->notify(
+        $id = Pi::api('message')->notify(
             $uid,
             $message,
             $subject,
@@ -88,7 +88,7 @@ class Message extends AbstractResource
     }
 
     /**
-     * Get total account
+     * Get total count
      *
      * @param int $uid
      * @return int|bool
@@ -98,13 +98,15 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message', 'message')->getCount($uid);
+        $result = Pi::api('message')->getCount($uid);
 
         return $result;
     }
 
     /**
-     * Get new message account to alert
+     * Get new message count to alert
+     *
+     * Alert user the new messages he receives since last visit.
      *
      * @param int $uid
      * @return int|bool
@@ -114,7 +116,24 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message', 'message')->getAlert($uid);
+        $result = Pi::api('message')->getAlert($uid);
+
+        return $result;
+    }
+
+    /**
+     * Dismiss message alert by resetting alert count to 0
+     *
+     * @param $uid
+     *
+     * @return bool
+     */
+    public function dismissAlert($uid)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+        $result = Pi::api('message')->dismissAlert($uid);
 
         return $result;
     }
