@@ -84,7 +84,7 @@ class Data extends AbstractResource
      * @param int $time
      * @return bool
      */
-    public function add($uid, $name = null, $content = null, $module = '', $time = null)
+    public function set($uid, $name = null, $content = null, $module = '', $time = null)
     {
         if (is_array($uid)) {
             $id = isset($uid['uid']) ? (int) $uid['uid'] : 0;
