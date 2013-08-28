@@ -39,26 +39,34 @@ use Pi\User\Resource\AbstractResource;
  *
  * + Resource APIs
  *
+ * + Activity
+ *   - activity->get($uid, $name, $limit, $offset)
+ *
  * + Avatar
- *   - avatar([$id])
- *   - avatar([$id])->setSource($source)
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
- *   - avatar([$id])->set($value[, $source])
- *   - avatar([$id])->delete()
+ *   - avatar
+ *   - avatar->setSource($uid, $source)
+ *   - avatar->get($uid, [$size[, $attributes[, $source]]])
+ *   - avatar->getList($ids[, $size[, $attributes[, $source]]])
+ *   - avatar->set($uid, $value[, $source])
+ *   - avatar->delete($uid)
+ *
+ * + Data
+ *   - data->set($uid, $name, $content, $module = '', $time = null)
+ *   - data->get($uid, $name)
+ *   - data->delete($uid, $name)
  *
  * + Message
- *   - message()
- *   - message()->send($ui, $message, $from)
- *   - message()->notify($uid, $message, $subject, $tag)
- *   - message()->getCount($uid)
- *   - message()->getAlert($uid)
- *   - message()->dismissAlert($uid)
+ *   - message
+ *   - message->send($ui, $message, $from)
+ *   - message->notify($uid, $message, $subject, $tag)
+ *   - message->getCount($uid)
+ *   - message->getAlert($uid)
+ *   - message->dismissAlert($uid)
  *
  * + Timeline
- *   - timeline()->get($uid, $limit, $offset)
- *   - timeline()->getCount($uid)
- *   - timeline()->add(array(
+ *   - timeline->get($uid, $limit, $offset)
+ *   - timeline->getCount($uid)
+ *   - timeline->add(array(
  *          'uid'       => <uid>,
  *          'message'   => <message>,
  *          'module'    => <module-name>,
@@ -66,14 +74,6 @@ use Pi\User\Resource\AbstractResource;
  *          'link'      => <link-href>,
  *          'time'      => <timestamp>,
  *     ));
- *
- * + Activity
- *   - activity()->get($uid, $name, $limit, $offset)
- *
- * + Data
- *   - data()->set($uid, $name, $content, $module = '', $time = null)
- *   - data()->get($uid, $name)
- *   - data()->delete($uid, $name)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
@@ -94,6 +94,17 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
  *
+ * @method activity()
+ * @method avatar()
+ * @method data()
+ * @method message()
+ * @method timeline()
+ *
+ * @property-read AbstractResource $activity
+ * @property-read AbstractResource $avatar
+ * @property-read AbstractResource $data
+ * @property-read AbstractResource $message
+ * @property-read AbstractResource $timeline
  *
  * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -303,14 +314,33 @@ class User extends AbstractService
     }
 
     /**
-     * Get user variables
+     * Get get resource handler or user variables
      *
      * @param string $var
-     * @return mixed
+     * @return AbstractResource|mixed
      */
     public function __get($var)
     {
-        return $this->getAdapter()->{$var};
+        switch ($var) {
+            // User activity
+            case 'activity':
+            // User avatar
+            case 'avatar':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($var);
+                break;
+            // User profile field
+            default:
+                $result = $this->getAdapter()->{$var};
+                break;
+        }
+
+        return $result;
     }
 
     /**
@@ -324,60 +354,29 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(
-            array($this->getAdapter(), $method),
-            $args
-        );
-    }
+        switch ($method) {
+            // User activity
+            case 'activity':
+            // User avatar
+            case 'avatar':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($method);
+                break;
+            // User profile adapter methods
+            default:
+                $result = call_user_func_array(
+                    array($this->getAdapter(), $method),
+                    $args
+                );
+                break;
+        }
 
-    /**
-     * Get avatar handler
-     *
-     * @return AbstractResource
-     */
-    public function avatar()
-    {
-        return $this->getResource('avatar');
-    }
-
-    /**
-     * Get message handler
-     *
-     * @return AbstractResource
-     */
-    public function message()
-    {
-        return $this->getResource('message');
-    }
-
-    /**
-     * Get timeline handler
-     *
-     * @return AbstractResource
-     */
-    public function timeline()
-    {
-        return $this->getResource('timeline');
-    }
-
-    /**
-     * Get activity handler
-     *
-     * @return AbstractResource
-     */
-    public function activity()
-    {
-        return $this->getResource('activity');
-    }
-
-    /**
-     * Get user data handler
-     *
-     * @return AbstractResource
-     */
-    public function data()
-    {
-        return $this->getResource('data');
+        return $result;
     }
 
     /**
