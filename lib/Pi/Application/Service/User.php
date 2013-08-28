@@ -53,6 +53,7 @@ use Pi\User\Resource\AbstractResource;
  *   - message()->notify($uid, $message, $subject, $tag)
  *   - message()->getCount($uid)
  *   - message()->getAlert($uid)
+ *   - message()->dismissAlert($uid)
  *
  * + Timeline
  *   - timeline()->get($uid, $limit, $offset)
@@ -70,7 +71,7 @@ use Pi\User\Resource\AbstractResource;
  *   - activity()->get($uid, $name, $limit, $offset)
  *
  * + Data
- *   - data()->add($uid, $name, $content, $module = '', $time = null)
+ *   - data()->set($uid, $name, $content, $module = '', $time = null)
  *   - data()->get($uid, $name)
  *   - data()->delete($uid, $name)
  *
