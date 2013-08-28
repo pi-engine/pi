@@ -44,12 +44,9 @@ use Pi\User\Resource\AbstractResource;
  *   - activity->get($uid, $name, $limit, $offset)
  *
  * + Avatar
- *   - avatar($uid, [$size[, $attributes[, $source]]])
- *   - avatar->get($uid, [$size[, $attributes[, $source]]])
- *   - avatar->setSource($uid, $source)
- *   - avatar->getList($ids[, $size[, $attributes[, $source]]])
- *   - avatar->set($uid, $value[, $source])
- *   - avatar->delete($uid)
+ *   - avatar($uid, $size, $attributes, $source)
+ *   - avatar->get($uid, $size, $attributes, $source)
+ *   - avatar->getList($uids, $size, $attributes, $source)
  *
  * + Data
  *   - data($uid, $name)

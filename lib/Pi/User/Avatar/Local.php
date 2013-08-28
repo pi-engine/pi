@@ -31,6 +31,17 @@ class Local extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
+    public function getSourceList($uids, $size = '')
+    {
+        $src = $this->build('', $size);
+        $result = array_fill_keys($uids, $src);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function build($source, $size = '')
     {
         $folder = $this->canonizeSize($size, false);

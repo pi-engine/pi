@@ -43,6 +43,27 @@ class Gravatar extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
+    public function getSourceList($uids, $size = 80)
+    {
+        $result = array();
+        $list = Pi::user()->get($uids, array('avatar', 'email'));
+        foreach ($list as $uid => $data) {
+            if ($data) {
+                if (false === strpos($data['avatar'], '@')) {
+                    $gravatar = $data['email'];
+                } else {
+                    $gravatar = $data['avatar'];
+                }
+                $result[$uid] = $this->build($gravatar, $size);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function build($source, $size = '')
     {
         $size = $this->canonizeSize($size);

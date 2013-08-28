@@ -113,6 +113,36 @@ abstract class AbstractAvatar
     }
 
     /**
+     * Get avatars of a list of users
+     *
+     * @param int[]  $uids
+     * @param string $size
+     * @param array  $attributes
+     *
+     * @return array
+     */
+    public function getList($uids, $size = '', $attributes = array())
+    {
+        if (is_string($attributes)) {
+            $attributes = array(
+                'alt'   => $attributes,
+            );
+        } elseif (!isset($attributes['alt'])) {
+            $attributes['alt'] = '';
+        }
+        $attrs = '';
+        foreach ($attributes as $key => $val) {
+            $attrs .= ' ' . $key . '="' . _escape($val) . '"';
+        }
+        $srcList = $this->getSourceList($uids, $size);
+        foreach ($srcList as $uid => $src) {
+            $result[$uid] = sprintf('<img src="%s"%s />', $src, $attrs);
+        }
+
+        return $result;
+    }
+
+    /**
      * Get user avatar link
      *
      * @param int    $uid
@@ -124,6 +154,15 @@ abstract class AbstractAvatar
      */
     abstract public function getSource($uid, $size = '');
 
+    /**
+     * Get user avatar links
+     *
+     * @param int[]  $uids
+     * @param string $size
+     *
+     * @return array
+     */
+    abstract public function getSourceList($uids, $size = '');
 
     /**
      * Build user avatar link from corresponding source

@@ -54,6 +54,37 @@ class Avatar extends AbstractResource
     }
 
     /**
+     * Get avatars of a list of users
+     *
+     * @param int[]  $uids
+     * @param string $size
+     * @param array  $attributes
+     *
+     * @return array
+     */
+    public function getList($uids, $size = '', $attributes = array())
+    {
+        $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
+        $missingUids = array();
+        foreach ($uids as $uid) {
+            if (empty($avatars[$uid])) {
+                $missingUids[] = $uid;
+            }
+        }
+        if ($missingUids) {
+            $list = $this->getAdapter('local')->getList(
+                $uids,
+                $size,
+                $attributes
+            );
+            $avatars = array_merge($list, $avatars);
+        }
+
+        return $avatars;
+
+    }
+
+    /**
      * Get avatar adapter
      *
      * @param string $adapter

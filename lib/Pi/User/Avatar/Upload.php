@@ -29,11 +29,27 @@ class Upload extends AbstractAvatar
         }
 
         $avatar = Pi::user()->get($uid, 'avatar');
-        if ($avatar) {
+        if ($avatar && false === strpos($avatar, '@')) {
             $src = $this->build($avatar, $size);
         }
 
         return $src;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSourceList($uids, $size = '')
+    {
+        $result = array();
+        $avatars = Pi::user()->get($uids, 'avatar');
+        foreach ($avatars as $uid => $avatar) {
+            if ($avatar && false === strpos($avatar, '@')) {
+                $result[$uid] = $this->build($avatar, $size);
+            }
+        }
+
+        return $result;
     }
 
     /**
