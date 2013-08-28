@@ -81,11 +81,25 @@ class PasswordController extends ActionController
             $message = '';
         }
 
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
+        foreach ($groups as $key => &$group) {
+            $group['link'] = $this->url(
+                'default',
+                array(
+                    'controller' => 'profile',
+                    'action'     => 'edit',
+                    'group'      => $key,
+                )
+            );
+        }
+
         $title = __('Change password');
         $this->view()->assign(array(
             'title'     => $title,
             'form'      => $form,
             'message'   => $message,
+            'groups'    => $groups,
         ));
     }
 
