@@ -31,15 +31,16 @@ class EmailController extends ActionController
      */
     public function indexAction()
     {
-        $identity = Pi::service('user')->getUser()->identity;
 
+        $uid = Pi::user()->getIdentity();
         // Redirect login page if not logged in
-        if (!$identity) {
+        if (!$uid) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
 
-        $email = Pi::service('user')->getUser()->email;
+        list($identity, $email) = Pi::api('user', 'user')
+            ->get($uid, array('identity', 'email'));
 
         // Set display account message
         $user = array(
@@ -55,7 +56,6 @@ class EmailController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $uid = Pi::service('user')->getUser()->id;
 
                 $token = md5(uniqid($uid));
                 $result = Pi::user()->data()->set(
@@ -74,7 +74,6 @@ class EmailController extends ActionController
                 }
 
                 $to = $values['email-new'];
-                //$baseLocation = Pi::host()->get('baseLocation');
                 $url = $this->url('', array(
                         'action'=> 'process',
                         'id'    => md5($uid),
@@ -89,8 +88,6 @@ class EmailController extends ActionController
                     $link
                 );
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
-
-                $this->send($to, $link, $identity);
                 $this->redirect('default',array('controller' => 'email', 'action' => 'send.complete'));
 
             } else {
@@ -131,7 +128,7 @@ class EmailController extends ActionController
         $this->view()->assign('title', __('Change email'));
 
         // Verify link invalid
-        if (!key || !$token || !$newEmail) {
+        if (!$key || !$token || !$newEmail) {
             $this->view()->assign('data', $data);
             return;
         }
@@ -164,7 +161,6 @@ class EmailController extends ActionController
                 }
 
                 // Delete change email verify link
-                //Pi::api('user', 'userdata')->deletData($userData['id']);
                 Pi::user()->data()->delete($userData['uid'], 'change-email');
                 $data['message'] = __('Change success');
                 $data['status']  = 1;
@@ -179,7 +175,14 @@ class EmailController extends ActionController
      */
     public function sendCompleteAction()
     {
-        $changeEmailLink = $this->url('default', array('controller' => 'email', 'action' => 'index' ));
+        $changeEmailLink = $this->url(
+            'default',
+            array(
+                'controller' => 'email',
+                'action' => 'index'
+            )
+        );
+
         $this->view()->assign('changeEmailLink', $changeEmailLink);
         $this->view()->setTemplate('change-email-success');
     }

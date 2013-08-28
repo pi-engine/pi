@@ -30,12 +30,20 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
-        $uid = Pi::service('user')->getUser()->id;
-        $identity = Pi::service('user')->getUser()->identity;
+        $uid = Pi::user()->getIdentity();
+        $identity = Pi::user('api', 'api')->get($uid, 'identity');
 
         // Redirect login page if not logged in
         if (!$uid) {
-            $this->redirect()->toRoute('', array('controller' => 'login'));
+            $this->jump(
+                array(
+                    '',
+                    'controller' => 'login',
+                    'action'     => 'index',
+                ),
+                __('Change password need login'),
+                5
+            );
             return;
         }
 
@@ -46,18 +54,14 @@ class PasswordController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-
-                // Set new password
-                $salt = Pi::api('user', 'password')->createSalt();
-                $credentialNew = Pi::api('user', 'password')
-                    ->transformCredential($values['credential-new'], $salt);
-
-                $data = array(
-                    'salt'       => $salt,
-                    'credential' => $credentialNew,
+                // Update password
+                $status = Pi::api('user', 'user')
+                    ->updateAccount(
+                        $uid,
+                        array(
+                            'credential' => $values['credential-new']
+                        )
                 );
-
-                $status = Pi::api('user', 'user')->update($data, $uid);
 
                 if ($status) {
                     $message = __('Password changed successfully.');
@@ -115,14 +119,17 @@ class PasswordController extends ActionController
                     ));
                     return;
                 }
-                $uid = $userRow->id;
 
-                // Send verify email
-                $result = Pi::api('user', 'userdata')
-                    ->setMailData($uid, 'find-password', 'user');
+                // Set user data
+                $uid = $userRow->id;
+                $token = md5(uniqid($uid));
+                $result = Pi::user()->data()->set(
+                    $uid,
+                    'find-password',
+                    $token
+                );
 
                 $to = $userRow->email;
-                $baseLocation = Pi::host()->get('baseLocation');
                 $url = $this->url('', array(
                         'action' => 'process',
                         'id'     => md5($uid),
@@ -130,7 +137,7 @@ class PasswordController extends ActionController
                     )
                 );
 
-                $link = $baseLocation . $url;
+                $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
                     $userRow->username,
                     $link
@@ -166,12 +173,15 @@ class PasswordController extends ActionController
         // Assign title to template
         $this->view()->assign('title', __('Find password'));
         // Verify link invalid
-        if (!key || !$token) {
+        if (!$key || !$token) {
             $this->view()->assign('data', $data);
             return;
         }
 
-        $userData = Pi::api('user', 'userdata')->getMailDataByContent($token);
+        $userData = Pi::user()->data()->find(array(
+            'content' => $token,
+            'name'    => 'find-password',
+        ));
 
         if ($userData) {
             $hashUid = md5($userData['uid']);
@@ -185,6 +195,7 @@ class PasswordController extends ActionController
                 if ($current < $expire) {
                     // Display reset password form
                     $identity = $userRow->identity;
+                    $uid      = $userRow->id;
                     $form     = new PasswordForm('find-password', 'find');
                     if ($this->request->isPost()) {
                         $data = $this->request->getPost();
@@ -193,19 +204,16 @@ class PasswordController extends ActionController
 
                         if ($form->isValid()) {
                             $values = $form->getData();
-                            $salt = Pi::api('user', 'password')->createSalt();
-                            $credential = Pi::api('user', 'password')->transformCredential($values['credential-new'], $salt);
-
-                            $data = array(
-                                'credential' => $credential,
-                                'salt'       => $salt,
-                            );
 
                             // Update user account data
-                            Pi::api('user', 'user')->updateUser($data, $userRow->id);
+                            Pi::api('user', 'user')->updateAccount(
+                                $uid,
+                                array('credential' => $values['credential-new'])
+                            );
 
                             // Delete find password verify token
-                            Pi::api('user', 'mail')->deletData($userData['id']);
+                            Pi::user()->data()->delete($uid, 'find-password');
+
                             $data['status'] = 1;
                         } else {
                             $data['status'] = 1;
@@ -214,7 +222,6 @@ class PasswordController extends ActionController
                                 'message' => __('Input is invalid, please try again later'),
                             ));
                         }
-
                     } else {
                         $form->setData(array('identity', $identity));
                         $this->view()->assign('form', $form);
@@ -256,7 +263,11 @@ class PasswordController extends ActionController
         );
 
         // Load from HTML template
-        $data = Pi::service('mail')->template('find-password-mail-html', $params);
+        $data = Pi::service('mail')->template(
+            'find-password-mail-html',
+            $params
+        );
+
         // Set subject and body
         $subject = $data['subject'];
         $body = $data['body'];

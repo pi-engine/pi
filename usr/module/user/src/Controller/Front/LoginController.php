@@ -184,8 +184,10 @@ class LoginController extends ActionController
 
         // Check user has perfect information
         $uid = Pi::service('user')->getIdentity();
-        //$hasPerfectInformation = $this->hasPerfectInformationFlag($uid);
-        $hasCompleteProfile = Pi::user()->data()->get($uid, 'profile-complete');
+        $hasCompleteProfile = Pi::user()->data()->get(
+            $uid,
+            'profile-complete'
+        );
         if (!$hasCompleteProfile) {
             $this->redirect()->toRoute(
                 'user',
@@ -215,30 +217,5 @@ class LoginController extends ActionController
         );
 
         return $form;
-    }
-
-    /**
-     * Check user has perfect information
-     *
-     * @param $uid
-     * @return bool
-     */
-    public function hasPerfectInformationFlag($uid)
-    {
-        $name = 'perfect-information-flag';
-        $mode = Pi::model('data', 'user');
-        $where = array(
-            'uid' => $uid,
-            'name' => $name,
-        );
-
-        $select = $mode->select()->where($where);
-        $row = $mode->selectWith($select)->count();
-
-        if ($row) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
