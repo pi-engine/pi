@@ -113,7 +113,7 @@ CREATE TABLE `{timeline}` (
   `active`          tinyint(1)      NOT NULL    default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`module`, `name`)
+  UNIQUE KEY `name` (`name`)
 );
 
 # Activity meta
@@ -134,7 +134,7 @@ CREATE TABLE `{activity}` (
   `callback`        varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`module`, `name`)
+  UNIQUE KEY `name` (`name`)
 );
 
 # Quicklinks
@@ -146,9 +146,11 @@ CREATE TABLE `{quicklink}` (
   `link`            varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      unsigned NOT NULL    default '0',
+  -- Display order, '0' for hidden
+  `display`         smallint(5)     unsigned    NOT NULL    default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`module`, `name`)
+  UNIQUE KEY `name` (`name`)
 );
 
 # Timeline for user activities

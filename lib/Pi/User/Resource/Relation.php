@@ -16,11 +16,11 @@ use Pi;
  *
  * Relation APIs:
  *
- *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
- *   - relation([$id])->getCount($relation[, $condition]])
- *   - relation([$id])->hasRelation($uid, $relation)
- *   - relation([$id])->add($uid, $relation)
- *   - relation([$id])->delete([$uid[, $relation]])
+ *   - relation->get($uid, $relation, $limit, $offset, $condition, $order)
+ *   - relation->getCount($uid, $relation[, $condition]])
+ *   - relation->hasRelation($uid, $relation)
+ *   - relation->add($uid, $relation)
+ *   - relation->delete($uid, $relation)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

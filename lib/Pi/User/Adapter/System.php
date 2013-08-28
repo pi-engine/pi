@@ -172,29 +172,36 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $uid = null)
+    public function getUrl($type, $var = null)
     {
         $route = $this->getRoute();
         switch ($type) {
             case 'account':
             case 'profile':
-                $url = Pi::service('url')->assemble($route, array(
-                    'controller'    => 'profile',
-                    'id'            => $uid,
-                ));
+                $params = array('controller' => 'profile');
+                if ($var) {
+                    $params['id'] = (int) $var;
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
             case 'login':
             case 'signin':
-                $url = Pi::service('url')->assemble($route, array(
-                    'controller'    => 'login'
-                ));
+                $params = array('controller' => 'login');
+                if ($var) {
+                    $params['redirect'] = $var;
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
             case 'logout':
             case 'signout':
-                $url = Pi::service('url')->assemble($route, array(
+                $params = array(
                     'controller'    => 'login',
                     'action'        => 'logout',
-                ));
+                );
+                if ($var) {
+                    $params['redirect'] = $var;
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
             case 'register':
             case 'signup':
