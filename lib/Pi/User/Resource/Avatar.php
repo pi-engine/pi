@@ -10,6 +10,7 @@
 namespace Pi\User\Resource;
 
 use Pi;
+use Pi\User\Avatar\AbstractAvatar;
 
 /**
  * Avatar handler
@@ -26,18 +27,83 @@ use Pi;
  */
 class Avatar extends AbstractResource
 {
+    /** @var  AbstractAvatar Avatar adapter */
+    protected $adapter;
+
+    /**
+     * Get user avatar img element
+     *
+     * @param int               $uid
+     * @param string            $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return URL
+     *
+     * @return string
+     */
+    public function get($uid, $size = '', $attributes = array())
+    {
+        $src = $this->getAdapter()->getSource($uid, $size);
+        $avatar = $this->build($src, $attributes);
+
+        return $avatar;
+    }
+
+    /**
+     * Get user avatar img element through Gravatar
+     *
+     * @param int               $size           Size of image to display
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return URL
+     * @return string
+     */
+    public function getGravatar($size = 80, $attributes = array())
+    {
+        $src = $this->getAdapter('gravatar')->getSource($size, $attributes);
+        $avatar = $this->build($src, $attributes);
+
+        return $avatar;
+    }
+
+    /**
+     * Get path to uploaded avatar(s)
+     *
+     * @param string $size
+     * @return array|string
+     */
+    public function getPath($size = null)
+    {
+        $path = $this->getAdapter('upload')->getPath($size);
+
+        return $path;
+    }
     /**
      * Get avatar adapter
      *
      * @param string $adapter
      * @return AbstractAvatar
      */
-    public function getAdapter($adapter)
+    public function getAdapter($adapter = '')
     {
-        $class = 'Pi\User\Avatar\\' . ucfirst($adapter);
-        $adapter = new $class($this->model);
+        vd($this->options);
+        if (!$this->adapter) {
+            $adapter = $adapter ?: $this->options['adapter'];
+            if (false === strpos($adapter, '\\')) {
+                $class = 'Pi\User\Avatar\\' . ucfirst($adapter);
+            } else {
+                $class = $adapter;
+            }
+            $adapter = new $class;
+            if (isset($this->options['options'])) {
+                $adapter->setOptions((array) $this->options['options']);
+            }
+            $this->adapter = $adapter;
+        }
 
-        return $adapter;
+        return $this->adapter;
     }
 
     /**
@@ -70,62 +136,4 @@ class Avatar extends AbstractResource
         return $result;
     }
 
-    /**
-     * Get user avatar img element
-     *
-     * @param int               $uid
-     * @param string            $size
-     *      Size of image to display, integer for width, string for named size:
-     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
-     * @param array|string|bool $attributes
-     *      Array for attributes of HTML img element of img,
-     *      string for alt of img, false to return URL
-     *
-     * @return string
-     */
-    public function get($uid, $size = '', $attributes = array())
-    {
-        $avatar = $this->model ? $this->model->avatar : '';
-        if (false !== strpos($avatar, '@')) {
-            $adapter = 'gravatar';
-        } elseif ($avatar) {
-            $adapter = 'upload';
-        } else {
-            $adapter = 'local';
-        }
-        $src = $this->getAdapter($adapter)->build($size);
-        $avatar = $this->build($src, $attributes);
-
-        return $avatar;
-    }
-
-    /**
-     * Get user avatar img element through Gravatar
-     *
-     * @param int               $size           Size of image to display
-     * @param array|string|bool $attributes
-     *      Array for attributes of HTML img element of img,
-     *      string for alt of img, false to return URL
-     * @return string
-     */
-    public function getGravatar($size = 80, $attributes = array())
-    {
-        $src = $this->getAdapter('gravatar')->build($size, $attributes);
-        $avatar = $this->build($src, $attributes);
-
-        return $avatar;
-    }
-
-    /**
-     * Get path to uploaded avatar(s)
-     *
-     * @param string $size
-     * @return array|string
-     */
-    public function getPath($size = null)
-    {
-        $path = $this->getAdapter('upload')->getPath($size);
-
-        return $path;
-    }
 }

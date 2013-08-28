@@ -60,7 +60,7 @@ class System extends AbstractAdapter
         $offset     = 0,
         $order      = ''
     ) {
-        $result = Pi::api('user', 'system')->getUids(
+        $result = Pi::api('system', 'user')->getUids(
             $condition,
             $limit,
             $offset,
@@ -75,7 +75,7 @@ class System extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        $result = Pi::api('user', 'system')->getCount($condition);
+        $result = Pi::api('system', 'user')->getCount($condition);
 
         return $result;
     }
@@ -85,7 +85,7 @@ class System extends AbstractAdapter
      */
     public function addUser($data)
     {
-        return Pi::api('user', 'system')->addUser($data);
+        return Pi::api('system', 'user')->addUser($data);
     }
 
     /**
@@ -93,7 +93,7 @@ class System extends AbstractAdapter
      */
     public function updateUser($uid, $data)
     {
-        return Pi::api('user', 'system')->updateUser($uid, $data);
+        return Pi::api('system', 'user')->updateUser($uid, $data);
     }
 
     /**
@@ -101,7 +101,7 @@ class System extends AbstractAdapter
      */
     public function deleteUser($uid)
     {
-        return Pi::api('user', 'system')->deleteUser($uid);
+        return Pi::api('system', 'user')->deleteUser($uid);
     }
 
     /**
@@ -109,7 +109,7 @@ class System extends AbstractAdapter
      */
     public function activateUser($uid)
     {
-        return Pi::api('user', 'system')->activateUser($uid);
+        return Pi::api('system', 'user')->activateUser($uid);
     }
 
     /**
@@ -117,7 +117,7 @@ class System extends AbstractAdapter
      */
     public function enableUser($uid)
     {
-        return Pi::api('user', 'system')->enableUser($uid);
+        return Pi::api('system', 'user')->enableUser($uid);
     }
 
     /**
@@ -125,7 +125,7 @@ class System extends AbstractAdapter
      */
     public function disableUser($uid)
     {
-        return Pi::api('user', 'system')->disableUser($uid);
+        return Pi::api('system', 'user')->disableUser($uid);
     }
     /**#@-*/
 
@@ -137,7 +137,7 @@ class System extends AbstractAdapter
      */
     public function get($uid, $field, $filter = true)
     {
-        return Pi::api('user', 'system')->get($uid, $field, $filter);
+        return Pi::api('system', 'user')->get($uid, $field, $filter);
     }
 
     /**
@@ -145,7 +145,7 @@ class System extends AbstractAdapter
      */
     public function set($uid, $field, $value)
     {
-        return Pi::api('user', 'system')->set($uid, $field, $value);
+        return Pi::api('system', 'user')->set($uid, $field, $value);
     }
 
     /**
@@ -153,7 +153,7 @@ class System extends AbstractAdapter
      */
     public function increment($uid, $field, $value)
     {
-        return Pi::api('user', 'system')->increment($uid, $field, $value);
+        return Pi::api('system', 'user')->increment($uid, $field, $value);
     }
     /**#@-*/
 
