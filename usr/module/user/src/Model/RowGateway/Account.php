@@ -9,6 +9,7 @@
 
 namespace Module\User\Model\RowGateway;
 
+use Pi;
 use Pi\Application\Model\User\RowGateway\Account as AccountRowGateway;
 
 /**
