@@ -349,13 +349,12 @@ abstract class AbstractAdapter implements BindInterface
      * - logout: URI to user logout page
      * - register (signup): URI to user register/signup page
      *
-     * @param string        $type
-     *      Type of URLs: profile, login, logout, register, auth
-     * @param int|null      $uid
+     * @param string            $type URL type
+     * @param int|string|null   $var User id for profile or redirect for login
      * @return string
      * @api
      */
-    abstract public function getUrl($type, $uid = null);
+    abstract public function getUrl($type, $var = null);
 
     /**
      * Authenticate user

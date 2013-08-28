@@ -165,9 +165,9 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $uid = null)
+    public function getUrl($type, $var = null)
     {
-        return parent::getUrl($type, $uid);
+        return parent::getUrl($type, $var);
     }
 
     /**
