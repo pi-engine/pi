@@ -46,6 +46,45 @@ abstract class AbstractAvatar
         return $this;
     }
 
+
+    /**
+     * Build avatar img element
+     *
+     * @param int               $uid
+     * @param string            $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return img src
+     *
+     * @return string
+     */
+    public function get($uid, $size = '', $attributes = array())
+    {
+        $result = false;
+
+        $src = $this->getSource($uid, $size);
+        if (!$src) {
+            return $result;
+        }
+
+        if (is_string($attributes)) {
+            $attributes = array(
+                'alt'   => $attributes,
+            );
+        } elseif (!isset($attributes['alt'])) {
+            $attributes['alt'] = '';
+        }
+        $attrs = '';
+        foreach ($attributes as $key => $val) {
+            $attrs .= ' ' . $key . '="' . _escape($val) . '"';
+        }
+        $result = sprintf('<img src="%s"%s />', $src, $attrs);
+
+        return $result;
+    }
+
     /**
      * Get user avatar link
      *
@@ -58,15 +97,43 @@ abstract class AbstractAvatar
      */
     abstract public function getSource($uid, $size = '');
 
+
     /**
-     * Get user avatar path
+     * Canonize sie
      *
-     * @param int    $uid
-     * @param string $size
-     *      Size of image to display, integer for width, string for named size:
-     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param string|int $size
      *
-     * @return string
+     * @param bool       $toInt
+     *
+     * @return int|string
      */
-    abstract public function getPath($uid, $size = '');
+    protected function canonizeSize($size, $toInt = true)
+    {
+        $sizeMap = $this->options['size_map'];
+        if ($toInt) {
+            if (!is_numeric($size)) {
+                if (!isset($sizeMap[$size])) {
+                    $size = $sizeMap['normal'];
+                } else {
+                    $size = $sizeMap[$size];
+                    if (!is_numeric($size)) {
+                        $size = $sizeMap[$size];
+                    }
+                }
+            }
+        } else {
+            if (is_numeric($size)) {
+                foreach ($sizeMap as $name => $number) {
+                    if (!is_numeric($number) || $number < $size) {
+                        continue;
+                    } elseif ($number == $size) {
+                        break;
+                    }
+                }
+                $size = $name;
+            }
+        }
+
+        return $size;
+    }
 }

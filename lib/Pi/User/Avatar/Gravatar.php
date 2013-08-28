@@ -23,26 +23,22 @@ class Gravatar extends AbstractAvatar
      */
     public function getSource($uid, $size = 80)
     {
-        $size = $this->canonizeSize($size);
-
-        $data = Pi::user()->get($uid, array('avatar', 'email'));
-        vd($data);
-        if (false === strpos($data['avatar'], '@')) {
-            $avatar = $data['email'];
+        $gravatar = '';
+        if ($uid) {
+            $data = Pi::user()->get($uid, array('avatar', 'email'));
+            if ($data) {
+                if (false === strpos($data['avatar'], '@')) {
+                    $gravatar = $data['email'];
+                } else {
+                    $gravatar = $data['avatar'];
+                }
+            }
         }
 
-        $src = $this->getUrl($avatar, $size);
+        $size = $this->canonizeSize($size);
+        $src = $this->getUrl($gravatar, $size);
 
         return $src;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return bool
-     */
-    public function getPath($uid, $size = null)
-    {
-        return false;
     }
 
     /**
@@ -50,48 +46,19 @@ class Gravatar extends AbstractAvatar
      */
     public function getUrl($email, $size = 80)
     {
-        $src = 'http://www.gravatar.com/avatar/%s?s=%d&d=mm&r=g';
+        $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&d=%s&r=%s';
         $hash = md5(strtolower($email));
-        $src = sprintf($src, $hash, $size);
+        $src = sprintf(
+            $src,
+            !empty($this->options['secure']) ? 'https' : 'http',
+            $hash,
+            isset($this->options['extension'])
+                ? '.' . $this->options['extension'] : '',
+            $size,
+            isset($this->options['default']) ? $this->options['default'] : 'mm',
+            isset($this->options['rate']) ? $this->options['rate'] : 'g'
+        );
 
         return $src;
     }
-
-    /**
-     * Canonize sie
-     * @param string|int $size
-     * @return string
-     */
-    protected function canonizeSize($size)
-    {
-        if (!is_int($size)) {
-            switch ($size) {
-                case 'mini':
-                    $size = 16;
-                    break;
-                case 'xsmall':
-                    $size = 20;
-                    break;
-                case 'medium':
-                    $size = 60;
-                    break;
-                case 'large':
-                    $size = 100;
-                    break;
-                case 'xlarge':
-                    $size = 120;
-                    break;
-                case 'xxlarge':
-                    $size = 150;
-                    break;
-                case 'normal':
-                default:
-                    $size = 80;
-                    break;
-            }
-        }
-
-        return $size;
-    }
-
 }

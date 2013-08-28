@@ -29,72 +29,19 @@ class Upload extends AbstractAvatar
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function getPath($uid, $size = null)
-    {
-        if (null === $size) {
-            $path = array();
-            foreach (array(
-                    'mini',
-                    'xsmall',
-                    'medium',
-                    'normal',
-                    'large',
-                    'xlarge',
-                    'xxlarge'
-                ) as $key
-            ) {
-                $path[$key] = Pi::Path($this->getRelativePath($uid, $key));
-            }
-        } else {
-            $path = Pi::Path($this->getRelativePath($uid, $size));
-        }
-
-        return $path;
-    }
-
-    /**
      * Get relative path
      *
+     * @param int $uid
      * @param string $size
+     *
      * @return string
      */
     protected function getRelativePath($uid, $size = '')
     {
-        $folder = $this->canonizeSize($size);
+        $folder = $this->canonizeSize($size, false);
         $avatar = $this->model->avatar;
         $path = sprintf('upload/avatar/%s/%s', $folder, $avatar);
 
         return $path;
-    }
-
-    /**
-     * Canonize sie
-     * @param string $size
-     * @return string
-     */
-    protected function canonizeSize($size)
-    {
-        switch ($size) {
-            case 'mini':
-            case 'xsmall':
-            case 'medium':
-            case 'large':
-            case 'xlarge':
-            case 'xxlarge':
-                $folder = $size;
-                break;
-            case 'o':
-            case 'original':
-                $folder = 'original';
-                break;
-            case 'normal':
-            default:
-                $folder = 'normal';
-                break;
-        }
-
-        return $folder;
     }
 }

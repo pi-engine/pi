@@ -28,15 +28,6 @@ class Local extends Upload
     }
 
     /**
-     * {@inheritDoc}
-     * @return bool
-     */
-    public function getPath($uid, $size = '')
-    {
-        return false;
-    }
-
-    /**
      * Get relative path
      *
      * @param string $size

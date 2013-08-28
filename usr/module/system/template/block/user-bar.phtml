@@ -2,7 +2,7 @@
     <!-- Plain display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
     <?php
         if (!$block['id']) { ?>
-        <?php echo Pi::service('user')->avatar()->get($block['id'], 'mini'); ?>
+        <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
         <a href="<?php echo Pi::service('user')->getUrl('login'); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
         <span class="pi-divider">|</span>
         <a href="<?php echo Pi::service('user')->getUrl('register'); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>

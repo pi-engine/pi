@@ -61,11 +61,13 @@ class AccountController extends ActionController
             __('Name')      => $row['name'],
             __('Role')      => __($roleRow->title),
         );
+        $avatar = Pi::user()->avatar($row['id']);
 
         $title = __('User account');
         $this->view()->assign(array(
-            'title' => $title,
-            'user'  => $user,
+            'title'     => $title,
+            'user'      => $user,
+            'avatar'    => $avatar,
         ));
         $this->view()->setTemplate('account');
     }

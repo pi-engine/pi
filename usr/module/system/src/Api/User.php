@@ -591,9 +591,9 @@ class User extends AbstractApi
 
         $primaryKey = 'id';
         $fields[] = $primaryKey;
+        $where = array($primaryKey => $uids);
         $model = Pi::model('user_account');
-        $select = $model->select()->where(array($primaryKey => $uids))
-            ->columns($fields);
+        $select = $model->select()->where($where)->columns($fields);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $id = (int) $row[$primaryKey];
