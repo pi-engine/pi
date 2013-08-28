@@ -58,7 +58,7 @@ class EmailController extends ActionController
                 $uid = Pi::service('user')->getUser()->id;
 
                 $token = md5(uniqid($uid));
-                $result = Pi::user()->data()->add(
+                $result = Pi::user()->data()->set(
                     $uid,
                     'change-email',
                     $token
@@ -165,7 +165,7 @@ class EmailController extends ActionController
 
                 // Delete change email verify link
                 //Pi::api('user', 'userdata')->deletData($userData['id']);
-                Pi::user()->delete($userData['uid'], 'change-email');
+                Pi::user()->data()->delete($userData['uid'], 'change-email');
                 $data['message'] = __('Change success');
                 $data['status']  = 1;
                 $this->view()->assign('data', $data);

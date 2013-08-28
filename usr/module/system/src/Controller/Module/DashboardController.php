@@ -388,7 +388,7 @@ class DashboardController extends ActionController
             }
             $row->save();
             */
-            Pi::user()->data()->add(0, $name, $content);
+            Pi::user()->data()->set(0, $name, $content);
         }
 
         /*
@@ -458,7 +458,7 @@ class DashboardController extends ActionController
         }
         $row->save();
         */
-        Pi::user()->data()->add($user, $type, $content);
+        Pi::user()->data()->set($user, $type, $content);
 
         $memo = array(
             'time'      => _date($data['time']),
@@ -500,7 +500,7 @@ class DashboardController extends ActionController
         }
         $row->save();
         */
-        Pi::user()->data()->add($user, $type, $content);
+        Pi::user()->data()->set($user, $type, $content);
 
         return true;
     }
