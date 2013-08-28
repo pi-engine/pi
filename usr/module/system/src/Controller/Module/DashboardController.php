@@ -183,9 +183,11 @@ class DashboardController extends ActionController
         $links = (array) Pi::user()->data->get($user, 'admin-link');
 
         // Get system message, only admins have access
-        $content = Pi::user()->data->get(0, 'admin-message', true);
+        //$content = Pi::user()->data->get(0, 'admin-message', true);
+        $content = Pi::user()->data(0, 'admin-message', true);
         if (!$content) {
-            $content = Pi::user()->data->get(0, 'admin-welcome', true);
+            //$content = Pi::user()->data->get(0, 'admin-welcome', true);
+            $content = Pi::user()->data(0, 'admin-welcome', true);
         }
 
         $message = array(

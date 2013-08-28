@@ -40,23 +40,24 @@ use Pi\User\Resource\AbstractResource;
  * + Resource APIs
  *
  * + Activity
+ *   - activity($uid, $name, $limit, $offset)
  *   - activity->get($uid, $name, $limit, $offset)
  *
  * + Avatar
- *   - avatar
- *   - avatar->setSource($uid, $source)
+ *   - avatar($uid, [$size[, $attributes[, $source]]])
  *   - avatar->get($uid, [$size[, $attributes[, $source]]])
+ *   - avatar->setSource($uid, $source)
  *   - avatar->getList($ids[, $size[, $attributes[, $source]]])
  *   - avatar->set($uid, $value[, $source])
  *   - avatar->delete($uid)
  *
  * + Data
- *   - data->set($uid, $name, $content, $module = '', $time = null)
+ *   - data($uid, $name)
  *   - data->get($uid, $name)
+ *   - data->set($uid, $name, $content, $module = '', $time = null)
  *   - data->delete($uid, $name)
  *
  * + Message
- *   - message
  *   - message->send($ui, $message, $from)
  *   - message->notify($uid, $message, $subject, $tag)
  *   - message->getCount($uid)
@@ -64,6 +65,7 @@ use Pi\User\Resource\AbstractResource;
  *   - message->dismissAlert($uid)
  *
  * + Timeline
+ *   - timeline($uid, $limit, $offset)
  *   - timeline->get($uid, $limit, $offset)
  *   - timeline->getCount($uid)
  *   - timeline->add(array(
@@ -184,13 +186,14 @@ class User extends AbstractService
     }
 
     /**
-     * Get resource handler
+     * Get resource handler or result from handler if args specified
      *
      * @param string $name
+     * @param array  $args
      *
-     * @return AbstractResource
+     * @return AbstractResource|mixed
      */
-    public function getResource($name)
+    public function getResource($name, $args = array())
     {
         if (!isset($this->resource[$name])) {
             $options = array();
@@ -216,8 +219,16 @@ class User extends AbstractService
                 $this->resource[$name]->setOptions($options);
             }
         }
+        if ($args) {
+            $result = call_user_func_array(
+                array($this->resource[$name], 'get'),
+                $args
+            );
+        } else {
+            $result = $this->resource[$name];
+        }
 
-        return $this->resource[$name];
+        return $result;
     }
 
     /**
@@ -365,7 +376,7 @@ class User extends AbstractService
             case 'message':
             // User timeline
             case 'timeline':
-                $result = $this->getResource($method);
+                $result = $this->getResource($method, $args);
                 break;
             // User profile adapter methods
             default:
