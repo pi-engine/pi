@@ -21,13 +21,14 @@ class Gravatar extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($size = 80)
+    public function getSource($uid, $size = 80)
     {
         $size = $this->canonizeSize($size);
 
-        $avatar = $this->model->avatar;
-        if (false === strpos('@', $avatar)) {
-            $avatar = $this->model->email;
+        $data = Pi::user()->get($uid, array('avatar', 'email'));
+        vd($data);
+        if (false === strpos($data['avatar'], '@')) {
+            $avatar = $data['email'];
         }
 
         $src = $this->getUrl($avatar, $size);
@@ -39,7 +40,7 @@ class Gravatar extends AbstractAvatar
      * {@inheritDoc}
      * @return bool
      */
-    public function getPath($size = null)
+    public function getPath($uid, $size = null)
     {
         return false;
     }

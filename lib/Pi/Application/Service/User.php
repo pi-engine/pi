@@ -202,7 +202,7 @@ class User extends AbstractService
                 if (is_string($this->options['resource'][$name])) {
                     $class = $this->options['resource'][$name];
                 } else {
-                    if (isset($this->options['resource'][$name]['class'])) {
+                    if (!empty($this->options['resource'][$name]['class'])) {
                         $class = $this->options['resource'][$name]['class'];
                     }
                     if (isset($this->options['resource'][$name]['options'])) {

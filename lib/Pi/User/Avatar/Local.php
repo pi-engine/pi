@@ -22,7 +22,16 @@ class Local extends Upload
      * {@inheritDoc}
      * @return bool
      */
-    public function getPath($size = null)
+    public function getSource($uid, $size = '')
+    {
+        return Pi::url($this->getRelativePath($size));
+    }
+
+    /**
+     * {@inheritDoc}
+     * @return bool
+     */
+    public function getPath($uid, $size = '')
     {
         return false;
     }
