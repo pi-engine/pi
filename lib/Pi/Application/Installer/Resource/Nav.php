@@ -10,8 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Application\Model\Navigation\Node as NodeRow;
-use Pi\Application\Model\Model as NavigationRow;
+use Pi\Db\RowGateway\RowGateway;
 
 /**
  * Navigation setup with configuration specs
@@ -192,7 +191,9 @@ class Nav extends AbstractResource
 
         // Set up front nav
         if (!isset($item['front'])) {
-            $item['front'] = array();
+            $item['front'] = array(
+                ''
+            );
         } elseif (false === $item['front']) {
             unset($item['front']);
         }
@@ -241,6 +242,7 @@ class Nav extends AbstractResource
         }
 
         // Insert navigation pages
+        $message = array();
         foreach ($navigationList['node'] as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
@@ -462,12 +464,12 @@ class Nav extends AbstractResource
     /**
      * Delete a navigation
      *
-     * @param NavigationRow $navigationRow
+     * @param RowGateway $navigationRow
      * @param array $message
      * @return bool
      */
     protected function deleteNavigation(
-        NavigationRow $navigationRow,
+        RowGateway $navigationRow,
         &$message
     ) {
         try {

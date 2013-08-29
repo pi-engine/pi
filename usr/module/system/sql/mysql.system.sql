@@ -323,7 +323,8 @@ CREATE TABLE `{core.navigation_node}` (
   `module`          varchar(64)     NOT NULL    default '',
   `data`            text,
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`navigation`)
 );
 
 # ------------------------------------------------------
