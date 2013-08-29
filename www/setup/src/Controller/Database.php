@@ -153,7 +153,7 @@ class Database extends AbstractController
                           _s('The configuration file "%s" is not written correctly.'),
                           $errorDsn['file']
                         )
-                      . '</p><textarea cols="80" rows="10">'
+                      . '</p><textarea cols="80" rows="10" class="span12">'
                       . $errorDsn['content']
                       . '</textarea>';
         }
