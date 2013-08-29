@@ -15,7 +15,9 @@ use Pi;
 /**
  * I18n language file list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @see Pi\I18n\Translator\Translator::loadResource() for generator callback
  */
 class I18n extends AbstractRegistry
 {

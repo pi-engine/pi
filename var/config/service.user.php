@@ -25,14 +25,6 @@ return array(
 
                 'options'       => array(
 
-                    // Options for gravatar
-                    'gravatar'  => array(
-                        //'default'   => 'http://pialog.org/avatar/normal.jpg',
-                        'extension' => 'png',
-                        'rate'      => 'g',
-                        //'secure'    => true,
-                    ),
-
                     // Options for named size
                     'size_map'  => array(
                         'mini'      => 16,
@@ -50,6 +42,23 @@ return array(
                         'max'       => 'origin',
                         'o'         => 'origin',
                         'origin'    => 200,
+                    ),
+
+                    // Options for gravatar
+                    'gravatar'  => array(
+                        //'default'   => 'http://pialog.org/avatar/normal.jpg',
+                        'extension' => 'png',
+                        'rate'      => 'g',
+                        //'secure'    => true,
+                    ),
+
+                    'upload'    => array(
+                        'path'  => function($source, $size, $uid) {
+                            $path = sprintf('upload/avatar/%s/%d-%s',
+                                            $size, $uid, $source);
+
+                            return $path;
+                        },
                     ),
                 ),
             ),

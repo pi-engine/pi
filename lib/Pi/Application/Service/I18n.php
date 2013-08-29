@@ -684,12 +684,12 @@ namespace Pi\Application\Service
          * @return IntlDateFormatter|null
          */
         public function getDateFormatter(
-            $locale = null,
-            $datetype = null,
-            $timetype = null,
-            $timezone = null,
-            $calendar = null,
-            $pattern = null
+            $locale     = null,
+            $datetype   = null,
+            $timetype   = null,
+            $timezone   = null,
+            $calendar   = null,
+            $pattern    = null
         ) {
             if (!class_exists('IntlDateFormatter')) {
                 return null;

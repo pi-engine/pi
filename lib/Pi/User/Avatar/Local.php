@@ -44,8 +44,8 @@ class Local extends AbstractAvatar
      */
     public function build($source, $size = '')
     {
-        $folder = $this->canonizeSize($size, false);
-        $path = sprintf('static/avatar/%s.png', $folder);
+        $identifier = $this->canonizeSize($size, false);
+        $path = sprintf('static/avatar/%s.png', $identifier);
         $src = Pi::url($path);
 
         return $src;

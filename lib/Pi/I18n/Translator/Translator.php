@@ -111,7 +111,7 @@ class Translator extends ZendTranslator
     public function setTextDomain($textDomain)
     {
         if ($textDomain != $this->textDomain) {
-            $this->previoustextDomain = $this->textDomain;
+            $this->previousTextDomain = $this->textDomain;
             $this->textDomain = $textDomain;
         }
 
@@ -205,8 +205,13 @@ class Translator extends ZendTranslator
             $textDomain = $this->getTextDomain();
         }
 
-        return parent::translatePlural($singular, $plural, $number,
-                                       $textDomain, $locale);
+        return parent::translatePlural(
+            $singular,
+            $plural,
+            $number,
+            $textDomain,
+            $locale
+        );
     }
 
     /**
@@ -277,6 +282,7 @@ class Translator extends ZendTranslator
      *
      * @param array $options
      * @return array
+     * @see Pi\Application\Registry\I18n
      */
     public function loadResource($options)
     {
