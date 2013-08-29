@@ -78,11 +78,10 @@
 </div>
 <script>
 (function($) {
-    // Note implemented yet
-    //var checkUrl = "<?php echo $this->url('', array('controller' => 'repo', 'action' => 'check', 'type' => 'module', 'name' => '')); ?>";
     var page = {
         el: $('#js-module'),
         modal: $('<div class="modal hide fade">').appendTo(document.body),
+        installUrl: '<?php echo $this->url('', array('action' => 'install')); ?>',
         $: function(selector) {
             return this.el.find(selector);
         },
@@ -98,7 +97,8 @@
                 self.modal.html(res).modal('show');
                 formModule.success = function(res) {
                     var d = res.data;
-                    location.href = '/admin/system/module/install/name/' + d.name + '/directory/' + d.directory + '/title/' + d.title;
+                    location.href = self.installUrl + 'name/' + d.name + '/directory/' 
+                        + d.directory + '/title/' + d.title;
                 };
             });
         },
