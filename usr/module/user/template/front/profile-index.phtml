@@ -1,37 +1,72 @@
-<h2 class="page-header"><?php _e('Profile'); ?></h2>
-<div class="span3">
-    <img src="<?php echo Pi::service('user')->avatar('medium'); ?>">
-</div>
-<div class="span6">
-    <ul class="unstyled">
-        <li><?php echo $this->escape($user['name']); ?></li>
-        <li><?php echo $this->escape($user['gender']);?></li>
-        <li><?php echo $this->escape($user['birthdate']); ?></li>
-        <li><?php echo __('Profile completion: ') . $this->escape($user['completion']); ?></li>
-    </ul>
-    <!--  Short cut list  -->
-    <ul>
-        <?php if ($isOwner) { ?>
-        <li><a href=""><?php _e('Account settings'); ?></a></li>
-        <li><a href=""><?php _e('Update profile'); ?></a></li>
-        <?php } else { ?>
-        <li><a href=""><?php _e('Send message'); ?></a></li>
-        <?php }?>
-    </ul>
-</div>
+<div class="media" style="margin-bottom: 10px">
+    <a class="pull-left">
+        <img  class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
+    </a>
+    <div class="media-body">
+        <ul class="unstyled">
+            <li><?php echo $this->escape($user['name']); ?></li>
+            <li><?php echo $this->escape($user['gender']);?></li>
+            <li><?php echo $this->escape($user['birthdate']); ?></li>
+        </ul>
+        <ul>
+            <?php if ($isOwner) { ?>
 
-
-<?php foreach ($data as $row) { ?>
-<div class="pi-legend"><?php echo $this->escape($row['title']); ?></div>
-<?php if ($isOwner) { ?>
-<a href="<?php echo $this->url('', array('action' => $row['compound'] ? 'edit.compound' : 'edit.profile', 'group' => $row['name'], 'uid' => $uid)); ?>"><?php _e('Edit');?></a>
-<?php  } ?>
+            <li>
+                <a href="<?php echo $this->url('default', array('controller' => 'account', 'action' => 'index')); ?>">
+                    <?php _e('Account settings'); ?>
+                </a>
+            </li>
+            <?php } else { ?>
+            <li><a href=""><?php _e('Send message'); ?></a></li>
+            <?php }?>
+        </ul>
+    </div>
+</div>
 <div>
-    <dl class="dl-horizontal">
-    <?php foreach ($row['fields'] as $field) { ?>
-        <dt><?php echo $this->escape($field['title']); ?></dt>
-        <dd><?php echo $this->escape($field['value']); ?></dd>
-    <?php  } ?>
-    </dl>
+    <!-- Display module nav   -->
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
+        </li>
+        <li class="active">
+            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
+                <?php _e('Profile'); ?>
+            </a>
+        </li>
+        <?php foreach ($activityList as $row) {?>
+        <li>
+            <a href="<?php echo $this->url('default', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
+                <?php echo $this->escape($row['title']); ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+
+    <div>
+        <h3><?php _e('Profile'); ?></h3>
+
+        <!-- Display profile -->
+        <?php foreach ($profileGroup as $group) {?>
+            <!-- Display group title and edit link -->
+            <?php if ($group['compound']) { ?>
+            <p><?php echo $this->escape($group['title']);?></p>
+            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name'])); ?>">
+                <?php _e('Edit'); ?>
+            </a>
+            <?php } else {?>
+            <p><?php echo $this->escape($group['title']);?></p>
+            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name'])); ?>">
+                <?php _e('Edit'); ?>
+            </a>
+            <?php }?>
+
+            <!--     Display contents       -->
+            <?php foreach ($group['fields'] as $field) { ?>
+            <dl class="dl-horizontal">
+                <dt><?php echo $this->escape($field['title']);?></dt>
+                <dd><?php echo $this->escape($field['value']);?></dd>
+            </dl>
+            <?php } ?>
+        <?php } ?>
+    </div>
 </div>
-<?php  } ?>
