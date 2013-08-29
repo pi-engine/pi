@@ -9,6 +9,7 @@
 
 namespace Module\User\Model;
 
+use Pi;
 use Pi\Application\Model\Model as BasicModel;
 
 /**
