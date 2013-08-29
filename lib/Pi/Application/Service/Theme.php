@@ -28,7 +28,7 @@ class Theme extends AbstractService
     /**
      * Set current active theme
      *
-     * @param sring $theme
+     * @param string $theme
      * @return Theme
      */
     public function setTheme($theme)

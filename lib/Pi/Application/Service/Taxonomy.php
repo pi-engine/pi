@@ -274,8 +274,7 @@ class Taxonomy extends AbstractService
         $list = false;
         $data = $this->getTree($domainName, $cols);
         if (false !== $data) {
-            $transform = function (&$node, &$plainList, $pid)
-            {
+            $transform = function (&$node, &$plainList, $pid) {
                 $id = $node['id'];
                 $node['pid']    = $pid;
                 $plainList[$id] = $node;

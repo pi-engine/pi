@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\Avatar;
 
 use Pi;
 
@@ -25,7 +25,14 @@ class Gravatar extends AbstractAvatar
     {
         $gravatar = '';
         if ($uid) {
-            $data = Pi::user()->get($uid, array('avatar', 'email'));
+            if ($uid == $this->user->get('id')) {
+                $data = array(
+                    'avatar'    => $this->user->get('avatar'),
+                    'email'     => $this->user->get('email'),
+                );
+            } else {
+                $data = Pi::user()->get($uid, array('avatar', 'email'));
+            }
             if ($data) {
                 if (false === strpos($data['avatar'], '@')) {
                     $gravatar = $data['email'];
@@ -79,7 +86,7 @@ class Gravatar extends AbstractAvatar
     {
         $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&d=%s&r=%s';
         $hash = md5(strtolower($email));
-        $options = $this->options['gravatar'];
+        $options = $this->options;
         $src = sprintf(
             $src,
             !empty($options['secure']) ? 'https' : 'http',

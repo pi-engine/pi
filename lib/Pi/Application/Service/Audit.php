@@ -116,7 +116,7 @@ class Audit extends AbstractService
     /** @var array Log container */
     protected $logs = array();
 
-    /** @var array Log iterms */
+    /** @var array Log items */
     protected $items = array();
 
     /**

@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\Avatar;
 
 use Pi;
 

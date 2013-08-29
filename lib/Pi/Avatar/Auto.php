@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\Avatar;
 
 use Pi;
 
@@ -27,7 +27,14 @@ class Auto extends AbstractAvatar
         if ($uid) {
             $upload     = '';
             $gravatar   = '';
-            $data = Pi::user()->get($uid, array('avatar', 'email'));
+            if ($uid == $this->user->get('id')) {
+                $data = array(
+                    'avatar'    => $this->user->get('avatar'),
+                    'email'     => $this->user->get('email'),
+                );
+            } else {
+                $data = Pi::user()->get($uid, array('avatar', 'email'));
+            }
             if ($data) {
                 if (!$data['avatar']) {
                     $gravatar = $data['email'];
@@ -39,9 +46,9 @@ class Auto extends AbstractAvatar
             }
 
             if ($upload) {
-                $src = $this->resource->getAdapter('upload')->build($upload, $size);
+                $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
             } elseif ($gravatar) {
-                $src = $this->resource->getAdapter('gravatar')->build($gravatar, $size);
+                $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
             }
         }
 
@@ -73,9 +80,9 @@ class Auto extends AbstractAvatar
                     $gravatar = $data['avatar'];
                 }
                 if ($upload) {
-                    $src = $this->resource->getAdapter('upload')->build($upload, $size);
+                    $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
                 } elseif ($gravatar) {
-                    $src = $this->resource->getAdapter('gravatar')->build($gravatar, $size);
+                    $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
                 }
                 if ($src) {
                     $result[$uid] = $src;
