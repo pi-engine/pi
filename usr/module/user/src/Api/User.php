@@ -954,8 +954,8 @@ class User extends AbstractApi
             $fields = array_unique($fields);
         }
 
-        if ('account' == $type || 'profile' == $type) {
-            $primaryKey = 'account' == $type ? 'id' : 'uid';
+        if ('account' == $type) {
+            $primaryKey = 'id';
             $fields[] = $primaryKey;
             $model = Pi::model($type, 'user');
             $select = $model->select()->where(array($primaryKey => $uids))
@@ -969,7 +969,7 @@ class User extends AbstractApi
                     $result[$id] = $row->toArray();
                 }
             }
-        } elseif ('custom' == $type) {
+        } elseif ('profile' == $type) {
             $model = Pi::model($type, 'user');
             $where = array(
                 'uid'   => $uids,
