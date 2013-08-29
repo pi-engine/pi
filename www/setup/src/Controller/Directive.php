@@ -253,7 +253,7 @@ class Directive extends AbstractController
                               $error['file']
                             )
                           . '</p>'
-                          . '<textarea cols="80" rows="10">'
+                          . '<textarea cols="80" rows="10" class="span12">'
                           . $error['content']
                           . '</textarea>';
             }
