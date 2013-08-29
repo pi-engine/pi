@@ -40,6 +40,8 @@ class Vertex extends RowGateway
      * Magic method to access properties
      *
      * @param  string $name
+     *
+     * @throws \InvalidArgumentException
      * @return mixed
      */
     public function __get($name)

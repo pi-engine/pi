@@ -329,7 +329,7 @@ namespace
     /**
      * Filter a value with PHP filter_var
      *
-     * @param string            $variable   Variable name
+     * @param string            $value      Variable name
      * @param int|string        $filter     Filter name or filter_id
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
@@ -362,7 +362,7 @@ namespace
      *
      * @see \Zend\Escaper\Escaper
      * @param string $value
-     * @param stribg $context
+     * @param string $context
      *      String context, valid value: html, htmlAttr, js, url, css
      * @return string
      */

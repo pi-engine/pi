@@ -9,7 +9,7 @@
 
 namespace Pi\Db\RowGateway;
 
-use Zend\Db\RowGateway\AbstractRowGateway;
+use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
 use Zend\Db\RowGateway\Feature;
@@ -26,19 +26,13 @@ use Zend\Db\RowGateway\Exception;
 class RowGateway extends AbstractRowGateway
 {
     /**
-     * Primary key column, scalar, different from native ZF2 property
+     * Primary key column, scalar
      * @var string
      */
-    protected $primaryKeyColumn = null;
+    protected $pkColumn = null;
 
     /**
-     * Primay key columns, plural, equal to ZF2's $primaryKeyColumn
-     * @var array
-     */
-    protected $primaryKeyColumns = array();
-
-    /**
-     * Non-scalar columns to be endcoded before saving to DB
+     * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
      * true - to convert to associative array for decode;
@@ -50,9 +44,11 @@ class RowGateway extends AbstractRowGateway
     /**
      * Constructor
      *
-     * @param string $primaryKeyColumn
+     * @param string                              $primaryKeyColumn
      * @param string|\Zend\Db\Sql\TableIdentifier $table
-     * @param Adapter|Sql $adapterOrSql
+     * @param Adapter|Sql                         $adapterOrSql
+     *
+     * @return \Pi\Db\RowGateway\RowGateway
      */
     public function __construct(
         $primaryKeyColumn,
@@ -61,80 +57,9 @@ class RowGateway extends AbstractRowGateway
     ) {
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
+        $this->pkColumn = $this->primaryKeyColumn;
 
-        // set table
-        $this->table = $table;
-
-        // set Sql object
-        if ($adapterOrSql instanceof Sql) {
-            $this->sql = $adapterOrSql;
-        } elseif ($adapterOrSql instanceof Adapter) {
-            $this->sql = new Sql($adapterOrSql, $this->table);
-        } else {
-            throw new Exception\InvalidArgumentException(
-                'A valid Sql object was not provided.'
-            );
-        }
-
-        if ($this->sql->getTable() !== $this->table) {
-            throw new Exception\InvalidArgumentException(
-                'The Sql object provided does not have a table'
-                . ' that matches this row object'
-            );
-        }
-
-        $this->initialize();
-    }
-
-    /**
-     * Initialization
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-        if ($this->isInitialized) {
-            return;
-        }
-
-        if (!$this->featureSet instanceof Feature\FeatureSet) {
-            $this->featureSet = new Feature\FeatureSet;
-        }
-
-        $this->featureSet->setRowGateway($this);
-        $this->featureSet->apply('preInitialize', array());
-
-        if (!is_string($this->table)
-            && !$this->table instanceof TableIdentifier) {
-            throw new Exception\RuntimeException(
-                'This row object does not have a valid table set.'
-            );
-        }
-
-        if ($this->primaryKeyColumn == null) {
-            throw new Exception\RuntimeException(
-                'This row object does not have a primary key column set.'
-            );
-        /*
-        } elseif (is_string($this->primaryKeyColumn)) {
-            $this->primaryKeyColumn = (array) $this->primaryKeyColumn;
-        */
-        } elseif (is_string($this->primaryKeyColumn)) {
-            $this->primaryKeyColumns = (array) $this->primaryKeyColumn;
-        } elseif (is_array($this->primaryKeyColumn)) {
-            $this->primaryKeyColumns = $this->primaryKeyColumn;
-            $this->primaryKeyColumn = null;
-        }
-
-        if (!$this->sql instanceof Sql) {
-            throw new Exception\RuntimeException(
-                'This row object does not have a Sql object set.'
-            );
-        }
-
-        $this->featureSet->apply('postInitialize', array());
-
-        $this->isInitialized = true;
+        parent::__construct($this->primaryKeyColumn, $table, $adapterOrSql);
     }
 
     /**#@+
@@ -200,9 +125,11 @@ class RowGateway extends AbstractRowGateway
         foreach (array_keys($this->encodeColumns) as $column) {
             if (array_key_exists($column, $data)) {
                 // Escape if already a scalar
+                /*
                 if (is_scalar($data[$column])) {
                     continue;
                 }
+                */
                 $data[$column] = $this->encodeValue($data[$column]);
             }
         }
@@ -247,7 +174,7 @@ class RowGateway extends AbstractRowGateway
      *
      * @param string $column Column/field name
      * @param bool $assoc
-     * @return array|object|resoure
+     * @return array|object|resource
      */
     public function decodeColumn($column, $assoc = true)
     {
@@ -302,7 +229,7 @@ class RowGateway extends AbstractRowGateway
             $where = array();
 
             // primary key is always an array even if its a single column
-            foreach ($this->primaryKeyColumns as $pkColumn) {
+            foreach ($this->primaryKeyColumn as $pkColumn) {
                 $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
                 if ($data[$pkColumn] == $this->primaryKeyData[$pkColumn]) {
                     unset($data[$pkColumn]);
@@ -326,10 +253,10 @@ class RowGateway extends AbstractRowGateway
 
             $result = $statement->execute();
             if (($primaryKeyValue = $result->getGeneratedValue())
-                && count($this->primaryKeyColumns) == 1
+                && count($this->primaryKeyColumn) == 1
             ) {
                 $this->primaryKeyData = array(
-                    $this->primaryKeyColumns[0] => $primaryKeyValue
+                    $this->primaryKeyColumn[0] => $primaryKeyValue
                 );
             } else {
                 // make primary key data available so that
@@ -342,7 +269,7 @@ class RowGateway extends AbstractRowGateway
 
             $where = array();
             // primary key is always an array even if its a single column
-            foreach ($this->primaryKeyColumns as $pkColumn) {
+            foreach ($this->primaryKeyColumn as $pkColumn) {
                 $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
             }
 
@@ -355,7 +282,6 @@ class RowGateway extends AbstractRowGateway
             );
             $result = $statement->execute();
             $rowData = $result->current();
-            //$rowData = $result->getDatasource()->current();
             unset($statement, $result); // cleanup
 
             // make sure data and original data are in sync after save
@@ -364,47 +290,6 @@ class RowGateway extends AbstractRowGateway
 
         // return rows affected
         return $rowsAffected;
-    }
-
-    /**
-     * Delete a row
-     *
-     * @return int
-     */
-    public function delete()
-    {
-        $this->initialize();
-
-        $where = array();
-        // primary key is always an array even if its a single column
-        foreach ($this->primaryKeyColumns as $pkColumn) {
-            $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
-        }
-
-        // @todo determine if we need to do a select
-        // to ensure 1 row will be affected
-
-        $statement = $this->sql->prepareStatementForSqlObject(
-            $this->sql->delete()->where($where)
-        );
-        $result = $statement->execute();
-
-        /*
-        if ($result->getAffectedRows() == 1) {
-            // detach from database
-            $this->primaryKeyData = null;
-        }
-        */
-
-        $result = $statement->execute();
-        $affectedRows = $result->getAffectedRows();
-
-        if ($affectedRows == 1) {
-            // detach from database
-            $this->primaryKeyData = null;
-        }
-
-        return $affectedRows;
     }
 
     /**
@@ -431,14 +316,16 @@ class RowGateway extends AbstractRowGateway
     protected function processPrimaryKeyData()
     {
         $this->primaryKeyData = array();
-        foreach ($this->primaryKeyColumns as $column) {
+        foreach ($this->primaryKeyColumn as $column) {
             if (!isset($this->data[$column])) {
                 continue;
+                /*
                 throw new Exception\RuntimeException(
                     'While processing primary key data, a known key '
                     . $this->table . '.' . $column
                     . ' was not found in the data array'
                 );
+                */
             }
             $this->primaryKeyData[$column] = $this->data[$column];
         }

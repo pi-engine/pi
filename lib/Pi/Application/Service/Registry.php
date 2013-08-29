@@ -125,6 +125,8 @@ class Registry extends AbstractService
      * `Pi::service('registry')-><registry-method>(<registry-name>, $args);`
      *
      * @param string $handlerName
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($handlerName, $args)

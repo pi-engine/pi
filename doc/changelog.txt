@@ -13,6 +13,12 @@ August 4th, 2013
 8. Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
 9. Added API `Pi::api()` as alias for `Pi::service('api')->handler()`
 10. Added support for module schema parse
+11. Added HTML5/CSS detection `modernizr` as a jQuery extension
+12. Upgraded Zend Framework to 2.2.3
+13. Added filters: `YesNo`, `Gender`, `DateTimeFormatter`
+14. Changed route spec to support route name definition
+15. Added API to fetch module resource meta directly
+16. Changed resource 'navigation' to 'nav'
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

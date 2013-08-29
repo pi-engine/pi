@@ -283,7 +283,7 @@ class MemberController extends ActionController
                 $result = Pi::api('system', 'member')->add($values);
                 if ($result['status']) {
                     $message = __('User created saved successfully.');
-                    $this->jump(array('action' => 'index'));
+                    $this->jump(array('action' => 'index'), $message);
                     return;
                 } else {
                     $message = __('User not created.');
@@ -339,7 +339,7 @@ class MemberController extends ActionController
                 $result = Pi::api('system', 'member')->update($values);
                 if ($result['status']) {
                     $message = __('User data saved successfully.');
-                    $this->jump(array('action' => 'index'));
+                    $this->jump(array('action' => 'index'), $message);
                     return;
                 } else {
                     $message = __('User data not saved.');
@@ -394,8 +394,7 @@ class MemberController extends ActionController
                 }
                 if ($status) {
                     $message = __('User password saved successfully.');
-
-                    $this->jump(array('action' => 'index'));
+                    $this->jump(array('action' => 'index'), $message);
                     return;
                 } else {
                     $message = __('User password not saved.');

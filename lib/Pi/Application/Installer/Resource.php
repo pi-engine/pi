@@ -40,7 +40,7 @@ class Resource implements ListenerAggregateInterface
     /**
      * Attach listeners
      *
-     * @param  Events $events
+     * @param  EventManagerInterface $events
      * @return void
      */
     public function attach(EventManagerInterface $events)
@@ -130,8 +130,8 @@ class Resource implements ListenerAggregateInterface
         $resourceList[] = 'config';
 
         $config = $this->event->getParam('config');
-        if (!empty($config['maintenance']['resource'])) {
-            $resources = array_keys($config['maintenance']['resource']);
+        if (!empty($config['resource'])) {
+            $resources = array_keys($config['resource']);
             $resourceList = array_unique(
                 array_merge($resources, $resourceList)
             );
@@ -141,7 +141,7 @@ class Resource implements ListenerAggregateInterface
     }
 
     /**
-     * Load and performe resource actions
+     * Load and perform resource actions
      *
      * Returns result of the resource, null for failure but ignored, or array:
      *
@@ -152,7 +152,7 @@ class Resource implements ListenerAggregateInterface
      *  );
      * </code>
      *
-     * @param strint $resource Resource name
+     * @param string $resource Resource name
      * @return array|null
      */
     protected function loadResource($resource)
@@ -179,8 +179,8 @@ class Resource implements ListenerAggregateInterface
         if (!method_exists($resourceClass, $methodAction)) {
             return;
         }
-        $options = isset($config['maintenance']['resource'][$resource])
-            ? $config['maintenance']['resource'][$resource] : array();
+        $options = isset($config['resource'][$resource])
+            ? $config['resource'][$resource] : array();
         if (is_string($options)) {
             $optionsFile = sprintf(
                 '%s/%s/config/%s',

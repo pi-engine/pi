@@ -15,6 +15,7 @@
 return array(
     // default route
     'default'   => array(
+        'name'      => 'default',
         'section'   => 'front',
         'priority'  => -999,
 
@@ -33,6 +34,7 @@ return array(
 
     // Home route
     'home'  => array(
+        'name'      => 'home',
         'type'      => 'Home',
         'priority'  => 10000,
 
@@ -45,6 +47,7 @@ return array(
 
     // admin route
     'admin' => array(
+        'name'      => 'admin',
         // section, default as 'front'
         'section'   => 'admin',
         'priority'  => 100,
@@ -57,6 +60,7 @@ return array(
 
     // API route
     'api' => array(
+        'name'      => 'api',
         'section'   => 'api',
         'priority'  => 100,
 
@@ -68,6 +72,7 @@ return array(
 
     // feed route
     'feed' => array(
+        'name'      => 'feed',
         'section'   => 'feed',
         'priority'  => 100,
 
@@ -78,7 +83,8 @@ return array(
     ),
 
     // System user route
-    'user'  => array(
+    'sysuser'   => array(
+        'name'      => 'sysuser',
         'type'      => 'Module\System\Route\User',
         'priority'  => 5,
         'options'   => array(
@@ -88,6 +94,7 @@ return array(
 
     // Transition page jump route
     'jump' => array(
+        'name'      => 'jump',
         'priority'  => 5,
 
         'type'      => 'Literal',

@@ -65,6 +65,24 @@ EOT;
         trigger_error('test notice message', E_USER_NOTICE);
         trigger_error('test warning message', E_USER_WARNING);
 
+        $content =<<<'EOT'
+# Entity meta for custom user profile fields
+CREATE TABLE `{custom}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `uid`             int(10)         unsigned    NOT NULL,
+  -- Custom profile field
+  `field`           varchar(64)     NOT NULL,
+  `value`           text,
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY  `field` (`uid`, `field`)
+);
+EOT;
+vd($content);
+        //$content = \Pi\Application\Installer\SqlSchema::parseSchema($content);
+        $schema = new \Pi\Application\Installer\SqlSchema;
+        $content = $schema->parseContent($content);
+        vd($content);
         return $display;
     }
 

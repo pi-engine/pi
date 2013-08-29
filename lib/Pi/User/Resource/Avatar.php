@@ -10,120 +10,103 @@
 namespace Pi\User\Resource;
 
 use Pi;
+use Pi\User\Avatar\AbstractAvatar;
 
 /**
  * Avatar handler
  *
  * Avatar APIs;
  *
- *   - avatar([$id])->setSource($source)
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
- *   - avatar([$id])->set($value[, $source])
- *   - avatar([$id])->delete()
+ *   - avatar->get($uid, [$size[, $attributes[, $source]]])
+ *   - avatar->getList($ids[, $size[, $attributes[, $source]]])
+ *   - avatar->setSource($uid, $source)
+ *   - avatar->set($uid, $value[, $source])
+ *   - avatar->delete($uid)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Avatar extends AbstractResource
 {
+    /** @var  AbstractAvatar[] Avatar adapter container */
+    protected $adapter;
+
+    /**
+     * Get user avatar img element
+     *
+     * @param int               $uid
+     * @param string            $size
+     *      Size of image to display, integer for width, string for named size:
+     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
+     * @param array|string|bool $attributes
+     *      Array for attributes of HTML img element of img,
+     *      string for alt of img, false to return img src
+     *
+     * @return string
+     */
+    public function get($uid, $size = '', $attributes = array())
+    {
+        $avatar = $this->getAdapter()->get($uid, $size, $attributes);
+        if (!$avatar) {
+            $avatar = $this->getAdapter('local')->get($uid, $size, $attributes);
+        }
+
+        return $avatar;
+    }
+
+    /**
+     * Get avatars of a list of users
+     *
+     * @param int[]  $uids
+     * @param string $size
+     * @param array  $attributes
+     *
+     * @return array
+     */
+    public function getList($uids, $size = '', $attributes = array())
+    {
+        $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
+        $missingUids = array();
+        foreach ($uids as $uid) {
+            if (empty($avatars[$uid])) {
+                $missingUids[] = $uid;
+            }
+        }
+        if ($missingUids) {
+            $list = $this->getAdapter('local')->getList(
+                $uids,
+                $size,
+                $attributes
+            );
+            $avatars = array_merge($list, $avatars);
+        }
+
+        return $avatars;
+
+    }
+
     /**
      * Get avatar adapter
      *
      * @param string $adapter
      * @return AbstractAvatar
      */
-    public function getAdapter($adapter)
+    public function getAdapter($adapter = '')
     {
-        $class = __NAMESPACE__ . '\Avatar' . ucfirst($adapter);
-        $adapter = new $class($this->model);
+        $adapterName = $adapter ?: $this->options['adapter'];
 
-        return $adapter;
-    }
-
-    /**
-     * Build avatar img
-     *
-     * @param string $src
-     * @param array|string|bool $attributes
-     * @return string
-     */
-    public function build($src, $attributes = array())
-    {
-        if (false === $attributes) {
-            $result = $src;
-        } else {
-            if (is_string($attributes)) {
-                $attributes = array(
-                    'alt'   => $attributes,
-                );
-            } elseif (!isset($attributes['alt'])) {
-                $attributes['alt'] = '';
+        if (empty($this->adapter[$adapterName])) {
+            if (false === strpos($adapterName, '\\')) {
+                $class = 'Pi\User\Avatar\\' . ucfirst($adapterName);
+            } else {
+                $class = $adapterName;
             }
-            $attrs = '';
-            foreach ($attributes as $key => $val) {
-                $attrs .= ' ' . $key . '="' . _escape($val) . '"';
+            $adapter = new $class($this);
+            if (isset($this->options['options'])) {
+                $adapter->setOptions((array) $this->options['options']);
             }
-            $img = '<img src="%s"%s />';
-            $result = sprintf($img, $src, $attrs);
+            $this->adapter[$adapterName] = $adapter;
         }
 
-        return $result;
-    }
-
-    /**
-     * Get user avatar img element
-     *
-     * @param string            $size
-     *      Size of image to display, integer for width, string for named size:
-     *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
-     * @param array|string|bool $attributes
-     *      Array for attributes of HTML img element of img,
-     *      string for alt of img, false to return URL
-     * @return string
-     */
-    public function get($size = '', $attributes = array())
-    {
-        $avatar = $this->model ? $this->model->avatar : '';
-        if (false !== strpos('@', $avatar)) {
-            $adapter = 'gravatar';
-        } elseif ($avatar) {
-            $adapter = 'upload';
-        } else {
-            $adapter = 'local';
-        }
-        $src = $this->getAdapter($adapter)->build($size);
-        $avatar = $this->build($src, $attributes);
-
-        return $avatar;
-    }
-
-    /**
-     * Get user avatar img element through Gravatar
-     *
-     * @param int               $size           Size of image to display
-     * @param array|string|bool $attributes
-     *      Array for attributes of HTML img element of img,
-     *      string for alt of img, false to return URL
-     * @return string
-     */
-    public function getGravatar($size = 80, $attributes = array())
-    {
-        $src = $this->getAdapter('gravatar')->build($size, $attributes);
-        $avatar = $this->build($src, $attributes);
-
-        return $avatar;
-    }
-
-    /**
-     * Get path to uploaded avatar(s)
-     *
-     * @param string $size
-     * @return array|string
-     */
-    public function getPath($size = null)
-    {
-        $path = $this->getAdapter('upload')->getpath($size);
-
-        return $path;
+        return $this->adapter[$adapterName];
     }
 }

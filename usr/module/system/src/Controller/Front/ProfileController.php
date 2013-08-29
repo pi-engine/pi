@@ -29,16 +29,16 @@ class ProfileController extends ActionController
         $id = $this->params('id');
         if (!$id) {
             $this->redirect()->toRoute(
-                'user',
+                'sysuser',
                 array('controller' => 'account')
             );
 
             return;
         }
         if (is_numeric($id)) {
-            $row = Pi::model('user')->find($id);
+            $row = Pi::model('user_account')->find($id);
         } else {
-            $row = Pi::model('user')->find($id, 'identity');
+            $row = Pi::model('user_account')->find($id, 'identity');
         }
         $role = Pi::model('user_role')->find($row->id, 'user')->role;
         $roleRow = Pi::model('acl_role')->find($role, 'name');

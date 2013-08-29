@@ -244,7 +244,7 @@ class Taxonomy extends AbstractService
      *
      * @param string $domainName
      * @param array  $cols Fields to fetch
-     * @return array|false
+     * @return array|bool
      */
     public function getTree($domainName = null, $cols = array())
     {
@@ -267,7 +267,7 @@ class Taxonomy extends AbstractService
      *
      * @param string $domainName
      * @param array  $cols Fields to fetch
-     * @return array|false
+     * @return array|bool
      */
     public function getList($domainName = null, $cols = array())
     {
@@ -276,11 +276,11 @@ class Taxonomy extends AbstractService
         if (false !== $data) {
             $transform = function (&$node, &$plainList, $pid)
             {
+                $id = $node['id'];
                 $node['pid']    = $pid;
                 $plainList[$id] = $node;
                 if (isset($node['child'])) {
                     unset($plainList[$id]['child']);
-                    $id = $node['id'];
                     foreach ($node['child'] as $cid => &$page) {
                         $transform($page, $plainList, $id);
                     }
@@ -350,7 +350,7 @@ class Taxonomy extends AbstractService
      *                  string: title           Domain title, optional;
      *                  string: description     Domain description, optional;
      *                  string: module          Module name, optional.
-     * @param array|false $taxonData
+     * @param array|bool $taxonData
      * @return int Created ID
      */
     public function updateDomain($domainData, $taxonData = false)
@@ -379,7 +379,7 @@ class Taxonomy extends AbstractService
      * Get a taxonomy domain
      *
      * @param int|string $entity
-     * @return array|false
+     * @return array|bool
      */
     public function getDomain($entity)
     {
@@ -396,7 +396,9 @@ class Taxonomy extends AbstractService
      * Delete a taxonomy domain, and delete its taxa if required
      *
      * @param int|string $entity
-     * @params bool $deleteTaxa
+     * @param bool       $deleteTaxa
+     *
+     * @throws \Exception
      * @return bool
      */
     public function deleteDomain($entity, $deleteTaxa = true)

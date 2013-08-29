@@ -12,53 +12,53 @@ namespace Pi\User\Adapter;
 use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
-use Pi\User\Avatar\Factory as UserAvatar;
-use Zend\Db\Sql\Predicate\PredicateInterface;
 
 /**
  * User service abstract class
  *
  * User APIs
  *
- * + Meta operations
- *   - getMeta([$type])
+ * + Field meta operations
+ *   - getMeta($type, $action)
  *
- * + User operations
+ * + Single user account operations
  *   + Binding
- *   - bind($id[, $field])
+ *   - bind($uid, $field)
  *
  *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
+ *   - getUser($uid, $field)
  *
  *   + Add
  *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])
+ *   - updateUser($uid, $data)
  *
  *   + Delete
- *   - deleteUser($id)
+ *   - deleteUser($uid)
  *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
+ *   + Activate account
+ *   - activateUser($uid)
+ *
+ *   + Enable/Disable
+ *   - enableUser($uid)
+ *   - disableUser($uid)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
+ *   - getUids($condition, $limit, $offset, $order)
+ *   - getCount($condition)
+ *   - get($uid, $field, $filter)
  *
  *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
+ *   - set($uid, $field, $value)
+ *   - increment($uid, $field, $value)
  *
  * + Utility
+ *   + Route for URL assembing
+ *   - getRoute()
  *   + Collective URL
- *   - getUrl($type[, $id])
+ *   - getUrl($type, $uid = null)
  *   + Authentication
  *   - authenticate($identity, $credential)
  *
@@ -121,59 +121,67 @@ abstract class AbstractAdapter implements BindInterface
     {
         $result = null;
         if ($this->model) {
-            $result = $this->model->$var;
+            $result = $this->model[$var];
         }
 
         return $result;
+    }
+
+    /**
+     * Verify 'uid' parameter
+     *
+     * @param $uid
+     * @return int
+     */
+    protected function verifyUid($uid)
+    {
+        $uid = $uid ? intval($uid) : $this->__get($uid);
+
+        return $uid;
     }
 
     /**#@+
      * Meta operations
      */
     /**
-     * Get meta with type: account, profile, extra
+     * Get fields specs of specific type and action
+     *
+     * - Available types: `account`, `profile`, `custom`
+     * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
+     * @param string $action
      * @return array
      * @api
      */
-    abstract public function getMeta($type = 'account');
+    abstract public function getMeta($type = '', $action = '');
     /**#@-*/
 
     /**#@+
      * User operations
      */
+
     /**
-     * Get user data object
+     * Get user data model
      *
-     * @param int|string|null   $id         User id, identity
-     * @param string            $field      Field of the identity:
-     *      id, identity, email, etc.
+     * @param int|string|null   $uid    User id, identity
+     * @param string            $field  Field of the identity
      * @return UserModel
      * @api
      */
-    abstract public function getUser($id = null, $field = 'id');
-
-    /**
-     * Get user data objects
-     *
-     * @param int[] $ids User ids
-     * @return array
-     * @api
-     */
-    abstract public function getUserList($ids);
+    abstract public function getUser($uid, $field = 'id');
 
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|PredicateInterface  $condition
-     * @param int                       $limit
-     * @param int                       $offset
-     * @param string                    $order
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string        $order
      * @return int[]
      * @api
      */
-    abstract public function getIds(
+    abstract public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
@@ -183,7 +191,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user count subject to conditions
      *
-     * @param array|PredicateInterface  $condition
+     * @param array  $condition
      * @return int
      * @api
      */
@@ -192,110 +200,146 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Add a user
      *
-     * @param   array       $data
-     * @return  int|false
+     * @param   array       $fields
+     * @return  int|bool
      * @api
      */
-    abstract public function addUser($data);
+    abstract public function addUser($fields);
 
     /**
      * Update a user
      *
-     * @param   array       $data
-     * @param   int         $id
-     * @return  int|false
+     * @param   int         $uid
+     * @param   array       $fields
+     * @return  int|bool
      * @api
      */
-    abstract public function updateUser($data, $id = null);
+    abstract public function updateUser($uid, $fields);
 
     /**
      * Delete a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function deleteUser($id);
+    abstract public function deleteUser($uid);
 
     /**
      * Activate a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function activateUser($id);
+    abstract public function activateUser($uid);
 
     /**
-     * Deactivate a user
+     * Enable a user
      *
-     * @param   int         $id
+     * @param   int         $uid
      * @return  bool
      * @api
      */
-    abstract public function deactivateUser($id);
+    abstract public function enableUser($uid);
+
+    /**
+     * Disable a user
+     *
+     * @param   int         $uid
+     * @return  bool
+     * @api
+     */
+    abstract public function disableUser($uid);
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
     /**
-     * Get field value(s) of a user field(s)
+     * Get field value(s) of user(s) per operation actions
      *
-     * @param string|array      $key
-     * @param string|int|null   $id
-     * @return mixed
+     * Usage:
+     *
+     * - Get single-user-single-field
+     *
+     * ```
+     *  // Raw data
+     *  $fields = Pi::api('user', 'user')->get(12, 'gender', false);
+     *  // Output: 'male' (or 'female', 'unknown')
+     *
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(123, 'gender');
+     *  // Output: 'Male' (or 'Female', 'Unknown')
+     * ```
+     *
+     * - Get multi-user-multi-field for display
+     *
+     * ```
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(
+     *      array(12, 34, 56),
+     *      array('name', 'gender'),
+     *  );
+     *  // Output:
+     *  array(
+     *      12  => array(
+     *          'name'      => 'John',
+     *          'gender'    => 'Male',
+     *      ),
+     *      34  => array(
+     *          'name'      => 'Joe',
+     *          'gender'    => 'Unknown',
+     *      ),
+     *      56  => array(
+     *          'name'      => 'Rose',
+     *          'gender'    => 'Female',
+     *      ),
+     *  );
+     * ```
+     *
+     * @param int|int[]         $uid
+     * @param string|string[]   $field
+     * @param bool              $filter
+     * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($key, $id = null);
-
-    /**
-     * Get field value(s) of a list of user
-     *
-     * @param string|array      $key
-     * @param array             $ids
-     * @return array
-     * @api
-     */
-    abstract public function getList($key, $ids);
+    abstract public function get($uid, $field, $filter = true);
 
     /**
      * Set value of a user field
      *
-     * @param string            $key
-     * @param midex             $value
-     * @param string|int|null   $id
+     * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
      * @return bool
      * @api
      */
-    abstract public function set($key, $value, $id = null);
+    abstract public function set($uid, $field, $value);
 
     /**
      * Incremetn/decrement a user field
      *
-     * @param string            $key
-     * @param int               $value
+     * @param int       $uid
+     * @param string    $field
+     * @param int       $value
      *      Positive to increment or negative to decrement
-     * @param string|int|null   $id
      * @return bool
      * @api
      */
-    abstract public function increment($key, $value, $id = null);
-
-    /**
-     * Set a user password
-     *
-     * @param string            $value
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    abstract public function setPassword($value, $id = null);
+    abstract public function increment($uid, $field, $value);
     /**#@-*/
 
     /**#@+
      * Utility APIs
      */
+    /**
+     * Get route for URL assembling
+     *
+     * @return string
+     */
+    abstract public function getRoute();
+
     /**
      * Get user URL
      *
@@ -305,13 +349,12 @@ abstract class AbstractAdapter implements BindInterface
      * - logout: URI to user logout page
      * - register (signup): URI to user register/signup page
      *
-     * @param string        $type
-     *      Type of URLs: profile, login, logout, register, auth
-     * @param int|null      $id
+     * @param string            $type URL type
+     * @param int|string|null   $var User id for profile or redirect for login
      * @return string
      * @api
      */
-    abstract public function getUrl($type, $id = null);
+    abstract public function getUrl($type, $var = null);
 
     /**
      * Authenticate user
@@ -335,21 +378,4 @@ abstract class AbstractAdapter implements BindInterface
      */
     abstract public function authenticate($identity, $credential);
     /**#@-*/
-
-    /**
-     * Method handler allows a shortcut
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     */
-    public function __call($method, $args)
-    {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
-
-        return 'Not defined';
-    }
 }

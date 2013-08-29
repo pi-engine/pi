@@ -42,7 +42,7 @@ use Zend\Authentication\Result;
  *
  * ```
  *  $adapter = new Adapter();
- *  Pi::serivce('authentication')->setAdapter($adapter);
+ *  Pi::service('authentication')->setAdapter($adapter);
  *  Pi::service('authentication')->authenticate(<identity>, <credential>);
  *  if ($rememberMe) {
  *      Pi::service('session')->rememberMe();
