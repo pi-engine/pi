@@ -96,6 +96,10 @@ abstract class AbstractAvatar
             return $result;
         }
 
+        if (false === $attributes) {
+            return $src;
+        }
+
         if (is_string($attributes)) {
             $attributes = array(
                 'alt'   => $attributes,
@@ -123,6 +127,11 @@ abstract class AbstractAvatar
      */
     public function getList($uids, $size = '', $attributes = array())
     {
+        $srcList = $this->getSourceList($uids, $size);
+        if (false === $attributes) {
+            return $srcList;
+        }
+
         if (is_string($attributes)) {
             $attributes = array(
                 'alt'   => $attributes,
@@ -134,7 +143,6 @@ abstract class AbstractAvatar
         foreach ($attributes as $key => $val) {
             $attrs .= ' ' . $key . '="' . _escape($val) . '"';
         }
-        $srcList = $this->getSourceList($uids, $size);
         foreach ($srcList as $uid => $src) {
             $result[$uid] = sprintf('<img src="%s"%s />', $src, $attrs);
         }
