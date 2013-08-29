@@ -44,7 +44,7 @@ abstract class AbstractNest extends AbstractTableGateway
      * Valid positions
      * @var string[]
      */
-    protected $postion = array('firstOf', 'lastOf', 'nextTo', 'previousTo');
+    protected $position = array('firstOf', 'lastOf', 'nextTo', 'previousTo');
 
     /**
      * Class for row gateway
@@ -170,7 +170,7 @@ abstract class AbstractNest extends AbstractTableGateway
     protected function getPosition($objective = null, $position = 'lastOf')
     {
         // Escape is position is invalid
-        if (!in_array($position, $this->postion)) {
+        if (!in_array($position, $this->position)) {
             return false;
         }
 
