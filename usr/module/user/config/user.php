@@ -135,16 +135,16 @@ return array(
             'title' => __('Birth date'),
             'edit'  => array(
                 'element'       => 'DateTimeSelect',
-                'filters'       => array(
-                    array(
-                        'name'  => 'Module\User\Filter\Birthdate',
-                    ),
-                ),
-                'validators'   => array(
-                    array(
-                        'name'  => 'Module\User\Validator\Birthdate',
-                    ),
-                ),
+//                'filters'       => array(
+//                    array(
+//                        'name'  => 'Module\User\Filter\Birthdate',
+//                    ),
+//                ),
+//                'validators'   => array(
+//                    array(
+//                        'name'  => 'Module\User\Validator\Birthdate',
+//                    ),
+//                ),
             ),
         ),
         // Account: avatar
