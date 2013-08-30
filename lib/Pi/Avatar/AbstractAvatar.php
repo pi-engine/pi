@@ -7,9 +7,11 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\Avatar;
 
-use Pi\User\Resource\Avatar as AvatarResource;
+use Pi;
+//use Pi\User\Resource\Avatar as AvatarResource;
+use Pi\User\Model\AbstractModel;
 
 /**
  * User avatar abstract class
@@ -19,7 +21,7 @@ use Pi\User\Resource\Avatar as AvatarResource;
 abstract class AbstractAvatar
 {
     /** @var AvatarResource Avatar resource handler */
-    protected $resource;
+    //protected $resource;
 
     /**
      * Options
@@ -27,36 +29,19 @@ abstract class AbstractAvatar
      */
     protected $options;
 
+    /** @var  AbstractModel User model */
+    protected $user;
+
     /**
      * Constructor
      *
-     * @param \Pi\User\Resource\Avatar $resource
-     * @param array                    $options
+     * @param array $options
      */
-    public function __construct(
-        AvatarResource $resource = null,
-        array $options = array()
-    ) {
-        if ($resource) {
-            $this->setResource($resource);
-        }
+    public function __construct(array $options = array())
+    {
         if ($options) {
             $this->setOptions($options);
         }
-    }
-
-    /**
-     * Set resource handler
-     *
-     * @param AvatarResource $resource
-     *
-     * @return $this
-     */
-    public function setResource(AvatarResource $resource)
-    {
-        $this->resource = $resource;
-
-        return $this;
     }
 
     /**
@@ -73,6 +58,19 @@ abstract class AbstractAvatar
         return $this;
     }
 
+    /**
+     * Set user model
+     *
+     * @param AbstractModel $user
+     *
+     * @return $this
+     */
+    public function setUser(AbstractModel $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
     /**
      * Build avatar img element
@@ -197,7 +195,7 @@ abstract class AbstractAvatar
      */
     protected function canonizeSize($size, $toInt = true)
     {
-        $sizeMap = $this->options['size_map'];
+        $sizeMap = Pi::service('avatar')->getOptions('size_map');
 
         // Get numeric size
         if ($toInt) {

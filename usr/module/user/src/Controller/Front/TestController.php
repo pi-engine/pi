@@ -41,7 +41,7 @@ class TestController extends ActionController
     {
         Pi::model('account', 'user')->delete(array());
         Pi::model('profile', 'user')->delete(array());
-        Pi::model('custom', 'user')->delete(array());
+        //Pi::model('custom', 'user')->delete(array());
         Pi::model('compound', 'user')->delete(array());
     }
 
@@ -49,7 +49,7 @@ class TestController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $this->flushUsers();
+        //$this->flushUsers();
 
         $users = array();
 

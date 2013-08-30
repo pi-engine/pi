@@ -89,7 +89,13 @@ class EmailController extends ActionController
                     $link
                 );
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
-                $this->redirect('default',array('controller' => 'email', 'action' => 'send.complete'));
+                $this->redirect(
+                    'default',
+                    array(
+                        'controller' => 'email',
+                        'action' => 'send.complete'
+                    )
+                );
 
             } else {
                 $form->setData(array('identity' => $identity));

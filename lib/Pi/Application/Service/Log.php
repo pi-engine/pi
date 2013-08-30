@@ -40,7 +40,7 @@ class Log extends AbstractService
     /** @var Debugger Debugger writer */
     protected $debugger;
 
-    /** @var Logger Log hanlder */
+    /** @var Logger Log handler */
     protected $logger;
 
     /** @var ErrorHandler Error handler */

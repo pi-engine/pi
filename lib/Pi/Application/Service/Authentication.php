@@ -60,7 +60,7 @@ class Authentication extends AbstractService
     protected $fileIdentifier = 'authentication';
 
     /**
-     * Adpater handler
+     * Adapter handler
      *
      * @var AdapterInterface
      */

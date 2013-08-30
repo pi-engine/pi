@@ -10,6 +10,7 @@
 
 namespace Pi\Application\Service;
 
+use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
@@ -332,8 +333,6 @@ class User extends AbstractService
         switch ($var) {
             // User activity
             case 'activity':
-            // User avatar
-            case 'avatar':
             // User data
             case 'data':
             // User message
@@ -341,6 +340,10 @@ class User extends AbstractService
             // User timeline
             case 'timeline':
                 $result = $this->getResource($var);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
                 break;
             // User profile field
             default:
@@ -365,8 +368,6 @@ class User extends AbstractService
         switch ($method) {
             // User activity
             case 'activity':
-            // User avatar
-            case 'avatar':
             // User data
             case 'data':
             // User message
@@ -374,6 +375,13 @@ class User extends AbstractService
             // User timeline
             case 'timeline':
                 $result = $this->getResource($method, $args);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                if ($args) {
+                    $result = call_user_func_array(array($result,'get'), $args);
+                }
                 break;
             // User profile adapter methods
             default:

@@ -252,7 +252,7 @@ class Module extends AbstractService
      * a module's directory is its parent or root module's folder name
      * while folder or `dirname` by tradition is its key name.
      *
-     * @param string $module Mmodule's dirname or identifier name
+     * @param string $module Module's dirname or identifier name
      * @return string
      */
     public function directory($module = null)
@@ -279,7 +279,7 @@ class Module extends AbstractService
      *
      * @throws \Exception
      * @return  array Associative array of returned content,
-     *      or list of associative arry if $item is an array
+     *      or list of associative array if $item is an array
      */
     public function content(array $variables, array $conditions)
     {

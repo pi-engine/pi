@@ -15,6 +15,7 @@ use Module\User\Form\ProfileEditForm;
 use Module\User\Form\ProfileEditFilter;
 use Module\User\Form\CompoundForm;
 use Module\User\Form\CompoundFilter;
+use Pi\Paginator\Paginator;
 
 class ProfileController extends ActionController
 {
@@ -40,7 +41,7 @@ class ProfileController extends ActionController
         }
 
         // Check owner
-        $loginUid = Pi::service('user')->getIdentity();
+        $loginUid = Pi::service('user')->getIdentity();vd($loginUid);
         if (!$uid || $uid == $loginUid) {
             $uid = Pi::service('user')->getIdentity();
             $isOwner = true;
@@ -50,56 +51,13 @@ class ProfileController extends ActionController
         $user = $this->getUser($uid);
 
         // Get display group
-        $model  = $this->getModel('display_group');
-        $select = $model->select();
-        $select->columns('name', 'title', 'order');
-        $select->order('order ASC');
-        $groups = $model->selectWith($select);
-
-        foreach ($groups as $group) {
-            $data[$group->name] = array(
-                'name'     => $group->name,
-                'compound' => $group->compound,
-                'title'    => $group->title,
-            );
-
-            $compound = $group->compound;
-            $model    = $this->getModel('field_display');
-            $select   = $model->select()
-                        ->where(array('group' => $group->name));
-            $select->order('order ASC');
-            $fields = $model->selectWith($select);
-
-            foreach ($fields as $field) {
-                $data[$group->name]['fields'][$field->name] = array(
-                    'name'  => $field->field,
-                    'order' => $field->order,
-                    'value' => Pi::api('user', 'user')->get($uid, $field->name),
-                );
-
-                if (!$compound) {
-                    // Profile group
-                    $profileFields = Pi::registry('profile', 'user')->read();
-                    if (isset($profileFields[$field->field])) {
-                        $title = $profileFields[$field->field]['title'];
-                    }
-                    $data[$group->name]['fields'][$field->name]['title'] = $title;
-                } else {
-                    // Compound group
-                    $compoundFields = Pi::registry('compound', 'user')
-                        ->read($compound);
-                    if (isset($compoundFields[$field->field])) {
-                        $title = $data[$group->name]['fields'][$field->name]['title'];
-                    }
-                    $data[$group->name]['fields'][$field->name]['title'] = $title;
-                }
-            }
-        }
+        $profileGroup = $this->getProfile($uid, 'display');
 
         $this->view()->assign(array(
-            'data'    => $data,
-            'uid'     => $uid,
-            'isOwner' => $isOwner,
+            'profileGroup' => $profileGroup,
+            'uid'          => $uid,
+            'isOwner'      => $isOwner,
+            'user'         => $user,
         ));
     }
 
@@ -134,7 +92,7 @@ class ProfileController extends ActionController
         $user = $this->getUser($uid);
 
         // Get timeline
-        $count    = Pi::api('user', 'timeline')->getCount();
+        $count    = Pi::api('user', 'timeline')->getCount($uid);
         $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
 
         // Get timeline meta list
@@ -142,8 +100,8 @@ class ProfileController extends ActionController
 
         // Set timeline meta
         foreach ($timeline as &$item) {
-            $item['icon']  = $timelineMeta[$item['timeline']]['icon'];
-            $item['title'] = $timelineMeta[$item['timeline']]['title'];
+            $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
+            $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
 
         // Get activity meta for nav display
@@ -161,6 +119,7 @@ class ProfileController extends ActionController
         $paginator = $this->setPaginator($paginatorOption);
 
         $this->view()->assign(array(
+            'uid'          => $uid,
             'user'         => $user,
             'timeline'     => $timeline,
             'paginator'    => $paginator,
@@ -327,6 +286,7 @@ class ProfileController extends ActionController
                 'module'        => $this->getModule(),
                 'controller'    => $option['controller'],
                 'action'        => $option['action'],
+                'uid'           => $option['uid'],
             ),
         ));
 
@@ -406,23 +366,137 @@ class ProfileController extends ActionController
     {
         $result = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthday')
+            array('name', 'gender', 'birthdate')
         );
 
         return $result;
     }
 
+    /**
+     * Get Administrator custom display group
+     *
+     * @return array
+     */
+    protected function getDisplayGroup()
+    {
+        $result = array();
+
+        $model  = $this->getModel('display_group');
+        $select = $model->select();
+        $select->columns(array('name', 'title', 'order', 'compound'));
+        $select->order('order ASC');
+        $groups = $model->selectWith($select);
+
+        foreach ($groups as $group) {
+            $result[$group->name] = $group->toArray();
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get field display
+     *
+     * @param $group
+     * @return array
+     */
+    protected function getFieldDisplay($group)
+    {
+        $result = array();
+
+        $model = $this->getModel('field_display');
+        $select = $model->select()->where(array('group' => $group));
+        $select->columns(array('field', 'group', 'order'));
+        $select->order('order ASC');
+        $fields = $model->selectWith($select);
+
+        foreach ($fields as $field) {
+            $result[] = $field->field;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get user profile information
+     * Group and group items title and value
+     *
+     * @param $uid User id
+     * @param string $type Display or edit
+     * @return array
+     */
+    protected function getProfile($uid, $type = 'display')
+    {
+        $result = array();
+        if ('display' == $type) {
+            // Get account or profile meta
+            $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
+            $groups = $this->getDisplayGroup();
+
+            foreach ($groups as $groupName => $group) {
+                $result[$groupName] = $group;
+                $result[$groupName]['fields'] = array();
+                $fields = $this->getFieldDisplay($groupName);
+
+                if ($group['compound']) {
+                    // Compound
+
+                    // Compound meta
+                    $compoundMeta = Pi::registry('compound', 'user')->read(
+                        $group['compound']
+                    );
+
+                    // Compound value
+                    $compound     = Pi::api('user', 'user')->get(
+                        $uid, $group['compound']
+                    );
+
+                    // Gen Result
+                    foreach ($compound as $item) {
+                        foreach ($item as $key => $value) {
+                            $result[$groupName]['fields'][] = array(
+                                'title' => $compoundMeta[$key]['title'],
+                                'value' => $value,
+                            );
+                        }
+                    }
+                } else {
+                    // Profile
+                    foreach ($fields as $field) {
+                        $result[$groupName]['fields'][$field] = array(
+                            'title' => $fieldMeta[$field]['title'],
+                            'value' => Pi::api('user', 'user')->get($uid, $field),
+                        );
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    //protected function getProfileForDisplay
+
     public function testAction()
     {
-        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
-        //vd($compoundMeta);
-        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
-
-        //vd($compoundElements);
-        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
-        vd($compoundElements);
-
-
+//        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
+//        //vd($compoundMeta);
+//        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
+//
+//        //vd($compoundElements);
+//        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
+//        vd($compoundElements);
+        //vd($this->getDisplayGroup());
+        //vd($this->getFieldDisplay('basic_info'));
+        //vd(Pi::api('user', 'user')->getMeta('', 'display'));
+        //vd(Pi::api('user', 'user')->getMeta('', 'display'));
+        //vd(Pi::registry('compound', 'user')->read(array('work', 'education')));
+        //vd(Pi::api('user', 'user')->get(7, 'work'));
+        //vd($this->getFieldDisplay('work'));
+        //vd(Pi::registry('compound', 'user')->read('work'));
+        //
+        d($this->getProfile(7));
+        //$this->getProfile(7);
         $this->view()->setTemplate(false);
     }
 }

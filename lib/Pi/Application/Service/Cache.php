@@ -16,7 +16,7 @@ use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 
 /**
- * Cache handler servie
+ * Cache handler service
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

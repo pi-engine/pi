@@ -153,8 +153,9 @@ return array(
             'name'      => 'avatar',
             'title'     => __('Avatar'),
 
-            'is_edit'   => false,
-            'is_search' => false,
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
         ),
 
         // Account: Collective status

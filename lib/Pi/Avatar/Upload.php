@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Avatar;
+namespace Pi\Avatar;
 
 use Pi;
 
@@ -29,6 +29,11 @@ class Upload extends AbstractAvatar
         }
 
         $avatar = Pi::user()->get($uid, 'avatar');
+        if ($uid == $this->user->get('id')) {
+            $avatar = $this->user->get('avatar');
+        } else {
+            $data = Pi::user()->get($uid, array('avatar', 'email'));
+        }
         if ($avatar && false === strpos($avatar, '@')) {
             $src = $this->build($avatar, $size, $uid);
         }
@@ -59,8 +64,8 @@ class Upload extends AbstractAvatar
     {
         $uid = func_get_args(2);
         $size = $this->canonizeSize($size, false);
-        if (!empty($this->options['upload']['path'])) {
-            $pattern = $this->options['upload']['path'];
+        if (!empty($this->options['path'])) {
+            $pattern = $this->options['path'];
         } else {
             $pattern = 'upload/avatar/%size%/%uid%_%source%';
         }
