@@ -929,7 +929,7 @@ class User extends AbstractApi
      */
     public function addProfile($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -962,7 +962,7 @@ class User extends AbstractApi
      */
     public function updateProfile($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -996,7 +996,7 @@ class User extends AbstractApi
      */
     public function deleteProfile($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1021,7 +1021,7 @@ class User extends AbstractApi
      */
     public function addCompound($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1053,7 +1053,7 @@ class User extends AbstractApi
      */
     public function updateCompound($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1099,7 +1099,7 @@ class User extends AbstractApi
      */
     public function deleteCompound($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1126,7 +1126,7 @@ class User extends AbstractApi
      */
     public function getFields($uid, $type, $fields = array(), $filter = false)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1210,7 +1210,7 @@ class User extends AbstractApi
      */
     public function setTypeField($uid, $type, $field, $value)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 

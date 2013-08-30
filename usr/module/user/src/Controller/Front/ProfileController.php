@@ -200,7 +200,7 @@ class ProfileController extends ActionController
                 $data[] = $row->field;
             }
 
-            $profileData = Pi::api('user', 'user')->get($uid, $data, false);
+            $profileData = Pi::api('user', 'user')->get($uid, $data);
             // Set user info to form
             $form->setData($profileData);
         }
