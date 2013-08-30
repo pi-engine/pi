@@ -129,15 +129,111 @@ class Avatar extends AbstractService
             } else {
                 $class = $adapterName;
             }
-            $adapter = new $class;
-            if (isset($this->options[$adapterName])) {
-                $adapter->setOptions((array) $this->options[$adapterName]);
+            if (class_exists($class)) {
+                $adapter = new $class;
+                if (isset($this->options[$adapterName])) {
+                    $adapter->setOptions((array) $this->options[$adapterName]);
+                }
+                $adapter->setUser($this->getUser());
+            } else {
+                $adapter = false;
             }
-            $adapter->setUser($this->getUser());
             $this->adapter[$adapterName] = $adapter;
         }
 
         return $this->adapter[$adapterName];
     }
 
+    /**
+     * Magic method to load avatar adapter
+     *
+     * @param $var
+     *
+     * @return AbstractAvatar
+     */
+    public function __get($var)
+    {
+        return $this->getAdapter($var);
+    }
+
+    /**
+     * Get size number of a specific size or a list of defined sizes
+     *
+     * @param string $size
+     * @param bool   $toInt
+     *
+     * @return array|int|bool
+     */
+    public function getSize($size = '', $toInt = true)
+    {
+        $sizeMap = $this->getOptions('size_map');
+        if ($size) {
+            $result = isset($sizeMap[$size])
+                ? $this->canonizeSize($size, $toInt)
+                : false;
+        } else {
+            $result = array();
+            foreach ($sizeMap as $name => $size) {
+                if (is_int($size)) {
+                    $result[$name] = $size;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Canonize sie
+     *
+     * Convert named size to numeric size or convert from number to named size
+     *
+     * @param string|int $size
+     * @param bool       $toInt
+     *
+     * @return int|string
+     */
+    public function canonizeSize($size, $toInt = true)
+    {
+        $sizeMap = $this->getOptions('size_map');
+
+        // Get numeric size
+        if ($toInt) {
+            // From named to numeric
+            if (!is_numeric($size)) {
+                if (!isset($sizeMap[$size])) {
+                    $size = $sizeMap['normal'];
+                } else {
+                    $size = $sizeMap[$size];
+                    if (!is_numeric($size)) {
+                        $size = $sizeMap[$size];
+                    }
+                }
+                // Canonize numeric to defined numeric
+            } else {
+                foreach ($sizeMap as $name => $number) {
+                    if (is_numeric($number) && $number >= $size) {
+                        break;
+                    }
+                }
+                $size = $number;
+            }
+            // Get named size
+        } else {
+            // From numeric to named size
+            if (is_numeric($size)) {
+                foreach ($sizeMap as $name => $number) {
+                    if (is_numeric($number) && $number >= $size) {
+                        break;
+                    }
+                }
+                $size = $name;
+                // Convert to defined named size
+            } elseif (!isset($sizeMap[$size])) {
+                $size = 'normal';
+            }
+        }
+
+        return $size;
+    }
 }

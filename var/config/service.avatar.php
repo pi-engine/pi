@@ -5,7 +5,7 @@ return array(
     // Gravatar.com
     'adapter'       => 'gravatar',
     // System local avatars
-    //'adapter'       => 'local',
+    'adapter'       => 'local',
     // User uploaded avatars
     //'adapter'       => 'upload',
     // Auto detected
@@ -39,9 +39,13 @@ return array(
     ),
 
     'upload'    => array(
-        'path'  => function($source, $size, $uid) {
-            $path = sprintf('upload/avatar/%s/%d-%s',
-                            $size, $uid, $source);
+        'path'  => function($data) {
+            $path = sprintf(
+                'upload/avatar/%s/%d-%s',
+                $data['size'],
+                $data['uid'],
+                $data['source']
+            );
 
             return $path;
         },
