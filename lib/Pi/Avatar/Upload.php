@@ -28,11 +28,10 @@ class Upload extends AbstractAvatar
             return $src;
         }
 
-        $avatar = Pi::user()->get($uid, 'avatar');
         if ($uid == $this->user->get('id')) {
             $avatar = $this->user->get('avatar');
         } else {
-            $data = Pi::user()->get($uid, array('avatar', 'email'));
+            $avatar = Pi::user()->get($uid, 'avatar');
         }
         if ($avatar && false === strpos($avatar, '@')) {
             $src = $this->build($avatar, $size, $uid);
@@ -70,7 +69,11 @@ class Upload extends AbstractAvatar
             $pattern = 'upload/avatar/%size%/%uid%_%source%';
         }
         if (is_callable($pattern)) {
-            $path = call_user_func_array($pattern, array($source, $size, $uid));
+            $path = call_user_func($pattern, array(
+                'source'    => $source,
+                'size'      => $size,
+                'uid'       => $uid
+            ));
         } else {
             $path = str_replace(
                 array('source', 'size', 'uid'),
@@ -81,5 +84,72 @@ class Upload extends AbstractAvatar
         $src = Pi::url($path);
 
         return $src;
+    }
+
+    /**
+     * Get/Create avatar meta (path and size) of a user
+     *
+     * - Get meta of a specific size
+     * ```
+     *  // Get meta of existent avatar
+     *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed', 'small');
+
+     *  // Create meta
+     *  $meta = Pi::service('avatar')->upload->getMeta(123, '', 'small');
+     *
+     *  // Output:
+     *  $result = array('path' => <path-to-avatar>, 'size' => <int>);
+     * ```
+     *
+     * - Get meta of full size list
+     * ```
+     *  // Get meta of existent avatars
+     *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed');
+
+     *  // Create meta of avatars
+     *  $meta = Pi::service('avatar')->upload->getMeta(123);
+     *
+     *  // Output:
+     *  $result = array(
+     *      'mini'  => array('path' => <path-to-avatar>, 'size' => <int>),
+     *      'small' => array('path' => <path-to-avatar>, 'size' => <int>),
+     *      <...>,
+     *  );
+     * ```
+     *
+     * @param int       $uid
+     * @param string    $source
+     * @param string    $size
+     *
+     * @return array|bool
+     */
+    public function getMeta($uid, $source = '', $size = '')
+    {
+        if (!$uid) {
+            return false;
+        }
+
+        $source = $source ?: md5(uniqid($uid));
+        $_this = $this;
+        $getMeta = function ($size) use ($_this, $source) {
+            $meta = array(
+                'path'  => $_this->build($source, $size),
+                'size'  => $_this->canonizeSize($size)
+            );
+
+            return $meta;
+        };
+
+        if ($size) {
+            $result = $getMeta($size);
+        } else {
+            $result = array();
+            $sizeList = Pi::service('avatar')->getSize();
+            foreach (array_keys($sizeList) as $name) {
+                $result[$name] = $getMeta($name);
+            }
+        }
+
+        return $result;
     }
 }

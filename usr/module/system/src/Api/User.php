@@ -164,6 +164,10 @@ class User extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $result = $this->updateAccount($uid, $data);
 
         return $result;
@@ -178,6 +182,10 @@ class User extends AbstractApi
      */
     public function deleteUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->deleteAccount($uid);
 
         return $status;
@@ -192,6 +200,10 @@ class User extends AbstractApi
      */
     public function activateUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->activateAccount($uid);
 
         return $status;
@@ -207,6 +219,10 @@ class User extends AbstractApi
      */
     public function enableUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->enableAccount($uid);
 
         return $status;
@@ -222,6 +238,10 @@ class User extends AbstractApi
      */
     public function disableUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->enableAccount($uid, false);
 
         return $status;
@@ -236,8 +256,12 @@ class User extends AbstractApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = true)
+    public function get($uid, $field, $filter = false)
     {
+        if ($uid) {
+            return false;
+        }
+
         $result = array();
         $fields   = (array) $field;
         $uids   = (array) $uid;
@@ -276,13 +300,21 @@ class User extends AbstractApi
      */
     public function set($uid, $field, $value)
     {
+        if ($uid) {
+            return false;
+        }
+
         $row = Pi::model('user_account')->find($uid);
         if (!$row) {
             $result = false;
         } else {
             $row->assign(array($field => $value));
-            $row->save();
-            $result = true;
+            try {
+                $row->save();
+                $result = true;
+            } catch (\Exception $e) {
+                $result = false;
+            }
         }
 
         return $result;
@@ -301,18 +333,35 @@ class User extends AbstractApi
      */
     public function increment($uid, $field, $value)
     {
-        $model = Pi::model('user_account');
-        if ($value > 0) {
-            $string = '+' . $value;
-        } else {
-            $string = '-' . abs($value);
+        if ($uid) {
+            return false;
         }
-        $sql = 'UPDATE ' . $model->getTable()
-            . ' SET `' . $field . '`=`' . $field . '`' . $string
-            . ' WHERE `uid`=' . $uid;
-        Pi::db()->getAdapter()->query($sql);
 
-        return true;
+        $model = Pi::model('user_account');
+        $value = (int) $value;
+        $queryString = function ($fs) use ($value) {
+            if (0 == $value) {
+                $string = $fs . '=0';
+            } elseif (0 < $value) {
+                $string = $fs . '=' . $fs . '+' . $value;
+            } else {
+                $string = $fs . '=' . $fs . '-' . abs($value);
+            }
+
+            return $string;
+        };
+        $fieldIdentifier = $model->quoteIdentifier($field);
+        $sql = 'UPDATE ' . $model->getTable()
+            . ' SET ' . $queryString($fieldIdentifier)
+            . ' WHERE `uid`=' . $uid;
+        try {
+            Pi::db()->getAdapter()->query($sql);
+            $result = true;
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
     }
 
     /**
@@ -326,6 +375,10 @@ class User extends AbstractApi
      */
     public function setRole($uid, $role, $section = '')
     {
+        if ($uid) {
+            return false;
+        }
+
         if (is_string($role)) {
             $section = $section ?: 'front';
             $role = array(
@@ -339,7 +392,11 @@ class User extends AbstractApi
         ));
         foreach ($rowset as $row) {
             $row['role'] = $role[$row['section']];
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
             unset($role[$row['section']]);
         }
         foreach ($role as $section => $roleValue) {
@@ -348,7 +405,11 @@ class User extends AbstractApi
                 'section'   => $section,
                 'role'      => $roleValue,
             ));
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
@@ -368,6 +429,10 @@ class User extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
+        if ($uid) {
+            return false;
+        }
+
         $where = array('uid' => $uid);
         if ($section) {
             $where['section'] = $section;
@@ -439,7 +504,12 @@ class User extends AbstractApi
             $data['time_created'] = time();
         }
         $row = Pi::model('user_account')->createRow($data);
-        $row->prepare()->save();
+        $row->prepare();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return (int) $row['id'];
     }
@@ -454,6 +524,10 @@ class User extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $data = $this->canonizeUser($data);
         $row = Pi::model('user_account')->find($uid);
         if ($row) {
@@ -461,8 +535,12 @@ class User extends AbstractApi
             if (isset($data['credential'])) {
                 $row->prepare();
             }
-            $row->save();
-            $status = true;
+            try {
+                $row->save();
+                $status = true;
+            } catch (\Exception $e) {
+                $status = false;
+            }
         } else {
             $status = false;
         }
@@ -481,6 +559,10 @@ class User extends AbstractApi
      */
     public function deleteAccount($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('user_account');
         $row = $model->find($uid);
         if (!$row || (int) $row['time_deleted'] > 0) {
@@ -490,7 +572,11 @@ class User extends AbstractApi
             'active'        => 0,
             'time_deleted'  => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -507,6 +593,10 @@ class User extends AbstractApi
      */
     public function activateAccount($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('user_account');
         $row = $model->find($uid);
         if (!$row
@@ -519,7 +609,11 @@ class User extends AbstractApi
             'active'            => 1,
             'time_activated'    => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -540,6 +634,10 @@ class User extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('user_account');
         $row = $model->find($uid);
         if (!$row
@@ -565,7 +663,11 @@ class User extends AbstractApi
             );
         }
         $row->assign($data);
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -576,11 +678,15 @@ class User extends AbstractApi
      * @param int[]|int $uid
      * @param string[]  $fields
      * @param bool      $filter     To filter for display
-     * @return array
+     * @return array|bool
      * @api
      */
-    public function getFields($uid, $fields = array(), $filter = true)
+    public function getFields($uid, $fields = array(), $filter = false)
     {
+        if ($uid) {
+            return false;
+        }
+
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {

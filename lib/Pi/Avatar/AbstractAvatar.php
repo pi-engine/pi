@@ -195,49 +195,6 @@ abstract class AbstractAvatar
      */
     protected function canonizeSize($size, $toInt = true)
     {
-        $sizeMap = Pi::service('avatar')->getOptions('size_map');
-
-        // Get numeric size
-        if ($toInt) {
-            // From named to numeric
-            if (!is_numeric($size)) {
-                if (!isset($sizeMap[$size])) {
-                    $size = $sizeMap['normal'];
-                } else {
-                    $size = $sizeMap[$size];
-                    if (!is_numeric($size)) {
-                        $size = $sizeMap[$size];
-                    }
-                }
-            // Canonize numeric to defined numeric
-            } else {
-                foreach ($sizeMap as $name => $number) {
-                    if (!is_numeric($number) || $number < $size) {
-                        continue;
-                    } elseif ($number >= $size) {
-                        break;
-                    }
-                }
-                $size = $number;
-            }
-        // Get named size
-        } else {
-            // From numeric to named size
-            if (is_numeric($size)) {
-                foreach ($sizeMap as $name => $number) {
-                    if (!is_numeric($number) || $number < $size) {
-                        continue;
-                    } elseif ($number >= $size) {
-                        break;
-                    }
-                }
-                $size = $name;
-            // Convert to defined named size
-            } elseif (!isset($sizeMap[$size])) {
-                $size = 'normal';
-            }
-        }
-
-        return $size;
+        return Pi::service('avatar')->canonizeSize($size, $toInt);
     }
 }

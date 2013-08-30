@@ -1,0 +1,17 @@
+/* profile */
+.user-media {
+	margin-bottom: 20px;
+}
+.user-legend-title {
+	float: left;
+	margin: 0 10px 0;
+}
+.user-legend-edit {
+	float: right;
+}
+.user-legend-linea {
+	overflow: hidden;
+	height: 0;
+	border-top: 1px solid #e5e5e5;
+	margin-top: 10px;
+}
