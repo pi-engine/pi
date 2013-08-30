@@ -30,5 +30,10 @@
 </div>
 <div class="span9">
 <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<?php if ($status) {?>
+<div class="alert alert-success">
+<?php _e('Update success');?>
+</div>
+<?php } ?>
 <?php include $this->templateComponent('form'); ?>
 </div>
