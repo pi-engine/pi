@@ -281,10 +281,10 @@ class User extends AbstractApi
         if (!$status) {
             $result['profile'] = false;
         }
-        $status = $this->updateCompound($uid, $data);
-        if (!$status) {
-            $result['compound'] = false;
-        }
+//        $status = $this->updateCompound($uid, $data);
+//        if (!$status) {
+//            $result['compound'] = false;
+//        }
 
         return $result;
     }
