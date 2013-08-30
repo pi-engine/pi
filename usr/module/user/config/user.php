@@ -134,17 +134,7 @@ return array(
             'name'  => 'birthdate',
             'title' => __('Birth date'),
             'edit'  => array(
-                'element'       => 'DateTimeSelect',
-//                'filters'       => array(
-//                    array(
-//                        'name'  => 'Module\User\Filter\Birthdate',
-//                    ),
-//                ),
-//                'validators'   => array(
-//                    array(
-//                        'name'  => 'Module\User\Validator\Birthdate',
-//                    ),
-//                ),
+                'element'       => 'date_select',
             ),
         ),
         // Account: avatar
