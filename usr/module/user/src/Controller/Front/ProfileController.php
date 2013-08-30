@@ -130,17 +130,25 @@ class ProfileController extends ActionController
 
     /**
      * Edit profile action
+     * Task:
+     * 1. Receive profile group name
+     * 2. According to group name construct form
+     * 3. Process form submit info
+     * 4. Update user profile info
      *
      */
     public function editProfileAction()
     {
-        $uid = Pi::service('user')->getIdentity();
-        $groupName = $this->params('group');
+        $uid = Pi::user()->getIdentity();
+        $groupName = $this->params('group', '');
+        $groupName = 'basic_info';
 
-        if (!$uid || $groupName) {
+        // Error hand
+        if (!$uid || !$groupName) {
             return $this->jumpTo404();
         }
 
+        // Get fields and filters for edit
         list($fields, $filters) = $this->getGroupElements($groupName);
 
         // Add other elements
@@ -149,6 +157,13 @@ class ProfileController extends ActionController
             'type'  => 'hidden',
             'attributes' => array(
                 'value' => $uid,
+            ),
+        );
+        $fields[] = array(
+            'name'  => 'group',
+            'type'  => 'hidden',
+            'attributes' => array(
+                'value' => $groupName,
             ),
         );
 
@@ -168,7 +183,7 @@ class ProfileController extends ActionController
             $form->setData($post);
             $form->setInputFilter(new ProfileEditFilter($filters));
             if ($form->isValid()) {
-                $data = $form->getData();
+                $data = $form->getData();vd($data);exit;
                 // Update user
                 $status = Pi::api('user', 'user')->updateUser($data, $uid);
 
@@ -188,11 +203,32 @@ class ProfileController extends ActionController
             foreach ($result as $row) {
                 $data[] = $row->field;
             }
+
             $profileData = Pi::api('user', 'user')->get($uid, $data);
+            // Set user info to form
             $form->setData($profileData);
         }
 
-        $this->view()->assign('title', $groupName);
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
+        foreach ($groups as $key => &$group) {
+            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
+            $group['link'] = $this->url(
+                'default',
+                array(
+                    'controller' => 'profile',
+                    'action'     => $action,
+                    'group'      => $key,
+                )
+            );
+        }
+
+        $this->view()->assign(array(
+            'form'     => $form,
+            'title'    => $groupName,
+            'groups'   => $groups,
+            'curGroup' => $groupName,
+        ));
         $this->view()->setTemplate('profile-edit');
     }
 
@@ -294,7 +330,8 @@ class ProfileController extends ActionController
     }
 
     /**
-     * Get display group elements
+     * Get display group elements for edit
+     * Include
      *
      * @param $groupNname
      * @param string $compound
@@ -452,9 +489,9 @@ class ProfileController extends ActionController
                     );
 
                     // Gen Result
-                    foreach ($compound as $item) {
+                    foreach ($compound as $set => $item) {
                         foreach ($item as $key => $value) {
-                            $result[$groupName]['fields'][] = array(
+                            $result[$groupName]['fields'][$set][] = array(
                                 'title' => $compoundMeta[$key]['title'],
                                 'value' => $value,
                             );
@@ -463,7 +500,7 @@ class ProfileController extends ActionController
                 } else {
                     // Profile
                     foreach ($fields as $field) {
-                        $result[$groupName]['fields'][$field] = array(
+                        $result[$groupName]['fields'][0][$field] = array(
                             'title' => $fieldMeta[$field]['title'],
                             'value' => Pi::api('user', 'user')->get($uid, $field),
                         );
@@ -495,8 +532,9 @@ class ProfileController extends ActionController
         //vd($this->getFieldDisplay('work'));
         //vd(Pi::registry('compound', 'user')->read('work'));
         //
-        d($this->getProfile(7));
+        //d($this->getProfile(7));
         //$this->getProfile(7);
+        //d(Pi::api('user', 'user')->get(7, 'gender'));
         $this->view()->setTemplate(false);
     }
 }
