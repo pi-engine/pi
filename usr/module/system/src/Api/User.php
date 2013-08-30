@@ -309,8 +309,12 @@ class User extends AbstractApi
             $result = false;
         } else {
             $row->assign(array($field => $value));
-            $row->save();
-            $result = true;
+            try {
+                $row->save();
+                $result = true;
+            } catch (\Exception $e) {
+                $result = false;
+            }
         }
 
         return $result;
@@ -388,7 +392,11 @@ class User extends AbstractApi
         ));
         foreach ($rowset as $row) {
             $row['role'] = $role[$row['section']];
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
             unset($role[$row['section']]);
         }
         foreach ($role as $section => $roleValue) {
@@ -397,7 +405,11 @@ class User extends AbstractApi
                 'section'   => $section,
                 'role'      => $roleValue,
             ));
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
@@ -492,7 +504,12 @@ class User extends AbstractApi
             $data['time_created'] = time();
         }
         $row = Pi::model('user_account')->createRow($data);
-        $row->prepare()->save();
+        $row->prepare();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return (int) $row['id'];
     }
@@ -518,8 +535,12 @@ class User extends AbstractApi
             if (isset($data['credential'])) {
                 $row->prepare();
             }
-            $row->save();
-            $status = true;
+            try {
+                $row->save();
+                $status = true;
+            } catch (\Exception $e) {
+                $status = false;
+            }
         } else {
             $status = false;
         }
@@ -551,7 +572,11 @@ class User extends AbstractApi
             'active'        => 0,
             'time_deleted'  => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -584,7 +609,11 @@ class User extends AbstractApi
             'active'            => 1,
             'time_activated'    => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -634,7 +663,11 @@ class User extends AbstractApi
             );
         }
         $row->assign($data);
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
