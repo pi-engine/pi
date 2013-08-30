@@ -40,10 +40,12 @@ return array(
 
     'upload'    => array(
         'path'  => function($data) {
+            $uid = $data['uid'];
+            $serial = str_pad(round($uid / 10000), 4, '0', STR_PAD_LEFT);
             $path = sprintf(
-                'upload/avatar/%s/%d-%s',
+                'upload/avatar/%s/%s/%s',
+                $serial,
                 $data['size'],
-                $data['uid'],
                 $data['source']
             );
 

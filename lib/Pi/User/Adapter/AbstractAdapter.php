@@ -265,11 +265,11 @@ abstract class AbstractAdapter implements BindInterface
      *
      * ```
      *  // Raw data
-     *  $fields = Pi::api('user', 'user')->get(12, 'gender', false);
+     *  $fields = Pi::api('user', 'user')->get(12, 'gender');
      *  // Output: 'male' (or 'female', 'unknown')
      *
      *  // Filter for display
-     *  $fields = Pi::api('user', 'user')->get(123, 'gender');
+     *  $fields = Pi::api('user', 'user')->get(123, 'gender', true);
      *  // Output: 'Male' (or 'Female', 'Unknown')
      * ```
      *
@@ -280,6 +280,7 @@ abstract class AbstractAdapter implements BindInterface
      *  $fields = Pi::api('user', 'user')->get(
      *      array(12, 34, 56),
      *      array('name', 'gender'),
+     *      true
      *  );
      *  // Output:
      *  array(
@@ -304,7 +305,7 @@ abstract class AbstractAdapter implements BindInterface
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($uid, $field, $filter = true);
+    abstract public function get($uid, $field, $filter = false);
 
     /**
      * Set value of a user field
@@ -318,7 +319,7 @@ abstract class AbstractAdapter implements BindInterface
     abstract public function set($uid, $field, $value);
 
     /**
-     * Incremetn/decrement a user field
+     * Increment/decrement a user field
      *
      * @param int       $uid
      * @param string    $field

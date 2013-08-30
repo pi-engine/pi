@@ -184,7 +184,7 @@ class TestController extends ActionController
         $field[] = 'birthdate';
         //$field = Pi::user()->getMeta();
         vd($field);
-        $fields = Pi::user()->get($uid, $field);
+        $fields = Pi::user()->get($uid, $field, true);
         d($fields);
 
     }

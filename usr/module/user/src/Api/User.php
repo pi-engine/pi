@@ -367,7 +367,7 @@ class User extends AbstractApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = true)
+    public function get($uid, $field, $filter = false)
     {
         $result = array();
         $keys   = (array) $field;
@@ -944,7 +944,7 @@ class User extends AbstractApi
      * @return array
      * @api
      */
-    public function getFields($uid, $type, $fields = array(), $filter = true)
+    public function getFields($uid, $type, $fields = array(), $filter = false)
     {
         $result = array();
         $uids = (array) $uid;
