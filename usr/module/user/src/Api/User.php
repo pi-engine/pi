@@ -240,25 +240,28 @@ class User extends AbstractApi
      *
      * @param   array   $data
      *
-     * @return  array   uid and status of profile/custom/compound
+     * @return  int|string[]   uid or, uid and error of account/profile/compound
      * @api
      */
     public function addUser($data)
     {
-        $result = array();
+        $error = array();
         $uid = $this->addAccount($data);
-        if ($uid) {
+
+        if (!$uid) {
+            $error[] = 'account';
+        } else {
             $status = $this->addProfile($uid, $data);
             if (!$status) {
-                $result['profile'] = false;
+                $error[] = 'profile';
             }
             $status = $this->addCompound($uid, $data);
             if (!$status) {
-                $result['compound'] = false;
+                $error[] = 'compound';
             }
         }
 
-        return array($uid, $result);
+        return $error ? array($uid, $error) : $uid;
     }
 
     /**
@@ -267,51 +270,60 @@ class User extends AbstractApi
      * @param   int         $uid
      * @param   array       $data
      *
-     * @return  bool[]
+     * @return  bool|string[]
      * @api
      */
     public function updateUser($uid, array $data)
     {
-        $result = array();
+        if ($uid) {
+            return false;
+        }
+
+        $error = array();
         $status = $this->updateAccount($uid, $data);
         if (!$status) {
-            $result['account'] = false;
+            $error[] = 'account';
         }
         $status = $this->updateProfile($uid, $data);
         if (!$status) {
-            $result['profile'] = false;
+            $error[] = 'profile';
         }
         $status = $this->updateCompound($uid, $data);
         if (!$status) {
-            $result['compound'] = false;
+            $error[] = 'compound';
         }
 
-        return $result;
+        return $error ? $error : true;
     }
 
     /**
      * Delete a user
      *
      * @param   int         $uid
-     * @return  bool[]
+     * @return  bool|string[]
      * @api
      */
     public function deleteUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
+        $error = array();
         $status = $this->deleteAccount($uid);
         if (!$status) {
-            $result['account'] = false;
+            $error[] = 'account';
         }
         $status = $this->deleteProfile($uid);
         if (!$status) {
-            $result['profile'] = false;
+            $error[] = 'profile';
         }
         $status = $this->deleteCompound($uid);
         if (!$status) {
-            $result['compound'] = false;
+            $error[] = 'compound';
         }
 
-        return $status;
+        return $error ? $error : true;
     }
 
     /**
@@ -323,6 +335,10 @@ class User extends AbstractApi
      */
     public function activateUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->activateAccount($uid);
 
         return $status;
@@ -338,6 +354,10 @@ class User extends AbstractApi
      */
     public function enableUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->enableAccount($uid);
 
         return $status;
@@ -353,6 +373,10 @@ class User extends AbstractApi
      */
     public function disableUser($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $status = $this->enableAccount($uid, false);
 
         return $status;
@@ -369,6 +393,10 @@ class User extends AbstractApi
      */
     public function get($uid, $field, $filter = false)
     {
+        if ($uid) {
+            return false;
+        }
+
         $result = array();
         $keys   = (array) $field;
         $uids   = (array) $uid;
@@ -409,6 +437,10 @@ class User extends AbstractApi
      */
     public function set($uid, $field, $value)
     {
+        if ($uid) {
+            return false;
+        }
+
         $fieldMeta = Pi::registry('profile', 'user')->read();
         if (isset($fieldMeta[$field])) {
             $type = $fieldMeta[$field];
@@ -423,7 +455,7 @@ class User extends AbstractApi
     /**
      * Increment/decrement a user field
      *
-     * Positive to increment or negative to decrement
+     * Positive to increment or negative to decrement; 0 to reset!
      *
      * @param int    $uid
      * @param string $field
@@ -434,6 +466,10 @@ class User extends AbstractApi
      */
     public function increment($uid, $field, $value)
     {
+        if ($uid) {
+            return false;
+        }
+
         $fieldMeta = Pi::registry('profile', 'user')->read();
         if (!isset($fieldMeta[$field])) {
             return false;
@@ -441,25 +477,39 @@ class User extends AbstractApi
 
         $type = $fieldMeta[$field];
         $model = Pi::model($type, 'user');
-        if ($value > 0) {
-            $string = '+' . $value;
-        } else {
-            $string = '-' . abs($value);
-        }
+        $value = (int) $value;
+        $queryString = function ($fs) use ($value) {
+            if (0 == $value) {
+                $string = $fs . '=0';
+            } elseif (0 < $value) {
+                $string = $fs . '=' . $fs . '+' . $value;
+            } else {
+                $string = $fs . '=' . $fs . '-' . abs($value);
+            }
+
+            return $string;
+        };
+
         if ('account' == $type) {
+            $fieldIdentifier = $model->quoteIdentifier($field);
             $sql = 'UPDATE ' . $model->getTable()
-                . ' SET `' . $field . '`=`' . $field . '`' . $string
+                . ' SET ' . $queryString($fieldIdentifier)
                 . ' WHERE `uid`=' . $uid;
-            Pi::db()->getAdapter()->query($sql);
         } elseif ('profile' == $type) {
+            $fieldIdentifier = $model->quoteIdentifier('value');
             $sql = 'UPDATE ' . $model->getTable()
-                . ' SET `value`=`value`' . $string
+                . ' SET ' . $queryString($fieldIdentifier)
                 . ' WHERE `uid`=' . $uid
                 . ' AND `field`=' . $field;
+        }
+        try {
             Pi::db()->getAdapter()->query($sql);
+            $result = true;
+        } catch (\Exception $e) {
+            $result = false;
         }
 
-        return true;
+        return $result;
     }
 
     /**
@@ -473,6 +523,10 @@ class User extends AbstractApi
      */
     public function setRole($uid, $role, $section = '')
     {
+        if ($uid) {
+            return false;
+        }
+
         if (is_string($role)) {
             $section = $section ?: 'front';
             $role = array(
@@ -484,18 +538,28 @@ class User extends AbstractApi
             'uid'       => $uid,
             'section'   => array_keys($role),
         ));
+        // Update existent role links
         foreach ($rowset as $row) {
             $row['role'] = $role[$row['section']];
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
             unset($role[$row['section']]);
         }
+        // Add new role links
         foreach ($role as $section => $roleValue) {
             $row = $model->createRow(array(
                 'uid'       => $uid,
                 'section'   => $section,
                 'role'      => $roleValue,
             ));
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
@@ -515,6 +579,10 @@ class User extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
+        if ($uid) {
+            return false;
+        }
+
         $where = array('uid' => $uid);
         if ($section) {
             $where['section'] = $section;
@@ -680,7 +748,13 @@ class User extends AbstractApi
             $data['time_created'] = time();
         }
         $row = Pi::model($type, 'user')->createRow($data);
-        $row->prepare()->save();
+        $row->prepare();
+
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return (int) $row['id'];
     }
@@ -695,6 +769,10 @@ class User extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'account';
         $data = $this->canonizeUser($data, $type);
         $row = Pi::model($type, 'user')->find($uid);
@@ -703,8 +781,13 @@ class User extends AbstractApi
             if (isset($data['credential'])) {
                 $row->prepare();
             }
-            $row->save();
             $status = true;
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                $status = false;
+            }
+
         } else {
             $status = false;
         }
@@ -723,6 +806,10 @@ class User extends AbstractApi
      */
     public function deleteAccount($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
         if (!$row || (int) $row['time_deleted'] > 0) {
@@ -732,7 +819,11 @@ class User extends AbstractApi
             'active'        => 0,
             'time_deleted'  => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -749,6 +840,10 @@ class User extends AbstractApi
      */
     public function activateAccount($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
         if (!$row
@@ -761,7 +856,11 @@ class User extends AbstractApi
             'active'            => 1,
             'time_activated'    => time(),
         ));
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -782,6 +881,10 @@ class User extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
+        if ($uid) {
+            return false;
+        }
+
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
         if (!$row
@@ -807,7 +910,11 @@ class User extends AbstractApi
             );
         }
         $row->assign($data);
-        $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return true;
     }
@@ -822,6 +929,10 @@ class User extends AbstractApi
      */
     public function addProfile($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
@@ -831,7 +942,11 @@ class User extends AbstractApi
                 'value' => $value,
                 'uid'   => $uid,
             ));
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
@@ -847,6 +962,10 @@ class User extends AbstractApi
      */
     public function updateProfile($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
@@ -858,7 +977,11 @@ class User extends AbstractApi
             $row->assign(array(
                 'value' => $value,
             ));
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
@@ -873,8 +996,17 @@ class User extends AbstractApi
      */
     public function deleteProfile($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'profile';
-        $status = Pi::model($type, 'user')->delete(array('uid' => $uid));
+        try {
+            Pi::model($type, 'user')->delete(array('uid' => $uid));
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         return $status;
     }
@@ -889,6 +1021,10 @@ class User extends AbstractApi
      */
     public function addCompound($uid, array $data)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'compound';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
@@ -896,7 +1032,11 @@ class User extends AbstractApi
             $compoundSet = $this->canonizeCompound($uid, $compound, $value);
             foreach ($compoundSet as $field) {
                 $row = $model->createRow($field);
-                $row->save();
+                try {
+                    $row->save();
+                } catch (\Exception $e) {
+                    return false;
+                }
             }
         }
 
@@ -913,10 +1053,41 @@ class User extends AbstractApi
      */
     public function updateCompound($uid, array $data)
     {
-        $this->deleteCompound($uid);
-        $this->addCompound($uid, $data);
+        if ($uid) {
+            return false;
+        }
 
-        return true;
+        $type = 'compound';
+        $data = $this->canonizeUser($data, $type);
+        $model = Pi::model($type, 'user');
+        foreach ($data as $compound => $value) {
+            try {
+                $model->delete(array(
+                    'uid'   => $uid,
+                    'compound'  => $compound,
+                ));
+            } catch (\Exception $e) {
+                return false;
+            }
+
+            $compoundSet = $this->canonizeCompound($uid, $compound, $value);
+            foreach ($compoundSet as $field) {
+                $row = $model->createRow($field);
+                try {
+                    $row->save();
+                } catch (\Exception $e) {
+                    return false;
+                }
+            }
+        }
+
+        $status = $this->deleteCompound($uid);
+        if ($status) {
+            return false;
+        }
+        $status = $this->addCompound($uid, $data);
+
+        return $status;
     }
 
     /**
@@ -928,8 +1099,17 @@ class User extends AbstractApi
      */
     public function deleteCompound($uid)
     {
+        if ($uid) {
+            return false;
+        }
+
         $type = 'compound';
-        $status = Pi::model($type, 'user')->delete(array('uid' => $uid));
+        try {
+            Pi::model($type, 'user')->delete(array('uid' => $uid));
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         return $status;
     }
@@ -941,11 +1121,15 @@ class User extends AbstractApi
      * @param string    $type
      * @param string[]  $fields
      * @param bool      $filter     To filter for display
-     * @return array
+     * @return array|bool
      * @api
      */
     public function getFields($uid, $type, $fields = array(), $filter = false)
     {
+        if ($uid) {
+            return false;
+        }
+
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
@@ -1026,10 +1210,18 @@ class User extends AbstractApi
      */
     public function setTypeField($uid, $type, $field, $value)
     {
+        if ($uid) {
+            return false;
+        }
+
         if ('account' == $type) {
             $row = Pi::model($type, 'user')->find($uid);
             $row[$field] = $value;
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         } elseif ('profile' == $type) {
             $model = Pi::model($type, 'user');
             $row = $model->select(array(
@@ -1037,7 +1229,11 @@ class User extends AbstractApi
                 'field' => $field
             ))->current();
             $row['value'] = $value;
-            $row->save();
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
         return true;
