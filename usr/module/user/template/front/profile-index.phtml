@@ -1,27 +1,8 @@
-<div class="media" style="margin-bottom: 10px">
-    <a class="pull-left">
-        <img  class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
-    </a>
-    <div class="media-body">
-        <ul class="unstyled">
-            <li><?php echo $this->escape($user['name']); ?></li>
-            <li><?php echo $this->escape($user['gender']);?></li>
-            <li><?php echo $this->escape($user['birthdate']); ?></li>
-        </ul>
-        <ul>
-            <?php if ($isOwner) { ?>
-
-            <li>
-                <a href="<?php echo $this->url('default', array('controller' => 'account', 'action' => 'index')); ?>">
-                    <?php _e('Account settings'); ?>
-                </a>
-            </li>
-            <?php } else { ?>
-            <li><a href=""><?php _e('Send message'); ?></a></li>
-            <?php }?>
-        </ul>
-    </div>
-</div>
+<?php
+    $this->css($this->assetModule('script/front.css'));
+    d($profileGroup);
+?>
+<?php include '_user-media.phtml'; ?>
 <div>
     <!-- Display module nav   -->
     <ul class="nav nav-tabs">
@@ -41,32 +22,35 @@
         </li>
         <?php } ?>
     </ul>
-
     <div>
         <h3><?php _e('Profile'); ?></h3>
-
-        <!-- Display profile -->
         <?php foreach ($profileGroup as $group) {?>
-            <!-- Display group title and edit link -->
-            <?php if ($group['compound']) { ?>
-            <p><?php echo $this->escape($group['title']);?></p>
-            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name'])); ?>">
-                <?php _e('Edit'); ?>
-            </a>
-            <?php } else {?>
-            <p><?php echo $this->escape($group['title']);?></p>
-            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name'])); ?>">
-                <?php _e('Edit'); ?>
-            </a>
-            <?php }?>
-
-            <!--     Display contents       -->
-            <?php foreach ($group['fields'] as $field) { ?>
-            <dl class="dl-horizontal">
-                <dt><?php echo $this->escape($field['title']);?></dt>
-                <dd><?php echo $this->escape($field['value']);?></dd>
-            </dl>
-            <?php } ?>
+        <div class="clearfix user-legend">
+            <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
+            <?php
+                if ($group['compound']) {
+                    $editUrl = $this->url('default', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name']));
+                } else {
+                    $editUrl = $this->url('default', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
+                }
+            ?>
+            <a class="user-legend-edit" href="<?php echo $editUrl; ?>"><?php _e('Edit'); ?></a>
+            <div class="user-legend-linea"></div>
+        </div>
+        <div class="user-field">
+        <?php
+            foreach ($group['fields'] as $key => $field) {
+                echo '<dl class="dl-horizontal user-field-dl">';
+                foreach ($field as $value) {
+                    echo sprintf('<dt>%s<dd>%s', 
+                        $value['title'],
+                        $value['value']
+                    );
+                }
+                echo '</dl>';
+            }
+        ?>
+        </div>
         <?php } ?>
     </div>
 </div>

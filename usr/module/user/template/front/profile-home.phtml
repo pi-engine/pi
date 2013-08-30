@@ -1,27 +1,8 @@
-<div class="media" style="margin-bottom: 10px">
-    <a class="pull-left">
-        <img  class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
-    </a>
-    <div class="media-body">
-        <ul class="unstyled">
-            <li><?php echo $this->escape($user['name']); ?></li>
-            <li><?php echo $this->escape($user['gender']);?></li>
-            <li><?php echo $this->escape($user['birthdate']); ?></li>
-        </ul>
-        <ul>
-            <?php if ($isOwner) { ?>
-
-            <li>
-                <a href="<?php echo $this->url('default', array('controller' => 'account', 'action' => 'index')); ?>">
-                    <?php _e('Account settings'); ?>
-                </a>
-            </li>
-            <?php } else { ?>
-            <li><a href=""><?php _e('Send message'); ?></a></li>
-            <?php }?>
-        </ul>
-    </div>
-</div>
+<?php
+    $this->css($this->assetModule('script/front.css'));
+    d($timeline);
+?>
+<?php include '_user-media.phtml'; ?>
 <div>
     <ul class="nav nav-tabs">
         <li class="active">
