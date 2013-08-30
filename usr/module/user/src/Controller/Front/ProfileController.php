@@ -351,7 +351,7 @@ class ProfileController extends ActionController
         }
 
         Pi::api('user', 'user')->updateCompound($uid, $data);
-        $message['status'] = 0;
+        $message['status'] = 1;
 
         return $message;
     }
