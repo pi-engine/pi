@@ -181,8 +181,10 @@ class System extends AbstractAdapter
             case 'account':
             case 'profile':
                 $params = array('controller' => 'profile');
-                if ($var) {
+                if (is_numeric($var)) {
                     $params['id'] = (int) $var;
+                } else {
+                    $params['identity'] = $var;
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
