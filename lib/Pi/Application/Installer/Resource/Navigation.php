@@ -10,7 +10,8 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Db\RowGateway\RowGateway;
+use Pi\Application\Model\Navigation\Node as NodeRow;
+use Pi\Application\Model\Model as NavigationRow;
 
 /**
  * Navigation setup with configuration specs
@@ -91,7 +92,7 @@ use Pi\Db\RowGateway\RowGateway;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Nav extends AbstractResource
+class Navigation extends AbstractResource
 {
     /** @var string Current module identifier */
     protected $module;
@@ -191,9 +192,7 @@ class Nav extends AbstractResource
 
         // Set up front nav
         if (!isset($item['front'])) {
-            $item['front'] = array(
-                ''
-            );
+            $item['front'] = array();
         } elseif (false === $item['front']) {
             unset($item['front']);
         }
@@ -242,7 +241,6 @@ class Nav extends AbstractResource
         }
 
         // Insert navigation pages
-        $message = array();
         foreach ($navigationList['node'] as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
@@ -269,7 +267,7 @@ class Nav extends AbstractResource
         $module = $this->event->getParam('module');
 
         if ($this->skipUpgrade()) {
-            return null;
+            return;
         }
         $message = array();
         $navigationList = $this->loadNavigation();
@@ -426,20 +424,34 @@ class Nav extends AbstractResource
     }
 
     /**
+     * Delete a page node
+     *
+     * @param NodeRow $node
+     * @param array $message
+     * @return bool
+     */
+    protected function deleteNavigationNode(NodeRow $node, &$message = null)
+    {
+        $node->delete();
+
+        return true;
+    }
+
+    /**
      * Load navigation specs from config
      *
      * @return array
      */
     protected function loadNavigation()
     {
-        if (false === ($specs = $this->config)) {
+        if (false === ($navigations = $this->config)) {
             return array();
         }
         $module = $this->event->getParam('module');
         Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
-        $specs = $this->canonizeConfig($specs);
+        $navigations = $this->canonizeConfig($navigations);
 
-        return $specs;
+        return $navigations;
     }
 
     /**
@@ -464,12 +476,12 @@ class Nav extends AbstractResource
     /**
      * Delete a navigation
      *
-     * @param RowGateway $navigationRow
+     * @param NavigationRow $navigationRow
      * @param array $message
      * @return bool
      */
     protected function deleteNavigation(
-        RowGateway $navigationRow,
+        NavigationRow $navigationRow,
         &$message
     ) {
         try {
