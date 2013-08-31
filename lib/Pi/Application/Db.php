@@ -529,13 +529,34 @@ class Db
     /**
      * Execute a sql query
      *
-     * @param Sql|Select|Update|Delete $sql
+     * @param Sql|Select|Update|Delete|string $sql
      * @return \Zend\Db\ResultSet\ResultSet
      */
     public function query($sql)
     {
-        $statement = $this->sql()->prepareStatementForSqlObject($sql);
-        $result = $statement->execute();
+        if (is_string($sql)) {
+            try {
+                $result = $this->getAdapter()->query(
+                    $sql,
+                    Adapter::QUERY_MODE_EXECUTE
+                );
+            } catch (\Exception $e) {
+                $result = false;
+            }
+
+            return $result;
+        }
+
+        try {
+            $statement = $this->sql()->prepareStatementForSqlObject($sql);
+        } catch (\Exception $e) {
+            return false;
+        }
+        try {
+            $result = $statement->execute();
+        } catch (\Exception $e) {
+            $result =  false;
+        }
 
         return $result;
     }
