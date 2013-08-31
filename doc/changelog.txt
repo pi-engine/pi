@@ -18,7 +18,6 @@ August 4th, 2013
 13. Added filters: `YesNo`, `Gender`, `DateTimeFormatter`
 14. Changed route spec to support route name definition
 15. Added API to fetch module resource meta directly
-16. Changed resource 'navigation' to 'nav'
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
