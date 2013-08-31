@@ -52,7 +52,9 @@ use Pi\User\Resource\AbstractResource;
  * + Data
  *   - data($uid, $name)
  *   - data->get($uid, $name)
- *   - data->set($uid, $name, $content, $module = '', $time = null)
+ *   - data->set($uid, $name, $value, $module = '', $time = null)
+ *   - data->setInt($uid, $name, $value, $module = '', $time = null)
+ *   - data->increment($uid, $name, $value, $module = '', $time = null)
  *   - data->delete($uid, $name)
  *
  * + Message
@@ -89,7 +91,7 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
  * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
- * @method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
+ * //@method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)

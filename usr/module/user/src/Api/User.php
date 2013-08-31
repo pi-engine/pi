@@ -464,6 +464,7 @@ class User extends AbstractApi
      * @return bool
      * @api
      */
+    /*
     public function increment($uid, $field, $value)
     {
         if (!$uid) {
@@ -511,6 +512,7 @@ class User extends AbstractApi
 
         return $result;
     }
+    */
 
     /**
      * Set user role(s)
