@@ -44,7 +44,7 @@ EOT;
         $content['locale'] = Pi::service('i18n')->locale
                            . ' ' . Pi::service('i18n')->charset;
 
-        Pi::service('user')->test('ss');
+        //Pi::service('user')->test('ss');
 
         $display = '';
         foreach ($content as $title => $data) {
@@ -83,6 +83,9 @@ vd($content);
         $schema = new \Pi\Application\Installer\SqlSchema;
         $content = $schema->parseContent($content);
         vd($content);
+
+        Pi::user()->data()->increment(1, 'test-int', 3);
+        vd(Pi::user()->data(1, 'test-int'));
         return $display;
     }
 

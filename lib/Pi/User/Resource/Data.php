@@ -209,7 +209,7 @@ class Data extends AbstractResource
                 . ' WHERE `uid`=' . $uid
                 . ' AND `name`=\'' . $name . '\'';
             try {
-                Pi::db()->getAdapter()->query($sql);
+                Pi::db()->query($sql);
                 $result = true;
             } catch (\Exception $e) {
                 $result = false;
