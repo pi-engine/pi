@@ -10,9 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHelper;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * Helper for canonizing CSS/JavaScript files
