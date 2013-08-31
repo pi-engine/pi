@@ -15,6 +15,7 @@ August 4th, 2013
 10. Added support for module schema parse
 11. Added HTML5/CSS detection `modernizr` as a jQuery extension
 12. Upgraded Zend Framework to 2.2.3
+13. Implemented bootstrap-responsive for mobile device
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

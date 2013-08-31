@@ -44,7 +44,7 @@ class HeadStyle extends ZendHeadStyle
     /**#@+
      * Added by Taiwen Jiang
      */
-    /** @var string[] Segment names for captch */
+    /** @var string[] Segment names for catch */
     protected static $captureNames = array();
     /**#@-*/
 
@@ -55,7 +55,7 @@ class HeadStyle extends ZendHeadStyle
      * End capture action and store after checking against stored scripts.
      * The content will be discarded if content with the name already exists
      *
-     * @params string $name
+     * @param string $name
      * @return void
      */
     public function captureTo($name)
