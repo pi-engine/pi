@@ -193,7 +193,7 @@ class DashboardController extends ActionController
         $message = array(
             'time'      => _date($content['time']),
             'content'   => Pi::service('markup')->render(
-                $content['content'],
+                $content['value'],
                 'text'
             ),
         );
@@ -335,8 +335,8 @@ class DashboardController extends ActionController
 
         if ($content) {
             $data = array(
-                'content'   => $content,
-                'time'      => time(),
+                'value' => $content,
+                'time'  => time(),
             );
         } else {
             $data = Pi::user()->data->get(0, 'admin-welcome', true);
@@ -345,7 +345,7 @@ class DashboardController extends ActionController
         $message = array(
             'time'      => _date($data['time']),
             'content'   => Pi::service('markup')->render(
-                $data['content'],
+                $data['value'],
                 'text'
             ),
         );
@@ -366,14 +366,14 @@ class DashboardController extends ActionController
 
         $content = $this->params()->fromPost('content');
         $data = array(
-            'content'   => $content,
-            'time'      => time(),
+            'value' => $content,
+            'time'   => time(),
         );
         Pi::user()->data->set($user, $type, $content);
 
         $memo = array(
             'time'      => _date($data['time']),
-            'content'   => $data['content'],
+            'content'   => $data['value'],
         );
 
         return $memo;
