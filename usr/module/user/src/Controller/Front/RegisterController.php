@@ -142,8 +142,8 @@ class RegisterController extends ActionController
         $userData = array_pop($userData);
         */
         $userData = Pi::user()->data()->find(array(
-            'name'      => 'register-activation',
-            'content'   => $token,
+            'name'  => 'register-activation',
+            'value' => $token,
         ));
         if ($userData) {
             $hashUid = md5($userData['uid']);
@@ -223,7 +223,7 @@ class RegisterController extends ActionController
 
         // Set user data form send mail
         $content = md5(uniqid($account['id'] . $account['name']));
-        Pi::user()->data()->add($uid, 'register-activation', $content);
+        Pi::user()->data()->set($uid, 'register-activation', $content);
 
         // Set mail params and send verify mail
         $to = $account['email'];
