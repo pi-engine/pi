@@ -46,27 +46,27 @@ class Image extends AbstractService
             switch ($driverName) {
                 case 'gd':
                     if (function_exists('gd_info')) {
-                        $driverClass = 'Imagin\Gd';
+                        $driverClass = 'Imagine\Gd';
                     }
                     break;
                 case 'gmagick':
                     if (class_exists('Gmagick')) {
-                        $driverClass = 'Imagin\Gmagick';
+                        $driverClass = 'Imagine\Gmagick';
                     }
                     break;
                 case 'imagick':
                     if (class_exists('Imagick')) {
-                        $driverClass = 'Imagin\Gmagick';
+                        $driverClass = 'Imagine\Gmagick';
                     }
                     break;
                 case 'auto':
                 default:
                     if (function_exists('gd_info')) {
-                        $driverClass = 'Imagin\Gd';
+                        $driverClass = 'Imagine\Gd';
                     } elseif (class_exists('Gmagick')) {
-                        $driverClass = 'Imagin\Gmagick';
+                        $driverClass = 'Imagine\Gmagick';
                     } elseif (class_exists('Imagick')) {
-                        $driverClass = 'Imagin\Gmagick';
+                        $driverClass = 'Imagine\Gmagick';
                     }
                     break;
             }
