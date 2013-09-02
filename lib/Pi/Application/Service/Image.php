@@ -29,20 +29,20 @@ use Imagine\Image\Color;
  *  // Use specific watermark
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>,
- *      <path/to/watermark/image>,
  *      <path/to/saved/image>
+ *      <path/to/watermark/image>,
  *  );
  *
  *  // Use system watermark
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>,
- *      '',
  *      <path/to/saved/image>
  *  );
  *
  *  // Overwrite original image
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>,
+ *      '',
  *      <path/to/watermark/image>
  *  );
  *  Pi::service('image')->watermark(
@@ -82,16 +82,16 @@ use Imagine\Image\Color;
  *  Pi::service('image')->resize(
  *      <path/to/source/image>,
  *      array(<width>, <height>),
- *      <filter>,
- *      <path/to/saved/image>
+ *      <path/to/saved/image>,
+ *      <filter>
  *  );
  *
  *  // Resize with ratio size
  *  Pi::service('image')->resize(
  *      <path/to/source/image>,
  *      0.5,
- *      <filter>,
- *      <path/to/saved/image>
+ *      <path/to/saved/image>,
+ *      <filter>
  *  );
  *
  *  // Overwrite original image
@@ -107,15 +107,15 @@ use Imagine\Image\Color;
  *  Pi::service('image')->rotate(
  *      <path/to/source/image>,
  *      <angle>,
- *      <background-color>,
- *      <path/to/saved/image>
+ *      <path/to/saved/image>,
+ *      <background-color>
  *  );
  *
  *  // Overwrite original image
  *  Pi::service('image')->rotate(
  *      <path/to/source/image>,
  *      <angle>,
- *      <background-color>,
+ *      <background-color>
  *  );
  * ```
  *
@@ -142,25 +142,23 @@ use Imagine\Image\Color;
  *  // Thumbnail with specified size
  *  Pi::service('image')->thumbnail(
  *      <path/to/source/image>,
- *      <path/to/saved/image>,
  *      array(<width>, <height>),
+ *      <path/to/saved/image>,
  *      <mode>
  *  );
  *
  *  // Thumbnail with ratio size
  *  Pi::service('image')->thumbnail(
  *      <path/to/source/image>,
- *      <path/to/saved/image>,
  *      0.5,
+ *      <path/to/saved/image>,
  *      <mode>
  *  );
  *
  *  // Overwrite original image
  *  Pi::service('image')->thumbnail(
  *      <path/to/source/image>,
- *      '',
- *      array(<width>, <height>),
- *      <mode>
+ *      array(<width>, <height>)
  *  );
  * ```
  *
@@ -408,12 +406,12 @@ class Image extends AbstractService
      * Add watermark to an image
      *
      * @param string|Image $sourceImage
-     * @param string $watermarkImage
      * @param string $to
+     * @param string $watermarkImage
      *
      * @return bool
      */
-    public function watermark($sourceImage, $watermarkImage = '', $to = '')
+    public function watermark($sourceImage, $to = '', $watermarkImage = '')
     {
         if (!$this->getDriver()) {
             return false;
@@ -498,12 +496,12 @@ class Image extends AbstractService
      *
      * @param string|Image      $sourceImage
      * @param array|float|Box   $size
-     * @param string            $filter
      * @param string            $to
+     * @param string            $filter
      *
      * @return bool
      */
-    public function resize($sourceImage, $size, $filter = '', $to = '')
+    public function resize($sourceImage, $size, $to = '', $filter = '')
     {
         if (!$this->getDriver()) {
             return false;
@@ -541,12 +539,12 @@ class Image extends AbstractService
      *
      * @param string|Image       $sourceImage
      * @param int                $angle
-     * @param string|array|Color $background
      * @param string             $to
+     * @param string|array|Color $background
      *
      * @return bool
      */
-    public function rotate($sourceImage, $angle, $background = null, $to = '')
+    public function rotate($sourceImage, $angle, $to = '', $background = null)
     {
         if (!$this->getDriver()) {
             return false;
@@ -655,13 +653,13 @@ class Image extends AbstractService
      * Returns it as a new image, doesn't modify the current image
      *
      * @param string|Image      $sourceImage
-     * @param string            $to
      * @param array|float|Box   $size
+     * @param string            $to
      * @param string            $mode
      *
      * @return bool|ImageInterface
      */
-    public function thumbnail($sourceImage, $to, $size, $mode = '')
+    public function thumbnail($sourceImage, $size, $to, $mode = '')
     {
         if (!$this->getDriver()) {
             return false;
