@@ -10,103 +10,28 @@
 namespace Pi\User\Model;
 
 use Pi;
-use Pi\Acl\Acl;
-use StdClass;
 
 /**
  * Local user model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends AbstractModel
+class Local extends System
 {
     /**
      * {@inheritDoc}
      */
-    public function load($data, $column = 'id')
+    public function get($name)
     {
-        $model = Pi::model('user');
-
-        if ('id' == $column) {
-            $user = $model->find(intval($data));
-        } else {
-            $user = $model->select(array($column => $data))->current();
-        }
-        if ($user && $user->active) {
-            $this->assign($user);
-        }
-        $this->role = null;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function loadRole()
-    {
-        if ($this->account->id) {
-            $model = ('admin' == Pi::engine()->section())
-                ? Pi::model('user_staff') : Pi::model('user_role');
-            $role = $model->find($this->account->id, 'user');
-            $this->role = $role ? $role->role : Acl::GUEST;
-        } else {
-            $this->role = Acl::GUEST;
+        $result = parent::get($name);
+        if (null === $result && 'id' != $name) {
+            $uid = $this->get('id');
+            if ($uid) {
+                $result = Pi::api('user', 'user')->get($uid, $name);
+                $this->data[$name] = $result;
+            }
         }
 
-        return $this->role;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function loadProfile()
-    {
-        $row = Pi::model('user_profile')->find($this->id);
-        $this->profile = $row ? (object) $row->toArray() : new StdClass;
-
-        return $this->profile;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isGuest()
-    {
-        return $this->account->id ? false : true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isAdmin()
-    {
-        return $this->role() == Acl::ADMIN ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isMember()
-    {
-        return $this->hasRole(Acl::MEMBER)  ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isStaff()
-    {
-        return $this->hasRole(Acl::STAFF)  ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function hasRole($role)
-    {
-        $roles = Pi::service('registry')->role->read($this->role());
-
-        return in_array($role, $roles) ? true : false;
+        return $result;
     }
 }

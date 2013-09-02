@@ -27,23 +27,19 @@ class LoginForm extends BaseForm
         $config = Pi::registry('config')->read('', 'user');
 
         $this->add(array(
+            'type'          => 'text',
             'name'          => 'identity',
             'options'       => array(
                 'label' => __('Username'),
             ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
         ));
 
         $this->add(array(
+            'type'          => 'password',
             'name'          => 'credential',
             'options'       => array(
                 'label' => __('Password'),
             ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
         ));
 
         if ($config['rememberme']) {
@@ -93,8 +89,8 @@ class LoginForm extends BaseForm
 
         $this->add(array(
             'name'          => 'submit',
+             'type'         => 'submit',
             'attributes'    => array(
-                'type'  => 'submit',
                 'value' => __('Login'),
                 'class' => 'btn',
             )

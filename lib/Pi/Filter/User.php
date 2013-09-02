@@ -52,8 +52,8 @@ class User extends AbstractFilter
         ) {
             $this->options['callback'] = function ($identity) {
                 $service = Pi::service('user')->bind($identity, 'identity');
-                $url = $service->getProfileUrl();
-                $name = $service->getName();
+                $url = $service->getUrl('profile', $identity);
+                $name = $service->name;
                 $service->restore();
                 return sprintf('<a href="%s" title="%s">@%s</a>',
                                $url, $name, $identity);

@@ -34,26 +34,23 @@ return array(
         // Credits and aknowledgement, optional
         'credits'   => 'Pi Engine Team; EEFOCUS Team.'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'widget'          => 'table',
-                )
-            ),
-            // ACL specs
-            'acl'           => 'acl.php',
-            // View pages
-            'page'          => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'widget'          => 'table',
+            )
+        ),
+        // ACL specs
+        'acl'           => 'acl.php',
+        // View pages
+        'page'          => 'page.php',
+        // Navigation definition
+        'navigation'    => 'nav.php',
+    ),
 );

@@ -53,57 +53,53 @@ class MemberForm extends BaseForm
     public function init()
     {
         $this->add(array(
+            'type'          => 'text',
             'name'          => 'identity',
             'options'       => array(
                 'label' => __('User account'),
             ),
             'attributes'    => array(
-                'type'  => 'text',
                 'value' => $this->user['identity'],
             ),
         ));
 
         $this->add(array(
+            'type'          => 'text',
             'name'          => 'name',
             'options'       => array(
                 'label' => __('Display name'),
             ),
             'attributes'    => array(
-                'type'  => 'text',
                 'value' => $this->user['name'],
             ),
         ));
 
         $this->add(array(
+            'type'          => 'email',
             'name'          => 'email',
             'options'       => array(
                 'label' => __('Email address'),
             ),
             'attributes'    => array(
-                'type'  => 'text',
                 'value' => $this->user['email'],
             ),
         ));
 
         if (empty($this->user['id'])) {
             $this->add(array(
+                'type'          => 'password',
                 'name'          => 'credential',
                 'options'       => array(
                     'label' => __('New password'),
                 ),
-                'attributes'    => array(
-                    'type'  => 'password',
-                )
             ));
 
             $this->add(array(
+                'type'          => 'password',
                 'name'          => 'credential-confirm',
                 'options'       => array(
                     'label' => __('Confirm password'),
                 ),
-                'attributes'    => array(
-                    'type'  => 'password',
-                )
             ));
         }
 
@@ -147,9 +143,9 @@ class MemberForm extends BaseForm
         ));
 
         $this->add(array(
+            'type'  => 'hidden',
             'name'  => 'id',
             'attributes'    => array(
-                'type'  => 'hidden',
                 'value' => $this->user['id'],
             ),
         ));

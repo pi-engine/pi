@@ -1,0 +1,11 @@
+
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+
+<div class="login-message">
+    <?php
+    $homeUrl = $this->url('home');
+    $homeString = sprintf('<a href="%s" title="%s">%s</a>', $homeUrl, __('homepage'), __('homepage'));
+    echo sprintf(__('You have logged in successfully, please go to %s.'), $homeString);
+    ?>
+</div>

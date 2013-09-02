@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Adapter\DbTable;
 
-use Pi;
 use Zend\Authentication\Result as AuthenticationResult;
 
 /**

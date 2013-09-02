@@ -189,6 +189,7 @@ class Module
     {
         $events = $this->getEventManager();
         $events->attach('start', array($this, 'loadConfig'));
+        $events->attach('start', array($this, 'clearCache'));
         $events->attach('finish', array($this, 'clearCache'));
         $events->attach('finish', array($this, 'updateMeta'));
     }

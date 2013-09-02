@@ -140,7 +140,7 @@ class File extends AbstractService
      */
     public function flush($dirs)
     {
-        $dirs = iterator_to_array($this->toIterator($files));
+        $dirs = iterator_to_array($this->toIterator($dirs));
         foreach ($dirs as $dir) {
             if (!is_dir($dir)) {
                 continue;

@@ -1,0 +1,9 @@
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+
+<?php foreach($user as $label => $value) { ?>
+<dl class="dl-horizontal">
+    <dt><?php echo $this->escape($label);?></dt>
+    <dd><?php echo $this->escape($value); ?></dd>
+</dl>
+<?php } ?>
+<?php include $this->templateComponent('form'); ?>

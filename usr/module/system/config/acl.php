@@ -14,59 +14,57 @@
  */
 return array(
     'roles' => array(
-        /**#@+
-         * Admin section
-         */
-        // System administrator or webmaster with ultra permissions
-        'admin'     => array(
-            'title'     => __('Administrator'),
-            'section'   => 'admin',
+        // Admin section
+        'admin' => array(
+            // System administrator or webmaster with ultra permissions
+            'admin'     => array(
+                'title'     => __('Administrator'),
+            ),
+            // Admin area user
+            'staff'     => array(
+                'title'     => __('Staff'),
+            ),
+            // Module/section moderator or administrator
+            'moderator' => array(
+                'title'     => __('Moderator'),
+                'parents'   => array('staff'),
+            ),
+            // Content editor
+            'editor' => array(
+                'title'     => __('Editor'),
+                'parents'   => array('staff'),
+            ),
+            // Module manager for content and moderation
+            'manager' => array(
+                'title'     => __('Manager'),
+                'parents'   => array('moderator', 'editor'),
+            ),
         ),
-        // Admin area user
-        'staff'     => array(
-            'title'     => __('Staff'),
-            'section'   => 'admin',
-        ),
-        // Module/section moderator or administrator
-        'moderator' => array(
-            'title'     => __('Moderator'),
-            'parents'   => array('staff'),
-            'section'   => 'admin',
-        ),
-        // Content editor
-        'editor' => array(
-            'title'     => __('Editor'),
-            'parents'   => array('staff'),
-            'section'   => 'admin',
-        ),
-        // Module manager for content and moderation
-        'manager' => array(
-            'title'     => __('Manager'),
-            'parents'   => array('moderator', 'editor'),
-            'section'   => 'admin',
-        ),
-        /**#@-*/
 
-        /**#@+
-         * Front section
-         */
-        // User
-        'member'    => array(
-            'title' => __('Member')
+        // Front section
+        'front' => array(
+            // System administrator with ultra permissions
+            'webmaster' => array(
+                'title'     => __('Webmaster'),
+                'parents'   => array('member'),
+            ),
+            // User
+            'member'    => array(
+                'title' => __('Member')
+            ),
+            // Visitor
+            'guest'     => array(
+                'title' => __('Guest')
+            ),
+            // Inactive user
+            'pending'  => array(
+                'title' => __('Pending')
+            ),
+            // Banned user
+            'disabled'    => array(
+                'title' => __('Disabled')
+            ),
         ),
-        // Visitor
-        'guest'     => array(
-            'title' => __('Guest')
-        ),
-        // Inactive user
-        'inactive'  => array(
-            'title' => __('Pending')
-        ),
-        // Banned user
-        'banned'    => array(
-            'title' => __('Banned')
-        ),
-        /**#@-*/
     ),
 
     'resources' => array(

@@ -46,8 +46,6 @@ class TreeRouteStack extends RouteStack
 
     /**
      * Create a new simple route stack.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -71,9 +69,10 @@ class TreeRouteStack extends RouteStack
     /**
      * routeFromArray(): defined by SimpleRouteStack.
      *
-     * @see    SimpleRouteStack::routeFromArray()
-     * @param  array|Traversable $specs
-     * @return Route
+     * @param array|\Traversable $specs
+     *
+     * @throws \RuntimeException
+     * @return RouteInterface
      */
     protected function routeFromArray($specs)
     {
@@ -128,7 +127,7 @@ class TreeRouteStack extends RouteStack
             $this->setRequestUri($uri);
         }
 
-        // Match aginst base URI
+        // Match against base URI
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
             foreach ($this->routes as $name => $route) {
@@ -140,15 +139,15 @@ class TreeRouteStack extends RouteStack
                 if ($matchedLength === $pathLength) {
                     $match->setMatchedRouteName($name);
 
-                    foreach ($this->defaultParams as $name => $value) {
-                        if ($match->getParam($name) === null) {
-                            $match->setParam($name, $value);
+                    foreach ($this->defaultParams as $key => $value) {
+                        if ($match->getParam($key) === null) {
+                            $match->setParam($key, $value);
                         }
                     }
                     return $match;
                 }
             }
-        // Match aginst simple URI
+        // Match against simple URI
         } else {
             //return parent::match($request);
             foreach ($this->routes as $name => $route) {
@@ -174,8 +173,12 @@ class TreeRouteStack extends RouteStack
      * assemble(): defined by Route interface.
      *
      * @see    Route::assemble()
+     *
      * @param  array $params
      * @param  array $options
+     *
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function assemble(array $params = array(), array $options = array())
@@ -185,7 +188,7 @@ class TreeRouteStack extends RouteStack
         }
 
         $names  = explode('/', $options['name'], 2);
-        $name   = $this->canonizeRoute($names[0]);
+        $name   = $names[0];
         $route  = $this->routes->get($name);
 
         /**#@+
@@ -203,7 +206,7 @@ class TreeRouteStack extends RouteStack
         }
 
         if (isset($names[1])) {
-            $options['name'] = $this->canonizeRoute($names[1]);
+            $options['name'] = $names[1];
         } else {
             unset($options['name']);
         }
@@ -337,28 +340,5 @@ class TreeRouteStack extends RouteStack
         }
 
         return $this->routesExtra->get($name);
-    }
-
-    /**
-     * Canonizes relative module route
-     *
-     * For a system route, transliterate `.<route-name>` to `<route-name>`
-     * For a non-system route, transliterate `.<route-name>`
-     * to `<module-name>-<route-name>`
-     *
-     * @see Pi\Application\Installer\Resource\Route::canonize()
-     *      for route name canonization
-     * @param string $name
-     * @return string
-     */
-    protected function canonizeRoute($name)
-    {
-        if ('.' == $name[0]) {
-            $module = Pi::service('module')->current();
-            $modulePrefix = ('system' == $module) ? '' : $module . '-';
-            $name = $modulePrefix . substr($name, 1);
-        }
-
-        return $name;
     }
 }

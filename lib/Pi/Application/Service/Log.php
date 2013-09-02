@@ -40,7 +40,7 @@ class Log extends AbstractService
     /** @var Debugger Debugger writer */
     protected $debugger;
 
-    /** @var Logger Log hanlder */
+    /** @var Logger Log handler */
     protected $logger;
 
     /** @var ErrorHandler Error handler */
@@ -319,7 +319,7 @@ class Log extends AbstractService
     public function db($info)
     {
         if (!$this->active()) {
-            return;
+            return $this;
         }
         $this->dbProfiler() ? $this->dbProfiler()->log($info) : null;
 
@@ -335,7 +335,7 @@ class Log extends AbstractService
     public function start($name = 'Pi Engine')
     {
         if (!$this->active()) {
-            return;
+            return $this;
         }
         $this->profiler() ? $this->profiler()->start($name) : null;
 
@@ -351,7 +351,7 @@ class Log extends AbstractService
     public function end($name = 'Pi Engine')
     {
         if (!$this->active()) {
-            return;
+            return $this;
         }
         $this->profiler() ? $this->profiler()->end($name) : null;
 
@@ -360,18 +360,19 @@ class Log extends AbstractService
 
     /**
      * Undefined method handler allows a shortcut:
-     *   $log->err('message')
+     *   `$log->err('message')`
      * or
-     *   $log->log('message', 'err')
+     *   `$log->log('message', 'err')`
      *
-     * @param  string  $method  priority name
-     * @param  string  $params  message to log
+     * @param  string $method  priority name
+     * @param  array  $args
+     *
      * @return void
      */
     public function __call($method, $args)
     {
         if (!$this->active()) {
-            return;
+            return $this;
         }
         if (method_exists($this->logger, $method)) {
             call_user_func_array(array($this->logger, $method), $args);

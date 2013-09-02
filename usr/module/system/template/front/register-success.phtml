@@ -6,7 +6,7 @@
     <?php
     $homeUrl = $this->url('home');
     $homeString = sprintf('<a href="%s" title="%s">%s</a>', $homeUrl, __('homepage'), __('homepage'));
-    $loginUrl = $this->url('user', array('controller' => 'login'));
+    $loginUrl = $this->url('sysuser', array('controller' => 'login'));
     $loginString = sprintf('<a href="%s" title="%s">%s</a>', $loginUrl, __('login'), __('login'));
     echo sprintf(__('You have registered successfully, please go to %s or to %s.'), $homeString, $loginString);
     ?>

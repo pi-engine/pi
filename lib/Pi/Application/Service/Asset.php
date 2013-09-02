@@ -346,7 +346,7 @@ class Asset extends AbstractService
     {
         $path = Pi::path('theme') . '/' . $theme . '/module';
         if (!is_dir($path)) {
-            return;
+            return false;
         }
         $iterator = new \DirectoryIterator($path);
         foreach ($iterator as $fileinfo) {

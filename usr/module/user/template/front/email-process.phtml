@@ -1,0 +1,11 @@
+<h2 class="page-header"><?php echo $title; ?></h2>
+
+<?php if ($data['status']) { ?>
+    <p><?php _e('Congratulation!'); ?></p>
+    <p><?php _e('Your new email has worked'); ?></p>
+<?php } else { ?>
+    <p><?php _e('The link has expired'); ?></p>
+    <p><?php _e('Please check the latest deliver in your email,or'); ?>
+       <a href="<?php echo $this->url('', array('controller' => 'email', 'action' => 'index'));?>"><?php _e('try nother reset');?></a>
+    </p>
+<?php } ?>

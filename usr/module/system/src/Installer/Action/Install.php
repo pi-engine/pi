@@ -74,21 +74,22 @@ class Install extends BasicInstall
 
 
         // Add system messages
-        $type       = 'admin-welcome';
-        $message    = array(
-            'content'   => __('Welcome to Pi powered system.'),
-            'time'      => time(),
-        );
-        $row = Pi::model('user_repo')->createRow(array(
+        $name       = 'admin-welcome';
+        $message    = __('Welcome to Pi powered system.');
+        Pi::user()->data->set(0, $name, $message, $module);
+        /*
+        $row = Pi::model('user_data')->createRow(array(
             'module'    => $module,
-            'type'      => $type,
+            'name'      => $name,
+            'time'      => time(),
             'content'   => $message,
         ));
         $row->save();
+        */
 
         // Add quick links
         $user   = 1;
-        $type   = 'admin-link';
+        $name   = 'admin-link';
         $links  = array(
             array(
                 'title' => 'Pi Engine Development',
@@ -107,14 +108,16 @@ class Install extends BasicInstall
                 'url'   => 'https://twitter.com/PiEnable',
             ),
         );
-
-        $row = Pi::model('user_repo')->createRow(array(
-            'user'      => $user,
+        Pi::user()->data->set($user, $name, $links, $module);
+        /*
+        $row = Pi::model('user_data')->createRow(array(
+            'uid'       => $user,
             'module'    => $module,
-            'type'      => $type,
+            'name'      => $name,
             'content'   => $links,
         ));
         $row->save();
+        */
 
         // Add update list
         $model = Pi::model('update', $module);

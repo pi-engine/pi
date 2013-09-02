@@ -144,7 +144,7 @@
 <script>
 dashboardSystem({
     quicLinkCollection: new Backbone.Collection(<?php echo json_encode($links); ?>),
-    messageUrl: '<?php echo $this->url('', array(action => 'message')); ?>',
-    linkUrl: '<?php echo $this->url('', array(action => 'link')); ?>'
+    messageUrl: '<?php echo $this->url('', array('action' => 'message')); ?>',
+    linkUrl: '<?php echo $this->url('', array('action' => 'link')); ?>'
 });
 </script>

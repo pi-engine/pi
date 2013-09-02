@@ -42,53 +42,46 @@ return array(
     // Module dependency: list of module directory names, optional
     'dependency'    => array(
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        // Class for module maintenace
-        // Methods for action event:
-        //  preInstall, install, postInstall;
-        //  preUninstall, uninstall, postUninstall;
-        //  preUpdate, update, postUpdate
-        //'class' => 'Module\\Demo\\Maintenance',
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'test'          => 'table',
-                    'page'          => 'table',
-                    //'test_view'     => 'view',
-                    //'test_trigger'  => 'trigger',
-                ),
-            ),
-            // Module configs
-            'config'    => 'config.php',
-            // ACL specs
-            'acl'       => 'acl.php',
-            // Block definition
-            'block'     => 'block.php',
-            // Bootstrap, priority
-            'bootstrap' => 1,
-            // Event specs
-            'event'     => 'event.php',
-            // Search registry, 'class:method'
-            'search'    => array('callback' => array('search', 'index')),
-            // View pages
-            'page'      => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'     => 'route.php',
-            // Callback for stats and monitoring
-            'monitor'   => array('callback' => array('monitor', 'index')),
-            // Additional custom extension
-            'test'      => array(
-                'config'    => 'For test',
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'test'          => 'table',
+                'page'          => 'table',
+                //'test_view'     => 'view',
+                //'test_trigger'  => 'trigger',
             ),
         ),
+        // Module configs
+        'config'    => 'config.php',
+        // ACL specs
+        'acl'       => 'acl.php',
+        // Block definition
+        'block'     => 'block.php',
+        // Bootstrap, priority
+        'bootstrap' => 1,
+        // Event specs
+        'event'     => 'event.php',
+        // Search registry, 'class:method'
+        'search'    => array('callback' => array('search', 'index')),
+        // View pages
+        'page'      => 'page.php',
+        // Navigation definition
+        'navigation'    => 'nav.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'     => 'route.php',
+        // Callback for stats and monitoring
+        'monitor'   => array('callback' => array('monitor', 'index')),
+        // Additional custom extension
+        'test'      => array(
+            'config'    => 'For test',
+        ),
+
+        'user'      => 'user.php',
     ),
 );

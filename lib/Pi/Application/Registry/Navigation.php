@@ -118,7 +118,7 @@ class Navigation extends AbstractRegistry
 
         $row = Pi::model('navigation_node')->find($name, 'navigation');
         if (!$row) {
-            return array();
+            return false;
         }
         $this->module = $row->module;
 

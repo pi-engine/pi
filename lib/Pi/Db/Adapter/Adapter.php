@@ -13,6 +13,7 @@ use Zend\Db\Adapter\Adapter as ZendAdapter;
 use Zend\Db\Adapter\ParameterContainer;
 use Zend\Db\Adapter\Driver;
 use Zend\Db\ResultSet;
+use Zend\Db\Exception;
 
 /**
  * {@inheritDoc}

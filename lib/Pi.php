@@ -364,6 +364,8 @@ class Pi
     /**
      * Loads autoloader handler
      *
+     * @param array $options
+     *
      * @return  Autoloader
      */
     public static function autoloader($options = array())
@@ -454,6 +456,9 @@ class Pi
      *  Pi::service('registry')->handler(<name>, <module>)->read(<...>);
      * ```
      *
+     * @param string $name
+     * @param string $module
+     *
      * @return AbstractRegistry
      * @api
      */
@@ -478,6 +483,9 @@ class Pi
      *  // Alias of
      *  Pi::service('api')->handler(<module-name>, <api-name>)->{<method>}(<args>);
      * ```
+     *
+     * @param string $module
+     * @param string $api
      *
      * @return AbstractApi
      * @api
@@ -599,7 +607,8 @@ class Pi
      *  - Otherwise, first part as section, map to `www` if no section matched
      *
      * @see Host::path()
-     * @param string $url  Path to be converted
+     * @param string $path  Path to be converted
+     *
      * @return string
      * @api
      */

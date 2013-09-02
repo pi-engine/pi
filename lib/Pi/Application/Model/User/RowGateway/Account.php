@@ -10,7 +10,6 @@
 namespace Pi\Application\Model\User\RowGateway;
 
 use Pi;
-use Pi\Db\RowGateway\RowGateway;
 
 /**
  * User account row gateway
@@ -32,8 +31,16 @@ use Pi\Db\RowGateway\RowGateway;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Account extends RowGateway
+class Account extends AbstractFieldRowGateway
 {
+    /**
+     * {@inheritDoc}
+     */
+    protected function getMetaList()
+    {
+        return array();
+    }
+
     /**
      * Get credential
      * @return string
@@ -74,7 +81,6 @@ class Account extends RowGateway
      * Transform credential upon raw data
      *
      * @param string    $credential     Credential
-     * @param string    $salt           Salt
      * @return string Encrypted credential value
      */
     public function transformCredential($credential)
@@ -100,5 +106,19 @@ class Account extends RowGateway
         $this->setCredential();
 
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function save($rePopulate = true)
+    {
+        /*
+        if (isset($this['credential'])) {
+            $this->prepare();
+        }
+        */
+
+        return parent::save($rePopulate);
     }
 }

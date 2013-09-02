@@ -56,6 +56,22 @@ use Pi\Application\Installer\SqlSchema;
 class Database extends AbstractResource
 {
     /**
+     * Canonize config
+     *
+     * @param array|string $config
+     *
+     * @return array
+     */
+    protected function canonizeConfig($config)
+    {
+        if (is_string($config)) {
+            $config = array('sqlfile' => $config);
+        }
+
+        return $config;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function installAction()
@@ -64,7 +80,8 @@ class Database extends AbstractResource
             return;
         }
 
-        if (empty($this->config['sqlfile'])) {
+        $config = $this->canonizeConfig($this->config);
+        if (empty($config['sqlfile'])) {
             return;
         }
         $module = $this->event->getParam('module');
@@ -72,7 +89,7 @@ class Database extends AbstractResource
             '%s/%s/%s',
             Pi::path('module'),
             $this->event->getParam('directory'),
-            $this->config['sqlfile']
+            $config['sqlfile']
         );
         if (!file_exists($sqlFile)) {
             return array(
@@ -80,6 +97,7 @@ class Database extends AbstractResource
                 'message'   => sprintf('SQL file "%s" is not found.', $sqlFile)
             );
         }
+
         try {
             $status = SqlSchema::query($sqlFile, $module);
         } catch (\Exception $e) {
@@ -89,8 +107,8 @@ class Database extends AbstractResource
             );
         }
 
-        if (isset($this->config['schema'])) {
-            $schemaList = $this->config['schema'];
+        if (isset($config['schema'])) {
+            $schemaList = $config['schema'];
         } else {
             $schemaList = SqlSchema::fetchSchema($sqlFile);
         }
@@ -126,16 +144,17 @@ class Database extends AbstractResource
         }
         $module = $this->event->getParam('module');
 
-        if (isset($this->config['schema'])) {
-            $schemaList = $this->config['schema'];
-        } elseif (empty($this->config['sqlfile'])) {
+        $config = $this->canonizeConfig($this->config);
+        if (isset($config['schema'])) {
+            $schemaList = $config['schema'];
+        } elseif (empty($config['sqlfile'])) {
             $schemaList = array();
         } else {
             $sqlFile = sprintf(
                 '%s/%s/%s',
                 Pi::path('module'),
                 $this->event->getParam('directory'),
-                $this->config['sqlfile']
+                $config['sqlfile']
             );
             if (!file_exists($sqlFile)) {
                 $schemaList = array();

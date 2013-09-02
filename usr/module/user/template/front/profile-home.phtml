@@ -1,0 +1,55 @@
+<?php
+    $this->css($this->assetModule('script/front.css'));
+    d($timeline);
+?>
+<?php include '_user-media.phtml'; ?>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
+                <?php _e('Profile'); ?>
+            </a>
+        </li>
+        <?php foreach ($activityList as $row) {?>
+        <li>
+            <a href="<?php echo $this->url('', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
+            <?php echo $this->escape($row['title']); ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+    <div>
+        <?php foreach ($timeline as $item) { ?>
+        <div class="clearfix user-media">
+            <div class="pull-left">
+                <?php
+                    echo $item['icon'] ? : '<i class="icon-search icon-2x"></i>'; 
+                ?>
+            </div>
+            <div class="media-body">
+                <p class="media-heading">
+                    <strong class="user-media-name"><?php echo $this->escape($user['name']); ?></strong>
+                    <span class="muted"><?php echo _date($item['time']); ?></span>
+                <p class="media-heading">
+                    <?php echo $this->escape($item['message']); ?>
+                </p>
+                <?php 
+                    if ($item['link']) {
+                        echo sprintf('<a href="%s" target="_blank">%s</a>',
+                            $item['link'],
+                            $item['link']);
+                    } 
+                ?>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    <?php
+    if ($paginator) {
+        echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-left'));
+    }
+    ?>
+</div>

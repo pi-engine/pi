@@ -37,27 +37,24 @@ return array(
         // Credits and aknowledgement, optional
         'credits'   => 'Pi Engine Team; @voltan'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'page'          => 'table',
-                    'stats'         => 'table',
-                )
-            ),
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'         => 'route.php',
-            // View pages
-            'page'          => 'page.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'page'          => 'table',
+                'stats'         => 'table',
+            )
+        ),
+        // Navigation definition
+        'navigation'    => 'nav.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'         => 'route.php',
+        // View pages
+        'page'          => 'page.php',
+    ),
 );

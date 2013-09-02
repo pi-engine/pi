@@ -8,7 +8,7 @@
 
     // Prompt to login for guests
     } elseif (401 == (int) $code) {
-        $url = $this->url('user', array('controller' => 'login'));
+        $url = Pi::user()->getUrl('login');
         $login = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
         echo sprintf(__('You are not allowed to access the page, please %s and try again.'), $login);
 

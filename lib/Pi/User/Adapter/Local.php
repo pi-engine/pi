@@ -17,17 +17,20 @@ use Pi\User\Model\Local as UserModel;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends AbstractAdapter
+class Local extends System
 {
+    /** @var string Route for user URLs */
+    protected $route = 'user';
+
     /**#@+
      * Meta operations
      */
     /**
      * {@inheritDoc}
      */
-    public function getMeta($type = 'account')
+    public function getMeta($type = '', $action = '')
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -37,35 +40,28 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUser($id = null, $field = 'id')
+    public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $id) {
-            $model = new UserModel($id, $field);
-        } else {
-            $model = $this->model;
-        }
-
-        return $model;
+        return parent::getUser($uid, $field);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getUserList($ids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIds(
+    public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
         $order      = ''
     ) {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+
+        return $result;
     }
 
     /**
@@ -73,7 +69,9 @@ class Local extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'user')->getCount($condition);
+
+        return $result;
     }
 
     /**
@@ -81,85 +79,78 @@ class Local extends AbstractAdapter
      */
     public function addUser($data)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->addUser($data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $id = null)
+    public function updateUser($uid, $data)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->updateUser($uid, $data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteUser($id)
+    public function deleteUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->deleteUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function activateUser($id)
+    public function activateUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->activateUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deactivateUser($id)
+    public function enableUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->enableUser($uid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function disableUser($uid)
+    {
+        return Pi::api('user', 'user')->disableUser($uid);
     }
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
-
     /**
      * {@inheritDoc}
      */
-    public function get($key, $id = null)
+    public function get($uid, $field, $filter = false)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->get($uid, $field, $filter);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $ids)
+    public function set($uid, $field, $value)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->set($uid, $field, $value);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $id = null)
+    /*
+    public function increment($uid, $field, $value)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('user', 'user')->increment($uid, $field, $value);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function increment($key, $value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPassword($value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
+    */
     /**#@-*/
 
     /**#@+
@@ -168,42 +159,17 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $id = null)
+    public function getRoute()
     {
-        switch ($type) {
-            case 'account':
-            case 'profile':
-                $id = $id ?: $this->id;
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'profile',
-                    'id'            => $id,
-                ));
-                break;
-            case 'login':
-            case 'signin':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login'
-                ));
-                break;
-            case 'logout':
-            case 'signout':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login',
-                    'action'        => 'logout',
-                ));
-                break;
-            case 'register':
-            case 'signup':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'register',
-                ));
-                break;
-            default:
-                $url = '';
-                break;
-        }
+        return parent::getRoute();
+    }
 
-        return $url;
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrl($type, $var = null)
+    {
+        return parent::getUrl($type, $var);
     }
 
     /**
@@ -211,23 +177,22 @@ class Local extends AbstractAdapter
      */
     public function authenticate($identity, $credential)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return parent::authenticate($identity, $credential);
     }
     /**#@-*/
 
-
     /**
-     * Method handler allows a shortcut
+     * Get user data model
      *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
+     * @param int       $uid
+     * @param string    $field
+     *
+     * @return UserModel
      */
-    public function __call($method, $args)
+    protected function getUserModel($uid, $field = 'id')
     {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
+        $model = new UserModel($uid, $field);
+
+        return $model;
     }
 }

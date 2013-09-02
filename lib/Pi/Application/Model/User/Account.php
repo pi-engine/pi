@@ -9,7 +9,6 @@
 
 namespace Pi\Application\Model\User;
 
-use Pi;
 use Pi\Application\Model\Model;
 
 /**

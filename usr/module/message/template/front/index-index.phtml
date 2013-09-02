@@ -1,0 +1,102 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/front.css'));
+    $this->jQuery();
+?>
+<ul class="nav nav-tabs message-nav-tabs">
+    <li class="active">
+        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?>" title="<?php _e('Notification'); ?>"><?php echo $notificationTitle; ?></a>
+    </li>
+    <li>
+        <button type="button" class="btn message-nav-btn" onclick="location.href=
+        '<?php echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?>'" 
+        title="<?php _e('New message'); ?>"><?php _e('New message'); ?>
+        </button>
+    </li>
+</ul>
+<div class="messages" id="message-js">
+    <?php if (!empty($messages)) { ?>
+    <?php foreach ($messages as $message) { ?>
+    <div class="media message-item<?php if($message['is_new']) { echo ' message-item-read'; } ?>">
+        <div class='pull-left message-media-left'>
+            <input type="checkbox" class="message-js-check pull-left" data-id="<?php echo $message['id']; ?>"> 
+            <a href="<?php echo $message['profileUrl']; ?>" class="pull-left">
+                <?php echo $message['avatar']; ?>
+            </a>
+        </div>
+        <div class="pull-right text-right">
+            <span class="muted"><?php echo date('Y/m/d H:i', $message['time_send']); ?></span>
+            <p class="message-hidden">
+                <span>
+                    <a href="<?php if (isset($paginator)) {
+                            echo $this->url('', array(
+                                'action' => 'delete',
+                                'ids'    => $message['id'],
+                                'p'      => $paginator->getCurrentPageNumber()
+                            ));
+                        } else {
+                            echo $this->url('', array('action' => 'delete', 'ids' => $message['id']));
+                        }?>" class="message-js-delete">
+                        <?php _e('Delete'); ?>
+                    </a>
+                </span>
+                <span class="message-divider">|</span>
+                <span class="message-mark">
+                    <a href="<?php if (isset($paginator)) {
+                        echo $this->url('', array(
+                            'action' => 'mark',
+                            'ids'    => $message['id'],
+                            'p'      => $paginator->getCurrentPageNumber()
+                        ));
+                        } else {
+                        echo $this->url('', array('action' => 'mark', 'ids' => $message['id']));}?>">
+                        <?php _e('Mark as read'); ?>
+                    </a>
+                </span>
+            </p>
+        </div>
+        <div class="media-body message-content">
+            <h5 class="media-heading message-head">                
+                <span><?php echo $uid == $message['uid_from']?'To':'From';?></span>
+                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['username']; ?></a>
+            </h5>
+            <p>
+                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $message['id'])); ?>" class="message-content-link"><?php echo $message['content']; ?>
+                </a>
+            </p>
+        </div>   
+    </div>
+
+    <?php } ?>
+    <?php } else {
+        _e('<div class="alert alert-info message-alert">No message for you!</div>');
+    } ?>
+    <?php
+        if (isset($paginator)) {
+            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array(
+                'class' => 'pagination-right'
+            ));
+        }
+    ?>
+
+    <form class="form-inline message-foot-form" action="">
+        <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
+        <select class="message-batch-action">
+            <option value=""><?php _e('Massive operation'); ?></option>
+            <option value="mark"><?php _e('Mark read'); ?></option>
+            <option value="delete"><?php _e('Delete'); ?></option> 
+        </select>
+    </form>
+      
+    <script src="<?php echo $this->assetModule('script/index-index.js'); ?>"></script>
+    
+    <script>
+    messageIndex({
+        p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
+        host: '<?php echo $this->url('', array('module' => 'message')); ?>'
+    });
+    </script>    
+</div>

@@ -61,9 +61,12 @@ class Url extends AbstractService
      * Generates an url given the name of a route.
      *
      * @see    Zend\Mvc\Router\RouteInterface::assemble()
-     * @param  string  $route              Name of the route
-     * @param  array   $params             Parameters for the link
-     * @param  array   $options            Options for the route
+     *
+     * @param  string $route              Name of the route
+     * @param  array  $params             Parameters for the link
+     * @param  array  $options            Options for the route
+     *
+     * @throws \RuntimeException
      * @return string                   For the link href attribute
      */
     public function assemble(
@@ -82,11 +85,13 @@ class Url extends AbstractService
     }
 
     /**
-     * Match a URL against routes and parse to paramters
+     * Match a URL against routes and parse to parameters
      *
      * Note: host is not checked for match
      *
      * @param string $url
+     *
+     * @throws \RuntimeException
      * @return RouteMatch|null
      */
     public function route($url)

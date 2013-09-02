@@ -184,9 +184,9 @@ abstract class AbstractAction
         $independents = $config['dependency'];
         $modules = Pi::registry('modulelist')->read();
         $missing = array();
-        foreach ($independents as $indenpendent) {
-            if (!isset($modules[$indenpendent])) {
-                $missing[] = $indenpendent;
+        foreach ($independents as $independent) {
+            if (!isset($modules[$independent])) {
+                $missing[] = $independent;
             }
         }
         if ($missing) {
