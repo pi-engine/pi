@@ -1,3 +1,7 @@
+<?php
+    $this->css($this->assetModule('script/front.css'));
+    $this->jQuery();
+?>
 <div class="span3">
     <ul class="nav nav-list">
         <li class="nav-header"><?php _e('Account settings');?></li>
@@ -27,7 +31,53 @@
         <li class="divider"></li>
     </ul>
 </div>
-
-<div class="span7">
-
+<div class="span9">
+    <h2>title</h2>
+    <div class="user-info-list">
+        <?php foreach ($forms as $key => $form) { ?>
+        <?php
+            //$form->setAttribute('class', 'form-horizontal');
+        ?>
+        <div class="user-info-item" data-index="<?php echo $key; ?>">
+            <div class="user-info-header">
+                <?php echo $key; ?>
+            </div>
+            <div class="user-info-body">
+                <?php include $this->templateComponent('form'); ?>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
 </div>
+<script src="<?php echo $this->assetModule('script/jquery-ui-1.10.3.custom.js'); ?>"></script>
+<script>
+(function($) {
+    var urlRoot = '<?php echo $this->url('', array('controller' => 'profile', 'action' => 'editCompoundSet')); ?>';
+    var compound = '<?php echo $curGroup; ?>';
+    var el = $('.user-info-list');
+    el.sortable({
+        handle: '.user-info-header',
+        items: '.user-info-item',
+        update: function(event, ui) {
+            var set = [];
+            var items = el.find('.user-info-item');
+            var length = items.length;
+            for (var i = 0; i < length; i++) {
+                items.each(function(index) {
+                    if ($(this).data('index') == i) {
+                        set.push(index);
+                    }
+                });
+            }
+
+           // console.log(set);
+           
+            $.post(urlRoot, {
+                compound: compound,
+                set: set.join(',')
+            });
+        }
+    });
+})(jQuery)
+</script>
+

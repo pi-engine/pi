@@ -51,6 +51,6 @@ return array(
         // View pages
         'page'          => 'page.php',
         // Navigation definition
-        'nav'           => 'nav.php',
+        'navigation'    => 'nav.php',
     ),
 );

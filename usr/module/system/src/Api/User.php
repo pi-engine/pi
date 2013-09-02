@@ -182,7 +182,7 @@ class User extends AbstractApi
      */
     public function deleteUser($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -200,7 +200,7 @@ class User extends AbstractApi
      */
     public function activateUser($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -219,7 +219,7 @@ class User extends AbstractApi
      */
     public function enableUser($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -238,7 +238,7 @@ class User extends AbstractApi
      */
     public function disableUser($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -258,7 +258,7 @@ class User extends AbstractApi
      */
     public function get($uid, $field, $filter = false)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -300,7 +300,7 @@ class User extends AbstractApi
      */
     public function set($uid, $field, $value)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -331,9 +331,10 @@ class User extends AbstractApi
      *
      * @return bool
      */
+    /*
     public function increment($uid, $field, $value)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -363,6 +364,7 @@ class User extends AbstractApi
 
         return $result;
     }
+    */
 
     /**
      * Set user role(s)
@@ -375,7 +377,7 @@ class User extends AbstractApi
      */
     public function setRole($uid, $role, $section = '')
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -429,7 +431,7 @@ class User extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -524,7 +526,7 @@ class User extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -559,7 +561,7 @@ class User extends AbstractApi
      */
     public function deleteAccount($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -593,7 +595,7 @@ class User extends AbstractApi
      */
     public function activateAccount($uid)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -634,7 +636,7 @@ class User extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -683,7 +685,7 @@ class User extends AbstractApi
      */
     public function getFields($uid, $fields = array(), $filter = false)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 

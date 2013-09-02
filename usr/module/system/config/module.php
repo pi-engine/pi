@@ -68,7 +68,7 @@ return array(
         // View pages
         'page'          => 'page.php',
         // Navigation definition
-        'nav'           => 'nav.php',
+        'navigation'    => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
         'route'         => 'route.php',
     ),

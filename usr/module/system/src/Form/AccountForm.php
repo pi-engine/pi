@@ -63,6 +63,17 @@ class AccountForm extends BaseForm
         ));
 
         $this->add(array(
+            'type'          => 'date_select',
+            'name'          => 'birthdate',
+            'options'       => array(
+                'label' => __('Birthdate'),
+            ),
+            'attributes'    => array(
+                'value' => $this->user->birthdate,
+            ),
+        ));
+
+        $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',
         ));

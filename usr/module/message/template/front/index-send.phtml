@@ -1,0 +1,67 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/front.css'));
+    $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
+?>
+<ul class="nav nav-tabs message-nav-tabs">
+    <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a></li>
+    <li><a href="<?php echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?>" title="<?php _e('Notification'); ?>"><?php echo $notificationTitle; ?></a></li>
+    <li class="active">
+        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?>" title="<?php _e('New message'); ?>"><?php _e('New message'); ?></a>
+    </li>
+</ul>
+<div class="messages" id="message-js">
+    <?php
+        if (!empty($errMessage)) {
+            $class = ' alert-error message-js-error';
+    ?>
+    <div class="alert<?php echo $class; ?>">
+        <button data-dismiss="alert" class="close" type="button">
+            ×
+        </button>
+        <?php echo $errMessage; ?>
+    </div>
+    <?php } ?>
+
+    <?php
+        $form->setAttribute('class', 'form-horizontal message-form-posi');
+        echo $this->form()->openTag($form);
+        $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
+    ?>
+    <?php
+        $element = $form->get('username');
+        echo sprintf('<div class="control-group%s"><label class="control-label message-label-left">%s</label><div class="controls message-input-right message-input-posi">%s%s</div></div>',
+        $element->getMessages() ? ' error' : '',
+        $element->getOption('label'),
+        $this->formElement($element),
+        $this->formElementErrors($element));
+    ?>
+    <?php
+        $element = $form->get('content');
+        $element->setAttributes(array(
+                'class' => 'span7 message-textarea',
+                'rows' => '6'
+        ));
+        echo sprintf('<div class="control-group%s"><label class="control-label text-left message-label-left">%s</label><div class="controls message-input-right message-send-text">%s%s</div></div>',
+        $element->getMessages() ? ' error' : '',
+        $element->getOption('label'),
+        $this->formElement($element),
+        $this->formElementErrors($element));
+    ?>
+    <?php
+        $element = $form->get('submit');
+        $element->setAttribute('class', 'btn btn-primary message-btn-margin');
+        echo sprintf('<div class="controls">%s</div>', $this->formSubmit($element));
+        echo $this->form()->closeTag($form);    
+    ?>
+</div>
+
+<script src="<?php echo $this->assetModule('script/index-send.js'); ?>"></script>
+<script>
+    messageIndex({
+        p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
+        host: '<?php echo $this->url('', array('module' => 'message')); ?>',
+        url: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'checkUsername')); ?>'
+    });
+</script>     

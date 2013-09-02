@@ -523,10 +523,11 @@ CREATE TABLE `{core.user_data}` (
   `module`          varchar(64)     NOT NULL    default '',
   `name`            varchar(64)     NOT NULL,
   `time`            int(10)         unsigned    NOT NULL default '0',
-  `content`         text,
+  `value`           text            default NULL,
+  `value_int`       int(10)         default NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`uid`, `module`, `name`)
+  UNIQUE KEY `user_data_name` (`uid`, `module`, `name`)
 );
 
 # user-role links

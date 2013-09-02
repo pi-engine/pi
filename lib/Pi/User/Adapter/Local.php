@@ -145,10 +145,12 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
+    /*
     public function increment($uid, $field, $value)
     {
         return Pi::api('user', 'user')->increment($uid, $field, $value);
     }
+    */
     /**#@-*/
 
     /**#@+

@@ -147,7 +147,7 @@ class EmailController extends ActionController
         $userData = array_pop($userData);
         */
         $userData = Pi::user()->data()->find(array(
-            'content'   => $token,
+            'value'     => $token,
             'name'      => 'change-email',
         ));
         if ($userData) {

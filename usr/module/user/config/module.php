@@ -37,9 +37,9 @@ return array(
             // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
         ),
-        'config'    => 'config.php',
-        'user'      => 'user.php',
-        'route'     => 'route.php',
-        'nav'       => 'nav.php',
+        'config'        => 'config.php',
+        'user'          => 'user.php',
+        'route'         => 'route.php',
+        'navigation'    => 'nav.php',
     ),
 );

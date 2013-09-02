@@ -134,17 +134,7 @@ return array(
             'name'  => 'birthdate',
             'title' => __('Birth date'),
             'edit'  => array(
-                'element'       => 'DateTimeSelect',
-//                'filters'       => array(
-//                    array(
-//                        'name'  => 'Module\User\Filter\Birthdate',
-//                    ),
-//                ),
-//                'validators'   => array(
-//                    array(
-//                        'name'  => 'Module\User\Validator\Birthdate',
-//                    ),
-//                ),
+                'element'       => 'date_select',
             ),
         ),
         // Account: avatar
@@ -348,20 +338,22 @@ return array(
 
     // Timeline logs from modules
     'timeline'  => array(
-        'action'    => array(
+        'operation' => array(
             'title' => __('User action'),
+            'icon'  => 'icon-user',
         ),
     ),
 
-    // Activity logs from other modules
+    // Activity logs
     'activity'  => array(
-        'member'    => array(
-
-        ),
     ),
 
     // Quicklinks
     'quicklink' => array(
-
+        'logout'    => array(
+            'title' => __('Logout'),
+            'link'  => Pi::user()->getUrl('logout'),
+            'icon'  => 'icon-off',
+        ),
     ),
 );

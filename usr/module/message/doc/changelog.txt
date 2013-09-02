@@ -1,0 +1,9 @@
+Message Module Changelog
+
+
+July 25th, 2013
+=============================
+1. Create message moudle with version 1.0.0.
+
+
+Xingyu Ji
