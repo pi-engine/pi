@@ -11,5 +11,5 @@ return array(
     // Auto detected
     'driver'        => 'auto',
 
-    'watermark'     => Pi::path('static/image/watermark.png'),
+    'watermark'     => Pi::path('static/image/logo.png'),
 );
