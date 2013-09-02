@@ -85,7 +85,7 @@ class PasswordController extends ActionController
         $groups = Pi::api('user', 'group')->getList();
         foreach ($groups as $key => &$group) {
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
                     'action'     => 'edit',

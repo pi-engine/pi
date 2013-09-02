@@ -32,7 +32,7 @@ class AccountController extends ActionController
         // Check login in
         if (!Pi::service('user')->hasIdentity()) {
             $this->redirect()->toRoute(
-                'default',
+                '',
                 array('controller' => 'login')
             );
             return;
@@ -67,7 +67,7 @@ class AccountController extends ActionController
         foreach ($groups as $key => &$group) {
             $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
                     'action'     => $action,
