@@ -12,6 +12,7 @@ namespace Pi\Application\Service;
 
 use Imagine\Image\ImageInterface;
 use Imagine\Image\ImagineInterface;
+use Imagine\Image\FontInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use Imagine\Image\Color;
