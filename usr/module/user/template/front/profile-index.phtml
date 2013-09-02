@@ -7,16 +7,16 @@
     <!-- Display module nav   -->
     <ul class="nav nav-tabs">
         <li>
-            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
+            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
         </li>
         <li class="active">
-            <a href="<?php echo $this->url('default', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
+            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
                 <?php _e('Profile'); ?>
             </a>
         </li>
         <?php foreach ($activityList as $row) {?>
         <li>
-            <a href="<?php echo $this->url('default', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
+            <a href="<?php echo $this->url('', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
                 <?php echo $this->escape($row['title']); ?>
             </a>
         </li>
@@ -29,9 +29,9 @@
             <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
             <?php
                 if ($group['compound']) {
-                    $editUrl = $this->url('default', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name']));
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name']));
                 } else {
-                    $editUrl = $this->url('default', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
                 }
             ?>
             <a class="user-legend-edit" href="<?php echo $editUrl; ?>"><?php _e('Edit'); ?></a>

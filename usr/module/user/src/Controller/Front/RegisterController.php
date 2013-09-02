@@ -261,7 +261,7 @@ class RegisterController extends ActionController
         // Get redirect
         $redirect = $this->params('redirect', '');
         if (!$redirect) {
-            $redirect = $this->url('default',
+            $redirect = $this->url('',
                 array(
                     'controller' => 'profile',
                     'action'     => 'home'
@@ -273,7 +273,7 @@ class RegisterController extends ActionController
 
         // Check login
         if (!Pi::service('user')->hasIdentity()) {
-            $this->redirect()->toUrl($this->url('default',
+            $this->redirect()->toUrl($this->url('',
                 array(
                     'controller' => 'login',
                     'action'     => 'index',
@@ -335,7 +335,7 @@ class RegisterController extends ActionController
 
         $form->setAttribute(
             'action',
-            $this->url('default', array('action' => 'index'))
+            $this->url('', array('action' => 'index'))
         );
 
         return $form;
@@ -353,7 +353,7 @@ class RegisterController extends ActionController
         $form = new ProfileCompleteForm($name, $fields);
         $form->setAttribute(
             'action',
-            $this->url('default', array('action' => 'complete-profile'))
+            $this->url('', array('action' => 'complete-profile'))
         );
 
         return $form;

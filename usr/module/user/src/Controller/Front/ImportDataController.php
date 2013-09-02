@@ -22,10 +22,11 @@ class ImportDataController extends ActionController
     public function indexAction()
     {
         $this->view()->setTemplate(false);
+
         $this->timelineLogAction();
         $this->activity();
         $this->group();
-
+        $this->quickLink();
     }
 
 
@@ -241,5 +242,30 @@ EOT;
         }
 
         vd($status);
+    }
+
+    protected function quickLink()
+    {
+        $count  = _get('count') ? : 10;
+        $prefix = 'quicklink';
+
+        $model = $this->getModel('quicklink');
+        for ($i = 0; $i < $count; $i++) {
+            $data = array(
+                'name'    => $prefix . $i . 'name',
+                'title'   => $prefix .$i . 'title',
+                'module'  => $prefix .$i . 'module',
+                'link'    => 'www.google.com/' . $i,
+                'icon'    => '',
+                'active'  => 1,
+                'display' => 1,
+            );
+
+            $row = $model->createRow($data);
+            $row->save();
+            $ids = $row['id'] ? : '';
+        }
+
+        vd($ids);
     }
 }

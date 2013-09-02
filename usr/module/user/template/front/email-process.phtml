@@ -6,6 +6,6 @@
 <?php } else { ?>
     <p><?php _e('The link has expired'); ?></p>
     <p><?php _e('Please check the latest deliver in your email,or'); ?>
-       <a href="<?php echo $this->url('default', array('controller' => 'email', 'action' => 'index'));?>"><?php _e('try nother reset');?></a>
+       <a href="<?php echo $this->url('', array('controller' => 'email', 'action' => 'index'));?>"><?php _e('try nother reset');?></a>
     </p>
 <?php } ?>
