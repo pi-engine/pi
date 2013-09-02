@@ -107,6 +107,9 @@ class ProfileController extends ActionController
         // Get activity meta for nav display
         $activityList = Pi::api('user', 'activity')->getList();
 
+        // Get quick link
+
+
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
@@ -609,7 +612,41 @@ class ProfileController extends ActionController
         return $result;
     }
 
-    //protected function getProfileForDisplay
+    protected function getQuicklink($limit = null, $offset = null)
+    {
+        $result = array();
+        $model = $this->getModel('quicklink');
+        $where = array(
+            'active'  => 1,
+            'display' => 1,
+        );
+        $columns = array(
+            'id',
+            'name',
+            'title',
+            'module',
+            'link',
+            'icon',
+        );
+
+        $select = $model->select()->where($where);
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+
+        $select->columns($columns);
+        $rowset = $model->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $result[] = $row->toArray();
+        }
+
+        return $result;
+
+    }
 
     public function testAction()
     {
@@ -634,6 +671,8 @@ class ProfileController extends ActionController
         //d(Pi::api('user', 'user')->get(8, 'work'));
         //$param = $this->params('test', '');
         //vd($param);
+        //$result = $this->getQuicklink();
+        //vd($result);
         $this->view()->setTemplate(false);
     }
 }
