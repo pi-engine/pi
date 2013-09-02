@@ -21,24 +21,29 @@
         </li>
         <?php } ?>
     </ul>
-
     <div>
-        <h3><?php _e('Homepage'); ?></h3>
         <?php foreach ($timeline as $item) { ?>
-        <div>
-            <ul class="inline">
-                <?php if ($item['icon']) { ?>
-                <?php echo $this->escape($item['icon']);?>
-                <?php } else { ?>
-                <span></span><i class="icon-search"></i><span>
-                <?php }?>
-                <li>
-                    <p>
-                        <?php echo $this->escape($item['message']);?>
-                    </p>
-                </li>
-                <li><?php echo $this->escape(_date($item['time'])); ?></li>
-            </ul>
+        <div class="clearfix user-media">
+            <div class="pull-left">
+                <?php
+                    echo $item['icon'] ? : '<i class="icon-search icon-2x"></i>'; 
+                ?>
+            </div>
+            <div class="media-body">
+                <p class="media-heading">
+                    <strong class="user-media-name"><?php echo $this->escape($user['name']); ?></strong>
+                    <span class="muted"><?php echo _date($item['time']); ?></span>
+                <p class="media-heading">
+                    <?php echo $this->escape($item['message']); ?>
+                </p>
+                <?php 
+                    if ($item['link']) {
+                        echo sprintf('<a href="%s" target="_blank">%s</a>',
+                            $item['link'],
+                            $item['link']);
+                    } 
+                ?>
+            </div>
         </div>
         <?php } ?>
     </div>

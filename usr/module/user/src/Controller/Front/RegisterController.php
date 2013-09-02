@@ -75,7 +75,7 @@ class RegisterController extends ActionController
 
                 // Set user data
                 $content = md5(uniqid($uid . $data['name']));
-                $result = Pi::user()->data()->add(
+                $result = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
                     $content
@@ -285,9 +285,8 @@ class RegisterController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get fields for generate form
-        list($fields, $filters) = $this->canonizeForm('profileComplete');
-
-        $form = $this->getPerfectInformationForm($fields);
+        list($fields, $filters) = $this->canonizeForm('profile.complete');
+        $form = $this->getProfileCompleteForm($fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -298,15 +297,8 @@ class RegisterController extends ActionController
                 $values = $form->getData();
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
 
-                if (!($status['account'])
-                    || !($status['profile'])
-                    || !($status['compound'])
-                ) {
-                    return $this->jumpTo404('An error occur');
-                }
-
                 // Set perfect information flag in user table
-                Pi::user()->data()->add($uid, 'profile-complete', 1);
+                Pi::user()->data()->set($uid, 'profile-complete', 1);
 
                 return $this->jump(
                     $redirect,
@@ -369,7 +361,7 @@ class RegisterController extends ActionController
     {
         $elements = array();
         $filters  = array();
-
+        $file = strtolower($file);
         $configFile = sprintf(
             '%s/extra/%s/config/%s.php',
             Pi::path('usr'),
@@ -378,8 +370,18 @@ class RegisterController extends ActionController
         );
 
         if (!file_exists($configFile)) {
-            return;
+            $configFile = sprintf(
+                '%s/%s/extra/%s/config/%s.php',
+                Pi::path('module'),
+                $this->getModule(),
+                $this->getModule(),
+                $file
+            );
+            if (!file_exists($configFile)) {
+                return;
+            }
         }
+
         $data = include $configFile;
 
         foreach ($data as $value) {
