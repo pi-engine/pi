@@ -215,7 +215,7 @@ vd($quicklink);
         foreach ($groups as $key => &$group) {
             $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
                     'action'     => $action,
@@ -322,11 +322,26 @@ vd($quicklink);
             }
         }
 
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
+        foreach ($groups as $key => &$group) {
+            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
+            $group['link'] = $this->url(
+                '',
+                array(
+                    'controller' => 'profile',
+                    'action'     => $action,
+                    'group'      => $key,
+                )
+            );
+        }
+
         $this->view()->setTemplate('profile-edit-compound');
         $this->view()->assign(array(
             'forms'        => $forms,
             'errorMsg'     => $errorMsg,
             'curGroup'     => $groupName,
+            'groups'       => $groups,
         ));
     }
 
