@@ -41,10 +41,12 @@ class AccountController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get username and email
-        list($username, $email) = Pi::api('user', 'user')->get(
+        $getData = Pi::api('user', 'user')->get(
             $uid,
             array('identity', 'email')
         );
+        $username = $getData['identity'];
+        $email    = $getData['email'];
 
         $form = new AccountForm('account');
 
@@ -84,6 +86,7 @@ class AccountController extends ActionController
             'errorMsg'     => $errorMsg,
             'updateStatus' => $updateStatus,
             'groups'       => $groups,
+            'curGroup'     => 'account',
         ));
     }
 }

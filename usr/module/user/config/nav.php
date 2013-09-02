@@ -24,7 +24,7 @@ return array(
             ),
             'route'         => 'admin',
             'module'        => 'user',
-            'controller'    => 'user',
+            'controller'    => 'index',
             'action'        => 'index',
         ),
 

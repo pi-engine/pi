@@ -53,11 +53,15 @@ class ProfileController extends ActionController
         // Get display group
         $profileGroup = $this->getProfile($uid, 'display');
 
+        // Get activity meta for nav display
+        $activityList = Pi::api('user', 'activity')->getList();
+
         $this->view()->assign(array(
             'profileGroup' => $profileGroup,
             'uid'          => $uid,
             'isOwner'      => $isOwner,
             'user'         => $user,
+            'activityList' => $activityList,
         ));
     }
 
@@ -121,7 +125,7 @@ class ProfileController extends ActionController
             'uid'        => $uid,
         );
         $paginator = $this->setPaginator($paginatorOption);
-vd($quicklink);
+
         $this->view()->assign(array(
             'uid'          => $uid,
             'user'         => $user,
