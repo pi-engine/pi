@@ -31,19 +31,23 @@ use Imagine\Image\Color;
  *      <path/to/source/image>,
  *      <path/to/saved/image>
  *      <path/to/watermark/image>,
+ *      <top-left|bottom-right|array(<x>, <y>)>
  *  );
  *
  *  // Use system watermark
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>,
- *      <path/to/saved/image>
+ *      <path/to/saved/image>,
+ *      '',
+ *      <top-left|bottom-right|array(<x>, <y>)>
  *  );
  *
  *  // Overwrite original image
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>,
  *      '',
- *      <path/to/watermark/image>
+ *      <path/to/watermark/image>,
+ *      <top-left|bottom-right|array(<x>, <y>)>
  *  );
  *  Pi::service('image')->watermark(
  *      <path/to/source/image>
@@ -405,14 +409,19 @@ class Image extends AbstractService
     /**
      * Add watermark to an image
      *
-     * @param string|Image $sourceImage
-     * @param string $to
-     * @param string $watermarkImage
+     * @param string|Image          $sourceImage
+     * @param string                $to
+     * @param string                $watermarkImage
+     * @param string|array|Point    $position
      *
      * @return bool
      */
-    public function watermark($sourceImage, $to = '', $watermarkImage = '')
-    {
+    public function watermark(
+        $sourceImage,
+        $to = '',
+        $watermarkImage = '',
+        $position = ''
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -428,14 +437,35 @@ class Image extends AbstractService
             $watermarkImage = $watermarkImage ?: $this->getOptions('watermark');
             $watermark = $this->getDriver()->open($watermarkImage);
         }
-        $size      = $image->getSize();
-        $wSize     = $watermark->getSize();
-        $bottomRight = $this->point(
-            $size->getWidth() - $wSize->getWidth(),
-            $size->getHeight() - $wSize->getHeight()
-        );
+        if ($position instanceof Point) {
+            $start = $position;
+        } elseif (is_array($position)) {
+            $start = $this->point($position[0], $position[1]);
+        } else {
+            $size      = $image->getSize();
+            $wSize     = $watermark->getSize();
+            switch ($position) {
+                case 'top-left':
+                    list($x, $y) = array(0, 0);
+                    break;
+                case 'top-right':
+                    $x = $size->getWidth() - $wSize->getWidth();
+                    $y = 0;
+                    break;
+                case 'bottom-left':
+                    $x = 0;
+                    $y = $size->getHeight() - $wSize->getHeight();
+                    break;
+                case 'bottom-right':
+                default:
+                    $x = $size->getWidth() - $wSize->getWidth();
+                    $y = $size->getHeight() - $wSize->getHeight();
+                    break;
+            }
+            $start = $this->point($x, $y);
+        }
         try {
-            $image->paste($watermark, $bottomRight);
+            $image->paste($watermark, $start);
             if ($to) {
                 $image->save($to);
             } elseif (!$sourceImage instanceof ImageInterface) {
