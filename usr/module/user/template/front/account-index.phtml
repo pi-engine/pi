@@ -1,32 +1,4 @@
-<div class="span3">
-    <ul class="nav nav-list">
-        <li class="nav-header"><?php _e('Account settings');?></li>
-        <li class="active">
-            <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index'));?>">
-                <?php _e('Basic info')?>
-            </a>
-        </li>
-        <li>
-            <a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'index')); ?>">
-                <?php _e('Change password');?>
-            </a>
-        </li>
-        <li class="divider"></li>
-        <li><a href="#"><?php _e('Avatar settings');?></a></li>
-        <li class="divider"></li>
-        <li class="nav-header"><?php _e('Profile settings');?></li>
-        <?php  foreach ($groups as $group) { ?>
-        <li>
-            <a href="<?php echo $group['link']; ?>">
-                <?php echo $this->escape($group['title']); ?>
-            </a>
-        </li>
-        <?php } ?>
-        <li class="divider"></li>
-        <li><a href="#"><?php _e('Privacy settings'); ?></a></li>
-        <li class="divider"></li>
-    </ul>
-</div>
+<?php include '_user-side-nav.phtml' ?>
 
 <div class="span9">
     <h2 class="page-header"><?php _e('Basic settings'); ?></h2>

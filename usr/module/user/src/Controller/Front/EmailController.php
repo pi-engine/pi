@@ -67,7 +67,7 @@ class EmailController extends ActionController
 
                 if (!$result) {
                     $this->jump($this->url(
-                        'default',
+                        '',
                         array('controller' => 'email', 'action' => 'index')),
                         __('Change email error'),
                         3
@@ -90,7 +90,7 @@ class EmailController extends ActionController
                 );
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
                 $this->redirect(
-                    'default',
+                    '',
                     array(
                         'controller' => 'email',
                         'action' => 'send.complete'
@@ -184,7 +184,7 @@ class EmailController extends ActionController
     public function sendCompleteAction()
     {
         $changeEmailLink = $this->url(
-            'default',
+            '',
             array(
                 'controller' => 'email',
                 'action' => 'index'
