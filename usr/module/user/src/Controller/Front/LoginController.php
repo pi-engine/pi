@@ -196,7 +196,7 @@ class LoginController extends ActionController
                 'user',
                 array(
                     'controller' => 'register',
-                    'action' => 'prefect.information',
+                    'action' => 'completeProfile',
                     'redirect' => urlencode($redirect),
                 )
             );

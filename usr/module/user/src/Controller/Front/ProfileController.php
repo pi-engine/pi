@@ -108,6 +108,7 @@ class ProfileController extends ActionController
         $activityList = Pi::api('user', 'activity')->getList();
 
         // Get quick link
+        $quicklink = $this->getQuicklink();
 
 
         // Set paginator
@@ -120,13 +121,14 @@ class ProfileController extends ActionController
             'uid'        => $uid,
         );
         $paginator = $this->setPaginator($paginatorOption);
-
+vd($quicklink);
         $this->view()->assign(array(
             'uid'          => $uid,
             'user'         => $user,
             'timeline'     => $timeline,
             'paginator'    => $paginator,
             'isOwner'      => $isOwner,
+            'quicklink'    => $quicklink,
             'activityList' => $activityList,
         ));
     }
@@ -673,6 +675,7 @@ class ProfileController extends ActionController
         //vd($param);
         //$result = $this->getQuicklink();
         //vd($result);
+        vd(Pi::path('module'));
         $this->view()->setTemplate(false);
     }
 }

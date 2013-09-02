@@ -1,6 +1,5 @@
 <?php
     $this->css($this->assetModule('script/front.css'));
-    d($profileGroup);
 ?>
 <?php include '_user-media.phtml'; ?>
 <div>
@@ -23,7 +22,6 @@
         <?php } ?>
     </ul>
     <div>
-        <h3><?php _e('Profile'); ?></h3>
         <?php foreach ($profileGroup as $group) {?>
         <div class="clearfix user-legend">
             <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
@@ -34,7 +32,10 @@
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
                 }
             ?>
-            <a class="user-legend-edit" href="<?php echo $editUrl; ?>"><?php _e('Edit'); ?></a>
+            <a class="btn user-legend-edit" href="<?php echo $editUrl; ?>">
+                <i class="icon-pencil"></i>
+                <?php _e('Edit'); ?>
+            </a>
             <div class="user-legend-linea"></div>
         </div>
         <div class="user-field">
@@ -44,7 +45,7 @@
                 foreach ($field as $value) {
                     echo sprintf('<dt>%s<dd>%s', 
                         $value['title'],
-                        $value['value']
+                        $value['value'] ? : '<em class="muted">Unfiled</em>'
                     );
                 }
                 echo '</dl>';

@@ -36,13 +36,28 @@
     <div class="user-info-list">
         <?php foreach ($forms as $key => $form) { ?>
         <?php
-            //$form->setAttribute('class', 'form-horizontal');
+            $form->setAttribute('class', 'form-horizontal');
         ?>
         <div class="user-info-item" data-index="<?php echo $key; ?>">
             <div class="user-info-header">
             </div>
             <div class="user-info-body">
-                <?php include $this->templateComponent('form'); ?>
+            <?php
+                echo $this->form()->openTag($form);
+                $elements = $form->elementList();
+                foreach ($elements['active'] as $element) {
+                    echo sprintf('<div class="control-group"><label class="control-label">%s</label>
+                        <div class="controls">%s</div></div>',
+                        $element->getOption('label'),
+                        $this->formElement($element));
+                }
+                foreach ($elements['hidden'] as $element) {
+                    echo $this->formElement($element);
+                }
+                echo sprintf('<div class="controls">%s</div>', 
+                    $this->formElement($elements['submit']));
+                echo $this->form()->closeTag();
+            ?>
             </div>
         </div>
         <?php } ?>
