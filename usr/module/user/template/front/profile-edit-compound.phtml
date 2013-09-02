@@ -40,7 +40,6 @@
         ?>
         <div class="user-info-item" data-index="<?php echo $key; ?>">
             <div class="user-info-header">
-                <?php echo $key; ?>
             </div>
             <div class="user-info-body">
                 <?php include $this->templateComponent('form'); ?>
@@ -69,9 +68,10 @@
                     }
                 });
             }
-
-           // console.log(set);
-           
+            //Reset index
+            items.each(function(index) {
+                $(this).data('index', index);
+            });
             $.post(urlRoot, {
                 compound: compound,
                 set: set.join(',')

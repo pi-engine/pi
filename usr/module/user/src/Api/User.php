@@ -275,7 +275,7 @@ class User extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
@@ -1084,7 +1084,7 @@ class User extends AbstractApi
         }
 
         $status = $this->deleteCompound($uid);
-        if ($status) {
+        if (!$status) {
             return false;
         }
         $status = $this->addCompound($uid, $data);
