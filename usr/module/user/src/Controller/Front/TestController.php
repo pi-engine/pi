@@ -54,7 +54,7 @@ class TestController extends ActionController
         $users = array();
 
         $prefix = _get('prefix') ?: 'pi';
-        $count  = _get('count') ?: 10;
+        $count  = _get('count') ?: 50;
 
 
         $genderMap      = array('male', 'female', 'unknown');

@@ -107,6 +107,9 @@ class ProfileController extends ActionController
         // Get activity meta for nav display
         $activityList = Pi::api('user', 'activity')->getList();
 
+        // Get quick link
+
+
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
@@ -170,7 +173,7 @@ class ProfileController extends ActionController
 
         $form = new ProfileEditForm('profile', $fields);
         $form->setAttributes(array(
-            'action' => $this->url('default',
+            'action' => $this->url('',
                 array(
                     'controller' => 'profile',
                     'action'     => 'edit.profile',
@@ -237,7 +240,6 @@ class ProfileController extends ActionController
         $groupName    = $this->params('group', '');
         $uid          = Pi::service('user')->getIdentity();
         $errorMsg     = '';
-        $groupName    = 'education';
         if ($this->request->isPost()) {
             $groupName = _post('group');
         }
@@ -263,30 +265,59 @@ class ProfileController extends ActionController
             $formName = 'compound' . $set;
             $forms[$set] = new CompoundForm($formName, $compoundElements);
             // Set form data
-            $row += array('set' => $set);
+            $row += array(
+                'set'   => $set,
+                'group' => $groupName,
+                'uid'   => $uid,
+            );
+
             $forms[$set]->setData($row);
         }
 
         if ($this->request->isPost()) {
-//            $post = $this->request->getPost();
-//            $set = $post['set'];
-//            $currentForm = $forms[$set];
-//            $currentForm->setInputFilter(new CompoundFilter($compoundFilters));
-//
-//            if ($currentForm->isValid()) {
-//                //
-//                $data = $currentForm->getData();
-//                $curSet = $data['set'];
-//
-//                // Replace compound
-//                $compoundData[$uid][$compound][$curSet] = $data;
-//
-//                // Update compound
-//                $status = Pi::api('user', 'user')->updateCompound($uid, $compoundData[$uid]);
-//                $errorMsg = $status ? '' : __('Update error occur');
-//            } else {
-//                $errorMsg = __('Input data invalid');
-//            }
+            $post = $this->request->getPost();
+            $set  = (int) $post['set'];
+            $forms[$set]->setInputFilter(new CompoundFilter($compoundFilters));
+            $forms[$set]->setData($post);
+
+            if ($forms[$set]->isValid()) {
+                $values = $forms[$set]->getData();
+                $values['uid'] = $uid;
+                unset($values['submit']);
+                unset($values['group']);
+
+                // Canonize column function
+                $canonizeColumn = function ($data, $meta) {
+                    $result = array();
+                    foreach ($data as $col => $val) {
+                        if (in_array($col, $meta)) {
+                            $result[$col] = $val;
+                        }
+                    }
+
+                    return $result;
+                };
+
+                // Get new compound
+                $newCompoundData = $compoundData;
+                foreach ($compoundData as $key => $item) {
+                    if ($key == $values['set']) {
+                        $newCompoundData[$key] = $canonizeColumn(
+                            $values,
+                            array_keys($item)
+                        );
+                    }
+                }
+
+                // Update user compound
+                $data = $this->assembleCompound(
+                    $uid,
+                    $compound,
+                    $newCompoundData
+                );
+
+                Pi::api('user', 'user')->updateCompound($uid, $data);
+            }
         }
 
         $this->view()->setTemplate('profile-edit-compound');
@@ -328,7 +359,24 @@ class ProfileController extends ActionController
         }
         ksort($newCompound);
 
+        // Update compound
+        $data = $this->assembleCompound($uid, $compound, $newCompound);
+        Pi::api('user', 'user')->updateCompound($uid, $data);
+        $message['status'] = 1;
 
+        return $message;
+    }
+
+    /**
+     * Assemble compound according to rawData
+     *
+     * @param $uid
+     * @param $compound
+     * @param $rawData
+     * @return array
+     */
+    protected function assembleCompound($uid, $compound, $rawData)
+    {
         // Get user compound map
         $model  = $this->getModel('compound');
         $select = $model->select()->where(array('uid' => $uid));
@@ -342,18 +390,15 @@ class ProfileController extends ActionController
         }
 
         if (!in_array($compound, $map)) {
-            return $message;
+            return false;
         }
 
-        $data = Pi::api('user', 'user')->get($uid, $map);
-        if (isset($data[$compound])) {
-            $data[$compound] = $newCompound;
+        $result = Pi::api('user', 'user')->get($uid, $map);
+        if (isset($result[$compound])) {
+            $result[$compound] = $rawData;
         }
+        return $result;
 
-        Pi::api('user', 'user')->updateCompound($uid, $data);
-        $message['status'] = 1;
-
-        return $message;
     }
 
     /**
@@ -567,7 +612,41 @@ class ProfileController extends ActionController
         return $result;
     }
 
-    //protected function getProfileForDisplay
+    protected function getQuicklink($limit = null, $offset = null)
+    {
+        $result = array();
+        $model = $this->getModel('quicklink');
+        $where = array(
+            'active'  => 1,
+            'display' => 1,
+        );
+        $columns = array(
+            'id',
+            'name',
+            'title',
+            'module',
+            'link',
+            'icon',
+        );
+
+        $select = $model->select()->where($where);
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+
+        $select->columns($columns);
+        $rowset = $model->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $result[] = $row->toArray();
+        }
+
+        return $result;
+
+    }
 
     public function testAction()
     {
@@ -589,7 +668,11 @@ class ProfileController extends ActionController
         //
         //d($this->getProfile(7));
         //$this->getProfile(7);
-        d(Pi::api('user', 'user')->get(8, 'work'));
+        //d(Pi::api('user', 'user')->get(8, 'work'));
+        //$param = $this->params('test', '');
+        //vd($param);
+        //$result = $this->getQuicklink();
+        //vd($result);
         $this->view()->setTemplate(false);
     }
 }
