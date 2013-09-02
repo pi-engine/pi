@@ -168,26 +168,27 @@ CREATE TABLE `{timeline_log}` (
   KEY (`uid`)
 );
 
-#Privacy control
+#Privacy setting
 CREATE TABLE `{privacy}` (
   `id`        int(10)              unsigned NOT NULL auto_increment,
-  `uid`       int(10)              unsigned NOT NULL,
-  `name`      varchar(64)          NOT NULL default '',
-  `value`     varchar(64)          NOT NULL default '',
-  `visitor`   varchar(64)          NOT NULL default '',
+  `field`     varchar(64)          NOT NULL default '',
+  `value`     enum('owner', 'following', 'follower', 'friend', 'public'),
+  -- Is forced by admin
+  `is_forced` tinyint(1)            NOT NULL default '0'
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `field` (`field`)
 );
 
-#Privacy field controller
-CREATE TABLE `{privacy_field}` (
+#Privacy setting for user profile field
+CREATE TABLE `{privacy_user}` (
   `id`        int(10)              unsigned NOT NULL auto_increment,
-  `name`      varchar(64)          NOT NULL default '',
-  `value`     varchar(64)          NOT NULL default '',
-  `force`     tinyint(1)           NOT NULL default '0',
-  `visible`   tinyint(1)           NOT NULL default '0',
+  `uid`       int(10)             unsigned NOT NULL,
+  `field`     varchar(64)          NOT NULL default '',
+  `value`     enum('owner', 'following', 'follower', 'friend', 'public'),
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_field` (`uid`, `field`)
 );
 
 # User action log generated for user module
