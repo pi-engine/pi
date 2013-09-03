@@ -97,8 +97,8 @@ class User extends AbstractApi
         $accountOnly = count($data) == 1 ? true : false;
         if ($accountOnly) {
             $select = $modelAccount->select();
-            $dataAccount = $data['account'];
             $select->columns(array('id'));
+            $dataAccount = $data['account'];
             $select->where($dataAccount);
             if ($order) {
                 $select->order($order);
