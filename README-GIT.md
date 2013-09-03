@@ -24,6 +24,10 @@ Working with forked repo
   * Commit local changes: `git commit -a -m 'Commit log message.'`
   * Push commits to your repo: `git push`
   * Revert the last commit before push: `git reset --soft HEAD`
+  * Merge one specific commit from another branch: `git cherry-pick A`
+  * Merge specific commits after A to B: `git cherry-pick A..B`
+  * Merge specific commits from A through B: `git cherry-pick A^..B`
+  * Quit merges: `git quit --merge`
 * Working with branches
   * Check local branches: `git branch`
   * Create a local branch: `git branch -a <new-branch>`
