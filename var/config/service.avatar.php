@@ -39,9 +39,12 @@ return array(
     ),
 
     'upload'    => array(
+        // Callback for path with parameters: uid, source file name, size
+        // File number limit in a folder as 10000 (defined by `$fileLimit`)
         'path'  => function($data) {
+            $fileLimit = 10000;
             $uid = $data['uid'];
-            $serial = str_pad(round($uid / 10000), 4, '0', STR_PAD_LEFT);
+            $serial = str_pad(round($uid / $fileLimit), 4, '0', STR_PAD_LEFT);
             $path = sprintf(
                 'upload/avatar/%s/%s/%s',
                 $serial,

@@ -52,7 +52,6 @@ use Pi\User\Model\AbstractModel as UserModel;
  *
  *   + Update
  *   - set($uid, $field, $value)
- *   //- increment($uid, $field, $value)
  *
  * + Utility
  *   + Route for URL assembing
@@ -317,18 +316,6 @@ abstract class AbstractAdapter implements BindInterface
      * @api
      */
     abstract public function set($uid, $field, $value);
-
-    /**
-     * Increment/decrement a user field
-     *
-     * @param int       $uid
-     * @param string    $field
-     * @param int       $value
-     *      Positive to increment or negative to decrement
-     * @return bool
-     * @api
-     */
-    //abstract public function increment($uid, $field, $value);
     /**#@-*/
 
     /**#@+

@@ -453,68 +453,6 @@ class User extends AbstractApi
     }
 
     /**
-     * Increment/decrement a user field
-     *
-     * Positive to increment or negative to decrement; 0 to reset!
-     *
-     * @param int    $uid
-     * @param string $field
-     * @param int    $value
-     *
-     * @return bool
-     * @api
-     */
-    /*
-    public function increment($uid, $field, $value)
-    {
-        if (!$uid) {
-            return false;
-        }
-
-        $fieldMeta = Pi::registry('profile', 'user')->read();
-        if (!isset($fieldMeta[$field])) {
-            return false;
-        }
-
-        $type = $fieldMeta[$field];
-        $model = Pi::model($type, 'user');
-        $value = (int) $value;
-        $queryString = function ($fs) use ($value) {
-            if (0 == $value) {
-                $string = $fs . '=0';
-            } elseif (0 < $value) {
-                $string = $fs . '=' . $fs . '+' . $value;
-            } else {
-                $string = $fs . '=' . $fs . '-' . abs($value);
-            }
-
-            return $string;
-        };
-
-        if ('account' == $type) {
-            $fieldIdentifier = $model->quoteIdentifier($field);
-            $sql = 'UPDATE ' . $model->getTable()
-                . ' SET ' . $queryString($fieldIdentifier)
-                . ' WHERE `uid`=' . $uid;
-        } elseif ('profile' == $type) {
-            $fieldIdentifier = $model->quoteIdentifier('value');
-            $sql = 'UPDATE ' . $model->getTable()
-                . ' SET ' . $queryString($fieldIdentifier)
-                . ' WHERE `uid`=' . $uid
-                . ' AND `field`=' . $field;
-        }
-        try {
-            Pi::db()->getAdapter()->query($sql);
-            $result = true;
-        } catch (\Exception $e) {
-            $result = false;
-        }
-
-        return $result;
-    }
-    */
-
-    /**
      * Set user role(s)
      *
      * @param int          $uid
@@ -1068,14 +1006,6 @@ class User extends AbstractApi
             }
         }
 
-        /*
-        $status = $this->deleteCompound($uid);
-        if (!$status) {
-            return false;
-        }
-        $status = $this->addCompound($uid, $data);
-        */
-
         return true;
     }
 
@@ -1203,12 +1133,13 @@ class User extends AbstractApi
             return false;
         }
 
-        $result = true;
+        $result = false;
         if ('account' == $type) {
             $row = Pi::model($type, 'user')->find($uid);
             $row[$field] = $value;
             try {
                 $row->save();
+                $result = true;
             } catch (\Exception $e) {
                 $result = false;
             }
@@ -1221,11 +1152,14 @@ class User extends AbstractApi
             $row['value'] = $value;
             try {
                 $row->save();
+                $result = true;
             } catch (\Exception $e) {
                 $result = false;
             }
         } elseif ('compound' == $type) {
             $result = $this->setCompoundField($uid, $field, $value);
+        } else {
+            $result = false;
         }
 
         return $result;

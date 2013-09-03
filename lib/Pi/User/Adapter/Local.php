@@ -141,16 +141,6 @@ class Local extends System
     {
         return Pi::api('user', 'user')->set($uid, $field, $value);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    /*
-    public function increment($uid, $field, $value)
-    {
-        return Pi::api('user', 'user')->increment($uid, $field, $value);
-    }
-    */
     /**#@-*/
 
     /**#@+

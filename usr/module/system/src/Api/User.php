@@ -321,52 +321,6 @@ class User extends AbstractApi
     }
 
     /**
-     * Increment/decrement a user field
-     *
-     * Positive to increment or negative to decrement
-     *
-     * @param int    $uid
-     * @param string $field
-     * @param int    $value
-     *
-     * @return bool
-     */
-    /*
-    public function increment($uid, $field, $value)
-    {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('user_account');
-        $value = (int) $value;
-        $queryString = function ($fs) use ($value) {
-            if (0 == $value) {
-                $string = $fs . '=0';
-            } elseif (0 < $value) {
-                $string = $fs . '=' . $fs . '+' . $value;
-            } else {
-                $string = $fs . '=' . $fs . '-' . abs($value);
-            }
-
-            return $string;
-        };
-        $fieldIdentifier = $model->quoteIdentifier($field);
-        $sql = 'UPDATE ' . $model->getTable()
-            . ' SET ' . $queryString($fieldIdentifier)
-            . ' WHERE `uid`=' . $uid;
-        try {
-            Pi::db()->getAdapter()->query($sql);
-            $result = true;
-        } catch (\Exception $e) {
-            $result = false;
-        }
-
-        return $result;
-    }
-    */
-
-    /**
      * Set user role(s)
      *
      * @param int           $uid

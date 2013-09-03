@@ -91,7 +91,6 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
  * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
- * //@method \Pi\User\Adapter\AbstractAdapter::increment($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)

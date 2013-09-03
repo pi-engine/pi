@@ -147,16 +147,6 @@ class System extends AbstractAdapter
     {
         return Pi::api('system', 'user')->set($uid, $field, $value);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    /*
-    public function increment($uid, $field, $value)
-    {
-        return Pi::api('system', 'user')->increment($uid, $field, $value);
-    }
-    */
     /**#@-*/
 
     /**#@+
