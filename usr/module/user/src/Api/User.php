@@ -1065,7 +1065,7 @@ class User extends AbstractApi
         foreach ($data as $compound => $value) {
             try {
                 $model->delete(array(
-                    'uid'   => $uid,
+                    'uid'       => $uid,
                     'compound'  => $compound,
                 ));
             } catch (\Exception $e) {
@@ -1083,13 +1083,15 @@ class User extends AbstractApi
             }
         }
 
+        /*
         $status = $this->deleteCompound($uid);
         if (!$status) {
             return false;
         }
         $status = $this->addCompound($uid, $data);
+        */
 
-        return $status;
+        return true;
     }
 
     /**
