@@ -29,7 +29,7 @@ use Pi\Application\AbstractApi;
  *
  * Boot up process:
  *
- * - init: instantiate and initialize gobal APIs
+ * - init: instantiate and initialize global APIs
  *
  *   - host()
  *   - config()
@@ -41,20 +41,7 @@ use Pi\Application\AbstractApi;
  * - boot: boot up engine
  *
  *   - config()
- *   - bootstrap()
- *   - application()
- *
- * - bootstrap: boostap application
- *
- *   - bootstrap(application)
- *
- * - run: run application and returns response
- *
- *   - run(): route, dispatch
- *
- * - send response
- *
- *   - send()
+ *   - boot()
  *
  * Global APIs:
  *
@@ -303,7 +290,7 @@ class Pi
     {
         // Instantiate the application engine
         $engine = static::engine();
-        // Performe application boot
+        // Perform application boot
         $status = $engine->run();
         // Skip registered shutdown on failure
         if (false === $status) {
@@ -323,9 +310,6 @@ class Pi
         }
     }
 
-    /**#@+
-     * System API
-     */
     /**
      * Instantiate application host
      *
@@ -593,11 +577,7 @@ class Pi
             array_unshift(static::$shutdown, $callback);
         }
     }
-    /**#@-*/
 
-    /**#@+
-     * Global APIs proxy to sub objects
-     */
     /**
      * Convert a path to a physical one, proxy to host handler
      *
@@ -650,7 +630,25 @@ class Pi
     {
         static::service('log')->audit($message, $extra);
     }
-    /**#@-*/
+
+    /**
+     * Magic method to load service
+     *
+     * @param string    $method
+     * @param array     $args
+     *
+     * @return AbstractService|bool
+     */
+    public static function __callStatic($method, array $args)
+    {
+        if (count($args) > 1 || ($args && !is_array($args[0]))) {
+            return false;
+        }
+        $options = $args ? $args[0] : array();
+        $service = static::service($method, $options);
+
+        return $service;
+    }
 }
 
 /**
