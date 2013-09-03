@@ -2,6 +2,7 @@
     $this->bootstrap();
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
 ?>
 <ul class="nav nav-tabs message-nav-tabs">
     <li class="active">
@@ -28,7 +29,9 @@
             </a>
         </div>
         <div class="pull-right text-right">
-            <span class="muted"><?php echo date('Y/m/d H:i', $message['time_send']); ?></span>
+            <p class="message-time">
+                <span class="muted"><?php echo date('Y/m/d H:i', $message['time_send']); ?></span>
+            </p>
             <p class="message-hidden">
                 <span>
                     <a href="<?php if (isset($paginator)) {
@@ -39,7 +42,7 @@
                             ));
                         } else {
                             echo $this->url('', array('action' => 'delete', 'ids' => $message['id']));
-                        }?>" class="message-js-delete">
+                        }?>" class="message-js-delete" data-confirm="Once you delete this message, it cannot be undone.">
                         <?php _e('Delete'); ?>
                     </a>
                 </span>
@@ -69,7 +72,6 @@
             </p>
         </div>   
     </div>
-
     <?php } ?>
     <?php } else {
         _e('<div class="alert alert-info message-alert">No message for you!</div>');
@@ -81,22 +83,20 @@
             ));
         }
     ?>
-
+    <?php include '_confirm-modal.phtml' ?>
     <form class="form-inline message-foot-form" action="">
         <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
         <select class="message-batch-action">
             <option value=""><?php _e('Massive operation'); ?></option>
-            <option value="mark"><?php _e('Mark read'); ?></option>
+            <option value="mark"><?php _e('Mark as read'); ?></option>
             <option value="delete"><?php _e('Delete'); ?></option> 
         </select>
     </form>
-      
     <script src="<?php echo $this->assetModule('script/index-index.js'); ?>"></script>
-    
     <script>
     messageIndex({
         p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
         host: '<?php echo $this->url('', array('module' => 'message')); ?>'
     });
-    </script>    
+    </script>  
 </div>

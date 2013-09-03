@@ -12,7 +12,7 @@
             this.$el = $('#message-js');
             this.$form = this.$('form');
             this.$content = this.$("[name='content']");
-            this.$delete = this.$('.message-js-delete');
+            this.$delete = this.$('a[data-confirm]');
         },
         bindEvents: function() {
             this.$form.submit(this.submitAction);
@@ -21,24 +21,25 @@
         },
         submitAction: function() {
             var self = $('[name="content"]'),
-                sendTxt = $('.message-send-text'),
                 val = self.val();
-            sendTxt.find('span').remove();
+            app.$form.find('span').remove();
             if (val == '') {
-                sendTxt.append('<span></span>');
-                sendTxt.find('span').addClass('pull-right message-help-block message-error').html('You can’t send a empty message');
+                app.$form.append('<span></span>');
+                app.$form.find('span').addClass('pull-right message-error').html('You can’t send a empty message');
                 self.addClass('message-username');
                 return false;
             }  
         },
         conFocus: function() {
             $(this).removeClass('message-username');
-            $(this).parent().find('span').empty();
+            app.$form.find('span').empty();
         },
         deleteAction: function() {
-            if (!confirm('Are you sure to delete the message selected ?')) {
-                return false;
-            }
+            var href = app.$delete.attr('href');
+            $('#confirm-modal').find('.modal-body').text($(this).attr('data-confirm'));
+            $('.confirm-ok').attr('href', href);
+            $('#confirm-modal').modal({show:true});
+            return false;
         },
     };
 

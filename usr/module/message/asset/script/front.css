@@ -7,17 +7,13 @@
     margin-top: -5px;
 }
 
-.breadcrumb {
-    display: none;
-}
-
 .message-nav-tabs li.active a:hover {
     cursor: pointer;
 }
 
 /* Message */
 .message-item {
-    padding: 12px 20px 15px 15px;
+    padding: 12px 20px 18px 15px;
     padding-left: 12px\9;
     margin-top: 0;
     height: 46px;    
@@ -44,6 +40,7 @@
 }
 
 .message-hidden {
+    margin-top: -5px;
     display: none;
 }
 
@@ -54,7 +51,6 @@
 
 .message-time {
     font-size: 13px;
-    color: #999;
 }
 
 .message-divider {
@@ -89,10 +85,16 @@
 }
 
 .message-content p {
+    width: 628px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.message-content p.message-body {
+    width: 690px;
+}
+
 .message-content p a {
     color: #888;
     text-decoration: none;
@@ -191,6 +193,10 @@
     width: 70px;
 }
 
+.message-form-posi span {
+    margin:5px 15px 0 0;
+}
+
 .message-input-right {
     margin-left: 90px!important;
 }
@@ -199,22 +205,12 @@
     margin-left: 12px;
 }
 
-.message-send-text span {
-    position: absolute;
-    top: 200px;
-    top: 177px\9;
-    left: 300px;
+.message-form-posi .message-send-text span {
+    margin: 20px 0 0 210px;
 }
 
 .message-send-text .message-textarea {
     resize: none;
-}
-
-.message-detail-text span {
-    position: absolute;
-    top: 150px;
-    top: 127px\9;
-    left: 655px;
 }
 
 .message-btn-margin {
@@ -240,15 +236,15 @@
     position: absolute;
     top: 6px;
     left: 5px;
-    background: #999;
-    color: #fff;
     line-height: 14px;
 }
 
 .message-user-suc a {
+    display: block;
     margin-left: 2px;
+    margin-top: 1px;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -265,3 +261,7 @@
     display: none;
 }
 
+/* model*/
+.message-modal-block {
+    padding: 15px;
+}

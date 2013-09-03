@@ -55,7 +55,8 @@ if (!empty($message)) { ?>
                 <div class="message-detail-hidden">
                     <p class="message-hidden pull-right">
                         <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>" class="message-js-delete" ><?php _e('Delete'); ?></a>
+                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>" data-confirm="Once you delete this message, it cannot be undone.">
+                                <?php _e('Delete'); ?></a>
                         </span>
                     </p>
                 </div>
@@ -87,7 +88,7 @@ if (!empty($message)) { ?>
     ?>
 </div>
 <?php } ?>
-
+<?php include '_confirm-modal.phtml' ?>
 <script src="<?php echo $this->assetModule('script/index-detail.js'); ?>"></script>
     
 <script>
