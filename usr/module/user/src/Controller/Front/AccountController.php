@@ -32,7 +32,7 @@ class AccountController extends ActionController
         // Check login in
         if (!Pi::service('user')->hasIdentity()) {
             $this->redirect()->toRoute(
-                'default',
+                '',
                 array('controller' => 'login')
             );
             return;
@@ -41,10 +41,12 @@ class AccountController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get username and email
-        list($username, $email) = Pi::api('user', 'user')->get(
+        $getData = Pi::api('user', 'user')->get(
             $uid,
             array('identity', 'email')
         );
+        $username = $getData['identity'];
+        $email    = $getData['email'];
 
         $form = new AccountForm('account');
 
@@ -67,7 +69,7 @@ class AccountController extends ActionController
         foreach ($groups as $key => &$group) {
             $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
                     'action'     => $action,
@@ -84,6 +86,7 @@ class AccountController extends ActionController
             'errorMsg'     => $errorMsg,
             'updateStatus' => $updateStatus,
             'groups'       => $groups,
+            'curGroup'     => 'account',
         ));
     }
 }

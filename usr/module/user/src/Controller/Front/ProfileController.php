@@ -53,11 +53,15 @@ class ProfileController extends ActionController
         // Get display group
         $profileGroup = $this->getProfile($uid, 'display');
 
+        // Get activity meta for nav display
+        $activityList = Pi::api('user', 'activity')->getList();
+
         $this->view()->assign(array(
             'profileGroup' => $profileGroup,
             'uid'          => $uid,
             'isOwner'      => $isOwner,
             'user'         => $user,
+            'activityList' => $activityList,
         ));
     }
 
@@ -108,6 +112,7 @@ class ProfileController extends ActionController
         $activityList = Pi::api('user', 'activity')->getList();
 
         // Get quick link
+        $quicklink = $this->getQuicklink();
 
 
         // Set paginator
@@ -127,6 +132,7 @@ class ProfileController extends ActionController
             'timeline'     => $timeline,
             'paginator'    => $paginator,
             'isOwner'      => $isOwner,
+            'quicklink'    => $quicklink,
             'activityList' => $activityList,
         ));
     }
@@ -213,7 +219,7 @@ class ProfileController extends ActionController
         foreach ($groups as $key => &$group) {
             $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
                     'action'     => $action,
@@ -320,11 +326,26 @@ class ProfileController extends ActionController
             }
         }
 
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
+        foreach ($groups as $key => &$group) {
+            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
+            $group['link'] = $this->url(
+                '',
+                array(
+                    'controller' => 'profile',
+                    'action'     => $action,
+                    'group'      => $key,
+                )
+            );
+        }
+
         $this->view()->setTemplate('profile-edit-compound');
         $this->view()->assign(array(
             'forms'        => $forms,
             'errorMsg'     => $errorMsg,
             'curGroup'     => $groupName,
+            'groups'       => $groups,
         ));
     }
 
@@ -673,6 +694,7 @@ class ProfileController extends ActionController
         //vd($param);
         //$result = $this->getQuicklink();
         //vd($result);
+        vd(Pi::path('module'));
         $this->view()->setTemplate(false);
     }
 }

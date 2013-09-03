@@ -20,7 +20,151 @@ use Imagine\Image\Color;
 /**
  * Image handler service
  *
- * User {@link Imagaine} as image manipulation library
+ * Use {@link Imagaine} as image manipulation library
+ *
+ * Use cases:
+ *
+ * - Watermark
+ * ```
+ *  // Use specific watermark
+ *  Pi::service('image')->watermark(
+ *      <path/to/source/image>,
+ *      <path/to/saved/image>
+ *      <path/to/watermark/image>,
+ *      <top-left|bottom-right|array(<x>, <y>)>
+ *  );
+ *
+ *  // Use system watermark
+ *  Pi::service('image')->watermark(
+ *      <path/to/source/image>,
+ *      <path/to/saved/image>,
+ *      '',
+ *      <top-left|bottom-right|array(<x>, <y>)>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->watermark(
+ *      <path/to/source/image>,
+ *      '',
+ *      <path/to/watermark/image>,
+ *      <top-left|bottom-right|array(<x>, <y>)>
+ *  );
+ *  Pi::service('image')->watermark(
+ *      <path/to/source/image>
+ *  );
+ * ```
+ *
+ * - Crop
+ * ```
+ *  // Crop with specified size
+ *  Pi::service('image')->crop(
+ *      <path/to/source/image>,
+ *      array(<X>, <Y>),
+ *      array(<width>, <height>),
+ *      <path/to/saved/image>
+ *  );
+ *
+ *  // Crop with ratio size
+ *  Pi::service('image')->crop(
+ *      <path/to/source/image>,
+ *      array(<X>, <Y>),
+ *      0.5,
+ *      <path/to/saved/image>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->crop(
+ *      <path/to/source/image>,
+ *      array(<X>, <Y>),
+ *      array(<width>, <height>)
+ *  );
+ * ```
+ *
+ * - Resize
+ * ```
+ *  // Resize with specified size
+ *  Pi::service('image')->resize(
+ *      <path/to/source/image>,
+ *      array(<width>, <height>),
+ *      <path/to/saved/image>,
+ *      <filter>
+ *  );
+ *
+ *  // Resize with ratio size
+ *  Pi::service('image')->resize(
+ *      <path/to/source/image>,
+ *      0.5,
+ *      <path/to/saved/image>,
+ *      <filter>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->resize(
+ *      <path/to/source/image>,
+ *      array(<width>, <height>)
+ *  );
+ * ```
+ *
+ * - Rotate
+ * ```
+ *  // Rotate
+ *  Pi::service('image')->rotate(
+ *      <path/to/source/image>,
+ *      <angle>,
+ *      <path/to/saved/image>,
+ *      <background-color>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->rotate(
+ *      <path/to/source/image>,
+ *      <angle>,
+ *      <background-color>
+ *  );
+ * ```
+ *
+ * - Paste
+ * ```
+ *  // Paste
+ *  Pi::service('image')->paste(
+ *      <path/to/source/image>,
+ *      <path/to/child/image>,
+ *      array(<X>, <Y>),
+ *      <path/to/saved/image>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->paste(
+ *      <path/to/source/image>,
+ *      <path/to/child/image>,
+ *      array(<X>, <Y>)
+ *  );
+ * ```
+ *
+ * - Thumbnail
+ * ```
+ *  // Thumbnail with specified size
+ *  Pi::service('image')->thumbnail(
+ *      <path/to/source/image>,
+ *      array(<width>, <height>),
+ *      <path/to/saved/image>,
+ *      <mode>
+ *  );
+ *
+ *  // Thumbnail with ratio size
+ *  Pi::service('image')->thumbnail(
+ *      <path/to/source/image>,
+ *      0.5,
+ *      <path/to/saved/image>,
+ *      <mode>
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->thumbnail(
+ *      <path/to/source/image>,
+ *      array(<width>, <height>)
+ *  );
+ * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @see https://github.com/avalanche123/Imagine
@@ -47,27 +191,27 @@ class Image extends AbstractService
             switch ($driverName) {
                 case 'gd':
                     if (function_exists('gd_info')) {
-                        $driverClass = 'Imagine\Gd';
+                        $driverClass = 'Imagine\Gd\Imagine';
                     }
                     break;
                 case 'gmagick':
                     if (class_exists('Gmagick')) {
-                        $driverClass = 'Imagine\Gmagick';
+                        $driverClass = 'Imagine\Gmagick\Imagine';
                     }
                     break;
                 case 'imagick':
                     if (class_exists('Imagick')) {
-                        $driverClass = 'Imagine\Gmagick';
+                        $driverClass = 'Imagine\Gmagick\Imagine';
                     }
                     break;
                 case 'auto':
                 default:
                     if (function_exists('gd_info')) {
-                        $driverClass = 'Imagine\Gd';
+                        $driverClass = 'Imagine\Gd\Imagine';
                     } elseif (class_exists('Gmagick')) {
-                        $driverClass = 'Imagine\Gmagick';
+                        $driverClass = 'Imagine\Gmagick\Imagine';
                     } elseif (class_exists('Imagick')) {
-                        $driverClass = 'Imagine\Gmagick';
+                        $driverClass = 'Imagine\Gmagick\Imagine';
                     }
                     break;
             }
@@ -265,14 +409,19 @@ class Image extends AbstractService
     /**
      * Add watermark to an image
      *
-     * @param string|Image $sourceImage
-     * @param string $watermarkImage
-     * @param string $to
+     * @param string|Image          $sourceImage
+     * @param string                $to
+     * @param string                $watermarkImage
+     * @param string|array|Point    $position
      *
      * @return bool
      */
-    public function watermark($sourceImage, $watermarkImage = '', $to = '')
-    {
+    public function watermark(
+        $sourceImage,
+        $to = '',
+        $watermarkImage = '',
+        $position = ''
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -285,17 +434,38 @@ class Image extends AbstractService
         if ($watermarkImage instanceof ImageInterface) {
             $watermark = $watermarkImage;
         } else {
-            $watermarkImage = $watermarkImage ?: $this->getOption('watermark');
+            $watermarkImage = $watermarkImage ?: $this->getOptions('watermark');
             $watermark = $this->getDriver()->open($watermarkImage);
         }
-        $size      = $image->getSize();
-        $wSize     = $watermark->getSize();
-        $bottomRight = new $this->point(
-            $size->getX() - $wSize->getX(),
-            $size->getY() - $wSize->getY()
-        );
+        if ($position instanceof Point) {
+            $start = $position;
+        } elseif (is_array($position)) {
+            $start = $this->point($position[0], $position[1]);
+        } else {
+            $size      = $image->getSize();
+            $wSize     = $watermark->getSize();
+            switch ($position) {
+                case 'top-left':
+                    list($x, $y) = array(0, 0);
+                    break;
+                case 'top-right':
+                    $x = $size->getWidth() - $wSize->getWidth();
+                    $y = 0;
+                    break;
+                case 'bottom-left':
+                    $x = 0;
+                    $y = $size->getHeight() - $wSize->getHeight();
+                    break;
+                case 'bottom-right':
+                default:
+                    $x = $size->getWidth() - $wSize->getWidth();
+                    $y = $size->getHeight() - $wSize->getHeight();
+                    break;
+            }
+            $start = $this->point($x, $y);
+        }
         try {
-            $image->paste($watermark, $bottomRight);
+            $image->paste($watermark, $start);
             if ($to) {
                 $image->save($to);
             } elseif (!$sourceImage instanceof ImageInterface) {
@@ -313,10 +483,10 @@ class Image extends AbstractService
      * Crops a specified box out of the source image (modifies the source image)
      * Returns cropped self
      *
-     * @param string|Image $sourceImage
-     * @param array|Point   $start
-     * @param array|Box     $size
-     * @param string $to
+     * @param string|Image      $sourceImage
+     * @param array|Point       $start
+     * @param array|float|Box   $size
+     * @param string            $to
      *
      * @return bool
      */
@@ -331,7 +501,11 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         $start = $this->point($start);
-        $size = $this->box($size);
+        if (is_float($size)) {
+            $size = $image->getSize()->scale($size);
+        } else {
+            $size = $this->box($size);
+        }
         try {
             $image->crop($start, $size);
             if ($to) {
@@ -350,14 +524,14 @@ class Image extends AbstractService
     /**
      * Resizes current image and returns self
      *
-     * @param string|Image $sourceImage
-     * @param array|Box    $size
-     * @param string       $filter
-     * @param string       $to
+     * @param string|Image      $sourceImage
+     * @param array|float|Box   $size
+     * @param string            $to
+     * @param string            $filter
      *
      * @return bool
      */
-    public function resize($sourceImage, $size, $filter = '', $to = '')
+    public function resize($sourceImage, $size, $to = '', $filter = '')
     {
         if (!$this->getDriver()) {
             return false;
@@ -368,7 +542,11 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         $filter = $filter ?: ImageInterface::FILTER_UNDEFINED;
-        $size = $this->box($size);
+        if (is_float($size)) {
+            $size = $image->getSize()->scale($size);
+        } else {
+            $size = $this->box($size);
+        }
         try {
             $image->resize($size, $filter);
             if ($to) {
@@ -391,12 +569,12 @@ class Image extends AbstractService
      *
      * @param string|Image       $sourceImage
      * @param int                $angle
-     * @param string|array|Color $background
      * @param string             $to
+     * @param string|array|Color $background
      *
      * @return bool
      */
-    public function rotate($sourceImage, $angle, $background = null, $to = '')
+    public function rotate($sourceImage, $angle, $to = '', $background = null)
     {
         if (!$this->getDriver()) {
             return false;
@@ -406,7 +584,7 @@ class Image extends AbstractService
         } else {
             $image = $this->getDriver()->open($sourceImage);
         }
-        $background = $this->color($background);
+        $background = $background ? $this->color($background) : null;
         try {
             $image->rotate($angle, $background);
             if ($to) {
@@ -449,7 +627,7 @@ class Image extends AbstractService
         } else {
             $child = $this->getDriver()->open($childImage);
         }
-        $start = $this->poind($start);
+        $start = $this->point($start);
         try {
             $image->paste($child, $start);
             if ($to) {
@@ -504,14 +682,14 @@ class Image extends AbstractService
      * Generates a thumbnail from a current image
      * Returns it as a new image, doesn't modify the current image
      *
-     * @param string|Image $sourceImage
-     * @param string       $to
-     * @param array|Box    $size
-     * @param string       $mode
+     * @param string|Image      $sourceImage
+     * @param array|float|Box   $size
+     * @param string            $to
+     * @param string            $mode
      *
      * @return bool|ImageInterface
      */
-    public function thumbnail($sourceImage, $to, $size, $mode = '')
+    public function thumbnail($sourceImage, $size, $to, $mode = '')
     {
         if (!$this->getDriver()) {
             return false;
@@ -521,7 +699,11 @@ class Image extends AbstractService
         } else {
             $image = $this->getDriver()->open($sourceImage);
         }
-        $size = $this->box($size);
+        if (is_float($size)) {
+            $size = $image->getSize()->scale($size);
+        } else {
+            $size = $this->box($size);
+        }
         $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
         try {
             $result = true;

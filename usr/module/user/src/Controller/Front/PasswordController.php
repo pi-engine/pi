@@ -84,11 +84,12 @@ class PasswordController extends ActionController
         // Get side nav items
         $groups = Pi::api('user', 'group')->getList();
         foreach ($groups as $key => &$group) {
+            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
-                'default',
+                '',
                 array(
                     'controller' => 'profile',
-                    'action'     => 'edit',
+                    'action'     => $action,
                     'group'      => $key,
                 )
             );
@@ -100,6 +101,7 @@ class PasswordController extends ActionController
             'form'      => $form,
             'message'   => $message,
             'groups'    => $groups,
+            'curGroup'  => 'password',
         ));
     }
 
