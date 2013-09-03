@@ -323,10 +323,6 @@ class User extends AbstractApi
             $error[] = 'compound';
         }
 
-        if (!$error) {
-            Pi::service('event')->trigger('delete', $uid);
-        }
-
         return $error ? $error : true;
     }
 
@@ -344,10 +340,6 @@ class User extends AbstractApi
         }
 
         $status = $this->activateAccount($uid);
-        if ($status) {
-           // Trigger event
-           Pi::service('event')->trigger('activate', $uid);
-        }
 
         return $status;
     }
@@ -367,9 +359,7 @@ class User extends AbstractApi
         }
 
         $status = $this->enableAccount($uid);
-        if ($status) {
-            Pi::service('event')->trigger('enable', $uid);
-        }
+
         return $status;
     }
 
@@ -388,9 +378,6 @@ class User extends AbstractApi
         }
 
         $status = $this->enableAccount($uid, false);
-        if ($status) {
-            Pi::service('event')->trigger('disable', $uid);
-        }
 
         return $status;
     }
@@ -807,10 +794,6 @@ class User extends AbstractApi
             $status = false;
         }
 
-        if ($status) {
-            Pi::service('event')->trigger('update', array($uid, $data));
-        }
-
         return $status;
     }
 
@@ -1078,25 +1061,10 @@ class User extends AbstractApi
 
         $type = 'compound';
         $data = $this->canonizeUser($data, $type);
-        $model = Pi::model($type, 'user');
         foreach ($data as $compound => $value) {
-            try {
-                $model->delete(array(
-                    'uid'   => $uid,
-                    'compound'  => $compound,
-                ));
-            } catch (\Exception $e) {
+            $result = $this->setCompoundField($uid, $compound, $value);
+            if (!$result) {
                 return false;
-            }
-
-            $compoundSet = $this->canonizeCompound($uid, $compound, $value);
-            foreach ($compoundSet as $field) {
-                $row = $model->createRow($field);
-                try {
-                    $row->save();
-                } catch (\Exception $e) {
-                    return false;
-                }
             }
         }
 
@@ -1235,13 +1203,14 @@ class User extends AbstractApi
             return false;
         }
 
+        $result = true;
         if ('account' == $type) {
             $row = Pi::model($type, 'user')->find($uid);
             $row[$field] = $value;
             try {
                 $row->save();
             } catch (\Exception $e) {
-                return false;
+                $result = false;
             }
         } elseif ('profile' == $type) {
             $model = Pi::model($type, 'user');
@@ -1250,6 +1219,42 @@ class User extends AbstractApi
                 'field' => $field
             ))->current();
             $row['value'] = $value;
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                $result = false;
+            }
+        } elseif ('compound' == $type) {
+            $result = $this->setCompoundField($uid, $field, $value);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set user's compound field data
+     *
+     * @param int       $uid
+     * @param string    $compound
+     * @param array     $data
+     *
+     * @return bool
+     */
+    protected function setCompoundField($uid, $compound, array $data)
+    {
+        $model = Pi::model('compound', 'user');
+        try {
+            $model->delete(array(
+                'uid'       => $uid,
+                'compound'  => $compound,
+            ));
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        $compoundSet = $this->canonizeCompound($uid, $compound, $data);
+        foreach ($compoundSet as $field) {
+            $row = $model->createRow($field);
             try {
                 $row->save();
             } catch (\Exception $e) {
