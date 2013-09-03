@@ -10,6 +10,7 @@
 
 namespace Pi\Application\Service;
 
+use Pi;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\FontInterface;
@@ -186,7 +187,7 @@ class Image extends AbstractService
     public function getDriver($driver = '')
     {
         if (null === $this->driver) {
-            $driverName = $driver ?: $this->options['driver'];
+            $driverName = $driver ?: $this->getOption('driver');
             $driverClass = false;
             switch ($driverName) {
                 case 'gd':
@@ -434,7 +435,7 @@ class Image extends AbstractService
         if ($watermarkImage instanceof ImageInterface) {
             $watermark = $watermarkImage;
         } else {
-            $watermarkImage = $watermarkImage ?: $this->getOptions('watermark');
+            $watermarkImage = $watermarkImage ?: $this->getOption('watermark');
             $watermark = $this->getDriver()->open($watermarkImage);
         }
         if ($position instanceof Point) {
@@ -466,12 +467,7 @@ class Image extends AbstractService
         }
         try {
             $image->paste($watermark, $start);
-            if ($to) {
-                $image->save($to);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, $sourceImage);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -508,12 +504,7 @@ class Image extends AbstractService
         }
         try {
             $image->crop($start, $size);
-            if ($to) {
-                $image->save($to);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, $sourceImage);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -549,12 +540,7 @@ class Image extends AbstractService
         }
         try {
             $image->resize($size, $filter);
-            if ($to) {
-                $image->save($to);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, $sourceImage);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -587,12 +573,7 @@ class Image extends AbstractService
         $background = $background ? $this->color($background) : null;
         try {
             $image->rotate($angle, $background);
-            if ($to) {
-                $image->save($to);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, $sourceImage);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -630,12 +611,7 @@ class Image extends AbstractService
         $start = $this->point($start);
         try {
             $image->paste($child, $start);
-            if ($to) {
-                $image->save($to);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, $sourceImage);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -665,12 +641,7 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         try {
-            if ($to) {
-                $image->save($to, $options);
-            } elseif (!$sourceImage instanceof ImageInterface) {
-                $image->save($sourceImage, $options);
-            }
-            $result = true;
+            $result = $this->saveImage($image, $to, '', $options);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -706,15 +677,63 @@ class Image extends AbstractService
         }
         $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
         try {
-            $result = true;
             $thumbnail = $image->thumbnail($size, $mode);
-            if ($to) {
-                $thumbnail->save($to);
-            } else {
-                $result = $thumbnail;
-            }
+            $result = $this->saveImage($thumbnail, $to, $sourceImage);
         } catch (\Exception $e) {
             $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Create path for image file to be stored
+     *
+     * @param      $file
+     * @param bool $isFile
+     *
+     * @return mixed
+     */
+    public function mkdir($file, $isFile = true)
+    {
+        $path = $isFile ? dirname($file) : $file;
+        $result = Pi::service('file')->mkdir($path);
+
+        return $result;
+    }
+
+    /**
+     * Save Image to a file
+     *
+     * @param ImageInterface        $image
+     * @param string                $to
+     * @param string|ImageInterface $source
+     * @param array                 $options
+     *
+     * @return bool|ImageInterface
+     */
+    protected function saveImage(
+        ImageInterface $image,
+        $to,
+        $source = '',
+        array $options = array()
+    ) {
+        if (!$to && $source && !$source instanceof ImageInterface) {
+            $to = $source;
+        }
+        if ($to) {
+            $result = true;
+            if ($this->getOption('auto_mkdir') && !$this->mkdir($to)) {
+                $result = false;
+            } else {
+                try {
+                    $image->save($to, $options);
+                } catch (\Excetpion $e) {
+                    $result = false;
+                }
+            }
+        } else {
+            $result = $image;
         }
 
         return $result;

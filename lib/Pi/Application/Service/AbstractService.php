@@ -58,20 +58,11 @@ abstract class AbstractService
     /**
      * Get options
      *
-     * @param string $name
-     *
      * @return array
      */
-    public function getOptions($name = '')
+    public function getOptions()
     {
-        if ($name) {
-            $result = isset($this->options[$name])
-                ? $this->options[$name] : null;
-        } else {
-            $result = $this->options;
-        }
-
-        return $result;
+        return $this->options;
     }
 
     /**

@@ -166,7 +166,7 @@ class Avatar extends AbstractService
      */
     public function getSize($size = '', $toInt = true)
     {
-        $sizeMap = $this->getOptions('size_map');
+        $sizeMap = $this->getOption('size_map');
         if ($size) {
             $result = isset($sizeMap[$size])
                 ? $this->canonizeSize($size, $toInt)
@@ -195,7 +195,7 @@ class Avatar extends AbstractService
      */
     public function canonizeSize($size, $toInt = true)
     {
-        $sizeMap = $this->getOptions('size_map');
+        $sizeMap = $this->getOption('size_map');
 
         // Get numeric size
         if ($toInt) {
