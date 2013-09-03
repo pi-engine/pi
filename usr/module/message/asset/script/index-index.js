@@ -10,23 +10,32 @@
         },
         cacheElements: function() {
             this.$el = $('#message-js');
-            this.$delete = this.$('.message-js-delete');
+            this.$delete = this.$('a[data-confirm]');
             this.$select = this.$('.message-batch-action');
             this.$items = this.$('.message-item');
             this.$batch = this.$('.message-js-batch');
+            this.$confirm = this.$('.confirm-ok');
         },
         bindEvents: function() {
             this.$batch.click(this.checkedAll);
             this.$select.change($.proxy(this.batchAction, this));
             this.$items.bind('click',this.itemsBind);
             this.$delete.click(this.deleteAction);
-           
-
-
+            this.$confirm.on('click',$.proxy(this.confirmAction, this));
         },
         checkedAll: function() {
             //Note: if you donot bind this, you must use app
             app.$('.message-js-check').attr('checked', app.$batch.prop('checked'));
+        },
+        confirmAction: function() {
+            var checked = this.$('.message-js-check:checked');
+            var ids = [];
+            if(checked.length) {
+                checked.each(function() {
+                    ids.push($(this).attr('data-id'));
+                });
+                location.href = options.host + 'index/delete/ids-' + ids.join(',');
+            }  
         },
         batchAction: function() {
             var checked = app.$('.message-js-check:checked');
@@ -34,9 +43,13 @@
             var ids = [];
             if (checked.length) {
                 if (action == "delete") {
-                    if (!confirm('Are you sure to delete the message selected ?')) {
-                        return;
+                    if(checked.length > 1) {
+                        $('#confirm-modals').modal({show:true});
                     }
+                    else {
+                        $('#confirm-modal').modal({show:true});
+                    }                    
+                    return false;
                 }
                 checked.each(function() {
                     ids.push($(this).attr('data-id'));
@@ -58,9 +71,14 @@
             window.location = $(this).find(".message-content p a").attr("href")
         },
         deleteAction: function() {
-            if (!confirm('Are you sure to delete the message selected ?')) {
-                return false;
-            }
+            var href = app.$delete.attr('href');
+            if (!$('#confirm-modal').length) {
+                $('#confirm-modal').attr('display','block');
+            } 
+            $('#confirm-modal').find('.modal-body').text($(this).attr('data-confirm'));
+            $('.confirm-ok').attr('href', href);
+            $('#confirm-modal').modal({show:true});
+            return false;
         },
     };
 

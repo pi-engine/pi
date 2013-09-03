@@ -57,18 +57,25 @@ class Api extends AbstractApi
     protected static $batchInsertLen = 1000;
 
     /**
+     * Message type: all
+     *
+     * @var int
+     */
+    const TYPE_ALL = 0;
+
+    /**
      * Message type: private message
      *
      * @var int
      */
-    const TYPE_MESSAGE = 0;
+    const TYPE_MESSAGE = 1;
 
     /**
      * Message type: notification
      *
      * @var int
      */
-    const TYPE_NOTIFICATION = 1;
+    const TYPE_NOTIFICATION = 2;
 
     /**
      * Send a message
@@ -101,6 +108,9 @@ class Api extends AbstractApi
             );
             Pi::service('audit')->log('message', $args);
         }
+
+        // increase message alert
+        $this->increaseAlert($to);
 
         return $result;
     }
@@ -183,6 +193,9 @@ class Api extends AbstractApi
             }
         }
 
+        // increase message alert
+        $this->increaseAlert($to);
+
         return true;
     }
 
@@ -193,9 +206,10 @@ class Api extends AbstractApi
      * @param  int       $type
      * @return int|false
      */
-    public function getCount($uid, $type = self::TYPE_MESSAGE)
+    public function getCount($uid, $type = self::TYPE_ALL)
     {
-        if ($type == self::TYPE_MESSAGE) {
+        $count = 0;
+        if ($type == self::TYPE_MESSAGE || $type == self::TYPE_ALL) {
             //get total private message count
             $privateModel  = Pi::model('private_message', $this->getModule());
             $select = $privateModel->select()
@@ -212,8 +226,10 @@ class Api extends AbstractApi
                                        $where->andPredicate($fromWhere)
                                              ->orPredicate($toWhere);
                                    });
-            $count = $privateModel->selectWith($select)->current()->count;
-        } else {
+            $count += $privateModel->selectWith($select)->current()->count;
+        }
+
+        if ($type == self::TYPE_NOTIFICATION || $type == self::TYPE_ALL) {
             //get total notification count
             $notifyModel  = Pi::model('notification', $this->getModule());
             $select = $notifyModel->select()
@@ -224,7 +240,7 @@ class Api extends AbstractApi
                                       'uid' => $uid,
                                       'delete_status' => 0
                                   ));
-            $count = $notifyModel->selectWith($select)->current()->count;
+            $count += $notifyModel->selectWith($select)->current()->count;
         }
 
         return $count;
@@ -232,41 +248,37 @@ class Api extends AbstractApi
 
     /**
      * Get new message count to alert
+     * 
+     * Alert user the new message he receives since last visit.
      *
      * @param  int       $uid
      * @param  int       $type
      * @return int|false
      */
-    public function getAlert($uid, $type = self::TYPE_MESSAGE)
+    public function getAlert($uid)
     {
-        if ($type == self::TYPE_MESSAGE) {
-            //get new private message count
-            $privateModel  = Pi::model('private_message', $this->getModule());
-            $select = $privateModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                   ->where(array(
-                                       'uid_to' => $uid,
-                                       'delete_status_to' => 0,
-                                       'is_new_to' => 1
-                                   ));
-            $count = $privateModel->selectWith($select)->current()->count;
-        } else {
-            //get new notification count
-            $notifyModel  = Pi::model('notification', $this->getModule());
-            $select = $notifyModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                  ->where(array(
-                                      'uid' => $uid,
-                                      'delete_status' => 0,
-                                      'is_new' => 1
-                                  ));
-            $count = $notifyModel->selectWith($select)->current()->count;
-        }
+        return Pi::user()->data()->get($uid, 'message-alert');
+    }
 
-        return $count;
+    /**
+     * Dismiss message alter by resetting alert count to zero
+     *
+     * @param  int       $uid
+     * @return bool
+     */
+    public function dismissAlert($uid)
+    {
+        return Pi::user()->data()->increment($uid, 'message-alert', 0);
+    }
+
+    /**
+     * Increment/decrement message alter
+     *
+     * @param  int       $uid
+     * @return bool
+     */
+    public function increaseAlert($uid)
+    {
+        return Pi::user()->data()->increment($uid, 'message-alert', 1);
     }
 }

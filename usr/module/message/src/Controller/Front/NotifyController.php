@@ -10,7 +10,6 @@
 namespace Module\Message\Controller\Front;
 
 use Module\Message\Service;
-use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Pi;
 
@@ -26,7 +25,7 @@ use Pi;
  *
  * @author Xingyu Ji <xingyu@eefocus.com>
  */
-class NotifyController extends ActionController
+class NotifyController extends AbstractController
 {
     /**
      * Render new message count of tab navigation
@@ -38,13 +37,15 @@ class NotifyController extends ActionController
         //current user id
         $userId = Pi::user()->getUser()->id;
 
-        $api = Pi::service('api')->message;
         $messageTitle = __('Private message(')
-                      . $api->getAlert($userId, $api::TYPE_MESSAGE)
+                      . Service::getUnread($userId, Service::TYPE_MESSAGE)
                       . ' '
                       . __('unread)');
         $notificationTitle = __('Notification(')
-                           . $api->getAlert($userId, $api::TYPE_NOTIFICATION)
+                           . Service::getUnread(
+                               $userId,
+                               Service::TYPE_NOTIFICATION
+                           )
                            . ' '
                            . __('unread)');
         $this->view()->assign('messageTitle', $messageTitle);
@@ -65,6 +66,9 @@ class NotifyController extends ActionController
 
         //current user id
         $userId = Pi::user()->getUser()->id;
+
+        // dismiss alert
+        Pi::user()->message->dismissAlert($userId);
 
         $model = $this->getModel('notification');
         //get notification list count
@@ -146,6 +150,9 @@ class NotifyController extends ActionController
         $notificationId = $notificationId ?: 0;
         //current user id
         $userId = Pi::user()->getUser()->id;
+
+        // dismiss alert
+        Pi::user()->message->dismissAlert($userId);
 
         $model = $this->getModel('notification');
         //get notification

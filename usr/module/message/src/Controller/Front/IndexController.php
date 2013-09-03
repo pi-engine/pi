@@ -9,7 +9,6 @@
 
 namespace Module\Message\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
 use Module\Message\Form\SendForm;
 use Module\Message\Form\SendFilter;
 use Module\Message\Form\ReplyForm;
@@ -32,7 +31,7 @@ use Pi;
  *
  * @author Xingyu Ji <xingyu@eefocus.com>
  */
-class IndexController extends ActionController
+class IndexController extends AbstractController
 {
     /**
      * List private messages
@@ -48,6 +47,9 @@ class IndexController extends ActionController
 
         //current user id
         $userId = Pi::user()->getUser()->id;
+
+        // dismiss alert
+        Pi::user()->message->dismissAlert($userId);
 
         $model = $this->getModel('private_message');
         //get private message list count
@@ -119,8 +121,7 @@ class IndexController extends ActionController
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_to']);
                     //get avatar
-                    $v['avatar'] = Pi::user()->avatar($v['uid_to'])
-                                             ->get('small');
+                    $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
                     $v['is_new'] = $v['is_new_to'];
                     //get username url
@@ -129,8 +130,7 @@ class IndexController extends ActionController
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_from']);
                     //get avatar
-                    $v['avatar'] = Pi::user()->avatar($v['uid_from'])
-                                             ->get('small');
+                    $v['avatar'] = Pi::user()->avatar($v['uid_from'], 'small');
                 }
 
                 unset(
@@ -177,13 +177,15 @@ class IndexController extends ActionController
         //current user id
         $userId = Pi::user()->getUser()->id;
 
-        $api = Pi::service('api')->message;
         $messageTitle = __('Private message(')
-                      . $api->getAlert($userId, $api::TYPE_MESSAGE)
+                      . Service::getUnread($userId, Service::TYPE_MESSAGE)
                       . ' '
                       . __('unread)');
         $notificationTitle = __('Notification(')
-                           . $api->getAlert($userId, $api::TYPE_NOTIFICATION)
+                           . Service::getUnread(
+                               $userId,
+                               Service::TYPE_NOTIFICATION
+                           )
                            . ' '
                            . __('unread)');
         $this->view()->assign('messageTitle', $messageTitle);
@@ -391,6 +393,9 @@ class IndexController extends ActionController
         //current user id
         $userId = Pi::user()->getUser()->id;
 
+        // dismiss alert
+        Pi::user()->message->dismissAlert($userId);
+
         $model = $this->getModel('private_message');
         //get private message
         $select = $model->select()
@@ -408,8 +413,7 @@ class IndexController extends ActionController
         }
         $detail = $rowset->toArray();
         //get avatar
-        $detail['avatar'] = Pi::user()->avatar($detail['uid_from'])
-                                      ->get('small');
+        $detail['avatar'] = Pi::user()->avatar($detail['uid_from'], 'small');
         $detail['profileUrl'] = Pi::user()->getUrl('profile',
                                                    $detail['uid_from']);
 

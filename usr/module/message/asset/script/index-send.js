@@ -31,15 +31,16 @@
             }).done(function(res) {
                 res = $.parseJSON(res);
                 app.$posi.find('p').remove();
-                app.$posi.find('span').remove();
+                
                 if (res.status) {
-                    app.$posi.append('<p class="label label-info message-user-suc"></p>');
-                    app.$posi.find('p').html(val+'<a href="javascript:;">×</a>');
-                    username.removeClass().parent().find('span').empty();                 
+                    app.$posi.append('<p class="label message-user-suc"></p>');
+                    app.$posi.find('p').html('<a href="javascript:;" class="pull-right">×</a>'+val);
+                    app.$username.removeClass().parent().find('span').empty();                 
                 } else {
                     if (val != '') {
+                        app.$posi.find('span').remove();
                         app.$posi.append('<span></span>');
-                        tip = 'User ' + val+ ' is not found';
+                        var tip = 'User ' + val+ ' is not found';
                         app.$posi.find('p').empty();
                         app.$posi.find('span').html(tip == null ? '' : tip).addClass('message-error');
                         app.$username.addClass('message-username');
@@ -58,14 +59,47 @@
         submitAction: function() {
             var self = $('[name="content"]'),
                 sendTxt = $('.message-send-text'),
-                val = self.val();
+                val = self.val(),
+                user = app.$username.val(),
+                inner = app.$posi.find('p').innerHTML;
             sendTxt.find('span').remove();
-            if (val == '') {
+            // app.$posi.find('span').remove();
+            if(user == '' && val == '') {
+                app.$posi.find('span').remove();
+                app.$posi.append('<span></span>');
+                var tip = 'User can’t be empty';
+                app.$posi.find('span').html(tip).addClass('message-error');
+                app.$username.addClass('message-username');
                 sendTxt.append('<span></span>');
-                sendTxt.find('span').addClass('pull-right message-help-block message-error').html('You can’t send a empty message');
+                sendTxt.find('span').addClass('help-block message-error').html('You can’t send a empty message');
                 self.addClass('message-username');
                 return false;
-            }  
+            }
+            if (user == '') {
+                app.$posi.find('span').remove();
+                app.$posi.append('<span></span>');
+                var tip = 'User can’t be empty';
+                app.$posi.find('span').html(tip).addClass('message-error');
+                app.$username.addClass('message-username');
+                return false;
+            }
+            if (val == '' ) {
+                sendTxt.append('<span></span>');
+                sendTxt.find('span').addClass('help-block message-error').html('You can’t send a empty message');
+                self.addClass('message-username');
+                return false;
+            } 
+            if (user != '' && inner == '' && val == '' ) {
+                app.$posi.append('<span></span>');
+                var tip = 'User ' + val+ ' is not found';
+                app.$posi.find('p').empty();
+                app.$posi.find('span').html(tip == null ? '' : tip).addClass('message-error');
+                app.$username.addClass('message-username');
+                return false;
+            }
+            if (inner != '') {
+                app.$posi.find('span').empty;
+            }
         },
         conFocus: function() {
             $(this).removeClass('message-username');
