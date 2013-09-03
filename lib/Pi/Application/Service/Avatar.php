@@ -91,7 +91,7 @@ class Avatar extends AbstractService
      *
      * @return array
      */
-    public function getList($uids, $size = '', $attributes = array())
+    public function getList(array $uids, $size = '', $attributes = array())
     {
         $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
         $missingUids = array();

@@ -91,9 +91,8 @@ class User extends AbstractApi
 
         $modelAccount = Pi::model('user_account');
         $select = $modelAccount->select();
-        $dataAccount = $data['account'];
         $select->columns(array('id'));
-        $select->where($dataAccount);
+        $select->where($data);
         if ($order) {
             $select->order($order);
         }
