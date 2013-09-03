@@ -323,6 +323,10 @@ class User extends AbstractApi
             $error[] = 'compound';
         }
 
+        if (!$error) {
+            Pi::service('event')->trigger('delete', $uid);
+        }
+
         return $error ? $error : true;
     }
 
@@ -340,6 +344,10 @@ class User extends AbstractApi
         }
 
         $status = $this->activateAccount($uid);
+        if ($status) {
+           // Trigger event
+           Pi::service('event')->trigger('activate', $uid);
+        }
 
         return $status;
     }
@@ -359,7 +367,9 @@ class User extends AbstractApi
         }
 
         $status = $this->enableAccount($uid);
-
+        if ($status) {
+            Pi::service('event')->trigger('enable', $uid);
+        }
         return $status;
     }
 
@@ -378,6 +388,9 @@ class User extends AbstractApi
         }
 
         $status = $this->enableAccount($uid, false);
+        if ($status) {
+            Pi::service('event')->trigger('disable', $uid);
+        }
 
         return $status;
     }
@@ -794,6 +807,10 @@ class User extends AbstractApi
             $status = false;
         }
 
+        if ($status) {
+            Pi::service('event')->trigger('update', array($uid, $data));
+        }
+
         return $status;
     }
 
@@ -1065,7 +1082,7 @@ class User extends AbstractApi
         foreach ($data as $compound => $value) {
             try {
                 $model->delete(array(
-                    'uid'       => $uid,
+                    'uid'   => $uid,
                     'compound'  => $compound,
                 ));
             } catch (\Exception $e) {
