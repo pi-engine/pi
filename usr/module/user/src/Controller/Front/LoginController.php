@@ -97,8 +97,11 @@ class LoginController extends ActionController
      */
     public function logoutAction()
     {
+        $uid = Pi::user()->getIdentity();
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
+        Pi::service('event')->trigger('logout', $uid);
+
         $this->jump(
             array('route' => 'home'),
             __('You logged out successfully. Now go back to homepage.')
@@ -173,7 +176,7 @@ class LoginController extends ActionController
         }
         Pi::service('user')->bind($result->getIdentity(), 'identity');
         Pi::service('user')->setPersist($result->getData());
-        Pi::service('event')->trigger('login', $result->getIdentity());
+
 
         if (!empty($configs['attempts'])) {
             unset($_SESSION['PI_LOGIN']);
@@ -185,8 +188,17 @@ class LoginController extends ActionController
             $redirect = urldecode($values['redirect']);
         }
 
-        // Check user has perfect information
+        // Get user id according to identity
         $uid = Pi::service('user')->getIdentity();
+
+        // Trigger login event
+        $rememberTime = isset($configs['rememberme'])
+                      && $values['rememberme']
+                      ? $values['rememberme'] * 86400
+                      : 0;
+        Pi::service('event')->trigger('login', array($uid, $rememberTime));
+
+        // Check user complete profile
         $hasCompleteProfile = Pi::user()->data()->get(
             $uid,
             'profile-complete'
