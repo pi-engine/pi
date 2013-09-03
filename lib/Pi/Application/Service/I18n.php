@@ -375,8 +375,8 @@ namespace Pi\Application\Service
             if (!$this->__translator) {
                 $translator = new Translator;
                 if (!empty($this->options['translator']['pluginManager'])) {
-                    $pluginManager =
-                        new $this->options['translator']['pluginManager'];
+                    $class = $this->options['translator']['pluginManager'];
+                    $pluginManager = new $class;
                 } else {
                     $pluginManager = new LoaderPluginManager;
                 }
@@ -516,8 +516,8 @@ namespace Pi\Application\Service
          * Normalize domain in Intl resources,
          * including Translator, Locale, Date, NumberFormatter, etc.
          *
-         * @param string $domain
-         * @return array Pair of component and domain
+         * @param string $rawDomain
+         * @return string[] Pair of component and domain
          */
         public function normalizeDomain($rawDomain)
         {
@@ -684,12 +684,12 @@ namespace Pi\Application\Service
          * @return IntlDateFormatter|null
          */
         public function getDateFormatter(
-            $locale = null,
-            $datetype = null,
-            $timetype = null,
-            $timezone = null,
-            $calendar = null,
-            $pattern = null
+            $locale     = null,
+            $datetype   = null,
+            $timetype   = null,
+            $timezone   = null,
+            $calendar   = null,
+            $pattern    = null
         ) {
             if (!class_exists('IntlDateFormatter')) {
                 return null;
@@ -905,18 +905,20 @@ namespace
      * Locale-dependent formatting/parsing of date-time
      * using pattern strings and/or canned patterns
      *
+     * @param int|null          $value
      * @param array|string|null $locale
-     * @param string|null $datetype
+     * @param string|null       $datetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timetype
+     * @param string|null       $timetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timezone
-     * @param int|string|null $calendar
-     * @param string|null $pattern
+     * @param string|null       $timezone
+     * @param int|string|null   $calendar
+     * @param string|null       $pattern
      *      Be aware that both datetype and timetype are ignored
      *      if the pattern is set.
-     * @param string|null $format
+     * @param string|null       $format
      *      Legacy format for date() in case Intl is not available
+     *
      * @return string
      */
     function _date(
@@ -957,10 +959,12 @@ namespace
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
+     * @param int|float   $value
      * @param string|null $style
      * @param string|null $pattern
      * @param string|null $locale
      * @param string|null $type
+     *
      * @return mixed
      */
     function _number(
@@ -994,6 +998,7 @@ namespace
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
+     * @param int|float $value
      * @param string|null $currency
      * @param string|null $locale
      * @return string

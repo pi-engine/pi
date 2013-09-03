@@ -183,7 +183,7 @@ class Mail extends AbstractService
      * Send mail
      *
      * @param MailHandler\Message $message
-     * @param string $body
+     *
      * @return bool
      */
     public function send(MailHandler\Message $message)
@@ -413,7 +413,9 @@ class Mail extends AbstractService
     /**
      * Create a mime message
      *
-     * @param array $parts
+     * @param array|string $data
+     * @param null|string $type
+     *
      * @return Mime\Message
      */
     public function mimeMessage($data, $type = null)

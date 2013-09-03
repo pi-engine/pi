@@ -35,6 +35,8 @@ use Pi;
  *  - empty method: hide the data
  *  - method is array(<module>, <element>):
  *      transform raw data via Module\Profile::method
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractRegistry
 {
@@ -179,7 +181,7 @@ class User extends AbstractRegistry
     {
         $this->clear('');
         $this->read($action);
-        
+
         return true;
     }
 
