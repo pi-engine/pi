@@ -1,0 +1,122 @@
+<?php include "_user-nav.phtml";?>
+<form class="form-inline" method="post" name="select-search">
+    <select name="state">
+        <option value=""><?php _e('State'); ?></option>
+        <option value="enable"><?php _e('Enable'); ?></option>
+        <option value="disable"><?php _e('Disable'); ?></option>
+    </select>
+
+    <select name="front-role">
+        <?php foreach ($frontRole as $key => $value) { ?>
+        <option value="<?php echo $key?>"><?php echo $value?></option>
+        <?php } ?>
+    </select>
+
+    <select name="admin-role">
+        <?php foreach ($adminRole as $key => $value) { ?>
+        <option value="<?php echo $key?>"><?php echo $value?></option>
+        <?php } ?>
+    </select>
+
+    <select name="register-time">
+        <option value=""><?php _e('Register date'); ?></option>
+        <option value="<?php echo 'today'; ?>"><?php _e('Today'); ?></option>
+        <option value="<?php echo 'last-week'; ?>"><?php _e('Last week'); ?></option>
+        <option value="<?php echo 'last-month'; ?>"><?php _e('Last month'); ?></option>
+        <option value="<?php echo 'last-3-month'; ?>"><?php _e('Last 3 month'); ?></option>
+        <option value="<?php echo 'last-6-month'; ?>"><?php _e('Last 6 month'); ?></option>
+        <option value="<?php echo 'last-year'; ?>"><?php _e('Last year');?></option>
+    </select>
+</form>
+<form class="form-inline" method="post" name="spotlight">
+    <input type="text" name="key">
+    <input type="submit" value="<?php _e('Search');?>">
+    <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'search'));?>"><?php _e('Advance search');?></a>
+</form>
+
+<form name="user-operate">
+    <div class="form-inline">
+        <input type="checkbox">
+        <a class="btn" href=""><?php _e('Enable'); ?></a>
+        <a class="btn" href=""><?php _e('Disable'); ?></a>
+        <a class="btn" href=""><?php _e('Delete'); ?></a>
+    </div>
+    <div><?php echo $count?><?php _e('Members'); ?></div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th><?php _e('Username'); ?></th>
+            <th><?php _e('Display name'); ?></th>
+            <th><?php _e('Email'); ?></th>
+            <th><?php _e('Enable'); ?></th>
+            <th><?php _e('Front role'); ?></th>
+            <th><?php _e('Admin role'); ?></th>
+            <th><?php _e('Register ip'); ?></th>
+            <th><?php _e('Register time'); ?></th>
+            <th><?php _e('Last visit time'); ?></th>
+            <th><?php _e('Uid'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php foreach ($users as $user) { ?>
+        <tr>
+            <td>
+                <input type="checkbox" value="<?php echo $user['id']; ?>" name="check-one">
+            </td>
+            <td>
+                <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $user['id']));?>">
+                    <?php echo $this->escape($user['identity'])?>
+                </a>
+            </td>
+            <td>
+                <?php echo $this->escape($user['name']); ?>
+            </td>
+            <td>
+                <?php echo $this->escape($user['email']); ?>
+            </td>
+            <td>
+                <input checked="<?php echo $user['time_disabled'] ? true : false; ?>" type="checkbox">
+            </td>
+            <td>
+                <select>
+                    <option value="<?php echo $user['front_role']?>"><?php echo $this->escape($frontRole[$user['front_role']]);?></option>
+                    <?php foreach ($frontRole as $col => $val) { ?>
+                        <?php if ($col != $uer['front_role']) { ?>
+                        <option value="<?php echo $role; ?>"><?php echo $this->escape($val)?></option>
+                        <?php } ?>
+                    <?php } ?>
+                </select>
+            </td>
+            <td>
+                <select>
+                    <option value="<?php echo $user['admin_role']?>"><?php echo $this->escape($adminRole[$user['admin_role']]); ?></option>
+                    <?php foreach ($frontRole as $col => $val) { ?>
+                    <?php if ($col != $uer['front_role']) { ?>
+                        <option value="<?php echo $role; ?>"><?php $this->escape($val)?></option>
+                        <?php } ?>
+                    <?php } ?>
+                </select>
+            </td>
+            <td>
+                <?php echo $this->escape($user['register_ip']); ?>
+            </td>
+            <td>
+                <?php echo $this->escape(_date($user['time_created'])); ?>
+            </td>
+            <td>
+                <?php echo $this->escape(_date($user['time_login'])); ?>
+            </td>
+            <td>
+                <?php echo $this->escape($user['id']); ?>
+            </td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</form>
+<?php if ($paginator) {?>
+    <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+<?php } ?>
