@@ -267,6 +267,7 @@ class ProfileController extends ActionController
         $compoundData = Pi::api('user', 'user')->get($uid, $compound);
         // Generate compound edit form
         $forms = array();
+        $i = 0;
         foreach ($compoundData as $set => $row) {
             $formName = 'compound' . $set;
             $forms[$set] = new CompoundForm($formName, $compoundElements);
@@ -278,7 +279,17 @@ class ProfileController extends ActionController
             );
 
             $forms[$set]->setData($row);
+            $i++;
         }
+
+        // New compound form
+        $addForm = new CompoundForm('new.compound', $compoundElements);
+        $addForm->setData(array(
+            'set'   => $i,
+            'group' => $groupName,
+            'uid'   => $uid,
+        ));
+        unset($i);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -306,7 +317,9 @@ class ProfileController extends ActionController
 
                 // Get new compound
                 $newCompoundData = $compoundData;
+                $i = 0;
                 foreach ($compoundData as $key => $item) {
+                    $i++;
                     if ($key == $values['set']) {
                         $newCompoundData[$key] = $canonizeColumn(
                             $values,
@@ -315,14 +328,24 @@ class ProfileController extends ActionController
                     }
                 }
 
-                // Update user compound
-                $data = $this->assembleCompound(
-                    $uid,
-                    $compound,
-                    $newCompoundData
-                );
+                // Add compound
+                if ($values['set'] == $i) {
+                    $newCompoundData[$i] = $canonizeColumn(
+                        $values,
+                        array_keys($item)
+                    );
+                }
 
-                Pi::api('user', 'user')->updateCompound($uid, $data);
+                // Update compound
+                Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+                return array(
+                    'status' => 1
+                );
+            } else {
+                return array(
+                    'status' => 0,
+                    'message' => $forms[$set]->getMessages(),
+                );
             }
         }
 
@@ -346,6 +369,7 @@ class ProfileController extends ActionController
             'errorMsg'     => $errorMsg,
             'curGroup'     => $groupName,
             'groups'       => $groups,
+            'addForm'      => $addForm,
         ));
     }
 
@@ -381,11 +405,41 @@ class ProfileController extends ActionController
         ksort($newCompound);
 
         // Update compound
-        $data = $this->assembleCompound($uid, $compound, $newCompound);
-        Pi::api('user', 'user')->updateCompound($uid, $data);
+        //$data = $this->assembleCompound($uid, $compound, $newCompound);
+        Pi::api('user', 'user')->set($uid, $compound, $newCompound);
         $message['status'] = 1;
 
         return $message;
+    }
+
+    /**
+     * Delete compound action for ajax
+     *
+     * @return array
+     */
+    public function deleteCompoundAction()
+    {
+        Pi::service('log')->active(false);
+
+        $uid      = _post('uid', '');
+        $compound = _post('compound', '');
+        $set      = _post('set');
+
+        $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
+        $newCompound = array();
+        foreach ($oldCompound as $key => $value) {
+            if ($set != $key ) {
+                $newCompound[] = $value;
+            }
+        }
+
+        // Update compound
+        $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+
+        return array(
+            'status'  => $status ? 1 : 0,
+            'message' => $status ? 'ok' : 'error',
+        );
     }
 
     /**
@@ -694,7 +748,8 @@ class ProfileController extends ActionController
         //vd($param);
         //$result = $this->getQuicklink();
         //vd($result);
-        vd(Pi::path('module'));
+        //vd(Pi::path('module'));
+        //vd(Pi::registry('profile', 'user')->read());
         $this->view()->setTemplate(false);
     }
 }

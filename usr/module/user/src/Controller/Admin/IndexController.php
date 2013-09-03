@@ -11,6 +11,8 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
+use Pi\Acl\Acl;
 
 /**
 * User manage cases controller
@@ -21,8 +23,8 @@ class IndexController extends ActionController
 {
     public function indexAction()
     {
-        $page  = $this->params('p', 1);
-        $limit = $this->params('limit', 20);
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
         // Get normal user ids list
@@ -38,8 +40,20 @@ class IndexController extends ActionController
         // Get user information
         $users = $this->getUser($ids, 'active');
 
+        // Set paginator
+        $paginatorOption = array(
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+            'controller' => 'index',
+            'action'     => 'index',
+        );
+        $paginator = $this->setPaginator($paginatorOption);
+
         $this->view()->assign(array(
-            'users' => $users
+            'users'     => $users,
+            'paginator' => $paginator,
+            'page'      => $page,
         ));
     }
 
@@ -121,4 +135,53 @@ class IndexController extends ActionController
         }
         return $return;
     }
+
+    /**
+     * Set paginator
+     *
+     * @param $option
+     * @return \Pi\Paginator\Paginator
+     */
+    protected function setPaginator($option)
+    {
+        $paginator = Paginator::factory(intval($option['count']));
+        $paginator->setItemCountPerPage($option['limit']);
+        $paginator->setCurrentPageNumber($option['page']);
+        $paginator->setUrlOptions(array(
+            // Use router to build URL for each page
+            'pageParam'     => 'p',
+            'totalParam'    => 't',
+            'router'        => $this->getEvent()->getRouter(),
+            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params'        => array(
+                'module'        => $this->getModule(),
+                'controller'    => $option['controller'],
+                'action'        => $option['action'],
+                'uid'           => $option['uid'],
+            ),
+        ));
+
+        return $paginator;
+    }
+
+    protected function getRoleSelectOptions($section)
+    {
+        $model = Pi::model('acl_role');
+        if ($section == 'front') {
+            $options = array(
+                '' => __('Front role')
+            );
+
+            $rowset = $model->select(array('section' => 'front'));
+            foreach ($rowset as $row) {
+                $roles[$row->name] = __($row->title);
+            }
+
+
+        }
+        if ($section == 'admin') {
+
+        }
+    }
+
 }
