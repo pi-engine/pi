@@ -11,5 +11,9 @@ return array(
     // Auto detected
     'driver'        => 'auto',
 
+    // Source image for watermark generation
     'watermark'     => Pi::path('static/image/logo.png'),
+
+    // Auto create path to save image
+    'auto_mkdir'    => true,
 );

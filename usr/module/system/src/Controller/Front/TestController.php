@@ -89,10 +89,13 @@ vd($content);
 
         // The test path must be already created
         $testPath = Pi::path('upload/test');
-        $image = Pi::path('static/image/pi-ecosystem.png');
+        $originalImage = Pi::path('static/image/pi-ecosystem.png');
+        $image = $testPath . '/source.png';
+        Pi::service('image')->save($originalImage, $image);
         $child = Pi::path('static/image/module.png');
         $position = array(30, 100);
         $position = 'top-right';
+        $position = '';
         $to = $testPath . '/test-watermark.jpg';
         Pi::service('image')->watermark($image, $to, '', $position);
         $to = $testPath . '/test-crop.jpg';
