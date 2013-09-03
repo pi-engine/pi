@@ -3,8 +3,11 @@
     $this->jQuery();
 ?>
 <?php include '_user-side-nav.phtml' ?>
-<div class="span9">
-    <h2>title</h2>
+<div class="span9" id="user-js-info">
+    <div class="user-info-top">
+        <strong class="user-info-title"><?php echo $curGroup; ?></strong>
+        <a href="javascript:void(0)" class="user-js-add"><?php _e('Add new'); ?></small>
+    </div>
     <div class="user-info-list">
         <?php 
             foreach ($forms as $form) {
@@ -17,12 +20,12 @@
         ?>
         <div class="user-info-item">
             <div class="user-info-header">
-                <a class="btn btn-link js-edit"><?php _e('Edit'); ?></a>
-                <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
+                <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
+                <button class="close js-delete" type="button">×</button>
             </div>
             <div class="user-info-body">
                 <div class="user-info-show">
-                    <dl class="dl-horizontal user-field-dl">
+                    <dl class="dl-horizontal user-field-dl" style="margin: 0;">
                     </dl>
                 </div>
             <?php
@@ -37,82 +40,192 @@
                 foreach ($elements['hidden'] as $element) {
                     echo $this->formElement($element);
                 }
-                echo sprintf('<div class="controls">%s</div>', 
+                echo sprintf('<div class="controls">%s
+                    <input type="button" value="cancel" class="btn btn-link js-reset"></div>', 
                     $this->formElement($elements['submit']));
                 echo $this->form()->closeTag();
             ?>
             </div>
         </div>
         <?php } ?>
+        <div class="clearfix user-legend">
+            <h4 class="user-legend-title">
+                <?php _e('Add new'); ?>
+                <?php echo $curGroup; ?>
+            </h4>
+            <div class="user-legend-linea"></div>
+        </div>
     </div>
 </div>
-<script src="<?php echo Pi::url('static/vendor/backbone/underscore-min.js') ?>"></script>
+<style>
+.user-info-top {
+    margin-bottom: 20px;
+}
+.user-info-title {
+    font-size: 30px;
+    margin-right: 20px;
+    text-transform: capitalize;
+}
+.user-info-title strong {
+
+}
+.user-info-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.user-info-item .user-info-show,
+.user-info-item form {
+    padding: 20px 0;
+    margin: 0;
+}
+.user-info-header {
+    background: #eee;
+    cursor: move;
+    border-bottom: 1px solid #ccc;
+    text-align: right;
+    padding-right: 10px;
+}
+.user-info-item form,
+.user-info-item-edit .user-info-show {
+    display: none;
+}
+.user-info-item-edit form {
+    display: block;
+}
+.user-info-item-edit .user-info-header {
+    background: #0188cc;
+}
+.user-info-item-edit .user-info-body {
+    background: #f2fbff;
+}
+.user-info-header .close {
+    float: none;
+}
+.user-info-item-edit .btn-user-edit {
+    color: #fff;
+}
+</style>
 <script src="<?php echo $this->assetModule('script/jquery-ui-1.10.3.custom.js'); ?>"></script>
 <script>
 (function($) {
-    var urlRoot = '<?php echo $this->url('', array('controller' => 'profile')); ?>';
-    var compound = '<?php echo $curGroup; ?>';
-    var el = $('.user-info-list');
-    var items = el.find('.user-info-item');
-    var elementsList = <?php echo json_encode($elementsList); ?>;
-    el.sortable({
-        handle: '.user-info-header',
-        items: '.user-info-item',
-        update: function(event, ui) {
-            var set = [];
-            var items = el.find('.user-info-item');
-            var length = items.length;
-            for (var i = 0; i < length; i++) {
-                items.each(function(index) {
-                    if ($(this).find('[name=set]').val() == i) {
-                        set.push(index);
+    var opts = {};
+    var userCompoundEdit = {
+        $: function(selector) {
+            return this.$el.find(selector);
+        },
+        init: function(options) {
+            $.extend(opts, options);
+            this.cacheElements();
+            this.bindEvents();
+        },
+        cacheElements: function() {
+            this.$el = $('#user-js-info');
+            this.$list = this.$('.user-info-list');
+            this.$('.user-info-item').each(function() {
+                new UserItem($(this));
+            }).on('toggleEdit', $.proxy(this.toggleSortable, this));
+        },
+        bindEvents: function() {
+            var self = this;
+            this.$list.sortable({
+                handle: '.user-info-header',
+                items: '.user-info-item',
+                update: function(event, ui) {
+                    var set = [];
+                    var items = self.$el.find('.user-info-item');
+                    var length = items.length;
+                    for (var i = 0; i < length; i++) {
+                        items.each(function(index) {
+                            if ($(this).find('[name=set]').val() == i) {
+                                set.push(index);
+                            }
+                        });
                     }
-                });
+                    //Reset index
+                    items.each(function(index) {
+                        var $this = $(this);
+                        $this.data('index', index);
+                        $this.find('[name=set]').val(index);
+                    });
+                    $.post(opts.urlRoot + 'editCompoundSet', {
+                        compound: opts.compound,
+                        set: set.join(',')
+                    });
+                }
+            });
+        },
+        toggleSortable: function() {
+            var list = this.$list;
+            var disabled = list.sortable('option', 'disabled');
+            if (disabled) {
+                list.find('.user-info-header')
+                    .css('cursor', 'move');
+                list.sortable('option', 'disabled', false);
+
+            } else {
+                list.find('.user-info-header')
+                    .css('cursor', 'default');
+                list.sortable('option', 'disabled', true);
             }
-            //Reset index
-            items.each(function(index) {
-                var $this = $(this);
-                $this.data('index', index);
-                $this.find('[name=set]').val(index);
-            });
-            $.post(urlRoot + 'editCompoundSet', {
-                compound: compound,
-                set: set.join(',')
-            });
         }
-    });
-    items.on('renderShow', function() {
-        var $this = $(this);
-        var show = $this.find('.user-field-dl');
-        var form = $this.find('form');
-        var ret = '';
-        for (var i in elementsList) {
-            ret += '<dt>' + i + '<dd>' + 
-                $.trim(form[0][elementsList[i]].value);
-        }
-        show.html(ret);
-    });
-    items.on('click', '.js-edit', function(e) {
-        var el = $(e.delegateTarget);
-        el.toggleClass('user-info-item-edit');
-    });
-    items.on('submit', 'form', function(e) {
-        e.preventDefault();
-        var form = $(e.target);
-        var el = $(e.delegateTarget);
-        $
-        .post(urlRoot + 'editCompound', $(this).serialize())
-        .done(function(res) {
+    };
+    var UserItem = function(el) {
+        this.$el = el;
+        this.$show = this.$('.user-field-dl');
+        this.$form = this.$('form');
+        this.render();
+        this.bindEvents();
+    }
+    $.extend(UserItem.prototype, {
+        $: function(selector) {
+            return this.$el.find(selector);
+        },
+        render: function() {
+            var form = this.$form[0];
+            var list = opts.elementsList;
+            var ret = '';
+            for (var i in list) {
+                var value = form[list[i]].value || '<em class="muted">unfiled</em>';
+                ret += '<dt>' + i + '<dd>' + 
+                    $.trim(value);
+            }
+            this.$show.html(ret);
+        },
+        bindEvents: function() {
+            var el = this.$el;
+            var self = this;
+            el.on('click', '.js-edit', $.proxy(this.toggleEdit, this));
+            el.on('click', '.js-reset', $.proxy(this.toggleEdit, this));
+            el.on('click', '.js-delete', function() {
+                if (confirm('Are you sure delete this one')) {
+                }
+            });
+            this.$form.submit(function(e) {
+                e.preventDefault();
+                $.post(opts.urlRoot + 'editCompound', self.$form.serialize())
+                 .done(function(res) {
+                    self.submit(res);
+                 });
+            });
+        },
+        toggleEdit: function() {
+            var el = this.$el;
+            el.trigger('toggleEdit');
+            el.toggleClass('user-info-item-edit');
+        },
+        submit: function(res) {
+            var form = this.$form;
+            var el = this.$el;
             res = $.parseJSON(res);
             //clear error
-            form
-            .find('.error')
-            .removeClass('error')
-            .find('.help-inline')
-            .html('');
+            form.find('.error')
+                .removeClass('error')
+                .find('.help-inline')
+                .html('');
             if (res.status) {
-                el.trigger('renderShow');
-                el.removeClass('user-info-item-edit');
+                this.render();
+                this.toggleEdit();
             } else {
                 var msg = res.message;
                 for(var i in msg) {
@@ -120,17 +233,22 @@
                     for (var j in msg[i]) {
                         err.push(msg[i][j]);
                     }
-                    form
-                    .find('[name=' + i + ']')
-                    .parents('.control-group')
-                    .addClass('error')
-                    .find('.help-inline')
-                    .html(err.join(','));
+                    form.find('[name=' + i + ']')
+                        .parents('.control-group')
+                        .addClass('error')
+                        .find('.help-inline')
+                        .html(err.join(','));
                 }
             }
-        });
+        }
     });
-    items.trigger('renderShow');
+    this.userCompoundEdit = userCompoundEdit;
 })(jQuery)
 </script>
-
+<script>
+    userCompoundEdit.init({
+        urlRoot: '<?php echo $this->url('', array('controller' => 'profile')); ?>',
+        elementsList: <?php echo json_encode($elementsList); ?>,
+        compound: '<?php echo $curGroup; ?>'
+    });
+</script>
