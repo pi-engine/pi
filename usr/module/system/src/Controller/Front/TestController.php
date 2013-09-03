@@ -84,8 +84,39 @@ vd($content);
         $content = $schema->parseContent($content);
         vd($content);
 
-        Pi::user()->data()->increment(1, 'test-int', 3);
-        vd(Pi::user()->data(1, 'test-int'));
+        //Pi::user()->data()->increment(1, 'test-int', 3);
+        //vd(Pi::user()->data(1, 'test-int'));
+
+        // The test path must be already created
+        $testPath = Pi::path('upload/test');
+        $image = Pi::path('static/image/pi-ecosystem.png');
+        $child = Pi::path('static/image/module.png');
+        $position = array(30, 100);
+        $position = 'top-right';
+        $to = $testPath . '/test-watermark.jpg';
+        Pi::service('image')->watermark($image, $to, '', $position);
+        $to = $testPath . '/test-crop.jpg';
+        Pi::service('image')->crop($image, array(30, 50), array(300, 200), $to);
+        $to = $testPath . '/test-resize.jpg';
+        Pi::service('image')->resize($image, array(500, 200), $to);
+        $to = $testPath . '/test-resize-ratio.jpg';
+        Pi::service('image')->thumbnail($image, 0.4, $to);
+        $to = $testPath . '/resize-rotate.jpg';
+        Pi::service('image')->rotate($image, 30, $to);
+        $to = $testPath . '/test-paste.jpg';
+        Pi::service('image')->paste($image, $child, array(50, 100), $to);
+        $to = $testPath . '/test-thumbnail.jpg';
+        Pi::service('image')->thumbnail($image, array(300, 100), $to);
+        $to = $testPath . '/test-thumbnail-ratio.jpg';
+        Pi::service('image')->thumbnail($image, 0.3, $to);
+
+        $uids = Pi::user()->getUids();
+        vd($uids);
+        $avatars = Pi::user()->avatar->getList($uids);
+        vd($avatars);
+        $avatars = Pi::avatar()->getList($uids);
+        vd($avatars);
+
         return $display;
     }
 
