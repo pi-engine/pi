@@ -49,12 +49,43 @@ class IndexController extends ActionController
             'action'     => 'index',
         );
         $paginator = $this->setPaginator($paginatorOption);
-
         $this->view()->assign(array(
             'users'     => $users,
             'paginator' => $paginator,
             'page'      => $page,
+            'curNav'    => 'active',
+            'frontRole' => $this->getRoleSelectOptions(),
+            'adminRole' => $this->getRoleSelectOptions('admin'),
         ));
+    }
+
+    /**
+     * Enable users
+     * @return array
+     */
+    public function enableAction()
+    {
+        $uids = _post('ids', '');
+        if (!$uids) {
+            return array(
+                'status' => 0,
+            );
+        }
+
+        $uids = explode(',', $uids);
+
+        foreach ($uids as $uid) {
+            $status = Pi::api('usr', 'user')->enable($uid);
+            if (!$status) {
+                break;
+            }
+        }
+
+        return array(
+            'status' => $status ? 1 : 0,
+        );
+
+        $this->view()->setTemplate(false);
     }
 
     /**
@@ -118,7 +149,8 @@ class IndexController extends ActionController
 
                 // Get role
                 $user['front_role'] = Pi::api('user', 'user')->getRole(
-                    $user['id']
+                    $user['id'],
+                    'front'
                 );
                 $user['admin_role'] = Pi::api('user', 'user')->getRole(
                     $user['id'],
@@ -134,6 +166,42 @@ class IndexController extends ActionController
             $return = $users;
         }
         return $return;
+    }
+
+    /**
+     * Get system all role for select form
+     *
+     * @param $section
+     * @return array
+     */
+    protected function getRoleSelectOptions($section = 'front')
+    {
+        $model = Pi::model('acl_role');
+        if ($section == 'front') {
+            // Get front role
+            $options = array(
+                '' => __('Front role')
+            );
+
+            $rowset = $model->select(array('section' => 'front'));
+            foreach ($rowset as $row) {
+                $options[$row->name] = __($row->title);
+            }
+        }
+        if ($section == 'admin') {
+            // Get admin role
+            $options = array(
+                '' => __('Admin role'),
+            );
+
+            $rowset = $model->select(array('section' => 'admin'));
+            foreach ($rowset as $row) {
+                $options[$row->name] = __($row->title);
+            }
+        }
+
+        return $options;
+
     }
 
     /**
@@ -163,25 +231,4 @@ class IndexController extends ActionController
 
         return $paginator;
     }
-
-    protected function getRoleSelectOptions($section)
-    {
-        $model = Pi::model('acl_role');
-        if ($section == 'front') {
-            $options = array(
-                '' => __('Front role')
-            );
-
-            $rowset = $model->select(array('section' => 'front'));
-            foreach ($rowset as $row) {
-                $roles[$row->name] = __($row->title);
-            }
-
-
-        }
-        if ($section == 'admin') {
-
-        }
-    }
-
 }
