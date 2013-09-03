@@ -2,6 +2,7 @@
     $this->bootstrap();
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
 ?>
 
 <ul class="nav nav-tabs message-nav-tabs">
@@ -39,7 +40,7 @@
                     } else {
                         echo $this->url('', array('action' => 'delete', 'ids' => $notification['id']));
                     }
-                ?>" class="message-js-delete">
+                ?>" data-confirm="Once you delete this message, it cannot be undone.">
                     <?php _e('Delete'); ?>
                     </a>
                 </span>
@@ -63,7 +64,7 @@
         </div>
         <div class="media-body message-content">
             <h5 class="media-heading message-head">                
-                <a href="<?php echo $this->url('', array('action' => 'mark', 'mid' => $notification['id'])); ?>"><?php echo _escape($notification['subject']); ?></a>
+                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>"><?php echo _escape($notification['subject']); ?></a>
                 <span class="label label-info message-label-type">
                     <?php
                         if (!empty($notification['tag'])) {
@@ -73,7 +74,7 @@
                 </span>
             </h5>
             <p class="message-body">
-                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>">
+                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>" class="message-content-link">
                     <?php echo $notification['content']; ?>
                 </a>
             </p>
@@ -90,11 +91,12 @@
             ));
         }
     ?>
+    <?php include '_confirm-modal.phtml' ?>
     <form class="form-inline message-foot-form" action="">
         <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
         <select class="message-batch-action">
             <option value=""><?php _e('Massive operation'); ?></option>
-            <option value="mark" ><?php _e('Mark read'); ?></option>
+            <option value="mark" ><?php _e('Mark as read'); ?></option>
             <option value="delete"><?php _e('Delete'); ?></option>
         </select>
     </form>

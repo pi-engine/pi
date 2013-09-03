@@ -55,7 +55,7 @@ if (!empty($notification)) { ?>
                 <div class="message-detail-hidden">
                     <p class="message-hidden pull-right">
                         <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>" class="message-js-delete">
+                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>" data-confirm="Once you delete this message, it cannot be undone.">
                                 <?php _e('Delete'); ?>
                             </a>
                         </span>
@@ -66,6 +66,7 @@ if (!empty($notification)) { ?>
     </div>
 </div>
 <?php } ?>
+<?php include '_confirm-modal.phtml' ?>
 <script src="<?php echo $this->assetModule('script/notify-index.js'); ?>"></script>
 
 <script>
