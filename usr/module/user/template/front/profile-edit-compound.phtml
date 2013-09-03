@@ -6,20 +6,31 @@
 <div class="span9">
     <h2>title</h2>
     <div class="user-info-list">
-        <?php foreach ($forms as $key => $form) { ?>
-        <?php
-            $form->setAttribute('class', 'form-horizontal');
+        <?php 
+            foreach ($forms as $form) {
+                $elements = $form->elementList();
+                if (!isset($elementsList)) {
+                    foreach ($elements['active'] as $element) {
+                        $elementsList[$element->getOption('label')] = $element->getName();
+                    }
+                }
         ?>
-        <div class="user-info-item" data-index="<?php echo $key; ?>">
+        <div class="user-info-item">
             <div class="user-info-header">
+                <a class="btn btn-link js-edit"><?php _e('Edit'); ?></a>
+                <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
             </div>
             <div class="user-info-body">
+                <div class="user-info-show">
+                    <dl class="dl-horizontal user-field-dl">
+                    </dl>
+                </div>
             <?php
+                $form->setAttribute('class', 'form-horizontal');
                 echo $this->form()->openTag($form);
-                $elements = $form->elementList();
                 foreach ($elements['active'] as $element) {
                     echo sprintf('<div class="control-group"><label class="control-label">%s</label>
-                        <div class="controls">%s</div></div>',
+                        <div class="controls">%s<span class="help-inline"></span></div></div>',
                         $element->getOption('label'),
                         $this->formElement($element));
                 }
@@ -35,12 +46,15 @@
         <?php } ?>
     </div>
 </div>
+<script src="<?php echo Pi::url('static/vendor/backbone/underscore-min.js') ?>"></script>
 <script src="<?php echo $this->assetModule('script/jquery-ui-1.10.3.custom.js'); ?>"></script>
 <script>
 (function($) {
-    var urlRoot = '<?php echo $this->url('', array('controller' => 'profile', 'action' => 'editCompoundSet')); ?>';
+    var urlRoot = '<?php echo $this->url('', array('controller' => 'profile')); ?>';
     var compound = '<?php echo $curGroup; ?>';
     var el = $('.user-info-list');
+    var items = el.find('.user-info-item');
+    var elementsList = <?php echo json_encode($elementsList); ?>;
     el.sortable({
         handle: '.user-info-header',
         items: '.user-info-item',
@@ -50,21 +64,73 @@
             var length = items.length;
             for (var i = 0; i < length; i++) {
                 items.each(function(index) {
-                    if ($(this).data('index') == i) {
+                    if ($(this).find('[name=set]').val() == i) {
                         set.push(index);
                     }
                 });
             }
             //Reset index
             items.each(function(index) {
-                $(this).data('index', index);
+                var $this = $(this);
+                $this.data('index', index);
+                $this.find('[name=set]').val(index);
             });
-            $.post(urlRoot, {
+            $.post(urlRoot + 'editCompoundSet', {
                 compound: compound,
                 set: set.join(',')
             });
         }
     });
+    items.on('renderShow', function() {
+        var $this = $(this);
+        var show = $this.find('.user-field-dl');
+        var form = $this.find('form');
+        var ret = '';
+        for (var i in elementsList) {
+            ret += '<dt>' + i + '<dd>' + 
+                $.trim(form[0][elementsList[i]].value);
+        }
+        show.html(ret);
+    });
+    items.on('click', '.js-edit', function(e) {
+        var el = $(e.delegateTarget);
+        el.toggleClass('user-info-item-edit');
+    });
+    items.on('submit', 'form', function(e) {
+        e.preventDefault();
+        var form = $(e.target);
+        var el = $(e.delegateTarget);
+        $
+        .post(urlRoot + 'editCompound', $(this).serialize())
+        .done(function(res) {
+            res = $.parseJSON(res);
+            //clear error
+            form
+            .find('.error')
+            .removeClass('error')
+            .find('.help-inline')
+            .html('');
+            if (res.status) {
+                el.trigger('renderShow');
+                el.removeClass('user-info-item-edit');
+            } else {
+                var msg = res.message;
+                for(var i in msg) {
+                    var err = [];
+                    for (var j in msg[i]) {
+                        err.push(msg[i][j]);
+                    }
+                    form
+                    .find('[name=' + i + ']')
+                    .parents('.control-group')
+                    .addClass('error')
+                    .find('.help-inline')
+                    .html(err.join(','));
+                }
+            }
+        });
+    });
+    items.trigger('renderShow');
 })(jQuery)
 </script>
 
