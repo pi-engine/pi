@@ -49,11 +49,12 @@
 /* Edit */
 .user-info-item {
 	margin-bottom: 20px;
+	border: 1px solid #ccc;
 }
 .user-info-header {
-	background: #f5f5f5;
+	background: #eee;
 	cursor: move;
-	border: 1px solid #e5e5e5;
+	border-bottom: 1px solid #ccc;
 	text-align: right;
 }
 .user-info-item form,
