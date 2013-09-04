@@ -84,8 +84,18 @@ class IndexController extends ActionController
         return array(
             'status' => $status ? 1 : 0,
         );
+    }
 
-        $this->view()->setTemplate(false);
+    public function disableAction()
+    {
+        $uids = _post('ids', '');
+
+        if ($uids) {
+            return array(
+                'status' => 0,
+            );
+        }
+        $uids = explode(',', $uids);
     }
 
     /**

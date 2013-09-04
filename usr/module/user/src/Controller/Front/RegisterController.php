@@ -50,7 +50,7 @@ class RegisterController extends ActionController
         }
 
         list($fields, $filters) = $this->canonizeForm('register.form');
-        $form = $this->getForm($fields);
+        $form = $this->getRegisterForm($fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -295,6 +295,7 @@ class RegisterController extends ActionController
 
             if ($form->isValid()) {
                 $values = $form->getData();
+
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
 
                 // Set perfect information flag in user table
