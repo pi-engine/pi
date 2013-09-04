@@ -23,10 +23,10 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $this->timelineLogAction();
+        //$this->timelineLogAction();
         $this->activity();
-        $this->group();
-        $this->quickLink();
+        //$this->group();
+        //$this->quickLink();
     }
 
 
@@ -72,7 +72,7 @@ EOT;
                 'link'     => 'www.google.com',
                 'active'   => 1,
                 'display'  => $i,
-                'callback' => 'www.ggogle.com',
+                'callback' => 'Module\\User\\ActivityTest',
             );
 
             $model->createRow($data)->save();
