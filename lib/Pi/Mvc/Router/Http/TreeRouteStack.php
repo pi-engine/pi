@@ -46,8 +46,6 @@ class TreeRouteStack extends RouteStack
 
     /**
      * Create a new simple route stack.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -71,9 +69,10 @@ class TreeRouteStack extends RouteStack
     /**
      * routeFromArray(): defined by SimpleRouteStack.
      *
-     * @see    SimpleRouteStack::routeFromArray()
-     * @param  array|Traversable $specs
-     * @return Route
+     * @param array|\Traversable $specs
+     *
+     * @throws \RuntimeException
+     * @return RouteInterface
      */
     protected function routeFromArray($specs)
     {
@@ -128,7 +127,7 @@ class TreeRouteStack extends RouteStack
             $this->setRequestUri($uri);
         }
 
-        // Match aginst base URI
+        // Match against base URI
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
             foreach ($this->routes as $name => $route) {
@@ -140,15 +139,15 @@ class TreeRouteStack extends RouteStack
                 if ($matchedLength === $pathLength) {
                     $match->setMatchedRouteName($name);
 
-                    foreach ($this->defaultParams as $name => $value) {
-                        if ($match->getParam($name) === null) {
-                            $match->setParam($name, $value);
+                    foreach ($this->defaultParams as $key => $value) {
+                        if ($match->getParam($key) === null) {
+                            $match->setParam($key, $value);
                         }
                     }
                     return $match;
                 }
             }
-        // Match aginst simple URI
+        // Match against simple URI
         } else {
             //return parent::match($request);
             foreach ($this->routes as $name => $route) {
@@ -174,8 +173,12 @@ class TreeRouteStack extends RouteStack
      * assemble(): defined by Route interface.
      *
      * @see    Route::assemble()
+     *
      * @param  array $params
      * @param  array $options
+     *
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function assemble(array $params = array(), array $options = array())

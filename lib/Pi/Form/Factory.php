@@ -57,17 +57,26 @@ class Factory extends ZendFactory
                     __NAMESPACE__, ucfirst($type)
                 );
             } else {
+                $canonizedType = str_replace(
+                    ' ',
+                    '',
+                    ucwords(str_replace(
+                        array('_', '-'),
+                        ' ',
+                        $spec['type']
+                    ))
+                );
                 $type = sprintf(
                     '%s\Element\\%s',
                     __NAMESPACE__,
-                    ucfirst($spec['type'])
+                    $canonizedType
                 );
                 if (class_exists($type)) {
                     $spec['type'] = $type;
                 } else {
                     $type = sprintf(
                         'Zend\Form\Element\\%s',
-                        ucfirst($spec['type'])
+                        $canonizedType
                     );
                     if (class_exists($type)) {
                         $spec['type'] = $type;

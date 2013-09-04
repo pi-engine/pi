@@ -247,7 +247,7 @@ class RowGateway extends AbstractRowGateway
      *
      * @param string $column Column/field name
      * @param bool $assoc
-     * @return array|object|resoure
+     * @return array|object|resource
      */
     public function decodeColumn($column, $assoc = true)
     {

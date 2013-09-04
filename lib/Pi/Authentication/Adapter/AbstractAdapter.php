@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Pi;
 use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
 
 /**
@@ -17,9 +16,8 @@ use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractAdapter
-    extends ZendAbstractAdapter
-    implements AdapterInterface
+abstract class AbstractAdapter extends ZendAbstractAdapter implements
+    AdapterInterface
 {
     /** @var array Options */
     protected $options = array();

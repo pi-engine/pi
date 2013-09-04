@@ -81,7 +81,7 @@ abstract class AbstractRegistry
      * Load dynamic data from database
      *
      * @param array $options
-     * @return mixed
+     * @return mixed|bool
      * @throws \Exception
      */
     protected function loadDynamic($options)
@@ -214,7 +214,7 @@ abstract class AbstractRegistry
      * Load data matching the meta
      *
      * @param array $meta
-     * @return array
+     * @return array|bool
      */
     protected function loadData($meta = array())
     {

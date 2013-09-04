@@ -688,7 +688,7 @@ class Acl extends AbstractResource
                         $role,
                         $resource['section'],
                         $resource['module'],
-                        $resourceId,
+                        $resource['id'],
                         $name
                     );
                 }

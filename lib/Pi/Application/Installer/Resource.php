@@ -40,7 +40,7 @@ class Resource implements ListenerAggregateInterface
     /**
      * Attach listeners
      *
-     * @param  Events $events
+     * @param  EventManagerInterface $events
      * @return void
      */
     public function attach(EventManagerInterface $events)
@@ -141,7 +141,7 @@ class Resource implements ListenerAggregateInterface
     }
 
     /**
-     * Load and performe resource actions
+     * Load and perform resource actions
      *
      * Returns result of the resource, null for failure but ignored, or array:
      *
@@ -152,7 +152,7 @@ class Resource implements ListenerAggregateInterface
      *  );
      * </code>
      *
-     * @param strint $resource Resource name
+     * @param string $resource Resource name
      * @return array|null
      */
     protected function loadResource($resource)

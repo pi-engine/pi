@@ -153,7 +153,7 @@ class Acl
     /**
      * Set section for resources
      *
-     * Potentail secion names:
+     * Potential section names:
      *  - front: for front controllers and resources
      *  - admin: for admin controllers and resources
      *  - block: for blocks
@@ -578,7 +578,7 @@ class Acl
             return $resources;
         }
 
-        // Appliction resource
+        // Application resource
         if (is_numeric($resource)) {
             $resources = array($resource);
             return $resources;
