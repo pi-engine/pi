@@ -1,3 +1,13 @@
+/* Common */
+.user-profile-back {
+	background: #4d4d4d;
+	padding: 8px 10px;
+	margin-bottom: 20px;
+	color: #fff;
+	line-height: 30px;
+	height: 30px;
+}
+
 /* Home page */
 .user-media {
 	border-bottom: 1px solid #ccc;
@@ -63,6 +73,59 @@
 }
 .user-info-item-edit form {
 	display: block;
+}
+.user-info-list {
+    min-height: 20px;
+}
+.user-info-top {
+    margin-bottom: 20px;
+}
+.user-info-title {
+    font-size: 30px;
+    margin-right: 20px;
+    text-transform: capitalize;
+}
+.user-info-title strong {
+
+}
+.user-info-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.user-info-item .user-info-show,
+.user-info-item form {
+    padding: 20px 0;
+    margin: 0;
+}
+.user-info-header {
+    background: #eee;
+    cursor: move;
+    border-bottom: 1px solid #ccc;
+    text-align: right;
+    padding-right: 10px;
+}
+.user-info-item form,
+.user-info-item-edit .user-info-show {
+    display: none;
+}
+.user-info-item-edit form {
+    display: block;
+}
+.user-info-item-edit .user-info-header {
+    background: #0188cc;
+}
+.user-info-item-edit .user-info-body {
+    background: #f2fbff;
+}
+.user-info-header .close {
+    float: none;
+}
+.user-info-item-edit .btn-user-edit {
+    color: #fff;
+}
+.user-add-legend {
+    margin-bottom: 20px;
 }
 /* user module custom */
 #pi-user .nav-tabs {
