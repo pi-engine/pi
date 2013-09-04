@@ -25,8 +25,6 @@ class Auto extends AbstractAvatar
     {
         $src = '';
         if ($uid) {
-            $upload     = '';
-            $gravatar   = '';
             if ($uid == $this->user->get('id')) {
                 $data = array(
                     'avatar'    => $this->user->get('avatar'),
@@ -35,20 +33,9 @@ class Auto extends AbstractAvatar
             } else {
                 $data = Pi::user()->get($uid, array('avatar', 'email'));
             }
-            if ($data) {
-                if (!$data['avatar']) {
-                    $gravatar = $data['email'];
-                } elseif (false === strpos($data['avatar'], '@')) {
-                    $upload = $data['avatar'];
-                } else {
-                    $gravatar = $data['avatar'];
-                }
-            }
 
-            if ($upload) {
-                $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
-            } elseif ($gravatar) {
-                $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
+            if ($data) {
+                $src = $this->buildUrl($data, $size);
             }
         }
 
@@ -70,22 +57,9 @@ class Auto extends AbstractAvatar
         $list = Pi::user()->get($uids, array('avatar', 'email'));
         foreach ($list as $uid => $data) {
             if ($data) {
-                $upload     = '';
-                $gravatar   = '';
-                if (!$data['avatar']) {
-                    $gravatar = $data['email'];
-                } elseif (false === strpos($data['avatar'], '@')) {
-                    $upload = $data['avatar'];
-                } else {
-                    $gravatar = $data['avatar'];
-                }
-                if ($upload) {
-                    $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
-                } elseif ($gravatar) {
-                    $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
-                }
-                if ($src) {
-                    $result[$uid] = $src;
+                $url = $this->buildUrl($data, $size);
+                if ($url) {
+                    $result[$uid] = $url;
                 }
             }
         }
@@ -96,8 +70,49 @@ class Auto extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($source, $size = '')
+    public function build($source, $size = '', $uid = null)
     {
         return false;
+    }
+
+    /**
+     * Build avatar URL
+     *
+     * @param array  $data
+     * @param string $size
+     *
+     * @return string
+     */
+    protected function buildUrl(array $data, $size)
+    {
+        $src = '';
+        $allowedAdapters = (array) Pi::avatar()->getOption('adapter_allowed');
+        $list = array_fill_keys($allowedAdapters, '');
+
+        if (!$data['avatar']) {
+            if (isset($list['gravatar'])) {
+                $list['gravatar'] = $data['email'];
+            }
+        } elseif (false !== strpos($data['avatar'], '@')) {
+            if (isset($list['gravatar'])) {
+                $list['gravatar'] = $data['avatar'];
+            }
+        } elseif (preg_match('/[a-z0-9\-]/i', $data['avatar'])) {
+            if (isset($list['select'])) {
+                $list['select'] = $data['avatar'];
+            }
+        } elseif (isset($list['upload'])) {
+            $list['upload'] = $data['avatar'];
+        }
+
+        foreach ($list as $adapter => $avatar) {
+            if ($avatar) {
+                $src = Pi::service('avatar')->getAdapter($adapter)
+                    ->build($avatar, $size);
+                break;
+            }
+        }
+
+        return $src;
     }
 }

@@ -42,7 +42,7 @@ class Local extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($source, $size = '')
+    public function build($source, $size = '', $uid = null)
     {
         $identifier = $this->canonizeSize($size, false);
         $path = sprintf('static/avatar/%s.png', $identifier);

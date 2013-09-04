@@ -197,19 +197,24 @@ class Avatar extends AbstractService
     {
         $sizeMap = $this->getOption('size_map');
 
+        $findSize = function ($size) use ($sizeMap, &$findSize) {
+            if (!isset($sizeMap[$size])) {
+                $size = $sizeMap['normal'];
+            } else {
+                $size = $sizeMap[$size];
+                if (!is_numeric($size)) {
+                    $size = $findSize($size);
+                }
+            }
+            return $size;
+        };
+
         // Get numeric size
         if ($toInt) {
             // From named to numeric
             if (!is_numeric($size)) {
-                if (!isset($sizeMap[$size])) {
-                    $size = $sizeMap['normal'];
-                } else {
-                    $size = $sizeMap[$size];
-                    if (!is_numeric($size)) {
-                        $size = $sizeMap[$size];
-                    }
-                }
-                // Canonize numeric to defined numeric
+                $size = $findSize($size);
+            // Canonize numeric to defined numeric
             } else {
                 foreach ($sizeMap as $name => $number) {
                     if (is_numeric($number) && $number >= $size) {
@@ -218,7 +223,7 @@ class Avatar extends AbstractService
                 }
                 $size = $number;
             }
-            // Get named size
+        // Get named size
         } else {
             // From numeric to named size
             if (is_numeric($size)) {

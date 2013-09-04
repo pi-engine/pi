@@ -443,7 +443,7 @@ class User extends AbstractApi
 
         $fieldMeta = Pi::registry('profile', 'user')->read();
         if (isset($fieldMeta[$field])) {
-            $type = $fieldMeta[$field];
+            $type = $fieldMeta[$field]['type'];
             $result = $this->setTypeField($uid, $type, $field, $value);
         } else {
             $result = false;
