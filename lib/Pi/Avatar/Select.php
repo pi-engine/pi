@@ -92,7 +92,7 @@ class Select extends AbstractAvatar
     }
 
     /**
-     * Get/Create avatar list meta (path, src and size)
+     * Get/Create avatar list meta (identifier and corresponding URL)
      *
      *  // Output:
      *  $result = array(
