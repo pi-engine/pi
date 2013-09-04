@@ -26,6 +26,7 @@ class Auto extends AbstractAvatar
         $src = '';
         if ($uid) {
             $upload     = '';
+            $select     = '';
             $gravatar   = '';
             if ($uid == $this->user->get('id')) {
                 $data = array(
@@ -38,6 +39,8 @@ class Auto extends AbstractAvatar
             if ($data) {
                 if (!$data['avatar']) {
                     $gravatar = $data['email'];
+                } elseif (preg_match('/[a-z0-9\-]/i', $data['avatar'])) {
+                    $select = $data['avatar'];
                 } elseif (false === strpos($data['avatar'], '@')) {
                     $upload = $data['avatar'];
                 } else {
@@ -47,6 +50,8 @@ class Auto extends AbstractAvatar
 
             if ($upload) {
                 $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
+            } elseif ($select) {
+                $src = Pi::service('avatar')->getAdapter('select')->build($select, $size);
             } elseif ($gravatar) {
                 $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
             }
@@ -71,9 +76,12 @@ class Auto extends AbstractAvatar
         foreach ($list as $uid => $data) {
             if ($data) {
                 $upload     = '';
+                $select     = '';
                 $gravatar   = '';
                 if (!$data['avatar']) {
                     $gravatar = $data['email'];
+                } elseif (preg_match('/[a-z0-9\-]/i', $data['avatar'])) {
+                    $select = $data['avatar'];
                 } elseif (false === strpos($data['avatar'], '@')) {
                     $upload = $data['avatar'];
                 } else {
@@ -81,6 +89,8 @@ class Auto extends AbstractAvatar
                 }
                 if ($upload) {
                     $src = Pi::service('avatar')->getAdapter('upload')->build($upload, $size);
+                } elseif ($select) {
+                    $src = Pi::service('avatar')->getAdapter('select')->build($select, $size);
                 } elseif ($gravatar) {
                     $src = Pi::service('avatar')->getAdapter('gravatar')->build($gravatar, $size);
                 }

@@ -6,6 +6,8 @@ return array(
     'adapter'       => 'gravatar',
     // System local avatars
     'adapter'       => 'local',
+    // System select avatars
+    'adapter'       => 'select',
     // User uploaded avatars
     'adapter'       => 'upload',
     // Auto detected
@@ -14,20 +16,20 @@ return array(
     // Options for named size
     'size_map'  => array(
         'mini'      => 16,
-        'xmall'     => 20,
+        'xmall'     => 24,
         's'         => 'small',
-        'small'     => 40,
+        'small'     => 28,
         'm'         => 'medium',
-        'medium'    => 60,
+        'medium'    => 46,
         'normal'    => 80,
         'l'         => 'large',
-        'large'     => 100,
+        'large'     => 96,
         'x'         => 'xlarge',
         'xlarge'    => 120,
-        'xxlarge'   => 150,
+        'xxlarge'   => 214,
         'max'       => 'origin',
         'o'         => 'origin',
-        'origin'    => 200,
+        'origin'    => 300,
     ),
 
     // Options for gravatar
@@ -38,6 +40,26 @@ return array(
         //'secure'    => true,
     ),
 
+    // Options for selective avatars
+    'select'    => array(
+        // Path to avatar root
+        'root_path' => Pi::path('static/avatar'),
+        // URL to avatar root
+        'root_url'  => Pi::url('static/avatar', true),
+        'extension' => 'png',
+        // Callback for path with parameters: source file name, size
+        'path'      => function($data) {
+            $path = sprintf(
+                '%s/%s' . '.png',
+                $data['source'],
+                $data['size']
+            );
+
+            return $path;
+        },
+    ),
+
+    // Options for upload avatars
     'upload'    => array(
         // Path to avatar root
         'root_path' => Pi::path('upload/avatar'),
