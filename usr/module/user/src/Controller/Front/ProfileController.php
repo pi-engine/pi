@@ -420,8 +420,9 @@ class ProfileController extends ActionController
     public function deleteCompoundAction()
     {
         Pi::service('log')->active(false);
+        $this->view()->setTemplate(false);
 
-        $uid      = _post('uid', '');
+        $uid      = Pi::user()->getIdentity();
         $compound = _post('compound', '');
         $set      = _post('set');
 
@@ -440,6 +441,75 @@ class ProfileController extends ActionController
             'status'  => $status ? 1 : 0,
             'message' => $status ? 'ok' : 'error',
         );
+    }
+
+    /**
+     * Add compound item
+     *
+     * @return array
+     */
+    public function addCompoundItemAction()
+    {
+        Pi::service('log')->active(false);
+        $this->view()->setTemplate(false);
+        $uid = Pi::user()->getIdentity();
+        $compound = _post('compound', '');
+
+        if (!$uid || !$compound) {
+            return array(
+                'status'  => 0,
+                'message' => 'error',
+            );
+        }
+
+        $compoundField = Pi::registry('profile', 'user')->read('compound');
+        if (!isset($compoundField[$compound])) {
+            return array(
+                'status'  => 0,
+                'message' => 'compound name invalid',
+            );
+        }
+
+        // Get compound element for edit
+        $compoundMeta     = Pi::registry('compound', 'user')->read($compound);
+        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $compoundData     = Pi::api('user', 'user')->get($uid, $compound);
+
+        $form = new CompoundForm('new.compound', $compoundElements);
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $form->setInputFilter(new CompoundFilter($compoundFilters));
+            $form->setData($post);
+
+            if ($form->isValid()) {
+                $values = $form->getData();
+                $values['uid'] = $uid;
+                unset($values['submit']);
+                unset($values['group']);
+
+                $newCompoundItem = array();
+                foreach ($values as $col => $val) {
+                    if (isset($compoundMeta[$col])) {
+                        $newCompoundItem[$col] = $val;
+                    }
+                }
+
+                $compoundData[] = $newCompoundItem;
+
+                // Update compound
+                $status = Pi::api('user', 'user')->set($uid, $compound, $compoundData);
+                return array(
+                    'status' => $status ? 1 : 0,
+                    'message' => $status ? 'ok' : 'error',
+                );
+            } else {
+                return array(
+                    'status' => 0,
+                    'message' => $form->getMessages(),
+                );
+            }
+        }
     }
 
     /**
@@ -750,6 +820,7 @@ class ProfileController extends ActionController
         //vd($result);
         //vd(Pi::path('module'));
         //vd(Pi::registry('profile', 'user')->read());
+        vd(Pi::registry('compound', 'user')->read('work'));
         $this->view()->setTemplate(false);
     }
 }
