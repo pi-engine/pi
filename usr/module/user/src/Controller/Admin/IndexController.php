@@ -27,15 +27,28 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        // Get normal user ids list
+        $status      = _post('status');
+        $frontRole   = _post('front-role');
+        $adminRole   = _post('admin-role');
+        $timeCreated = _post('time-created');
+
+        // Set condition
+        $conditon = $this->constructCondition(
+            $status,
+            $frontRole,
+            $adminRole,
+            $timeCreated
+        );
+
+        // Get user ids list
         $ids = Pi::api('user', 'user')->getUids(
-            array('active' => 1),
+            $conditon,
             $limit,
             $offset
         );
 
-        // Get normal user count
-        $count = Pi::api('user', 'user')->getCount(array('active' => 1));
+        // Get user count
+        $count = Pi::api('user', 'user')->getCount($conditon);
 
         // Get user information
         $users = $this->getUser($ids, 'active');
@@ -48,6 +61,7 @@ class IndexController extends ActionController
             'controller' => 'index',
             'action'     => 'index',
         );
+
         $paginator = $this->setPaginator($paginatorOption);
         $this->view()->assign(array(
             'users'     => $users,
@@ -56,11 +70,29 @@ class IndexController extends ActionController
             'curNav'    => 'active',
             'frontRole' => $this->getRoleSelectOptions(),
             'adminRole' => $this->getRoleSelectOptions('admin'),
+            'count'     => $count,
         ));
     }
 
     /**
+     * Pending user list
+     */
+    public function pendingAction()
+    {
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
+        $condition = array(
+            'time_activated' => 0,
+        );
+        $uids = Pi::api('user', 'user')->getUids($condition, $limit, $offset);
+        $count = Pi::api('user', 'user')->getCount($condition);
+    }
+
+    /**
      * Enable users
+     *
      * @return array
      */
     public function enableAction()
@@ -75,49 +107,90 @@ class IndexController extends ActionController
         $uids = explode(',', $uids);
 
         foreach ($uids as $uid) {
-            $status = Pi::api('usr', 'user')->enable($uid);
-            if (!$status) {
-                break;
-            }
+            Pi::api('usr', 'user')->enable($uid);
         }
 
         return array(
-            'status' => $status ? 1 : 0,
+            'status' => 1,
         );
     }
 
+    /**
+     * Disable user
+     *
+     * @return array
+     */
     public function disableAction()
     {
         $uids = _post('ids', '');
 
-        if ($uids) {
+        if (!$uids) {
             return array(
                 'status' => 0,
             );
         }
         $uids = explode(',', $uids);
+
+        foreach ($uids as $uid) {
+            Pi::api('user', 'user')->disableAction();
+        }
+
+        return array(
+            'status' => 1,
+        );
+
     }
 
     /**
-     * Test user
+     * Delete user
+     *
+     * @return array
      */
-    public function testAction()
+    public function deleteUserAction()
     {
-        $this->view()->setTemplate(false);
+        $uids = _post('ids');
+        $return = array(
+            'status' => 0
+        );
 
-        $model = $this->getModel('account');
-
-        for ($uid = 7; $uid < 30; $uid++)
-        {
-            $row = $model->update(
-                array(
-                    'active' => 1,
-                    'time_created' => time() - $uid * 3600 * 12,
-                    'time_activated' => time() - $uid * 3600 * 6,
-                ),
-                array('id' => $uid)
-            );
+        if (!$uids) {
+            return $return;
         }
+
+        $uids = explode(',', $uids);
+
+        foreach ($uids as $uid) {
+            Pi::api('user', 'user')->deleteUser();
+        }
+        $return['status'] = 1;
+
+        return $return;
+
+    }
+
+    /**
+     * Set role
+     *
+     * @return array
+     */
+    public function setRoleAction()
+    {
+        $uid     = _post('uid');
+        $role    = _post('role');
+        $section = _post('section');
+
+        $result = array(
+            'status' => 0,
+        );
+
+        if (!$uid || !$role || !$section) {
+            return $result;
+        }
+
+        Pi::api('user', 'user')->setRole($uid, $role, $section);
+
+        return $result;
+
     }
 
     /**
@@ -241,4 +314,60 @@ class IndexController extends ActionController
 
         return $paginator;
     }
+
+    /**
+     * Construct condition
+     *
+     * @param string $status
+     * @param string $frontRole
+     * @param string $adminRole
+     * @param string $timeCreated
+     * @return array
+     */
+    protected function constructCondition(
+        $status      = '',
+        $frontRole   = '',
+        $adminRole   = '',
+        $timeCreated = ''
+    ) {
+        $condition = array();
+
+        // Construct condition
+        if ($status) {
+            if ($status == 'enable') {
+                $condition['time_disabled'] = 0;
+            }
+            if ($status == 'disable') {
+                $condition['time_disabled'] = time();
+            }
+        }
+
+        if ($frontRole) {
+            // Todo
+        }
+
+        if ($adminRole) {
+            // Todo
+        }
+
+        if ($timeCreated) {
+            // Todo
+        }
+
+        if (empty($condition)) {
+            $condition['active'] = 1;
+        }
+        return $condition;
+
+    }
+
+//    protected function getPendingUserIds($limit = 0, $offset = 0)
+//    {
+//        $model = $this->getModel('account');
+//        $select = $model->select();
+//        $select->where(array(
+//            ''
+//        ));
+//
+//    }
 }
