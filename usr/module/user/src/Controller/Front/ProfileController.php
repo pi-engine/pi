@@ -31,17 +31,16 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $uid     = $this->params('id');
+        $uid     = $this->params('uid');
         $isLogin = Pi::service('user')->hasIdentity();
         $isOwner = false;
-        $data    = array();
 
         if (!$uid && !$isLogin) {
             $this->jumpTo404();
         }
 
         // Check owner
-        $loginUid = Pi::service('user')->getIdentity();vd($loginUid);
+        $loginUid = Pi::service('user')->getIdentity();
         if (!$uid || $uid == $loginUid) {
             $uid = Pi::service('user')->getIdentity();
             $isOwner = true;
@@ -54,14 +53,18 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid, 'display');
 
         // Get activity meta for nav display
-        $activityList = Pi::api('user', 'activity')->getList();
+        $nav = $this->getNav($uid, 'profile');
+
+        // Get quicklink
+        $quicklink = $this->getQuicklink();
 
         $this->view()->assign(array(
             'profileGroup' => $profileGroup,
             'uid'          => $uid,
             'isOwner'      => $isOwner,
             'user'         => $user,
-            'activityList' => $activityList,
+            'nav'          => $nav,
+            'quicklink'    => $quicklink,
         ));
     }
 
@@ -88,7 +91,7 @@ class ProfileController extends ActionController
 
         $loginUid = Pi::user()->getIdentity();
         if (!$uid || $uid == $loginUid) {
-            $uid = Pi::user()->getIdentity();
+            $uid = $loginUid;
             $isOwner = true;
         }
 
@@ -109,7 +112,7 @@ class ProfileController extends ActionController
         }
 
         // Get activity meta for nav display
-        $activityList = Pi::api('user', 'activity')->getList();
+        $nav = $this->getNav($uid, 'homepage');
 
         // Get quick link
         $quicklink = $this->getQuicklink();
@@ -133,7 +136,7 @@ class ProfileController extends ActionController
             'paginator'    => $paginator,
             'isOwner'      => $isOwner,
             'quicklink'    => $quicklink,
-            'activityList' => $activityList,
+            'nav'          => $nav,
         ));
     }
 
@@ -283,7 +286,7 @@ class ProfileController extends ActionController
         }
 
         // New compound form
-        $addForm = new CompoundForm('new.compound', $compoundElements);
+        $addForm = new CompoundForm('new-compound', $compoundElements);
         $addForm->setData(array(
             'set'   => $i,
             'group' => $groupName,
@@ -419,9 +422,6 @@ class ProfileController extends ActionController
      */
     public function deleteCompoundAction()
     {
-        Pi::service('log')->active(false);
-        $this->view()->setTemplate(false);
-
         $uid      = Pi::user()->getIdentity();
         $compound = _post('compound', '');
         $set      = _post('set');
@@ -450,10 +450,8 @@ class ProfileController extends ActionController
      */
     public function addCompoundItemAction()
     {
-        Pi::service('log')->active(false);
-        $this->view()->setTemplate(false);
-        $uid = Pi::user()->getIdentity();
-        $compound = _post('compound', '');
+        $uid      = Pi::user()->getIdentity();
+        $compound = _post('group', '');
 
         if (!$uid || !$compound) {
             return array(
@@ -476,7 +474,7 @@ class ProfileController extends ActionController
         $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
         $compoundData     = Pi::api('user', 'user')->get($uid, $compound);
 
-        $form = new CompoundForm('new.compound', $compoundElements);
+        $form = new CompoundForm('new-compound', $compoundElements);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new CompoundFilter($compoundFilters));
@@ -498,9 +496,14 @@ class ProfileController extends ActionController
                 $compoundData[] = $newCompoundItem;
 
                 // Update compound
-                $status = Pi::api('user', 'user')->set($uid, $compound, $compoundData);
+                $status = Pi::api('user', 'user')->set(
+                    $uid,
+                    $compound,
+                    $compoundData
+                );
+
                 return array(
-                    'status' => $status ? 1 : 0,
+                    'status'  => $status ? 1 : 0,
                     'message' => $status ? 'ok' : 'error',
                 );
             } else {
@@ -757,6 +760,13 @@ class ProfileController extends ActionController
         return $result;
     }
 
+    /**
+     * Get quicklink
+     *
+     * @param null $limit
+     * @param null $offset
+     * @return array
+     */
     protected function getQuicklink($limit = null, $offset = null)
     {
         $result = array();
@@ -793,6 +803,82 @@ class ProfileController extends ActionController
 
     }
 
+    /**
+     * Set nav form home page profile and activity
+     *
+     * @param $uid
+     * @return array
+     */
+    protected function getNav($uid, $cur)
+    {
+        // Get activity list
+        $items = array();
+        $nav = array(
+            'cur'   => $cur,
+            'items' => $items,
+        );
+
+        if (!$uid) {
+            return $nav;
+        }
+
+        // Set homepage
+        $homepageUrl = $this->url(
+            'user',
+            array(
+                'controller' => 'profile',
+                'action' => 'home',
+                'uid' => $uid
+            )
+        );
+        $items[] = array(
+            'title' => __('Homepage'),
+            'name'  => 'homepage',
+            'url'   => $homepageUrl,
+            'icon'  => '',
+        );
+
+        // Set profile
+        $profileUrl = $this->url(
+            'user',
+            array(
+                'controller' => 'profile',
+                'action'     => 'index',
+                'uid'        => $uid,
+            )
+        );
+        $items[] = array(
+            'title' => __('Profile'),
+            'name'  => 'profile',
+            'url'   => $profileUrl,
+            'icon'  => '',
+        );
+
+        // Set activity
+        $activityList = Pi::api('user', 'activity')->getList();
+        foreach ($activityList as $key => $value) {
+            $url = $this->url(
+                'user',
+                array(
+                    'controller' => 'activity',
+                    'action'     => 'index',
+                    'uid'        => $uid,
+                    'name'       => $key,
+                )
+            );
+            $items[] = array(
+                'title' => $value['title'],
+                'name'  => $key,
+                'icon'  => $value['icon'],
+                'url'   => $url,
+            );
+        }
+
+        $nav['items'] = $items;
+        return $nav;
+
+    }
+
     public function testAction()
     {
 //        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
@@ -820,7 +906,9 @@ class ProfileController extends ActionController
         //vd($result);
         //vd(Pi::path('module'));
         //vd(Pi::registry('profile', 'user')->read());
-        vd(Pi::registry('compound', 'user')->read('work'));
+        //vd(Pi::registry('compound', 'user')->read('work'));
+        //vd($this->getQuicklink());
+        $this->getNav(1, 'profile');
         $this->view()->setTemplate(false);
     }
 }
