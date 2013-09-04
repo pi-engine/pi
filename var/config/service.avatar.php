@@ -13,6 +13,9 @@ return array(
     // Auto detected
     'adapter'       => 'auto',
 
+    // Allowed adapters
+    'adapter_allowed' => array('upload', 'select', 'gravatar'),
+
     // Options for named size
     'size_map'  => array(
         'mini'      => 16,

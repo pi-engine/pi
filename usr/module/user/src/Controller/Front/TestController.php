@@ -37,6 +37,7 @@ class TestController extends ActionController
         vd(Pi::user()->getUrl('register'));
         vd(Pi::user()->avatar(1));
         vd(Pi::user()->avatar()->getAdapter('select')->getMeta());
+        vd(Pi::avatar()->getAdapter('upload')->getMeta(Pi::user()->id));
     }
 
     protected function flushUsers()
