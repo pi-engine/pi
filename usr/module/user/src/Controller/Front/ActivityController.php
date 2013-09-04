@@ -57,6 +57,7 @@ class ActivityController extends ActionController
             'activityContents' => $activityContents,
             'curActivity'      => $name,
             'user'             => $user,
+            'isOwner'          => true,
         ));
     }
 
