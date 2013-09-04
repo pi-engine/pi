@@ -3,24 +3,6 @@
 ?>
 <?php include '_user-media.phtml'; ?>
 <div>
-    <!-- Display module nav   -->
-    <ul class="nav nav-tabs">
-        <li>
-            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
-        </li>
-        <li class="active">
-            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
-                <?php _e('Profile'); ?>
-            </a>
-        </li>
-        <?php foreach ($activityList as $row) {?>
-        <li>
-            <a href="<?php echo $this->url('', array('controller' => 'activity', 'action' => 'index', 'module' => $row['module'], 'type' => $row['name']));?>">
-                <?php echo $this->escape($row['title']); ?>
-            </a>
-        </li>
-        <?php } ?>
-    </ul>
     <div>
         <?php foreach ($profileGroup as $group) {?>
         <div class="clearfix user-legend">
