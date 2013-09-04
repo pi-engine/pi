@@ -69,4 +69,18 @@ class IndexController extends ActionController
         }
         $this->view()->assign($params);
     }
+
+    /**
+     * Generate sitemap
+     */
+    public function sitemapAction()
+    {
+        $this->view()->setTemplate(false)->setLayout('layout-content');
+        $sitemapConfig = Pi::registry('navigation')->read('sitemap')
+            ?: Pi::registry('navigation')->read('front');
+        $sitemap = $this->view()->navigation($sitemapConfig)->sitemap();
+        $content = $sitemap->setFormatOutput(true)->render();
+
+        return $content;
+    }
 }
