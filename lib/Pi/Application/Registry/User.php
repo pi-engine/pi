@@ -45,8 +45,7 @@ class User extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $parseView = function ($row)
-        {
+        $parseView = function ($row) {
             $view = array();
             if (!empty($row->view)) {
                 $view['method'] = array($row->module . '_profile', $row->view);
@@ -88,8 +87,7 @@ class User extends AbstractRegistry
             return $input;
         };
 
-        $parseSearch = function ($row)
-        {
+        $parseSearch = function ($row) {
             if (!is_null($row->search)) {
                 $input = $row->search;
             } elseif (!empty($row->edit)) {
