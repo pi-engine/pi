@@ -174,7 +174,7 @@ CREATE TABLE `{privacy}` (
   `field`     varchar(64)          NOT NULL default '',
   `value`     enum('owner', 'following', 'follower', 'friend', 'public'),
   -- Is forced by admin
-  `is_forced` tinyint(1)            NOT NULL default '0'
+  `is_forced` tinyint(1)            NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `field` (`field`)
