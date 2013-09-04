@@ -96,7 +96,7 @@ class Auto extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($source, $size = '')
+    public function build($source, $size = '', $uid = null)
     {
         return false;
     }

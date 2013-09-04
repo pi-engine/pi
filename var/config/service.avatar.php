@@ -7,7 +7,7 @@ return array(
     // System local avatars
     'adapter'       => 'local',
     // User uploaded avatars
-    //'adapter'       => 'upload',
+    'adapter'       => 'upload',
     // Auto detected
     'adapter'       => 'auto',
 
@@ -39,15 +39,19 @@ return array(
     ),
 
     'upload'    => array(
+        // Path to avatar root
+        'root_path' => Pi::path('upload/avatar'),
+        // URL to avatar root
+        'root_url'  => Pi::url('upload/avatar', true),
         // Callback for path with parameters: uid, source file name, size
         // File number limit in a folder as 10000 (defined by `$fileLimit`)
         'path'  => function($data) {
             $fileLimit = 10000;
             $uid = $data['uid'];
-            $serial = str_pad(round($uid / $fileLimit), 4, '0', STR_PAD_LEFT);
+            $sn = str_pad(round($uid / $fileLimit) + 1, 4, '0', STR_PAD_LEFT);
             $path = sprintf(
-                'upload/avatar/%s/%s/%s',
-                $serial,
+                '%s/%s/%s',
+                $sn,
                 $data['size'],
                 $data['source']
             );

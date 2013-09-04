@@ -71,7 +71,7 @@ class Gravatar extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($source, $size = '')
+    public function build($source, $size = '', $uid = null)
     {
         $size = $this->canonizeSize($size);
         $src = $this->getUrl($source, $size);

@@ -173,14 +173,16 @@ abstract class AbstractAvatar
     /**
      * Build user avatar link from corresponding source
      *
-     * @param string $source
-     * @param string $size
+     * @param string    $source
+     * @param string    $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      *
+     * @param int|null  $uid
+     *
      * @return string
      */
-    abstract public function build($source, $size = '');
+    abstract public function build($source, $size = '', $uid = null);
 
     /**
      * Canonize sie

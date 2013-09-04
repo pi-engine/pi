@@ -59,15 +59,46 @@ class Upload extends AbstractAvatar
     /**
      * {@inheritDoc}
      */
-    public function build($source, $size = '')
+    public function build($source, $size = '', $uid = null)
     {
-        $uid = func_get_args(2);
-        $size = $this->canonizeSize($size, false);
+        return $this->buildPath($source, $size, $uid, true);
+    }
+
+    /**
+     * Build avatar path/URL
+     *
+     * @param string    $source
+     * @param string    $size
+     * @param int       $uid
+     * @param bool      $isUrl
+     *
+     * @return string
+     */
+    protected function buildPath(
+        $source,
+        $size = '',
+        $uid = null,
+        $isUrl = false
+    ) {
+        if ($isUrl) {
+            if (isset($this->options['root_url'])) {
+                $root = $this->options['root_url'];
+            } else {
+                $root = Pi::url('upload/avatar', true);
+            }
+        } else {
+            if (isset($this->options['root_path'])) {
+                $root = $this->options['root_path'];
+            } else {
+                $root = Pi::path('upload/avatar');
+            }
+        }
         if (!empty($this->options['path'])) {
             $pattern = $this->options['path'];
         } else {
-            $pattern = 'upload/avatar/%size%/%uid%_%source%';
+            $pattern = '%size%/%uid%_%source%';
         }
+        $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
             $path = call_user_func($pattern, array(
                 'source'    => $source,
@@ -81,13 +112,13 @@ class Upload extends AbstractAvatar
                 $pattern
             );
         }
-        $src = Pi::url($path);
+        $src = $root . '/' . $path;
 
         return $src;
     }
 
     /**
-     * Get/Create avatar meta (path and size) of a user
+     * Get/Create avatar meta (path, src and size) of a user
      *
      * - Get meta of a specific size
      * ```
@@ -131,9 +162,10 @@ class Upload extends AbstractAvatar
 
         $source = $source ?: md5(uniqid($uid));
         $_this = $this;
-        $getMeta = function ($size) use ($_this, $source) {
+        $getMeta = function ($size) use ($_this, $source, $uid) {
             $meta = array(
-                'path'  => $_this->build($source, $size),
+                'src'   => $_this->build($source, $size, $uid),
+                'path'  => $_this->buildPath($source, $size, $uid),
                 'size'  => $_this->canonizeSize($size)
             );
 
