@@ -113,7 +113,7 @@ class IndexController extends AbstractController
                 );
 
                 if ($userId == $v['uid_from']) {
-                    $v['is_new'] = 0;
+                    $v['is_read'] = 1;
                     // get username url
                     $v['username'] = Pi::user()->getUser($v['uid_to'])
                                                ->identity;
@@ -123,7 +123,7 @@ class IndexController extends AbstractController
                     //get avatar
                     $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
-                    $v['is_new'] = $v['is_new_to'];
+                    $v['is_read'] = $v['is_read_to'];
                     //get username url
                     $v['username'] = Pi::user()->getUser($v['uid_from'])
                                                ->identity;
@@ -134,8 +134,8 @@ class IndexController extends AbstractController
                 }
 
                 unset(
-                    $v['is_new_from'],
-                    $v['is_new_to'],
+                    $v['is_read_from'],
+                    $v['is_read_to'],
                     $v['delete_status_from'],
                     $v['delete_status_to']
                 );
@@ -179,11 +179,11 @@ class IndexController extends AbstractController
 
         $messageTitle = sprintf(
             __('Private message(%s) unread'),
-            Service::getUnread($userId, Service::TYPE_MESSAGE)
+            Service::getUnread($userId, 'message')
         );
         $notificationTitle = sprintf(
             __('Notification(%s) unread'),
-            Service::getUnread($userId, Service::TYPE_NOTIFICATION)
+            Service::getUnread($userId, 'notification')
         );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
@@ -429,9 +429,9 @@ class IndexController extends AbstractController
         //markup content
         $detail['content'] = Pi::service('markup')->render($detail['content']);
 
-        if ($detail['is_new_to'] && $userId == $detail['uid_to']) {
+        if (!$detail['is_read_to'] && $userId == $detail['uid_to']) {
             //mark the message as read
-            $model->update(array('is_new_to' => 0), array('id' => $messageId));
+            $model->update(array('is_read_to' => 1), array('id' => $messageId));
         }
 
         $this->view()->assign('message', $detail);
@@ -465,8 +465,8 @@ class IndexController extends AbstractController
             $messageIds = explode(',', $messageIds);
         }
 
-        $model = $this->getModel('private_message');
-        $result = $model->update(array('is_new_to' => 0), array(
+        $model = $this->getModel('message');
+        $result = $model->update(array('is_read_to' => 1), array(
             'id'     => $messageIds,
             'uid_to' => $userId
         ));

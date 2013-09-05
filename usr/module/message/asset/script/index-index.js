@@ -71,7 +71,7 @@
             window.location = $(this).find(".message-content p a").attr("href")
         },
         deleteAction: function() {
-            var href = app.$delete.attr('href');
+            var href = $(this).attr('href');
             if (!$('#confirm-modal').length) {
                 $('#confirm-modal').attr('display','block');
             } 

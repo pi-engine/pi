@@ -20,7 +20,7 @@
 <div class="messages" id="message-js">
     <?php if (!empty($notifications)) { ?>
     <?php foreach ($notifications as $notification) { ?>   
-    <div class="media message-item<?php if($notification['is_new']) { echo ' message-item-read'; } ?>">
+    <div class="media message-item<?php if(!$notification['is_read']) { echo ' message-item-read'; } ?>">
         <div class='pull-left'>
             <input type="checkbox" class="message-js-check" data-id="<?php echo $notification['id']; ?>">
         </div>
@@ -87,11 +87,11 @@
     <?php
         if (isset($paginator)) {
             echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array(
-                'class' => 'pagination-right'
+                'class' => 'pagination-right pull-right message-pagination'
             ));
         }
     ?>
-    <?php include '_confirm-modal.phtml' ?>
+
     <form class="form-inline message-foot-form" action="">
         <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
         <select class="message-batch-action">
@@ -100,6 +100,7 @@
             <option value="delete"><?php _e('Delete'); ?></option>
         </select>
     </form>
+    <?php include '_confirm-modal.phtml' ?>
 </div>
 
 <script src="<?php echo $this->assetModule('script/notify-index.js'); ?>"></script>
