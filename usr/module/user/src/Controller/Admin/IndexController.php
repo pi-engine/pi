@@ -431,6 +431,35 @@ class IndexController extends ActionController
     {
         $this->view()->setTemplate(false);
 
+        $modelAccount = Pi::model('user_account');
+        $modelRole = Pi::model('user_role');
+
+        $whereRoleAdmin = Pi::db()->where()->create(array(
+            'role.role = ?'     => 'staff',
+            'role.section = ?'  => 'admin',
+        ));
+
+        $whereRoleFront = Pi::db()->where()->create(array(
+            'role.role = ?'     => 'member',
+            'role.section = ?'  => 'front',
+        ));
+
+        $where = Pi::db()->where();
+        $where->add(array('account.active = ?' => 1))
+            ->add($whereRoleAdmin)
+            ->add($whereRoleFront);
+
+        $select = Pi::db()->select();
+        $select->from(array('account' => $modelAccount->getTable()));
+        $select->columns(array('id'));
+        $select->join(
+            array('role' => $modelRole->getTable()),
+            'role.uid=account.id'
+        );
+        $select->where($where);
+        $rowset = Pi::db()->query($select);
+
+        /*
         $modelAccount = $this->getModel('account');
         $select  = Pi::db()->select();
         $select->from(array('account' => $modelAccount->getTable()));
@@ -457,6 +486,7 @@ class IndexController extends ActionController
 
         $select->where($where);
         $rowset = Pi::db()->query($select);
+        */
 
         foreach ($rowset as $row) {
             $result[] = $row['id'];
