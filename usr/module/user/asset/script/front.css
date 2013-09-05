@@ -7,7 +7,15 @@
 	line-height: 30px;
 	height: 30px;
 }
-
+.controls-text {
+	padding-top: 3px;
+}
+.gutter {
+	margin: 0 10px;
+}
+.gutter-large {
+	margin: 0 20px;
+}
 /* Home page */
 .user-media {
 	border-bottom: 1px solid #ccc;
@@ -55,6 +63,12 @@
 }
 .user-field-dl dd {
 	line-height: 24px;
+}
+.user-none-fields {
+	background: #e6e6e6;
+	padding: 40px 0;
+	text-align: center;
+	margin: 20px 0;
 }
 /* Edit */
 .user-info-item {
