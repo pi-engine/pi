@@ -30,33 +30,5 @@ class AvatarForm extends BaseForm
                 'type'      => 'hidden',
             ),
         ));
-        
-        $this->add(array(
-            'name'       => 'x',
-            'attributes' => array(
-                'type'      => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'y',
-            'attributes' => array(
-                'type'      => 'hidden',
-            ),
-        ));
-
-        $this->add(array(
-            'name'       => 'w',
-            'attributes' => array(
-                'type'      => 'hidden',
-            ),
-        ));
-
-        $this->add(array(
-            'name'       => 'h',
-            'attributes' => array(
-                'type'      => 'hidden',
-            ),
-        ));
     }
 }
