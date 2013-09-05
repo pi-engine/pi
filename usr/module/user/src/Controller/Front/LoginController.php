@@ -189,7 +189,10 @@ class LoginController extends ActionController
         }
 
         // Get user id according to identity
-        $uid = Pi::service('user')->getIdentity();
+        $uid = $this->getModel('account')->find(
+            $result->getIdentity(),
+            'identity'
+        )->id;
 
         // Trigger login event
         $rememberTime = isset($configs['rememberme'])
@@ -208,7 +211,7 @@ class LoginController extends ActionController
                 'user',
                 array(
                     'controller' => 'register',
-                    'action' => 'completeProfile',
+                    'action' => 'complete.profile',
                     'redirect' => urlencode($redirect),
                 )
             );

@@ -258,6 +258,8 @@ class RegisterController extends ActionController
      */
     public function completeProfileAction()
     {
+        $status = 0;
+        $isPost = 0;
         // Get redirect
         $redirect = $this->params('redirect', '');
         if (!$redirect) {
@@ -296,20 +298,23 @@ class RegisterController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
 
-                $status = Pi::api('user', 'user')->updateUser($uid, $values);
+                Pi::api('user', 'user')->updateUser($uid, $values);
 
                 // Set perfect information flag in user table
                 Pi::user()->data()->set($uid, 'profile-complete', 1);
-
+                $status = 1;
                 return $this->jump(
                     $redirect,
                     __('Perfect information successfully')
                 );
             }
+            $isPost = 1;
         }
 
         $this->view()->assign(array(
-            'form' => $form,
+            'form'   => $form,
+            'status' => $status,
+            'isPost' => $isPost
         ));
 
         $this->view()->setTemplate('register-complete-profile');
