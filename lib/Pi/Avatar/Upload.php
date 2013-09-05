@@ -148,8 +148,10 @@ class Upload extends AbstractAvatar
      *  );
      * ```
      *
-     * @param int       $uid
+     * @param int       $uid    User id
      * @param string    $source
+     *      Filename; A hased filename without extension will be generated
+     *      if it is not specified
      * @param string    $size
      *
      * @return array|bool
@@ -160,7 +162,7 @@ class Upload extends AbstractAvatar
             return false;
         }
 
-        $source = $source ?: md5(uniqid($uid));
+        $source = $this->hashSource($uid, $source);
         $_this = $this;
         $getMeta = function ($size) use ($_this, $source, $uid) {
             $meta = array(
@@ -180,6 +182,37 @@ class Upload extends AbstractAvatar
             foreach (array_keys($sizeList) as $name) {
                 $result[$name] = $getMeta($name);
             }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Generate hashed source name
+     *
+     * @param int    $uid
+     * @param string $source
+     * @param string $extension
+     *
+     * @return mixed|string
+     */
+    public function hashSource($uid, $source, $extension = '')
+    {
+        if (!$extension) {
+            if ($source) {
+                $extension = pathinfo($source, PATHINFO_EXTENSION);
+            } else {
+                $extension = 'jpg';
+            }
+        }
+        if (!empty($this->options['source_hash'])) {
+            $result = call_user_func($this->options['source_hash'], array(
+                'uid'       => $uid,
+                'extension' => $extension,
+                'source'    => $source,
+            ));
+        } else {
+            $result = md5(uniqid($uid)) .  '.' . $extension;
         }
 
         return $result;

@@ -84,6 +84,11 @@ return array(
 
             return $path;
         },
+        'source_hash'   => function ($data) {
+            $result = md5(uniqid($data['uid'])) .  '.' . $data['extension'];
+
+            return $result;
+        },
     ),
 
     // Options for QQ avatar
