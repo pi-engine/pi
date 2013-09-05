@@ -75,6 +75,9 @@ class IndexController extends ActionController
      */
     public function sitemapAction()
     {
+        // Disable debugger message
+        Pi::service('log')->mute();
+
         $this->view()->setTemplate(false)->setLayout('layout-content');
         $sitemapConfig = Pi::registry('navigation')->read('sitemap')
             ?: Pi::registry('navigation')->read('front');
