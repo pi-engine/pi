@@ -70,17 +70,17 @@ class Upload extends AbstractAvatar
      * @param string    $source
      * @param string    $size
      * @param int       $uid
-     * @param bool      $isUrl
+     * @param bool      $toUrl
      *
      * @return string
      */
-    protected function buildPath(
+    public function buildPath(
         $source,
         $size = '',
         $uid = null,
-        $isUrl = false
+        $toUrl = false
     ) {
-        if ($isUrl) {
+        if ($toUrl) {
             if (isset($this->options['root_url'])) {
                 $root = $this->options['root_url'];
             } else {

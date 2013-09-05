@@ -172,12 +172,7 @@ class Local extends System
     /**#@-*/
 
     /**
-     * Get user data model
-     *
-     * @param int       $uid
-     * @param string    $field
-     *
-     * @return UserModel
+     * {@inheritDoc}
      */
     protected function getUserModel($uid, $field = 'id')
     {

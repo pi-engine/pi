@@ -195,7 +195,7 @@ abstract class AbstractAvatar
      *
      * @return int|string
      */
-    protected function canonizeSize($size, $toInt = true)
+    public function canonizeSize($size, $toInt = true)
     {
         return Pi::service('avatar')->canonizeSize($size, $toInt);
     }

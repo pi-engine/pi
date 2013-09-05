@@ -230,8 +230,8 @@ class System extends AbstractAdapter
     /**
      * Get user data model
      *
-     * @param int       $uid
-     * @param string    $field
+     * @param int|string    $uid
+     * @param string        $field
      *
      * @return UserModel
      */

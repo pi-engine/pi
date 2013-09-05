@@ -80,7 +80,7 @@ abstract class AbstractModel extends ArrayObject
         $result = null;
         if ('role' == $offset) {
             $result = $this->role;
-        } else {
+        } elseif (array_key_exists($offset, $this->data)) {
             $result = $this->data[$offset];
         }
 

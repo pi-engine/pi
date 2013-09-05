@@ -25,6 +25,6 @@ class User extends AbstractResource
     {
         $identity = (string) Pi::service('authentication')->getIdentity();
         Pi::service('user')->bind($identity, 'identity');
-        Pi::entity('user', Pi::service('user')->getUser());
+        //Pi::entity('user', Pi::service('user')->getUser());
     }
 }
