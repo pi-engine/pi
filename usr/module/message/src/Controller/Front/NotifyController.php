@@ -39,11 +39,11 @@ class NotifyController extends AbstractController
 
         $messageTitle = sprintf(
             __('Private message(%s) unread'),
-            Service::getUnread($userId, Service::TYPE_MESSAGE)
+            Service::getUnread($userId, 'message')
         );
         $notificationTitle = sprintf(
             __('Notification(%s) unread'),
-            Service::getUnread($userId, Service::TYPE_NOTIFICATION)
+            Service::getUnread($userId, 'notification')
         );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
@@ -164,13 +164,12 @@ class NotifyController extends AbstractController
         }
         $detail = $rowset->toArray();
 
-        $detail['username'] = Pi::user()->getUser(1)->identity;;//TODO
         //markup content
         $detail['content'] = Pi::service('markup')->render($detail['content']);
 
-        if ($detail['is_new']) {
+        if (!$detail['is_read']) {
             //mark the notification as read
-            $model->update(array('is_new' => 0),
+            $model->update(array('is_read' => 1),
                            array('id' => $notificationId));
         }
 
@@ -207,7 +206,7 @@ class NotifyController extends AbstractController
         }
 
         $model = $this->getModel('notification');
-        $model->update(array('is_new' => 0), array(
+        $model->update(array('is_read' => 1), array(
             'id'  => $notificationIds,
             'uid' => $userId
         ));

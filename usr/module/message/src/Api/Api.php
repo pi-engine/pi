@@ -48,7 +48,7 @@ use Zend\Db\Sql\Predicate\Expression;
 class Api extends AbstractApi
 {
     /**
-     * The number of records each insertion in the loop
+     * The number of records in each insertion in the loop
      *
      * @var int
      */
@@ -87,8 +87,6 @@ class Api extends AbstractApi
             $names = Pi::user()->get(array($from, $to), 'identity');
             //audit log
             $args = array(
-                //'from:' . Pi::user()->getUser($from)->identity,//TODO
-                //'to:' . Pi::user()->getUser($from)->identity,
                 $names[$from],
                 $names[$to],
                 $message,
@@ -129,61 +127,66 @@ class Api extends AbstractApi
             }
         } else {
             if ($to === '*') {
-                $uids = Pi::user()->getIds();//TODO
+                $uids = Pi::user()->getUids();
             } elseif (is_array($to)) {
                 $uids = $to;
             } else {
                 return false;
             }
             if (!empty($uids)) {
-                $tableName      = Pi::db()->prefix('notification',
-                                                   $this->getModule());
-                $columns        = array(
-                    'uid', 'subject',
-                    'content', 'tag',
+                $columns = array(
+                    'uid',
+                    'subject',
+                    'content',
+                    'tag',
                     'time_send'
                 );
                 $values         = array($subject, $message, $tag, time());
                 $columnString   = '';
-                $valueString    = ':uid, ';
+                $valueString    = '%s, ';
                 foreach ($columns as $column) {
-                    $columnString .= $model->quoteIdentifier($column) . ', ';
+                    $columnString .= $model->quoteIdentifier($column) . ',';
                 }
                 foreach ($values as $value) {
-                    $valueString .= $model->quoteValue($value) . ', ';
+                    $valueString .= $model->quoteValue($value) . ',';
                 }
-                $columnString = substr($columnString, 0, -2);
-                $valueString = substr($valueString, 0, -2);
+                $valueString = '(' . substr($valueString, 0, -1) . '),';
                 $sql = 'INSERT INTO '
-                     . $model->quoteIdentifier($tableName)
-                     . ' (' . $columnString . ') VALUES ';
+                     . $model->quoteIdentifier($model->getTable())
+                     . ' (' . substr($columnString, 0, -1) . ') VALUES ';
                 while (!empty($uids)) {
                     $mySql = $sql;
                     $loop = 0;
+                    $passUids = array();
                     foreach ($uids as $key => $uid) {
-                        $myValueString = str_replace(
-                            ':uid',
-                            $model->quoteValue($uid), $valueString
-                        );
-                        $mySql .= '(' . $myValueString . '), ';
+                        $mySql .= sprintf(
+                            $valueString,
+                            $model->quoteValue($uid)
+                        ) . ',';
+                        $passUids[] = $uids[$key];
                         unset($uids[$key]);
                         if (++$loop > static::$batchInsertLen) {
                             break;
                         }
                     }
-                    $mySql = substr($mySql, 0, -2);
-                    $model->getAdapter()->query(
-                        $mySql,
-                        \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE
-                    );
+                    $mySql = substr($mySql, 0, -1);
+                    try {
+                        Pi::db()->query($mySql);
+
+                        // increase message alert
+                        foreach ($passUids as $uid) {
+                            $this->increaseAlert($uid);
+                        }
+
+                        $result = true;
+                    } catch (\Exception $e) {
+                        $result = false;
+                    }
                 }
             }
         }
 
-        // increase message alert
-        $this->increaseAlert($to);
-
-        return true;
+        return $result;
     }
 
     /**
@@ -206,22 +209,24 @@ class Api extends AbstractApi
             break;
         }
         if ('notification' == $type) {
-            $select = Pi::model('notification')->select();
+            $model  = Pi::model('notification', $this->getModule());
+            $select = $model->select();
             $select->columns(array(
                 'count' => Pi::db()->expression('count(*)'),
             ));
             $where = array(
-                'uid_to'        => $uid,
+                'uid'           => $uid,
                 'is_deleted'    => 0
             );
             if (!$includeRead) {
                 $where['is_read'] = 0;
             }
             $select->where($where);
-            $row = Pi::model('notification')->selectWith($select)->current();
+            $row = $model->selectWith($select)->current();
             $count = (int) $row['count'];
         } elseif ('message' == $type) {
-            $select = Pi::model('message')->select();
+            $model  = Pi::model('message', $this->getModule());
+            $select = $model->select();
             $select->columns(array(
                 'count' => Pi::db()->expression('count(*)'),
             ));
@@ -234,19 +239,19 @@ class Api extends AbstractApi
                 'is_deleted_from'   => 0,
             );
             if (!$includeRead) {
-                $whereTo['is_read'] = 0;
-                $whereFrom['is_read'] = 0;
+                $whereTo['is_read_to']     = 0;
+                $whereFrom['is_read_from'] = 0;
             }
 
             $where = Pi::db()->where();
             $where->addPredicate(Pi::db()->where($whereTo));
             $where->orPredicate(Pi::db()->where($whereFrom));
             $select->where($where);
-            $row = Pi::model('notification')->selectWith($select)->current();
+            $row = $model->selectWith($select)->current();
             $count = (int) $row['count'];
         } else {
-            $count = $this->getCount($uid, 'message')
-                + $this->getCount($uid, 'notification');
+            $count = $this->getCount($uid, $includeRead, 'message')
+                + $this->getCount($uid, $includeRead, 'notification');
         }
 
         return $count;
@@ -277,7 +282,7 @@ class Api extends AbstractApi
     }
 
     /**
-     * Increment/decrement message alter
+     * Increment message alter
      *
      * @param  int       $uid
      * @return bool

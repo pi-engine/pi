@@ -20,27 +20,6 @@ use Zend\Db\Sql\Predicate\Expression;
 class Service
 {
     /**
-     * Message type: all
-     *
-     * @var int
-     */
-    const TYPE_ALL = 0;
-
-    /**
-     * Message type: private message
-     *
-     * @var int
-     */
-    const TYPE_MESSAGE = 1;
-
-    /**
-     * Message type: notification
-     *
-     * @var int
-     */
-    const TYPE_NOTIFICATION = 2;
-
-    /**
      * Message summary
      *
      * @param  string $message
@@ -118,37 +97,47 @@ class Service
      * @param  int       $type
      * @return int|false
      */
-    public static function getUnread($uid, $type = self::TYPE_ALL)
+    public static function getUnread($uid, $type = '')
     {
-        $count = 0;
-        if ($type == self::TYPE_MESSAGE || $type == self::TYPE_ALL) {
-            //get unread private message count
-            $privateModel  = Pi::model('private_message', 'message');
-            $select = $privateModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                   ->where(array(
-                                       'uid_to' => $uid,
-                                       'delete_status_to' => 0,
-                                       'is_new_to' => 1
-                                   ));
-            $count += $privateModel->selectWith($select)->current()->count;
+        switch ($type) {
+            case 'message':
+            case 'notification':
+                break;
+            default:
+                $type = '';
+            break;
         }
-
-        if ($type == self::TYPE_NOTIFICATION || $type == self::TYPE_ALL) {
-            //get unread notification count
-            $notifyModel  = Pi::model('notification', 'message');
-            $select = $notifyModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                  ->where(array(
-                                      'uid' => $uid,
-                                      'delete_status' => 0,
-                                      'is_new' => 1
-                                  ));
-            $count += $notifyModel->selectWith($select)->current()->count;
+        if ('notification' == $type) {
+            $model  = Pi::model('notification', 'message');
+            $select = $model->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
+            $where = array(
+                'uid'           => $uid,
+                'is_deleted'    => 0,
+                'is_read'       => 0,
+            );
+            $select->where($where);
+            $row = $model->selectWith($select)->current();
+            $count = (int) $row['count'];
+        } elseif ('message' == $type) {
+            $model  = Pi::model('message', 'message');
+            $select = $model->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
+            $where = array(
+                'uid_to'        => $uid,
+                'is_deleted_to' => 0,
+                'is_read_to'    => 0,
+            );
+            $select->where($where);
+            $row = $model->selectWith($select)->current();
+            $count = (int) $row['count'];
+        } else {
+            $count = $this->getCount($uid, 'message')
+                + $this->getCount($uid, 'notification');
         }
 
         return $count;
