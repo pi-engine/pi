@@ -60,15 +60,4 @@ class ActivityController extends ActionController
             'isOwner'          => true,
         ));
     }
-
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
-        $class = 'Module\\User\\ActivityTest';
-        $reader = new $class('dasda');
-        $data = $reader->get(7, 'name1', 10);
-
-        vd($data);
-
-    }
 }

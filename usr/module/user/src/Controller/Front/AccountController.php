@@ -24,11 +24,8 @@ class AccountController extends ActionController
      */
     public function indexAction()
     {
-        // From verify error message
-        $errorMsg     = '';
-        // Update status
-        $updateStatus = '';
-
+        $status = 0;
+        $isPost = 0;
         // Check login in
         if (!Pi::service('user')->hasIdentity()) {
             $this->redirect()->toRoute(
@@ -43,12 +40,14 @@ class AccountController extends ActionController
         // Get username and email
         $getData = Pi::api('user', 'user')->get(
             $uid,
-            array('identity', 'email')
+            array('identity', 'email', 'name')
         );
         $username = $getData['identity'];
         $email    = $getData['email'];
+        $displayName = $getData['name'];
 
         $form = new AccountForm('account');
+        $form->setData(array('name' => $displayName));
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -59,13 +58,14 @@ class AccountController extends ActionController
                 $values = $form->getData();
                 $updateStatus = Pi::api('user', 'user')
                     ->updateUser($uid, $values);
-            } else {
-                $errorMsg = __('Input data invalid');
+                $status = 1;
             }
+
+            $isPost = 1;
         }
 
         // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();vd($groups);
+        $groups = Pi::api('user', 'group')->getList();
         foreach ($groups as $key => &$group) {
             $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
             $group['link'] = $this->url(
@@ -83,10 +83,10 @@ class AccountController extends ActionController
             'username'     => $username,
             'email'        => $email,
             'form'         => $form,
-            'errorMsg'     => $errorMsg,
-            'updateStatus' => $updateStatus,
             'groups'       => $groups,
             'curGroup'     => 'account',
+            'status'       => $status,
+            'isPost'       => $isPost,
         ));
     }
 }

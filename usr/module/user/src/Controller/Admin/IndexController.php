@@ -27,31 +27,21 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $status      = _post('status');
-        $frontRole   = _post('front-role');
-        $adminRole   = _post('admin-role');
-        $timeCreated = _post('time-created');
+        $condition['state']        = _post('state');
+        $condition['front-role']   = _post('front-role');
+        $condition['admin-role']   = _post('admin-role');
+        $condition['time-created'] = _post('time-created');
 
-        // Set condition
-        $conditon = $this->constructCondition(
-            $status,
-            $frontRole,
-            $adminRole,
-            $timeCreated
-        );
-
-        // Get user ids list
-        $ids = Pi::api('user', 'user')->getUids(
-            $conditon,
-            $limit,
-            $offset
-        );
-
+        // Get user ids
+        $uids  = $this->getUids($condition, 'activated', $limit, $offset);
         // Get user count
-        $count = Pi::api('user', 'user')->getCount($conditon);
+        $count = $this->getCount($condition);
+
+
+        // Get user ids
 
         // Get user information
-        $users = $this->getUser($ids, 'active');
+        $users = $this->getUser($uids, 'activated');
 
         // Set paginator
         $paginatorOption = array(
@@ -67,7 +57,7 @@ class IndexController extends ActionController
             'users'     => $users,
             'paginator' => $paginator,
             'page'      => $page,
-            'curNav'    => 'active',
+            'curNav'    => 'activated',
             'frontRole' => $this->getRoleSelectOptions(),
             'adminRole' => $this->getRoleSelectOptions('admin'),
             'count'     => $count,
@@ -208,7 +198,7 @@ class IndexController extends ActionController
             return $return;
         }
 
-        if ($type == 'active') {
+        if ($type == 'activated') {
             $return = array(
                 'identity'      => '',
                 'name'          => '',
@@ -315,59 +305,114 @@ class IndexController extends ActionController
         return $paginator;
     }
 
-    /**
-     * Construct condition
-     *
-     * @param string $status
-     * @param string $frontRole
-     * @param string $adminRole
-     * @param string $timeCreated
-     * @return array
-     */
-    protected function constructCondition(
-        $status      = '',
-        $frontRole   = '',
-        $adminRole   = '',
-        $timeCreated = ''
-    ) {
-        $condition = array();
+    protected function getUids($condition, $type, $limit = 0, $offset = 0)
+    {
+        $uids = array();
 
-        // Construct condition
-        if ($status) {
-            if ($status == 'enable') {
-                $condition['time_disabled'] = 0;
-            }
-            if ($status == 'disable') {
-                $condition['time_disabled'] = time();
-            }
+        $accountModel = $this->getModel('account');
+
+        $where = array();
+        if ($type == 'activated') {
+            $where['time_activated <> ?'] = 0;
         }
 
-        if ($frontRole) {
-            // Todo
+        if ($type == 'pending') {
+            $where['time_activated'] = 0;
         }
 
-        if ($adminRole) {
-            // Todo
+        if ($condition['state'] == 'enable') {
+            $where['time_disabled'] = 0;
         }
 
-        if ($timeCreated) {
-            // Todo
+        if ($condition['state'] == 'disable') {
+            $where['time_disabled > ?'] = 0;
         }
 
-        if (empty($condition)) {
-            $condition['active'] = 1;
+        if ($condition['time-created'] == 'today') {
+            $where['time_created >= ?'] = mktime(
+                0,0,0,
+                date("m"),
+                date("d"),
+                date("Y")
+            );
         }
-        return $condition;
+
+        if ($condition['time-created'] == 'last-week') {
+            $where['time_created >= ?'] = mktime(
+                0,0,0,
+                date("m"),
+                date("d") - 7,
+                date("Y")
+            );
+        }
+
+        if ($condition['time-created'] == 'last-month') {
+            $where['time_created >= ?'] = mktime(
+                0,0,0,
+                date("m") - 1,
+                date("d"),
+                date("Y")
+            );
+        }
+
+        if ($condition['time-created'] == 'last-3-month') {
+            $where['time_created >= ?'] = mktime(
+                0,0,0,
+                date("m") - 3,
+                date("d"),
+                date("Y")
+            );
+        }
+
+        if ($condition['time-created'] == 'last-year') {
+            $where['time_created >= ?'] = mktime(
+                0,0,0,
+                date("m"),
+                date("d"),
+                date("Y") - 1
+            );
+        }
+
+        $select = $accountModel->select()->where($where);
+        $select->columns(array('id'));
+        $rowset = $accountModel->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $uids[] = $row->id;
+        }
+
+        if (empty($uids)) {
+            return array();
+        }
+
+        $roleModel = Pi::model('user_role');
+        $select    = $roleModel->select();
+        $where     = array(
+            'uid' => $uids,
+        );
+
+        // Search from role table
+        if ($condition['front-role']) {
+            $where = array();
+        }
+        return $uids;
 
     }
 
-//    protected function getPendingUserIds($limit = 0, $offset = 0)
-//    {
-//        $model = $this->getModel('account');
-//        $select = $model->select();
-//        $select->where(array(
-//            ''
-//        ));
-//
-//    }
+    protected function getCount($condition)
+    {
+        $count = 0;
+
+        return $count;
+
+    }
+
+    public function testAction()
+    {
+        $this->view()->setTemplate(false);
+
+        $k = date("Y-m-d",mktime(0,0,0,date("m"),date("d"),date("Y")));
+        $k = date("Y-m-d",mktime(0,0,0,date("m")-3,date("d"),date("Y")));
+        vd($k);
+    }
 }
