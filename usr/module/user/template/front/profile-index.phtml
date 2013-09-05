@@ -10,16 +10,20 @@
             <?php
                 if ($group['compound']) {
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name']));
+                    $addUrl = $editUrl . '#user-info-add';
                 } else {
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
                 }
             ?>
+            <?php if ($isOwner) { ?>
             <a class="btn user-legend-edit" href="<?php echo $editUrl; ?>">
                 <i class="icon-pencil"></i>
                 <?php _e('Edit'); ?>
             </a>
+            <?php } ?>
             <div class="user-legend-linea"></div>
         </div>
+        <?php if ($group['fields']) { ?>
         <div class="user-field">
         <?php
             foreach ($group['fields'] as $key => $field) {
@@ -34,6 +38,22 @@
             }
         ?>
         </div>
+        <?php } else if ($isOwner) { ?>
+        <div class="user-none-fields">
+            <a href="<?php echo $addUrl; ?>">
+                <?php _e('Add'); echo ' ' . $group['name']; ?>
+            </a>
+        </div>
+        <?php } else { ?>
+        <div class="user-none-fields">
+            <?php
+                echo $this->escape($user['name']);
+                _e(' doesn\'t have any ');
+                echo $group['name'];
+                _e(' you can view');
+            ?>
+        </div>  
+        <?php } ?>
         <?php } ?>
     </div>
 </div>

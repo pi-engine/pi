@@ -17,11 +17,7 @@
             <a href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
         </div>
         <div class="user-info-list">
-            <?php 
-                foreach ($forms as $form) {
-                    $elements = $form->elementList();
-
-            ?>
+            <?php foreach ($forms as $form) { ?>
             <div class="user-info-item">
                 <div class="user-info-header">
                     <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
@@ -34,6 +30,7 @@
                     </div>
                 <?php
                     $form->setAttribute('class', 'form-horizontal');
+                    $elements = $form->elementList();
                     echo $this->form()->openTag($form);
                     foreach ($elements['active'] as $element) {
                         echo sprintf('<div class="control-group"><label class="control-label">%s</label>
@@ -149,9 +146,11 @@
             });
         },
         resetIndex: function() {
-            this.$list.find('.user-info-item').each(function(index) {
+            var items = this.$list.find('.user-info-item');
+            items.each(function(index) {
                 $(this).find('[name=set]').val(index);
             });
+            this.$('.user-info-add [name=set]').val(items.length);
         },
         toggleSortable: function() {
             var list = this.$list;
