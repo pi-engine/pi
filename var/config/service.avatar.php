@@ -85,4 +85,16 @@ return array(
             return $path;
         },
     ),
+
+    // Options for QQ avatar
+    // Not implemented yet, placeholder
+    'qq'    => array(
+        'api'       => '',
+        'size_map'  => array(
+            'small'     => 30,
+            'normal'    => 50,
+            'large'     => 100,
+        ),
+    ),
+
 );
