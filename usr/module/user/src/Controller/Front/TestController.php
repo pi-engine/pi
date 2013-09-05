@@ -39,26 +39,28 @@ class TestController extends ActionController
         vd(Pi::user()->avatar()->getAdapter('select')->getMeta());
         vd(Pi::avatar()->getAdapter('upload')->getMeta(Pi::user()->id));
         vd(Pi::avatar()->canonizeSize('l'));
+        vd(Pi::user()->getUids(array('bio' => '')));
     }
 
     protected function flushUsers()
     {
-        Pi::model('account', 'user')->delete(array());
-        Pi::model('profile', 'user')->delete(array());
-        //Pi::model('custom', 'user')->delete(array());
-        Pi::model('compound', 'user')->delete(array());
+        Pi::model('account', 'user')->delete(array('id > ?' => 10));
+        Pi::model('profile', 'user')->delete(array('uid > ?' => 10));
+        Pi::model('compound', 'user')->delete(array('uid > ?' => 10));
     }
 
     public function addAction()
     {
         $this->view()->setTemplate(false);
 
-        //$this->flushUsers();
+        $this->flushUsers();
 
         $users = array();
 
         $prefix = _get('prefix') ?: 'pi';
-        $count  = _get('count') ?: 50;
+        $count  = (int) _get('count') ?: 1;
+
+        vd($count);
 
 
         $genderMap      = array('male', 'female', 'unknown');
@@ -68,7 +70,9 @@ class TestController extends ActionController
                                 'High school', 'Middle school',
                                 'Preliminary school');
 
-        for ($i = 1; $i <= $count; $i++) {
+        $start = 11;
+        $end = $count + $start;
+        for ($i = $start; $i <= $end; $i++) {
             $user = array(
                 'identity'      => $prefix . '_' . $i,
                 'credential'    => $prefix . '_' . $i,
@@ -157,8 +161,8 @@ class TestController extends ActionController
                     ),
                 ),
             );
-            list($uid, $result) = Pi::service('user')->addUser($user);
-            if ($uid) {
+            $uid = Pi::api('user', 'user')->addUser($user);
+            if (is_int($uid)) {
                 $users[$uid] = $user;
             }
         }

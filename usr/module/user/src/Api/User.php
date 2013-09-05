@@ -103,7 +103,7 @@ class User extends AbstractApi
             if ($order) {
                 $select->order($order);
             }
-        // Multi-types
+        // Account and profile
         } else {
             $select = Pi::db()->select();
             $select->from(array('account' => $modelAccount->getTable()));
@@ -196,6 +196,7 @@ class User extends AbstractApi
                 ));
             $row = $modelAccount->selectWith($select)->current();
             $count = (int) $row['count'];
+        // Account and profile fields
         } else {
             $select = Pi::db()->select();
             $select->from(array('account' => $modelAccount->getTable()));
@@ -875,7 +876,9 @@ class User extends AbstractApi
 
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
+        $data['uid'] = $uid;
         $model = Pi::model($type, 'user');
+        /*
         foreach ($data as $field => $value) {
             $row = $model->createRow(array(
                 'field' => $field,
@@ -887,6 +890,13 @@ class User extends AbstractApi
             } catch (\Exception $e) {
                 return false;
             }
+        }
+        */
+        $row = $model->createRow($data);
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
         }
 
         return true;
@@ -909,6 +919,7 @@ class User extends AbstractApi
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
+        /*
         foreach ($data as $field => $value) {
             $row = $model->select(array(
                 'uid'   => $uid,
@@ -922,6 +933,14 @@ class User extends AbstractApi
             } catch (\Exception $e) {
                 return false;
             }
+        }
+        */
+        $row = $model->find($uid, 'uid');
+        $row->assign($data);
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            return false;
         }
 
         return true;
@@ -1057,8 +1076,12 @@ class User extends AbstractApi
             $fields = array_unique($fields);
         }
 
-        if ('account' == $type) {
-            $primaryKey = 'id';
+        if ('account' == $type || 'profile' == $type) {
+            if ('account' == $type) {
+                $primaryKey = 'id';
+            } else {
+                $primaryKey = 'uid';
+            }
             $fields[] = $primaryKey;
             $model = Pi::model($type, 'user');
             $select = $model->select()->where(array($primaryKey => $uids))
@@ -1133,9 +1156,14 @@ class User extends AbstractApi
             return false;
         }
 
-        $result = false;
-        if ('account' == $type) {
-            $row = Pi::model($type, 'user')->find($uid);
+        //$result = false;
+        if ('account' == $type || 'profile' == $type) {
+            if ('account' == $type) {
+                $primaryKey = 'id';
+            } else {
+                $primaryKey = 'uid';
+            }
+            $row = Pi::model($type, 'user')->find($uid, $primaryKey);
             $row[$field] = $value;
             try {
                 $row->save();

@@ -40,7 +40,7 @@ class System extends AbstractModel
     {
         if ($uid) {
             $row = Pi::model('user_account')->find($uid, $field);
-            $data = $row->toArray();
+            $data = $row ? $row->toArray() : array();
         } else {
             $data = array();
         }

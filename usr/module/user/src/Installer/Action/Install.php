@@ -23,7 +23,8 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.post', array($this, 'checkModules'), 1);
+        $events->attach('install.post', array($this, 'checkModules'), 10);
+        $events->attach('install.post', array($this, 'checkUsers'), 1);
         parent::attachDefaultListeners();
 
         return $this;
@@ -70,4 +71,34 @@ class Install extends BasicInstall
 
         $e->setParam('module', $module);
     }
+
+    /**
+     * Check existent users and create profile
+     *
+     * @param Event $e
+     *
+     * @return bool
+     */
+    public function checkUsers(Event $e)
+    {
+        $modelAccount = Pi::model('user_account');
+        $modelProfile = Pi::model('profile', 'user');
+
+        $sql = 'INSERT INTO ' . $modelProfile->getTable() . ' (uid)'
+             . ' SELECT id FROM ' . $modelAccount->getTable();
+        try {
+            $result = Pi::db()->query($sql);
+        } catch (\Exception $exception) {
+            $e->setResult('user', array(
+                'status'    => false,
+                'message'   => 'User profile generation failed: '
+                . $exception->getMessage(),
+            ));
+
+            $result = false;
+        }
+
+        return $result;
+    }
+
 }

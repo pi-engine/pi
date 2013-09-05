@@ -411,6 +411,7 @@ class User extends AbstractResource
         }
         Pi::registry('profile', 'user')->clear();
 
+        $profileFields = array();
         $config = $this->canonize($this->config);
         foreach (array(
             'field',
@@ -433,7 +434,14 @@ class User extends AbstractResource
                         ),
                     );
                 }
+                if ('field' == $op && 'profile' == $spec['type']) {
+                    $profileFields[] = $key;
+                }
             }
+        }
+
+        if ($profileFields) {
+            $this->addFields($profileFields);
         }
 
         return true;
@@ -454,6 +462,7 @@ class User extends AbstractResource
             return;
         }
 
+        $fieldsNew = array();
         $itemsDeleted = array();
         $config = $this->canonize($this->config);
         foreach (array(
@@ -466,6 +475,7 @@ class User extends AbstractResource
             $model = Pi::model($op, 'user');
             $rowset = $model->select(array('module' => $module));
             $items = $config[$op];
+            $itemsNew[$op] = array();
             $itemsDeleted[$op] = array();
             foreach ($rowset as $row) {
                 if ('compound_field' == $op) {
@@ -486,6 +496,7 @@ class User extends AbstractResource
                     $row->assign($items[$key]);
                     $row->save();
                     unset($items[$key]);
+
                 // Delete deprecated items
                 } else {
                     $itemsDeleted[$op][] = $key;
@@ -506,14 +517,25 @@ class User extends AbstractResource
                         ),
                     );
                 }
+                if ('field' == $op && 'profile' == $spec['type']) {
+                    $fieldsNew[] = $key;
+                }
             }
+        }
+
+        // Add new fields to profile
+        if ($fieldsNew) {
+            $this->addFields($fieldsNew);
         }
 
         // Delete deprecated user custom profile data
         if ($itemsDeleted['field']) {
+            $this->dropFields($itemsDeleted['field']);
+            /*
             Pi::model('profile', 'user')->delete(array(
                 'field' => $itemsDeleted['field'],
             ));
+            */
             Pi::model('compound_field', 'user')->delete(array(
                 'compound' => $itemsDeleted['field'],
             ));
@@ -564,7 +586,8 @@ class User extends AbstractResource
         }
         // Remove module profile data
         if ($fields) {
-            Pi::model('profile', 'user')->delete(array('field' => $fields));
+            //Pi::model('profile', 'user')->delete(array('field' => $fields));
+            $this->dropFields($fields);
         }
 
         $compounds = array();
@@ -634,6 +657,72 @@ class User extends AbstractResource
         ) {
             $model = Pi::model($op, 'user');
             $model->update(array('active' => 0), array('module' => $module));
+        }
+
+        return true;
+    }
+
+    /**
+     * Add new fields to profile table
+     *
+     * @param string[] $fields
+     *
+     * @return bool
+     */
+    protected function addFields(array $fields)
+    {
+        $meta = Pi::registry('profile', 'user')->read('account');
+        $table = Pi::model('profile', 'user')->getTable();
+        $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';
+        foreach ($fields as $field) {
+            if (isset($meta[$field])) {
+                continue;
+            }
+            $sql = sprintf($pattern, $field);
+            try {
+                Pi::db()->query($sql);
+            } catch (\Exception $exception) {
+                $this->setResult('profile-field', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Drop fields from profile table
+     *
+     * @param string[] $fields
+     *
+     * @return bool
+     */
+    protected function dropFields(array $fields)
+    {
+        $meta = Pi::registry('profile', 'user')->read('profile');
+        $table = Pi::model('profile', 'user')->getTable();
+        $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';
+        foreach ($fields as $field) {
+            if (!isset($meta[$field])) {
+                continue;
+            }
+            $sql = sprintf($pattern, $field);
+            try {
+                Pi::db()->query($sql);
+            } catch (\Exception $exception) {
+                $this->setResult('profile-field', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                    . $exception->getMessage(),
+                ));
+
+                return false;
+            }
         }
 
         return true;

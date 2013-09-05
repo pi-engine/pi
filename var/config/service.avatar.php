@@ -84,9 +84,10 @@ return array(
 
             return $path;
         },
+        // Callback to generate source file name using uid, source, extension
         'source_hash'   => function ($data) {
+            // Return $data['source'] will skip hash
             $result = md5(uniqid($data['uid'])) .  '.' . $data['extension'];
-
             return $result;
         },
     ),

@@ -12,12 +12,11 @@ CREATE TABLE `{profile}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
   -- Custom profile field
-  `field`           varchar(64)     NOT NULL,
-  `value`           text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `field` (`uid`, `field`)
+  UNIQUE KEY  `uid` (`uid`)
 );
+
 
 # Entity for user profile compound fields
 CREATE TABLE `{compound}` (
