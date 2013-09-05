@@ -10,6 +10,7 @@
 namespace Pi\User\Resource;
 
 use Pi;
+use Pi\Db\RowGateway\RowGateway;
 
 /**
  * User data handler
@@ -30,31 +31,48 @@ class Data extends AbstractResource
     /**
      * Get user data
      *
-     * @param int    $uid
-     * @param string $name
-     * @param bool   $returnArray
+     * @param int|int[] $uid
+     * @param string    $name
+     * @param bool      $returnArray
      *
      * @return int|mixed|array
      */
     public function get($uid, $name, $returnArray = false)
     {
+        $uids = (array) $uid;
+        array_walk($uids, 'intval');
         $result = false;
+
+        $getValue = function ($row) use ($returnArray) {
+            $result = false;
+            if ($row) {
+                $value = (null === $row['value_int'])
+                    ? $row['value'] : (int) $row['value_int'];
+                if (!$returnArray) {
+                    $result = $value;
+                } else {
+                    $result = array(
+                        'time'      => $row['time'],
+                        'value'     => $value,
+                        'module'    => $row['module'],
+                    );
+                }
+            }
+
+            return $result;
+        };
+
         $where = array(
-            'uid'   => (int) $uid,
+            'uid'   => $uids,
             'name'  => $name,
         );
-        $row = Pi::model('user_data')->select($where)->current();
-        if ($row) {
-            $value = (null === $row['value_int'])
-                ? $row['value'] : (int) $row['value_int'];
-            if (!$returnArray) {
-                $result = $value;
-            } else {
-                $result = array(
-                    'time'      => $row['time'],
-                    'value'     => $value,
-                    'module'    => $row['module'],
-                );
+        $rowset = Pi::model('user_data')->select($where);
+        if (is_scalar($uid)) {
+            $row = $rowset->current();
+            $result = $getValue($row);
+        } else {
+            foreach ($rowset as $row) {
+                $result[(int) $row['uid']] = $getValue($row, $returnArray);
             }
         }
 
@@ -64,15 +82,18 @@ class Data extends AbstractResource
     /**
      * Delete user data
      *
-     * @param int       $uid
+     * @param int|int[] $uid
      * @param string    $name
      *
      * @return bool
      */
     public function delete($uid, $name)
     {
+        $uids = (array) $uid;
+        array_walk($uids, 'intval');
+
         $where = array(
-            'uid'   => (int) $uid,
+            'uid'   => $uids,
             'name'  => $name,
         );
         try {
@@ -114,6 +135,7 @@ class Data extends AbstractResource
             $vars['value_int'] = $value;
         } else {
             $vars['value'] = $value;
+            $vars['value_int'] = null;
         }
 
         $where = array(
@@ -140,10 +162,11 @@ class Data extends AbstractResource
      * Find a data subject to conditions
      *
      * @param array $conditions
+     * @param bool $returnObject
      *
-     * @return array|bool
+     * @return array|RowGateway|bool
      */
-    public function find(array $conditions)
+    public function find(array $conditions, $returnObject = false)
     {
         $result = false;
         if (isset($conditions['value']) && is_int($conditions['value'])) {
@@ -153,7 +176,7 @@ class Data extends AbstractResource
         $rowset = Pi::model('user_data')->select($conditions);
         $row = $rowset->current();
         if ($row) {
-            $result = $row->toArray();
+            $result = $returnObject ? $row : $row->toArray();
         }
 
         return $result;
@@ -183,23 +206,32 @@ class Data extends AbstractResource
      *
      * Positive to increment or negative to decrement; 0 to reset!
      *
-     * @param int    $uid
-     * @param string $name
-     * @param int    $value
+     * @param int|int[] $uid
+     * @param string    $name
+     * @param int       $value
      *
      * @return bool
      */
     public function increment($uid, $name, $value)
     {
-        $row = $this->find(array('uid' => $uid, 'name' => $name));
+        $value = (int) $value;
+        $row = $this->find(array('uid' => $uid, 'name' => $name), true);
+        // Insert new value
         if (!$row) {
             $result = $this->setInt($uid, $name, $value);
+        // Reset
+        } elseif (0 == $value || null == $row['value_int']) {
+            $row['value_int'] = $value;
+            try {
+                $row->save();
+                $result = true;
+            } catch (\Exception $e) {
+                $result = false;
+            }
+        // Increase/Decrease
         } else {
             $model = Pi::model('user_data');
-            $value = (int) $value;
-            if (0 == $value) {
-                $string = '`value_int`=0';
-            } elseif (0 < $value) {
+            if (0 < $value) {
                 $string = '`value_int`=`value_int`+' . $value;
             } else {
                 $string = '`value_int`=`value_int`-' . abs($value);
