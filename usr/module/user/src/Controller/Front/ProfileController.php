@@ -154,10 +154,21 @@ class ProfileController extends ActionController
         $uid = Pi::user()->getIdentity();
         $groupName = $this->params('group', '');
         $groupName = 'basic_info';
-        $status    = '';
+        $status = 0;
+        $isPost = 0;
+
+        // Redirect login page if not logged in
+        if (!$uid) {
+            $this->jump(
+                'user',
+                array('controller' => 'login', 'action' => 'index'),
+                __('Need login'),
+                2
+            );
+        }
 
         // Error hand
-        if (!$uid || !$groupName) {
+        if (!$groupName) {
             return $this->jumpTo404();
         }
 
@@ -198,11 +209,11 @@ class ProfileController extends ActionController
             if ($form->isValid()) {
                 $data = $form->getData();
                 // Update user
-                $status = Pi::api('user', 'user')->updateUser($uid, $data);
-                if (empty($status)) {
-                    $status = true;
-                }
+                Pi::api('user', 'user')->updateUser($uid, $data);
+                $status = 1;
             }
+
+            $isPost = 1;
         } else {
             // Get profile data
             $model = $this->getModel('field_display');
@@ -237,6 +248,7 @@ class ProfileController extends ActionController
             'groups'   => $groups,
             'curGroup' => $groupName,
             'status'   => $status,
+            'isPost'   => $isPost,
         ));
         $this->view()->setTemplate('profile-edit');
     }
@@ -249,6 +261,17 @@ class ProfileController extends ActionController
         $groupName    = $this->params('group', '');
         $uid          = Pi::service('user')->getIdentity();
         $errorMsg     = '';
+
+        // Redirect login page if not logged in
+        if (!$uid) {
+            $this->jump(
+                'user',
+                array('controller' => 'login', 'action' => 'index'),
+                __('Need login'),
+                2
+            );
+        }
+
         if ($this->request->isPost()) {
             $groupName = _post('group');
         }
@@ -257,7 +280,7 @@ class ProfileController extends ActionController
         $rowset = $this->getModel('display_group')->find($groupName, 'name');
         $compound = $rowset ? $rowset->compound : '';
 
-        if (!$groupName || !$uid || !$compound) {
+        if (!$groupName || !$compound) {
             return $this->jumpTo404();
         }
 
@@ -408,7 +431,6 @@ class ProfileController extends ActionController
         ksort($newCompound);
 
         // Update compound
-        //$data = $this->assembleCompound($uid, $compound, $newCompound);
         Pi::api('user', 'user')->set($uid, $compound, $newCompound);
         $message['status'] = 1;
 
@@ -881,13 +903,13 @@ class ProfileController extends ActionController
 
     public function testAction()
     {
-//        $compoundMeta = Pi::api('user', 'user')->getMeta('compound');
-//        //vd($compoundMeta);
-//        $compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
-//
-//        //vd($compoundElements);
-//        $compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
-//        vd($compoundElements);
+        //$compoundMeta = Pi::api('user', 'user')->getMeta('compound');
+        //vd($compoundMeta);
+        //$compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
+
+        //vd($compoundElements);
+        //$compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
+        //vd($compoundElements);
         //vd($this->getDisplayGroup());
         //vd($this->getFieldDisplay('basic_info'));
         //vd(Pi::api('user', 'user')->getMeta('', 'display'));
@@ -908,7 +930,7 @@ class ProfileController extends ActionController
         //vd(Pi::registry('profile', 'user')->read());
         //vd(Pi::registry('compound', 'user')->read('work'));
         //vd($this->getQuicklink());
-        $this->getNav(1, 'profile');
+        //$this->getNav(1, 'profile');
         $this->view()->setTemplate(false);
     }
 }
