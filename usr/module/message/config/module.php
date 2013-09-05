@@ -43,11 +43,6 @@ return array(
             'database'  => array(
                 // SQL schema/data file
                 'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall, optional
-                'schema'    => array(
-                    'private_message'      => 'table',
-                    'notification'         => 'table',
-                ),
             ),
             // Navigation definition
             'navigation'    => 'navigation.php',

@@ -20,29 +20,27 @@ use Zend\Db\Sql\Predicate\Expression;
  *
  * ```
  *  // Send message to a user
- *  Pi::user()->message(1)->send('message 2=>1', 2);
+ *  Pi::user()->message()->send(1, 'message 2=>1', 2);
  *  or
- *  Pi::service('api')->message->send(1, 'message 2=>1', 2);
+ *  Pi::api('message')->send(1, 'message 2=>1', 2);
  *  // Send notification to a user
- *  Pi::user()->message(1)
- *            ->notify('notification to 1', 'subject', 'announcement');
+ *  Pi::user()->message()
+ *            ->notify(1, 'notification to 1', 'subject', 'announcement');
  *  or
- *  Pi::service('api')->message->notify(
+ *  Pi::api('message')->notify(
  *      1,
  *      'notification to 1',
  *      'subject',
  *      'announcement'
  *  );
  *  // Get message total count of current user
- *  Pi::user()->message(1)->getCount();
+ *  Pi::user()->message()->getCount(1);
  *  or
- *  $api = Pi::service('api')->message;
- *  $api->getCount(1, $api::TYPE_MESSAGE);
+ *  Pi::api('message')->getCount(1);
  *  // Get message alert (new) count of current user
- *  Pi::user()->message(1)->getAlert();
+ *  Pi::user()->message()->getAlert(1);
  *  or
- *  $api = Pi::service('api')->message;
- *  $api->getAlert(1, $api::TYPE_MESSAGE);
+ *  Pi::api('message')->getAlert(1);
  * ```
  *
  * @author Xingyu Ji <xingyu@eefocus.com>
@@ -57,27 +55,6 @@ class Api extends AbstractApi
     protected static $batchInsertLen = 1000;
 
     /**
-     * Message type: all
-     *
-     * @var int
-     */
-    const TYPE_ALL = 0;
-
-    /**
-     * Message type: private message
-     *
-     * @var int
-     */
-    const TYPE_MESSAGE = 1;
-
-    /**
-     * Message type: notification
-     *
-     * @var int
-     */
-    const TYPE_NOTIFICATION = 2;
-
-    /**
      * Send a message
      *
      * @param  int    $to
@@ -90,6 +67,7 @@ class Api extends AbstractApi
         if ($to == $from) {
             return false;
         }
+        $result = true;
         $model  = Pi::model('private_message', $this->getModule());
         $privateMessage = array(
             'uid_from'   => $from,
@@ -98,12 +76,19 @@ class Api extends AbstractApi
             'time_send'  => time(),
         );
         $row = $model->createRow($privateMessage);
-        $result = $row->save();
+        try {
+            $row->save();
+        } catch (\Exception $e) {
+            $result = false;
+        }
         if ($result) {
+            $names = Pi::user()->get(array($from, $to), 'identity');
             //audit log
             $args = array(
-                'from:' . Pi::user()->getUser($from)->identity,//TODO
-                'to:' . Pi::user()->getUser($from)->identity,
+                //'from:' . Pi::user()->getUser($from)->identity,//TODO
+                //'to:' . Pi::user()->getUser($from)->identity,
+                $names[$from],
+                $names[$to],
                 $message,
             );
             Pi::service('audit')->log('message', $args);
@@ -203,13 +188,33 @@ class Api extends AbstractApi
      * Get total count
      *
      * @param  int       $uid
-     * @param  int       $type
-     * @return int|false
+     * @param  string    $type
+     * @return int
      */
-    public function getCount($uid, $type = self::TYPE_ALL)
+    public function getCount($uid, $type = '')
     {
+        switch ($type) {
+            case 'message':
+            case 'notification':
+                break;
+            default:
+                $type = '';
+            break;
+        }
         $count = 0;
-        if ($type == self::TYPE_MESSAGE || $type == self::TYPE_ALL) {
+        if ('notification' == $type) {
+            $select = Pi::model('notification')->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
+            $select->where(array(
+                'uid_to'            => $uid,
+                'delete_status_to'  => 0,
+                ''
+            ))
+        } elseif ()
+
+        if ($type != 'notification') {
             //get total private message count
             $privateModel  = Pi::model('private_message', $this->getModule());
             $select = $privateModel->select()
@@ -251,9 +256,8 @@ class Api extends AbstractApi
      * 
      * Alert user the new message he receives since last visit.
      *
-     * @param  int       $uid
-     * @param  int       $type
-     * @return int|false
+     * @param  int $uid
+     * @return int
      */
     public function getAlert($uid)
     {

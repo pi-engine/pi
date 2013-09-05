@@ -37,17 +37,14 @@ class NotifyController extends AbstractController
         //current user id
         $userId = Pi::user()->getUser()->id;
 
-        $messageTitle = __('Private message(')
-                      . Service::getUnread($userId, Service::TYPE_MESSAGE)
-                      . ' '
-                      . __('unread)');
-        $notificationTitle = __('Notification(')
-                           . Service::getUnread(
-                               $userId,
-                               Service::TYPE_NOTIFICATION
-                           )
-                           . ' '
-                           . __('unread)');
+        $messageTitle = sprintf(
+            __('Private message(%s) unread'),
+            Service::getUnread($userId, Service::TYPE_MESSAGE)
+        );
+        $notificationTitle = sprintf(
+            __('Notification(%s) unread'),
+            Service::getUnread($userId, Service::TYPE_NOTIFICATION)
+        );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
     }
@@ -78,7 +75,7 @@ class NotifyController extends AbstractController
                                 'count(*)'
                             )
                         ))
-                        ->where(array('uid' => $userId, 'delete_status' => 0));
+                        ->where(array('uid' => $userId, 'is_deleted' => 0));
         $count = $model->selectWith($select)->current()->count;
 
         if ($count) {
@@ -86,7 +83,7 @@ class NotifyController extends AbstractController
             $select = $model->select()
                             ->where(array(
                                 'uid' => $userId,
-                                'delete_status' => 0
+                                'is_deleted' => 0
                             ))
                             ->order('time_send DESC')
                             ->limit($limit)
@@ -247,7 +244,7 @@ class NotifyController extends AbstractController
         }
         $userId = Pi::user()->getUser()->id;
         $model = $this->getModel('notification');
-        $model->update(array('delete_status' => 1), array(
+        $model->update(array('is_deleted' => 1), array(
             'id'  => $notificationIds,
             'uid' => $userId
         ));

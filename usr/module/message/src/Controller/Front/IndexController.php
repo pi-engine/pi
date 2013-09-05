@@ -51,7 +51,7 @@ class IndexController extends AbstractController
         // dismiss alert
         Pi::user()->message->dismissAlert($userId);
 
-        $model = $this->getModel('private_message');
+        $model = $this->getModel('message');
         //get private message list count
         $select = $model->select()
                         ->columns(array(
@@ -63,9 +63,9 @@ class IndexController extends AbstractController
                             $fromWhere = clone $where;
                             $toWhere = clone $where;
                             $fromWhere->equalTo('uid_from', $userId);
-                            $fromWhere->equalTo('delete_status_from', 0);
+                            $fromWhere->equalTo('is_deleted_from', 0);
                             $toWhere->equalTo('uid_to', $userId);
-                            $toWhere->equalTo('delete_status_to', 0);
+                            $toWhere->equalTo('is_deleted_to', 0);
                             $where->andPredicate($fromWhere)
                                   ->orPredicate($toWhere);
                         });
@@ -78,9 +78,9 @@ class IndexController extends AbstractController
                                 $fromWhere = clone $where;
                                 $toWhere = clone $where;
                                 $fromWhere->equalTo('uid_from', $userId);
-                                $fromWhere->equalTo('delete_status_from', 0);
+                                $fromWhere->equalTo('is_deleted_from', 0);
                                 $toWhere->equalTo('uid_to', $userId);
-                                $toWhere->equalTo('delete_status_to', 0);
+                                $toWhere->equalTo('is_deleted_to', 0);
                                 $where->andPredicate($fromWhere)
                                       ->orPredicate($toWhere);
                             })
@@ -177,17 +177,14 @@ class IndexController extends AbstractController
         //current user id
         $userId = Pi::user()->getUser()->id;
 
-        $messageTitle = __('Private message(')
-                      . Service::getUnread($userId, Service::TYPE_MESSAGE)
-                      . ' '
-                      . __('unread)');
-        $notificationTitle = __('Notification(')
-                           . Service::getUnread(
-                               $userId,
-                               Service::TYPE_NOTIFICATION
-                           )
-                           . ' '
-                           . __('unread)');
+        $messageTitle = sprintf(
+            __('Private message(%s) unread'),
+            Service::getUnread($userId, Service::TYPE_MESSAGE)
+        );
+        $notificationTitle = sprintf(
+            __('Notification(%s) unread'),
+            Service::getUnread($userId, Service::TYPE_NOTIFICATION)
+        );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
     }
@@ -224,7 +221,7 @@ class IndexController extends AbstractController
 
             //current user id
             $userId = Pi::user()->getUser()->id;
-            $result = Pi::service('api')->message->send(
+            $result = Pi::api('message')->send(
                 $toUserId,
                 $data['content'],
                 $userId
@@ -275,7 +272,7 @@ class IndexController extends AbstractController
                 return array(
                     'status'  => 0,
                     'message' => __(
-                        __('Sorry, you can\'t send message to yourself')
+                        __('Sorry, you can\'t send message to yourself.')
                     )
                 );
             } else {
@@ -287,7 +284,7 @@ class IndexController extends AbstractController
         } catch (Exception $e) {
             return array(
                 'status'    => 0,
-                'message'   => __('An error occurred, please try again')
+                'message'   => __('An error occurred, please try again.')
             );
         }
     }
@@ -350,9 +347,11 @@ class IndexController extends AbstractController
             }
             $data = $form->getData();
 
-            $result = Pi::service('api')->message->send($data['uid_to'],
-                                                        $data['content'],
-                                                        $userId);
+            $result = Pi::api('message')->send(
+                $data['uid_to'],
+                $data['content'],
+                $userId
+            );
             if (!$result) {
                 $this->view()->assign(
                     'errMessage',
@@ -396,7 +395,7 @@ class IndexController extends AbstractController
         // dismiss alert
         Pi::user()->message->dismissAlert($userId);
 
-        $model = $this->getModel('private_message');
+        $model = $this->getModel('message');
         //get private message
         $select = $model->select()
                         ->where(function($where) use ($messageId, $userId) {
@@ -502,26 +501,26 @@ class IndexController extends AbstractController
             ));
         }
         $userId = Pi::user()->getUser()->id;
-        $model = $this->getModel('private_message');
+        $model = $this->getModel('message');
 
         if ($toId) {
             if ($userId == $toId) {
-                $model->update(array('delete_status_to' => 1), array(
+                $model->update(array('is_deleted_to' => 1), array(
                     'id'     => $messageIds,
                     'uid_to' => $userId
                 ));
             } else {
-                $model->update(array('delete_status_from' => 1), array(
+                $model->update(array('is_deleted_from' => 1), array(
                     'id'       => $messageIds,
                     'uid_from' => $userId
                 ));
             }
         } else {
-            $model->update(array('delete_status_from' => 1), array(
+            $model->update(array('is_deleted_from' => 1), array(
                 'uid_from' => $userId,
                 'id'       => $messageIds
             ));
-            $model->update(array('delete_status_to' => 1), array(
+            $model->update(array('is_deleted_to' => 1), array(
                 'uid_to' => $userId,
                 'id'     => $messageIds
             ));
