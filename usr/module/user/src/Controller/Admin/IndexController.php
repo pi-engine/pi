@@ -434,14 +434,15 @@ class IndexController extends ActionController
         $modelAccount = Pi::model('user_account');
         $modelRole = Pi::model('user_role');
 
+
         $whereRoleAdmin = Pi::db()->where()->create(array(
-            'role.role = ?'     => 'staff',
-            'role.section = ?'  => 'admin',
+            'admin.role = ?'     => 'staff',
+            'admin.section = ?'  => 'admin',
         ));
 
         $whereRoleFront = Pi::db()->where()->create(array(
-            'role.role = ?'     => 'member',
-            'role.section = ?'  => 'front',
+            'front.role = ?'     => 'member',
+            'front.section = ?'  => 'front',
         ));
 
         $where = Pi::db()->where();
@@ -453,8 +454,12 @@ class IndexController extends ActionController
         $select->from(array('account' => $modelAccount->getTable()));
         $select->columns(array('id'));
         $select->join(
-            array('role' => $modelRole->getTable()),
-            'role.uid=account.id'
+            array('front' => $modelRole->getTable()),
+            'front.uid=account.id'
+        );
+        $select->join(
+            array('admin' => $modelRole->getTable()),
+            'admin.uid=account.id'
         );
         $select->where($where);
         $rowset = Pi::db()->query($select);
@@ -489,7 +494,7 @@ class IndexController extends ActionController
         */
 
         foreach ($rowset as $row) {
-            $result[] = $row['id'];
+            $result[] = (int) $row['id'];
         }
 
         vd($result);
