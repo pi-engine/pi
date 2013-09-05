@@ -30,18 +30,21 @@ class AvatarController extends ActionController
      */
     protected function getAvatarForm($name)
     {
-        $form   = new AvatarForm($name);
-        $fakeId = uniqid();
-        $form->get('fake_id')->setValue($fakeId);
+        $form    = new AvatarForm($name);
+        $form->get('fake_id')->setValue(uniqid());
         
         return $form;
     }
     
-    protected function resizeAvatar($data)
-    {
-        
-    }
-    
+    /**
+     * Get directory to save image
+     * 
+     * @param string  $section
+     * @param string  $module
+     * @param bool    $autoCreate
+     * @param bool    $autoSplit
+     * @return string 
+     */
     protected function getTargetDir(
         $section,
         $module = null,
@@ -64,6 +67,12 @@ class AvatarController extends ActionController
         return $path;
     }
     
+    /**
+     * Create a directory if it not exists
+     * 
+     * @param string  $dir
+     * @return bool 
+     */
     protected function mkdir($dir)
     {
         $result = true;
@@ -79,6 +88,13 @@ class AvatarController extends ActionController
         return $result;
     }
     
+    /**
+     * Get session instance
+     * 
+     * @param string  $module
+     * @param string  $type
+     * @return Pi\Application\Service\Session 
+     */
     protected function getUploadSession($module = null, $type = 'default')
     {
         $module = $module ?: $this->getModule();
@@ -87,6 +103,11 @@ class AvatarController extends ActionController
         return Pi::service('session')->$ns;
     }
     
+    /**
+     * Default page
+     * 
+     * @return ViewModel 
+     */
     public function indexAction()
     {
         $logUser = Pi::user()->id;
@@ -99,22 +120,75 @@ class AvatarController extends ActionController
             return $this->jumpTo404(__('Invalid user ID!'));
         }
         
-        $module = $this->getModule();
-        $avatar = Pi::service('avatar')->getList((array) $id);
+        $uid     = Pi::user()->id;
+        $module  = $this->getModule();
+        
+        $filename = Pi::user()->get($uid, 'avatar');
+        
+        // Get upload photo
+        $uploadAdapter = Pi::avatar()->getAdapter('upload');
+        $paths    = $uploadAdapter->getMeta($uid);
+        $uploads  = array();
+        foreach ($paths as $path) {
+            $type = basename(dirname($path['path']));
+            $uploads[$type] = dirname($path['src']) . '/' . $filename;
+        }
+        
+        // Get gravatar photo
+        $gravatarAdapter  = Pi::avatar()->getAdapter('gravatar');
+        $gravatar = $gravatarAdapter->getSource($uid);
+        
+        // Get select photo
+        $selectAdapter = Pi::avatar()->getAdapter('select');
+        $selects = $selectAdapter->getMeta();
+        unset($selects['blank']);
+        
+        // Get required sizes from configuration
         $form   = $this->getAvatarForm('avatar');
         $allSize = Pi::service('avatar')->getSize();
         arsort($allSize);
         
+        // Get current selected repository photo
+        $selected = array();
+        foreach (array_keys($allSize) as $name) {
+            $metas = $selectAdapter->getMeta($name);
+            unset($metas['blank']);
+            if (in_array($filename, array_keys($selects))) {
+                $selected[$name] = $metas[$filename];
+            } else {
+                $selected[$name] = array_shift($metas);
+            }
+        }
+        
+        $source = '';
+        $email  = '';
+        if (preg_match('/.+@.+/', $filename)) {
+            $source = 'gravatar';
+            $email  = $filename;
+        } elseif (in_array($filename, array_keys($selects))) {
+            $source = 'repository';
+        } else {
+            $source = 'upload';
+        }
         
         $this->view()->assign(array(
             'title'     => __('Avatar Settings'),
             'form'      => $form,
             'config'    => Pi::service('module')->config('', $module),
             'allSize'   => $allSize,
-            'avatar'    => $avatar,
+            'uploads'   => ('upload' == $source) ? $uploads : array(),
+            'gravatar'  => $gravatar,
+            'selects'   => $selects,
+            'selected'  => $selected,
+            'email'     => $email ?: Pi::user()->get($uid, 'email'),
+            'source'    => $source,
+            'filename'  => $filename,
         ));
     }
     
+    /**
+     * Process upload image by AJAX 
+     */
     public function uploadAction()
     {
         Pi::service('log')->active(false);
@@ -136,7 +210,7 @@ class AvatarController extends ActionController
         
         // Rename
         $ext      = strtolower(pathinfo($rawInfo['name'], PATHINFO_EXTENSION));
-        $rename   = $fakeId . '.' . $ext;
+        $rename   = $fakeId . $ext;
 
         // Get path to store
         $destination = $this->getTargetDir('tmp', $module, true, false);
@@ -179,7 +253,7 @@ class AvatarController extends ActionController
         );
 
         // Save info to session
-        $session = $this->getUploadSession($module, 'media');
+        $session = $this->getUploadSession($module, 'avatar');
         $session->$fakeId = $uploadInfo;
         
         // Prepare return data
@@ -200,21 +274,173 @@ class AvatarController extends ActionController
         exit;
     }
     
-    public function gavatarAction()
+    /**
+     * Get gravatar URL by AJAX 
+     */
+    public function gravatarAction()
     {
+        Pi::service('log')->active(false);
         
+        $return  = array('status' => false);
+        $email   = $this->params('email', '');
+        if (empty($email)) {
+            $return['message'] = __('Invalid email!');
+            echo json_encode($return);
+            exit ;
+        }
+        
+        $adapter = Pi::avatar()->getAdapter('gravatar');
+        $url     = $adapter->getUrl($email);
+        
+        $return = array(
+            'status'        => true,
+            'preview_url'   => $url,
+            'message'       => __('Successful'),
+        );
+        echo json_encode($return);
+        exit;
     }
     
+    /**
+     * Get selected repository image details by AJAX 
+     */
     public function repositoryAction()
     {
+        Pi::service('log')->active(false);
         
+        $return  = array('status' => false);
+        
+        $name    = $this->params('name', '');
+        if (empty($name)) {
+            $return['message'] = __('No image selected!');
+            echo json_encode($return);
+            exit ;
+        }
+        
+        $adapter  = Pi::avatar()->getAdapter('select');
+        $lists    = $adapter->getMeta();
+        $result   = $lists[$name];
+        $basename = basename($result);
+        $ext      = strtolower(pathinfo($basename, PATHINFO_EXTENSION));
+        $dirname  = dirname($result);
+        
+        $return = array(
+            'status'    => true,
+            'ext'       => $ext,
+            'dirname'   => $dirname,
+            'message'   => __('Successful'),
+        );
+        echo json_encode($return);
+        exit;
     }
     
+    /**
+     * Save avatar by AJAX 
+     */
     public function saveAction()
     {
+        Pi::service('log')->active(false);
         
+        $return = array('status' => false);
+        $source = $this->params('source', '');
+        if (empty($source) 
+            or !in_array($source, array('upload', 'gravatar', 'repository'))
+        ) {
+            $return['message'] = __('Invalid source!');
+            echo json_encode($return);
+            exit;
+        }
+        
+        $uid     = Pi::user()->id;
+        $adapter = Pi::avatar()->getAdapter($source);
+        
+        if ('upload' == $source) {
+            $fakeId = $this->params('fake_id', 0);
+            if (empty($fakeId)) {
+                $return['message'] = __('Not image select!');
+                echo json_encode($return);
+                exit;
+            }
+
+            $module  = $this->getModule();
+            $session = $this->getUploadSession($module, 'avatar');
+            $image   = $session->$fakeId;
+            if (empty($image['tmp_name']) 
+                or !file_exists(Pi::path($image['tmp_name']))
+            ) {
+                $return['message'] = __('Image not exists!');
+                echo json_encode($return);
+                exit;
+            }
+
+            $width  = $this->params('w', 0);
+            $height = $this->params('h', 0);
+            $x      = $this->params('x', 0);
+            $y      = $this->params('y', 0);
+            if (empty($width) or empty($height)) {
+                $return['message'] = __('Image width or height is needed');
+                echo json_encode($return);
+                exit;
+            }
+
+            // Remove old photo
+            $oldAvatar = Pi::user()->get($uid, 'avatar');
+            $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
+            foreach ($oldPaths as $oldPath) {
+                $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
+                @unlink($oldFile);
+            }
+
+            // Crop and resize avatar
+            $paths    = $adapter->getMeta($uid);
+            foreach ($paths as $path) {
+                Pi::image()->crop(
+                    $image['tmp_name'],
+                    array($x, $y),
+                    array($width, $height),
+                    $path['path']
+                );
+                Pi::image()->resize(
+                    $path['path'],
+                    array($path['size'], $path['size'])
+                );
+            }
+
+            $photo = basename($path['path']);
+
+            @unlink(Pi::path($image['tmp_name']));
+        } elseif ('gravatar' == $source) {
+            $email = $this->params('email', '');
+            if (empty($email)) {
+                $return['message'] = __('Invalid email!');
+                echo json_encode($return);
+                exit;
+            }
+            
+            $photo = $email;
+        } elseif ('repository' == $source) {
+            $name = $this->params('name', '');
+            if (empty($name)) {
+                $return['message'] = __('Invalid repository image name!');
+                echo json_encode($return);
+                exit;
+            }
+            
+            $photo = $name;
+        }
+        
+        // Save avatar data into database
+        Pi::user()->set($uid, 'avatar', $photo);
+        
+        $return['status'] = true;
+        $return['message'] = __('Save photo successful');
+        echo json_encode($return);
+        exit;
     }
     
+    /**
+     * Remove temporary image by AJAX 
+     */
     public function removeAction()
     {
         Pi::service('log')->active(false);
@@ -228,11 +454,12 @@ class AvatarController extends ActionController
         }
         
         $module  = $this->getModule();
-        $session = $this->getUploadSession($module, 'media');
+        $session = $this->getUploadSession($module, 'avatar');
         $image   = $session->$fakeId;
         
         if ($image['tmp_name']) {
             @unlink(Pi::path($image['tmp_name']));
+            unset($session->$fakeId);
         }
         
         $return['status'] = true;

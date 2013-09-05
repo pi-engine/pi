@@ -28,25 +28,5 @@ class AvatarFilter extends InputFilter
             'name'     => 'fake_id',
             'required' => true,
         ));
-
-        $this->add(array(
-            'name'     => 'x',
-            'required' => true,
-        ));
-
-        $this->add(array(
-            'name'     => 'y',
-            'required' => true,
-        ));
-
-        $this->add(array(
-            'name'     => 'w',
-            'required' => true,
-        ));
-
-        $this->add(array(
-            'name'     => 'h',
-            'required' => true,
-        ));
     }
 }
