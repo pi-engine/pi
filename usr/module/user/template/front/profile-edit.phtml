@@ -18,15 +18,18 @@
 <div class="row-fluid">
 	<?php include '_user-side-nav.phtml' ?>
 	<div class="span9">
-		<div class="user-info-top">
-			<strong class="user-info-title"><?php echo $this->escape($title); ?></strong>
-		</div>
-		<?php if ($status) {?>
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<?php _e('Update success');?>
-		</div>
-		<?php } ?>
+		<h2 class="page-header">
+			<?php echo $this->escape($title); ?>
+		</h2>
+        <?php
+            if ($isPost) {
+                echo sprintf('<div class="alert%s"><button type="button" class="close" data-dismiss="alert">×</button>
+                    %s</div>',
+                    $status ? '' : 'alert-error',
+                    $status ? __('Data saved failed') : __('Data updated successfully')
+                 );
+            }
+        ?>
 		<?php
             $form->setAttribute('class', 'form-horizontal');
             $elements = $form->elementList();
@@ -39,7 +42,6 @@
                     $element->getOption('label'),
                     $this->formElement($element),
                 	$this->formElementErrors($element));
-
             }
             foreach ($elements['hidden'] as $element) {
                 echo $this->formElement($element);
