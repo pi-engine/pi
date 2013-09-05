@@ -156,6 +156,13 @@ $config = array(
         'value'         => 'jpg,gif,png,bmp',
         'category'      => 'avatar',
     ),
+    
+    'path_tmp'          => array(
+        'title'         => _t('Temporary Path'),
+        'description'   => _t(''),
+        'value'         => 'upload/user/tmp',
+        'category'      => 'avatar',
+    ),
 );
 
 return array(
