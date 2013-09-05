@@ -23,10 +23,10 @@
 		</h2>
         <?php
             if ($isPost) {
-                echo sprintf('<div class="alert%s"><button type="button" class="close" data-dismiss="alert">×</button>
+                echo sprintf('<div class="alert %s"><button type="button" class="close" data-dismiss="alert">×</button>
                     %s</div>',
-                    $status ? '' : 'alert-error',
-                    $status ? __('Data saved failed') : __('Data updated successfully')
+                    $status ? 'alert-success' : 'alert-error',
+                    $status ? __('Data updated successfully') : __('Data saved failed')
                  );
             }
         ?>
