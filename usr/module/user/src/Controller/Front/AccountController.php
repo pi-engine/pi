@@ -78,6 +78,7 @@ class AccountController extends ActionController
             );
         }
 
+        $user['name'] = Pi::api('user', 'user')->get($uid, 'name');
         $this->view()->setTemplate('account-index');
         $this->view()->assign(array(
             'username'     => $username,
@@ -87,6 +88,7 @@ class AccountController extends ActionController
             'curGroup'     => 'account',
             'status'       => $status,
             'isPost'       => $isPost,
+            'user'         => $user,
         ));
     }
 }

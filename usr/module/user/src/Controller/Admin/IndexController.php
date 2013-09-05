@@ -34,6 +34,7 @@ class IndexController extends ActionController
 
         // Get user ids
         $uids  = $this->getUids($condition, 'activated', $limit, $offset);
+        vd($uids);exit;
         // Get user count
         $count = $this->getCount($condition);
 
@@ -309,7 +310,13 @@ class IndexController extends ActionController
     {
         $uids = array();
 
-        $accountModel = $this->getModel('account');
+        $modelAccount = $this->getModel('account');
+
+        $select = Pi::db()->select();
+        $select->from(array('account' => $modelAccount->getTable()));
+        $select->columns(array('id'));
+
+        //$select->from
 
         $where = array();
         if ($type == 'activated') {
@@ -382,19 +389,32 @@ class IndexController extends ActionController
         }
 
         if (empty($uids)) {
-            return array();
+            return $uids;
         }
 
         $roleModel = Pi::model('user_role');
-        $select    = $roleModel->select();
         $where     = array(
             'uid' => $uids,
         );
 
-        // Search from role table
+        // Search front role
         if ($condition['front-role']) {
-            $where = array();
+            $where['role'] = $condition['front-role'];
+            $select = $roleModel->select()->where($where);
+            $select->columns(array('uid'));
+            $rowset = $roleModel->selectWith($select);
+            $uids = array();
+            foreach ($rowset as $row) {
+                $uids[] = $row->id;
+            }
+
+            if (empty($uids)) {
+                return $uids;
+            }
         }
+
+
+
         return $uids;
 
     }
@@ -411,8 +431,45 @@ class IndexController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $k = date("Y-m-d",mktime(0,0,0,date("m"),date("d"),date("Y")));
-        $k = date("Y-m-d",mktime(0,0,0,date("m")-3,date("d"),date("Y")));
-        vd($k);
+        $modelAccount = $this->getModel('account');
+        $select  = Pi::db()->select();
+        $select->from(array('account' => $modelAccount->getTable()));
+        $select->columns(array('account.id'));
+
+        $modelRole = Pi::model('user_role');
+        $select->join(
+            array('role1' => $modelRole->getTable()),
+            'role1.uid' . '=' . 'account.id'
+        );
+
+        $select->join(
+            array('role2' => $modelRole->getTable()),
+            'role2.uid' . '=' . 'account.id'
+        );
+
+        $where = array(
+            'account.active' => 1,
+            'role1.role'     => 'staff',
+            'role1.section'  => 'admin',
+            'role2.role'     => 'member',
+            'role2.section'  => 'front',
+        );
+
+        $select->where($where);
+        $rowset = Pi::db()->query($select);
+
+        foreach ($rowset as $row) {
+            $result[] = $row['id'];
+        }
+
+        vd($result);
+        //vd($this->getUids());
+       // $model = Pi::model('user_role');
+        //$seletc = $model->select()->where('("role" = "admin" and )');
+
+
+//        $k = date("Y-m-d",mktime(0,0,0,date("m"),date("d"),date("Y")));
+//        $k = date("Y-m-d",mktime(0,0,0,date("m")-3,date("d"),date("Y")));
+//        vd($k);
     }
 }
