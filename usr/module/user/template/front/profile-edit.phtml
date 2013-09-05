@@ -1,54 +1,38 @@
 <?php
     $this->css($this->assetModule('script/front.css'));
 ?>
-<style>
-.controls select {
-	width: 25%;
-	margin-right: 5px;
-}
-</style>
-<!-- Side nav -->
-<div class="clearfix user-profile-back">
-    <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home')); ?>" 
-        class="pull-right btn">
-        <?php _e('Visit homepage'); ?>
-    </a>
-    <?php _e('Manage account and profiles'); ?>
-</div>
-<div class="row-fluid">
-	<?php include '_user-side-nav.phtml' ?>
-	<div class="span9">
-		<h2 class="page-header">
-			<?php echo $this->escape($title); ?>
-		</h2>
-        <?php
-            if ($isPost) {
-                echo sprintf('<div class="alert %s"><button type="button" class="close" data-dismiss="alert">×</button>
-                    %s</div>',
-                    $status ? 'alert-success' : 'alert-error',
-                    $status ? __('Data updated successfully') : __('Data saved failed')
-                 );
-            }
-        ?>
-		<?php
-            $form->setAttribute('class', 'form-horizontal');
-            $elements = $form->elementList();
-            $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
-            echo $this->form()->openTag($form);
-            foreach ($elements['active'] as $element) {
-                echo sprintf('<div class="control-group%s"><label class="control-label">%s</label>
-                    <div class="controls">%s%s</div></div>',
-                    $element->getMessages() ? ' error' : '',
-                    $element->getOption('label'),
-                    $this->formElement($element),
-                	$this->formElementErrors($element));
-            }
-            foreach ($elements['hidden'] as $element) {
-                echo $this->formElement($element);
-            }
-            echo sprintf('<div class="controls">%s</div>', 
-                $this->formElement($elements['submit']));
-            echo $this->form()->closeTag();
-        ?>
-	</div>
+<?php include '_user-side-nav.phtml' ?>
+<div class="span9">
+	<h2 class="page-header">
+		<?php echo $this->escape($title); ?>
+	</h2>
+    <?php
+        if ($isPost) {
+            echo sprintf('<div class="alert %s"><button type="button" class="close" data-dismiss="alert">×</button>
+                %s</div>',
+                $status ? 'alert-success' : 'alert-error',
+                $status ? __('Data updated successfully') : __('Data saved failed') 
+             );
+        }
+    ?>
+	<?php
+        $form->setAttribute('class', 'form-horizontal');
+        $elements = $form->elementList();
+        $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
+        echo $this->form()->openTag($form);
+        foreach ($elements['active'] as $element) {
+            echo sprintf('<div class="control-group%s"><label class="control-label">%s</label>
+                <div class="controls">%s%s</div></div>',
+                $element->getMessages() ? ' error' : '',
+                $element->getOption('label'),
+                $this->formElement($element),
+            	$this->formElementErrors($element));
+        }
+        foreach ($elements['hidden'] as $element) {
+            echo $this->formElement($element);
+        }
+        echo sprintf('<div class="controls">%s</div>', 
+            $this->formElement($elements['submit']));
+        echo $this->form()->closeTag();
+    ?>
 </div>

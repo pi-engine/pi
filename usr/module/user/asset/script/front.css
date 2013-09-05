@@ -1,12 +1,5 @@
 /* Common */
-.user-profile-back {
-	background: #4d4d4d;
-	padding: 8px 10px;
-	margin-bottom: 20px;
-	color: #fff;
-	line-height: 30px;
-	height: 30px;
-}
+
 .controls-text {
 	padding-top: 3px;
 }
@@ -71,6 +64,22 @@
 	margin: 20px 0;
 }
 /* Edit */
+.user-profile-back {
+	padding: 8px 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	display: block;
+}
+.user-profile-back:hover {
+	text-decoration: none;
+}
+.user-profile-back .media-heading {
+	color: #333;
+}
+.user-profile-back:hover .media-heading {
+	color: #005580;
+}
 .user-info-item {
 	margin-bottom: 20px;
 	border: 1px solid #ccc;
