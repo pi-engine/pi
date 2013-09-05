@@ -111,7 +111,7 @@ abstract class AbstractModel extends ArrayObject
     {
         if ('role' == $offset) {
             $this->role = null;
-        } elseif (array_key_exists($this->data, $offset)) {
+        } elseif (array_key_exists($offset, $this->data)) {
             unset($this->data[$offset]);
         }
     }
