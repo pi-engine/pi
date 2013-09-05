@@ -68,10 +68,12 @@ class Api extends AbstractApi
             return false;
         }
         $result = true;
-        $model  = Pi::model('private_message', $this->getModule());
+        $model  = Pi::model('message', $this->getModule());
         $privateMessage = array(
             'uid_from'   => $from,
             'uid_to'     => $to,
+            'is_read_to'    => 0,
+            'is_read_from'  => 1,
             'content'    => $message,
             'time_send'  => time(),
         );
@@ -187,11 +189,13 @@ class Api extends AbstractApi
     /**
      * Get total count
      *
-     * @param  int       $uid
-     * @param  string    $type
+     * @param int    $uid
+     * @param bool   $includeRead   Include read messages
+     * @param string $type          Message, notification, all
+     *
      * @return int
      */
-    public function getCount($uid, $type = '')
+    public function getCount($uid, $includeRead = false, $type = '')
     {
         switch ($type) {
             case 'message':
@@ -201,51 +205,48 @@ class Api extends AbstractApi
                 $type = '';
             break;
         }
-        $count = 0;
         if ('notification' == $type) {
             $select = Pi::model('notification')->select();
             $select->columns(array(
                 'count' => Pi::db()->expression('count(*)'),
             ));
-            $select->where(array(
-                'uid_to'            => $uid,
-                'delete_status_to'  => 0,
-                ''
-            ))
-        } elseif ()
+            $where = array(
+                'uid_to'        => $uid,
+                'is_deleted'    => 0
+            );
+            if (!$includeRead) {
+                $where['is_read'] = 0;
+            }
+            $select->where($where);
+            $row = Pi::model('notification')->selectWith($select)->current();
+            $count = (int) $row['count'];
+        } elseif ('message' == $type) {
+            $select = Pi::model('message')->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
+            $whereTo = array(
+                'uid_to'        => $uid,
+                'is_deleted_to' => 0,
+            );
+            $whereFrom = array(
+                'uid_from'          => $uid,
+                'is_deleted_from'   => 0,
+            );
+            if (!$includeRead) {
+                $whereTo['is_read'] = 0;
+                $whereFrom['is_read'] = 0;
+            }
 
-        if ($type != 'notification') {
-            //get total private message count
-            $privateModel  = Pi::model('private_message', $this->getModule());
-            $select = $privateModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                   ->where(function($where) use ($uid) {
-                                       $fromWhere = clone $where;
-                                       $toWhere = clone $where;
-                                       $fromWhere->equalTo('uid_from', $uid);
-                                       $fromWhere->equalTo('delete_status_from', 0);
-                                       $toWhere->equalTo('uid_to', $uid);
-                                       $toWhere->equalTo('delete_status_to', 0);
-                                       $where->andPredicate($fromWhere)
-                                             ->orPredicate($toWhere);
-                                   });
-            $count += $privateModel->selectWith($select)->current()->count;
-        }
-
-        if ($type == self::TYPE_NOTIFICATION || $type == self::TYPE_ALL) {
-            //get total notification count
-            $notifyModel  = Pi::model('notification', $this->getModule());
-            $select = $notifyModel->select()
-                                   ->columns(array(
-                                       'count' => new Expression('count(*)')
-                                   ))
-                                  ->where(array(
-                                      'uid' => $uid,
-                                      'delete_status' => 0
-                                  ));
-            $count += $notifyModel->selectWith($select)->current()->count;
+            $where = Pi::db()->where();
+            $where->addPredicate(Pi::db()->where($whereTo));
+            $where->orPredicate(Pi::db()->where($whereFrom));
+            $select->where($where);
+            $row = Pi::model('notification')->selectWith($select)->current();
+            $count = (int) $row['count'];
+        } else {
+            $count = $this->getCount($uid, 'message')
+                + $this->getCount($uid, 'notification');
         }
 
         return $count;
