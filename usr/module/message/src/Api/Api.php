@@ -48,13 +48,6 @@ use Zend\Db\Sql\Predicate\Expression;
 class Api extends AbstractApi
 {
     /**
-     * The number of records in each insertion in the loop
-     *
-     * @var int
-     */
-    protected static $batchInsertLen = 1000;
-
-    /**
      * Send a message
      *
      * @param  int    $to
@@ -64,12 +57,9 @@ class Api extends AbstractApi
      */
     public function send($to, $message, $from)
     {
-        if ($to == $from) {
-            return false;
-        }
         $result = true;
         $model  = Pi::model('message', $this->getModule());
-        $privateMessage = array(
+        $messageData = array(
             'uid_from'   => $from,
             'uid_to'     => $to,
             'is_read_to'    => 0,
@@ -77,21 +67,15 @@ class Api extends AbstractApi
             'content'    => $message,
             'time_send'  => time(),
         );
-        $row = $model->createRow($privateMessage);
+        $row = $model->createRow($messageData);
         try {
             $row->save();
         } catch (\Exception $e) {
             $result = false;
         }
         if ($result) {
-            $names = Pi::user()->get(array($from, $to), 'identity');
             //audit log
-            $args = array(
-                $names[$from],
-                $names[$to],
-                $message,
-            );
-            Pi::service('audit')->log('message', $args);
+            Pi::service('audit')->log('message', array($from, $to));
         }
 
         // increase message alert
@@ -103,90 +87,29 @@ class Api extends AbstractApi
     /**
      * Send a notification
      *
-     * @param  int|array $to
-     * @param  string    $message
-     * @param  string    $subject
-     * @param  string    $tag
-     * @return int|false
+     * @param  int      $to
+     * @param  string   $message
+     * @param  string   $subject
+     * @param  string   $tag
+     * @return int|bool
      */
     public function notify($to, $message, $subject, $tag = '')
     {
+        $message = array(
+            'uid'        => $to,
+            'subject'    => $subject,
+            'content'    => $message,
+            'tag'        => $tag,
+            'time_send'  => time(),
+        );
         $model  = Pi::model('notification', $this->getModule());
-        if (is_numeric($to)) {
-            $message = array(
-                'uid'        => $to,
-                'subject'    => $subject,
-                'content'    => $message,
-                'tag'        => $tag,
-                'time_send'  => time(),
-            );
-            $row = $model->createRow($message);
-            $row->save();
-            if (!$row->id) {
-                return false;
-            }
-        } else {
-            if ($to === '*') {
-                $uids = Pi::user()->getUids();
-            } elseif (is_array($to)) {
-                $uids = $to;
-            } else {
-                return false;
-            }
-            if (!empty($uids)) {
-                $columns = array(
-                    'uid',
-                    'subject',
-                    'content',
-                    'tag',
-                    'time_send'
-                );
-                $values         = array($subject, $message, $tag, time());
-                $columnString   = '';
-                $valueString    = '%s, ';
-                foreach ($columns as $column) {
-                    $columnString .= $model->quoteIdentifier($column) . ',';
-                }
-                foreach ($values as $value) {
-                    $valueString .= $model->quoteValue($value) . ',';
-                }
-                $valueString = '(' . substr($valueString, 0, -1) . '),';
-                $sql = 'INSERT INTO '
-                     . $model->quoteIdentifier($model->getTable())
-                     . ' (' . substr($columnString, 0, -1) . ') VALUES ';
-                while (!empty($uids)) {
-                    $mySql = $sql;
-                    $loop = 0;
-                    $passUids = array();
-                    foreach ($uids as $key => $uid) {
-                        $mySql .= sprintf(
-                            $valueString,
-                            $model->quoteValue($uid)
-                        ) . ',';
-                        $passUids[] = $uids[$key];
-                        unset($uids[$key]);
-                        if (++$loop > static::$batchInsertLen) {
-                            break;
-                        }
-                    }
-                    $mySql = substr($mySql, 0, -1);
-                    try {
-                        Pi::db()->query($mySql);
-
-                        // increase message alert
-                        foreach ($passUids as $uid) {
-                            $this->increaseAlert($uid);
-                        }
-
-                        $result = true;
-                    } catch (\Exception $e) {
-                        $result = false;
-                    }
-                }
-            }
+        $row    = $model->createRow($message);
+        $row->save();
+        if (!$row->id) {
+            return false;
         }
 
-        return $result;
+        return $row->id;
     }
 
     /**
@@ -267,7 +190,7 @@ class Api extends AbstractApi
      */
     public function getAlert($uid)
     {
-        return Pi::user()->data()->get($uid, 'message-alert');
+        return (int) Pi::user()->data()->get($uid, 'message-alert');
     }
 
     /**
