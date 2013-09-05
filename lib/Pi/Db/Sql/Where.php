@@ -11,6 +11,7 @@ namespace Pi\Db\Sql;
 
 use Zend\Db\Sql\Where as ZendWhere;
 use Zend\Db\Sql\Predicate;
+use Zend\Db\Sql\Exception;
 
 /**
  * Clause class
@@ -42,7 +43,10 @@ class Where extends ZendWhere
      * Canonize predicate elements
      *
      * @see Zend\Db\Sql\Select::where()
+     *
      * @param  \Closure|string|array|Predicate\PredicateInterface $predicate
+     *
+     * @throws Exception\InvalidArgumentException
      * @return array
      */
     public function canonize($predicate)
@@ -117,5 +121,36 @@ class Where extends ZendWhere
         }
 
         return $predicates;
+    }
+
+    /**
+     * Create predicate object
+     *
+     * @param  string|array $predicate
+     * @param  string $combination
+     *
+     * @return Predicate\Predicate
+     */
+    public function create($predicate, $combination = null)
+    {
+        $combination = $combination ? strtoupper($combination) : null;
+        $predicates = $this->canonize($predicate);
+        $result = new Predicate\Predicate($predicates, $combination);
+
+        return $result;
+    }
+
+    /**
+     * Add predicate to set
+     *
+     * @param  \Closure|string|array|Predicate\PredicateInterface $predicate
+     * @param  string $combination
+     * @return $this
+     */
+    public function add($predicate, $combination = null)
+    {
+        $this->addPredicate($this->create($predicate, $combination));
+
+        return $this;
     }
 }
