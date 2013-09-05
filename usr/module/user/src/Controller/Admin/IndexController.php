@@ -436,30 +436,35 @@ class IndexController extends ActionController
 
 
         $whereRoleAdmin = Pi::db()->where()->create(array(
-            'admin.role = ?'     => 'staff',
-            'admin.section = ?'  => 'admin',
+            'admin.role'     => 'staff',
+            'admin.section'  => 'admin',
         ));
 
         $whereRoleFront = Pi::db()->where()->create(array(
-            'front.role = ?'     => 'member',
-            'front.section = ?'  => 'front',
+            'front.role'     => 'member',
+            'front.section'  => 'front',
         ));
 
         $where = Pi::db()->where();
-        $where->add(array('account.active = ?' => 1))
+        $where->add(array('account.active' => 1))
             ->add($whereRoleAdmin)
             ->add($whereRoleFront);
 
         $select = Pi::db()->select();
-        $select->from(array('account' => $modelAccount->getTable()));
-        $select->columns(array('id'));
+        $select->from(
+            array('account' => $modelAccount->getTable()),
+            array('id')
+        );
+        //$select->columns(array('id'));
         $select->join(
             array('front' => $modelRole->getTable()),
-            'front.uid=account.id'
+            'front.uid=account.id',
+            array()
         );
         $select->join(
             array('admin' => $modelRole->getTable()),
-            'admin.uid=account.id'
+            'admin.uid=account.id',
+            array()
         );
         $select->where($where);
         $rowset = Pi::db()->query($select);
