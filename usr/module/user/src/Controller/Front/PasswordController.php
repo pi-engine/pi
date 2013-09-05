@@ -95,6 +95,7 @@ class PasswordController extends ActionController
             );
         }
 
+        $user['name'] = Pi::api('user', 'user')->get($uid, 'name');
         $title = __('Change password');
         $this->view()->assign(array(
             'title'     => $title,
@@ -102,6 +103,7 @@ class PasswordController extends ActionController
             'message'   => $message,
             'groups'    => $groups,
             'curGroup'  => 'password',
+            'user'      => $user,
         ));
     }
 

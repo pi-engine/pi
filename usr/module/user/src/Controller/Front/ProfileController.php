@@ -249,6 +249,7 @@ class ProfileController extends ActionController
             'curGroup' => $groupName,
             'status'   => $status,
             'isPost'   => $isPost,
+            'user'     => $this->getUser($uid)
         ));
         $this->view()->setTemplate('profile-edit');
     }
@@ -396,6 +397,7 @@ class ProfileController extends ActionController
             'curGroup'     => $groupName,
             'groups'       => $groups,
             'addForm'      => $addForm,
+            'user'         => $this->getUser($uid)
         ));
     }
 
