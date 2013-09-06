@@ -50,13 +50,35 @@
 <div class="user-avatar-source">
     <h4 class="page-header"><?php _e('Avatar source: ') ?></h4>
     <div>
-        <input name="source" type="radio" value="upload"<?php echo 'upload' == $source ? ' checked="checked"' : '' ?>><?php _e('Upload images') ?>
-        <input name="source" type="radio" value="gravatar"<?php echo 'gravatar' == $source ? ' checked="checked"' : '' ?>><?php _e('From Gravatar') ?>
-        <input name="source" type="radio" value="repository"<?php echo 'repository' == $source ? ' checked="checked"' : '' ?>><?php _e('Select from repository') ?>
+        <?php
+            if (in_array('upload', $adapters)) {
+        ?>
+        <input name="source" type="radio" value="upload"
+            <?php echo 'upload' == $source ? ' checked="checked"' : '' ?>><?php _e('Upload images') ?>
+        <?php
+            }
+            if (in_array('gravatar', $adapters)) {
+        ?>
+        <input name="source" type="radio" value="gravatar"
+            <?php echo 'gravatar' == $source ? ' checked="checked"' : '' ?>><?php _e('From Gravatar') ?>
+        <?php
+            }
+            if (in_array('select', $adapters)) {
+        ?>
+        <input name="source" type="radio" value="repository"
+            <?php echo 'repository' == $source ? ' checked="checked"' : '' ?>><?php _e('Select from repository') ?>
+        <?php
+            }
+        ?>
+        <input name="source" type="radio" value="local"
+            <?php echo 'local' == $source ? ' checked="checked"' : '' ?>><?php _e('Local') ?>
     </div>
 </div>
 
 <div id="user-js-avatar-form" class="span12">
+    <?php
+        if (in_array('upload', $adapters)) {
+    ?>
     <div id="user-avatar-source-upload" class="span12 user-source<?php echo 'upload' != $source ? ' hide' : '' ?>">
         <div class="user-uploaded-box">
             <div class="user-upload-hit">
@@ -69,7 +91,13 @@
             <img class="hide user-upload-image">
         </div>
     </div>
+    <?php
+        }
+    ?>
     
+    <?php
+        if (in_array('gravatar', $adapters)) {
+    ?>
     <div id="user-avatar-source-gravatar" class="span12 user-source<?php echo 'gravatar' != $source ? ' hide' : '' ?>">
         <div class="user-gravatar-image">
             <img src="<?php echo $this->escape($gravatar) ?>" style="width: 120px; height: 120px">
@@ -83,7 +111,13 @@
             </div>
         </div>
     </div>
+    <?php
+        }
+    ?>
     
+    <?php
+        if (in_array('select', $adapters)) {
+    ?>
     <div id="user-avatar-source-repository" class="span12 user-source<?php echo 'repository' != $source ? ' hide' : '' ?>">
     <?php 
         $i = 0;
@@ -94,11 +128,21 @@
         <img src="<?php echo $this->escape($select) ?>">
     <?php } ?>
     </div>
+    <?php
+        }
+    ?>
+    
+    <div id="user-avatar-source-local" class="span12 user-source<?php echo 'local' != $source ? ' hide' : '' ?>">
+        <img src="<?php echo $this->escape($local) ?>">
+    </div>
 </div>
 
 <div id="user-avatar-preview" class="span12">
     <h4 class="page-header"><?php _e('Avatar previews') ?></h4>
     
+    <?php
+        if (in_array('upload', $adapters)) {
+    ?>
     <div class="preview-image upload span12<?php echo 'upload' != $source ? ' hide' : '' ?>">
     <?php
         foreach ($allSize as $name => $size) {
@@ -118,7 +162,13 @@
         }
     ?>
     </div>
+    <?php
+        }
+    ?>
     
+    <?php
+        if (in_array('gravatar', $adapters)) {
+    ?>
     <div class="preview-image gravatar span12<?php echo 'gravatar' != $source ? ' hide' : '' ?>">
     <?php
         foreach ($allSize as $name => $size) {
@@ -138,7 +188,13 @@
         }
     ?>
     </div>
+    <?php
+        }
+    ?>
     
+    <?php
+        if (in_array('select', $adapters)) {
+    ?>
     <div class="preview-image repository span12<?php echo 'repository' != $source ? ' hide' : '' ?>">
     <?php
         foreach ($allSize as $name => $size) {
@@ -151,6 +207,27 @@
                    if (isset($selected[$name]) and $selected[$name]) {
                        echo Pi::url($selected[$name]);
                    }
+                ?>" style="width: <?php echo $this->escape($size) ?>px">
+            </div>
+        </div>
+    <?php
+        }
+    ?>
+    </div>
+    <?php
+        }
+    ?>
+    
+    <div class="preview-image local span12<?php echo 'local' != $source ? ' hide' : '' ?>">
+    <?php
+        foreach ($allSize as $name => $size) {
+    ?>
+        <div class="pull-left" style="width: <?php echo $this->escape($size) ?>px; margin-right: 20px">
+            <div><?php echo $this->escape(ucfirst($name)) ?></div>
+            <div class="user-preview-box" 
+                 style="width: <?php echo $this->escape($size) ?>px; height: <?php echo $this->escape($size) ?>px">
+                <img id="user-preview-local-<?php echo $this->escape($name) ?>" src="<?php
+                   echo dirname($local) . '/' . $name . '.png';
                 ?>" style="width: <?php echo $this->escape($size) ?>px">
             </div>
         </div>
@@ -304,9 +381,10 @@
         savePhoto: function(e) {
             e.preventDefault();
             var source = $('input[name="source"]:checked').val();
+            var d      = new Object();
             if ('upload' == source) {
-                var d = jcrop_api.tellScaled(),
-                    ret = this.result.w > this.result.h ? this.result.w / 300 : this.result.h / 300;
+                d = jcrop_api.tellScaled();
+                var ret = this.result.w > this.result.h ? this.result.w / 300 : this.result.h / 300;
                 this.$('.btn-primary').attr('disabled', 'disabled');
                 for (var i in d) {
                     if (d.hasOwnProperty(i)) {
@@ -316,10 +394,8 @@
                 d['avatar'] = this.result.preview_url;
                 d['fake_id'] = '<?php echo $form->get('fake_id')->getValue() ?>';
             } else if ('gravatar' == source) {
-                var d = new Object();
                 d['email'] = $('input[name="email"]').val();
             } else if ('repository' == source) {
-                var d = new Object();
                 d['name'] = $('input[name="repository-avatar"]:checked').val();
             }
             
