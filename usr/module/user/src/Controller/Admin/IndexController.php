@@ -13,6 +13,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Pi\Acl\Acl;
+use Module\User\Form\MemberForm;
 
 /**
 * User manage cases controller
@@ -21,6 +22,11 @@ use Pi\Acl\Acl;
 */
 class IndexController extends ActionController
 {
+    /**
+     * Activated user manage
+     *
+     * @return array|void
+     */
     public function indexAction()
     {
         $page   = (int) $this->params('p', 1);
@@ -71,11 +77,59 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition = array(
-            'time_activated' => 0,
+        $condition['front-role']   = _post('front-role') ?: '';
+        $condition['admin-role']   = _post('admin-role') ?: '';
+        $condition['time-created'] = _post('time-created') ?: '';
+
+        // Get user ids
+        $uids = $this->getUids($condition, 'pending', $limit, $offset);
+
+        // Get user amount
+        $count = $this->getCount($condition, 'pending');
+
+        // Get user information
+        $users = $this->getUser($uids, 'pending');
+
+        // Set paginator
+        $paginatorOption = array(
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+            'controller' => 'index',
+            'action'     => 'index',
         );
-        $uids = Pi::api('user', 'user')->getUids($condition, $limit, $offset);
-        $count = Pi::api('user', 'user')->getCount($condition);
+
+        $paginator = $this->setPaginator($paginatorOption);
+        $this->view()->assign(array(
+            'users'     => $users,
+            'paginator' => $paginator,
+            'page'      => $page,
+            'curNav'    => 'pending',
+            'frontRole' => $this->getRoleSelectOptions(),
+            'adminRole' => $this->getRoleSelectOptions('admin'),
+            'count'     => $count,
+        ));
+    }
+
+    /**
+     * Add new user action
+     *
+     */
+    public function addUserAction()
+    {
+        $this->view()->setTemplate('index-add');
+        $form = new MemberForm('add-user');
+        $status = 0;
+        $isPost = 0;
+
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            vd($post);
+        }
+
+        $this->view()->assign(array(
+            'form' => $form,
+        ));
     }
 
     /**
@@ -196,6 +250,7 @@ class IndexController extends ActionController
             return $return;
         }
 
+        // For activated list
         if ($type == 'activated') {
             $return = array(
                 'identity'      => '',
@@ -209,34 +264,45 @@ class IndexController extends ActionController
                 'login_time'    => '',
                 'id'            => '',
             );
+        }
 
-            $users = Pi::api('user', 'user')->get(
-                $ids,
-                array_keys($return)
+        // For pending list
+        if ($type == 'pending') {
+            $return = array(
+                'identity'       => '',
+                'name'           => '',
+                'email'          => '',
+                'time_activated' => '',
+                'front_role'     => '',
+                'admin_role'     => '',
+                'register_ip'    => '',
+                'time_created'   => '',
+                'id'             => '',
             );
 
-            foreach ($users as &$user) {
-                $user = array_merge($return, $user);
-
-                // Get role
-                $user['front_role'] = Pi::api('user', 'user')->getRole(
-                    $user['id'],
-                    'front'
-                );
-                $user['admin_role'] = Pi::api('user', 'user')->getRole(
-                    $user['id'],
-                    'admin'
-                );
-
-                // Get register ip
-                // TO DO
-
-                // Get login time
-                // TO DO
-            }
-            $return = $users;
         }
-        return $return;
+
+        $users = Pi::api('user', 'user')->get(
+            $ids,
+            array_keys($return)
+        );
+
+        foreach ($users as &$user) {
+            $user = array_merge($return, $user);
+
+            // Get role
+            $user['front_role'] = Pi::api('user', 'user')->getRole(
+                $user['id'],
+                'front'
+            );
+            $user['admin_role'] = Pi::api('user', 'user')->getRole(
+                $user['id'],
+                'admin'
+            );
+        }
+
+        return $users;
+
     }
 
     /**
@@ -420,6 +486,13 @@ class IndexController extends ActionController
                 'admin.uid=account.id',
                 array()
             );
+        }
+
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
         }
 
         $select->where($where);
