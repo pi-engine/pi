@@ -45,8 +45,8 @@ CREATE TABLE `{field}` (
   -- Filter for display value
   `filter`          text,
 
-  -- Field type, default as 'custom'
-  `type`            enum('custom', 'account', 'profile', 'compound'),
+  -- Field type, default as 'profile'
+  `type`            enum('profile', 'account', 'compound') NOT NULL,
 
   -- Is editable by user
   `is_edit`         tinyint(1)      unsigned NOT NULL default '0',
