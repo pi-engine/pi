@@ -216,7 +216,7 @@ class ProfileController extends ActionController
             $isPost = 1;
         } else {
             // Get profile data
-            $model = $this->getModel('field_display');
+            $model = $this->getModel('display_field');
             $select = $model->select()->where(array('group' => $groupName));
             $result = $model->selectWith($select);
             foreach ($result as $row) {
@@ -611,7 +611,7 @@ class ProfileController extends ActionController
      */
     protected function getGroupElements($groupName, $compound = '')
     {
-        $fieldsModel = $this->getModel('field_display');
+        $fieldsModel = $this->getModel('display_field');
         $select      = $fieldsModel
                        ->select()
                        ->where(array('group' => $groupName));
@@ -713,7 +713,7 @@ class ProfileController extends ActionController
     {
         $result = array();
 
-        $model = $this->getModel('field_display');
+        $model = $this->getModel('display_field');
         $select = $model->select()->where(array('group' => $group));
         $select->columns(array('field', 'group', 'order'));
         $select->order('order ASC');

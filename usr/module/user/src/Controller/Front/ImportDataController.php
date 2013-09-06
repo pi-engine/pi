@@ -335,7 +335,7 @@ EOT;
         );
 
         $displayGroupModel = $this->getModel('display_group');
-        $fieldDisplayModel = $this->getModel('field_display');
+        $fieldDisplayModel = $this->getModel('display_field');
 
         $displayGroupModel->delete(array());
         $fieldDisplayModel->delete(array());

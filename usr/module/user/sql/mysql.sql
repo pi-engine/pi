@@ -91,7 +91,7 @@ CREATE TABLE `{display_group}` (
 );
 
 # Display grouping and order of field
-CREATE TABLE `{field_display}` (
+CREATE TABLE `{display_field}` (
   `id`         int(10) unsigned         NOT NULL auto_increment,
   -- Profile field name;
   -- Or compound field name if `compound` is specified in table 'display_group'
@@ -99,7 +99,8 @@ CREATE TABLE `{field_display}` (
   `group`      varchar(64)              NOT NULL default '',
   `order`      smallint(5) unsigned     NOT NULL default '0',
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_field` (`group`, `field`)
 );
 
 # Timeline meta
