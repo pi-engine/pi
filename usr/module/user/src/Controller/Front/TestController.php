@@ -40,6 +40,15 @@ class TestController extends ActionController
         vd(Pi::avatar()->getAdapter('upload')->getMeta(Pi::user()->id));
         vd(Pi::avatar()->canonizeSize('l'));
         vd(Pi::user()->getUids(array('bio' => '')));
+
+        $where = Pi::db()->where(array(
+            'uid > ?' => 1,
+            'active > ?' => 0,
+        ));
+        $uids = Pi::api('user', 'user')->getUids($where, 3, 1, 'id desc');
+        $count = Pi::api('user', 'user')->getCount($where);
+        vd($uids);
+        vd($count);
     }
 
     protected function flushUsers()

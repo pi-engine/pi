@@ -11,6 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
+use Pi\Db\Sql\Where;
 use Pi\User\Model\Local as UserModel;
 
 /**
@@ -72,10 +73,10 @@ class User extends AbstractApi
      *
      * @fixme: `$order` should be prefixed with type if multi-type involved
      *
-     * @param array     $condition
-     * @param int       $limit
-     * @param int       $offset
-     * @param string    $order
+     * @param array|Where   $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string        $order
      * @return int[]
      * @api
      */
@@ -87,15 +88,24 @@ class User extends AbstractApi
     ) {
         $result = array();
 
-        $data = $this->canonizeUser($condition);
-        if (!isset($data['account']['active'])) {
-            $data['account']['active'] = 1;
+        if ($condition instanceof Where) {
+            $isJoin = true;
+            $data = array();
+        } else {
+            $isJoin = false;
+
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['account']['active'])) {
+                $data['account']['active'] = 1;
+            }
+            if (isset($data['profile'])) {
+                $isJoin = true;
+            }
         }
 
         $modelAccount = Pi::model('account', 'user');
-        // Only account fields
-        $accountOnly = count($data) == 1 ? true : false;
-        if ($accountOnly) {
+        // Single table query
+        if (!$isJoin) {
             $select = $modelAccount->select();
             $select->columns(array('id'));
             $dataAccount = $data['account'];
@@ -109,47 +119,54 @@ class User extends AbstractApi
             $select->from(array('account' => $modelAccount->getTable()));
             $select->columns(array('id'));
 
-            $canonizeColumn = function ($data, $type) {
-                $result = array();
-                foreach ($data as $col => $val) {
-                    $result[$type . '.' . $col] = $val;
-                }
-                return $result;
-            };
-            $where = $canonizeColumn($data['account'], 'account');
-            unset($data['account']);
+            $modelProfile = Pi::model('profile', 'user');
+            $select->join(
+                array('profile' => $modelProfile->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
 
-            foreach ($data as $type => $list) {
-                $where = array_merge($where, $canonizeColumn($list, $type));
-                $model = Pi::model($type, 'user');
-                $select->join(
-                    array($type => $model->getTable()),
-                    $type . '.uid=account.id',
-                    array()
-                );
-            }
-            $select->where($where);
-            if ($order) {
-                if (is_array($order)) {
-                    $fields = Pi::registry('profile', 'user')->read();
+            if ($condition instanceof Where) {
+                $where = $condition;
+                if ($order) {
+                    $select->order($order);
+                }
+            } else {
+                $canonizeColumn = function ($data, $type) {
                     $result = array();
-                    foreach ($order as $key => $val) {
-                        if (is_string($key)) {
-                            if (isset($fields[$key])) {
-                                $key = $fields[$key]['type'] . '.' . $key;
-                                $result[$key] = $val;
-                            }
-                        } else {
-                            if (isset($fields[$val])) {
-                                $val = $fields[$val]['type'] . '.' . $val;
-                                $result[$key] = $val;
+                    foreach ($data as $col => $val) {
+                        $result[$type . '.' . $col] = $val;
+                    }
+                    return $result;
+                };
+                $where = $canonizeColumn($data['account'], 'account');
+                $where = array_merge($where, $canonizeColumn($data['profile'], 'profile'));
+
+                if ($order) {
+                    if (is_array($order)) {
+                        $fields = Pi::registry('profile', 'user')->read();
+                        $result = array();
+                        foreach ($order as $key => $val) {
+                            if (is_string($key)) {
+                                if (isset($fields[$key])) {
+                                    $key = $fields[$key]['type'] . '.' . $key;
+                                    $result[$key] = $val;
+                                }
+                            } else {
+                                if (isset($fields[$val])) {
+                                    $val = $fields[$val]['type'] . '.' . $val;
+                                    $result[$key] = $val;
+                                }
                             }
                         }
+                        $order = $result;
                     }
-                    $order = $result;
+                    $select->order($order);
                 }
-                $select->order($order);
+
             }
+
+            $select->where($where);
         }
 
         if ($limit) {
@@ -158,7 +175,7 @@ class User extends AbstractApi
         if ($offset) {
             $select->offset($offset);
         }
-        if ($accountOnly) {
+        if (!$isJoin) {
             $rowset = $modelAccount->selectWith($select);
         } else {
             $rowset = Pi::db()->query($select);
@@ -173,59 +190,69 @@ class User extends AbstractApi
     /**
      * Get user count subject to conditions
      *
-     * @param array  $condition
+     * @param array|Where   $condition
      *
      * @return int
      * @api
      */
     public function getCount($condition = array())
     {
-        $data = $this->canonizeUser($condition);
-        if (!isset($data['account']['active'])) {
-            $data['account']['active'] = 1;
+        if ($condition instanceof Where) {
+            $isJoin = true;
+            $data = array();
+        } else {
+            $isJoin = false;
+
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['account']['active'])) {
+                $data['account']['active'] = 1;
+            }
+            if (isset($data['profile'])) {
+                $isJoin = true;
+            }
         }
 
         $modelAccount = Pi::model('account', 'user');
-        // Only account fields
-        $accountOnly = count($data) == 1 ? true : false;
-        if ($accountOnly) {
-            $dataAccount = $data['account'];
-            $select = $modelAccount->select()->where($dataAccount)
-                ->columns(array(
-                    'count' => Pi::db()->expression('COUNT(*)')
-                ));
-            $row = $modelAccount->selectWith($select)->current();
-            $count = (int) $row['count'];
-        // Account and profile fields
+        // Single table query
+        if (!$isJoin) {
+            $select = $modelAccount->select();
+            $select->columns(array('count' => Pi::db()->expression('COUNT(*)')));
+            $select->where($data['account']);
+            // Account and profile
         } else {
             $select = Pi::db()->select();
             $select->from(array('account' => $modelAccount->getTable()));
-            $select->columns(array(
-                'count' => Pi::db()->expression('COUNT(account.id)'),
-            ));
-            $canonizeColumn = function ($data, $type) {
-                $result = array();
-                foreach ($data as $col => $val) {
-                    $result[$type . '.' . $col] = $val;
-                }
-                return $result;
-            };
-            $where = $canonizeColumn($data['account'], 'account');
-            unset($data['account']);
+            $select->columns(array('count' => Pi::db()->expression('COUNT(*)')));
 
-            foreach ($data as $type => $list) {
-                $where = array_merge($where, $canonizeColumn($list, $type));
-                $model = Pi::model($type, 'user');
-                $select->join(
-                    array($type => $model->getTable()),
-                    $type . '.uid=account.id',
-                    array()
-                );
+            $modelProfile = Pi::model('profile', 'user');
+            $select->join(
+                array('profile' => $modelProfile->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
+
+            if ($condition instanceof Where) {
+                $where = $condition;
+            } else {
+                $canonizeColumn = function ($data, $type) {
+                    $result = array();
+                    foreach ($data as $col => $val) {
+                        $result[$type . '.' . $col] = $val;
+                    }
+                    return $result;
+                };
+                $where = $canonizeColumn($data['account'], 'account');
+                $where = array_merge($where, $canonizeColumn($data['profile'], 'profile'));
             }
+
             $select->where($where);
-            $row = Pi::db()->query($select)->current();
-            $count = (int) $row['count'];
         }
+        if (!$isJoin) {
+            $row = $modelAccount->selectWith($select)->current();
+        } else {
+            $row = Pi::db()->query($select)->current();
+        }
+        $count = (int) $row['count'];
 
         return $count;
     }
@@ -241,7 +268,7 @@ class User extends AbstractApi
      *
      * @param   array   $data
      *
-     * @return  int|string[]   uid or, uid and error of account/profile/compound
+     * @return  int|array uid or uid and error of account/profile/compound
      * @api
      */
     public function addUser($data)
@@ -513,8 +540,8 @@ class User extends AbstractApi
      * If section is specified, returns the role;
      * if not, return associative array of roles.
      *
-     * @param        $uid
-     * @param string $section   Section name: admin, front
+     * @param int       $uid
+     * @param string    $section   Section name: admin, front
      *
      * @return string|array
      */
@@ -762,11 +789,12 @@ class User extends AbstractApi
         ));
         try {
             $row->save();
+            $status = true;
         } catch (\Exception $e) {
-            return false;
+            $status = status;
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -799,11 +827,12 @@ class User extends AbstractApi
         ));
         try {
             $row->save();
+            $status = true;
         } catch (\Exception $e) {
-            return false;
+            $status = false;
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -853,11 +882,12 @@ class User extends AbstractApi
         $row->assign($data);
         try {
             $row->save();
+            $status = true;
         } catch (\Exception $e) {
-            return false;
+            $status = false;
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -895,11 +925,12 @@ class User extends AbstractApi
         $row = $model->createRow($data);
         try {
             $row->save();
+            $status = true;
         } catch (\Exception $e) {
-            return false;
+            $status = false;
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -939,11 +970,12 @@ class User extends AbstractApi
         $row->assign($data);
         try {
             $row->save();
+            $status = true;
         } catch (\Exception $e) {
-            return false;
+            $status = false;
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -1150,7 +1182,7 @@ class User extends AbstractApi
      *
      * @return bool
      */
-    public function setTypeField($uid, $type, $field, $value)
+    protected function setTypeField($uid, $type, $field, $value)
     {
         if (!$uid) {
             return false;
