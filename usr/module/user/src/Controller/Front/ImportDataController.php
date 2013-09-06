@@ -23,19 +23,27 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $this->addUser();
-        $this->timelineLog();
-        $this->group();
-        $this->activity();
-        $this->quickLink();
+//        $this->addUser();
+//        $this->timelineLog();
+//        $this->group();
+//        $this->activity();
+//        $this->quickLink();
         $this->activeUser();
     }
 
     protected function addUser()
     {
+        $this->view()->setTemplate(false);
+
+        $this->flushUsers();
+
         $users = array();
+
         $prefix = _get('prefix') ?: 'pi';
-        $count  = _get('count') ?: 50;
+        $count  = (int) _get('count') ?: 50;
+
+        vd($count);
+
 
         $genderMap      = array('male', 'female', 'unknown');
         $languageMap    = array('en', 'fa', 'fr', 'zh-cn');
@@ -44,7 +52,9 @@ class ImportDataController extends ActionController
             'High school', 'Middle school',
             'Preliminary school');
 
-        for ($i = 1; $i <= $count; $i++) {
+        $start = 11;
+        $end = $count + $start;
+        for ($i = $start; $i <= $end; $i++) {
             $user = array(
                 'identity'      => $prefix . '_' . $i,
                 'credential'    => $prefix . '_' . $i,
@@ -133,11 +143,13 @@ class ImportDataController extends ActionController
                     ),
                 ),
             );
-            list($uid, $result) = Pi::service('user')->addUser($user);
-            if ($uid) {
+            $uid = Pi::api('user', 'user')->addUser($user);
+            if (is_int($uid)) {
                 $users[$uid] = $user;
             }
         }
+
+        vd($users);
     }
 
 
@@ -380,16 +392,25 @@ EOT;
         $this->view()->setTemplate(false);
         $model = $this->getModel('account');
 
-        for ($uid = 7; $uid < 30; $uid++)
+        for ($uid = 10; $uid < 100; $uid++)
         {
-            $model->update(
-                array(
-                    'active' => 1,
-                    'time_created' => time() - $uid * 3600 * 12,
-                    'time_activated' => time() - $uid * 3600 * 6,
-                ),
-                array('id' => $uid)
-            );
+            if ($model->find($uid, 'id')) {
+                $model->update(
+                    array(
+                        'active' => 1,
+                        'time_created' => time() - $uid * 3600 * 12,
+                        'time_activated' => time() - $uid * 3600 * 6,
+                    ),
+                    array('id' => $uid)
+                );
+            }
         }
+    }
+
+    protected function flushUsers()
+    {
+        Pi::model('account', 'user')->delete(array('id > ?' => 10));
+        Pi::model('profile', 'user')->delete(array('uid > ?' => 10));
+        Pi::model('compound', 'user')->delete(array('uid > ?' => 10));
     }
 }
