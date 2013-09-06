@@ -99,8 +99,7 @@ CREATE TABLE `{display_field}` (
   `group`      varchar(64)              NOT NULL default '',
   `order`      smallint(5) unsigned     NOT NULL default '0',
 
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `group_field` (`group`, `field`)
+  PRIMARY KEY (`id`)
 );
 
 # Timeline meta

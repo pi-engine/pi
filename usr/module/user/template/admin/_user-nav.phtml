@@ -1,16 +1,16 @@
 <ul class="nav nav-tabs">
-    <li class="<?php echo $curNav == 'active' ? 'active' : ''; ?>">
-        <a href="">
+    <li class="<?php echo $curNav == 'activated' ? 'active' : ''; ?>">
+        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>">
             <?php _e('Activated'); ?>
         </a>
     </li>
     <li class="<?php echo $curNav == 'pending' ? 'active' : ''; ?>">
-        <a href="#">
+        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'pending')); ?>">
             <?php _e('Pending');?>
         </a>
     </li>
     <li class="<?php echo $curNav == 'add' ? 'active' : ''; ?>">
-        <a href="#">
+        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'add.user')); ?>">
             <?php _e('Add new'); ?>
         </a>
     </li>

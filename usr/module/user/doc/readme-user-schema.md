@@ -150,7 +150,7 @@ CREATE TABLE `{display_group}` (
 );
 
 # Display grouping and order of field
-CREATE TABLE `{field_display}` (
+CREATE TABLE `{display_field}` (
   `id`         int(10) unsigned         NOT NULL auto_increment,
   -- Profile field name;
   -- Or compound field name if `compound` is specified in table 'display_group'

@@ -78,7 +78,7 @@
                 <?php echo $this->escape($user['email']); ?>
             </td>
             <td>
-                <input checked="<?php echo $user['time_disabled'] ? true : false; ?>" type="checkbox">
+                <input type="checkbox" <input type="checkbox" <?php echo $user['time_activated'] ? 'checked' : ''?> >
             </td>
             <td>
                 <select>
