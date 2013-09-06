@@ -11,6 +11,7 @@ namespace Module\System\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
+use Pi\Db\Sql\Where;
 use Pi\User\Model\System as UserModel;
 
 /**
@@ -69,10 +70,10 @@ class User extends AbstractApi
     /**
      * Get user IDs subject to conditions
      *
-     * @param array     $condition
-     * @param int       $limit
-     * @param int       $offset
-     * @param string    $order
+     * @param array|Where   $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string        $order
      * @return int[]
      * @api
      */
@@ -84,15 +85,20 @@ class User extends AbstractApi
     ) {
         $result = array();
 
-        $data = $this->canonizeUser($condition);
-        if (!isset($data['active'])) {
-            $data['active'] = 1;
+        if ($condition instanceof Where) {
+            $where = $condition;
+        } else {
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['active'])) {
+                $data['active'] = 1;
+            }
+            $where = $data;
         }
 
         $modelAccount = Pi::model('user_account');
         $select = $modelAccount->select();
         $select->columns(array('id'));
-        $select->where($data);
+        $select->where($where);
         if ($order) {
             $select->order($order);
         }
@@ -113,21 +119,25 @@ class User extends AbstractApi
     /**
      * Get user count subject to conditions
      *
-     * @param array  $condition
+     * @param array|Where  $condition
      *
      * @return int
      * @api
      */
     public function getCount($condition = array())
     {
-        $data = $this->canonizeUser($condition);
-        if (!isset($data['active'])) {
-            $data['active'] = 1;
+        if ($condition instanceof Where) {
+            $where = $condition;
+        } else {
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['active'])) {
+                $data['active'] = 1;
+            }
+            $where = $data;
         }
 
         $modelAccount = Pi::model('user_account');
-        $dataAccount = $data['account'];
-        $select = $modelAccount->select()->where($dataAccount)
+        $select = $modelAccount->select()->where($where)
             ->columns(array(
                 'count' => Pi::db()->expression('COUNT(*)')
             ));
