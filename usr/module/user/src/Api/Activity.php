@@ -46,9 +46,9 @@ class Activity extends AbstractApi
      *
      * Log array: time, message
      *
-     * @param     $uid
-     * @param     $name
-     * @param     $limit
+     * @param int    $uid
+     * @param string    $name
+     * @param int    $limit
      * @param int $offset
      *
      * @return array

@@ -172,7 +172,8 @@ CREATE TABLE `{timeline_log}` (
 CREATE TABLE `{privacy}` (
   `id`        int(10)              unsigned NOT NULL auto_increment,
   `field`     varchar(64)          NOT NULL default '',
-  `value`     enum('owner', 'following', 'follower', 'friend', 'public'),
+  -- Access level: 0 - public; 1 - member; 2 - follower; 4 - following; 255 - owner
+  `value`     smallint(5)         unsigned NOT NULL default '0',
   -- Is forced by admin
   `is_forced` tinyint(1)            NOT NULL default '0',
 
@@ -182,10 +183,11 @@ CREATE TABLE `{privacy}` (
 
 #Privacy setting for user profile field
 CREATE TABLE `{privacy_user}` (
-  `id`        int(10)              unsigned NOT NULL auto_increment,
+  `id`        int(10)             unsigned NOT NULL auto_increment,
   `uid`       int(10)             unsigned NOT NULL,
-  `field`     varchar(64)          NOT NULL default '',
-  `value`     enum('owner', 'following', 'follower', 'friend', 'public'),
+  `field`     varchar(64)         NOT NULL default '',
+  -- Access level: 0 - public; 1 - member; 2 - follower; 4 - following; 255 - owner
+  `value`     smallint(5)         unsigned NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_field` (`uid`, `field`)

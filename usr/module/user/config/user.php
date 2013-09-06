@@ -235,6 +235,15 @@ return array(
             'title' => __('Language'),
             'edit'  => 'locale',
         ),
+        // Profile: Register IP
+        'ip_register'  => array(
+            'name'      => 'ip_register',
+            'title'     => __('Register IP'),
+
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
+        ),
 
         // Compound fields
         // Compound: Social networking tools
