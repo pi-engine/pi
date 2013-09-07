@@ -1,6 +1,7 @@
 <div class="media user-avatar-media">
     <a class="pull-left">
         <img  class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
+        <a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'setting')); ?>"><?php _e('Setting'); ?></a>
     </a>
     <div class="pull-right">
         <?php if ($isOwner) { ?>
