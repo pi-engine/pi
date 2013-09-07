@@ -33,10 +33,21 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['state']        = _post('state') ? : '';
-        $condition['front-role']   = _post('front-role') ?: '';
-        $condition['admin-role']   = _post('admin-role') ?: '';
-        $condition['time-created'] = _post('time-created') ?: '';
+        $condition['state']        = _get('state') ? : '';
+        $condition['front-role']   = _get('front-role') ?: '';
+        $condition['admin-role']   = _get('admin-role') ?: '';
+        $condition['time-created'] = _get('time-created') ?: '';
+        $condition['search']       = _get('search') ?: '';
+
+        // Exchange search
+        if ($condition['search']) {
+            // Check email or username
+            if (preg_match('/.+@.+/', $condition['search'])) {
+                $condition['identity'] = $condition['search'];
+            } else {
+                $condition['email'] = $condition['search'];
+            }
+        }
 
         // Get user ids
         $uids  = $this->getUids($condition, 'activated', $limit, $offset);
@@ -65,6 +76,7 @@ class IndexController extends ActionController
             'frontRole' => $this->getRoleSelectOptions(),
             'adminRole' => $this->getRoleSelectOptions('admin'),
             'count'     => $count,
+            'condition' => $condition,
         ));
     }
 
@@ -77,9 +89,20 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['front-role']   = _post('front-role') ?: '';
-        $condition['admin-role']   = _post('admin-role') ?: '';
-        $condition['time-created'] = _post('time-created') ?: '';
+        $condition['front-role']   = _get('front-role') ?: '';
+        $condition['admin-role']   = _get('admin-role') ?: '';
+        $condition['time-created'] = _get('time-created') ?: '';
+        $condition['search']       = _get('search') ?: '';
+
+        // Exchange search
+        if ($condition['search']) {
+            // Check email or username
+            if (preg_match('/.+@.+/', $condition['search'])) {
+                $condition['identity'] = $condition['search'];
+            } else {
+                $condition['email'] = $condition['search'];
+            }
+        }
 
         // Get user ids
         $uids = $this->getUids($condition, 'pending', $limit, $offset);
@@ -122,14 +145,41 @@ class IndexController extends ActionController
         $status = 0;
         $isPost = 0;
 
+        $options = $form->get('admin-role')->getValueOptions();
+        array_shift($options);
+        $options = array_merge(array('none' => 'None'), $options);
+        $form->get('admin-role')->setValueOptions($options);
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            vd($post);
+            $form->setData($post);
+            $form->setInputFilter(new MemberFilter());
+
+            if ($form->isValid()) {
+                $values = $form->getData();
+                $status = Pi::api('user', 'user')->addUser($values);
+            }
+            $isPost = 1;
         }
 
         $this->view()->assign(array(
-            'form' => $form,
+            'form'   => $form,
+            'status' => $status,
+            'isPost' => $isPost,
         ));
+    }
+
+    public function searchAction()
+    {
+        // Initialise search options
+        $options['state']                = _get('state') ?: '';
+        $options['front-role']           = _get('front-role') ?: 'none';
+        $options['admin-role']           = _get('admin-role') ?: 'none';
+        $options['identity']             = _get('username') ?: '';
+        $options['email']                = _get('email') ?: '';
+        $condition['time-created-start'] = _get('time-created-start') ?: '';
+        $condition['time-created-end']   = _get('time-created-end') ?: '';
+        $condition['time-login-end']     = _get('time-login-end') ?: '';
     }
 
     /**
@@ -446,6 +496,16 @@ class IndexController extends ActionController
             );
         }
 
+        if ($condition['email']) {
+            // Todo like match
+            $where['email'] = $condition['email'];
+        }
+
+        if ($condition['identity']) {
+            // Todo like match
+            $where['identity'] = $condition['identity'];
+        }
+
         $whereAccount = Pi::db()->where()->create($where);
         $where = Pi::db()->where();
         $where->add($whereAccount);
@@ -579,6 +639,16 @@ class IndexController extends ActionController
                 date("d"),
                 date("Y") - 1
             );
+        }
+
+        if ($condition['email']) {
+            // Todo like match
+            $where['email'] = $condition['email'];
+        }
+
+        if ($condition['identity']) {
+            // Todo like match
+            $where['identity'] = $condition['identity'];
         }
 
         $whereAccount = Pi::db()->where()->create($where);
