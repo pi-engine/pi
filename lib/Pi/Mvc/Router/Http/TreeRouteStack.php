@@ -239,7 +239,7 @@ class TreeRouteStack extends RouteStack
             $path = $this->baseUrl
                   . $route->assemble(
                       array_merge($this->defaultParams, $params),
-                        $options
+                      $options
                     );
 
             if ((isset($options['force_canonical'])
