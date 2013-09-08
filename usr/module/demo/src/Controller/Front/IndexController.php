@@ -128,8 +128,8 @@ class IndexController extends ActionController
         ));
         */
         $paginator = Paginator::factory(intval($count), array(
-            'item_count_per_page'   => $limit,
-            'current_page_number'   => $page,
+            'limit' => $limit,
+            'page'  => $page,
             'url_options'           => array(
                 // Use router to build URL for each page
                 'page_param'    => 'p',

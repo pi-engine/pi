@@ -7,7 +7,9 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application\Model;
+namespace Module\Demo\Model;
+
+use Pi\Application\Model\Model;
 
 class Test extends Model
 {}
