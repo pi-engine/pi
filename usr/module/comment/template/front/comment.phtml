@@ -16,7 +16,7 @@ if (!Pi::comment()->active()) {
 $data = Pi::api('comment')->load(
     Pi::engine()->appllication()->getRouteMatch()
 );
-if (!$data['root']['active']) {
+if (!$data || empty($data['root']['active'])) {
     return;
 }
 /*

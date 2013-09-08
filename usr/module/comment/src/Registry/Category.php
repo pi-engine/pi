@@ -31,13 +31,39 @@ class Category extends AbstractRegistry
         $list = array();
 
         $model = Pi::model('category', $this->module);
-        $rowset = $model->select(array('active' => 1));
+        $where = array('active' => 1);
+        if ($options['module']) {
+            $where['module'] = $options['module'];
+        }
+        $rowset = $model->select($where);
         foreach ($rowset as $row) {
-            $list[$row['module']][$row['name']] =  array(
-                'title'     => $row['title'],
-                'callback'  => $row['callback'],
-                'icon'      => $row['icon'],
+            $data = array(
+                'title'         => $row['title'],
+                //'category'      => $row['name'],
+                'callback'      => $row['callback'],
+                'icon'          => $row['icon'],
+                //'module'        => $row['module'],
+                //'controller'    => $row['controller'],
+                //'action'        => $row['action'],
+                'params'        => $row['params'],
             );
+            if ($options['module']) {
+                if ($options['category']) {
+                    $data = array_merge($data, array(
+                        'controller'    => $row['controller'],
+                        'action'        => $row['action'],
+                    ));
+                    $list[$row['name']] = $data;
+                } else {
+                    $list[][$row['action']][$row['name']] = $data;
+                }
+            } else {
+                $data = array_merge($data, array(
+                    'controller'    => $row['controller'],
+                    'action'        => $row['action'],
+                ));
+                $list[$row['module']][$row['name']] = $data;
+            }
         }
 
         return $list;
@@ -51,13 +77,10 @@ class Category extends AbstractRegistry
      */
     public function read($module = '', $category = '')
     {
-        $options = array();
+        $options = array('module' => $module, 'category' => $category ? 1 : 0);
         $data = $this->loadData($options);
-        if ($module) {
-            $data = isset($data[$module]) ? $data[$module] : array();
-            if ($category) {
-                $data = isset($data[$category]) ? $data[$category] : array();
-            }
+        if ($module && $category) {
+            $data = isset($data[$category]) ? $data[$category] : array();
         }
 
         return $data;
@@ -70,7 +93,7 @@ class Category extends AbstractRegistry
     public function create($meta = '')
     {
         $this->clear('');
-        $this->read('');
+        $this->read($meta);
 
         return true;
     }

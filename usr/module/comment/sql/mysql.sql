@@ -11,6 +11,10 @@
 CREATE TABLE `{category}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `module`          varchar(64)     NOT NULL default '',
+  `controller`      varchar(64)     NOT NULL default '',
+  `action`          varchar(64)     NOT NULL default '',
+  `item`            varchar(64)     NOT NULL default '',
+  `params`          varchar(255)    NOT NULL default '',
   `name`            varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',
   `callback`        varchar(255)    NOT NULL default '',

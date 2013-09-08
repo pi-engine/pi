@@ -11,22 +11,23 @@
 namespace Pi\Application\Service;
 
 use Pi;
+use Pi\Db\Sql\Where;
 
 /**
  * Comment service
  *
- * - add(array $data)
- * - get($id)
+ * - addPost(array $data)
+ * - getPost($id)
  * - getRoot(array $condition|$id)
  * - getTarget($root)
  * - getList(array $condition|$root, $limit, $offset, $order)
  * - getCount(array $condition|$root)
  * - getUrl($root, $id)
- * - update($id, array $data)
- * - delete($id)
+ * - updatePost($id, array $data)
+ * - deletePost($id)
  * - approve($id, $flag)
  * - enable($root, $flag)
- * - deleteRoot($root, $flag)
+ * - delete($root, $flag)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -49,7 +50,7 @@ class Comment extends AbstractService
      *
      * @return int|bool
      */
-    public function add(array $data)
+    public function addPost(array $data)
     {
         if (!$this->active()) {
             return false;
@@ -65,7 +66,7 @@ class Comment extends AbstractService
      *
      * @return array|bool   uid, content, time, active, IP
      */
-    public function get($id)
+    public function getPost($id)
     {
         if (!$this->active()) {
             return false;
@@ -109,7 +110,7 @@ class Comment extends AbstractService
     /**
      * Get multiple comments
      *
-     * @param int|array $condition Root id or conditions
+     * @param int|array|Where $condition Root id or conditions
      * @param int       $limit
      * @param int       $offset
      * @param string    $order
@@ -128,7 +129,7 @@ class Comment extends AbstractService
     /**
      * Get comment count
      *
-     * @param int|array     $condition Root id or conditions
+     * @param int|array|Where     $condition Root id or conditions
      *
      * @return int|bool
      */
@@ -149,7 +150,7 @@ class Comment extends AbstractService
      *
      * @return string|bool
      */
-    public function getUrl($root, $id)
+    public function getUrl($root, $id = null)
     {
         if (!$this->active()) {
             return false;
@@ -166,7 +167,7 @@ class Comment extends AbstractService
      *
      * @return bool
      */
-    public function update($id, array $data)
+    public function updatePost($id, array $data)
     {
         if (!$this->active()) {
             return false;
@@ -182,7 +183,7 @@ class Comment extends AbstractService
      *
      * @return bool
      */
-    public function delete($id)
+    public function deletePost($id)
     {
         if (!$this->active()) {
             return false;
@@ -211,12 +212,12 @@ class Comment extends AbstractService
     /**
      * Enable/Disable comments for a target
      *
-     * @param int  $root
-     * @param bool $flag
+     * @param array|int $root
+     * @param bool      $flag
      *
      * @return bool
      */
-    public function close($root, $flag = true)
+    public function enable($root, $flag = true)
     {
         if (!$this->active()) {
             return false;
@@ -232,7 +233,7 @@ class Comment extends AbstractService
      *
      * @return bool
      */
-    public function deleteRoot($root)
+    public function delete($root)
     {
         if (!$this->active()) {
             return false;
