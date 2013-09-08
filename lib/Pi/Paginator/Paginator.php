@@ -9,14 +9,16 @@
 
 namespace Pi\Paginator;
 
+use Pi;
 use ArrayIterator;
 use Countable;
 use Iterator;
-use IteratorAggregate;
+//use IteratorAggregate;
 use Traversable;
 use Zend\Db\Sql;
-use Zend\Db\Table\AbstractRowset as DbAbstractRowset;
-use Zend\Db\Table\Select as DbTableSelect;
+use Zend\Db\ResultSet\AbstractResultSet;
+//use Zend\Db\Table\AbstractRowset as DbAbstractRowset;
+use Zend\Db\Sql\Select as DbTableSelect;
 use Zend\Filter\FilterInterface;
 use Zend\Json\Json;
 use Zend\Paginator\Adapter\AdapterInterface;
@@ -29,6 +31,78 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
 /**
  * Paginator handler
  *
+ * - Create paginator with factory
+ *
+ * ```
+ *  $paginator = Paginator::factory(5, array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'page_param'    => 'p',
+ *          'total_param'   => 't',
+ *          'params'        => array(
+ *              'flag'      => $flag,
+ *          ),
+ *      ),
+ *  ));
+ *
+ *  $paginator = Paginator::factory(5, array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'template'=> $this->url('', array(
+ *              'p' => '__page__',
+ *              't' => '__total__',
+ *              'f' => $flag,
+ *          ),
+ *      ),
+ *  ));
+ *
+ *  $paginator = Paginator::factory(5, array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'template'=> '/url/to/page/p/__page__/t/__total__/f/{$flag}',
+ *      ),
+ *  ));
+ * ```
+ *
+ * - Create paginator with constructor
+ *
+ * ```
+ *  $paginator = new Paginator(5);
+ *  $paginator->setOptions(array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'page_param'    => 'p',
+ *          'total_param'   => 't',
+ *          'params'        => array(
+ *              'flag'      => $flag,
+ *          ),
+ *      ),
+ *  ));
+ *
+ *  $paginator->setOptions(array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'template'=> $this->url('', array(
+ *              'p' => '__page__',
+ *              't' => '__total__',
+ *              'f' => $flag,
+ *          ),
+ *      ),
+ *  ));
+ *
+ *  $paginator->setOptions(array(
+ *      'item_count_per_page'   => $limit,
+ *      'current_page_number'   => $page,
+ *      'url_options'           => array(
+ *          'template'=> '/url/to/page/p/__page__/t/__total__/f/{$flag}',
+ *      ),
+ *  ));
+ * ```
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -129,17 +203,22 @@ class Paginator extends Pagit
         'route'         => 'default',
     );
 
+    /** @var string Pattern for URL replacement */
+    const PAGE_PATTERN = '__page__';
+    const TOTAL_PATTERN = '__total__';
+
     /**
      * Factory.
      *
-     * @param  mixed  $data
+     * @param mixed $data
+     * @param array $options
      * @throws Exception\InvalidArgumentException
      * @return self
      */
-    public static function factory($data)
+    public static function factory($data, $options = array())
     {
         if ($data instanceof AdapterAggregateInterface) {
-            return new self($data->getPaginatorAdapter());
+            return new static($data->getPaginatorAdapter());
         }
 
         if (is_array($data)) {
@@ -161,7 +240,163 @@ class Paginator extends Pagit
 
         $adapter = static::createAdapter($adapter, $data);
 
-        return new self($adapter);
+        $paginator = new static($adapter);
+        if ($options) {
+            $paginator->setOptions($options);
+        }
+
+        return $paginator;
+    }
+
+    /**
+     * Canonize paginator options
+     *
+     * Transform:
+     * - limit => item_count_per_page
+     * - page => current_page_number
+     *
+     * 
+     * @param array $options
+     *
+     * @return array
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    protected function canonizeOptions(array $options)
+    {
+        if (isset($options['limit'])) {
+            $options['item_count_per_page'] = $options['limit'];
+            unst($options['limit']);
+        }
+        if (isset($options['page'])) {
+            $options['current_page_number'] = $options['page'];
+            unst($options['page']);
+        }
+
+        return $options;
+    }
+
+    /**
+     * Set options
+     *
+     * @param array|\Traversable $options
+     * @return $this
+     * @throws Exception\InvalidArgumentException
+     */
+    public function setOptions($options)
+    {
+        if ($options instanceof Traversable) {
+            $options = ArrayUtils::iteratorToArray($options);
+        }
+        if (!is_array($options)) {
+            throw new Exception\InvalidArgumentException(
+                __METHOD__ . ' expects an array or Traversable'
+            );
+        }
+        $options = $this->canonizeOptions($options);
+        foreach ($options as $key => $value) {
+            $method = 'set' . str_replace('_', '', $key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -231,34 +466,6 @@ class Paginator extends Pagit
         }
 
         return new $class;
-    }
-
-    /**
-     * Set a global config
-     *
-     * @param array|\Traversable $config
-     * @return void
-     * @throws Exception\InvalidArgumentException
-     */
-    public static function setOptions($config)
-    {
-        if ($config instanceof Traversable) {
-            $config = ArrayUtils::iteratorToArray($config);
-        }
-        if (!is_array($config)) {
-            throw new Exception\InvalidArgumentException(
-                __METHOD__ . ' expects an array or Traversable'
-            );
-        }
-
-        static::$config = $config;
-
-        $scrollingStyle = isset($config['scrolling_style'])
-            ? $config['scrolling_style'] : null;
-
-        if ($scrollingStyle != null) {
-            static::setDefaultScrollingStyle($scrollingStyle);
-        }
     }
 
     /**
@@ -796,7 +1003,7 @@ class Paginator extends Pagit
     {
         $currentItems = $this->getCurrentItems();
 
-        if ($currentItems instanceof DbAbstractRowset) {
+        if ($currentItems instanceof AbstractResultSet) {
             return Json::encode($currentItems->toArray());
         } else {
             return Json::encode($currentItems);
@@ -947,7 +1154,7 @@ class Paginator extends Pagit
     {
         if (!empty($this->urlOptions['template'])) {
             $url = str_replace(
-                array('%page%', '%total%'),
+                array(static::PAGE_PATTERN, static::TOTAL_PATTERN),
                 array($page, $this->count()),
                 $this->urlOptions['template']
             );
@@ -973,11 +1180,15 @@ class Paginator extends Pagit
                 ? static::$config['route']
                 : null);
 
-        if (!$router || !$route) {
-            return false;
+        if ($router) {
+            $options = array(
+                'router'                => $router,
+                'reuse_matched_params'  => true
+            );
+        } else {
+            $options = true;
         }
-
-        $url = $router->assemble($params, array('name' => $route));
+        $url = Pi::service('url')->assemble($route, $params, $options);
 
         return $url;
     }
