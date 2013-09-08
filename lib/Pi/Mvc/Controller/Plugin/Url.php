@@ -9,12 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\EventManager\EventInterface;
-use Zend\Mvc\Exception;
-use Zend\Mvc\InjectApplicationEventInterface;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteStackInterface;
+use Pi;
 use Zend\Mvc\Controller\Plugin\Url as ZendUrl;
 
 /**
@@ -27,7 +22,7 @@ class Url extends ZendUrl
     /**
      * Generates a URL based on a route
      *
-     * @param string        $route                  RouteInterface name
+     * @param string        $route      Route name
      * @param array         $params
      *      Parameters to use in url generation, if any
      * @param array|bool    $options
