@@ -13,12 +13,11 @@ use Pi;
 use ArrayIterator;
 use Countable;
 use Iterator;
-//use IteratorAggregate;
 use Traversable;
 use Zend\Db\Sql;
 use Zend\Db\ResultSet\AbstractResultSet;
-//use Zend\Db\Table\AbstractRowset as DbAbstractRowset;
-use Zend\Db\Sql\Select as DbTableSelect;
+use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\Sql\Select as DbSelect;
 use Zend\Filter\FilterInterface;
 use Zend\Json\Json;
 use Zend\Paginator\Adapter\AdapterInterface;
@@ -36,7 +35,9 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  * ```
  *  $paginator = Paginator::factory(5, array(
  *      'item_count_per_page'   => $limit,
+ *      // or 'limit'           => $limit,
  *      'current_page_number'   => $page,
+ *      // or 'page'            => $page,
  *      'url_options'           => array(
  *          'page_param'    => 'p',
  *          'total_param'   => 't',
@@ -47,8 +48,8 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  *  ));
  *
  *  $paginator = Paginator::factory(5, array(
- *      'item_count_per_page'   => $limit,
- *      'current_page_number'   => $page,
+ *      'item_count_per_page'   => $limit,  // or 'limit' => $limit
+ *      'current_page_number'   => $page,   // or 'page' => $page
  *      'url_options'           => array(
  *          'template'=> $this->url('', array(
  *              'p' => '__page__',
@@ -59,8 +60,8 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  *  ));
  *
  *  $paginator = Paginator::factory(5, array(
- *      'item_count_per_page'   => $limit,
- *      'current_page_number'   => $page,
+ *      'limit' => $limit,
+ *      'page'  => $page,
  *      'url_options'           => array(
  *          'template'=> '/url/to/page/p/__page__/t/__total__/f/{$flag}',
  *      ),
@@ -72,8 +73,8 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  * ```
  *  $paginator = new Paginator(5);
  *  $paginator->setOptions(array(
- *      'item_count_per_page'   => $limit,
- *      'current_page_number'   => $page,
+ *      'item_count_per_page'   => $limit,  // or 'limit' => $limit
+ *      'current_page_number'   => $page,   // or 'page' => $page
  *      'url_options'           => array(
  *          'page_param'    => 'p',
  *          'total_param'   => 't',
@@ -84,8 +85,8 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  *  ));
  *
  *  $paginator->setOptions(array(
- *      'item_count_per_page'   => $limit,
- *      'current_page_number'   => $page,
+ *      'item_count_per_page'   => $limit,  // or 'limit' => $limit
+ *      'current_page_number'   => $page,   // or 'page' => $page
  *      'url_options'           => array(
  *          'template'=> $this->url('', array(
  *              'p' => '__page__',
@@ -96,8 +97,8 @@ use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
  *  ));
  *
  *  $paginator->setOptions(array(
- *      'item_count_per_page'   => $limit,
- *      'current_page_number'   => $page,
+ *      'item_count_per_page'   => $limit,  // or 'limit' => $limit
+ *      'current_page_number'   => $page,   // or 'page' => $page
  *      'url_options'           => array(
  *          'template'=> '/url/to/page/p/__page__/t/__total__/f/{$flag}',
  *      ),
@@ -223,8 +224,8 @@ class Paginator extends Pagit
 
         if (is_array($data)) {
             $adapter = 'arrayAdapter';
-        } elseif ($data instanceof DbTableSelect) {
-            $adapter = 'dbTableSelect';
+        } elseif ($data instanceof AbstractTableGateway) {
+            $adapter = 'dbTableGateway';
         } elseif ($data instanceof DbSelect) {
             $adapter = 'dbSelect';
         } elseif ($data instanceof Iterator) {
@@ -260,112 +261,15 @@ class Paginator extends Pagit
      *
      * @return array
      */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     protected function canonizeOptions(array $options)
     {
         if (isset($options['limit'])) {
             $options['item_count_per_page'] = $options['limit'];
-            unst($options['limit']);
+            unset($options['limit']);
         }
         if (isset($options['page'])) {
             $options['current_page_number'] = $options['page'];
-            unst($options['page']);
+            unset($options['page']);
         }
 
         return $options;
