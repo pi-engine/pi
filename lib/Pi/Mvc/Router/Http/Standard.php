@@ -86,10 +86,13 @@ class Standard implements RouteInterface
     /**
      * Create a new wildcard route.
      *
-     * @param  string $keyValueDelimiter
-     * @param  string $paramDelimiter
-     * @param  array  $defaults
-     * @return void
+     * @param string|null $prefix
+     * @param string $structureDelimiter
+     * @param string $keyValueDelimiter
+     * @param string $paramDelimiter
+     * @param array  $defaults
+     *
+     * @return \Pi\Mvc\Router\Http\Standard
      */
     public function __construct(
         $prefix = null,
@@ -123,7 +126,10 @@ class Standard implements RouteInterface
      * factory(): defined by Route interface.
      *
      * @see    Route::factory()
+     *
      * @param  array|Traversable $options
+     *
+     * @throws \InvalidArgumentException
      * @return RouteInterface
      */
     public static function factory($options = array())
@@ -299,7 +305,7 @@ class Standard implements RouteInterface
 
         $mca = array();
         foreach (array('module', 'controller', 'action') as $key) {
-            if (isset($mergedParams[$key])) {
+            if (!empty($mergedParams[$key])) {
                 $mca[$key] = urlencode($mergedParams[$key]);
                 unset($mergedParams[$key]);
             }

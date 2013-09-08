@@ -16,7 +16,8 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
     <?php } ?>
     <!-- Numbered page links -->
     <?php foreach ($this->pagesInRange as $page): ?>
-    <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>"><a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
+    <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>">
+            <a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
     <?php endforeach; ?>
     <?php if ($this->next) { ?>
     <!-- Next page link -->

@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\Paginator\Paginator;
 use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 use Zend\View\Exception;
@@ -23,6 +22,20 @@ use Zend\View\Exception;
  */
 class PaginationControl extends ZendPaginationControl
 {
+    /**
+     * Default Scrolling Style
+     *
+     * @var string
+     */
+    protected static $defaultScrollingStyle = 'sliding';
+
+    /**
+     * Default view partial
+     *
+     * @var string|array
+     */
+    protected static $defaultViewPartial = 'paginator';
+
     /**
      * Render the provided pages.  This checks if $view->paginator is set and,
      * if so, uses that.  Also, if no scrolling style or partial are specified,

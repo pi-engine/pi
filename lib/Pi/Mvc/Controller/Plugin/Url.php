@@ -47,6 +47,7 @@ class Url extends ZendUrl
             return $this;
         }
 
+        /*
         // Complete current module/controller
         if (!isset($params['module']) && isset($params['action'])) {
             $routeMatch = $this->getController()->getEvent()->getRouteMatch();
@@ -59,7 +60,14 @@ class Url extends ZendUrl
         $route = $route ?: null;
         $url = $this->fromRoute($route, $params,
                                 $options, $reuseMatchedParams);
+        */
 
+        $url = Pi::service('url')->assemble(
+            $route,
+            $params,
+            $options,
+            $reuseMatchedParams
+        );
         return $url;
     }
 }
