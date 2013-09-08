@@ -20,7 +20,7 @@ return array(
             'title' => __('Comments'),
             'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
             'icon'  => 'icon-post',
-            'callback'  => array('Comment', 'post')
+            'callback'  => 'Module\Comment\Comment\Post',
         ),
     ),
 );

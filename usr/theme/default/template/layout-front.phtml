@@ -132,7 +132,11 @@ $this->js($this->assetLocale('rtl.js'));
             <div class="row-fluid pi-module-content">
                 <?php echo $content; ?>
             </div>
-            <?php include $this->template('module/comment:front/comment'); ?>
+            <?php
+                if (Pi::service('comment')->active()) {
+                    include $this->template('module/comment:front/comment');
+                }
+            ?>
             <?php } ?>
             <!-- Bottom left zone -->
             <?php if (!empty($blocks['5'])) { ?>
