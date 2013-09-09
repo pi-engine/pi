@@ -128,9 +128,16 @@ $this->js($this->assetLocale('rtl.js'));
             </div>
             <?php } ?>
             <!-- Module zone -->
+            <?php if (!empty($content)) { ?>
             <div class="row-fluid pi-module-content">
                 <?php echo $content; ?>
             </div>
+            <?php
+                if (Pi::service('comment')->active()) {
+                    include $this->template('module/comment:front/comment');
+                }
+            ?>
+            <?php } ?>
             <!-- Bottom left zone -->
             <?php if (!empty($blocks['5'])) { ?>
             <div class="pi-zone-5">

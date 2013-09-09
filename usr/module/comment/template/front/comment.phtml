@@ -1,0 +1,102 @@
+<?php
+// Skip if comment is not available
+if (!Pi::comment()->active()) {
+    return;
+}
+
+// Load comment data
+// - root[id, module, category, item, active]
+// - count
+// - posts[id, uid, IP, content, time, active]
+// - users[uid, name, avatar, url]
+// - url_list
+// - url_submit
+// - url_ajax
+
+$data = Pi::api('comment')->load(
+    Pi::engine()->appllication()->getRouteMatch()
+);
+if (!$data || empty($data['root']['active'])) {
+    return;
+}
+/*
+$commentRoot = Pi::comment()->getRoot(
+    Pi::engine()->application()->getRouteMatch()
+);
+if (false === $commentRoot || !$commentRoot['active']) {
+    return;
+}
+$commentRootId = (int) $commentRoot['id'];
+$commentCount = $commentRootId ? Pi::comment()->getCount($commentRootId) : 0;
+$commentLimit = Pi::config('comment_limit');
+if ($commentCount) {
+    $commentList = Pi::comment()->getList($commentRootId, $commentLimit);
+} else {
+    $commentList = array();
+}
+if ($commentList) {
+    $uids = array();
+    foreach ($commentList as $comment) {
+        $uids[] = (int) $comment['uid'];
+    }
+    $avatars = Pi::avatar()->getList($uids, 'small');
+    $users = Pi::user()->get($uids, 'name');
+    foreach ($users as $uid => &$user) {
+        $user['url'] = Pi::user()->getUrl('profile', $uid);
+        $user['avatar'] = $avatars[$uid];
+    }
+*/
+if ($data['posts']) {
+?>
+    <div class="pi-comment-header">
+        <dl class="dl-horizontal">
+            <dt><?php _e('Recent comments'); ?></dt>
+            <dt><?php _e('Total:') ?></dt>
+            <dd><?php echo $data['count']; ?></dd>
+            <?php if ($data['count'] > $data['limit']) { ?>
+                <dt><?php _e('Read more:') ?></dt>
+                <dd><?php echo $data['url_list']; ?></dd>
+            <?php } ?>
+        </dl>
+    </div>
+    <div class="pi-comment-list">
+<?php
+    foreach ($data['posts'] as $post) {
+?>
+        <dl class="dl-horizontal pi-comment-item">
+            <dt><?php _e('User name:');?></dt>
+            <dd><?php echo $data['users'][$post['uid']]['name']; ?></dd>
+            <dt><?php _e('User profile:');?></dt>
+            <dd><?php echo $data['users'][$post['uid']]['url']; ?></dd>
+            <dt><?php _e('User avatar:');?></dt>
+            <dd><?php echo $data['users'][$post['uid']]['avatar']; ?></dd>
+            <dt><?php _e('Time:');?></dt>
+            <dd><?php echo _date($post['time']); ?></dd>
+            <dt><?php _e('IP:');?></dt>
+            <dd><?php echo $post['ip']; ?></dd>
+            <dt><?php _e('Content:');?></dt>
+            <dd><?php echo $post['content']; ?></dd>
+        </dl>
+<?php
+    }
+?>
+    </div>
+<?php
+}
+?>
+<form name="comment-post" method="POST" action="<?php echo $data['url_submit']; ?>">
+<dl>
+    <dt><?php _e('Post a comment:'); ?></dt>
+    <dd><textarea name="comment_content"></dd>
+    <?php if ($data['root']['id']) { ?>
+        <input type="hidden" name="comment_root" value="<?php echo $data['root']['id']; ?>">
+    <?php } else { ?>
+        <input type="hidden" name="comment_module" value="<?php echo $data['root']['module']; ?>">
+        <input type="hidden" name="comment_category" value="<?php echo $data['root']['category']; ?>">
+        <input type="hidden" name="comment_item" value="<?php echo $data['root']['item']; ?>">
+    <?php } ?>
+    <input type="hidden" name="redirect_url" value="<?php echo PHP_SELF; ?>">
+    <input type="submit" value="<?php _e('Submit'); ?>">
+    <input type="cancel" value="<?php _e('Cancel'); ?>">
+</dl>
+</form>
