@@ -5,7 +5,7 @@
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="user-js-info">
     <div class="user-info-top">
-        <strong class="user-info-title"><?php echo $curGroup; ?></strong>
+        <strong class="user-info-title"><?php echo $cur_group; ?></strong>
         <a href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
     </div>
     <div class="user-info-list">
@@ -46,17 +46,17 @@
         <div class="clearfix user-add-legend">
             <h4 class="user-legend-title">
                 <?php _e('Add new'); ?>
-                <?php echo $curGroup; ?>
+                <?php echo $cur_group; ?>
             </h4>
             <div class="user-legend-linea"></div>
         </div>
         <?php
-            $addForm->setAttribute('class', 'form-horizontal');
-            $elements = $addForm->elementList();
+            $add_form->setAttribute('class', 'form-horizontal');
+            $elements = $add_form->elementList();
             foreach ($elements['active'] as $element) {
                 $elementsList[$element->getOption('label')] = $element->getName();
             }
-            echo $this->form()->openTag($addForm);
+            echo $this->form()->openTag($add_form);
             foreach ($elements['active'] as $element) {
                 echo sprintf('<div class="control-group"><label class="control-label">%s</label>
                     <div class="controls">%s<span class="help-inline"></span></div></div>',
@@ -303,8 +303,8 @@
 <script>
     userCompoundEdit.init({
         urlRoot: '<?php echo $this->url('', array('controller' => 'profile')); ?>',
-        elementsList: <?php echo json_encode($elementsList); ?>,
-        compound: '<?php echo $curGroup; ?>',
+        elementsList: <?php echo json_encode($elements_list); ?>,
+        compound: '<?php echo $cur_group; ?>',
         deleteConfirm: '<?php _e('Are you sure delete this one'); ?>'
     });
 </script>

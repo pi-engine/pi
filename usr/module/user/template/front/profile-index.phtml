@@ -4,7 +4,7 @@
 <?php include '_user-media.phtml'; ?>
 <div>
     <div>
-        <?php foreach ($profileGroup as $group) {?>
+        <?php foreach ($profile_group as $group) {?>
         <div class="clearfix user-legend">
             <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
             <?php
@@ -15,7 +15,7 @@
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
                 }
             ?>
-            <?php if ($isOwner) { ?>
+            <?php if ($is_owner) { ?>
             <a class="btn user-legend-edit" href="<?php echo $editUrl; ?>">
                 <i class="icon-pencil"></i>
                 <?php _e('Edit'); ?>
@@ -38,7 +38,7 @@
             }
         ?>
         </div>
-        <?php } else if ($isOwner) { ?>
+        <?php } else if ($is_owner) { ?>
         <div class="user-none-fields">
             <a href="<?php echo $addUrl; ?>">
                 <?php _e('Add'); echo ' ' . $group['name']; ?>

@@ -191,7 +191,7 @@ class EmailController extends ActionController
             )
         );
 
-        $this->view()->assign('changeEmailLink', $changeEmailLink);
+        $this->view()->assign('change_email_link', $changeEmailLink);
         $this->view()->setTemplate('change-email-success');
     }
 
