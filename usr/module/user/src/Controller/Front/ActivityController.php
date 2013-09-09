@@ -53,11 +53,11 @@ class ActivityController extends ActionController
         $activityContents = Pi::api('user', 'activity')->get($uid, $name, $limit);
 
         $this->view()->assign(array(
-            'activityList'     => $activityList,
-            'activityContents' => $activityContents,
-            'curActivity'      => $name,
+            'activity_list'     => $activityList,
+            'activity_contents' => $activityContents,
+            'cur_activity'      => $name,
             'user'             => $user,
-            'isOwner'          => true,
+            'is_owner'          => true,
         ));
     }
 }

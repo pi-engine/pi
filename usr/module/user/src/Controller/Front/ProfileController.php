@@ -59,9 +59,9 @@ class ProfileController extends ActionController
         $quicklink = $this->getQuicklink();
 
         $this->view()->assign(array(
-            'profileGroup' => $profileGroup,
+            'profile_group' => $profileGroup,
             'uid'          => $uid,
-            'isOwner'      => $isOwner,
+            'is_owner'      => $isOwner,
             'user'         => $user,
             'nav'          => $nav,
             'quicklink'    => $quicklink,
@@ -134,7 +134,7 @@ class ProfileController extends ActionController
             'user'         => $user,
             'timeline'     => $timeline,
             'paginator'    => $paginator,
-            'isOwner'      => $isOwner,
+            'is_owner'      => $isOwner,
             'quicklink'    => $quicklink,
             'nav'          => $nav,
         ));
@@ -246,9 +246,9 @@ class ProfileController extends ActionController
             'form'     => $form,
             'title'    => $groupName,
             'groups'   => $groups,
-            'curGroup' => $groupName,
+            'cur_group' => $groupName,
             'status'   => $status,
-            'isPost'   => $isPost,
+            'is_post'   => $isPost,
             'user'     => $this->getUser($uid)
         ));
         $this->view()->setTemplate('profile-edit');
@@ -393,10 +393,10 @@ class ProfileController extends ActionController
         $this->view()->setTemplate('profile-edit-compound');
         $this->view()->assign(array(
             'forms'        => $forms,
-            'errorMsg'     => $errorMsg,
-            'curGroup'     => $groupName,
+            'error_msg'     => $errorMsg,
+            'cur_group'     => $groupName,
             'groups'       => $groups,
-            'addForm'      => $addForm,
+            'add_form'      => $addForm,
             'user'         => $this->getUser($uid)
         ));
     }

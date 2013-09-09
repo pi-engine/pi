@@ -64,8 +64,8 @@ class IndexController extends ActionController
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            //'controller' => 'index',
-            //'action'     => 'index',
+            'controller' => 'index',
+            'action'     => 'index',
         );
 
         $paginator = $this->setPaginator($paginatorOption);
@@ -73,9 +73,9 @@ class IndexController extends ActionController
             'users'     => $users,
             'paginator' => $paginator,
             'page'      => $page,
-            'curNav'    => 'activated',
-            'frontRole' => $this->getRoleSelectOptions(),
-            'adminRole' => $this->getRoleSelectOptions('admin'),
+            'cur_nav'    => 'activated',
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
             'count'     => $count,
             'condition' => $condition,
         ));
@@ -121,8 +121,8 @@ class IndexController extends ActionController
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            //'controller' => 'index',
-            //'action'     => 'index',
+            'controller' => 'index',
+            'action'     => 'index',
         );
 
         $paginator = $this->setPaginator($paginatorOption);
@@ -130,9 +130,9 @@ class IndexController extends ActionController
             'users'     => $users,
             'paginator' => $paginator,
             'page'      => $page,
-            'curNav'    => 'pending',
-            'frontRole' => $this->getRoleSelectOptions(),
-            'adminRole' => $this->getRoleSelectOptions('admin'),
+            'cur_nav'    => 'pending',
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
             'count'     => $count,
         ));
     }
@@ -168,7 +168,7 @@ class IndexController extends ActionController
         $this->view()->assign(array(
             'form'   => $form,
             'status' => $status,
-            'isPost' => $isPost,
+            'is_post' => $isPost,
         ));
     }
 
@@ -408,7 +408,6 @@ class IndexController extends ActionController
      */
     protected function setPaginator($option)
     {
-        /*
         $paginator = Paginator::factory(intval($option['count']));
         $paginator->setItemCountPerPage($option['limit']);
         $paginator->setCurrentPageNumber($option['page']);
@@ -425,17 +424,7 @@ class IndexController extends ActionController
                 'uid'           => $option['uid'],
             ),
         ));
-        */
 
-        $paginator = Paginator::factory(intval($option['count']), array(
-            'limit' => $option['limit'],
-            'page'  => $option['page'],
-            'url_options'   => array(
-                'params'    => array(
-                    'uid'   => $option['uid'],
-                ),
-            ),
-        ));
         return $paginator;
     }
 

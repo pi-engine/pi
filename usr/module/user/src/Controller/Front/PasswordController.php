@@ -102,7 +102,7 @@ class PasswordController extends ActionController
             'form'      => $form,
             'message'   => $message,
             'groups'    => $groups,
-            'curGroup'  => 'password',
+            'cur_group'  => 'password',
             'user'      => $user,
         ));
     }
