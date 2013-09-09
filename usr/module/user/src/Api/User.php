@@ -328,7 +328,7 @@ class User extends AbstractApi
      * Delete a user
      *
      * @param   int         $uid
-     * @return  bool|string[]
+     * @return  bool|null|string[] Null for no-action
      * @api
      */
     public function deleteUser($uid)
@@ -338,8 +338,8 @@ class User extends AbstractApi
         }
 
         $error = array();
-        $status = $this->deleteAccount($uid);
-        if (!$status) {
+        $result = $this->deleteAccount($uid);
+        if (false === $result) {
             $error[] = 'account';
         }
         $status = $this->deleteProfile($uid);
@@ -351,14 +351,14 @@ class User extends AbstractApi
             $error[] = 'compound';
         }
 
-        return $error ? $error : true;
+        return $error ? $error : $result;
     }
 
     /**
      * Activate a user account
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool|null Null for no-action
      * @api
      */
     public function activateUser($uid)
@@ -377,7 +377,7 @@ class User extends AbstractApi
      *
      * @param   int     $uid
      *
-     * @return  bool
+     * @return  bool|null Null for no-action
      * @api
      */
     public function enableUser($uid)
@@ -396,7 +396,7 @@ class User extends AbstractApi
      *
      * @param   int     $uid
      *
-     * @return  bool
+     * @return  bool|null Null for no-action
      * @api
      */
     public function disableUser($uid)
@@ -770,7 +770,7 @@ class User extends AbstractApi
      *
      * @param $uid
      *
-     * @return bool
+     * @return bool|null  False for erroneous result; Null for no-action
      */
     public function deleteAccount($uid)
     {
@@ -780,8 +780,11 @@ class User extends AbstractApi
 
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if (!$row || (int) $row['time_deleted'] > 0) {
+        if (!$row) {
             return false;
+        }
+        if (!(int) $row['time_deleted'] > 0) {
+            return null;
         }
         $row->assign(array(
             'active'        => 0,
@@ -805,7 +808,7 @@ class User extends AbstractApi
      *
      * @param int $uid
      *
-     * @return bool
+     * @return bool|null  False for erroneous result; Null for no-action
      */
     public function activateAccount($uid)
     {
@@ -815,11 +818,11 @@ class User extends AbstractApi
 
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
-        if (!$row
-            || (int) $row['time_activated'] > 0
-            || (int) $row['time_deleted'] > 0
-        ) {
+        if (!$row || (int) $row['time_deleted'] > 0) {
             return false;
+        }
+        if ((int) $row['time_activated'] > 0) {
+            return null;
         }
         $row->assign(array(
             'active'            => 1,
@@ -838,7 +841,7 @@ class User extends AbstractApi
     /**
      * Enable/disable an account and set `time_disabled` and `active`
      *
-     * Non-activated and deleted accounts are not allowed to enable/disable.
+     * Deleted accounts are not allowed to enable/disable.
      *
      * Only disabled account can be enabled, set `active` to true
      * and reset `time_disabled`; only enabled account can be disabled,
@@ -847,7 +850,7 @@ class User extends AbstractApi
      * @param int   $uid
      * @param bool  $flag
      *
-     * @return bool
+     * @return bool|null  False for erroneous result; Null for no-action
      */
     public function enableAccount($uid, $flag = true)
     {
@@ -858,7 +861,7 @@ class User extends AbstractApi
         $model = Pi::model('account', 'user');
         $row = $model->find($uid);
         if (!$row
-            || (int) $row['time_activated'] < 1
+            //|| (int) $row['time_activated'] < 1
             || (int) $row['time_deleted'] > 0
         ) {
             return false;
@@ -866,7 +869,7 @@ class User extends AbstractApi
         if (($flag && (int) $row['time_disabled'] < 0)
             || (!$flag && (int) $row['time_disabled'] > 0)
         ) {
-            return false;
+            return null;
         }
         if ($flag) {
             $data = array(

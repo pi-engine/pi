@@ -219,7 +219,7 @@ abstract class AbstractAdapter implements BindInterface
      * Delete a user
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool|null   Null for no-action
      * @api
      */
     abstract public function deleteUser($uid);
@@ -228,7 +228,7 @@ abstract class AbstractAdapter implements BindInterface
      * Activate a user
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool|null   Null for no-action
      * @api
      */
     abstract public function activateUser($uid);
@@ -237,7 +237,7 @@ abstract class AbstractAdapter implements BindInterface
      * Enable a user
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool|null   Null for no-action
      * @api
      */
     abstract public function enableUser($uid);
@@ -246,7 +246,7 @@ abstract class AbstractAdapter implements BindInterface
      * Disable a user
      *
      * @param   int         $uid
-     * @return  bool
+     * @return  bool|null   Null for no-action
      * @api
      */
     abstract public function disableUser($uid);
