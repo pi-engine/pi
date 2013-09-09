@@ -26,8 +26,8 @@ class Uninstall extends BasicUninstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkModules'), 1000);
-        $events->attach('install.post', array($this, 'dropTables'), -1000);
+        $events->attach('uninstall.pre', array($this, 'checkModules'), 1000);
+        $events->attach('uninstall.post', array($this, 'dropTables'), -1000);
         parent::attachDefaultListeners();
 
         return $this;
