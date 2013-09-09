@@ -9,6 +9,7 @@
 
 namespace Module\User\Controller\Admin;
 
+use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
@@ -78,6 +79,8 @@ class IndexController extends ActionController
             'count'     => $count,
             'condition' => $condition,
         ));
+
+        vd($this->getRoleSelectOptions('admin'));
     }
 
     /**
@@ -147,7 +150,7 @@ class IndexController extends ActionController
 
         $options = $form->get('admin-role')->getValueOptions();
         array_shift($options);
-        $options = array_merge(array('none' => 'None'), $options);
+        $options = array_merge(array('none' => __('Admin role')), $options);
         $form->get('admin-role')->setValueOptions($options);
 
         if ($this->request->isPost()) {
@@ -172,14 +175,28 @@ class IndexController extends ActionController
     public function searchAction()
     {
         // Initialise search options
-        $options['state']                = _get('state') ?: '';
-        $options['front-role']           = _get('front-role') ?: 'none';
-        $options['admin-role']           = _get('admin-role') ?: 'none';
-        $options['identity']             = _get('username') ?: '';
-        $options['email']                = _get('email') ?: '';
-        $condition['time-created-start'] = _get('time-created-start') ?: '';
-        $condition['time-created-end']   = _get('time-created-end') ?: '';
-        $condition['time-login-end']     = _get('time-login-end') ?: '';
+        $this->view()->setTemplate('index-search');
+        $condition['state']      = _get('state') ?: '';
+        $condition['front-role'] = _get('front-role') ?: '';
+        $condition['admin-role'] = _get('admin-role') ?: '';
+
+        $form = new SearchForm('search');
+        // Set front role default
+        $options = $form->get('front-role')->getValueOptions();
+        array_shift($options);
+        $options = array_merge(array('' => __('Front role')), $options);
+        $form->get('front-role')->setValueOptions($options);
+        // Set admin role default
+        $options = $form->get('admin-role')->getValueOptions();
+        array_shift($options);
+        $options = array_merge(array('' => __('Admin role')), $options);
+        $form->get('admin-role')->setValueOptions($options);
+
+        $form->setData($options);
+
+        $this->view()->assign(array(
+            'form' => $form,
+        ));
     }
 
     /**
@@ -366,10 +383,6 @@ class IndexController extends ActionController
         $model = Pi::model('acl_role');
         if ($section == 'front') {
             // Get front role
-            $options = array(
-                '' => __('Front role')
-            );
-
             $rowset = $model->select(array('section' => 'front'));
             foreach ($rowset as $row) {
                 $options[$row->name] = __($row->title);
@@ -377,10 +390,6 @@ class IndexController extends ActionController
         }
         if ($section == 'admin') {
             // Get admin role
-            $options = array(
-                '' => __('Admin role'),
-            );
-
             $rowset = $model->select(array('section' => 'admin'));
             foreach ($rowset as $row) {
                 $options[$row->name] = __($row->title);
