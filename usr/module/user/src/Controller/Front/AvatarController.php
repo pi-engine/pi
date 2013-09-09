@@ -75,6 +75,7 @@ class AvatarController extends ActionController
      */
     protected function mkdir($dir)
     {
+        /*
         $result = true;
 
         if (!file_exists($dir)) {
@@ -84,7 +85,8 @@ class AvatarController extends ActionController
 
             umask($oldumask);
         }
-
+        */
+        $result = Pi::service('file')->mkdir($dir);
         return $result;
     }
     
