@@ -53,10 +53,10 @@ class User extends Standard
     /**
      * {@inheritDoc}
      */
-    protected function parseParams($path)
+    protected function parse($path)
     {
         $path = $this->defaults['module'] . $this->structureDelimiter . $path;
-        $matches = parent::parseParams($path);
+        $matches = parent::parse($path);
 
         return $matches;
     }

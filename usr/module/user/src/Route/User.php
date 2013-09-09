@@ -16,18 +16,28 @@ use Pi\Mvc\Router\Http\Standard;
  *
  * Use cases:
  *
- *  1. Login: user/login => Login::index
- *  2. Login process: user/login/process => Login::process
- *  3. Logout: user/logout  => Login::logout
- *  4. Register: user/register  => Register::index
- *  5. Register process: user/register/process => Register::process
- *  6. Register finish: user/register/finish => Register::finish
- *  7. Change email: user/email => Email::index
- *  8. Find password: user/password => Password::index
- *  9. User profile via ID: user/profile/$uid => Profile::index
- * 10. User profile via identity: user/profile/$user => Profile::index
- * 11. Personal account: user/account => Account::index
- * 12. Personal account edit: user/account/edit => Account::Edit
+ * - Standard URLs:
+ *   - Login: user/login => Login::index
+ *   - Login process: user/login/process => Login::process
+ *   - Register: user/register  => Register::index
+ *   - Register process: user/register/process => Register::process
+ *   - Register finish: user/register/finish => Register::finish
+ *   - Change email: user/email => Email::index
+ *   - Find password: user/password => Password::index
+ *   - Personal account: user/account => Account::index
+ *   - Personal account edit: user/account/edit => Account::Edit
+ *
+ * - Simplified URLs:
+ *   - User home via ID: user/view/$uid => Profile::Home
+ *   - User home via ID: user/home/$uid => Profile::Home
+ *   - User home via identity: user/view/identity/$user => Profile::Home
+ *   - User home via identity: user/home/identity/$user => Profile::Home
+ *   - User home via name: user/view/name/$user => Profile::Home
+ *   - User home via name: user/home/name/$user => Profile::Home
+ *   - User profile via ID: user/account/$uid => Profile::index
+ *   - User profile via identity: user/account/identity/$user => Profile::index
+ *   - User profile via name: user/account/name/$user => Profile::index
+ *   - Logout: user/logout  => Login::logout
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -39,7 +49,7 @@ class User extends Standard
      */
     protected $defaults = array(
         'module'        => 'user',
-        'controller'    => 'account',
+        'controller'    => 'profile',
         'action'        => 'index'
     );
 
@@ -51,10 +61,45 @@ class User extends Standard
     /**
      * {@inheritDoc}
      */
-    protected function parseParams($path)
+    protected function parse($path)
     {
-        $path = $this->defaults['module'] . $this->structureDelimiter . $path;
-        $matches = parent::parseParams($path);
+        $matches = null;
+
+        $parts = array_filter(explode($this->structureDelimiter, $path));
+        $count = count($parts);
+        if ($count) {
+            $term = array_shift($parts);
+            if ('logout' == $term) {
+                $matches['controller'] = 'login';
+                $matches['action'] = 'logout';
+            } elseif ('view' == $term || 'home' == $term) {
+                $matches['controller'] = 'profile';
+                $matches['action'] = 'home';
+            } elseif ('account' == $term) {
+                $matches['controller'] = 'profile';
+                $matches['action'] = 'index';
+            } elseif (is_numeric($term)) {
+                $matches['controller'] = 'profile';
+                $matches['action'] = 'index';
+                $matches['id'] = (int) $term;
+            }
+            if ($matches) {
+                $matches = array_merge($matches, $this->parseParams($parts));
+            }
+        }
+
+        if (null !== $matches) {
+            $matches = array_merge($this->defaults, $matches);
+        } else {
+            $path = $this->defaults['module'] . $this->structureDelimiter . $path;
+            $matches = parent::parse($path);
+            //vd($path);
+            //vd($matches);
+        }
+        if (isset($matches['id'])) {
+            $matches['uid'] = $matches['id'];
+            unset($matches['id']);
+        }
 
         return $matches;
     }
@@ -75,12 +120,54 @@ class User extends Standard
             return $this->prefix;
         }
 
-        $params['module'] = $this->defaults['module'];
-        $url = parent::assemble($params, $options);
-        $urlPrefix = $this->prefix . $this->paramDelimiter
-                   . $this->defaults['module'];
-        $urlSuffix = substr($url, strlen($urlPrefix));
-        $url = $this->prefix . $urlSuffix;
+        //vd($params);
+        $url = null;
+        if (isset($params['uid'])) {
+            $params['id'] = $params['uid'];
+            unset($params['uid']);
+        }
+        $controller = isset($params['controller']) ? $params['controller'] : '';
+        $action = isset($params['action']) ? $params['action'] : '';
+        if ('logout' == $action) {
+            $url = 'logout';
+        } elseif ('view' == $action
+            || 'view' == $controller
+            || 'home' == $action
+            || 'home' == $controller
+            || ('profile' == $controller && 'home' == $action)
+        ) {
+            $url = 'view';
+            if (isset($params['id'])) {
+                $url .= $this->paramDelimiter . $params['id'];
+                unset($params['id']);
+            }
+        } elseif ('account' == $action
+            || 'account' == $controller
+            || ('profile' == $controller && ('index' == $action || '' == $action))
+        ) {
+            $url = 'account';
+            if (isset($params['id'])) {
+                $url .= $this->paramDelimiter . $params['id'];
+                unset($params['id']);
+            }
+        }
+        //vd($url);
+
+        if ($url) {
+            $part = $this->assembleParams($params);
+            $url .= $part ? $this->paramDelimiter . $part : '';
+            $url = $this->prefix . $this->paramDelimiter . $url;
+            //vd($url);
+        } else {
+            $params['module'] = $this->defaults['module'];
+            $url = parent::assemble($params, $options);
+            $urlPrefix = $this->prefix . $this->paramDelimiter
+                       . $this->defaults['module'];
+            $urlSuffix = substr($url, strlen($urlPrefix));
+            $url = $this->prefix . $urlSuffix;
+            //vd($url);
+        }
+
         return $url;
     }
 }
