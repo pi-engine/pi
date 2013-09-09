@@ -85,9 +85,9 @@ class AccountController extends ActionController
             'email'        => $email,
             'form'         => $form,
             'groups'       => $groups,
-            'curGroup'     => 'account',
+            'cur_group'     => 'account',
             'status'       => $status,
-            'isPost'       => $isPost,
+            'is_post'       => $isPost,
             'user'         => $user,
         ));
     }

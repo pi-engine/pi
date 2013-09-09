@@ -314,7 +314,7 @@ class RegisterController extends ActionController
         $this->view()->assign(array(
             'form'   => $form,
             'status' => $status,
-            'isPost' => $isPost
+            'is_post' => $isPost
         ));
 
         $this->view()->setTemplate('register-complete-profile');

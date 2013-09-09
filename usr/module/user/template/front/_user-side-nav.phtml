@@ -8,7 +8,7 @@
     </a>
     <div class="well" style="padding: 8px 0;">
         <ul class="nav nav-list">
-            <li class="<?php echo $curGroup == 'account' ? 'active' : '';?>">
+            <li class="<?php echo $cur_group == 'account' ? 'active' : '';?>">
                 <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index'));?>">
                     <?php _e('Account settings')?>
                 </a>
@@ -21,7 +21,7 @@
             <li><a href="#"><?php _e('Avatar settings');?></a></li>
             <li class="nav-header"><?php _e('Profile settings');?></li>
             <?php  foreach ($groups as $key => $group) { ?>
-            <li class="<?php  echo $curGroup == $key ? 'active' : ''; ?>">
+            <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
                 <a href="<?php echo $group['link']; ?>">
                     <?php echo $this->escape($group['title']); ?>
                 </a>

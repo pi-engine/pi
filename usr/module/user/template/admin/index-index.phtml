@@ -7,13 +7,13 @@
     </select>
 
     <select name="front-role">
-        <?php foreach ($frontRole as $key => $value) { ?>
+        <?php foreach ($front_role as $key => $value) { ?>
         <option value="<?php echo $key?>"><?php echo $value?></option>
         <?php } ?>
     </select>
 
     <select name="admin-role">
-        <?php foreach ($adminRole as $key => $value) { ?>
+        <?php foreach ($admin_role as $key => $value) { ?>
         <option value="<?php echo $key?>"><?php echo $value?></option>
         <?php } ?>
     </select>
@@ -61,7 +61,7 @@
         </thead>
         <tbody>
 
-        <?php foreach ($users as $user) {vd($user); ?>
+        <?php foreach ($users as $user) {?>
         <tr>
             <td>
                 <input type="checkbox" value="<?php echo $user['id']; ?>" name="check-one">
@@ -83,9 +83,9 @@
             <td>
                 <select>
                     <option value="<?php echo $user['front_role'] ?: 'none';?>">
-                        <?php echo $user['front_role'] ? $this->escape($frontRole[$user['front_role']]) : __('Front role');?>
+                        <?php echo $user['front_role'] ? $this->escape($front_role[$user['front_role']]) : __('Front role');?>
                     </option>
-                    <?php foreach ($frontRole as $col => $val) { ?>
+                    <?php foreach ($front_role as $col => $val) { ?>
                         <?php if ($col != $user['front_role']) { ?>
                         <option value="<?php echo $col; ?>"><?php echo $this->escape($val); s?></option>
                         <?php } ?>
@@ -95,9 +95,9 @@
             <td>
                 <select>
                     <option value="<?php echo $user['admin_role'] ?: 'none'; ?>">
-                        <?php echo $user['admin_role'] ? $this->escape($adminRole[$user['admin_role']]) : __('Admin role'); ?>
+                        <?php echo $user['admin_role'] ? $this->escape($admin_role[$user['admin_role']]) : __('Admin role'); ?>
                     </option>
-                    <?php foreach ($adminRole as $col => $val) { ?>
+                    <?php foreach ($admin_role as $col => $val) { ?>
                     <?php if ($col != $user['admin_role']) { ?>
                         <option value="<?php echo $col; ?>"><?php echo $this->escape($val); ?></option>
                         <?php } ?>
