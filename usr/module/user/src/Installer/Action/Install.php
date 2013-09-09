@@ -10,12 +10,17 @@
 namespace Module\User\Installer\Action;
 
 use Pi;
-use Pi\Application\Installer\Action\Install as BasicInstall;
+use Pi\Application\Installer\Action\Install as BasicAction;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Pi\Application\Installer\Resource\User as UserResource;
 use Zend\EventManager\Event;
 
-class Install extends BasicInstall
+/**
+ * Install handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
+class Install extends BasicAction
 {
     /**
      * {@inheritDoc}
@@ -24,7 +29,8 @@ class Install extends BasicInstall
     {
         $events = $this->events;
         $events->attach('install.post', array($this, 'checkModules'), 10);
-        $events->attach('install.post', array($this, 'checkUsers'), 1);
+        $events->attach('install.post', array($this, 'checkUsers'), 5);
+        $events->attach('install.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
         return $this;
@@ -101,4 +107,19 @@ class Install extends BasicInstall
         return $result;
     }
 
+    /**
+     * Update user service config
+     *
+     * @param Event $e
+     *
+     * @return bool
+     */
+    public function updateConfig(Event $e)
+    {
+        $config = Pi::config()->load('service.user.php');
+        $config['adapter'] = 'Pi\User\Adapter\Local';
+        Pi::config()->write('service.user.php', $config, true);
+
+        return true;
+    }
 }
