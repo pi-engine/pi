@@ -481,7 +481,7 @@ class User extends AbstractResource
                 if ('compound_field' == $op) {
                     $key = $row->compound . '-' . $row->name;
                 } else {
-                    $row->name;
+                    $key = $row->name;
                 }
                 // Update existent item
                 if (isset($items[$key])) {
