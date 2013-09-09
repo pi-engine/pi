@@ -231,7 +231,7 @@ class LoginController extends ActionController
         $form = new LoginForm('login');
         $form->setAttribute(
             'action',
-            $this->url('', array('action' => 'process'))
+            $this->url('', array('controller' => 'login', 'action' => 'process'))
         );
 
         return $form;
