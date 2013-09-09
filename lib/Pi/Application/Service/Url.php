@@ -177,6 +177,9 @@ class Url extends AbstractService
                 unset($options['reuse_matched_params']);
             }
         }
+        if (isset($params['action']) || isset($params['controller'])) {
+            $reuseMatchedParams = true;
+        }
         if ($reuseMatchedParams && $routeMatch) {
             foreach (array('module', 'controller', 'action') as $key) {
                 if (empty($params[$key])) {
