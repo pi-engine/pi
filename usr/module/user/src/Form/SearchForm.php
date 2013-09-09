@@ -42,7 +42,7 @@ class SearchForm extends BaseForm
             'options'       => array(
                 'label' => __('Enable'),
                 'value_options' => array(
-                    'none'    => __('None'),
+                    ''    => __('None'),
                     'enable'  => __('Enable'),
                     'disable' => __('Disable'),
                 ),
@@ -74,6 +74,15 @@ class SearchForm extends BaseForm
             'type'          => 'text',
             'options'       => array(
                 'label' => __('Username'),
+            )
+        ));
+
+        // Add email
+        $this->add(array(
+            'name'          => 'email',
+            'type'          => 'text',
+            'options'       => array(
+                'label' => __('Email'),
             )
         ));
 

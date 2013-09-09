@@ -44,7 +44,7 @@ class MemberFilter extends InputFilter
                         'max'       => $config['uname_max'],
                     ),
                 ),
-                new \Module\User\Validator\UserName(array(
+                new \Module\User\Validator\Username(array(
                     'format'            => $config['uname_format'],
                     'backlist'          => $config['uname_backlist'],
                     'checkDuplication'  => true,
@@ -130,7 +130,7 @@ class MemberFilter extends InputFilter
 
         $this->add(array(
             'name'          => 'front-role',
-            'required'      => false,
+            'required'      => true,
         ));
 
         $this->add(array(
