@@ -61,7 +61,7 @@
         </thead>
         <tbody>
 
-        <?php foreach ($users as $user) { ?>
+        <?php foreach ($users as $user) {vd($user); ?>
         <tr>
             <td>
                 <input type="checkbox" value="<?php echo $user['id']; ?>" name="check-one">
@@ -82,20 +82,24 @@
             </td>
             <td>
                 <select>
-                    <option value="<?php echo $user['front_role']?>"><?php echo $this->escape($frontRole[$user['front_role']]);?></option>
+                    <option value="<?php echo $user['front_role'] ?: 'none';?>">
+                        <?php echo $user['front_role'] ? $this->escape($frontRole[$user['front_role']]) : __('Front role');?>
+                    </option>
                     <?php foreach ($frontRole as $col => $val) { ?>
-                        <?php if ($col != $uer['front_role']) { ?>
-                        <option value="<?php echo $role; ?>"><?php echo $this->escape($val)?></option>
+                        <?php if ($col != $user['front_role']) { ?>
+                        <option value="<?php echo $col; ?>"><?php echo $this->escape($val); s?></option>
                         <?php } ?>
                     <?php } ?>
                 </select>
             </td>
             <td>
                 <select>
-                    <option value="<?php echo $user['admin_role']?>"><?php echo $this->escape($adminRole[$user['admin_role']]); ?></option>
-                    <?php foreach ($frontRole as $col => $val) { ?>
-                    <?php if ($col != $uer['front_role']) { ?>
-                        <option value="<?php echo $role; ?>"><?php $this->escape($val)?></option>
+                    <option value="<?php echo $user['admin_role'] ?: 'none'; ?>">
+                        <?php echo $user['admin_role'] ? $this->escape($adminRole[$user['admin_role']]) : __('Admin role'); ?>
+                    </option>
+                    <?php foreach ($adminRole as $col => $val) { ?>
+                    <?php if ($col != $user['admin_role']) { ?>
+                        <option value="<?php echo $col; ?>"><?php echo $this->escape($val); ?></option>
                         <?php } ?>
                     <?php } ?>
                 </select>
