@@ -79,6 +79,22 @@ class Api extends AbstractApi
         return $data;
     }
 
+    /**
+     * Load comment data for rendering against matched route
+     *
+     * Data array:
+     * - root: [id, ]module, category, item, active
+     * - count
+     * - posts: id, uid, ip, content, time, active
+     * - users: uid, name, avatar, url
+     * - url_list
+     * - url_submit
+     * - url_ajax
+     *
+     * @param RouteMatch $routeMatch
+     *
+     * @return array|bool
+     */
     public function load(RouteMatch $routeMatch)
     {
         $module = $routeMatch->getParam('module');
