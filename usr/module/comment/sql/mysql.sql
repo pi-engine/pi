@@ -13,7 +13,7 @@ CREATE TABLE `{category}` (
   `module`          varchar(64)     NOT NULL default '',
   `controller`      varchar(64)     NOT NULL default '',
   `action`          varchar(64)     NOT NULL default '',
-  `item`            varchar(64)     NOT NULL default '',
+  `identifier`      varchar(64)     NOT NULL default '',
   `params`          varchar(255)    NOT NULL default '',
   `name`            varchar(64)     NOT NULL default '',
   `title`           varchar(255)    NOT NULL default '',

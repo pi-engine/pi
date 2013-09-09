@@ -39,6 +39,7 @@ class Category extends AbstractRegistry
         foreach ($rowset as $row) {
             $data = array(
                 'title'         => $row['title'],
+                'identifier'    => $row['identifier'],
                 //'category'      => $row['name'],
                 'callback'      => $row['callback'],
                 'icon'          => $row['icon'],

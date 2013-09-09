@@ -38,8 +38,26 @@ class Api extends AbstractApi
 {
     /** @var string Module name */
     protected $module = 'comment';
-    protected $postColumn = array('id', 'root', 'uid', 'ip', 'time', 'content', 'active');
-    protected $rootColumn = array('id', 'module', 'category', 'item', 'active');
+
+    /** @var string[] Post table columns */
+    protected $postColumn = array(
+        'id',
+        'root',
+        'uid',
+        'ip',
+        'time',
+        'content',
+        'active'
+    );
+
+    /** @var string[] Comment root table columns */
+    protected $rootColumn = array(
+        'id',
+        'module',
+        'category',
+        'item',
+        'active'
+    );
 
     /**
      * Canonize comment post data
@@ -106,7 +124,7 @@ class Api extends AbstractApi
         }
         // Look up root against route data
         $lookup = function ($data) use ($routeMatch) {
-            $item = $routeMatch->getParam($data['item']);
+            $item = $routeMatch->getParam($data['identifier']);
             if (null === $item) {
                 return false;
             }
