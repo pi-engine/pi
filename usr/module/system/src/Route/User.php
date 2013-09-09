@@ -77,6 +77,7 @@ class User extends Standard
             return $this->prefix;
         }
 
+        $params['module'] = $this->defaults['module'];
         $url = parent::assemble($params, $options);
         $urlPrefix = $this->prefix . $this->paramDelimiter
                    . $this->defaults['module'];
