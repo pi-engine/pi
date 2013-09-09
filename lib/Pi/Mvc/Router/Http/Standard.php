@@ -59,7 +59,7 @@ class Standard implements RouteInterface
     protected $keyValueDelimiter;
 
     /**
-     * Delimtier before parameters.
+     * Delimiter before parameters.
      * @var array
      */
     protected $paramDelimiter;
