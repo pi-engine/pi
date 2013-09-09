@@ -64,8 +64,8 @@ class IndexController extends ActionController
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            'controller' => 'index',
-            'action'     => 'index',
+            //'controller' => 'index',
+            //'action'     => 'index',
         );
 
         $paginator = $this->setPaginator($paginatorOption);
@@ -121,8 +121,8 @@ class IndexController extends ActionController
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            'controller' => 'index',
-            'action'     => 'index',
+            //'controller' => 'index',
+            //'action'     => 'index',
         );
 
         $paginator = $this->setPaginator($paginatorOption);
@@ -408,6 +408,7 @@ class IndexController extends ActionController
      */
     protected function setPaginator($option)
     {
+        /*
         $paginator = Paginator::factory(intval($option['count']));
         $paginator->setItemCountPerPage($option['limit']);
         $paginator->setCurrentPageNumber($option['page']);
@@ -424,7 +425,17 @@ class IndexController extends ActionController
                 'uid'           => $option['uid'],
             ),
         ));
+        */
 
+        $paginator = Paginator::factory(intval($option['count']), array(
+            'limit' => $option['limit'],
+            'page'  => $option['page'],
+            'url_options'   => array(
+                'params'    => array(
+                    'uid'   => $option['uid'],
+                ),
+            ),
+        ));
         return $paginator;
     }
 
