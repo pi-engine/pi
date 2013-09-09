@@ -56,21 +56,13 @@ class ProfileController extends ActionController
             }
         }
 
-        foreach ($compounds as $name => &$compound) {
-            $compound = Pi::registry('compound', 'user')->read($name);
-        }
-
-
-
-
-        //vd($profile);
-        //vd($compounds);
+        $data = $this->getGroupDisplay();
 
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
+            'data'      => $data,
         ));
-
     }
 
     public function privacyAction()
@@ -81,14 +73,21 @@ class ProfileController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-        vd($this->getGroupDisplay());
+        d($this->getGroupDisplay());
     }
 
+    /**
+     * Get display group and display fields
+     *
+     * @return array
+     */
     protected function getGroupDisplay()
     {
         $result = array();
         $groupModel = $this->getModel('display_group');
-        $select = $groupModel->select(array());
+        $select = $groupModel->select()->where(array());
+
+        $select->order('order');
         $rowset = $groupModel->selectWith($select);
 
         foreach ($rowset as $row) {
@@ -98,14 +97,17 @@ class ProfileController extends ActionController
                 'compound' => $row['compound'],
             );
 
-            $displayFieldModel = $this->getModel('display_filed');
-            $select = $displayFieldModel->select(array('group' => $row['name']));
+            $displayFieldModel = $this->getModel('display_field');
+            $select = $displayFieldModel->select()->where(array('group' => $row['name']));
+            $select->order('order');
             $displayFieldRowset = $displayFieldModel->selectWith($select);
 
             $fields = array();
             foreach ($displayFieldRowset as $field) {
                 $fields[$field['field']] = array();
             }
+
+            $profileMeta = Pi::registry('profile', 'user')->read();
             if ($row['compound']) {
                 $compoundMeta = Pi::registry('compound', 'user')->read(
                     $row['compound']
@@ -114,12 +116,28 @@ class ProfileController extends ActionController
                 foreach ($compoundMeta as $name => $meta) {
                     if (isset($fields[$name])) {
                         $fields[$name] = array(
-                            'name'
+                            'name'  => $name,
+                            'title' => $meta['title'],
+
+                        );
+                    }
+                }
+            } else {
+                foreach ($profileMeta as $name => $meta) {
+                    if (isset($fields[$name])) {
+                        $fields[$name] = array(
+                            'name' => $name,
+                            'title' => $meta['title'],
                         );
                     }
                 }
             }
+
+            $result[$row['name']]['fields'] = $fields;
         }
+
+        return $result;
+
     }
 
 }
