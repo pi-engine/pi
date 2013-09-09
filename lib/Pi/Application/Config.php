@@ -85,8 +85,10 @@ class Config
     /**
      * Set a config
      *
-     * @param string    $name       Name of the config element
-     * @param string    $domain     Configuration domain
+     * @param string $name       Name of the config element
+     * @param mixed  $value
+     * @param string $domain     Configuration domain
+     *
      * @return $this
      */
     public function set($name, $value, $domain = null)
@@ -156,18 +158,29 @@ class Config
     /**
      * Load configuration data from custom or config directory
      *
-     * @param string    $configFile
+     * @param string $configFile
      *      Name for the config file located inside var/config and sub folders
+     * @param bool   $checkCustom
+     *
      * @return array
      */
-    public function load($configFile)
+    public function load($configFile, $checkCustom = true)
     {
+        if ('.php' != substr($configFile, -4)) {
+            $configFile .= '.php';
+        }
         $configs = array();
-        $file = $this->customLocation . '/' . $configFile;
-        if (!file_exists($file)) {
+        $file = '';
+        if ($checkCustom) {
+            $file = $this->customLocation . '/' . $configFile;
+            if (!file_exists($file)) {
+                $file = '';
+            }
+        }
+        if (!$file) {
             $file = $this->configLocation . '/' . $configFile;
             if (!file_exists($file)) {
-                $file = false;
+                $file = '';
             }
         }
         if ($file) {
@@ -175,5 +188,30 @@ class Config
         }
 
         return $configs;
+    }
+
+    /**
+     * Write config data into config file
+     *
+     * @param string    $file
+     * @param array     $data
+     * @param bool      $toCustom
+     *
+     * @return bool
+     */
+    public function write($file, array $data, $toCustom = false)
+    {
+        if ('.php' != substr($file, -4)) {
+            $file .= '.php';
+        }
+        $path = $toCustom ? $this->customLocation : $this->configLocation;
+        $file = $path . '/' . $file;
+
+        $content = '<?php' . PHP_EOL
+                 . 'return ' . var_export($data, true) . ';';
+        $result = (bool) file_put_contents($file, $content);
+
+        vd($file);
+        return $result;
     }
 }
