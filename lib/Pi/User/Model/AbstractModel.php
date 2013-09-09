@@ -20,7 +20,7 @@ abstract class AbstractModel extends ArrayObject
 {
     /**
      * Use property
-     * @var ArrayObject
+     * @var array
      */
     protected $data;
 
@@ -40,7 +40,7 @@ abstract class AbstractModel extends ArrayObject
      */
     public function __construct($data = null, $field = 'id')
     {
-        $this->data = new ArrayObject;
+        $this->data = array();
 
         if (is_array($data)) {
             $this->assign($data);
@@ -58,7 +58,6 @@ abstract class AbstractModel extends ArrayObject
      */
     public function offsetExists($offset)
     {
-        $result = false;
         if ('role' == $offset) {
             $result = null === $this->role ? false : true;
         } else {
@@ -146,7 +145,7 @@ abstract class AbstractModel extends ArrayObject
             $this->role = null;
         }
 
-        $this->data = new ArrayObject($data);
+        $this->data = $data;
 
         return $this;
     }
