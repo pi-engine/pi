@@ -77,14 +77,7 @@ abstract class AbstractModel extends ArrayObject
      */
     public function offsetGet($offset)
     {
-        $result = null;
-        if ('role' == $offset) {
-            $result = $this->role;
-        } elseif (array_key_exists($offset, $this->data)) {
-            $result = $this->data[$offset];
-        }
-
-        return $result;
+        return $this->get($offset);
     }
 
     /**
@@ -114,6 +107,16 @@ abstract class AbstractModel extends ArrayObject
         } elseif (array_key_exists($offset, $this->data)) {
             unset($this->data[$offset]);
         }
+    }
+
+    /**
+     * Get associative array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->data;
     }
 
     /**

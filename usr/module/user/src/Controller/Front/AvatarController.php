@@ -112,17 +112,19 @@ class AvatarController extends ActionController
      */
     public function indexAction()
     {
-        $logUser = Pi::user()->id;
-        if (empty($logUser)) {
+        $uid = Pi::user()->id;
+        if (empty($uid)) {
             return $this->jumpToDenied();
         }
-        
+
+        /*
         $id = $this->params('id', 0);
         if ($id != $logUser) {
             return $this->jumpTo404(__('Invalid user ID!'));
         }
-        
-        $uid      = Pi::user()->id;
+        */
+
+        //$uid      = Pi::user()->id;
         $filename = Pi::user()->get($uid, 'avatar');
         
         // Get required sizes from configuration
@@ -131,8 +133,8 @@ class AvatarController extends ActionController
         arsort($allSize);
         
         // Get allowed adapter
-        $options  = Pi::avatar()->getOptions();
-        $adapters = $options['adapter_allowed'];
+        $adapters = Pi::avatar()->getOption('adapter_allowed');
+        //$adapters = $options['adapter_allowed'];
         
         // Get upload photo
         if (in_array('upload', $adapters)) {
@@ -157,13 +159,13 @@ class AvatarController extends ActionController
         if (in_array('select', $adapters)) {
             $selectAdapter = Pi::avatar()->getAdapter('select');
             $selects = $selectAdapter->getMeta();
-            unset($selects['blank']);
+            //unset($selects['blank']);
             
             // Get current selected repository photo
             $selected = array();
             foreach (array_keys($allSize) as $name) {
                 $metas = $selectAdapter->getMeta($name);
-                unset($metas['blank']);
+                //unset($metas['blank']);
                 if (in_array($filename, array_keys($selects))) {
                     $selected[$name] = $metas[$filename];
                 } else {
@@ -184,7 +186,8 @@ class AvatarController extends ActionController
         // Get source
         $source = '';
         $email  = '';
-        if (preg_match('/.+@.+/', $filename)) {
+        //if (preg_match('/.+@.+/', $filename)) {
+        if (false !== strpos($filename, '@')) {
             $source = 'gravatar';
             $email  = $filename;
         } elseif (in_array($filename, array_keys($selects))) {
