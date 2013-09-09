@@ -21,29 +21,21 @@ class ProfileController extends ActionController
 {
 
     /**
-     * User profile page
-     * 1. Owner profile view
-     * 2. Other profile view
-     * 3. Display user time line
-     * 4. Display activity title
+     * User profile for owner
      *
      * @return array|void
      */
     public function indexAction()
     {
-        $uid     = $this->params('uid');
-        $isLogin = Pi::service('user')->hasIdentity();
-        $isOwner = false;
+        $uid = Pi::service('user')->hasIdentity();
 
-        if (!$uid && !$isLogin) {
-            $this->jumpTo404();
-        }
-
-        // Check owner
-        $loginUid = Pi::service('user')->getIdentity();
-        if (!$uid || $uid == $loginUid) {
-            $uid = Pi::service('user')->getIdentity();
-            $isOwner = true;
+        if (!$uid) {
+            $this->jump(
+                array('', array('controller' => 'login', 'action' => 'index')),
+                __('Please login'),
+                5
+            );
+            return;
         }
 
         // Get user information
@@ -60,12 +52,48 @@ class ProfileController extends ActionController
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
-            'uid'          => $uid,
-            'is_owner'      => $isOwner,
-            'user'         => $user,
-            'nav'          => $nav,
-            'quicklink'    => $quicklink,
+            'uid'           => $uid,
+            'user'          => $user,
+            'nav'           => $nav,
+            'quicklink'     => $quicklink,
         ));
+
+        $this->view()->setTemplate('profile-index');
+    }
+
+    /**
+     * Profile for view
+     *
+     */
+    public function viewAction()
+    {
+        $uid = $this->params('uid', '');
+        if (!$uid) {
+            return $this->jumpTo404(__('Invalid user ID!'));
+        }
+
+        // Get user information
+        $user = $this->getUser($uid);
+
+        // Get display group
+        $profileGroup = $this->getProfile($uid, 'display');
+
+        // Get activity meta for nav display
+        $nav = $this->getNav($uid, 'profile');
+
+        // Get quicklink
+        $quicklink = $this->getQuicklink();
+
+        $this->view()->assign(array(
+            'profile_group' => $profileGroup,
+            'uid'           => $uid,
+            'user'          => $user,
+            'nav'           => $nav,
+            'quicklink'     => $quicklink,
+        ));
+
+        $this->view()->setTemplate('profile-view');
+
     }
 
     /**
@@ -933,6 +961,7 @@ class ProfileController extends ActionController
         //vd(Pi::registry('compound', 'user')->read('work'));
         //vd($this->getQuicklink());
         //$this->getNav(1, 'profile');
+        //vd($this->url('', array('action' => 'press')));
         $this->view()->setTemplate(false);
     }
 }
