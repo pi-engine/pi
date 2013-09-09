@@ -49,7 +49,7 @@ class Config
     /**
      * Constructor
      *
-     * @param  string $configLocation
+     * @param string  $customLocation
      */
     public function __construct($configLocation = '', $customLocation = '')
     {
