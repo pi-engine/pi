@@ -180,8 +180,7 @@ class ProfileController extends ActionController
     public function editProfileAction()
     {
         $uid = Pi::user()->getIdentity();
-        $groupName = $this->params('group', '');
-        $groupName = 'basic_info';
+        $groupId   = $this->params('gid', '');
         $status = 0;
         $isPost = 0;
 
@@ -196,12 +195,12 @@ class ProfileController extends ActionController
         }
 
         // Error hand
-        if (!$groupName) {
+        if (!$groupId) {
             return $this->jumpTo404();
         }
 
         // Get fields and filters for edit
-        list($fields, $filters) = $this->getGroupElements($groupName);
+        list($fields, $filters) = $this->getGroupElements($groupId);
 
         // Add other elements
         $fields[] = array(
@@ -215,7 +214,7 @@ class ProfileController extends ActionController
             'name'  => 'group',
             'type'  => 'hidden',
             'attributes' => array(
-                'value' => $groupName,
+                'value' => $groupId,
             ),
         );
 
@@ -225,7 +224,7 @@ class ProfileController extends ActionController
                 array(
                     'controller' => 'profile',
                     'action'     => 'edit.profile',
-                    'group'      => $groupName,
+                    'group'      => $groupId,
                 )),
         ));
 
@@ -245,7 +244,8 @@ class ProfileController extends ActionController
         } else {
             // Get profile data
             $model = $this->getModel('display_field');
-            $select = $model->select()->where(array('group' => $groupName));
+            $select = $model->select()->where(array('group' => $groupId));
+            $select->order('order');
             $result = $model->selectWith($select);
             foreach ($result as $row) {
                 $data[] = $row->field;
@@ -271,13 +271,13 @@ class ProfileController extends ActionController
         }
 
         $this->view()->assign(array(
-            'form'     => $form,
-            'title'    => $groupName,
-            'groups'   => $groups,
-            'cur_group' => $groupName,
-            'status'   => $status,
+            'form'      => $form,
+            'title'     => $groups[$groupId],
+            'groups'    => $groups,
+            'cur_group' => $groupId,
+            'status'    => $status,
             'is_post'   => $isPost,
-            'user'     => $this->getUser($uid)
+            'user'      => $this->getUser($uid)
         ));
         $this->view()->setTemplate('profile-edit');
     }
@@ -287,7 +287,7 @@ class ProfileController extends ActionController
      */
     public function editCompoundAction()
     {
-        $groupName    = $this->params('group', '');
+        $groupId      = $this->params('group', '');
         $uid          = Pi::service('user')->getIdentity();
         $errorMsg     = '';
 
@@ -302,14 +302,14 @@ class ProfileController extends ActionController
         }
 
         if ($this->request->isPost()) {
-            $groupName = _post('group');
+            $groupId = _post('gid');
         }
 
         // Get compound name
-        $rowset = $this->getModel('display_group')->find($groupName, 'name');
+        $rowset = $this->getModel('display_group')->find($groupId, 'id');
         $compound = $rowset ? $rowset->compound : '';
 
-        if (!$groupName || !$compound) {
+        if (!$groupId || !$compound) {
             return $this->jumpTo404();
         }
 
@@ -329,7 +329,7 @@ class ProfileController extends ActionController
             // Set form data
             $row += array(
                 'set'   => $set,
-                'group' => $groupName,
+                'group' => $groupId,
                 'uid'   => $uid,
             );
 
@@ -341,7 +341,7 @@ class ProfileController extends ActionController
         $addForm = new CompoundForm('new-compound', $compoundElements);
         $addForm->setData(array(
             'set'   => $i,
-            'group' => $groupName,
+            'group' => $groupId,
             'uid'   => $uid,
         ));
         unset($i);
@@ -420,12 +420,12 @@ class ProfileController extends ActionController
 
         $this->view()->setTemplate('profile-edit-compound');
         $this->view()->assign(array(
-            'forms'        => $forms,
-            'error_msg'     => $errorMsg,
-            'cur_group'     => $groupName,
-            'groups'       => $groups,
-            'add_form'      => $addForm,
-            'user'         => $this->getUser($uid)
+            'forms'     => $forms,
+            'error_msg' => $errorMsg,
+            'cur_group' => $groupId,
+            'groups'    => $groups,
+            'add_form'  => $addForm,
+            'user'      => $this->getUser($uid)
         ));
     }
 
@@ -609,24 +609,39 @@ class ProfileController extends ActionController
      */
     protected function setPaginator($option)
     {
-        $paginator = Paginator::factory(intval($option['count']));
-        $paginator->setItemCountPerPage($option['limit']);
-        $paginator->setCurrentPageNumber($option['page']);
-        $paginator->setUrlOptions(array(
-            // Use router to build URL for each page
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => $option['controller'],
-                'action'        => $option['action'],
-                'uid'           => $option['uid'],
+//        $paginator = Paginator::factory(intval($option['count']));
+//        $paginator->setItemCountPerPage($option['limit']);
+//        $paginator->setCurrentPageNumber($option['page']);
+//        $paginator->setUrlOptions(array(
+//            // Use router to build URL for each page
+//            'pageParam'     => 'p',
+//            'totalParam'    => 't',
+//            'router'        => $this->getEvent()->getRouter(),
+//            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+//            'params'        => array(
+//                'module'        => $this->getModule(),
+//                'controller'    => $option['controller'],
+//                'action'        => $option['action'],
+//                'uid'           => $option['uid'],
+//            ),
+//        ));
+
+        $paginator = Paginator::factory(intval($option['count']), array(
+            'limit' => $option['limit'],
+            'page'  => $option['page'],
+            'url_options'   => array(
+                'params'    => array(
+                    'module'        => $this->getModule(),
+                    'controller'    => $option['controller'],
+                    'action'        => $option['action'],
+                    'uid'           => $option['uid'],
+                    'uid'   => $option['uid'],
+                ),
             ),
         ));
 
         return $paginator;
+
     }
 
     /**
@@ -637,12 +652,12 @@ class ProfileController extends ActionController
      * @param string $compound
      * @return array
      */
-    protected function getGroupElements($groupName, $compound = '')
+    protected function getGroupElements($groupId, $compound = '')
     {
         $fieldsModel = $this->getModel('display_field');
         $select      = $fieldsModel
                        ->select()
-                       ->where(array('group' => $groupName));
+                       ->where(array('group' => $groupId));
 
         $select->order('order ASC');
         $rowset   = $fieldsModel->selectWith($select);
@@ -720,12 +735,11 @@ class ProfileController extends ActionController
 
         $model  = $this->getModel('display_group');
         $select = $model->select();
-        $select->columns(array('name', 'title', 'order', 'compound'));
         $select->order('order ASC');
         $groups = $model->selectWith($select);
 
         foreach ($groups as $group) {
-            $result[$group->name] = $group->toArray();
+            $result[$group->id] = $group->toArray();
         }
 
         return $result;
@@ -737,13 +751,13 @@ class ProfileController extends ActionController
      * @param $group
      * @return array
      */
-    protected function getFieldDisplay($group)
+    protected function getFieldDisplay($groupId)
     {
         $result = array();
 
         $model = $this->getModel('display_field');
-        $select = $model->select()->where(array('group' => $group));
-        $select->columns(array('field', 'group', 'order'));
+        $select = $model->select()->where(array('group' => $groupId));
+        $select->columns(array('field', 'order'));
         $select->order('order ASC');
         $fields = $model->selectWith($select);
 
@@ -770,14 +784,13 @@ class ProfileController extends ActionController
             $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
             $groups = $this->getDisplayGroup();
 
-            foreach ($groups as $groupName => $group) {
-                $result[$groupName] = $group;
-                $result[$groupName]['fields'] = array();
-                $fields = $this->getFieldDisplay($groupName);
+            foreach ($groups as $groupId => $group) {
+                $result[$groupId] = $group;
+                $result[$groupId]['fields'] = array();
+                $fields = $this->getFieldDisplay($groupId);
 
                 if ($group['compound']) {
                     // Compound
-
                     // Compound meta
                     $compoundMeta = Pi::registry('compound', 'user')->read(
                         $group['compound']
@@ -791,7 +804,7 @@ class ProfileController extends ActionController
                     // Gen Result
                     foreach ($compound as $set => $item) {
                         foreach ($item as $key => $value) {
-                            $result[$groupName]['fields'][$set][] = array(
+                            $result[$groupId]['fields'][$set][] = array(
                                 'title' => $compoundMeta[$key]['title'],
                                 'value' => $value,
                             );
@@ -800,7 +813,7 @@ class ProfileController extends ActionController
                 } else {
                     // Profile
                     foreach ($fields as $field) {
-                        $result[$groupName]['fields'][0][$field] = array(
+                        $result[$groupId]['fields'][0][$field] = array(
                             'title' => $fieldMeta[$field]['title'],
                             'value' => Pi::api('user', 'user')->get($uid, $field),
                         );
@@ -810,6 +823,7 @@ class ProfileController extends ActionController
         }
 
         return $result;
+
     }
 
     /**
