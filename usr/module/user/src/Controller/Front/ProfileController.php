@@ -898,8 +898,8 @@ class ProfileController extends ActionController
             'user',
             array(
                 'controller' => 'profile',
-                'action' => 'home',
-                'uid' => $uid
+                'action'     => 'home',
+                'uid'        => $uid
             )
         );
         $items[] = array(
@@ -946,6 +946,7 @@ class ProfileController extends ActionController
         }
 
         $nav['items'] = $items;
+
         return $nav;
 
     }
