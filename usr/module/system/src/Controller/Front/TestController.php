@@ -204,6 +204,79 @@ vd($content);
         $url = '/system/user/profile/misc/somea/someb';
         d($url);
         vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+
+
+        $params = array(
+            'action'    => 'logout',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+
+        $params = array(
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'home',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'uid'    => 123,
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'home',
+            'uid'    => 123,
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'home',
+            'name'    => 'test',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'home',
+            'identity'    => 'test',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+
+        $params = array(
+            'controller'    => 'profile',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'profile',
+            'action'    => 'index',
+            'id'    => 123,
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'profile',
+            'name'    => 'test',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'profile',
+            'identity'    => 'test',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+        $params = array(
+            'controller'    => 'profile',
+            'action'    => 'misc',
+            'somea'     => 'sombe',
+        );
+        d($params);
+        vd(Pi::service('url')->assemble('sysuser', $params));
+
     }
 
     /**

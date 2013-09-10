@@ -152,7 +152,11 @@ class User extends Standard
             if ('' == $action || 'index' == $action || 'view' == $action) {
                 $url = 'home';
                 if (!empty($params['id'])) {
-                    $url .= $this->paramDelimiter . $params['id'];
+                    if (count($params) > 1) {
+                        $url .= $this->paramDelimiter . $params['id'];
+                    } else {
+                        $url = $params['id'];
+                    }
                     unset($params['id']);
                 }
             }
