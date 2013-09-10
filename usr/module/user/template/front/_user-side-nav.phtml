@@ -1,6 +1,6 @@
 <div class="span3">
     <a class="media user-profile-back" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home')); ?>">
-        <img src="<?php echo Pi::user()->avatar()->get($uid, 'small', false); ?>" class="pull-left">
+        <img src="<?php echo Pi::user()->avatar()->get($user['id'], 'small', false); ?>" class="pull-left">
         <div class="media-body">
             <h4 class="media-heading"><?php echo $this->escape($user['name']); ?></h4>
             <span class="muted"><?php _e('View my profile'); ?></span>
@@ -32,6 +32,3 @@
         </ul>
     </div>
 </div>
-<?php
-    d($user);
-?>

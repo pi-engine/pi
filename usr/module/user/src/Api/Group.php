@@ -36,8 +36,8 @@ class Group extends AbstractApi
         $rowset = $model->selectWith($select);
 
         foreach ($rowset as $row) {
-            $result[$row->name] = array(
-                'title' => $row->title,
+            $result[$row->id] = array(
+                'title'    => $row->title,
                 'compound' => $row->compound,
                 'order'    => $row->order,
             );

@@ -85,8 +85,7 @@ CREATE TABLE `{display_group}` (
   -- Compound name;
   `compound`      varchar(64)     default NULL,
 
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`id`)
 );
 
 # Display grouping and order of field
@@ -95,7 +94,7 @@ CREATE TABLE `{display_field}` (
   -- Profile field name;
   -- Or compound field name if `compound` is specified in table 'display_group'
   `field`      varchar(64)              NOT NULL default '',
-  `group`      int(10)     unsigned     NOT NULL default '0'
+  `group`      int(10)     unsigned     NOT NULL default '0',
   `order`      smallint(5) unsigned     NOT NULL default '0',
 
   PRIMARY KEY (`id`),
