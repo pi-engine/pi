@@ -56,13 +56,62 @@ class ProfileController extends ActionController
             }
         }
 
+        // Get compiun
+        foreach ($compounds as $name => &$compound) {
+            $compound = Pi::registry('compound', 'user')->read($name);
+        }
+
         $data = $this->getGroupDisplay();
+
+        // Canonize right display
+        foreach ($data as  $group) {
+            // Compound fields
+            if ($group['compound']) {
+                if (isset($compounds[$group['compound']])) {
+                    unset($compounds[$group['compound']]);
+                }
+
+            } else {
+                // Profile fields
+                foreach (array_keys($group['fields']) as $key) {
+                    if (isset($profile[$key])) {
+                        unset($profile);
+                    }
+                }
+            }
+        }
+
+        d($data);
+        d($profile);
+        d($compounds);
 
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
             'data'      => $data,
         ));
+    }
+
+    /**
+     * Save display for ajax
+     *
+     */
+    public function saveDisplayAction()
+    {
+        $result = array(
+            'status' => 0,
+        );
+        $data = _post('data');
+
+        if (!$data) {
+            return $result;
+        }
+
+        //$data = ;
+
+
+
+
     }
 
     public function privacyAction()
@@ -138,6 +187,11 @@ class ProfileController extends ActionController
 
         return $result;
 
+    }
+
+    protected function getNewData()
+    {
+        //$data =
     }
 
 }

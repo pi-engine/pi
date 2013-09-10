@@ -39,6 +39,7 @@ class Group extends AbstractApi
             $result[$row->name] = array(
                 'title' => $row->title,
                 'compound' => $row->compound,
+                'order'    => $row->order,
             );
         }
 
