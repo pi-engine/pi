@@ -219,7 +219,15 @@ class System extends AbstractAdapter
                 ));
                 break;
             default:
-                $url = '';
+            case 'home':
+                $params = array('controller' => 'home');
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } else {
+                    $params['identity'] = $var;
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
                 break;
         }
 
