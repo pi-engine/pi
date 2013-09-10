@@ -23,11 +23,11 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-//        $this->addUser();
-//        $this->timelineLog();
-//        $this->group();
-//        $this->activity();
-//        $this->quickLink();
+        $this->addUser();
+        $this->timelineLog();
+        $this->group();
+        $this->activity();
+        $this->quickLink();
         $this->activeUser();
     }
 
@@ -206,25 +206,21 @@ EOT;
     {
         $group = array(
             array(
-                'name'     => 'basic_info',
                 'title'    => 'Basic info',
                 'order'    => '1',
                 'compound' => '',
             ),
             array(
-                'name'     => 'address',
                 'title'    => 'Address',
                 'order'    => '2',
                 'compound' => 'address',
             ),
             array(
-                'name'     => 'work',
                 'title'    => 'Work',
                 'order'    => '3',
                 'compound' => 'work',
             ),
             array(
-                'name'     => 'education',
                 'title'    => 'Education',
                 'order'    => '4',
                 'compound' => 'education',
@@ -235,113 +231,113 @@ EOT;
         $field = array(
             array(
                 'field' => 'fullname',
-                'group' => 'basic_info',
+                'group' => '1',
                 'order' => '1',
             ),
             array(
                 'field' => 'gender',
-                'group' => 'basic_info',
+                'group' => '1',
                 'order' => '2',
             ),
             array(
                 'field' => 'birthdate',
-                'group' => 'basic_info',
+                'group' => '1',
                 'order' => '3',
             ),
 
             // Address
             array(
                 'field' => 'country',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '1',
             ),
             array(
                 'field' => 'province',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '2',
             ),
             array(
                 'field' => 'city',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '3',
             ),
             array(
                 'field' => 'street',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '4',
             ),
             array(
                 'field' => 'room',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '5',
             ),
             array(
                 'field' => 'postcode',
-                'group' => 'address',
+                'group' => '2',
                 'order' => '6',
             ),
 
             // Work
             array(
                 'field' => 'company',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '1',
             ),
             array(
                 'field' => 'department',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '2',
             ),
             array(
                 'field' => 'title',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '3',
             ),
             array(
                 'field' => 'description',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '4',
             ),
             array(
                 'field' => 'start',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '5',
             ),
             array(
                 'field' => 'end',
-                'group' => 'work',
+                'group' => '3',
                 'order' => '6',
             ),
 
             // Education
             array(
                 'field' => 'school',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '1',
             ),
             array(
                 'field' => 'major',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '2',
             ),
             array(
                 'field' => 'degree',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '3',
             ),
             array(
                 'field' => 'class',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '4',
             ),
             array(
                 'field' => 'start',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '5',
             ),
             array(
                 'field' => 'end',
-                'group' => 'education',
+                'group' => '4',
                 'order' => '6',
             ),
         );
