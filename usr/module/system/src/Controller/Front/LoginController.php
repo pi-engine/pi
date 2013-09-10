@@ -185,6 +185,7 @@ class LoginController extends ActionController
             Pi::service('session')->manager()
                 ->rememberme($configs['rememberme'] * 86400);
         }
+        Pi::service('session')->manager()->setUser($result->getData('id'));
         Pi::service('user')->bind($result->getIdentity(), 'identity');
         Pi::service('user')->setPersist($result->getData());
         Pi::service('event')->trigger('login', $result->getIdentity());
