@@ -9,18 +9,16 @@
             <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
             <?php
                 if ($group['compound']) {
-                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['name']));
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));
                     $addUrl = $editUrl . '#user-info-add';
                 } else {
-                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['name']));
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
                 }
             ?>
-            <?php if ($is_owner) { ?>
             <a class="btn user-legend-edit" href="<?php echo $editUrl; ?>">
                 <i class="icon-pencil"></i>
                 <?php _e('Edit'); ?>
             </a>
-            <?php } ?>
             <div class="user-legend-linea"></div>
         </div>
         <?php if ($group['fields']) { ?>
