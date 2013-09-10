@@ -42,7 +42,7 @@ class AccountController extends ActionController
      */
     public function indexAction()
     {
-        $identity = Pi::service('authentication')->getIdentity();
+        $identity = Pi::service('user')->getIdentity();
         // Redirect login page if not logged in
         if (!$identity) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
@@ -50,7 +50,7 @@ class AccountController extends ActionController
         }
         //$user = Pi::api('system', 'user')->getUser($identity, 'identity');
         //$role = $user->role();
-        $row = Pi::model('user_account')->find($identity, 'identity');
+        $row = Pi::model('user_account')->find($identity);
         //$role = Pi::model('user_role')->find($row->id, 'user')->role;
         $role = Pi::api('system', 'user')->getRole($row['id'], 'front');
         $roleRow = Pi::model('acl_role')->find($role, 'name');
@@ -79,13 +79,13 @@ class AccountController extends ActionController
      */
     public function editAction()
     {
-        $identity = Pi::service('authentication')->getIdentity();
+        $identity = Pi::service('user')->getIdentity();
         // Redirect login page if not logged in
         if (!$identity) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
-        $row = Pi::model('user_account')->find($identity, 'identity');
+        $row = Pi::model('user_account')->find($identity);
         $form = new AccountForm('user-edit', $row);
         if ($this->request->isPost()) {
             $data = $this->request->getPost();

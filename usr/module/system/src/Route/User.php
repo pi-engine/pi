@@ -10,26 +10,35 @@
 namespace Module\System\Route;
 
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
 
 /**
- * System user route
+ * User route
  *
  * Use cases:
  *
- *  1. Login: user/login => Login::index
- *  2. Login process: user/login/process => Login::process
- *  3. Logout: user/logout  => Login::logout
- *  4. Register: user/register  => Register::index
- *  5. Register process: user/register/process => Register::process
- *  6. Register finish: user/register/finish => Register::finish
- *  7. Change email: user/email => Email::index
- *  8. Find password: user/password => Password::index
- *  9. User profile via ID: user/profile/$uid => Profile::index
- * 10. User profile via identity: user/profile/$user => Profile::index
- * 11. Personal account: user/account => Account::index
- * 12. Personal account edit: user/account/edit => Account::Edit
+ * - Simplified URLs:
+ *   - Own home: / => Home::Index
+ *   - Own home: /home => Home::Index
+ *   - User home via ID: /$uid => Home::View
+ *   - User home via ID: /home/$uid => Home::View
+ *   - User home via identity: /home/identity/$user => Home::View
+ *   - User home via name: /home/name/$user => Home::View
+ *   - Own profile: /profile => Profile::Index
+ *   - User profile via ID: /profile/$uid => Profile::View
+ *   - User profile via identity: /profile/identity/$user => Profile::View
+ *   - User profile via name: /profile/name/$user => Profile::View
+ *   - Logout: /logout  => Login::logout
+ *
+ * - Standard URLs:
+ *   - Login: /login => Login::index
+ *   - Login process: /login/process => Login::process
+ *   - Register: /register  => Register::index
+ *   - Register process: /register/process => Register::process
+ *   - Register finish: /register/finish => Register::finish
+ *   - Change email: /email => Email::index
+ *   - Find password: /password => Password::index
+ *   - Personal account: /account => Account::index
+ *   - Personal account edit: /account/edit => Account::Edit
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -41,7 +50,7 @@ class User extends Standard
      */
     protected $defaults = array(
         'module'        => 'system',
-        'controller'    => 'account',
+        'controller'    => 'home',
         'action'        => 'index'
     );
 
@@ -55,8 +64,60 @@ class User extends Standard
      */
     protected function parse($path)
     {
-        $path = $this->defaults['module'] . $this->structureDelimiter . $path;
-        $matches = parent::parse($path);
+        $matches = null;
+
+        $parts = array_filter(explode($this->structureDelimiter, $path));
+        $count = count($parts);
+        if ($count) {
+            $term = array_shift($parts);
+            if ('logout' == $term) {
+                $matches['controller'] = 'login';
+                $matches['action'] = 'logout';
+            } elseif (is_numeric($term)) {
+                $matches['controller'] = 'home';
+                $matches['action'] = 'view';
+                $matches['id'] = (int) $term;
+            } elseif ('home' == $term) {
+                $matches['controller'] = 'home';
+                if (!$parts) {
+                    $matches['action'] = 'index';
+                } else {
+                    $matches['action'] = 'view';
+                    if (is_numeric($parts[0])) {
+                        $matches['id'] = (int) array_shift($parts);
+                    }
+                }
+            } elseif ('profile' == $term) {
+                $matches['controller'] = 'profile';
+                if (!$parts) {
+                    $matches['action'] = 'index';
+                } else {
+                    //$subTerm = $parts[0];
+                    if (is_numeric($parts[0])) {
+                        $matches['action'] = 'view';
+                        $matches['id'] = (int) array_shift($parts);
+                    } elseif ('name' == $parts[0] || 'identity' == $parts[0]) {
+                        $matches['action'] = 'view';
+                    } else {
+                        $matches['action'] = array_shift($parts);
+                    }
+                }
+            }
+            if ($matches && $parts) {
+                $matches = array_merge($matches, $this->parseParams($parts));
+            }
+        }
+
+        if (null !== $matches) {
+            $matches = array_merge($this->defaults, $matches);
+        } else {
+            $path = $this->defaults['module'] . $this->structureDelimiter . $path;
+            $matches = parent::parse($path);
+        }
+        if (isset($matches['id'])) {
+            $matches['uid'] = $matches['id'];
+            unset($matches['id']);
+        }
 
         return $matches;
     }
@@ -77,12 +138,49 @@ class User extends Standard
             return $this->prefix;
         }
 
-        $params['module'] = $this->defaults['module'];
-        $url = parent::assemble($params, $options);
-        $urlPrefix = $this->prefix . $this->paramDelimiter
-                   . $this->defaults['module'];
-        $urlSuffix = substr($url, strlen($urlPrefix));
-        $url = $this->prefix . $urlSuffix;
+        //vd($params);
+        $url = null;
+        if (isset($params['uid'])) {
+            $params['id'] = $params['uid'];
+            unset($params['uid']);
+        }
+        $controller = isset($params['controller']) ? $params['controller'] : '';
+        $action = isset($params['action']) ? $params['action'] : '';
+        if ('logout' == $action) {
+            $url = 'logout';
+        } elseif ('' == $controller || 'home' == $controller) {
+            if ('' == $action || 'index' == $action || 'view' == $action) {
+                $url = 'home';
+                if (!empty($params['id'])) {
+                    $url .= $this->paramDelimiter . $params['id'];
+                    unset($params['id']);
+                }
+            }
+        } elseif ('profile' == $controller) {
+            if ('' == $action || 'index' == $action || 'view' == $action) {
+                $url = 'profile';
+                if (!empty($params['id'])) {
+                    $url .= $this->paramDelimiter . $params['id'];
+                    unset($params['id']);
+                }
+            }
+        }
+        //vd($url);
+
+        if ($url) {
+            $part = $this->assembleParams($params);
+            $url .= $part ? $this->paramDelimiter . $part : '';
+            $url = $this->prefix . $this->paramDelimiter . $url;
+            //vd($url);
+        } else {
+            $params['module'] = $this->defaults['module'];
+            $url = parent::assemble($params, $options);
+            $urlPrefix = $this->prefix . $this->paramDelimiter
+                . $this->defaults['module'];
+            $urlSuffix = substr($url, strlen($urlPrefix));
+            $url = $this->prefix . $urlSuffix;
+            //vd($url);
+        }
 
         return $url;
     }

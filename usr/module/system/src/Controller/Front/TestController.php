@@ -30,6 +30,7 @@ class TestController extends ActionController
         $this->view()->setTemplate(false);
         $content = array();
 
+        /*
         $text = <<<EOT
         Test for user and tag:
             @admin tested tag #good# ok?
@@ -120,7 +121,89 @@ vd($content);
         $avatars = Pi::avatar()->getList($uids);
         vd($avatars);
 
-        return $display;
+        $whereA = array(
+            'aa'    => 'AA',
+            'ab'    => 'AB',
+        );
+        $whereB = array(
+            'ba'    => 'BA',
+            'bb'    => 'BB',
+        );
+        $whereC = array(
+            'cc'    => 'CC',
+            'cd'    => 'CD',
+        );
+        $whereD = array(
+            'dc'    => 'DC',
+            'dd'    => 'DD',
+        );
+
+        $whereX = Pi::db()->where();
+        $whereX->add($whereA);
+        $whereX->add($whereB, 'or');
+        $whereY = Pi::db()->where($whereC);
+        $whereY->add($whereX);
+        $where = Pi::db()->where();
+        $where->add($whereX, 'or')->add($whereY, 'or');
+        vd($where->getExpressionData());
+
+        Pi::user()->data()->set(1, 'test', 5);
+        vd(Pi::user()->data(1, 'test'));
+        Pi::user()->data()->set(1, 'test', 'test a');
+        vd(Pi::user()->data(1, 'test'));
+        Pi::user()->data()->increment(1, 'test', 5);
+        vd(Pi::user()->data(1, 'test'));
+        Pi::user()->data()->set(1, 'test', 'test b');
+        vd(Pi::user()->data(1, 'test'));
+        */
+        //Pi::session()->setUser(1);
+        //Pi::user()->killUser(1);
+        //return $display;
+
+        $url = '/system/user/logout';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+
+        $url = '/system/user';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/home';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/123';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/home/123';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/home/123/something';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/home/name/test';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/home/identity/test';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+
+        $url = '/system/user/profile';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/profile/123';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/profile/123/something';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/profile/name/test';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/profile/identity/test';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
+        $url = '/system/user/profile/misc/somea/someb';
+        d($url);
+        vd(Pi::service('url')->route($url, 'sysuser')->getParams());
     }
 
     /**

@@ -28,6 +28,7 @@ class TestController extends ActionController
     {
         $this->view()->setTemplate(false);
 
+        /*
         $fields = Pi::registry('profile', 'user')->read('compound');
         vd($fields);
         $fields = Pi::registry('compound', 'user')->read('education');
@@ -49,6 +50,15 @@ class TestController extends ActionController
         $count = Pi::api('user', 'user')->getCount($where);
         vd($uids);
         vd($count);
+        */
+
+        $test = new \ArrayObject(array('test' => 'val'));
+        vd((array) $test);
+        $model = Pi::user()->getUser();
+        vd($model['name']);
+        vd($model->toArray());
+        $data = $model->toArray();
+        Pi::config()->write('user-data', $data, true);
     }
 
     protected function flushUsers()

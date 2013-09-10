@@ -204,11 +204,12 @@ class Url extends AbstractService
      * Note: host is not checked for match
      *
      * @param string $url
+     * @param string $route
      *
      * @throws \RuntimeException
      * @return RouteMatch|null
      */
-    public function match($url)
+    public function match($url, $route = '')
     {
         if (!$this->getRouter()) {
             throw new \RuntimeException(
@@ -228,11 +229,12 @@ class Url extends AbstractService
      * Match a URL against routes and parse to parameters
      *
      * @param string $url
+     * @param string $route
      *
      * @return RouteMatch|null
      */
-    public function route($url)
+    public function route($url, $route = '')
     {
-        return $this->match($url);
+        return $this->match($url, $route);
     }
 }
