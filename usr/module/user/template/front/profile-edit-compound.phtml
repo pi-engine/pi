@@ -5,7 +5,7 @@
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="user-js-info">
     <div class="user-info-top">
-        <strong class="user-info-title"><?php echo $cur_group; ?></strong>
+        <strong class="user-info-title"><?php echo $this->escape($title) ?></strong>
         <a href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
     </div>
     <div class="user-info-list">
@@ -302,8 +302,8 @@
 </script>
 <script>
     userCompoundEdit.init({
-        urlRoot: '<?php echo $this->url('', array('controller' => 'profile')); ?>',
-        elementsList: <?php echo json_encode($elements_list); ?>,
+        urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
+        elementsList: <?php echo json_encode($elementsList); ?>,
         compound: '<?php echo $cur_group; ?>',
         deleteConfirm: '<?php _e('Are you sure delete this one'); ?>'
     });

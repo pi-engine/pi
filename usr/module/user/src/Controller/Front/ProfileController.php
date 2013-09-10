@@ -27,7 +27,7 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $uid = Pi::service('user')->hasIdentity();
+        $uid = Pi::user()->hasIdentity();
 
         if (!$uid) {
             $this->jump(
@@ -37,6 +37,7 @@ class ProfileController extends ActionController
             );
             return;
         }
+        $uid = Pi::user()->getIdentity();
 
         // Get user information
         $user = $this->getUser($uid);
@@ -180,7 +181,7 @@ class ProfileController extends ActionController
     public function editProfileAction()
     {
         $uid = Pi::user()->getIdentity();
-        $groupId   = $this->params('gid', '');
+        $groupId   = $this->params('group', '');
         $status = 0;
         $isPost = 0;
 
@@ -272,7 +273,7 @@ class ProfileController extends ActionController
 
         $this->view()->assign(array(
             'form'      => $form,
-            'title'     => $groups[$groupId],
+            'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'cur_group' => $groupId,
             'status'    => $status,
@@ -302,7 +303,7 @@ class ProfileController extends ActionController
         }
 
         if ($this->request->isPost()) {
-            $groupId = _post('gid');
+            $groupId = _post('group');
         }
 
         // Get compound name
@@ -423,6 +424,7 @@ class ProfileController extends ActionController
             'forms'     => $forms,
             'error_msg' => $errorMsg,
             'cur_group' => $groupId,
+            'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'add_form'  => $addForm,
             'user'      => $this->getUser($uid)
@@ -436,13 +438,16 @@ class ProfileController extends ActionController
      */
     public function editCompoundSetAction()
     {
-        Pi::service('log')->active(false);
-        $compound = _post('compound');
-        $set      = _post('set');
-        $uid      = Pi::user()->getIdentity();
-        $message = array(
+        $compoundId = _post('compound');
+        $row   = $this->getModel('display_group')->find($compoundId, 'id');
+        $compound = $row ? $row->compound : '';
+        $set        = _post('set');
+        $uid        = Pi::user()->getIdentity();
+        $message    = array(
             'status' => 0,
         );
+
+
 
         $order = explode(',', $set);
         if (!$order || !$uid) {
