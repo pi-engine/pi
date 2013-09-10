@@ -70,34 +70,47 @@ class User extends Standard
         $count = count($parts);
         if ($count) {
             $term = array_shift($parts);
+            // /logout
             if ('logout' == $term) {
                 $matches['controller'] = 'login';
                 $matches['action'] = 'logout';
+
+            // /<id>
             } elseif (is_numeric($term)) {
                 $matches['controller'] = 'home';
                 $matches['action'] = 'view';
                 $matches['id'] = (int) $term;
+
+            // /home/<...>
             } elseif ('home' == $term) {
                 $matches['controller'] = 'home';
+                // /home
                 if (!$parts) {
                     $matches['action'] = 'index';
                 } else {
                     $matches['action'] = 'view';
+                    // /home/<id>
                     if (is_numeric($parts[0])) {
                         $matches['id'] = (int) array_shift($parts);
                     }
                 }
+
+            // /profile/<...>
             } elseif ('profile' == $term) {
                 $matches['controller'] = 'profile';
+                // /profile
                 if (!$parts) {
                     $matches['action'] = 'index';
                 } else {
-                    //$subTerm = $parts[0];
+                    // /profile/<id>
                     if (is_numeric($parts[0])) {
                         $matches['action'] = 'view';
                         $matches['id'] = (int) array_shift($parts);
+                    // /profile/name/<name>
+                    // /profile/identity/<identity>
                     } elseif ('name' == $parts[0] || 'identity' == $parts[0]) {
                         $matches['action'] = 'view';
+                    // /profile/<action>/<...>
                     } else {
                         $matches['action'] = array_shift($parts);
                     }
@@ -114,6 +127,7 @@ class User extends Standard
             $path = $this->defaults['module'] . $this->structureDelimiter . $path;
             $matches = parent::parse($path);
         }
+        // Transform id to uid
         if (isset($matches['id'])) {
             $matches['uid'] = $matches['id'];
             unset($matches['id']);
@@ -138,44 +152,53 @@ class User extends Standard
             return $this->prefix;
         }
 
-        //vd($params);
         $url = null;
+
+        // Transform uid to id
         if (isset($params['uid'])) {
             $params['id'] = $params['uid'];
             unset($params['uid']);
         }
         $controller = isset($params['controller']) ? $params['controller'] : '';
         $action = isset($params['action']) ? $params['action'] : '';
+
+        // /logout
         if ('logout' == $action) {
             $url = 'logout';
+
+        // /home/<...>
         } elseif ('' == $controller || 'home' == $controller) {
             if ('' == $action || 'index' == $action || 'view' == $action) {
+                // /home
                 $url = 'home';
                 if (!empty($params['id'])) {
+                    // /home/<id>
                     if (count($params) > 1) {
                         $url .= $this->paramDelimiter . $params['id'];
+                    // /<id>
                     } else {
                         $url = $params['id'];
                     }
                     unset($params['id']);
                 }
             }
+        // /profile/<...>
         } elseif ('profile' == $controller) {
             if ('' == $action || 'index' == $action || 'view' == $action) {
+                // /profile
                 $url = 'profile';
+                // /profile/<id>
                 if (!empty($params['id'])) {
                     $url .= $this->paramDelimiter . $params['id'];
                     unset($params['id']);
                 }
             }
         }
-        //vd($url);
 
         if ($url) {
             $part = $this->assembleParams($params);
             $url .= $part ? $this->paramDelimiter . $part : '';
             $url = $this->prefix . $this->paramDelimiter . $url;
-            //vd($url);
         } else {
             $params['module'] = $this->defaults['module'];
             $url = parent::assemble($params, $options);
@@ -183,7 +206,6 @@ class User extends Standard
                 . $this->defaults['module'];
             $urlSuffix = substr($url, strlen($urlPrefix));
             $url = $this->prefix . $urlSuffix;
-            //vd($url);
         }
 
         return $url;

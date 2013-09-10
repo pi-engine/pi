@@ -106,11 +106,14 @@ class TreeRouteStack extends RouteStack
     /**
      * match(): defined by BaseRoute interface.
      *
-     * @see    Route::match()
-     * @param  Request $request
+     * @see Route::match()
+     *
+     * @param Request   $request
+     * @param string    $routeName
+     *
      * @return RouteMatch|null
      */
-    public function match(Request $request)
+    public function match(Request $request, $routeName = '')
     {
         if (!method_exists($request, 'getUri')) {
             return null;
@@ -127,10 +130,21 @@ class TreeRouteStack extends RouteStack
             $this->setRequestUri($uri);
         }
 
+        // Specified route
+        if ($routeName) {
+            $route  = $this->routes->get($routeName)
+                ?: $this->extraRoute($routeName);
+            $routes = array($routeName => $route);
+        // Not specified
+        } else {
+            $routes = $this->routes;
+        }
+
         // Match against base URI
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
-            foreach ($this->routes as $name => $route) {
+            //foreach ($this->routes as $name => $route) {
+            foreach ($routes as $name => $route) {
                 $match = $route->match($request, $baseUrlLength);
                 if (!$match instanceof RouteMatch) {
                     continue;
@@ -150,7 +164,8 @@ class TreeRouteStack extends RouteStack
         // Match against simple URI
         } else {
             //return parent::match($request);
-            foreach ($this->routes as $name => $route) {
+            //foreach ($this->routes as $name => $route) {
+            foreach ($routes as $name => $route) {
                 $match = $route->match($request);
                 if ($match instanceof RouteMatch) {
                     $match->setMatchedRouteName($name);

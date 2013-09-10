@@ -39,12 +39,12 @@ class Jump extends AbstractPlugin
     /**
      * Generates a URL based on a route
      *
-     * @param string|array  $params         URI or params to assemble URI
-     * @param string        $message
-     *      Message to display on transition page
-     * @param int           $time
-     *      Time to wait on transition page before directed, in seconds
-     * @param bool          $allowExtenal   Allow external links
+     * @param string|array $params         URI or params to assemble URI
+     * @param string       $message
+     *                                     Message to display on transition page
+     * @param int          $time
+     *                                     Time to wait on transition page before directed, in seconds
+     * @param bool $allowExtenal Allow external links
      * @return Response
      */
     public function __invoke(
@@ -72,8 +72,11 @@ class Jump extends AbstractPlugin
                         $routeMatch->getParam('controller');
                 }
             }
+            /*
             $urlPlugin = $controller->plugin('url');
             $url = $urlPlugin->fromRoute($route, $params);
+            */
+            $url = Pi::service('url')->assemble($route, $params, true);
         } else {
             $url = $params;
             if (preg_match('/^(http[s]?:\/\/|\/\/)/i', $url)) {
