@@ -42,7 +42,8 @@ class ActivityController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate')
+            array('name', 'gender', 'birthdate'),
+            true
         );
 
 

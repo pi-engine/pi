@@ -403,7 +403,9 @@ CREATE TABLE `{core.session}` (
   `id`          varchar(32) NOT NULL default '',
   `modified`    int(10) unsigned NOT NULL default '0',
   `lifetime`    int(10) unsigned NOT NULL default '0',
+  `uid`         int(10) unsigned    NOT NULL default '0',
   `data`        text,
+
   PRIMARY KEY  (`id`),
   KEY `modified` (`modified`)
 );
