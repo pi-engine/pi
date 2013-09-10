@@ -149,10 +149,25 @@ class System extends AbstractAdapter
     }
     /**#@-*/
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setRole($uid, $role, $section = '')
+    {
+        return Pi::api('system', 'user')->setRole($uid, $role, $section);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRole($uid, $section = '')
+    {
+        return Pi::api('system', 'user')->getRole($uid, $section);
+    }
+
     /**#@+
      * Utility APIs
      */
-
     /**
      * {@inheritDoc}
      */

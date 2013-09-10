@@ -319,6 +319,31 @@ abstract class AbstractAdapter implements BindInterface
     abstract public function set($uid, $field, $value);
     /**#@-*/
 
+    /**
+     * Set user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     * @param string        $section
+     *
+     * @return bool
+     */
+    abstract public function setRole($uid, $role, $section = '');
+
+    /**
+     * Get user role
+     *
+     * Section: `admin`, `front`
+     * If section is specified, returns the role;
+     * if not, return associative array of roles.
+     *
+     * @param        $uid
+     * @param string $section   Section name: admin, front
+     *
+     * @return string|array
+     */
+    abstract public function getRole($uid, $section = '');
+
     /**#@+
      * Utility APIs
      */

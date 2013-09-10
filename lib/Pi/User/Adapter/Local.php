@@ -143,6 +143,22 @@ class Local extends System
     }
     /**#@-*/
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setRole($uid, $role, $section = '')
+    {
+        return Pi::api('user', 'user')->setRole($uid, $role, $section);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRole($uid, $section = '')
+    {
+        return Pi::api('user', 'user')->getRole($uid, $section);
+    }
+
     /**#@+
      * Utility APIs
      */
