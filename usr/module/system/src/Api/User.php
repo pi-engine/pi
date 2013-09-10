@@ -173,7 +173,7 @@ class User extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
-        if ($uid) {
+        if (!$uid) {
             return false;
         }
 
