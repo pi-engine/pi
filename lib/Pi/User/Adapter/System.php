@@ -225,6 +225,17 @@ class System extends AbstractAdapter
 
         return $result;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function killUser($uid)
+    {
+        $result = Pi::service('session')->killUser($uid);
+
+        return $result;
+    }
+
     /**#@-*/
 
     /**

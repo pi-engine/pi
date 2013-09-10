@@ -9,6 +9,7 @@
 
 namespace Pi\Session;
 
+use Pi\Session\SaveHandler\UserAwarenessInterface;
 use Zend\Session\SessionManager as ZendSessionManager;
 use Zend\Session\Container;
 
@@ -18,7 +19,8 @@ use Zend\Session\Container;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class SessionManager extends ZendSessionManager
+class SessionManager extends ZendSessionManager implements
+    UserAwarenessInterface
 {
     /**
      * Default options when a call to {@link destroy()} is made
@@ -75,7 +77,7 @@ class SessionManager extends ZendSessionManager
         }
 
         // Set metadata for validators
-        $storage  = $this->getStorage();
+        $storage = $this->getStorage();
         if (!$storage->isImmutable() && $this->validators) {
             $storage->setMetaData('_VALID', $this->validators);
         }
@@ -128,5 +130,34 @@ class SessionManager extends ZendSessionManager
         $this->saveHandler->setLifetime($ttl);
 
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser($uid)
+    {
+        $saveHandler = $this->getSaveHandler();
+        if ($saveHandler instanceof UserAwarenessInterface) {
+            $result = $saveHandler->setUser($uid);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function killUser($uid)
+    {
+        $result = null;
+        $saveHandler = $this->getSaveHandler();
+        if ($saveHandler instanceof UserAwarenessInterface) {
+            $result = $saveHandler->killUser($uid);
+        }
+
+        return $result;
     }
 }

@@ -94,6 +94,7 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
+ * @method \Pi\User\Adapter\AbstractAdapter::killUser($uid)
  *
  * @method activity()
  * @method avatar()

@@ -60,6 +60,7 @@ use Pi\User\Model\AbstractModel as UserModel;
  *   - getUrl($type, $uid = null)
  *   + Authentication
  *   - authenticate($identity, $credential)
+ *   - killUser($uid)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -365,5 +366,14 @@ abstract class AbstractAdapter implements BindInterface
      * @api
      */
     abstract public function authenticate($identity, $credential);
+
+    /**
+     * Kill a user's session
+     *
+     * @param int $uid
+     *
+     * @return bool|null true for success, false for fail, null for no action
+     */
+    abstract public function killUser($uid);
     /**#@-*/
 }
