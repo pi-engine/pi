@@ -77,36 +77,29 @@ class MemberController extends ActionController
         if (null !== $active) {
             $where['active'] = (int) $active;
         }
-        $select = $model->select()->where($where)->order('id')
-            ->offset($offset)->limit($limit);
-        $rowset = $model->selectWith($select);
-        $users = array();
+        $uids   = (array) Pi::user()->getUids($where, $limit, $offset, 'id');
+        $rowset = Pi::user()->get($uids);
+        $users  = array();
         foreach ($rowset as $row) {
-            $users[$row->id] = array(
-                'id'        => $row->id,
-                'identity'  => $row->identity,
-                'name'      => $row->name,
-                'email'     => $row->email,
-                'active'    => $row->active,
+            $users[$row['id']] = array(
+                'id'        => $row['id'],
+                'identity'  => $row['identity'],
+                'name'      => $row['name'],
+                'email'     => $row['email'],
+                'active'    => $row['active'],
             );
         }
-        $select = $model->select()
-            ->columns(array('count' => new Expression('count(*)')))
-            ->where($where);
-        $count = $model->selectWith($select)->current()->count;
+        $count = Pi::user()->getCount($where);
 
         $roleList = array();
         $model = Pi::model('user_role');
-        $rowset = $model->select(array('user' => array_keys($users)));
+        $rowset = $model->select(array('uid' => $uids));
         foreach ($rowset as $row) {
-            $users[$row->user]['role'] = $row->role;
-            $roleList[$row->role] = '';
-        }
-
-        $model = Pi::model('user_staff');
-        $rowset = $model->select(array('user' => array_keys($users)));
-        foreach ($rowset as $row) {
-            $users[$row->user]['role_staff'] = $row->role;
+            if ('front' == $row->section) {
+                $users[$row->uid]['role'] = $row->role;
+            } else {
+                $users[$row->uid]['role_staff'] = $row->role;
+            }
             $roleList[$row->role] = '';
         }
 
@@ -280,8 +273,10 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::api('system', 'member')->add($values);
-                if ($result['status']) {
+                $uid    = Pi::user()->addUser($values);
+                if (!empty($uid)) {
+                    Pi::user()->setRole($uid, $values['role'], 'front');
+                    Pi::user()->setRole($uid, $values['role_staff'], 'admin');
                     $message = __('User created saved successfully.');
                     $this->jump(array('action' => 'index'), $message);
                     return;
@@ -312,19 +307,16 @@ class MemberController extends ActionController
     public function editAction()
     {
         $id = $this->params('id');
-        $row = Pi::model('user')->find($id);
-        if (!$row) {
+        $row = Pi::user()->get($id);
+        if (empty($row)) {
             $this->jump(array('action' => 'index'),
                         __('The user is not found.'));
         }
-        $user = $row->toArray();
-        $role = Pi::model('user_role')->find($row->id, 'user');
-        if ($role) {
-            $user['role'] = $role->role;
-        }
-        $roleStaff = Pi::model('user_staff')->find($row->id, 'user');
-        if ($roleStaff) {
-            $user['role_staff'] = $roleStaff->role;
+        $user  = $row;
+        $roles = Pi::user()->getRole($id);
+        if ($roles) {
+            $user['role'] = $roles['front'];
+            $user['role_staff'] = $roles['admin'];
         }
 
         $form = new MemberForm('member', $user);
@@ -336,8 +328,10 @@ class MemberController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::api('system', 'member')->update($values);
-                if ($result['status']) {
+                $result = Pi::user()->updateUser($id, $values);
+                if (!empty($result)) {
+                    Pi::user()->setRole($id, $values['role'], 'front');
+                    Pi::user()->setRole($id, $values['role_staff'], 'admin');
                     $message = __('User data saved successfully.');
                     $this->jump(array('action' => 'index'), $message);
                     return;
@@ -429,7 +423,7 @@ class MemberController extends ActionController
             );
             return;
         }
-        Pi::api('system', 'member')->delete($id);
+        Pi::user()->deleteUser($id);
 
         $this->jump(
             array('action' => 'index'),
