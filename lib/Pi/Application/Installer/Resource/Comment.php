@@ -193,7 +193,7 @@ class Comment extends AbstractResource
             $sql = 'DELETE post FROM %s AS post'
                  . ' LEFT JOIN %s AS root'
                  . ' ON root.id=post.root'
-                 . ' WHERE post.module=\'%s\' AND root.category IN(%s)';
+                 . ' WHERE root.module=\'%s\' AND root.category IN(%s)';
             $sql = sprintf(
                 $sql,
                 $modelPost->getTable(),
@@ -223,9 +223,22 @@ class Comment extends AbstractResource
         }
         Pi::registry('category', 'comment')->clear();
 
+        $modelRoot = Pi::model('root', 'comment');
+        $modelPost = Pi::model('post', 'comment');
+        $sql = 'DELETE post FROM %s AS post'
+            . ' LEFT JOIN %s AS root'
+            . ' ON root.id=post.root'
+            . ' WHERE root.module=\'%s\'';
+        $sql = sprintf(
+            $sql,
+            $modelPost->getTable(),
+            $modelRoot->getTable(),
+            $module
+        );
+        Pi::db()->query($sql);
+
         Pi::model('category', 'comment')->delete(array('module' => $module));
         Pi::model('root', 'comment')->delete(array('module' => $module));
-        Pi::model('post', 'comment')->delete(array('module' => $module));
 
         return true;
     }

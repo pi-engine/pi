@@ -49,7 +49,8 @@ class Config
     /**
      * Constructor
      *
-     * @param string  $customLocation
+     * @param string $configLocation
+     * @param string $customLocation
      */
     public function __construct($configLocation = '', $customLocation = '')
     {
@@ -211,7 +212,6 @@ class Config
                  . 'return ' . var_export($data, true) . ';';
         $result = (bool) file_put_contents($file, $content);
 
-        vd($file);
         return $result;
     }
 }
