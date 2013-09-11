@@ -116,8 +116,9 @@ class UserName extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            $rowset = Pi::model('user_account')->select($where);
-            if ($rowset->count()) {
+            //$rowset = Pi::model('user_account')->select($where);
+            $count = Pi::model('user_account')->count($where);
+            if ($count) {
                 $this->error(static::TAKEN);
                 return false;
             }

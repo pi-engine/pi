@@ -188,10 +188,13 @@ class MemberController extends ActionController
                 'role'  => $row->role,
             );
         }
+        /*
         $select = $model->select()
             ->columns(array('count' => new Expression('count(*)')))
             ->where($where);
         $count = $model->selectWith($select)->current()->count;
+        */
+        $count = $model->count($where);
 
         if ($users) {
             $roleList = array();

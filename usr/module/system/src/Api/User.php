@@ -137,12 +137,15 @@ class User extends AbstractApi
         }
 
         $modelAccount = Pi::model('user_account');
+        /*
         $select = $modelAccount->select()->where($where)
             ->columns(array(
                 'count' => Pi::db()->expression('COUNT(*)')
             ));
         $row = $modelAccount->selectWith($select)->current();
         $count = (int) $row['count'];
+        */
+        $count = $modelAccount->count($where);
 
         return $count;
     }

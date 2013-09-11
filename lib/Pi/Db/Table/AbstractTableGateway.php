@@ -339,4 +339,26 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
         return $this;
     }
+
+    /**
+     * Fetch count against condition
+     *
+     * @param array|Where $where
+     *
+     * @return bool|int
+     */
+    public function count($where = array())
+    {
+        $select = $this->select();
+        $select->columns(array('count' => Pi::db()->expression('COUNT(*)')));
+        $select->where($where);
+        try {
+            $row = $this->selectWith($select)->current();
+            $result = (int) $row['count'];
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
+    }
 }

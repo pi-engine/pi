@@ -46,8 +46,9 @@ class NavNameDuplicate extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            $rowset = Pi::model('navigation')->select($where);
-            if ($rowset->count()) {
+            //$rowset = Pi::model('navigation')->select($where);
+            $count = Pi::model('navigation')->count($where);
+            if ($count) {
                 $this->error(static::TAKEN);
                 return false;
             }

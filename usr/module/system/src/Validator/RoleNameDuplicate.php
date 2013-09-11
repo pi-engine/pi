@@ -46,8 +46,9 @@ class RoleNameDuplicate extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            $rowset = Pi::model('acl_role')->select($where);
-            if ($rowset->count()) {
+            //$rowset = Pi::model('acl_role')->select($where);
+            $count = Pi::model('acl_role')->count($where);
+            if ($count) {
                 $this->error(static::TAKEN);
                 return false;
             }

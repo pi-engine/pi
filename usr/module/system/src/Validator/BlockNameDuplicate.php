@@ -46,8 +46,9 @@ class BlockNameDuplicate extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            $rowset = Pi::model('block')->select($where);
-            if ($rowset->count()) {
+            //$rowset = Pi::model('block')->select($where);
+            $count = Pi::model('block')->count($where);
+            if ($count) {
                 $this->error(static::TAKEN);
                 return false;
             }

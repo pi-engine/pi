@@ -40,8 +40,9 @@ class WidgetNameDuplicate extends AbstractValidator
                 $where['id <> ?'] = $context['id'];
             }
 
-            $rowset = Pi::model('widget', 'widget')->select($where);
-            if ($rowset->count()) {
+            //$rowset = Pi::model('widget', 'widget')->select($where);
+            $count = Pi::model('widget', 'widget')->count($where);
+            if ($count) {
                 $this->error(static::TAKEN);
                 return false;
             }

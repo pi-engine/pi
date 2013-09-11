@@ -28,12 +28,12 @@ class Event extends AbstractRegistry
     {
         $listeners = array();
         $modelEvent = Pi::model('event');
-        $rowset = $modelEvent->select(array(
+        $count = $modelEvent->count(array(
             'module'    => $options['module'],
             'name'      => $options['event'],
             'active'    => 1
         ));
-        if ($rowset->count()) {
+        if ($count) {
             return $listeners;
         }
 
@@ -49,9 +49,9 @@ class Event extends AbstractRegistry
             $class = sprintf(
                 'Module\\%s\\%s',
                 ucfirst($directory),
-                ucfirst($class)
+                ucfirst($row['class'])
             );
-            $listeners[] = array($class, $row->method, $row->module);
+            $listeners[] = array($class, $row['method'], $row['module']);
         }
 
         return $listeners;

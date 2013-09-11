@@ -132,11 +132,6 @@ class Api extends AbstractApi
             break;
         }
         if ('notification' == $type) {
-            $model  = Pi::model('notification', $this->getModule());
-            $select = $model->select();
-            $select->columns(array(
-                'count' => Pi::db()->expression('count(*)'),
-            ));
             $where = array(
                 'uid'           => $uid,
                 'is_deleted'    => 0
@@ -144,15 +139,17 @@ class Api extends AbstractApi
             if (!$includeRead) {
                 $where['is_read'] = 0;
             }
-            $select->where($where);
-            $row = $model->selectWith($select)->current();
-            $count = (int) $row['count'];
-        } elseif ('message' == $type) {
-            $model  = Pi::model('message', $this->getModule());
+            $model  = Pi::model('notification', $this->getModule());
+            /*
             $select = $model->select();
             $select->columns(array(
                 'count' => Pi::db()->expression('count(*)'),
             ));
+            $select->where($where);
+            $row = $model->selectWith($select)->current();
+            $count = (int) $row['count'];
+            */
+        } elseif ('message' == $type) {
             $whereTo = array(
                 'uid_to'        => $uid,
                 'is_deleted_to' => 0,
@@ -169,9 +166,18 @@ class Api extends AbstractApi
             $where = Pi::db()->where();
             $where->addPredicate(Pi::db()->where($whereTo));
             $where->orPredicate(Pi::db()->where($whereFrom));
+            $model  = Pi::model('message', $this->getModule());
+            /*
+            $select = $model->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
+
             $select->where($where);
             $row = $model->selectWith($select)->current();
             $count = (int) $row['count'];
+            */
+            $count = $model->count($where);
         } else {
             $count = $this->getCount($uid, $includeRead, 'message')
                 + $this->getCount($uid, $includeRead, 'notification');

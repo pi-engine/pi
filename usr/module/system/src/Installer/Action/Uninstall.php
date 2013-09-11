@@ -43,8 +43,9 @@ class Uninstall extends BasicUninstall
     {
         $module = $this->event->getParam('module');
         $model = Pi::mdel('module');
-        $rowset = $model->select(array('dirname <> ?' => $module));
-        if ($rowset->count() > 0) {
+        //$rowset = $model->select(array('dirname <> ?' => $module));
+        $count = $model->count(array('dirname <> ?' => $module));
+        if ($count > 0) {
             $result = array(
                 'status'    => false,
                 'message'   => 'Modules are not unistalled completely.'

@@ -94,7 +94,7 @@ class Service
      * Get unread message count
      *
      * @param  int       $uid
-     * @param  int       $type
+     * @param  string    $type
      * @return int|false
      */
     public static function getUnread($uid, $type = '')
@@ -108,36 +108,42 @@ class Service
             break;
         }
         if ('notification' == $type) {
-            $model  = Pi::model('notification', 'message');
-            $select = $model->select();
-            $select->columns(array(
-                'count' => Pi::db()->expression('count(*)'),
-            ));
             $where = array(
                 'uid'           => $uid,
                 'is_deleted'    => 0,
                 'is_read'       => 0,
             );
-            $select->where($where);
-            $row = $model->selectWith($select)->current();
-            $count = (int) $row['count'];
-        } elseif ('message' == $type) {
-            $model  = Pi::model('message', 'message');
+            $model  = Pi::model('notification', 'message');
+            /*
             $select = $model->select();
             $select->columns(array(
                 'count' => Pi::db()->expression('count(*)'),
             ));
+            $select->where($where);
+            $row = $model->selectWith($select)->current();
+            $count = (int) $row['count'];
+            */
+            $count = $model->count($where);
+        } elseif ('message' == $type) {
             $where = array(
                 'uid_to'        => $uid,
                 'is_deleted_to' => 0,
                 'is_read_to'    => 0,
             );
+            $model  = Pi::model('message', 'message');
+            /*
+            $select = $model->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('count(*)'),
+            ));
             $select->where($where);
             $row = $model->selectWith($select)->current();
             $count = (int) $row['count'];
+            */
+            $count = $model->count($where);
         } else {
-            $count = $this->getCount($uid, 'message')
-                + $this->getCount($uid, 'notification');
+            $count = static::getCount($uid, 'message')
+                + static::getCount($uid, 'notification');
         }
 
         return $count;

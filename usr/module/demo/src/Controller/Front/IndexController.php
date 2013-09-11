@@ -102,10 +102,12 @@ class IndexController extends ActionController
         }
 
         //$data = $rowset->toArray();
+        /*
         $select = $model->select()
             ->columns(array('count' => new Expression('count(*)')))
             ->where(array('flag' => $flag));
-        $count = $model->selectWith($select)->current()->count;
+        */
+        $count = $model->count(array('flag' => $flag));
 
         /*
         $paginator = Paginator::factory(intval($count));

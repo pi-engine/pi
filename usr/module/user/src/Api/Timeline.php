@@ -81,12 +81,15 @@ class Timeline extends AbstractApi
     public function getCount($uid)
     {
         $model = Pi::model('timeline_log', 'user');
+        /*
         $select = $model->select()->where(array('uid' => $uid))
             ->columns(array(
                 'count' => Pi::db()->expression('COUNT(*)')
             ));
         $row = $model->selectWith($select)->current();
         $count = (int) $row['count'];
+        */
+        $count = $model->count(array('uid' => $uid));
 
         return $count;
     }

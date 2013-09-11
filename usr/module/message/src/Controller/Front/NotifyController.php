@@ -69,6 +69,7 @@ class NotifyController extends AbstractController
 
         $model = $this->getModel('notification');
         //get notification list count
+        /*
         $select = $model->select()
                         ->columns(array(
                             'count' => new \Zend\Db\Sql\Predicate\Expression(
@@ -77,7 +78,8 @@ class NotifyController extends AbstractController
                         ))
                         ->where(array('uid' => $userId, 'is_deleted' => 0));
         $count = $model->selectWith($select)->current()->count;
-
+        */
+        $count = $model->count(array('uid' => $userId, 'is_deleted' => 0));
         if ($count) {
             //get notification list
             $select = $model->select()
