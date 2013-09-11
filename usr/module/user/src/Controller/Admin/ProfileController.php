@@ -91,9 +91,9 @@ class ProfileController extends ActionController
             'data'      => $data,
         ));
 
-        //d($profile);
-        //d($compounds);
-        //d($data);
+        d($profile);
+        d($compounds);
+        d($data);
         $this->view()->setTemplate('profile-dress-up');
     }
 
@@ -162,7 +162,6 @@ class ProfileController extends ActionController
             foreach ($displayFieldRowset as $field) {
                 $fields[$field['field']] = array(
                     'order' => $field['order'],
-                    'group' => $field['group'],
                 );
             }
 
