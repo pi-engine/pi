@@ -38,11 +38,17 @@ class Redirect extends ZendRedirect
         $options = array(),
         $reuseMatchedParams = false
     ) {
-        if (!$route && !$params) {
+        if (0 == func_num_args()) {
             return $this;
         }
 
-        return $this->toRoute($route, $params, $options, $reuseMatchedParams);
+        if (1 == func_num_args() && $route) {
+            $result = $this->toUrl($route);
+        } else {
+            $result = $this->toRoute($route, $params, $options, $reuseMatchedParams);
+        }
+
+        return $result;
     }
 
     /**
@@ -86,7 +92,6 @@ class Redirect extends ZendRedirect
         $response->send();
 
         return $response;
-        //exit();
     }
 
     /**
