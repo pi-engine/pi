@@ -214,10 +214,44 @@ class Standard implements RouteInterface
     /**
      * Parse matched path into params
      *
-     * @param string $path
-     * @return array|false
+     * @param array $params
+     * @return array
      */
-    protected function parseParams($path)
+    protected function parseParams(array $params)
+    {
+        $matches = array();
+
+        if ($this->keyValueDelimiter === $this->paramDelimiter) {
+            $count = count($params);
+
+            for ($i = 0; $i < $count; $i += 2) {
+                if (isset($params[$i + 1])) {
+                    $matches[urldecode($params[$i])] = urldecode(
+                        $params[$i + 1]
+                    );
+                }
+            }
+        } else {
+            foreach ($params as $param) {
+                $param = explode($this->keyValueDelimiter, $param, 2);
+                if (isset($param[1])) {
+                    $matches[urldecode($param[0])] = urldecode($param[1]);
+                }
+            }
+        }
+
+        //$matches = array_merge($this->defaults, $matches);
+
+        return $matches;
+    }
+
+    /**
+     * Parse matched path into params
+     *
+     * @param string $path
+     * @return array
+     */
+    protected function parse($path)
     {
         $matches = array();
         $params  = $path
@@ -241,26 +275,11 @@ class Standard implements RouteInterface
             array_shift($params);
         }
 
-        if ($this->keyValueDelimiter === $this->paramDelimiter) {
-            $count = count($params);
-
-            for ($i = 0; $i < $count; $i += 2) {
-                if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] = urldecode(
-                        $params[$i + 1]
-                    );
-                }
-            }
-        } else {
-            foreach ($params as $param) {
-                $param = explode($this->keyValueDelimiter, $param, 2);
-                if (isset($param[1])) {
-                    $matches[urldecode($param[0])] = urldecode($param[1]);
-                }
-            }
-        }
-
+        //vd($matches);
+        $matches = array_merge($matches, $this->parseParams($params));
+        //vd($matches);
         $matches = array_merge($this->defaults, $matches);
+        //vd($matches);
 
         return $matches;
     }
@@ -280,12 +299,37 @@ class Standard implements RouteInterface
             return null;
         }
         list($path, $pathLength) = $result;
-        $matches = $this->parseParams($path);
+        $matches = $this->parse($path);
         if (!is_array($matches)) {
             return null;
         }
 
         return new RouteMatch($matches, $pathLength);
+    }
+
+    /**
+     * Assemble params
+     *
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function assembleParams(array $params)
+    {
+        $url = '';
+        foreach ($params as $key => $value) {
+            if (in_array($key, array('module', 'controller', 'action'))) {
+                continue;
+            }
+            if (null === $value) {
+                continue;
+            }
+            $url .= $this->paramDelimiter . urlencode($key)
+                . $this->keyValueDelimiter . urlencode($value);
+        }
+        $url = ltrim($url, $this->paramDelimiter);
+
+        return $url;
     }
 
     /**
@@ -311,6 +355,7 @@ class Standard implements RouteInterface
             }
         }
 
+        /*
         $url = '';
         foreach ($mergedParams as $key => $value) {
             if (null === $value) {
@@ -320,6 +365,8 @@ class Standard implements RouteInterface
                   . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
+        */
+        $url = $this->assembleParams($mergedParams);
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller', 'module') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {

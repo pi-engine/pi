@@ -177,8 +177,13 @@ class Url extends AbstractService
                 unset($options['reuse_matched_params']);
             }
         }
-        if (isset($params['action']) || isset($params['controller'])) {
+        if (isset($params['action'])) {
             $reuseMatchedParams = true;
+        } elseif (isset($params['controller'])
+            && !isset($params['module'])
+            && $routeMatch
+        ) {
+            $params['module'] = $routeMatch->getParam('module');
         }
         if ($reuseMatchedParams && $routeMatch) {
             foreach (array('module', 'controller', 'action') as $key) {
@@ -204,11 +209,12 @@ class Url extends AbstractService
      * Note: host is not checked for match
      *
      * @param string $url
+     * @param string $route
      *
      * @throws \RuntimeException
      * @return RouteMatch|null
      */
-    public function match($url)
+    public function match($url, $route = '')
     {
         if (!$this->getRouter()) {
             throw new \RuntimeException(
@@ -219,7 +225,7 @@ class Url extends AbstractService
         $uri = new HttpUri($url);
         $request = new Request();
         $request->setUri($uri);
-        $result = $this->getRouter()->match($request);
+        $result = $this->getRouter()->match($request, $route);
 
         return $result;
     }
@@ -228,11 +234,12 @@ class Url extends AbstractService
      * Match a URL against routes and parse to parameters
      *
      * @param string $url
+     * @param string $route
      *
      * @return RouteMatch|null
      */
-    public function route($url)
+    public function route($url, $route = '')
     {
-        return $this->match($url);
+        return $this->match($url, $route);
     }
 }

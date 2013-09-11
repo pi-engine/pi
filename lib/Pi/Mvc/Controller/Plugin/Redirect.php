@@ -25,11 +25,11 @@ class Redirect extends ZendRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string    $route      RouteInterface name
-     * @param array     $params
-     *      Parameters to use in url generation, if any
-     * @param array     $options
-     *      RouteInterface-specific options to use in url generation, if any
+     * @param string $route     RouteInterface name
+     * @param array  $params    Parameters to use in url generation, if any
+     * @param array  $options   RouteInterface-specific options to use in url generation, if any
+     * @param bool   $reuseMatchedParams
+     *
      * @return Response|$this
      */
     public function __invoke(
@@ -61,9 +61,11 @@ class Redirect extends ZendRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string    $route      RouteInterface name
-     * @param array     $params     Parameters to use in url generation
-     * @param array     $options    RouteInterface-specific options
+     * @param string $route      RouteInterface name
+     * @param array  $params     Parameters to use in url generation
+     * @param array  $options    RouteInterface-specific options
+     * @param bool   $reuseMatchedParams
+     *
      * @return Response
      */
     public function toRoute(
@@ -72,18 +74,6 @@ class Redirect extends ZendRedirect
         $options = array(),
         $reuseMatchedParams = false
     ) {
-        $routeMatch = null;
-        if (!$route) {
-            $routeMatch = $this->getEvent()->getRouteMatch();
-            $route = $routeMatch->getMatchedRouteName();
-        }
-        if (!isset($params['module'])) {
-            $routeMatch = $routeMatch ?: $this->getEvent()->getRouteMatch();
-            $params['module'] = $routeMatch->getParam('module');
-            if (!isset($params['controller'])) {
-                $params['controller'] = $routeMatch->getParam('controller');
-            }
-        }
         $this->controller->view()->setTemplate(false);
 
         $response = parent::toRoute(
