@@ -120,17 +120,56 @@ class ProfileController extends ActionController
             'status' => 0,
         );
         $data = _post('data');
+        $data = $this->getGroupDisplay();
 
-        if (!$data) {
-            return $result;
+        $displayGroupModel = $this->getModel('display_group');
+        $displayFieldModel = $this->getModel('display_field');
+
+	    // Flush
+        $displayGroupModel->delete(array());
+        $displayFieldModel->delete(array());
+
+        $groupOrder = 1;
+	    foreach ($data as $group) {
+            $groupData = array(
+            	'title'    => $group['title'],
+                'order'    => $groupOrder,
+                'compound' => $group['compound'],
+            );
+
+            $row = $displayGroupModel->createRow($groupData);
+            
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return $result;
+            }
+
+            $groupId = (int) $row['id'];d($groupId);
+            $fieldOrder = 1;
+            // Save display field
+            foreach ($group['fields'] as $field )  {
+                $fieldData = array(
+                    'field'  => $field['name'],
+                    'group'  => $groupId,
+                    'order'  => $fieldOrder,
+                );
+
+                $rowField = $displayFieldModel->createRow($fieldData);
+
+                try {
+                    $rowField->save();
+                } catch (\Exception $e) {
+                    return $result;
+                }
+                $fieldOrder++;
+	        }
+
+            $groupOrder++;
         }
+        $result['status'] = 1;
 
-
-
-        //$data = ;
-
-
-
+        return $result;
 
     }
 
@@ -142,7 +181,22 @@ class ProfileController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-        d($this->getGroupDisplay());
+
+//        $data = _post('data');
+//        $data = $this->getGroupDisplay();
+//        d($data);
+//        list($displayGroup, $displayFiled) = $this->canonizeDressUp($data);
+//        d($displayFiled);
+//        d($displayGroup);
+        //$data = $this->getGroupDisplay();
+        //d($this->canonizeDressUp($data));
+
+//        $displayGroupModel = $this->getModel('display_group');
+//        $displayFiledModel = $this->getModel('display_field');
+
+        // Flush
+//        $displayGroupModel->delete(array());
+//        $displayFiledModel->delete(array());
     }
 
     /**
@@ -216,20 +270,26 @@ class ProfileController extends ActionController
         $displayGroup = array();
         $displayField = array();
 
+        $groupOrder = 1;
         // Set group
         foreach ($data as $group) {
             $displayGroup[] = array(
                 'title'    => $group['title'],
-                'order'    => $group['order'],
+                'order'    => $groupOrder,
                 'compound' => $group['compound'],
             );
+
+            $fieldOrder = 1;
             foreach ($group['fields'] as $field) {
                 $displayField[] = array(
                     'field' => $field['name'],
-                    'group' => $group['id'],
-                    'order' => $field['order'],
+                    'order' => $fieldOrder,
                 );
+
+                $fieldOrder++;
             }
+
+            $groupOrder++;
         }
 
         return array($displayGroup, $displayField);
