@@ -25,18 +25,42 @@ class ProfileController extends ActionController
 
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
-                $compounds[$field['name']] = array();
+                $compounds[$field['name']] = array(
+                    'name'       => $field['name'],
+                    'title'      => $field['title'],
+                    'module'     => $field['module'],
+                    'is_edit'    => $field['is_edit'],
+                    'is_search'  => $field['is_search'],
+                    'is_display' => $field['is_display'],
+
+                );
             } else {
-                $profile[$field['name']] = $field;
+                $profile[$field['name']] = array(
+                    'name'       => $field['name'],
+                    'title'      => $field['title'],
+                    'module'     => $field['module'],
+                    'is_edit'    => $field['is_edit'],
+                    'is_search'  => $field['is_search'],
+                    'is_display' => $field['is_display'],
+                );
             }
         }
 
+        // Get compound
         foreach ($compounds as $name => &$compound) {
-            $compound = Pi::registry('compound', 'user')->read($name);
+            $compoundMeta = Pi::registry('compound', 'user')->read($name);
+            foreach ($compoundMeta as $meta) {
+                $compound['fields'][] = array(
+                    'name'  => $meta['name'],
+                    'title' => $meta['title'],
+                );
+            }
         }
 
-        vd($profile);
-        vd($compounds);
+        $compounds = array_values($compounds);
+        $profile   = array_values($profile);
+        d($compounds);
+        d($profile);
 
         $this->view()->assign(array(
             'profile'   => $profile,
@@ -71,7 +95,7 @@ class ProfileController extends ActionController
         foreach ($compounds as $name => &$compound) {
             $compoundMeta = Pi::registry('compound', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
-                $compound['fields'] = array(
+                $compound['fields'][] = array(
                     'name'  => $meta['name'],
                     'title' => $meta['title'],
                 );
@@ -173,6 +197,68 @@ class ProfileController extends ActionController
 
     }
 
+    /**
+     * Update field meta
+     * For ajax
+     *
+     */
+    public function updateFieldAction()
+    {
+        $this->view()->setTemplate(false);
+        $result = array(
+            'status' => 0
+        );
+
+        $name          = _post('name');
+        $compound      = _post('compound');
+        $title         = _post('title');
+
+        $fieldModel    = $this->getModel('field');
+        $compoundModel = $this->getModel('compound_field');
+
+        if (!$name || !$title) {
+            return $result;
+        }
+
+        // Update field
+        if (!$compound) {
+            $row = $fieldModel->find($name, 'name');
+            if ($row) {
+                $row->assign(array('title' => $title));
+                try {
+                    $row->save();
+                    $result['status'] = 1;
+                } catch (\Exception $e) {
+                    return $result;
+                }
+            }
+
+        } else {
+            // Update compound field title
+            $select = $compoundModel->select()->where(array(
+                'compound' => $compound,
+                'name'     => $name,
+            ));
+
+            $rowset = $compoundModel->selectWith($select)->current();
+            if ($rowset) {
+                $compoundModel->update(
+                    array('title' => $title),
+                    array('id'    => $rowset['id'])
+                );
+                $result['status'] = 1;
+            }
+
+        }
+
+        // Flush
+        Pi::registry('compound', 'user')->flush();
+        Pi::registry('profile', 'user')->flush();
+
+        return $result;
+
+    }
+
     public function privacyAction()
     {
 
@@ -264,36 +350,4 @@ class ProfileController extends ActionController
         return $result;
 
     }
-
-    protected function canonizeDressUp($data)
-    {
-        $displayGroup = array();
-        $displayField = array();
-
-        $groupOrder = 1;
-        // Set group
-        foreach ($data as $group) {
-            $displayGroup[] = array(
-                'title'    => $group['title'],
-                'order'    => $groupOrder,
-                'compound' => $group['compound'],
-            );
-
-            $fieldOrder = 1;
-            foreach ($group['fields'] as $field) {
-                $displayField[] = array(
-                    'field' => $field['name'],
-                    'order' => $fieldOrder,
-                );
-
-                $fieldOrder++;
-            }
-
-            $groupOrder++;
-        }
-
-        return array($displayGroup, $displayField);
-
-    }
-
 }
