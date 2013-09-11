@@ -98,7 +98,6 @@ class ProfileController extends ActionController
             }
         }
 
-
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
@@ -166,7 +165,6 @@ class ProfileController extends ActionController
                 'id'       => $row['id'],
                 'title'    => $row['title'],
                 'compound' => $row['compound'],
-                'order'    => $row['order'],
             );
 
             $displayFieldModel = $this->getModel('display_field');
@@ -176,9 +174,7 @@ class ProfileController extends ActionController
 
             $fields = array();
             foreach ($displayFieldRowset as $field) {
-                $fields[$field['field']] = array(
-                    'order' => $field['order'],
-                );
+                $fields[$field['field']] = array();
             }
 
             if ($row['compound']) {
