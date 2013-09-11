@@ -1,0 +1,45 @@
+<?php
+$this->css($this->assetModule('script/front.css'));
+?>
+<?php include '_user-media.phtml'; ?>
+<div>
+    <div>
+        <?php foreach ($profile_group as $group) {?>
+            <div class="clearfix user-legend">
+                <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
+                <div class="user-legend-linea"></div>
+            </div>
+            <?php if ($group['fields']) { ?>
+                <div class="user-field">
+                    <?php
+                    foreach ($group['fields'] as $key => $field) {
+                        echo '<dl class="dl-horizontal user-field-dl">';
+                        foreach ($field as $value) {
+                            echo sprintf('<dt>%s<dd>%s',
+                                $value['title'],
+                                $value['value'] ? : '<em class="muted">Unfiled</em>'
+                            );
+                        }
+                        echo '</dl>';
+                    }
+                    ?>
+                </div>
+            <?php } else if ($is_owner) { ?>
+                <div class="user-none-fields">
+                    <a href="<?php echo $addUrl; ?>">
+                        <?php _e('Add'); echo ' ' . $group['name']; ?>
+                    </a>
+                </div>
+            <?php } else { ?>
+                <div class="user-none-fields">
+                    <?php
+                    echo $this->escape($user['name']);
+                    _e(' doesn\'t have any ');
+                    echo $group['name'];
+                    _e(' you can view');
+                    ?>
+                </div>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>
