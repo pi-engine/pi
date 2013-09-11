@@ -53,15 +53,29 @@ class ProfileController extends ActionController
 
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
-                $compounds[$field['name']] = array();
+                $compounds[$field['name']] = array(
+                    'title'  => $field['title'],
+                    'module' => $field['module'],
+                );
             } else {
-                $profile[$field['name']] = $field;
+                $profile[$field['name']] = array(
+                    'name' => $field['name'],
+                    'module' => $field['module'],
+                    'title'  => $field['title'],
+
+                );
             }
         }
 
         // Get compound
         foreach ($compounds as $name => &$compound) {
-            $compound = Pi::registry('compound', 'user')->read($name);
+            $compoundMeta = Pi::registry('compound', 'user')->read($name);
+            foreach ($compoundMeta as $meta) {
+                $compound['fields'] = array(
+                    'name'  => $meta['name'],
+                    'title' => $meta['title'],
+                );
+            }
         }
 
         $data = $this->getGroupDisplay();
@@ -88,7 +102,7 @@ class ProfileController extends ActionController
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
-            'data'      => '',
+            'data'      => $data,
         ));
 
         d($profile);
@@ -139,11 +153,13 @@ class ProfileController extends ActionController
      */
     protected function getGroupDisplay()
     {
+        $profileMeta = Pi::registry('profile', 'user')->read();
         $result = array();
         $groupModel = $this->getModel('display_group');
         $select = $groupModel->select()->where(array());
         $select->order('order');
         $rowset = $groupModel->selectWith($select);
+
 
         foreach ($rowset as $row) {
             $result[$row['id']] = array(
@@ -165,11 +181,11 @@ class ProfileController extends ActionController
                 );
             }
 
-            $profileMeta = Pi::registry('profile', 'user')->read();
             if ($row['compound']) {
                 $compoundMeta = Pi::registry('compound', 'user')->read(
                     $row['compound']
                 );
+                $result[$row['id']]['module'] = $profileMeta[$row['compound']]['module'];
 
                 foreach ($compoundMeta as $name => $meta) {
                     if (isset($fields[$name])) {
@@ -180,8 +196,9 @@ class ProfileController extends ActionController
             } else {
                 foreach ($profileMeta as $name => $meta) {
                     if (isset($fields[$name])) {
-                        $fields[$name]['name']  = $name;
-                        $fields[$name]['title'] = $meta['title'];
+                        $fields[$name]['name']   = $name;
+                        $fields[$name]['title']  = $meta['title'];
+                        $fields[$name]['module'] = $meta['module'];
                     }
                 }
             }
@@ -206,10 +223,20 @@ class ProfileController extends ActionController
         // Set group
         foreach ($data as $group) {
             $displayGroup[] = array(
-
+                'title'    => $group['title'],
+                'order'    => $group['order'],
+                'compound' => $group['compound'],
             );
-
+            foreach ($group['fields'] as $field) {
+                $displayField[] = array(
+                    'field' => $field['name'],
+                    'group' => $group['id'],
+                    'order' => $field['order'],
+                );
+            }
         }
+
+        return array($displayGroup, $displayField);
 
     }
 
