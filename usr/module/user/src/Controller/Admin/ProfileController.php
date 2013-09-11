@@ -84,10 +84,11 @@ class ProfileController extends ActionController
             }
         }
 
+
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
-            'data'      => $data,
+            'data'      => '',
         ));
 
         d($profile);
@@ -100,7 +101,7 @@ class ProfileController extends ActionController
      * Save display for ajax
      *
      */
-    public function saveDisplayAction()
+    public function saveDressUpAction()
     {
         $result = array(
             'status' => 0,
@@ -110,6 +111,8 @@ class ProfileController extends ActionController
         if (!$data) {
             return $result;
         }
+
+
 
         //$data = ;
 
@@ -144,7 +147,7 @@ class ProfileController extends ActionController
 
         foreach ($rowset as $row) {
             $result[$row['id']] = array(
-                'name'     => $row['name'],
+                'id'       => $row['id'],
                 'title'    => $row['title'],
                 'compound' => $row['compound'],
                 'order'    => $row['order'],
@@ -186,13 +189,28 @@ class ProfileController extends ActionController
             $result[$row['id']]['fields'] = $fields;
         }
 
+        $result = array_values($result);
+        foreach ($result as &$row) {
+            $row['fields'] = array_values($row['fields']);
+        }
+
         return $result;
 
     }
 
-    protected function getNewData()
+    protected function canonizeDressUp($data)
     {
-        //$data =
+        $displayGroup = array();
+        $displayField = array();
+
+        // Set group
+        foreach ($data as $group) {
+            $displayGroup[] = array(
+
+            );
+
+        }
+
     }
 
 }
