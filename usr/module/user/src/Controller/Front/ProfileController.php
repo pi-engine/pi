@@ -28,7 +28,6 @@ class ProfileController extends ActionController
     public function indexAction()
     {
         $uid = Pi::user()->hasIdentity();
-
         if (!$uid) {
             $this->jump(
                 array('', array('controller' => 'login', 'action' => 'index')),
@@ -37,6 +36,7 @@ class ProfileController extends ActionController
             );
             return;
         }
+
         $uid = Pi::user()->getIdentity();
 
         // Get user information
@@ -46,7 +46,7 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid, 'display');
 
         // Get activity meta for nav display
-        $nav = $this->getNav($uid, 'profile');
+        $nav = $this->getNav('profile');
 
         // Get quicklink
         $quicklink = $this->getQuicklink();
@@ -57,6 +57,7 @@ class ProfileController extends ActionController
             'user'          => $user,
             'nav'           => $nav,
             'quicklink'     => $quicklink,
+            'is_owner'      => true,
         ));
 
         $this->view()->setTemplate('profile-index');
@@ -80,7 +81,7 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid, 'display');
 
         // Get activity meta for nav display
-        $nav = $this->getNav($uid, 'profile');
+        $nav = $this->getNav('profile', $uid);
 
         // Get quicklink
         $quicklink = $this->getQuicklink();
@@ -91,6 +92,7 @@ class ProfileController extends ActionController
             'user'          => $user,
             'nav'           => $nav,
             'quicklink'     => $quicklink,
+            'is_owner'      => false,
         ));
 
         $this->view()->setTemplate('profile-view');
@@ -877,10 +879,11 @@ class ProfileController extends ActionController
     /**
      * Set nav form home page profile and activity
      *
+     *
      * @param $uid
      * @return array
      */
-    protected function getNav($uid, $cur)
+    protected function getNav($cur, $uid = '')
     {
         // Get activity list
         $items = array();
@@ -890,62 +893,114 @@ class ProfileController extends ActionController
         );
 
         if (!$uid) {
-            return $nav;
-        }
+            // Owner nav
 
-        // Set homepage
-        $homepageUrl = $this->url(
-            'user',
-            array(
-                'controller' => 'profile',
-                'action'     => 'home',
-                'uid'        => $uid
-            )
-        );
-        $items[] = array(
-            'title' => __('Homepage'),
-            'name'  => 'homepage',
-            'url'   => $homepageUrl,
-            'icon'  => '',
-        );
-
-        // Set profile
-        $profileUrl = $this->url(
-            'user',
-            array(
-                'controller' => 'profile',
-                'action'     => 'index',
-                'uid'        => $uid,
-            )
-        );
-        $items[] = array(
-            'title' => __('Profile'),
-            'name'  => 'profile',
-            'url'   => $profileUrl,
-            'icon'  => '',
-        );
-
-        // Set activity
-        $activityList = Pi::api('user', 'activity')->getList();
-        foreach ($activityList as $key => $value) {
-            $url = $this->url(
+            // Set homepage
+            $homepageUrl = $this->url(
                 'user',
                 array(
-                    'controller' => 'activity',
+                    'controller' => 'home',
                     'action'     => 'index',
-                    'uid'        => $uid,
-                    'name'       => $key,
                 )
             );
             $items[] = array(
-                'title' => $value['title'],
-                'name'  => $key,
-                'icon'  => $value['icon'],
-                'url'   => $url,
+                'title' => __('Homepage'),
+                'name'  => 'homepage',
+                'url'   => $homepageUrl,
+                'icon'  => '',
             );
-        }
 
-        $nav['items'] = $items;
+            // Set profile
+            $profileUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'profile',
+                    'action'     => 'index',
+                )
+            );
+            $items[] = array(
+                'title' => __('Profile'),
+                'name'  => 'profile',
+                'url'   => $profileUrl,
+                'icon'  => '',
+            );
+
+            // Set activity
+            $activityList = Pi::api('user', 'activity')->getList();
+            foreach ($activityList as $key => $value) {
+                $url = $this->url(
+                    'user',
+                    array(
+                        'controller' => 'activity',
+                        'action'     => 'index',
+                        'name'       => $key,
+                    )
+                );
+                $items[] = array(
+                    'title' => $value['title'],
+                    'name'  => $key,
+                    'icon'  => $value['icon'],
+                    'url'   => $url,
+                );
+            }
+
+            $nav['items'] = $items;
+        } else {
+            // Other view
+            // Set homepage
+            $homepageUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'home',
+                    'action'     => 'index',
+                    'uid'        => $uid
+                )
+            );
+            $items[] = array(
+                'title' => __('Homepage'),
+                'name'  => 'homepage',
+                'url'   => $homepageUrl,
+                'icon'  => '',
+            );
+
+            // Set profile
+            $profileUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'profile',
+                    'action'     => 'index',
+                    'uid'        => $uid,
+                )
+            );
+            $items[] = array(
+                'title' => __('Profile'),
+                'name'  => 'profile',
+                'url'   => $profileUrl,
+                'icon'  => '',
+            );
+
+            // Set activity
+            $activityList = Pi::api('user', 'activity')->getList();
+            foreach ($activityList as $key => $value) {
+                $url = $this->url(
+                    'user',
+                    array(
+                        'controller' => 'activity',
+                        'action'     => 'index',
+                        'uid'        => $uid,
+                        'name'       => $key,
+                    )
+                );
+                $items[] = array(
+                    'title' => $value['title'],
+                    'name'  => $key,
+                    'icon'  => $value['icon'],
+                    'url'   => $url,
+                );
+            }
+
+            $nav['items'] = $items;
+        }
 
         return $nav;
 
