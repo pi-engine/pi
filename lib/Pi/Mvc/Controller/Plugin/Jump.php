@@ -52,29 +52,13 @@ class Jump extends AbstractPlugin
         $time = 3,
         $allowExternal = false
     ) {
-        $controller = $this->getController();
         if (is_array($params)) {
-            $routeMatch = null;
             if (!isset($params['route'])) {
-                $routeMatch = $this->getEvent()->getRouteMatch();
-                $route = $routeMatch->getMatchedRouteName();
+                $route = '';
             } else {
                 $route = $params['route'];
                 unset($params['route']);
             }
-            if (!isset($params['module'])) {
-                $routeMatch = $routeMatch
-                    ?: $this->getEvent()->getRouteMatch();
-                $params['module'] = $routeMatch->getParam('module');
-                if (!isset($params['controller'])) {
-                    $params['controller'] =
-                        $routeMatch->getParam('controller');
-                }
-            }
-            /*
-            $urlPlugin = $controller->plugin('url');
-            $url = $urlPlugin->fromRoute($route, $params);
-            */
             $url = Pi::service('url')->assemble($route, $params, true);
         } else {
             $url = $params;
@@ -96,45 +80,13 @@ class Jump extends AbstractPlugin
         );
         $_SESSION[static::$sessionNamespace] = $jumpParams;
 
-        $this->controller->view()->setTemplate(false);
+        $controller = $this->getController();
+        $controller->view()->setTemplate(false);
         $response = $controller->plugin('redirect')->toRoute('jump');
         if ($response instanceof Response) {
             $response->send();
         }
 
         return $response;
-        //$response->send();
-        //exit();
-    }
-
-    /**
-     * Get the event
-     *
-     * @return MvcEvent
-     * @throws \DomainException if unable to find event
-     */
-    protected function getEvent()
-    {
-        if (isset($this->event)) {
-            return $this->event;
-        }
-
-        $controller = $this->getController();
-        if (!$controller instanceof InjectApplicationEventInterface) {
-            throw new \DomainException(
-                'Controller plugin requires a controller that implements'
-                . ' InjectApplicationEventInterface'
-            );
-        }
-
-        $event = $controller->getEvent();
-        if (!$event instanceof MvcEvent) {
-            $params = $event->getParams();
-            $event  = new MvcEvent();
-            $event->setParams($params);
-        }
-        $this->event = $event;
-
-        return $this->event;
     }
 }
