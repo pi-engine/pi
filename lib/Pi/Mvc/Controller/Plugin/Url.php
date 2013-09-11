@@ -42,21 +42,14 @@ class Url extends ZendUrl
             return $this;
         }
 
-        /*
-        // Complete current module/controller
-        if (!isset($params['module']) && isset($params['action'])) {
-            $routeMatch = $this->getController()->getEvent()->getRouteMatch();
-            $params['module'] = $routeMatch->getParam('module');
-            if (!isset($params['controller'])) {
-                $params['controller'] = $routeMatch->getParam('controller');
-            }
-        }
+        return $this->fromRoute($route, $params, $options, $reuseMatchedParams);
+    }
 
-        $route = $route ?: null;
-        $url = $this->fromRoute($route, $params,
-                                $options, $reuseMatchedParams);
-        */
-
+    /**
+     * {@inheritDoc}
+     */
+    public function fromRoute($route = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    {
         $url = Pi::service('url')->assemble(
             $route,
             $params,
