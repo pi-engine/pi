@@ -88,12 +88,12 @@ class ProfileController extends ActionController
         $this->view()->assign(array(
             'profile'   => $profile,
             'compounds' => $compounds,
-            'data'      => '',
+            'data'      => $data,
         ));
 
-        d($profile);
-        d($compounds);
-        d($data);
+        //d($profile);
+        //d($compounds);
+        //d($data);
         $this->view()->setTemplate('profile-dress-up');
     }
 
@@ -162,6 +162,7 @@ class ProfileController extends ActionController
             foreach ($displayFieldRowset as $field) {
                 $fields[$field['field']] = array(
                     'order' => $field['order'],
+                    'group' => $field['group'],
                 );
             }
 
@@ -206,10 +207,20 @@ class ProfileController extends ActionController
         // Set group
         foreach ($data as $group) {
             $displayGroup[] = array(
-
+                'title'    => $group['title'],
+                'order'    => $group['order'],
+                'compound' => $group['compound'],
             );
-
+            foreach ($group['fields'] as $field) {
+                $displayField[] = array(
+                    'field' => $field['name'],
+                    'group' => $field['group'],
+                    'order' => $field['order'],
+                );
+            }
         }
+
+        return array($displayGroup, $displayField);
 
     }
 
