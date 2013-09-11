@@ -616,34 +616,21 @@ class ProfileController extends ActionController
      */
     protected function setPaginator($option)
     {
-//        $paginator = Paginator::factory(intval($option['count']));
-//        $paginator->setItemCountPerPage($option['limit']);
-//        $paginator->setCurrentPageNumber($option['page']);
-//        $paginator->setUrlOptions(array(
-//            // Use router to build URL for each page
-//            'pageParam'     => 'p',
-//            'totalParam'    => 't',
-//            'router'        => $this->getEvent()->getRouter(),
-//            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-//            'params'        => array(
-//                'module'        => $this->getModule(),
-//                'controller'    => $option['controller'],
-//                'action'        => $option['action'],
-//                'uid'           => $option['uid'],
-//            ),
-//        ));
+        $params = array(
+            'module'        => $this->getModule(),
+            'controller'    => $option['controller'],
+            'action'        => $option['action'],
+        );
+
+        if (isset($option['uid'])) {
+            $params['uid'] = $option['uid'];
+        }
 
         $paginator = Paginator::factory(intval($option['count']), array(
             'limit' => $option['limit'],
             'page'  => $option['page'],
             'url_options'   => array(
-                'params'    => array(
-                    'module'        => $this->getModule(),
-                    'controller'    => $option['controller'],
-                    'action'        => $option['action'],
-                    'uid'           => $option['uid'],
-                    'uid'   => $option['uid'],
-                ),
+                'params'    => $params
             ),
         ));
 
