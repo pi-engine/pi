@@ -1073,6 +1073,7 @@ class Paginator extends Pagit
             $params[$this->urlOptions['total_param']] = $this->count();
         }
 
+        /*
         $router = isset($this->urlOptions['router'])
             ? $this->urlOptions['router']
             : (isset(static::$config['router'])
@@ -1083,7 +1084,13 @@ class Paginator extends Pagit
             : (isset(static::$config['route'])
                 ? static::$config['route']
                 : null);
-
+        */
+        $router = isset($this->urlOptions['router'])
+            ? $this->urlOptions['router']
+            : '';
+        $route = isset($this->urlOptions['route'])
+            ? $this->urlOptions['route']
+            : '';
         if ($router) {
             $options = array(
                 'router'                => $router,
