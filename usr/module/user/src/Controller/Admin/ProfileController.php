@@ -26,7 +26,7 @@ class ProfileController extends ActionController
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
                 $compounds[$field['name']] = array(
-                    'name'       => $field['name'],
+                    'name'   => $field['name'],
                     'title'      => $field['title'],
                     'module'     => $field['module'],
                     'is_edit'    => $field['is_edit'],
@@ -78,12 +78,13 @@ class ProfileController extends ActionController
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
                 $compounds[$field['name']] = array(
+                    'name'   => $field['name'],
                     'title'  => $field['title'],
                     'module' => $field['module'],
                 );
             } else {
                 $profile[$field['name']] = array(
-                    'name' => $field['name'],
+                    'name'   => $field['name'],
                     'module' => $field['module'],
                     'title'  => $field['title'],
 
