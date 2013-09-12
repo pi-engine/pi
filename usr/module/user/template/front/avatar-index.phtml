@@ -43,7 +43,7 @@
     }
 </style>
 
-<h2><?php echo $this->escape($title) ?></h2>
+<h2><?php echo _escape($title) ?></h2>
 
 <?php include $this->templateComponent('form'); ?>
 
@@ -84,7 +84,7 @@
             <div class="user-upload-hit">
                 <input class="btn user-add-avatar" type="button" value="<?php _e('Upload') ?>" style="width: 110px;">
                 <div class="muted" style="margin-top: 10px; font-size: 12px;">
-                    <?php echo __('Format supported: ') . $this->escape($config['avatar_extension']) ?>
+                    <?php echo __('Format supported: ') . _escape($config['avatar_extension']) ?>
                     (<?php echo $config['max_size'] ?>MB)
                 </div>
             </div>
@@ -100,13 +100,13 @@
     ?>
     <div id="user-avatar-source-gravatar" class="span12 user-source<?php echo 'gravatar' != $source ? ' hide' : '' ?>">
         <div class="user-gravatar-image">
-            <img src="<?php echo $this->escape($gravatar) ?>" style="width: 120px; height: 120px">
+            <img src="<?php echo _escape($gravatar) ?>" style="width: 120px; height: 120px">
         </div>
         <div>
             <div><a href="https://gravatar.com"><?php _e('Change from Gravatar') ?></a></div>
             <div>
                 <label><?php _e('Gravatar email') ?>
-                    <input name="email" value="<?php echo $this->escape($email) ?>">
+                    <input name="email" value="<?php echo _escape($email) ?>">
                 </label>
             </div>
         </div>
@@ -123,9 +123,9 @@
         $i = 0;
         foreach ($selects as $name => $select) { 
     ?>
-        <input name="repository-avatar" value="<?php echo $this->escape($name) ?>" 
+        <input name="repository-avatar" value="<?php echo _escape($name) ?>"
                type="radio" <?php echo ($i++ == 0 or $name == $filename) ? 'checked="checked"' : '' ?>>
-        <img src="<?php echo $this->escape($select) ?>">
+        <img src="<?php echo _escape($select) ?>">
     <?php } ?>
     </div>
     <?php
@@ -133,7 +133,7 @@
     ?>
     
     <div id="user-avatar-source-local" class="span12 user-source<?php echo 'local' != $source ? ' hide' : '' ?>">
-        <img src="<?php echo $this->escape($local) ?>">
+        <img src="<?php echo _escape($local) ?>">
     </div>
 </div>
 
@@ -147,15 +147,15 @@
     <?php
         foreach ($allSize as $name => $size) {
     ?>
-        <div class="pull-left" style="width: <?php echo $this->escape($size) ?>px; margin-right: 20px">
-            <div><?php echo $this->escape(ucfirst($name)) ?></div>
+        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
+            <div><?php echo _escape(ucfirst($name)) ?></div>
             <div class="user-preview-box" 
-                 style="width: <?php echo $this->escape($size) ?>px; height: <?php echo $this->escape($size) ?>px">
-                <img id="user-preview-upload-<?php echo $this->escape($name) ?>" src="<?php
+                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
+                <img id="user-preview-upload-<?php echo _escape($name) ?>" src="<?php
                    if (isset($uploads[$name]) and $uploads[$name]) {
                        echo Pi::url($uploads[$name]);
                    }
-                ?>" style="width: <?php echo $this->escape($size) ?>">
+                ?>" style="width: <?php echo _escape($size) ?>">
             </div>
         </div>
     <?php
@@ -173,15 +173,15 @@
     <?php
         foreach ($allSize as $name => $size) {
     ?>
-        <div class="pull-left" style="width: <?php echo $this->escape($size) ?>px; margin-right: 20px">
-            <div><?php echo $this->escape(ucfirst($name)) ?></div>
+        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
+            <div><?php echo _escape(ucfirst($name)) ?></div>
             <div class="user-preview-box" 
-                 style="width: <?php echo $this->escape($size) ?>px; height: <?php echo $this->escape($size) ?>px">
-                <img id="user-preview-gravatar-<?php echo $this->escape($name) ?>" src="<?php
+                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
+                <img id="user-preview-gravatar-<?php echo _escape($name) ?>" src="<?php
                    if (!empty($gravatar)) {
-                       echo $this->escape($gravatar);
+                       echo _escape($gravatar);
                    }
-                ?>" style="width: <?php echo $this->escape($size) ?>px">
+                ?>" style="width: <?php echo _escape($size) ?>px">
             </div>
         </div>
     <?php
@@ -199,15 +199,15 @@
     <?php
         foreach ($allSize as $name => $size) {
     ?>
-        <div class="pull-left" style="width: <?php echo $this->escape($size) ?>px; margin-right: 20px">
-            <div><?php echo $this->escape(ucfirst($name)) ?></div>
+        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
+            <div><?php echo _escape(ucfirst($name)) ?></div>
             <div class="user-preview-box" 
-                 style="width: <?php echo $this->escape($size) ?>px; height: <?php echo $this->escape($size) ?>px">
-                <img id="user-preview-repository-<?php echo $this->escape($name) ?>" src="<?php
+                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
+                <img id="user-preview-repository-<?php echo _escape($name) ?>" src="<?php
                    if (isset($selected[$name]) and $selected[$name]) {
                        echo Pi::url($selected[$name]);
                    }
-                ?>" style="width: <?php echo $this->escape($size) ?>px">
+                ?>" style="width: <?php echo _escape($size) ?>px">
             </div>
         </div>
     <?php
@@ -222,13 +222,13 @@
     <?php
         foreach ($allSize as $name => $size) {
     ?>
-        <div class="pull-left" style="width: <?php echo $this->escape($size) ?>px; margin-right: 20px">
-            <div><?php echo $this->escape(ucfirst($name)) ?></div>
+        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
+            <div><?php echo _escape(ucfirst($name)) ?></div>
             <div class="user-preview-box" 
-                 style="width: <?php echo $this->escape($size) ?>px; height: <?php echo $this->escape($size) ?>px">
-                <img id="user-preview-local-<?php echo $this->escape($name) ?>" src="<?php
+                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
+                <img id="user-preview-local-<?php echo _escape($name) ?>" src="<?php
                    echo dirname($local) . '/' . $name . '.png';
-                ?>" style="width: <?php echo $this->escape($size) ?>px">
+                ?>" style="width: <?php echo _escape($size) ?>px">
             </div>
         </div>
     <?php
@@ -263,7 +263,7 @@
             return data;
         },
         format: function() {
-            var format = '<?php echo $this->escape($config['avatar_extension']) ?>';
+            var format = '<?php echo _escape($config['avatar_extension']) ?>';
             var data   = new Array();
             data = format.split(',');
             return data;

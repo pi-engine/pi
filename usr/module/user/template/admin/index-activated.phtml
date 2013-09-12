@@ -37,7 +37,6 @@
 <form name="user-operate">
     <div class="form-inline">
         <input type="checkbox">
-        <a class="btn" href=""><?php _e('Activate'); ?></a>
         <a class="btn" href=""><?php _e('Enable'); ?></a>
         <a class="btn" href=""><?php _e('Disable'); ?></a>
         <a class="btn" href=""><?php _e('Delete'); ?></a>
@@ -51,6 +50,7 @@
             <th><?php _e('Username'); ?></th>
             <th><?php _e('Display name'); ?></th>
             <th><?php _e('Email'); ?></th>
+            <th><?php _e('Active'); ?></th>
             <th><?php _e('Enable'); ?></th>
             <th><?php _e('Activated'); ?></th>
             <th><?php _e('Front role'); ?></th>
@@ -76,6 +76,9 @@
                 </td>
                 <td>
                     <?php echo _escape($user['email']); ?>
+                </td>
+                <td>
+                    <input type="checkbox" <input type="checkbox" <?php echo $user['active'] ? 'checked' : ''?> >
                 </td>
                 <td>
                     <input type="checkbox" <input type="checkbox" <?php echo $user['time_disable'] ? '' : 'checked'?> >

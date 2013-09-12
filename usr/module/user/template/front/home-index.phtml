@@ -13,10 +13,10 @@ $this->css($this->assetModule('script/front.css'));
                 </div>
                 <div class="media-body">
                     <p class="media-heading">
-                        <strong class="user-media-name"><?php echo $this->escape($user['name']); ?></strong>
+                        <strong class="user-media-name"><?php echo _escape($user['name']); ?></strong>
                         <span class="muted"><?php echo _date($item['time']); ?></span>
                     <p class="media-heading">
-                        <?php echo $this->escape($item['message']); ?>
+                        <?php echo _escape($item['message']); ?>
                     </p>
                     <?php
                     if ($item['link']) {

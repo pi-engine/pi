@@ -13,11 +13,11 @@
         <?php }?>
     </div>
     <div class="media-body">
-        <h2 class="media-heading user-name"><?php echo $this->escape($user['name']); ?></h2>
+        <h2 class="media-heading user-name"><?php echo _escape($user['name']); ?></h2>
         <p>
-            <?php echo $this->escape($user['gender']);?>
+            <?php echo _escape($user['gender']);?>
         <p>
-            <?php _e('Born at'); ?> <?php echo $this->escape($user['birthdate']); ?>
+            <?php _e('Born at'); ?> <?php echo _escape($user['birthdate']); ?>
     </div>
 </div>
 
