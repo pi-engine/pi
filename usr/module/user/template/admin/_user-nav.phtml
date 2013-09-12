@@ -14,7 +14,7 @@
             <?php _e('Pending'); ?>
         </a>
     </li>
-    <li class="<?php echo $action == 'search' ? 'active' : ''; ?>">
+    <li class="<?php echo $action == 'search' || $action == 'search.list' ? 'active' : ''; ?>">
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'search')); ?>">
             <?php _e('Advanced search'); ?>
         </a>
