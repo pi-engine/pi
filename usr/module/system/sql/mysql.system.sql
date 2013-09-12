@@ -468,7 +468,7 @@ CREATE TABLE `{core.theme}` (
 );
 
 # ------------------------------------------------------
-# User
+# User and permission
 # >>>>
 
 
@@ -532,15 +532,47 @@ CREATE TABLE `{core.user_data}` (
   UNIQUE KEY `user_data_name` (`uid`, `module`, `name`)
 );
 
+# Role
+CREATE TABLE `{core.role}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `name`            varchar(64)     NOT NULL,
+  `title`           varchar(255)    NOT NULL,
+  `description`     text,
+  `module`          varchar(64)     NOT NULL    default '',
+  `custom`          tinyint(1)      unsigned    NOT NULL default '0',
+  `active`          tinyint(1)      unsigned NOT NULL default '1',
+  `section`         enum('front', 'admin')      NOT NULL,
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+);
+
 # user-role links
 CREATE TABLE `{core.user_role}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
   `role`            varchar(64)     NOT NULL,
-  `section`         varchar(64)     NOT NULL,
+  `section`         enum('front', 'admin')      NOT NULL,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `section_user` (`section`, `uid`)
 );
 
-# ------------------------------------------------------
+# Permission rules
+CREATE TABLE `{core.permission}` (
+  `id`              int(10)         unsigned    NOT NULL auto_increment,
+  -- Resource name
+  `resource`        varchar(64)     NOT NULL    default '',
+  `role`            varchar(64)     NOT NULL,
+  -- Resource item name or id
+  `item`            varchar(64)     default NULL,
+  `module`          varchar(64)     NOT NULL    default '',
+  `section`         enum('front', 'admin')      NOT NULL,
+  -- Permission value: 0 - allowed; 1 - denied
+  #`deny`            tinyint(1)      unsigned NOT NULL default '0',
+
+  PRIMARY KEY  (`id`),
+  KEY `item` (`item`),
+  KEY `role` (`role`),
+  KEY `section_module_perm` (`section`, `module`, `resource`, `item`)
+);

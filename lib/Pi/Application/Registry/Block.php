@@ -72,16 +72,29 @@ class Block extends AbstractRegistry
             }
         }
 
-        // Filter blocks via ACL check
+        // Filter blocks via permission check
         $blocksAllowed = null;
-        if (null !== $role && $role != AclManager::ADMIN
+        Pi::permission()->setSection('front');
+        if (null !== $role && !Pi::permission()->isAdminRole($role)
             && !empty($blocksId)
         ) {
+            /*
             $acl = new AclManager('block');
             $where = array('resource' => array_keys($blocksId));
             $blocksDenied = $acl->getResources($where, false);
+            */
+            $result = Pi::permission()->getPermissions($role, array(
+                'resource'  => 'block',
+                'item'      => array_keys($blocksId)
+            ));
+            $blocksDenied = array();
+            foreach ($result as $item) {
+                $blocksDenied[] = (int) $item['item'];
+            }
             $blocksAllowed = array_diff(array_keys($blocksId), $blocksDenied);
         }
+        Pi::permission()->setSection('');
+
 
         // Reorganize blocks by page and zone
         $blocksByPageZone = array();
