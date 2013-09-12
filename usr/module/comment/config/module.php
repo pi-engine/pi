@@ -34,5 +34,6 @@ return array(
         'database'  => 'sql/mysql.sql',
         'config'    => 'config.php',
         'user'      => 'user.php',
+        'route'     => 'route.php',
     ),
 );
