@@ -67,7 +67,7 @@
                 <input type="checkbox" value="<?php echo $user['id']; ?>" name="check-one">
             </td>
             <td>
-                <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $user['id']));?>">
+                <a href="<?php echo $this->url('user', array('uid' => $user['id']));?>">
                     <?php echo $this->escape($user['identity'])?>
                 </a>
             </td>

@@ -1098,7 +1098,7 @@ class Paginator extends Pagit
         } else {
             $options = true;
         }
-        vd($route);
+
         $url = Pi::service('url')->assemble($route, $params, $options);
 
         return $url;
