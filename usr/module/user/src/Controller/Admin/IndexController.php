@@ -247,30 +247,102 @@ class IndexController extends ActionController
         ));
     }
 
+    /**
+     * Display search form
+     *
+     * @return \Zend\Mvc\Controller\Plugin\Redirect
+     */
     public function searchAction()
     {
         // Initialise search options
         $this->view()->setTemplate('index-search');
-        $condition['state']      = _get('state') ?: '';
-        $condition['front-role'] = _get('front-role') ?: '';
-        $condition['admin-role'] = _get('admin-role') ?: '';
 
         $form = new SearchForm('search');
-        // Set front role default
+        // Set admin role default
         $options = $form->get('front-role')->getValueOptions();
         array_shift($options);
-        $options = array_merge(array('' => __('Front role')), $options);
+        $options = array_merge(array('any' => __('Any role')), $options);
         $form->get('front-role')->setValueOptions($options);
+
         // Set admin role default
         $options = $form->get('admin-role')->getValueOptions();
         array_shift($options);
-        $options = array_merge(array('' => __('Admin role')), $options);
+        $options = array_merge(array('any' => __('Any role')), $options);
         $form->get('admin-role')->setValueOptions($options);
 
-        $form->setData($options);
+        if ($this->request->isPost()) {
+            $form = new SearchForm('search');
+            $post = $this->request->getPost();
+            $form->setData($post);
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $condition = $this->canonizeSearchData($data);
+                $params = array(
+                    'controller' => 'index',
+                    'action'     => 'search.list',
+                );
+
+                $params = array_merge($params, $condition);
+                return $this->redirect('', $params);
+            }
+        }
 
         $this->view()->assign(array(
             'form' => $form,
+        ));
+    }
+
+    /**
+     * Display search result list
+     */
+    public function searchListAction()
+    {
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
+        $condition['active']            = _get('active') ?: '';
+        $condition['enable']            = _get('enable') ?: '';
+        $condition['activated']         = _get('activated') ?: '';
+        $condition['identity']          = _get('identity') ?: '';
+        $condition['name']              = _get('name') ?: '';
+        $condition['email']             = _get('email') ?: '';
+        $condition['time-created-form'] = _get('time-created-form') ?: '';
+        $condition['time-created-to']   = _get('time-created-to') ?: '';
+
+        // Get user ids
+        $uids  = $this->getUids($condition, $limit, $offset);
+
+        // Get user count
+        $count = $this->getCount($condition);
+
+        // Get user information
+        $users = $this->getUser($uids, 'search');
+
+        // Set paginator
+        $paginatorOption = array(
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+        );
+
+        foreach ($condition as $key => $value) {
+            if ($value) {
+                $params[$key] = $value;
+            }
+        }
+
+        $paginator = $this->setPaginator($paginatorOption, $params);
+
+        $this->view()->assign(array(
+            'users'      => $users,
+            'paginator'  => $paginator,
+            'page'       => $page,
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
+            'count'      => $count,
+            'condition'  => $condition,
         ));
     }
 
@@ -413,14 +485,20 @@ class IndexController extends ActionController
                 'identity'       => '',
                 'name'           => '',
                 'email'          => '',
+                'time_disabled'  => '',
                 'time_activated' => '',
                 'front_role'     => '',
                 'admin_role'     => '',
-                'register_ip'    => '',
                 'time_created'   => '',
                 'id'             => '',
             );
 
+        }
+
+        if ($type == 'search') {
+            $columns = arraay(
+
+            );
         }
 
         $users = Pi::api('user', 'user')->get(
@@ -532,6 +610,17 @@ class IndexController extends ActionController
         if ($condition['identity']) {
             $where['identity like ?'] = '%' . $condition['identity'] . '%';
         }
+        if ($condition['name']) {
+            $where['name like ?'] = '%' . $condition['name'] . '%';
+
+        }
+        if ($condition['time-created-from']) {
+            $where['time_created >= ?'] = $condition['time-created-from'];
+        }
+        if ($condition['time-created-to']) {
+            $where['time_created <= ?'] = $condition['time-created-to'];
+        }
+
 
         $defaultWhere = false;
         if (empty($where)) {
@@ -631,6 +720,16 @@ class IndexController extends ActionController
         if ($condition['identity']) {
             $where['identity like ?'] = '%' . $condition['identity'] . '%';
         }
+        if ($condition['name']) {
+            $where['name like ?'] = '%' . $condition['name'] . '%';
+
+        }
+        if ($condition['time-created-from']) {
+            $where['time_created >= ?'] = $condition['time-created-from'];
+        }
+        if ($condition['time-created-to']) {
+            $where['time_created <= ?'] = $condition['time-created-to'];
+        }
 
         $defaultWhere = false;
         if (empty($where)) {
@@ -696,43 +795,44 @@ class IndexController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $modelAccount = Pi::model('user_account');
-        $modelRole = Pi::model('user_role');
 
-
-        $whereRoleAdmin = Pi::db()->where()->create(array(
-            'admin.role'     => 'staff',
-            'admin.section'  => 'admin',
-        ));
-
-        $whereRoleFront = Pi::db()->where()->create(array(
-            'front.role'     => 'member',
-            'front.section'  => 'front',
-        ));
-
-        $where = Pi::db()->where();
-        $where->add(array('account.active' => 1))
-            ->add($whereRoleAdmin)
-            ->add($whereRoleFront);
-
-        $select = Pi::db()->select();
-        $select->from(
-            array('account' => $modelAccount->getTable()),
-            array('id')
-        );
-        //$select->columns(array('id'));
-        $select->join(
-            array('front' => $modelRole->getTable()),
-            'front.uid=account.id',
-            array()
-        );
-        $select->join(
-            array('admin' => $modelRole->getTable()),
-            'admin.uid=account.id',
-            array()
-        );
-        $select->where($where);
-        $rowset = Pi::db()->query($select);
+//        $modelAccount = Pi::model('user_account');
+//        $modelRole = Pi::model('user_role');
+//
+//
+//        $whereRoleAdmin = Pi::db()->where()->create(array(
+//            'admin.role'     => 'staff',
+//            'admin.section'  => 'admin',
+//        ));
+//
+//        $whereRoleFront = Pi::db()->where()->create(array(
+//            'front.role'     => 'member',
+//            'front.section'  => 'front',
+//        ));
+//
+//        $where = Pi::db()->where();
+//        $where->add(array('account.active' => 1))
+//            ->add($whereRoleAdmin)
+//            ->add($whereRoleFront);
+//
+//        $select = Pi::db()->select();
+//        $select->from(
+//            array('account' => $modelAccount->getTable()),
+//            array('id')
+//        );
+//        //$select->columns(array('id'));
+//        $select->join(
+//            array('front' => $modelRole->getTable()),
+//            'front.uid=account.id',
+//            array()
+//        );
+//        $select->join(
+//            array('admin' => $modelRole->getTable()),
+//            'admin.uid=account.id',
+//            array()
+//        );
+//        $select->where($where);
+//        $rowset = Pi::db()->query($select);
 
         /*
         $modelAccount = $this->getModel('account');
@@ -813,5 +913,39 @@ class IndexController extends ActionController
         }
 
         return $time;
+    }
+
+    /**
+     * Canonize search data
+     *
+     * @param $data
+     * @return array
+     */
+    protected function canonizeSearchData($data)
+    {
+        $condition = array();
+        if ($data['active'] == 'any') {
+            $condition['active'] = '';
+        } else {
+            $condition['active'] = $data['active'];
+        }
+        if ($data['enable'] == 'any') {
+            $condition['enable'] = '';
+        } else {
+            $condition['enable'] = $data['enable'];
+        }
+        if ($data['activated'] == 'any') {
+            $condition['activated'] = '';
+        } else {
+            $condition['activated'] = $data['activated'];
+        }
+        $condition['identity'] = $data['identity'];
+        $condition['name']     = $data['name'];
+        $condition['email']    = $data['email'];
+        $condition['time-created-from'] = strtotime($data['time-created-from']);
+        $condition['time-created-to']   = strtotime($data['time-created-to']);
+
+        return $condition;
+
     }
 }

@@ -23,14 +23,14 @@ class SearchForm extends BaseForm
     {
         // Add state select
         $this->add(array(
-            'name'          => 'state',
+            'name'          => 'active',
             'type'          => 'select',
             'options'       => array(
-                'label' => __('State'),
+                'label' => __('Active state'),
                 'value_options' => array(
-                    'none' => __('None'),
-                    'activated' => __('Activated'),
-                    'pending'   => __('Pending'),
+                    'any'         => __('Any'),
+                    'active'   => __('Active'),
+                    'inactive' => __('Inactive'),
                 ),
             )
         ));
@@ -40,11 +40,25 @@ class SearchForm extends BaseForm
             'name'          => 'enable',
             'type'          => 'select',
             'options'       => array(
-                'label' => __('Enable'),
+                'label' => __('Enable state'),
                 'value_options' => array(
-                    ''    => __('None'),
+                    'any'        => __('Any'),
                     'enable'  => __('Enable'),
                     'disable' => __('Disable'),
+                ),
+            )
+        ));
+
+        // Add able select
+        $this->add(array(
+            'name'          => 'activated',
+            'type'          => 'select',
+            'options'       => array(
+                'label' => __('Activated state'),
+                'value_options' => array(
+                    'any'          => __('Any'),
+                    'pending'   => __('Pending'),
+                    'activated' => __('Activated'),
                 ),
             )
         ));
@@ -77,6 +91,15 @@ class SearchForm extends BaseForm
             )
         ));
 
+        // Add name
+        $this->add(array(
+            'name'          => 'name',
+            'type'          => 'text',
+            'options'       => array(
+                'label' => __('Display name'),
+            )
+        ));
+
         // Add email
         $this->add(array(
             'name'          => 'email',
@@ -104,35 +127,12 @@ class SearchForm extends BaseForm
             ),
         ));
 
-        // Add time login from
+        // Add register ip from
         $this->add(array(
-            'type'          => 'date_select',
-            'name'          => 'time-login-from',
+            'name'          => 'register-ip',
+            'type'          => 'text',
             'options'       => array(
-                'label' => __('Last login date from'),
-            ),
-        ));
-
-        // Add time login from
-        $this->add(array(
-            'type'          => 'date_select',
-            'name'          => 'time-login-to',
-            'options'       => array(
-                'label' => __('Last login date to'),
-            ),
-        ));
-
-        // Add avatar select
-        $this->add(array(
-            'name'          => 'avatar',
-            'type'          => 'select',
-            'options'       => array(
-                'label' => __('Avatar'),
-                'value_options' => array(
-                    'none'    => __('None'),
-                    'with'    => __('With'),
-                    'without' => __('Without'),
-                ),
+                'label' => __('Register ip from'),
             )
         ));
 
