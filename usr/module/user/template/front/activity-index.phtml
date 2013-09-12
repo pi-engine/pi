@@ -12,7 +12,7 @@
         <?php foreach ($activity_list as $key => $value) {?>
         <li class="<?php echo $cur_activity == $key ? 'active' : ''; ?>">
             <a href="<?php echo $this->url('', array('controller' => 'activity', 'action' => 'index', 'name' => $key));?>">
-                <?php echo $this->escape($value['title']); ?>
+                <?php echo _escape($value['title']); ?>
             </a>
         </li>
         <?php } ?>

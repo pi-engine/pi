@@ -6,7 +6,7 @@
     <div>
         <?php foreach ($profile_group as $group) {?>
         <div class="clearfix user-legend">
-            <h4 class="user-legend-title"><?php echo $this->escape($group['title']);?></h4>
+            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
             <?php
                 if ($group['compound']) {
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));
@@ -45,7 +45,7 @@
         <?php } else { ?>
         <div class="user-none-fields">
             <?php
-                echo $this->escape($user['name']);
+                echo _escape($user['name']);
                 _e(' doesn\'t have any ');
                 echo $group['name'];
                 _e(' you can view');
