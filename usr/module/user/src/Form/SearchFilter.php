@@ -25,12 +25,22 @@ class SearchFilter extends InputFilter
     public function __construct()
     {
         $this->add(array(
-            'name'          => 'state',
+            'name'          => 'active',
             'required'      => false,
         ));
 
         $this->add(array(
             'name'          => 'enable',
+            'required'      => false,
+        ));
+
+        $this->add(array(
+            'name'          => 'front-role',
+            'required'      => false,
+        ));
+
+        $this->add(array(
+            'name'          => 'activated',
             'required'      => false,
         ));
 
@@ -46,6 +56,16 @@ class SearchFilter extends InputFilter
 
         $this->add(array(
             'name'          => 'identity',
+            'required'      => false,
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'name',
             'required'      => false,
             'filters'       => array(
                 array(
@@ -75,18 +95,13 @@ class SearchFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'          => 'time-login-from',
+            'name'          => 'register-ip',
             'required'      => false,
-        ));
-
-        $this->add(array(
-            'name'          => 'time-login-to',
-            'required'      => false,
-        ));
-
-        $this->add(array(
-            'name'          => 'avatar',
-            'required'      => false,
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
+                ),
+            ),
         ));
     }
 }
