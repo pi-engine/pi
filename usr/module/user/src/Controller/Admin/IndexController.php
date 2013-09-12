@@ -34,11 +34,13 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['state']        = _get('state') ? : '';
-        $condition['front-role']   = _get('front-role') ?: '';
-        $condition['admin-role']   = _get('admin-role') ?: '';
-        $condition['time-created'] = _get('time-created') ?: '';
-        $condition['search']       = _get('search') ?: '';
+        $condition['active']        = _get('active') ?: '';
+        $condition['enable']        = _get('enable') ?: '';
+        $condition['front-role']    = _get('front-role') ?: '';
+        $condition['admin-role']    = _get('admin-role') ?: '';
+        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['search']        = _get('search') ?: '';
+
 
         // Exchange search
         if ($condition['search']) {
@@ -51,36 +53,38 @@ class IndexController extends ActionController
         }
 
         // Get user ids
-        $uids  = $this->getUids($condition, 'activated', $limit, $offset);
+        $uids  = $this->getUids($condition, $limit, $offset);
 
         // Get user count
-        $count = $this->getCount($condition, 'activated');
+        $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'activated');
+        $users = $this->getUser($uids, 'all');
 
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            //'controller' => 'index',
-            //'action'     => 'index',
         );
 
-        $paginator = $this->setPaginator($paginatorOption);
-        $this->view()->assign(array(
-            'users'     => $users,
-            'paginator' => $paginator,
-            'page'      => $page,
-            'curNav'    => 'activated',
-            'frontRole' => $this->getRoleSelectOptions(),
-            'adminRole' => $this->getRoleSelectOptions('admin'),
-            'count'     => $count,
-            'condition' => $condition,
-        ));
+        foreach ($condition as $key => $value) {
+            if ($value) {
+                $params[$key] = $value;
+            }
+        }
 
-        vd($this->getRoleSelectOptions('admin'));
+        $paginator = $this->setPaginator($paginatorOption, $params);
+
+        $this->view()->assign(array(
+            'users'      => $users,
+            'paginator'  => $paginator,
+            'page'       => $page,
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
+            'count'      => $count,
+            'condition'  => $condition,
+        ));
     }
 
     /**
@@ -312,30 +316,29 @@ class IndexController extends ActionController
      */
     protected function getUser($ids, $type)
     {
-        $return = array();
+        $users = array();
         if (!$ids || !$type) {
-            return $return;
+            return $users;
         }
 
+        $columns = array();
         // For activated list
-        if ($type == 'activated') {
-            $return = array(
-                'identity'      => '',
-                'name'          => '',
-                'email'         => '',
-                'time_disabled' => '',
-                'front_role'    => '',
-                'admin_role'    => '',
-                'register_ip'   => '',
-                'time_created'  => '',
-                'login_time'    => '',
+        if ($type == 'all') {
+            $columns = array(
+                'identity'       => '',
+                'name'           => '',
+                'email'          => '',
+                'active'         => '',
+                'time_disabled'  => '',
+                'time_activated' => '',
+                'time_created'   => '',
                 'id'            => '',
             );
         }
 
         // For pending list
         if ($type == 'pending') {
-            $return = array(
+            $columns = array(
                 'identity'       => '',
                 'name'           => '',
                 'email'          => '',
@@ -351,11 +354,11 @@ class IndexController extends ActionController
 
         $users = Pi::api('user', 'user')->get(
             $ids,
-            array_keys($return)
+            array_keys($columns)
         );
 
         foreach ($users as &$user) {
-            $user = array_merge($return, $user);
+            $user = array_merge($columns, $user);
 
             // Get role
             $user['front_role'] = Pi::api('user', 'user')->getRole(
@@ -406,16 +409,14 @@ class IndexController extends ActionController
      * @param $option
      * @return \Pi\Paginator\Paginator
      */
-    protected function setPaginator($option)
+    protected function setPaginator($option, $params)
     {
 
         $paginator = Paginator::factory(intval($option['count']), array(
             'limit' => $option['limit'],
             'page'  => $option['page'],
             'url_options'   => array(
-                'params'    => array(
-                    'uid'   => $option['uid'],
-                ),
+                'params'    => $params
             ),
         ));
         return $paginator;
@@ -431,81 +432,39 @@ class IndexController extends ActionController
      * @return array
      *
      */
-    protected function getUids($condition, $type, $limit = 0, $offset = 0)
+    protected function getUids($condition, $limit = 0, $offset = 0)
     {
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
         $where = array();
-        if ($type == 'activated') {
-            $where['time_activated <> ?'] = 0;
+        if ($condition['active'] == 'active') {
+            $where['active'] = 1;
         }
-
-        if ($type == 'pending') {
-            $where['time_activated'] = 0;
+        if ($condition['active'] == 'inactive') {
+            $where['active'] = 0;
         }
-
-        if ($condition['state'] == 'enable') {
-            $where['time_disabled'] = 0;
+        if ($condition['enable'] == 'enable') {
+            $where['time_disable'] = 0;
         }
-
-        if ($condition['state'] == 'disable') {
-            $where['time_disabled > ?'] = 0;
+        if ($condition['enable'] == 'disable') {
+            $where['time_disable > ?'] = 0;
         }
-
-        if ($condition['time-created'] == 'today') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y")
+        if ($condition['register-date']) {
+            $where['time_created >= ?'] = $this->canonizeRegisterDate(
+                $condition['register-date']
             );
         }
-
-        if ($condition['time-created'] == 'last-week') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d") - 7,
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-month') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m") - 1,
-                date("d"),
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-3-month') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m") - 3,
-                date("d"),
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-year') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y") - 1
-            );
-        }
-
         if ($condition['email']) {
-            // Todo like match
-            $where['email'] = $condition['email'];
+            $where['email like ?'] = '%' .$condition['email'] . '%';
+        }
+        if ($condition['identity']) {
+            $where['identity like ?'] = '%' . $condition['identity'] . '%';
         }
 
-        if ($condition['identity']) {
-            // Todo like match
-            $where['identity'] = $condition['identity'];
+        $defaultWhere = false;
+        if (empty($where)) {
+            $defaultWhere = true;
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -517,7 +476,6 @@ class IndexController extends ActionController
             array('account' => $modelAccount->getTable()),
             array('id')
         );
-
         if ($condition['front-role']) {
             $whereRoleFront = Pi::db()->where()->create(array(
                 'front.role'    => $condition['front-role'],
@@ -525,7 +483,6 @@ class IndexController extends ActionController
             ));
             $where->add($whereRoleFront);
         }
-
         if ($condition['admin-role']) {
             $whereRoleAdmin = Pi::db()->where()->create(array(
                 'admin.role'    => $condition['admin-role'],
@@ -533,7 +490,6 @@ class IndexController extends ActionController
             ));
             $where->add($whereRoleAdmin);
         }
-
         if ($condition['admin-role']) {
             $select->join(
                 array('front' => $modelRole->getTable()),
@@ -541,7 +497,6 @@ class IndexController extends ActionController
                 array()
             );
         }
-
         if ($condition['front-role']) {
             $select->join(
                 array('admin' => $modelRole->getTable()),
@@ -549,15 +504,16 @@ class IndexController extends ActionController
                 array()
             );
         }
-
         if ($limit) {
             $select->limit($limit);
         }
         if ($offset) {
             $select->offset($offset);
         }
+        if (!$defaultWhere) {
+            $select->where($where);
+        }
 
-        $select->where($where);
         $rowset = Pi::db()->query($select);
 
         foreach ($rowset as $row) {
@@ -575,82 +531,39 @@ class IndexController extends ActionController
      * @param $type
      * @return int
      */
-    protected function getCount($condition, $type)
+    protected function getCount($condition)
     {
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
-        //$select->from
         $where = array();
-        if ($type == 'activated') {
-            $where['time_activated <> ?'] = 0;
+        if ($condition['active'] == 'active') {
+            $where['active'] = 1;
         }
-
-        if ($type == 'pending') {
-            $where['time_activated'] = 0;
+        if ($condition['active'] == 'inactive') {
+            $where['active'] = 0;
         }
-
-        if ($condition['state'] == 'enable') {
-            $where['time_disabled'] = 0;
+        if ($condition['enable'] == 'enable') {
+            $where['time_disable'] = 0;
         }
-
-        if ($condition['state'] == 'disable') {
-            $where['time_disabled > ?'] = 0;
+        if ($condition['enable'] == 'disable') {
+            $where['time_disable > ?'] = 0;
         }
-
-        if ($condition['time-created'] == 'today') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y")
+        if ($condition['register-date']) {
+            $where['time_created >= ?'] = $this->canonizeRegisterDate(
+                $condition['register-date']
             );
         }
-
-        if ($condition['time-created'] == 'last-week') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d") - 7,
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-month') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m") - 1,
-                date("d"),
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-3-month') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m") - 3,
-                date("d"),
-                date("Y")
-            );
-        }
-
-        if ($condition['time-created'] == 'last-year') {
-            $where['time_created >= ?'] = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y") - 1
-            );
-        }
-
         if ($condition['email']) {
-            // Todo like match
-            $where['email'] = $condition['email'];
+            $where['email like ?'] = '%' .$condition['email'] . '%';
+        }
+        if ($condition['identity']) {
+            $where['identity like ?'] = '%' . $condition['identity'] . '%';
         }
 
-        if ($condition['identity']) {
-            // Todo like match
-            $where['identity'] = $condition['identity'];
+        $defaultWhere = false;
+        if (empty($where)) {
+            $defaultWhere = true;
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -698,10 +611,14 @@ class IndexController extends ActionController
             );
         }
 
-        $select->where($where);
+        if (!$defaultWhere) {
+            $select->where($where);
+        }
+
         $rowset = Pi::db()->query($select)->current();
 
         return (int) $rowset['count'];
+
     }
 
     public function testAction()
@@ -774,5 +691,56 @@ class IndexController extends ActionController
         $select->where($where);
         $rowset = Pi::db()->query($select);
         */
+    }
+
+    protected function canonizeRegisterDate($registerDate)
+    {
+        $time = 0;
+        if ($registerDate == 'today') {
+            $time = mktime(
+                0,0,0,
+                date("m"),
+                date("d"),
+                date("Y")
+            );
+        }
+
+        if ($registerDate == 'last-week') {
+            $time = mktime(
+                0,0,0,
+                date("m"),
+                date("d") - 7,
+                date("Y")
+            );
+        }
+
+        if ($registerDate == 'last-month') {
+            $time = mktime(
+                0,0,0,
+                date("m") - 1,
+                date("d"),
+                date("Y")
+            );
+        }
+
+        if ($registerDate == 'last-3-month') {
+            $time = mktime(
+                0,0,0,
+                date("m") - 3,
+                date("d"),
+                date("Y")
+            );
+        }
+
+        if ($registerDate == 'last-year') {
+            $time = mktime(
+                0,0,0,
+                date("m"),
+                date("d"),
+                date("Y") - 1
+            );
+        }
+
+        return $time;
     }
 }
