@@ -55,7 +55,7 @@ class HomeController extends ActionController
         }
 
         // Get activity meta for nav display
-        $nav = $this->getNav($uid, 'homepage');
+        $nav = $this->getNav('homepage');
 
         // Get quick link
         $quicklink = $this->getQuicklink();
@@ -66,8 +66,65 @@ class HomeController extends ActionController
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            'controller' => 'profile',
-            'action'     => 'home',
+            'controller' => 'home',
+            'action'     => 'index',
+        );
+        $paginator = $this->setPaginator($paginatorOption);
+
+        $this->view()->assign(array(
+            'uid'          => $uid,
+            'user'         => $user,
+            'timeline'     => $timeline,
+            'paginator'    => $paginator,
+            'quicklink'    => $quicklink,
+            'is_owner'     => true,
+            'nav'          => $nav,
+        ));
+    }
+
+    /**
+     * Other view home page
+     */
+    public function viewAction()
+    {
+        $page   = $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
+        $uid = $this->params('uid', '');
+        if (!$uid) {
+            return $this->jumpTo404(__('Invalid user ID!'));
+        }
+        // Get user information
+        $user = $this->getUser($uid);
+
+        // Get timeline
+        $count    = Pi::api('user', 'timeline')->getCount($uid);
+        $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
+
+        // Get timeline meta list
+        $timelineMetaList = Pi::api('user', 'timeline')->getList();
+
+        // Set timeline meta
+        foreach ($timeline as &$item) {
+            $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
+            $item['title'] = $timelineMetaList[$item['timeline']]['title'];
+        }
+
+        // Get activity meta for nav display
+        $nav = $this->getNav('homepage', $uid);
+
+        // Get quick link
+        $quicklink = $this->getQuicklink();
+
+
+        // Set paginator
+        $paginatorOption = array(
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+            'controller' => 'home',
+            'action'     => 'view',
             'uid'        => $uid,
         );
         $paginator = $this->setPaginator($paginatorOption);
@@ -78,26 +135,20 @@ class HomeController extends ActionController
             'timeline'     => $timeline,
             'paginator'    => $paginator,
             'quicklink'    => $quicklink,
+            'is_owner'     => false,
             'nav'          => $nav,
         ));
-    }
-
-    /**
-     * Other view home page
-     */
-    public function viewAction()
-    {
-
     }
 
 
     /**
      * Set nav form home page profile and activity
      *
+     *
      * @param $uid
      * @return array
      */
-    protected function getNav($uid, $cur)
+    protected function getNav($cur, $uid = '')
     {
         // Get activity list
         $items = array();
@@ -107,65 +158,205 @@ class HomeController extends ActionController
         );
 
         if (!$uid) {
-            return $nav;
-        }
+            // Owner nav
 
-        // Set homepage
-        $homepageUrl = $this->url(
-            'user',
-            array(
-                'controller' => 'profile',
-                'action'     => 'home',
-                'uid'        => $uid
-            )
-        );
-        $items[] = array(
-            'title' => __('Homepage'),
-            'name'  => 'homepage',
-            'url'   => $homepageUrl,
-            'icon'  => '',
-        );
-
-        // Set profile
-        $profileUrl = $this->url(
-            'user',
-            array(
-                'controller' => 'profile',
-                'action'     => 'index',
-                'uid'        => $uid,
-            )
-        );
-        $items[] = array(
-            'title' => __('Profile'),
-            'name'  => 'profile',
-            'url'   => $profileUrl,
-            'icon'  => '',
-        );
-
-        // Set activity
-        $activityList = Pi::api('user', 'activity')->getList();
-        foreach ($activityList as $key => $value) {
-            $url = $this->url(
+            // Set homepage
+            $homepageUrl = $this->url(
                 'user',
                 array(
-                    'controller' => 'activity',
+                    'controller' => 'home',
                     'action'     => 'index',
-                    'uid'        => $uid,
-                    'name'       => $key,
                 )
             );
             $items[] = array(
-                'title' => $value['title'],
-                'name'  => $key,
-                'icon'  => $value['icon'],
-                'url'   => $url,
+                'title' => __('Homepage'),
+                'name'  => 'homepage',
+                'url'   => $homepageUrl,
+                'icon'  => '',
             );
-        }
 
-        $nav['items'] = $items;
+            // Set profile
+            $profileUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'profile',
+                    'action'     => 'index',
+                )
+            );
+            $items[] = array(
+                'title' => __('Profile'),
+                'name'  => 'profile',
+                'url'   => $profileUrl,
+                'icon'  => '',
+            );
+
+            // Set activity
+            $activityList = Pi::api('user', 'activity')->getList();
+            foreach ($activityList as $key => $value) {
+                $url = $this->url(
+                    'user',
+                    array(
+                        'controller' => 'activity',
+                        'action'     => 'index',
+                        'name'       => $key,
+                    )
+                );
+                $items[] = array(
+                    'title' => $value['title'],
+                    'name'  => $key,
+                    'icon'  => $value['icon'],
+                    'url'   => $url,
+                );
+            }
+
+            $nav['items'] = $items;
+        } else {
+            // Other view
+            // Set homepage
+            $homepageUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'home',
+                    'action'     => 'index',
+                    'uid'        => $uid
+                )
+            );
+            $items[] = array(
+                'title' => __('Homepage'),
+                'name'  => 'homepage',
+                'url'   => $homepageUrl,
+                'icon'  => '',
+            );
+
+            // Set profile
+            $profileUrl = $this->url(
+                'user',
+                array(
+                    'controller' => 'profile',
+                    'action'     => 'index',
+                    'uid'        => $uid,
+                )
+            );
+            $items[] = array(
+                'title' => __('Profile'),
+                'name'  => 'profile',
+                'url'   => $profileUrl,
+                'icon'  => '',
+            );
+
+            // Set activity
+            $activityList = Pi::api('user', 'activity')->getList();
+            foreach ($activityList as $key => $value) {
+                $url = $this->url(
+                    'user',
+                    array(
+                        'controller' => 'activity',
+                        'action'     => 'index',
+                        'uid'        => $uid,
+                        'name'       => $key,
+                    )
+                );
+                $items[] = array(
+                    'title' => $value['title'],
+                    'name'  => $key,
+                    'icon'  => $value['icon'],
+                    'url'   => $url,
+                );
+            }
+
+            $nav['items'] = $items;
+        }
 
         return $nav;
 
     }
 
+    /**
+     * Get quicklink
+     *
+     * @param null $limit
+     * @param null $offset
+     * @return array
+     */
+    protected function getQuicklink($limit = null, $offset = null)
+    {
+        $result = array();
+        $model = $this->getModel('quicklink');
+        $where = array(
+            'active'  => 1,
+            'display' => 1,
+        );
+        $columns = array(
+            'id',
+            'name',
+            'title',
+            'module',
+            'link',
+            'icon',
+        );
+
+        $select = $model->select()->where($where);
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+
+        $select->columns($columns);
+        $rowset = $model->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $result[] = $row->toArray();
+        }
+
+        return $result;
+
+    }
+
+    /**
+     * Get user information for profile page head display
+     *
+     * @param $uid
+     * @return array user information
+     */
+    protected function getUser($uid)
+    {
+        $result = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthdate')
+        );
+
+        return $result;
+    }
+
+    /**
+     * Set paginator
+     *
+     * @param $option
+     * @return \Pi\Paginator\Paginator
+     */
+    protected function setPaginator($option)
+    {
+        $params = array(
+            'module'        => $this->getModule(),
+            'controller'    => $option['controller'],
+            'action'        => $option['action'],
+        );
+
+        if (isset($option['uid'])) {
+            $params['uid'] = $option['uid'];
+        }
+
+        $paginator = Paginator::factory(intval($option['count']), array(
+            'limit' => $option['limit'],
+            'page'  => $option['page'],
+            'url_options'   => array(
+                'params'    => $params
+            ),
+        ));
+
+        return $paginator;
+
+    }
 }
