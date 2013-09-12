@@ -67,15 +67,15 @@
                 <input type="checkbox" value="<?php echo $user['id']; ?>" name="check-one">
             </td>
             <td>
-                <a href="<?php echo $this->url('user', array('uid' => $user['id']));?>">
-                    <?php echo $this->escape($user['identity'])?>
+                <a href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index', 'uid' => $user['id']));?>">
+                    <?php echo _escape($user['identity'])?>
                 </a>
             </td>
             <td>
-                <?php echo $this->escape($user['name']); ?>
+                <?php echo _escape($user['name']); ?>
             </td>
             <td>
-                <?php echo $this->escape($user['email']); ?>
+                <?php echo _escape($user['email']); ?>
             </td>
             <td>
                 <input type="checkbox" <input type="checkbox" <?php echo $user['active'] ? 'checked' : ''?> >
@@ -89,11 +89,11 @@
             <td>
                 <select>
                     <option value="<?php echo $user['front_role'] ?: 'none';?>">
-                        <?php echo $user['front_role'] ? $this->escape($front_role[$user['front_role']]) : __('Front role');?>
+                        <?php echo $user['front_role'] ? _escape($front_role[$user['front_role']]) : __('Front role');?>
                     </option>
                     <?php foreach ($front_role as $col => $val) { ?>
                         <?php if ($col != $user['front_role']) { ?>
-                        <option value="<?php echo $col; ?>"><?php echo $this->escape($val); s?></option>
+                        <option value="<?php echo $col; ?>"><?php echo _escape($val); s?></option>
                         <?php } ?>
                     <?php } ?>
                 </select>
@@ -101,20 +101,20 @@
             <td>
                 <select>
                     <option value="<?php echo $user['admin_role'] ?: 'none'; ?>">
-                        <?php echo $user['admin_role'] ? $this->escape($admin_role[$user['admin_role']]) : __('Admin role'); ?>
+                        <?php echo $user['admin_role'] ? _escape($admin_role[$user['admin_role']]) : __('Admin role'); ?>
                     </option>
                     <?php foreach ($admin_role as $col => $val) { ?>
                     <?php if ($col != $user['admin_role']) { ?>
-                        <option value="<?php echo $col; ?>"><?php echo $this->escape($val); ?></option>
+                        <option value="<?php echo $col; ?>"><?php echo _escape($val); ?></option>
                         <?php } ?>
                     <?php } ?>
                 </select>
             </td>
             <td>
-                <?php echo $this->escape(_date($user['time_created'])); ?>
+                <?php echo _escape(_date($user['time_created'])); ?>
             </td>
             <td>
-                <?php echo $this->escape($user['id']); ?>
+                <?php echo _escape($user['id']); ?>
             </td>
         </tr>
         <?php } ?>

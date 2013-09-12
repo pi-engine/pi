@@ -45,7 +45,70 @@ class IndexController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (preg_match('/.+@.+/', $condition['search'])) {
+            if (!preg_match('/.+@.+/', $condition['search'])) {
+                $condition['identity'] = $condition['search'];
+            } else {
+                $condition['email'] = $condition['search'];
+            }
+        }
+
+        // Get user ids
+        $uids  = $this->getUids($condition, $limit, $offset);
+
+        // Get user count
+        $count = $this->getCount($condition);
+
+        // Get user information
+        $users = $this->getUser($uids, 'all');
+
+        // Set paginator
+        $paginatorOption = array(
+            'count'      => $count,
+            'limit'      => $limit,
+            'page'       => $page,
+        );
+
+        foreach ($condition as $key => $value) {
+            if ($value) {
+                $params[$key] = $value;
+            }
+        }
+
+        $paginator = $this->setPaginator($paginatorOption, $params);
+
+        $this->view()->assign(array(
+            'users'      => $users,
+            'paginator'  => $paginator,
+            'page'       => $page,
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
+            'count'      => $count,
+            'condition'  => $condition,
+        ));
+    }
+
+    /**
+     * Activated user list
+     */
+    public function activatedAction()
+    {
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
+        $condition['activated']     = 'activated';
+        $condition['active']        = _get('active') ?: '';
+        $condition['enable']        = _get('enable') ?: '';
+        $condition['front-role']    = _get('front-role') ?: '';
+        $condition['admin-role']    = _get('admin-role') ?: '';
+        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['search']        = _get('search') ?: '';
+
+
+        // Exchange search
+        if ($condition['search']) {
+            // Check email or username
+            if (!preg_match('/.+@.+/', $condition['search'])) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -96,15 +159,18 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['front-role']   = _get('front-role') ?: '';
-        $condition['admin-role']   = _get('admin-role') ?: '';
-        $condition['time-created'] = _get('time-created') ?: '';
-        $condition['search']       = _get('search') ?: '';
+        $condition['pending']       = 'pending';
+        $condition['enable']        = _get('enable') ?: '';
+        $condition['front-role']    = _get('front-role') ?: '';
+        $condition['admin-role']    = _get('admin-role') ?: '';
+        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['search']        = _get('search') ?: '';
+
 
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (preg_match('/.+@.+/', $condition['search'])) {
+            if (!preg_match('/.+@.+/', $condition['search'])) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -112,32 +178,37 @@ class IndexController extends ActionController
         }
 
         // Get user ids
-        $uids = $this->getUids($condition, 'pending', $limit, $offset);
+        $uids  = $this->getUids($condition, $limit, $offset);
 
-        // Get user amount
-        $count = $this->getCount($condition, 'pending');
+        // Get user count
+        $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'pending');
+        $users = $this->getUser($uids, 'all');
 
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
-            //'controller' => 'index',
-            //'action'     => 'index',
         );
 
-        $paginator = $this->setPaginator($paginatorOption);
+        foreach ($condition as $key => $value) {
+            if ($value) {
+                $params[$key] = $value;
+            }
+        }
+
+        $paginator = $this->setPaginator($paginatorOption, $params);
+
         $this->view()->assign(array(
-            'users'     => $users,
-            'paginator' => $paginator,
-            'page'      => $page,
-            'curNav'    => 'pending',
-            'frontRole' => $this->getRoleSelectOptions(),
-            'adminRole' => $this->getRoleSelectOptions('admin'),
-            'count'     => $count,
+            'users'      => $users,
+            'paginator'  => $paginator,
+            'page'       => $page,
+            'front_role' => $this->getRoleSelectOptions(),
+            'admin_role' => $this->getRoleSelectOptions('admin'),
+            'count'      => $count,
+            'condition'  => $condition,
         ));
     }
 
@@ -445,10 +516,10 @@ class IndexController extends ActionController
             $where['active'] = 0;
         }
         if ($condition['enable'] == 'enable') {
-            $where['time_disable'] = 0;
+            $where['time_disabled'] = 0;
         }
         if ($condition['enable'] == 'disable') {
-            $where['time_disable > ?'] = 0;
+            $where['time_disabled > ?'] = 0;
         }
         if ($condition['register-date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
@@ -544,10 +615,10 @@ class IndexController extends ActionController
             $where['active'] = 0;
         }
         if ($condition['enable'] == 'enable') {
-            $where['time_disable'] = 0;
+            $where['time_disabled'] = 0;
         }
         if ($condition['enable'] == 'disable') {
-            $where['time_disable > ?'] = 0;
+            $where['time_disabled > ?'] = 0;
         }
         if ($condition['register-date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(

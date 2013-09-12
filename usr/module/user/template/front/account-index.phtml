@@ -21,13 +21,13 @@
         echo sprintf('<div class="control-group"><label class="control-label">%s</label>
                 <div class="controls"><div class="controls-text">%s</div></div></div>',
                 __('Username'),
-                $this->escape($username)
+                _escape($username)
              );
         echo sprintf('<div class="control-group"><label class="control-label">%s</label>
                 <div class="controls"><div class="controls-text">%s<a href="%s" class="gutter-large">%s</a>
                 </div></div></div>',
                 __('Email'),
-                $this->escape($email),
+                _escape($email),
                 $this->url('', array('controller' => 'email', 'action' => 'index')),
                 __('Reset')
              );

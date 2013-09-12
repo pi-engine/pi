@@ -2,7 +2,7 @@
     <a class="media user-profile-back" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home')); ?>">
         <img src="<?php echo Pi::user()->avatar()->get($user['id'], 'small', false); ?>" class="pull-left">
         <div class="media-body">
-            <h4 class="media-heading"><?php echo $this->escape($user['name']); ?></h4>
+            <h4 class="media-heading"><?php echo _escape($user['name']); ?></h4>
             <span class="muted"><?php _e('View my profile'); ?></span>
         </div>
     </a>
@@ -23,7 +23,7 @@
             <?php  foreach ($groups as $key => $group) { ?>
             <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
                 <a href="<?php echo $group['link']; ?>">
-                    <?php echo $this->escape($group['title']); ?>
+                    <?php echo _escape($group['title']); ?>
                 </a>
             </li>
             <?php } ?>
