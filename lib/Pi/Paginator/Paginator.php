@@ -201,7 +201,6 @@ class Paginator extends Pagit
      */
     protected $urlOptions = array(
         'page_param'    => 'p',
-        'route'         => 'default',
     );
 
     /** @var string Pattern for URL replacement */
@@ -1099,6 +1098,7 @@ class Paginator extends Pagit
         } else {
             $options = true;
         }
+        vd($route);
         $url = Pi::service('url')->assemble($route, $params, $options);
 
         return $url;
