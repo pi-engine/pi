@@ -160,10 +160,10 @@ class PluginController extends ActionController
     }
 
     /**
-     * Undisplay timeline for ajax
+     * Remove timeline from page for ajax
      *
      */
-    public function deleteTimelineAction()
+    public function disableTimelineAction()
     {
         $id = _post('id');
 
@@ -182,7 +182,6 @@ class PluginController extends ActionController
                 $result['status'] = 1;
             } else {
                 $row->assign(array('display' => 0));
-
                 try {
                     $row->save();
                     $result['status'] = 1;
@@ -191,6 +190,94 @@ class PluginController extends ActionController
                 }
             }
         }
+
+        return $result;
+
+    }
+
+    /**
+     * Dress up activity from page for ajax
+     *
+     */
+    public function dressUpActivityAction()
+    {
+        $ids = _post('ids');
+
+        $result = array(
+            'status' => 0,
+        );
+
+        $ids = explode(',', $ids);
+        if (empty($ids)) {
+            return $result;
+        }
+
+        // Get old dress up items
+        $model = $this->getModel('activity');
+        $where = array('active' => 1, 'display > 0');
+        $select = $model->select()->where($where)->order('display');
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $oldItem[] = $row['id'];
+        }
+
+        foreach ($oldItem as $id) {
+            if (!in_array($id, $ids)) {
+                $model->update(array('display' => 0), array('id' => $id));
+            }
+        }
+
+        // Set new items
+        $display = 1;
+        foreach ($ids as $id) {
+            $model->update(array('display' => $display), array('id' => $id));
+            $display++;
+        }
+        $result['status'] = 1;
+
+        return $result;
+
+    }
+
+    /**
+     * Dress up quick from page for ajax
+     *
+     */
+    public function dressUpQuicklinkAction()
+    {
+        $ids = _post('ids');
+        $result = array(
+            'status' => 0,
+        );
+
+        $ids = array_unique(explode(',', $ids));
+
+        if (empty($ids)) {
+            return $result;
+        }
+
+        // Get old dress up items
+        $model = $this->getModel('quicklink');
+        $where = array('active' => 1, 'display > 0');
+        $select = $model->select()->where($where)->order('display');
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $oldItem[] = $row['id'];
+        }
+
+        foreach ($oldItem as $id) {
+            if (!in_array($id, $ids)) {
+                $model->update(array('display' => 0), array('id' => $id));
+            }
+        }
+
+        // Set new items
+        $display = 1;
+        foreach ($ids as $id) {
+            $model->update(array('display' => $display), array('id' => $id));
+            $display++;
+        }
+        $result['status'] = 1;
 
         return $result;
 
