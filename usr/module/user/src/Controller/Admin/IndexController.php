@@ -36,11 +36,10 @@ class IndexController extends ActionController
 
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
-        $condition['front-role']    = _get('front-role') ?: '';
-        $condition['admin-role']    = _get('admin-role') ?: '';
-        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['front_role']    = _get('front_role') ?: '';
+        $condition['admin_role']    = _get('admin_role') ?: '';
+        $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-
 
         // Exchange search
         if ($condition['search']) {
@@ -99,9 +98,9 @@ class IndexController extends ActionController
         $condition['activated']     = 'activated';
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
-        $condition['front-role']    = _get('front-role') ?: '';
-        $condition['admin-role']    = _get('admin-role') ?: '';
-        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['front_role']    = _get('front_role') ?: '';
+        $condition['admin_role']    = _get('admin_role') ?: '';
+        $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
 
 
@@ -161,9 +160,9 @@ class IndexController extends ActionController
 
         $condition['pending']       = 'pending';
         $condition['enable']        = _get('enable') ?: '';
-        $condition['front-role']    = _get('front-role') ?: '';
-        $condition['admin-role']    = _get('admin-role') ?: '';
-        $condition['register-date'] = _get('register-date') ?: '';
+        $condition['front_role']    = _get('front_role') ?: '';
+        $condition['admin_role']    = _get('admin_role') ?: '';
+        $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
 
 
@@ -306,12 +305,12 @@ class IndexController extends ActionController
         $condition['activated']         = _get('activated') ?: '';
         $condition['identity']          = _get('identity') ?: '';
         $condition['name']              = _get('name') ?: '';
-        $condition['front-role']        = _get('front-role') ?: '';
-        $condition['admin-role']        = _get('admin-role') ?: '';
+        $condition['front_role']        = _get('front_role') ?: '';
+        $condition['admin_role']        = _get('admin_role') ?: '';
         $condition['email']             = _get('email') ?: '';
-        $condition['time-created-form'] = _get('time-created-form') ?: '';
-        $condition['time-created-to']   = _get('time-created-to') ?: '';
-        $condition['ip-register']       = _get('ip-register') ?: '';
+        $condition['time_created_form'] = _get('time_created_form') ?: '';
+        $condition['time_created_to']   = _get('time_created_to') ?: '';
+        $condition['ip_register']       = _get('ip_register') ?: '';
 
         d($condition);
         // Get user ids
@@ -452,6 +451,36 @@ class IndexController extends ActionController
 
         return $result;
 
+    }
+
+    /**
+     * Activate user or users
+     *
+     */
+    public function activateUserAction()
+    {
+        $uids = _post('uids');
+
+        $result = array(
+            'status' => 0,
+        );
+
+        if (!$uids) {
+            return $result;
+        }
+
+        $uids = array_unique(explode(',', $uids));
+        if (empty($uids)) {
+            return $result;
+        }
+
+        foreach ($uids as $uid) {
+            Pi::api('user', 'user')->activateUser($uid);
+        }
+
+        $result['status'] = 1;
+
+        return $result;
     }
 
     /**
@@ -599,7 +628,7 @@ class IndexController extends ActionController
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
-        $where = array('time_deleted' => 0);
+        $where['time_deleted'] = 0;
         if ($condition['active'] == 'active') {
             $where['active'] = 1;
         }
@@ -612,9 +641,9 @@ class IndexController extends ActionController
         if ($condition['enable'] == 'disable') {
             $where['time_disabled > ?'] = 0;
         }
-        if ($condition['register-date']) {
+        if ($condition['register_date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
-                $condition['register-date']
+                $condition['register_date']
             );
         }
         if ($condition['email']) {
@@ -627,11 +656,11 @@ class IndexController extends ActionController
             $where['name like ?'] = '%' . $condition['name'] . '%';
 
         }
-        if ($condition['time-created-from']) {
-            $where['time_created >= ?'] = $condition['time-created-from'];
+        if ($condition['time_created_from']) {
+            $where['time_created >= ?'] = $condition['time_created_from'];
         }
-        if ($condition['time-created-to']) {
-            $where['time_created <= ?'] = $condition['time-created-to'];
+        if ($condition['time_created_to']) {
+            $where['time_created <= ?'] = $condition['time_created_to'];
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -643,28 +672,28 @@ class IndexController extends ActionController
             array('account' => $modelAccount->getTable()),
             array('id')
         );
-        if ($condition['front-role']) {
+        if ($condition['front_role']) {
             $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front-role'],
+                'front.role'    => $condition['front_role'],
                 'front.section' => 'front',
             ));
             $where->add($whereRoleFront);
         }
-        if ($condition['admin-role']) {
+        if ($condition['admin_role']) {
             $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin-role'],
-                'front.section' => 'front',
+                'admin.role'    => $condition['admin_role'],
+                'admin.section' => 'admin',
             ));
             $where->add($whereRoleAdmin);
         }
-        if ($condition['admin-role']) {
+        if ($condition['front_role']) {
             $select->join(
                 array('front' => $modelRole->getTable()),
                 'front.uid=account.id',
                 array()
             );
         }
-        if ($condition['front-role']) {
+        if ($condition['admin_role']) {
             $select->join(
                 array('admin' => $modelRole->getTable()),
                 'admin.uid=account.id',
@@ -715,9 +744,9 @@ class IndexController extends ActionController
         if ($condition['enable'] == 'disable') {
             $where['time_disabled > ?'] = 0;
         }
-        if ($condition['register-date']) {
+        if ($condition['register_date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
-                $condition['register-date']
+                $condition['register_date']
             );
         }
         if ($condition['email']) {
@@ -730,11 +759,11 @@ class IndexController extends ActionController
             $where['name like ?'] = '%' . $condition['name'] . '%';
 
         }
-        if ($condition['time-created-from']) {
-            $where['time_created >= ?'] = $condition['time-created-from'];
+        if ($condition['time_created_from']) {
+            $where['time_created >= ?'] = $condition['time_created_from'];
         }
-        if ($condition['time-created-to']) {
-            $where['time_created <= ?'] = $condition['time-created-to'];
+        if ($condition['time_created_to']) {
+            $where['time_created <= ?'] = $condition['time_created_to'];
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -750,23 +779,23 @@ class IndexController extends ActionController
             'count' => Pi::db()->expression('COUNT(account.id)'),
         ));
 
-        if ($condition['front-role']) {
+        if ($condition['front_role']) {
             $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front-role'],
+                'front.role'    => $condition['front_role'],
                 'front.section' => 'front',
             ));
             $where->add($whereRoleFront);
         }
 
-        if ($condition['admin-role']) {
+        if ($condition['admin_role']) {
             $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin-role'],
-                'front.section' => 'front',
+                'admin.role'    => $condition['admin_role'],
+                'admin.section' => 'admin',
             ));
             $where->add($whereRoleAdmin);
         }
 
-        if ($condition['admin-role']) {
+        if ($condition['front_role']) {
             $select->join(
                 array('front' => $modelRole->getTable()),
                 'front.uid=account.id',
@@ -774,7 +803,7 @@ class IndexController extends ActionController
             );
         }
 
-        if ($condition['front-role']) {
+        if ($condition['admin_role']) {
             $select->join(
                 array('admin' => $modelRole->getTable()),
                 'admin.uid=account.id',
@@ -784,7 +813,14 @@ class IndexController extends ActionController
 
         $select->where($where);
 
-        $rowset = Pi::db()->query($select)->current();
+
+        $rowset = Pi::db()->query($select);
+
+        if ($rowset) {
+            $rowset = $rowset->current();
+        } else {
+            return 0;
+        }
 
         return (int) $rowset['count'];
 
@@ -875,7 +911,7 @@ class IndexController extends ActionController
             );
         }
 
-        if ($registerDate == 'last-week') {
+        if ($registerDate == 'last_week') {
             $time = mktime(
                 0,0,0,
                 date("m"),
@@ -884,7 +920,7 @@ class IndexController extends ActionController
             );
         }
 
-        if ($registerDate == 'last-month') {
+        if ($registerDate == 'last_month') {
             $time = mktime(
                 0,0,0,
                 date("m") - 1,
@@ -893,7 +929,7 @@ class IndexController extends ActionController
             );
         }
 
-        if ($registerDate == 'last-3-month') {
+        if ($registerDate == 'last_3_month') {
             $time = mktime(
                 0,0,0,
                 date("m") - 3,
@@ -902,7 +938,7 @@ class IndexController extends ActionController
             );
         }
 
-        if ($registerDate == 'last-year') {
+        if ($registerDate == 'last_year') {
             $time = mktime(
                 0,0,0,
                 date("m"),
@@ -938,23 +974,23 @@ class IndexController extends ActionController
         } else {
             $condition['activated'] = $data['activated'];
         }
-        if ($data['front-role'] == 'any') {
-            $condition['front-role'] = '';
+        if ($data['front_role'] == 'any') {
+            $condition['front_role'] = '';
         } else {
-            $condition['front-role'] = $data['front-role'];
+            $condition['front_role'] = $data['front_role'];
         }
-        if ($data['admin-role'] == 'any') {
-            $condition['admin-role'] = '';
+        if ($data['admin_role'] == 'any') {
+            $condition['admin_role'] = '';
         } else {
-            $condition['admin-role'] = $data['admin-role'];
+            $condition['admin_role'] = $data['admin_role'];
         }
 
         $condition['identity']          = $data['identity'];
         $condition['name']              = $data['name'];
         $condition['email']             = $data['email'];
-        $condition['ip-register']       = $data['ip-register'];
-        $condition['time-created-from'] = strtotime($data['time-created-from']);
-        $condition['time-created-to']   = strtotime($data['time-created-to']);
+        $condition['ip_register']       = $data['ip_register'];
+        $condition['time_created_from'] = strtotime($data['time_created_from']);
+        $condition['time_created_to']   = strtotime($data['time_created_to']);
 
         return $condition;
 
