@@ -129,7 +129,7 @@ class SearchForm extends BaseForm
 
         // Add register ip from
         $this->add(array(
-            'name'          => 'register-ip',
+            'name'          => 'ip-register',
             'type'          => 'text',
             'options'       => array(
                 'label' => __('Register ip from'),

@@ -35,11 +35,6 @@ class SearchFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'          => 'front-role',
-            'required'      => false,
-        ));
-
-        $this->add(array(
             'name'          => 'activated',
             'required'      => false,
         ));
@@ -95,7 +90,7 @@ class SearchFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'          => 'register-ip',
+            'name'          => 'ip-register',
             'required'      => false,
             'filters'       => array(
                 array(

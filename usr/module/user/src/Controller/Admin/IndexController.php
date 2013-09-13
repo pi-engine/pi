@@ -261,7 +261,7 @@ class IndexController extends ActionController
         // Set admin role default
         $options = $form->get('front-role')->getValueOptions();
         array_shift($options);
-        $options = array_merge(array('any' => __('Any role')), $options);
+        $options = array_merge(array('any' => __('Any role')), $options);d($options);
         $form->get('front-role')->setValueOptions($options);
 
         // Set admin role default
@@ -271,7 +271,6 @@ class IndexController extends ActionController
         $form->get('admin-role')->setValueOptions($options);
 
         if ($this->request->isPost()) {
-            $form = new SearchForm('search');
             $post = $this->request->getPost();
             $form->setData($post);
 
@@ -307,10 +306,14 @@ class IndexController extends ActionController
         $condition['activated']         = _get('activated') ?: '';
         $condition['identity']          = _get('identity') ?: '';
         $condition['name']              = _get('name') ?: '';
+        $condition['front-role']        = _get('front-role') ?: '';
+        $condition['admin-role']        = _get('admin-role') ?: '';
         $condition['email']             = _get('email') ?: '';
         $condition['time-created-form'] = _get('time-created-form') ?: '';
         $condition['time-created-to']   = _get('time-created-to') ?: '';
+        $condition['ip-register']       = _get('ip-register') ?: '';
 
+        d($condition);
         // Get user ids
         $uids  = $this->getUids($condition, $limit, $offset);
 
@@ -344,6 +347,8 @@ class IndexController extends ActionController
             'count'      => $count,
             'condition'  => $condition,
         ));
+
+        $this->view()->setTemplate('index-search-list');
     }
 
     /**
@@ -496,8 +501,16 @@ class IndexController extends ActionController
         }
 
         if ($type == 'search') {
-            $columns = arraay(
-
+            $columns = array(
+                'identity'       => '',
+                'name'           => '',
+                'email'          => '',
+                'active'         => '',
+                'time_disabled'  => '',
+                'time_activated' => '',
+                'time_created'   => '',
+                'id'             => '',
+                'ip_register'    => '',
             );
         }
 
@@ -620,7 +633,6 @@ class IndexController extends ActionController
         if ($condition['time-created-to']) {
             $where['time_created <= ?'] = $condition['time-created-to'];
         }
-
 
         $defaultWhere = false;
         if (empty($where)) {
@@ -939,9 +951,21 @@ class IndexController extends ActionController
         } else {
             $condition['activated'] = $data['activated'];
         }
-        $condition['identity'] = $data['identity'];
-        $condition['name']     = $data['name'];
-        $condition['email']    = $data['email'];
+        if ($data['front-role'] == 'any') {
+            $condition['front-role'] = '';
+        } else {
+            $condition['front-role'] = $data['front-role'];
+        }
+        if ($data['admin-role'] == 'any') {
+            $condition['admin-role'] = '';
+        } else {
+            $condition['admin-role'] = $data['admin-role'];
+        }
+
+        $condition['identity']          = $data['identity'];
+        $condition['name']              = $data['name'];
+        $condition['email']             = $data['email'];
+        $condition['ip-register']       = $data['ip-register'];
         $condition['time-created-from'] = strtotime($data['time-created-from']);
         $condition['time-created-to']   = strtotime($data['time-created-to']);
 

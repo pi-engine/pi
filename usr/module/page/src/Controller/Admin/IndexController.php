@@ -42,7 +42,7 @@ class IndexController extends ActionController
                 'title' => $row->title,
                 'slug'  => $row->slug,
             );
-            $page['url'] = $this->url('.page', $page);
+            $page['url'] = $this->url($this->getModule() . '-page', $page);
             if ($row->active) {
                 $pages['active'][] = $page;
             } else {
@@ -228,7 +228,10 @@ class IndexController extends ActionController
                 $row->save();
                 if ($pageSet) {
                     if (!empty($pageSet['set'])) {
-                        $this->setPage($pageSet['set']);
+                        $this->setPage(
+                            $pageSet['set']['name'],
+                            $pageSet['set']['title']
+                        );
                     }
                     if (!empty($pageSet['remove'])) {
                         $this->removePage($pageSet['remove']);
@@ -247,8 +250,10 @@ class IndexController extends ActionController
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
             $form->setData($data);
-            $form->setAttribute('action',
-                                $this->url('', array('action' => 'edit')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'edit'))
+            );
             $message = '';
         }
 
@@ -299,7 +304,10 @@ class IndexController extends ActionController
             $row->save();
             if ($pageSet) {
                 if (!empty($pageSet['set'])) {
-                    $this->setPage($pageSet['set']);
+                    $this->setPage(
+                        $pageSet['set']['name'],
+                        $pageSet['set']['title']
+                    );
                 }
                 if (!empty($pageSet['remove'])) {
                     $this->removePage($pageSet['remove']);
