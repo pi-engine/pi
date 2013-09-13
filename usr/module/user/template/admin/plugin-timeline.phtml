@@ -1,0 +1,45 @@
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="<?php echo $this->url('', array('controller' => 'plugin', 'action' => 'timeline')); ?>">
+            <?php _e('Timeline'); ?>
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url('', array('controller' => 'plugin', 'action' => 'activity')); ?>">
+            <?php _e('Activity'); ?>
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url('', array('controller' => 'plugin', 'action' => 'quicklink')); ?>">
+            <?php _e('Quicklin'); ?>
+        </a>
+    </li>
+</ul>
+<h3><?php _e('Items displayed on the homepage timeline'); ?></h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th><?php _e('Items name'); ?></th>
+        <th><?php _e('From module'); ?></th>
+        <th><?php _e('Display'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($timeline as $row) {?>
+        <tr>
+            <td>
+                <?php echo _escape($row['title']); ?>
+            </td>
+            <td>
+                <?php echo _escape($row['module']); ?>
+            </td>
+            <td>
+                <?php echo $row['active'] ? 'yes' : 'no'; ?>
+            </td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+<?php if ($paginator) {?>
+    <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+<?php } ?>
