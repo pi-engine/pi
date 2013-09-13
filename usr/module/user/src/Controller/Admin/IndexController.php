@@ -368,7 +368,7 @@ class IndexController extends ActionController
         $uids = explode(',', $uids);
 
         foreach ($uids as $uid) {
-            Pi::api('usr', 'user')->enable($uid);
+            Pi::api('user', 'user')->enableUser($uid);
         }
 
         return array(
@@ -393,7 +393,7 @@ class IndexController extends ActionController
         $uids = explode(',', $uids);
 
         foreach ($uids as $uid) {
-            Pi::api('user', 'user')->disableAction();
+            Pi::api('user', 'user')->disableUser($uid);
         }
 
         return array(
@@ -599,7 +599,7 @@ class IndexController extends ActionController
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
-        $where = array();
+        $where = array('time_deleted' => 0);
         if ($condition['active'] == 'active') {
             $where['active'] = 1;
         }
@@ -632,11 +632,6 @@ class IndexController extends ActionController
         }
         if ($condition['time-created-to']) {
             $where['time_created <= ?'] = $condition['time-created-to'];
-        }
-
-        $defaultWhere = false;
-        if (empty($where)) {
-            $defaultWhere = true;
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -682,9 +677,8 @@ class IndexController extends ActionController
         if ($offset) {
             $select->offset($offset);
         }
-        if (!$defaultWhere) {
-            $select->where($where);
-        }
+
+        $select->where($where);
 
         $rowset = Pi::db()->query($select);
 
@@ -708,7 +702,7 @@ class IndexController extends ActionController
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
-        $where = array();
+        $where = array('time_deleted' => 0);
         if ($condition['active'] == 'active') {
             $where['active'] = 1;
         }
@@ -741,11 +735,6 @@ class IndexController extends ActionController
         }
         if ($condition['time-created-to']) {
             $where['time_created <= ?'] = $condition['time-created-to'];
-        }
-
-        $defaultWhere = false;
-        if (empty($where)) {
-            $defaultWhere = true;
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -793,9 +782,7 @@ class IndexController extends ActionController
             );
         }
 
-        if (!$defaultWhere) {
-            $select->where($where);
-        }
+        $select->where($where);
 
         $rowset = Pi::db()->query($select)->current();
 
