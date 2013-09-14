@@ -3,19 +3,20 @@ Pi Engine Changelog
 Pi 2.3
 August 4th, 2013
 ============
-1. Added support for custom configuration
-2. Refactored user API service with support for persistent profile
-3. Modified config files: `var/config/service.authentication.php`; `var/config/service.user.php`
-4. Added config for PHP-CS-Fixer: .php_cs
-5. Moved timezone initialization from `Pi` class to `boot.php` for PSR "side effect" compliance
-6. Modified boot file: `boot.php`
-7. Changed `Pi::registry` API to `Pi::entity`
-8. Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
-9. Added API `Pi::api()` as alias for `Pi::service('api')->handler()`
-10. Added support for module schema parse
-11. Added HTML5/CSS detection `modernizr` as a jQuery extension
-12. Upgraded Zend Framework to 2.2.3
-13. Implemented bootstrap-responsive for mobile device
+* Added support for custom configuration
+* Refactored user API service with support for persistent profile
+* Modified config files: `var/config/service.authentication.php`; `var/config/service.user.php`
+* Added config for PHP-CS-Fixer: .php_cs
+* Moved timezone initialization from `Pi` class to `boot.php` for PSR "side effect" compliance
+* Modified boot file: `boot.php`
+* Changed `Pi::registry` API to `Pi::entity`
+* Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
+* Added API `Pi::api()` as alias for `Pi::service('api')->handler()`
+* Added support for module schema parse
+* Added HTML5/CSS detection `modernizr` as a jQuery extension
+* Upgraded Zend Framework to 2.2.3
+* Implemented bootstrap-responsive for mobile device
+* Added template access script for angular.js
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
