@@ -570,14 +570,22 @@ class User extends AbstractApi
 
         $model = Pi::model('user_account');
         $row = $model->find($uid);
+        // Skip if account not found or deleted
         if (!$row || (int) $row['time_deleted'] > 0) {
             return false;
         }
+        // Skip is already activated
         if ((int) $row['time_activated'] > 0) {
             return null;
         }
+        // Set active to true if activated and enabled
+        if ((int) $row['time_disabled'] > 0) {
+            $active = 0;
+        } else {
+            $active = 1;
+        }
         $row->assign(array(
-            'active'            => 1,
+            'active'            => $active,
             'time_activated'    => time(),
         ));
         try {
@@ -611,28 +619,30 @@ class User extends AbstractApi
 
         $model = Pi::model('user_account');
         $row = $model->find($uid);
+        // Skip if account not found or deleted
         if (!$row
             //|| (int) $row['time_activated'] < 1
             || (int) $row['time_deleted'] > 0
         ) {
             return false;
         }
-        if (($flag && (int) $row['time_disabled'] < 0)
+        // Skip enabling if already enabled
+        // Skip disabling if already disabled
+        if (($flag && (int) $row['time_disabled'] == 0)
             || (!$flag && (int) $row['time_disabled'] > 0)
         ) {
             return null;
         }
-        if ($flag) {
-            $data = array(
-                'active'            => 1,
-                'time_disabled'     => 0,
-            );
+        // Set active to true if activated and enabled
+        if ((int) $row['time_activated'] > 0 && $flag) {
+            $active = 1;
         } else {
-            $data = array(
-                'active'            => 0,
-                'time_disabled'     => time(),
-            );
+            $active = 0;
         }
+        $data = array(
+            'active'            => $active,
+            'time_disabled'     => $time,
+        );
         $row->assign($data);
         try {
             $row->save();
