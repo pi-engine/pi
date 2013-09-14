@@ -13,9 +13,11 @@
  * Sample code:
  *
  * ```
+ *  // Suppose template file is available at:
+ *  // `module/<module-name>/asset/template/<template-name>.phtml`
  *  $templatePath = Pi::asset()->getAssetPath(
  *      'module/<module-name>',
- *      'template/test.phtml'
+ *      'template/<template-name>.phtml'
  *  );
  *
  *  $templateUrl = Pi::url('script/template.php?' . $templatePath);
