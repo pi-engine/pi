@@ -15,21 +15,15 @@
  * ```
  *  // Suppose template file is available at:
  *  // `module/<module-name>/asset/template/<template-name>.phtml`
- *  $templatePath = Pi::asset()->getAssetPath(
- *      'module/<module-name>',
- *      'template/<template-name>.phtml'
- *  );
+ *  $templatePath = 'template/<template-name>.phtml';
  *
- *  $templateUrl = Pi::url('script/template.php?' . $templatePath);
- *
- *  // With specific module translation
+ *  // Module template with module translation
  *  $templateUrl = Pi::url('script/template.php?module=<module-name>&path=' . $templatePath);
  *
- *  // With specific domain translation
- *  $templateUrl = Pi::url('script/template.php?domain=<domain-name>&path=' . $templatePath);
+ *  // Theme template with theme translation
+ *  $templateUrl = Pi::url('script/template.php?theme=<theme-name>&path=' . $templatePath);
  * ```
  */
-
 
 // Allowed file extension
 $allowedExtension = 'phtml';
@@ -43,19 +37,21 @@ Pi::service('log')->mute();
 // Load i18n resource which is required by template
 Pi::engine()->bootResource('i18n');
 
-if (isset($_GET['module']) && Pi::service('module')->isActive($_GET['module'])) {
-    Pi::service('i18n')->loadModule($_GET['module']);
-}
-if (isset($_GET['domain'])) {
-    Pi::service('i18n')->load($_GET['domain']);
-}
+$path = '';
 if (isset($_GET['path'])) {
-    $path = $_GET['path'];
-} elseif (!empty($_SERVER['QUERY_STRING'])) {
-    $path = $_SERVER['QUERY_STRING'];
+    $path = ltrim(htmlspecialchars($_GET['path']), '/');
 }
+
 if ($path) {
-    $path = Pi::path(ltrim($path, '/'));
+    if (isset($_GET['module'])) {
+        $module = htmlspecialchars($_GET['module']);
+        Pi::service('i18n')->loadModule('main', $module);
+        $path = Pi::asset()->getAssetPath('module/' . $module, $path);
+    } elseif (isset($_GET['theme'])) {
+        $theme = htmlspecialchars($_GET['theme']);
+        Pi::service('i18n')->loadTheme('main', $theme);
+        $path = Pi::asset()->getAssetPath('theme/' . $theme, $path);
+    }
 }
 
 if (empty($path) || !is_readable($path)) {
