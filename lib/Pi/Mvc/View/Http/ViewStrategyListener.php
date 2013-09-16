@@ -287,7 +287,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                         }
                         //if (ArrayUtils::hasStringKeys($result, true)) {
                             $variables = array_merge_recursive(
-                                $variables,
+                                (array) $variables,
                                 (array) $result
                             );
                         //}
