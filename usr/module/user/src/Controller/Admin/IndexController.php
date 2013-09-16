@@ -866,8 +866,7 @@ class IndexController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-
-
+//        vd(Pi::api('user', 'user')->getUser(1000)->id);
 //        $modelAccount = Pi::model('user_account');
 //        $modelRole = Pi::model('user_role');
 //

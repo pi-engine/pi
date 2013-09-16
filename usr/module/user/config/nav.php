@@ -73,24 +73,13 @@ return array(
         ),
 
         'notification' => array(
-            'label'         => _t('Notification'),
+            'label'         => _t('Maintenance'),
             'resource'      => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
             'module'        => 'user',
-            'controller'    => 'notification',
-            'action'        => 'index',
-        ),
-
-        'static' => array(
-            'label'         => _t('Static'),
-            'resource'      => array(
-                'resource'  => 'module',
-            ),
-            'route'         => 'admin',
-            'module'        => 'user',
-            'controller'    => 'static',
+            'controller'    => 'maintenance',
             'action'        => 'index',
         ),
     ),
