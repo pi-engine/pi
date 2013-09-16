@@ -228,10 +228,19 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 $e->setResult($viewModel);
 
                 return;
+
+            // Set type to json if no template and no type specified
+            } elseif (!$this->type && '__NULL__' == $template) {
+                $this->type = 'json';
+                Pi::service('log')->mute();
             }
+        // Set type to json if no ViewModel is set
+        } elseif ($result && (is_array($result) || is_scalar($result))) {
+            $this->type = 'json';
+            Pi::service('log')->mute();
         }
 
-        // Cast controller view model to result viewmodel
+        // Cast controller view model to result ViewModel
         switch ($this->type) {
             // For Feed
             case 'feed':
@@ -276,12 +285,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
                             $variables = $viewModel->getVariables();
                             $options = $viewModel->getOptions();
                         }
-                        if (ArrayUtils::hasStringKeys($result, true)) {
+                        //if (ArrayUtils::hasStringKeys($result, true)) {
                             $variables = array_merge_recursive(
                                 $variables,
-                                $result
+                                (array) $result
                             );
-                        }
+                        //}
                     }
                     $model = new JsonModel($variables, $options);
                 }
@@ -345,7 +354,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
             return;
         }
 
-        // Cast controller view model to result viewmodel
+        // Cast controller view model to result ViewModel
         switch ($this->type) {
             // For Feed
             case 'feed':
