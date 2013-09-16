@@ -13,11 +13,11 @@ namespace Pi\Application\Registry;
 use Pi;
 
 /**
- * ACL resource list
+ * Permission resource list
  *
  * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Resource extends AbstractRegistry
+class PermissionResource extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
@@ -25,7 +25,7 @@ class Resource extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $result = array();
-        $model = Pi::model('perm_resource')->setSection($options['section']);
+        $model = Pi::model('permission_resource')->setSection($options['section']);
         $where = array('section' => $options['section']);
         $where['module'] = $options['module'];
         if (null !== $options['type']) {
@@ -33,7 +33,7 @@ class Resource extends AbstractRegistry
         }
         $rowset = $model->select($where);
         if (!$rowset->count()) {
-            return $ancestors;
+            return $result;
         }
         foreach ($rowset as $row) {
             $result[$row->name] = $row->toArray();

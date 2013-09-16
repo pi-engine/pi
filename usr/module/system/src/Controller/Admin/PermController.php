@@ -54,7 +54,7 @@ class PermController extends ActionController
         $resourceList[] = 'module-access';
         $resourceList[] = 'module-admin';
         // Load module defined resources
-        $rowset = Pi::model('perm_resource')->select(array(
+        $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
             'section'   => $section,
             'type'      => array('system', 'callback'),
@@ -108,7 +108,7 @@ class PermController extends ActionController
         }
 
         if ($resourceList) {
-            $rowset = Pi::model('perm_rule')->select(array(
+            $rowset = Pi::model('permission_rule')->select(array(
                 'section'   => $section,
                 'module'    => $module,
                 'resource'  => $resourceList,
@@ -157,7 +157,7 @@ class PermController extends ActionController
             as $section
         ) {
             $modules = $modulesInstalled;
-            $rowset = Pi::model('perm_rule')->select(array(
+            $rowset = Pi::model('permission_rule')->select(array(
                 'role'      => $role,
                 'section'   => 'module-' . $section,
                 'resource'  => array_keys($modules),
@@ -203,7 +203,7 @@ class PermController extends ActionController
         $module     = $this->params('name');
         $op         = $this->params('perm', 'grant');
 
-        $model = Pi::model('perm_rule');
+        $model = Pi::model('permission_rule');
         $row = $model->select(compact(
             'section',
             'module',

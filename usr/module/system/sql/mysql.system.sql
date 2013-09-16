@@ -559,7 +559,7 @@ CREATE TABLE `{core.user_role}` (
 );
 
 # Permission resources
-CREATE TABLE `{core.perm_resource}` (
+CREATE TABLE `{core.permission_resource}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   `section`         varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
@@ -574,7 +574,7 @@ CREATE TABLE `{core.perm_resource}` (
 );
 
 # Permission rules
-CREATE TABLE `{core.perm_rule}` (
+CREATE TABLE `{core.permission_rule}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   -- Resource name or id
   `resource`        varchar(64)     NOT NULL    default '',

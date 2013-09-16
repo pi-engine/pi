@@ -10,7 +10,6 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Acl\Acl as AclHandler;
 
 /**
  * Page setup with configuration specs
@@ -25,15 +24,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'cache_ttl'     => 0,
  *                  'cache_level'   => '',
  *                  // Block inheritance:
- *                  // 1 - specified; 0 - inherite from parent
+ *                  // 1 - specified; 0 - inherit from parent
  *                  'block'         => 0,
- *                  // Permission with specific role access rules
- *                  'permission'    => array(
- *                      'access'        => array(
- *                          'guest'     => 1,
- *                          'member'    => 0,
- *                      ),
- *                  ),
  *              ),
  *              array(
  *                  'title'         => 'Title',
@@ -42,10 +34,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'cache_ttl'     => 60,
  *                  'cache_level'   => 'role',
  *                  // Block inheritance:
- *                  // 1 - specified; 0 - inherite from parent
+ *                  // 1 - specified; 0 - inherit from parent
  *                  'block'         => 1,
- *                  // Don't set permission
- *                  'permission'    => false,
  *              ),
  *              ...
  *          ),
@@ -57,13 +47,8 @@ use Pi\Acl\Acl as AclHandler;
  *                  'action'        => 'actionName',
  *                  'cache_ttl'  => 0,
  *                  'cache_level'   => '',
- *                  // Permission with specific role access rules
- *                  'permission'    => array(
- *                      'access'        => array(
- *                          'rolea'     => 1,
- *                          'roleb'    => 0,
- *                      ),
- *                  ),
+ *                  // Permission name for access
+ *                  'permission'    => <permission-name>,
  *              ),
  *              array(
  *                  'title'         => 'Title',
@@ -71,10 +56,6 @@ use Pi\Acl\Acl as AclHandler;
  *                  'action'        => 'actionName',
  *                  'cache_ttl'  => 0,
  *                  'cache_level'   => '',
- *                  // Permission with named parent resource
- *                  'permission'    => array(
- *                      'parent'        => 'admin,
- *                  ),
  *              ),
  *              array(
  *                  'title'         => 'Title',
@@ -82,15 +63,6 @@ use Pi\Acl\Acl as AclHandler;
  *                  'action'        => 'actionName',
  *                  'cache_ttl'  => 0,
  *                  'cache_level'   => '',
- *                  // Permission with dispatchable parent resource
- *                  // or named resource from different section/module
- *                  'permission'    => array(
- *                      'parent'        => array(
- *                          'section'   => 'admin',
- *                          'module'    => 'system',
- *                          'name'      => 'admin',
- *                      ),
- *                  ),
  *              ),
  *              ...
  *          ),
@@ -208,6 +180,7 @@ class Page extends AbstractResource
             $pages[$section] = $pageList;
         };
 
+        /*
         // Set module access for front
         if (!empty($pages['front'])
             && !isset($pages['front'][$module]['permission']['access'])) {
@@ -223,6 +196,7 @@ class Page extends AbstractResource
                 'staff'     => 1
             );
         }
+        */
 
         foreach ($pages as $section => $pageList) {
             foreach ($pageList as $name => $page) {
@@ -389,15 +363,15 @@ class Page extends AbstractResource
     {
         $module = $this->event->getParam('module');
         $modelPage = Pi::model('page');
-        $modelResource = Pi::model('acl_resource');
-        $modelRule = Pi::model('acl_rule');
+        $modelResource = Pi::model('permission_resource');
+        //$modelRule = Pi::model('acl_rule');
         $columnsPage = array(
             'title',
             'section', 'module', 'controller', 'action',
             'cache_ttl', 'cache_level', 'block', 'custom'
         );
         $columnsResource = array(
-            'section', 'name', 'item', 'title',
+            'section', 'name', 'title',
             'module', 'type'
         );
 
@@ -418,8 +392,8 @@ class Page extends AbstractResource
 
         // Set up permission resource
 
-        // If permission is disabled explicitly, skip
-        if (isset($page['permission']) && $page['permission'] === false) {
+        // If no permission is specified, skip
+        if (empty($page['permission']) || empty($page['controller'])) {
             return true;
         }
 
@@ -430,46 +404,13 @@ class Page extends AbstractResource
             }
         }
         $resource['id'] = null;
-        $resource['name'] = $pageRow->id;
-        $resource['type'] = 'page';
-        $parent = 0;
-        // Set parent by named resource
-        if (!empty($page['permission']['parent'])) {
-            if (is_string($page['permission']['parent'])) {
-                $where = array(
-                    'section'   => $resource['section'],
-                    'module'    => $resource['module'],
-                    'name'      => $page['permission']['parent']
-                );
-            // use parent params if available
-            } elseif (is_array($page['permission']['parent'])) {
-                $where = array_merge(array(
-                    'section'   => $resource['section'],
-                    'module'    => $resource['module'],
-                ), $page['permission']['parent']);
-            }
-            $parent = $modelResource->select($where)->current();
-        // Set parent by module-controller-action
-        } elseif (!empty($page['controller'])) {
-            $where = array(
-                'section'   => $resource['section'],
-                'module'    => $resource['module'],
-            );
-            if (!empty($page['action'])) {
-                $where['controller'] = $page['controller'];
-            }
-            $parentPage = $modelPage->select($where)->current();
-            if ($parentPage) {
-                $where = array(
-                    'section'   => $page['section'],
-                    'name'      => $parentPage->id
-                );
-                $parent = $modelResource->select($where)->current();
-            }
+        $resource['name'] = $page['module'] . '-' . $page['controller'];
+        if (!empty($page['action'])) {
+            $resource['name'] .= '-' . $page['action'];
         }
-
-        // Add resource
-        $resourceId = $modelResource->add($resource, $parent);
+        $resource['type'] = 'page';
+        $row = $modelResource->createRow($resource);
+        $resourceId = $row->save();
         if (!$resourceId) {
             $message[] = sprintf(
                 'Resource "%s" is not created.',
@@ -477,33 +418,20 @@ class Page extends AbstractResource
             );
             return false;
         }
-        // Set rules of accessing the resource by each role
-        if (isset($page['permission']['access'])) {
-            foreach ($page['permission']['access'] as $role => $rule) {
-                AclHandler::addRule(
-                    $rule,
-                    $role,
-                    $resource['section'],
-                    $module,
-                    $resourceId
-                );
-            }
-        }
 
         return true;
     }
 
     /**
      * Delete a page
-     * @param int|Pi\Application\Model\Model $page
+     * @param int|Pi\Db\RowGateway\RowGateway $page
      * @param array $message
      * @return bool
      */
     protected function deletePage($page, &$message)
     {
         $modelPage = Pi::model('page');
-        $modelResource = Pi::model('acl_resource');
-        $modelRule = Pi::model('acl_rule');
+        $modelResource = Pi::model('permission_resource');
 
         if (is_scalar($page)) {
             $pageRow = $modelPage->find($page);
@@ -511,32 +439,23 @@ class Page extends AbstractResource
             $pageRow = $page;
         }
         $pageRow->delete();
+        if (empty($pageRow['controller'])) {
+            return true;
+        }
+        $name = $pageRow['module'] . '-' . $pageRow['controller'];
+        if ($pageRow['action']) {
+            $name .= '-' . $pageRow['action'];
+        }
         $where = array(
             'section'   => $pageRow->section,
             'module'    => $pageRow->module,
             'type'      => 'page',
-            'name'      => $pageRow->id
+            'name'      => $name
         );
         $resourceRow = $modelResource->select($where)->current();
-        if (!$resourceRow) {
-            //trigger_error('Resource for page ' . $pageRow->id
-            //. ' is not found, perhaps it is deleted by'
-            //. ' its parent page resource.',
-            //E_USER_NOTICE);
-            return;
+        if ($resourceRow) {
+            $resourceRow->delete();
         }
-        $resourceRows = $modelResource->getChildren($resourceRow, array('id'));
-        $resources = array();
-        foreach ($resourceRows as $row) {
-            $resources[] = $row->id;
-        }
-        $modelRule->delete(array(
-            'section'   => $pageRow->section,
-            'resource'  => $resources,
-        ));
-        $modelResource->remove($resourceRow, true);
-
-        //$pageRow->delete();
 
         return true;
     }

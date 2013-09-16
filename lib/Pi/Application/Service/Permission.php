@@ -105,7 +105,7 @@ class Permission extends AbstractService
      */
     public function model()
     {
-        return Pi::model('perm_rule');
+        return Pi::model('permission_rule');
     }
 
     /**
@@ -263,6 +263,49 @@ class Permission extends AbstractService
         }
 
         return $result;
+    }
+
+    /**
+     * Check if a page is accessible
+     *
+     * @param array $route
+     * @param null|int|string|string[]  $uid Int for uid and string for role
+     *
+     * @return bool|null
+     */
+    public function pageAccess(array $route, $uid = null)
+    {
+        $access = null;
+
+        $section = $module = $controller = $action = null;
+        extract($route);
+        $section = $section ?: $this->getSection();
+        $type = 'page';
+        $pages = Pi::registry('permission_resource')->read(
+            $section,
+            $module,
+            $type
+        );
+        // Page resource
+        $resource = '';
+        $key = sprintf('%s-%s-%s', $module, $controller, $action);
+        if (isset($pages[$key])) {
+            $resource = $pages[$key];
+        } else {
+            $key = sprintf('%s-%s', $module, $controller);
+            if (isset($pages[$key])) {
+                $resource = $pages[$key];
+            }
+        }
+        if ($resource) {
+            $access = $this->hasPermission(array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => $resource,
+            ), $uid);
+        }
+
+        return $access;
     }
 
     /**

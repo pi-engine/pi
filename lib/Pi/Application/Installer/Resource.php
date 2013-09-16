@@ -121,11 +121,15 @@ class Resource implements ListenerAggregateInterface
             if (!preg_match('/^([^\.]+)\.php$/', $fileName, $matches)) {
                 continue;
             }
-            $resource = strtolower($matches[1]);
-            if ($resource == 'config' || $resource == 'abstractresource') {
+            $resource = $matches[1];
+            if ($resource == 'Config' || $resource == 'AbstractResource') {
                 continue;
             }
-            $resourceList[] = $resource;
+            $resourceName = strtolower(implode(
+                '_',
+                preg_split('/(?=[A-Z])/', $resource)
+            ));
+            $resourceList[] = $resourceName;
         }
         $resourceList[] = 'config';
 
@@ -160,16 +164,24 @@ class Resource implements ListenerAggregateInterface
         $e                  = $this->event;
         $config             = $e->getParam('config');
         $moduleDirectory    = $e->getParam('directory');
+
+        $resourceName = str_replace(
+            ' ',
+            '',
+            ucwords(str_replace('_', ' ', $resource))
+        );
+
+        //$resourceName = ucfirst($resource);
         $resourceClass      = sprintf(
             'Module\\%s\Installer\Resource\\%s',
             ucfirst($moduleDirectory),
-            ucfirst($resource)
+            $resourceName
         );
         if (!class_exists($resourceClass)) {
             $resourceClass = sprintf(
                 '%s\Resource\\%s',
                 __NAMESPACE__,
-                ucfirst($resource)
+                $resourceName
             );
         }
         if (!class_exists($resourceClass)) {

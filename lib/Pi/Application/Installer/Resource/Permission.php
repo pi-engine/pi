@@ -145,7 +145,7 @@ class Permission extends AbstractResource
         $config = $this->canonize($this->config);
 
         // Add resources
-        $model = Pi::model('perm_resource');
+        $model = Pi::model('permission_resource');
         foreach ($config as $section => $resourceList) {
             foreach ($resourceList as $name => $resource) {
                 $row = $model->createRow($resource);
@@ -180,7 +180,7 @@ class Permission extends AbstractResource
 
         // Update resources
         $config = $this->canonize($this->config);
-        $model = Pi::model('perm_resource');
+        $model = Pi::model('permission_resource');
         $rowset = $model->select(array(
             'module'    => $module,
             'type'      => array('system', 'callback'),
@@ -259,11 +259,11 @@ class Permission extends AbstractResource
     {
         $module = $this->event->getParam('module');
 
-        Pi::model('perm_resource')->delete(array(
+        Pi::model('permission_resource')->delete(array(
             'module'    => $module,
             'type'      => array('system', 'callback')
         ));
-        Pi::model('perm_rule')->delete(array('module' => $module));
+        Pi::model('permission_rule')->delete(array('module' => $module));
 
         Pi::registry('moduleperm')->flush();
         Pi::registry('resource')->flush();

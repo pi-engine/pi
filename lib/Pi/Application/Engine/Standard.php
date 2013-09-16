@@ -177,9 +177,14 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
+                $resourceName = str_replace(
+                    ' ',
+                    '',
+                    ucwords(str_replace('_', ' ', $resource))
+                );
                 $class = sprintf(
                     'Pi\Application\Bootstrap\Resource\\%s',
-                    ucfirst($resource)
+                    $resourceName
                 );
                 $resourceInstance = new $class($this, $options);
 

@@ -54,10 +54,9 @@ class Permission extends AbstractResource
         if ($e->isError()) {
             return;
         }
-
-        $access = true;
-
-        $denied = null;
+        if (empty($this->options['check_page'])) {
+            return;
+        }
         $section = $this->engine->section();
         $routeMatch = $e->getRouteMatch();
         $route = array(
@@ -66,6 +65,13 @@ class Permission extends AbstractResource
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
         );
+        $access = Pi::service('permission')->pageAccess($route);
+        if (false === $access) {
+            $this->denyAccess($e);
+        }
+
+        return;
+
         //$this->aclHandler->setModule($route['module']);
 
         // Check for admin access, which requires loosen permissions
@@ -170,7 +176,7 @@ class Permission extends AbstractResource
      */
     public function checkModule(MvcEvent $e)
     {
-        d(__METHOD__);
+        //d(__METHOD__);
         $module = $e->getRouteMatch()->getParam('module');
         $access = Pi::service('permission')->modulePermission($module);
         if (!$access) {

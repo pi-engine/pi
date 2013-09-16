@@ -36,10 +36,11 @@ class Service
     public function load($name, $options = array())
     {
         $key = strtolower($name);
+        $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         if (!isset(static::$services[$key])) {
             static::$services[$key] = false;
             // Loads service
-            $class = sprintf('%s\Service\\%s', __NAMESPACE__, ucfirst($name));
+            $class = sprintf('%s\Service\\%s', __NAMESPACE__, $name);
             if (!class_exists($class)) {
                 trigger_error(
                     sprintf('Service class "%s" was not loaded.', $class),

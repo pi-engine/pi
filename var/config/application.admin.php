@@ -21,6 +21,7 @@ $config['resource']['i18n'] = array(
     ),
 );
 
+/*
 // Permission ACL
 $config['resource']['acl'] = array(
     // Default access perm in case not defined
@@ -32,6 +33,7 @@ $config['resource']['acl'] = array(
     // Admin entries
     'entry'         => array('index', 'dashboard'),
 );
+*/
 
 // Permission check
 $config['resource']['permission'] = array(
@@ -65,7 +67,7 @@ $config['resource']['audit'] = array(
 );
 
 // Admin mode detection
-$config['resource']['adminmode'] = array();
+$config['resource']['admin_mode'] = array();
 
 // Session settings
 $config['resource']['session'] = array(

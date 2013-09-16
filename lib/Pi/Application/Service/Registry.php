@@ -67,13 +67,14 @@ class Registry extends AbstractService
      */
     protected function loadHandler($name, $module = null)
     {
+        $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         if (empty($module)) {
-            $class = sprintf('Pi\Application\Registry\\%s', ucfirst($name));
+            $class = sprintf('Pi\Application\Registry\\%s', $name);
         } else {
             $class = sprintf(
                 'Module\\%s\Registry\\%s',
                 ucfirst($module),
-                ucfirst($name)
+                $name
             );
         }
         $handler = new $class;
