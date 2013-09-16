@@ -62,6 +62,13 @@ return array(
             'check_page'    => false,
         ),
 
+        'permission'    => array(
+            // Default access perm in case not defined: true for allowed, false for denied
+            //'default_allow' => true,
+            // If check page access
+            'check_page'    => false,
+        ),
+
         // Instantiate render cache manager
         'render'     => array(
             // Enable page caching, default as false

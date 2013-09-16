@@ -21,6 +21,11 @@ use Zend\Mvc\MvcEvent;
 abstract class ActionController extends AbstractActionController
 {
     /**
+     * @var string
+     */
+    protected $eventIdentifier = 'PI_CONTROLLER';
+
+    /**
      * Whether to skip execution of action
      *
      * @var bool|null

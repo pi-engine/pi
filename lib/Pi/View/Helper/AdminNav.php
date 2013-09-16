@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Pi\Acl\Acl;
+//use Pi\Acl\Acl;
 use Pi\Application\Bootstrap\Resource\AdminMode;
 use Zend\View\Helper\AbstractHelper;
 
@@ -77,12 +77,20 @@ class AdminNav extends AbstractHelper
             AdminMode::MODE_ADMIN,
             AdminMode::MODE_SETTING
         ) as $type) {
+            if (Pi::service('permission')->isRoot()) {
+                $allowed = $moduleList;
+            } else {
+                $allowed = Pi::service('permission')->moduleList($type);
+                $allowed = array_intersect($allowed, $moduleList);
+            }
+            /*
             $allowed = Pi::registry('moduleperm')->read($type);
             if (null === $allowed || !is_array($allowed)) {
                 $allowed = $moduleList;
             } else {
                 $allowed = array_intersect($allowed, $moduleList);
             }
+            */
             if ($allowed) {
                 /**#@+
                  * Check access permission to managed components
@@ -139,7 +147,12 @@ class AdminNav extends AbstractHelper
         $navigation = '';
         // Get manage mode navigation
         if (AdminMode::MODE_SETTING == $mode && 'system' == $module) {
-            $managedAllowed = Pi::registry('moduleperm')->read($mode);
+            //$managedAllowed = Pi::registry('moduleperm')->read($mode);
+            if (Pi::service('permission')->isRoot()) {
+                $managedAllowed = null;
+            } else {
+                $managedAllowed = Pi::service('permission')->moduleList($mode);
+            }
 
             $routeMatch = Pi::engine()->application()->getRouteMatch();
             $params = $routeMatch->getParams();
@@ -170,9 +183,16 @@ class AdminNav extends AbstractHelper
             $navigation = $this->view->navigation($navConfig);
         // Get operation mode navigation
         } elseif (AdminMode::MODE_ADMIN == $mode) {
+            /*
             $adminAllowed = Pi::registry('moduleperm')->read($mode);
             if (null === $adminAllowed || !is_array($adminAllowed)) {
                 $adminAllowed = array_keys($modules);
+            }
+            */
+            if (Pi::service('permission')->isRoot()) {
+                $adminAllowed = array_keys($modules);
+            } else {
+                $adminAllowed = Pi::service('permission')->moduleList($mode);
             }
 
             // Build the navigation
@@ -235,7 +255,13 @@ class AdminNav extends AbstractHelper
             $navigation = $this->view->navigation($navConfig);
         // Module operations
         } elseif (AdminMode::MODE_ADMIN == $mode) {
-            $modulesAllowed = Pi::registry('moduleperm')->read($mode);
+            //$modulesAllowed = Pi::registry('moduleperm')->read($mode);
+            if (Pi::service('permission')->isRoot()) {
+                $modulesAllowed = null;
+            } else {
+                $modulesAllowed = Pi::service('permission')->moduleList($mode);
+            }
+
             if (null === $modulesAllowed
                 || in_array($module, $modulesAllowed)
             ) {

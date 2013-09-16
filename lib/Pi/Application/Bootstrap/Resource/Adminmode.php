@@ -14,14 +14,14 @@ use Pi\Acl\Acl as AclManager;
 use Zend\Mvc\MvcEvent;
 
 /**
- * Admin operion mode hanlding
+ * Admin operation mode handling
  *
  * @see Pi\Application\Bootstrap\Resource\AdminMode
  * @see Pi\View\Helper\AdminNav
  * @see Module\System\Controller\Admin\PermController
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Adminmode extends AbstractResource
+class AdminMode extends AbstractResource
 {
     /**#@+
      * Operation modes

@@ -16,10 +16,15 @@ use Pi\Application\AbstractApi;
 /**
  * Permission handling service
  *
+ * Default roles:
+ *
+ * - Front: guest, member, admin
+ * - Admin: webmaster
+ *
  * APIs:
  *
  * - grantPermission($role, array $permissions)
- * - revokePermission($role, array $permissions = array())
+ * - revokePermission($role, array $permission = array())
  * - getPermission($role, array $condition = array())
  * - hasPermission($permission, $uid = null)
  * - inheritPermission($role, $fromRole)
@@ -38,19 +43,31 @@ use Pi\Application\AbstractApi;
  */
 class Permission extends AbstractService
 {
+    /** @var int Root user id */
+    const ROOT_UID = 1;
+
     /**
      * Application section: front, admin
      * @var string
      */
     protected $section;
 
+    /**
+     * Predefined roles
+     * @var array
+     */
     protected $roles = array(
         'front' => array(
             'admin' => 'admin',
         ),
         'admin' => array(
-            'admin' => 'root',
+            'admin' => 'webmaster',
         ),
+    );
+
+    /** @var array Rule columns */
+    protected $columns = array(
+        'section', 'module', 'resource', 'item'
     );
 
     /**
@@ -88,33 +105,31 @@ class Permission extends AbstractService
      */
     public function model()
     {
-        return Pi::model('permission');
+        return Pi::model('perm_rule');
     }
 
     /**
      * Grant permission to a role
      *
      * @param string $role
-     * @param array $permission Perm specs: section, module, resource, item
+     * @param array $resource Specs: section, module, resource, item
      *
      * @return bool
      */
-    public function grantPermission($role, array $permission)
+    public function grantPermission($role, array $resource)
     {
         $result = true;
-        if (!isset($permission['section'])) {
-            $permission['section'] = $this->getSection();
-        }
-        $permission['role'] = $role;
+        $rule = $this->canonizeRule($resource);
+        $rule['role'] = $role;
         try {
-            $rowset = $this->model()->select($permission);
+            $rowset = $this->model()->select($rule);
         } catch (\Exception $e) {
             return false;
         }
         if ($rowset->count()) {
             return true;
         }
-        $row = $this->model()->createRow($permission);
+        $row = $this->model()->createRow($rule);
         try {
             $row->save();
         } catch (\Exception $e) {
@@ -130,19 +145,17 @@ class Permission extends AbstractService
      * All permissions will be revoked if no permission is specified
      *
      * @param string $role
-     * @param array $permission
+     * @param array $resource
      *
      * @return bool
      */
-    public function revokePermission($role, array $permission = array())
+    public function revokePermission($role, array $resource = array())
     {
         $result = true;
-        if (!isset($permission['section'])) {
-            $permission['section'] = $this->getSection();
-        }
-        $permission['role'] = $role;
+        $rule = $this->canonizeRule($resource);
+        $rule['role'] = $role;
         try {
-            $this->model()->delete($permission);
+            $this->model()->delete($rule);
         } catch (\Exception $e) {
             return false;
         }
@@ -153,27 +166,18 @@ class Permission extends AbstractService
     /**
      * Check if a user or role(s) has permission
      *
-     * @param array $permission
-     * @param null|int|string|string[]  $uid
+     * @param array $resource
+     * @param null|int|string|string[]  $uid Int for uid and string for role
      *
      * @return bool
      */
-    public function hasPermission(array $permission, $uid = null)
+    public function hasPermission(array $resource, $uid = null)
     {
-        if (null === $uid) {
-            $uid = Pi::user()->getIndentity();
-        }
-        if (is_numeric($uid)) {
-            $roles = $this->getRoles($uid);
-        } else {
-            $roles = (array) $uid;
-        }
-        $permission['role'] = $roles;
-        if (!isset($permission['section'])) {
-            $permission['section'] = $this->getSection();
-        }
+        $roles = $this->canonizeRole($uid);
+        $rule = $this->canonizeRule($resource);
+        $rule['role'] = $roles;
         $select = $this->model->select();
-        $select->where($permission)->limit(1);
+        $select->where($rule)->limit(1);
         $rowset = $this->model()->selectWith($select);
         $result = $rowset->count() ? true : false;
 
@@ -181,9 +185,9 @@ class Permission extends AbstractService
     }
 
     /**
-     * Get permissions of a role subject to conditions
+     * Get permitted resources of a role subject to conditions
      *
-     * @param string $role
+     * @param null|int|string|string[] $role Int for uid and string for role
      * @param array $condition
      *
      * @return array
@@ -191,17 +195,71 @@ class Permission extends AbstractService
     public function getPermission($role, array $condition = array())
     {
         $result = array();
-        if (!isset($condition['section'])) {
-            $condition['section'] = $this->getSection();
-        }
-        $condition['role'] = $role;
+        $condition = $this->canonizeRule($condition);
+        $condition['role'] = $this->canonizeRole($role);
         $rowset = $this->model()->select($condition);
         foreach ($rowset as $row) {
             $result[] = array(
                 'module'    => $row['module'],
                 'resource'  => $row['resource'],
-                'item'      => $row['item'],
+                //'item'      => $row['item'],
             );
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check permission for a module front
+     *
+     * @param string $module
+     * @param null|int|string|string[]  $uid Int for uid and string for role
+     * @param string $permission
+     *      Permission type: front - access, admin; admin - manage, admin
+     * @param string $section
+     *
+     * @return bool
+     */
+    public function modulePermission(
+        $module,
+        $uid        = null,
+        $permission = '',
+        $section    = ''
+    ) {
+        $permission = $permission ?: 'access';
+        $section = $section ?: $this->getSection();
+        $resource = array(
+            'section'   => $section,
+            'module'    => $module,
+            'resource'  => 'module-' . $permission
+        );
+        $result = $this->hasPermission($resource, $uid);
+
+        return $result;
+    }
+
+    /**
+     * Get front permitted module list
+     *
+     * @param string $permission
+     *      Permission type: front - access, admin; admin - manage, admin
+     * @param string $section
+     * @param null|int|string|string[]  $uid Int for uid and string for role
+     *
+     * @return string[]
+     */
+    public function moduleList($permission, $section = '', $uid = null)
+    {
+        $result = array();
+        $permission = $permission ?: 'access';
+        $section = $section ?: $this->getSection();
+        $condition = array(
+            'section'   => $section,
+            'resource'  => 'module-' . $permission
+        );
+        $rules = $this->getPermission($uid, $condition);
+        foreach ($rules as $rule) {
+            $result[] = $rule['module'];
         }
 
         return $result;
@@ -260,13 +318,14 @@ class Permission extends AbstractService
      *
      * @param string $module
      * @param int|null $uid
+     * @param string $section
      *
      * @return bool
      */
-    public function isAdmin($module = '', $uid = null)
+    public function isAdmin($module = '', $uid = null, $section = '')
     {
         $result = false;
-        $section = $this->getSection();
+        $section = $section ?: $this->getSection();
         $uid = null !== $uid ? (int) $uid : Pi::user()->getIndentity();
         $roles = $this->getRoles($uid);
         if (in_array($this->roles[$section]['admin'], $roles)) {
@@ -280,5 +339,65 @@ class Permission extends AbstractService
         }
 
         return $result;
+    }
+
+    /**
+     * Check if user is root user
+     *
+     * @param null|int $uid
+     *
+     * @return bool
+     */
+    public function isRoot($uid = null)
+    {
+        $uid = null !== $uid ? (int) $uid : Pi::user()->getIndentity();
+        $result = static::ROOT_UID === $uid ? true : false;
+
+        return $result;
+    }
+
+    /**
+     * Canonize role(s)
+     *
+     * @param null|int|string|string[] $role Int for uid and string for role
+     *
+     * @return string[]
+     */
+    public function canonizeRole($role)
+    {
+        // uid
+        if (null === $role) {
+            $role = Pi::user()->getIndentity();
+        }
+        // uid => roles
+        if (is_numeric($role)) {
+            $roles = $this->getRoles($role);
+        // role
+        } else {
+            $roles = (array) $role;
+        }
+
+        return $roles;
+    }
+
+    /**
+     * Canonize rule data
+     *
+     * @param array $rule
+     *
+     * @return array
+     */
+    protected function canonizeRule(array $rule)
+    {
+        foreach ($rule as $key => $val) {
+            if (!in_array($key, $this->columns)) {
+                unset($rule[$key]);
+            }
+        }
+        if (!isset($rule['section'])) {
+            $rule['section'] = $this->getSection();
+        }
+
+        return $rule;
     }
 }

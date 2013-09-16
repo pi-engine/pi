@@ -45,7 +45,7 @@ class ErrorStrategy extends AbstractListenerAggregate
     {
         $sharedEvents = $events->getSharedManager();
         $sharedEvents->attach(
-            'Zend\Stdlib\DispatchableInterface',
+            'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'prepareErrorViewModel'),
             -85

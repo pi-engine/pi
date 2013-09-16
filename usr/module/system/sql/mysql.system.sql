@@ -558,21 +558,36 @@ CREATE TABLE `{core.user_role}` (
   UNIQUE KEY `section_user` (`section`, `uid`)
 );
 
-# Permission rules
-CREATE TABLE `{core.permission}` (
+# Permission resources
+CREATE TABLE `{core.perm_resource}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
-  -- Resource name
+  `section`         varchar(64)     NOT NULL    default '',
+  `module`          varchar(64)     NOT NULL    default '',
+  -- Source name: page - <module-controller>; specific - <module-resource>
+  `name`            varchar(64)     NOT NULL    default '',
+  `title`           varchar(255)    NOT NULL    default '',
+  -- system - created on module installation; page - for page; callback
+  `type`            varchar(64)     NOT NULL    default '',
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `resource_name` (`section`, `module`, `name`)
+);
+
+# Permission rules
+CREATE TABLE `{core.perm_rule}` (
+  `id`              int(10)         unsigned    NOT NULL auto_increment,
+  -- Resource name or id
   `resource`        varchar(64)     NOT NULL    default '',
-  `role`            varchar(64)     NOT NULL,
-  -- Resource item name or id
-  `item`            varchar(64)     default NULL,
+  -- Resource item name or id, optional
+  #`item`            varchar(64)     default NULL,
   `module`          varchar(64)     NOT NULL    default '',
   `section`         enum('front', 'admin')      NOT NULL,
+  `role`            varchar(64)     NOT NULL,
   -- Permission value: 0 - allowed; 1 - denied
   #`deny`            tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   KEY `item` (`item`),
   KEY `role` (`role`),
-  KEY `section_module_perm` (`section`, `module`, `resource`, `item`)
+  KEY `section_module_perm` (`section`, `module`, `resource`)
 );

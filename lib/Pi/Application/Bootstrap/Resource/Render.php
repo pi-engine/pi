@@ -67,13 +67,13 @@ class Render extends AbstractResource
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
             $sharedEvents->attach(
-                'controller',
+                'PI_CONTROLLER',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'checkAction'),
                 999
             );
             $sharedEvents->attach(
-                'controller',
+                'PI_CONTROLLER',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'saveAction'),
                 -999
@@ -111,7 +111,7 @@ class Render extends AbstractResource
      */
     public function checkPage(MvcEvent $e)
     {
-        // Skip cache if error occured
+        // Skip cache if error occurred
         if ($e->isError()
             // Skip cache if request method is not GET
             || !$e->getRequest()->isGet()
@@ -158,7 +158,7 @@ class Render extends AbstractResource
      */
     public function savePage(MvcEvent $e)
     {
-        // Skip cache if error occured
+        // Skip cache if error occurred
         if ($e->isError()) {
             return;
         }
@@ -188,7 +188,7 @@ class Render extends AbstractResource
      */
     public function checkAction(MvcEvent $e)
     {
-        // Skip cache if error occured
+        // Skip cache if error occurred
         if ($e->isError()
             // Skip cache if request method is not GET
             || !$e->getRequest()->isGet()
@@ -242,7 +242,7 @@ class Render extends AbstractResource
      */
     public function saveAction(MvcEvent $e)
     {
-        // Skip cache if error occured
+        // Skip cache if error occurred
         if ($e->isError()) {
             return;
         }

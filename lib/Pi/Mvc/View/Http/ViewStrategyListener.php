@@ -64,7 +64,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Canonize ViewModel for action
         $sharedEvents->attach(
-            'Zend\Stdlib\DispatchableInterface',
+            'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'canonizeActionResult'),
             -70
@@ -81,7 +81,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Pi\Mvc\View\Http\ErrorStrategy::prepareErrorViewModel()
         // whose priority is --85
         $sharedEvents->attach(
-            'Zend\Stdlib\DispatchableInterface',
+            'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'injectTemplate'),
             -89

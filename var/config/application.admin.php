@@ -33,6 +33,19 @@ $config['resource']['acl'] = array(
     'entry'         => array('index', 'dashboard'),
 );
 
+// Permission check
+$config['resource']['permission'] = array(
+    // Default access perm in case not defined: true for allowed, false for denied
+    //'default_allow' => false,
+    // If check page access
+    'check_page'    => true,
+    // Managed components
+    'component'     => array('block', 'config', 'page', 'resource', 'event'),
+    // Admin entrances
+    'entrance'      => array('index', 'dashboard'),
+);
+
+
 // Render caching
 $config['resource']['render'] = false;
 

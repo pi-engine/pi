@@ -83,7 +83,7 @@ class Block extends AbstractRegistry
             $where = array('resource' => array_keys($blocksId));
             $blocksDenied = $acl->getResources($where, false);
             */
-            $result = Pi::permission()->getPermissions($role, array(
+            $result = Pi::permission()->getPermission($role, array(
                 'resource'  => 'block',
                 'item'      => array_keys($blocksId)
             ));

@@ -24,8 +24,8 @@ class Resource extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $ancestors = array();
-        $model = Pi::model('acl_resource')->setSection($options['section']);
+        $result = array();
+        $model = Pi::model('perm_resource')->setSection($options['section']);
         $where = array('section' => $options['section']);
         $where['module'] = $options['module'];
         if (null !== $options['type']) {
@@ -36,15 +36,10 @@ class Resource extends AbstractRegistry
             return $ancestors;
         }
         foreach ($rowset as $row) {
-            $ancestors[$row->name] = $model->getAncestors($row, 'id');
-            /*
-            if (!empty($options['self'])) {
-                $ancestors[$row->name][] = $row->id;
-            }
-            */
+            $result[$row->name] = $row->toArray();
         }
 
-        return $ancestors;
+        return $result;
     }
 
     /**
