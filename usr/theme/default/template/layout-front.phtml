@@ -237,13 +237,11 @@ $this->js($this->assetLocale('rtl.js'));
             <div class="span12 pi-footer-copyright">
                 <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="pi-divider">|</span>
                 <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="pi-divider">|</span>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a><span class="pi-divider">|</span>
+                <span title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></span>
             </div>
         </div>    
         </div>
-        <!-- Show execution time -->
-        <?php $time = microtime(true) - Pi::startTime(); ?>
-        <span style="font-size: 80%;" title="<?php _e('Execution time'); ?>"><?php echo $time; ?></span>
     </div>
     <?php echo $this->assemble('footScript', 4); ?>
 </body>
