@@ -23,13 +23,13 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $this->addUser();
-        $this->timeline();
-        $this->timelineLog();
-        $this->group();
-        $this->activity();
-        $this->quickLink();
-        $this->activeUser();
+//        $this->addUser();
+//        $this->timeline();
+//        $this->timelineLog();
+//        $this->group();
+//        $this->activity();
+//        $this->quickLink();
+//        $this->activeUser();
         $this->userLog();
     }
 
@@ -448,9 +448,9 @@ EOT;
                 Pi::user()->data()->set(
                     $uid,
                     $name = 'time_last_login',
-                    $value = time(),
+                    $value = '',
                     $module = 'user',
-                    $time = null
+                    $time = time() - 3600 * $uid
                 );
 
                 Pi::user()->data()->set(
