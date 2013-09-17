@@ -79,8 +79,6 @@ class IndexController extends ActionController
             'users'       => array_values($users),
             'paginator'   => $paginator,
             'page'        => $page,
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
             'count'       => $count,
             'condition'   => $condition,
         );
@@ -143,8 +141,6 @@ class IndexController extends ActionController
             'users'       => array_values($users),
             'paginator'   => $paginator,
             'page'        => $page,
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
             'count'       => $count,
             'condition'   => $condition,
         );
@@ -205,8 +201,6 @@ class IndexController extends ActionController
             'users'       => array_values($users),
             'paginator'   => $paginator,
             'page'        => $page,
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
             'count'       => $count,
             'condition'   => $condition,
         );
@@ -492,7 +486,7 @@ class IndexController extends ActionController
      */
     public function activateUserAction()
     {
-        $uids = _post('uids');
+        $uids = _post('ids');
 
         $result = array(
             'status'  => 0,
@@ -522,6 +516,20 @@ class IndexController extends ActionController
 
         return $return;
 
+    }
+
+    /**
+     * Get roles for ajax
+     *
+     * @return array
+     */
+    public function getRolesAction()
+    {
+        $data = array(
+            'front_roles' => $this->getRoleSelectOptions(),
+            'admin_roles' => $this->getRoleSelectOptions('admin'),
+        );
+        return $data;
     }
 
     /**
