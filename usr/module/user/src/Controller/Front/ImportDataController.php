@@ -30,6 +30,7 @@ class ImportDataController extends ActionController
         $this->activity();
         $this->quickLink();
         $this->activeUser();
+        $this->userLog();
     }
 
     protected function addUser()
@@ -65,13 +66,14 @@ class ImportDataController extends ActionController
                 'fullname'      => ucfirst($prefix) . ' User ' . $i,
                 'gender'        => $genderMap[$i % 3],
                 'birthdate'     => (1900 + $i % 100) . '-'
-                    . ($i % 12 + 1) . '-' . ($i % 30 + 1),
+                . ($i % 12 + 1) . '-' . ($i % 30 + 1),
                 'location'      => 'From ' . $i,
                 'signature'     => 'Signature of user ' . $i,
                 'bio'           => 'User bio: ' . $i,
 
                 'language'      => $languageMap[$i % 4],
                 'demo_sample'   => 'Demo Sample: ' . $i,
+                'ip_register'   => sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
 
                 'address'       => array(
                     'country'   => $countryMap[$i % 4],
@@ -427,5 +429,38 @@ EOT;
         Pi::model('account', 'user')->delete(array('id > ?' => 10));
         Pi::model('profile', 'user')->delete(array('uid > ?' => 10));
         Pi::model('compound', 'user')->delete(array('uid > ?' => 10));
+    }
+
+    protected function userLog()
+    {
+        $model = $this->getModel('account');
+
+        for ($uid = 1; $uid < 100; $uid++) {
+            if ($model->find($uid, 'id')) {
+                Pi::user()->data()->set(
+                    $uid,
+                    $name = 'ip_login',
+                    $value = sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
+                    $module = 'user',
+                    $time = null
+                );
+
+                Pi::user()->data()->set(
+                    $uid,
+                    $name = 'time_last_login',
+                    $value = time(),
+                    $module = 'user',
+                    $time = null
+                );
+
+                Pi::user()->data()->set(
+                    $uid,
+                    $name = 'login_times',
+                    $value = rand(0, 400),
+                    $module = 'user',
+                    $time = null
+                );
+            }
+        }
     }
 }
