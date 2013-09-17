@@ -783,7 +783,7 @@ class User extends AbstractApi
         if (!$row) {
             return false;
         }
-        if (!(int) $row['time_deleted'] > 0) {
+        if ((int) $row['time_deleted'] > 0) {
             return null;
         }
         $row->assign(array(
