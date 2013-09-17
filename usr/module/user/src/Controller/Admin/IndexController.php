@@ -28,7 +28,7 @@ class IndexController extends ActionController
      *
      * @return array|void
      */
-    public function indexAction()
+    public function allAction()
     {
         $page   = (int) $this->params('p', 1);
         $limit  = 10;
@@ -61,7 +61,7 @@ class IndexController extends ActionController
         $users = $this->getUser($uids, 'all');
 
         // Set paginator
-        $paginatorOption = array(
+        $paginator = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
@@ -73,17 +73,20 @@ class IndexController extends ActionController
             }
         }
 
-        $paginator = $this->setPaginator($paginatorOption, $params);
 
-        $this->view()->assign(array(
-            'users'      => $users,
-            'paginator'  => $paginator,
-            'page'       => $page,
-            'front_role' => $this->getRoleSelectOptions(),
-            'admin_role' => $this->getRoleSelectOptions('admin'),
-            'count'      => $count,
-            'condition'  => $condition,
-        ));
+
+        $data = array(
+            'users'       => array_values($users),
+            'paginator'   => $paginator,
+            'page'        => $page,
+            'front_roles' => $this->getRoleSelectOptions(),
+            'admin_roles' => $this->getRoleSelectOptions('admin'),
+            'count'       => $count,
+            'condition'   => $condition,
+        );
+
+        return $data;
+
     }
 
     /**
@@ -124,7 +127,7 @@ class IndexController extends ActionController
         $users = $this->getUser($uids, 'all');
 
         // Set paginator
-        $paginatorOption = array(
+        $paginator = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
@@ -136,17 +139,17 @@ class IndexController extends ActionController
             }
         }
 
-        $paginator = $this->setPaginator($paginatorOption, $params);
+        $data = array(
+            'users'       => array_values($users),
+            'paginator'   => $paginator,
+            'page'        => $page,
+            'front_roles' => $this->getRoleSelectOptions(),
+            'admin_roles' => $this->getRoleSelectOptions('admin'),
+            'count'       => $count,
+            'condition'   => $condition,
+        );
 
-        $this->view()->assign(array(
-            'users'      => $users,
-            'paginator'  => $paginator,
-            'page'       => $page,
-            'front_role' => $this->getRoleSelectOptions(),
-            'admin_role' => $this->getRoleSelectOptions('admin'),
-            'count'      => $count,
-            'condition'  => $condition,
-        ));
+        return $data;
     }
 
     /**
@@ -186,7 +189,7 @@ class IndexController extends ActionController
         $users = $this->getUser($uids, 'all');
 
         // Set paginator
-        $paginatorOption = array(
+        $paginator = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
@@ -198,17 +201,18 @@ class IndexController extends ActionController
             }
         }
 
-        $paginator = $this->setPaginator($paginatorOption, $params);
+        $data = array(
+            'users'       => array_values($users),
+            'paginator'   => $paginator,
+            'page'        => $page,
+            'front_roles' => $this->getRoleSelectOptions(),
+            'admin_roles' => $this->getRoleSelectOptions('admin'),
+            'count'       => $count,
+            'condition'   => $condition,
+        );
 
-        $this->view()->assign(array(
-            'users'      => $users,
-            'paginator'  => $paginator,
-            'page'       => $page,
-            'front_role' => $this->getRoleSelectOptions(),
-            'admin_role' => $this->getRoleSelectOptions('admin'),
-            'count'      => $count,
-            'condition'  => $condition,
-        ));
+        return $data;
+
     }
 
     /**
@@ -322,7 +326,7 @@ class IndexController extends ActionController
         $users = $this->getUser($uids, 'search');
 
         // Set paginator
-        $paginatorOption = array(
+        $paginator = array(
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
@@ -334,17 +338,17 @@ class IndexController extends ActionController
             }
         }
 
-        $paginator = $this->setPaginator($paginatorOption, $params);
+        $data = array(
+            'users'       => array_values($users),
+            'paginator'   => $paginator,
+            'page'        => $page,
+            'front_roles' => $this->getRoleSelectOptions(),
+            'admin_roles' => $this->getRoleSelectOptions('admin'),
+            'count'       => $count,
+            'condition'   => $condition,
+        );
 
-        $this->view()->assign(array(
-            'users'      => $users,
-            'paginator'  => $paginator,
-            'page'       => $page,
-            'front_role' => $this->getRoleSelectOptions(),
-            'admin_role' => $this->getRoleSelectOptions('admin'),
-            'count'      => $count,
-            'condition'  => $condition,
-        ));
+        return $data;
 
         $this->view()->setTemplate('index-search-list');
     }

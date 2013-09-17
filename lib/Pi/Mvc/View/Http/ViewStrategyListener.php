@@ -228,16 +228,25 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 $e->setResult($viewModel);
 
                 return;
+            }
+        }
 
-            // Set type to json if no template and no type specified
-            } elseif (!$this->type && '__NULL__' == $template) {
+        // Set type to json if no template is specified
+        if (!$this->type && $result) {
+            $skip = false;
+            if (($result instanceof ViewModel
+                    && $result->getTemplate()
+                    && $result->getTemplate() != '__NULL__'
+                )
+                || $result instanceof JsonModel
+                || $result instanceof FeedModel
+            ) {
+                $skip = true;
+            }
+            if (!$skip) {
                 $this->type = 'json';
                 Pi::service('log')->mute();
             }
-        // Set type to json if no ViewModel is set
-        } elseif ($result && (is_array($result) || is_scalar($result))) {
-            $this->type = 'json';
-            Pi::service('log')->mute();
         }
 
         // Cast controller view model to result ViewModel
@@ -262,8 +271,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
                         }
                         if (ArrayUtils::hasStringKeys($result, true)) {
                             $variables = array_merge_recursive(
-                                $variables,
-                                $result
+                                (array) $variables,
+                                (array) $result
                             );
                         }
                     }

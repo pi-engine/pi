@@ -1,156 +1,238 @@
-<?php include "_user-nav.phtml";?>
-<div ng-controller="userListCtr" ng-app="userListModule">
-    <div class="alert alert-success" ng-if="alert" 
-         ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
-        <button type="button" class="close" ng-click="clearAlert()">×</button>
-        {{alert.message}}
-    </div>
-    <form class="form-inline user-list-form">
-        <select class="input-medium" ng-model="active">
-            <option value=""><?php _e('Active State'); ?></option>
-            <option value="active"><?php _e('Enable'); ?></option>
-            <option value="inactive"><?php _e('Disable'); ?></option>
-        </select>
-        <select class="input-medium" ng-model="enable">
-            <option value=""><?php _e('Enable State'); ?></option>
-            <option value="enable"><?php _e('Enable'); ?></option>
-            <option value="disable"><?php _e('Disable'); ?></option>
-        </select>
-        <select class="input-medium" ng-model="front_role" ng-options="key as value for (key, value) in frontRoles">
-            <option value=""><?php _e('Front role'); ?></option>
-        </select>
-        <select class="input-medium" ng-model="admin_role" ng-options="key as value for (key, value) in adminRoles">
-            <option value=""><?php _e('Admin role'); ?></option>
-        </select>
-        <select class="input-medium" ng-model="register_date">
-            <option value=""><?php _e('Register date'); ?></option>
-            <option value="today"><?php _e('Today'); ?></option>
-            <option value="last_week"><?php _e('Last week'); ?></option>
-            <option value="last-month"><?php _e('Last month'); ?></option>
-            <option value="last_3_month"><?php _e('Last 3 month'); ?></option>
-            <option value="last_6_month"><?php _e('Last 6 month'); ?></option>
-            <option value="last_year"><?php _e('Last year');?></option>
-        </select>
-        <input type="text" placeholder="<?php _e('Username/Email'); ?>" class="input-medium" ng-model="search">
-        <button class="btn btn-primary" ng-click="searchAction()"><?php _e('Apply'); ?></button>
-    </form>
-    <div class="clearfix user-list-action">
-        <strong class="pull-right">{{count}} <?php _e('members'); ?></strong>
-        <input type="checkbox" style="margin-right: 6px;"
-               ng-model="allChecked" ng-click="markAll(allChecked)">
-        <div class="btn-group">
-            <button class="btn">
-                <i class="icon-ok-sign"></i>
-                <?php _e('Activate'); ?>
-            </button>
-            <button class="btn" ng-click="enableBatchAction()">
-                <i class="icon-ok text-success"></i>
-                <?php _e('Enable'); ?>
-            </button>
-            <button class="btn" ng-click="disbaleBatchAction()">
-                <i class="icon-power-off"></i>
-                <?php _e('Disable'); ?>
-            </button>
-            <button class="btn" ng-click="deleteBatchAction()">
-                <i class="icon-remove text-error"></i>
-                <?php _e('Delete'); ?>
-            </button>
-        </div>
-        <tr>
-            <th>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th width="1%">
-                <th><?php _e('Username'); ?>
-                <th><?php _e('Display name'); ?>
-                <th><?php _e('Email'); ?>
-                <th width="5%"><?php _e('Active'); ?>
-                <th width="5%"><?php _e('Enable'); ?>
-                <th width="5%"><?php _e('Activated'); ?>
-                <th width="10%"><?php _e('Front role'); ?>
-                <th width="10%"><?php _e('Admin role'); ?>
-                <th width="12%"><?php _e('Register time'); ?>
-                <th><?php _e('Uid'); ?>
-        <tbody>
-            <tr ng-repeat="user in users">
-                <td>
-                    <input type="checkbox" ng-model="user.checked">
-                <td>{{user.identity}}
-                    <div class="row-actions">
-                        <a href="" class=""><?php _e('Edit'); ?></a>
-                        <a href="" class="gutter" ng-click="deleteAction($index)"><?php _e('Delete'); ?></a>
-                    </div>
-                <td>{{user.name}}
-
-                <td>{{user.email}}
-                <td>
-                    <i ng-class="{'icon-ok text-success': user.active, 'icon-remove text-error': !user.active }">
-                    </i>
-                <td>
-                    <button class="btn" ng-click="enableAction(user)" ng-if="user.time_disabled">
-                        <i class="icon-remove text-error"></i>
-                    </button>
-                    <button class="btn" ng-click="disableAction(user)" ng-if="!user.time_disabled">
-                        <i class="icon-ok text-success">
-                        </i>
-                    </button>
-                <td>
-                    <i ng-if="user.time_activated" class="icon-ok text-success"></i>
-                    <button ng-if="!user.time_activated" class="btn" ng-click="activeAction(user)">
-                        <i class="icon-remove text-error"></i>
-                    </button>
-                <td>
-                    <select ng-model="user.front_role" ng-options="key as value for (key, value) in frontRoles"
-                            ng-change="roleAction(user, 'front')">
-                    </select>
-                <td>
-                    <select ng-model="user.admin_role" ng-options="key as value for (key, value) in adminRoles"
-                            ng-change="roleAction(user, 'admin')">
-                        <option value=""><?php _e('None'); ?></option>
-                    </select>
-                <td>
-                    {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
-                <td>
-                    {{user.id}}
-    </table>
-    <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+<div ng-controller="MainCtrl" ng-app="userListModule">
+    <ul class="nav nav-tabs">
+        <li ng-class="navClass('/index')">
+            <a href="#!index">
+                <?php _e('All');?>
+            </a>
+        </li>
+        <li ng-class="navClass('/active')">
+            <a href="#!active">
+                <?php _e('Activated');?>
+            </a>
+        </li>
+        <li ng-class="navClass('/pengding')">
+            <a href="#!pengding">
+                <?php _e('Pending'); ?>
+            </a>
+        </li>
+        <li ng-class="navClass('/new')">
+            <a href="#!new">
+                <?php _e('Add new'); ?>
+            </a>
+        </li>
+        <li class="<?php echo $action == 'search' ? 'active' : ''; ?>">
+            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => '#search')); ?>">
+                <?php _e('Advanced search'); ?>
+            </a>
+        </li>
+    </ul>
+    <div ng-view></div>
 </div>
-<style>
-.table tr:hover .row-actions {
-    visibility: visible;
-}
-.row-actions {
-    visibility: hidden;
-}
-.gutter {
-    margin: 0 10px;
-}
-.user-list-form {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
-.user-list-action {
-    margin-bottom: 10px;
-    padding: 0 30px 0 8px;
-}
-</style>
-<script src="<?php echo $this->assetModule('script/angular.js'); ?>"></script>
-<script>
-var userListModule = angular.module('userListModule', [], function($locationProvider) {
-    $locationProvider.html5Mode(true);
-});
-userListModule.value('data', {
-    users: <?php echo json_encode(array_values($users)); ?>,
-    frontRoles: <?php echo json_encode($front_role); ?>,
-    adminRoles:  <?php echo json_encode($admin_role); ?>,
-    count: <?php echo $count; ?>,
-    confirm: '<?php _e('Are you sure delete this user?'); ?>'
-}).value('urlRoot', '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''));
 
-userListModule.controller('userListCtr', function($scope, $injector, $http, $location) {
+<script src="<?php echo $this->assetModule('script/angular.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('script/angular-route.js'); ?>"></script>
+<script>
+angular.extend(angular, {
+    'isFile': function(obj) {
+        return Object.prototype.toString.apply(obj) === '[object File]';
+    }
+});
+var userListModule = angular.module('userListModule', ['ngRoute']);
+var userListModuleConfig = {
+    urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+    assetRoot: '<?php echo $this->assetModule('template/admin/'); ?>'
+};
+userListModule.config(function($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('!');
+    $routeProvider.when('/index', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-index.html',
+        controller: 'IndexCtr'
+    }).when('/active', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-active.html',
+        controller: 'ActiveCtr'
+    }).when('/pengding', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-pengding.html',
+        controller: 'PendingCtr'
+    }).when('/new', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-new.html',
+        controller: 'NewCtr'
+    }).otherwise({
+        redirectTo: '/index'
+    });
+});
+userListModule.service('shared', function($http) {
+    var urlRoot = userListModuleConfig.urlRoot;
+    var shared = {
+        parse: function(data) {
+            var users = data.users;
+            for (var i = 0, l = users.length; i < l; i++) {
+                users[i].time_disabled *= 1000;
+                users[i].time_created *= 1000;
+                users[i].time_activated *= 1000;
+                users[i].checked = 0;
+                users[i].active = parseInt(users[i].active, 10);
+            }
+        },
+        clearAlert: function() {
+            this.alert = null;
+        },
+        deleteAction: function(idx) {
+            if (!confirm(data.confirm)) return;
+            var users = this.users
+            var user = users[idx];
+            $http.post(urlRoot + 'deleteUser', {
+                ids: user.id 
+            }).success(function(data) {
+                this.alert = data;
+                if (data.status) {
+                    users.splice(idx, 1);
+                }
+            });
+        },
+        deleteBatchAction: function() {
+            if (!confirm(data.confirm)) return;
+            var ids = [];
+            angular.forEach(users, function(user) {
+                if (user.checked) ids.push(user.id);
+            });
+
+            $http.post(urlRoot + 'deleteUser', {
+                ids: ids
+            }).success(function(data) {
+                var ret = [];
+                this.alert = data;
+                if (data.status) {
+                    angular.forEach(users, function(user) {
+                        if (!user.checked) ret.push(user);
+                    });
+                    this.users = users = ret;
+                }
+            });
+        },
+        enableAction: function(user) {
+            $http.post(urlRoot + 'enable', {
+                ids: user.id 
+            }).success(function(data) {
+                this.alert = data;
+                if (data.status) {
+                    user.time_disabled = 0;
+                    if (user.time_activated) user.active = 1;
+                }
+            });
+        },
+        enableBatchAction: function() {
+            var ids = [];
+            var success = function(data) {
+                this.alert = data;
+                this.allChecked = 0;
+                if (data.status) {
+                    angular.forEach(users, function(user) {
+                        if (user.checked) {
+                            user.time_disabled = 0;
+                            if (user.time_activated) user.active = 1;
+                            user.checked = 0;
+                        }
+                    });
+                }
+            };
+            angular.forEach(users, function(user) {
+                if (user.checked) {
+                    if (user.time_disabled) {
+                        ids.push(user.id);
+                    } else {
+                        user.checked = 0;
+                    }
+                }
+            });
+            $http.post(urlRoot + 'enable', {
+                ids: ids.join(',')
+            }).success(angular.bind(this, success));
+        },
+        disableAction: function(user) {
+            console.log(this);
+            var success = function (data) {
+                this.alert = data;
+                if (data.status) {
+                    user.time_disabled = 1;
+                    user.active = 0;
+                }
+            };
+            $http.post(urlRoot + 'disable', {
+                ids: user.id 
+            }).success(angular.bind(this, success));
+        },
+        disbaleBatchAction: function() {
+            var ids = [];
+            angular.forEach(users, function(user) {
+                if (user.checked) {
+                    if (user.time_disabled) {
+                        user.checked = 0;
+                    } else {
+                        ids.push(user.id);
+                    }
+                }
+            });
+            $http.post(urlRoot + 'disable', {
+                ids: ids.join(',')
+            }).success(function(data) {
+                this.alert = data;
+                this.allChecked = 0;
+                if (data.status) {
+                    angular.forEach(users, function(user) {
+                        if (user.checked) {
+                            user.time_disabled = 1;
+                            user.active = 0;
+                            user.checked = 0;
+                        }
+                    });
+                }
+            });
+        },
+        markAll: function(checked) {
+            angular.forEach(this.users, function(user) {
+                user.checked = checked;
+            });
+        }
+    };
+    return shared;
+}).controller('MainCtrl', function($scope, $location, $http) {
+    //post form data not json data
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    $http.defaults.transformRequest = [function(d) {
+        return angular.isObject(d) && !angular.isFile(d) ? $.param(d) : d;
+    }];
+    $scope.navClass = function(path) {
+         if ($location.path().substr(0, path.length) == path) {
+          return "active"
+        } else {
+          return ""
+        }
+    };
+}).controller('IndexCtr', function($scope, $http, shared) {
+    angular.extend($scope, shared);
+    $http.get(userListModuleConfig.urlRoot + 'all')
+         .success(function(data) {
+            $scope.parse(data);
+            angular.extend($scope, data);
+         });
+
+}).controller('NewCtr', function() {
+
+});
+
+
+
+userListModule.controller('userListCtr', function($scope, $http, $location) {
+    /*$scope.navClass = function(action) {
+        if (!action) return 'active';
+        console.log(action);
+        if ($location.hash() == action) return 'active';
+        return '';
+    };*/
+
+
+
+
     var data = $injector.get('data');
     var search = $location.search();
     var urlRoot = $injector.get('urlRoot');
@@ -161,18 +243,9 @@ userListModule.controller('userListCtr', function($scope, $injector, $http, $loc
     var users = $scope.users;
 
 
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    $http.defaults.transformRequest = [function(d) {
-        return $.param(d);
-    }];
+    
     //handler php data to js
-    for (var i = 0, l = users.length; i < l; i++) {
-        users[i].time_disabled *= 1000;
-        users[i].time_created *= 1000;
-        users[i].time_activated *= 1000;
-        users[i].checked = 0;
-        users[i].active = parseInt(users[i].active, 10);
-    }
+
     $scope.clearAlert = function() {
         $scope.alert = null;
     };
@@ -181,114 +254,8 @@ userListModule.controller('userListCtr', function($scope, $injector, $http, $loc
             user.checked = checked;
         });
     };
-    $scope.deleteAction = function(idx) {
-        if (!confirm(data.confirm)) return;
-        var user = users[idx];
-        $http.post(urlRoot + 'deleteUser', {
-            ids: user.id 
-        }).success(function(data) {
-            $scope.alert = data;
-            if (data.status) {
-                users.splice(idx, 1);
-            }
-        });
-    };
-    $scope.deleteBatchAction = function() {
-        if (!confirm(data.confirm)) return;
-        var ids = [];
-        angular.forEach(users, function(user) {
-            if (user.checked) ids.push(user.id);
-        });
-        console.log($scope.users == users);
-        $http.post(urlRoot + 'deleteUser', {
-            ids: ids
-        }).success(function(data) {
-            var ret = [];
-            $scope.alert = data;
-            if (data.status) {
-                angular.forEach(users, function(user) {
-                    if (!user.checked) ret.push(user);
-                });
-                $scope.users = users = ret;
-            }
-        });
-    };
-    $scope.enableAction = function(user) {
-        $http.post(urlRoot + 'enable', {
-            ids: user.id 
-        }).success(function(data) {
-            $scope.alert = data;
-            if (data.status) {
-                user.time_disabled = 0;
-                if (user.time_activated) user.active = 1;
-            }
-        });
-    };
-    $scope.enableBatchAction = function() {
-        var ids = [];
-        angular.forEach(users, function(user) {
-            if (user.checked) {
-                if (user.time_disabled) {
-                    ids.push(user.id);
-                } else {
-                    user.checked = 0;
-                }
-            }
-        });
-        $http.post(urlRoot + 'enable', {
-            ids: ids.join(',')
-        }).success(function(data) {
-            $scope.alert = data;
-            $scope.allChecked = 0;
-            if (data.status) {
-                angular.forEach(users, function(user) {
-                    if (user.checked) {
-                        user.time_disabled = 0;
-                        if (user.time_activated) user.active = 1;
-                        user.checked = 0;
-                    }
-                });
-            }
-        });
-    };
-    $scope.disableAction = function(user) {
-        $http.post(urlRoot + 'disable', {
-            ids: user.id 
-        }).success(function(data) {
-            $scope.alert = data;
-            if (data.status) {
-                user.time_disabled = 1;
-                user.active = 0;
-            }
-        });
-    };
-    $scope.disbaleBatchAction = function() {
-        var ids = [];
-        angular.forEach(users, function(user) {
-            if (user.checked) {
-                if (user.time_disabled) {
-                    user.checked = 0;
-                } else {
-                    ids.push(user.id);
-                }
-            }
-        });
-        $http.post(urlRoot + 'disable', {
-            ids: ids.join(',')
-        }).success(function(data) {
-            $scope.alert = data;
-            $scope.allChecked = 0;
-            if (data.status) {
-                angular.forEach(users, function(user) {
-                    if (user.checked) {
-                        user.time_disabled = 1;
-                        user.active = 0;
-                        user.checked = 0;
-                    }
-                });
-            }
-        });
-    };
+
+
 
     $scope.activeAction = function(user) {
         var ids = getIds(user);
@@ -325,4 +292,8 @@ userListModule.controller('userListCtr', function($scope, $injector, $http, $loc
         location.search = $.param(search);
     };
 });
+
+
+function testCtr($scope, $routeParams, $route) {
+}
 </script>
