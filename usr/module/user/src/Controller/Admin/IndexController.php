@@ -312,7 +312,6 @@ class IndexController extends ActionController
         $condition['time_created_to']   = _get('time_created_to') ?: '';
         $condition['ip_register']       = _get('ip_register') ?: '';
 
-        d($condition);
         // Get user ids
         $uids  = $this->getUids($condition, $limit, $offset);
 
@@ -357,22 +356,31 @@ class IndexController extends ActionController
      */
     public function enableAction()
     {
+        $return = array(
+            'status'  => 0,
+            'message' => '',
+        );
+
         $uids = _post('ids', '');
+
         if (!$uids) {
-            return array(
-                'status' => 0,
-            );
+            $return['message'] = __('Enable user failed');
+            return $return;
         }
 
         $uids = explode(',', $uids);
-
+        $count = 0;
         foreach ($uids as $uid) {
-            Pi::api('user', 'user')->enableUser($uid);
+            $status = Pi::api('user', 'user')->enableUser($uid);
+            if ($status) {
+                $count++;
+            }
         }
+        $return['status'] = $count ? 1 : 0;
+        $return['message'] = sprintf(__('%d enable user successfully'), $count);
 
-        return array(
-            'status' => 1,
-        );
+        return $return;
+
     }
 
     /**
@@ -382,22 +390,29 @@ class IndexController extends ActionController
      */
     public function disableAction()
     {
+        $return = array(
+            'status'  => 0,
+            'message' => ''
+        );
         $uids = _post('ids', '');
 
         if (!$uids) {
-            return array(
-                'status' => 0,
-            );
+            $return['message'] = __('Disable user failed');
+            return $return;
         }
-        $uids = explode(',', $uids);
 
+        $uids  = explode(',', $uids);
+        $count = 0;
         foreach ($uids as $uid) {
-            Pi::api('user', 'user')->disableUser($uid);
+            $status = Pi::api('user', 'user')->disableUser($uid);
+            if ($status) {
+                $count++;
+            }
         }
+        $return['status'] = $count ? 1 : 0;
+        $return['message'] = sprintf(__('%d disable user successfully'), $count);
 
-        return array(
-            'status' => 1,
-        );
+        return $return;
 
     }
 
@@ -408,21 +423,27 @@ class IndexController extends ActionController
      */
     public function deleteUserAction()
     {
-        $uids = _post('ids');
+        $uids   = _post('ids');
         $return = array(
-            'status' => 0
+            'status'  => 0,
+            'message' => '',
         );
 
         if (!$uids) {
+            $return['message'] = __('Delete user failed');
             return $return;
         }
 
-        $uids = explode(',', $uids);
-
+        $uids  = explode(',', $uids);
+        $count = 0;
         foreach ($uids as $uid) {
-            Pi::api('user', 'user')->deleteUser();
+            $status = Pi::api('user', 'user')->deleteUser();
+            if ($status) {
+                $count++;
+            }
         }
-        $return['status'] = 1;
+        $return['status'] = $count ? 1 : 0;
+        $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
         return $return;
 
@@ -440,14 +461,22 @@ class IndexController extends ActionController
         $section = _post('section');
 
         $result = array(
-            'status' => 0,
+            'status'  => 0,
+            'message' => ''
         );
 
         if (!$uid || !$role || !$section) {
             return $result;
         }
 
-        Pi::api('user', 'user')->setRole($uid, $role, $section);
+        $status = Pi::api('user', 'user')->setRole($uid, $role, $section);
+        if ($status) {
+            $result['status'] = 1;
+            $result['message'] = __('Set role successfully');
+        } else {
+            $result['status'] = 0;
+            $result['message'] = __('Set role failed');
+        }
 
         return $result;
 
@@ -462,25 +491,33 @@ class IndexController extends ActionController
         $uids = _post('uids');
 
         $result = array(
-            'status' => 0,
+            'status'  => 0,
+            'message' => ''
         );
 
         if (!$uids) {
+            $result['message'] = __('Activate user failed');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (empty($uids)) {
+            $result['message'] = __('Activate user failed');
             return $result;
         }
 
+        $count = 0;
         foreach ($uids as $uid) {
-            Pi::api('user', 'user')->activateUser($uid);
+            $status = Pi::api('user', 'user')->activateUser($uid);
+            if ($status) {
+                $count++;
+            }
         }
+        $return['status'] = $count ? 1 : 0;
+        $return['message'] = sprintf(__('%d activated user successfully'), $count);
 
-        $result['status'] = 1;
+        return $return;
 
-        return $result;
     }
 
     /**
@@ -829,8 +866,7 @@ class IndexController extends ActionController
     public function testAction()
     {
         $this->view()->setTemplate(false);
-
-
+//        vd(Pi::api('user', 'user')->getUser(1000)->id);
 //        $modelAccount = Pi::model('user_account');
 //        $modelRole = Pi::model('user_role');
 //

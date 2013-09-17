@@ -51,6 +51,13 @@ class Url extends ZendUrl
         $options = array(),
         $reuseMatchedParams = false
     ) {
+        return Pi::service('url')->assemble(
+            $name,
+            $params,
+            $options,
+            $reuseMatchedParams
+        );
+        /*
         if (null === $this->router()) {
             throw new \RuntimeException(
                 'No RouteStackInterface instance provided'
@@ -87,6 +94,7 @@ class Url extends ZendUrl
         $options['name'] = $name;
 
         return $this->router()->assemble($params, $options);
+        */
     }
 
 

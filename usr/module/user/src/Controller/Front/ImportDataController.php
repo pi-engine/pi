@@ -24,6 +24,7 @@ class ImportDataController extends ActionController
         $this->view()->setTemplate(false);
 
         $this->addUser();
+        $this->timeline();
         $this->timelineLog();
         $this->group();
         $this->activity();
@@ -150,6 +151,24 @@ class ImportDataController extends ActionController
         }
 
         vd($users);
+    }
+
+    protected function timeline()
+    {
+        $model = $this->getModel('timeline');
+        $prfex = 'pi';
+        for ($i = 1; $i < 30; $i++) {
+            $data = array(
+                'name' => 'name' . $i,
+                'title' => 'title' . $i,
+                'module' => 'module' . $i,
+                'icon'   => 'icon' . $i,
+                'active' => $i % 2,
+            );
+
+            $row = $model->createRow($data);
+            $row->save();
+        }
     }
 
 

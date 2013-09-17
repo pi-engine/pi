@@ -24,11 +24,17 @@ class PluginController extends ActionController
     /**
      * Default action
      *
-     * @return array|void
+     * @return array|\Zend\Mvc\Controller\Plugin\Redirect
      */
     public function indexAction()
     {
-        return $this->redirect('', array('controller' => 'plugin', 'action' => 'timeline'));
+        return $this->redirect(
+            '',
+            array(
+                'controller' => 'plugin',
+                'action' => 'timeline'
+            )
+        );
     }
 
     /**
