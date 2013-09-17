@@ -361,10 +361,8 @@ class Page extends AbstractResource
      */
     protected function insertPage($page, &$message)
     {
-        $module = $this->event->getParam('module');
         $modelPage = Pi::model('page');
         $modelResource = Pi::model('permission_resource');
-        //$modelRule = Pi::model('acl_rule');
         $columnsPage = array(
             'title',
             'section', 'module', 'controller', 'action',

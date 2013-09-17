@@ -26,15 +26,13 @@ use Pi\Application\Model\Block\Root as RootRow;
  *          // Optional, specified stylesheet class for display
  *          //'class'         => 'css-class',
  *          // Optional, translated
- *          'description'   => __('Desribing the block'),
+ *          'description'   => __('Describing the block'),
  *           // Required
  *          'render'        => array('class', 'method'),
  *          // in module/template/block/, no suffix
  *          'template'      => 'template',
  *          // Cache level type, optional: role, locale, user
  *          'cache_level'   => 'role',
- *          // ACL rules, optional
- *          'access'        => array(),
  *          'config'        => array(
  *              'a' => array(
  *                  'title'         => 'Config A',
@@ -111,8 +109,6 @@ class Block extends AbstractResource
                                 ? $block['config'] : array(),
             'cache_level'   => isset($block['cache_level'])
                                 ? $block['cache_level'] : '',
-            'access'        => isset($block['access'])
-                                ? $block['access'] : array(),
         );
 
         return $data;
@@ -146,8 +142,6 @@ class Block extends AbstractResource
                                 ? $block['config'] : array(),
             'cache_level'   => isset($block['cache_level'])
                                 ? $block['cache_level'] : '',
-            'access'        => isset($block['access'])
-                                ? $block['access'] : array(),
 
             //'link'          => isset($block['link']) ? $block['link'] : '',
             //'class'         => isset($block['class']) ? $block['class'] : '',

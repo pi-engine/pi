@@ -136,6 +136,7 @@ class PageController extends ActionController
                 if ($row->id) {
                     $message = __('Page data saved successfully.');
 
+                    /*
                     // Add ACL resource
                     $pageParent = null;
                     $where = array(
@@ -173,6 +174,7 @@ class PageController extends ActionController
                     );
                     $resourceId =
                         Pi::model('acl_resource')->add($resource, $parent);
+                    */
 
                     Pi::registry('page')->clear($row->module);
                     $this->redirect()->toRoute(
@@ -232,6 +234,7 @@ class PageController extends ActionController
             if ($row->id) {
                 $message = __('Page data saved successfully.');
 
+                /*
                 // Add ACL resource
                 $pageParent = null;
                 $where = array(
@@ -266,6 +269,7 @@ class PageController extends ActionController
                 );
                 $resourceId =
                     Pi::model('acl_resource')->add($resource, $parent);
+                */
 
                 $id = $row->id;
                 $page = array(
@@ -412,6 +416,7 @@ class PageController extends ActionController
         $row = Pi::model('page')->find($id);
         // Only custom pages are allowed to delete
         if ($row && $row->custom) {
+            /*
             // Remove ACL resource
             $modelResource = Pi::model('acl_resource');
             $rowResource = $modelResource->select(array(
@@ -427,6 +432,7 @@ class PageController extends ActionController
                 'section'   => $rowResource->section,
                 'module'    => $rowResource->module,
             ));
+            */
 
             // Remove page-block links
             Pi::model('page_block')->delete(array('page' => $row->id));

@@ -111,8 +111,13 @@ class Permission extends AbstractService
     /**
      * Grant permission to a role
      *
+     * Resource spec:
+     * - section: front, admin
+     * - module
+     * - resource: <resource-name>, block-<block-id>, module-<access|admin|manage|setting>
+     *
      * @param string $role
-     * @param array $resource Specs: section, module, resource, item
+     * @param array $resource Specs: section, module, resource
      *
      * @return bool
      */
@@ -210,7 +215,7 @@ class Permission extends AbstractService
     }
 
     /**
-     * Check permission for a module front
+     * Check permission for a module
      *
      * @param string $module
      * @param null|int|string|string[]  $uid Int for uid and string for role
@@ -266,6 +271,51 @@ class Permission extends AbstractService
     }
 
     /**
+     * Check permission for a block
+     *
+     * @param int $id Block id
+     * @param null|int|string|string[]  $uid Int for uid and string for role
+     *
+     * @return bool
+     */
+    public function blockPermission($id, $uid = null) {
+        $resource = array(
+            'section'   => 'front',
+            'resource'  => 'block-' . $id
+        );
+        $result = $this->hasPermission($resource, $uid);
+
+        return $result;
+    }
+
+    /**
+     * Get permitted block list from a given block list
+     *
+     * @param array $blocks
+     * @param null|int|string|string[]  $uid Int for uid and string for role
+     *
+     * @return int[]
+     */
+    public function blockList(array $blocks, $uid = null)
+    {
+        $result = array();
+
+        $ids = array_walk($blocks, function ($block) {
+            return 'block-' . $block;
+        });
+        $condition = array(
+            'section'   => 'front',
+            'resource'  => $ids
+        );
+        $rules = $this->getPermission($uid, $condition);
+        foreach ($rules as $rule) {
+            $result[] = substr($rule['resource'], 6);
+        }
+
+        return $result;
+    }
+
+    /**
      * Check if a page is accessible
      *
      * @param array $route
@@ -273,7 +323,7 @@ class Permission extends AbstractService
      *
      * @return bool|null
      */
-    public function pageAccess(array $route, $uid = null)
+    public function pagePermission(array $route, $uid = null)
     {
         $access = null;
 

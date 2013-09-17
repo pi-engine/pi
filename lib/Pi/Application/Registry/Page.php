@@ -82,7 +82,7 @@ class Page extends AbstractRegistry
     {
         Pi::registry('cache')->flush($namespace);
         Pi::registry('block')->flush($namespace);
-        Pi::registry('resource')->flush($namespace);
+        Pi::registry('permission_resource')->flush($namespace);
 
         return $this;
     }

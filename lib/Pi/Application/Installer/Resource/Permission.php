@@ -163,7 +163,7 @@ class Permission extends AbstractResource
             }
         }
 
-        Pi::registry('resource')->flush();
+        Pi::registry('permission_resource')->flush();
 
         return true;
     }
@@ -247,7 +247,7 @@ class Permission extends AbstractResource
             }
         }
 
-        Pi::registry('resource')->flush();
+        Pi::registry('permission_resource')->flush();
 
         return true;
     }
@@ -266,7 +266,7 @@ class Permission extends AbstractResource
         Pi::model('permission_rule')->delete(array('module' => $module));
 
         Pi::registry('moduleperm')->flush();
-        Pi::registry('resource')->flush();
+        Pi::registry('permission_resource')->flush();
 
         return true;
     }
@@ -276,7 +276,7 @@ class Permission extends AbstractResource
      */
     public function activateAction()
     {
-        Pi::registry('resource')->flush();
+        Pi::registry('permission_resource')->flush();
 
         return true;
     }
@@ -286,7 +286,7 @@ class Permission extends AbstractResource
      */
     public function deactivateAction()
     {
-        Pi::registry('resource')->flush();
+        Pi::registry('permission_resource')->flush();
 
         return true;
     }

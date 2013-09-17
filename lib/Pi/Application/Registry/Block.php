@@ -73,28 +73,14 @@ class Block extends AbstractRegistry
         }
 
         // Filter blocks via permission check
-        $blocksAllowed = null;
-        Pi::permission()->setSection('front');
-        if (null !== $role && !Pi::permission()->isAdminRole($role)
+        if ($role
+            && !Pi::permission()->isAdminRole($role)
             && !empty($blocksId)
         ) {
-            /*
-            $acl = new AclManager('block');
-            $where = array('resource' => array_keys($blocksId));
-            $blocksDenied = $acl->getResources($where, false);
-            */
-            $result = Pi::permission()->getPermission($role, array(
-                'resource'  => 'block',
-                'item'      => array_keys($blocksId)
-            ));
-            $blocksDenied = array();
-            foreach ($result as $item) {
-                $blocksDenied[] = (int) $item['item'];
-            }
-            $blocksAllowed = array_diff(array_keys($blocksId), $blocksDenied);
+            $blocksAllowed = Pi::service('permission')->blockList($blocksId, $role);
+        } else {
+            $blocksAllowed = $blocksId;
         }
-        Pi::permission()->setSection('');
-
 
         // Reorganize blocks by page and zone
         $blocksByPageZone = array();
@@ -133,11 +119,18 @@ class Block extends AbstractRegistry
     public function read($module = '', $role = null)
     {
         //$this->cache = false;
+        /*
         if (null === $role) {
             $role = Pi::service('user')->getUser()->role;
         }
+        */
         $module = $module ?: Pi::service('module')->current();
-        $options = compact('module', 'role');
+        if ($role) {
+            $options = compact('module', 'role');
+        } else {
+            $options = compact('module');
+        }
+
 
         return $this->loadData($options);
     }
