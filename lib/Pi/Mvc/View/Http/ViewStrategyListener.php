@@ -248,7 +248,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 Pi::service('log')->mute();
             }
         }
-        
+
         // Cast controller view model to result ViewModel
         switch ($this->type) {
             // For Feed
