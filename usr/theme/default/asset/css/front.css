@@ -1,27 +1,16 @@
 /* Base */
 
 /* Layout */
-.pi-main-left {
-    margin-left: 320px;
-}
-
-.pi-main-right {
-    margin-right: 320px;
-}
-
 .pi-zone-1 {
     float: left;
-    width: 300px;
 }
 
 .pi-zone-8 {
     float: right;
-    width: 300px;
 }
 
 .pi-zone-1 {
     float: left;
-    width: 300px;
 }
 
 .pi-zone-3,
@@ -90,6 +79,13 @@
     font-style: normal;
     font-size: .9em;
     display: block;
+}
+
+.pi-logo h2 {
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
 }
 
 /* User bar */
@@ -291,7 +287,6 @@
 
 /* Footer */
 .pi-footer {
-    text-align: center;
     margin-top: 40px;
     line-height: 24px;
     font-size: 12px;
@@ -302,6 +297,10 @@
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #fff;
     margin-bottom: 20px;
+}
+
+.pi-footer-copyright {
+    text-align: center;
 }
 
 .pi-footer a,
