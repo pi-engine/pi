@@ -67,13 +67,13 @@ class Render extends AbstractResource
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
             $sharedEvents->attach(
-                'controller',
+                'Zend\Stdlib\DispatchableInterface',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'checkAction'),
                 999
             );
             $sharedEvents->attach(
-                'controller',
+                'Zend\Stdlib\DispatchableInterface',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'saveAction'),
                 -999
