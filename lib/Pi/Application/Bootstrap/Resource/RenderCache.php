@@ -20,7 +20,7 @@ use Zend\View\Model\ViewModel;
  * @see Pi\Application\Service\Render
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Render extends AbstractResource
+class RenderCache extends AbstractResource
 {
     /**
      * Cache storage

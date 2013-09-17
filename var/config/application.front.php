@@ -30,7 +30,7 @@ return array(
         // Config resource to load configs from DB
         'config'    => array(),
         // MVC router resource, load routes from DB
-        'router'    => array(
+        'render_cache'    => array(
             //'class'     => 'Pi\\Mvc\\Router\\RouteStack',
         ),
         // Intl resource, instantiate translator services and load specified translation data
@@ -55,12 +55,14 @@ return array(
         'user'      => array(),
         // Instantiate ACL manager and register listeners
 
+        /*
         'acl'       => array(
             // Default access perm in case not defined: true for allowed, false for denied
             'default'       => true,
             // If check page access
             'check_page'    => false,
         ),
+        */
 
         'permission'    => array(
             // Default access perm in case not defined: true for allowed, false for denied

@@ -24,10 +24,10 @@ $config['resource']['session'] = false;
 $config['resource']['authentication'] = false;
 // Instantiate use handler
 $config['resource']['user'] = false;
-// Instantiate ACL manager and register listeners
-$config['resource']['acl'] = false;
+// Instantiate permission manager and register listeners
+$config['resource']['permission'] = false;
 // Rendering cache
-$config['resource']['render'] = array(
+$config['resource']['render_cache'] = array(
     'page'  => true,
 );
 

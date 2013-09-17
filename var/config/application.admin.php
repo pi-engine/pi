@@ -49,7 +49,7 @@ $config['resource']['permission'] = array(
 
 
 // Render caching
-$config['resource']['render'] = false;
+$config['resource']['render_cache'] = false;
 
 // Audit
 /*
