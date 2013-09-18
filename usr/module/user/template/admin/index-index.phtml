@@ -1,17 +1,20 @@
+<?php
+    $this->css($this->assetModule('script/admin.css')); 
+?>
 <div ng-controller="MainCtrl" ng-app="userListModule">
     <ul class="nav nav-tabs">
-        <li ng-class="navClass('/index')">
-            <a href="#!index">
+        <li ng-class="navClass('/all')">
+            <a href="#!all">
                 <?php _e('All');?>
             </a>
         </li>
-        <li ng-class="navClass('/active')">
-            <a href="#!active">
+        <li ng-class="navClass('/activated')">
+            <a href="#!activated">
                 <?php _e('Activated');?>
             </a>
         </li>
-        <li ng-class="navClass('/pengding')">
-            <a href="#!pengding">
+        <li ng-class="navClass('/pending')">
+            <a href="#!pending">
                 <?php _e('Pending'); ?>
             </a>
         </li>
@@ -21,279 +24,333 @@
             </a>
         </li>
         <li class="<?php echo $action == 'search' ? 'active' : ''; ?>">
-            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => '#search')); ?>">
+            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'addUser')); ?>">
                 <?php _e('Advanced search'); ?>
             </a>
         </li>
     </ul>
     <div ng-view></div>
 </div>
-
-<script src="<?php echo $this->assetModule('script/angular.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('script/angular-route.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/angular.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/angular-route.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/pagination.js'); ?>"></script>
 <script>
 angular.extend(angular, {
     'isFile': function(obj) {
         return Object.prototype.toString.apply(obj) === '[object File]';
     }
 });
-var userListModule = angular.module('userListModule', ['ngRoute']);
+var userListModule = angular.module('userListModule', ['ngRoute', 'pagination', 'template/pagination.html']);
 var userListModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
-    assetRoot: '<?php echo $this->assetModule('template/admin/'); ?>'
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    list: {
+        confirm: '<?php _e('Are you sure delete this user'); ?>',
+        confirms: '<?php _e('Are you sure delete this users'); ?>',
+        ACTIVE_STATE:'<?php _e('Active State'); ?>',
+    },
+    add: {
+        TITLE: '<?php _e('Add user'); ?>',
+        USER_NAME: '<?php _e('Username'); ?>',
+        DISPLAY_NAME: '<?php _e('Display name'); ?>',
+        EMAIL: '<?php _e('Email'); ?>',
+        PASSWORD: '<?php _e('Password'); ?>',
+        CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
+        ACTIVATE: '<?php _e('Activate'); ?>',
+        ENABLE: '<?php _e('Enable'); ?>',
+        SUBMIT: '<?php _e('Submit'); ?>',
+        REQUIRED: '<?php _e('required'); ?>',
+        INVALID_EMAIL: '<?php _e('invalid email'); ?>'
+    }
 };
 userListModule.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!');
-    $routeProvider.when('/index', {
-        templateUrl: userListModuleConfig.assetRoot + 'index-index.html',
-        controller: 'IndexCtr'
-    }).when('/active', {
-        templateUrl: userListModuleConfig.assetRoot + 'index-active.html',
-        controller: 'ActiveCtr'
-    }).when('/pengding', {
-        templateUrl: userListModuleConfig.assetRoot + 'index-pengding.html',
-        controller: 'PendingCtr'
+    $routeProvider.when('/activated', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-activated.html',
+        controller: 'ListCtrl'
+    }).when('/pending', {
+        templateUrl: userListModuleConfig.assetRoot + 'index-pending.html',
+        controller: 'ListCtrl'
     }).when('/new', {
         templateUrl: userListModuleConfig.assetRoot + 'index-new.html',
-        controller: 'NewCtr'
+        controller: 'NewCtrl'
     }).otherwise({
-        redirectTo: '/index'
+        redirectTo: '/all',
+        templateUrl: userListModuleConfig.assetRoot + 'index-all.html',
+        controller: 'ListCtrl'
     });
 });
-userListModule.service('shared', function($http) {
+userListModule.service('server', function($http) {
     var urlRoot = userListModuleConfig.urlRoot;
-    var shared = {
-        parse: function(data) {
-            var users = data.users;
-            for (var i = 0, l = users.length; i < l; i++) {
-                users[i].time_disabled *= 1000;
-                users[i].time_created *= 1000;
-                users[i].time_activated *= 1000;
-                users[i].checked = 0;
-                users[i].active = parseInt(users[i].active, 10);
-            }
-        },
-        clearAlert: function() {
-            this.alert = null;
-        },
-        deleteAction: function(idx) {
-            if (!confirm(data.confirm)) return;
-            var users = this.users
-            var user = users[idx];
-            $http.post(urlRoot + 'deleteUser', {
-                ids: user.id 
-            }).success(function(data) {
-                this.alert = data;
-                if (data.status) {
-                    users.splice(idx, 1);
-                }
-            });
-        },
-        deleteBatchAction: function() {
-            if (!confirm(data.confirm)) return;
-            var ids = [];
-            angular.forEach(users, function(user) {
-                if (user.checked) ids.push(user.id);
-            });
-
-            $http.post(urlRoot + 'deleteUser', {
-                ids: ids
-            }).success(function(data) {
-                var ret = [];
-                this.alert = data;
-                if (data.status) {
-                    angular.forEach(users, function(user) {
-                        if (!user.checked) ret.push(user);
-                    });
-                    this.users = users = ret;
-                }
-            });
-        },
-        enableAction: function(user) {
-            $http.post(urlRoot + 'enable', {
-                ids: user.id 
-            }).success(function(data) {
-                this.alert = data;
-                if (data.status) {
-                    user.time_disabled = 0;
-                    if (user.time_activated) user.active = 1;
-                }
-            });
-        },
-        enableBatchAction: function() {
-            var ids = [];
-            var success = function(data) {
-                this.alert = data;
-                this.allChecked = 0;
-                if (data.status) {
-                    angular.forEach(users, function(user) {
-                        if (user.checked) {
-                            user.time_disabled = 0;
-                            if (user.time_activated) user.active = 1;
-                            user.checked = 0;
-                        }
-                    });
-                }
-            };
-            angular.forEach(users, function(user) {
-                if (user.checked) {
-                    if (user.time_disabled) {
-                        ids.push(user.id);
-                    } else {
-                        user.checked = 0;
-                    }
-                }
-            });
-            $http.post(urlRoot + 'enable', {
-                ids: ids.join(',')
-            }).success(angular.bind(this, success));
-        },
-        disableAction: function(user) {
-            console.log(this);
-            var success = function (data) {
-                this.alert = data;
-                if (data.status) {
-                    user.time_disabled = 1;
-                    user.active = 0;
-                }
-            };
-            $http.post(urlRoot + 'disable', {
-                ids: user.id 
-            }).success(angular.bind(this, success));
-        },
-        disbaleBatchAction: function() {
-            var ids = [];
-            angular.forEach(users, function(user) {
-                if (user.checked) {
-                    if (user.time_disabled) {
-                        user.checked = 0;
-                    } else {
-                        ids.push(user.id);
-                    }
-                }
-            });
-            $http.post(urlRoot + 'disable', {
-                ids: ids.join(',')
-            }).success(function(data) {
-                this.alert = data;
-                this.allChecked = 0;
-                if (data.status) {
-                    angular.forEach(users, function(user) {
-                        if (user.checked) {
-                            user.time_disabled = 1;
-                            user.active = 0;
-                            user.checked = 0;
-                        }
-                    });
-                }
-            });
-        },
-        markAll: function(checked) {
-            angular.forEach(this.users, function(user) {
-                user.checked = checked;
-            });
-        }
-    };
-    return shared;
-}).controller('MainCtrl', function($scope, $location, $http) {
     //post form data not json data
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $http.defaults.transformRequest = [function(d) {
         return angular.isObject(d) && !angular.isFile(d) ? $.param(d) : d;
     }];
-    $scope.navClass = function(path) {
-         if ($location.path().substr(0, path.length) == path) {
-          return "active"
-        } else {
-          return ""
+    this.get = function (action, params) {
+        return $http.get(urlRoot + action, {
+            params: params || ''
+        });
+    };
+    this.getRoles = function() {
+        return $http.get(urlRoot + 'getRoles', { cache: true });
+    };
+    this.parse = function(data) {
+        var users = data.users;
+        for (var i = 0, l = users.length; i < l; i++) {
+            users[i].time_disabled *= 1000;
+            users[i].time_created *= 1000;
+            users[i].time_activated *= 1000;
+            users[i].checked = 0;
+            users[i].active = parseInt(users[i].active, 10);
         }
     };
-}).controller('IndexCtr', function($scope, $http, shared) {
-    angular.extend($scope, shared);
-    $http.get(userListModuleConfig.urlRoot + 'all')
-         .success(function(data) {
-            $scope.parse(data);
-            angular.extend($scope, data);
-         });
-
-}).controller('NewCtr', function() {
-
-});
-
-
-
-userListModule.controller('userListCtr', function($scope, $http, $location) {
-    /*$scope.navClass = function(action) {
-        if (!action) return 'active';
-        console.log(action);
-        if ($location.hash() == action) return 'active';
-        return '';
-    };*/
-
-
-
-
-    var data = $injector.get('data');
-    var search = $location.search();
-    var urlRoot = $injector.get('urlRoot');
-
-    angular.extend($scope, search);
-    angular.extend($scope, data);
-
-    var users = $scope.users;
-
-
-    
-    //handler php data to js
-
-    $scope.clearAlert = function() {
-        $scope.alert = null;
+    this.disable = function(ids) {
+        if (angular.isArray(ids)) {
+            ids = ids.join(',');
+        }
+        return $http.post(urlRoot + 'disable', {
+            ids: ids
+        });
     };
+    this.enable = function(ids) {
+        if (angular.isArray(ids)) {
+            ids = ids.join(',');
+        }
+        return $http.post(urlRoot + 'enable', {
+            ids: ids
+        });
+    };
+    this.active = function(ids) {
+        if (angular.isArray(ids)) {
+            ids = ids.join(',');
+        }
+        return $http.post(urlRoot + 'activateUser', {
+            ids: ids
+        });
+    };
+    this.delete = function(ids) {
+        if (angular.isArray(ids)) {
+            ids = ids.join(',');
+        }
+        return $http.post(urlRoot + 'deleteUser', {
+            ids: ids
+        });
+    };
+    this.add = function(params) {
+        return $http.post(urlRoot + 'addUser', params);
+    }
+}).service('translate', function() {
+    return userListModuleConfig;
+}).controller('MainCtrl', function($scope, $location, $http) {
+    $scope.navClass = function(path) {
+         if ($location.path().substr(0, path.length) == path) {
+          return "active";
+        } else {
+          return "";
+        }
+    };
+}).controller('ListCtrl', function($scope, $location, server, translate) {
+    var action = $location.path().replace(/^\//, '');
+    var getSearchParams = function() {
+        var param = {
+            active: $scope.active,
+            enable: $scope.enable,
+            front_role: $scope.front_role,
+            admin_role: $scope.admin_role,
+            search: $scope.search,
+            register_date: $scope.register_date
+        };
+        return param;
+    };
+    $scope.paginator = { page: 1 };
+    $scope.$watch('paginator.page', function(num) {
+        var param = getSearchParams();
+        param.p = num;
+        server.get(action, param).success(function(data) {
+            server.parse(data);
+            $scope.users = data.users;
+            $scope.paginator = data.paginator;
+        });
+    });
+    server.getRoles().success(function(data) {
+        angular.extend($scope, data);
+    });
+
+    $scope.t = translate.list;
     $scope.markAll = function(checked) {
-        angular.forEach(users, function(user) {
+        angular.forEach(this.users, function(user) {
             user.checked = checked;
         });
     };
-
-
-
-    $scope.activeAction = function(user) {
-        var ids = getIds(user);
-        $http.post(urlRoot + 'active', {
-            ids: ids
-        }).success(function(data) {
+    $scope.clearAlert = function() {
+        $scope.alert = '';
+    };
+    $scope.disableAction = function(user) {
+        server.disable(user.id).success(function(data) {
             $scope.alert = data;
             if (data.status) {
-                user.time_activated = 1;
-                if (!user.time_disabled) user.active = 1;
+                user.time_disabled = 1;
+                user.active = 0;
             }
         });
     };
-    $scope.roleAction = function(user, section) {
-        var data = {
-            uid: user.id,
-            section: section
-        };
-        if (section == 'front') {
-            data.role = user.front_role;
-        } else {
-            data.role = user.admin_role;
-        }
-        $http.post(urlRoot + 'setRole', data);
-    }
-    $scope.searchAction = function() {
-        var ret = ['active', 'enable', 'front_role', 'admin_role', 'register_date', 'search'];
-        var search = {};
-        for (var i = 0, l = ret.length; i < l; i++) {
-            if ($scope[ret[i]]) {
-                search[ret[i]] = $scope[ret[i]];
+    $scope.disableBatchAction = function() {
+        var ids = [];
+        var users = $scope.users;
+        angular.forEach(users, function(user) {
+            if (user.checked) {
+                if (user.time_disabled) {
+                    user.checked = 0;
+                } else {
+                    ids.push(user.id);
+                }
             }
-        }
-        location.search = $.param(search);
+        });
+        $scope.allChecked = 0;
+        server.disable(ids).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                angular.forEach(users, function(user) {
+                    if (user.checked) {
+                        user.time_disabled = 1;
+                        user.active = 0;
+                        user.checked = 0;
+                    }
+                });
+            }
+        });
     };
+    $scope.enableAction = function(user) {
+        server.enable(user.id).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                user.time_disabled = 0;
+                if (user.time_activated) user.active = 1;
+            }
+        });
+    };
+    $scope.enableBatchAction = function() {
+        var ids = [];
+        var users = $scope.users;
+        angular.forEach(users, function(user) {
+            if (user.checked) {
+                if (user.time_disabled) {
+                    ids.push(user.id);
+                } else {
+                    user.checked = 0;
+                }
+            }
+        });
+        $scope.allChecked = 0;
+        server.enable(ids).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                angular.forEach(users, function(user) {
+                    if (user.checked) {
+                        user.time_disabled = 0;
+                        if (user.time_activated) user.active = 1;
+                        user.checked = 0;
+                    }
+                });
+            }
+        });
+    };
+    $scope.activeAction = function(user) {
+        server.active(user.id).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                user.time_activated = 1;
+            }
+        });
+    };
+    $scope.activeBatchAction = function() {
+        var ids = [];
+        var users = $scope.users;
+        angular.forEach(users, function(user) {
+            if (user.checked) {
+                if (!user.time_activated) {
+                    ids.push(user.id);
+                } else {
+                    user.checked = 0;
+                }
+            }
+        });
+        $scope.allChecked = 0;
+        server.active(ids).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                angular.forEach(users, function(user) {
+                    if (user.checked) {
+                        user.time_activated = 1;
+                        user.checked = 0;
+                    }
+                });
+            }
+        });
+    };
+    $scope.deleteAction = function(idx) {
+        if (!confirm(translate.confirm)) return;
+        var users = this.users
+        var user = users[idx];
+        server.delete(user.id).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                users.splice(idx, 1);
+            }
+        });
+    };
+    $scope.deleteBatchAction = function() {
+        if (!confirm(translate.confirms)) return;
+        var ids = [];
+        angular.forEach($scope.users, function(user) {
+            user.checked && ids.push(user.id);
+        });
+        $scope.allChecked = 0;
+        server.delete(ids).success(function(data) {
+            $scope.alert = data;
+            var ret = [];
+            angular.forEach($scope.users, function(user) {
+                !user.checked && ret.push(user);
+            });
+            $scope.users = ret;
+        });
+    };
+    $scope.searchAction = function() {
+        server.get('all', getSearchParams()).success(function(data) {
+            $scope.users = data.users;
+            $scope.paginator = data.paginator;
+        });
+    };
+}).controller('NewCtrl', function($scope, translate, server) {
+    $scope.t = translate.add;
+    $scope.activateAction = function() {
+        if ($scope.activate) {
+            $scope.activate  = 0;
+        } else {
+            $scope.activate = 1;
+        }
+    };
+    $scope.enableAction = function() {
+        if ($scope.enable) {
+            $scope.enable  = 0;
+        } else {
+            $scope.enable = 1;
+        }
+    };
+    $scope.submit = function() {
+        server.add({
+            identity: $scope.identity,
+            name: $scope.name,
+            email: $scope.email,
+            credential: $scope.credential,
+            'credential-confirm': $scope.credential_confirm,
+            activate: $scope.activate,
+            enable: $scope.enable
+        }).success(function(data) {
+            $scope.alert = data;
+        });
+    };
+    console.log($scope);
 });
-
-
-function testCtr($scope, $routeParams, $route) {
-}
 </script>
