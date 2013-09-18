@@ -15,6 +15,11 @@ use Module\User\Form\AccountForm;
 use Module\User\Form\AccountFilter;
 use Module\User\Group;
 
+/**
+ * Account controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class AccountController extends ActionController
 {
     /**

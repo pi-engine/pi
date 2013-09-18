@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Register form
+ * Class for initializing form of register
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

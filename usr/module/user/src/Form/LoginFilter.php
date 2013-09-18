@@ -12,6 +12,11 @@ namespace Module\User\Form;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
+/**
+ * Class for verifying and filtering form
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class LoginFilter extends InputFilter
 {
     public function __construct()

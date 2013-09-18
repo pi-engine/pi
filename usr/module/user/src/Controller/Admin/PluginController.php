@@ -288,4 +288,13 @@ class PluginController extends ActionController
         return $result;
 
     }
+
+    /**
+     * Privacy manage
+     *
+     */
+    public function privacyAction()
+    {
+
+    }
 }

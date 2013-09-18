@@ -17,6 +17,11 @@ use Module\User\Form\CompoundForm;
 use Module\User\Form\CompoundFilter;
 use Pi\Paginator\Paginator;
 
+/**
+ * Profile controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class ProfileController extends ActionController
 {
 
