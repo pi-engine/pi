@@ -1,0 +1,105 @@
+<div class="alert alert-success" ng-if="alert" 
+     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
+    <button type="button" class="close" ng-click="clearAlert()">×</button>
+    {{alert.message}}
+</div>
+<form class="form-inline user-list-form">
+    <select class="input-medium" ng-model="enable">
+        <option value="">Enable State</option>
+        <option value="enable">Enable</option>
+        <option value="disable">Disable</option>
+    </select>
+    <select class="input-medium" ng-model="front_role" ng-options="key as value for (key, value) in front_roles">
+        <option value="">Front role</option>
+    </select>
+    <select class="input-medium" ng-model="admin_role" ng-options="key as value for (key, value) in admin_roles">
+        <option value="">Admin role</option>
+    </select>
+    <select class="input-medium" ng-model="register_date">
+        <option value="">Register date</option>
+        <option value="today">Today</option>
+        <option value="last_week">Last week</option>
+        <option value="last-month">Last month</option>
+        <option value="last_3_month">Last 3 month</option>
+        <option value="last_6_month">Last 6 month</option>
+        <option value="last_year">Last year</option>
+    </select>
+    <input type="text" placeholder="Username/Email" class="input-medium" ng-model="search">
+    <button class="btn btn-primary" ng-click="searchAction()">Apply</button>
+</form>
+<div class="clearfix user-list-action">
+    <strong class="pull-right">{{paginator.count}} members</strong>
+    <input type="checkbox" style="margin-right: 6px;"
+           ng-model="allChecked" ng-click="markAll(allChecked)">
+    <div class="btn-group">
+        <button class="btn" ng-click="activeBatchAction()">
+            <i class="icon-ok-sign"></i>
+            Activate
+        </button>
+        <button class="btn" ng-click="enableBatchAction()">
+            <i class="icon-ok text-success"></i>
+            Enable
+        </button>
+        <button class="btn" ng-click="disableBatchAction()">
+            <i class="icon-power-off"></i>
+            Disable
+        </button>
+        <button class="btn" ng-click="deleteBatchAction()">
+            <i class="icon-remove text-error"></i>
+            Delete
+        </button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th width="1%">
+            <th>Username
+            <th>Display name
+            <th>Email
+            <th width="5%">Enable
+            <th width="5%">Activated
+            <th width="10%">Front role
+            <th width="10%">Admin role
+            <th width="12%">Register time
+            <th>Uid
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>
+                <input type="checkbox" ng-model="user.checked">
+            <td>{{user.identity}}
+                <div class="row-actions">
+                    <a href="" class="">Edit</a>
+                    <a href="" class="gutter" ng-click="deleteAction($index)">Delete</a>
+                </div>
+            <td>{{user.name}}
+            <td>{{user.email}}
+            <td>
+                <button class="btn" ng-click="enableAction(user)" ng-if="user.time_disabled">
+                    <i class="icon-remove text-error"></i>
+                </button>
+                <button class="btn" ng-click="disableAction(user)" ng-if="!user.time_disabled">
+                    <i class="icon-ok text-success">
+                    </i>
+                </button>
+            <td>
+                <i ng-if="user.time_activated" class="icon-ok text-success"></i>
+                <button ng-if="!user.time_activated" class="btn" ng-click="activeAction(user)">
+                    <i class="icon-remove text-error"></i>
+                </button>
+            <td>
+                <select ng-model="user.front_role" ng-options="key as value for (key, value) in frontRoles"
+                        ng-change="roleAction(user, 'front')">
+                </select>
+            <td>
+                <select ng-model="user.admin_role" ng-options="key as value for (key, value) in adminRoles"
+                        ng-change="roleAction(user, 'admin')">
+                    <option value="">None</option>
+                </select>
+            <td>
+                {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+            <td>
+                {{user.id}}
+</table>
+<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
+    class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
