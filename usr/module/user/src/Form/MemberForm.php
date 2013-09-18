@@ -14,7 +14,7 @@ use Pi\Form\Form as BaseForm;
 use Pi\Application\Db\User\RowGateway\Account;
 
 /**
- * Member form
+ * Class for initializing form of member
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

@@ -18,7 +18,7 @@
                     <?php _e('Password');?>
                 </a>
             </li>
-            <li><a href="#"><?php _e('Avatar settings');?></a></li>
+            <li><a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>"><?php _e('Avatar settings');?></a></li>
             <li class="nav-header"><?php _e('Profile settings');?></li>
             <?php  foreach ($groups as $key => $group) { ?>
             <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">

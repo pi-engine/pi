@@ -23,13 +23,13 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-//        $this->addUser();
-//        $this->timeline();
-//        $this->timelineLog();
-//        $this->group();
-//        $this->activity();
-//        $this->quickLink();
-//        $this->activeUser();
+        $this->addUser();
+        $this->timeline();
+        $this->timelineLog();
+        $this->group();
+        $this->activity();
+        $this->quickLink();
+        $this->activeUser();
         $this->userLog();
     }
 

@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Profile complete form
+ * Class for initializing form of profile complete
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

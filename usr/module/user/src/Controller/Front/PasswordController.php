@@ -17,9 +17,9 @@ use Module\User\Form\FindPasswordForm;
 use Module\User\Form\FindPasswordFilter;
 
 /**
- * Feature list:
- * 1. Change passwrod
- * 2. Find password
+ * Password controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
  */
 class PasswordController extends ActionController
 {

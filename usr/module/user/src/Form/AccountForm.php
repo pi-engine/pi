@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Account edit form
+ * Class for initializing form of account
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

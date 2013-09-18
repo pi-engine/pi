@@ -13,7 +13,7 @@ use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Search form filter
+ * Class for verifying and filtering form
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

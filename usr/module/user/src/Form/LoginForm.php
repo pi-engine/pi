@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Login form
+ * Class for initializing form of login
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

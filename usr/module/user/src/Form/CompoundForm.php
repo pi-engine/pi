@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Compound form
+ * Class for initializing form of compound
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
