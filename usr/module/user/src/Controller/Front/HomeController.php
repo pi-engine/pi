@@ -13,6 +13,11 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 
+/**
+ * Home controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class HomeController extends ActionController
 {
     /**

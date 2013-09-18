@@ -12,6 +12,11 @@ namespace Module\User\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
+/**
+ * Activity controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class ActivityController extends ActionController
 {
     /**
