@@ -1,0 +1,93 @@
+<legend>{{t.TITLE}}</legend>
+<div class="alert alert-success" ng-if="alert" 
+     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
+    <button type="button" class="close" ng-click="clearAlert()">×</button>
+    {{alert.message}}
+</div>
+<form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
+	<div class="control-group" 
+		ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
+		<label class="control-label">{{t.USER_NAME}}</label>
+		<div class="controls">
+			<input type="text" ng-model="identity" name="identity" required>
+			<span class="help-inline" 
+				ng-show="userForm.identity.$error.required">
+				{{t.REQUIRED}}
+			</span>
+		</div>
+	</div>
+	<div class="control-group"
+		ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
+		<label class="control-label">{{t.DISPLAY_NAME}}</label>
+		<div class="controls">
+			<input type="text" ng-model="name" name="name" required>
+			<span class="help-inline" 
+				ng-show="userForm.name.$error.required">
+				{{t.REQUIRED}}
+			</span>
+		</div>
+	</div>
+	<div class="control-group"
+		ng-class="{'error': userForm.email.$dirty && userForm.email.$invalid}">
+		<label class="control-label">{{t.EMAIL}}</label>
+		<div class="controls">
+			<input type="email" ng-model="email" name="email" required>
+			<span class="help-inline" 
+				ng-show="userForm.email.$error.required">
+				{{t.REQUIRED}}
+			</span>
+			<span class="help-inline" 
+				ng-show="userForm.email.$error.email">
+				{{t.INVALID_EMAIL}}
+			</span>
+		</div>
+	</div>
+	<div class="control-group"
+		ng-class="{'error': userForm.credential.$dirty && userForm.credential.$invalid}">
+		<label class="control-label">{{t.PASSWORD}}</label>
+		<div class="controls">
+			<input type="password" ng-model="credential" name="credential" required>
+			<span class="help-inline" 
+				ng-show="userForm.credential.$error.required">
+				{{t.REQUIRED}}
+			</span>
+		</div>
+	</div>
+	<div class="control-group"
+		ng-class="{'error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
+		<label class="control-label">{{t.CONFIRM_PASSWORD}}</label>
+		<div class="controls">
+			<input type="password" ng-model="credential_confirm" name="credential_confirm" required>
+			<span class="help-inline" 
+				ng-show="userForm.credential_confirm.$error.required">
+				{{t.REQUIRED}}
+			</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">{{t.ACTIVATE}}</label>
+		<div class="controls">
+			<button class="btn" ng-click="activateAction()" ng-if="activate">
+                <i class="icon-ok text-success"></i>
+            </button>
+            <button class="btn" ng-click="activateAction()" ng-if="!activate">
+                <i class="icon-remove text-error"></i>
+            </button>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">{{t.ENABLE}}</label>
+		<div class="controls">
+			<button class="btn" ng-click="enableAction()" ng-if="enable">
+                <i class="icon-ok text-success"></i>
+            </button>
+            <button class="btn" ng-click="enableAction()" ng-if="!enable">
+                <i class="icon-remove text-error"></i>
+            </button>
+		</div>
+	</div>
+	<div class="controls">
+		<input type="submit" value="{{t.SUBMIT}}" class="btn btn-primary" 
+			ng-disabled="!userForm.$valid">
+	</div>
+</form>
