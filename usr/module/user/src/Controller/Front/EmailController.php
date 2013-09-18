@@ -15,9 +15,9 @@ use Module\User\Form\EmailForm;
 use Module\User\Form\EmailFilter;
 
 /**
- * Feature list:
- * 1. Change email
- * 2. Send verify email code
+ * Email controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
  */
 class EmailController extends ActionController
 {

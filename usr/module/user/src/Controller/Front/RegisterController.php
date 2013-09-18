@@ -17,17 +17,10 @@ use Module\User\Form\RegisterFilter;
 use Module\User\Form\ProfileCompleteForm;
 use Module\User\Form\ProfileCompleteFilter;
 
-
 /**
- * Register controller for user
+ * Register controller
  *
- * Tasks:
- *
- * 1. Register form
- * 2. Send email
- * 3. Add a new user
- * 4. Complete register
- *
+ * @author Liu Chuang <liuchuang@eefocus.com>
  */
 class RegisterController extends ActionController
 {

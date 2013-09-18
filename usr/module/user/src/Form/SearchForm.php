@@ -13,7 +13,7 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Search form
+ * Class for initializing form of search form
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */

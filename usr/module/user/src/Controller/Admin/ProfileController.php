@@ -13,7 +13,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
- * User manage cases controller
+ * Profile controller
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
