@@ -363,10 +363,10 @@ SCRIPT;
                 $contents = ob_get_contents();
                 ob_end_clean();
                 if (strpos($contents, 'mod_rewrite') === false) {
-                    $status = -1;
+                    $status = 0;
                 }
             }
-            if ($status < 1) {
+            if ($status == 0) {
                 $message = _s('Apache "mod_rewrite" module is required, however it is not detected. Check <a href="http://httpd.apache.org/docs/current/mod/mod_rewrite.html" title="mod_rewrite" target="_blank">mod_rewrite</a> for details.');
             }
         } else {
