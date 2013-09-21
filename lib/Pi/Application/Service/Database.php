@@ -12,6 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Application\Db;
+use \PDO;
 
 /**
  * Database handler service
@@ -64,5 +65,25 @@ class Database extends AbstractService
         $db = new Db($options);
 
         return $db;
+    }
+
+    /**
+     * Build database connection
+     *
+     * @throws \Exception
+     * @return PDO
+     */
+    public function connect()
+    {
+        $connection = $this->db()->getAdapter()->getDriver()->getConnection();
+        if (!$connection->isConnected()) {
+            try {
+                $connection->connect();
+            } catch (\Exception $e) {
+                throw $e;
+            }
+        }
+
+        return $connection->getResource();
     }
 }

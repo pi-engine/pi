@@ -269,6 +269,10 @@ class Admin extends AbstractController
 
     public function indexAction()
     {
+        if ($this->status == -1) {
+            return;
+        }
+
         $this->hasForm = true;
 
         $adapter = Pi::entity('db')->adapter();
