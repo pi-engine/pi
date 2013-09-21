@@ -311,6 +311,7 @@ SCRIPT;
             'status'    => $status,
             'value'     => $value,
         );
+
         return $result;
     }
 
@@ -379,6 +380,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -398,6 +400,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -423,6 +426,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -453,6 +457,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 }
