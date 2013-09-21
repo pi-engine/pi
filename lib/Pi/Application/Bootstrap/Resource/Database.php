@@ -24,6 +24,22 @@ class Database extends AbstractResource
      */
     public function boot()
     {
+        try {
+            Pi::service('database')->connect();
+        } catch (\Exception $e) {
+            pi::service('log')->mute();
+            $exceptionMessage = preg_replace(
+                '/user ([^\s]+) to database ([^\s]+)/',
+                'user to database',
+                $e->getMessage()
+            );
+            $message = '<h1>' . 'Database connection is failed.' . '</h1>'
+                . '<p>' . $exceptionMessage . '</p>';
+            echo $message;
+
+            exit();
+        }
+
         $db = Pi::service('database')->db($this->options);
 
         return $db;
