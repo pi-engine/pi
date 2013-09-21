@@ -30,7 +30,7 @@ return array(
         // Config resource to load configs from DB
         'config'    => array(),
         // MVC router resource, load routes from DB
-        'render_cache'    => array(
+        'router'    => array(
             //'class'     => 'Pi\\Mvc\\Router\\RouteStack',
         ),
         // Intl resource, instantiate translator services and load specified translation data
@@ -72,7 +72,7 @@ return array(
         ),
 
         // Instantiate render cache manager
-        'render'     => array(
+        'render_cache'     => array(
             // Enable page caching, default as false
             'page'      => true,
             // Enable action caching, default as false

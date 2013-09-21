@@ -126,17 +126,19 @@ class Permission extends AbstractResource
             ),
         );
         // Add module permission rules
-        foreach ($modulePerms as $section => $access) {
-            foreach ($access as $role) {
-                $resource = array(
-                    'section'   => $section,
-                    'module'    => $module,
-                    'resource'  => 'module-' . $access,
-                );
-                Pi::service('permission')->grantPermission($role, $resource);
+        foreach ($modulePerms as $section => $list) {
+            foreach ($list as $access => $roles) {
+                foreach ($roles as $role) {
+                    $resource = array(
+                        'section'   => $section,
+                        'module'    => $module,
+                        'resource'  => 'module-' . $access,
+                    );
+                    Pi::service('permission')->grantPermission($role, $resource);
+                }
             }
         }
-        Pi::registry('moduleperm')->flush();
+        //Pi::registry('moduleperm')->flush();
 
         if (empty($this->config)) {
             return true;

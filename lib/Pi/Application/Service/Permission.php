@@ -59,6 +59,7 @@ class Permission extends AbstractService
     protected $roles = array(
         'front' => array(
             'admin' => 'admin',
+            'guest' => 'guest',
         ),
         'admin' => array(
             'admin' => 'webmaster',
@@ -179,9 +180,12 @@ class Permission extends AbstractService
     public function hasPermission(array $resource, $uid = null)
     {
         $roles = $this->canonizeRole($uid);
+        if (!$roles) {
+            return false;
+        }
         $rule = $this->canonizeRule($resource);
         $rule['role'] = $roles;
-        $select = $this->model->select();
+        $select = $this->model()->select();
         $select->where($rule)->limit(1);
         $rowset = $this->model()->selectWith($select);
         $result = $rowset->count() ? true : false;
@@ -371,14 +375,18 @@ class Permission extends AbstractService
     {
         $result = array();
 
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIndentity();
+        $uid = (int) (null !== $uid ? $uid : Pi::user()->getIndentity());
         $section = $section ?: $this->getSection();
-        $rowset = Pi::Model('user_role')->select(array(
-            'uid'       => $uid,
-            'section'   => $section,
-        ));
-        foreach ($rowset as $row) {
-            $result[] = $row['role'];
+        if (!$uid) {
+            $result[] = $this->roles[$section]['guest'];
+        } else {
+            $rowset = Pi::Model('user_role')->select(array(
+                'uid'       => $uid,
+                'section'   => $section,
+            ));
+            foreach ($rowset as $row) {
+                $result[] = $row['role'];
+            }
         }
 
         return $result;
@@ -460,7 +468,7 @@ class Permission extends AbstractService
     {
         // uid
         if (null === $role) {
-            $role = Pi::user()->getIndentity();
+            $role = (int) Pi::user()->getIndentity();
         }
         // uid => roles
         if (is_numeric($role)) {

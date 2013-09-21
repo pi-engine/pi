@@ -16,19 +16,19 @@ return array(
     'meta' => array(
         // Front-end navigation template
         'front'     => array(
-            'name'      => 'front',
+            //'name'      => 'front',
             'section'   => 'front',
             'title'    => _t('Front navigation'),
         ),
         // Back-end navigation template
         'admin'     => array(
-            'name'      => 'admin',
+            //'name'      => 'admin',
             'section'   => 'admin',
             'title'     => _t('Admin navigation'),
         ),
         // Managed components
         'component' => array(
-            'name'      => 'component',
+            //'name'      => 'component',
             'section'   => 'admin',
             'title'     => _t('Managed components'),
         ),

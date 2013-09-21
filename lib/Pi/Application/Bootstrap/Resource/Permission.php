@@ -42,7 +42,7 @@ class Permission extends AbstractResource
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'test'),
+            array($this, 'checkAction'),
             99999
         );
     }

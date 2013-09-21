@@ -127,7 +127,7 @@ class Resource implements ListenerAggregateInterface
             }
             $resourceName = strtolower(implode(
                 '_',
-                preg_split('/(?=[A-Z])/', $resource)
+                array_filter(preg_split('/(?=[A-Z])/', $resource))
             ));
             $resourceList[] = $resourceName;
         }

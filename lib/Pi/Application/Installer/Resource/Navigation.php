@@ -10,8 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Application\Model\Navigation\Node as NodeRow;
-use Pi\Application\Model\Model as NavigationRow;
+use Pi\Db\RowGateway\RowGateway as NavigationRow;
 
 /**
  * Navigation setup with configuration specs
@@ -197,15 +196,25 @@ class Navigation extends AbstractResource
             unset($item['front']);
         }
 
+        $navNames = array();
         foreach ($meta as $key => $nav) {
-            $name           = $module . '-' . $key;
             $nav['module']  = $module;
-            $nav['name']    = $name;
             $nav['title']   = __($nav['title']);
+            if (isset($nav['name'])) {
+                $name = $nav['name'];
+            } else {
+                $name           = $module . '-' . $key;
+                $nav['name']    = $name;
+            }
             $result['meta'][$name] = $nav;
+            $navNames[$key] = $name;
         }
         foreach ($item as $key => $data) {
-            $name = $module . '-' . $key;
+            if (isset($navNames[$key])) {
+                $name = $navNames[$key];
+            } else {
+                $name = $module . '-' . $key;
+            }
             $this->canonizePages($data);
             $node = array(
                 'module'        => $module,
@@ -421,20 +430,6 @@ class Navigation extends AbstractResource
         $row->save();
 
         return $row->id ? true : false;
-    }
-
-    /**
-     * Delete a page node
-     *
-     * @param NodeRow $node
-     * @param array $message
-     * @return bool
-     */
-    protected function deleteNavigationNode(NodeRow $node, &$message = null)
-    {
-        $node->delete();
-
-        return true;
     }
 
     /**

@@ -363,6 +363,9 @@ SCRIPT;
                 phpinfo(INFO_MODULES);
                 $contents = ob_get_contents();
                 ob_end_clean();
+                // The status should not be set to -1 directly
+                // since mod_rewrite is not detected for some environments,
+                // for instance if PHP runs with cgi mode
                 if (strpos($contents, 'mod_rewrite') === false) {
                     $status = 0;
                 }

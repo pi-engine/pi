@@ -4,102 +4,6 @@
 # --------------------------------------------------------
 
 # ------------------------------------------------------
-# ACL
-# >>>>
-
-# extended edge table: edge ID, entry edge ID, direct edge, exit edge, start vertex, end vertex
-# DAG (Directed Acyclic Graph) algorithm
-# NOT USED yet
-# see: http://www.codeproject.com/KB/database/Modeling_DAGs_on_SQL_DBs.aspx#Table5
-CREATE TABLE `{core.acl_edge}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `start`           varchar(64)     NOT NULL    default '',
-  `end`             varchar(64)     NOT NULL    default '',
-  `entry`           int(10)         unsigned    NOT NULL default '0',
-  `direct`          int(10)         unsigned    NOT NULL default '0',
-  `exit`            int(10)         unsigned    NOT NULL default '0',
-  `hops`            int(10)         unsigned    NOT NULL default '0',
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `pair` (`start`, `end`)
-);
-
-# role inheritance or edge: edge ID, child ID, parent ID
-# TODO: could use vertext model with start vertex & end vertex
-CREATE TABLE `{core.acl_inherit}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `child`           varchar(64)     NOT NULL    default '',
-  `parent`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `pair` (`child`, `parent`)
-);
-
-# ACL privileges
-CREATE TABLE `{core.acl_privilege}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `resource`        int(10)         unsigned    NOT NULL default '0', # resource ID
-  `name`            varchar(64)     NOT NULL    default '', # Privilege name
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `pair` (`resource`, `name`)
-);
-
-# ACL resources
-CREATE TABLE `{core.acl_resource}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `left`            int(10)         unsigned    NOT NULL default '0',
-  `right`           int(10)         unsigned    NOT NULL default '0',
-  `depth`           smallint(3)     unsigned    NOT NULL default '0',
-  `section`         varchar(64)     NOT NULL    default '', # page resource: admin, front; other resource: module, block
-  `name`            varchar(64)     NOT NULL    default '', # pattern: generated - module[:controller]; or custom - module-resource
-# `item`            varchar(64)     NOT NULL    default '',
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '', # potential values: system - created by module installation; page - created by page creation; custom - created manually
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `left` (`left`),
-  UNIQUE KEY `right` (`right`),
-  UNIQUE KEY `pair` (`section`, `module`, `name`)
-);
-
-# Roles
-# See http://en.wikipedia.org/wiki/Role-based_access_control
-CREATE TABLE `{core.acl_role}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `name`            varchar(64)     NOT NULL    default '',                 # Unique name
-  `title`           varchar(255)    NOT NULL    default '',                 # Title
-  `description`     text,
-  `active`          tinyint(1)      unsigned    NOT NULL default '1',       # Active for usage
-  `custom`          tinyint(1)      unsigned    NOT NULL default '0',       # Added manually?
-  `module`          varchar(64)     NOT NULL    default '',                 # Applicable wide
-
-  # Added in Pi
-  `section`         varchar(64)     NOT NULL    default 'front', # admin, front
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
-);
-
-# ACL rules
-CREATE TABLE `{core.acl_rule}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `section`         varchar(64)     NOT NULL    default '',
-  `role`            varchar(64)     NOT NULL    default '',
-  `resource`        varchar(64)     NOT NULL    default '',
-  `privilege`       varchar(64)     NOT NULL    default '',
-  `deny`            tinyint(1)      unsigned    NOT NULL default '0',   # 0 for allowed; 1 for denied
-  `module`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY  (`id`),
-  KEY `pair` (`resource`, `privilege`),
-  KEY `section_module` (`section`, `module`)
-);
-
-# ------------------------------------------------------
 # Audit
 # >>>>
 
@@ -324,7 +228,7 @@ CREATE TABLE `{core.navigation_node}` (
   `data`            text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`navigation`)
+  UNIQUE KEY `nav_name` (`navigation`)
 );
 
 # ------------------------------------------------------
@@ -587,7 +491,7 @@ CREATE TABLE `{core.permission_rule}` (
   #`deny`            tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  KEY `item` (`item`),
+  #KEY `item` (`item`),
   KEY `role` (`role`),
   KEY `section_module_perm` (`section`, `module`, `resource`)
 );
