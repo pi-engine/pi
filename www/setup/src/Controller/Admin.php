@@ -24,8 +24,22 @@ class Admin extends AbstractController
 
     public function init()
     {
+        /*
         $db = Pi::service('database')->db();
         Pi::entity('db', $db);
+        */
+        try {
+            Pi::service('database')->connect();
+        } catch (\Exception $e) {
+            $this->status = -1;
+            $this->content = '<div class="alert alert-error">'
+                . '<h1>' . _s('Database connection is failed.') . '</h1>'
+                . '<p>' . $e->getMessage() . '</p>'
+                . '</div>';
+
+            return;
+        }
+        Pi::entity('db', Pi::service('database')->db());
 
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
@@ -43,6 +57,8 @@ class Admin extends AbstractController
             $this->wizard->setPersist('siteconfig', $vars);
         }
         $this->vars = $vars;
+
+        return true;
     }
 
     public function clearAction()
