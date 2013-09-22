@@ -60,7 +60,8 @@ var userListModuleConfig = {
         ENABLE: '<?php _e('Enable'); ?>',
         SUBMIT: '<?php _e('Submit'); ?>',
         REQUIRED: '<?php _e('required'); ?>',
-        INVALID_EMAIL: '<?php _e('invalid email'); ?>'
+        INVALID_EMAIL: '<?php _e('invalid email'); ?>',
+        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>'
     }
 };
 userListModule.config(function($routeProvider, $locationProvider) {
@@ -79,6 +80,32 @@ userListModule.config(function($routeProvider, $locationProvider) {
         templateUrl: userListModuleConfig.assetRoot + 'index-all.html',
         controller: 'ListCtrl'
     });
+});
+userListModule.directive('match', function($parse) {
+    var link = function(scope, element, attr, ctrl) {
+        var match = element.inheritedData('$formController')[attr.match];
+        ctrl.$parsers.push(function(value) {
+            if (value) {
+                ctrl.$setValidity("mismatch", value === match.$viewValue);
+                return value;
+            } else {
+                ctrl.$setValidity("mismatch", true);
+                return undefined;
+            }
+        });
+        match.$parsers.push(function(value) {
+            var val = ctrl.$viewValue;
+            if (val) {
+                ctrl.$setValidity("mismatch", value === val);
+            }
+            return value;
+        });
+    }
+    return {
+        require: 'ngModel',
+        link: link,
+        restrict: 'A'
+    };
 });
 userListModule.service('server', function($http) {
     var urlRoot = userListModuleConfig.urlRoot;
@@ -129,7 +156,7 @@ userListModule.service('server', function($http) {
             ids: ids
         });
     };
-    this.delete = function(ids) {
+    this.remove = function(ids) {
         if (angular.isArray(ids)) {
             ids = ids.join(',');
         }
@@ -293,7 +320,7 @@ userListModule.service('server', function($http) {
         if (!confirm(translate.confirm)) return;
         var users = this.users
         var user = users[idx];
-        server.delete(user.id).success(function(data) {
+        server.remove(user.id).success(function(data) {
             $scope.alert = data;
             if (data.status) {
                 users.splice(idx, 1);
@@ -307,7 +334,7 @@ userListModule.service('server', function($http) {
             user.checked && ids.push(user.id);
         });
         $scope.allChecked = 0;
-        server.delete(ids).success(function(data) {
+        server.remove(ids).success(function(data) {
             $scope.alert = data;
             var ret = [];
             angular.forEach($scope.users, function(user) {
@@ -324,6 +351,8 @@ userListModule.service('server', function($http) {
     };
 }).controller('NewCtrl', function($scope, translate, server) {
     $scope.t = translate.add;
+    $scope.activate = 0;
+    $scope.enable = 0;
     $scope.activateAction = function() {
         if ($scope.activate) {
             $scope.activate  = 0;
@@ -351,6 +380,5 @@ userListModule.service('server', function($http) {
             $scope.alert = data;
         });
     };
-    console.log($scope);
 });
 </script>
