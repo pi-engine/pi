@@ -56,12 +56,10 @@ use Pi\Db\RowGateway\RowGateway as NavigationRow;
  *                  'label'         => 'A Static Page',
  *                  // URI relative to Pi Engine www root
  *                  'uri'           => 'contact',
- *                  'resource'      => array(
+ *                  'permission'    => array(
  *                      'section'   => 'front',
  *                      'module'    => 'mvc',
  *                      'resource'  => 'test',
- *                      'item'      => 3,
- *                      'privilege' => 'read',
  *                  ),
  *              ),
  *              'p4' => array(
@@ -75,7 +73,7 @@ use Pi\Db\RowGateway\RowGateway as NavigationRow;
  *              ),
  *              // callback with single func
  *              'p6' => array(
- *                  'callback'         => 'Module\\System\\Navigation\\admin',
+ *                  'callback'         => 'Module\System\Navigation\admin',
  *              ),
  *              // Divider with specified class
  *              'p7' => array(
@@ -122,6 +120,7 @@ class Navigation extends AbstractResource
                 $page['route'] = $this->route;
             }
             // Canonize module relative route
+            // @deprecated
             if ('.' == $page['route'][0]) {
                 $page['route'] = $page['module'] . '-'
                                . substr($page['route'], 1);

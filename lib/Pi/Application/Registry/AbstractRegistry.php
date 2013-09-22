@@ -65,6 +65,12 @@ abstract class AbstractRegistry
     protected $namespaceMeta = array();
 
     /**
+     * Roles in process loop
+     * @var array
+     */
+    protected $roles = null;
+
+    /**
      * Data generator
      *
      * @param Callback $generator
@@ -137,6 +143,26 @@ abstract class AbstractRegistry
     }
 
     /**
+     * Canonize role(s)
+     *
+     * @param null|int|string|string[] $role Int for uid and string for role
+     *
+     * @return string[]
+     */
+    protected function canonizeRole($role)
+    {
+        $roles = Pi::service('permission')->canonizeRole($role);
+        $roleList = Pi::registry('role')->read();
+        foreach ($roles as $roleName) {
+            $id = $roleList[$roleName]['id'];
+            $this->roles[$id] = $roleName;
+        }
+        ksort($this->roles);
+
+        return $roles;
+    }
+
+    /**
      * Normalize value
      *
      * @param string $val
@@ -162,11 +188,19 @@ abstract class AbstractRegistry
                     continue;
                 }
             }
+            if ('role' == $var) {
+                if (null === $this->roles) {
+                    $this->canonizeRole($meta[$var]);
+                }
+                $meta[$var] = implode('_', array_keys($this->roles));
+            }
             if (null === $meta[$var]) {
                 switch ($var) {
+                    /*
                     case 'role':
                         $meta[$var] = Pi::service('user')->getUser()->role();
                         break;
+                    */
                     case 'locale':
                         $meta[$var] = Pi::service('i18n')->locale;
                         break;

@@ -26,9 +26,17 @@ class Role extends AbstractRegistry
     {
         $result = array();
         $model = Pi::model('role');
-        $rowset = $model->select(array('active' => 1));
+        $where = array('active' => 1);
+        if (!empty($options['section'])) {
+            $where['section'] = $options['section'];
+        }
+        $rowset = $model->select();
         foreach ($rowset as $row) {
-            $result[$row['section']][$row['name']] = $row['title'];
+            $result[$row['name']] = array(
+                'section'   => $row['section'],
+                'title'     => $row['title'],
+                'id'        => (int) $row['id'],
+            );
         }
 
         return $result;
@@ -40,11 +48,13 @@ class Role extends AbstractRegistry
      */
     public function read($section = '')
     {
-        $options = array();
+        $options = compact('section');
         $data = $this->loadData($options);
+        /*
         if ($section) {
             $data = $data[$section];
         }
+        */
 
         return $data;
     }

@@ -68,7 +68,7 @@ class Permission extends AbstractService
 
     /** @var array Rule columns */
     protected $columns = array(
-        'section', 'module', 'resource', 'item'
+        'section', 'module', 'resource'
     );
 
     /**
@@ -172,7 +172,7 @@ class Permission extends AbstractService
     /**
      * Check if a user or role(s) has permission
      *
-     * @param array $resource
+     * @param array $resource   Array: section, module, resource
      * @param null|int|string|string[]  $uid Int for uid and string for role
      *
      * @return bool
@@ -484,7 +484,7 @@ class Permission extends AbstractService
     /**
      * Canonize rule data
      *
-     * @param array $rule
+     * @param array $rule Array: section, module, resource
      *
      * @return array
      */

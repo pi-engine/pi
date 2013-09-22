@@ -131,7 +131,6 @@ class Block extends AbstractRegistry
             $options = compact('module');
         }
 
-
         return $this->loadData($options);
     }
 

@@ -11,12 +11,12 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-use Pi\Acl\Acl as AclManager;
+//use Pi\Acl\Acl as AclManager;
 
 /**
  * Navigation list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Navigation extends AbstractRegistry
 {
@@ -186,9 +186,7 @@ class Navigation extends AbstractRegistry
         $locale = ''
     ) {
         //$this->cache = false;
-        if (null === $role) {
-            $role = Pi::service('user')->getUser()->role;
-        }
+        $role = $this->canonizeRole($role);
         $options = compact('name', 'module', 'section', 'role', 'locale');
         $data = $this->loadData($options);
 
@@ -267,7 +265,7 @@ class Navigation extends AbstractRegistry
      *
      * <ul>Note:
      *  <li>Declaration:
-     *      'callback' must befined as a direct property of a page,
+     *      'callback' must defined as a direct property of a page,
      *      as a direct method string, or an array of class and method
      *      <ul>
      *          <li>Direct callback
@@ -562,35 +560,20 @@ class Navigation extends AbstractRegistry
      */
     public function isAllowed($page)
     {
-        if (!empty($page['resource'])) {
-            return $this->isAllowedResource($page['resource']);
+        if (!empty($page['permission'])) {
+            $section = empty($params['section'])
+                ? $this->section : $params['section'];
+            $resource = $params['resource'];
+            $module = empty($params['module']) ? $this->module : $params['module'];
+            $result = Pi::service('permission')->hasPermission(array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => $resource,
+            ), array_values($this->roles));
+
+            return $result;
         }
 
         return true;
-    }
-
-    /**
-     * Check if a resource is allowed
-     *
-     * @param array $params
-     * @return bool
-     */
-    protected function isAllowedResource($params)
-    {
-        $module = null;
-        $section = empty($params['section'])
-            ? $this->section : $params['section'];
-        $resource = $params['resource'];
-        if (!empty($params['item'])) {
-            $resource = array($resource, $params['item']);
-        }
-        $privilege = empty($params['privilege']) ? null : $params['privilege'];
-        $module = empty($params['module']) ? $this->module : $params['module'];
-
-        $acl = new AclManager($section);
-        $acl->setModule($module);
-        $result = $acl->checkAccess($resource, $privilege);
-
-        return $result;
     }
 }
