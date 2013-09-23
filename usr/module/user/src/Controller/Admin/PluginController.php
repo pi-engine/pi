@@ -68,15 +68,12 @@ class PluginController extends ActionController
             $count = $rowset->current()->count;
         }
 
-        $paginator = Paginator::factory(intval($count), array(
-            'limit' => $limit,
-            'page'  => $page,
-            'url_options'   => array(
-                'params'    => array(
-
-                ),
-            ),
-        ));
+        // Set paginator
+        $paginator = array(
+            'count'      => (int) $count,
+            'limit'      => $limit,
+            'page'       => $page,
+        );
 
         return array(
             'timeline'  => $timeline,
@@ -168,7 +165,7 @@ class PluginController extends ActionController
      * Remove timeline from page for ajax
      *
      */
-    public function triggeTimelineDisplayAction()
+    public function toggleTimelineDisplayAction()
     {
         $id = _post('id');
 

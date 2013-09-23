@@ -486,6 +486,55 @@ class IndexController extends ActionController
     }
 
     /**
+     * Check username, email, display name duplication
+     *
+     * @return int
+     */
+    public function checkDuplicationAction()
+    {
+        $status = 0;
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+
+        if (!$identity && !$email && !$name ) {
+            return $status;
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        return $status;
+
+    }
+
+    /**
      * Set role
      *
      * @return array
