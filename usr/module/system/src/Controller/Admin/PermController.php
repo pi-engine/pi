@@ -54,7 +54,7 @@ class PermController extends ActionController
             'title'     => __('Module access'),
             'roles'     => array(),
         );
-        $resources['module']['module-amin'] = array(
+        $resources['module']['module-admin'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-admin',
@@ -85,7 +85,7 @@ class PermController extends ActionController
 
             $resourceList[] = $row['name'];
         }
-        // Load module callbacked resources
+        // Load module custom resources
         if ($callback) {
             $callbackHandler = new $callback($module);
             $resources['callback'] = $callbackHandler->getResources();

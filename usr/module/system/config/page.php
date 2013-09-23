@@ -42,11 +42,13 @@ return array(
     'admin' => array(
         // System dashboard access
         array(
+            'title'         => __('Dashboard'),
             'controller'    => 'dashboard',
             'permission'    => 'admin',
         ),
         // System readme
         array(
+            'title'         => __('Readme'),
             'controller'    => 'readme',
             'permission'    => 'admin',
         ),
@@ -54,26 +56,31 @@ return array(
         // System managed components
         // config
         array(
+            'title'         => __('Config'),
             'controller'    => 'config',
             'permission'    => 'config',
         ),
         // block
         array(
+            'title'         => __('Blocks'),
             'controller'    => 'block',
             'permission'    => 'block',
         ),
         // page
         array(
+            'title'         => __('Pages'),
             'controller'    => 'page',
             'permission'    => 'page',
         ),
         // event
         array(
+            'title'         => __('Event/listener'),
             'controller'    => 'event',
             'permission'    => 'event',
         ),
         // resource permissions
         array(
+            'title'         => __('Permission resource'),
             'controller'    => 'resource',
             'permission'    => 'resource',
         ),
@@ -81,21 +88,25 @@ return array(
         // Operations
         // module
         array(
+            'title'         => __('Modules'),
             'controller'    => 'module',
             'permission'    => 'module',
         ),
         // theme
         array(
+            'title'         => __('Themes'),
             'controller'    => 'theme',
             'permission'    => 'theme',
         ),
         // navigation
         array(
+            'title'         => __('Navigation'),
             'controller'    => 'nav',
             'permission'    => 'navigation',
         ),
         // System permissions
         array(
+            'title'         => __('Permissions'),
             'controller'    => 'perm',
             //'action'        => 'index',
             'permission'    => 'perm',
@@ -103,27 +114,32 @@ return array(
 
         // role
         array(
+            'title'         => __('Roles'),
             'controller'    => 'role',
             'permission'    => 'role',
         ),
         // membership
         array(
+            'title'         => __('Membership'),
             'controller'    => 'member',
             'permission'    => 'member',
         ),
         // Maintenance operations
         // asset
         array(
+            'title'         => __('Asset'),
             'controller'    => 'asset',
             'permission'    => 'maintenance',
         ),
         // audit
         array(
+            'title'         => __('Auditing'),
             'controller'    => 'audit',
             'permission'    => 'maintenance',
         ),
         // cache
         array(
+            'title'         => __('Cache'),
             'controller'    => 'cache',
             'permission'    => 'maintenance',
         ),
