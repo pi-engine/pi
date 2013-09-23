@@ -12,6 +12,9 @@ namespace Pi\Mvc\Controller;
 use Pi;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
+use Zend\Stdlib\RequestInterface as Request;
+use Zend\Stdlib\ResponseInterface as Response;
+use Zend\Http\PhpEnvironment\Response as HttpResponse;
 
 /**
  * Basic action controller
@@ -31,6 +34,59 @@ abstract class ActionController extends AbstractActionController
      * @var bool|null
      */
     protected $skipExecute;
+
+    /**
+     * Dispatch a request
+     *
+     * Stop the event trigger when
+     *
+     * @events dispatch.pre, dispatch.post
+     * @param  Request $request
+     * @param  null|Response $response
+     * @return Response|mixed
+     */
+    public function dispatch(Request $request, Response $response = null)
+    {
+        $this->request = $request;
+        if (!$response) {
+            $response = new HttpResponse();
+        }
+        $this->response = $response;
+
+        $e = $this->getEvent();
+        $e->setRequest($request)
+            ->setResponse($response)
+            ->setTarget($this);
+
+        /*
+        $result = $this->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH, $e, function ($test) {
+            return ($test instanceof Response);
+        });
+        */
+
+        // Define callback used to determine whether or not to short-circuit
+        $shortCircuit = function ($r) use ($e) {
+            if ($r instanceof Response) {
+                return true;
+            }
+            if ($e->getError()) {
+                return true;
+            }
+            return false;
+        };
+
+        $result = $this->getEventManager()->trigger(
+            MvcEvent::EVENT_DISPATCH,
+            $e,
+            $shortCircuit
+        );
+
+        if ($result->stopped()) {
+            return $result->last();
+        }
+
+        return $e->getResult();
+    }
 
     /**
      * Action called if matched action does not exist

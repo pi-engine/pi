@@ -55,7 +55,6 @@ class Permission extends AbstractResource
      */
     public function checkAction(MvcEvent $e)
     {
-        //d(__METHOD__);
         // Skip cache if error occurred
         if ($e->isError()) {
             return;
