@@ -24,6 +24,14 @@ use Module\User\Form\MemberForm;
 class IndexController extends ActionController
 {
     /**
+     * Default action
+     * @return array|void
+     */
+    public function indexAction()
+    {
+        $this->view()->setTemplate('index-index');
+    }
+    /**
      * Activated user manage
      *
      * @return array|void
@@ -215,33 +223,71 @@ class IndexController extends ActionController
      */
     public function addUserAction()
     {
-        $this->view()->setTemplate('index-add');
-        $form = new MemberForm('add-user');
-        $status = 0;
-        $isPost = 0;
+        $result = array(
+            'status' => 0,
+            'message' => __('Add user failed'),
+        );
 
-        $options = $form->get('admin-role')->getValueOptions();
-        array_shift($options);
-        $options = array_merge(array('none' => __('Admin role')), $options);
-        $form->get('admin-role')->setValueOptions($options);
+        $identity   = _post('identity');
+        $email      = _post('email');
+        $credential = _post('credential');
+        $activate   = _post('activate');
+        $enable     = _post('enable');
+        $name       = _post('name');
 
-        if ($this->request->isPost()) {
-            $post = $this->request->getPost();
-            $form->setData($post);
-            $form->setInputFilter(new MemberFilter());
-
-            if ($form->isValid()) {
-                $values = $form->getData();
-                $status = Pi::api('user', 'user')->addUser($values);
-            }
-            $isPost = 1;
+        if (!$identity || !$email || !$credential || !$name) {
+            return $result;
         }
 
-        $this->view()->assign(array(
-            'form'   => $form,
-            'status' => $status,
-            'is_post' => $isPost,
-        ));
+        // Check identity, email, display name
+        $model = Pi::model('user_account');
+        $row = $model->find($identity, 'identity');
+        if ($row) {
+            return $result;
+        }
+
+        $row = $model->find($email, 'email');
+        if ($row) {
+            return $result;
+        }
+
+        $row = $model->find($name, 'name');
+        if ($row) {
+            return $result;
+        }
+
+        // Set data
+        $data = array();
+        if ($activate == 1) {
+            $data['time_activated'] = time();
+        } else {
+            $data['time_activated'] = 0;
+        }
+
+        if ($enable == 1) {
+            $data['time_disabled'] = 0;
+        } else {
+            $data['time_disabled'] = time();
+        }
+
+        if ($activate == 1 && $enable == 1) {
+            $data['active'] = 1;
+        } else {
+            $data['active'] = 0;
+        }
+        $data['identity'] = $identity;
+        $data['email']    = $email;
+        $data['name']     = $name;
+
+        // Save user info
+        $status = Pi::api('user', 'user')->addUser($data);
+
+        if ($status) {
+            $result['status'] = 1;
+            $result['message'] = __('Add user successfully');
+        }
+
+        return $result;
     }
 
     /**

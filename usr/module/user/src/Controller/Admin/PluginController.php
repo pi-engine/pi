@@ -28,13 +28,7 @@ class PluginController extends ActionController
      */
     public function indexAction()
     {
-        return $this->redirect(
-            '',
-            array(
-                'controller' => 'plugin',
-                'action' => 'timeline'
-            )
-        );
+        $this->view()->setTemplate('plugin-index');
     }
 
     /**
@@ -84,11 +78,12 @@ class PluginController extends ActionController
             ),
         ));
 
-        $this->view()->assign(array(
+        return array(
             'timeline'  => $timeline,
             'paginator' => $paginator,
             'count'     => $count,
-        ));
+        );
+
     }
 
     /**
@@ -123,8 +118,11 @@ class PluginController extends ActionController
             );
         }
 
-        d($displayList);
-        d($selectList);
+        return array(
+            'display_list' => $displayList,
+            'select_list'  => $selectList,
+        );
+
     }
 
     /**
@@ -161,15 +159,17 @@ class PluginController extends ActionController
             );
         }
 
-        d($displayList);
-        d($selectList);
+        return array(
+            'display_list' => $displayList,
+            'select_list'  => $selectList,
+        );
     }
 
     /**
      * Remove timeline from page for ajax
      *
      */
-    public function disableTimelineAction()
+    public function triggerTimelineDisplayAction()
     {
         $id = _post('id');
 
@@ -184,16 +184,17 @@ class PluginController extends ActionController
         $model = $this->getModel('timeline');
         $row = $model->find($id, 'id');
         if ($row) {
-            if (!$row->display) {
-                $result['status'] = 1;
+            if (!$row->active) {
+                $row->assign(array('active' => 1));
+
             } else {
-                $row->assign(array('display' => 0));
-                try {
-                    $row->save();
-                    $result['status'] = 1;
-                } catch (\Exception $e) {
-                    return $result;
-                }
+                $row->assign(array('active' => 0));
+            }
+            try {
+                $row->save();
+                $result['status'] = 1;
+            } catch (\Exception $e) {
+                return $result;
             }
         }
 
@@ -286,15 +287,6 @@ class PluginController extends ActionController
         $result['status'] = 1;
 
         return $result;
-
-    }
-
-    /**
-     * Privacy manage
-     *
-     */
-    public function privacyAction()
-    {
 
     }
 }

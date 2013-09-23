@@ -260,9 +260,66 @@ class ProfileController extends ActionController
 
     }
 
+    /**
+     * Privacy manage
+     */
     public function privacyAction()
     {
+        // Get display fields
+        $privacyModel = $this->getModel('privacy');
+        $select = $privacyModel->select()->where(array());
+        $rowset = $privacyModel->selectWith($select);
 
+        foreach ($rowset as $row) {
+            $privacy[] = $row->toArray();
+        }
+
+        return $privacy;
+    }
+
+    public function setPrivacyAction()
+    {
+        $id       = _post('id');
+        $value    = _post('value');
+        $isForced = _post('is_forced');
+
+        $status = array(
+            'status' => 0,
+            'message' => __('Set privacy failed')
+        );
+
+        if (!$id) {
+            return $status;
+        }
+
+        if (!in_array($value, array('0', '1', '2', '4', '255'))) {
+            return $status;
+        }
+
+        if ($isForced != '0' && $isForced != '1') {
+            return $status;
+        }
+
+        $model = $this->getModel('privacy');
+        $row = $model->find($id, 'id');
+
+        if (!$row) {
+            return $status;
+        }
+
+        $row->assign(array(
+            'value'     => $value,
+            'is_forced' => $isForced,
+        ));
+        try {
+            $row->save();
+            $status['status'] = 1;
+            $status['message'] = __('Set privacy successfully');
+        } catch (\Exception $e) {
+            return $status;
+        }
+
+        return $status;
     }
 
     public function testAction()
