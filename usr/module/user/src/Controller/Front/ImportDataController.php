@@ -31,6 +31,7 @@ class ImportDataController extends ActionController
         $this->quickLink();
         $this->activeUser();
         $this->userLog();
+        $this->privacy();
     }
 
     protected function addUser()
@@ -462,5 +463,40 @@ EOT;
                 );
             }
         }
+    }
+
+    protected function privacy()
+    {
+        $model = $this->getModel('field');
+        $select = $model->select()->where(array('is_display' => 1));
+        $rowset = $model->selectWith($select);
+        $privacyMap = array(0, 1, 2, 4, 255);
+        $privacyModel = $this->getModel('privacy');
+
+        foreach ($rowset as $row) {
+            $index = rand(0, 3);
+            $fields = array(
+                'field' => $row->name,
+                'value' => $privacyMap[$index],
+                'is_forced' => rand(0, 1)
+            );
+
+            $privacyRow = $privacyModel->createRow($fields);
+            $privacyRow->save();
+        }
+    }
+
+    public function testAction()
+    {
+        $model = $this->getModel('field');
+        $select = $model->select()->where(array('is_display' => 1));
+        $rowset = $model->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $fields[] = $row->name;
+        }
+        vd($fields);
+
+        $this->view()->setTemplate(false);
     }
 }
