@@ -186,6 +186,7 @@ CREATE TABLE `{privacy_user}` (
   `field`     varchar(64)         NOT NULL default '',
   -- Access level: 0 - public; 1 - member; 2 - follower; 4 - following; 255 - owner
   `value`     smallint(5)         unsigned NOT NULL default '0',
+  `is_forced` tinyint(1)          NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_field` (`uid`, `field`)
