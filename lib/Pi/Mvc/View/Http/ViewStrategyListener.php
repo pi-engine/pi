@@ -232,7 +232,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         }
 
         // Set type to json if no template is specified
-        if (!$this->type && $result) {
+        if (!$this->type && null !== $result) {
             $skip = false;
             if (($result instanceof ViewModel
                     && $result->getTemplate()

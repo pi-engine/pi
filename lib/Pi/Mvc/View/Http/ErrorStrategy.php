@@ -38,6 +38,9 @@ use Zend\View\Model\ClearableModelInterface;
  */
 class ErrorStrategy extends AbstractListenerAggregate
 {
+    /** @var  bool If event already triggered */
+    protected $isTriggered = false;
+
     /**
      * {@inheritDoc}
      */
@@ -71,6 +74,10 @@ class ErrorStrategy extends AbstractListenerAggregate
      */
     public function prepareErrorViewModel(MvcEvent $e)
     {
+        if ($this->isTriggered) {
+            return;
+        }
+
         // Do nothing if no error in the event
         $error = $e->getError();
         if (empty($error)) {
@@ -98,7 +105,7 @@ class ErrorStrategy extends AbstractListenerAggregate
             case 503:
             default:
                 if ($statusCode >= 400) {
-                    $templateName = 'error_tempalte';
+                    $templateName = 'error_template';
                 }
             break;
         }
@@ -113,21 +120,21 @@ class ErrorStrategy extends AbstractListenerAggregate
             $viewModel = $result;
         }
 
-        if (!$viewModel->getTemplate()) {
-            $config = $e->getApplication()->getServiceManager()->get('Config');
-            $viewConfig = $config['view_manager'];
-            $template = isset($viewConfig[$templateName])
-                ? $viewConfig[$templateName] : 'error';
-            $viewModel->setTemplate($template);
-        }
+        //if (!$viewModel->getTemplate()) {
+        $config = $e->getApplication()->getServiceManager()->get('Config');
+        $viewConfig = $config['view_manager'];
+        $template = isset($viewConfig[$templateName])
+            ? $viewConfig[$templateName] : 'error';
+        $viewModel->setTemplate($template);
+        //}
 
-        if (!$viewModel->getVariable('message')) {
-            $errorMessage = $e->getError();
-            if (!is_string($errorMessage)) {
-                $errorMessage = '';
-            }
-            $viewModel->setVariable('message', $errorMessage ?: '');
+        //if (!$viewModel->getVariable('message')) {
+        $errorMessage = $e->getError();
+        if (!is_string($errorMessage)) {
+            $errorMessage = '';
         }
+        $viewModel->setVariable('message', $errorMessage ?: '');
+        //}
         $viewModel->setVariable('code', $statusCode);
 
         $e->setResult($viewModel);
@@ -139,5 +146,7 @@ class ErrorStrategy extends AbstractListenerAggregate
             $model->clearChildren();
         }
         $model->addChild($viewModel);
+
+        $this->isTriggered = true;
     }
 }

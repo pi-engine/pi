@@ -70,7 +70,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -86,8 +86,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -134,7 +132,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -148,8 +146,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -194,7 +190,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -208,8 +204,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -381,10 +375,8 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
             'front_roles' => $this->getRoleSelectOptions(),
             'admin_roles' => $this->getRoleSelectOptions('admin'),
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -490,6 +482,55 @@ class IndexController extends ActionController
         $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
         return $return;
+
+    }
+
+    /**
+     * Check username, email, display name duplication
+     *
+     * @return int
+     */
+    public function checkDuplicationAction()
+    {
+        $status = 0;
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+
+        if (!$identity && !$email && !$name ) {
+            return $status;
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+        }
+
+        return $status;
 
     }
 
