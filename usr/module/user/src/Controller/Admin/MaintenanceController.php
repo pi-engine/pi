@@ -28,13 +28,7 @@ class MaintenanceController extends ActionController
      */
     public function indexAction()
     {
-        return $this->redirect(
-            '',
-            array(
-                'controller' => 'maintenance',
-                'action' => 'log.list',
-            )
-        );
+        $this->view()->setTemplate('maintenance-index');
     }
 
     /**
