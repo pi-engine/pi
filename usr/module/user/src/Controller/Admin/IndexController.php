@@ -530,7 +530,9 @@ class IndexController extends ActionController
             }
         }
 
-        return $status;
+        return array(
+            'status' => $status,
+        );
 
     }
 

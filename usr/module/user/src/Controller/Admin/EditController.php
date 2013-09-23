@@ -34,6 +34,7 @@ class EditController extends ActionController
         if (!$uid) {
             return $this->jumpTo404('Invalid uid');
         }
+
         // Get compound nav
         $compoundNav = $this->getCompoundNav();
 
@@ -66,11 +67,42 @@ class EditController extends ActionController
         if (isset($data['credential'])) {
             unset($data['credential']);
         }
-        $form->setData($data);
 
-        $this->view()->assign(array(
-            'form' => $form,
-        ));
+        $form->setData($data);
+        vd($form);
+        vd($compoundNav);
+
+    }
+
+
+    public function updateBaseInfoAction()
+    {
+        $result = array(
+            'status'  => 0,
+            'message' => __('Update failed'),
+        );
+        $post = $this->params()->fromPost();
+
+        $uid = $post['uid'];
+        if (!$uid) {
+            return $result;
+        }
+
+        foreach ($post as $col => $val) {
+            if (is_array($val)) {
+                $data[$col] = implode('-', array_values($val));
+            } else {
+                $data[$col] = $val;
+            }
+        }
+
+        $status = Pi::api('user', 'user')->updateUser($uid, $data);
+        if ($status) {
+            $result['status'] = 1;
+            $result['message'] = __('Update successfully');
+        }
+
+        return $result;
 
     }
 
@@ -79,6 +111,159 @@ class EditController extends ActionController
      */
     public function editCompoundAction()
     {
+        $uid      = _get('uid');
+        $compound = _get('compound');
+        if (!$uid || !$compound) {
+            return $this->jumpTo404('Invalid uid');
+        }
+
+        // Get compound title
+        $row = $this->getModel('field')->find($compound, 'name');
+        if (!$row) {
+            return $this->jumpTo404('Invalid compound');
+        }
+        $title = $row->title;
+
+
+        // Get compound element for edit
+        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+
+        // Get user compound
+        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
+
+        // Get user compound
+        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
+        // Generate compound edit form
+        $forms = array();
+        $i = 0;
+        foreach ($compoundData as $set => $row) {
+            $formName = 'compound' . $set;
+            $forms[$set] = new CompoundForm($formName, $compoundElements);
+            // Set form data
+            $row += array(
+                'set'   => $set,
+                'uid'   => $uid,
+            );
+
+            $forms[$set]->setData($row);
+            $i++;
+        }
+
+        // New compound form
+        $addForm = new CompoundForm('new-compound', $compoundElements);
+        $addForm->setData(array(
+            'set'   => $i,
+            'uid'   => $uid,
+        ));
+        unset($i);
+
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $set  = (int) $post['set'];
+            $forms[$set]->setInputFilter(new CompoundFilter($compoundFilters));
+            $forms[$set]->setData($post);
+
+            if ($forms[$set]->isValid()) {
+                $values = $forms[$set]->getData();
+                $values['uid'] = $uid;
+                unset($values['submit']);
+                unset($values['group']);
+
+                // Canonize column function
+                $canonizeColumn = function ($data, $meta) {
+                    $result = array();
+                    foreach ($data as $col => $val) {
+                        if (in_array($col, $meta)) {
+                            $result[$col] = $val;
+                        }
+                    }
+
+                    return $result;
+                };
+
+                // Get new compound
+                $newCompoundData = $compoundData;
+                $i = 0;
+                foreach ($compoundData as $key => $item) {
+                    $i++;
+                    if ($key == $values['set']) {
+                        $newCompoundData[$key] = $canonizeColumn(
+                            $values,
+                            array_keys($item)
+                        );
+                    }
+                }
+
+                // Add compound
+                if ($values['set'] == $i) {
+                    $newCompoundData[$i] = $canonizeColumn(
+                        $values,
+                        array_keys($item)
+                    );
+                }
+
+                // Update compound
+                Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+                return array(
+                    'status' => 1
+                );
+            } else {
+                return array(
+                    'status' => 0,
+                    'message' => $forms[$set]->getMessages(),
+                );
+            }
+        }
+
+        // Get compound nav
+        $compoundNav = $this->getCompoundNav();
+
+        vd($forms);
+        vd($title);
+        vd($addForm);
+        vd($compoundNav);
+
+    }
+
+    /**
+     * Edit compound order
+     * For ajax
+     * @return array
+     */
+    public function editCompoundSetAction()
+    {
+        $compound   = _post('compound');
+        $set        = _post('set');
+        $uid        = _post('uid');
+        $message    = array(
+            'status' => 0,
+        );
+
+
+
+        $order = explode(',', $set);
+        if (!$order || !$uid) {
+            return $message;
+        }
+
+        $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
+
+        if (!$oldCompound) {
+            return $message;
+        }
+
+        foreach ($order as $key => $value) {
+            $newCompound[$value] = $oldCompound[$key];
+        }
+        ksort($newCompound);
+
+        // Update compound
+        Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+        $message['status'] = 1;
+
+        return $message;
+
     }
 
     /**
