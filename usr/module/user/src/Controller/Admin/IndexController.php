@@ -70,7 +70,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -86,8 +86,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -134,7 +132,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -148,8 +146,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -194,7 +190,7 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
+            'count'      => (int) $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -208,8 +204,6 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
-            'count'       => $count,
             'condition'   => $condition,
         );
 
@@ -381,10 +375,8 @@ class IndexController extends ActionController
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'page'        => $page,
             'front_roles' => $this->getRoleSelectOptions(),
             'admin_roles' => $this->getRoleSelectOptions('admin'),
-            'count'       => $count,
             'condition'   => $condition,
         );
 
