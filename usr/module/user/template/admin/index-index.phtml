@@ -40,7 +40,7 @@ angular.extend(angular, {
         return Object.prototype.toString.apply(obj) === '[object File]';
     }
 });
-var userListModule = angular.module('userListModule', ['ngRoute', 'pagination', 'template/pagination.html']);
+var userListModule = angular.module('userListModule', ['ngRoute', 'pagination']);
 var userListModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
@@ -80,8 +80,7 @@ userListModule.config(function($routeProvider, $locationProvider) {
         templateUrl: userListModuleConfig.assetRoot + 'index-all.html',
         controller: 'ListCtrl'
     });
-});
-userListModule.directive('match', function($parse) {
+}).directive('match', function($parse) {
     var link = function(scope, element, attr, ctrl) {
         var match = element.inheritedData('$formController')[attr.match];
         ctrl.$parsers.push(function(value) {
@@ -169,7 +168,7 @@ userListModule.service('server', function($http) {
     }
 }).service('translate', function() {
     return userListModuleConfig;
-}).controller('MainCtrl', function($scope, $location, $http) {
+}).controller('MainCtrl', function($scope, $location) {
     $scope.navClass = function(path) {
          if ($location.path().substr(0, path.length) == path) {
           return "active";
