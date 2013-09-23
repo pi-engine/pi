@@ -25,37 +25,41 @@ $this->css(
 );
 // jQuery
 $this->jQuery();
+
 // html5 javascript
 $this->js(array(
     $this->assetTheme('js/html5.js') => array(
         'conditional'   => 'lt IE 9',
     )
 ));
+
 // Apple icon for iphone
 $this->headLink(array(
-        'rel'   => 'apple-touch-icon',
-        'href'  => $this->assetTheme('image/touch-icon-iphone.png')),
-        'PREPEND');
+    'rel'   => 'apple-touch-icon',
+    'href'  => $this->assetTheme('image/touch-icon-iphone.png')
+), 'PREPEND');
 // Apple icon for ipad
 $this->headLink(array(
-        'rel'   => 'apple-touch-icon',
-        'sizes' => '72x72',
-        'href'  => $this->assetTheme('image/touch-icon-ipad.png')),
-        'PREPEND');
+    'rel'   => 'apple-touch-icon',
+    'sizes' => '72x72',
+    'href'  => $this->assetTheme('image/touch-icon-ipad.png')
+), 'PREPEND');
 // Apple icon for iphone retina
 $this->headLink(array(
-        'rel'   => 'apple-touch-icon',
-        'sizes' => '114x114',
-        'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')),
-        'PREPEND');
+    'rel'   => 'apple-touch-icon',
+    'sizes' => '114x114',
+    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
+), 'PREPEND');
 // Apple icon for ipad retina
 $this->headLink(array(
-        'rel'   => 'apple-touch-icon',
-        'sizes' => '114x114',
-        'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')),
-        'PREPEND'); 
+    'rel'   => 'apple-touch-icon',
+    'sizes' => '114x114',
+    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
+), 'PREPEND');
+
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
