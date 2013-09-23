@@ -25,18 +25,37 @@ class PermissionResource extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $result = array();
-        $model = Pi::model('permission_resource')->setSection($options['section']);
-        $where = array('section' => $options['section']);
-        $where['module'] = $options['module'];
-        if (null !== $options['type']) {
-            $where['type'] = $options['type'];
-        }
-        $rowset = $model->select($where);
-        if (!$rowset->count()) {
-            return $result;
-        }
-        foreach ($rowset as $row) {
-            $result[$row->name] = $row->toArray();
+        if ('page' == $options['type']) {
+            $model = Pi::model('page');
+            $where = array(
+                'section'   => $options['section'],
+                'module'    => $options['module'],
+            );
+            $rowset = $model->select($where);
+            foreach ($rowset as $row) {
+                if (!$row['permission']) {
+                    continue;
+                }
+                $key = $row['module'];
+                if ($row['controller']) {
+                    $key .= '-' . $row['controller'];
+                    if ($row['action']) {
+                        $key .= '-' . $row['action'];
+                    }
+                }
+                $result[$key] = $row['permission'];
+            }
+        } else {
+            $model = Pi::model('permission_resource');
+            $where = array(
+                'section'   => $options['section'],
+                'module'    => $options['module'],
+                'type'      => $options['type'],
+            );
+            $rowset = $model->select($where);
+            foreach ($rowset as $row) {
+                $result[$row->name] = $row->toArray();
+            }
         }
 
         return $result;
@@ -49,12 +68,13 @@ class PermissionResource extends AbstractRegistry
      *
      * @param string        $section   Section name: front, admin, module
      * @param string        $module    Module name
-     * @param string|null   $type      system, page or other custom types
+     * @param string|null   $type      system, callback or page
      */
     public function read($section = 'front', $module = '', $type = null)
     {
         //$this->cache = false;
         $module = $module ?: Pi::service('module')->current();
+        $type = $type ?: 'system';
         $options = compact('section', 'module', 'type');
 
         return $this->loadData($options);

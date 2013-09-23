@@ -64,6 +64,23 @@ class Install extends BasicInstall
         $module = $e->getParam('module');
         $message = array();
 
+        // Add system roles
+        $roleFile = Pi::service('module')->path($module) . '/config/role.php';
+        $roles = include $roleFile;
+        $roleModel = Pi::model('role');
+        foreach ($roles as $section => $roleList) {
+            foreach ($roleList as $role => $roleTitle) {
+                $row = $roleModel->createRow(array(
+                    'section'   => $section,
+                    'module'    => $module,
+                    'name'      => $role,
+                    'title'     => $roleTitle,
+                    'active'    => 1,
+                ));
+                $row->save();
+            }
+        }
+
         // Add default taxonomy domain
         Pi::service('taxonomy')->addDomain(array(
             'name'          => 'taxon',
@@ -72,20 +89,10 @@ class Install extends BasicInstall
                 __('Default global taxonomy domain. Not allowed to change.'),
         ), false);
 
-
         // Add system messages
         $name       = 'admin-welcome';
         $message    = __('Welcome to Pi powered system.');
         Pi::user()->data->set(0, $name, $message, $module);
-        /*
-        $row = Pi::model('user_data')->createRow(array(
-            'module'    => $module,
-            'name'      => $name,
-            'time'      => time(),
-            'content'   => $message,
-        ));
-        $row->save();
-        */
 
         // Add quick links
         $user   = 1;
@@ -109,15 +116,6 @@ class Install extends BasicInstall
             ),
         );
         Pi::user()->data->set($user, $name, $links, $module);
-        /*
-        $row = Pi::model('user_data')->createRow(array(
-            'uid'       => $user,
-            'module'    => $module,
-            'name'      => $name,
-            'content'   => $links,
-        ));
-        $row->save();
-        */
 
         // Add update list
         $model = Pi::model('update', $module);
@@ -150,6 +148,7 @@ class Install extends BasicInstall
         } else {
             $status = (bool) $result;
         }
+
         return $status;
     }
 

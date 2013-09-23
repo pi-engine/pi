@@ -58,11 +58,11 @@ class Permission extends AbstractService
      */
     protected $roles = array(
         'front' => array(
-            'admin' => 'admin',
+            'admin' => 'webmaster',
             'guest' => 'guest',
         ),
         'admin' => array(
-            'admin' => 'webmaster',
+            'admin' => 'admin',
         ),
     );
 
@@ -185,6 +185,7 @@ class Permission extends AbstractService
         }
         $rule = $this->canonizeRule($resource);
         $rule['role'] = $roles;
+        vd($rule);
         $select = $this->model()->select();
         $select->where($rule)->limit(1);
         $rowset = $this->model()->selectWith($select);
@@ -295,7 +296,7 @@ class Permission extends AbstractService
     /**
      * Get permitted block list from a given block list
      *
-     * @param array $blocks
+     * @param int[] $blocks
      * @param null|int|string|string[]  $uid Int for uid and string for role
      *
      * @return int[]
@@ -304,17 +305,33 @@ class Permission extends AbstractService
     {
         $result = array();
 
-        $ids = array_walk($blocks, function ($block) {
-            return 'block-' . $block;
+        //vd($blocks);
+        /*
+        $ids = array_walk($blocks, function (&$block) {
+            return $block = 'block-' . $block;
         });
+        */
+        $ids = array();
+        foreach ($blocks as $id) {
+            $ids[] = 'block-' . $id;
+        }
         $condition = array(
             'section'   => 'front',
             'resource'  => $ids
         );
+        //vd($ids);
         $rules = $this->getPermission($uid, $condition);
+        //vd($rules);
+        /*
+        $result = array_walk($rules, function ($rule) {
+            return (int) substr($rule['resource'], 6);
+        });
+        */
+
         foreach ($rules as $rule) {
-            $result[] = substr($rule['resource'], 6);
+            $result[] = (int) substr($rule['resource'], 6);
         }
+
 
         return $result;
     }
@@ -340,6 +357,7 @@ class Permission extends AbstractService
             $module,
             $type
         );
+        vd($pages);
         // Page resource
         $resource = '';
         $key = sprintf('%s-%s-%s', $module, $controller, $action);
@@ -468,7 +486,7 @@ class Permission extends AbstractService
     {
         // uid
         if (null === $role) {
-            $role = (int) Pi::user()->getIndentity();
+            $role = (int) Pi::user()->getIdentity();
         }
         // uid => roles
         if (is_numeric($role)) {

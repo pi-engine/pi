@@ -21,6 +21,16 @@ use Pi\Application\Bootstrap\Resource\AdminMode;
 class PermController extends ActionController
 {
     /**
+     * Get exceptions for permission check
+     *
+     * @return string
+     */
+    public function permissionException()
+    {
+        return 'assign';
+    }
+
+    /**
      * Section permissions
      */
     public function indexAction()
@@ -37,14 +47,14 @@ class PermController extends ActionController
             'block'     => array(),
         );
         $resourceList = array();
-        $resources['module']['module-access'] = = array(
+        $resources['module']['module-access'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-access',
             'title'     => __('Module access'),
             'roles'     => array(),
         );
-        $resources['module']['module-amin'] = = array(
+        $resources['module']['module-amin'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-admin',
@@ -158,7 +168,7 @@ class PermController extends ActionController
         ) {
             $modules = $modulesInstalled;
             $rowset = Pi::model('permission_rule')->select(array(
-                'role'      => $role,
+                'role'      => $roles,
                 'section'   => 'module-' . $section,
                 'resource'  => array_keys($modules),
                 'module'    => array_keys($modules)
@@ -170,8 +180,11 @@ class PermController extends ActionController
                 $modules[$row->resource]['direct'] = $perm;
             }
 
+            /*
             $modulesAllowed = Pi::registry('moduleperm')
-                ->read($section, $role);
+                ->read($section, $roles);
+            */
+            $modulesAllowed = Pi::service('permission')->moduleList($section, $roles);
             if (null !== $modulesAllowed && is_array($modulesAllowed)) {
                 foreach (array_keys($modules) as $key) {
                     $modules[$key]['section'] = 'module-' . $section;
@@ -187,7 +200,7 @@ class PermController extends ActionController
         $this->view()->assign('section', $section);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);
-        $this->view()->assign('resources', $resources);
+        $this->view()->assign('resources', $moduleList);
     }
 
     /**

@@ -36,7 +36,7 @@ class ProfileController extends ActionController
             return;
         }
         $role = Pi::model('user_role')->find($id, 'uid')->role;
-        $roleRow = Pi::model('acl_role')->find($role, 'name');
+        $roleRow = Pi::model('role')->find($role, 'name');
         $userRow = Pi::user()->getUser();
         $user = array(
             __('ID')        => $userRow->id,
@@ -88,7 +88,7 @@ class ProfileController extends ActionController
             return;
         }
         $role = Pi::model('user_role')->find($row->id, 'uid')->role;
-        $roleRow = Pi::model('acl_role')->find($role, 'name');
+        $roleRow = Pi::model('role')->find($role, 'name');
         $user = array(
             __('ID')        => $row->id,
             __('Identity')  => $row->identity,

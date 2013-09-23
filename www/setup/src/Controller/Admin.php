@@ -209,39 +209,40 @@ class Admin extends AbstractController
             $this->status = $uid ? true : false;
             Pi::api('system', 'user')->activateUser($uid);
             Pi::api('system', 'user')->setRole($uid, array(
-                'admin' => 'admin',
-                'front' => 'webmaster',
+                'member'    => 'front',
+                'webmaster' => 'front',
+                'staff'     => 'admin',
+                'admin'     => 'admin',
             ));
 
             // Create system accounts
-            $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             $accounts = array(
                 'manager'   => array(
                     'name'  => __('Manager'),
                     'role'  => array(
-                        'admin' => 'manager',
-                        'front' => 'member',
+                        'manager'   => 'admin',
+                        'member'    => 'front',
                     ),
                 ),
                 'moderator' => array(
                     'name'  => __('Moderator'),
                     'role'  => array(
-                        'admin' => 'moderator',
-                        'front' => 'member',
+                        'moderator' => 'admin',
+                        'member'    => 'front',
                     ),
                 ),
                 'editor'    => array(
                     'name'  => __('Editor'),
                     'role'  => array(
-                        'admin' => 'editor',
-                        'front' => 'member',
+                        'editor'    => 'admin',
+                        'member'    => 'front',
                     ),
                 ),
                 'staff'     => array(
                     'name'  => __('Staff'),
                     'role'  => array(
-                        'admin' => 'staff',
-                        'front' => 'member',
+                        'staff'     => 'admin',
+                        'member'    => 'front',
                     ),
                 ),
                 'member'    => array(
@@ -252,7 +253,7 @@ class Admin extends AbstractController
             foreach ($accounts as $identity => $data) {
                 $userData = array(
                     'identity'      => $identity,
-                    'email'         => $identity . '@' . $hostname,
+                    'email'         => $identity . '@pialog.org',
                     'credential'    => $adminData['credential'],
                     'name'          => $data['name'],
                 );

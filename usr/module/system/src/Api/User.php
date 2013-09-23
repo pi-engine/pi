@@ -350,28 +350,21 @@ class User extends AbstractApi
         if (is_string($role)) {
             $section = $section ?: 'front';
             $role = array(
-                $section    => $role,
+                $role   => $section,
             );
         }
         $model = Pi::model('user_role');
-        $rowset = $model->select(array(
-            'uid'       => $uid,
-            'section'   => array_keys($role),
-        ));
+        $rowset = $model->select(array('uid' => $uid));
         foreach ($rowset as $row) {
-            $row['role'] = $role[$row['section']];
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                return false;
+            if (isset($role[$row['role']])) {
+                unset($role[$row['role']]);
             }
-            unset($role[$row['section']]);
         }
-        foreach ($role as $section => $roleValue) {
+        foreach ($role as $roleName => $roleSection) {
             $row = $model->createRow(array(
                 'uid'       => $uid,
-                'section'   => $section,
-                'role'      => $roleValue,
+                'section'   => $roleSection,
+                'role'      => $roleName,
             ));
             try {
                 $row->save();

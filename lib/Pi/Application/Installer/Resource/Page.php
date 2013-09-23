@@ -111,21 +111,23 @@ use Pi;
 class Page extends AbstractResource
 {
     /**
-     * Canonize page config
+     * Canonize config specs
      *
      * @param array $config
      * @return array
      */
-    protected function canonizePage($config)
+    protected function canonize($config)
     {
         $moduleTitle = $this->event->getParam('title');
         $pageEntry = array(
             'title' => $moduleTitle . ' *',
         );
+        /*
         // Set module exception for admin
         if (empty($config['admin']) && !isset($config['exception'])) {
             $config['exception'] = array($pageEntry);
         }
+        */
         if (!isset($config['front']) || false !== $config['front']) {
             if (!isset($config['front'])) {
                 $config['front'] = array();
@@ -138,8 +140,62 @@ class Page extends AbstractResource
             }
             $config['admin'][] = $pageEntry;
         }
+        foreach ($config as $section => &$list) {
+            if (false === $list) {
+                continue;
+            }
+            foreach ($list as $index => &$page) {
+                $page['section'] = $section;
+                $page = $this->canonizePage($page);
+            }
+        }
+        /*
+        if (!empty($config['front'])) {
+            foreach ($config['front'] as $index => &$page) {
+                $page['section'] = 'front';
+                $page = $this->canonizePage($page);
+            }
+        }
+        if (!empty($config['admin'])) {
+            foreach ($config['admin'] as $index => &$page) {
+                $page['section'] = 'admin';
+                $page = $this->canonizePage($page);
+            }
+        }
+        */
 
         return $config;
+    }
+    /**
+     * Canonize page specs
+     *
+     * @param array $page
+     * @return array
+     */
+    protected function canonizePage(array $page)
+    {
+        $columnsPage = array(
+            'title',
+            'section', 'module', 'controller', 'action', 'permission',
+            'cache_ttl', 'cache_level', 'block', 'custom'
+        );
+
+        $data = array();
+        foreach ($page as $col => $val) {
+            if (in_array($col, $columnsPage)) {
+                $data[$col] = $val;
+            }
+        }
+        if (empty($data['module'])) {
+            $data['module'] = $this->getModule();
+        }
+        /*
+        if (!empty($data['permission'])) {
+            $data['permission'] = $page['module'] . '-' . $data['permission'];
+        }
+        */
+
+        return $data;
     }
 
     /**
@@ -154,15 +210,15 @@ class Page extends AbstractResource
         $module = $this->event->getParam('module');
         //$moduleTitle = $this->event->getParam('title');
         Pi::registry('page')->clear($module);
-        $pages = $this->canonizePage($this->config);
+        $pages = $this->canonize($this->config);
 
         foreach (array_keys($pages) as $section) {
             // Skip the section if disabled
             if ($pages[$section] === false) continue;
             $pageList = array();
             foreach ($pages[$section] as $key => $page) {
-                $page['section'] = $section;
-                $page['module'] = $module;
+                //$page['section'] = $section;
+                //$page['module'] = $module;
                 $pageName = $page['module'];
                 if (!empty($page['controller'])) {
                     $pageName .= '-' . $page['controller'];
@@ -229,10 +285,10 @@ class Page extends AbstractResource
 
         if ($this->config === false) {
             $pages = array();
-            $diablePage = true;
+            $disablePage = true;
         } else {
-            $pages = $this->canonizePage($this->config);
-            $diablePage = false;
+            $pages = $this->canonize($this->config);
+            $disablePage = false;
         }
 
         $model = Pi::model('page');
@@ -251,8 +307,8 @@ class Page extends AbstractResource
 
         foreach ($pages as $section => $pageList) {
             foreach ($pageList as $page) {
-                $page['section'] = $section;
-                $page['module'] = $module;
+                //$page['section'] = $section;
+                //$page['module'] = $module;
                 if (empty($page['title'])) {
                     $pageName = $page['module'];
                     if (!empty($page['controller'])) {
@@ -316,7 +372,7 @@ class Page extends AbstractResource
         }
 
         foreach ($pages_exist as $key => $page) {
-            if ($page['custom'] && !$diablePage) continue;
+            if ($page['custom'] && !$disablePage) continue;
             $message = array();
             $status = $this->deletePage($page, $message);
             if (false === $status) {
@@ -362,15 +418,12 @@ class Page extends AbstractResource
     protected function insertPage($page, &$message)
     {
         $modelPage = Pi::model('page');
-        $modelResource = Pi::model('permission_resource');
+        /*
+        //$modelResource = Pi::model('permission_resource');
         $columnsPage = array(
             'title',
-            'section', 'module', 'controller', 'action',
+            'section', 'module', 'controller', 'action', 'permission',
             'cache_ttl', 'cache_level', 'block', 'custom'
-        );
-        $columnsResource = array(
-            'section', 'name', 'title',
-            'module', 'type'
         );
 
         $data = array();
@@ -379,15 +432,17 @@ class Page extends AbstractResource
                 $data[$col] = $val;
             }
         }
+        */
         $message = array();
         // Insert page
-        $pageRow = $modelPage->createRow($data);
+        $pageRow = $modelPage->createRow($page);
         $pageRow->save();
         if (!$pageRow->id) {
-            $message[] = sprintf('Page "%s" is not saved.', $data['title']);
+            $message[] = sprintf('Page "%s" is not saved.', $page['title']);
             return false;
         }
 
+        /*
         // Set up permission resource
 
         // If no permission is specified, skip
@@ -416,6 +471,7 @@ class Page extends AbstractResource
             );
             return false;
         }
+        */
 
         return true;
     }
@@ -429,7 +485,7 @@ class Page extends AbstractResource
     protected function deletePage($page, &$message)
     {
         $modelPage = Pi::model('page');
-        $modelResource = Pi::model('permission_resource');
+        //$modelResource = Pi::model('permission_resource');
 
         if (is_scalar($page)) {
             $pageRow = $modelPage->find($page);
@@ -437,6 +493,7 @@ class Page extends AbstractResource
             $pageRow = $page;
         }
         $pageRow->delete();
+        /*
         if (empty($pageRow['controller'])) {
             return true;
         }
@@ -454,6 +511,7 @@ class Page extends AbstractResource
         if ($resourceRow) {
             $resourceRow->delete();
         }
+        */
 
         return true;
     }

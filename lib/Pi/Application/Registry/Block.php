@@ -70,6 +70,7 @@ class Block extends AbstractRegistry
             foreach ($rowset as $row) {
                 unset($blocksId[$row->id]);
             }
+            $blocksId = array_keys($blocksId);
         }
 
         // Filter blocks via permission check
@@ -86,7 +87,7 @@ class Block extends AbstractRegistry
         $blocksByPageZone = array();
         foreach ($blockLinks as $link) {
             // Skip inactive blocks
-            if (!isset($blocksId[$link['block']])) {
+            if (!in_array($link['block'], $blocksId)) {
                 continue;
             }
             if (null === $blocksAllowed
@@ -119,11 +120,7 @@ class Block extends AbstractRegistry
     public function read($module = '', $role = null)
     {
         //$this->cache = false;
-        /*
-        if (null === $role) {
-            $role = Pi::service('user')->getUser()->role;
-        }
-        */
+        $role = $this->canonizeRole($role);
         $module = $module ?: Pi::service('module')->current();
         if ($role) {
             $options = compact('module', 'role');

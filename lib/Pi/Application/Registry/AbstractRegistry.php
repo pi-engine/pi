@@ -48,9 +48,9 @@ abstract class AbstractRegistry
      */
     protected $cache;
 
-   /**
+    /**
      * Namespace of current registry
-    *
+     *
      * @var string
      */
     protected $namespace;

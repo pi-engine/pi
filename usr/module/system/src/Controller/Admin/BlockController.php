@@ -31,6 +31,16 @@ use Zend\Db\Sql\Predicate\Expression;
 class BlockController extends ActionController
 {
     /**
+     * Get exceptions for permission check
+     *
+     * @return string
+     */
+    public function permissionException()
+    {
+        return 'page';
+    }
+
+    /**
      * Get module list
      *
      * @return array

@@ -112,11 +112,14 @@ class Permission extends AbstractResource
                     'guest',
                     'member',
                 ),
-                'moderator' => array(
+                'admin' => array(
                     'webmaster',
                 ),
             ),
             'admin' => array(
+                'access'   => array(
+                    'admin',
+                ),
                 AdminMode::MODE_ADMIN   => array(
                     'admin',
                 ),
@@ -267,7 +270,7 @@ class Permission extends AbstractResource
         ));
         Pi::model('permission_rule')->delete(array('module' => $module));
 
-        Pi::registry('moduleperm')->flush();
+        //Pi::registry('moduleperm')->flush();
         Pi::registry('permission_resource')->flush();
 
         return true;

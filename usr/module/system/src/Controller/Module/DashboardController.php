@@ -38,7 +38,8 @@ class DashboardController extends ActionController
 
         $modules = Pi::registry('modulelist')->read();
         $moduleList = array_keys($modules);
-        $allowed = Pi::registry('moduleperm')->read($mode);
+        //$allowed = Pi::registry('moduleperm')->read($mode);
+        $allowed = Pi::service('permission')->moduleList($mode);
         if (null === $allowed || !is_array($allowed)) {
             $allowed = $moduleList;
         } else {
@@ -113,7 +114,8 @@ class DashboardController extends ActionController
 
         // Fetch all permitted modules
         $modules = Pi::registry('modulelist')->read('active');
-        $modulesPermitted = Pi::registry('moduleperm')->read('admin');
+        //$modulesPermitted = Pi::registry('moduleperm')->read('admin');
+        $modulesPermitted = Pi::service('permission')->moduleList('admin');
         foreach (array_keys($modules) as $name) {
             if (null !== $modulesPermitted
                 && !in_array($name, $modulesPermitted)

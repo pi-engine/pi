@@ -47,6 +47,12 @@ class Permission extends AbstractResource
         );
     }
 
+    /**
+     * Check access to module action
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
     public function checkAction(MvcEvent $e)
     {
         //d(__METHOD__);
@@ -70,8 +76,15 @@ class Permission extends AbstractResource
             && method_exists($controller, 'permissionException')
         ) {
             $exceptions = $controller->permissionException();
-            if ($exceptions && in_array($route['action'], $exceptions)) {
-                return;
+            if ($exceptions) {
+                // Skip check against controller
+                if (is_bool($exceptions) && true === $exceptions) {
+                    return;
+                }
+                // Skip check against action
+                if (in_array($route['action'], (array) $exceptions)) {
+                    return;
+                }
             }
         }
         $access = Pi::service('permission')->pagePermission($route);
@@ -84,7 +97,7 @@ class Permission extends AbstractResource
     }
 
     /**
-     * Check if current HTTP request is allowed
+     * Check if current module access is allowed
      *
      * @param MvcEvent $e
      * @return bool

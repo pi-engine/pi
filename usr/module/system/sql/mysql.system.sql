@@ -243,6 +243,7 @@ CREATE TABLE `{core.page}` (
   `module`          varchar(64)     NOT NULL    default '',
   `controller`      varchar(64)     NOT NULL    default '',
   `action`          varchar(64)     NOT NULL    default '',
+  `permission`      varchar(64)     NOT NULL    default '',
   `cache_ttl`       int(10)         NOT NULL    default '0',            # positive: for cache TTL; negative: for inheritance
   `cache_level`     varchar(64)     NOT NULL    default '',
   `block`           tinyint(1)      unsigned    NOT NULL default '0',   # block inheritance: 1 - for self-setting; 0 - for inheriting form parent
@@ -459,7 +460,7 @@ CREATE TABLE `{core.user_role}` (
   `section`         enum('front', 'admin')      NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `section_user` (`section`, `uid`)
+  UNIQUE KEY `section_user` (`section`, `uid`, `role`)
 );
 
 # Permission resources
@@ -467,14 +468,14 @@ CREATE TABLE `{core.permission_resource}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   `section`         varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
-  -- Source name: page - <module-controller>; specific - <module-resource>
+  -- Resource name: page - <module-controller>; specific - <module-resource>
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
-  -- system - created on module installation; page - for page; callback
+  -- system - created on module installation; callback
   `type`            varchar(64)     NOT NULL    default '',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `resource_name` (`section`, `module`, `name`)
+  UNIQUE KEY `resource_name` (`section`, `module`, `name`, `type`)
 );
 
 # Permission rules
