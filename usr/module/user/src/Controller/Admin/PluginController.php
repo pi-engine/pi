@@ -54,7 +54,7 @@ class PluginController extends ActionController
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-                'active' => $row['active'],
+                'active' => (int) $row['active'],
             );
         }
 
@@ -81,7 +81,6 @@ class PluginController extends ActionController
         return array(
             'timeline'  => $timeline,
             'paginator' => $paginator,
-            'count'     => $count,
         );
 
     }
@@ -169,7 +168,7 @@ class PluginController extends ActionController
      * Remove timeline from page for ajax
      *
      */
-    public function triggerTimelineDisplayAction()
+    public function triggeTimelineDisplayAction()
     {
         $id = _post('id');
 
