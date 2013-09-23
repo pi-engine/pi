@@ -1,4 +1,4 @@
-<legend>{{t.TITLE}}</legend>
+<legend>{{'TITLE' | translate}}</legend>
 <div class="alert alert-success" ng-if="alert" 
      ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
     <button type="button" class="close" ng-click="clearAlert()">×</button>
@@ -7,70 +7,82 @@
 <form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
 	<div class="control-group" 
 		ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
-		<label class="control-label">{{t.USER_NAME}}</label>
+		<label class="control-label">{{'USER_NAME' | translate}}</label>
 		<div class="controls">
-			<input type="text" ng-model="identity" name="identity" required>
+			<input type="text" ng-model="identity" name="identity" required unique>
 			<span class="help-inline" 
 				ng-show="userForm.identity.$error.required">
-				{{t.REQUIRED}}
+				{{'REQUIRED' | translate}}
+			</span>
+			<span class="help-inline" 
+				ng-show="userForm.identity.$error.unique">
+				{{'USER_NAME_TOKEN' | translate}}
 			</span>
 		</div>
 	</div>
 	<div class="control-group"
 		ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
-		<label class="control-label">{{t.DISPLAY_NAME}}</label>
+		<label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
 		<div class="controls">
-			<input type="text" ng-model="name" name="name" required>
+			<input type="text" ng-model="name" name="name" required unique>
 			<span class="help-inline" 
 				ng-show="userForm.name.$error.required">
-				{{t.REQUIRED}}
+				{{'REQUIRED' | translate}}
+			</span>
+			<span class="help-inline" 
+				ng-show="userForm.name.$error.unique">
+				{{'DISPLAY_NAME_TOKEN' | translate}}
 			</span>
 		</div>
 	</div>
 	<div class="control-group"
 		ng-class="{'error': userForm.email.$dirty && userForm.email.$invalid}">
-		<label class="control-label">{{t.EMAIL}}</label>
+		<label class="control-label">{{'EMAIL' | translate}}</label>
 		<div class="controls">
-			<input type="email" ng-model="email" name="email" required>
+			<input type="email" ng-model="email" name="email" required unique>
 			<span class="help-inline" 
 				ng-show="userForm.email.$error.required">
-				{{t.REQUIRED}}
+				{{'REQUIRED' | translate}}
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.email.$error.email">
-				{{t.INVALID_EMAIL}}
+				{{'INVALID_EMAIL' | translate}}
+			</span>
+			<span class="help-inline" 
+				ng-show="userForm.email.$error.unique">
+				{{'EMAIL_TOKEN' | translate}}
 			</span>
 		</div>
 	</div>
 	<div class="control-group"
 		ng-class="{'error': userForm.credential.$dirty && userForm.credential.$invalid}">
-		<label class="control-label">{{t.PASSWORD}}</label>
+		<label class="control-label">{{'PASSWORD' | translate}}</label>
 		<div class="controls">
 			<input type="password" ng-model="credential" name="credential" required>
 			<span class="help-inline" 
 				ng-show="userForm.credential.$error.required">
-				{{t.REQUIRED}}
+				{{'REQUIRED' | translate}}
 			</span>
 		</div>
 	</div>
 	<div class="control-group"
 		ng-class="{'error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
-		<label class="control-label">{{t.CONFIRM_PASSWORD}}</label>
+		<label class="control-label">{{'CONFIRM_PASSWORD' | translate}}</label>
 		<div class="controls">
 			<input type="password" ng-model="credential_confirm" name="credential_confirm" required
 				match="credential">
 			<span class="help-inline" 
 				ng-show="userForm.credential_confirm.$error.required">
-				{{t.REQUIRED}}
+				{{'REQUIRED' | translate}}
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.credential_confirm.$error.mismatch">
-				{{t.PASSWORD_MATCH}}
+				{{'PASSWORD_MATCH' | translate}}
 			</span>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">{{t.ACTIVATE}}</label>
+		<label class="control-label">{{'ACTIVATE' | translate}}</label>
 		<div class="controls">
 			<button class="btn" ng-click="activateAction()" ng-if="activate">
                 <i class="icon-ok text-success"></i>
@@ -81,7 +93,7 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">{{t.ENABLE}}</label>
+		<label class="control-label">{{'ENABLE' | translate}}</label>
 		<div class="controls">
 			<button class="btn" ng-click="enableAction()" ng-if="enable">
                 <i class="icon-ok text-success"></i>
@@ -92,7 +104,7 @@
 		</div>
 	</div>
 	<div class="controls">
-		<input type="submit" value="{{t.SUBMIT}}" class="btn btn-primary" 
+		<input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary" 
 			ng-disabled="userForm.$invalid">
 	</div>
 </form>
