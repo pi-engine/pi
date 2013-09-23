@@ -1,0 +1,88 @@
+<?php
+	$this->jQuery('ui/jquery-ui-1.10.3.custom.js');
+	$this->Backbone();
+?>
+<?php include '_user-profile-nav.phtml'; ?>
+<div class="row-fluid user-display-main">
+	<div class="span6" id="js-groups">
+		<legend><?php _e('Field display'); ?></legend>
+		<p class="well">
+			<button class="btn btn-primary js-save">
+				<i class="icon-save"></i>
+				<?php _e('Save'); ?>
+			</button>
+			<button class="btn btn-link" onclick="location.href = location.href">
+				<?php _e('Cancel'); ?>
+			</button>
+		<form class="form-inline">
+			<input type="text" placeholder="<?php _e('title'); ?>" name="title">
+			<button type="submit" class="btn"><?php _e('Add group'); ?></button>
+		</form>
+		<div class="user-widget-groups">
+		</div>
+	</div>
+	<div class="span3">
+		<legend><?php _e('Basic field'); ?></legend>
+		<div id="js-profile" class="user-profile-fields">
+		</div>
+	</div>
+	<div class="span3">
+		<legend><?php _e('compound'); ?></legend>
+		<div id="js-compound" class="connect-compound">
+		</div>
+	</div>
+</div>
+<script type="text/template" id="group-template">
+	<div class="pi-widget-header">
+		<div class="pull-right" style="cursor: pointer; margin-top: 4px;">
+			<i class="icon-angle-down icon-large pi-icon-cursor js-toggle" style="padding-right: 4px;"></i>
+			<button class="close js-remove-all">&times;</button>
+		</div>
+		<div class="">
+			<span class="user-group-title"><%= title %></span>
+			<button class="btn btn-link js-edit-title"><?php _e('Edit'); ?></button>
+			<input type="text" class="hide input-medium user-group-input">
+		</div>
+	</div>
+	<div class="user-widget-body">
+		<% _.each(fields, function(item) { %>
+		<div class="user-widget" data-model='<%= JSON.stringify(item) %>'>
+			<% if(!compound) { %>
+			<button class="close js-remove-one">&times;</button>
+			<% } %>
+			<%= item.title %>
+		</div>
+		<% }); %>
+	</div>
+</script>
+<script type="text/template" id="profile-template">
+	<button class="close js-remove-one">&times;</button>
+	<%= title %>
+</script>
+<script type="text/template" id="compound-template">
+	<div class="pi-widget-header">
+		<span class="pull-right">
+			<i class="icon-plus icon-large pi-icon-cursor"></i>
+		</span>
+		<span class="connect-compound-title"><%= title %></span>
+	</div>
+	<div class="user-widget-body">
+		<% _.each(fields, function(item) { %>
+		<div class="user-widget">
+			<%= item.title %>
+		</div>
+		<% }); %>
+	</div>
+</script>
+<script src="<?php echo $this->assetModule('script/system-msg.js', 'system'); ?>"></script>
+<script src="<?php echo $this->assetModule('script/profile-dress.js'); ?>"></script>
+<script>
+	profileDressup({
+		profile: <?php echo json_encode(array_values($profile)); ?>,
+		compounds: <?php echo json_encode(array_values($compounds)); ?>,
+		data: <?php echo json_encode(array_values($data)); ?>,
+		urlSave: '<?php echo $this->url('', array('controller' => 'profile', 'action' => 'saveDressUp')); ?>',
+		successMsg: '<?php _e('Data saved successfully'); ?>',
+		failMsg: '<?php _e('Data saved failed'); ?>'
+	});
+</script>
