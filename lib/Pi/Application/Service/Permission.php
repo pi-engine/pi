@@ -185,7 +185,7 @@ class Permission extends AbstractService
         }
         $rule = $this->canonizeRule($resource);
         $rule['role'] = $roles;
-        vd($rule);
+        //vd($rule);
         $select = $this->model()->select();
         $select->where($rule)->limit(1);
         $rowset = $this->model()->selectWith($select);
@@ -303,37 +303,19 @@ class Permission extends AbstractService
      */
     public function blockList(array $blocks, $uid = null)
     {
-        $result = array();
-
-        //vd($blocks);
-        /*
-        $ids = array_walk($blocks, function (&$block) {
-            return $block = 'block-' . $block;
+        array_walk($blocks, function (&$block, $key) {
+            $block = 'block-' . $block;
         });
-        */
-        $ids = array();
-        foreach ($blocks as $id) {
-            $ids[] = 'block-' . $id;
-        }
         $condition = array(
             'section'   => 'front',
-            'resource'  => $ids
+            'resource'  => $blocks
         );
-        //vd($ids);
         $rules = $this->getPermission($uid, $condition);
-        //vd($rules);
-        /*
-        $result = array_walk($rules, function ($rule) {
-            return (int) substr($rule['resource'], 6);
+        array_walk($rules, function (&$rule, $key) {
+            $rule = (int) substr($rule['resource'], 6);
         });
-        */
 
-        foreach ($rules as $rule) {
-            $result[] = (int) substr($rule['resource'], 6);
-        }
-
-
-        return $result;
+        return $rules;
     }
 
     /**
@@ -357,7 +339,7 @@ class Permission extends AbstractService
             $module,
             $type
         );
-        vd($pages);
+        //vd($pages);
         // Page resource
         $resource = '';
         $key = sprintf('%s-%s-%s', $module, $controller, $action);
