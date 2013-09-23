@@ -25,8 +25,8 @@ use Pi\Application\Bootstrap\Resource\AdminMode;
  *              <resource-key>  => array(
  *                  'title'     => 'Resource Title',
  *                  'access'    => array(
- *                      'guest'     => 1,
- *                      'member'    => 1
+ *                      'guest',
+ *                      'member'
  *                  ),
  *              ),
  *              <...>
@@ -46,6 +46,11 @@ class Permission extends AbstractResource
 {
     protected function canonize(array $config)
     {
+        $adminMap = array(
+            'front' => 'webmaster',
+            'admin' => 'admin',
+        );
+
         $result = array();
         //$module = $this->getModule();
         if (isset($config['callback'])) {
@@ -63,8 +68,16 @@ class Permission extends AbstractResource
                     $resource['name'] = $name;
                 }
                 $resource['section'] = $section;
+                $access = empty($resource['access'])
+                    ? array() : (array) $resource['access'];
+                if (isset($adminMap[$section])) {
+                    $access[] = $adminMap[$section];
+                }
                 $resource = $this->canonizeResource($resource);
-                $result[$section][$name] = $resource;
+                $result[$section][$name] = array(
+                    'resource'  => $resource,
+                    'access'    => array_unique($access),
+                );
             }
         }
 
@@ -141,7 +154,6 @@ class Permission extends AbstractResource
                 }
             }
         }
-        //Pi::registry('moduleperm')->flush();
 
         if (empty($this->config)) {
             return true;
@@ -152,7 +164,8 @@ class Permission extends AbstractResource
         // Add resources
         $model = Pi::model('permission_resource');
         foreach ($config as $section => $resourceList) {
-            foreach ($resourceList as $name => $resource) {
+            foreach ($resourceList as $key => $data) {
+                $resource = $data['resource'];
                 $row = $model->createRow($resource);
                 $status = $row->save();
                 if (!$status) {
@@ -164,6 +177,15 @@ class Permission extends AbstractResource
                         'status'    => false,
                         'message'   => $message,
                     );
+                } elseif ($data['access']) {
+                    foreach ($data['access'] as $role) {
+                        $spec = array(
+                            'section'   => $section,
+                            'module'    => $module,
+                            'resource'  => $resource['name'],
+                        );
+                        Pi::service('permission')->grantPermission($role, $spec);
+                    }
                 }
             }
         }
@@ -197,7 +219,9 @@ class Permission extends AbstractResource
         }
 
         foreach ($config as $section => $resourceList) {
-            foreach ($resourceList as $name => $resource) {
+            foreach ($resourceList as $key => $data) {
+                $resource = $data['resource'];
+                $name = $resource['name'];
                 // Update existent resource
                 if (isset($resourcesExist[$section][$name])) {
                     $row = $resourcesExist[$section][$name];
@@ -230,6 +254,15 @@ class Permission extends AbstractResource
                         'status'    => false,
                         'message'   => $message,
                     );
+                } elseif ($data['access']) {
+                    foreach ($data['access'] as $role) {
+                        $spec = array(
+                            'section'   => $section,
+                            'module'    => $module,
+                            'resource'  => $resource['name'],
+                        );
+                        Pi::service('permission')->grantPermission($role, $spec);
+                    }
                 }
             }
         }
@@ -248,6 +281,13 @@ class Permission extends AbstractResource
                         'status'    => false,
                         'message'   => $message,
                     );
+                } else {
+                    $spec = array(
+                        'section'   => $section,
+                        'module'    => $module,
+                        'resource'  => $row['name'],
+                    );
+                    Pi::service('permission')->revokePermission($spec);
                 }
             }
         }

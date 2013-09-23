@@ -59,8 +59,8 @@ return array(
         ),
         // System config
         'config'        => 'config.php',
-        // ACL specs
-        'acl'           => 'acl.php',
+        // Permission specs
+        'permission'    => 'permission.php',
         // Block definition
         'block'         => 'block.php',
         // Event specs

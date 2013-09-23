@@ -150,16 +150,18 @@ class Permission extends AbstractService
      *
      * All permissions will be revoked if no permission is specified
      *
-     * @param string $role
      * @param array $resource
+     * @param string $role
      *
      * @return bool
      */
-    public function revokePermission($role, array $resource = array())
+    public function revokePermission(array $resource, $role = '')
     {
         $result = true;
         $rule = $this->canonizeRule($resource);
-        $rule['role'] = $role;
+        if ($role) {
+            $rule['role'] = $role;
+        }
         try {
             $this->model()->delete($rule);
         } catch (\Exception $e) {
@@ -340,6 +342,7 @@ class Permission extends AbstractService
             $type
         );
         //vd($pages);
+
         // Page resource
         $resource = '';
         $key = sprintf('%s-%s-%s', $module, $controller, $action);
@@ -375,7 +378,7 @@ class Permission extends AbstractService
     {
         $result = array();
 
-        $uid = (int) (null !== $uid ? $uid : Pi::user()->getIndentity());
+        $uid = (int) (null !== $uid ? $uid : Pi::user()->getIdentity());
         $section = $section ?: $this->getSection();
         if (!$uid) {
             $result[] = $this->roles[$section]['guest'];
@@ -427,7 +430,7 @@ class Permission extends AbstractService
     {
         $result = false;
         $section = $section ?: $this->getSection();
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIndentity();
+        $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
         $roles = $this->getRoles($uid);
         if (in_array($this->roles[$section]['admin'], $roles)) {
             $result = true;
@@ -451,7 +454,7 @@ class Permission extends AbstractService
      */
     public function isRoot($uid = null)
     {
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIndentity();
+        $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
         $result = static::ROOT_UID === $uid ? true : false;
 
         return $result;

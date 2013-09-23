@@ -493,6 +493,6 @@ CREATE TABLE `{core.permission_rule}` (
 
   PRIMARY KEY  (`id`),
   #KEY `item` (`item`),
-  KEY `role` (`role`),
-  KEY `section_module_perm` (`section`, `module`, `resource`)
+  #KEY `role` (`role`),
+  UNIQUE KEY `section_module_perm` (`section`, `module`, `resource`, `role`)
 );

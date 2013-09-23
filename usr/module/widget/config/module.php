@@ -46,8 +46,8 @@ return array(
                 'widget'          => 'table',
             )
         ),
-        // ACL specs
-        'acl'           => 'acl.php',
+        // Permission specs
+        'permission'    => 'permission.php',
         // View pages
         'page'          => 'page.php',
         // Navigation definition

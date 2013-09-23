@@ -59,8 +59,8 @@ return array(
         ),
         // Module configs
         'config'    => 'config.php',
-        // ACL specs
-        'acl'       => 'acl.php',
+        // Permission specs
+        'permission'    => 'permission.php',
         // Block definition
         'block'     => 'block.php',
         // Bootstrap, priority

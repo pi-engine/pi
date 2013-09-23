@@ -70,6 +70,8 @@ class Permission extends AbstractResource
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
         );
+
+        // Check controller exceptions for permission check
         $controller = $e->getTarget();
         if ($controller instanceof AbstractController
             && method_exists($controller, 'permissionException')
@@ -86,7 +88,11 @@ class Permission extends AbstractResource
                 }
             }
         }
+
+        // Check action permission check against route
         $access = Pi::service('permission')->pagePermission($route);
+
+        // Set up deny process
         if (false === $access) {
             $this->denyAccess($e);
         }

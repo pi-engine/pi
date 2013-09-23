@@ -12,27 +12,19 @@ return array(
     'admin' => array(
         array(
             'controller'    => 'script',
-            'permission'    => array(
-                'parent'        => 'script',
-            ),
+            'permission'    => 'script',
         ),
         array(
             'controller'    => 'static',
-            'permission'    => array(
-                'parent'        => 'static',
-            ),
+            'permission'    => 'static',
         ),
         array(
             'controller'    => 'carousel',
-            'permission'    => array(
-                'parent'        => 'carousel',
-            ),
+            'permission'    => 'carousel',
         ),
         array(
             'controller'    => 'tab',
-            'permission'    => array(
-                'parent'        => 'tab',
-            ),
+            'permission'    => 'tab',
         ),
     ),
 );
