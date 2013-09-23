@@ -1,4 +1,4 @@
-angular.module('pagination', [])
+angular.module('pagination', ['template/pagination.html'])
 
 .controller('PaginationController', ['$scope', '$attrs', '$parse', '$interpolate', function ($scope, $attrs, $parse, $interpolate) {
   var self = this,
