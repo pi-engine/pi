@@ -31,25 +31,20 @@
     </ul>
     <div ng-view></div>
 </div>
-<script src="<?php echo $this->assetModule('angular/angular.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/angular-route.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/pagination.js'); ?>"></script>
+<?php $assetMin = Pi::environment() == 'production' ? '.min' : ''; ?>
+<script src="<?php echo $this->assetModule('angular/angular'. $assetMin .'.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/angular-route'. $assetMin .'.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/pagination'. $assetMin .'.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('angular/angular-translate'. $assetMin .'.js'); ?>"></script>
 <script>
-angular.extend(angular, {
-    'isFile': function(obj) {
-        return Object.prototype.toString.apply(obj) === '[object File]';
-    }
-});
-var userListModule = angular.module('userListModule', ['ngRoute', 'pagination']);
+var userListModule = angular.module('userListModule', ['ngRoute', 'pagination', 'pascalprecht.translate']);
 var userListModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
-    list: {
+    t: {
         confirm: '<?php _e('Are you sure delete this user'); ?>',
         confirms: '<?php _e('Are you sure delete this users'); ?>',
         ACTIVE_STATE:'<?php _e('Active State'); ?>',
-    },
-    add: {
         TITLE: '<?php _e('Add user'); ?>',
         USER_NAME: '<?php _e('Username'); ?>',
         DISPLAY_NAME: '<?php _e('Display name'); ?>',
@@ -61,10 +56,17 @@ var userListModuleConfig = {
         SUBMIT: '<?php _e('Submit'); ?>',
         REQUIRED: '<?php _e('required'); ?>',
         INVALID_EMAIL: '<?php _e('invalid email'); ?>',
-        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>'
+        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
+        USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
+        EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
+        DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
     }
 };
-userListModule.config(function($routeProvider, $locationProvider) {
+</script>
+<script>
+userListModule.config(function($translateProvider) {
+    $translateProvider.translations(userListModuleConfig.t);
+}).config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.when('/activated', {
         templateUrl: userListModuleConfig.assetRoot + 'index-activated.html',
@@ -105,13 +107,33 @@ userListModule.config(function($routeProvider, $locationProvider) {
         link: link,
         restrict: 'A'
     };
+}).directive('unique', function(server) {
+    var link = function(scope, element, attr, ctrl) {
+        element.on('blur', function() {
+            if (!ctrl.$viewValue) return;
+            server
+                .unique(attr.name, ctrl.$viewValue)
+                .success(function(data) {
+                    ctrl.$setValidity('unique', data.status);
+                    console.log(ctrl);
+                });
+        });
+    }
+    return {
+        require: 'ngModel',
+        link: link,
+        restrict: 'A'
+    }
 });
 userListModule.service('server', function($http) {
     var urlRoot = userListModuleConfig.urlRoot;
-    //post form data not json data
+    var isFile = function(obj) {
+        return Object.prototype.toString.apply(obj) === '[object File]';
+    };
+    //emulate jQuery post
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $http.defaults.transformRequest = [function(d) {
-        return angular.isObject(d) && !angular.isFile(d) ? $.param(d) : d;
+        return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
     }];
     this.get = function (action, params) {
         return $http.get(urlRoot + action, {
@@ -165,9 +187,16 @@ userListModule.service('server', function($http) {
     };
     this.add = function(params) {
         return $http.post(urlRoot + 'addUser', params);
+    };
+    this.unique = function(key, value) {
+        var params = {};
+        params[key] = value;
+        return $http.get(urlRoot + 'checkDuplication', {
+            params: params,
+            cache: true
+        });
     }
-}).service('translate', function() {
-    return userListModuleConfig;
+
 }).controller('MainCtrl', function($scope, $location) {
     $scope.navClass = function(path) {
          if ($location.path().substr(0, path.length) == path) {
@@ -176,7 +205,7 @@ userListModule.service('server', function($http) {
           return "";
         }
     };
-}).controller('ListCtrl', function($scope, $location, server, translate) {
+}).controller('ListCtrl', function($scope, $location, server) {
     var action = $location.path().replace(/^\//, '');
     var getSearchParams = function() {
         var param = {
@@ -203,7 +232,6 @@ userListModule.service('server', function($http) {
         angular.extend($scope, data);
     });
 
-    $scope.t = translate.list;
     $scope.markAll = function(checked) {
         angular.forEach(this.users, function(user) {
             user.checked = checked;
@@ -348,8 +376,7 @@ userListModule.service('server', function($http) {
             $scope.paginator = data.paginator;
         });
     };
-}).controller('NewCtrl', function($scope, translate, server) {
-    $scope.t = translate.add;
+}).controller('NewCtrl', function($scope, server) {
     $scope.activate = 0;
     $scope.enable = 0;
     $scope.activateAction = function() {
