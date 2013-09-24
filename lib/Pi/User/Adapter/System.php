@@ -83,9 +83,9 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function addUser($data)
+    public function addUser($data, $setRole = true)
     {
-        return Pi::api('system', 'user')->addUser($data);
+        return Pi::api('system', 'user')->addUser($data, $setRole);
     }
 
     /**
@@ -152,9 +152,17 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function setRole($uid, $role, $section = '')
+    public function setRole($uid, $role)
     {
-        return Pi::api('system', 'user')->setRole($uid, $role, $section);
+        return Pi::api('system', 'user')->setRole($uid, $role);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function revokeRole($uid, $role)
+    {
+        return Pi::api('user', 'user')->revokeRole($uid, $role);
     }
 
     /**

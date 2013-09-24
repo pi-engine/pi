@@ -10,7 +10,8 @@
 namespace Module\User\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Module\System\Api\AbstractUser as AbstractUseApi;
+//use Pi\Application\AbstractApi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\Local as UserModel;
 
@@ -19,7 +20,7 @@ use Pi\User\Model\Local as UserModel;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class User extends AbstractApi
+class User extends AbstractUseApi
 {
     /** @var string Module name */
     protected $module = 'user';
@@ -267,14 +268,15 @@ class User extends AbstractApi
      * - Add compound data, multiple, if any
      *
      * @param   array   $data
+     * @param   bool    $setRole
      *
      * @return  int|array uid or uid and error of account/profile/compound
      * @api
      */
-    public function addUser($data)
+    public function addUser($data, $setRole = true)
     {
         $error = array();
-        $uid = $this->addAccount($data);
+        $uid = parent::addUser($data, $setRole);
 
         if (!$uid) {
             $error[] = 'account';
@@ -308,7 +310,7 @@ class User extends AbstractApi
         }
 
         $error = array();
-        $status = $this->updateAccount($uid, $data);
+        $status = parent::updateUser($uid, $data);
         if (!$status) {
             $error[] = 'account';
         }
@@ -338,7 +340,7 @@ class User extends AbstractApi
         }
 
         $error = array();
-        $result = $this->deleteAccount($uid);
+        $result = parent::deleteUser($uid);
         if (false === $result) {
             $error[] = 'account';
         }
@@ -363,13 +365,7 @@ class User extends AbstractApi
      */
     public function activateUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->activateAccount($uid);
-
-        return $status;
+        return parent::activateUser($uid);
     }
 
     /**
@@ -382,13 +378,7 @@ class User extends AbstractApi
      */
     public function enableUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->enableAccount($uid);
-
-        return $status;
+        return parent::enableUser($uid);
     }
 
     /**
@@ -401,13 +391,7 @@ class User extends AbstractApi
      */
     public function disableUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->enableAccount($uid, false);
-
-        return $status;
+        return parent::disableUser($uid);
     }
 
     /**
@@ -485,52 +469,25 @@ class User extends AbstractApi
      *
      * @param int          $uid
      * @param string|array $role
-     * @param string       $section
      *
      * @return bool
      */
-    public function setRole($uid, $role, $section = '')
+    public function setRole($uid, $role)
     {
-        if (!$uid) {
-            return false;
-        }
+        return parent::setRole($uid, $role);
+    }
 
-        if (is_string($role)) {
-            $section = $section ?: 'front';
-            $role = array(
-                $section    => $role,
-            );
-        }
-        $model = Pi::model('user_role');
-        $rowset = $model->select(array(
-            'uid'       => $uid,
-            'section'   => array_keys($role),
-        ));
-        // Update existent role links
-        foreach ($rowset as $row) {
-            $row['role'] = $role[$row['section']];
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                return false;
-            }
-            unset($role[$row['section']]);
-        }
-        // Add new role links
-        foreach ($role as $section => $roleValue) {
-            $row = $model->createRow(array(
-                'uid'       => $uid,
-                'section'   => $section,
-                'role'      => $roleValue,
-            ));
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                return false;
-            }
-        }
-
-        return true;
+    /**
+     * Revoke user role(s)
+     *
+     * @param int          $uid
+     * @param string|array $role
+     *
+     * @return bool
+     */
+    public function revokeRole($uid, $role)
+    {
+        return parent::revokeRole($uid, $role);
     }
 
     /**
@@ -547,25 +504,7 @@ class User extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $where = array('uid' => $uid);
-        if ($section) {
-            $where['section'] = $section;
-        }
-        $rowset = Pi::model('user_role')->select($where);
-        if ($section) {
-            $result = $rowset->current()->role;
-        } else {
-            $result = array();
-            foreach ($rowset as $row) {
-                $result[$row['section']] = $row['role'];
-            }
-        }
-
-        return $result;
+        return parent::getRole($uid, $section);
     }
 
     /**
@@ -710,21 +649,7 @@ class User extends AbstractApi
      */
     public function addAccount(array $data)
     {
-        $type = 'account';
-        $data = $this->canonizeUser($data, $type);
-        if (!isset($data['time_created'])) {
-            $data['time_created'] = time();
-        }
-        $row = Pi::model($type, 'user')->createRow($data);
-        $row->prepare();
-
-        try {
-            $row->save();
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return (int) $row['id'];
+        return parent::addAccount($data);
     }
 
     /**
@@ -737,30 +662,7 @@ class User extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $type = 'account';
-        $data = $this->canonizeUser($data, $type);
-        $row = Pi::model($type, 'user')->find($uid);
-        if ($row) {
-            $row->assign($data);
-            if (isset($data['credential'])) {
-                $row->prepare();
-            }
-            $status = true;
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                $status = false;
-            }
-
-        } else {
-            $status = false;
-        }
-
-        return $status;
+        return parent::updateAccount($uid, $data);
     }
 
     /**
@@ -774,30 +676,7 @@ class User extends AbstractApi
      */
     public function deleteAccount($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('account', 'user');
-        $row = $model->find($uid);
-        if (!$row) {
-            return false;
-        }
-        if ((int) $row['time_deleted'] > 0) {
-            return null;
-        }
-        $row->assign(array(
-            'active'        => 0,
-            'time_deleted'  => time(),
-        ));
-        try {
-            $row->save();
-            $status = true;
-        } catch (\Exception $e) {
-            $status = status;
-        }
-
-        return $status;
+        return parent::deleteAccount($uid);
     }
 
     /**
@@ -812,30 +691,7 @@ class User extends AbstractApi
      */
     public function activateAccount($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('account', 'user');
-        $row = $model->find($uid);
-        if (!$row || (int) $row['time_deleted'] > 0) {
-            return false;
-        }
-        if ((int) $row['time_activated'] > 0) {
-            return null;
-        }
-        $row->assign(array(
-            'active'            => 1,
-            'time_activated'    => time(),
-        ));
-        try {
-            $row->save();
-            $status = true;
-        } catch (\Exception $e) {
-            $status = false;
-        }
-
-        return $status;
+        return parent::activateAccount($uid);
     }
 
     /**
@@ -854,43 +710,7 @@ class User extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('account', 'user');
-        $row = $model->find($uid);
-        if (!$row
-            //|| (int) $row['time_activated'] < 1
-            || (int) $row['time_deleted'] > 0
-        ) {
-            return false;
-        }
-        if (($flag && (int) $row['time_disabled'] < 0)
-            || (!$flag && (int) $row['time_disabled'] > 0)
-        ) {
-            return null;
-        }
-        if ($flag) {
-            $data = array(
-                'active'            => 1,
-                'time_disabled'     => 0,
-            );
-        } else {
-            $data = array(
-                'active'            => 0,
-                'time_disabled'     => time(),
-            );
-        }
-        $row->assign($data);
-        try {
-            $row->save();
-            $status = true;
-        } catch (\Exception $e) {
-            $status = false;
-        }
-
-        return $status;
+        return parent::enableAccount($uid, $flag);
     }
 
     /**

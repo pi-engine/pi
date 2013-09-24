@@ -77,9 +77,9 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function addUser($data)
+    public function addUser($data, $setRole = true)
     {
-        return Pi::api('user', 'user')->addUser($data);
+        return Pi::api('user', 'user')->addUser($data, $setRole);
     }
 
     /**
@@ -146,9 +146,17 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function setRole($uid, $role, $section = '')
+    public function setRole($uid, $role)
     {
-        return Pi::api('user', 'user')->setRole($uid, $role, $section);
+        return Pi::api('user', 'user')->setRole($uid, $role);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function revokeRole($uid, $role)
+    {
+        return Pi::api('user', 'user')->revokeRole($uid, $role);
     }
 
     /**

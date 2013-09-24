@@ -10,7 +10,7 @@
 namespace Module\System\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Module\System\Api\AbstractUser as AbstractUseApi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\System as UserModel;
 
@@ -19,7 +19,7 @@ use Pi\User\Model\System as UserModel;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class User extends AbstractApi
+class User extends AbstractUseApi
 {
     /** @var string Module name */
     protected $module = 'system';
@@ -154,15 +154,14 @@ class User extends AbstractApi
      * Add a user with full set of data
      *
      * @param   array   $data
+     * @param   bool    $setRole
      *
      * @return  int
      * @api
      */
-    public function addUser($data)
+    public function addUser($data, $setRole = true)
     {
-        $uid = $this->addAccount($data);
-
-        return $uid;
+        return parent::addUser($data, $setRole);
     }
 
     /**
@@ -176,13 +175,7 @@ class User extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $result = $this->updateAccount($uid, $data);
-
-        return $result;
+        return parent::updateUser($uid, $data);
     }
 
     /**
@@ -194,13 +187,7 @@ class User extends AbstractApi
      */
     public function deleteUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->deleteAccount($uid);
-
-        return $status;
+        return parent::deleteUser($uid);
     }
 
     /**
@@ -212,13 +199,7 @@ class User extends AbstractApi
      */
     public function activateUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->activateAccount($uid);
-
-        return $status;
+        return parent::activateUser($uid);
     }
 
     /**
@@ -231,13 +212,7 @@ class User extends AbstractApi
      */
     public function enableUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->enableAccount($uid);
-
-        return $status;
+        return parent::enableUser($uid);
     }
 
     /**
@@ -250,13 +225,7 @@ class User extends AbstractApi
      */
     public function disableUser($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $status = $this->enableAccount($uid, false);
-
-        return $status;
+        return parent::disableUser($uid);
     }
 
     /**
@@ -278,7 +247,7 @@ class User extends AbstractApi
         $fields   = (array) $field;
         $uids   = (array) $uid;
 
-        $meta   = $this->canonizeMeta($fields);
+        $meta   = $this->canonizeField($fields);
         $fields = $this->getFields($uids, $meta, $filter);
         foreach ($fields as $id => $data) {
             if (isset($result[$id])) {
@@ -337,50 +306,25 @@ class User extends AbstractApi
      *
      * @param int           $uid
      * @param string|array  $role
-     * @param string        $section
      *
      * @return bool
      */
-    public function setRole($uid, $role, $section = '')
+    public function setRole($uid, $role)
     {
-        if (!$uid) {
-            return false;
-        }
+        return parent::setRole($uid, $role);
+    }
 
-        if (is_string($role)) {
-            $section = $section ?: 'front';
-            $role = array(
-                $section    => $role,
-            );
-        }
-        $model = Pi::model('user_role');
-        $rowset = $model->select(array(
-            'uid'       => $uid,
-            'section'   => array_keys($role),
-        ));
-        foreach ($rowset as $row) {
-            $row['role'] = $role[$row['section']];
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                return false;
-            }
-            unset($role[$row['section']]);
-        }
-        foreach ($role as $section => $roleValue) {
-            $row = $model->createRow(array(
-                'uid'       => $uid,
-                'section'   => $section,
-                'role'      => $roleValue,
-            ));
-            try {
-                $row->save();
-            } catch (\Exception $e) {
-                return false;
-            }
-        }
-
-        return true;
+    /**
+     * Revoke user role(s)
+     *
+     * @param int          $uid
+     * @param string|array $role
+     *
+     * @return bool
+     */
+    public function revokeRole($uid, $role)
+    {
+        return parent::revokeRole($uid, $role);
     }
 
     /**
@@ -397,25 +341,7 @@ class User extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $where = array('uid' => $uid);
-        if ($section) {
-            $where['section'] = $section;
-        }
-        $rowset = Pi::model('user_role')->select($where);
-        if ($section) {
-            $result = $rowset->current()->role;
-        } else {
-            $result = array();
-            foreach ($rowset as $row) {
-                $result[$row['section']] = $row['role'];
-            }
-        }
-
-        return $result;
+        return parent::getRole($uid, $section);
     }
 
     /**
@@ -425,7 +351,7 @@ class User extends AbstractApi
      *
      * @return array
      */
-    public function canonizeMeta(array $fields)
+    public function canonizeField(array $fields)
     {
         $meta = array();
         $fieldMeta = $this->getMeta();
@@ -442,9 +368,10 @@ class User extends AbstractApi
      * Canonize user full set data or for a specific type
      *
      * @param array     $rawData
+     * @param string    $type
      * @return array
      */
-    public function canonizeUser(array $rawData)
+    public function canonizeUser(array $rawData, $type = '')
     {
         $result = array();
 
@@ -467,19 +394,7 @@ class User extends AbstractApi
      */
     public function addAccount(array $data)
     {
-        $data = $this->canonizeUser($data);
-        if (!isset($data['time_created'])) {
-            $data['time_created'] = time();
-        }
-        $row = Pi::model('user_account')->createRow($data);
-        $row->prepare();
-        try {
-            $row->save();
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return (int) $row['id'];
+        return parent::addAccount($data);
     }
 
     /**
@@ -492,28 +407,7 @@ class User extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $data = $this->canonizeUser($data);
-        $row = Pi::model('user_account')->find($uid);
-        if ($row) {
-            $row->assign($data);
-            if (isset($data['credential'])) {
-                $row->prepare();
-            }
-            try {
-                $row->save();
-                $status = true;
-            } catch (\Exception $e) {
-                $status = false;
-            }
-        } else {
-            $status = false;
-        }
-
-        return $status;
+        return parent::updateAccount($uid, $data);
     }
 
     /**
@@ -527,29 +421,7 @@ class User extends AbstractApi
      */
     public function deleteAccount($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('user_account');
-        $row = $model->find($uid);
-        if (!$row) {
-            return false;
-        }
-        if ((int) $row['time_deleted'] > 0) {
-            return null;
-        }
-        $row->assign(array(
-            'active'        => 0,
-            'time_deleted'  => time(),
-        ));
-        try {
-            $row->save();
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return true;
+        return parent::deleteAccount($uid);
     }
 
     /**
@@ -564,37 +436,7 @@ class User extends AbstractApi
      */
     public function activateAccount($uid)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('user_account');
-        $row = $model->find($uid);
-        // Skip if account not found or deleted
-        if (!$row || (int) $row['time_deleted'] > 0) {
-            return false;
-        }
-        // Skip is already activated
-        if ((int) $row['time_activated'] > 0) {
-            return null;
-        }
-        // Set active to true if activated and enabled
-        if ((int) $row['time_disabled'] > 0) {
-            $active = 0;
-        } else {
-            $active = 1;
-        }
-        $row->assign(array(
-            'active'            => $active,
-            'time_activated'    => time(),
-        ));
-        try {
-            $row->save();
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return true;
+        return parent::activateAccount($uid);
     }
 
     /**
@@ -613,44 +455,7 @@ class User extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
-        if (!$uid) {
-            return false;
-        }
-
-        $model = Pi::model('user_account');
-        $row = $model->find($uid);
-        // Skip if account not found or deleted
-        if (!$row
-            //|| (int) $row['time_activated'] < 1
-            || (int) $row['time_deleted'] > 0
-        ) {
-            return false;
-        }
-        // Skip enabling if already enabled
-        // Skip disabling if already disabled
-        if (($flag && (int) $row['time_disabled'] == 0)
-            || (!$flag && (int) $row['time_disabled'] > 0)
-        ) {
-            return null;
-        }
-        // Set active to true if activated and enabled
-        if ((int) $row['time_activated'] > 0 && $flag) {
-            $active = 1;
-        } else {
-            $active = 0;
-        }
-        $data = array(
-            'active'            => $active,
-            'time_disabled'     => $time,
-        );
-        $row->assign($data);
-        try {
-            $row->save();
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return true;
+        return parent::enableAccount($uid, $flag);
     }
 
     /**

@@ -79,7 +79,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
- * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields, $setRole = true)
  * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
  * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)
  * @method \Pi\User\Adapter\AbstractAdapter::deleteUser($uid)
@@ -91,6 +91,9 @@ use Pi\User\Resource\AbstractResource;
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
  * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::setRole($uid, $role)
+ * @method \Pi\User\Adapter\AbstractAdapter::revokeRole($uid, $role)
+ * @method \Pi\User\Adapter\AbstractAdapter::getRole($uid, $section = '')
  * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
  * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
  * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
