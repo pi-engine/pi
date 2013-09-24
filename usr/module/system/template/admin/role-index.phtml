@@ -8,14 +8,9 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 
 <div class="page-role">
     <ul class="nav nav-tabs">
-        <li<?php if ('front' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'front')); ?>" title="<?php _e('User roles'); ?>"><?php _e('User roles'); ?></a></li>
+        <li<?php if ('front' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'front')); ?>" title="<?php _e('Front roles'); ?>"><?php _e('Front roles'); ?></a></li>
         <li<?php if ('admin' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'admin')); ?>" title="<?php _e('Admin roles'); ?>"><?php _e('Admin roles'); ?></a></li>
     </ul>
-    <div class="role-ident">
-        <i class="icon-check"></i><span><?php _e('Directly inherited'); ?></span>
-        <i class="icon-check icon-indirectly"></i><span><?php _e('Indirectly inherited'); ?></span>
-        <i class="icon-check-empty"></i><span><?php _e('click for horizontal inherited vertical'); ?></span>
-    </div>
     <div id="js-role">
 
     </div>
@@ -70,7 +65,6 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
         el: $('#js-role'),
         events:{
              'click .js-new-role': 'addRole',
-             'click .js-check': 'inheritOrCancle',
              'click .js-delete': 'deleteRole',
              'click .js-rename': 'renameShow',
              'blur .js-input-rename': 'renameAction'
@@ -97,23 +91,6 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
               this.roleModal.modal('hide');
               systemMessage.succ(res.message);
            }
-        },
-        inheritOrCancle: function(e) {
-            var tar = $(e.currentTarget),
-                child = this.getRoleName(tar),
-                parent = tar.attr("data-name"),
-                add= tar.attr('data-action');
-            $.post('<?php echo $this->url('', array('action' => 'inherit')); ?>',{
-                add: add,
-                child: child,
-                parent: parent
-            }).done(_.bind(function(res) {
-                res = $.parseJSON(res);
-                if (res.status) {
-                    this.collection.reset(res.data);
-                    systemMessage.succ(res.message);
-                }
-            }, this));
         },
         deleteRole: function(e) {
             var id = this.getRoleId($(e.currentTarget));

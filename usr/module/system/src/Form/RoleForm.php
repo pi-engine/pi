@@ -60,6 +60,16 @@ class RoleForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'order',
+            'options'       => array(
+                'label' => __('Display order'),
+            ),
+            'attributes'    => array(
+                'type'  => 'text',
+            ),
+        ));
+
+        $this->add(array(
             'name'  => 'id',
             'attributes'    => array(
                 'type'  => 'hidden',

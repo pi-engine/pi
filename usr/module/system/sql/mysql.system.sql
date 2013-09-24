@@ -445,8 +445,10 @@ CREATE TABLE `{core.role}` (
   `description`     text,
   `module`          varchar(64)     NOT NULL    default '',
   `custom`          tinyint(1)      unsigned    NOT NULL default '0',
-  `active`          tinyint(1)      unsigned NOT NULL default '1',
+  `active`          tinyint(1)      unsigned    NOT NULL default '1',
   `section`         enum('front', 'admin')      NOT NULL,
+  -- Display order
+  `order`           int(10)         unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
