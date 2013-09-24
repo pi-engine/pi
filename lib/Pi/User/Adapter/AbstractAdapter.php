@@ -200,11 +200,13 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Add a user
      *
-     * @param   array       $fields
+     * @param   array   $fields
+     * @param   bool    $setRole
+     *
      * @return  int|bool
      * @api
      */
-    abstract public function addUser($fields);
+    abstract public function addUser($fields, $setRole = true);
 
     /**
      * Update a user
@@ -324,11 +326,20 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param int           $uid
      * @param string|array  $role
-     * @param string        $section
      *
      * @return bool
      */
-    abstract public function setRole($uid, $role, $section = '');
+    abstract public function setRole($uid, $role);
+
+    /**
+     * Revoke user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    abstract public function revokeRole($uid, $role);
 
     /**
      * Get user role
@@ -337,8 +348,8 @@ abstract class AbstractAdapter implements BindInterface
      * If section is specified, returns the role;
      * if not, return associative array of roles.
      *
-     * @param        $uid
-     * @param string $section   Section name: admin, front
+     * @param int       $uid
+     * @param string    $section   Section name: admin, front
      *
      * @return string|array
      */
