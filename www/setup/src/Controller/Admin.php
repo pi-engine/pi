@@ -209,10 +209,10 @@ class Admin extends AbstractController
             $this->status = $uid ? true : false;
             Pi::api('system', 'user')->activateUser($uid);
             Pi::api('system', 'user')->setRole($uid, array(
-                'member'    => 'front',
-                'webmaster' => 'front',
-                'staff'     => 'admin',
-                'admin'     => 'admin',
+                //'member',
+                'webmaster',
+                //'staff',
+                'admin'
             ));
 
             // Create system accounts
@@ -220,34 +220,34 @@ class Admin extends AbstractController
                 'manager'   => array(
                     'name'  => __('Manager'),
                     'role'  => array(
-                        'manager'   => 'admin',
-                        'member'    => 'front',
+                        'manager'
+                        //'member'
                     ),
                 ),
                 'moderator' => array(
                     'name'  => __('Moderator'),
                     'role'  => array(
-                        'moderator' => 'admin',
-                        'member'    => 'front',
+                        'moderator'
+                        //'member'
                     ),
                 ),
                 'editor'    => array(
                     'name'  => __('Editor'),
                     'role'  => array(
-                        'editor'    => 'admin',
-                        'member'    => 'front',
+                        'editor'
+                        //'member'
                     ),
                 ),
                 'staff'     => array(
                     'name'  => __('Staff'),
                     'role'  => array(
-                        'staff'     => 'admin',
-                        'member'    => 'front',
+                        'staff'
+                        //'member'
                     ),
                 ),
                 'member'    => array(
                     'name'  => __('Member'),
-                    'role'  => 'member',
+                    //'role'  => 'member',
                 ),
             );
             foreach ($accounts as $identity => $data) {
@@ -259,7 +259,9 @@ class Admin extends AbstractController
                 );
                 $uid = Pi::api('system', 'user')->addUser($userData);
                 Pi::api('system', 'user')->activateUser($uid);
-                Pi::api('system', 'user')->setRole($uid, $data['role']);
+                if (!empty($data['role'])) {
+                    Pi::api('system', 'user')->setRole($uid, $data['role']);
+                }
             }
         }
 
