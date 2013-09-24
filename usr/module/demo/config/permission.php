@@ -8,6 +8,7 @@
  */
 
 return array(
+    'custom'    => 'Module\Demo\Permission',
     'front'    => array(
         // test
         'test'  => array(

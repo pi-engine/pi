@@ -16,8 +16,9 @@ use Pi\Application\Bootstrap\Resource\AdminMode;
  * Setup permission component with configuration specs
  *
  * ```
- *          // Callback for front resources
- *          'callback'  => 'Module\<Module-name>\Permission\<CallbackName>',
+ *          // Callback for front custom resources
+ *          // @see Pi\Application\AbstractModuleAwareness
+ *          'custom'  => 'Module\<Module-name>\Permission\<CallbackName>',
  *
  *          // Front resources
  *          'front'    => array(
@@ -53,13 +54,13 @@ class Permission extends AbstractResource
 
         $result = array();
         //$module = $this->getModule();
-        if (isset($config['callback'])) {
+        if (isset($config['custom'])) {
             $resource = array(
                 'section'   => 'front',
-                'type'      => 'callback',
-                'name'      => $config['callback'],
+                'type'      => 'custom',
+                'name'      => $config['custom'],
             );
-            $config['callback'] = $resource;
+            $config['custom'] = $resource;
         }
         foreach ($config as $section => &$resourceList) {
             foreach ($resourceList as $name => &$resource) {
@@ -210,7 +211,7 @@ class Permission extends AbstractResource
         $model = Pi::model('permission_resource');
         $rowset = $model->select(array(
             'module'    => $module,
-            'type'      => array('system', 'callback'),
+            //'type'      => array('system', 'custom'),
         ));
         // Find existent resources
         $resourcesExist = array();
@@ -306,11 +307,10 @@ class Permission extends AbstractResource
 
         Pi::model('permission_resource')->delete(array(
             'module'    => $module,
-            'type'      => array('system', 'callback')
+            //'type'      => array('system', 'custom')
         ));
         Pi::model('permission_rule')->delete(array('module' => $module));
 
-        //Pi::registry('moduleperm')->flush();
         Pi::registry('permission_resource')->flush();
 
         return true;

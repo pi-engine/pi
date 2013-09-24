@@ -473,7 +473,7 @@ CREATE TABLE `{core.permission_resource}` (
   -- Resource name: page - <module-controller>; specific - <module-resource>
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
-  -- system - created on module installation; callback
+  -- system - created on module installation; custom
   `type`            varchar(64)     NOT NULL    default '',
 
   PRIMARY KEY  (`id`),

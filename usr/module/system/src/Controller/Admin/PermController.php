@@ -11,7 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Module\System\Controller\ComponentController  as ActionController;
-use Pi\Application\Bootstrap\Resource\AdminMode;
+use Pi\Application\AbstractModuleAwareness;
 
 /**
  * Permission controller
@@ -47,14 +47,14 @@ class PermController extends ActionController
             'block'     => array(),
         );
         $resourceList = array();
-        $resources['module']['module-access'] = array(
+        $resources['global']['module-access'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-access',
             'title'     => __('Module access'),
             'roles'     => array(),
         );
-        $resources['module']['module-admin'] = array(
+        $resources['global']['module-admin'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-admin',
@@ -67,11 +67,11 @@ class PermController extends ActionController
         $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
             'section'   => $section,
-            'type'      => array('system', 'callback'),
+            //'type'      => array('system', 'custom'),
         ));
         $callback = '';
         foreach ($rowset as $row) {
-            if ('callback' == $row['type']) {
+            if ('custom' == $row['type']) {
                 $callback = $row['name'];
                 continue;
             }
@@ -85,36 +85,41 @@ class PermController extends ActionController
 
             $resourceList[] = $row['name'];
         }
-        // Load module custom resources
-        if ($callback) {
-            $callbackHandler = new $callback($module);
-            $resources['callback'] = $callbackHandler->getResources();
-            foreach ($resources['callback'] as $name => &$resource) {
-                $resource['name']       = $name;
-                $resource['module']     = $module;
-                $resource['section']    = $section;
-                $resource['roles']      = array();
+        if ('front' == $section) {
+            // Load module custom resources
+            if ($callback
+                //&& is_subclass_of($callback, 'AbstractModuleAwareness')
+            ) {
+                $callbackHandler = new $callback($module);
+                $resourceCustom = $callbackHandler->getResources();
+                foreach ($resourceCustom as $name => $resource) {
+                    $resource['name']       = $name;
+                    $resource['module']     = $module;
+                    $resource['section']    = $section;
+                    $resource['roles']      = array();
 
-                $resourceList[] = $name;
+                    $resources['module'][$name] = $resource;
+                    $resourceList[] = $name;
+                }
             }
-        }
-        // Load block resources
-        $model = Pi::model('block');
-        $select = $model->select()
-            ->where(array('module' => $module))->order(array('id ASC'));
-        $rowset = $model->selectWith($select);
-        $blocks = array();
-        foreach ($rowset as $row) {
-            $key = 'block-' . $row['id'];
-            $blocks[$key] = array(
-                'section'   => 'block',
-                'module'    => $module,
-                'resource'  => $key,
-                'title'     => $row['title'],
-                'roles'     => array(),
-            );
+            // Load block resources
+            $model = Pi::model('block');
+            $select = $model->select()
+                ->where(array('module' => $module))->order(array('id ASC'));
+            $rowset = $model->selectWith($select);
+            //$blocks = array();
+            foreach ($rowset as $row) {
+                $key = 'block-' . $row['id'];
+                $resources['block'][$key] = array(
+                    'section'   => 'block',
+                    'module'    => $module,
+                    'resource'  => $key,
+                    'title'     => $row['title'],
+                    'roles'     => array(),
+                );
 
-            $resourceList[] = $key;
+                $resourceList[] = $key;
+            }
         }
 
         if ($resourceList) {
@@ -127,7 +132,7 @@ class PermController extends ActionController
             foreach ($rowset as $row) {
                 $rules[$row['resource']][$row['role']] = 1;
             }
-            foreach ($resources as $section => &$list) {
+            foreach ($resources as $type => &$list) {
                 foreach ($list as $name => &$resource) {
                     if (isset($rules[$name])) {
                         $resource['roles'] = $rules[$name];
@@ -144,66 +149,6 @@ class PermController extends ActionController
     }
 
     /**
-     * For admin permission assignment
-     */
-    public function adminAction()
-    {
-        $module = $this->params('name', 'system');
-        $section = AdminMode::MODE_ADMIN;
-        // Load all active roles of current section
-        $roles = Pi::registry('role')->read($section);
-
-        $modulesInstalled = Pi::registry('modulelist')->read();
-        foreach (array_keys($modulesInstalled) as $key) {
-            $modulesInstalled[$key]['name'] = $key;
-            $modulesInstalled[$key]['resource'] = $key;
-            $modulesInstalled[$key]['perm'] = null;
-            $modulesInstalled[$key]['direct'] = 0;
-        }
-
-        $moduleList = array();
-        foreach (
-            array(AdminMode::MODE_ADMIN, AdminMode::MODE_SETTING)
-            as $section
-        ) {
-            $modules = $modulesInstalled;
-            $rowset = Pi::model('permission_rule')->select(array(
-                'role'      => $roles,
-                'section'   => 'module-' . $section,
-                'resource'  => array_keys($modules),
-                'module'    => array_keys($modules)
-            ));
-            foreach ($rowset as $row) {
-                $modules[$row->resource]['section'] = 'module-' . $section;
-                $perm = $row->deny ? -1 : 1;
-                $modules[$row->resource]['perm'] = $perm;
-                $modules[$row->resource]['direct'] = $perm;
-            }
-
-            /*
-            $modulesAllowed = Pi::registry('moduleperm')
-                ->read($section, $roles);
-            */
-            $modulesAllowed = Pi::service('permission')->moduleList($section, $roles);
-            if (null !== $modulesAllowed && is_array($modulesAllowed)) {
-                foreach (array_keys($modules) as $key) {
-                    $modules[$key]['section'] = 'module-' . $section;
-                    $modules[$key]['perm'] = in_array($key, $modulesAllowed)
-                        ? 1 : -1;
-                }
-            }
-
-            $moduleList[$section] = array_values($modules);
-        }
-
-        $this->view()->assign('name', $module);
-        $this->view()->assign('section', $section);
-        $this->view()->assign('title', __('Module permissions'));
-        $this->view()->assign('roles', $roles);
-        $this->view()->assign('resources', $moduleList);
-    }
-
-    /**
      * AJAX: Assign permission to a role upon a module managed resource
      *
      * @return array
@@ -215,24 +160,77 @@ class PermController extends ActionController
         $section    = $this->params('section');
         $module     = $this->params('name');
         $op         = $this->params('perm', 'grant');
+        //$all        = $this->params('all', ''); // role, resource
 
         $model = Pi::model('permission_rule');
-        $row = $model->select(compact(
-            'section',
-            'module',
-            'resource',
-            'role'
-        ))->current();
-        if ($row && 'revoke' == $op) {
-            $row->delete();
-        } elseif (!$row && 'grant' == $op) {
-            $row = $model->createRow(compact(
+        // Grant/revoke permissions on all roles for a resource
+        if ('_all' == $role) {
+            $where = array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => $resource,
+            );
+            if ('revoke' == $op) {
+                $model->delete($where);
+            } else {
+                $roles = Pi::registry('role')->read($section);
+                $rowset = $model->select($where);
+                foreach ($rowset as $row) {
+                    unset($roles[$row['role']]);
+                }
+                foreach (array_keys($roles) as $role) {
+                    $data = $where + array('role' => $role);
+                    $row = $model->createRow($data);
+                    $row->save();
+                }
+            }
+        // Grant/revoke permissions on all resources for a role
+        } elseif ('_all' == $resource) {
+            $where = array(
+                'section'   => $section,
+                'module'    => $module,
+                'role'      => $role,
+            );
+            if ('revoke' == $op) {
+                $model->delete($where);
+            } else {
+                $resources = array();
+                $rowset = Pi::model('permission_resource')->select(array(
+                    'section'   => $section,
+                    'module'    => $module,
+                ));
+                foreach ($rowset as $row) {
+                    $resources[$row['name']] = 1;
+                }
+                $rowset = $model->select($where);
+                foreach ($rowset as $row) {
+                    unset($resources[$row['resource']]);
+                }
+                foreach (array_keys($resources) as $resource) {
+                    $data = $where + array('resource' => $resource);
+                    $row = $model->createRow($data);
+                    $row->save();
+                }
+            }
+        // Grant/revoke permission on a resource for a role
+        } else {
+            $row = $model->select(compact(
                 'section',
                 'module',
                 'resource',
                 'role'
-            ));
-            $row->save();
+            ))->current();
+            if ($row && 'revoke' == $op) {
+                $row->delete();
+            } elseif (!$row && 'grant' == $op) {
+                $row = $model->createRow(compact(
+                    'section',
+                    'module',
+                    'resource',
+                    'role'
+                ));
+                $row->save();
+            }
         }
 
         $status = 1;
