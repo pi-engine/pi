@@ -70,10 +70,11 @@ class RoleController extends ActionController
         if ($section) {
             $select->where(array('section' => $section));
         }
-        $rowsetRole = $this->model()->selectWith($select);
-        foreach ($rowsetRole as $row) {
-            $roles[$row['name']] = $row->toArray();
-            $roles[$row['name']]['active'] = (int) $roles[$row['name']]['active'];
+        $rowset = $this->model()->selectWith($select);
+        foreach ($rowset as $row) {
+            $role = $row->toArray();
+            $role['active'] = (int) $role['active'];
+            $roles[$row['name']] =$role;
         }
 
         return $roles;
@@ -96,16 +97,15 @@ class RoleController extends ActionController
     {
         $roles = $this->getRoles();
 
-        $roles = array_keys($roles);
         $rowset = Pi::model('user_role')->count(
-            array('role' => $roles),
+            array('role' => array_keys($roles)),
             'role'
         );
         $count = array();
         foreach ($rowset as $row) {
             $count[$row['role']] = (int) $row['count'];
         }
-        //d($count);
+
         $frontRoles = array();
         $adminRoles = array();
         foreach ($roles as $role) {
