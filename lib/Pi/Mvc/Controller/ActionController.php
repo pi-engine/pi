@@ -95,7 +95,7 @@ abstract class ActionController extends AbstractActionController
      */
     public function notFoundAction()
     {
-        $this->jumpTo404();
+        $this->jumpTo404(__('The requested action was not found.'));
         return;
     }
 
@@ -163,8 +163,8 @@ abstract class ActionController extends AbstractActionController
         $statusCode = 404;
         $this->response->setStatusCode($statusCode);
         $event = $this->getEvent();
-        $event->setError(true);
-        $this->view()->assign('message', $message);
+        $event->setError($message ?: true);
+        //$this->view()->assign('message', $message);
 
         return $this;
     }

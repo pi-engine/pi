@@ -47,12 +47,14 @@ class ErrorStrategy extends AbstractListenerAggregate
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents = $events->getSharedManager();
+
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'prepareErrorViewModel'),
             -85
         );
+
 
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_DISPATCH,
@@ -100,14 +102,15 @@ class ErrorStrategy extends AbstractListenerAggregate
                 $templateName = 'denied_template';
                 break;
             case 404:
-                // Handled by RouteNotFoundStrategy
+                // Controller route error is handled by RouteNotFoundStrategy
+                $templateName = 'not_found_template';
                 break;
             case 503:
             default:
                 if ($statusCode >= 400) {
                     $templateName = 'error_template';
                 }
-            break;
+                break;
         }
         if (!$templateName) {
             return;
@@ -128,13 +131,10 @@ class ErrorStrategy extends AbstractListenerAggregate
         $viewModel->setTemplate($template);
         //}
 
-        //if (!$viewModel->getVariable('message')) {
-        $errorMessage = $e->getError();
-        if (!is_string($errorMessage)) {
-            $errorMessage = '';
+        if (!$viewModel->getVariable('message') && is_string($error)) {
+        //if (is_string($error)) {
+            $viewModel->setVariable('message', $error);
         }
-        $viewModel->setVariable('message', $errorMessage ?: '');
-        //}
         $viewModel->setVariable('code', $statusCode);
 
         $e->setResult($viewModel);
