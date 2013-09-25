@@ -94,10 +94,9 @@ class RoleController extends ActionController
      */
     public function listAction()
     {
-        $frontRoles = $this->getRoles('front');
-        $adminRoles = $this->getRoles('admin');
+        $roles = $this->getRoles();
 
-        $roles = array_keys($frontRoles + $adminRoles);
+        $roles = array_keys($roles);
         $rowset = Pi::model('user_role')->count(
             array('role' => $roles),
             'role'
@@ -107,11 +106,21 @@ class RoleController extends ActionController
             $count[$row['role']] = (int) $row['count'];
         }
         //d($count);
+        $frontRoles = array();
+        $adminRoles = array();
+        foreach ($roles as $role) {
+            $role['count'] = isset($count[$role['name']])
+                ? (int) $count[$role['name']] : 0;
+            if ('admin' == $role['section']) {
+                $adminRoles[] = $role;
+            } else {
+                $frontRoles[] = $role;
+            }
+        }
 
         return array(
-            'frontRoles'    => array_values($frontRoles),
-            'adminRoles'    => array_values($adminRoles),
-            'count'         => $count,
+            'frontRoles'    => $frontRoles,
+            'adminRoles'    => $adminRoles,
         );
     }
 
