@@ -17,14 +17,14 @@
         <th style="width: 15%;">{{'STATUS' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
-      <tr ng-repeat="role in frontRoles" ng-class="{'system-table-editing': editedRole == role}">
+      <tr ng-repeat="role in frontRoles">
         <td>{{role.name}}
         <td>
           <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
             {{role.title}}
           </div>
           <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
-                 ng-show="role.editTitle" autofocus>
+                 ng-show="role.editTitle">
         <td>{{role.count}}
         <td>
           <div class="btn-group">
@@ -43,7 +43,7 @@
         <td>
           <input type="text" ng-model="addFrontRole.name" placeholder="{{'ROLE_NAME' | translate}}">
         <td>
-          <input type="text" ng-model="" placeholder="{{'ROLE_TITLE' | translate}}">
+          <input type="text" ng-model="addFrontRole.title" placeholder="{{'ROLE_TITLE' | translate}}">
         <td>
         <td>
           <div class="btn-group">
@@ -59,7 +59,7 @@
         <td>
           <div>
             <button class="btn">{{'SUBMIT' | translate}}</button>
-            <button class="btn btn-link" ng-click="addFrontRole = 0">{{'CANCEL' | translate}}</button>
+            <button class="btn btn-link" ng-click="cancelAdd('front')">{{'CANCEL' | translate}}</button>
           </div>
 </table>
 <legend>{{'ADMIN_TITLE' | translate}}</legend>
@@ -69,8 +69,8 @@
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th>{{'USER_COUNT' | translate}}
-        <th>{{'STATUS' | translate}}
+        <th style="width: 10%;">{{'USER_COUNT' | translate}}
+        <th style="width: 15%;">{{'STATUS' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
       <tr ng-repeat="role in adminRoles">
@@ -94,5 +94,27 @@
           <div ng-if="!role.id">
             <button class="btn">{{'SUBMIT' | translate}}</button>
             <button class="btn btn-link">{{'CANCEL' | translate}}</button>
+          </div>
+    <tr ng-if="addAdminRole">
+        <td>
+          <input type="text" ng-model="addAdminRole.name" placeholder="{{'ROLE_NAME' | translate}}">
+        <td>
+          <input type="text" ng-model="addAdminRole.title" placeholder="{{'ROLE_TITLE' | translate}}">
+        <td>
+        <td>
+          <div class="btn-group">
+            <button class="btn" ng-class="{'btn-danger active': !addAdminRole.active}"
+                    ng-click=" addAdminRole.active = 0">
+                {{'INACTIVE' | translate}}
+            </button>
+            <button class="btn" ng-class="{'btn-success active': addAdminRole.active}"
+                    ng-click=" addAdminRole.active = 1">
+                {{'ACTIVE' | translate}}
+            </button>
+          </div>
+        <td>
+          <div>
+            <button class="btn">{{'SUBMIT' | translate}}</button>
+            <button class="btn btn-link" ng-click="cancelAdd('admin')">{{'CANCEL' | translate}}</button>
           </div>
 </table>
