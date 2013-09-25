@@ -33,6 +33,7 @@ class Group extends AbstractApi
 
         $model = Pi::model('display_group', $this->module);
         $select = $model->select()->where(array());
+        $select->order('order');
         $rowset = $model->selectWith($select);
 
         foreach ($rowset as $row) {
