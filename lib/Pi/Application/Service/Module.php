@@ -248,7 +248,7 @@ class Module extends AbstractService
      * Gets a module's physical directory name.
      *
      * Usually a module's directory is equal to its folder name.
-     * However, when module clone happends, which is implemented in Pi Engine
+     * However, when module clone happens, which is implemented in Pi Engine
      * a module's directory is its parent or root module's folder name
      * while folder or `dirname` by tradition is its key name.
      *
@@ -258,7 +258,6 @@ class Module extends AbstractService
     public function directory($module = null)
     {
         $module = $module ?: $this->currentModule;
-        $directory = false;
         if (isset($this->container['meta'][$module])) {
             $directory = $this->container['meta'][$module]['directory'];
         } else {

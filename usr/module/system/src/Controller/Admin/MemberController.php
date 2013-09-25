@@ -26,7 +26,7 @@ use Pi\Paginator\Paginator;
  * 1. Member list
  * 2. Member account create
  * 2. Member account/profile edit
- * 3. Memeber delete
+ * 3. Member delete
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -47,14 +47,7 @@ class MemberController extends ActionController
      */
     protected function getRoles()
     {
-        $roles = array(
-            ''  => __('All'),
-        );
-        $model = Pi::model('acl_role');
-        $rowset = $model->select(array());
-        foreach ($rowset as $row) {
-            $roles[$row->name] = __($row->title);
-        }
+        $roles = Pi::registry('role')->read();
 
         return $roles;
     }
@@ -91,33 +84,28 @@ class MemberController extends ActionController
         }
         $count = Pi::user()->getCount($where);
 
-        $roleList = array();
+        //$roleList = array();
         $model = Pi::model('user_role');
         $rowset = $model->select(array('uid' => $uids));
         foreach ($rowset as $row) {
             if ('front' == $row->section) {
-                $users[$row->uid]['role'] = $row->role;
+                $users[$row->uid]['role_front'][] = $roles[$row->role];
             } else {
-                $users[$row->uid]['role_staff'] = $row->role;
+                $users[$row->uid]['role_admin'][] = $roles[$row->role];
             }
-            $roleList[$row->role] = '';
+            //$roleList[$row->role] = '';
         }
 
+        /*
         foreach (array_keys($roleList) as $name) {
             $roleList[$name] = $roles[$name];
         }
-        /*
-        $model = Pi::model('acl_role');
-        $rowset = $model->select(array('name' => array_keys($roleList)));
-        foreach ($rowset as $row) {
-            $roleList[$row->name] = __($row->title);
-        }
-        */
         foreach ($users as $id => &$user) {
-            $user['role'] = $roleList[$user['role']];
-            $user['role_staff'] = isset($user['role_staff'])
+            $user['role_front'] = $roleList[$user['role']];
+            $user['role_admin'] = isset($user['role_staff'])
                 ? $roleList[$user['role_staff']] : '';
         }
+        */
 
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
@@ -165,14 +153,13 @@ class MemberController extends ActionController
 
         $roles = $this->getRoles();
 
-        $row = Pi::model('acl_role')->find($role, 'name');
+        $row = Pi::model('role')->find($role, 'name');
         $roleTitle = __($row->title);
 
+        $model = Pi::model('user_role');
         $isFront = true;
         if ('front' == $row->section) {
-            $model = Pi::model('user_role');
         } else {
-            $model = Pi::model('user_staff');
             $isFront = false;
         }
         $where = array();

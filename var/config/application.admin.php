@@ -21,20 +21,6 @@ $config['resource']['i18n'] = array(
     ),
 );
 
-/*
-// Permission ACL
-$config['resource']['acl'] = array(
-    // Default access perm in case not defined
-    'default'       => false,
-    // If check page access
-    'check_page'    => true,
-    // Managed components
-    'component'     => array('block', 'config', 'page', 'resource', 'event'),
-    // Admin entries
-    'entry'         => array('index', 'dashboard'),
-);
-*/
-
 // Permission check
 $config['resource']['permission'] = array(
     // Default access perm in case not defined: true for allowed, false for denied
