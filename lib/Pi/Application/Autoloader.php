@@ -9,6 +9,8 @@
 
 namespace Pi\Application;
 
+use Pi\Application\Persist;
+
 /**
  * Autoloader handler
  *
@@ -123,7 +125,8 @@ class Autoloader
      *   - class_map:       class-path map
      *
      * @param  array|Traversable $options
-     * @return void
+     *
+     * @return \Pi\Application\Autoloader
      */
     public function __construct($options = array())
     {
@@ -159,10 +162,10 @@ class Autoloader
     /**
      * Set persist handler for class/file map
      *
-     * @param Persist\PersistInterface $persist
+     * @param Persist\AbstractStorage $persist
      * @return $this
      */
-    public function setPersist(Persist\PersistInterface $persist)
+    public function setPersist(Persist\AbstractStorage $persist)
     {
         $this->persist = $persist;
 
@@ -358,6 +361,8 @@ class Autoloader
      * Register multiple top namespace/directory pairs at once
      *
      * @param  string[] $namespaces
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerTops($namespaces)
@@ -478,7 +483,10 @@ class Autoloader
      * An autoload map should be an associative array containing
      * classname/file pairs.
      *
-     * @param  string|array $location
+     * @param string|array $map
+     *
+     * @throws \InvalidArgumentException
+     * @internal param array|string $location
      * @return $this
      */
     public function registerAutoloadMap($map)
@@ -509,6 +517,8 @@ class Autoloader
      * Register many autoload maps at once
      *
      * @param  array $locations
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerAutoloadMaps($locations)
@@ -629,6 +639,8 @@ class Autoloader
      * Register many namespace/directory pairs at once
      *
      * @param  array $namespaces
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerNamespaces($namespaces)
@@ -680,7 +692,8 @@ interface SplAutoloader
      * Allow configuration of the autoloader via the constructor.
      *
      * @param  null|array|Traversable $options
-     * @return void
+     *
+     * @return \Pi\Application\SplAutoloader
      */
     public function __construct($options = null);
 
@@ -703,6 +716,9 @@ interface SplAutoloader
      * <code>
      *  spl_autoload_register(array($this, 'autoload'));
      * </code>
+     *
+     * @param bool $throw
+     * @param bool $prepend
      *
      * @return void
      */

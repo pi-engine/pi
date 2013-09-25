@@ -358,9 +358,10 @@ class Db
                 ucwords(str_replace('_', ' ', $key))
             );
             if ($module) {
+                $directory = Pi::service('module')->directory($module);
                 $className = sprintf(
                     'Module\\%s\Model\\%s',
-                    ucfirst($module),
+                    ucfirst($directory),
                     $className
                 );
                 $options['prefix'] = static::prefix('', $module);
