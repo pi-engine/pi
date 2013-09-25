@@ -11,7 +11,6 @@ namespace Pi\Db\Table;
 
 use ArrayObject;
 use Pi;
-use Pi\Application\Db;
 use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
 use Zend\Db\TableGateway\Feature;
@@ -343,18 +342,35 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     /**
      * Fetch count against condition
      *
-     * @param array|Where $where
+     * @param array|Where  $where
+     * @param array|string $group
+     * @param Where|\Closure|string|array $having
      *
-     * @return bool|int
+     * @return bool|int|ResultSet
      */
-    public function count($where = array())
+    public function count($where = array(), $group = '', $having = array())
     {
+        $columns = array('count' => Pi::db()->expression('COUNT(*)'));
+        if ($group) {
+            $columns += (array) $group;
+        }
         $select = $this->select();
-        $select->columns(array('count' => Pi::db()->expression('COUNT(*)')));
+        $select->columns($columns);
         $select->where($where);
+        if ($group) {
+            $select->group($group);
+        }
+        if ($having) {
+            $select->having($having);
+        }
         try {
-            $row = $this->selectWith($select)->current();
-            $result = (int) $row['count'];
+            $rowset = $this->selectWith($select);
+            if ($group) {
+                $result = $rowset;
+            } else {
+                $row = $rowset->current();
+                $result = (int) $row['count'];
+            }
         } catch (\Exception $e) {
             $result = false;
         }
