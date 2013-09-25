@@ -5,15 +5,15 @@
     $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'front')); ?>"><?php _e('Front'); ?></a></li>
-    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'admin')); ?>"><?php _e('Admin'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('controller' => 'perm', 'section' => 'front')); ?>"><?php _e('Front'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'perm', 'section' => 'admin')); ?>"><?php _e('Admin'); ?></a></li>
 </ul>
 <div class="page-perm row-fluid">
     <div class="span2 well well-small">
         <ul class="nav nav-list">
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
-                <a href="<?php echo $this->url('',array('controller' => 'perm', 'action' => 'admin', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
+                <a href="<?php echo $this->url('',array('controller' => 'perm', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
             </li>
             <?php } ?>
         </ul>

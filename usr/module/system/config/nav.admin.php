@@ -181,7 +181,6 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'perm',
-        'action'        => 'front',
 
         'pages'     => array(
             'front'      => array(
@@ -189,7 +188,7 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'perm',
-                'action'        => 'front',
+                'section'       => 'front',
                 'visible'       => 0,
             ),
             'admin'  => array(
@@ -197,7 +196,7 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'perm',
-                'action'        => 'admin',
+                'section'       => 'admin',
                 'visible'       => 0,
             ),
         ),

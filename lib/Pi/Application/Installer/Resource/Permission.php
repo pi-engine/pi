@@ -60,13 +60,16 @@ class Permission extends AbstractResource
                 'type'      => 'custom',
                 'name'      => $config['custom'],
             );
-            $config['custom'] = $resource;
+            $config['front']['callback'] = $resource;
         }
+
         foreach ($config as $section => &$resourceList) {
-            foreach ($resourceList as $name => &$resource) {
-                $name = preg_replace('/[^a-z0-9_]/i', '_', $name);
+            foreach ($resourceList as $key => &$resource) {
                 if (!isset($resource['name'])) {
+                    $name = preg_replace('/[^a-z0-9_]/i', '_', $key);
                     $resource['name'] = $name;
+                } else {
+                    $name = $resource['name'];
                 }
                 $resource['section'] = $section;
                 $access = empty($resource['access'])

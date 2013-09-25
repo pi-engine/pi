@@ -36,14 +36,14 @@ class PermController extends ActionController
     public function indexAction()
     {
         $module = $this->params('name', 'system');
-        $section = 'front';
+        $section = $this->params('section', 'front');
         // Load all active roles of current section
         $roles = Pi::registry('role')->read($section);
+        //vd($roles);
 
         Pi::service('i18n')->load('module/' . $module . ':permission');
         $resources = array(
             'module'    => array(),
-            'callback'  => array(),
             'block'     => array(),
         );
         $resourceList = array();
@@ -71,6 +71,7 @@ class PermController extends ActionController
         ));
         $callback = '';
         foreach ($rowset as $row) {
+            //vd($row->toArray());
             if ('custom' == $row['type']) {
                 $callback = $row['name'];
                 continue;
@@ -85,6 +86,7 @@ class PermController extends ActionController
 
             $resourceList[] = $row['name'];
         }
+        //vd($callback);
         if ('front' == $section) {
             // Load module custom resources
             if ($callback
@@ -92,11 +94,9 @@ class PermController extends ActionController
             ) {
                 $callbackHandler = new $callback($module);
                 $resourceCustom = $callbackHandler->getResources();
-                foreach ($resourceCustom as $name => $resource) {
-                    $resource['name']       = $name;
-                    $resource['module']     = $module;
-                    $resource['section']    = $section;
-                    $resource['roles']      = array();
+                foreach ($resourceCustom as $name => $title) {
+                    $resource = compact('section', 'module', 'name', 'title');
+                    $resource['roles'] = array();
 
                     $resources['module'][$name] = $resource;
                     $resourceList[] = $name;
@@ -141,6 +141,9 @@ class PermController extends ActionController
             }
         }
 
+        vd($roles);
+        vd($resources);
+        $this->view()->setTemplate('perm-' . $section);
         $this->view()->assign('name', $module);
         $this->view()->assign('section', $section);
         $this->view()->assign('title', __('Module permissions'));
