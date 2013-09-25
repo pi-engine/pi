@@ -145,7 +145,6 @@ class ProfileController extends ActionController
             'status' => 0,
         );
         $data = _post('data');
-        $data = $this->getGroupDisplay();
 
         $displayGroupModel = $this->getModel('display_group');
         $displayFieldModel = $this->getModel('display_field');
@@ -192,6 +191,7 @@ class ProfileController extends ActionController
 
             $groupOrder++;
         }
+
         $result['status'] = 1;
 
         return $result;

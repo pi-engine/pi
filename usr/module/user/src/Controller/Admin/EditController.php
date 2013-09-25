@@ -118,7 +118,7 @@ class EditController extends ActionController
         }
 
         // Get compound title
-        $row = $this->getModel('field')->find($compound, 'name');
+        $row = $this->getModel('display_group')->find($compound, 'compound');
         if (!$row) {
             return $this->jumpTo404('Invalid compound');
         }
@@ -136,7 +136,6 @@ class EditController extends ActionController
         $compoundData = Pi::api('user', 'user')->get($uid, $compound);
         // Generate compound edit form
         $forms = array();
-        $i = 0;
         foreach ($compoundData as $set => $row) {
             $formName = 'compound' . $set;
             $forms[$set] = new CompoundForm($formName, $compoundElements);
@@ -147,16 +146,7 @@ class EditController extends ActionController
             );
 
             $forms[$set]->setData($row);
-            $i++;
         }
-
-        // New compound form
-        $addForm = new CompoundForm('new-compound', $compoundElements);
-        $addForm->setData(array(
-            'set'   => $i,
-            'uid'   => $uid,
-        ));
-        unset($i);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -221,7 +211,6 @@ class EditController extends ActionController
 
         vd($forms);
         vd($title);
-        vd($addForm);
         vd($compoundNav);
 
     }
@@ -264,6 +253,34 @@ class EditController extends ActionController
 
         return $message;
 
+    }
+
+    /**
+     * Delete compound action for ajax
+     *
+     * @return array
+     */
+    public function deleteCompoundAction()
+    {
+        $uid      = Pi::user()->getIdentity();
+        $compound = _post('compound', '');
+        $set      = _post('set');
+
+        $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
+        $newCompound = array();
+        foreach ($oldCompound as $key => $value) {
+            if ($set != $key ) {
+                $newCompound[] = $value;
+            }
+        }
+
+        // Update compound
+        $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+
+        return array(
+            'status'  => $status ? 1 : 0,
+            'message' => $status ? 'ok' : 'error',
+        );
     }
 
     /**
@@ -312,26 +329,17 @@ class EditController extends ActionController
     protected function getCompoundNav()
     {
         $result    = array();
-        $compounds = $this->getFields('compound');
+        $model = $this->getModel('display_group');
+        $select = $model->select()->where(array('compound <> ?' => ''));
+        $select->columns(array('id', 'title'));
+        $select->order('order');
+        $rowset = $model->selectWith($select);
 
-        foreach ($compounds as $compound) {
-            $link = $this->url(
-                '',
-                array(
-                    'controller' => 'edit',
-                    'action'     => 'edit.compound',
-                    'compound'   => $compound['name']
-                )
-            );
-            $result[] = array(
-                'title' => $compound['title'],
-                'name'  => $compound['name'],
-                'link'  => $link,
-            );
+        foreach ($rowset as $row) {
+            $result[] = $row->toArray();
         }
 
         return $result;
 
     }
-
 }
