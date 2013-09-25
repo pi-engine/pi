@@ -23,15 +23,17 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        $this->addUser();
-        $this->timeline();
+        //$this->addUser();
+        //$this->timeline();
         $this->timelineLog();
+        /*
         $this->group();
         $this->activity();
         $this->quickLink();
         $this->activeUser();
         $this->userLog();
         $this->privacy();
+        */
     }
 
     protected function addUser()
@@ -189,20 +191,20 @@ this is test timeline message,this is test timeline message,
 this is test timeline message,this is test timeline message,
 this is test timeline message,this is test timeline message,
 EOT;
-        for ($i = 1; $i < 40; $i++ ) {
-            $data = array(
-                'uid' => $uid,
-                'timeline' => $timeline,
-                'module'   => $module,
-                'message'  => $prefix . $i . $messge,
-                'time'     => time()- $i * 3600 * 12,
-                'link'     => 'www.baidu.com',
-            );
-
-            $row = $model->createRow($data);
-            $result[] = $row->save();
+        for ($i = 1; $i < 50; $i++ ) {
+            for ($uid = 1; $uid < 100; $uid++) {
+                $data = array(
+                    'uid' => $uid,
+                    'timeline' => $timeline,
+                    'module'   => $module,
+                    'message'  => $prefix . $i . $messge,
+                    'time'     => time()- $i * 3600 * 12,
+                    'link'     => 'www.baidu.com',
+                );
+                $row = $model->createRow($data);
+                $result[] = $row->save();
+            }
         }
-        vd($result);
     }
 
     protected function activity()
