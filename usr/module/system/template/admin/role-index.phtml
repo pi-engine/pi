@@ -16,19 +16,24 @@ var systemRoleModuleConfig = {
         ADMIN_ADD: '<?php _e('Add admin role'); ?>',
         FRONT_TITLE: '<?php _e('Front roles'); ?>',
         FRONT_ADD: '<?php _e('Add front role'); ?>',
+        ROLE_ADD: '<?php _e('Add role'); ?>',
         DELETE: '<?php _e('Delete'); ?>',
         EDIT: '<?php _e('Edit'); ?>',
         NAME: '<?php _e('Name'); ?>',
         TITLE: '<?php _e('Title'); ?>',
-        USER_COUNT: '<?php _e('Users in role'); ?>',
+        USER_COUNT: '<?php _e('User in role'); ?>',
         STATUS: '<?php _e('Status'); ?>',
         ACTIVE: '<?php _e('Active'); ?>',
         INACTIVE: '<?php _e('Inactive'); ?>',
         ACTION: '<?php _e('Action'); ?>',
-        ROLE_NAME: '<?php _e('Role name'); ?>',
-        ROLE_TITLE: '<?php _e('Role title'); ?>',
+        ROLE_NAME: '<?php _e('Unique name'); ?>',
+        ROLE_TITLE: '<?php _e('Title'); ?>',
         SUBMIT: '<?php _e('Submit'); ?>',
-        CANCEL: '<?php _e('Cancel'); ?>'
+        CANCEL: '<?php _e('Cancel'); ?>',
+        REQUIRED: '<?php _e('Required'); ?>',
+        TYPE: '<?php _e('Type'); ?>',
+        FRONT: '<?php _e('Front'); ?>',
+        ADMIN: '<?php _e('Admin'); ?>'
     }
 }
 </script>
@@ -39,6 +44,17 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
         templateUrl: systemRoleModuleConfig.assetRoot + 'role-index.html',
         controller: 'RoleCtrl'
     });
+}).directive('piFocus', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attr) {
+            scope.$watch(attr.piFocus, function(value) {
+                if (value) {
+                    element[0].focus();
+                }
+            });
+        }
+    }
 }).service('server', function($http) {
     var root = systemRoleModuleConfig.urlRoot;
     var isFile = function(obj) {
@@ -52,11 +68,8 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
     this.get = function() {
         return $http.get(root + 'list');
     }
-    this.add = function(type) {
-        type = type || 'front';
-        return $http.post(root + 'add', {
-            section: type
-        });
+    this.add = function(role) {
+        return $http.post(root + 'add', role);
     };
     this.putTitle = function(role) {
         $http.post(root + 'rename', {
@@ -77,19 +90,27 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
         $scope.frontRoles = data.frontRoles;
         $scope.adminRoles = data.adminRoles;
     });
-    $scope.addRoleAction = function(type) {
-        var role = {
-            type: type
+    $scope.cancelModal = function() {
+        $scope.entity = null;
+    }
+    $scope.modal = function(type) {
+        $scope.entity = {
+            section: type,
+            active: 1
         };
-        if (type == 'front') {
-            $scope.addFrontRole = {
-                active: 1
-            };
-        } else {
-            $scope.adminRoles.push(role);
-        }
-
-    };
+    }
+    $scope.addRoleAction = function() {
+        server.add($scope.entity).success(function(data) {
+            if (data.status) {
+                var role = data.data;
+                if (role.section = 'front') {
+                    $scope.frontRoles.push(role);
+                } else {
+                    $scope.adminRoles.push(role);
+                }
+            }
+        });
+    }
     $scope.renameAction = function(role) {
         if (role.title == '') {
             role.title = role.originTitle;
@@ -98,6 +119,6 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
             server.putTitle(role);
         }
         role.editTitle = 0;
-    };
+    }
 });
 </script>
