@@ -1,0 +1,98 @@
+<style>
+.system-cursor {
+  cursor: pointer;
+}
+.system-table input[type="text"] {
+  margin-bottom: 0;
+}
+</style>
+<legend>{{'FRONT_TITLE' | translate}}</legend>
+<button class="btn" ng-click="addRoleAction('front')">{{'FRONT_ADD' | translate}}</button>
+<table class="table table-striped system-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th style="width: 10%;">{{'USER_COUNT' | translate}}
+        <th style="width: 15%;">{{'STATUS' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in frontRoles" ng-class="{'system-table-editing': editedRole == role}">
+        <td>{{role.name}}
+        <td>
+          <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
+            {{role.title}}
+          </div>
+          <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
+                 ng-show="role.editTitle" autofocus>
+        <td>{{role.count}}
+        <td>
+          <div class="btn-group">
+            <button class="btn" ng-class="{'btn-danger active': !role.active}"
+                    ng-click="disableAction(role)">
+                {{'INACTIVE' | translate}}
+            </button>
+            <button class="btn" ng-class="{'btn-success active': role.active}"
+                    ng-click="activeAction(role)">
+                {{'ACTIVE' | translate}}
+            </button>
+          </div>
+        <td>
+          <button class="btn btn-link">{{'DELETE' | translate}}</button>
+      <tr ng-if="addFrontRole">
+        <td>
+          <input type="text" ng-model="addFrontRole.name" placeholder="{{'ROLE_NAME' | translate}}">
+        <td>
+          <input type="text" ng-model="" placeholder="{{'ROLE_TITLE' | translate}}">
+        <td>
+        <td>
+          <div class="btn-group">
+            <button class="btn" ng-class="{'btn-danger active': !addFrontRole.active}"
+                    ng-click=" addFrontRole.active = 0">
+                {{'INACTIVE' | translate}}
+            </button>
+            <button class="btn" ng-class="{'btn-success active': addFrontRole.active}"
+                    ng-click=" addFrontRole.active = 1">
+                {{'ACTIVE' | translate}}
+            </button>
+          </div>
+        <td>
+          <div>
+            <button class="btn">{{'SUBMIT' | translate}}</button>
+            <button class="btn btn-link" ng-click="addFrontRole = 0">{{'CANCEL' | translate}}</button>
+          </div>
+</table>
+<legend>{{'ADMIN_TITLE' | translate}}</legend>
+<button class="btn" ng-click="addRoleAction('admin')">{{'ADMIN_ADD' | translate}}</button>
+<table class="table table-striped system-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th>{{'USER_COUNT' | translate}}
+        <th>{{'STATUS' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in adminRoles">
+        <td>{{role.name}}
+        <td>
+          <div class="system-cursor">{{role.title}}</div>
+        <td>{{role.count}}
+        <td>
+          <div class="btn-group">
+            <button class="btn" ng-class="{'btn-danger active': !role.active}"
+                    ng-click="disableAction(role)">
+                {{'INACTIVE' | translate}}
+            </button>
+            <button class="btn" ng-class="{'btn-success active': role.active}"
+                    ng-click="activeAction(role)">
+                {{'ACTIVE' | translate}}
+            </button>
+          </div>
+        <td>
+          <button class="btn btn-link" ng-if="role.id">{{'DELETE' | translate}}</button>
+          <div ng-if="!role.id">
+            <button class="btn">{{'SUBMIT' | translate}}</button>
+            <button class="btn btn-link">{{'CANCEL' | translate}}</button>
+          </div>
+</table>
