@@ -140,14 +140,20 @@ class PermController extends ActionController
                 }
             }
         }
+        $moduleList = Pi::registry('modulelist')->read('active');
+        $modules = array();
+        foreach ($moduleList as $name => $list) {
+            $modules[$name] = $list['title'];
+        }
 
         vd($roles);
-        vd($resources);
+        vd($modules);
         $this->view()->setTemplate('perm-' . $section);
         $this->view()->assign('name', $module);
         $this->view()->assign('section', $section);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);
+        $this->view()->assign('modules', $modules);
         $this->view()->assign('resources', $resources);
     }
 
