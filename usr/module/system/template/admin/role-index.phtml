@@ -1,140 +1,103 @@
 <?php
-$this->css($this->assetModule('script/system-ui.css'));
-$this->jQuery();
-$this->backbone();
-$this->js($this->assetModule('script/system-msg.js', 'system'));
+    $this->css($this->assetModule('script/system-ui.css'));
 ?>
-
-
-<div class="page-role">
-    <ul class="nav nav-tabs">
-        <li<?php if ('front' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'front')); ?>" title="<?php _e('Front roles'); ?>"><?php _e('Front roles'); ?></a></li>
-        <li<?php if ('admin' == $type) { ?> class="active"<?php } ?>><a href="<?php echo $this->url('', array('controller' => 'role', 'action' => 'index', 'type' => 'admin')); ?>" title="<?php _e('Admin roles'); ?>"><?php _e('Admin roles'); ?></a></li>
-    </ul>
-    <div id="js-role">
-
-    </div>
-</div>
-<script id="temp-role" type="text/template">
-<table class="table">
-    <thead>
-        <th>
-            <span class="btn js-new-role" data-toggle="modal" data-target="#js-role-modal"><?php _e('Add role'); ?></span>
-        </th>
-        <% _.each(data, function(item) { %>
-        <th>
-            <div class="ellipsis role-table-title"><%= item.title %></div>
-        </th>
-        <% }); %>
-    </thead>
-    <tbody>
-        <% _.each(data, function(item) { %>
-        <tr data-id="<%= item.id %>" data-name="<%= item.name %>">
-            <th>
-                <div class="role-rename" id="js-role-<%= item.name %>">
-                    <div class="ellipsis role-table-title"><%= item.title %></div>
-                    <input type="text" class="input-small js-input-rename" value="<%= item.title %>" data-text="<%= item.title %>"/>
-                </div>
-                
-                <div class="row-actions">
-                <% if (parseInt(item.custom)) { %>
-                <a class="link js-rename" href="javascript:void(0)" data-target="#js-role-<%= item.name %>"><?php _e('Rename'); ?></a>    
-                <a class="link js-delete" href="javascript:void(0)"><?php _e('Delete'); ?></a>
-                <% } %>
-                </div>
-            </th>
-            <% _.each(_.range(data.length), function(i) { %>
-            <td>
-               <% if (_.contains(item.inherit.direct, data[i].name)) { %>
-               <i class="icon-check js-check" data-name="<%= data[i].name %>"></i>
-               <% } else if (_.contains(item.inherit.indirect, data[i].name)) { %>
-               <i class="icon-check icon-indirectly"></i>
-               <% } else if (!_.contains(data[i].inherit.all, item.name) && item.name != data[i].name) {  %>
-               <i class="icon-check-empty js-check" data-action="inherit" data-name="<%= data[i].name %>"></i>
-               <% } %>
-            </td>
-            <% }); %>
-        </tr>
-        <% }); %>
-    </tbody>
-</table>
+<div ng-view ng-app="systemRoleModule"></div>
+<?php $angular = Pi::url('static/vendor/angular/'); ?>
+<script src="<?php echo $angular . 'angular.js'; ?> "></script>
+<script src="<?php echo $angular . 'angular-route.js'; ?> "></script>
+<script src="<?php echo $angular . 'angular-translate.js'; ?> "></script>
+<script>
+var systemRoleModule = angular.module('systemRoleModule', ['ngRoute', 'pascalprecht.translate']);
+var systemRoleModuleConfig = {
+    urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    t: {
+        ADMIN_TITLE: '<?php _e('Admin roles'); ?>',
+        ADMIN_ADD: '<?php _e('Add admin role'); ?>',
+        FRONT_TITLE: '<?php _e('Front roles'); ?>',
+        FRONT_ADD: '<?php _e('Add front role'); ?>',
+        DELETE: '<?php _e('Delete'); ?>',
+        EDIT: '<?php _e('Edit'); ?>',
+        NAME: '<?php _e('Name'); ?>',
+        TITLE: '<?php _e('Title'); ?>',
+        USER_COUNT: '<?php _e('User in role'); ?>',
+        STATUS: '<?php _e('Status'); ?>',
+        ACTIVE: '<?php _e('Active'); ?>',
+        INACTIVE: '<?php _e('Inactive'); ?>',
+        ACTION: '<?php _e('Action'); ?>',
+        ROLE_NAME: '<?php _e('role name'); ?>',
+        ROLE_TITLE: '<?php _e('role title'); ?>',
+        SUBMIT: '<?php _e('submit'); ?>',
+        CANCEL: '<?php _e('cancel'); ?>'
+    }
+}
 </script>
 <script>
-
-    var RoleListView = Backbone.View.extend({
-        el: $('#js-role'),
-        events:{
-             'click .js-new-role': 'addRole',
-             'click .js-delete': 'deleteRole',
-             'click .js-rename': 'renameShow',
-             'blur .js-input-rename': 'renameAction'
-        },
-        initialize: function() {
-            this.render();
-            this.roleModal = $("<div>", {"class": "modal hide fade"}).appendTo(document.body);
-            this.collection.on('add', this.render, this);
-            this.collection.on('remove', this.render, this);
-            this.collection.on('reset', this.render, this);
-        },
-        render: function() {
-            this.$el.html(_.template($("#temp-role").html(), this.collection.toJSON(), {variable: 'data'}));
-        },
-        addRole: function() {
-           $.get('<?php echo $this->url('', array('action' => 'add', 'type' => $type)); ?>').done(_.bind(function(res) {
-                this.roleModal.html(res).modal("show");
-                formModule.success = this.submitAddRole.bind(this);
-           }, this));
-        },
-        submitAddRole: function(res) {
-           if (res.status) {
-              this.collection.add(res.data);
-              this.roleModal.modal('hide');
-              systemMessage.succ(res.message);
-           }
-        },
-        deleteRole: function(e) {
-            var id = this.getRoleId($(e.currentTarget));
-            $.getJSON('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + id).done(_.bind(function(res) {
-                if (res.status) {
-                    this.collection.remove(id);
-                    systemMessage.succ(res.message);
-                } else {
-                    systemMessage.fail(res.message);
-                }
-           }, this));
-        },
-        getRoleId: function(tar) {
-            return tar.parents('tr').attr('data-id');
-        },
-        getRoleName: function(tar) {
-            return tar.parents('tr').attr('data-name');
-        },
-        renameShow: function(e) {
-            $($(e.currentTarget).attr('data-target')).toggleClass('role-rename-show');
-        },
-        renameAction: function(e) {
-            var tar = $(e.currentTarget),
-                p = tar.parent(),
-                v = $.trim(tar.val()),
-                id = this.getRoleId(tar),
-                prev = tar.attr('data-text');
-            if (v) {
-               this.collection.get(id).set('title', v);
-               this.render();
-               $.post('<?php echo $this->url('', array('action' => 'rename', 'id' => '')); ?>'+id, {
-                   title: v
-               }).error(_.bind(function() {
-                   systemMessage.fail("<?php _e('An error occurred, please try again later.'); ?>");
-                   this.collection.get(id).set('title', prev);
-                   this.render();
-               }, this));
-            } else {
-                tar.val(prev);
-                p.removeClass('role-rename-show');
-            }
+systemRoleModule.config(function($translateProvider, $routeProvider) {
+    $translateProvider.translations(systemRoleModuleConfig.t);
+    $routeProvider.otherwise({
+        templateUrl: systemRoleModuleConfig.assetRoot + 'role-index.html',
+        controller: 'RoleCtrl'
+    });
+}).service('server', function($http) {
+    var root = systemRoleModuleConfig.urlRoot;
+    var isFile = function(obj) {
+        return Object.prototype.toString.apply(obj) === '[object File]';
+    };
+    //emulate jQuery post
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    $http.defaults.transformRequest = [function(d) {
+        return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
+    }];
+    this.get = function() {
+        return $http.get(root + 'list');
+    }
+    this.add = function(type) {
+        type = type || 'front';
+        return $http.post(root + 'add', {
+            section: type
+        });
+    };
+    this.putTitle = function(role) {
+        $http.post(root + 'rename', {
+            id: role.id,
+            title: role.title
+        });
+    };
+}).controller('RoleCtrl', function($scope, server) {
+    server.get().success(function(data) {
+        var frontRoles = data.frontRoles;
+        var adminRoles = data.adminRoles;
+        var parse = function(item) {
+            item.editTitle = 0;
+            item.originTitle = item.title;
+        };
+        angular.forEach(frontRoles, parse);
+        angular.forEach(frontRoles, parse);
+        $scope.frontRoles = data.frontRoles;
+        $scope.adminRoles = data.adminRoles;
+    });
+    $scope.addRoleAction = function(type) {
+        var role = {
+            type: type
+        };
+        if (type == 'front') {
+            $scope.addFrontRole = {
+                active: 1
+            };
+        } else {
+            $scope.adminRoles.push(role);
         }
-    });
-    var roleList = new RoleListView({
-        collection: $roles = new Backbone.Collection(<?php echo json_encode($roles); ?>)
-    });
+
+    };
+    $scope.renameAction = function(role) {
+        if (role.title == '') {
+            role.title = role.originTitle;
+        }
+        if (role.title != role.originTitle) {
+            server.putTitle(role);
+        }
+        role.editTitle = 0;
+    };
+});
 </script>
