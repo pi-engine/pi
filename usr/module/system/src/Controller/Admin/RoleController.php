@@ -61,12 +61,15 @@ class RoleController extends ActionController
      * @param string $section
      * @return array
      */
-    protected function getRoles($section)
+    protected function getRoles($section = '')
     {
         $roles = array();
 
         $select = $this->model()->select();
-        $select->order('order ASC')->where(array('section' => $section));
+        $select->order('order ASC');
+        if ($section) {
+            $select->where(array('section' => $section));
+        }
         $rowsetRole = $this->model()->selectWith($select);
         foreach ($rowsetRole as $row) {
             $roles[$row['name']] = $row->toArray();
@@ -76,32 +79,41 @@ class RoleController extends ActionController
         return $roles;
     }
 
-    public function indexAction() {
+    /**
+     * Entrance template
+     *
+     * @return void
+     */
+    public function indexAction()
+    {
         $this->view()->setTemplate('role-index');
-    }
-
-    public function listAction() {
-        $frontRoles = $this->getRoles('front');
-        $adminRoles = $this->getRoles('admin');
-        return array(
-            'frontRoles' => array_values($frontRoles),
-            'adminRoles' => array_values($adminRoles)
-        );
     }
 
     /**
      * List of roles
      */
-    /*public function indexAction()
+    public function listAction()
     {
-        $type = $this->params('type', 'front');
+        $frontRoles = $this->getRoles('front');
+        $adminRoles = $this->getRoles('admin');
 
-        $roles = $this->getRoles($type);
-        $this->view()->assign('type', $type);
-        $this->view()->assign('roles', $roles);
-        vd($roles);
-        $this->view()->assign('title', __('Role list'));
-    }*/
+        $roles = array_keys($frontRoles + $adminRoles);
+        $rowset = Pi::model('user_role')->count(
+            array('role' => $roles),
+            'role'
+        );
+        $count = array();
+        foreach ($rowset as $row) {
+            $count[$row['role']] = (int) $row['count'];
+        }
+        //d($count);
+
+        return array(
+            'frontRoles'    => array_values($frontRoles),
+            'adminRoles'    => array_values($adminRoles),
+            'count'         => $count,
+        );
+    }
 
     /**
      * Add a custom role
