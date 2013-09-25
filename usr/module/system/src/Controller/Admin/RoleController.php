@@ -70,15 +70,29 @@ class RoleController extends ActionController
         $rowsetRole = $this->model()->selectWith($select);
         foreach ($rowsetRole as $row) {
             $roles[$row['name']] = $row->toArray();
+            $roles[$row['name']]['active'] = (int) $roles[$row['name']]['active'];
         }
 
         return $roles;
     }
 
+    public function indexAction() {
+        $this->view()->setTemplate('role-index');
+    }
+
+    public function listAction() {
+        $frontRoles = $this->getRoles('front');
+        $adminRoles = $this->getRoles('admin');
+        return array(
+            'frontRoles' => array_values($frontRoles),
+            'adminRoles' => array_values($adminRoles)
+        );
+    }
+
     /**
      * List of roles
      */
-    public function indexAction()
+    /*public function indexAction()
     {
         $type = $this->params('type', 'front');
 
@@ -87,7 +101,7 @@ class RoleController extends ActionController
         $this->view()->assign('roles', $roles);
         vd($roles);
         $this->view()->assign('title', __('Role list'));
-    }
+    }*/
 
     /**
      * Add a custom role
