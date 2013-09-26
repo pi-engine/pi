@@ -1,0 +1,87 @@
+<style>
+.system-page-header {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.system-page-header strong {
+  font-size: 24px;
+  margin-right: 20px;
+}
+</style>
+<div class="system-page-header">
+    <strong>{{'TITLE' | translate}}</strong>
+    <a class="btn btn-primary" href="#!new">
+        <i class="icon-plus"></i>
+        {{'Add_USER' | translate}}
+    </a>
+</div>
+<form class="form-inline">
+    <select ng-model="filter.active">
+        <option value="">{{'ACTIVE_STATUS' | translate}}</option>
+        <option value="active">{{'ACTIVE' | translate}}</option>
+        <option value="inactive">{{'INACTIVE' | translate}}</option>
+    </select>
+    <select ng-model="filter.enable">
+        <option value="">{{'ENABLE_STATUS' | translate}}</option>
+        <option value="enable">{{'ENABLE' | translate}}</option>
+        <option value="disable">{{'DISABLE' | translate}}</option>
+    </select>
+    <select ng-options="r.title group by r.type for r in roles" ng-model="filter.role">
+        <option value="">{{'SELECT_ROLES' | translate}}</option>
+    </select>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th width="1%">
+            <th>Username
+            <th>Display name
+            <th width="5%">Active
+            <th width="5%">Enable
+            <th width="5%">Activated
+            <th width="10%">Front role
+            <th width="10%">Admin role
+            <th width="12%">Register time
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>
+                <input type="checkbox" ng-model="user.checked">
+            <td>{{user.identity}}
+                <div class="row-actions">
+                    <a href="" class="">Edit</a>
+                    <a href="" class="gutter" ng-click="deleteAction($index)">Delete</a>
+                </div>
+            <td>{{user.name}}
+            <td>
+                <i ng-class="{'icon-ok text-success': user.active, 'icon-remove text-error': !user.active }">
+                </i>
+            <td>
+                <button class="btn" ng-click="enableAction(user)" ng-if="user.time_disabled">
+                    <i class="icon-remove text-error"></i>
+                </button>
+                <button class="btn" ng-click="disableAction(user)" ng-if="!user.time_disabled">
+                    <i class="icon-ok text-success">
+                    </i>
+                </button>
+            <td>
+                <i ng-if="user.time_activated" class="icon-ok text-success"></i>
+                <button ng-if="!user.time_activated" class="btn" ng-click="activeAction(user)">
+                    <i class="icon-remove text-error"></i>
+                </button>
+            <td>
+                <select ng-model="user.front_role" ng-options="key as value for (key, value) in front_roles"
+                        ng-change="roleAction(user, 'front')">
+                </select>
+            <td>
+                <select ng-model="user.admin_role" ng-options="key as value for (key, value) in admin_roles"
+                        ng-change="roleAction(user, 'admin')">
+                    <option value="">None</option>
+                </select>
+            <td>
+                {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+            <td>
+                {{user.id}}
+</table>
+<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
+    class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
