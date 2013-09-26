@@ -30,14 +30,14 @@ use Pi;
  *
  *  // Load a list of files
  *  $this->backbone(array(
- *      'some.css',
- *      'some.js',
+ *      'a.js',
+ *      'b.js',
  *  ));
  *
  *  // Load a list of files with corresponding attributes
  *  $this->backbone(array(
- *      'some.css' => array('media' => '...', 'conditional' => '...'),
- *      'some.js',
+ *      'a.js' => array('media' => '...', 'conditional' => '...'),
+ *      'b.js',
  *  ));
  * ```
  *
@@ -52,7 +52,7 @@ class Backbone extends AssetCanonize
     protected static $rootLoaded;
 
     /**
-     * Load bootstrap files
+     * Load backbone files
      *
      * @param   null|string|array $files
      * @param   array $attributes
@@ -64,14 +64,14 @@ class Backbone extends AssetCanonize
         if (!static::$rootLoaded) {
             $autoLoad = array();
             // Required underscore js
-            if (!isset($files['underscore.min.js'])) {
+            if (!isset($files['underscore-min.js'])) {
                 $autoLoad += array(
                     'underscore-min.js' =>
                         $this->canonizeFile('underscore-min.js')
                 );
             }
             // Required primary js
-            if (!isset($files['backbone.min.js'])) {
+            if (!isset($files['backbone-min.js'])) {
                 $autoLoad += array(
                     'backbone-min.js' => $this->canonizeFile('backbone-min.js')
                 );
