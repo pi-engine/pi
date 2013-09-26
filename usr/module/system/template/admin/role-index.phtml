@@ -6,8 +6,9 @@
 <script src="<?php echo $angular . 'angular.js'; ?> "></script>
 <script src="<?php echo $angular . 'angular-route.js'; ?> "></script>
 <script src="<?php echo $angular . 'angular-translate.js'; ?> "></script>
+<script src="<?php echo $angular . 'pi-form.js'; ?> "></script>
 <script>
-var systemRoleModule = angular.module('systemRoleModule', ['ngRoute', 'pascalprecht.translate']);
+var systemRoleModule = angular.module('systemRoleModule', ['ngRoute', 'pascalprecht.translate', 'piForm']);
 var systemRoleModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
@@ -18,7 +19,7 @@ var systemRoleModuleConfig = {
         FRONT_ADD: '<?php _e('Add front role'); ?>',
         ROLE_ADD: '<?php _e('Add role'); ?>',
         DELETE: '<?php _e('Delete'); ?>',
-        EDIT: '<?php _e('Edit'); ?>',
+        EDIT: '<?php _e('Edit permission'); ?>',
         NAME: '<?php _e('Name'); ?>',
         TITLE: '<?php _e('Title'); ?>',
         USER_COUNT: '<?php _e('User in role'); ?>',
@@ -33,7 +34,8 @@ var systemRoleModuleConfig = {
         REQUIRED: '<?php _e('Required'); ?>',
         TYPE: '<?php _e('Type'); ?>',
         FRONT: '<?php _e('Front'); ?>',
-        ADMIN: '<?php _e('Admin'); ?>'
+        ADMIN: '<?php _e('Admin'); ?>',
+        ROLE_NAME_TOKEN: '<?php _e('Role name is aleady token'); ?>'
     }
 }
 </script>
@@ -65,6 +67,7 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
     $http.defaults.transformRequest = [function(d) {
         return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
     }];
+    this.root = root;
     this.get = function() {
         return $http.get(root + 'list');
     }
@@ -90,6 +93,7 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
         $scope.frontRoles = data.frontRoles;
         $scope.adminRoles = data.adminRoles;
     });
+    $scope.uniqueUrl = server.root + 'checkExist';
     $scope.cancelModal = function() {
         $scope.entity = null;
     }
