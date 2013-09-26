@@ -23,17 +23,15 @@ class ImportDataController extends ActionController
     {
         $this->view()->setTemplate(false);
 
-        //$this->addUser();
-        //$this->timeline();
+        $this->addUser();
+        $this->timeline();
         $this->timelineLog();
-        /*
         $this->group();
         $this->activity();
         $this->quickLink();
         $this->activeUser();
         $this->userLog();
         $this->privacy();
-        */
     }
 
     protected function addUser()
@@ -57,7 +55,7 @@ class ImportDataController extends ActionController
             'High school', 'Middle school',
             'Preliminary school');
 
-        $start = 11;
+        $start = 7;
         $end = $count + $start;
         for ($i = $start; $i <= $end; $i++) {
             $user = array(
@@ -490,14 +488,117 @@ EOT;
 
     public function testAction()
     {
-        $model = $this->getModel('field');
-        $select = $model->select()->where(array('is_display' => 1));
-        $rowset = $model->selectWith($select);
+//        $model = $this->getModel('field');
+//        $select = $model->select()->where(array('is_display' => 1));
+//        $rowset = $model->selectWith($select);
+//
+//        foreach ($rowset as $row) {
+//            $fields[] = $row->name;
+//        }
+//        vd($fields);
 
-        foreach ($rowset as $row) {
-            $fields[] = $row->name;
-        }
-        vd($fields);
+        $prefix = _get('prefix') ?: 'pi';
+        $count  = (int) _get('count') ?: 50;
+
+        $genderMap      = array('male', 'female', 'unknown');
+        $languageMap    = array('en', 'fa', 'fr', 'zh-cn');
+        $countryMap     = array('China', 'England', 'France', 'Iran');
+        $degreeMap      = array('Ph.D', 'Master', 'Bachelor', 'College',
+            'High school', 'Middle school',
+            'Preliminary school');
+        $i = 60;
+
+        $user = array(
+            'identity'      => $prefix . '_' . $i,
+            'credential'    => $prefix . '_' . $i,
+            'name'          => ucfirst($prefix) . ' ' . $i,
+            'email'         => $prefix . '_' . $i . '@pialog.org',
+
+            'fullname'      => ucfirst($prefix) . ' User ' . $i,
+            'gender'        => $genderMap[$i % 3],
+            'birthdate'     => (1900 + $i % 100) . '-'
+            . ($i % 12 + 1) . '-' . ($i % 30 + 1),
+            'location'      => 'From ' . $i,
+            'signature'     => 'Signature of user ' . $i,
+            'bio'           => 'User bio: ' . $i,
+
+            'language'      => $languageMap[$i % 4],
+            'demo_sample'   => 'Demo Sample: ' . $i,
+            'ip_register'   => sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
+
+            'address'       => array(
+                'country'   => $countryMap[$i % 4],
+                'province'  => 'Province ' . $i,
+                'city'      => 'City ' . $i,
+                'street'    => 'Street ' . $i,
+                'room'      => 'Room ' . $i,
+                'postcode'  => 'Code ' . $i,
+            ),
+
+            'tool'          => array(
+                array(
+                    'title'         => 'Google+',
+                    'identifier'    => rand(),
+                ),
+                array(
+                    'title'         => 'Twitter',
+                    'identifier'    => 'twitter_' . $i,
+                ),
+                array(
+                    'title'         => 'QQ',
+                    'identifier'    => '88' . $i,
+                ),
+            ),
+
+            'education' => array(
+                array(
+                    'school'    => 'School 1 ' . $i,
+                    'major'     => 'Major 1 ' . $i,
+                    'degree'    => $degreeMap[$i % 7],
+                    'class'     => 'Class 1 ' . $i,
+                    'start'     => rand(1900, 2013),
+                    'end'       => rand(1900, 2013),
+                ),
+                array(
+                    'school'    => 'School 2 ' . $i,
+                    'major'     => 'Major 2  ' . $i,
+                    'degree'    => $degreeMap[$i % 7],
+                    'class'     => 'Class 2 ' . $i,
+                    'start'     => rand(1900, 2013),
+                    'end'       => rand(1900, 2013),
+                ),
+                array(
+                    'school'    => 'School 3 ' . $i,
+                    'major'     => 'Major 3 ' . $i,
+                    'degree'    => $degreeMap[$i % 7],
+                    'class'     => 'Class 3 ' . $i,
+                    'start'     => rand(1900, 2013),
+                    'end'       => rand(1900, 2013),
+                ),
+
+            ),
+
+            'work'  => array(
+                array(
+                    'company'       => 'Company 1 ' . $i,
+                    'department'    => 'Dept 1  ' . $i,
+                    'title'         => 'Title 1 ' . $i,
+                    'description'   => 'Desc 1 ' . $i,
+                    'start'     => rand(1900, 2013),
+                    'end'       => rand(1900, 2013),
+                ),
+                array(
+                    'company'       => 'Company 2 ' . $i,
+                    'department'    => 'Dept 2  ' . $i,
+                    'title'         => 'Title 2 ' . $i,
+                    'description'   => 'Desc 2 ' . $i,
+                    'start'     => rand(1900, 2013),
+                    'end'       => rand(1900, 2013),
+                ),
+            ),
+        );
+        $uid = Pi::api('user', 'user')->addUser($user);
+        d($uid);
 
         $this->view()->setTemplate(false);
     }
