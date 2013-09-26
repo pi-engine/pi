@@ -27,11 +27,8 @@ class User extends AbstractUseApi
     /**
      * Get fields specs of specific type and action
      *
-     * - Available types: `account`, `profile`, `compound`
-     * - Available actions: `display`, `edit`, `search`
-     *
-     * @param string $type
-     * @param string $action
+     * @param string $type      Not used
+     * @param string $action    Not used
      * @return array
      * @api
      */
@@ -47,6 +44,11 @@ class User extends AbstractUseApi
             'birthdate'     => array(),
             'gender'        => array(),
             'active'        => array(),
+
+            'time_created'      => array(),
+            'time_activated'    => array(),
+            'time_disabled'     => array(),
+            'time_deleted'      => array(),
         );
 
         return $meta;
