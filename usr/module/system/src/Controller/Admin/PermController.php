@@ -162,9 +162,9 @@ class PermController extends ActionController
         d($roles);
         d($modules);
         d($resources);
-        $this->view()->setTemplate('perm-' . $section);
+        $this->view()->setTemplate('perm-index');
         $this->view()->assign('name', $module);
-        $this->view()->assign('section', $section);
+        //$this->view()->assign('section', $section);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);
         $this->view()->assign('modules', $modules);

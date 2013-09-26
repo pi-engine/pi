@@ -1,12 +1,12 @@
 <?php
-    $this->css($this->assetModule('script/system-ui.css'));
+$this->css($this->assetModule('script/system-ui.css'));
+$this->angular(array(
+    'angular-route.js',
+    'angular-translate.js',
+    'pi-form.js'
+));
 ?>
 <div ng-view ng-app="systemRoleModule"></div>
-<?php $angular = Pi::url('static/vendor/angular/'); ?>
-<script src="<?php echo $angular . 'angular.js'; ?> "></script>
-<script src="<?php echo $angular . 'angular-route.js'; ?> "></script>
-<script src="<?php echo $angular . 'angular-translate.js'; ?> "></script>
-<script src="<?php echo $angular . 'pi-form.js'; ?> "></script>
 <script>
 var systemRoleModule = angular.module('systemRoleModule', ['ngRoute', 'pascalprecht.translate', 'piForm']);
 var systemRoleModuleConfig = {
