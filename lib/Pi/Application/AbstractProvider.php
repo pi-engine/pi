@@ -17,7 +17,7 @@ use Zend\View\ViewModel;
  * @todo    Move the class to a Taxonomy dedicated namespace
  * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractProvider extends AbstractApi
+abstract class AbstractProvider extends AbstractModuleAwareness
 {
     /**
      * Get renderer

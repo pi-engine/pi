@@ -9,6 +9,7 @@
 
 namespace Pi\Application;
 
+
 /**
  * Gateway for persist handlers
  *
@@ -37,6 +38,8 @@ class Persist
      * Constructor
      *
      * @param array $config
+     *
+     * @throws \DomainException
      */
     public function __construct($config = array())
     {
