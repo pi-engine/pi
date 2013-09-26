@@ -560,11 +560,15 @@ class Navigation extends AbstractRegistry
      */
     public function isAllowed($page)
     {
-        if (!empty($page['permission'])) {
+        if (!empty($page['permission'])
+            && !empty($page['permission']['resource'])
+        ) {
+            $params = $page['permission'];
             $section = empty($params['section'])
                 ? $this->section : $params['section'];
+            $module = empty($params['module'])
+                ? $this->module : $params['module'];
             $resource = $params['resource'];
-            $module = empty($params['module']) ? $this->module : $params['module'];
             $result = Pi::service('permission')->hasPermission(array(
                 'section'   => $section,
                 'module'    => $module,

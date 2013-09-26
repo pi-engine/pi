@@ -64,7 +64,7 @@ return array(
     'admin'     => array(
         'label'         => _t('Admin Area'),
         'route'         => 'admin',
-        'resource'      => array(
+        'permission'    => array(
             'module'    => 'system',
             'resource'  => 'member',
         ),

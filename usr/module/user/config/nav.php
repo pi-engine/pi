@@ -19,7 +19,7 @@ return array(
     'admin' => array(
         'users' => array(
             'label'         => _t('Users'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
@@ -30,7 +30,7 @@ return array(
 
         'profile' => array(
             'label'         => _t('Profile field'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
@@ -41,7 +41,7 @@ return array(
 
         'avatar' => array(
             'label'         => _t('Avatar'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
@@ -52,7 +52,7 @@ return array(
 
         'form' => array(
             'label'         => _t('Form'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
@@ -63,7 +63,7 @@ return array(
 
         'plugin' => array(
             'label'         => _t('Plugin management'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',
@@ -74,7 +74,7 @@ return array(
 
         'notification' => array(
             'label'         => _t('Maintenance'),
-            'resource'      => array(
+            'permission'    => array(
                 'resource'  => 'module',
             ),
             'route'         => 'admin',

@@ -15,7 +15,7 @@
 return array(
     'modules' => array(
         'label'         => _t('Modules'),
-        'resource'      => array(
+        'permission'    => array(
             'resource'  => 'module',
         ),
         'route'         => 'admin',
@@ -53,7 +53,7 @@ return array(
 
     'themes'    => array(
         'label'         => _t('Themes'),
-        'resource'      => array(
+        'permission'    => array(
             'resource'  => 'theme',
         ),
         'route'         => 'admin',
@@ -98,9 +98,9 @@ return array(
 
     ),
 
-    'navigations'   => array(
-        'label'         => _t('Navigations'),
-        'resource'      => array(
+    'navigation'    => array(
+        'label'         => _t('Navigation'),
+        'permission'    => array(
             'resource'  => 'navigation',
         ),
         'route'         => 'admin',
@@ -110,7 +110,7 @@ return array(
 
         'pages' => array(
             'front' => array(
-                'label'         => _t('Navigations list'),
+                'label'         => _t('Navigation list'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'nav',
@@ -142,7 +142,7 @@ return array(
 
     'role'   => array(
         'label'         => _t('Roles'),
-        'resource'      => array(
+        'permission'    => array(
             'resource'  => 'role',
         ),
         'route'         => 'admin',
@@ -175,7 +175,7 @@ return array(
 
     'user'  => array(
         'label'         => _t('Users'),
-        'resource'      => array(
+        'permission'    => array(
             'resource'  => 'user',
         ),
         'route'         => 'admin',
@@ -220,7 +220,7 @@ return array(
 
     'toolkit'   => array(
         'label'         => _t('Toolkit'),
-        'resource'      => array(
+        'permission'    => array(
             'resource'  => 'maintenance',
         ),
         'route'         => 'admin',

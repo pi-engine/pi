@@ -16,7 +16,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'index',
-                'resource'      => array(
+                'permission'    => array(
                     'resource'  => 'script',
                 ),
             ),
@@ -25,7 +25,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'static',
                 'action'        => 'index',
-                'resource'      => array(
+                'permission'    => array(
                     'resource'  => 'static',
                 ),
 
@@ -51,7 +51,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'carousel',
                 'action'        => 'index',
-                'resource'      => array(
+                'permission'    => array(
                     'resource'  => 'carousel',
                 ),
 
@@ -77,7 +77,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'tab',
                 'action'        => 'index',
-                'resource'      => array(
+                'permission'    => array(
                     'resource'  => 'tab',
                 ),
 
