@@ -194,6 +194,8 @@ class PluginController extends ActionController
             }
         }
 
+        Pi::registry('timeline', 'user')->clear();
+
         return $result;
 
     }
@@ -236,7 +238,9 @@ class PluginController extends ActionController
             $model->update(array('display' => $display), array('id' => $id));
             $display++;
         }
+
         $result['status'] = 1;
+        Pi::registry('activity', 'user')->clear();
 
         return $result;
 
@@ -281,6 +285,7 @@ class PluginController extends ActionController
             $display++;
         }
         $result['status'] = 1;
+        Pi::registry('quicklink', 'user')->clear();
 
         return $result;
 

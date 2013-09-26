@@ -42,7 +42,7 @@ class RegisterController extends ActionController
             return;
         }
 
-        list($fields, $filters) = $this->canonizeForm('register.form');
+        list($fields, $filters) = $this->canonizeForm('custom.register');
         $form = $this->getRegisterForm($fields);
 
         if ($this->request->isPost()) {
@@ -280,7 +280,7 @@ class RegisterController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get fields for generate form
-        list($fields, $filters) = $this->canonizeForm('profile.complete');
+        list($fields, $filters) = $this->canonizeForm('custom.profile.perfection');
         $form = $this->getProfileCompleteForm($fields);
 
         if ($this->request->isPost()) {
@@ -351,15 +351,16 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Canonize data to element
+     * Canonize form
      *
-     * @param string $file
+     * @param $file
      * @return array
      */
     protected function canonizeForm($file)
     {
         $elements = array();
         $filters  = array();
+
         $file = strtolower($file);
         $configFile = sprintf(
             '%s/extra/%s/config/%s.php',
@@ -381,19 +382,25 @@ class RegisterController extends ActionController
             }
         }
 
-        $data = include $configFile;
+        $config = include $configFile;
 
-        foreach ($data as $value) {
-            if ($value['element']) {
-                $elements[] = $value['element'];
-            }
+        foreach ($config as $value) {
+            if (is_string($value)) {
+                $elements[] = Pi::api('user', 'form')->getElement($value);
+                $filters[]  = Pi::api('user', 'form')->getFilter($value);
+            } else {
+                if ($value['element']) {
+                    $elements[] = $value['element'];
+                }
 
-            if ($value['filter']) {
-                $filters[] = $value['filter'];
+                if ($value['filter']) {
+                    $filters[] = $value['filter'];
+                }
             }
         }
 
         return array($elements, $filters);
+
     }
 
     /**
