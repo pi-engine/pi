@@ -335,7 +335,7 @@ class RoleController extends ActionController
     {
         $role = $this->params('role');
         $row = Pi::model('role')->find($role, 'name');
-        $status = $row ? 0 : 1;
+        $status = $row ? 1 : 0;
 
         return $status;
     }
