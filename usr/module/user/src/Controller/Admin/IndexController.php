@@ -606,17 +606,65 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get roles for ajax
+     * Assign role
+     * Type: add, remove
      *
      * @return array
      */
-    public function getRolesAction()
+    public function assignRoleAction()
     {
-        $data = array(
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
+        $uids    = _post('uids');
+        $type    = _post('type');
+        $role    = _post('role');
+
+        $result = array(
+            'status'  => 0,
+            'message' => '',
         );
-        return $data;
+
+        if (!$uids || !$type || !$role) {
+            $result['message'] = __('Assign role failed');
+            return $result;
+        }
+
+        $uids = array_unique(explode(',', $uids));
+        if (!$uids) {
+            $result['message'] = __('Assign role failed');
+            return $result;
+        }
+
+        if (!in_array($type, array('add', 'remove'))) {
+            $result['message'] = __('Assign role failed');
+            return $result;
+        }
+
+        // Add user role
+        if ($type == 'add') {
+            foreach ($uids as $uid) {
+                $status = Pi::api('user', 'user')->setRole($uid, $role);
+                if (!$status) {
+                    $result['message'] = __('Assign role failed');
+                    return $result;
+                }
+            }
+        }
+
+        // Remove user role
+        if ($type == 'remove') {
+            foreach ($uids as $uid) {
+                $status = Pi::api('user', 'user')->revokeRole($uid, $role);
+                if (!$status) {
+                    $result['message'] = __('Assign role failed');
+                    return $result;
+                }
+            }
+        }
+
+        $result['status'] = 1;
+        $result['message'] = __('Assign role successfully');
+
+        return $result;
+
     }
 
     /**
@@ -699,34 +747,6 @@ class IndexController extends ActionController
         }
 
         return $users;
-
-    }
-
-    /**
-     * Get system all role for select form
-     *
-     * @param $section
-     * @return array
-     */
-    protected function getRoleSelectOptions($section = 'front')
-    {
-        $model = Pi::model('acl_role');
-        if ($section == 'front') {
-            // Get front role
-            $rowset = $model->select(array('section' => 'front'));
-            foreach ($rowset as $row) {
-                $options[$row->name] = __($row->title);
-            }
-        }
-        if ($section == 'admin') {
-            // Get admin role
-            $rowset = $model->select(array('section' => 'admin'));
-            foreach ($rowset as $row) {
-                $options[$row->name] = __($row->title);
-            }
-        }
-
-        return $options;
 
     }
 
