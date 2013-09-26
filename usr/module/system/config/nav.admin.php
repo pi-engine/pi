@@ -173,35 +173,6 @@ return array(
         ),
     ),
 
-    'perm'   => array(
-        'label'         => _t('Permissions'),
-        'resource'      => array(
-            'resource'  => 'perm',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'perm',
-
-        'pages'     => array(
-            'front'      => array(
-                'label'         => _t('Front resources'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'perm',
-                'section'       => 'front',
-                'visible'       => 0,
-            ),
-            'admin'  => array(
-                'label'         => _t('Admin resources'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'perm',
-                'section'       => 'admin',
-                'visible'       => 0,
-            ),
-        ),
-    ),
-
     'user'  => array(
         'label'         => _t('Users'),
         'resource'      => array(
