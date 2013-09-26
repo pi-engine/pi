@@ -560,10 +560,10 @@ class Navigation extends AbstractRegistry
      */
     public function isAllowed($page)
     {
-        if (!empty($page['permission'])
-            && !empty($page['permission']['resource'])
+        if (!empty($page['resource'])
+            && !empty($page['resource']['resource'])
         ) {
-            $params = $page['permission'];
+            $params = $page['resource'];
             $section = empty($params['section'])
                 ? $this->section : $params['section'];
             $module = empty($params['module'])

@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Module\System\Form\BlockModuleForm as ModuleForm;
 use Zend\Db\Sql\Predicate\Expression;
 
@@ -28,7 +28,7 @@ use Zend\Db\Sql\Predicate\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class BlockController extends ActionController
+class BlockController extends ComponentController
 {
     /**
      * Get exceptions for permission check

@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Module\System\Form\ConfigForm;
 use Zend\Db\Sql\Expression;
 
@@ -26,7 +26,7 @@ use Zend\Db\Sql\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ConfigController extends ActionController
+class ConfigController extends ComponentController
 {
     /**
      * Module configuration edit

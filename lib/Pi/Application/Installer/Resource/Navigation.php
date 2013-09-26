@@ -139,6 +139,10 @@ class Navigation extends AbstractResource
             }
             //$validColumns = $this->uriColumns;
         }
+        if (!empty($page['permission'])) {
+            $page['resource'] = $page['permission'];
+            unset($page['permission']);
+        }
 
         return $page;
     }

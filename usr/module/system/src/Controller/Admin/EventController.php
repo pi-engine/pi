@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -25,7 +25,7 @@ use Zend\Db\Sql\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class EventController extends ActionController
+class EventController extends ComponentController
 {
     /**
      * List of event/listener sorted by module

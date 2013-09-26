@@ -83,14 +83,6 @@ class AdminNav extends AbstractHelper
                 $allowed = Pi::service('permission')->moduleList($type);
                 $allowed = array_intersect($allowed, $moduleList);
             }
-            /*
-            $allowed = Pi::registry('moduleperm')->read($type);
-            if (null === $allowed || !is_array($allowed)) {
-                $allowed = $moduleList;
-            } else {
-                $allowed = array_intersect($allowed, $moduleList);
-            }
-            */
             if ($allowed) {
                 /**#@+
                  * Check access permission to managed components

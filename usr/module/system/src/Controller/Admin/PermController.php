@@ -10,15 +10,14 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
-use Pi\Application\AbstractModuleAwareness;
+use Module\System\Controller\ComponentController;
 
 /**
  * Permission controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PermController extends ActionController
+class PermController extends ComponentController
 {
     /**
      * Get exceptions for permission check
@@ -36,13 +35,11 @@ class PermController extends ActionController
     public function indexAction()
     {
         $module = $this->params('name', 'system');
-        //$section = $this->params('section', 'front');
         // Load all active roles of current section
         $roles = array(
             'front' => Pi::registry('role')->read('front'),
             'admin' => Pi::registry('role')->read('admin'),
         );
-        //vd($roles);
 
         $resources = array(
             'front' => array(
@@ -56,7 +53,6 @@ class PermController extends ActionController
             ),
         );
         Pi::service('i18n')->load('module/' . $module . ':permission');
-        $resourceList = array();
         foreach (array('front', 'admin') as $section) {
             $resources[$section]['global']['module-access'] = array(
                 'section'   => $section,
@@ -73,16 +69,12 @@ class PermController extends ActionController
                 'roles'     => array(),
             );
         }
-        //$resourceList[] = 'module-access';
-        //$resourceList[] = 'module-admin';
         // Load module defined resources
         $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
-            //'section'   => $section,
         ));
         $callback = '';
         foreach ($rowset as $row) {
-            //vd($row->toArray());
             if ('custom' == $row['type']) {
                 $callback = $row['name'];
                 continue;
@@ -94,65 +86,60 @@ class PermController extends ActionController
                 'title'     => __($row['title']),
                 'roles'     => array(),
             );
-
-            //$resourceList[] = $row['name'];
         }
-        //vd($callback);
-        //if ('front' == $section) {
-            // Load module custom resources
-            if ($callback
-                //&& is_subclass_of($callback, 'AbstractModuleAwareness')
-            ) {
-                $callbackHandler = new $callback($module);
-                $resourceCustom = $callbackHandler->getResources();
-                foreach ($resourceCustom as $name => $title) {
-                    $resource = compact('section', 'module', 'name', 'title');
-                    $resource['roles'] = array();
 
-                    $resources['front']['module'][$name] = $resource;
-                    //$resourceList[] = $name;
-                }
+        // Load module custom resources
+        if ($callback
+            && is_subclass_of(
+                $callback,
+                'Pi\Application\AbstractModuleAwareness'
+            )
+        ) {
+            $callbackHandler = new $callback($module);
+            $resourceCustom = $callbackHandler->getResources();
+            foreach ($resourceCustom as $name => $title) {
+                $resource = compact('section', 'module', 'name', 'title');
+                $resource['roles'] = array();
+
+                $resources['front']['module'][$name] = $resource;
+                //$resourceList[] = $name;
             }
-            // Load block resources
-            $model = Pi::model('block');
-            $select = $model->select()
-                ->where(array('module' => $module))->order(array('id ASC'));
-            $rowset = $model->selectWith($select);
-            //$blocks = array();
-            foreach ($rowset as $row) {
-                $key = 'block-' . $row['id'];
-                $resources['front']['block'][$key] = array(
-                    'section'   => 'block',
-                    'module'    => $module,
-                    'resource'  => $key,
-                    'title'     => $row['title'],
-                    'roles'     => array(),
-                );
-
-                //$resourceList[] = $key;
-            }
-        //}
-
-        //if ($resourceList) {
-            $rowset = Pi::model('permission_rule')->select(array(
-                //'section'   => $section,
+        }
+        // Load block resources
+        $model = Pi::model('block');
+        $select = $model->select()
+            ->where(array('module' => $module))->order(array('id ASC'));
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $key = 'block-' . $row['id'];
+            $resources['front']['block'][$key] = array(
+                'section'   => 'block',
                 'module'    => $module,
-                //'resource'  => $resourceList,
-            ));
-            $rules = array();
-            foreach ($rowset as $row) {
-                $rules[$row['section']][$row['resource']][$row['role']] = 1;
-            }
-            foreach ($resources as $section => &$sectionList) {
-                foreach ($sectionList as $type => &$typeList) {
-                    foreach ($typeList as $name => &$resource) {
-                        if (isset($rules[$section][$name])) {
-                            $resource['roles'] = $rules[$section][$name];
-                        }
+                'resource'  => $key,
+                'title'     => $row['title'],
+                'roles'     => array(),
+            );
+        }
+
+        $rowset = Pi::model('permission_rule')->select(array(
+            //'section'   => $section,
+            'module'    => $module,
+            //'resource'  => $resourceList,
+        ));
+        $rules = array();
+        foreach ($rowset as $row) {
+            $rules[$row['section']][$row['resource']][$row['role']] = 1;
+        }
+        foreach ($resources as $section => &$sectionList) {
+            foreach ($sectionList as $type => &$typeList) {
+                foreach ($typeList as $name => &$resource) {
+                    if (isset($rules[$section][$name])) {
+                        $resource['roles'] = $rules[$section][$name];
                     }
                 }
             }
-        //}
+        }
+
         $moduleList = Pi::registry('modulelist')->read('active');
         $modules = array();
         foreach ($moduleList as $name => $list) {
@@ -164,7 +151,6 @@ class PermController extends ActionController
         d($resources);
         $this->view()->setTemplate('perm-index');
         $this->view()->assign('name', $module);
-        //$this->view()->assign('section', $section);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);
         $this->view()->assign('modules', $modules);

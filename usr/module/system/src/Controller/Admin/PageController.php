@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageAddFilter as AddFilter;
 use Module\System\Form\PageEditForm as EditForm;
@@ -30,7 +30,7 @@ use Zend\Db\Sql\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PageController extends ActionController
+class PageController extends ComponentController
 {
     /**
      * Columns for page model

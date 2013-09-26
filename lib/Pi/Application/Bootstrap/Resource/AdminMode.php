@@ -9,8 +9,6 @@
 
 namespace Pi\Application\Bootstrap\Resource;
 
-use Pi;
-use Pi\Acl\Acl as AclManager;
 use Zend\Mvc\MvcEvent;
 
 /**
@@ -67,17 +65,18 @@ class AdminMode extends AbstractResource
     {
         $route = $e->getRouteMatch();
         if (empty($_SESSION['PI_BACKOFFICE']['changed']) && $route) {
+            $mode = static::MODE_ADMIN;
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
-            if ('system' == $module
-                && in_array(
-                    $controller,
-                    array('block', 'config', 'page', 'resource', 'event')
-                )
-            ) {
-                $mode = static::MODE_SETTING;
-            } else {
-                $mode = static::MODE_ADMIN;
+            if ('system' == $module) {
+                $controllerClass = 'Module\System\Controller\Admin\\'
+                                 . ucfirst($controller) . 'Controller';
+                if (is_subclass_of(
+                    $controllerClass,
+                    'Module\System\Controller\ComponentController'
+                )) {
+                    $mode = static::MODE_SETTING;
+                }
             }
             $_SESSION['PI_BACKOFFICE']['mode'] = $mode;
         } else {
