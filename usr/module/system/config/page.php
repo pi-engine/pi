@@ -78,11 +78,11 @@ return array(
             'controller'    => 'event',
             'permission'    => 'event',
         ),
-        // resource permissions
+        // Permissions
         array(
-            'title'         => __('Permission resource'),
-            'controller'    => 'resource',
-            'permission'    => 'resource',
+            'title'         => __('Permissions'),
+            'controller'    => 'perm',
+            'permission'    => 'permission',
         ),
 
         // Operations
@@ -104,25 +104,18 @@ return array(
             'controller'    => 'nav',
             'permission'    => 'navigation',
         ),
-        // System permissions
-        array(
-            'title'         => __('Permissions'),
-            'controller'    => 'perm',
-            //'action'        => 'index',
-            'permission'    => 'perm',
-        ),
 
-        // role
+        // Role
         array(
             'title'         => __('Roles'),
             'controller'    => 'role',
             'permission'    => 'role',
         ),
-        // membership
+        // User
         array(
-            'title'         => __('Membership'),
-            'controller'    => 'member',
-            'permission'    => 'member',
+            'title'         => __('User'),
+            'controller'    => 'user',
+            'permission'    => 'user',
         ),
         // Maintenance operations
         // asset

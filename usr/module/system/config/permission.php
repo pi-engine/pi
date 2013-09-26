@@ -74,9 +74,9 @@ return array(
                 //'admin',
             ),
         ),
-        // Resource permissions
-        'resource'  => array(
-            'title'         => __('Component: resources'),
+        // Permissions
+        'permission'  => array(
+            'title'         => __('Component: permissions'),
             'access'        => array(
                 //'admin',
             ),
@@ -122,16 +122,9 @@ return array(
                 //'admin',
             ),
         ),
-        // Permissions
-        'perm'    => array(
-            'title'         => __('Operation: permissions'),
-            'access'        => array(
-                //'admin',
-            ),
-        ),
-        // Members
-        'member'    => array(
-            'title'         => __('Operation: members'),
+        // Users
+        'user'    => array(
+            'title'         => __('Operation: users'),
             'access'        => array(
                 //'admin',
             ),

@@ -202,29 +202,29 @@ return array(
         ),
     ),
 
-    'members'   => array(
-        'label'         => _t('Membership'),
+    'user'  => array(
+        'label'         => _t('Users'),
         'resource'      => array(
-            'resource'  => 'member',
+            'resource'  => 'user',
         ),
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'member',
+        'controller'    => 'user',
 
         'pages'         => array(
             'add'  => array(
-                'label'         => _t('Add member'),
+                'label'         => _t('Add user'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'member',
+                'controller'    => 'user',
                 'action'        => 'add',
                 'visible'       => 0,
             ),
             'edit'  => array(
-                'label'         => _t('Edit member'),
+                'label'         => _t('Edit user'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'member',
+                'controller'    => 'user',
                 'action'        => 'edit',
                 'visible'       => 0,
             ),
@@ -232,15 +232,15 @@ return array(
                 'label'         => _t('Change password'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'member',
+                'controller'    => 'user',
                 'action'        => 'password',
                 'visible'       => 0,
             ),
             'delete'  => array(
-                'label'         => _t('Delete member'),
+                'label'         => _t('Delete user'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'member',
+                'controller'    => 'user',
                 'action'        => 'delete',
                 'visible'       => 0,
             ),

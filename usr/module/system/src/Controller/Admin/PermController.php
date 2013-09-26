@@ -36,38 +36,49 @@ class PermController extends ActionController
     public function indexAction()
     {
         $module = $this->params('name', 'system');
-        $section = $this->params('section', 'front');
+        //$section = $this->params('section', 'front');
         // Load all active roles of current section
-        $roles = Pi::registry('role')->read($section);
+        $roles = array(
+            'front' => Pi::registry('role')->read('front'),
+            'admin' => Pi::registry('role')->read('admin'),
+        );
         //vd($roles);
 
-        Pi::service('i18n')->load('module/' . $module . ':permission');
         $resources = array(
-            'module'    => array(),
-            'block'     => array(),
+            'front' => array(
+                'global'    => array(),
+                'module'    => array(),
+                'block'     => array(),
+            ),
+            'admin' => array(
+                'global'    => array(),
+                'module'    => array(),
+            ),
         );
+        Pi::service('i18n')->load('module/' . $module . ':permission');
         $resourceList = array();
-        $resources['global']['module-access'] = array(
-            'section'   => $section,
-            'module'    => $module,
-            'resource'  => 'module-access',
-            'title'     => __('Module access'),
-            'roles'     => array(),
-        );
-        $resources['global']['module-admin'] = array(
-            'section'   => $section,
-            'module'    => $module,
-            'resource'  => 'module-admin',
-            'title'     => __('Module admin'),
-            'roles'     => array(),
-        );
-        $resourceList[] = 'module-access';
-        $resourceList[] = 'module-admin';
+        foreach (array('front', 'admin') as $section) {
+            $resources[$section]['global']['module-access'] = array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => 'module-access',
+                'title'     => __('Module access'),
+                'roles'     => array(),
+            );
+            $resources[$section]['global']['module-admin'] = array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => 'module-admin',
+                'title'     => __('Module admin'),
+                'roles'     => array(),
+            );
+        }
+        //$resourceList[] = 'module-access';
+        //$resourceList[] = 'module-admin';
         // Load module defined resources
         $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
-            'section'   => $section,
-            //'type'      => array('system', 'custom'),
+            //'section'   => $section,
         ));
         $callback = '';
         foreach ($rowset as $row) {
@@ -76,7 +87,7 @@ class PermController extends ActionController
                 $callback = $row['name'];
                 continue;
             }
-            $resources['module'][$row['name']] = array(
+            $resources[$row['section']]['module'][$row['name']] = array(
                 'section'   => $section,
                 'module'    => $module,
                 'resource'  => $row['name'],
@@ -84,10 +95,10 @@ class PermController extends ActionController
                 'roles'     => array(),
             );
 
-            $resourceList[] = $row['name'];
+            //$resourceList[] = $row['name'];
         }
         //vd($callback);
-        if ('front' == $section) {
+        //if ('front' == $section) {
             // Load module custom resources
             if ($callback
                 //&& is_subclass_of($callback, 'AbstractModuleAwareness')
@@ -98,8 +109,8 @@ class PermController extends ActionController
                     $resource = compact('section', 'module', 'name', 'title');
                     $resource['roles'] = array();
 
-                    $resources['module'][$name] = $resource;
-                    $resourceList[] = $name;
+                    $resources['front']['module'][$name] = $resource;
+                    //$resourceList[] = $name;
                 }
             }
             // Load block resources
@@ -110,7 +121,7 @@ class PermController extends ActionController
             //$blocks = array();
             foreach ($rowset as $row) {
                 $key = 'block-' . $row['id'];
-                $resources['block'][$key] = array(
+                $resources['front']['block'][$key] = array(
                     'section'   => 'block',
                     'module'    => $module,
                     'resource'  => $key,
@@ -118,36 +129,39 @@ class PermController extends ActionController
                     'roles'     => array(),
                 );
 
-                $resourceList[] = $key;
+                //$resourceList[] = $key;
             }
-        }
+        //}
 
-        if ($resourceList) {
+        //if ($resourceList) {
             $rowset = Pi::model('permission_rule')->select(array(
-                'section'   => $section,
+                //'section'   => $section,
                 'module'    => $module,
-                'resource'  => $resourceList,
+                //'resource'  => $resourceList,
             ));
             $rules = array();
             foreach ($rowset as $row) {
-                $rules[$row['resource']][$row['role']] = 1;
+                $rules[$row['section']][$row['resource']][$row['role']] = 1;
             }
-            foreach ($resources as $type => &$list) {
-                foreach ($list as $name => &$resource) {
-                    if (isset($rules[$name])) {
-                        $resource['roles'] = $rules[$name];
+            foreach ($resources as $section => &$sectionList) {
+                foreach ($sectionList as $type => &$typeList) {
+                    foreach ($typeList as $name => &$resource) {
+                        if (isset($rules[$section][$name])) {
+                            $resource['roles'] = $rules[$section][$name];
+                        }
                     }
                 }
             }
-        }
+        //}
         $moduleList = Pi::registry('modulelist')->read('active');
         $modules = array();
         foreach ($moduleList as $name => $list) {
             $modules[$name] = $list['title'];
         }
 
-        vd($roles);
-        vd($modules);
+        d($roles);
+        d($modules);
+        d($resources);
         $this->view()->setTemplate('perm-' . $section);
         $this->view()->assign('name', $module);
         $this->view()->assign('section', $section);

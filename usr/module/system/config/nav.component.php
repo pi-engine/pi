@@ -44,12 +44,12 @@ return array(
     ),
 
     'perm' => array(
-        'label'         => _t('Resources'),
+        'label'         => _t('Permission'),
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'resource',
+        'controller'    => 'perm',
         'resource'      => array(
-            'resource'  => 'resource',
+            'resource'  => 'permission',
         ),
     ),
 
