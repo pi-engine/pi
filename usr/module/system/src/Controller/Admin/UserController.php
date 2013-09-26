@@ -95,7 +95,7 @@ class UserController extends ActionController
             'id'             => '',
         );
 
-        $users = Pi::api('user', 'user')->get(
+        $users = Pi::api('system', 'user')->get(
             $uids,
             array_keys($columns)
         );
@@ -104,11 +104,11 @@ class UserController extends ActionController
             $user = array_merge($columns, $user);
 
             // Get role
-            $user['front_role'] = Pi::api('user', 'user')->getRole(
+            $user['front_role'] = Pi::api('system', 'user')->getRole(
                 $user['id'],
                 'front'
             );
-            $user['admin_role'] = Pi::api('user', 'user')->getRole(
+            $user['admin_role'] = Pi::api('system', 'user')->getRole(
                 $user['id'],
                 'admin'
             );
