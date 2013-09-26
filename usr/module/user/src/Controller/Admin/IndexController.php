@@ -12,8 +12,6 @@ namespace Module\User\Controller\Admin;
 use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Paginator\Paginator;
-use Pi\Acl\Acl;
 use Module\User\Form\MemberForm;
 
 /**
@@ -779,6 +777,12 @@ class IndexController extends ActionController
         if ($condition['enable'] == 'disable') {
             $where['time_disabled > ?'] = 0;
         }
+        if ($condition['activated'] == 'activated') {
+            $where['time_activated > ?'] = 0;
+        }
+        if ($condition['pending'] == 'pending') {
+            $where['time_activated'] = 0;
+        }
         if ($condition['register_date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
                 $condition['register_date']
@@ -882,6 +886,12 @@ class IndexController extends ActionController
         if ($condition['enable'] == 'disable') {
             $where['time_disabled > ?'] = 0;
         }
+        if ($condition['activated'] == 'activated') {
+            $where['time_activated > ?'] = 0;
+        }
+        if ($condition['pending'] == 'pending') {
+            $where['time_activated'] = 0;
+        }
         if ($condition['register_date']) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
                 $condition['register_date']
@@ -964,9 +974,41 @@ class IndexController extends ActionController
 
     }
 
+    /**
+     * Get role list
+     *
+     * @return array
+     */
+    protected function getRoles()
+    {
+
+        $model = Pi::model('role');
+        $rowset = $model->select(array());
+        foreach ($rowset as $row) {
+            if ($row['section'] == 'admin') {
+                $adminRole[] = array(
+                    'name' => $row['name'],
+                    'title' => $row['title'],
+                );
+            } else {
+                $frontRole[] = array(
+                    'name' => $row['name'],
+                    'title' => $row['title'],
+                );
+            }
+        }
+
+        return array($frontRole, $adminRole);
+    }
+
     public function testAction()
     {
         $this->view()->setTemplate(false);
+        d(Pi::api('user', 'user')->getRole(7, 'admin'));
+        //d($this->getRoles());
+        //d(Pi::api('user', 'user')->setRole(7, 'guest'));
+
+//        vd(Pi::api('user', 'user')->get(7, 'role'));
 //        vd(Pi::api('user', 'user')->getUser(1000)->id);
 //        $modelAccount = Pi::model('user_account');
 //        $modelRole = Pi::model('user_role');
