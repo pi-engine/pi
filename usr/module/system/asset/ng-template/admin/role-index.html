@@ -2,7 +2,8 @@
 .system-cursor {
   cursor: pointer;
 }
-.system-table input[type="text"] {
+.system-table input[type="text"],
+.system-table form {
   margin-bottom: 0;
 }
 </style>
@@ -23,8 +24,10 @@
           <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
             {{role.title}}
           </div>
-          <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
-                 ng-show="role.editTitle" pi-focus="role.editTitle">
+          <form ng-submit="renameAction(role)">
+            <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
+                   ng-show="role.editTitle" pi-focus="role.editTitle">
+          </form>
         <td>{{role.count}}
         <td>
           <div class="btn-group">
@@ -38,32 +41,8 @@
             </button>
           </div>
         <td>
-          <button class="btn btn-link">{{'DELETE' | translate}}</button>
-      <tr ng-if="addFrontRole">
-          <td>
-            <input type="text" ng-model="addFrontRole.name" placeholder="{{'ROLE_NAME' | translate}}">
-          <td>
-            <input type="text" ng-model="addFrontRole.title" placeholder="{{'ROLE_TITLE' | translate}}">
-          <td>
-          <td>
-            <div class="btn-group">
-              <button class="btn" ng-class="{'btn-danger active': !addFrontRole.active}"
-                      ng-click=" addFrontRole.active = 0">
-                  {{'INACTIVE' | translate}}
-              </button>
-              <button class="btn" ng-class="{'btn-success active': addFrontRole.active}"
-                      ng-click=" addFrontRole.active = 1">
-                  {{'ACTIVE' | translate}}
-              </button>
-            </div>
-          <td>
-            <div>
-              <button class="btn btn-primary" ng-click="entityAction('front')" 
-                      ng-disabled="addFrontRole.$invalid">
-                {{'SUBMIT' | translate}}
-              </button>
-              <button class="btn btn-link" ng-click="cancelAdd('front')">{{'CANCEL' | translate}}</button>
-            </div>
+          <button class="btn btn-link" ng-if="role.custom">{{'DELETE' | translate}}</button>
+          <button class="btn btn-link">{{'EDIT' | translate}}</button>
 </table>
 <legend>{{'ADMIN_TITLE' | translate}}</legend>
 <button class="btn" ng-click="modal('admin')">{{'ADMIN_ADD' | translate}}</button>
@@ -82,28 +61,20 @@
           <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
             {{role.title}}
           </div>
-          <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
-                 ng-show="role.editTitle" pi-focus="role.editTitle">
+          <form ng-submit="renameAction(role)">
+            <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
+                   ng-show="role.editTitle" pi-focus="role.editTitle">
+          </form>
         <td>{{role.count}}
         <td>
-          <div class="btn-group">
-            <button class="btn" ng-class="{'btn-danger active': !role.active}"
-                    ng-click="disableAction(role)">
-                {{'INACTIVE' | translate}}
-            </button>
-            <button class="btn" ng-class="{'btn-success active': role.active}"
-                    ng-click="activeAction(role)">
-                {{'ACTIVE' | translate}}
-            </button>
-          </div>
+          <i ng-if="!role.custom" 
+             ng-class="{'icon-ok text-success': role.active, 'icon-remove text-error': !role.active }">
+          </i>
         <td>
-          <button class="btn btn-link" ng-if="role.id">{{'DELETE' | translate}}</button>
-          <div ng-if="!role.id">
-            <button class="btn">{{'SUBMIT' | translate}}</button>
-            <button class="btn btn-link">{{'CANCEL' | translate}}</button>
-          </div>
+          <button class="btn btn-link" ng-if="role.custom">{{'DELETE' | translate}}</button>
+          <button class="btn btn-link">{{'EDIT' | translate}}</button>
 </table>
-<div class="modal" ng-if="entity">
+<div class="modal" ng-if="entity" style="width: 600px; margin-left: -300px;">
   <form class="form-horizontal" name="roleForm" ng-submit="addRoleAction()" 
         style="margin-bottom: 0;" id="popup-form" novalidate>
     <div class="modal-header">
@@ -115,7 +86,10 @@
            ng-class="{'error': roleForm.name.$dirty && roleForm.name.$invalid}">
         <label class="control-label">{{'ROLE_NAME' | translate}}</label>
         <div class="controls">
-          <input type="text" ng-model="entity.name" name="name" required unique>
+          <input type="text" ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
+          <span class="help-inline" ng-show="roleForm.name.$valid">
+            <i class="icon-ok text-success"></i>
+          </span>
           <span class="help-inline" 
             ng-show="roleForm.name.$error.required">
             {{'REQUIRED' | translate}}
@@ -131,6 +105,9 @@
         <label class="control-label">{{'ROLE_TITLE' | translate}}</label>
         <div class="controls">
           <input type="text" ng-model="entity.title" name="title" required>
+          <span class="help-inline" ng-show="roleForm.title.$valid">
+            <i class="icon-ok text-success"></i>
+          </span>
           <span class="help-inline" 
             ng-show="roleForm.title.$error.required">
             {{'REQUIRED' | translate}}
