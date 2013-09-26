@@ -39,6 +39,11 @@ class RoleController extends ActionController
         'id', 'section', 'custom', 'active', 'name', 'title', 'order'
     );
 
+    /**
+     * Get role model
+     *
+     * @return Pi\Application\Model\Model
+     */
     protected function model()
     {
         return Pi::model('role');
@@ -319,5 +324,19 @@ class RoleController extends ActionController
             'message'   => $message,
             'data'      => $data,
         );
+    }
+
+    /**
+     * Check if a role name exists
+     *
+     * @return int
+     */
+    public function checkExistAction()
+    {
+        $role = $this->params('role');
+        $row = Pi::model('role')->find($role, 'name');
+        $status = $row ? 0 : 1;
+
+        return $status;
     }
 }
