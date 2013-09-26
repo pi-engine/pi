@@ -79,6 +79,7 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $role = $row->toArray();
             $role['active'] = (int) $role['active'];
+            $role['custom'] = (int) $role['custom'];
             $roles[$row['name']] =$role;
         }
 
@@ -333,10 +334,12 @@ class RoleController extends ActionController
      */
     public function checkExistAction()
     {
-        $role = $this->params('role');
+        $role = $this->params('name');
         $row = Pi::model('role')->find($role, 'name');
         $status = $row ? 1 : 0;
 
-        return $status;
+        return array(
+            'status' => $status
+        );
     }
 }
