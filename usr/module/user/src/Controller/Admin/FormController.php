@@ -34,7 +34,7 @@ class FormController extends ActionController
      */
     public function registerAction()
     {
-        list($fields, $filters) = $this->canonizeForm('register.form');
+        list($fields, $filters) = $this->canonizeForm('custom.register');
         $form = new RegisterForm('register-preview', $fields);
 
         if ($this->request->isPost()) {
@@ -53,14 +53,17 @@ class FormController extends ActionController
         ));
     }
 
+    /**
+     * Preview profile perfection form
+     */
     public function profilePerfectionAction()
     {
-        list($fields, $filters) = $this->canonizeForm('register.form');
-        $form = new RegisterForm('register-preview', $fields);
+        list($fields, $filters) = $this->canonizeForm('custom.profile.perfection');
+        $form = new ProfileCompleteForm('register-preview', $fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new RegisterFilter($filters));
+            $form->setInputFilter(new ProfileCompleteFilter($filters));
             $form->setData($post);
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -76,6 +79,12 @@ class FormController extends ActionController
         $this->view()->setTemplate('form-profile-perfection');
     }
 
+    /**
+     * Canonize form
+     *
+     * @param $file
+     * @return array
+     */
     protected function canonizeForm($file)
     {
         $elements = array();
@@ -105,12 +114,17 @@ class FormController extends ActionController
         $config = include $configFile;
 
         foreach ($config as $value) {
-            if ($value['element']) {
-                $elements[] = $value['element'];
-            }
+            if (is_string($value)) {
+                $elements[] = Pi::api('user', 'form')->getElement($value);
+                $filters[]  = Pi::api('user', 'form')->getFilter($value);
+            } else {
+                if ($value['element']) {
+                    $elements[] = $value['element'];
+                }
 
-            if ($value['filter']) {
-                $filters[] = $value['filter'];
+                if ($value['filter']) {
+                    $filters[] = $value['filter'];
+                }
             }
         }
 

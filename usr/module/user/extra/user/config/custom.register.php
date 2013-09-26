@@ -1,30 +1,25 @@
 <?php
 /**
- * Register form config
- *
- */
+* Pi Engine (http://pialog.org)
+*
+* @link            http://code.pialog.org for the Pi Engine source repository
+* @copyright       Copyright (c) Pi Engine http://pialog.org
+* @license         http://pialog.org/license.txt New BSD License
+*/
+
+/**
+* User register form config
+*
+* @author Liu Chuang <liuchuang@eefocus.com>
+*/
 
 return array(
-    'email'      => array(
-        'element' => Pi::api('user', 'form')->getElement('email'),
-        'filter'  => Pi::api('user', 'form')->getFilter('email') + array('required' => true),
-    ),
+    // Use user module field
+    'email',
+    'identity',
+    'credential',
 
-    'identity'   => array(
-        'element' => Pi::api('user', 'form')->getElement('identity'),
-        'filter'  => Pi::api('user', 'form')->getFilter('identity') + array('required' => true),
-    ),
-
-    'name'       => array(
-        'element' => Pi::api('user', 'form')->getElement('name'),
-        'filter'  => Pi::api('user', 'form')->getFilter('name') + array('required' => true),
-    ),
-
-    'credential' => array(
-        'element' => Pi::api('user', 'form')->getElement('credential'),
-        'filter'  => Pi::api('user', 'form')->getFilter('credential') + array('required' => true),
-    ),
-
+    // Custom field
     'credential-confirm' => array(
         'element' => array(
             'name'          => 'credential-confirm',
