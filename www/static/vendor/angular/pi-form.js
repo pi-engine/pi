@@ -1,6 +1,6 @@
 (function(window, angular) {'use strict';
   var form = angular.module('piForm', []);
-  form.directive('piUnique', function($http) {
+  form.directive('piUnique', function($http, $q) {
     var link = function (scope, element, attr, ctrl) {
       var checking;
       var url = attr.piUnique;
@@ -8,13 +8,16 @@
       if (!url) {
         throw new Error('Please set url value on pi-unique attribute');
       }
-      element.on('blur', function() {
-        var value = ctrl.$viewValue;
-        if (!value) return;
+      var deferred;
+      scope.$watch(attr.ngModel, function(value) {
+        if(!value) return;
+        if(deferred) deferred.resolve();
+        deferred = $q.defer();
         params[attr.name] = value;
         $http.get(url, {
           cache: true,
-          params: params
+          params: params,
+          timeout: deferred.promise
         }).success(function(data) {
           ctrl.$setValidity('unique', !data.status);
         });

@@ -20,7 +20,14 @@ use Pi\Mvc\Controller\ActionController;
  */
 class UserController extends ActionController
 {
-    public function indexAction()
+    public function indexAction() {
+        $this->view()->setTemplate('user-index');
+        $this->view()->assign(array(
+            'roles'  => $this->getRoles(),
+        ));
+    }
+
+    public function listAction()
     {
         $page   = (int) $this->params('p', 1);
         $limit  = 10;
@@ -69,7 +76,6 @@ class UserController extends ActionController
             'users'       => array_values($users),
             'paginator'   => $paginator,
             'condition'   => $condition,
-            'roles'       => $this->getRoles(),
         );
 
         return $data;
@@ -354,19 +360,13 @@ class UserController extends ActionController
         $model = Pi::model('role');
         $rowset = $model->select(array());
         foreach ($rowset as $row) {
-            if ($row['section'] == 'admin') {
-                $adminRole[] = array(
-                    'name' => $row['name'],
-                    'title' => $row['title'],
-                );
-            } else {
-                $frontRole[] = array(
-                    'name' => $row['name'],
-                    'title' => $row['title'],
-                );
-            }
+            $data[] = array(
+                'name' => $row['name'],
+                'title' => $row['title'],
+                'type' => $row['section']
+            );
         }
 
-        return array($frontRole, $adminRole);
+        return $data;
     }
 }

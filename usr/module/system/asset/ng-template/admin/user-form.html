@@ -1,0 +1,129 @@
+<legend>{{title}}</legend>
+<form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
+    <div class="control-group" 
+        ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
+        <label class="control-label">{{'USER_NAME' | translate}}</label>
+        <div class="controls">
+            <input type="text" ng-model="identity" name="identity" required unique>
+            <span class="help-inline" 
+                ng-show="userForm.identity.$error.required">
+                {{'REQUIRED' | translate}}
+            </span>
+            <span class="help-inline" 
+                ng-show="userForm.identity.$error.unique">
+                {{'USER_NAME_TOKEN' | translate}}
+            </span>
+        </div>
+    </div>
+    <div class="control-group"
+        ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
+        <label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
+        <div class="controls">
+            <input type="text" ng-model="name" name="name" required unique>
+            <span class="help-inline" 
+                ng-show="userForm.name.$error.required">
+                {{'REQUIRED' | translate}}
+            </span>
+            <span class="help-inline" 
+                ng-show="userForm.name.$error.unique">
+                {{'DISPLAY_NAME_TOKEN' | translate}}
+            </span>
+        </div>
+    </div>
+    <div class="control-group"
+        ng-class="{'error': userForm.email.$dirty && userForm.email.$invalid}">
+        <label class="control-label">{{'EMAIL' | translate}}</label>
+        <div class="controls">
+            <input type="email" ng-model="email" name="email" required unique>
+            <span class="help-inline" 
+                ng-show="userForm.email.$error.required">
+                {{'REQUIRED' | translate}}
+            </span>
+            <span class="help-inline" 
+                ng-show="userForm.email.$error.email">
+                {{'INVALID_EMAIL' | translate}}
+            </span>
+            <span class="help-inline" 
+                ng-show="userForm.email.$error.unique">
+                {{'EMAIL_TOKEN' | translate}}
+            </span>
+        </div>
+    </div>
+    <div class="control-group"
+        ng-class="{'error': userForm.credential.$dirty && userForm.credential.$invalid}">
+        <label class="control-label">{{'PASSWORD' | translate}}</label>
+        <div class="controls">
+            <input type="password" ng-model="credential" name="credential" required>
+            <span class="help-inline" 
+                ng-show="userForm.credential.$error.required">
+                {{'REQUIRED' | translate}}
+            </span>
+        </div>
+    </div>
+    <div class="control-group"
+        ng-class="{'error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
+        <label class="control-label">{{'CONFIRM_PASSWORD' | translate}}</label>
+        <div class="controls">
+            <input type="password" ng-model="credential_confirm" name="credential_confirm" required
+                match="credential">
+            <span class="help-inline" 
+                ng-show="userForm.credential_confirm.$error.required">
+                {{'REQUIRED' | translate}}
+            </span>
+            <span class="help-inline" 
+                ng-show="userForm.credential_confirm.$error.mismatch">
+                {{'PASSWORD_MATCH' | translate}}
+            </span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{'ACTIVATE' | translate}}</label>
+        <div class="controls">
+            <button class="btn" ng-click="activateAction()" ng-if="activate">
+                <i class="icon-ok text-success"></i>
+            </button>
+            <button class="btn" ng-click="activateAction()" ng-if="!activate">
+                <i class="icon-remove text-error"></i>
+            </button>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{'ENABLE' | translate}}</label>
+        <div class="controls">
+            <button class="btn" ng-click="enableAction()" ng-if="enable">
+                <i class="icon-ok text-success"></i>
+            </button>
+            <button class="btn" ng-click="enableAction()" ng-if="!enable">
+                <i class="icon-remove text-error"></i>
+            </button>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
+        <div class="controls">
+            <ul class="inline">
+                <li ng-repeat="item in frontRoles">
+                    <label class="checkbox">
+                        <input type="checkbox" name="{{item.name}}">{{item.title}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+     <div class="control-group">
+        <label class="control-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
+        <div class="controls">
+            <ul class="inline">
+                <li ng-repeat="item in adminRoles">
+                    <label class="checkbox">
+                        <input type="checkbox" name="{{item.name}}">{{item.title}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="controls">
+        <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary" 
+            ng-disabled="userForm.$invalid">
+    </div>
+</form>
