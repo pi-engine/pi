@@ -117,7 +117,7 @@ class Pi
      * Reference to config handler
      * @var Config
      */
-    protected static $config = null;
+    //protected static $config = null;
 
     /**
      * Reference to Db handler
@@ -522,18 +522,12 @@ class Pi
      */
     public static function config($name = null, $domain = null)
     {
-        // config handler
-        if (!isset(static::$config)) {
-            static::$config = new Config(
-                static::path('config')
-            );
-        }
-        // Return config handler
+        // Return config service
         if (null === $name) {
-            return static::$config;
+            return static::service('config');
         }
         // Read a config
-        $value = static::$config->get($name, $domain);
+        $value = static::service('config')->get($name, $domain);
 
         return $value;
     }

@@ -5,18 +5,19 @@
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
  * @license         http://pialog.org/license.txt New BSD License
+ * @package         Service
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Service;
 
 use Pi;
 
 /**
- * Config handler
+ * Configuration handling service
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Config
+class Config extends AbstractService
 {
     /** @var string Default domain */
     const DEFAULT_DOMAIN = 'general';
@@ -47,15 +48,22 @@ class Config
     );
 
     /**
-     * Constructor
-     *
-     * @param string $configLocation
-     * @param string $customLocation
+     * {@inheritDoc}
      */
-    public function __construct($configLocation = '', $customLocation = '')
+    public function __construct(array $options = array())
     {
-        $this->configLocation = $configLocation ?: Pi::path('config');
-        $this->customLocation = $customLocation ?: Pi::path('custom');
+        parent::__construct($options);
+
+        if (!empty($this->options['root_path'])) {
+            $this->configLocation = $this->options['root_path'];
+        } else {
+            $this->configLocation = Pi::path('config');
+        }
+        if (!empty($this->options['custom_path'])) {
+            $this->customLocation = $this->options['custom_path'];
+        } else {
+            $this->customLocation = Pi::path('custom');
+        }
     }
 
     /**
@@ -209,7 +217,7 @@ class Config
         $file = $path . '/' . $file;
 
         $content = '<?php' . PHP_EOL
-                 . 'return ' . var_export($data, true) . ';';
+            . 'return ' . var_export($data, true) . ';';
         $result = (bool) file_put_contents($file, $content);
 
         return $result;
