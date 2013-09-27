@@ -31,7 +31,7 @@ class Role extends AbstractRegistry
             $where['section'] = $options['section'];
         }
         $select = $model->select();
-        $select->order(array('section', 'order ASC'));
+        $select->order(array('section', 'title ASC'));
         $select->where($where);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
