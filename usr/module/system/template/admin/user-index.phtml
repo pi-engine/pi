@@ -1,0 +1,85 @@
+<?php
+    $this->angular(array(
+        'angular-route.js',
+        'angular-translate.js',
+        'pi-pagination.js',
+        'pi-form.js'
+    ));
+?>
+<div ng-view ng-app="systemUserModule">
+</div>
+<script>
+var systemUserModule = angular.module('systemUserModule', ['ngRoute', 'pascalprecht.translate', 
+    'pagination', 'piForm']);
+var systemUserModuleConfig = {
+    urlRoot: '<?php echo $this->url('', array('controller' => 'user')); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    roles: <?php echo json_encode($roles) ?>,
+    t: {
+        TITLE: '<?php _e('User list'); ?>',
+        Add_USER: '<?php _e('Add user'); ?>',
+        EDIT_USER: '<?php _e('Edit user'); ?>',
+        ACTIVE_STATUS: '<?php _e('Active State'); ?>',
+        ENABLE_STATUS: '<?php _e('Enable State'); ?>',
+        SELECT_ROLES: '<?php _e('Select roles'); ?>'
+    }
+}
+</script>
+<script>
+systemUserModule.config(function($translateProvider, $routeProvider, $locationProvider) {
+    $translateProvider.translations(systemUserModuleConfig.t);
+    $locationProvider.hashPrefix('!');
+    $routeProvider.when('/new', {
+        controller: 'formCtrl',
+        templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
+    }).when('/edit', {
+        controller: 'formCtrl',
+        templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
+    }).otherwise({
+        templateUrl: systemUserModuleConfig.assetRoot + 'user-index.html',
+        controller: 'UserCtrl'
+    });
+}).service('server', function($http) {
+    var root = systemUserModuleConfig.urlRoot;
+    var isFile = function(obj) {
+        return Object.prototype.toString.apply(obj) === '[object File]';
+    };
+    //emulate jQuery post
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    $http.defaults.transformRequest = [function(d) {
+        return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
+    }];
+    this.roles = systemUserModuleConfig.roles;
+    this.get = function(params) {
+        return $http.get(root + 'list', {
+            params: params
+        });
+    }
+
+}).controller('UserCtrl', function($scope, server) {
+    $scope.roles = server.roles;
+    $scope.filter = {};
+    var list = function() {
+        server.get($scope.filter).success(function(data) {
+            $scope.users = data.users;
+            $scope.paginator = data.paginator;
+        });
+    }
+    $scope.$watchCollection('filter', list);
+}).controller('formCtrl', function($scope, $location, server) {
+    if ($location.path() == '/new') {
+        $scope.title = systemUserModuleConfig.t.Add_USER;
+    } else {
+        $scope.title = systemUserModuleConfig.t.EDIT_USER;
+    }
+    $scope.frontRoles = [];
+    $scope.adminRoles = [];
+    angular.forEach(server.roles, function(item) {
+        if (item.type == 'front') {
+            $scope.frontRoles.push(item);
+        } else {
+            $scope.adminRoles.push(item);
+        }
+    });
+});
+</script>
