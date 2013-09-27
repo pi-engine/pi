@@ -11,6 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Zend\Db\Sql\Predicate;
 
 
 /**
@@ -20,6 +21,11 @@ use Pi\Mvc\Controller\ActionController;
  */
 class UserController extends ActionController
 {
+    /**
+     * Default action
+     *
+     * @return array|void
+     */
     public function indexAction() {
         $this->view()->setTemplate('user-index');
         $this->view()->assign(array(
@@ -27,6 +33,11 @@ class UserController extends ActionController
         ));
     }
 
+    /**
+     * User list
+     *
+     * @return array
+     */
     public function listAction()
     {
         $page   = (int) $this->params('p', 1);
@@ -82,6 +93,216 @@ class UserController extends ActionController
     }
 
     /**
+     * Add user
+     *
+     * @return array
+     */
+    public function addUserAction()
+    {
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
+
+        // Get data
+        $identity   = _post('identity');
+        $name       = _post('name');
+        $email      = _post('email');
+        $credential = _post('credential');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $role       = _post('role');
+
+        $role = array_unique(explode(',', $role));
+        // Check duplication
+        $where = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        $select = Pi::model('user_account')->select()->where(
+            $where,
+            Predicate\PredicateSet::OP_OR
+        );
+        $rowset = Pi::model('user_account')->selectWith($select)->toArray();
+        if (count($rowset) != 0 || empty($role)) {
+            $result['message'] = __('Add user failed');
+            return $result;
+        }
+
+        $data = array(
+            'identity'   => $identity,
+            'name'       => $name,
+            'email'      => $email,
+            'credential' => $cerdential,
+        );
+
+        // Add user
+        $uid = Pi::api('system', 'user')->addUser($data, false);
+        if (!$uid) {
+            $result['message'] = __('Add user failed');
+            return $result;
+        }
+
+        // Activate
+        if ($activated == 1) {
+            Pi::api('system', 'user')->activateUser($uid);
+        }
+
+        // Enable
+        if ($enable == 1) {
+            Pi::api('system', 'user')->enableUser($uid);
+        }
+
+        // Set role
+        Pi::api('system', 'user')->setRole($uid, $role);
+
+        $result['status']  = 1;
+        $result['message'] = __('Add user sucessfully');
+
+        return $result;
+
+    }
+
+    /**
+     * Get user
+     *
+     * @return array
+     */
+    public function getUserAction()
+    {
+        $result = array();
+
+        $uid = _get('uid');
+        if (!$uid) {
+            return $result;
+        }
+
+        $data = $this->getUser(array($uid));
+
+        return $data;
+
+    }
+
+    /**
+     * Update user
+     *
+     * @return array
+     */
+    public function updateUserAction()
+    {
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
+
+        // Get data
+        $uid        = _post('uid');
+        $identity   = _post('identity');
+        $name       = _post('name');
+        $email      = _post('email');
+        $credential = _post('credential');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $role       = _post('role');
+
+        if (!$uid) {
+            $result['message'] = __('Update user failed');
+            return $result;
+        }
+
+        // Check uid
+        $row = Pi::model('user_account')->find($uid, 'id');
+        if (!$row) {
+            $result['message'] = __('Update user failed');
+            return $result;
+        }
+
+        $role = array_unique(explode(',', $role));
+        $data = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        if ($credential) {
+            $data['credential'] = $credential;
+        }
+
+        // Updata account
+        Pi::api('system', 'user')->updateUser($uid, $data);
+        // Update role
+        Pi::api('system', 'user')->setRole($uid, $role);
+        // Activate
+        if ($activated == 1) {
+            Pi::api('system', 'user')->activateUser($uid);
+        }
+        // Enable or disable
+        if ($enable == 1) {
+            Pi::api('system', 'user')->enableUser($uid);
+        } else {
+            Pi::api('system', 'user')->disableUser($uid);
+        }
+
+        $result['status'] = 1;
+        $result['message'] = __('Update user successfully');
+
+        return $result;
+
+    }
+
+    /**
+     * Check username, email, display name duplication
+     *
+     * @return int
+     */
+    public function checkDuplicationAction()
+    {
+        $status = 0;
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+        $uid      = (int) _get('uid');
+
+        if (!$identity && !$email && !$name ) {
+            return $status;
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = ($row['id'] == $uid) ? 1 : 0;
+            }
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = ($row['id'] == $uid) ? 1 : 0;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 1;
+            } else {
+                $status = ($row['id'] == $uid) ? 1 : 0;
+            }
+        }
+
+        return array(
+            'status' => $status,
+        );
+
+    }
+
+    /**
      * Get user information for list
      *
      * @param int[] $uids
@@ -120,22 +341,13 @@ class UserController extends ActionController
         }
 
         foreach ($users as &$user) {
+            $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = (int) $user['time_disabled'];
+            $user['time_activated'] = (int) $user['time_activated'];
+            $user['time_created']   = (int) $user['time_created'];
             $user = array_merge($columns, $user);
-
-            /*
-            // Get role
-            $user['front_role'] = Pi::api('system', 'user')->getRole(
-                $user['id'],
-                'front'
-            );
-            $user['admin_role'] = Pi::api('system', 'user')->getRole(
-                $user['id'],
-                'admin'
-            );
-            */
         }
 
-        //var_dump($users);
         return $users;
 
     }
@@ -380,18 +592,8 @@ class UserController extends ActionController
                 'type'  => $role['section'],
             );
         }
-        /*
-        $model = Pi::model('role');
-        $rowset = $model->select(array());
-        foreach ($rowset as $row) {
-            $data[] = array(
-                'name' => $row['name'],
-                'title' => $row['title'],
-                'type' => $row['section']
-            );
-        }
-        */
 
         return $data;
+
     }
 }
