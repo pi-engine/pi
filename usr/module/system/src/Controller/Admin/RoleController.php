@@ -36,7 +36,7 @@ class RoleController extends ActionController
      * @var string[]
      */
     protected $roleColumns = array(
-        'id', 'section', 'custom', 'active', 'name', 'title', 'order'
+        'id', 'section', 'custom', 'active', 'name', 'title'
     );
 
     /**
@@ -61,7 +61,6 @@ class RoleController extends ActionController
      *    - active
      *    - custom
      *    - section
-     *    - order
      *
      * @param string $section
      * @return array
@@ -71,7 +70,7 @@ class RoleController extends ActionController
         $roles = array();
 
         $select = $this->model()->select();
-        $select->order('order ASC');
+        $select->order('title ASC');
         if ($section) {
             $select->where(array('section' => $section));
         }
