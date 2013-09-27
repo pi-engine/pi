@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -59,6 +58,7 @@ class RoleForm extends BaseForm
             ),
         ));
 
+        /*
         $this->add(array(
             'name'          => 'order',
             'options'       => array(
@@ -68,6 +68,7 @@ class RoleForm extends BaseForm
                 'type'  => 'text',
             ),
         ));
+        */
 
         $this->add(array(
             'name'  => 'id',
@@ -84,10 +85,12 @@ class RoleForm extends BaseForm
             ),
         ));
 
+        /*
         $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',
         ));
+        */
 
         $this->add(array(
             'name'          => 'submit',

@@ -48,6 +48,7 @@ class RoleFilter extends InputFilter
             ),
         ));
 
+        /*
         $this->add(array(
             'name'          => 'order',
             'required'      => false,
@@ -57,6 +58,7 @@ class RoleFilter extends InputFilter
                 ),
             ),
         ));
+        */
 
         $this->add(array(
             'name'          => 'id',
