@@ -83,6 +83,10 @@ class UserController extends ActionController
 
     /**
      * Get user information for list
+     *
+     * @param int[] $uids
+     *
+     * @return array
      */
     protected function getUser($uids)
     {
@@ -106,9 +110,19 @@ class UserController extends ActionController
             array_keys($columns)
         );
 
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_role';
+            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
+
         foreach ($users as &$user) {
             $user = array_merge($columns, $user);
 
+            /*
             // Get role
             $user['front_role'] = Pi::api('system', 'user')->getRole(
                 $user['id'],
@@ -118,8 +132,10 @@ class UserController extends ActionController
                 $user['id'],
                 'admin'
             );
+            */
         }
 
+        //var_dump($users);
         return $users;
 
     }
@@ -127,12 +143,11 @@ class UserController extends ActionController
     /**
      * Get user ids according to condition
      *
-     * @param $condition
-     * @param $type
+     * @param array   $condition
      * @param int $limit
      * @param int $offset
-     * @return array
      *
+     * @return array
      */
     protected function getUids($condition, $limit = 0, $offset = 0)
     {
@@ -240,7 +255,7 @@ class UserController extends ActionController
      * Get count according to condition
      *
      * @param $condition
-     * @param $type
+     *
      * @return int
      */
     protected function getCount($condition)
@@ -356,7 +371,16 @@ class UserController extends ActionController
      */
     protected function getRoles()
     {
-
+        $roles = Pi::registry('role')->read();
+        $data = array();
+        foreach ($roles as $name => $role) {
+            $data[] = array(
+                'name'  => $role['name'],
+                'title' => $role['title'],
+                'type'  => $role['section'],
+            );
+        }
+        /*
         $model = Pi::model('role');
         $rowset = $model->select(array());
         foreach ($rowset as $row) {
@@ -366,6 +390,7 @@ class UserController extends ActionController
                 'type' => $row['section']
             );
         }
+        */
 
         return $data;
     }
