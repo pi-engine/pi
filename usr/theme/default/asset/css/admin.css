@@ -244,3 +244,8 @@ body {
 .pi-footer a {
     margin-right: 20px;
 }
+
+/* boostrap custom */
+.table .text-center {
+    text-align: center;
+}
