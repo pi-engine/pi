@@ -1,9 +1,9 @@
 <?php
 // Load translation data
 $this->i18nTheme('main');
-
 // Load Bootstrap css by Twitter Team
 $this->bootstrap(array(
+    'css/bootstrap-responsive.min.css',
     'css/font-awesome.min.css',
     'css/font-awesome-ie7.min.css'  => array(
         'conditional'   => 'IE 7',
@@ -14,11 +14,6 @@ $this->css(array(
     $this->assetTheme('css/style.css'),
     $this->assetTheme('css/front.css'),
 ));
-// Mobile css
-$this->css(
-    $this->assetTheme('css/mobile.css'),
-    array('media' => "only screen and (max-width: 768px)")
-);
 // Print css
 $this->css(
     $this->assetTheme('css/print.css'),
@@ -61,6 +56,11 @@ $this->jQuery();
 // Load locale css/js, optional
 $this->css($this->assetLocale('rtl.css'));
 $this->js($this->assetLocale('rtl.js'));
+// Load custom mobile css
+$this->css(
+    $this->assetTheme('css/mobile.css'),
+    array('media' => "only screen and (max-width: 768px)")
+);
 */
 /**#@-*/
 

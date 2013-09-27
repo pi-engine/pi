@@ -67,10 +67,18 @@ class Bootstrap extends AssetCanonize
                     'css/bootstrap.min.css'             => $this->canonizeFile(
                         'css/bootstrap.min.css'
                     ),
+                ) + $files;
+            }
+            if (isset($files['css/bootstrap-responsive.min.css']) 
+                && $files['css/bootstrap-responsive.min.css']['media'] == 'screen') {
+                $files = array(
+                    'css/bootstrap.min.css'             => $this->canonizeFile(
+                        'css/bootstrap.min.css'
+                    ),
                     'css/bootstrap-responsive.min.css'  => $this->canonizeFile(
                         'css/bootstrap-responsive.min.css',
                         array(
-                            'media' => 'only screen and (max-device-width: 720px)'
+                            'media' => 'only screen and (max-width: 979px)'
                         )
                     )
                 ) + $files;
