@@ -20,7 +20,7 @@ return array(
         'users' => array(
             'label'         => _t('Users'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'users',
             ),
             'route'         => 'admin',
             'module'        => 'user',
@@ -31,7 +31,7 @@ return array(
         'profile' => array(
             'label'         => _t('Profile field'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'profile',
             ),
             'route'         => 'admin',
             'module'        => 'user',
@@ -42,7 +42,7 @@ return array(
         'avatar' => array(
             'label'         => _t('Avatar'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'avatar',
             ),
             'route'         => 'admin',
             'module'        => 'user',
@@ -53,7 +53,7 @@ return array(
         'form' => array(
             'label'         => _t('Form'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'form',
             ),
             'route'         => 'admin',
             'module'        => 'user',
@@ -64,7 +64,7 @@ return array(
         'plugin' => array(
             'label'         => _t('Plugin management'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'plugin',
             ),
             'route'         => 'admin',
             'module'        => 'user',
@@ -75,7 +75,7 @@ return array(
         'maintenance' => array(
             'label'         => _t('Maintenance'),
             'permission'    => array(
-                'resource'  => 'module',
+                'resource'  => 'maintenance',
             ),
             'route'         => 'admin',
             'module'        => 'user',
