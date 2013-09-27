@@ -257,7 +257,7 @@ class Module extends AbstractService
      */
     public function directory($module = null)
     {
-        $module = $module ?: $this->currentModule;
+        $module = $module ? strtolower($module) : $this->currentModule;
         if (isset($this->container['meta'][$module])) {
             $directory = $this->container['meta'][$module]['directory'];
         } else {

@@ -9,6 +9,7 @@
 
 namespace Pi\Application;
 
+use Pi;
 use Pi\Application\Persist;
 
 /**
@@ -20,11 +21,11 @@ use Pi\Application\Persist;
  *
  * 1. class map
  * 2. PSR standard
- *    1. module namespace
+ *    1. module namespace: `class_alias` is used for cloned module classes
  *    2. Pi and Zend namespace
  *    3. registered namespace
  *    4. vendor namespace
- * 3. fallbacks
+ * 3. fallback
  *    1. custom autoloader
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -260,8 +261,22 @@ class Autoloader
                 $class,
                 3
             );
+            $directory = Pi::service('module')->directory($module);
+            $directory = $directory ? ucfirst($directory) : $module;
+            // Use class_alias for cloned modules
+            // Skip current loading and switch to original class
+            if ($directory != $module) {
+                $originalClass = implode(
+                    static::NS_SEPARATOR,
+                    array($top, $directory, $trimmedClass)
+                );
+                class_alias($originalClass, $class);
+
+                return;
+            }
+
             $path = $this->modulePath . DIRECTORY_SEPARATOR
-                  . strtolower($module) . DIRECTORY_SEPARATOR
+                  . strtolower($directory) . DIRECTORY_SEPARATOR
                   . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
