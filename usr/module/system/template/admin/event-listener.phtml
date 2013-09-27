@@ -24,9 +24,9 @@
 <ul class="submenu1">
 <?php foreach ($modules as $module) { ?>
     <?php if ($name == $module->name) { ?>
-    <li class="active"><?php echo $this->escape($module->title); ?></li>
+    <li class="active"><?php echo _escape($module->title); ?></li>
     <?php } else { ?>
-    <li><a href="<?php echo $this->url('', array('action' => 'listener', 'name' => $module->name)); ?>" title="<?php echo $this->escape($module->title); ?>"><?php echo $this->escape($module->title); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'listener', 'name' => $module->name)); ?>" title="<?php echo _escape($module->title); ?>"><?php echo _escape($module->title); ?></a></li>
     <?php } ?>
 <?php } ?>
 </ul>

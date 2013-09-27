@@ -13,7 +13,7 @@
         <ul class="nav nav-list">
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
-                <a href="<?php echo $this->url('',array('controller' => 'perm', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
+                <a href="<?php echo $this->url('',array('controller' => 'perm', 'section' => $section, 'role' => $key)); ?>"><?php echo _escape($value); ?></a>
             </li>
             <?php } ?>
         </ul>

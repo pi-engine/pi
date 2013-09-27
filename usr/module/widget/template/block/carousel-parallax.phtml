@@ -27,10 +27,10 @@
 <div id="da-slider" class="da-slider">
 	<?php foreach ($block['items'] as $item) { ?>
 	<div class="da-slide">
-		<h2><?php echo $this->escape($item['caption']); ?></h2>
-		<p><?php echo $this->escape($item['desc']); ?></p>
-		<a title="<?php echo $this->escape($item['caption']); ?>" href="<?php echo $this->escape($item['link']); ?>" class="da-link"><?php _e('More'); ?></a>
-		<div class="da-img"><img src="<?php echo $this->escape($item['image']); ?>" alt="<?php echo $this->escape($item['caption']); ?>" /></div>
+		<h2><?php echo _escape($item['caption']); ?></h2>
+		<p><?php echo _escape($item['desc']); ?></p>
+		<a title="<?php echo _escape($item['caption']); ?>" href="<?php echo _escape($item['link']); ?>" class="da-link"><?php _e('More'); ?></a>
+		<div class="da-img"><img src="<?php echo _escape($item['image']); ?>" alt="<?php echo _escape($item['caption']); ?>" /></div>
 	</div>
 	<?php } ?>
 	<nav class="da-arrows">

@@ -10,12 +10,12 @@
 </div>
 
 <div class="span9">
-    <h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+    <h2 class="page-header"><?php echo _escape($title); ?></h2>
     <?php echo $avatar; ?>
     <dl class="dl-horizontal">
     <?php foreach ($user as $label => $value) { ?>
-        <dt><?php echo $this->escape($label); ?></dt>
-        <dd><?php echo $this->escape($value); ?></dd>
+        <dt><?php echo _escape($label); ?></dt>
+        <dd><?php echo _escape($value); ?></dd>
     <?php } ?>
     </dl>
 </div>

@@ -20,6 +20,9 @@ use Zend\View\Helper\Escaper;
  *
  * ```
  *  $this->escape($content);
+ *
+ *  // With syntactic sugar
+ *  _escape($content);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>

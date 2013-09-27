@@ -1,6 +1,6 @@
-<h4><?php echo $this->escape($block['caption']); ?></h4>
+<h4><?php echo _escape($block['caption']); ?></h4>
 <ol>
     <?php foreach ($block['items'] as $caption => $text) {?>
-        <li><strong><?php echo $this->escape($caption) . ': '; ?></strong><?php echo $text ?></li>
+        <li><strong><?php echo _escape($caption) . ': '; ?></strong><?php echo $text ?></li>
     <?php }?>
 </ol>

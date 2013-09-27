@@ -11,7 +11,7 @@
             $name = $block['name'] ?: $block['identity'];
     ?>
             <?php echo Pi::service('user')->avatar()->get($block['id'], 'mini'); ?>
-            <a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php echo $this->escape($name); ?></a>
+            <a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php echo _escape($name); ?></a>
             <span class="pi-divider">|</span>
             <a href="<?php echo Pi::service('user')->getUrl('logout'); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
     <?php

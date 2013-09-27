@@ -83,9 +83,9 @@ $this->js($this->assetLocale('rtl.js'));
     <div class="container pi-header">
         <div class="pi-logo">
             <h1>
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" class="pi-logo-headline"><?php echo $this->escape($sitename); ?></a>
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" class="pi-logo-headline"><?php echo _escape($sitename); ?></a>
             </h1>
-            <h2 class="pi-logo-tagline" title="<?php echo $this->escape($slogan); ?>"><?php echo $this->escape($slogan); ?></h2>
+            <h2 class="pi-logo-tagline" title="<?php echo _escape($slogan); ?>"><?php echo _escape($slogan); ?></h2>
         </div>
         <div class="pull-right pi-user-bar">
            <?php echo $this->widget('system-user-bar'); ?>
@@ -245,7 +245,7 @@ $this->js($this->assetLocale('rtl.js'));
                 <p>Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.</p>
             </div>
             <div class="span12 pi-footer-copyright">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy;<?php echo $this->escape($sitename); ?></a><span class="pi-divider">|</span>
+                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy;<?php echo _escape($sitename); ?></a><span class="pi-divider">|</span>
                 <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="pi-divider">|</span>
                 <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a><span class="pi-divider">|</span>
                 <span title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></span>

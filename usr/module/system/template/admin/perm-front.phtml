@@ -13,7 +13,7 @@
         <ul class="nav nav-list">
             <?php foreach ($roles as $key => $value) { ?>
             <li <?php if ($key == $role) { echo 'class="active"'; } ?>>
-                <a href="<?php echo $this->url('', array('controller' => 'perm', 'section' => $section, 'role' => $key)); ?>"><?php echo $this->escape($value); ?></a>
+                <a href="<?php echo $this->url('', array('controller' => 'perm', 'section' => $section, 'role' => $key)); ?>"><?php echo _escape($value); ?></a>
             </li>
             <?php } ?>
         </ul>
@@ -43,7 +43,7 @@
                    <td class="accordion-toggle perm-blocks js-blocks" colspan="3" title="<?php _e('Click to toggle blocks'); ?>" data-url="<?php echo $this->url('', array('controller' => 'perm', 'action' => 'blocks','role' => $role, 'name' => $item['name'])); ?>">
                        <i class="icon-plus"></i>
                        <i class="icon-minus"></i>
-                       <span style="margin-left: 10px;"><?php echo $this->escape($item['title']); ?></span>
+                       <span style="margin-left: 10px;"><?php echo _escape($item['title']); ?></span>
                    </td>    
                </tr>
                <?php } ?>

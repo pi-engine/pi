@@ -5,7 +5,7 @@
     $this->Backbone();
     $imageRoot = Pi::url('upload') . '/' . $module . '/';
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
     if (!empty($success)) {
         $message = $success;

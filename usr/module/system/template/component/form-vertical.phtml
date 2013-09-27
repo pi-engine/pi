@@ -92,7 +92,7 @@ if (!$groups) {
 } else {
     foreach ($groups as $group) {
     ?>
-        <div class="pi-legend"><?php echo $this->escape($group['label']); ?></div>
+        <div class="pi-legend"><?php echo _escape($group['label']); ?></div>
         <?php
         foreach ($group['elements'] as $name) {
             $element = $form->get($name);

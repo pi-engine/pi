@@ -8,7 +8,7 @@
     <li class="active"><a href="<?php echo $this->url('', array('controller' => 'asset', 'action' => 'index')); ?>" title="<?php _e('Asset publish'); ?>"><?php _e('Asset publish'); ?></a></li>
     <li><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a></li>
 </ul>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <div id="asset-list">
     <table class="table table-hover table-condensed">
         <thead>
@@ -30,7 +30,7 @@
             <?php foreach ($modules as $name => $label) { ?>
             <tr>
                 <td class="gutter-large">
-                    <span class="gutter-large"><?php echo $this->escape($label); ?></span>
+                    <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
                     <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>
@@ -43,7 +43,7 @@
             <?php foreach ($themes as $name => $label) { ?>
             <tr>
                 <td>
-                    <span class="gutter-large"><?php echo $this->escape($label); ?></span>
+                    <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
                     <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>

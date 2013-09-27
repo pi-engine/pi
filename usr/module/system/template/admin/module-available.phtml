@@ -28,19 +28,19 @@
                 data-clone="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
                 <td>
                     <div class="module-item-logo">
-                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
+                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo _escape($module['meta']['title']); ?>">
                     </div>
                 </td>
                 <td>
                     <div class="module-item-title">
-                        <strong><?php echo $this->escape($module['meta']['title']); ?></strong>
+                        <strong><?php echo _escape($module['meta']['title']); ?></strong>
                     </div>
                 </td>
                 <td>
                     <?php echo $module['meta']['version']; ?>
                 </td>
                 <td>
-                    <div class="module-p"><?php echo $this->escape($module['meta']['description']); ?></div>
+                    <div class="module-p"><?php echo _escape($module['meta']['description']); ?></div>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">

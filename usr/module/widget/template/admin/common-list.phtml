@@ -5,10 +5,10 @@
     <?php  foreach ($widgets as $id => $widget) {  ?>
     <li>
         <div class="widget-hd clearfix">
-            <strong title="<?php echo $this->escape($widget['block']['title']); ?>" class="ellipsis"><?php echo $this->escape($widget['block']['title']); ?></strong>
+            <strong title="<?php echo _escape($widget['block']['title']); ?>" class="ellipsis"><?php echo _escape($widget['block']['title']); ?></strong>
         </div>
         <div class="widget-description">
-           <?php echo $this->escape($widget['block']['description']); ?>
+           <?php echo _escape($widget['block']['description']); ?>
         </div>
         <div class="widget-action">
            <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $widget['id'])); ?>" class="btn btn-link"><?php _e('Edit'); ?></a>

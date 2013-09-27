@@ -12,7 +12,7 @@
 	    content:" (disabled)";
     }
 </style>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <div id="page-list" class="submain">
 <div class="pi-legend"><?php _e('Active pages'); ?></div>
 <ul class="active-pages">
@@ -24,12 +24,12 @@
            <span class="btn page-active"><?php _e('Deactivate'); ?></span>
            <span class="btn page-delete"><?php _e('Delete'); ?></span>
         </div>
-        <h4 class="box-title"><?php echo $this->escape($page['title']); ?></h4>
+        <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
             <dt><?php _e('name: '); ?></dt>
             <dd><?php echo $page['name'] ?: ''; ?></dd>
             <dt><?php _e('slug: '); ?></dt>
-            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
+            <dd><?php echo $page['slug'] ? _escape($page['slug']) : ''; ?></dd>
         </dl>
     </li>
     <?php } ?>
@@ -45,12 +45,12 @@
            <span class="btn page-active"><?php _e('Activate'); ?></span>
            <span class="btn page-delete"><?php _e('Delete'); ?></span>
         </div>
-        <h4 class="box-title"><?php echo $this->escape($page['title']); ?></h4>
+        <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
             <dt><?php _e('name: '); ?></dt>
             <dd><?php echo $page['name'] ?: ''; ?></dd>
             <dt><?php _e('slug: '); ?></dt>
-            <dd><?php echo $page['slug'] ? $this->escape($page['slug']) : ''; ?></dd>
+            <dd><?php echo $page['slug'] ? _escape($page['slug']) : ''; ?></dd>
         </dl>
     </li>
     <?php } ?>

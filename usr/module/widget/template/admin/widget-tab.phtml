@@ -3,7 +3,7 @@
     $this->jQuery('ui/jquery-ui.custom.min.js');
     $this->Backbone();
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
     if (!empty($success)) {
         $message = $success;

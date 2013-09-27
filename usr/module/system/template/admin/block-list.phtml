@@ -23,10 +23,10 @@
             <?php foreach ($blocks as $block) { ?>
             <tr data-id="<?php echo $block['id']; ?>">
                 <td>
-                    <span class="block-title"><?php echo $this->escape($block['title']); ?></span>
+                    <span class="block-title"><?php echo _escape($block['title']); ?></span>
                 </td>
                 <td>
-                    <?php echo $this->escape($block['description']); ?>
+                    <?php echo _escape($block['description']); ?>
                 </td>
                 <td>
                     <div class="btn-group">

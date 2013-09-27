@@ -1,7 +1,7 @@
 <div class="alert alert-error">
 
     <h2 class="page-header"><?php _e('An error occurred'); ?></h2>
-    <p><?php echo $this->escape($message ?: __('Please visit later.')); ?></p>
+    <p><?php echo _escape($message ?: __('Please visit later.')); ?></p>
     <p class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>
@@ -49,7 +49,7 @@
             </dd>
             <dt>Message:</dt>
             <dd>
-                <pre class="prettyprint linenums"><?php echo $this->escape($e->getMessage()); ?></pre>
+                <pre class="prettyprint linenums"><?php echo _escape($e->getMessage()); ?></pre>
             </dd>
             <dt>Stack trace:</dt>
             <dd>
