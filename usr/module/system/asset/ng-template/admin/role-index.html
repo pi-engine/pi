@@ -7,6 +7,11 @@
   margin-bottom: 0;
 }
 </style>
+<div class="alert" ng-if="alert" 
+     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
+    <button type="button" class="close" ng-click="clearAlert()">×</button>
+    {{alert.message}}
+</div>
 <legend>{{'FRONT_TITLE' | translate}}</legend>
 <button class="btn" ng-click="modal('front')">{{'FRONT_ADD' | translate}}</button>
 <table class="table table-striped system-table">
@@ -14,8 +19,8 @@
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th style="width: 10%;">{{'USER_COUNT' | translate}}
-        <th style="width: 15%;">{{'STATUS' | translate}}
+        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
+        <th style="width: 15%;" class="text-center">{{'STATUS' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
       <tr ng-repeat="role in frontRoles">
@@ -28,21 +33,18 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td>{{role.count}}
+        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <i class="icon-ok" ng-if="!role.custom" ng-class="{'text-success': role.active}"></i>
+          <button class="btn" ng-if="role.custom"
+                  ng-class="{'active': role.active}" ng-click="activeAction(role)">
+              <i class="icon-ok" ng-class="{'text-success': role.active, 'muted': !role.active}"></i>
+          </button>
         <td>
-          <div class="btn-group">
-            <button class="btn" ng-class="{'btn-danger active': !role.active}"
-                    ng-click="disableAction(role)">
-                {{'INACTIVE' | translate}}
-            </button>
-            <button class="btn" ng-class="{'btn-success active': role.active}"
-                    ng-click="activeAction(role)">
-                {{'ACTIVE' | translate}}
-            </button>
-          </div>
-        <td>
-          <button class="btn btn-link" ng-if="role.custom">{{'DELETE' | translate}}</button>
-          <button class="btn btn-link">{{'EDIT' | translate}}</button>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role, $index)">
+            {{'DELETE' | translate}}
+          </button>
 </table>
 <legend>{{'ADMIN_TITLE' | translate}}</legend>
 <button class="btn" ng-click="modal('admin')">{{'ADMIN_ADD' | translate}}</button>
@@ -51,8 +53,8 @@
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th style="width: 10%;">{{'USER_COUNT' | translate}}
-        <th style="width: 15%;">{{'STATUS' | translate}}
+        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
       <tr ng-repeat="role in adminRoles">
@@ -65,14 +67,18 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td>{{role.count}}
+        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <i class="icon-ok" ng-if="!role.custom" ng-class="{'text-success': role.active}"></i>
+          <button class="btn" ng-if="role.custom"
+                  ng-class="{'active': role.active}" ng-click="activeAction(role)">
+              <i class="icon-ok" ng-class="{'text-success': role.active, 'muted': !role.active}"></i>
+          </button>
         <td>
-          <i ng-if="!role.custom" 
-             ng-class="{'icon-ok text-success': role.active, 'icon-remove text-error': !role.active }">
-          </i>
-        <td>
-          <button class="btn btn-link" ng-if="role.custom">{{'DELETE' | translate}}</button>
-          <button class="btn btn-link">{{'EDIT' | translate}}</button>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role, $index)">
+            {{'DELETE' | translate}}
+          </button>
 </table>
 <div class="modal" ng-if="entity" style="width: 600px; margin-left: -300px;">
   <form class="form-horizontal" name="roleForm" ng-submit="addRoleAction()" 
