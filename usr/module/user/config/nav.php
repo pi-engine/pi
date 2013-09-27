@@ -72,7 +72,7 @@ return array(
             'action'        => 'index',
         ),
 
-        'notification' => array(
+        'maintenance' => array(
             'label'         => _t('Maintenance'),
             'permission'    => array(
                 'resource'  => 'module',

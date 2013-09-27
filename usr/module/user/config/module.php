@@ -37,8 +37,11 @@ return array(
             // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
         ),
+        // Permission specs
+        'permission'    => 'permission.php',
         'config'        => 'config.php',
         'user'          => 'user.php',
+        'page'          => 'page.php',
         'route'         => 'route.php',
         'navigation'    => 'nav.php',
     ),
