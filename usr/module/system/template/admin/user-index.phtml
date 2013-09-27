@@ -32,10 +32,11 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     $routeProvider.when('/new', {
         controller: 'formCtrl',
         templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
-    }).when('/edit', {
+    }).when('/edit/:id', {
         controller: 'formCtrl',
         templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
     }).otherwise({
+        redirectTo: '/index',
         templateUrl: systemUserModuleConfig.assetRoot + 'user-index.html',
         controller: 'UserCtrl'
     });
@@ -55,7 +56,13 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
             params: params
         });
     }
-
+    this.getUserById = function(id) {
+        return $http.get(root + 'get', {
+            params: {
+                id: id
+            }
+        })
+    }
 }).controller('UserCtrl', function($scope, server) {
     $scope.roles = server.roles;
     $scope.filter = {};
@@ -81,5 +88,8 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
             $scope.adminRoles.push(item);
         }
     });
+    $scope.submit = function() {
+
+    }
 });
 </script>

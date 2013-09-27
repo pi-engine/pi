@@ -1,21 +1,9 @@
-<style>
-.system-page-header {
-  padding: 10px 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-.system-page-header strong {
-  font-size: 24px;
-  margin-right: 20px;
-}
-</style>
-<div class="system-page-header">
-    <strong>{{'TITLE' | translate}}</strong>
+<legend>{{'TITLE' | translate}}</legend>
+<p style="margin-bottom: 20px;">
     <a class="btn btn-primary" href="#!new">
         <i class="icon-plus"></i>
         {{'Add_USER' | translate}}
     </a>
-</div>
 <form class="form-inline">
     <select ng-model="filter.active">
         <option value="">{{'ACTIVE_STATUS' | translate}}</option>
@@ -49,7 +37,7 @@
                 <input type="checkbox" ng-model="user.checked">
             <td>{{user.identity}}
                 <div class="row-actions">
-                    <a href="" class="">Edit</a>
+                    <a href="#!edit/{{user.id}}" class="">Edit</a>
                     <a href="" class="gutter" ng-click="deleteAction($index)">Delete</a>
                 </div>
             <td>{{user.name}}
