@@ -2,7 +2,7 @@
     $this->angular(array(
         'angular-route.js',
         'angular-translate.js',
-        'pi-pagination.js',
+        'ui-bootstrap-custom-tpls-0.6.0.js',
         'pi-form.js'
     ));
 ?>
@@ -10,7 +10,7 @@
 </div>
 <script>
 var systemUserModule = angular.module('systemUserModule', ['ngRoute', 'pascalprecht.translate', 
-    'pagination', 'piForm']);
+    'ui.bootstrap', 'piForm']);
 var systemUserModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'user')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
@@ -21,7 +21,11 @@ var systemUserModuleConfig = {
         EDIT_USER: '<?php _e('Edit user'); ?>',
         ACTIVE_STATUS: '<?php _e('Active State'); ?>',
         ENABLE_STATUS: '<?php _e('Enable State'); ?>',
-        SELECT_ROLES: '<?php _e('Select roles'); ?>'
+        SELECT_ROLES: '<?php _e('Select roles'); ?>',
+        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
+        USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
+        EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
+        DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
     }
 }
 </script>
@@ -51,6 +55,7 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
         return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
     }];
     this.roles = systemUserModuleConfig.roles;
+    this.uniqueUrl =  root + 'check';
     this.get = function(params) {
         return $http.get(root + 'list', {
             params: params
@@ -68,6 +73,14 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     $scope.filter = {};
     var list = function() {
         server.get($scope.filter).success(function(data) {
+            angular.forEach(data.users, function(item) {
+                if (item.front_role) {
+                    item.front_role = item.front_role.join(',');
+                }
+                if (item.admin_role) {
+                    item.admin_role = item.admin_role.join(',');
+                }
+            });
             $scope.users = data.users;
             $scope.paginator = data.paginator;
         });
@@ -79,17 +92,22 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     } else {
         $scope.title = systemUserModuleConfig.t.EDIT_USER;
     }
-    $scope.frontRoles = [];
-    $scope.adminRoles = [];
-    angular.forEach(server.roles, function(item) {
-        if (item.type == 'front') {
-            $scope.frontRoles.push(item);
-        } else {
-            $scope.adminRoles.push(item);
-        }
-    });
-    $scope.submit = function() {
-
+    $scope.entity = {};
+    $scope.roles = server.roles;
+    $scope.uniqueUrl = server.uniqueUrl;
+    var checkedRoles = function() {
+        var roles = [];
+        angular.forEach($scope.roles, function(item) {
+            if (item.checked) {
+                roles.push(item.name)
+            }
+        });
+        return roles;
     }
+
+    $scope.submit = function() {
+        $scope.entity.roles = checkedRoles();
+    }
+    
 });
 </script>

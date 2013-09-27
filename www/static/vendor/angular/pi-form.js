@@ -30,7 +30,7 @@
     }
   }).directive('piMatch', function() {
     var link = function(scope, element, attr, ctrl) {
-        var match = element.inheritedData('$formController')[attr.match];
+        var match = element.inheritedData('$formController')[attr.piMatch];
         ctrl.$parsers.push(function(value) {
           if (value) {
               ctrl.$setValidity("mismatch", value === match.$viewValue);

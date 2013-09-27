@@ -9,7 +9,8 @@
         ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
         <label class="control-label">{{'USER_NAME' | translate}}</label>
         <div class="controls">
-            <input type="text" ng-model="entity.identity" name="identity" required unique>
+            <input type="text" ng-model="entity.identity" name="identity" required 
+                   pi-unique="{{uniqueUrl}}">
             <span class="help-inline" 
                 ng-show="userForm.identity.$error.required">
                 {{'REQUIRED' | translate}}
@@ -24,7 +25,7 @@
         ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
         <label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
         <div class="controls">
-            <input type="text" ng-model="entity.name" name="name" required unique>
+            <input type="text" ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
             <span class="help-inline" 
                 ng-show="userForm.name.$error.required">
                 {{'REQUIRED' | translate}}
@@ -39,7 +40,7 @@
         ng-class="{'error': userForm.email.$dirty && userForm.email.$invalid}">
         <label class="control-label">{{'EMAIL' | translate}}</label>
         <div class="controls">
-            <input type="email" ng-model="entity.email" name="email" required unique>
+            <input type="email" ng-model="entity.email" name="email" required pi-unique="{{uniqueUrl}}">
             <span class="help-inline" 
                 ng-show="userForm.email.$error.required">
                 {{'REQUIRED' | translate}}
@@ -71,7 +72,7 @@
         <div class="controls">
             <input type="password" ng-model="entity.credential_confirm" 
                    name="credential_confirm" required
-                   match="credential">
+                   pi-match="credential">
             <span class="help-inline" 
                 ng-show="userForm.credential_confirm.$error.required">
                 {{'REQUIRED' | translate}}
@@ -116,9 +117,9 @@
         <label class="control-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
         <div class="controls">
             <ul class="inline">
-                <li ng-repeat="item in frontRoles">
+                <li ng-repeat="item in roles | filter: {type: 'front'}">
                     <label class="checkbox">
-                        <input type="checkbox" ng-model="entity.frontRole">{{item.title}}
+                        <input type="checkbox" ng-model="item.checked">{{item.title}}
                     </label>
                 </li>
             </ul>
@@ -128,9 +129,9 @@
         <label class="control-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
         <div class="controls">
             <ul class="inline">
-                <li ng-repeat="item in adminRoles">
+                <li ng-repeat="item in roles | filter: {type: 'admin'}">
                     <label class="checkbox">
-                        <input type="checkbox" ng-model="entity.adminRole">{{item.title}}
+                        <input type="checkbox" ng-model="item.checked">{{item.title}}
                     </label>
                 </li>
             </ul>
@@ -140,5 +141,4 @@
         <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary" 
             ng-disabled="userForm.$invalid">
     </div>
-    <pre>{{entity | json}}</pre>
 </form>
