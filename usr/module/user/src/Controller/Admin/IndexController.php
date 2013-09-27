@@ -64,7 +64,7 @@ class IndexController extends ActionController
         $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'all');
+        $users = $this->getUser($uids);
 
         // Set paginator
         $paginator = array(
@@ -108,7 +108,6 @@ class IndexController extends ActionController
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
 
-
         // Exchange search
         if ($condition['search']) {
             // Check email or username
@@ -126,7 +125,7 @@ class IndexController extends ActionController
         $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'all');
+        $users = $this->getUser($uids);
 
         // Set paginator
         $paginator = array(
@@ -148,6 +147,7 @@ class IndexController extends ActionController
         );
 
         return $data;
+
     }
 
     /**
@@ -184,7 +184,7 @@ class IndexController extends ActionController
         $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'all');
+        $users = $this->getUser($uids);
 
         // Set paginator
         $paginator = array(
@@ -355,7 +355,7 @@ class IndexController extends ActionController
         $count = $this->getCount($condition);
 
         // Get user information
-        $users = $this->getUser($uids, 'search');
+        $users = $this->getUser($uids);
 
         // Set paginator
         $paginator = array(
@@ -486,7 +486,7 @@ class IndexController extends ActionController
     /**
      * Check username, email, display name duplication
      *
-     * @return int
+     * @return array
      */
     public function checkDuplicationAction()
     {
@@ -495,9 +495,10 @@ class IndexController extends ActionController
         $identity = _get('identity');
         $email    = _get('email');
         $name     = _get('name');
+        $uid      = (int) _get('uid');
 
         if (!$identity && !$email && !$name ) {
-            return $status;
+            return array('status' => $status);
         }
 
         $model = Pi::model('user_account');
@@ -506,7 +507,7 @@ class IndexController extends ActionController
             if (!$row) {
                 $status = 1;
             } else {
-                $status = 0;
+                $status = ($row['id'] == $uid) ? 1 : 0;
             }
         }
 
@@ -515,7 +516,7 @@ class IndexController extends ActionController
             if (!$row) {
                 $status = 1;
             } else {
-                $status = 0;
+                $status = ($row['id'] == $uid) ? 1 : 0;
             }
         }
 
@@ -524,7 +525,7 @@ class IndexController extends ActionController
             if (!$row) {
                 $status = 1;
             } else {
-                $status = 0;
+                $status = ($row['id'] == $uid) ? 1 : 0;
             }
         }
 
@@ -668,105 +669,54 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get user information according to type
-     * Type: active, pending search
+     * Get user information
      *
-     * @param $ids
-     * @param $type
+     * @param int[] $ids
      * @return array
      */
-    protected function getUser($ids, $type)
+    protected function getUser($ids)
     {
         $users = array();
-        if (!$ids || !$type) {
+        if (!$ids) {
             return $users;
         }
 
-        $columns = array();
-        // For activated list
-        if ($type == 'all') {
-            $columns = array(
-                'identity'       => '',
-                'name'           => '',
-                'email'          => '',
-                'active'         => '',
-                'time_disabled'  => '',
-                'time_activated' => '',
-                'time_created'   => '',
-                'id'            => '',
-            );
-        }
-
-        // For pending list
-        if ($type == 'pending') {
-            $columns = array(
-                'identity'       => '',
-                'name'           => '',
-                'email'          => '',
-                'time_disabled'  => '',
-                'time_activated' => '',
-                'front_role'     => '',
-                'admin_role'     => '',
-                'time_created'   => '',
-                'id'             => '',
-            );
-
-        }
-
-        if ($type == 'search') {
-            $columns = array(
-                'identity'       => '',
-                'name'           => '',
-                'email'          => '',
-                'active'         => '',
-                'time_disabled'  => '',
-                'time_activated' => '',
-                'time_created'   => '',
-                'id'             => '',
-                'ip_register'    => '',
-            );
-        }
+        $columns = array(
+            'identity'       => '',
+            'name'           => '',
+            'email'          => '',
+            'active'         => '',
+            'time_disabled'  => '',
+            'time_activated' => '',
+            'time_created'   => '',
+            'ip_register'    => '',
+            'id'             => '',
+        );
 
         $users = Pi::api('user', 'user')->get(
             $ids,
             array_keys($columns)
         );
 
-        foreach ($users as &$user) {
-            $user = array_merge($columns, $user);
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_role';
+            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
 
-            // Get role
-            $user['front_role'] = Pi::api('user', 'user')->getRole(
-                $user['id'],
-                'front'
-            );
-            $user['admin_role'] = Pi::api('user', 'user')->getRole(
-                $user['id'],
-                'admin'
-            );
+        foreach ($users as &$user) {
+            $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = (int) $user['time_disabled'];
+            $user['time_activated'] = (int) $user['time_activated'];
+            $user['time_created']   = (int) $user['time_created'];
+            $user = array_merge($columns, $user);
         }
 
         return $users;
 
-    }
-
-    /**
-     * Set paginator
-     *
-     * @param $option
-     * @return \Pi\Paginator\Paginator
-     */
-    protected function setPaginator($option, $params)
-    {
-
-        $paginator = Paginator::factory(intval($option['count']), array(
-            'limit' => $option['limit'],
-            'page'  => $option['page'],
-            'url_options'   => array(
-                'params'    => $params
-            ),
-        ));
-        return $paginator;
     }
 
     /**
@@ -1021,83 +971,12 @@ class IndexController extends ActionController
         return array($frontRole, $adminRole);
     }
 
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
-        d(Pi::api('user', 'user')->getRole(7, 'admin'));
-        //d($this->getRoles());
-        //d(Pi::api('user', 'user')->setRole(7, 'guest'));
-
-//        vd(Pi::api('user', 'user')->get(7, 'role'));
-//        vd(Pi::api('user', 'user')->getUser(1000)->id);
-//        $modelAccount = Pi::model('user_account');
-//        $modelRole = Pi::model('user_role');
-//
-//
-//        $whereRoleAdmin = Pi::db()->where()->create(array(
-//            'admin.role'     => 'staff',
-//            'admin.section'  => 'admin',
-//        ));
-//
-//        $whereRoleFront = Pi::db()->where()->create(array(
-//            'front.role'     => 'member',
-//            'front.section'  => 'front',
-//        ));
-//
-//        $where = Pi::db()->where();
-//        $where->add(array('account.active' => 1))
-//            ->add($whereRoleAdmin)
-//            ->add($whereRoleFront);
-//
-//        $select = Pi::db()->select();
-//        $select->from(
-//            array('account' => $modelAccount->getTable()),
-//            array('id')
-//        );
-//        //$select->columns(array('id'));
-//        $select->join(
-//            array('front' => $modelRole->getTable()),
-//            'front.uid=account.id',
-//            array()
-//        );
-//        $select->join(
-//            array('admin' => $modelRole->getTable()),
-//            'admin.uid=account.id',
-//            array()
-//        );
-//        $select->where($where);
-//        $rowset = Pi::db()->query($select);
-
-        /*
-        $modelAccount = $this->getModel('account');
-        $select  = Pi::db()->select();
-        $select->from(array('account' => $modelAccount->getTable()));
-        $select->columns(array('account.id'));
-
-        $modelRole = Pi::model('user_role');
-        $select->join(
-            array('role1' => $modelRole->getTable()),
-            'role1.uid' . '=' . 'account.id'
-        );
-
-        $select->join(
-            array('role2' => $modelRole->getTable()),
-            'role2.uid' . '=' . 'account.id'
-        );
-
-        $where = array(
-            'account.active' => 1,
-            'role1.role'     => 'staff',
-            'role1.section'  => 'admin',
-            'role2.role'     => 'member',
-            'role2.section'  => 'front',
-        );
-
-        $select->where($where);
-        $rowset = Pi::db()->query($select);
-        */
-    }
-
+    /**
+     * Canonize register date
+     *
+     * @params $rengisterDate
+     * @return int
+     */
     protected function canonizeRegisterDate($registerDate)
     {
         $time = 0;
