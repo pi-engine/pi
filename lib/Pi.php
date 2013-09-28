@@ -14,13 +14,13 @@ use Pi\Application\Engine\AbstractEngine;
 use Pi\Application\Service;
 use Pi\Application\Service\AbstractService;
 use Pi\Application\Config;
-use Pi\Application\Db;
-use Pi\Debug\Debug;
-use Pi\Utility\Filter;
 use Pi\Application\Service\User;
 use Pi\Application\Model\Model;
 use Pi\Application\Registry\AbstractRegistry;
 use Pi\Application\AbstractApi;
+use Pi\Db\DbGateway;
+use Pi\Debug\Debug;
+use Pi\Utility\Filter;
 
 /**
  * Pi Engine
@@ -120,8 +120,8 @@ class Pi
     //protected static $config = null;
 
     /**
-     * Reference to Db handler
-     * @var Db
+     * Reference to Db instance and gateway
+     * @var DbGateway
      */
     protected static $db = null;
 
@@ -480,9 +480,9 @@ class Pi
     }
 
     /**
-     * Load database identifier
+     * Load database gateway
      *
-     * @return Db
+     * @return DbGateway
      * @api
      */
     public static function db()
