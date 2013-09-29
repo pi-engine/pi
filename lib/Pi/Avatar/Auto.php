@@ -98,11 +98,11 @@ class Auto extends AbstractAvatar
                 $list['gravatar'] = $data['avatar'];
             }
         } elseif (preg_match('/[a-z0-9\-]/i', $data['avatar'])) {
-            if (isset($list['select'])) {
-                $list['select'] = $data['avatar'];
+            if (isset($list['upload'])) {
+                $list['upload'] = $data['avatar'];
             }
-        } elseif (isset($list['upload'])) {
-            $list['upload'] = $data['avatar'];
+        } elseif (isset($list['select'])) {
+            $list['select'] = $data['avatar'];
         }
 
         foreach ($list as $adapter => $avatar) {
