@@ -12,7 +12,6 @@ namespace Module\User\Controller\Admin;
 use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\MemberForm;
 
 /**
 * User manage cases controller
@@ -29,8 +28,9 @@ class IndexController extends ActionController
     {
         $this->view()->setTemplate('index-index');
     }
+
     /**
-     * Activated user manage
+     * All user manage list
      *
      * @return array|void
      */
@@ -50,7 +50,7 @@ class IndexController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (!preg_match('/.+@.+/', $condition['search'])) {
+            if (false !== strpos($condition['search'], '@')) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -275,7 +275,7 @@ class IndexController extends ActionController
         $status = Pi::api('user', 'user')->addUser($data);
 
         if ($status) {
-            $result['status'] = 1;
+            $result['status']  = 1;
             $result['message'] = __('Add user successfully');
         }
 
@@ -380,7 +380,6 @@ class IndexController extends ActionController
 
         return $data;
 
-        $this->view()->setTemplate('index-search-list');
     }
 
     /**
@@ -484,13 +483,13 @@ class IndexController extends ActionController
     }
 
     /**
-     * Check username, email, display name duplication
+     * Check username, email, display name exist
      *
      * @return array
      */
-    public function checkDuplicationAction()
+    public function checkExistAction()
     {
-        $status = 0;
+        $status = 1;
 
         $identity = _get('identity');
         $email    = _get('email');
@@ -498,73 +497,42 @@ class IndexController extends ActionController
         $uid      = (int) _get('uid');
 
         if (!$identity && !$email && !$name ) {
-            return array('status' => $status);
+            return array(
+                'status' => $status,
+            );
         }
 
         $model = Pi::model('user_account');
         if ($identity) {
             $row = $model->find($identity, 'identity');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
         if ($email) {
             $row = $model->find($email, 'email');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
         if ($name) {
             $row = $model->find($name, 'name');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
         return array(
             'status' => $status,
         );
-
-    }
-
-    /**
-     * Set role
-     *
-     * @return array
-     */
-    public function setRoleAction()
-    {
-        $uid     = _post('uid');
-        $role    = _post('role');
-        $section = _post('section');
-
-        $result = array(
-            'status'  => 0,
-            'message' => ''
-        );
-
-        if (!$uid || !$role || !$section) {
-            return $result;
-        }
-
-        $status = Pi::api('user', 'user')->setRole($uid, $role, $section);
-        if ($status) {
-            $result['status'] = 1;
-            $result['message'] = __('Set role successfully');
-        } else {
-            $result['status'] = 0;
-            $result['message'] = __('Set role failed');
-        }
-
-        return $result;
 
     }
 
@@ -951,24 +919,18 @@ class IndexController extends ActionController
      */
     protected function getRoles()
     {
-
-        $model = Pi::model('role');
-        $rowset = $model->select(array());
-        foreach ($rowset as $row) {
-            if ($row['section'] == 'admin') {
-                $adminRole[] = array(
-                    'name' => $row['name'],
-                    'title' => $row['title'],
-                );
-            } else {
-                $frontRole[] = array(
-                    'name' => $row['name'],
-                    'title' => $row['title'],
-                );
-            }
+        $roles = Pi::registry('role')->read();
+        $data = array();
+        foreach ($roles as $name => $role) {
+            $data[] = array(
+                'name'  => $name,
+                'title' => $role['title'],
+                'type'  => $role['section'],
+            );
         }
 
-        return array($frontRole, $adminRole);
+        return $data;
+
     }
 
     /**
