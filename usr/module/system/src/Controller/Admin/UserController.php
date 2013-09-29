@@ -27,7 +27,7 @@ class UserController extends ActionController
      * @return array|void
      */
     public function indexAction() {
-        $this->view()->setTemplate('user-index');
+        $this->view()->setTemplate('user');
         $this->view()->assign(array(
             'roles'  => $this->getRoles(),
         ));

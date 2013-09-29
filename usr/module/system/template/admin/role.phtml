@@ -139,6 +139,7 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
         role.editTitle = 0;
     }
     $scope.activeAction = function(role) {
+        if (!role.custom) return;
         server.putActive(role).success(function(data) {
             $scope.alert = data;
             if (data.status) {
