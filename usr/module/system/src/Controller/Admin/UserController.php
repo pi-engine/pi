@@ -54,7 +54,7 @@ class UserController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (!preg_match('/.+@.+/', $condition['search'])) {
+            if (false !== strpos($condition['search'], '@')) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -251,13 +251,13 @@ class UserController extends ActionController
     }
 
     /**
-     * Check username, email, display name duplication
+     * Check username, email, display name exist
      *
      * @return int
      */
-    public function checkDuplicationAction()
+    public function checkExistAction()
     {
-        $status = 0;
+        $status = 1;
 
         $identity = _get('identity');
         $email    = _get('email');
@@ -265,34 +265,36 @@ class UserController extends ActionController
         $uid      = (int) _get('uid');
 
         if (!$identity && !$email && !$name ) {
-            return $status;
+            return array(
+                'status' => $status,
+            );
         }
 
         $model = Pi::model('user_account');
         if ($identity) {
             $row = $model->find($identity, 'identity');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
         if ($email) {
             $row = $model->find($email, 'email');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
         if ($name) {
             $row = $model->find($name, 'name');
             if (!$row) {
-                $status = 1;
+                $status = 0;
             } else {
-                $status = ($row['id'] == $uid) ? 1 : 0;
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
