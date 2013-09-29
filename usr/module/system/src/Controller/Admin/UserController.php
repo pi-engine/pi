@@ -204,7 +204,7 @@ class UserController extends ActionController
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $role       = _post('role');
+        $roles       = _post('roles');
 
         if (!$uid) {
             $result['message'] = __('Update user failed');
@@ -218,7 +218,6 @@ class UserController extends ActionController
             return $result;
         }
 
-        $role = array_unique(explode(',', $role));
         $data = array(
             'identity' => $identity,
             'name'     => $name,
@@ -231,7 +230,14 @@ class UserController extends ActionController
         // Update account
         Pi::api('system', 'user')->updateUser($uid, $data);
         // Update role
-        Pi::api('system', 'user')->setRole($uid, $role);
+        $roleExist = array();
+        $model = Pi::model('user_role');
+        $rowset = $model->select(array('uid' => $uid));
+        foreach ($rowset as $row) {
+            $roleExist[] = $row['role'];
+        }
+        Pi::api('system', 'user')->revokeRole($uid, $roleExist);
+        Pi::api('system', 'user')->setRole($uid, $roles);
         // Activate
         if ($activated == 1) {
             Pi::api('system', 'user')->activateUser($uid);
