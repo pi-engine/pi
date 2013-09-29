@@ -642,10 +642,10 @@ class IndexController extends ActionController
      * @param int[] $ids
      * @return array
      */
-    protected function getUser($ids)
+    protected function getUser($uids)
     {
         $users = array();
-        if (!$ids) {
+        if (!$uids) {
             return $users;
         }
 
@@ -662,7 +662,7 @@ class IndexController extends ActionController
         );
 
         $users = Pi::api('user', 'user')->get(
-            $ids,
+            $uids,
             array_keys($columns)
         );
 
@@ -672,7 +672,7 @@ class IndexController extends ActionController
             $uid = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_role';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+            $users[$uid][$roleKey][] = $row['role'];
         }
 
         foreach ($users as &$user) {
