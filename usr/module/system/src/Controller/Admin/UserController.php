@@ -134,7 +134,7 @@ class UserController extends ActionController
             'identity'   => $identity,
             'name'       => $name,
             'email'      => $email,
-            'credential' => $cerdential,
+            'credential' => $credential,
         );
 
         // Add user
@@ -228,7 +228,7 @@ class UserController extends ActionController
             $data['credential'] = $credential;
         }
 
-        // Updata account
+        // Update account
         Pi::api('system', 'user')->updateUser($uid, $data);
         // Update role
         Pi::api('system', 'user')->setRole($uid, $role);
@@ -253,7 +253,7 @@ class UserController extends ActionController
     /**
      * Check username, email, display name exist
      *
-     * @return int
+     * @return array
      */
     public function checkExistAction()
     {
@@ -587,7 +587,7 @@ class UserController extends ActionController
     {
         $roles = Pi::registry('role')->read();
         $data = array();
-        foreach ($roles as $name => $role) {
+        foreach ($roles as $role) {
             $data[] = array(
                 'name'  => $role['name'],
                 'title' => $role['title'],
