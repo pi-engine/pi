@@ -10,9 +10,8 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
-use Pi\Application\Db;
-use \PDO;
+use PDO;
+use Pi\Db\DbGateway;
 
 /**
  * Database handler service
@@ -25,25 +24,25 @@ class Database extends AbstractService
     protected $fileIdentifier = 'database';
 
     /**
-     * Database identifier
+     * Database instance and gateway
      *
-     * @var Db
+     * @var DbGateway
      */
     protected $db;
 
     /**
-     * Get Pi Db handler
+     * Get database gateway handler
      *
      * @param array $options
-     * @return Db
+     * @return DbGateway
      */
     public function db($options = array())
     {
-        // Specified Db
+        // Specified DbGateway
         if ($options) {
             $db = $this->loadDb($options);
             return $db;
-        // Default Db, equal to Pi::db()
+        // Default DbGateway, equal to Pi::db()
         } elseif (!$this->db) {
             $this->db = $this->loadDb();
         }
@@ -54,28 +53,31 @@ class Database extends AbstractService
     /**
      * Creates a database handler
      *
-     * @see Pi\Application\Db
      * @param array $options
-     * @return Db
+     *
+     * @return DbGateway
      */
-    public function loadDb($options = array())
+    public function loadDb(array $options = array())
     {
         // Use system default options if no custom options
         $options = $options ?: $this->options;
-        $db = new Db($options);
+        $db = new DbGateway($options);
 
         return $db;
     }
 
     /**
-     * Build database connection
+     * Build database connection of current DB instance
+     *
+     * @param DbGateway        $db
      *
      * @throws \Exception
      * @return PDO
      */
-    public function connect()
+    public function connect(DbGateway $db = null)
     {
-        $connection = $this->db()->getAdapter()->getDriver()->getConnection();
+        $db = $db ?: $this->db();
+        $connection = $db->getAdapter()->getDriver()->getConnection();
         if (!$connection->isConnected()) {
             try {
                 $connection->connect();

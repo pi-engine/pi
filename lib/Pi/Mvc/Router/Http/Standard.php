@@ -115,7 +115,7 @@ class Standard implements RouteInterface
      * @param array $options
      * @return $this
      */
-    public function setOptions($options = array())
+    public function setOptions(array $options = array())
     {
         $this->options = array_merge($this->options, $options);
 

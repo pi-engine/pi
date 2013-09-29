@@ -11,6 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Zend\Db\Sql\Predicate;
 
 
 /**
@@ -20,6 +21,11 @@ use Pi\Mvc\Controller\ActionController;
  */
 class UserController extends ActionController
 {
+    /**
+     * Default action
+     *
+     * @return array|void
+     */
     public function indexAction() {
         $this->view()->setTemplate('user-index');
         $this->view()->assign(array(
@@ -27,6 +33,11 @@ class UserController extends ActionController
         ));
     }
 
+    /**
+     * User list
+     *
+     * @return array
+     */
     public function listAction()
     {
         $page   = (int) $this->params('p', 1);
@@ -43,7 +54,7 @@ class UserController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (!preg_match('/.+@.+/', $condition['search'])) {
+            if (false !== strpos($condition['search'], '@')) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -82,7 +93,223 @@ class UserController extends ActionController
     }
 
     /**
+     * Add user
+     *
+     * @return array
+     */
+    public function addUserAction()
+    {
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
+
+        // Get data
+        $identity   = _post('identity');
+        $name       = _post('name');
+        $email      = _post('email');
+        $credential = _post('credential');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $role       = _post('role');
+
+        $role = array_unique(explode(',', $role));
+        // Check duplication
+        $where = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        $select = Pi::model('user_account')->select()->where(
+            $where,
+            Predicate\PredicateSet::OP_OR
+        );
+        $rowset = Pi::model('user_account')->selectWith($select)->toArray();
+        if (count($rowset) != 0 || empty($role)) {
+            $result['message'] = __('Add user failed');
+            return $result;
+        }
+
+        $data = array(
+            'identity'   => $identity,
+            'name'       => $name,
+            'email'      => $email,
+            'credential' => $credential,
+        );
+
+        // Add user
+        $uid = Pi::api('system', 'user')->addUser($data, false);
+        if (!$uid) {
+            $result['message'] = __('Add user failed');
+            return $result;
+        }
+
+        // Activate
+        if ($activated == 1) {
+            Pi::api('system', 'user')->activateUser($uid);
+        }
+
+        // Enable
+        if ($enable == 1) {
+            Pi::api('system', 'user')->enableUser($uid);
+        }
+
+        // Set role
+        Pi::api('system', 'user')->setRole($uid, $role);
+
+        $result['status']  = 1;
+        $result['message'] = __('Add user sucessfully');
+
+        return $result;
+
+    }
+
+    /**
+     * Get user
+     *
+     * @return array
+     */
+    public function getUserAction()
+    {
+        $result = array();
+
+        $uid = _get('uid');
+        if (!$uid) {
+            return $result;
+        }
+
+        $data = $this->getUser(array($uid));
+
+        return $data[$uid];
+
+    }
+
+    /**
+     * Update user
+     *
+     * @return array
+     */
+    public function updateUserAction()
+    {
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
+
+        // Get data
+        $uid        = _post('uid');
+        $identity   = _post('identity');
+        $name       = _post('name');
+        $email      = _post('email');
+        $credential = _post('credential');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $role       = _post('role');
+
+        if (!$uid) {
+            $result['message'] = __('Update user failed');
+            return $result;
+        }
+
+        // Check uid
+        $row = Pi::model('user_account')->find($uid, 'id');
+        if (!$row) {
+            $result['message'] = __('Update user failed');
+            return $result;
+        }
+
+        $role = array_unique(explode(',', $role));
+        $data = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        if ($credential) {
+            $data['credential'] = $credential;
+        }
+
+        // Update account
+        Pi::api('system', 'user')->updateUser($uid, $data);
+        // Update role
+        Pi::api('system', 'user')->setRole($uid, $role);
+        // Activate
+        if ($activated == 1) {
+            Pi::api('system', 'user')->activateUser($uid);
+        }
+        // Enable or disable
+        if ($enable == 1) {
+            Pi::api('system', 'user')->enableUser($uid);
+        } else {
+            Pi::api('system', 'user')->disableUser($uid);
+        }
+
+        $result['status'] = 1;
+        $result['message'] = __('Update user successfully');
+
+        return $result;
+
+    }
+
+    /**
+     * Check username, email, display name exist
+     *
+     * @return array
+     */
+    public function checkExistAction()
+    {
+        $status = 1;
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+        $uid      = (int) _get('uid');
+
+        if (!$identity && !$email && !$name ) {
+            return array(
+                'status' => $status,
+            );
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        return array(
+            'status' => $status,
+        );
+
+    }
+
+    /**
      * Get user information for list
+     *
+     * @param int[] $uids
+     *
+     * @return array
      */
     protected function getUser($uids)
     {
@@ -106,18 +333,21 @@ class UserController extends ActionController
             array_keys($columns)
         );
 
-        foreach ($users as &$user) {
-            $user = array_merge($columns, $user);
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_role';
+            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
 
-            // Get role
-            $user['front_role'] = Pi::api('system', 'user')->getRole(
-                $user['id'],
-                'front'
-            );
-            $user['admin_role'] = Pi::api('system', 'user')->getRole(
-                $user['id'],
-                'admin'
-            );
+        foreach ($users as &$user) {
+            $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = (int) $user['time_disabled'];
+            $user['time_activated'] = (int) $user['time_activated'];
+            $user['time_created']   = (int) $user['time_created'];
+            $user = array_merge($columns, $user);
         }
 
         return $users;
@@ -127,12 +357,11 @@ class UserController extends ActionController
     /**
      * Get user ids according to condition
      *
-     * @param $condition
-     * @param $type
+     * @param array   $condition
      * @param int $limit
      * @param int $offset
-     * @return array
      *
+     * @return array
      */
     protected function getUids($condition, $limit = 0, $offset = 0)
     {
@@ -240,7 +469,7 @@ class UserController extends ActionController
      * Get count according to condition
      *
      * @param $condition
-     * @param $type
+     *
      * @return int
      */
     protected function getCount($condition)
@@ -356,17 +585,17 @@ class UserController extends ActionController
      */
     protected function getRoles()
     {
-
-        $model = Pi::model('role');
-        $rowset = $model->select(array());
-        foreach ($rowset as $row) {
+        $roles = Pi::registry('role')->read();
+        $data = array();
+        foreach ($roles as $name => $role) {
             $data[] = array(
-                'name' => $row['name'],
-                'title' => $row['title'],
-                'type' => $row['section']
+                'name'  => $name,
+                'title' => $role['title'],
+                'type'  => $role['section'],
             );
         }
 
         return $data;
+
     }
 }

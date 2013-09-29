@@ -48,7 +48,6 @@ class MaintenanceController extends ActionController
     public function logAction()
     {
         $uid = _get('uid');
-        $uid = 4;
         if (!$uid) {
             return $this->jumpTo404('Invalid uid');
         }
@@ -76,8 +75,8 @@ class MaintenanceController extends ActionController
         );
         // Get user data
         $user['time_last_login'] = Pi::user()->data()->get($uid, 'time_last_login');
-        $user['ip_login']    = Pi::user()->data()->get($uid, 'ip_login');
-        $user['login_times'] = Pi::user()->data()->get($uid, 'login_times');
+        $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
+        $user['login_times']     = Pi::user()->data()->get($uid, 'login_times');
 
         $this->view()->assign(array(
             'user' => $user,
@@ -130,7 +129,7 @@ class MaintenanceController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $model = Pi::model('user_account');
+        $model  = Pi::model('user_account');
 
         // Get user
         $select = $model->select()->where(array('time_deleted > ?' => 0));
@@ -362,8 +361,6 @@ class MaintenanceController extends ActionController
         } else {
             return 0;
         }
-
-        return 0;
     }
 
     /**
@@ -422,10 +419,13 @@ class MaintenanceController extends ActionController
 
     }
 
+    /**
+     * Get statics data
+     *
+     * @return array
+     */
     protected function getStaticsData()
     {
-        $model = Pi::model('user_account');
-
         // Set time
         $today = mktime(
             0,0,0,

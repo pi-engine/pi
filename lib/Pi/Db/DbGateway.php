@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application;
+namespace Pi\Db;
 
 use PDO;
 use Pi;
@@ -25,7 +25,7 @@ use Zend\Db\Sql\Delete;
 use Zend\Db\Sql\Update;
 
 /**
- * Pi DB service gateway
+ * Pi DB connection instance and Database service gateway
  *
  * Note:
  * In installation sql scripts, quote all database names with `{` and `}`
@@ -33,7 +33,7 @@ use Zend\Db\Sql\Update;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Db
+class DbGateway
 {
     /**
      * Custom statement class for PDO
@@ -133,7 +133,7 @@ class Db
     }
 
     /**
-     * Loads adatpers
+     * Loads adapter
      *
      * @param array $options
      * @return self

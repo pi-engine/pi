@@ -35,7 +35,8 @@ var systemRoleModuleConfig = {
         TYPE: '<?php _e('Type'); ?>',
         FRONT: '<?php _e('Front'); ?>',
         ADMIN: '<?php _e('Admin'); ?>',
-        ROLE_NAME_TOKEN: '<?php _e('Role name is aleady token'); ?>'
+        ROLE_NAME_TOKEN: '<?php _e('Role name is aleady token'); ?>',
+        DELETE_CONFIRM: '<?php _e('Are you sure delete this role?'); ?>'
     }
 }
 </script>
@@ -80,6 +81,16 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
             title: role.title
         });
     };
+    this.putActive = function(role) {
+        return $http.post(root + 'activate', {
+            id: role.id
+        });
+    };
+    this.remove = function(role) {
+        return $http.post(root + 'delete', {
+            id: role.id
+        });
+    };
 }).controller('RoleCtrl', function($scope, server) {
     server.get().success(function(data) {
         var frontRoles = data.frontRoles;
@@ -105,13 +116,16 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
     }
     $scope.addRoleAction = function() {
         server.add($scope.entity).success(function(data) {
+            $scope.alert = data;
             if (data.status) {
                 var role = data.data;
-                if (role.section = 'front') {
+                role.count = role.count || 0;
+                if (role.section == 'front') {
                     $scope.frontRoles.push(role);
                 } else {
                     $scope.adminRoles.push(role);
                 }
+                $scope.entity = '';
             }
         });
     }
@@ -123,6 +137,30 @@ systemRoleModule.config(function($translateProvider, $routeProvider) {
             server.putTitle(role);
         }
         role.editTitle = 0;
+    }
+    $scope.activeAction = function(role) {
+        server.putActive(role).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                role.active = data.data;
+            }
+        });
+    }
+    $scope.deleteAction = function(role, index) {
+        if (!confirm(systemRoleModuleConfig.t.DELETE_CONFIRM)) return;
+        server.remove(role).success(function(data) {
+            $scope.alert = data;
+            if (data.status) {
+                if (role.section == 'front') {
+                    $scope.frontRoles.splice(index, 1);
+                } else {
+                    $scope.adminRoles.splice(index, 1);
+                }
+            }
+        });
+    }
+    $scope.clearAlert = function() {
+        $scope.alert = '';
     }
 });
 </script>
