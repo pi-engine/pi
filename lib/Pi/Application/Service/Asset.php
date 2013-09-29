@@ -283,12 +283,27 @@ class Asset extends AbstractService
     public function publishFile($sourceFile, $targetFile, $override = true)
     {
         try {
-            Pi::service('file')->symlink(
-                $sourceFile,
-                $targetFile,
-                true,
-                $override
-            );
+            // Make hard copy for development mode
+            if ('development' == Pi::environment()) {
+                Pi::service('file')->mirror(
+                    $sourceFile,
+                    $targetFile,
+                    null,
+                    array(
+                        'copy_on_windows'   => true,
+                        'override'          => $override,
+                    )
+                );
+            // Use symlink for performance consideration
+            } else {
+                Pi::service('file')->symlink(
+                    $sourceFile,
+                    $targetFile,
+                    true,
+                    $override
+                );
+            }
+
             $status = true;
         } catch (\Exception $e) {
             $status = false;
