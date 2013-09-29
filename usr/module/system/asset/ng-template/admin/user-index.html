@@ -4,20 +4,21 @@
     <i class="icon-plus"></i>
     {{'Add_USER' | translate}}
   </a>
-<form class="form-inline">
-    <select ng-model="filter.active">
-      <option value="">{{'ACTIVE_STATUS' | translate}}</option>
-      <option value="active">{{'ACTIVE' | translate}}</option>
-      <option value="inactive">{{'INACTIVE' | translate}}</option>
-    </select>
-    <select ng-model="filter.enable">
-      <option value="">{{'ENABLE_STATUS' | translate}}</option>
-      <option value="enable">{{'ENABLE' | translate}}</option>
-      <option value="disable">{{'DISABLE' | translate}}</option>
-    </select>
-    <select ng-options="r.title group by r.type for r in roles" ng-model="filter.role">
-      <option value="">{{'SELECT_ROLES' | translate}}</option>
-    </select>
+<form class="form-inline" ng-submit="filterAction()">
+  <select ng-model="filter.active">
+    <option value="">{{'ACTIVE_STATUS' | translate}}</option>
+    <option value="active">{{'ACTIVE' | translate}}</option>
+    <option value="inactive">{{'INACTIVE' | translate}}</option>
+  </select>
+  <select ng-model="filter.enable">
+    <option value="">{{'ENABLE_STATUS' | translate}}</option>
+    <option value="enable">{{'ENABLE' | translate}}</option>
+    <option value="disable">{{'DISABLE' | translate}}</option>
+  </select>
+  <select ng-options="r.title group by r.type for r in roles" ng-model="filter.role">
+    <option value="">{{'SELECT_ROLES' | translate}}</option>
+  </select>
+  <button class="btn">{{'APPLY' | translate}}</button>
 </form>
 <table class="table table-striped">
     <thead>

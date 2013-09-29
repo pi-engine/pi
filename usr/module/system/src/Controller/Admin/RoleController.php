@@ -92,7 +92,7 @@ class RoleController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('role-index');
+        $this->view()->setTemplate('role');
     }
 
     /**

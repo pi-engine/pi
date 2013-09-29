@@ -7,11 +7,6 @@
   margin-bottom: 0;
 }
 </style>
-<div class="alert" ng-if="alert" 
-     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
-    <button type="button" class="close" ng-click="clearAlert()">×</button>
-    {{alert.message}}
-</div>
 <legend>{{'FRONT_TITLE' | translate}}</legend>
 <button class="btn" ng-click="modal('front')">{{'FRONT_ADD' | translate}}</button>
 <table class="table table-striped system-table">
@@ -35,11 +30,10 @@
           </form>
         <td class="text-center">{{role.count}}
         <td class="text-center">
-          <i class="icon-ok" ng-if="!role.custom" ng-class="{'text-success': role.active}"></i>
-          <button class="btn" ng-if="role.custom"
-                  ng-class="{'active': role.active}" ng-click="activeAction(role)">
-              <i class="icon-ok" ng-class="{'text-success': role.active, 'muted': !role.active}"></i>
-          </button>
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
         <td>
           <button class="btn btn-link" ng-if="role.custom"
                   ng-click="deleteAction(role, $index)">
@@ -69,11 +63,10 @@
           </form>
         <td class="text-center">{{role.count}}
         <td class="text-center">
-          <i class="icon-ok" ng-if="!role.custom" ng-class="{'text-success': role.active}"></i>
-          <button class="btn" ng-if="role.custom"
-                  ng-class="{'active': role.active}" ng-click="activeAction(role)">
-              <i class="icon-ok" ng-class="{'text-success': role.active, 'muted': !role.active}"></i>
-          </button>
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
         <td>
           <button class="btn btn-link" ng-if="role.custom"
                   ng-click="deleteAction(role, $index)">
