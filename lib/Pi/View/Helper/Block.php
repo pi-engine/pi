@@ -173,10 +173,10 @@ class Block extends AbstractHelper
             $viewModel = new ViewModel;
             // Assemble template
             if (!$block['template']) {
-                $template = 'module/system:block/dummy';
+                $template = 'system:block/dummy';
             } else {
                 $template = sprintf(
-                    'module/%s:block/%s',
+                    '%s:block/%s',
                     $block['module'],
                     $block['template']
                 );
