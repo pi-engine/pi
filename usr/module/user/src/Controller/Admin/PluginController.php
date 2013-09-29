@@ -12,7 +12,6 @@ namespace Module\User\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Expression;
-use Pi\Paginator\Paginator;
 
 /**
  * Plugin manage cases controller
