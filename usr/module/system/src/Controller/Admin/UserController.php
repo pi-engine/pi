@@ -180,7 +180,7 @@ class UserController extends ActionController
 
         $data = $this->getUser(array($uid));
 
-        return $data;
+        return $data[$uid];
 
     }
 
@@ -587,9 +587,9 @@ class UserController extends ActionController
     {
         $roles = Pi::registry('role')->read();
         $data = array();
-        foreach ($roles as $role) {
+        foreach ($roles as $name => $role) {
             $data[] = array(
-                'name'  => $role['name'],
+                'name'  => $name,
                 'title' => $role['title'],
                 'type'  => $role['section'],
             );
