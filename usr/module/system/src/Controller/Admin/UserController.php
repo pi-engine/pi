@@ -111,7 +111,7 @@ class UserController extends ActionController
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $role       = _post('role');
+        $role       = _post('roles');
 
         $role = array_unique(explode(',', $role));
         // Check duplication
@@ -173,7 +173,7 @@ class UserController extends ActionController
     {
         $result = array();
 
-        $uid = _get('uid');
+        $uid = _get('id');
         if (!$uid) {
             return $result;
         }
@@ -197,7 +197,7 @@ class UserController extends ActionController
         );
 
         // Get data
-        $uid        = _post('uid');
+        $uid        = _post('id');
         $identity   = _post('identity');
         $name       = _post('name');
         $email      = _post('email');
@@ -262,7 +262,7 @@ class UserController extends ActionController
         $identity = _get('identity');
         $email    = _get('email');
         $name     = _get('name');
-        $uid      = (int) _get('uid');
+        $uid      = (int) _get('id');
 
         if (!$identity && !$email && !$name ) {
             return array(
@@ -337,9 +337,12 @@ class UserController extends ActionController
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
             $uid = $row['uid'];
+            $users[$uid]['roles'][] = $row['role'];
+            /*
             $section = $row['section'];
             $roleKey = $section . '_role';
             $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+            */
         }
 
         foreach ($users as &$user) {
