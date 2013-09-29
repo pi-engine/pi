@@ -343,12 +343,10 @@ class UserController extends ActionController
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
             $uid = $row['uid'];
-            $users[$uid]['roles'][] = $row['role'];
-            /*
             $section = $row['section'];
-            $roleKey = $section . '_role';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
-            */
+            $roleKey = $section . '_roles';
+            $users[$uid][$roleKey][] = $row['role'];
+
         }
 
         foreach ($users as &$user) {
