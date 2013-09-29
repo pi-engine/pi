@@ -6,7 +6,7 @@
 </div>
 <p>
   <a href="#!/index">
-    <i class="icon-long-arrow-left"></i>
+    <i class="icon-arrow-left"></i>
     {{'RETURN' | translate}}
   </a>
 <form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
@@ -124,7 +124,7 @@
       <ul class="inline">
         <li ng-repeat="item in roles | filter: {type: 'front'}">
           <label class="checkbox">
-            <input type="checkbox" ng-model="item.checked">{{item.title}}
+            <input type="checkbox" ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
           </label>
         </li>
       </ul>

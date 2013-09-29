@@ -111,9 +111,8 @@ class UserController extends ActionController
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $role       = _post('roles');
+        $roles       = _post('roles');
 
-        $role = array_unique(explode(',', $role));
         // Check duplication
         $where = array(
             'identity' => $identity,
@@ -125,7 +124,7 @@ class UserController extends ActionController
             Predicate\PredicateSet::OP_OR
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
-        if (count($rowset) != 0 || empty($role)) {
+        if (count($rowset) != 0 || empty($roles)) {
             $result['message'] = __('Add user failed');
             return $result;
         }
@@ -155,7 +154,7 @@ class UserController extends ActionController
         }
 
         // Set role
-        Pi::api('system', 'user')->setRole($uid, $role);
+        Pi::api('system', 'user')->setRole($uid, $roles);
 
         $result['status']  = 1;
         $result['message'] = __('Add user sucessfully');
@@ -348,7 +347,6 @@ class UserController extends ActionController
             $users[$uid][$roleKey][] = $row['role'];
 
         }
-
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
             $user['time_disabled']  = (int) $user['time_disabled'];

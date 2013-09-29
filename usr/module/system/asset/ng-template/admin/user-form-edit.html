@@ -115,7 +115,7 @@
       <ul class="inline">
         <li ng-repeat="item in roles | filter: {type: 'front'}">
           <label class="checkbox">
-              <input type="checkbox" ng-model="item.checked">{{item.title}}
+              <input type="checkbox" ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
           </label>
         </li>
       </ul>

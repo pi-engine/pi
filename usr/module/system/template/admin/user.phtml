@@ -25,7 +25,9 @@ var systemUserModuleConfig = {
         USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
         EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
         DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>',
-        RETURN: '<?php _e('Back to users'); ?>'
+        RETURN: '<?php _e('Back to users list'); ?>',
+        REQUIRED: '<?php _e('Required'); ?>',
+        USER_NAME: '<?php _e('Username'); ?>'
     }
 }
 </script>
@@ -74,10 +76,11 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     this.put = function(entity) {
         return $http.post(root + 'updateUser', entity);
     }
-}).controller('UserCtrl', function($scope, server) {
+}).controller('UserCtrl', function($scope, $filter, server) {
     $scope.roles = server.roles;
     $scope.filter = {};
     $scope.paginator = { page: 1 };
+
     var list = function(num) {
         var params = angular.copy($scope.filter);
         params.p = num || 1;
@@ -91,13 +94,15 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
         }
         server.get(params).success(function(data) {
             angular.forEach(data.users, function(item) {
-                if (item.front_role) {
-                    item.front_role = item.front_role.join(',');
+                item.time_created *= 1000;
+                if (item.front_roles) {
+                    item.front_roles = item.front_roles.join(',');
                 }
-                if (item.admin_role) {
-                    item.admin_role = item.admin_role.join(',');
+                if (item.admin_roles) {
+                    item.admin_roles = item.admin_roles.join(',');
                 }
             });
+
             $scope.users = data.users;
             $scope.paginator = data.paginator;
         });
@@ -105,10 +110,18 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     $scope.$watch('paginator.page', list);
     $scope.filterAction = list;
 }).controller('formCtrl', function($scope, server) {
-    $scope.entity = {};
+    $scope.entity = {
+        activated: 1,
+        enable: 1,
+        roles: ['member']
+    };
     $scope.roles = server.roles;
     $scope.uniqueUrl = server.uniqueUrl;
-
+    angular.forEach($scope.roles, function(item) {
+        if ($scope.entity.roles.indexOf(item.name) != -1) {
+            item.checked = true;
+        }
+    });
     $scope.submit = function() {
         server.post($scope.entity).success(function(data) {
             $scope.alert = data;
@@ -128,6 +141,7 @@ systemUserModule.config(function($translateProvider, $routeProvider, $locationPr
     }, true);
 }).controller('formEditCtrl', function($scope, $routeParams, server) {
     var id = $routeParams.id;
+    console.log($scope);
     $scope.entity = {};
     $scope.roles = server.roles;
     $scope.uniqueUrl = server.uniqueUrl + '?id=' + id;
