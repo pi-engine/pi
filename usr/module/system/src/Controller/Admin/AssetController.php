@@ -75,6 +75,7 @@ class AssetController extends ActionController
             Pi::service('asset')->removeCustom($name);
             Pi::service('asset')->publishCustom($name);
         }
+        clearstatcache();
         if (!$status) {
             $message = __('Asset files are not published correctly, please copy asset files manually.');
         } else {
@@ -145,6 +146,7 @@ class AssetController extends ActionController
             Pi::service('asset')->removeCustom($name);
             Pi::service('asset')->publishCustom($name);
         }
+        clearstatcache();
 
         if ($erroneous) {
             $status = 0;

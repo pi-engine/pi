@@ -80,11 +80,12 @@ class Asset extends AbstractService
      */
     public function __construct(array $options = array())
     {
-        parent::__construct($options);
-
+        /*
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $this->useSymlink = false;
+            $options['use_symlink'] = false;
         }
+        */
+        parent::__construct($options);
     }
 
     /**
@@ -138,7 +139,7 @@ class Asset extends AbstractService
      */
     public function versionStamp($path, $url)
     {
-        $version = Pi::config('asset_versioning') ? filemtime($path) : '';
+        $version = $this->getOption('append_version') ? filemtime($path) : '';
         if ($version) {
             $url .= '?' . $version;
         }
@@ -283,14 +284,15 @@ class Asset extends AbstractService
     public function publishFile($sourceFile, $targetFile, $override = true)
     {
         try {
-            // Make hard copy for development mode
-            if ('development' == Pi::environment()) {
+            $copyOnWindows = true;
+            // Make hard copy
+            if (false === $this->getOption('use_symlink')) {
                 Pi::service('file')->mirror(
                     $sourceFile,
                     $targetFile,
                     null,
                     array(
-                        'copy_on_windows'   => true,
+                        'copy_on_windows'   => $copyOnWindows,
                         'override'          => $override,
                     )
                 );
@@ -299,7 +301,7 @@ class Asset extends AbstractService
                 Pi::service('file')->symlink(
                     $sourceFile,
                     $targetFile,
-                    true,
+                    $copyOnWindows,
                     $override
                 );
             }
