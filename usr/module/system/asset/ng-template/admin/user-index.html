@@ -44,24 +44,24 @@
         <td>{{user.name}}
         <td class="text-center">
           <span ng-if="user.time_disabled">
-              {{'DISABLED' | translate}}
+            {{'DISABLED' | translate}}
           </span>
           <span ng-if="!user.time_disabled">
-              {{'ENABLED' | translate}}
+            {{'ENABLED' | translate}}
           </span>
         <td class="text-center">
           <span ng-if="user.time_activated">
-              {{'INACTIVATED' | translate}}
+            {{'ACTIVATED' | translate}}
           </span>
           <span ng-if="!user.time_activated">
-              {{'ACTIVATED' | translate}}
+            {{'INACTIVATED' | translate}}
           </span>
         <td>
-          <span ng-if="user.admin_role" tooltip="{{user.front_role}}" 
+          <span ng-if="user.front_roles" tooltip="{{user.front_roles}}" 
                 style="padding-right: 5px;">
             <i class="icon-user icon-large"></i>
           </span>
-          <span ng-if="user.admin_role" tooltip="{{user.admin_role}}"
+          <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
                 style="padding-left: 5px;">
             <i class="icon-laptop icon-large"></i>
           </span>
