@@ -22,7 +22,7 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *      // Full path
  *      $model->setTemplate('/full/path/to/template.html');
  *      // Relative path with specified module
- *      $model->setTemplate('module:path/to/template');
+ *      $model->setTemplate('<module>:<path/to/template>');
  *      // Relative path w/o specified module
  *      $model->setTemplate('path/to/template');
  *  ```
