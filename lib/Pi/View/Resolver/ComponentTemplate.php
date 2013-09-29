@@ -16,9 +16,9 @@ use Zend\View\Renderer\RendererInterface as Renderer;
 /**
  * Component template resolver
  *
- * Componenet template folders/files skeleton
+ * Component template folders/files skeleton
  *
- *  - Componet native templates
+ *  - Component native templates
  *    `lib/Pi/Captcha/Image/template/`
  *
  *  - Component custom templates
@@ -32,7 +32,7 @@ use Zend\View\Renderer\RendererInterface as Renderer;
 class ComponentTemplate implements ResolverInterface
 {
     /**
-     * Theme template diretory
+     * Theme template directory
      * @var string
      */
     protected $templateDirectory = 'template';

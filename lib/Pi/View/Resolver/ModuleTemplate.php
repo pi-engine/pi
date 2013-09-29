@@ -104,9 +104,14 @@ class ModuleTemplate implements ResolverInterface
             // Remove suffix
             $name = substr($name, 0, -6);
         }
-        $segs = explode(':', $name, 2);
-        if (isset($segs[1])) {
-            list($module, $template) = $segs;
+        $segments = explode(':', $name, 2);
+        if (isset($segments[1])) {
+            list($module, $template) = $segments;
+            /*
+            if ('module/' == substr($module, 0, 7)) {
+                $module = substr($module, 7);
+            }
+            */
         } else {
             $module = Pi::service('module')->current();
             $template = $name;
