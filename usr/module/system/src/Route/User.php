@@ -17,16 +17,25 @@ use Pi\Mvc\Router\Http\Standard;
  * Use cases:
  *
  * - Simplified URLs:
- *   - Own home: / => Home::Index
+ *
+ *   - Feed: / => Index::Index
+ *   - Feed with page: /page/$page => Index::Index
+ *
  *   - Own home: /home => Home::Index
- *   - User home via ID: /$uid => Home::View
- *   - User home via ID: /home/$uid => Home::View
+ *   - Own home with page: /home/page/$page => Home::Index
+ *
+ *   - User home via ID: /home/$uid => /home/$uid => Home::View
+ *   - User home via ID with page: /home/$uid/page/$page => Home::View
  *   - User home via identity: /home/identity/$user => Home::View
+ *   - User home via identity with page: /home/identity/$user/page/$page => Home::View
  *   - User home via name: /home/name/$user => Home::View
+ *   - User home via name with page: /home/name/$user/page/$page => Home::View
+ *
  *   - Own profile: /profile => Profile::Index
  *   - User profile via ID: /profile/$uid => Profile::View
  *   - User profile via identity: /profile/identity/$user => Profile::View
  *   - User profile via name: /profile/name/$user => Profile::View
+ *
  *   - Logout: /logout  => Login::logout
  *
  * - Standard URLs:
@@ -59,6 +68,37 @@ class User extends Standard
      */
     protected $structureDelimiter = '/';
 
+    protected $paramId = 'uid';
+    protected $paramIdentity = 'identity';
+    protected $paramName = 'name';
+    protected $paramPage = 'page';
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options = array())
+    {
+        if (isset($options['param_id'])) {
+            $this->paramId = $options['param_id'];
+            unset($options['param_id']);
+        }
+        if (isset($options['param_identity'])) {
+            $this->paramIdentity = $options['param_identity'];
+            unset($options['param_identity']);
+        }
+        if (isset($options['param_name'])) {
+            $this->paramName = $options['param_name'];
+            unset($options['param_name']);
+        }
+        if (isset($options['param_page'])) {
+            $this->paramPage = $options['param_page'];
+            unset($options['param_page']);
+        }
+        parent::setOptions($options);
+
+        return $this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -66,58 +106,66 @@ class User extends Standard
     {
         $matches = null;
 
-        $parts = array_filter(explode($this->structureDelimiter, $path));
-        $count = count($parts);
+        $count = 0;
+        if ($path) {
+            $parts = array_filter(explode($this->structureDelimiter, $path));
+            $count = count($parts);
+        }
         if ($count) {
+            $matches = array();
             $term = array_shift($parts);
+
             // /logout
             if ('logout' == $term) {
-                $matches['controller'] = 'login';
-                $matches['action'] = 'logout';
-
-            // /<id>
-            } elseif (is_numeric($term)) {
-                $matches['controller'] = 'home';
-                $matches['action'] = 'view';
-                $matches['id'] = (int) $term;
+                $matches['controller']  = 'login';
+                $matches['action']      = 'logout';
 
             // /home/<...>
             } elseif ('home' == $term) {
-                $matches['controller'] = 'home';
-                // /home
-                if (!$parts) {
-                    $matches['action'] = 'index';
-                } else {
-                    $matches['action'] = 'view';
-                    // /home/<id>
+                $matches['controller']  = 'home';
+                $matches['action']      = 'index';
+                if ($parts) {
+                    // /home/<uid>
                     if (is_numeric($parts[0])) {
-                        $matches['id'] = (int) array_shift($parts);
+                        $matches['action'] = 'view';
+                        $matches[$this->paramId] = (int) array_shift($parts);
+                    // /home/identity/<...>
+                    } elseif ($this->paramIdentity == $parts[0]
+                    // /home/name/<...>
+                        || $this->paramName == $parts[0]
+                    ) {
+                        $matches['action'] = 'view';
+                    } else {
+                        // Do nothing but leave to user own page
                     }
                 }
 
             // /profile/<...>
             } elseif ('profile' == $term) {
-                $matches['controller'] = 'profile';
-                // /profile
-                if (!$parts) {
-                    $matches['action'] = 'index';
-                } else {
+                $matches['controller']  = 'profile';
+                $matches['action']      = 'index';
+                if ($parts) {
                     // /profile/<id>
                     if (is_numeric($parts[0])) {
                         $matches['action'] = 'view';
-                        $matches['id'] = (int) array_shift($parts);
-                    // /profile/name/<name>
-                    // /profile/identity/<identity>
-                    } elseif ('name' == $parts[0] || 'identity' == $parts[0]) {
+                        $matches[$this->paramId] = (int) array_shift($parts);
+                    // /profile/identity/<...>
+                    } elseif ($this->paramIdentity == $parts[0]
+                    // /profile/name/<...>
+                        || $this->paramName == $parts[0]
+                    ) {
                         $matches['action'] = 'view';
                     // /profile/<action>/<...>
                     } else {
                         $matches['action'] = array_shift($parts);
                     }
                 }
+            } else {
+                $matches = null;
             }
-            if ($matches && $parts) {
-                $matches = array_merge($matches, $this->parseParams($parts));
+
+            if (null !== $matches && $parts) {
+                $matches = array_merge((array) $matches, $this->parseParams($parts));
             }
         }
 
@@ -128,8 +176,8 @@ class User extends Standard
             $matches = parent::parse($path);
         }
         // Transform id to uid
-        if (isset($matches['id'])) {
-            $matches['uid'] = $matches['id'];
+        if (isset($matches['id']) && 'id' != $this->paramId) {
+            $matches[$this->paramId] = $matches['id'];
             unset($matches['id']);
         }
 
@@ -155,9 +203,9 @@ class User extends Standard
         $url = null;
 
         // Transform uid to id
-        if (isset($params['uid'])) {
-            $params['id'] = $params['uid'];
-            unset($params['uid']);
+        if (isset($params[$this->paramId]) && 'id' != $this->paramId) {
+            $params['id'] = $params[$this->paramId];
+            unset($params[$this->paramId]);
         }
         $controller = isset($params['controller']) ? $params['controller'] : '';
         $action = isset($params['action']) ? $params['action'] : '';
@@ -166,22 +214,22 @@ class User extends Standard
         if ('logout' == $action) {
             $url = 'logout';
 
+        // /<...>
+        } elseif ('' == $controller || 'index' == $controller) {
+            $url = '';
+
         // /home/<...>
-        } elseif ('' == $controller || 'home' == $controller) {
+        } elseif ('home' == $controller) {
             if ('' == $action || 'index' == $action || 'view' == $action) {
                 // /home
                 $url = 'home';
+                // /home/<id>
                 if (!empty($params['id'])) {
-                    // /home/<id>
-                    if (count($params) > 1) {
-                        $url .= $this->paramDelimiter . $params['id'];
-                    // /<id>
-                    } else {
-                        $url = $params['id'];
-                    }
+                    $url .= $this->paramDelimiter . $params['id'];
                     unset($params['id']);
                 }
             }
+
         // /profile/<...>
         } elseif ('profile' == $controller) {
             if ('' == $action || 'index' == $action || 'view' == $action) {
@@ -195,10 +243,12 @@ class User extends Standard
             }
         }
 
-        if ($url) {
+        if (null !== $url) {
             $part = $this->assembleParams($params);
             $url .= $part ? $this->paramDelimiter . $part : '';
-            $url = $this->prefix . $this->paramDelimiter . $url;
+            $url = $url
+                ? $this->prefix . $this->paramDelimiter . $url
+                : $this->prefix;
         } else {
             $params['module'] = $this->defaults['module'];
             $url = parent::assemble($params, $options);

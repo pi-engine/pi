@@ -150,7 +150,9 @@ class HomeController extends ActionController
      * Set nav form home page profile and activity
      *
      *
-     * @param $uid
+     * @param string $cur
+     * @param string $uid
+     *
      * @return array
      */
     protected function getNav($cur, $uid = '')
