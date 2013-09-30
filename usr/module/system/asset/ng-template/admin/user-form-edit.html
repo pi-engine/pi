@@ -83,14 +83,14 @@
     <label class="control-label">{{'ACTIVATE' | translate}}</label>
     <div class="controls">
       <div class="btn-group">
-        <span class="btn" ng-click="entity.activated = 0" 
-                ng-class="{'active': !entity.activated}">
-          {{'NO' | translate}}
-        </span>
-        <span class="btn" ng-click="entity.activated = 1" 
-                ng-class="{'btn-success active': entity.activated}">
-          {{'YES' | translate}}
-        </span>
+        <input type="button" class="btn" value="{{'NO' | translate}}"
+               ng-click="entity.activated = 0" 
+               ng-class="{'active': !entity.activated}"
+               ng-disabled="entity.time_activated">
+        <input type="button" class="btn" value="{{'YES' | translate}}"
+               ng-click="entity.activated = 1" 
+               ng-class="{'btn-success active': entity.activated"
+               ng-disabled="entity.time_activated">
       </div>
     </div>
   </div>
@@ -98,13 +98,12 @@
     <label class="control-label">{{'ENABLE' | translate}}</label>
     <div class="controls">
       <div class="btn-group">
-        <span class="btn" ng-click="entity.enable = 0" 
-                ng-class="{'active': !entity.enable}">
-          {{'NO' | translate}}
-        </span>
-        <span class="btn" ng-click="entity.enable = 1" 
-                ng-class="{'btn-success active': entity.enable}">
-          {{'YES' | translate}}
+        <input type="button" class="btn" value="{{'NO' | translate}}"
+               ng-click="entity.enable = 0" 
+               ng-class="{'active': !entity.enable}">
+        <input type="button" class="btn" value="{{'YES' | translate}}"
+               ng-click="entity.enable = 1" 
+              ng-class="{'btn-success active': entity.enable}">
         </span>
       </div>
     </div>
