@@ -27,157 +27,16 @@ var systemUserModuleConfig = {
         DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>',
         RETURN: '<?php _e('Back to users list'); ?>',
         REQUIRED: '<?php _e('Required'); ?>',
-        USER_NAME: '<?php _e('Username'); ?>'
+        USER_NAME: '<?php _e('Username'); ?>',
+        DISPLAY_NAME: '<?php _e('Dispaly name'); ?>',
+        EMAIL: '<?php _e('Email'); ?>',
+        PASSWORD: '<?php _e('Password'); ?>',
+        CONFIRM_PASSWORD: '<?php _e('Password confirm'); ?>',
+        ACTIVATE: '<?php _e('Active'); ?>',
+        ENABLE: '<?php _e('Enable'); ?>',
+        ASSIGN_FRONT_ROLE: '<?php _e('Front role'); ?>',
+        ASSIGN_ADMIN_ROLE: '<?php _e('Admin role'); ?>'
     }
 }
 </script>
-<script>
-systemUserModule.config(function($translateProvider, $routeProvider, $locationProvider) {
-    $translateProvider.translations(systemUserModuleConfig.t);
-    $locationProvider.hashPrefix('!');
-    $routeProvider.when('/new', {
-        controller: 'formCtrl',
-        templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
-    }).when('/edit/:id', {
-        controller: 'formEditCtrl',
-        templateUrl: systemUserModuleConfig.assetRoot + 'user-form-edit.html',
-    }).otherwise({
-        redirectTo: '/index',
-        templateUrl: systemUserModuleConfig.assetRoot + 'user-index.html',
-        controller: 'UserCtrl'
-    });
-}).service('server', function($http) {
-    var root = systemUserModuleConfig.urlRoot;
-    var isFile = function(obj) {
-        return Object.prototype.toString.apply(obj) === '[object File]';
-    };
-    //emulate jQuery post
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    $http.defaults.transformRequest = [function(d) {
-        return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
-    }];
-    this.roles = systemUserModuleConfig.roles;
-    this.uniqueUrl =  root + 'checkExist';
-    this.get = function(params) {
-        return $http.get(root + 'list', {
-            params: params
-        });
-    }
-    this.getUserById = function(id) {
-        return $http.get(root + 'getUser', {
-            params: {
-                id: id
-            }
-        })
-    }
-    this.post = function(entity) {
-        return $http.post(root + 'addUser', entity);
-    }
-    this.put = function(entity) {
-        return $http.post(root + 'updateUser', entity);
-    }
-}).controller('UserCtrl', function($scope, $filter, server) {
-    $scope.roles = server.roles;
-    $scope.filter = {};
-    $scope.paginator = { page: 1 };
-
-    var list = function(num) {
-        var params = angular.copy($scope.filter);
-        params.p = num || 1;
-        if (params.role) {
-            if (params.role.type == 'front') {
-                params.front_role = params.role.name;
-            } else {
-                params.admin_role = params.role.name;
-            }
-            delete params.role;
-        }
-        server.get(params).success(function(data) {
-            angular.forEach(data.users, function(item) {
-                item.time_created *= 1000;
-                if (item.front_roles) {
-                    item.front_roles = item.front_roles.join(',');
-                }
-                if (item.admin_roles) {
-                    item.admin_roles = item.admin_roles.join(',');
-                }
-            });
-
-            $scope.users = data.users;
-            $scope.paginator = data.paginator;
-        });
-    }
-    $scope.$watch('paginator.page', list);
-    $scope.filterAction = list;
-}).controller('formCtrl', function($scope, server) {
-    $scope.entity = {
-        activated: 1,
-        enable: 1,
-        roles: ['member']
-    };
-    $scope.roles = server.roles;
-    $scope.uniqueUrl = server.uniqueUrl;
-    angular.forEach($scope.roles, function(item) {
-        if ($scope.entity.roles.indexOf(item.name) != -1) {
-            item.checked = true;
-        }
-    });
-    $scope.submit = function() {
-        server.post($scope.entity).success(function(data) {
-            $scope.alert = data;
-        });
-    }
-    $scope.clearAlert = function() {
-        $scope.alert = '';
-    }
-    $scope.$watch('roles', function() {
-        var roles = [];
-        angular.forEach($scope.roles, function(item) {
-            if (item.checked) {
-                roles.push(item.name)
-            }
-        });
-        $scope.entity.roles = roles;
-    }, true);
-}).controller('formEditCtrl', function($scope, $routeParams, server) {
-    var id = $routeParams.id;
-    console.log($scope);
-    $scope.entity = {};
-    $scope.roles = server.roles;
-    $scope.uniqueUrl = server.uniqueUrl + '?id=' + id;
-
-    server.getUserById(id).success(function(data) {
-        var entity = $scope.entity;
-        entity.id = data.id;
-        entity.identity = data.identity;
-        entity.name = data.name;
-        entity.email = data.email;
-        entity.roles = data.roles;
-        entity.activated = data.time_activated ? 1 : 0;
-        entity.enable = data.time_disabled ? 0 : 1;
-        angular.forEach($scope.roles, function(item) {
-            if (data.roles.indexOf(item.name) != -1) {
-                item.checked = true;
-            }
-        });
-    });
-
-    $scope.submit = function() {
-        server.put($scope.entity).success(function(data) {
-            $scope.alert = data;
-        });
-    }
-    $scope.clearAlert = function() {
-        $scope.alert = '';
-    }
-    $scope.$watch('roles', function() {
-        var roles = [];
-        angular.forEach($scope.roles, function(item) {
-            if (item.checked) {
-                roles.push(item.name)
-            }
-        });
-        $scope.entity.roles = roles;
-    }, true);
-});
-</script>
+<script src="<?php echo $this->assetModule('angular/user.js'); ?>"></script>
