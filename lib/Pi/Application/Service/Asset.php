@@ -296,6 +296,7 @@ class Asset extends AbstractService
                         'override'          => $override,
                     )
                 );
+
             // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
