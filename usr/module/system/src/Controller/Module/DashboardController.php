@@ -245,8 +245,7 @@ class DashboardController extends ActionController
         } else {
             $data['logo'] = Pi::service('asset')->getModuleAsset(
                 $meta['logo'],
-                $module,
-                false
+                $module
             );
         }
         if (empty($data['update'])) {

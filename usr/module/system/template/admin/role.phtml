@@ -11,7 +11,7 @@ $this->angular(array(
 var systemRoleModule = angular.module('systemRoleModule', ['ngRoute', 'pascalprecht.translate', 'piForm']);
 var systemRoleModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     t: {
         ADMIN_TITLE: '<?php _e('Admin roles'); ?>',
         ADMIN_ADD: '<?php _e('Add admin role'); ?>',

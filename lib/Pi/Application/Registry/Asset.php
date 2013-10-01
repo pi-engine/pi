@@ -15,7 +15,7 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
 /**
- * Asset list
+ * Custom asset/resource list
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -27,8 +27,10 @@ class Asset extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $files = array();
+        $appendVersion = isset($options['v']) ? $options['v'] : null;
         $theme = $options['theme'];
-        $path = Pi::service('asset')->getPath('custom/' . $theme);
+        $type = $options['type'];
+        $path = Pi::service('asset')->getPath('custom/' . $theme, $type);
         if (is_dir($path)) {
             $iterator = new \DirectoryIterator($path);
             foreach ($iterator as $fileinfo) {
@@ -66,7 +68,8 @@ class Asset extends AbstractRegistry
                         }
                         $fileUrl = Pi::service('asset')->getCustomAsset(
                             $filePath,
-                            $module
+                            $module,
+                            $appendVersion
                         );
                         $files[$module][$filePath] = $fileUrl;
                     }
@@ -95,13 +98,25 @@ class Asset extends AbstractRegistry
      * {@inheritDoc}
      * @param string    $module
      * @param string    $theme
+     * @param string    $type   `asset` or `public`
+     * @param bool|null $appendVersion
      */
-    public function read($module = '', $theme = '')
-    {
+    public function read(
+        $module = '',
+        $theme = '',
+        $type = 'asset',
+        $appendVersion = null
+    ) {
         //$this->cache = false;
         $module = $module ?: Pi::service('module')->current();
         $theme  = $theme ?: Pi::service('theme')->current();
-        $options = compact('theme');
+        if ('public' != $type) {
+            $type = 'asset';
+        }
+        $options = compact('theme', 'type');
+        if (null !== $appendVersion) {
+            $options['v'] = (bool) $appendVersion;
+        }
         $data = $this->loadData($options);
 
         return isset($data[$module]) ? $data[$module] : array();
@@ -117,7 +132,8 @@ class Asset extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $theme  = $theme ?: Pi::service('theme')->current();
         $this->clear($theme);
-        $this->read($module, $theme);
+        $this->read($module, $theme, 'asset');
+        $this->read($module, $theme, 'public');
 
         return true;
     }

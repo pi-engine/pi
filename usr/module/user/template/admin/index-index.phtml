@@ -1,5 +1,10 @@
 <?php
-    $this->css($this->assetModule('script/admin.css')); 
+$this->css($this->assetModule('script/admin.css'));
+$this->angular(array(
+    'angular-route.js',
+    'angular-translate.js',
+    'pi-pagination.js'
+));
 ?>
 <div ng-controller="MainCtrl" ng-app="userListModule">
     <ul class="nav nav-tabs">
@@ -31,16 +36,12 @@
     </ul>
     <div ng-view></div>
 </div>
-<?php $assetMin = Pi::environment() == 'production' ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('angular/angular'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/angular-route'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/pagination'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/angular-translate'. $assetMin .'.js'); ?>"></script>
+
 <script>
 var userListModule = angular.module('userListModule', ['ngRoute', 'pagination', 'pascalprecht.translate']);
 var userListModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     t: {
         confirm: '<?php _e('Are you sure delete this user'); ?>',
         confirms: '<?php _e('Are you sure delete this users'); ?>',

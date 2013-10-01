@@ -40,8 +40,7 @@ class Themelist extends AbstractRegistry
             $config['screenshot'] = !empty($config['screenshot'])
                 ? Pi::service('asset')->getAssetUrl(
                     'theme/' . $row->name,
-                    $config['screenshot'],
-                    false
+                    $config['screenshot']
                   )
                 : Pi::url('static/image/theme.png');
             $themes[$row->name] = array_merge($config, $row->toArray());

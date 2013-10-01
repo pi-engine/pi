@@ -150,7 +150,8 @@ class ThemeController extends ActionController
             $meta['screenshot'] = !empty($meta['screenshot'])
                 ? Pi::url('script/browse.php') . '?' . sprintf(
                     'theme/%s/asset/%s',
-                    $directory, $meta['screenshot']
+                    $directory,
+                    $meta['screenshot']
                 )
                 : Pi::url('static/image/theme.png');
             $themes[$directory] = $meta;

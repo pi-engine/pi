@@ -1,10 +1,10 @@
 <?php
-    $this->angular(array(
-        'angular-route.js',
-        'angular-translate.js',
-        'ui-bootstrap-custom-tpls-0.6.0.js',
-        'pi-form.js'
-    ));
+$this->angular(array(
+    'angular-route.js',
+    'angular-translate.js',
+    'ui-bootstrap-custom-tpls-0.6.0.js',
+    'pi-form.js'
+));
 ?>
 <div ng-view ng-app="systemUserModule"></div>
 <script>
@@ -12,7 +12,7 @@ var systemUserModule = angular.module('systemUserModule', ['ngRoute', 'pascalpre
     'ui.bootstrap', 'piForm']);
 var systemUserModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'user')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     roles: <?php echo json_encode($roles) ?>,
     t: {
         TITLE: '<?php _e('User list'); ?>',
@@ -24,7 +24,7 @@ var systemUserModuleConfig = {
         PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
         USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
         EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-        DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>',
+        DISPLAY_NAME_TOKEN: '<?php _e('Display name is already token'); ?>',
         RETURN: '<?php _e('Back to users list'); ?>',
         REQUIRED: '<?php _e('Required'); ?>',
         USER_NAME: '<?php _e('Username'); ?>',

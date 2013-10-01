@@ -32,24 +32,34 @@ class AssetModule extends AbstractHelper
      * Get URI of a module asset
      *
      * @param   string      $file
-     * @param   string|null $module
-     * @param   bool        $versioning Flag to append version
+     * @param   string      $module
+     * @param   bool        $isPublic
+     * @param   bool|null   $appendVersion
+     *
      * @return  string
      */
-    public function __invoke($file, $module = null, $versioning = true)
-    {
+    public function __invoke(
+        $file,
+        $module = '',
+        $isPublic = false,
+        $appendVersion = null
+    ) {
+        $type = $isPublic ? 'public' : 'asset';
         $module = $module ?: Pi::service('module')->current();
 
         // Check if customized asset available in current theme
-        $customAssets = Pi::registry('asset')->read($module);
+        $customAssets = Pi::registry('asset')->read($module, $type);
         if (!empty($customAssets[$file])) {
-            return $customAssets[$file];
+            $result = $customAssets[$file];
+        } else {
+            $result = Pi::service('asset')->getModuleAsset(
+                $file,
+                $module,
+                $type,
+                $appendVersion
+            );
         }
 
-        return Pi::service('asset')->getModuleAsset(
-            $file,
-            $module,
-            $versioning
-        );
+        return $result;
     }
 }
