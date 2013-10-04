@@ -15,14 +15,14 @@
  */
 return array(
     'article' => array(
-        'title'     => __('Article comments'),
+        'title'     => __('Demo comments'),
         'icon'      => 'icon-post',
-        'callback'  => 'Module\Comment\Comment\Article',
-        'controller'    => 'demo',
+        'callback'  => 'Module\Demo\Comment\Article',
+        'controller'    => 'article',
         'action'        => 'index',
         'identifier'    => 'id',
         'params'        => array(
-            'enable'   => 'yes',
+            // <param>      => <value>
         ),
     ),
 );

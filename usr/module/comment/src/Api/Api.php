@@ -120,12 +120,16 @@ class Api extends AbstractApi
         $controller = $routeMatch->getParam('controller');
         $action = $routeMatch->getParam('action');
         $categoryList = Pi::registry('category', 'comment')->read($module);
+
         if (!isset($categoryList[$controller][$action])) {
             return false;
         }
+        //vd($routeMatch);
         // Look up root against route data
         $lookup = function ($data) use ($routeMatch) {
             $item = $routeMatch->getParam($data['identifier']);
+            //vd($data['identifier']);
+            //vd($item);
             if (null === $item) {
                 return false;
             }
@@ -142,6 +146,7 @@ class Api extends AbstractApi
 
         $root = array();
         foreach ($categoryList[$controller][$action] as $key => $data) {
+            //d($data);
             $item = $lookup($data);
             if ($item) {
                 $root = array(
@@ -149,12 +154,16 @@ class Api extends AbstractApi
                     'category'  => $key,
                     'item'      => $item,
                 );
+                break;
             }
         }
+        //d($root);
         if (!$root) {
             return false;
         }
+
         $rootData = $this->getRoot($root);
+        //vd($rootData['id']);
         $result = array(
             'root' => $rootData ?: $root,
             'count' => 0,
@@ -163,23 +172,29 @@ class Api extends AbstractApi
             'url_list'  => '',
             'url_submit'    => Pi::service('url')->assemble(
                 'comment',
-                array('action' => 'submit')
+                array('controller' => 'post', 'action' => 'submit')
             ),
             'url_ajax'  => Pi::service('url')->assemble(
                 'comment',
-                array('action' => 'ajax')
+                array('controller' => 'post', 'action' => 'ajax')
             ),
         );
 
         if ($rootData) {
-            $result['count'] = $this->getRoot($rootData['id']);
+            $result['count'] = $this->getCount($rootData['id']);
+
+            //vd($result['count']);
             if ($result['count']) {
                 $result['posts'] = $this->getList($rootData['id']);
+                $result['url_list'] = Pi::service('url')->assemble(
+                    'comment',
+                    array(
+                        'controller'    => 'list',
+                        'action'        => 'index',
+                        'id'            => $rootData['id']
+                    )
+                );
             }
-            $result['url_list'] = Pi::service('url')->assemble(
-                'comment',
-                array('action' => 'list', 'root' => $rootData['id'])
-            );
         }
         $users = array();
         foreach ($result['posts'] as $post) {
@@ -222,7 +237,12 @@ class Api extends AbstractApi
             $postData['time'] = time();
         }
         $row = Pi::model('post', 'comment')->createRow($postData);
-        $id = $row->save();
+        try {
+            $row->save();
+            $id = (int) $row->id;
+        } catch (\Exception $d) {
+            $id = false;
+        }
 
         return $id;
     }
@@ -237,11 +257,13 @@ class Api extends AbstractApi
     public function addRoot(array $data)
     {
         $rootData = $this->canonizeRoot($data);
-        if (!isset($rootData['time'])) {
-            $rootData['time'] = time();
-        }
         $row = Pi::model('root', 'comment')->createRow($rootData);
-        $id = $row->save();
+        try {
+            $row->save();
+            $id = (int) $row->id;
+        } catch (\Exception $d) {
+            $id = false;
+        }
 
         return $id;
     }
@@ -266,21 +288,23 @@ class Api extends AbstractApi
      *
      * @param int|array $condition
      *
-     * @return array|bool    module, category, item, callback, active
+     * @return array    Module, category, item, callback, active
      */
     public function getRoot($condition)
     {
-        if (is_int($condition)) {
+        if (is_scalar($condition)) {
             $row = Pi::model('root', 'comment')->find($condition);
-            $result = $row ? (array) $row : false;
+            $result = $row ? $row->toArray() : array();
         } else {
-            $rowset = Pi::model('root', 'comment')->select(
-                $this->canonizeRoot($condition)
-            );
-            if ($rowset->count() == 1) {
-                $result = (array) $rowset->current();
+            //if (!$condition) b();
+            //vd($condition);
+            $where = $this->canonizeRoot($condition);
+            //vd($where);
+            $rowset = Pi::model('root', 'comment')->select($where);
+            if (count($rowset) == 1) {
+                $result = $rowset->current()->toArray();
             } else {
-                $result = false;
+                $result = array();
             }
         }
 
@@ -308,7 +332,7 @@ class Api extends AbstractApi
             return false;
         }
         $handler = new $target['callback']($rootData['module']);
-        $handler->setItem($rootData['item']);
+        //$handler->setItem($rootData['item']);
         $result = $handler->get($rootData['item']);
 
         return $result;
@@ -357,7 +381,7 @@ class Api extends AbstractApi
             }
         }
 
-        $limit = $limit ?: Pi::config('comment_limit');
+        $limit = $limit ?: (Pi::config('comment_limit') ?: 10);
         $order = $order ?: 'post.time desc';
         $select = Pi::db()->select();
         $select->from(
@@ -423,7 +447,7 @@ class Api extends AbstractApi
     public function getList($condition, $limit = 0, $offset = 0, $order = '')
     {
         $result = array();
-        $limit = $limit ?: Pi::config('comment_limit');
+        $limit = $limit ?: (Pi::config('comment_limit') ?: 10);
 
         $isJoin = false;
         if ($condition instanceof Where) {
@@ -481,7 +505,7 @@ class Api extends AbstractApi
             );
         }
 
-        $select->where($where)->order($order)->limit($limit);
+        $select->where($where)->limit($limit);
         if ($offset) {
             $select->offset($offset);
         }

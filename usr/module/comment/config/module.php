@@ -31,9 +31,13 @@ return array(
     // Resource
     'resource' => array(
         // Database meta
-        'database'  => 'sql/mysql.sql',
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+        ),
         'config'    => 'config.php',
         'user'      => 'user.php',
         'route'     => 'route.php',
+        'comment'   => 'comment.php',
     ),
 );

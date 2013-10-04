@@ -14,9 +14,12 @@ if (!Pi::comment()->active()) {
 // - url_ajax
 
 $data = Pi::api('comment')->load(
-    Pi::engine()->appllication()->getRouteMatch()
+    Pi::engine()->application()->getRouteMatch()
 );
-if (!$data || empty($data['root']['active'])) {
+d($data);
+if (!$data
+    || (isset($data['root']['active']) && empty($data['root']['active']))
+) {
     return;
 }
 /*
@@ -49,13 +52,13 @@ if ($commentList) {
 if ($data['posts']) {
 ?>
     <div class="pi-comment-header">
+        <dl><?php _e('Recent comments'); ?></dl>
         <dl class="dl-horizontal">
-            <dt><?php _e('Recent comments'); ?></dt>
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $data['count']; ?></dd>
             <?php if ($data['count'] > $data['limit']) { ?>
                 <dt><?php _e('Read more:') ?></dt>
-                <dd><?php echo $data['url_list']; ?></dd>
+                <dd><a href="<?php echo $data['url_list']; ?>" target="_blank"><?php _e('Read more') ?></a></dd>
             <?php } ?>
         </dl>
     </div>
@@ -87,16 +90,16 @@ if ($data['posts']) {
 <form name="comment-post" method="POST" action="<?php echo $data['url_submit']; ?>">
 <dl>
     <dt><?php _e('Post a comment:'); ?></dt>
-    <dd><textarea name="comment_content"></dd>
+    <dd><textarea name="comment_content"></textarea></dd>
     <?php if ($data['root']['id']) { ?>
-        <input type="hidden" name="comment_root" value="<?php echo $data['root']['id']; ?>">
+        <input type="hidden" name="comment_root" value="<?php echo $data['root']['id']; ?>" />
     <?php } else { ?>
-        <input type="hidden" name="comment_module" value="<?php echo $data['root']['module']; ?>">
-        <input type="hidden" name="comment_category" value="<?php echo $data['root']['category']; ?>">
-        <input type="hidden" name="comment_item" value="<?php echo $data['root']['item']; ?>">
+        <input type="hidden" name="comment_module" value="<?php echo $data['root']['module']; ?>" />
+        <input type="hidden" name="comment_category" value="<?php echo $data['root']['category']; ?>" />
+        <input type="hidden" name="comment_item" value="<?php echo $data['root']['item']; ?>" />
     <?php } ?>
-    <input type="hidden" name="redirect_url" value="<?php echo PHP_SELF; ?>">
-    <input type="submit" value="<?php _e('Submit'); ?>">
-    <input type="cancel" value="<?php _e('Cancel'); ?>">
+    <input type="hidden" name="redirect_url" value="<?php echo PHP_SELF; ?>" />
+    <input type="submit" value="<?php _e('Submit'); ?>" />
+    <input type="submit" value="<?php _e('Cancel'); ?>" />
 </dl>
 </form>

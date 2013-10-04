@@ -7,9 +7,8 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User\Model;
+namespace Module\Comment\Model;
 
-use Pi;
 use Pi\Application\Model\Model;
 
 /**

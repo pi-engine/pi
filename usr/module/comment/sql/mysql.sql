@@ -18,7 +18,8 @@ CREATE TABLE `{category}` (
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
   `callback`        varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      unsigned    NOT NULL default '0',
+  `active`          tinyint(1)      unsigned    NOT NULL default '1',
+  `icon`            varchar(255)    NOT NULL    default '',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `module_category` (`module`, `name`)
@@ -30,7 +31,7 @@ CREATE TABLE `{root}` (
   `module`          varchar(64)     NOT NULL    default '',
   `category`        varchar(64)     NOT NULL    default '',
   `item`            int(10)         unsigned    NOT NULL,
-  `active`          tinyint(1)      unsigned    NOT NULL default '0',
+  `active`          tinyint(1)      unsigned    NOT NULL default '1',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `module_item` (`module`, `category`, `item`)
@@ -39,13 +40,13 @@ CREATE TABLE `{root}` (
 # Comment posts
 CREATE TABLE `{post}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL,
+  `uid`             int(10)         unsigned    NOT NULL default '0',
   `root`            int(10)         unsigned    NOT NULL,
   `content`         text,
   `time`            int(10)         unsigned    NOT NULL default '0',
   `time_updated`    int(10)         unsigned    NOT NULL default '0',
-  `active`          tinyint(1)      unsigned    NOT NULL default '0',
-  'ip'              varchar(15)     NOT NULL    default '',
+  `active`          tinyint(1)      unsigned    NOT NULL default '1',
+  `ip`              varchar(15)     NOT NULL    default '',
 
   PRIMARY KEY  (`id`),
   KEY  `uid` (`uid`),

@@ -48,22 +48,26 @@ class Category extends AbstractRegistry
                 //'action'        => $row['action'],
                 'params'        => $row['params'],
             );
+            $name       = $row['name'];
+            $controller = $row['controller'];
+            $action     = $row['action'];
+
             if ($options['module']) {
                 if ($options['category']) {
                     $data = array_merge($data, array(
-                        'controller'    => $row['controller'],
-                        'action'        => $row['action'],
+                        'controller'    => $controller,
+                        'action'        => $action,
                     ));
                     $list[$row['name']] = $data;
                 } else {
-                    $list[][$row['action']][$row['name']] = $data;
+                    $list[$controller][$action][$name] = $data;
                 }
             } else {
                 $data = array_merge($data, array(
-                    'controller'    => $row['controller'],
-                    'action'        => $row['action'],
+                    'controller'    => $controller,
+                    'action'        => $action,
                 ));
-                $list[$row['module']][$row['name']] = $data;
+                $list[$row['module']][$name] = $data;
             }
         }
 
@@ -80,6 +84,7 @@ class Category extends AbstractRegistry
     {
         $options = array('module' => $module, 'category' => $category ? 1 : 0);
         $data = $this->loadData($options);
+        //vd($data);
         if ($module && $category) {
             $data = isset($data[$category]) ? $data[$category] : array();
         }

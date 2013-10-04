@@ -83,5 +83,6 @@ return array(
         ),
 
         'user'      => 'user.php',
+        'comment'   => 'comment.php',
     ),
 );
