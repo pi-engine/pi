@@ -328,6 +328,31 @@ class User extends AbstractService
     }
 
     /**
+     * Get current request IP
+     *
+     * @param bool $proxy Check proxy
+     * @param bool $ipv6  Return IPV6
+     *
+     * @return string
+     */
+    public function getIp($proxy = false, $ipv6 = false)
+    {
+        $request = Pi::engine()->application()->getRequest();
+        $ip = '';
+        // Find out IP behind proxy
+        if ($proxy) {
+            if (!$ip = $request->getServer('HTTP_CLIENT_IP')) {
+                $ip = $request->getServer('HTTP_X_FORWARDED_FOR');
+            }
+        }
+        if (!$ip) {
+            $ip = $request->getServer('REMOTE_ADDR');
+        }
+
+        return $ip;
+    }
+
+    /**
      * Get get resource handler or user variables
      *
      * @param string $var

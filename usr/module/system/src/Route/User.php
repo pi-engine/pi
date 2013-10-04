@@ -106,12 +106,11 @@ class User extends Standard
     {
         $matches = null;
 
-        $count = 0;
+        $parts = array();
         if ($path) {
             $parts = array_filter(explode($this->structureDelimiter, $path));
-            $count = count($parts);
         }
-        if ($count) {
+        if ($parts) {
             $matches = array();
             $term = array_shift($parts);
 
