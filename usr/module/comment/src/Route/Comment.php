@@ -23,12 +23,11 @@ use Pi\Mvc\Router\Http\Standard;
  * - Standard URLs:
  *   - Comment home: /  => Index::Index
  *   - Comment home: /list => List::Index
- *   - User comments: /list/user/<uid> => List::User
- *   - Module comments: /list/module/<module-name> => List::Module
- *   - Module category comments: /list/module/category/<module-name>-<category> => List::Module
+ *   - User comments: /list/user/id/<uid> => List::User
+ *   - Module comments: /list/module/name/<module-name> => List::Module
  *   - Comment post submit: /post/submit => Post::Submit
- *   - Comment post delete: /post/delete => Post::Delete
- *   - Comment post approve/disapprove: /post/approve => Post::approve
+ *   - Comment post delete: /post/delete/id/<post-id> => Post::Delete
+ *   - Comment post approve: /post/approve/id/<post-id> => Post::approve
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

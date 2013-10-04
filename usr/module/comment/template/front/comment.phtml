@@ -16,39 +16,11 @@ if (!Pi::comment()->active()) {
 $data = Pi::api('comment')->load(
     Pi::engine()->application()->getRouteMatch()
 );
-d($data);
 if (!$data
     || (isset($data['root']['active']) && empty($data['root']['active']))
 ) {
     return;
 }
-/*
-$commentRoot = Pi::comment()->getRoot(
-    Pi::engine()->application()->getRouteMatch()
-);
-if (false === $commentRoot || !$commentRoot['active']) {
-    return;
-}
-$commentRootId = (int) $commentRoot['id'];
-$commentCount = $commentRootId ? Pi::comment()->getCount($commentRootId) : 0;
-$commentLimit = Pi::config('comment_limit');
-if ($commentCount) {
-    $commentList = Pi::comment()->getList($commentRootId, $commentLimit);
-} else {
-    $commentList = array();
-}
-if ($commentList) {
-    $uids = array();
-    foreach ($commentList as $comment) {
-        $uids[] = (int) $comment['uid'];
-    }
-    $avatars = Pi::avatar()->getList($uids, 'small');
-    $users = Pi::user()->get($uids, 'name');
-    foreach ($users as $uid => &$user) {
-        $user['url'] = Pi::user()->getUrl('profile', $uid);
-        $user['avatar'] = $avatars[$uid];
-    }
-*/
 if ($data['posts']) {
 ?>
     <div class="pi-comment-header">

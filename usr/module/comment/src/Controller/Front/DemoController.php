@@ -20,10 +20,11 @@ class DemoController extends ActionController
      */
     public function indexAction()
     {
-        $id = (int) $this->params('id', 1);
-        $page = $this->params('page', 5);
+        $id     = _get('id', 'int') ?: 1;
+        $page   = _get('page', 'int') ?: 1;
+        //$limit = Pi::config('comment_limit') ?: 10;
         $paginator = Paginator::factory(100, array(
-            'limit' => 10,
+            //'limit' => $limit,
             'page'  => $page,
             'url_options'           => array(
                 'params'        => array(

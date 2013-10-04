@@ -21,7 +21,9 @@ abstract class AbstractComment extends AbstractModuleAwareness
      *
      * - Target data of an item:
      *   - title
-     *   -
+     *   - url
+     *   - time
+     *   - uid
      *
      * @param int|string|int[]|string[] $item
      *

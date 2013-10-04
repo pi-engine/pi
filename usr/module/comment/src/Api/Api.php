@@ -70,13 +70,18 @@ class Api extends AbstractApi
     protected function canonizePost($data)
     {
         $result = array();
+        if (!array_key_exists('active', $data)) {
+            $data['active'] = 1;
+        } elseif (null === $data['active']) {
+            unset($data['active']);
+        }
         foreach ($data as $key => $value) {
             if (in_array($key, $this->postColumn)) {
                 $result[$key] = $value;
             }
         }
 
-        return $data;
+        return $result;
     }
 
     /**
@@ -89,6 +94,11 @@ class Api extends AbstractApi
     protected function canonizeRoot($data)
     {
         $result = array();
+        if (!array_key_exists('active', $data)) {
+            $data['active'] = 1;
+        } elseif (null === $data['active']) {
+            unset($data['active']);
+        }
         foreach ($data as $key => $value) {
             if (in_array($key, $this->rootColumn)) {
                 $result[$key] = $value;
@@ -346,13 +356,13 @@ class Api extends AbstractApi
      * @param int         $offset
      * @param string      $order
      *
-     * @return int
+     * @return array List of targets indexed by root id
      */
     public function getTargetList(
         $condition,
-        $limit = 0,
-        $offset = 0,
-        $order = ''
+        $limit          = 0,
+        $offset         = 0,
+        $order          = ''
     ) {
         $result = array();
 
@@ -361,10 +371,14 @@ class Api extends AbstractApi
         } else {
             $whereRoot = array();
             $wherePost = $this->canonizePost($condition);
+            /*
             if (!isset($wherePost['active'])) {
                 $wherePost['active'] = 1;
             }
-            $whereRoot['active'] = $wherePost['active'];
+            */
+            if (isset($wherePost['active'])) {
+                $whereRoot['active'] = $wherePost['active'];
+            }
             if (isset($condition['module'])) {
                 $whereRoot['module'] = $condition['module'];
             }
@@ -386,7 +400,7 @@ class Api extends AbstractApi
         $select = Pi::db()->select();
         $select->from(
             array('root' => Pi::model('root', 'comment')->getTable()),
-            array('module', 'category', 'item')
+            array('id', 'module', 'category', 'item')
         );
         $select->join(
             array('post' => Pi::model('post', 'comment')->getTable()),
@@ -400,35 +414,31 @@ class Api extends AbstractApi
         }
         $select->order($order);
 
+        $targets = Pi::registry('category', 'comment')->read();
+
         $keyList = array();
-        $targets = array();
-        $roots = array();
         $rowset = Pi::db()->query($select);
         foreach ($rowset as $row) {
-            $key = $row['module'] . '-' . $row['category'];
-            $keyList[] = $key . '-' . $row['item'];
-            $roots[$key]['item'][] = $row['item'];
-            $targets['module'][$row['module']] = 1;
-            $targets['category'][$row['category']] = 1;
+            $root = (int) $row['id'];
+            $keyList[] = $root;
+            $items[$row['module']][$row['category']][$row['item']] = $root;
         }
-        $categories = Pi::model('category', 'comment')->select(array(
-            'module'    => array_keys($targets['module']),
-            'name'      => array_keys($targets['category']),
-        ));
-        $targetList = array();
-        foreach ($categories as $row) {
-            $key = $row['module'] . '-' . $row['category'];
-            $roots[$key]['callback'] = $row['callback'];
-            $items = $roots[$key]['item'];
-            $handler = new $row['callback']($row['module']);
-            $targets = $handler->get($items);
-            foreach ($targets as $item => $target) {
-                $index = $key . '-' . $item;
-                $targetList[$index] = $target;
+        foreach ($items as $module => $mList) {
+            foreach ($mList as $category => $cList) {
+                if (!isset($targets[$module][$category])) {
+                    continue;
+                }
+                $callback = $targets[$module][$category]['callback'];
+                $handler = new $callback($module);
+                $targets = $handler->get(array_keys($cList));
+                foreach ($targets as $item => $target) {
+                    $root = $cList[$item];
+                    $targetList[$root] = $target;
+                }
             }
         }
         foreach ($keyList as $key) {
-            $result[] = $targetList[$key];
+            $result[$key] = &$targetList[$key];
         }
 
         return $result;
@@ -457,9 +467,12 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
+                //vd($wherePost);
+                /*
                 if (!isset($wherePost['active'])) {
                     $wherePost['active'] = 1;
                 }
+                */
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
@@ -468,7 +481,9 @@ class Api extends AbstractApi
                 }
                 if (isset($whereRoot['module']) || isset($whereRoot['category'])) {
                     $isJoin = true;
-                    $whereRoot['active'] = $wherePost['active'];
+                    if (isset($wherePost['active'])) {
+                        $whereRoot['active'] = $wherePost['active'];
+                    }
                 }
             } else {
                 $wherePost = array(
@@ -476,6 +491,7 @@ class Api extends AbstractApi
                     'active'    => 1,
                 );
             }
+            //vd($wherePost);
             if ($isJoin) {
                 $where = array();
                 foreach ($wherePost as $field => $value) {
@@ -499,7 +515,7 @@ class Api extends AbstractApi
                 array('post' => Pi::model('post', 'comment')->getTable())
             );
             $select->join(
-                array('post' => Pi::model('root', 'comment')->getTable()),
+                array('root' => Pi::model('root', 'comment')->getTable()),
                 'root.id=post.root',
                 array()
             );
@@ -542,9 +558,13 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                if (!isset($wherePost['active'])) {
+                /*
+                if (!array_key_exists('active', $wherePost)) {
                     $wherePost['active'] = 1;
+                } elseif (null === $wherePost['active']) {
+                    unset($wherePost['active']);
                 }
+                */
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
@@ -553,7 +573,9 @@ class Api extends AbstractApi
                 }
                 if (isset($whereRoot['module']) || isset($whereRoot['category'])) {
                     $isJoin = true;
-                    $whereRoot['active'] = $wherePost['active'];
+                    if (isset($wherePost['active'])) {
+                        $whereRoot['active'] = $wherePost['active'];
+                    }
                 }
             } else {
                 $wherePost = array(
@@ -579,11 +601,11 @@ class Api extends AbstractApi
         } else {
             $select = Pi::db()->select();
             $select->from(
-                array('post' => Pi::model('post', 'comment')->getTable()),
-                array('count' => Pi::db()->expression('COUNT(*)'))
+                array('post' => Pi::model('post', 'comment')->getTable())
             );
+            $select->columns(array('count' => Pi::db()->expression('COUNT(*)')));
             $select->join(
-                array('post' => Pi::model('root', 'comment')->getTable()),
+                array('root' => Pi::model('root', 'comment')->getTable()),
                 'root.id=post.root',
                 array()
             );
