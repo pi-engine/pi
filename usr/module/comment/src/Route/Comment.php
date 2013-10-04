@@ -65,7 +65,7 @@ class Comment extends Standard
                     $matches = array(
                         'controller'    => 'list',
                         'action'        => 'index',
-                        'id'            => (int) array_shift($parts),
+                        'root'            => (int) array_shift($parts),
                     );
                 }
 
