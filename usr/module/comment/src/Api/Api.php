@@ -460,7 +460,7 @@ class Api extends AbstractApi
     public function getPost($id)
     {
         $row = Pi::model('post', 'comment')->find($id);
-        $result = $row ? (array) $row : false;
+        $result = $row ? $row->toArray() : false;
 
         return $result;
     }

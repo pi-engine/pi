@@ -87,6 +87,7 @@ class PostForm extends BaseForm
                 'type'          => 'editor',
                 'placeholder'   => __('Type your content'),
                 'class'         => 'span6',
+                'rows'          => 5,
             ),
         ));
 

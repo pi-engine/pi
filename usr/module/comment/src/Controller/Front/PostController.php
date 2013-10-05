@@ -30,22 +30,53 @@ class PostController extends ActionController
     {
         $id = _get('id', 'int') ?: 1;
         $post = Pi::api('comment')->getPost($id);
-        $target = Pi::api('comment')->getTarget($post['root']);
-        $user = Pi::service('user')->get($post['uid'], array('name'));
-        $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
-        $user['avatar'] = Pi::service('avatar')->get($post['uid']);
-
-        $this->view()->assign(array(
+        $target = array();
+        if ($post) {
+            $post['content'] = Pi::api('comment')->renderPost($post);
+            $target = Pi::api('comment')->getTarget($post['root']);
+            $user = Pi::service('user')->get($post['uid'], array('name'));
+            $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
+            $user['avatar'] = Pi::service('avatar')->get($post['uid']);
+            $post['user'] = $user;
+        }
+        $title = __('Comment post');
+        $this->view()->assign('comment', array(
+            'title'     => $title,
             'post'      => $post,
             'target'    => $target,
-            'user'      => $user,
         ));
         $this->view()->setTemplate('comment-view');
     }
 
     public function editAction()
     {
-        $form = Pi::api('comment')->getForm();
+        $id = _get('id', 'int') ?: 1;
+        $redirect = _get('redirect');
+
+        $post = Pi::api('comment')->getPost($id);
+        $target = array();
+        if ($post) {
+            $target = Pi::api('comment')->getTarget($post['root']);
+            $user = Pi::service('user')->get($post['uid'], array('name'));
+            $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
+            $user['avatar'] = Pi::service('avatar')->get($post['uid']);
+            $post['user'] = $user;
+        }
+
+        $title = __('Comment post edit');
+        $this->view()->assign('comment', array(
+            'title'     => $title,
+            'post'      => $post,
+            'target'    => $target,
+        ));
+
+        $data = array_merge($post, array(
+            'redirect' => $redirect,
+        ));
+        $form = Pi::api('comment')->getForm($data);
+
+        $this->view()->assign('form', $form);
+        $this->view()->setTemplate('comment-edit');
     }
 
     /**
@@ -68,9 +99,15 @@ class PostController extends ActionController
         }
 
         if (!$return) {
-            $redirect = $redirect
-                ? urldecode($redirect)
-                : Pi::service('url')->assemble('comment');
+            if ($redirect) {
+                $redirect = urldecode($redirect);
+            } elseif (!empty($result['data'])) {
+                $redirect = Pi::api('comment')->getUrl('post', array(
+                    'post' => $result['data']
+                ));
+            } else {
+                $redirect = Pi::service('url')->assemble('comment');
+            }
             $this->jump($redirect, $result['message']);
         } else {
             return $result;
@@ -137,6 +174,7 @@ class PostController extends ActionController
         $id = _get('id', 'int');
         $flag = _get('flag');
         $return = _get('return');
+        $redirect = _get('redirect');
 
         if (null === $flag) {
             $status     = Pi::api('comment')->approve($id);
@@ -147,7 +185,14 @@ class PostController extends ActionController
             ? __('Operation succeeded.') : __('Operation failed');
 
         if (!$return) {
-            $this->jump(array('route' => 'comment'), $message);
+            if ($redirect) {
+                $redirect = urldecode($redirect);
+            } else {
+                $redirect = Pi::api('comment')->getUrl('post', array(
+                    'post' => $id
+                ));
+            }
+            $this->jump($redirect, $message);
         } else {
             $result = array(
                 'status'    => (int) $status,
@@ -168,13 +213,19 @@ class PostController extends ActionController
     {
         $id = _get('id', 'int');
         $return = _get('return');
+        $redirect = _get('redirect');
 
-        $status     = Pi::api('comment')->delete($id);
+        $status     = Pi::api('comment')->deletePost($id);
         $message = $status
             ? __('Operation succeeded.') : __('Operation failed');
 
         if (!$return) {
-            $this->jump(array('route' => 'comment'), $message);
+            if ($redirect) {
+                $redirect = urldecode($redirect);
+            } else {
+                $redirect = Pi::api('comment')->getUrl('list');
+            }
+            $this->jump($redirect, $message);
         } else {
             $result = array(
                 'status'    => (int) $status,
