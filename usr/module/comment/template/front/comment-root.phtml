@@ -55,6 +55,12 @@ if ($posts) {
             <dd><?php echo _date($post['time']); ?></dd>
             <dt><?php _e('Content:');?></dt>
             <dd><?php echo $post['content']; ?></dd>
+            <dt>&nbsp;</dt>
+            <dd>
+                <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
+                    <?php _e('More details'); ?>
+                </a>
+            </dd>
         </dl>
 <?php
     }

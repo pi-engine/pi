@@ -704,9 +704,12 @@ class Api extends AbstractApi
             }
         }
 
-        // Render post contents
+        // Render post contents and url
         array_walk($result, function (&$post) {
             $post['content'] = Pi::api('comment')->renderPost($post);
+            $post['url'] = Pi::api('comment')->getUrl('post', array(
+                'post'  => $post['id']
+            ));
         });
 
         return $result;
