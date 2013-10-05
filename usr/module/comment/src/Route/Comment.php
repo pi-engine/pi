@@ -17,7 +17,7 @@ use Pi\Mvc\Router\Http\Standard;
  * Use cases:
  *
  * - Simplified URLs:
- *   - Item comment list: /list/<root-id> => List::Index
+ *   - Item comment list: /list/<root-id> => List::Root
  *   - Comment post view: /post/<post-id> => Post::Index
  *
  * - Standard URLs:
@@ -64,8 +64,8 @@ class Comment extends Standard
                 if ($parts && is_numeric($parts[0])) {
                     $matches = array(
                         'controller'    => 'list',
-                        'action'        => 'index',
-                        'root'            => (int) array_shift($parts),
+                        'action'        => 'root',
+                        'root'          => (int) array_shift($parts),
                     );
                 }
 
@@ -119,10 +119,10 @@ class Comment extends Standard
 
         // /list/<root-id>
         if ('list' == $controller) {
-            if ('' == $action || 'index' == $action) {
-                if (!empty($params['id'])) {
-                    $url .= 'list' . $this->paramDelimiter . $params['id'];
-                    unset($params['id']);
+            if ('' == $action || 'root' == $action) {
+                if (!empty($params['root'])) {
+                    $url .= 'list' . $this->paramDelimiter . $params['root'];
+                    unset($params['root']);
                 }
             }
 

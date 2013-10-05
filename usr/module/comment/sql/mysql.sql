@@ -43,6 +43,8 @@ CREATE TABLE `{post}` (
   `uid`             int(10)         unsigned    NOT NULL default '0',
   `root`            int(10)         unsigned    NOT NULL,
   `content`         text,
+  -- Content markup: text, html, markdown
+  `markup`          varchar(64)     NOT NULL    default '',
   `time`            int(10)         unsigned    NOT NULL default '0',
   `time_updated`    int(10)         unsigned    NOT NULL default '0',
   `active`          tinyint(1)      unsigned    NOT NULL default '1',

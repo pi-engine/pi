@@ -12,6 +12,8 @@ namespace Module\Comment\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\Sql\Where;
+use Pi\Db\RowGateway\RowGateway;
+use Module\Comment\Form\PostForm;
 use Zend\Mvc\Router\RouteMatch;
 
 /**
@@ -21,12 +23,13 @@ use Zend\Mvc\Router\RouteMatch;
  * - add($root, array $data)
  * - addRoot(array $data)
  * - get($id)
+ * - getForm(array $data)
+ * - getUrl($type, array $options)
  * - getRoot(array $condition|$id)
  * - getTarget($root)
  * - getList(array $condition|$root, $limit, $offset, $order)
  * - getTargetList(array $condition, $limit, $offset, $order)
  * - getCount(array $condition|$root)
- * - getUrl($root, $id)
  * - update($id, array $data)
  * - delete($id)
  * - approve($id, $flag)
@@ -47,7 +50,9 @@ class Api extends AbstractApi
         'uid',
         'ip',
         'time',
+        'time_updated',
         'content',
+        'markup',
         'active'
     );
 
@@ -109,6 +114,110 @@ class Api extends AbstractApi
     }
 
     /**
+     * Get URLs
+     *
+     * For AJAX request, set `$options['return'] = 1;`
+     *
+     * @param string    $type
+     * @param array     $options
+     *
+     * @return string
+     */
+    public function getUrl($type, array $options = array())
+    {
+        $params = array();
+        switch ($type) {
+            case 'post':
+                if (!empty($options['post'])) {
+                    $params = array(
+                        'controller'    => 'post',
+                        'id'            => (int) $options['post'],
+                    );
+                    unset($options['post']);
+                }
+                break;
+            case 'approve':
+                if (!empty($options['post'])) {
+                    $params = array(
+                        'controller'    => 'post',
+                        'action'        => $type,
+                        'id'            => (int) $options['post'],
+                    );
+                    if (isset($options['flag'])) {
+                        $params['flag'] = $options['flag'];
+                        unset($options['flag']);
+                    }
+                    unset($options['post']);
+                }
+                break;
+            case 'delete':
+            case 'edit':
+                if (!empty($options['post'])) {
+                    $params = array(
+                        'controller'    => 'post',
+                        'action'        => $type,
+                        'id'            => (int) $options['post'],
+                    );
+                    unset($options['post']);
+                }
+                break;
+            case 'submit':
+                $params = array('controller' => 'post', 'action' => $type);
+                break;
+            case 'root':
+                if (!empty($options['root'])) {
+                    $rootId = $options['root'];
+                    unset($options['root']);
+                } elseif ($root = Pi::api('comment')->getRoot($options)) {
+                    $rootId = $root['id'];
+                } else {
+                    $rootId = 0;
+                }
+                if ($rootId) {
+                    $params = array(
+                        'controller'    => 'list',
+                        'root'          => (int) $rootId,
+                    );
+                }
+                break;
+            case 'user':
+                $params = array(
+                    'controller'    => 'list',
+                    'action'        => 'user',
+                );
+                if (!empty($options['uid'])) {
+                    $params['uid'] = (int) $options['uid'];
+                    unset($options['uid']);
+                }
+                break;
+            case 'module':
+                if (!empty($options['name'])) {
+                    $params = array(
+                        'controller'    => 'list',
+                        'action'        => 'module',
+                        'name'          => $options['name'],
+                    );
+                    if (!empty($options['category'])) {
+                        $params['category'] = $options['category'];
+                        unset($options['category']);
+                    }
+                    unset($options['name']);
+                }
+                break;
+            default:
+                break;
+        }
+
+        // For AJAX calls
+        if (isset($options['return'])) {
+            $params['return'] = $options['return'];
+        }
+        $url = Pi::service('url')->assemble('comment', $params);
+
+        return $url;
+    }
+
+    /**
      * Load comment data for rendering against matched route
      *
      * Data array:
@@ -130,6 +239,7 @@ class Api extends AbstractApi
         $controller = $routeMatch->getParam('controller');
         $action = $routeMatch->getParam('action');
         $categoryList = Pi::registry('category', 'comment')->read($module);
+        $limit = Pi::config('leading_limit') ?: 5;
 
         if (!isset($categoryList[$controller][$action])) {
             return false;
@@ -175,19 +285,12 @@ class Api extends AbstractApi
         $rootData = $this->getRoot($root);
         //vd($rootData['id']);
         $result = array(
-            'root' => $rootData ?: $root,
-            'count' => 0,
-            'posts' => array(),
-            'users' => array(),
-            'url_list'  => '',
-            'url_submit'    => Pi::service('url')->assemble(
-                'comment',
-                array('controller' => 'post', 'action' => 'submit')
-            ),
-            'url_ajax'  => Pi::service('url')->assemble(
-                'comment',
-                array('controller' => 'post', 'action' => 'ajax')
-            ),
+            'root'          => $rootData ?: $root,
+            'count'         => 0,
+            'posts'         => array(),
+            'users'         => array(),
+            'url_list'      => '',
+            'url_submit'    => $this->getUrl('submit'),
         );
 
         if ($rootData) {
@@ -195,14 +298,10 @@ class Api extends AbstractApi
 
             //vd($result['count']);
             if ($result['count']) {
-                $result['posts'] = $this->getList($rootData['id']);
-                $result['url_list'] = Pi::service('url')->assemble(
-                    'comment',
-                    array(
-                        'controller'    => 'list',
-                        'action'        => 'index',
-                        'id'            => $rootData['id']
-                    )
+                $result['posts'] = $this->getList($rootData['id'], $limit);
+                $result['url_list'] = $this->getUrl(
+                    'root',
+                    array('root'  => $rootData['id'])
                 );
             }
         }
@@ -227,6 +326,48 @@ class Api extends AbstractApi
     }
 
     /**
+     * Render post content
+     *
+     * @param array|RowGateway|string $post
+     *
+     * @return string
+     */
+    public function renderPost($post)
+    {
+        $content = '';
+        $markup = 'text';
+        if ($post instanceof RowGateway || is_array($post)) {
+            $content = $post['content'];
+            $markup = $post['markup'];
+        } elseif (is_string($post)) {
+            $content = $post;
+        }
+        $renderer = ('markdown' == $markup || 'html' == $markup)
+            ? 'html' : 'text';
+        $parser = ('markdown' == $markup) ? 'markdown' : false;
+        $result = Pi::service('markup')->render($content, $renderer, $parser);
+
+        return $result;
+    }
+
+    /**
+     * Get comment post edit form
+     *
+     * @param array $data
+     *
+     * @return PostForm
+     */
+    public function getForm(array $data = array())
+    {
+        $form = new PostForm;
+        if ($data) {
+            $form->setData($data);
+        }
+
+        return $form;
+    }
+
+    /**
      * Add comment of an item
      *
      * @param array $data root, uid, content, module, item, category, time
@@ -235,18 +376,39 @@ class Api extends AbstractApi
      */
     public function addPost(array $data)
     {
+        //vd($data);
+        $id = isset($data['id']) ? (int) $data['id'] : 0;
+        if (isset($data['id'])) {
+            unset($data['id']);
+        }
+        //vd($id);
         $postData = $this->canonizePost($data);
-        if (empty($postData['root'])) {
-            $root = $this->addRoot($data);
-            if (!$root) {
-                return false;
+        if (!$id) {
+            if (empty($postData['root'])) {
+                $rootId = $this->addRoot($data);
+                if (!$rootId) {
+                    return false;
+                }
+                $postData['root'] = $rootId;
             }
-            $postData['root'] = $root;
+            if (!isset($postData['time'])) {
+                $postData['time'] = time();
+            }
+            if (isset($postData['time_updated'])) {
+                unset($postData['time_updated']);
+            }
+            $row = Pi::model('post', 'comment')->createRow($postData);
+        } else {
+            $row = Pi::model('post', 'comment')->find($id);
+            if (!isset($postData['time_updated'])) {
+                $postData['time_updated'] = time();
+            }
+            if (isset($postData['time'])) {
+                unset($postData['time']);
+            }
+            $row->assign($postData);
         }
-        if (!isset($postData['time'])) {
-            $postData['time'] = time();
-        }
-        $row = Pi::model('post', 'comment')->createRow($postData);
+
         try {
             $row->save();
             $id = (int) $row->id;
@@ -266,8 +428,18 @@ class Api extends AbstractApi
      */
     public function addRoot(array $data)
     {
+        $id = isset($data['id']) ? (int) $data['id'] : 0;
+        if (isset($data['id'])) {
+            unset($data['id']);
+        }
         $rootData = $this->canonizeRoot($data);
-        $row = Pi::model('root', 'comment')->createRow($rootData);
+        if (!$id) {
+            $row = Pi::model('root', 'comment')->createRow($rootData);
+        } else {
+            $row = Pi::model('root', 'comment')->find($id);
+            $row->assign($rootData);
+        }
+
         try {
             $row->save();
             $id = (int) $row->id;
@@ -395,7 +567,7 @@ class Api extends AbstractApi
             }
         }
 
-        $limit = $limit ?: (Pi::config('comment_limit') ?: 10);
+        $limit = $limit ?: (Pi::config('list_limit') ?: 10);
         $order = $order ?: 'post.time desc';
         $select = Pi::db()->select();
         $select->from(
@@ -457,7 +629,7 @@ class Api extends AbstractApi
     public function getList($condition, $limit = 0, $offset = 0, $order = '')
     {
         $result = array();
-        $limit = $limit ?: (Pi::config('comment_limit') ?: 10);
+        $limit = $limit ?: (Pi::config('list_limit') ?: 10);
 
         $isJoin = false;
         if ($condition instanceof Where) {
@@ -467,12 +639,6 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                //vd($wherePost);
-                /*
-                if (!isset($wherePost['active'])) {
-                    $wherePost['active'] = 1;
-                }
-                */
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
@@ -538,6 +704,11 @@ class Api extends AbstractApi
             }
         }
 
+        // Render post contents
+        array_walk($result, function (&$post) {
+            $post['content'] = Pi::api('comment')->renderPost($post);
+        });
+
         return $result;
     }
 
@@ -558,13 +729,6 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                /*
-                if (!array_key_exists('active', $wherePost)) {
-                    $wherePost['active'] = 1;
-                } elseif (null === $wherePost['active']) {
-                    unset($wherePost['active']);
-                }
-                */
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
@@ -615,50 +779,6 @@ class Api extends AbstractApi
         }
 
         return $count;
-    }
-
-    /**
-     * Get URL to a root
-     *
-     * @param int $root
-     *
-     * @return string
-     */
-    public function getUrl($root)
-    {
-        $params = array('root' => $root);
-        $url = Pi::service('url')->assemble('comment', $params);
-
-        return $url;
-    }
-
-    /**
-     * Update a comment
-     *
-     * @param int   $id
-     * @param array $data
-     *
-     * @return bool
-     */
-    public function updatePost($id, array $data)
-    {
-        $row = Pi::model('post', 'comment')->find($id);
-        if (!$row) {
-            return false;
-        }
-
-        $data = $this->canonizePost($data);
-        if (!isset($data['time_updated'])) {
-            $data['time_updated'] = time();
-        }
-        $result = true;
-        try {
-            $row->assign($data)->save();
-        } catch (\Exception $e) {
-            $result = false;
-        }
-
-        return $result;
     }
 
     /**

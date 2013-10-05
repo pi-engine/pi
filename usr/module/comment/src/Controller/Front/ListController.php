@@ -21,11 +21,104 @@ use Pi\Paginator\Paginator;
 class ListController extends ActionController
 {
     /**
+     * All comment posts
+     */
+    public function indexAction()
+    {
+        $active = _get('active');
+        //vd($active);
+        if (null !== $active) {
+            $active = (int) $active;
+        }
+        $page   = _get('page', 'int') ?: 1;
+        $limit = Pi::config('comment_limit') ?: 10;
+        $offset = ($page - 1) * $limit;
+
+        $posts = Pi::service('comment')->getList(
+            array('active' => $active),
+            $limit,
+            $offset
+        );
+        $count = Pi::service('comment')->getCount(array('active' => $active));
+
+        $targets = array();
+        $rootIds = array();
+        foreach ($posts as $post) {
+            $rootIds[] = (int) $post['root'];
+        }
+        if ($rootIds) {
+            $rootIds = array_unique($rootIds);
+            $targets = Pi::api('comment')->getTargetList(array(
+                'root'  => $rootIds
+            ));
+        }
+        foreach ($posts as &$post) {
+            $post['target'] = $targets[$post['root']];
+        }
+
+        $users = array();
+        $uids = array();
+        foreach ($posts as $post) {
+            $uids[] = (int) $post['uid'];
+        }
+        if ($uids) {
+            $uids = array_unique($uids);
+            $users = Pi::service('user')->get($uids, array('name'));
+            $avatars = Pi::service('avatar')->getList($uids, 'small');
+            foreach ($users as $uid => &$data) {
+                $data['url'] = Pi::service('user')->getUrl('profile', $uid);
+                $data['avatar'] = $avatars[$uid];
+            }
+        }
+        $users[0] = array(
+            'avatar'    => Pi::service('avatar')->get(0, 'small'),
+            'url'       => Pi::url('www'),
+            'name'      => __('Guest'),
+        );
+
+        //vd($uids);
+        //vd($users);
+        $setUser = function ($uid) use ($users) {
+            if (isset($users[$uid])) {
+                return $users[$uid];
+            } else {
+                return $users[0];
+            }
+        };
+        foreach ($posts as &$post) {
+            $post['user'] = $setUser($post['uid']);
+        }
+
+        $params = (null === $active) ? array() : array('active' => $active);
+        $paginator = Paginator::factory($count, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'params'    => $params,
+            ),
+        ));
+        if (null === $active) {
+            $title = __('All comment posts');
+        } elseif (!$active) {
+            $title = __('All inactive comment posts');
+        } else {
+            $title = __('All active comment posts');
+        }
+        $this->view()->assign('comment', array(
+            'title'     => $title,
+            'count'     => $count,
+            'posts'     => $posts,
+            'paginator' => $paginator,
+        ));
+
+        $this->view()->setTemplate('comment-list');
+    }
+
+    /**
      * List of comment posts of a root
      *
      * @return string
      */
-    public function indexAction()
+    public function rootAction()
     {
         $root   = _get('root', 'int') ?: 1;
         $page   = _get('page', 'int') ?: 1;
@@ -92,7 +185,7 @@ class ListController extends ActionController
             'paginator' => $paginator,
         ));
 
-        $this->view()->setTemplate('comment-list');
+        $this->view()->setTemplate('comment-root');
     }
 
     /**
@@ -260,98 +353,5 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate('comment-module');
-    }
-
-    /**
-     * All active comment posts
-     */
-    public function allAction()
-    {
-        $active = _get('active');
-        //vd($active);
-        if (null !== $active) {
-            $active = (int) $active;
-        }
-        $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
-        $offset = ($page - 1) * $limit;
-
-        $posts = Pi::service('comment')->getList(
-            array('active' => $active),
-            $limit,
-            $offset
-        );
-        $count = Pi::service('comment')->getCount(array('active' => $active));
-
-        $targets = array();
-        $rootIds = array();
-        foreach ($posts as $post) {
-            $rootIds[] = (int) $post['root'];
-        }
-        if ($rootIds) {
-            $rootIds = array_unique($rootIds);
-            $targets = Pi::api('comment')->getTargetList(array(
-                'root'  => $rootIds
-            ));
-        }
-        foreach ($posts as &$post) {
-            $post['target'] = $targets[$post['root']];
-        }
-
-        $users = array();
-        $uids = array();
-        foreach ($posts as $post) {
-            $uids[] = (int) $post['uid'];
-        }
-        if ($uids) {
-            $uids = array_unique($uids);
-            $users = Pi::service('user')->get($uids, array('name'));
-            $avatars = Pi::service('avatar')->getList($uids, 'small');
-            foreach ($users as $uid => &$data) {
-                $data['url'] = Pi::service('user')->getUrl('profile', $uid);
-                $data['avatar'] = $avatars[$uid];
-            }
-        }
-        $users[0] = array(
-            'avatar'    => Pi::service('avatar')->get(0, 'small'),
-            'url'       => Pi::url('www'),
-            'name'      => __('Guest'),
-        );
-
-        //vd($uids);
-        //vd($users);
-        $setUser = function ($uid) use ($users) {
-            if (isset($users[$uid])) {
-                return $users[$uid];
-            } else {
-                return $users[0];
-            }
-        };
-        foreach ($posts as &$post) {
-            $post['user'] = $setUser($post['uid']);
-        }
-
-        $params = (null === $active) ? array() : array('active' => $active);
-        $paginator = Paginator::factory($count, array(
-            'page'          => $page,
-            'url_options'   => array(
-                'params'    => $params,
-            ),
-        ));
-        if (null === $active) {
-            $title = __('All comment posts');
-        } elseif (!$active) {
-            $title = __('All inactive comment posts');
-        } else {
-            $title = __('All active comment posts');
-        }
-        $this->view()->assign('comment', array(
-            'title'     => $title,
-            'count'     => $count,
-            'posts'     => $posts,
-            'paginator' => $paginator,
-        ));
-
-        $this->view()->setTemplate('comment-all');
     }
 }

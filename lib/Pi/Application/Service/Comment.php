@@ -12,6 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Db\Sql\Where;
+use Module\Comment\Form\PostForm;
 
 /**
  * Comment service
@@ -22,7 +23,8 @@ use Pi\Db\Sql\Where;
  * - getTarget($root)
  * - getList(array $condition|$root, $limit, $offset, $order)
  * - getCount(array $condition|$root)
- * - getUrl($root, $id)
+ * - getForm(array $data)
+ * - getUrl($type, array $options)
  * - updatePost($id, array $data)
  * - deletePost($id)
  * - approve($id, $flag)
@@ -41,6 +43,41 @@ class Comment extends AbstractService
     public function active()
     {
         return Pi::service('module')->isActive('comment');
+    }
+
+    /**
+     * Get URLs
+     *
+     * For AJAX request, set `$options['return'] = 1;`
+     *
+     * @param string    $type
+     * @param array     $options
+     *
+     * @return string
+     */
+    public function getUrl($type, array $options = array())
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('comment')->getUrl($type, $options);
+    }
+
+    /**
+     * Get comment post edit form
+     *
+     * @param array $data
+     *
+     * @return bool|PostForm
+     */
+    public function getForm(array $data = array())
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('comment')->getForm($data);
     }
 
     /**
@@ -140,23 +177,6 @@ class Comment extends AbstractService
         }
 
         return Pi::api('comment')->getCount($condition);
-    }
-
-    /**
-     * Get URL to a comment or a comment root
-     *
-     * @param int $root
-     * @param int $id
-     *
-     * @return string|bool
-     */
-    public function getUrl($root, $id = null)
-    {
-        if (!$this->active()) {
-            return false;
-        }
-
-        return Pi::api('comment')->getUrl($root, $id);
     }
 
     /**
