@@ -19,13 +19,24 @@ use Zend\View\Helper\Url as ZendUrl;
 /**
  * Helper for assembling URL with routes and parameters
  *
- * Usage inside a phtml template
+ * - Usage inside a phtml template
  *
  * ```
  *  $this->url('home');
  *  $this->url('default', array('module' => 'demo', 'controller' => 'test');
  * ```
  *
+ * - Fetch current request URI
+ *
+ * ```
+ *  $this->url()->requestUri();
+ * ```
+ *
+ * - Fetch current routeMatch
+ *
+ * ```
+ *  $this->url()->routeMatch();
+ * ```
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Url extends ZendUrl
@@ -51,52 +62,17 @@ class Url extends ZendUrl
         $options = array(),
         $reuseMatchedParams = false
     ) {
+        if (!func_num_args()) {
+            return $this;
+        }
+
         return Pi::service('url')->assemble(
             $name,
             $params,
             $options,
             $reuseMatchedParams
         );
-        /*
-        if (null === $this->router()) {
-            throw new \RuntimeException(
-                'No RouteStackInterface instance provided'
-            );
-        }
-
-        if (!$name) {
-            if ($this->routeMatch() === null) {
-                throw new \RuntimeException('No RouteMatch instance provided');
-            }
-
-            $name = $this->routeMatch()->getMatchedRouteName();
-
-            if ($name === null) {
-                throw new \RuntimeException(
-                    'RouteMatch does not contain a matched route name'
-                );
-            }
-        }
-
-        // Complete current module/controller
-        if (!isset($params['module']) && isset($params['action'])) {
-            $routeMatch = $this->routeMatch();
-            $params['module'] = $routeMatch->getParam('module');
-            if (!isset($params['controller'])) {
-                $params['controller'] = $routeMatch->getParam('controller');
-            }
-        }
-
-        if ($reuseMatchedParams && $this->routeMatch() !== null) {
-            $params = array_merge($this->routeMatch()->getParams(), $params);
-        }
-
-        $options['name'] = $name;
-
-        return $this->router()->assemble($params, $options);
-        */
     }
-
 
     /**
      * Get the router to use for assembling.
@@ -124,5 +100,22 @@ class Url extends ZendUrl
         }
 
         return $this->routeMatch;
+    }
+
+    /**
+     * Get current request URI
+     *
+     * @param bool $encode
+     *
+     * @return string
+     */
+    public function requestUri($encode = false)
+    {
+        $uri = Pi::engine()->application()->getRequest()->getRequestUri();
+        if ($uri && $encode) {
+            $uri = $this->getView()->escapeUrl($uri);
+        }
+
+        return $uri;
     }
 }

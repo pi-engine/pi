@@ -16,6 +16,7 @@ use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Resource\AbstractResource;
+use Zend\Http\PhpEnvironment\RemoteAddress;
 
 /**
  * User service gateway
@@ -337,17 +338,8 @@ class User extends AbstractService
      */
     public function getIp($proxy = false, $ipv6 = false)
     {
-        $request = Pi::engine()->application()->getRequest();
-        $ip = '';
-        // Find out IP behind proxy
-        if ($proxy) {
-            if (!$ip = $request->getServer('HTTP_CLIENT_IP')) {
-                $ip = $request->getServer('HTTP_X_FORWARDED_FOR');
-            }
-        }
-        if (!$ip) {
-            $ip = $request->getServer('REMOTE_ADDR');
-        }
+        $remoteAddress = new RemoteAddress;
+        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
 
         return $ip;
     }
