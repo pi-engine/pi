@@ -30,12 +30,29 @@ if ($post) {
                     <?php echo $post['user']['name']; ?>
                 </a>
             </dd>
+
             <dt>&nbsp;</dt>
             <dd><?php echo $post['user']['avatar']; ?></dd>
+
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>
+
+            <?php if (!empty($post['time_updated'])) { ?>
+                <dt><?php _e('Updated:');?></dt>
+                <dd><?php echo _date($post['time_updated']); ?></dd>
+            <?php } ?>
+
             <dt><?php _e('Content:');?></dt>
             <dd><?php echo $post['content']; ?></dd>
+
+            <dt><?php _e('Operations:');?></dt>
+            <dd>
+            <?php foreach ($post['operations'] as $key => $op) { ?>
+                <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
+                <?php echo _escape($op['title']); ?>
+                </a>
+            <?php } ?>
+            </dd>
         </dl>
     </div>
 <?php
