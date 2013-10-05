@@ -14,9 +14,17 @@ $posts = $comment['posts'];
 // Pagination object
 $paginator = $comment['paginator'];
 
+$formData = array(
+    'root'      => $comment['root'],
+    'redirect'  => $this->url()->requestUri(true),
+);
+$form = Pi::service('comment')->getForm($formData);
+?>
+    <div class="page-header"><?php echo _escape($comment['title']); ?></div>
+<?php
+include $this->templateComponent('form');
 ?>
     <div class="pi-comment-header">
-        <dl><?php echo _escape($comment['title']); ?></dl>
         <dl class="dl-horizontal">
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $count; ?></dd>

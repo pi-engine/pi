@@ -99,11 +99,13 @@ class Api extends AbstractApi
     protected function canonizeRoot($data)
     {
         $result = array();
+        /*
         if (!array_key_exists('active', $data)) {
             $data['active'] = 1;
         } elseif (null === $data['active']) {
             unset($data['active']);
         }
+        */
         foreach ($data as $key => $value) {
             if (in_array($key, $this->rootColumn)) {
                 $result[$key] = $value;
@@ -164,6 +166,9 @@ class Api extends AbstractApi
             case 'submit':
                 $params = array('controller' => 'post', 'action' => $type);
                 break;
+            case 'list':
+                $params = array('controller' => 'list');
+                break;
             case 'root':
                 if (!empty($options['root'])) {
                     $rootId = $options['root'];
@@ -207,11 +212,15 @@ class Api extends AbstractApi
             default:
                 break;
         }
-
+        if ($options) {
+            $params = array_merge($options, $params);
+        }
+        /*
         // For AJAX calls
         if (isset($options['return'])) {
             $params['return'] = $options['return'];
         }
+        */
         $url = Pi::service('url')->assemble('comment', $params);
 
         return $url;

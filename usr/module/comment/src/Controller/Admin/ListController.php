@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Comment\Controller\Front;
+namespace Module\Comment\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;

@@ -35,6 +35,24 @@ class IndexController extends ActionController
                     'controller'    => 'demo'
                 )),
             ),
+            'all'   => array(
+                'title' => __('All comment posts'),
+                'url'   => Pi::api('comment')->getUrl('list', array(
+                    'active'  => null,
+                )),
+            ),
+            'all-active'   => array(
+                'title' => __('All active comment posts'),
+                'url'   => Pi::api('comment')->getUrl('list', array(
+                    'active'  => 1,
+                )),
+            ),
+            'all-inactive'   => array(
+                'title' => __('All inactive comment posts'),
+                'url'   => Pi::api('comment')->getUrl('list', array(
+                    'active'  => 0,
+                )),
+            ),
             'module'   => array(
                 'title' => __('Comment posts for module "Comment"'),
                 'url'   => Pi::api('comment')->getUrl('module', array(

@@ -34,6 +34,9 @@ class Category extends AbstractRegistry
         $where = array('active' => 1);
         if ($options['module']) {
             $where['module'] = $options['module'];
+        } else {
+            $moduleList = Pi::registry('modulelist')->read('active');
+            $where['module'] = array_keys($moduleList);
         }
         $rowset = $model->select($where);
         foreach ($rowset as $row) {

@@ -251,11 +251,13 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        $module = $this->getModule();
         Pi::registry('category', 'comment')->clear();
 
+        /*
+        $module = $this->getModule();
         $model = Pi::model('category', 'comment');
         $model->update(array('active' => 1), array('module' => $module));
+        */
 
         return true;
     }
@@ -268,11 +270,13 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        $module = $this->getModule();
         Pi::registry('category', 'comment')->clear();
 
+        /*
+        $module = $this->getModule();
         $model = Pi::model('category', 'comment');
         $model->update(array('active' => 0), array('module' => $module));
+        */
 
         return true;
     }

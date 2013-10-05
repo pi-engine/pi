@@ -1,0 +1,39 @@
+<div class="page-header"><?php echo _escape($title); ?></div>
+<ul>
+    <?php foreach ($links as $key => $link) { ?>
+    <li>
+        <a href="<?php echo $link['url']; ?>" title="<?php echo _escape($link['title']); ?>" target="_blank">
+            <?php echo _escape($link['title']); ?>
+        </a>
+    </li>
+    <?php } ?>
+</ul>
+
+<div class="page-header"><?php _e('Comment categories'); ?></div>
+<ul>
+    <?php foreach ($modules as $name => $data) { ?>
+        <li><?php echo _escape($data['title']); ?>
+            <ul><li>
+                    <a href="<?php echo $data['url']; ?>" title="<?php _e('Comment posts'); ?>" target="_blank">
+                        <?php _e('Comment posts'); ?>
+                    </a>
+                </li>
+                <li><?php _e('Categories: '); ?>
+                    <ul>
+                        <?php foreach ($data['categories'] as $key => $category) { ?>
+                        <li><?php echo sprintf('%s: ', _escape($category['title'])); ?>
+                            <a href="<?php echo $category['url']; ?>" title="<?php _e('Comment posts'); ?>" target="_blank">
+                                <?php _e('Comment posts'); ?>
+                            </a>
+                            <a href="<?php echo $category['enable']['url']; ?>" title="<?php echo _escape($category['enable']['title']); ?>" target="_blank">
+                                <?php echo _escape($category['enable']['title']); ?>
+                            </a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    <?php } ?>
+</ul>
+
