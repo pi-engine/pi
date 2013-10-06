@@ -56,9 +56,9 @@ return array(
                 ),
                 'options'   => array(
                     'options'   => array(
-                        1   => 'One',
-                        2   => 'Two',
-                        3   => 'Three',
+                        1   => _t('One'),
+                        2   => _t('Two'),
+                        3   => _t('Three'),
                     ),
                 ),
             ),

@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Widget',
+        'title'         => __('Widget'),
         // Description, for admin, optional
-        'description'   => 'Management of custom blocks/widgets.',
+        'description'   => __('Management of custom blocks/widgets.'),
         // Version number, required
         'version'       => '1.0.0',
         // Distribution license, required

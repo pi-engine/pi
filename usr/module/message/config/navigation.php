@@ -10,19 +10,19 @@
 return array(
     'front'      => array(
         'private' => array(
-            'label'         => 'Private message',
+            'label'         => _t('Private message'),
             'route'         => 'default',
             'controller'    => 'index',
             'action'        => 'index',
         ),
         'notify' => array(
-            'label'         => 'Notification',
+            'label'         => _t('Notification'),
             'route'         => 'default',
             'controller'    => 'notify',
             'action'        => 'index',
         ),
         'send' => array(
-            'label'         => 'New message',
+            'label'         => _t('New message'),
             'route'         => 'default',
             'controller'    => 'index',
             'action'        => 'send',

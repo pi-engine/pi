@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Test',
+        'title'         => __('Test'),
         // Description, for admin, optional
-        'description'   => 'Test for module dependency.',
+        'description'   => __('Test for module dependency.'),
         // Version number, required
         'version'       => '1.0.0',
         // Distribution license, required

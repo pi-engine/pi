@@ -17,24 +17,24 @@ return array(
         'config'        => array(
             // text option
             'first' => array(
-                'title'         => 'Your input',
-                'description'   => 'The first option for first block',
+                'title'         => __('Your input'),
+                'description'   => __('The first option for first block'),
                 'edit'          => 'text',
                 'filter'        => 'string',
                 'value'         => __('Demo option 1'),
             ),
             // Yes or No option
             'second'    => array(
-                'title'         => 'Yes or No',
-                'description'   => 'Demo for Yes-No',
+                'title'         => __('Yes or No'),
+                'description'   => __('Demo for Yes-No'),
                 'edit'          => 'checkbox',
                 'filter'        => 'number_int',
                 'value'         => 0
             ),
             // Number
             'third'    => array(
-                'title'         => 'Input some figure',
-                'description'   => 'Demo for number',
+                'title'         => __('Input some figure'),
+                'description'   => __('Demo for number'),
                 'edit'          => 'text',
                 //'filter'        => 'number_int',
                 'value'         => 10,
@@ -54,15 +54,15 @@ return array(
         'config'        => array(
             // select option
             'third' => array(
-                'title'         => 'Select it',
+                'title'         => __('Select it'),
                 'description'   => '',
                 'edit'          => array(
                     'type'          => 'select',
                     'options'    => array(
                         'options'   => array(
-                            'one'   => 'One',
-                            'two'   => 'Two',
-                            'three' => 'Three',
+                            'one'   => __('One'),
+                            'two'   => __('Two'),
+                            'three' => __('Three'),
                         ),
                     ),
                 ),
@@ -72,7 +72,7 @@ return array(
 
             // module custom field option
             'fourth'    => array(
-                'title'         => 'Choose it',
+                'title'         => __('Choose it'),
                 'description'   => '',
                 'edit'          => 'Module\Demo\Form\Element\Choose',
                 'filter'        => 'string',
