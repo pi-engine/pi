@@ -47,24 +47,24 @@ class DemoController extends ActionController
         }
 
         $rootIds = array();
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $root = array(
                 'module'    => 'comment',
                 'item'      => $i,
                 'category'  => 'article',
-                'active'    => 1,
+                'active'    => rand(0, 1),
             );
             $rootIds[$i] = Pi::api('comment')->addRoot($root);
         }
 
         for ($i = 0; $i < 1000; $i++) {
             $post = array(
-                'root'      => $rootIds[rand(1, 5)],
-                'uid'       => 1,
+                'root'      => $rootIds[rand(1, 10)],
+                'uid'       => rand(1, 5),
                 'ip'        => Pi::service('user')->getIp(),
-                'active'    => 1,
+                'active'    => rand(0, 1),
                 'content'   => sprintf(__('Demo comment %d.'), $i + 1),
-                'time'      => time() - rand(100, 10000),
+                'time'      => time() - rand(100, 100000),
             );
             Pi::api('comment')->addPost($post);
         }

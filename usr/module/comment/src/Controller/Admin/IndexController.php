@@ -103,7 +103,7 @@ class IndexController extends ActionController
                 )),
             ),
         );
-        d($counts);
+        //d($counts);
 
         // Top users
         $rowset = Pi::model('post', 'comment')->count(
@@ -127,7 +127,7 @@ class IndexController extends ActionController
                 );
             });
         }
-        d($users);
+        //d($users);
 
         // Top targets
         $rowset = Pi::model('post', 'comment')->count(
@@ -136,17 +136,15 @@ class IndexController extends ActionController
         );
         $roots = array();
         foreach ($rowset as $row) {
-            $roots[$row['root']] = array('count' => (int) $row['count']);
+            $roots[$row['root']] = (int) $row['count'];
         }
         $rootIds = array_keys($roots);
-        $targetList = Pi::api('comment')->getTargetList(array(
-            'root'  => $rootIds,
-        ));
-        $targets = array();
-        foreach ($roots as $rootId => $root) {
-            $targets[$rootId] = $targetList[$rootId] + $root;
-        }
-        d($targets);
+        $targets = Pi::api('comment')->getTargetsByRoot($rootIds);
+        //$targets = Pi::api('comment')->getTargetList(array('root' => $rootIds));
+        array_walk($targets, function (&$target, $rootId) use ($roots) {
+            $target['count'] = $roots[$rootId];
+        });
+        //d($targets);
 
         // Module stats
         $modulelist = Pi::registry('modulelist')->read('active');
@@ -207,7 +205,7 @@ class IndexController extends ActionController
             $data['count'] = $mCount;
             $modules[$name] = $data;
         }
-        d($modules);
+        //d($modules);
 
         $this->view()->assign(array(
             'title'     => $title,

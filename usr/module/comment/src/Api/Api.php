@@ -534,20 +534,66 @@ class Api extends AbstractApi
     }
 
     /**
+     * Get target list by root IDs
+     *
+     * @param array $ids
+     *
+     * @return array
+     */
+    public function getTargetsByRoot(array $ids)
+    {
+        $result = array();
+        if (!$ids) {
+            return $result;
+        }
+
+        $rowset = Pi::model('root', 'comment')->select(array('id' => $ids));
+        //$roots = array();
+        $items = array();
+        foreach ($rowset as $row) {
+            $id = (int) $row['id'];
+            //$roots[$id] = $row->toArray();
+            $items[$row['module']][$row['category']][$row['item']] = $id;
+        }
+        //d($items);
+        $targets = Pi::registry('category', 'comment')->read();
+        $list = array();
+        foreach ($items as $module => $mList) {
+            foreach ($mList as $category => $cList) {
+                if (!isset($targets[$module][$category])) {
+                    continue;
+                }
+                $callback = $targets[$module][$category]['callback'];
+                $handler = new $callback($module);
+                $targets = $handler->get(array_keys($cList));
+                foreach ($targets as $item => $target) {
+                    $root = $cList[$item];
+                    $list[$root] = $target;
+                }
+            }
+        }
+        foreach ($ids as $root) {
+            $result[$root] = $list[$root];
+        }
+
+        return $result;
+    }
+
+    /**
      * Get multiple targets being commented
      *
      * @param array|Where $condition
-     * @param int         $limit
+     * @param int|null    $limit
      * @param int         $offset
-     * @param string      $order
+     * @param string|null $order
      *
      * @return array List of targets indexed by root id
      */
     public function getTargetList(
         $condition,
-        $limit          = 0,
+        $limit          = null,
         $offset         = 0,
-        $order          = ''
+        $order          = null
     ) {
         $result = array();
 
@@ -556,11 +602,6 @@ class Api extends AbstractApi
         } else {
             $whereRoot = array();
             $wherePost = $this->canonizePost($condition);
-            /*
-            if (!isset($wherePost['active'])) {
-                $wherePost['active'] = 1;
-            }
-            */
             if (isset($wherePost['active'])) {
                 $whereRoot['active'] = $wherePost['active'];
             }
@@ -580,8 +621,6 @@ class Api extends AbstractApi
             }
         }
 
-        $limit = $limit ?: (Pi::config('list_limit') ?: 10);
-        $order = $order ?: 'post.time desc';
         $select = Pi::db()->select();
         $select->from(
             array('root' => Pi::model('root', 'comment')->getTable()),
@@ -593,11 +632,18 @@ class Api extends AbstractApi
             array()
         );
         $select->group('post.root');
-        $select->where($where)->order($order)->limit($limit);
+        $select->where($where);
+        $limit = (null === $limit) ? Pi::config('list_limit') : (int) $limit;
+        $order = (null === $order) ? 'post.time desc' : $order;
+        if ($limit) {
+            $select->limit($limit);
+        }
         if ($offset) {
             $select->offset($offset);
         }
-        $select->order($order);
+        if ($order) {
+            $select->order($order);
+        }
 
         $targets = Pi::registry('category', 'comment')->read();
 
@@ -639,10 +685,10 @@ class Api extends AbstractApi
      *
      * @return array|bool
      */
-    public function getList($condition, $limit = 0, $offset = 0, $order = '')
+    public function getList($condition, $limit = null, $offset = 0, $order = null)
     {
         $result = array();
-        $limit = $limit ?: (Pi::config('list_limit') ?: 10);
+        //$limit = $limit ?: (Pi::config('list_limit') ?: 10);
 
         $isJoin = false;
         if ($condition instanceof Where) {
@@ -685,10 +731,10 @@ class Api extends AbstractApi
         }
 
         if (!$isJoin) {
-            $order = $order ?: 'time desc';
+            $order = null === $order ? 'time desc' : $order;
             $select = Pi::model('post', 'comment')->select();
         } else {
-            $order = $order ?: 'post.time desc';
+            $order = null === $order ? 'post.time desc' : $order;
             $select = Pi::db()->select();
             $select->from(
                 array('post' => Pi::model('post', 'comment')->getTable())
@@ -700,11 +746,18 @@ class Api extends AbstractApi
             );
         }
 
-        $select->where($where)->limit($limit);
+        $select->where($where);
+        $limit = (null === $limit) ? Pi::config('list_limit') : (int) $limit;
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($order) {
+            $select->order($order);
+        }
         if ($offset) {
             $select->offset($offset);
         }
-        $select->order($order);
+        //$select->order($order);
         if (!$isJoin) {
             $rowset = Pi::model('post', 'comment')->selectWith($select);
             foreach ($rowset as $row) {

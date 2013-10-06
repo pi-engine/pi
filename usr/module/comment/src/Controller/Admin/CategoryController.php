@@ -12,59 +12,14 @@ namespace Module\Comment\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-class IndexController extends ActionController
+class CategoryController extends ActionController
 {
     /**
      * Comment categories
      */
     public function indexAction()
     {
-        $title = sprintf(__('Comment portal for %s'), Pi::config('sitename'));
-        $links = array(
-            'build'   => array(
-                'title' => __('Build comment data for demo articles'),
-                'url'   => $this->url('comment', array(
-                    'controller'    => 'demo',
-                    'action'        => 'build',
-                )),
-            ),
-            'article'   => array(
-                'title' => __('Demo article with comments'),
-                'url'   => $this->url('comment', array(
-                    'controller'    => 'demo',
-                )),
-            ),
-            'all'   => array(
-                'title' => __('All comment posts'),
-                'url'   => $this->url('', array(
-                    'controller'    => 'list',
-                    'action'        => 'index',
-                )),
-            ),
-            'all-active'   => array(
-                'title' => __('All active comment posts'),
-                'url'   => $this->url('', array(
-                    'controller'    => 'list',
-                    'action'        => 'index',
-                    'active'        => 1,
-                )),
-            ),
-            'all-inactive'   => array(
-                'title' => __('All inactive comment posts'),
-                'url'   => $this->url('', array(
-                    'controller'    => 'list',
-                    'action'        => 'index',
-                    'active'        => 0,
-                )),
-            ),
-            'user'   => array(
-                'title' => __('Comment posts by user'),
-                'url'   => $this->url('', array(
-                    'controller'    => 'list',
-                    'action'        => 'user',
-                )),
-            ),
-        );
+        $title = __('Comment categories');
 
         $modulelist = Pi::registry('modulelist')->read('active');
         $rowset = Pi::model('category', 'comment')->select(array(
@@ -72,21 +27,22 @@ class IndexController extends ActionController
         ));
         $categories = array();
         foreach ($rowset as $row) {
-            $categories[$row['module']][$row['category']] = array(
+            $category = $row['name'];
+            $categories[$row['module']][$category] = array(
                 'title'     => $row['title'],
-                'active'    => (int) $row['active'],
+                'status'    => $row['active'] ? __('Active') : __('Disabled'),
                 'url'       => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'module',
                     'name'          => $row['module'],
-                    'category'      => $row['category'],
+                    'category'      => $category,
                 )),
                 'enable'    => array(
                     'title' => $row['active'] ? __('Disable') : __('Enable'),
                     'url'   => $this->url('', array(
-                        'controller'    => 'list',
+                        'controller'    => 'category',
                         'action'        => 'enable',
-                        'category'      => $row['category'],
+                        'id'            => $row['id'],
                         'flag'          => $row['active'] ? 0 : 1,
                     )),
                 ),
@@ -107,12 +63,59 @@ class IndexController extends ActionController
                 'categories'    => $categories[$name],
             );
         }
+
+        //d($modules);
         $this->view()->assign(array(
             'title'     => $title,
-            'links'     => $links,
             'modules'   => $modules,
         ));
 
-        $this->view()->setTemplate('comment-index');
+        $this->view()->setTemplate('comment-category');
+    }
+
+
+    /**
+     * Enable/disable a category
+     *
+     * @return bool
+     */
+    public function enableAction()
+    {
+        $id = _get('id', 'int') ?: 1;
+        $flag = _get('flag', 'int');
+        $return = _get('return');
+
+        $row = Pi::model('category', 'comment')->find($id);
+        if (!$row) {
+            $status = -1;
+            $message = __('Category was not found.');
+        } else {
+            if ($flag == (int) $row['active']) {
+                $status = 0;
+                $message = __('Invalid operation.');
+            } else {
+                $row['active'] = $flag;
+                try {
+                    $row->save();
+                    $status = 1;
+                    $message = __('Operation succeeded.');
+                } catch (\Exception $e) {
+                    $status = 0;
+                    $message = __('Operation failed.');
+                }
+            }
+        }
+
+        if (!$return) {
+            $this->jump(array('action' => 'index'), $message);
+        } else {
+            $result = array(
+                'status'    => (int) $status,
+                'message'   => $message,
+                'data'      => $id,
+            );
+
+            return $result;
+        }
     }
 }

@@ -1,0 +1,24 @@
+<div class="page-header"><?php echo _escape($title); ?></div>
+
+<dl class="dl-horizontal">
+    <?php foreach ($modules as $name => $data) { ?>
+        <dl>
+            <?php echo _escape($data['title']); ?>
+            <a href="<?php echo $data['url']; ?>" title="<?php echo _e('Posts'); ?>" target="_blank">
+                <?php echo _e('Posts'); ?>
+            </a>
+        </dl>
+        <?php foreach ($data['categories'] as $category => $cData) { ?>
+        <dt><?php echo _escape($cData['title']); ?></dt>
+        <dd>
+            <?php echo $cData['status']; ?>
+            <a href="<?php echo $cData['enable']['url']; ?>" title="<?php echo $cData['enable']['title']; ?>" target="_blank">
+                <?php echo $cData['enable']['title']; ?>
+            </a>
+            <a href="<?php echo $cData['url']; ?>" title="<?php _e('Posts'); ?>" target="_blank">
+                <?php _e('Posts'); ?>
+            </a>
+        </dd>
+        <?php } ?>
+    <?php } ?>
+</dl>
