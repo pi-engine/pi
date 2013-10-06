@@ -75,13 +75,15 @@ class Api extends AbstractApi
     protected function canonizePost($data)
     {
         $result = array();
-        /*
-        if (!array_key_exists('active', $data)) {
-            $data['active'] = 1;
-        } elseif (null === $data['active']) {
-            unset($data['active']);
+
+        if (array_key_exists('active', $data)) {
+            if (null === $data['active']) {
+                unset($data['active']);
+            } else {
+                $data['active'] = (int) $data['active'];
+            }
         }
-        */
+
         foreach ($data as $key => $value) {
             if (in_array($key, $this->postColumn)) {
                 $result[$key] = $value;
@@ -311,7 +313,9 @@ class Api extends AbstractApi
 
             //vd($result['count']);
             if ($result['count']) {
-                $result['posts'] = $this->getList($rootData['id'], $limit);
+                $posts = $this->getList($rootData['id'], $limit);
+                $posts = $this->renderList($posts);
+                $result['posts'] = $posts;
                 $result['url_list'] = $this->getUrl(
                     'root',
                     array('root'  => $rootData['id'])
@@ -361,6 +365,35 @@ class Api extends AbstractApi
         $result = Pi::service('markup')->render($content, $renderer, $parser);
 
         return $result;
+    }
+
+    /**
+     * Render list of posts
+     *
+     * @param array $posts
+     * @param bool  $isAdmin
+     *
+     * @return array
+     */
+    public function renderList(array $posts, $isAdmin = false)
+    {
+        array_walk($posts, function (&$post) use ($isAdmin) {
+            $post['content'] = $this->renderPost($post);
+            if ($isAdmin) {
+                $post['url'] = Pi::service('url')->assemble('admin', array(
+                    'module'        => 'comment',
+                    'controller'    => 'post',
+                    'action'        => 'index',
+                    'id'            => $post['id']
+                ));
+            } else {
+                $post['url'] = $this->getUrl('post', array(
+                    'post'  => $post['id']
+                ));
+            }
+        });
+
+        return $posts;
     }
 
     /**
@@ -770,6 +803,7 @@ class Api extends AbstractApi
             }
         }
 
+        /*
         // Render post contents and url
         array_walk($result, function (&$post) {
             $post['content'] = Pi::api('comment')->renderPost($post);
@@ -777,6 +811,7 @@ class Api extends AbstractApi
                 'post'  => $post['id']
             ));
         });
+        */
 
         return $result;
     }

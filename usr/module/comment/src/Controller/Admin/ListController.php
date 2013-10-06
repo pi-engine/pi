@@ -26,7 +26,6 @@ class ListController extends ActionController
     public function indexAction()
     {
         $active = _get('active');
-        //vd($active);
         if (null !== $active) {
             $active = (int) $active;
         }
@@ -34,11 +33,12 @@ class ListController extends ActionController
         $limit = Pi::config('comment_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
-        $posts = Pi::service('comment')->getList(
+        $posts = Pi::api('comment')->getList(
             array('active' => $active),
             $limit,
             $offset
         );
+        $posts = Pi::api('comment')->renderList($posts, true);
         $count = Pi::service('comment')->getCount(array('active' => $active));
 
         $targets = array();
@@ -110,83 +110,35 @@ class ListController extends ActionController
             'paginator' => $paginator,
         ));
 
-        $this->view()->setTemplate('comment-list');
-    }
-
-    /**
-     * List of comment posts of a root
-     *
-     * @return string
-     */
-    public function rootAction()
-    {
-        $root   = _get('root', 'int') ?: 1;
-        //$active = _get('active', 'int') ?: 1;
-        $page   = _get('page', 'int') ?: 1;
-        //vd($page);
-        $limit = Pi::config('comment_limit') ?: 10;
-        $offset = ($page - 1) * $limit;
-        $posts = Pi::api('comment')->getList($root, $limit, $offset);
-        $count = Pi::api('comment')->getCount($root);
-
-        $target = Pi::api('comment')->getTarget($root);
-
-        $users = array();
-        $uids = array();
-        $uids[] = $target['uid'];
-        foreach ($posts as $post) {
-            $uids[] = (int) $post['uid'];
-        }
-        if ($uids) {
-            $uids = array_unique($uids);
-            $users = Pi::service('user')->get($uids, array('name'));
-            $avatars = Pi::service('avatar')->getList($uids, 'small');
-            //vd($avatars);
-            //vd($users);
-            foreach ($users as $uid => &$data) {
-                $data['url'] = Pi::service('user')->getUrl('profile', $uid);
-                $data['avatar'] = $avatars[$uid];
-            }
-        }
-        $users[0] = array(
-            'avatar'    => Pi::service('avatar')->get(0, 'small'),
-            'url'       => Pi::url('www'),
-            'name'      => __('Guest'),
-        );
-
-        //vd($uids);
-        //vd($users);
-        $setUser = function ($uid) use ($users) {
-            if (isset($users[$uid])) {
-                return $users[$uid];
-            } else {
-                return $users[0];
-            }
-        };
-        $target['user'] = $setUser($target['uid']);
-        foreach ($posts as &$post) {
-            $post['user'] = $setUser($post['uid']);
-        }
-
-        $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
-                'params'        => array(
-                    'root'      => $root,
-                ),
+        $navTabs = array(
+            array(
+                'active'    => null === $active,
+                'label'     => __('All Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'index',
+                ))
             ),
+            array(
+                'active'    => 1 == $active,
+                'label'     => __('Active Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'index',
+                    'active'    => 1,
+                ))
+            ),
+            array(
+                'active'    => 0 === $active,
+                'label'     => __('Inactive Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'index',
+                    'active'    => 0,
+                ))
+            ),
+        );
+        $this->view()->assign(array(
+            'tabs'      => $navTabs,
         ));
-        $title = sprintf(__('Comment posts of %s'), $target['title']);
-        $this->view()->assign('comment', array(
-            'title'     => $title,
-            'root'      => $root,
-            'target'    => $target,
-            'count'     => $count,
-            'posts'     => $posts,
-            'paginator' => $paginator,
-        ));
-
-        $this->view()->setTemplate('comment-root');
+        $this->view()->setTemplate('comment-list');
     }
 
     /**
@@ -194,17 +146,45 @@ class ListController extends ActionController
      */
     public function userAction()
     {
-        $uid    = _get('uid', 'int') ?: Pi::user()->getIdentity();
-        $active = _get('active', 'int') ?: 1;
+        $uid        = _get('uid');
+        $userModel  = null;
+        if (is_numeric($uid)) {
+            $userModel = Pi::service('user')->getUser($uid);
+        } elseif ($uid) {
+            $userModel = Pi::service('user')->getUser($uid, 'identity');
+        }
+        if ($userModel && $uid = $userModel->get('id')) {
+            $user = array(
+                'name'      => $userModel->get('name'),
+                'url'       => Pi::service('user')->getUrl('profile', $uid),
+                'avatar'    => Pi::service('avatar')->get($uid),
+            );
+        } else {
+            $this->view()->assign(array(
+                'title' => __('Select a user'),
+                'url'   => $this->url('', array('action' => 'user')),
+            ));
+            $this->view()->setTemplate('comment-user-select');
+
+            return;
+        }
+
+        $active = _get('active');
+        if (null !== $active) {
+            $active = (int) $active;
+        }
+
         $page   = _get('page', 'int') ?: 1;
         $limit = Pi::config('comment_limit') ?: 10;
         $offset = ($page - 1) * $limit;
-        $posts = Pi::service('comment')->getList(
-            array('uid' => $uid, 'active' => $active),
+        $where = array('uid' => $uid, 'active' => $active);
+        $posts = Pi::api('comment')->getList(
+            $where,
             $limit,
             $offset
         );
-        $count = Pi::service('comment')->getCount(array('uid' => $uid));
+        $posts = Pi::api('comment')->renderList($posts, true);
+        $count = Pi::service('comment')->getCount($where);
 
         $targets = array();
         $rootIds = array();
@@ -218,10 +198,6 @@ class ListController extends ActionController
         foreach ($posts as &$post) {
             $post['target'] = $targets[$post['root']];
         }
-
-        $user = Pi::service('user')->get($uid, array('name'));
-        $user['avatar'] = Pi::service('avatar')->get($uid);
-        $user['url'] = Pi::service('user')->getUrl('profile', $uid);
 
         $paginator = Paginator::factory($count, array(
             'page'  => $page,
@@ -241,6 +217,37 @@ class ListController extends ActionController
             'user'      => $user,
         ));
 
+        $navTabs = array(
+            array(
+                'active'    => null === $active,
+                'label'     => __('All Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'user',
+                    'uid'       => $uid,
+                ))
+            ),
+            array(
+                'active'    => 1 == $active,
+                'label'     => __('Active Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'user',
+                    'uid'       => $uid,
+                    'active'    => 1,
+                ))
+            ),
+            array(
+                'active'    => 0 === $active,
+                'label'     => __('Inactive Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'user',
+                    'uid'       => $uid,
+                    'active'    => 0,
+                ))
+            ),
+        );
+        $this->view()->assign(array(
+            'tabs'      => $navTabs,
+        ));
         $this->view()->setTemplate('comment-user');
     }
 
@@ -249,8 +256,58 @@ class ListController extends ActionController
      */
     public function moduleAction()
     {
-        $active = _get('active', 'int') ?: 1;
-        $module = _get('name') ?: 'comment';
+        $module = _get('name');
+        if (!$module) {
+            $title = __('Comment categories');
+
+            $modulelist = Pi::registry('modulelist')->read('active');
+            $rowset = Pi::model('category', 'comment')->select(array(
+                'module'    => array_keys($modulelist),
+            ));
+            $categories = array();
+            foreach ($rowset as $row) {
+                $category = $row['name'];
+                $categories[$row['module']][$category] = array(
+                    'title'     => $row['title'],
+                    'url'       => $this->url('', array(
+                        'controller'    => 'list',
+                        'action'        => 'module',
+                        'name'          => $row['module'],
+                        'category'      => $category,
+                    )),
+                );
+            }
+            $modules = array();
+            foreach ($modulelist as $name => $data) {
+                if (!isset($categories[$name])) {
+                    continue;
+                }
+                $modules[$name] = array(
+                    'title'         => $data['title'],
+                    'url'           => $this->url('', array(
+                        'controller'    => 'list',
+                        'action'        => 'module',
+                        'name'          => $name,
+                    )),
+                    'categories'    => $categories[$name],
+                );
+            }
+
+            //d($modules);
+            $this->view()->assign(array(
+                'title'     => $title,
+                'modules'   => $modules,
+            ));
+
+            $this->view()->setTemplate('comment-module-select');
+            return;
+        }
+
+        $active = _get('active');
+        if (null !== $active) {
+            $active = (int) $active;
+        }
+
         $category = _get('category') ?: '';
         $page   = _get('page', 'int') ?: 1;
         $limit = Pi::config('comment_limit') ?: 10;
@@ -270,11 +327,12 @@ class ListController extends ActionController
             );
             $where['category'] = $category;
         }
-        $posts = Pi::service('comment')->getList(
+        $posts = Pi::api('comment')->getList(
             $where,
             $limit,
             $offset
         );
+        $posts = Pi::api('comment')->renderList($posts, true);
         $count = Pi::service('comment')->getCount($where);
 
         $targets = array();
@@ -356,6 +414,40 @@ class ListController extends ActionController
             'category'  => $categoryData,
         ));
 
+        $navTabs = array(
+            array(
+                'active'    => null === $active,
+                'label'     => __('All Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'module',
+                    'name'      => $module,
+                    'category'  => $category,
+                ))
+            ),
+            array(
+                'active'    => 1 == $active,
+                'label'     => __('Active Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'module',
+                    'name'      => $module,
+                    'category'  => $category,
+                    'active'    => 1,
+                ))
+            ),
+            array(
+                'active'    => 0 === $active,
+                'label'     => __('Inactive Posts'),
+                'href'      => $this->url('', array(
+                    'action'    => 'module',
+                    'name'      => $module,
+                    'category'  => $category,
+                    'active'    => 0,
+                ))
+            ),
+        );
+        $this->view()->assign(array(
+            'tabs'      => $navTabs,
+        ));
         $this->view()->setTemplate('comment-module');
     }
 }

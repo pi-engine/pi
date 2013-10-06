@@ -34,12 +34,13 @@ class ListController extends ActionController
         $limit = Pi::config('comment_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
-        $posts = Pi::service('comment')->getList(
+        $posts = Pi::api('comment')->getList(
             array('active' => $active),
             $limit,
             $offset
         );
-        $count = Pi::service('comment')->getCount(array('active' => $active));
+        $posts = Pi::api('comment')->renderList($posts);
+        $count = Pi::api('comment')->getCount(array('active' => $active));
 
         $targets = array();
         $rootIds = array();
@@ -127,6 +128,7 @@ class ListController extends ActionController
         $limit = Pi::config('comment_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $posts = Pi::api('comment')->getList($root, $limit, $offset);
+        $posts = Pi::api('comment')->renderList($posts);
         $count = Pi::api('comment')->getCount($root);
 
         $target = Pi::api('comment')->getTarget($root);
@@ -199,12 +201,13 @@ class ListController extends ActionController
         $page   = _get('page', 'int') ?: 1;
         $limit = Pi::config('comment_limit') ?: 10;
         $offset = ($page - 1) * $limit;
-        $posts = Pi::service('comment')->getList(
+        $posts = Pi::api('comment')->getList(
             array('uid' => $uid, 'active' => $active),
             $limit,
             $offset
         );
-        $count = Pi::service('comment')->getCount(array('uid' => $uid));
+        $posts = Pi::api('comment')->renderList($posts);
+        $count = Pi::api('comment')->getCount(array('uid' => $uid));
 
         $targets = array();
         $rootIds = array();
@@ -270,12 +273,13 @@ class ListController extends ActionController
             );
             $where['category'] = $category;
         }
-        $posts = Pi::service('comment')->getList(
+        $posts = Pi::api('comment')->getList(
             $where,
             $limit,
             $offset
         );
-        $count = Pi::service('comment')->getCount($where);
+        $posts = Pi::api('comment')->renderList($posts);
+        $count = Pi::api('comment')->getCount($where);
 
         $targets = array();
         $rootIds = array();

@@ -81,6 +81,39 @@ class Comment extends AbstractService
     }
 
     /**
+     * Render post content
+     *
+     * @param array|RowGateway|string $post
+     *
+     * @return string
+     */
+    public function renderPost($post)
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('comment')->renderPost($post);
+    }
+
+    /**
+     * Render list of posts
+     *
+     * @param array $posts
+     * @param bool  $isAdmin
+     *
+     * @return array
+     */
+    public function renderList(array $posts, $isAdmin = false)
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('comment')->renderList($posts, $isAdmin);
+    }
+
+    /**
      * Add comment of an item
      *
      * @param array $data   Data of uid, content, module, item, category, time

@@ -1,0 +1,20 @@
+<div class="page-header"><?php echo _escape($title); ?></div>
+
+<ul>
+    <?php foreach ($modules as $name => $data) { ?>
+    <li>
+        <ul>
+        <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>">
+            <?php echo _escape($data['title']); ?>
+        </a>
+        <?php foreach ($data['categories'] as $category => $cData) { ?>
+        <li>
+            <a href="<?php echo $cData['url']; ?>" title="<?php echo _escape($cData['title']); ?>">
+                <?php echo _escape($cData['title']); ?>
+            </a>
+        </li>
+        <?php } ?>
+        </ul>
+    </li>
+    <?php } ?>
+</ul>

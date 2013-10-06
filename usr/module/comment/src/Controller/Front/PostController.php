@@ -39,27 +39,56 @@ class PostController extends ActionController
             $user['avatar'] = Pi::service('avatar')->get($post['uid']);
             $post['user'] = $user;
             $active = $post['active'];
+
             $post['operations'] = array(
-                'edit'  => array(
-                    'title' => __('Edit'),
-                    'url'   => Pi::api('comment')->getUrl('edit', array(
+                'view'  => array(
+                    'title' => __('View'),
+                    'url'   => Pi::api('comment')->getUrl('post', array(
                         'post'  => $id,
-                    )),
-                ),
-                'delete'  => array(
-                    'title' => __('Delete'),
-                    'url'   => Pi::api('comment')->getUrl('delete', array(
-                        'post'  => $id,
-                    )),
-                ),
-                'approve'  => array(
-                    'title' => $active ? __('Disable') : __('Enable'),
-                    'url'   => Pi::api('comment')->getUrl('approve', array(
-                        'post'  => $id,
-                        'flag'  => $active ? 0 : 1,
                     )),
                 ),
             );
+            // Author
+            if ($post['uid'] == Pi::service('user')->getIdentity()) {
+                $post['operations'] = array_merge($post['operations'], array(
+                    'edit'  => array(
+                        'title' => __('Edit'),
+                        'url'   => Pi::api('comment')->getUrl('edit', array(
+                            'post'  => $id,
+                        )),
+                    ),
+                    'delete'  => array(
+                        'title' => __('Delete'),
+                        'url'   => Pi::api('comment')->getUrl('delete', array(
+                            'post'  => $id,
+                        )),
+                    ),
+                ));
+            }
+            // Admin
+            if (Pi::service('user')->getUser()->isAdmin()) {
+                $post['operations'] = array_merge($post['operations'], array(
+                    'edit'  => array(
+                        'title' => __('Edit'),
+                        'url'   => Pi::api('comment')->getUrl('edit', array(
+                            'post'  => $id,
+                        )),
+                    ),
+                    'delete'  => array(
+                        'title' => __('Delete'),
+                        'url'   => Pi::api('comment')->getUrl('delete', array(
+                            'post'  => $id,
+                        )),
+                    ),
+                    'approve'  => array(
+                        'title' => $active ? __('Disable') : __('Enable'),
+                        'url'   => Pi::api('comment')->getUrl('approve', array(
+                            'post'  => $id,
+                            'flag'  => $active ? 0 : 1,
+                        )),
+                    ),
+                ));
+            }
         }
         $title = __('Comment post');
         $this->view()->assign('comment', array(

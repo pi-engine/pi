@@ -42,21 +42,24 @@ class PostController extends ActionController
             $post['operations'] = array(
                 'edit'  => array(
                     'title' => __('Edit'),
-                    'url'   => Pi::api('comment')->getUrl('edit', array(
-                        'post'  => $id,
+                    'url'   => $this->url('', array(
+                        'action'        => 'edit',
+                        'id'            => $id,
                     )),
                 ),
                 'delete'  => array(
                     'title' => __('Delete'),
-                    'url'   => Pi::api('comment')->getUrl('delete', array(
-                        'post'  => $id,
+                    'url'   => $this->url('', array(
+                        'action'        => 'delete',
+                        'id'            => $id,
                     )),
                 ),
                 'approve'  => array(
                     'title' => $active ? __('Disable') : __('Enable'),
-                    'url'   => Pi::api('comment')->getUrl('approve', array(
-                        'post'  => $id,
-                        'flag'  => $active ? 0 : 1,
+                    'url'   => $this->url('', array(
+                        'action'        => 'approve',
+                        'id'            => $id,
+                        'flag'          => $active ? 0 : 1,
                     )),
                 ),
             );
@@ -67,7 +70,7 @@ class PostController extends ActionController
             'post'      => $post,
             'target'    => $target,
         ));
-        $this->view()->setTemplate('comment-view');
+        $this->view()->setTemplate('comment-view', '', 'front');
     }
 
     public function editAction()
@@ -96,9 +99,12 @@ class PostController extends ActionController
             'redirect' => $redirect,
         ));
         $form = Pi::api('comment')->getForm($data);
+        $form->setAttribute('action', $this->url('', array(
+            'action'    => 'submit',
+        )));
 
         $this->view()->assign('form', $form);
-        $this->view()->setTemplate('comment-edit');
+        $this->view()->setTemplate('comment-edit', '', 'front');
     }
 
     /**
@@ -124,11 +130,12 @@ class PostController extends ActionController
             if ($redirect) {
                 $redirect = urldecode($redirect);
             } elseif (!empty($result['data'])) {
-                $redirect = Pi::api('comment')->getUrl('post', array(
-                    'post' => $result['data']
+                $redirect = $this->url('', array(
+                    'action'    => 'index',
+                    'id'      => $result['data']
                 ));
             } else {
-                $redirect = Pi::service('url')->assemble('comment');
+                $redirect = $this->url('', array('controller' => 'list'));
             }
             $this->jump($redirect, $result['message']);
         } else {
@@ -210,8 +217,9 @@ class PostController extends ActionController
             if ($redirect) {
                 $redirect = urldecode($redirect);
             } else {
-                $redirect = Pi::api('comment')->getUrl('post', array(
-                    'post' => $id
+                $redirect = $this->url('', array(
+                    'action'    => 'index',
+                    'id'        => $id,
                 ));
             }
             $this->jump($redirect, $message);
@@ -245,7 +253,7 @@ class PostController extends ActionController
             if ($redirect) {
                 $redirect = urldecode($redirect);
             } else {
-                $redirect = Pi::api('comment')->getUrl('list');
+                $redirect = $this->url('', array('controller' => 'list'));
             }
             $this->jump($redirect, $message);
         } else {
