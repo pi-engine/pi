@@ -75,11 +75,13 @@ class Api extends AbstractApi
     protected function canonizePost($data)
     {
         $result = array();
+        /*
         if (!array_key_exists('active', $data)) {
             $data['active'] = 1;
         } elseif (null === $data['active']) {
             unset($data['active']);
         }
+        */
         foreach ($data as $key => $value) {
             if (in_array($key, $this->postColumn)) {
                 $result[$key] = $value;
@@ -99,13 +101,15 @@ class Api extends AbstractApi
     protected function canonizeRoot($data)
     {
         $result = array();
-        /*
-        if (!array_key_exists('active', $data)) {
-            $data['active'] = 1;
-        } elseif (null === $data['active']) {
-            unset($data['active']);
+
+        if (array_key_exists('active', $data)) {
+            if (null === $data['active']) {
+                unset($data['active']);
+            } else {
+                $data['active'] = (int) $data['active'];
+            }
         }
-        */
+
         foreach ($data as $key => $value) {
             if (in_array($key, $this->rootColumn)) {
                 $result[$key] = $value;
@@ -731,7 +735,7 @@ class Api extends AbstractApi
      *
      * @return int|bool
      */
-    public function getCount($condition)
+    public function getCount($condition = array())
     {
         $isJoin = false;
         if ($condition instanceof Where) {
@@ -739,6 +743,7 @@ class Api extends AbstractApi
             $isJoin = true;
         } else {
             $whereRoot = array();
+            //$wherePost = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
                 if (isset($condition['module'])) {
