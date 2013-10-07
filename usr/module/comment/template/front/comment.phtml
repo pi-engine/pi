@@ -72,11 +72,20 @@ if ($data['posts']) {
             <dd><?php echo $post['ip']; ?></dd>
             <dt><?php _e('Content:');?></dt>
             <dd><?php echo $post['content']; ?></dd>
-            <dt>&nbsp;</dt>
+
+            <dt><?php _e('Operations:'); ?></dt>
             <dd>
-                <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
-                    <?php _e('More details'); ?>
-                </a>
+                <?php if (!empty($post['operations'])) { ?>
+                    <?php foreach ($post['operations'] as $key => $op) { ?>
+                        <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
+                            <?php echo _escape($op['title']); ?>
+                        </a>
+                    <?php } ?>
+                <?php } else { ?>
+                    <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
+                        <?php _e('More details'); ?>
+                    </a>
+                <?php } ?>
             </dd>
         </dl>
 <?php

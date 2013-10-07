@@ -38,9 +38,32 @@ class ListController extends ActionController
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts, true);
+        /*
+        // Comprehensive mode
+        $posts = Pi::api('comment')->renderList($posts, array(
+            'user'      => array(
+                'field'     => 'name',
+                'url'       => 'comment',
+                'avatar'    => 'small'
+            ),
+            'target'    => true,
+            'operation'     => array(
+                'uid'       => Pi::service('user')->getIdentity(),
+                'section'   => 'admin',
+            ),
+        ));
+        */
+        // Lean mode
+        $posts = Pi::api('comment')->renderList($posts, array(
+            'user'      => true,
+            'target'    => true,
+            'operation' => true,
+        ));
+        // Default mode
+        $posts = Pi::api('comment')->renderList($posts);
         $count = Pi::service('comment')->getCount(array('active' => $active));
 
+        /*
         $targets = array();
         $rootIds = array();
         foreach ($posts as $post) {
@@ -88,6 +111,7 @@ class ListController extends ActionController
         foreach ($posts as &$post) {
             $post['user'] = $setUser($post['uid']);
         }
+        */
 
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
@@ -183,9 +207,14 @@ class ListController extends ActionController
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts, true);
+        $posts = Pi::api('comment')->renderList($posts, array(
+            'user'      => false,
+            'target'    => true,
+            'operation' => true,
+        ));
         $count = Pi::service('comment')->getCount($where);
 
+        /*
         $targets = array();
         $rootIds = array();
         foreach ($posts as $post) {
@@ -198,6 +227,7 @@ class ListController extends ActionController
         foreach ($posts as &$post) {
             $post['target'] = $targets[$post['root']];
         }
+        */
 
         $paginator = Paginator::factory($count, array(
             'page'  => $page,
@@ -332,9 +362,14 @@ class ListController extends ActionController
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts, true);
+        $posts = Pi::api('comment')->renderList($posts, array(
+            'user'      => true,
+            'target'    => true,
+            'operation' => true,
+        ));
         $count = Pi::service('comment')->getCount($where);
 
+        /*
         $targets = array();
         $rootIds = array();
         foreach ($posts as $post) {
@@ -382,6 +417,7 @@ class ListController extends ActionController
         foreach ($posts as &$post) {
             $post['user'] = $setUser($post['uid']);
         }
+        */
 
         $params = array('name' => $module, 'active' => $active);
         if ($category) {

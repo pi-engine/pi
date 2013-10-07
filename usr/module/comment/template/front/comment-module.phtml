@@ -29,6 +29,7 @@ if ($posts) {
                     <?php echo _escape($post['target']['title']); ?>
                 </a>
             </dd>
+
             <dt><?php _e('Author:') ?></dt>
             <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
                     <?php echo $post['user']['name']; ?>
@@ -36,15 +37,26 @@ if ($posts) {
             </dd>
             <dt>&nbsp;</dt>
             <dd><?php echo $post['user']['avatar']; ?></dd>
+
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>
+
             <dt><?php _e('Content:');?></dt>
             <dd><?php echo $post['content']; ?></dd>
-            <dt>&nbsp;</dt>
+
+            <dt><?php _e('Operations:'); ?></dt>
             <dd>
-                <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
-                    <?php _e('More details'); ?>
-                </a>
+                <?php if (!empty($post['operations'])) { ?>
+                    <?php foreach ($post['operations'] as $key => $op) { ?>
+                        <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
+                            <?php echo _escape($op['title']); ?>
+                        </a>
+                    <?php } ?>
+                <?php } else { ?>
+                    <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
+                        <?php _e('More details'); ?>
+                    </a>
+                <?php } ?>
             </dd>
         </dl>
 <?php

@@ -200,10 +200,10 @@ class PostController extends ActionController
      */
     public function approveAction()
     {
-        $id = _get('id', 'int');
-        $flag = _get('flag');
-        $return = _get('return');
-        $redirect = _get('redirect');
+        $id         = _get('id', 'int');
+        $flag       = _get('flag');
+        $return     = _get('return');
+        $redirect   = _get('redirect');
 
         if (null === $flag) {
             $status     = Pi::api('comment')->approve($id);

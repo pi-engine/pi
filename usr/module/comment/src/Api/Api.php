@@ -373,26 +373,257 @@ class Api extends AbstractApi
     /**
      * Render list of posts
      *
+     * Options:
+     *  - user:
+     *      - field: 'name'
+     *      - avatar: false|<size>
+     *      - url: 'profile'|'comment'
+     *
+     *  - operation:
+     *      - uid: int
+     *      - user: object
+     *      - section: 'front'|'admin'
+     *      - list: array(<name> => <title>)
+     *
+     *  - target
+     *
      * @param array $posts
-     * @param bool  $isAdmin
+     * @param array $options
      *
      * @return array
      */
-    public function renderList(array $posts, $isAdmin = false)
+    public function renderList(array $posts, array $options = array())
     {
-        array_walk($posts, function (&$post) use ($isAdmin) {
-            $post['content'] = $this->renderPost($post);
-            if ($isAdmin) {
-                $post['url'] = Pi::service('url')->assemble('admin', array(
-                    'module'        => 'comment',
-                    'controller'    => 'post',
-                    'action'        => 'index',
-                    'id'            => $post['id']
-                ));
+        if (!$posts) {
+            return $posts;
+        }
+
+        $ops = array();
+        // Build authors
+        if (!isset($options['user']) || $options['user']) {
+            $op = isset($options['user'])
+                ? (array) $options['user'] : array();
+            $label = !empty($op['field']) ? $op['field'] : 'name';
+            $avatar = isset($op['avatar']) ? $op['avatar'] : 'small';
+            $url = isset($op['url']) ? $op['url'] : 'profile';
+            $uids = array();
+            foreach ($posts as $post) {
+                $uids[] = $post['uid'];
+            }
+            if ($uids) {
+                $uids = array_unique($uids);
+                $users = Pi::service('user')->get($uids, array($label));
+                $avatars = null;
+                if (false !== $avatar) {
+                    $avatars = Pi::service('avatar')->getList($uids, $avatar);
+                }
+                array_walk(
+                    $users,
+                    function (&$data, $uid) use ($url, $avatars) {
+                        if ('comment' == $url) {
+                            $data['url'] = $this->getUrl(
+                                'user',
+                                array('uid' => $uid)
+                            );
+                        } else {
+                            $data['url'] = Pi::service('user')->getUrl(
+                                'profile',
+                                $uid
+                            );
+                        }
+                        if (null !== $avatars) {
+                            $data['avatar'] = $avatars[$uid];
+                        }
+                    }
+                );
+            }
+            $users[0] = array(
+                'avatar'    => Pi::service('avatar')->get(0, 'small'),
+                'url'       => Pi::url('www'),
+                'name'      => __('Guest'),
+            );
+
+            $ops['users'] = $users;
+        }
+
+        // Build operations
+        if (!isset($options['operation']) || $options['operation']) {
+            $op = isset($options['operation'])
+                ? (array) $options['operation'] : array();
+            $uid = $user = $list = $section = null;
+            if (isset($op['uid'])) {
+                $uid = (int) $op['uid'];
+            }
+            if (isset($op['user'])) {
+                $user = $op['user'];
+            }
+            if (isset($op['section'])) {
+                $section = $op['section'];
             } else {
-                $post['url'] = $this->getUrl('post', array(
-                    'post'  => $post['id']
+                $section = Pi::engine()->section();
+            }
+            if (isset($op['list'])) {
+                $list = (array) $op['list'];
+            }
+            if (null === $uid) {
+                if (null === $user) {
+                    $uid = Pi::service('user')->getIdentity();
+                } else {
+                    $uid = $user->get('id');
+                }
+            }
+            $isAdmin = Pi::service('permission')->isAdmin('comment', $uid);
+
+            if (null === $list) {
+                $list = array(
+                    'edit'      => __('Edit'),
+                    'approve'   => __('Enable'),
+                    'delete'    => __('Delete'),
+                    'reply'     => __('Reply'),
+                );
+            }
+
+            $setOperations = function ($post) use (
+                $list,
+                $uid,
+                $isAdmin,
+                $section
+            ) {
+                if ($isAdmin) {
+                    $opList = array('edit', 'approve', 'delete', 'reply');
+                } elseif ($uid = $post['uid']) {
+                    $opList = array('edit', 'delete', 'reply');
+                } elseif ($uid) {
+                    $opList = array('reply');
+                } else {
+                    $opList = array();
+                }
+                $operations = array();
+                foreach ($opList as $op) {
+                    if (!isset($list[$op])) {
+                        continue;
+                    }
+                    $title = $url = '';
+                    switch ($op) {
+                        case 'edit':
+                        case 'delete':
+                            if ('admin' == $section) {
+                                $url = Pi::service('url')->assemble(
+                                    'admin',
+                                    array(
+                                        'module'        => 'comment',
+                                        'controller'    => 'post',
+                                        'action'        => $op,
+                                        'id'            => $post['id'],
+                                    )
+                                );
+                            } else {
+                                $url = $this->getUrl($op, array(
+                                    'post' => $post['id']
+                                ));
+                            }
+                            $title = $list[$op];
+                            break;
+                        case 'approve':
+                            if ($post['active']) {
+                                $flag = 0;
+                                $title = __('Disable');
+                            } else {
+                                $flag = 1;
+                                $title = __('Enable');
+                            }
+                            if ('admin' == $section) {
+                                $url = Pi::service('url')->assemble(
+                                    'admin',
+                                    array(
+                                        'module'        => 'comment',
+                                        'controller'    => 'post',
+                                        'action'        => $op,
+                                        'id'            => $post['id'],
+                                        'flag'          => $flag,
+                                    )
+                                );
+                            } else {
+                                $url = $this->getUrl($op, array(
+                                    'post'  => $post['id'],
+                                    'flag'  => $flag,
+                                ));
+                            }
+                            break;
+                        case 'reply':
+                            if ('admin' == $section) {
+                            } else {
+                                $url = $this->getUrl($op, array(
+                                    'post' => $post['id']
+                                ));
+                            }
+                            $title = $list[$op];
+                            break;
+                        default:
+                            $url = '';
+                            $title = '';
+                            break;
+                    }
+                    if (!$url || !$title) {
+                        continue;
+                    }
+
+                    $operations[$op] = array(
+                        'title' => $title,
+                        'url'   => $url,
+                    );
+                }
+
+                return $operations;
+            };
+
+            $ops['operations'] = array(
+                'uid'       => $uid,
+                'is_admin'  => $isAdmin,
+                'section'   => $section,
+                'list'      => $list,
+                'callback'  => $setOperations,
+            );
+        }
+        // Build targets
+        if (!isset($options['target']) || $options['target']) {
+            $targets = array();
+            $rootIds = array();
+            foreach ($posts as $post) {
+                $rootIds[] = (int) $post['root'];
+            }
+            if ($rootIds) {
+                $rootIds = array_unique($rootIds);
+                $targets = $this->getTargetList(array(
+                    'root'  => $rootIds
                 ));
+            }
+            $ops['targets'] = $targets;
+        }
+
+        array_walk($posts, function (&$post) use ($ops) {
+            $post['content'] = $this->renderPost($post);
+            $post['url'] = $this->getUrl('post', array(
+                'post'  => $post['id']
+            ));
+            if (!empty($ops['users'])) {
+                if (isset($ops['users'][$post['uid']])) {
+                    $post['user'] = $ops['users'][$post['uid']];
+                } else {
+                    $post['user'] = $ops['users'][0];
+                }
+            }
+            if (!empty($ops['targets'])) {
+                if (isset($ops['targets'][$post['root']])) {
+                    $post['target'] = $ops['targets'][$post['root']];
+                } else {
+                    $post['target'] = $ops['targets'][0];
+                }
+            }
+            if (!empty($ops['operations'])
+                && is_callable($ops['operations']['callback'])
+            ) {
+                $post['operations'] = $ops['operations']['callback']($post);
             }
         });
 
