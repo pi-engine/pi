@@ -437,6 +437,7 @@ class Api extends AbstractApi
             $label = !empty($op['field']) ? $op['field'] : 'name';
             $avatar = isset($op['avatar']) ? $op['avatar'] : 'small';
             $url = isset($op['url']) ? $op['url'] : 'profile';
+
             $uids = array();
             foreach ($posts as $post) {
                 $uids[] = $post['uid'];
@@ -916,9 +917,6 @@ class Api extends AbstractApi
                 $whereRoot['active'] = $wherePost['active'];
             }
             /**/
-            if (isset($condition['module'])) {
-                $whereRoot['module'] = $condition['module'];
-            }
             if (isset($condition['category'])) {
                 $whereRoot['category'] = $condition['category'];
             }
@@ -937,10 +935,12 @@ class Api extends AbstractApi
             array('root' => Pi::model('root', 'comment')->getTable()),
             array('id', 'module', 'category', 'item')
         );
+
         $select->join(
             array('post' => Pi::model('post', 'comment')->getTable()),
             'post.root=root.id',
-            array()
+            //array()
+            array('time', 'uid')
         );
         $select->group('post.root');
         $select->where($where);
@@ -960,13 +960,21 @@ class Api extends AbstractApi
 
         $targets = Pi::registry('category', 'comment')->read();
 
+        $items = array();
         $keyList = array();
         $rowset = Pi::db()->query($select);
         foreach ($rowset as $row) {
+            //vd((array) $row);
             $root = (int) $row['id'];
             $keyList[] = $root;
-            $items[$row['module']][$row['category']][$row['item']] = $root;
+            $items[$row['module']][$row['category']][$row['item']] = array(
+                'root'          => $root,
+                'comment_time'  => (int) $row['time'],
+                'comment_uid'   => (int) $row['uid'],
+            );
         }
+        //d($items);
+        $targetList = array();
         foreach ($items as $module => $mList) {
             foreach ($mList as $category => $cList) {
                 if (!isset($targets[$module][$category])) {
@@ -976,14 +984,16 @@ class Api extends AbstractApi
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
-                    $root = $cList[$item];
-                    $targetList[$root] = $target;
+                    $root = $cList[$item]['root'];
+                    $targetList[$root] = array_merge($target, $cList[$item]);
                 }
             }
         }
+        //d($targetList);
         foreach ($keyList as $key) {
             $result[$key] = &$targetList[$key];
         }
+        //d($result);
 
         return $result;
     }
@@ -1088,16 +1098,6 @@ class Api extends AbstractApi
             }
         }
 
-        /*
-        // Render post contents and url
-        array_walk($result, function (&$post) {
-            $post['content'] = Pi::api('comment')->renderPost($post);
-            $post['url'] = Pi::api('comment')->getUrl('post', array(
-                'post'  => $post['id']
-            ));
-        });
-        */
-
         return $result;
     }
 
@@ -1171,6 +1171,58 @@ class Api extends AbstractApi
             $row = Pi::db()->query($select)->current();
             $count = (int) $row['count'];
         }
+
+        return $count;
+    }
+
+    /**
+     * Get target count
+     *
+     * @param array|Where $condition
+     *
+     * @return int
+     */
+    public function getTargetCount($condition = array())
+    {
+        if ($condition instanceof Where) {
+            $where = $condition;
+        } else {
+            $whereRoot = array();
+            $wherePost = $this->canonizePost($condition);
+            /**/
+            if (isset($wherePost['active'])) {
+                $whereRoot['active'] = $wherePost['active'];
+            }
+            /**/
+            if (isset($condition['category'])) {
+                $whereRoot['category'] = $condition['category'];
+            }
+
+            $where = array();
+            foreach ($wherePost as $field => $value) {
+                $where['post.' . $field] = $value;
+            }
+            foreach ($whereRoot as $field => $value) {
+                $where['root.' . $field] = $value;
+            }
+        }
+
+        $select = Pi::db()->select();
+        $select->from(
+            array('root' => Pi::model('root', 'comment')->getTable())
+        );
+        $select->columns(array(
+            'count' => Pi::db()->expression('COUNT(DISTINCT root.id)')
+        ));
+        $select->join(
+            array('post' => Pi::model('post', 'comment')->getTable()),
+            'post.root=root.id',
+            array()
+        );
+        //$select->group('post.root');
+        $select->where($where);
+        $row = Pi::db()->query($select)->current();
+        $count = (int) $row['count'];
 
         return $count;
     }

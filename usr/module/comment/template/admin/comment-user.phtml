@@ -18,8 +18,8 @@ $paginator = $comment['paginator'];
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $count; ?></dd>
             <dt><?php _e('User:') ?></dt>
-            <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo $user['name']; ?>">
-                <?php echo $user['name']; ?>
+            <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
+                <?php echo _escape($user['name']); ?>
                 </a>
             </dd>
             <dt>&nbsp;</dt>
@@ -37,6 +37,9 @@ if ($posts) {
                     <?php echo _escape($post['target']['title']); ?>
                 </a>
             </dd>
+
+            <dt><?php _e('IP:'); ?></dt>
+            <dd><?php echo $post['ip']; ?></dd>
 
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>

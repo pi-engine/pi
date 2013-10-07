@@ -53,6 +53,7 @@ return array(
             'controller'    => 'list',
             'action'        => 'index',
 
+            /*
             'pages'         => array(
                 'active'     => array(
                     'route'         => 'admin',
@@ -73,6 +74,7 @@ return array(
                     ),
                 ),
             ),
+            */
         ),
         'module'     => array(
             'route'         => 'admin',
@@ -85,6 +87,12 @@ return array(
             'label'         => _t('By user'),
             'controller'    => 'list',
             'action'        => 'user',
+        ),
+        'article'    => array(
+            'route'         => 'admin',
+            'label'         => _t('Articles'),
+            'controller'    => 'list',
+            'action'        => 'article',
         ),
     ),
 );

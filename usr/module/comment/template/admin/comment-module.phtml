@@ -34,12 +34,15 @@ if ($posts) {
             </dd>
 
             <dt><?php _e('Author:') ?></dt>
-            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
-                    <?php echo $post['user']['name']; ?>
+            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo _escape($post['user']['name']); ?>">
+                    <?php echo _escape($post['user']['name']); ?>
                 </a>
             </dd>
             <dt>&nbsp;</dt>
             <dd><?php echo $post['user']['avatar']; ?></dd>
+
+            <dt><?php _e('IP:'); ?></dt>
+            <dd><?php echo $post['ip']; ?></dd>
 
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>
