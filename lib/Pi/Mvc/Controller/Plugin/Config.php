@@ -25,10 +25,11 @@ class Config extends AbstractPlugin
     /**
      * Invoke as a functor
      *
-     * @params string|null $name
+     * @param string $name
+     *
      * @return array Config or array of all configs
      */
-    public function __invoke($name = null)
+    public function __invoke($name = '')
     {
         return $this->getConfig($name);
     }
@@ -36,18 +37,17 @@ class Config extends AbstractPlugin
     /**
      * Get config data
      *
-     * @param string|null $name
+     * @param string $name
      * @return array|mixed
      */
-    public function getConfig($name = null)
+    public function getConfig($name = '')
     {
-        if (null === $this->configs) {
-            $this->configs = Pi::service('module')->config(
-                '',
-                $this->getController()->getModule()
-            );
+        if ($name) {
+            $config = Pi::service('config')->module($name);
+        } else {
+            $config = Pi::service('config')->module();
         }
 
-        return $name ? $this->configs[$name] : $this->configs;
+        return $config;
     }
 }
