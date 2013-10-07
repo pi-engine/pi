@@ -37,6 +37,7 @@ return array(
         ),
         'config'        => 'config.php',
         'user'          => 'user.php',
+        'block'         => 'block.php',
         'navigation'    => 'nav.php',
         'route'         => 'route.php',
         'comment'       => 'comment.php',

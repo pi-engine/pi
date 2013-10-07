@@ -384,6 +384,7 @@ class Api extends AbstractApi
      *      - user: object
      *      - section: 'front'|'admin'
      *      - list: array(<name> => <title>)
+     *      - admin: bool (To check admin)
      *
      *  - target
      *
@@ -480,7 +481,7 @@ class Api extends AbstractApi
         if (!isset($options['operation']) || $options['operation']) {
             $op = isset($options['operation'])
                 ? (array) $options['operation'] : array();
-            $uid = $user = $list = $section = null;
+            $uid = $user = $list = $section = $admin = null;
             if (isset($op['uid'])) {
                 $uid = (int) $op['uid'];
             }
@@ -492,6 +493,11 @@ class Api extends AbstractApi
             } else {
                 $section = Pi::engine()->section();
             }
+            if (isset($op['admin'])) {
+                $admin = (bool) $op['admin'];
+            } else {
+                $admin = true;
+            }
             if (isset($op['list'])) {
                 $list = (array) $op['list'];
             }
@@ -502,7 +508,8 @@ class Api extends AbstractApi
                     $uid = $user->get('id');
                 }
             }
-            $isAdmin = Pi::service('permission')->isAdmin('comment', $uid);
+            $isAdmin = $admin
+                && Pi::service('permission')->isAdmin('comment', $uid);
 
             if (null === $list) {
                 $list = array(

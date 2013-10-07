@@ -12,10 +12,23 @@ namespace Module\Comment\Comment;
 use Pi;
 use Pi\Application\AbstractComment;
 
+/**
+ * Comment target callback handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Article extends AbstractComment
 {
+    /** @var string */
     protected $module = 'comment';
 
+    /**
+     * Get target data
+     *
+     * @param int|int[] $item Item id(s)
+     *
+     * @return array
+     */
     public function get($item)
     {
         $result = array();

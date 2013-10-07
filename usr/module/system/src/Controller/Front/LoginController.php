@@ -105,8 +105,11 @@ class LoginController extends ActionController
     {
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
+        $redirect = _get('redirect');
+        $redirect = $redirect
+            ? urldecode($redirect) : array('route' => 'home');
         $this->jump(
-            array('route' => 'home'),
+            $redirect,
             __('You logged out successfully. Now go back to homepage.')
         );
     }

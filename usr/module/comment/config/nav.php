@@ -8,6 +8,32 @@
  */
 
 return array(
+    'front' => array(
+        'list'      => array(
+            'route'         => 'comment',
+            'label'         => _t('All comments'),
+            'controller'    => 'list',
+            'action'        => 'index',
+        ),
+        'my-post'   => array(
+            'route'         => 'comment',
+            'label'         => _t('My comments'),
+            'controller'    => 'list',
+            'action'        => 'user',
+            'params'        => array(
+                'my'    => 1,
+            ),
+        ),
+        'my-article'    => array(
+            'route'         => 'comment',
+            'label'         => _t('My articles'),
+            'controller'    => 'list',
+            'action'        => 'article',
+            'params'        => array(
+                'my'    => 1,
+            ),
+        ),
+    ),
     'admin'   => array(
         'portal'     => array(
             'route'         => 'admin',
