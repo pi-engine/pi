@@ -24,12 +24,12 @@ class IndexController extends ActionController
         $links = array(
             'build'   => array(
                 'title' => __('Build comment data for demo articles'),
-                'url'   => $this->url('comment', array(
-                    'controller'    => 'demo',
+                'url'   => $this->url('', array(
+                    'controller'    => 'index',
                     'action'        => 'build',
                 )),
             ),
-            'article'   => array(
+            'demo'   => array(
                 'title' => __('Demo article with comments'),
                 'url'   => $this->url('comment', array(
                     'controller'    => 'demo',
@@ -56,6 +56,13 @@ class IndexController extends ActionController
                     'controller'    => 'list',
                     'action'        => 'index',
                     'active'        => 0,
+                )),
+            ),
+            'article'   => array(
+                'title' => __('Commented articles'),
+                'url'   => $this->url('', array(
+                    'controller'    => 'list',
+                    'action'        => 'article',
                 )),
             ),
             'user'   => array(
@@ -217,5 +224,52 @@ class IndexController extends ActionController
         ));
 
         $this->view()->setTemplate('comment-index');
+    }
+
+    /**
+     * Build demo comment post data
+     */
+    public function buildAction()
+    {
+        $roots = Pi::model('root', 'comment')->delete(array(
+            'module'    => 'comment',
+        ));
+        foreach ($roots as $root) {
+            Pi::api('comment')->delete($root->id);
+        }
+        Pi::model('post', 'comment')->delete(array(
+            'module'    => 'comment',
+        ));
+
+        $rootIds = array();
+        for ($i = 1; $i <= 10; $i++) {
+            $root = array(
+                'module'    => 'comment',
+                'item'      => $i,
+                'category'  => 'article',
+                'active'    => rand(0, 1),
+            );
+            $rootIds[$i] = Pi::api('comment')->addRoot($root);
+        }
+
+        for ($i = 0; $i < 1000; $i++) {
+            $post = array(
+                'root'      => $rootIds[rand(1, 10)],
+                'uid'       => rand(1, 5),
+                'ip'        => Pi::service('user')->getIp(),
+                'active'    => rand(0, 1),
+                'content'   => sprintf(__('Demo comment %d.'), $i + 1),
+                'time'      => time() - rand(100, 100000),
+                //'module'    => 'comment',
+            );
+            Pi::api('comment')->addPost($post);
+        }
+
+        //exit();
+        $this->redirect('comment', array(
+            'action'    => 'index',
+            'id'        => rand(1, 5),
+            'enable'    => 'yes',
+        ));
     }
 }

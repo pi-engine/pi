@@ -22,6 +22,7 @@ class IndexController extends ActionController
         //$this->redirect('', array('controller' => 'demo'));
         $title = sprintf(__('Comment portal for %s'), Pi::config('sitename'));
         $links = array(
+                /*
             'build'   => array(
                 'title' => __('Build comment data for demo articles'),
                 'url'   => $this->url('', array(
@@ -29,28 +30,40 @@ class IndexController extends ActionController
                     'action'        => 'build'
                 )),
             ),
-            'article'   => array(
+            */
+            'demo'   => array(
                 'title' => __('Demo article with comments'),
                 'url'   => $this->url('', array(
                     'controller'    => 'demo'
                 )),
             ),
+            /*
             'all'   => array(
                 'title' => __('All comment posts'),
                 'url'   => Pi::api('comment')->getUrl('list', array(
                     'active'  => null,
                 )),
             ),
+            */
             'all-active'   => array(
                 'title' => __('All active comment posts'),
                 'url'   => Pi::api('comment')->getUrl('list', array(
                     'active'  => 1,
                 )),
             ),
+            /*
             'all-inactive'   => array(
                 'title' => __('All inactive comment posts'),
                 'url'   => Pi::api('comment')->getUrl('list', array(
                     'active'  => 0,
+                )),
+            ),
+            */
+            'article'   => array(
+                'title' => __('Commented articles'),
+                'url'   => $this->url('', array(
+                    'controller'    => 'list',
+                    'action'        => 'article',
                 )),
             ),
             'module'   => array(
@@ -68,7 +81,7 @@ class IndexController extends ActionController
             ),
             'user'   => array(
                 'title' => sprintf(
-                    __('Comment posts by user "%s"'),
+                    __('Comment posts by %s'),
                     Pi::service('user')->get(1, 'name')
                 ),
                 'url'   => Pi::api('comment')->getUrl('user', array(
@@ -76,6 +89,22 @@ class IndexController extends ActionController
                 )),
             ),
         );
+        if ($uid = Pi::service('user')->getIdentity()) {
+            $links['my-post'] = array(
+                'title' => __('Comment posts by me'),
+                'url'   => Pi::api('comment')->getUrl('user', array(
+                    'uid'   => $uid,
+                )),
+            );
+            $links['my-article'] = array(
+                'title' => __('Commented articles by me'),
+                'url'   => $this->url('', array(
+                    'controller'    => 'list',
+                    'action'        => 'article',
+                    'uid'           => $uid,
+                )),
+            );
+        }
         $this->view()->assign(array(
             'title' => $title,
             'links' => $links,

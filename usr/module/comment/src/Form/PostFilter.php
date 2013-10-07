@@ -27,7 +27,8 @@ class PostFilter extends InputFilter
 
         foreach (array(
                      'id',
-                     'root'
+                     'root',
+                     'reply'
                  ) as $intElement
         ) {
             $this->add(array(

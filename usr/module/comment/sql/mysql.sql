@@ -28,7 +28,7 @@ CREATE TABLE `{category}` (
 # Comment root
 CREATE TABLE `{root}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `module`          varchar(64)     NOT NULL    default '',
+  `module`          varchar(64)     NOT NULL,
   `category`        varchar(64)     NOT NULL    default '',
   `item`            int(10)         unsigned    NOT NULL,
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
@@ -42,6 +42,7 @@ CREATE TABLE `{post}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL default '0',
   `root`            int(10)         unsigned    NOT NULL,
+  `reply`           int(10)         unsigned    NOT NULL default '0',
   `content`         text,
   -- Content markup: text, html, markdown
   `markup`          varchar(64)     NOT NULL    default '',
@@ -49,6 +50,7 @@ CREATE TABLE `{post}` (
   `time_updated`    int(10)         unsigned    NOT NULL default '0',
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
   `ip`              varchar(15)     NOT NULL    default '',
+  `module`          varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
   KEY  `uid` (`uid`),

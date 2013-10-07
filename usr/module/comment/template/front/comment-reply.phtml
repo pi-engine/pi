@@ -32,10 +32,18 @@ if ($post) {
             </dd>
             <dt>&nbsp;</dt>
             <dd><?php echo $post['user']['avatar']; ?></dd>
+
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>
+
+            <dt><?php _e('Content:');?></dt>
+            <dd><?php echo $post['content']; ?></dd>
+
         </dl>
-        <?php include $this->templateComponent('form'); ?>
+        <dl>
+            <dt><?php _e('Reply'); ?></dt>
+            <dd><?php include $this->templateComponent('form'); ?></dd>
+        </dl>
     </div>
 <?php
 } elseif (!empty($comment['message'])) {

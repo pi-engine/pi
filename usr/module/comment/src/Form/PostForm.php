@@ -110,6 +110,7 @@ class PostForm extends BaseForm
         foreach (array(
                      'id',
                      'root',
+                     'reply',
                      'module',
                      'category',
                      'item',

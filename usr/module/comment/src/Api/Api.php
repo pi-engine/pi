@@ -47,13 +47,15 @@ class Api extends AbstractApi
     protected $postColumn = array(
         'id',
         'root',
+        'reply',
         'uid',
         'ip',
         'time',
         'time_updated',
         'content',
         'markup',
-        'active'
+        'active',
+        'module'
     );
 
     /** @var string[] Comment root table columns */
@@ -160,6 +162,7 @@ class Api extends AbstractApi
                 break;
             case 'delete':
             case 'edit':
+            case 'reply':
                 if (!empty($options['post'])) {
                     $params = array(
                         'controller'    => 'post',
@@ -436,6 +439,9 @@ class Api extends AbstractApi
                     return false;
                 }
                 $postData['root'] = $rootId;
+            } elseif (empty($postData['module'])) {
+                $row = Pi::model('root', 'comment')->find($postData['root']);
+                $postData['module'] = $row['module'];
             }
             if (!isset($postData['time'])) {
                 $postData['time'] = time();
@@ -449,8 +455,10 @@ class Api extends AbstractApi
             if (!isset($postData['time_updated'])) {
                 $postData['time_updated'] = time();
             }
-            if (isset($postData['time'])) {
-                unset($postData['time']);
+            foreach (array('module', 'reply', 'root', 'time', 'uid') as $key) {
+                if (isset($postData[$key])) {
+                    unset($postData[$key]);
+                }
             }
             $row->assign($postData);
         }
