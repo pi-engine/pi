@@ -30,7 +30,7 @@ class ListController extends ActionController
             $active = (int) $active;
         }
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
         $posts = Pi::api('comment')->getList(
@@ -53,65 +53,17 @@ class ListController extends ActionController
             ),
         ));
         */
+        /*
         // Lean mode
         $posts = Pi::api('comment')->renderList($posts, array(
             'user'      => true,
             'target'    => true,
             'operation' => true,
         ));
+        */
         // Default mode
         $posts = Pi::api('comment')->renderList($posts);
         $count = Pi::service('comment')->getCount(array('active' => $active));
-
-        /*
-        $targets = array();
-        $rootIds = array();
-        foreach ($posts as $post) {
-            $rootIds[] = (int) $post['root'];
-        }
-        if ($rootIds) {
-            $rootIds = array_unique($rootIds);
-            $targets = Pi::api('comment')->getTargetList(array(
-                'root'  => $rootIds
-            ));
-        }
-        foreach ($posts as &$post) {
-            $post['target'] = $targets[$post['root']];
-        }
-
-        $users = array();
-        $uids = array();
-        foreach ($posts as $post) {
-            $uids[] = (int) $post['uid'];
-        }
-        if ($uids) {
-            $uids = array_unique($uids);
-            $users = Pi::service('user')->get($uids, array('name'));
-            $avatars = Pi::service('avatar')->getList($uids, 'small');
-            foreach ($users as $uid => &$data) {
-                $data['url'] = Pi::service('user')->getUrl('profile', $uid);
-                $data['avatar'] = $avatars[$uid];
-            }
-        }
-        $users[0] = array(
-            'avatar'    => Pi::service('avatar')->get(0, 'small'),
-            'url'       => Pi::url('www'),
-            'name'      => __('Guest'),
-        );
-
-        //vd($uids);
-        //vd($users);
-        $setUser = function ($uid) use ($users) {
-            if (isset($users[$uid])) {
-                return $users[$uid];
-            } else {
-                return $users[0];
-            }
-        };
-        foreach ($posts as &$post) {
-            $post['user'] = $setUser($post['uid']);
-        }
-        */
 
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
@@ -199,7 +151,7 @@ class ListController extends ActionController
         }
 
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $where = array('uid' => $uid, 'active' => $active);
         $posts = Pi::api('comment')->getList(
@@ -213,21 +165,6 @@ class ListController extends ActionController
             'operation' => true,
         ));
         $count = Pi::service('comment')->getCount($where);
-
-        /*
-        $targets = array();
-        $rootIds = array();
-        foreach ($posts as $post) {
-            $rootIds[] = (int) $post['root'];
-        }
-        if ($rootIds) {
-            $rootIds = array_unique($rootIds);
-            $targets = Pi::api('comment')->getTargetList(array('root' => $rootIds));
-        }
-        foreach ($posts as &$post) {
-            $post['target'] = $targets[$post['root']];
-        }
-        */
 
         $paginator = Paginator::factory($count, array(
             'page'  => $page,
@@ -340,7 +277,7 @@ class ListController extends ActionController
 
         $category = _get('category') ?: '';
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $where = array('module' => $module, 'active' => $active);
 
@@ -368,56 +305,6 @@ class ListController extends ActionController
             'operation' => true,
         ));
         $count = Pi::service('comment')->getCount($where);
-
-        /*
-        $targets = array();
-        $rootIds = array();
-        foreach ($posts as $post) {
-            $rootIds[] = (int) $post['root'];
-        }
-        if ($rootIds) {
-            $rootIds = array_unique($rootIds);
-            $targets = Pi::api('comment')->getTargetList(array(
-                'root'  => $rootIds
-            ));
-        }
-        foreach ($posts as &$post) {
-            $post['target'] = $targets[$post['root']];
-        }
-
-        $users = array();
-        $uids = array();
-        foreach ($posts as $post) {
-            $uids[] = (int) $post['uid'];
-        }
-        if ($uids) {
-            $uids = array_unique($uids);
-            $users = Pi::service('user')->get($uids, array('name'));
-            $avatars = Pi::service('avatar')->getList($uids, 'small');
-            foreach ($users as $uid => &$data) {
-                $data['url'] = Pi::service('user')->getUrl('profile', $uid);
-                $data['avatar'] = $avatars[$uid];
-            }
-        }
-        $users[0] = array(
-            'avatar'    => Pi::service('avatar')->get(0, 'small'),
-            'url'       => Pi::url('www'),
-            'name'      => __('Guest'),
-        );
-
-        //vd($uids);
-        //vd($users);
-        $setUser = function ($uid) use ($users) {
-            if (isset($users[$uid])) {
-                return $users[$uid];
-            } else {
-                return $users[0];
-            }
-        };
-        foreach ($posts as &$post) {
-            $post['user'] = $setUser($post['uid']);
-        }
-        */
 
         $params = array('name' => $module, 'active' => $active);
         if ($category) {

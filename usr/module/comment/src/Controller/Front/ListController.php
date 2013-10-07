@@ -31,7 +31,7 @@ class ListController extends ActionController
             $active = (int) $active;
         }
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
         $posts = Pi::api('comment')->getList(
@@ -80,7 +80,7 @@ class ListController extends ActionController
         //$active = _get('active', 'int') ?: 1;
         $page   = _get('page', 'int') ?: 1;
         //vd($page);
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $posts = Pi::api('comment')->getList($root, $limit, $offset);
         $renderOptions = array(
@@ -120,7 +120,7 @@ class ListController extends ActionController
         $uid    = _get('uid', 'int') ?: Pi::user()->getIdentity();
         $active = _get('active', 'int') ?: 1;
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $posts = Pi::api('comment')->getList(
             array('uid' => $uid, 'active' => $active),
@@ -168,7 +168,7 @@ class ListController extends ActionController
         $module = _get('name') ?: 'comment';
         $category = _get('category') ?: '';
         $page   = _get('page', 'int') ?: 1;
-        $limit = Pi::config('comment_limit') ?: 10;
+        $limit = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $where = array('module' => $module, 'active' => $active);
 

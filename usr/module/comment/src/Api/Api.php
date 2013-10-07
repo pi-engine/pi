@@ -257,7 +257,7 @@ class Api extends AbstractApi
         $controller = $routeMatch->getParam('controller');
         $action = $routeMatch->getParam('action');
         $categoryList = Pi::registry('category', 'comment')->read($module);
-        $limit = Pi::config('leading_limit') ?: 5;
+        $limit = Pi::config()->module('leading_limit', 'comment') ?: 5;
 
         if (!isset($categoryList[$controller][$action])) {
             return false;
@@ -386,6 +386,36 @@ class Api extends AbstractApi
      *      - list: array(<name> => <title>)
      *
      *  - target
+     *
+     * - Comprehensive mode
+     * ```
+     *  $posts = Pi::api('comment')->renderList($posts, array(
+     *      'user'      => array(
+     *          'field'     => 'name',
+     *          'url'       => 'comment',
+     *          'avatar'    => 'small'
+     *      ),
+     *      'target'    => true,
+     *      'operation'     => array(
+     *          'uid'       => Pi::service('user')->getIdentity(),
+     *          'section'   => 'admin',
+     *      ),
+     *  ));
+     * ```
+     *
+     * - Lean mode
+     * ```
+     *  $posts = Pi::api('comment')->renderList($posts, array(
+     *      'user'      => true,
+     *      'target'    => true,
+     *      'operation' => true,
+     *  ));
+     * ```
+     *
+     * - Default mode
+     * ```
+     *  $posts = Pi::api('comment')->renderList($posts);
+     * ```
      *
      * @param array $posts
      * @param array $options
@@ -874,9 +904,11 @@ class Api extends AbstractApi
         } else {
             $whereRoot = array();
             $wherePost = $this->canonizePost($condition);
+            /**/
             if (isset($wherePost['active'])) {
                 $whereRoot['active'] = $wherePost['active'];
             }
+            /**/
             if (isset($condition['module'])) {
                 $whereRoot['module'] = $condition['module'];
             }
@@ -905,7 +937,9 @@ class Api extends AbstractApi
         );
         $select->group('post.root');
         $select->where($where);
-        $limit = (null === $limit) ? Pi::config('list_limit') : (int) $limit;
+        $limit = (null === $limit)
+            ? Pi::config()->module('list_limit', 'comment')
+            : (int) $limit;
         $order = (null === $order) ? 'post.time desc' : $order;
         if ($limit) {
             $select->limit($limit);
@@ -960,7 +994,6 @@ class Api extends AbstractApi
     public function getList($condition, $limit = null, $offset = 0, $order = null)
     {
         $result = array();
-        //$limit = $limit ?: (Pi::config('list_limit') ?: 10);
 
         $isJoin = false;
         if ($condition instanceof Where) {
@@ -970,17 +1003,21 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
+                /*
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
+                */
                 if (isset($condition['category'])) {
                     $whereRoot['category'] = $condition['category'];
                 }
-                if (isset($whereRoot['module']) || isset($whereRoot['category'])) {
+                if (isset($whereRoot['category'])) {
                     $isJoin = true;
+                    /*
                     if (isset($wherePost['active'])) {
                         $whereRoot['active'] = $wherePost['active'];
                     }
+                    */
                 }
             } else {
                 $wherePost = array(
@@ -1019,7 +1056,9 @@ class Api extends AbstractApi
         }
 
         $select->where($where);
-        $limit = (null === $limit) ? Pi::config('list_limit') : (int) $limit;
+        $limit = (null === $limit)
+            ? Pi::config()->module('list_limit', 'comment')
+            : (int) $limit;
         if ($limit) {
             $select->limit($limit);
         }
@@ -1073,17 +1112,21 @@ class Api extends AbstractApi
             //$wherePost = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
+                /*
                 if (isset($condition['module'])) {
                     $whereRoot['module'] = $condition['module'];
                 }
+                */
                 if (isset($condition['category'])) {
                     $whereRoot['category'] = $condition['category'];
                 }
-                if (isset($whereRoot['module']) || isset($whereRoot['category'])) {
+                if (isset($whereRoot['category'])) {
                     $isJoin = true;
+                    /*
                     if (isset($wherePost['active'])) {
                         $whereRoot['active'] = $wherePost['active'];
                     }
+                    */
                 }
             } else {
                 $wherePost = array(
