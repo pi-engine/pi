@@ -83,9 +83,17 @@ class System extends AbstractModel
     /**
      * {@inheritDoc}
      */
-    public function isAdmin()
+    public function isRoot()
     {
-        return 'admin' == $this->role() ? true : false;
+        return Pi::service('permission')->isRoot($this->get('id'));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAdmin($module = '')
+    {
+        return Pi::service('permission')->isAdmin($module, $this->get('id'));
     }
 
     /**

@@ -429,8 +429,12 @@ class Permission extends AbstractService
     public function isAdmin($module = '', $uid = null, $section = '')
     {
         $result = false;
-        $section = $section ?: $this->getSection();
         $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
+        if ($this->isRoot($uid)) {
+            return true;
+        }
+
+        $section = $section ?: $this->getSection();
         $roles = $this->getRoles($uid);
         if (in_array($this->roles[$section]['admin'], $roles)) {
             $result = true;
