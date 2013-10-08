@@ -47,8 +47,8 @@ class AccountController extends ActionController
             $uid,
             array('identity', 'email', 'name')
         );
-        $username = $getData['identity'];
-        $email    = $getData['email'];
+        $username    = $getData['identity'];
+        $email       = $getData['email'];
         $displayName = $getData['name'];
 
         $form = new AccountForm('account');
@@ -90,10 +90,11 @@ class AccountController extends ActionController
             'email'        => $email,
             'form'         => $form,
             'groups'       => $groups,
-            'cur_group'     => 'account',
+            'cur_group'    => 'account',
             'status'       => $status,
-            'is_post'       => $isPost,
+            'is_post'      => $isPost,
             'user'         => $user,
         ));
+
     }
 }

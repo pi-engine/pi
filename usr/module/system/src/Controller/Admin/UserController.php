@@ -77,12 +77,6 @@ class UserController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
@@ -111,7 +105,7 @@ class UserController extends ActionController
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $roles       = _post('roles');
+        $roles      = _post('roles');
 
         // Check duplication
         $where = array(
@@ -157,7 +151,7 @@ class UserController extends ActionController
         Pi::api('system', 'user')->setRole($uid, $roles);
 
         $result['status']  = 1;
-        $result['message'] = __('Add user sucessfully');
+        $result['message'] = __('Add user successfully');
 
         return $result;
 
@@ -338,10 +332,9 @@ class UserController extends ActionController
             array_keys($columns)
         );
 
-        $roles = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
-            $uid = $row['uid'];
+            $uid     = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_roles';
             $users[$uid][$roleKey][] = $row['role'];
