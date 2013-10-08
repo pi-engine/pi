@@ -311,73 +311,37 @@ class IndexController extends ActionController
     }
 
     /**
-     * Display search form
-     *
-     * @return \Zend\Mvc\Controller\Plugin\Redirect
+     * Display search result
      */
     public function searchAction()
     {
-        // Initialise search options
-        $this->view()->setTemplate('index-search');
-
-        $form = new SearchForm('search');
-        // Set admin role default
-        $options = $form->get('front-role')->getValueOptions();
-        array_shift($options);
-        $options = array_merge(array('any' => __('Any role')), $options);d($options);
-        $form->get('front-role')->setValueOptions($options);
-
-        // Set admin role default
-        $options = $form->get('admin-role')->getValueOptions();
-        array_shift($options);
-        $options = array_merge(array('any' => __('Any role')), $options);
-        $form->get('admin-role')->setValueOptions($options);
-
-        if ($this->request->isPost()) {
-            $post = $this->request->getPost();
-            $form->setData($post);
-
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $condition = $this->canonizeSearchData($data);
-                $params = array(
-                    'controller' => 'index',
-                    'action'     => 'search.list',
-                );
-
-                $params = array_merge($params, $condition);
-                return $this->redirect('', $params);
-            }
-        }
-
-        $this->view()->assign(array(
-            'form' => $form,
-        ));
-    }
-
-    /**
-     * Display search result list
-     */
-    public function searchListAction()
-    {
-        $page   = (int) $this->params('p', 1);
-        $limit  = 10;
-        $offset = (int) ($page -1) * $limit;
-
         $condition['active']            = _get('active') ?: '';
         $condition['enable']            = _get('enable') ?: '';
         $condition['activated']         = _get('activated') ?: '';
-        $condition['identity']          = _get('identity') ?: '';
-        $condition['name']              = _get('name') ?: '';
         $condition['front_role']        = _get('front_role') ?: '';
         $condition['admin_role']        = _get('admin_role') ?: '';
+        $condition['identity']          = _get('identity') ?: '';
+        $condition['name']              = _get('name') ?: '';
         $condition['email']             = _get('email') ?: '';
         $condition['time_created_form'] = _get('time_created_form') ?: '';
         $condition['time_created_to']   = _get('time_created_to') ?: '';
         $condition['ip_register']       = _get('ip_register') ?: '';
 
+        if ($condition['front_role']) {
+            $condition['front_role'] = array_unique(explode(',', $condition['front_role']));
+            $condition['front_role'] = array_filter($condition['front_role']);
+        }
+        if ($condition['admin_role']) {
+            $condition['admin_role'] = array_unique(explode(',', $condition['admin_role']));
+            $condition['admin_role'] = array_filter($condition['admin_role']);
+        }
+
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
         // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);
+        $uids  = $this->getUids($condition, $limit, $offset);;
 
         // Get user count
         $count = $this->getCount($condition);
@@ -392,17 +356,9 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
             'condition'   => $condition,
         );
 
@@ -726,33 +682,67 @@ class IndexController extends ActionController
             array('id')
         );
         if ($condition['front_role']) {
-            $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front_role'],
-                'front.section' => 'front',
-            ));
-            $where->add($whereRoleFront);
+            if (is_array($condition['front_role'])) {
+                $i = 1;
+                foreach ($condition['front_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'front' . $prefix . '.role'    => $role,
+                        'front' . $prefix . '.section'  => 'front',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('front' . $prefix => $modelRole->getTable()),
+                        'front' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'front.role'    => $condition['front_role'],
+                    'front.section' => 'front',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('front' => $modelRole->getTable()),
+                    'front.uid=account.id',
+                    array()
+                );
+            }
         }
+
         if ($condition['admin_role']) {
-            $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin_role'],
-                'admin.section' => 'admin',
-            ));
-            $where->add($whereRoleAdmin);
+            if (is_array($condition['admin_role'])) {
+                $i = 1;
+                foreach ($condition['admin_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'admin' . $prefix . '.role'     => $role,
+                        'admin' . $prefix . '.section'  => 'admin',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('admin' . $prefix => $modelRole->getTable()),
+                        'admin' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'admin.role'    => $condition['admin_role'],
+                    'admin.section' => 'admin',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('admin' => $modelRole->getTable()),
+                    'admin.uid=account.id',
+                    array()
+                );
+            }
         }
-        if ($condition['front_role']) {
-            $select->join(
-                array('front' => $modelRole->getTable()),
-                'front.uid=account.id',
-                array()
-            );
-        }
-        if ($condition['admin_role']) {
-            $select->join(
-                array('admin' => $modelRole->getTable()),
-                'admin.uid=account.id',
-                array()
-            );
-        }
+
         if ($limit) {
             $select->limit($limit);
         }
@@ -764,6 +754,7 @@ class IndexController extends ActionController
 
         $rowset = Pi::db()->query($select);
 
+        $result = array();
         foreach ($rowset as $row) {
             $result[] = (int) $row['id'];
         }
@@ -839,30 +830,45 @@ class IndexController extends ActionController
         ));
 
         if ($condition['front_role']) {
-            $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front_role'],
-                'front.section' => 'front',
-            ));
-            $where->add($whereRoleFront);
-        }
+            if (is_array($condition['front_role'])) {
+                foreach ($condition['front_role'] as $role) {
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'front.role'    => $role,
+                        'front.section' => 'front',
+                    ));
+                    $where->add($whereRoleFront);
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'front.role'    => $condition['front_role'],
+                    'front.section' => 'front',
+                ));
+                $where->add($whereRoleFront);
+            }
 
-        if ($condition['admin_role']) {
-            $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin_role'],
-                'admin.section' => 'admin',
-            ));
-            $where->add($whereRoleAdmin);
-        }
-
-        if ($condition['front_role']) {
             $select->join(
                 array('front' => $modelRole->getTable()),
                 'front.uid=account.id',
                 array()
             );
         }
-
         if ($condition['admin_role']) {
+            if (is_array($condition['admin_role'])) {
+                foreach ($condition['front_role'] as $role) {
+                    $whereRoleAdmin = Pi::db()->where()->create(array(
+                        'front.role'    => $role,
+                        'front.section' => 'admin',
+                    ));
+                    $where->add($whereRoleAdmin);
+                }
+            } else {
+                $whereRoleAdmin = Pi::db()->where()->create(array(
+                    'admin.role'    => $condition['admin_role'],
+                    'admin.section' => 'admin',
+                ));
+                $where->add($whereRoleAdmin);
+            }
+
             $select->join(
                 array('admin' => $modelRole->getTable()),
                 'admin.uid=account.id',
