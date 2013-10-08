@@ -11,7 +11,6 @@ namespace Module\User\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl;
 use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
 use Module\User\Form\ProfileCompleteForm;
@@ -71,7 +70,8 @@ class RegisterController extends ActionController
                 $result = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
-                    $content
+                    $content,
+                    $this->getModule()
                 );
                 if (!$result) {
                     $message = $result['message'];
@@ -216,7 +216,13 @@ class RegisterController extends ActionController
 
         // Set user data form send mail
         $content = md5(uniqid($account['id'] . $account['name']));
-        Pi::user()->data()->set($uid, 'register-activation', $content);
+        Pi::user()->data()->set(
+            $uid,
+            'register-activation',
+            $content,
+            $this->getModule()
+
+        );
 
         // Set mail params and send verify mail
         $to = $account['email'];
@@ -294,7 +300,12 @@ class RegisterController extends ActionController
                 Pi::api('user', 'user')->updateUser($uid, $values);
 
                 // Set perfect information flag in user table
-                Pi::user()->data()->set($uid, 'profile-complete', 1);
+                Pi::user()->data()->set(
+                    $uid,
+                    'profile-complete',
+                    1,
+                    $this->getModule()
+                );
                 $status = 1;
                 return $this->jump(
                     $redirect,
