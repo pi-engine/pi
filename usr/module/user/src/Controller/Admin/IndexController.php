@@ -831,12 +831,20 @@ class IndexController extends ActionController
 
         if ($condition['front_role']) {
             if (is_array($condition['front_role'])) {
+                $i = 1;
                 foreach ($condition['front_role'] as $role) {
+                    $prefix = $i;
                     $whereRoleFront = Pi::db()->where()->create(array(
-                        'front.role'    => $role,
-                        'front.section' => 'front',
+                        'front' . $prefix . '.role'    => $role,
+                        'front' . $prefix . '.section'  => 'front',
                     ));
                     $where->add($whereRoleFront);
+                    $select->join(
+                        array('front' . $prefix => $modelRole->getTable()),
+                        'front' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
                 }
             } else {
                 $whereRoleFront = Pi::db()->where()->create(array(
@@ -844,36 +852,43 @@ class IndexController extends ActionController
                     'front.section' => 'front',
                 ));
                 $where->add($whereRoleFront);
+                $select->join(
+                    array('front' => $modelRole->getTable()),
+                    'front.uid=account.id',
+                    array()
+                );
             }
-
-            $select->join(
-                array('front' => $modelRole->getTable()),
-                'front.uid=account.id',
-                array()
-            );
         }
+
         if ($condition['admin_role']) {
             if (is_array($condition['admin_role'])) {
-                foreach ($condition['front_role'] as $role) {
-                    $whereRoleAdmin = Pi::db()->where()->create(array(
-                        'front.role'    => $role,
-                        'front.section' => 'admin',
+                $i = 1;
+                foreach ($condition['admin_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'admin' . $prefix . '.role'     => $role,
+                        'admin' . $prefix . '.section'  => 'admin',
                     ));
-                    $where->add($whereRoleAdmin);
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('admin' . $prefix => $modelRole->getTable()),
+                        'admin' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
                 }
             } else {
-                $whereRoleAdmin = Pi::db()->where()->create(array(
+                $whereRoleFront = Pi::db()->where()->create(array(
                     'admin.role'    => $condition['admin_role'],
                     'admin.section' => 'admin',
                 ));
-                $where->add($whereRoleAdmin);
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('admin' => $modelRole->getTable()),
+                    'admin.uid=account.id',
+                    array()
+                );
             }
-
-            $select->join(
-                array('admin' => $modelRole->getTable()),
-                'admin.uid=account.id',
-                array()
-            );
         }
 
         $select->where($where);
@@ -965,51 +980,5 @@ class IndexController extends ActionController
         }
 
         return $time;
-    }
-
-    /**
-     * Canonize search data
-     *
-     * @param $data
-     * @return array
-     */
-    protected function canonizeSearchData($data)
-    {
-        $condition = array();
-        if ($data['active'] == 'any') {
-            $condition['active'] = '';
-        } else {
-            $condition['active'] = $data['active'];
-        }
-        if ($data['enable'] == 'any') {
-            $condition['enable'] = '';
-        } else {
-            $condition['enable'] = $data['enable'];
-        }
-        if ($data['activated'] == 'any') {
-            $condition['activated'] = '';
-        } else {
-            $condition['activated'] = $data['activated'];
-        }
-        if ($data['front_role'] == 'any') {
-            $condition['front_role'] = '';
-        } else {
-            $condition['front_role'] = $data['front_role'];
-        }
-        if ($data['admin_role'] == 'any') {
-            $condition['admin_role'] = '';
-        } else {
-            $condition['admin_role'] = $data['admin_role'];
-        }
-
-        $condition['identity']          = $data['identity'];
-        $condition['name']              = $data['name'];
-        $condition['email']             = $data['email'];
-        $condition['ip_register']       = $data['ip_register'];
-        $condition['time_created_from'] = strtotime($data['time_created_from']);
-        $condition['time_created_to']   = strtotime($data['time_created_to']);
-
-        return $condition;
-
     }
 }

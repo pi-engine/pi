@@ -75,6 +75,11 @@ class EditController extends ActionController
     }
 
 
+    /**
+     * Update base info
+     *
+     * @return array
+     */
     public function updateBaseInfoAction()
     {
         $result = array(
@@ -128,9 +133,6 @@ class EditController extends ActionController
         // Get compound element for edit
         $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
         $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
-
-        // Get user compound
-        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
 
         // Get user compound
         $compoundData = Pi::api('user', 'user')->get($uid, $compound);
