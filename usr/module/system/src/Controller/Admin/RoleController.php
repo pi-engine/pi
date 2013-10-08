@@ -11,6 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 use Module\System\Form\RoleForm;
 use Module\System\Form\RoleFilter;
 
@@ -333,12 +334,90 @@ class RoleController extends ActionController
      */
     public function checkExistAction()
     {
-        $role = $this->params('name');
+        $role = _get('name');
         $row = Pi::model('role')->find($role, 'name');
         $status = $row ? 1 : 0;
 
         return array(
             'status' => $status
         );
+    }
+
+    /**
+     * Users of a role
+     */
+    public function userAction()
+    {
+        $role   = $this->params('name', 'member');
+        $op     = $this->params('op');
+        $uid    = $this->params('uid');
+
+        $model = Pi::model('user_role');
+        $message = '';
+        if ($op && $uid) {
+            if (is_numeric($uid)) {
+                $uid = (int) $uid;
+            } else {
+                $user = Pi::service('user')->getUser($uid, 'identity');
+                if ($user) {
+                    $uid = $user->get('id');
+                } else {
+                    $uid = 0;
+                }
+            }
+            if ($uid) {
+                $data = array('role' => $role, 'uid' => $uid);
+                $count = $model->count($data);
+                if ('remove' == $op && $count) {
+                    $model->delete($data);
+                    $message = __('User removed.');
+                } elseif ('add' == $op && !$count) {
+                    $row = $model->createRow($data);
+                    $row->save();
+                    $message = __('User added.');
+                }
+            }
+        }
+
+        $page   = _get('page', 'int') ?: 1;
+        $limit  = 20;
+        $offset = ($page - 1) * $limit;
+
+        $select = $model->select();
+        $select->where(array('role' => $role))->limit(20)->offset($offset);
+        $rowset = $model->selectWith($select);
+        $uids = array();
+        foreach ($rowset as $row) {
+            $uids[] = (int) $row['uid'];
+        }
+        $users = Pi::service('user')->get($uids, array('name'));
+        $avatars = Pi::service('avatar')->getList($uids, 'small');
+        array_walk($users, function (&$user, $uid) use ($avatars) {
+            $user['avatar'] = $avatars[$uid];
+            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
+        });
+        $count = count($uids);
+        if ($count >= $limit) {
+            $count = $model->count(array('role' => $role));
+        }
+
+        $paginator = Paginator::factory($count, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'params'    => array('role' => $role),
+            ),
+        ));
+        $roles = Pi::registry('role')->read();
+        $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
+        $this->view()->assign(array(
+            'title'     => $title,
+            'role'      => $role,
+            'count'     => $count,
+            'users'     => $users,
+            'message'   => $message,
+            'paginator' => $paginator,
+        ));
+
+        $this->view()->setTemplate('role-user');
     }
 }
