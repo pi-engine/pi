@@ -25,8 +25,10 @@ class Module extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $modules = array();
-        $modelModule = Pi::model('module');
-        $rowset = $modelModule->select(array());
+        $model = Pi::model('module');
+        $select = $model->select();
+        $select->order('title')->where(array());
+        $rowset = $model->selectWith($select);
         foreach ($rowset as $module) {
             $modules[$module->name] = array(
                 'id'        => $module->id,

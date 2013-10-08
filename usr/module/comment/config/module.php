@@ -14,8 +14,8 @@
  */
 return array(
     'meta'  => array(
-        'title'         => 'Comment',
-        'description'   => 'Comment management and services.',
+        'title'         => __('Comment'),
+        'description'   => __('Comment management and services.'),
         'version'       => '1.0.0-alpha',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org'
@@ -31,9 +31,15 @@ return array(
     // Resource
     'resource' => array(
         // Database meta
-        'database'  => 'sql/mysql.sql',
-        'config'    => 'config.php',
-        'user'      => 'user.php',
-        'route'     => 'route.php',
+        'database'      => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+        ),
+        'config'        => 'config.php',
+        'user'          => 'user.php',
+        'block'         => 'block.php',
+        'navigation'    => 'nav.php',
+        'route'         => 'route.php',
+        'comment'       => 'comment.php',
     ),
 );

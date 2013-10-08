@@ -12,7 +12,7 @@ return array(
         'front'     => false,
         'admin'     => array(
             'script'     => array(
-                'label'         => 'Script widgets',
+                'label'         => _t('Script widgets'),
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'index',
@@ -21,7 +21,7 @@ return array(
                 ),
             ),
             'static'     => array(
-                'label'         => 'Static widgets',
+                'label'         => _t('Static widgets'),
                 'route'         => 'admin',
                 'controller'    => 'static',
                 'action'        => 'index',
@@ -31,14 +31,14 @@ return array(
 
                 'pages'         => array(
                     'add'   => array(
-                        'label'         => 'Add',
+                        'label'         => _t('Add'),
                         'route'         => 'admin',
                         'controller'    => 'static',
                         'action'        => 'add',
                         'visible'       => 0,
                     ),
                     'edit'   => array(
-                        'label'         => 'Edit',
+                        'label'         => _t('Edit'),
                         'route'         => 'admin',
                         'controller'    => 'static',
                         'action'        => 'edit',
@@ -47,7 +47,7 @@ return array(
                 ),
             ),
             'carousel'     => array(
-                'label'         => 'Carousel widgets',
+                'label'         => _t('Carousel widgets'),
                 'route'         => 'admin',
                 'controller'    => 'carousel',
                 'action'        => 'index',
@@ -57,14 +57,14 @@ return array(
 
                 'pages'         => array(
                     'add'   => array(
-                        'label'         => 'Add',
+                        'label'         => _t('Add'),
                         'route'         => 'admin',
                         'controller'    => 'carousel',
                         'action'        => 'add',
                         'visible'       => 0,
                     ),
                     'edit'   => array(
-                        'label'         => 'Edit',
+                        'label'         => _t('Edit'),
                         'route'         => 'admin',
                         'controller'    => 'carousel',
                         'action'        => 'edit',
@@ -73,7 +73,7 @@ return array(
                 ),
             ),
             'tab'     => array(
-                'label'         => 'Compound tabs',
+                'label'         => _t('Compound tabs'),
                 'route'         => 'admin',
                 'controller'    => 'tab',
                 'action'        => 'index',
@@ -83,14 +83,14 @@ return array(
 
                 'pages'         => array(
                     'add'   => array(
-                        'label'         => 'Add',
+                        'label'         => _t('Add'),
                         'route'         => 'admin',
                         'controller'    => 'tab',
                         'action'        => 'add',
                         'visible'       => 0,
                     ),
                     'edit'   => array(
-                        'label'         => 'Edit',
+                        'label'         => _t('Edit'),
                         'route'         => 'admin',
                         'controller'    => 'tab',
                         'action'        => 'edit',

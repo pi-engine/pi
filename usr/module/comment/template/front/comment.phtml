@@ -14,48 +14,44 @@ if (!Pi::comment()->active()) {
 // - url_ajax
 
 $data = Pi::api('comment')->load(
-    Pi::engine()->appllication()->getRouteMatch()
+    $this->url()->routeMatch()
 );
-if (!$data || empty($data['root']['active'])) {
+if (!$data
+    || (isset($data['root']['active']) && empty($data['root']['active']))
+) {
     return;
 }
-/*
-$commentRoot = Pi::comment()->getRoot(
-    Pi::engine()->application()->getRouteMatch()
-);
-if (false === $commentRoot || !$commentRoot['active']) {
-    return;
-}
-$commentRootId = (int) $commentRoot['id'];
-$commentCount = $commentRootId ? Pi::comment()->getCount($commentRootId) : 0;
-$commentLimit = Pi::config('comment_limit');
-if ($commentCount) {
-    $commentList = Pi::comment()->getList($commentRootId, $commentLimit);
+
+if (!empty($data['root']['id'])) {
+    $formData = array(
+        'root' => $data['root']['id']
+    );
 } else {
-    $commentList = array();
+    $formData = array(
+        'module'    => $data['root']['module'],
+        'category'  => $data['root']['category'],
+        'item'      => $data['root']['item'],
+    );
 }
-if ($commentList) {
-    $uids = array();
-    foreach ($commentList as $comment) {
-        $uids[] = (int) $comment['uid'];
-    }
-    $avatars = Pi::avatar()->getList($uids, 'small');
-    $users = Pi::user()->get($uids, 'name');
-    foreach ($users as $uid => &$user) {
-        $user['url'] = Pi::user()->getUrl('profile', $uid);
-        $user['avatar'] = $avatars[$uid];
-    }
-*/
+$formData['redirect'] = $this->url()->requestUri(true);
+
+$form = Pi::service('comment')->getForm($formData);
+include $this->templateComponent('form');
+
 if ($data['posts']) {
 ?>
     <div class="pi-comment-header">
+        <dl><?php _e('Recent comments'); ?></dl>
         <dl class="dl-horizontal">
-            <dt><?php _e('Recent comments'); ?></dt>
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $data['count']; ?></dd>
-            <?php if ($data['count'] > $data['limit']) { ?>
+            <?php if ($data['count']) { ?>
                 <dt><?php _e('Read more:') ?></dt>
-                <dd><?php echo $data['url_list']; ?></dd>
+                <dd>
+                    <a href="<?php echo $data['url_list']; ?>" title="<?php _e('Read more') ?>" target="_blank">
+                        <?php _e('Read more'); ?>
+                    </a>
+                </dd>
             <?php } ?>
         </dl>
     </div>
@@ -76,6 +72,21 @@ if ($data['posts']) {
             <dd><?php echo $post['ip']; ?></dd>
             <dt><?php _e('Content:');?></dt>
             <dd><?php echo $post['content']; ?></dd>
+
+            <dt><?php _e('Operations:'); ?></dt>
+            <dd>
+                <?php if (!empty($post['operations'])) { ?>
+                    <?php foreach ($post['operations'] as $key => $op) { ?>
+                        <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
+                            <?php echo _escape($op['title']); ?>
+                        </a>
+                    <?php } ?>
+                <?php } else { ?>
+                    <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
+                        <?php _e('More details'); ?>
+                    </a>
+                <?php } ?>
+            </dd>
         </dl>
 <?php
     }
@@ -84,19 +95,20 @@ if ($data['posts']) {
 <?php
 }
 ?>
+<!--
 <form name="comment-post" method="POST" action="<?php echo $data['url_submit']; ?>">
 <dl>
     <dt><?php _e('Post a comment:'); ?></dt>
-    <dd><textarea name="comment_content"></dd>
+    <dd><textarea name="content"></textarea></dd>
     <?php if ($data['root']['id']) { ?>
-        <input type="hidden" name="comment_root" value="<?php echo $data['root']['id']; ?>">
+        <input type="hidden" name="root" value="<?php echo $data['root']['id']; ?>" />
     <?php } else { ?>
-        <input type="hidden" name="comment_module" value="<?php echo $data['root']['module']; ?>">
-        <input type="hidden" name="comment_category" value="<?php echo $data['root']['category']; ?>">
-        <input type="hidden" name="comment_item" value="<?php echo $data['root']['item']; ?>">
+        <input type="hidden" name="module" value="<?php echo $data['root']['module']; ?>" />
+        <input type="hidden" name="category" value="<?php echo $data['root']['category']; ?>" />
+        <input type="hidden" name="item" value="<?php echo $data['root']['item']; ?>" />
     <?php } ?>
-    <input type="hidden" name="redirect_url" value="<?php echo PHP_SELF; ?>">
-    <input type="submit" value="<?php _e('Submit'); ?>">
-    <input type="cancel" value="<?php _e('Cancel'); ?>">
+    <input type="hidden" name="redirect" value="<?php echo $this->url()->requestUri(true); ?>" />
+    <input type="submit" value="<?php _e('Submit'); ?>" />
 </dl>
 </form>
+//-->

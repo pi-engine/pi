@@ -18,11 +18,11 @@ return array(
         'title'     => __('Article comments'),
         'icon'      => 'icon-post',
         'callback'  => 'Module\Comment\Comment\Article',
-        'controller'    => 'article',
+        'controller'    => 'demo',
         'action'        => 'index',
         'identifier'    => 'id',
         'params'        => array(
-            // <param>      => <value>
+            'enable'   => 'yes',
         ),
     ),
 );

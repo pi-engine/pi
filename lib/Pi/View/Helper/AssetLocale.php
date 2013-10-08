@@ -30,18 +30,32 @@ use Zend\View\Helper\AbstractHelper;
 class AssetLocale extends AbstractHelper
 {
     /**
-     * Get URI of a module asset
+     * Get URI of a theme locale asset
      *
      * @param   string      $file
-     * @param   string|null $locale
-     * @param   bool        $versioning Flag to append version
+     * @param   string      $locale
+     * @param   bool        $isPublic
+     * @param   bool|null $appendVersion
+     *
      * @return  string
      */
-    public function __invoke($file, $locale = null, $versioning = true)
-    {
+    public function __invoke(
+        $file,
+        $locale = '',
+        $isPublic = false,
+        $appendVersion = null
+    ) {
+        $type = $isPublic ? 'public' : 'asset';
         $locale = $locale ?: Pi::service('i18n')->locale;
         $file = sprintf('locale/%s/%s', $locale, $file);
 
-        return Pi::service('asset')->getThemeAsset($file, null, $versioning);
+        $result = Pi::service('asset')->getThemeAsset(
+            $file,
+            '',
+            $type,
+            $appendVersion
+        );
+
+        return $result;
     }
 }

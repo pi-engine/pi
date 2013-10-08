@@ -29,15 +29,30 @@ use Zend\View\Helper\AbstractHelper;
 class AssetTheme extends AbstractHelper
 {
     /**
-     * Get URI of a module asset
+     * Get URI of a theme asset
      *
      * @param   string      $file
-     * @param   string|null $theme
-     * @param   bool        $versioning Flag to append version
+     * @param   string      $theme
+     * @param   bool        $isPublic
+     * @param   bool|null   $appendVersion
+     *
      * @return  string
      */
-    public function __invoke($file, $theme = null, $versioning = true)
-    {
-        return Pi::service('asset')->getThemeAsset($file, $theme, $versioning);
+    public function __invoke(
+        $file,
+        $theme = '',
+        $isPublic = false,
+        $appendVersion = null
+    ) {
+        $type = $isPublic ? 'public' : 'asset';
+
+        $result = Pi::service('asset')->getThemeAsset(
+            $file,
+            $theme,
+            $type,
+            $appendVersion
+        );
+
+        return $result;
     }
 }

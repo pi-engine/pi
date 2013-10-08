@@ -78,7 +78,7 @@ class LoginForm extends BaseForm
             $redirect = $request->getServer('HTTP_REFERER')
                 ?: $request->getRequestUri();
         }
-        $redirect = $redirect ? urlencode($redirect) : '';
+        $redirect = $redirect ? rawurlencode($redirect) : '';
         $this->add(array(
             'name'  => 'redirect',
             'type'  => 'hidden',

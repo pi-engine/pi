@@ -343,13 +343,26 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Fetch count against condition
      *
      * @param array|Where  $where
-     * @param array|string $group
-     * @param Where|\Closure|string|array $having
+     * @param array|string $params
      *
      * @return bool|int|ResultSet
      */
-    public function count($where = array(), $group = '', $having = array())
+    public function count($where = array(), $params = null)
     {
+        $group = $having = $limit = null;
+        if ($params) {
+            if (is_string($params)) {
+                $group = $params;
+            } else {
+                $keys = array_keys($params);
+                if (is_int($keys[0])) {
+                    $group = $params;
+                } else {
+                    extract($params);
+                }
+            }
+        }
+
         $columns = array('count' => Pi::db()->expression('COUNT(*)'));
         if ($group) {
             $columns += (array) $group;
@@ -357,8 +370,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $select = $this->select();
         $select->columns($columns);
         $select->where($where);
+
         if ($group) {
             $select->group($group);
+            if ($limit) {
+                $select->limit($limit);
+                $select->order('count DESC');
+            }
         }
         if ($having) {
             $select->having($having);

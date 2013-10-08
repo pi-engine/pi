@@ -60,7 +60,7 @@ class IndexController extends ActionController
      */
     public function addAction()
     {
-        $markup = 'text';
+        //$markup = 'text';
         //$module = $this->getModule();
         if ($this->request->isPost()) {
             $data = $this->request->getPost();

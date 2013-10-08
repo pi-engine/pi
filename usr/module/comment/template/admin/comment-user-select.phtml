@@ -1,0 +1,11 @@
+<div class="page-header"><?php echo _escape($title); ?></div>
+
+<form name="comment-user" method="GET" action="<?php echo $url; ?>">
+    <dl>
+        <dt><?php _e('Type user id or identity:'); ?></dt>
+        <dd>
+            <input type="text" name="uid" value="" />
+            <input type="submit" value="<?php _e('Submit'); ?>" />
+        </dd>
+    </dl>
+</form>

@@ -1,0 +1,72 @@
+<?php
+// Count
+$count = $comment['count'];
+// Article list:
+// title, url, time, user
+// comment_user, comment_time, comment_url
+$targets = $comment['targets'];
+// Pagination object
+$paginator = $comment['paginator'];
+?>
+<?php echo $this->tab($tabs); ?>
+
+    <div class="pi-comment-header">
+        <dl><?php echo _escape($comment['title']); ?></dl>
+        <dl class="dl-horizontal">
+            <dt><?php _e('Total:') ?></dt>
+            <dd><?php echo $count; ?></dd>
+        </dl>
+    </div>
+    <div class="pi-comment-list">
+<?php
+if ($targets) {
+    foreach ($targets as $root => $target) {
+?>
+        <dl class="dl-horizontal pi-comment-post">
+            <dt><?php _e('Source:') ?></dt>
+            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
+                    <?php echo _escape($target['title']); ?>
+                </a>
+            </dd>
+
+            <dt><?php _e('Author:') ?></dt>
+            <dd><a href="<?php echo $target['user']['url']; ?>" target="_blank" title="<?php echo _escape($target['user']['name']); ?>">
+                    <?php echo _escape($target['user']['name']); ?>
+                </a>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd><?php echo $target['user']['avatar']; ?></dd>
+
+            <dt><?php _e('Time:');?></dt>
+            <dd><?php echo _date($target['time']); ?></dd>
+
+            <dt><?php _e('Comment:');?></dt>
+            <dd><a href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php _e('Details'); ?>">
+                    <?php _e('Details'); ?>
+                </a>
+            </dd>
+
+
+            <dt><?php _e('Commented by:') ?></dt>
+            <dd><a href="<?php echo $target['comment_user']['url']; ?>" target="_blank" title="<?php echo _escape($target['comment_user']['name']); ?>">
+                    <?php echo _escape($target['comment_user']['name']); ?>
+                </a>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd><?php echo $target['comment_user']['avatar']; ?></dd>
+
+            <dt><?php _e('Commented at:');?></dt>
+            <dd><?php echo _date($target['comment_time']); ?></dd>
+        </dl>
+<?php
+    }
+?>
+    </div>
+<?php
+    if ($paginator) {
+        echo $this->pagination($paginator);
+    }
+} else {
+    _e('No data available yet.');
+}
+?>

@@ -29,14 +29,17 @@ class Modulelist extends AbstractRegistry
     protected function loadDynamic($options)
     {
         $modules = array();
-        $modelModule = Pi::model('module');
+        $model = Pi::model('module');
         $where = array();
         if ($options['type'] == 'inactive') {
             $where = array('active' => 0);
         } else {
             $where = array('active' => 1);
         }
-        $rowset = $modelModule->select($where);
+        $select = $model->select();
+        $select->order('title')->where($where);
+        $rowset = $model->selectWith($select);
+        //$rowset = $model->select($where);
         foreach ($rowset as $module) {
             $info = Pi::service('module')->loadMeta($module->directory,
                 'meta');
@@ -52,7 +55,7 @@ class Modulelist extends AbstractRegistry
             );
         }
 
-        asort($modules);
+        //asort($modules);
         if (isset($modules['system'])) {
             $systemModule = array('system' => $modules['system']);
             unset($modules['system']);

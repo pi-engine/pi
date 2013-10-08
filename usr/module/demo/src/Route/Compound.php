@@ -43,7 +43,10 @@ class Compound extends Standard
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  Request $request
+     *
+     * @param Request $request
+     * @param int|null $pathOffset
+     *
      * @return RouteMatch
      */
     public function match(Request $request, $pathOffset = null)

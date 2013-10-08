@@ -1,0 +1,139 @@
+<legend>{{'EDIT_USER' | translate}}</legend>
+<div class="alert" ng-if="alert" 
+     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
+  <button type="button" class="close" ng-click="clearAlert()">×</button>
+  {{alert.message}}
+</div>
+<p>
+  <a href="#!/index">
+    <i class="icon-long-arrow-left"></i>
+    {{'RETURN' | translate}}
+  </a>
+<form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
+  <div class="control-group" 
+      ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
+    <label class="control-label">{{'USER_NAME' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="entity.identity" name="identity" required 
+             pi-unique="{{uniqueUrl}}">
+      <span class="help-inline" 
+          ng-show="userForm.identity.$error.required">
+        {{'REQUIRED' | translate}}
+      </span>
+      <span class="help-inline" 
+          ng-show="userForm.identity.$error.unique">
+        {{'USER_NAME_TOKEN' | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="control-group"
+      ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
+    <label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
+    <div class="controls">
+        <input type="text" ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
+        <span class="help-inline" 
+            ng-show="userForm.name.$error.required">
+          {{'REQUIRED' | translate}}
+        </span>
+        <span class="help-inline" 
+            ng-show="userForm.name.$error.unique">
+          {{'DISPLAY_NAME_TOKEN' | translate}}
+        </span>
+    </div>
+  </div>
+  <div class="control-group"
+      ng-class="{'error': userForm.email.$dirty && userForm.email.$invalid}">
+      <label class="control-label">{{'EMAIL' | translate}}</label>
+    <div class="controls">
+      <input type="email" ng-model="entity.email" name="email" required pi-unique="{{uniqueUrl}}">
+      <span class="help-inline" 
+          ng-show="userForm.email.$error.required">
+        {{'REQUIRED' | translate}}
+      </span>
+      <span class="help-inline" 
+          ng-show="userForm.email.$error.email">
+        {{'INVALID_EMAIL' | translate}}
+      </span>
+      <span class="help-inline" 
+          ng-show="userForm.email.$error.unique">
+        {{'EMAIL_TOKEN' | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="control-group"
+      ng-class="{'error': userForm.credential.$dirty && userForm.credential.$invalid}">
+    <label class="control-label">{{'PASSWORD' | translate}}</label>
+    <div class="controls">
+      <input type="password" ng-model="entity.credential" name="credential">
+    </div>
+  </div>
+  <div class="control-group"
+      ng-class="{'error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
+    <label class="control-label">{{'CONFIRM_PASSWORD' | translate}}</label>
+    <div class="controls">
+        <input type="password" ng-model="entity.credential_confirm" 
+               name="credential_confirm" pi-match="credential">
+        <span class="help-inline" 
+            ng-show="userForm.credential_confirm.$error.mismatch">
+          {{'PASSWORD_MATCH' | translate}}
+        </span>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ACTIVATE' | translate}}</label>
+    <div class="controls">
+      <div class="btn-group">
+        <input type="button" class="btn" value="{{'NO' | translate}}"
+               ng-click="entity.activated = 0" 
+               ng-class="{'active': !entity.activated}"
+               ng-disabled="entity.time_activated">
+        <input type="button" class="btn" value="{{'YES' | translate}}"
+               ng-click="entity.activated = 1" 
+               ng-class="{'btn-success active': entity.activated"
+               ng-disabled="entity.time_activated">
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ENABLE' | translate}}</label>
+    <div class="controls">
+      <div class="btn-group">
+        <input type="button" class="btn" value="{{'NO' | translate}}"
+               ng-click="entity.enable = 0" 
+               ng-class="{'active': !entity.enable}">
+        <input type="button" class="btn" value="{{'YES' | translate}}"
+               ng-click="entity.enable = 1" 
+              ng-class="{'btn-success active': entity.enable}">
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
+    <div class="controls">
+      <ul class="inline">
+        <li ng-repeat="item in roles | filter: {type: 'front'}">
+          <label class="checkbox">
+              <input type="checkbox" ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+   <div class="control-group">
+      <label class="control-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
+      <div class="controls">
+        <ul class="inline">
+          <li ng-repeat="item in roles | filter: {type: 'admin'}">
+            <label class="checkbox">
+              <input type="checkbox" ng-model="item.checked">{{item.title}}
+            </label>
+          </li>
+        </ul>
+      </div>
+  </div>
+  <div class="controls">
+    <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary" 
+           ng-disabled="userForm.$invalid">
+  </div>
+</form>

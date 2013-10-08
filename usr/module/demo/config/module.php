@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'DEMO Sandbox',
+        'title'         => __('DEMO Sandbox'),
         // Description, for admin, optional
-        'description'   => 'Examples and tests for developers.',
+        'description'   => __('Examples and tests for developers.'),
         // Version number, required
         'version'       => '1.0.0-beta.1',
         // Distribution license, required
@@ -83,5 +83,6 @@ return array(
         ),
 
         'user'      => 'user.php',
+        'comment'   => 'comment.php',
     ),
 );

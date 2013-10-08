@@ -1,0 +1,69 @@
+<div class="page-header"><?php echo _escape($title); ?></div>
+
+<dl class="page-header"><?php _e('Comment post stats'); ?></dl>
+<dl class="dl-horizontal">
+    <?php foreach ($counts as $name => $data) { ?>
+        <dt><?php echo _escape($data['title']); ?></dt>
+        <dd><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
+                <?php echo $data['count']; ?>
+            </a>
+        </dd>
+    <?php } ?>
+</dl>
+
+<dl class="page-header"><?php _e('Active comment posts by module'); ?></dl>
+<dl class="dl-horizontal">
+    <?php foreach ($modules as $name => $data) { ?>
+        <dt><?php echo _escape($data['title']); ?></dt>
+        <dd><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
+                <?php echo $data['count']; ?>
+            </a>
+        </dd>
+        <dt>&nbsp;</dt>
+        <dd>
+        <ul>
+        <?php foreach ($data['categories'] as $category => $cData) { ?>
+            <li><?php echo _escape($cData['title']); ?>
+                <a href="<?php echo $cData['url']; ?>" title="<?php echo _escape($cData['title']); ?>" target="_blank">
+                    <?php echo $cData['count']; ?>
+                </a>
+            </li>
+        <?php } ?>
+        </ul>
+        </dd>
+    <?php } ?>
+</dl>
+
+<dl class="page-header"><?php _e('Most commented'); ?></dl>
+<dl class="dl-horizontal">
+    <?php foreach ($targets as $name => $data) { ?>
+        <dt><?php echo _escape($data['title']); ?></dt>
+        <dd><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
+                <?php echo $data['count']; ?>
+            </a>
+        </dd>
+    <?php } ?>
+</dl>
+
+<dl class="page-header"><?php _e('Top posters'); ?></dl>
+<dl class="dl-horizontal">
+    <?php foreach ($users as $uid => $data) { ?>
+        <dt><?php echo _escape($data['name']); ?></dt>
+        <dd><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['name']); ?>" target="_blank">
+                <?php echo $data['count']; ?>
+            </a>
+        </dd>
+    <?php } ?>
+</dl>
+
+
+<dl class="page-header"><?php _e('Links'); ?></dl>
+<ul>
+    <?php foreach ($links as $name => $data) { ?>
+        <li><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
+                <?php echo _escape($data['title']); ?>
+            </a>
+        </li>
+    <?php } ?>
+</ul>
+

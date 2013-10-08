@@ -56,10 +56,15 @@ class Backbone extends AssetCanonize
      *
      * @param   null|string|array $files
      * @param   array $attributes
-     * @return  self
+     * @param   bool|null $appendVersion
+     *
+     * @return  $this
      */
-    public function __invoke($files = null, $attributes = array())
-    {
+    public function __invoke(
+        $files = null,
+        $attributes = array(),
+        $appendVersion = null
+    ) {
         $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
             $autoLoad = array();
@@ -82,7 +87,7 @@ class Backbone extends AssetCanonize
 
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $file);
+            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ($attrs['ext'] == 'css') {

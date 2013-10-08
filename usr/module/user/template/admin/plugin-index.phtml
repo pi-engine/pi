@@ -1,6 +1,11 @@
 <?php
-    $this->css($this->assetModule('script/admin.css'));
-    $this->jQuery('ui/jquery-ui-1.10.3.custom.js'); 
+$this->css($this->assetModule('script/admin.css'));
+$this->jQuery('ui/jquery-ui-1.10.3.custom.js');
+$this->angular(array(
+    'angular-route.js',
+    'angular-translate.js'
+));
+
 ?>
 <div ng-controller="MainCtrl" ng-app="userPluginModule">
     <ul class="nav nav-tabs">
@@ -22,16 +27,12 @@
     </ul>
     <div ng-view></div>
 </div>
-<?php $assetMin = Pi::environment() == 'production' ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('angular/angular'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/angular-route'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/pagination'. $assetMin .'.js'); ?>"></script>
-<script src="<?php echo $this->assetModule('angular/angular-translate'. $assetMin .'.js'); ?>"></script>
+
 <script>
 var userPluginModule = angular.module('userPluginModule', ['ngRoute', 'pagination', 'pascalprecht.translate']);
 var userPluginModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/'); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     t: {
         ITEM_NAME: '<?php _e('Item name'); ?>',
         FROM: '<?php _e('From module'); ?>',

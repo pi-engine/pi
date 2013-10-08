@@ -344,10 +344,12 @@ namespace
     /**
      * Sanitize a value with PHP filter_var
      *
-     * @param string            $variable   Variable name
-     * @param int|string        $filter
-     *      Filter name or filter_id, default as 'full_special_chars'
-     * @param array|int|string  $options    Filter options or flag
+     * @param                  $value
+     * @param int|string       $filter Filter name or filter_id,
+     *                                  default as 'full_special_chars'
+     * @param array|int|string $options    Filter options or flag
+     *
+     * @internal param string $variable Variable name
      * @return mixed
      */
     function _sanitize($value, $filter = '', $options = null)

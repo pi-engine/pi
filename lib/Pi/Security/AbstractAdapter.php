@@ -32,7 +32,10 @@ abstract class AbstractAdapter
      *
      * @see http://www.php.net/manual/en/migration52.incompatible.php
      *      for "Dropped abstract static class functions"
+     *
      * @param array $options
+     *
+     * @throws \Exception
      * @return bool|null
      */
     public static function check($options = null)

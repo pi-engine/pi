@@ -67,6 +67,21 @@ class Config extends AbstractService
     }
 
     /**
+     * Get module config(s)
+     *
+     * @param string $name
+     * @param string $module
+     *
+     * @return mixed
+     */
+    public function module($name = '', $module = '')
+    {
+        $moduleConfig = Pi::service('module')->config($name, $module);
+
+        return $moduleConfig;
+    }
+
+    /**
      * Get a config by name and its domain
      *
      * @param string    $name       Name of the config element

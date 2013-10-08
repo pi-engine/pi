@@ -12,23 +12,22 @@ namespace Module\Comment\Route;
 use Pi\Mvc\Router\Http\Standard;
 
 /**
- * User route
+ * Comment route
  *
  * Use cases:
  *
  * - Simplified URLs:
- *   - Item comments: /<root-id> => List::Root
- *   - User comments: /user/<uid> => List::User
- *   - Module comments: /module/<module-name> => List::Module
- *   - Module category comments: /module/<module-name>/<category> => List::Module
+ *   - Item comment list: /list/<root-id> => List::Root
+ *   - Comment post view: /post/<post-id> => Post::Index
  *
  * - Standard URLs:
- *   - Comment home: /  => List::Index
+ *   - Comment home: /  => Index::Index
  *   - Comment home: /list => List::Index
- *   - Comment post view: /post/view/<post-id> => Post::Index
+ *   - User comments: /list/user/id/<uid> => List::User
+ *   - Module comments: /list/module/name/<module-name> => List::Module
  *   - Comment post submit: /post/submit => Post::Submit
- *   - Comment post delete: /post/delete => Post::Delete
- *   - Comment post approve/disapprove: /post/approve => Post::approve
+ *   - Comment post delete: /post/delete/id/<post-id> => Post::Delete
+ *   - Comment post approve: /post/approve/id/<post-id> => Post::approve
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -40,7 +39,7 @@ class Comment extends Standard
      */
     protected $defaults = array(
         'module'        => 'comment',
-        'controller'    => 'list',
+        'controller'    => 'index',
         'action'        => 'index'
     );
 
@@ -57,35 +56,31 @@ class Comment extends Standard
         $matches = null;
 
         $parts = array_filter(explode($this->structureDelimiter, $path));
-        $count = count($parts);
-        if ($count) {
+        //$count = count($parts);
+        if ($parts) {
             $term = array_shift($parts);
-            // /<id>
-            if (is_numeric($term)) {
-                $matches['controller'] = 'list';
-                $matches['action'] = 'root';
-                $matches['root'] = (int) $term;
-
-            // /user
-            // /user/<uid>
-            } elseif ('user' == $term) {
-                $matches['controller'] = 'list';
-                $matches['action'] = 'user';
+            // /list/<root-id>
+            if ('list' == $term) {
                 if ($parts && is_numeric($parts[0])) {
-                    $matches['uid'] = (int) array_shift($parts);
+                    $matches = array(
+                        'controller'    => 'list',
+                        'action'        => 'root',
+                        'root'          => (int) array_shift($parts),
+                    );
                 }
 
-            // /module/<...>
-            } elseif ('module' == $term && $parts) {
-                $matches['controller'] = 'list';
-                $matches['action'] = 'module';
-                // /module/<module-name>
-                $matches['name'] = array_shift($parts);
-                // /module/<module-name>/<category-name>
-                if ($parts) {
-                    $matches['category'] = array_shift($parts);
+            // /post/<post-id>
+            } elseif ('post' == $term) {
+                if ($parts && is_numeric($parts[0])) {
+                    $matches = array(
+                        'controller'    => 'post',
+                        'action'        => 'index',
+                        'id'            => (int) array_shift($parts),
+                    );
                 }
+
             }
+
             if ($matches && $parts) {
                 $matches = array_merge($matches, $this->parseParams($parts));
             }
@@ -122,29 +117,20 @@ class Comment extends Standard
         $controller = isset($params['controller']) ? $params['controller'] : '';
         $action = isset($params['action']) ? $params['action'] : '';
 
-        if ('' == $controller || 'list' == $controller) {
-            if ('' == $action || 'index' == $action || 'view' == $action) {
-                // /home
-                $url = 'home';
-                if (!empty($params['id'])) {
-                    // /home/<id>
-                    if (count($params) > 1) {
-                        $url .= $this->paramDelimiter . $params['id'];
-                    // /<id>
-                    } else {
-                        $url = $params['id'];
-                    }
-                    unset($params['id']);
+        // /list/<root-id>
+        if ('list' == $controller) {
+            if ('' == $action || 'root' == $action) {
+                if (!empty($params['root'])) {
+                    $url .= 'list' . $this->paramDelimiter . $params['root'];
+                    unset($params['root']);
                 }
             }
-        // /profile/<...>
-        } elseif ('profile' == $controller) {
-            if ('' == $action || 'index' == $action || 'view' == $action) {
-                // /profile
-                $url = 'profile';
-                // /profile/<id>
+
+        // /post/<post-id>
+        } elseif ('post' == $controller) {
+            if ('' == $action || 'index' == $action) {
                 if (!empty($params['id'])) {
-                    $url .= $this->paramDelimiter . $params['id'];
+                    $url .= 'post' . $this->paramDelimiter . $params['id'];
                     unset($params['id']);
                 }
             }

@@ -17,8 +17,14 @@ return array(
     // Activity
     'activity' => array(
         'post'    => array(
-            'title' => __('Comments'),
-            'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
+            'title' => __('Comment posts by me'),
+            //'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
+            'icon'  => 'icon-post',
+            'callback'  => 'Module\Comment\Comment\Post',
+        ),
+        'article'   => array(
+            'title' => __('Comment posts on my articles'),
+            //'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
             'icon'  => 'icon-post',
             'callback'  => 'Module\Comment\Comment\Post',
         ),

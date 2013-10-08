@@ -81,8 +81,7 @@ class ModuleController extends ActionController
             } else {
                 $data['logo'] = Pi::service('asset')->getModuleAsset(
                     $meta['logo'],
-                    $data['name'],
-                    false
+                    $data['name']
                 );
             }
             if (empty($data['update'])) {

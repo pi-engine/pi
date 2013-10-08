@@ -226,19 +226,19 @@ class Avatar extends AbstractService
         // Get named size
         } else {
             // From numeric to named size
-            if (is_numeric($size)) {
-                foreach ($sizeMap as $name => $number) {
-                    if (is_numeric($number) && $number >= $size) {
-                        break;
-                    }
-                }
-                $size = $name;
-                // Convert to defined named size
-            } elseif (!isset($sizeMap[$size])) {
-                $size = 'normal';
+            if (!is_numeric($size)) {
+                $size = $findSize($size);
             }
+
+            foreach ($sizeMap as $name => $number) {
+                if (is_numeric($number) && $number >= $size) {
+                    break;
+                }
+            }
+            $size = $name;
         }
 
         return $size;
+
     }
 }

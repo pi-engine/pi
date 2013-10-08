@@ -27,7 +27,7 @@ class UserController extends ActionController
      * @return array|void
      */
     public function indexAction() {
-        $this->view()->setTemplate('user-index');
+        $this->view()->setTemplate('user');
         $this->view()->assign(array(
             'roles'  => $this->getRoles(),
         ));
@@ -111,9 +111,8 @@ class UserController extends ActionController
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $role       = _post('role');
+        $roles       = _post('roles');
 
-        $role = array_unique(explode(',', $role));
         // Check duplication
         $where = array(
             'identity' => $identity,
@@ -125,7 +124,7 @@ class UserController extends ActionController
             Predicate\PredicateSet::OP_OR
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
-        if (count($rowset) != 0 || empty($role)) {
+        if (count($rowset) != 0 || empty($roles)) {
             $result['message'] = __('Add user failed');
             return $result;
         }
@@ -155,7 +154,7 @@ class UserController extends ActionController
         }
 
         // Set role
-        Pi::api('system', 'user')->setRole($uid, $role);
+        Pi::api('system', 'user')->setRole($uid, $roles);
 
         $result['status']  = 1;
         $result['message'] = __('Add user sucessfully');
@@ -173,7 +172,7 @@ class UserController extends ActionController
     {
         $result = array();
 
-        $uid = _get('uid');
+        $uid = _get('id');
         if (!$uid) {
             return $result;
         }
@@ -197,14 +196,14 @@ class UserController extends ActionController
         );
 
         // Get data
-        $uid        = _post('uid');
+        $uid        = _post('id');
         $identity   = _post('identity');
         $name       = _post('name');
         $email      = _post('email');
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
-        $role       = _post('role');
+        $roles       = _post('roles');
 
         if (!$uid) {
             $result['message'] = __('Update user failed');
@@ -218,7 +217,6 @@ class UserController extends ActionController
             return $result;
         }
 
-        $role = array_unique(explode(',', $role));
         $data = array(
             'identity' => $identity,
             'name'     => $name,
@@ -231,7 +229,14 @@ class UserController extends ActionController
         // Update account
         Pi::api('system', 'user')->updateUser($uid, $data);
         // Update role
-        Pi::api('system', 'user')->setRole($uid, $role);
+        $roleExist = array();
+        $model = Pi::model('user_role');
+        $rowset = $model->select(array('uid' => $uid));
+        foreach ($rowset as $row) {
+            $roleExist[] = $row['role'];
+        }
+        Pi::api('system', 'user')->revokeRole($uid, $roleExist);
+        Pi::api('system', 'user')->setRole($uid, $roles);
         // Activate
         if ($activated == 1) {
             Pi::api('system', 'user')->activateUser($uid);
@@ -262,7 +267,7 @@ class UserController extends ActionController
         $identity = _get('identity');
         $email    = _get('email');
         $name     = _get('name');
-        $uid      = (int) _get('uid');
+        $uid      = (int) _get('id');
 
         if (!$identity && !$email && !$name ) {
             return array(
@@ -338,10 +343,10 @@ class UserController extends ActionController
         foreach ($rowset as $row) {
             $uid = $row['uid'];
             $section = $row['section'];
-            $roleKey = $section . '_role';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
-        }
+            $roleKey = $section . '_roles';
+            $users[$uid][$roleKey][] = $row['role'];
 
+        }
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
             $user['time_disabled']  = (int) $user['time_disabled'];

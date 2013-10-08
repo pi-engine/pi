@@ -1,0 +1,54 @@
+<?php
+// Target data:
+// Title, time, user
+// uid, name, avatar, profile_url
+$target = $comment['target'];
+
+// Comment post
+// content, time, user
+$post = $comment['post'];
+?>
+    <div class="page-header"><?php echo _escape($comment['title']); ?></div>
+<?php
+if ($post) {
+?>
+    <div class="pi-comment-header">
+        <dl class="dl-horizontal">
+            <dt><?php _e('Source:') ?></dt>
+            <dd><?php echo $target['title']; ?></dd>
+            <dt><?php _e('URL:') ?></dt>
+            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php _e('Click to open'); ?>">
+                    <?php _e('Click to open'); ?>
+                </a>
+            </dd>
+        </dl>
+    </div>
+    <div class="pi-comment-list">
+        <dl class="dl-horizontal pi-comment-post">
+            <dt><?php _e('Author:') ?></dt>
+            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
+                    <?php echo $post['user']['name']; ?>
+                </a>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd><?php echo $post['user']['avatar']; ?></dd>
+
+            <dt><?php _e('Time:');?></dt>
+            <dd><?php echo _date($post['time']); ?></dd>
+
+            <dt><?php _e('Content:');?></dt>
+            <dd><?php echo $post['content']; ?></dd>
+
+        </dl>
+        <dl>
+            <dt><?php _e('Reply'); ?></dt>
+            <dd><?php include $this->templateComponent('form'); ?></dd>
+        </dl>
+    </div>
+<?php
+} elseif (!empty($comment['message'])) {
+    echo _escape($comment['message']);
+} else {
+    _e('No content');
+}
+?>

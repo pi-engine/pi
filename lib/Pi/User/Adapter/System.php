@@ -186,6 +186,8 @@ class System extends AbstractAdapter
 
     /**
      * {@inheritDoc}
+     *
+     * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
      */
     public function getUrl($type, $var = null)
     {
@@ -204,10 +206,10 @@ class System extends AbstractAdapter
             case 'login':
             case 'signin':
                 $params = array('controller' => 'login');
-                if ($var) {
-                    $params['redirect'] = $var;
-                }
                 $url = Pi::service('url')->assemble($route, $params);
+                if ($var) {
+                    $url .= '?redirect=' . rawurlencode($var);
+                }
                 break;
             case 'logout':
             case 'signout':
@@ -215,10 +217,10 @@ class System extends AbstractAdapter
                     'controller'    => 'login',
                     'action'        => 'logout',
                 );
-                if ($var) {
-                    $params['redirect'] = $var;
-                }
                 $url = Pi::service('url')->assemble($route, $params);
+                if ($var) {
+                    $url .= '?redirect=' . rawurlencode($var);
+                }
                 break;
             case 'register':
             case 'signup':

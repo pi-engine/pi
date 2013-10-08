@@ -106,66 +106,74 @@ class User extends Standard
     {
         $matches = null;
 
-        $count = 0;
+        $parts = array();
         if ($path) {
             $parts = array_filter(explode($this->structureDelimiter, $path));
-            $count = count($parts);
         }
-        if ($count) {
+        if ($parts) {
             $matches = array();
             $term = array_shift($parts);
 
-            // /logout
-            if ('logout' == $term) {
-                $matches['controller']  = 'login';
-                $matches['action']      = 'logout';
-
-            // /home/<...>
-            } elseif ('home' == $term) {
-                $matches['controller']  = 'home';
-                $matches['action']      = 'index';
-                if ($parts) {
-                    // /home/<uid>
-                    if (is_numeric($parts[0])) {
-                        $matches['action'] = 'view';
-                        $matches[$this->paramId] = (int) array_shift($parts);
-                    // /home/identity/<...>
-                    } elseif ($this->paramIdentity == $parts[0]
-                    // /home/name/<...>
-                        || $this->paramName == $parts[0]
-                    ) {
-                        $matches['action'] = 'view';
-                    } else {
-                        // Do nothing but leave to user own page
+            switch ($term) {
+                // /home/<...>
+                case 'home':
+                    $matches['controller']  = 'home';
+                    $matches['action']      = 'index';
+                    if ($parts) {
+                        // /home/<uid>
+                        if (is_numeric($parts[0])) {
+                            $matches['action'] = 'view';
+                            $matches[$this->paramId] = (int) array_shift($parts);
+                            // /home/identity/<...>
+                        } elseif ($this->paramIdentity == $parts[0]
+                            // /home/name/<...>
+                            || $this->paramName == $parts[0]
+                        ) {
+                            $matches['action'] = 'view';
+                        } else {
+                            // Do nothing but leave to user own page
+                        }
                     }
-                }
+                    break;
 
-            // /profile/<...>
-            } elseif ('profile' == $term) {
-                $matches['controller']  = 'profile';
-                $matches['action']      = 'index';
-                if ($parts) {
-                    // /profile/<id>
-                    if (is_numeric($parts[0])) {
-                        $matches['action'] = 'view';
-                        $matches[$this->paramId] = (int) array_shift($parts);
-                    // /profile/identity/<...>
-                    } elseif ($this->paramIdentity == $parts[0]
-                    // /profile/name/<...>
-                        || $this->paramName == $parts[0]
-                    ) {
-                        $matches['action'] = 'view';
-                    // /profile/<action>/<...>
-                    } else {
-                        $matches['action'] = array_shift($parts);
+                // /profile/<...>
+                case 'profile':
+                    $matches['controller']  = 'profile';
+                    $matches['action']      = 'index';
+                    if ($parts) {
+                        // /profile/<id>
+                        if (is_numeric($parts[0])) {
+                            $matches['action'] = 'view';
+                            $matches[$this->paramId] = (int) array_shift($parts);
+                            // /profile/identity/<...>
+                        } elseif ($this->paramIdentity == $parts[0]
+                            // /profile/name/<...>
+                            || $this->paramName == $parts[0]
+                        ) {
+                            $matches['action'] = 'view';
+                            // /profile/<action>/<...>
+                        } else {
+                            $matches['action'] = array_shift($parts);
+                        }
                     }
-                }
-            } else {
-                $matches = null;
+                    break;
+
+                // /logout
+                case 'logout':
+                    $matches['controller']  = 'login';
+                    $matches['action']      = 'logout';
+                    break;
+
+                default:
+                    $matches = null;
+                    break;
             }
 
             if (null !== $matches && $parts) {
-                $matches = array_merge((array) $matches, $this->parseParams($parts));
+                $matches = array_merge(
+                    (array) $matches,
+                    $this->parseParams($parts)
+                );
             }
         }
 

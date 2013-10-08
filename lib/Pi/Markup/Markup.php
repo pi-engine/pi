@@ -105,8 +105,9 @@ class Markup
     /**
      * Load parser
      *
-     * @param string $parser
+     * @param string $parserName
      * @param array $options
+     *
      * @return AbstractParser
      */
     public static function loadParser($parserName, $options = array())
@@ -177,10 +178,11 @@ class Markup
     /**
      * Render content
      *
-     * @param string $content   Raw content
-     * @param string $renderer  Renderer type
-     * @param string|null $parser
-     * @param array $renderOptions
+     * @param string           $content   Raw content
+     * @param string           $renderer  Renderer type
+     * @param bool|null|string $parser
+     * @param array            $renderOptions
+     *
      * @return string
      */
     public static function render(

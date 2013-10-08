@@ -103,7 +103,7 @@ $configs['paths'] = array(
 $configs['skip_url_validate'] = false;
 
 // Writable files and directories prior to installation
-$configs['writable']['www'] = array('.htaccess', 'boot.php');
+$configs['writable']['www'] = array('public', '.htaccess', 'boot.php');
 // For non-apache server
 //$configs['writable']['www'] = array('boot.php');
 $configs['writable']['var'] = '';

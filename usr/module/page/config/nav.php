@@ -10,7 +10,7 @@
 return array(
     'meta'  => array(
         'site'  => array(
-            'title'     => 'Custom site navigation',
+            'title'     => _t('Custom site navigation'),
             'section'   => 'front',
         ),
     ),
@@ -18,21 +18,21 @@ return array(
         'front'     => false,
         'admin'     => array(
             'list'     => array(
-                'label'         => 'Page list',
+                'label'         => _t('Page list'),
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'index',
 
                 'pages' => array(
                     'edit'   => array(
-                        'label' => 'Edit page',
+                        'label' => _t('Edit page'),
                         'route'         => 'admin',
                         'controller'    => 'index',
                         'action'        => 'edit',
                         'visible'       => 0,
                     ),
                     'delete'   => array(
-                        'label' => 'Delete page',
+                        'label' => _t('Delete page'),
                         'route'         => 'admin',
                         'controller'    => 'index',
                         'action'        => 'delete',
@@ -41,7 +41,7 @@ return array(
                 ),
             ),
             'add'   => array(
-                'label' => 'Add a page',
+                'label' => _t('Add a page'),
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'add',
@@ -51,40 +51,40 @@ return array(
         // Custom navigation
         'site' => array(
             'home'     => array(
-                'label'         => 'Home',
+                'label'         => _t('Home'),
                 'route'         => 'home',
             ),
             'about'     => array(
-                'label'         => 'About us',
+                'label'         => _t('About us'),
                 'route'         => '.page',
                 'action'        => 'about',
             ),
             'contact'     => array(
-                'label'         => 'Contact us',
+                'label'         => _t('Contact us'),
                 'route'         => '.page',
                 'action'        => 'contact',
             ),
             'term'     => array(
-                'label'         => 'Terms of use',
+                'label'         => _t('Terms of use'),
                 'route'         => '.page',
                 'action'        => 'terms',
             ),
             'privacy'     => array(
-                'label'         => 'Privacy guidelines',
+                'label'         => _t('Privacy guidelines'),
                 'route'         => '.page',
                 'action'        => 'privacy',
             ),
             'join'     => array(
-                'label'         => 'Join us',
+                'label'         => _t('Join us'),
                 'route'         => 'user',
             ),
             'app'       => array(
-                'label'         => 'Applications',
+                'label'         => _t('Applications'),
                 'uri'           => '',
                 'callback'      => 'Module\\Page\\Navigation::modules',
             ),
             'eefocus'   => array(
-                'label'         => 'Pi Engine',
+                'label'         => _t('Pi Engine'),
                 'uri'           => 'http://pialog.org',
                 'target'        => '_blank',
             ),

@@ -79,8 +79,6 @@ class IndexController extends ActionController
             }
         }
 
-
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
@@ -111,7 +109,7 @@ class IndexController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (!preg_match('/.+@.+/', $condition['search'])) {
+            if (false !== strpos($condition['search'], '@')) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -133,12 +131,6 @@ class IndexController extends ActionController
             'limit'      => $limit,
             'page'       => $page,
         );
-
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
 
         $data = array(
             'users'       => array_values($users),
@@ -170,7 +162,7 @@ class IndexController extends ActionController
         // Exchange search
         if ($condition['search']) {
             // Check email or username
-            if (!preg_match('/.+@.+/', $condition['search'])) {
+            if (false !== strpos($condition['search'], '@')) {
                 $condition['identity'] = $condition['search'];
             } else {
                 $condition['email'] = $condition['search'];
@@ -193,12 +185,6 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
@@ -211,7 +197,6 @@ class IndexController extends ActionController
 
     /**
      * Add new user action
-     *
      */
     public function addUserAction()
     {
@@ -642,10 +627,10 @@ class IndexController extends ActionController
      * @param int[] $ids
      * @return array
      */
-    protected function getUser($ids)
+    protected function getUser($uids)
     {
         $users = array();
-        if (!$ids) {
+        if (!$uids) {
             return $users;
         }
 
@@ -662,7 +647,7 @@ class IndexController extends ActionController
         );
 
         $users = Pi::api('user', 'user')->get(
-            $ids,
+            $uids,
             array_keys($columns)
         );
 
@@ -672,7 +657,7 @@ class IndexController extends ActionController
             $uid = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_role';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
+            $users[$uid][$roleKey][] = $row['role'];
         }
 
         foreach ($users as &$user) {

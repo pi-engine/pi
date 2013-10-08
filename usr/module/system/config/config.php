@@ -107,6 +107,7 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
+        /*
     'asset_versioning'  => array(
         'title'         => _t('Enable asset versions'),
         'description'   => _t('Append version to asset URLs. It is suggested to trun off in production environments for performance consideration.'),
@@ -115,6 +116,7 @@ $config['item'] = array(
         'filter'        => 'int',
         'category'      => 'general',
     ),
+    */
 
     'theme'         => array(
         'title'         => _t('Theme'),

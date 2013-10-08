@@ -200,7 +200,7 @@ class Paginator extends Pagit
      * @var array
      */
     protected $urlOptions = array(
-        'page_param'    => 'p',
+        'page_param'    => 'page',
     );
 
     /** @var string Pattern for URL replacement */

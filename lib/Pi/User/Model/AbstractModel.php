@@ -84,6 +84,8 @@ abstract class AbstractModel extends ArrayObject
      *
      * @param mixed $offset
      * @param mixed $value
+     *
+     * @return void
      */
     public function offsetSet($offset, $value)
     {
@@ -202,11 +204,21 @@ abstract class AbstractModel extends ArrayObject
     abstract public function isGuest();
 
     /**
-     * Check if current user is a top admin
+     * Check if current user is root user
      *
      * @return bool
      */
-    abstract public function isAdmin();
+    abstract public function isRoot();
+
+    /**
+     * Check if current user is a top admin
+     *
+     * @param string $module
+     * @param string $module
+     *
+     * @return bool
+     */
+    abstract public function isAdmin($module = '');
 
     /**
      * Check if current user has a role in its role ancestors

@@ -223,6 +223,7 @@ class Comment extends AbstractResource
         }
         Pi::registry('category', 'comment')->clear();
 
+        /*
         $modelRoot = Pi::model('root', 'comment');
         $modelPost = Pi::model('post', 'comment');
         $sql = 'DELETE post FROM %s AS post'
@@ -236,9 +237,11 @@ class Comment extends AbstractResource
             $module
         );
         Pi::db()->query($sql);
+        */
 
         Pi::model('category', 'comment')->delete(array('module' => $module));
         Pi::model('root', 'comment')->delete(array('module' => $module));
+        Pi::model('post', 'comment')->delete(array('module' => $module));
 
         return true;
     }
@@ -251,11 +254,13 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        $module = $this->getModule();
         Pi::registry('category', 'comment')->clear();
 
+        /*
+        $module = $this->getModule();
         $model = Pi::model('category', 'comment');
         $model->update(array('active' => 1), array('module' => $module));
+        */
 
         return true;
     }
@@ -268,11 +273,13 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        $module = $this->getModule();
         Pi::registry('category', 'comment')->clear();
 
+        /*
+        $module = $this->getModule();
         $model = Pi::model('category', 'comment');
         $model->update(array('active' => 0), array('module' => $module));
+        */
 
         return true;
     }

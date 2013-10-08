@@ -16,6 +16,7 @@ use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Resource\AbstractResource;
+use Zend\Http\PhpEnvironment\RemoteAddress;
 
 /**
  * User service gateway
@@ -325,6 +326,22 @@ class User extends AbstractService
         }
 
         return $identity;
+    }
+
+    /**
+     * Get current request IP
+     *
+     * @param bool $proxy Check proxy
+     * @param bool $ipv6  Return IPV6
+     *
+     * @return string
+     */
+    public function getIp($proxy = false, $ipv6 = false)
+    {
+        $remoteAddress = new RemoteAddress;
+        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
+
+        return $ip;
     }
 
     /**

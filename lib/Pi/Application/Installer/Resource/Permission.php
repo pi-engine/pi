@@ -60,7 +60,8 @@ class Permission extends AbstractResource
                 'type'      => 'custom',
                 'name'      => $config['custom'],
             );
-            $config['front']['callback'] = $resource;
+            $config['front']['custom'] = $resource;
+            unset($config['custom']);
         }
 
         foreach ($config as $section => &$resourceList) {

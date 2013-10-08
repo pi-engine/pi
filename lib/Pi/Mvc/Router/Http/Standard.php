@@ -50,19 +50,19 @@ class Standard implements RouteInterface
      * Delimiter between structured values of module, controller and action.
      * @var string
      */
-    protected $structureDelimiter;
+    protected $structureDelimiter = '/';
 
     /**
      * Delimiter between keys and values.
      * @var string
      */
-    protected $keyValueDelimiter;
+    protected $keyValueDelimiter = '/';
 
     /**
      * Delimiter before parameters.
      * @var array
      */
-    protected $paramDelimiter;
+    protected $paramDelimiter = '/';
 
     /**
      * Default values.
