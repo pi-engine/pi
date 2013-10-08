@@ -14,7 +14,7 @@
       ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
     <label class="control-label">{{'USER_NAME' | translate}}</label>
     <div class="controls">
-      <input type="text" ng-model="entity.identity" name="identity" required 
+      <input type="text" ng-model="entity.identity" name="identity" required ng-minlength="3"
              pi-unique="{{uniqueUrl}}">
       <span class="help-inline" 
           ng-show="userForm.identity.$error.required">
@@ -83,7 +83,7 @@
         {{'REQUIRED' | translate}}
       </span>
       <span class="help-inline" 
-            ng-show="userForm.credential_confirm.$error.mismatch">
+            ng-show="!userForm.credential_confirm.$error.required && userForm.credential_confirm.$error.mismatch">
         {{'PASSWORD_MATCH' | translate}}
       </span>
     </div>
