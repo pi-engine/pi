@@ -1,27 +1,29 @@
 (function(window, angular) {'use strict';
   var form = angular.module('piForm', []);
-  form.directive('piUnique', function($http, $q) {
-    var link = function (scope, element, attr, ctrl) {
+  form.directive('piUnique', function($http, $timeout) {
+    function link(scope, element, attr, ctrl) {
       var url = attr.piUnique;
       var params = {};
-      var deferred;
+      var request;
       if (!url) {
         throw new Error('Please set url value on pi-unique attribute');
       }
+
       scope.$watch(attr.ngModel, function(value) {
-        if(ctrl.$pristine) return;
-        if(deferred) deferred.resolve();
-        deferred = $q.defer();
+        if(!value) return;
+        // If there was a previous request, stop it.
+        if(request) clearTimeout(request);
         params[attr.name] = value;
-        $http.get(url, {
-          cache: true,
-          params: params,
-          timeout: deferred.promise
-        }).success(function(data) {
-          ctrl.$setValidity('unique', !data.status);
-        });
+        request = $timeout(function() {
+          $http.get(url, {
+            cache: true,
+            params: params,
+          }).success(function(data) {
+            ctrl.$setValidity('unique', !data.status);
+          });
+        }, 600);
       });
-    };
+    }
     return {
       require: 'ngModel',
       link: link,
@@ -40,7 +42,7 @@
           }
         });
         match.$parsers.push(function(value) {
-          var val = ctrl.$viewValue;
+          var val = ctrl.$viewValue || '';
           ctrl.$setValidity("mismatch", value == val);
           return value;
         });
