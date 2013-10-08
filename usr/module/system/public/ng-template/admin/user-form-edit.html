@@ -14,7 +14,7 @@
       ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
     <label class="control-label">{{'USER_NAME' | translate}}</label>
     <div class="controls">
-      <input type="text" ng-model="entity.identity" name="identity" required 
+      <input type="text" ng-model="entity.identity" name="identity" required
              pi-unique="{{uniqueUrl}}">
       <span class="help-inline" 
           ng-show="userForm.identity.$error.required">
@@ -89,8 +89,7 @@
                ng-disabled="entity.time_activated">
         <input type="button" class="btn" value="{{'YES' | translate}}"
                ng-click="entity.activated = 1" 
-               ng-class="{'btn-success active': entity.activated"
-               ng-disabled="entity.time_activated">
+               ng-class="{'btn-success active': entity.activated}">
       </div>
     </div>
   </div>

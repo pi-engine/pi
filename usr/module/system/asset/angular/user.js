@@ -1,11 +1,17 @@
 ﻿systemUserModule.config(function ($translateProvider, $routeProvider, $locationProvider) {
+  function tpl(name) {
+    return systemUserModuleConfig.assetRoot + name + '.html';
+  }
   $translateProvider.translations(systemUserModuleConfig.t);
-  $routeProvider.when('/new', {
-    controller: 'formCtrl',
-    templateUrl: systemUserModuleConfig.assetRoot + 'user-form.html',
+  $routeProvider.when('/index', {
+    templateUrl: tpl('user-index'),
+    controller: 'UserCtrl'
+  }).when('/new', {
+    templateUrl: tpl('user-form'),
+    controller: 'formCtrl'
   }).when('/edit/:id', {
+    templateUrl: tpl('user-form-edit'),
     controller: 'formEditCtrl',
-    templateUrl: systemUserModuleConfig.assetRoot + 'user-form-edit.html',
     resolve: {
       user: function ($q, $route, server) {
         var deferred = $q.defer();
@@ -18,11 +24,9 @@
     }
   }).otherwise({
     redirectTo: '/index',
-    templateUrl: systemUserModuleConfig.assetRoot + 'user-index.html',
-    controller: 'UserCtrl'
   });
   $locationProvider.hashPrefix('!');
-}).service('server', function ($http) {
+}).service('server', function ($http, $cacheFactory) {
   var root = systemUserModuleConfig.urlRoot;
   var isFile = function (obj) {
     return Object.prototype.toString.apply(obj) === '[object File]';
@@ -59,7 +63,10 @@
       id: entity.id
     });
   }
-}).controller('UserCtrl', function ($scope, $filter, server) {
+  this.clearCache = function() {
+    $cacheFactory.get('$http').removeAll();
+  }
+}).controller('UserCtrl', function ($scope, $routeParams, server) {
   $scope.roles = server.roles;
   $scope.filter = {};
   $scope.paginator = {
@@ -120,6 +127,7 @@
   $scope.submit = function () {
     server.post($scope.entity).success(function (data) {
       $scope.alert = data;
+      server.clearCache();
     });
   }
   $scope.clearAlert = function () {
@@ -135,7 +143,7 @@
     $scope.entity.roles = roles;
   }, true);
 }).controller('formEditCtrl', function ($scope, server, user) {
-  var parse = function () {
+   function parse() {
     var front_roles = user.front_roles || [];
     var admin_roles = user.admin_roles || [];
     var roles = front_roles.concat(admin_roles);
@@ -152,10 +160,10 @@
   };
   //Parse data to adapt need
   parse();
-  //console.log($scope);
   $scope.submit = function () {
     server.put($scope.entity).success(function (data) {
       $scope.alert = data;
+      server.clearCache();
     });
   }
   $scope.clearAlert = function () {
