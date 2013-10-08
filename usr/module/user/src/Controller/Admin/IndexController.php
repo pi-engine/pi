@@ -73,12 +73,6 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
@@ -202,69 +196,118 @@ class IndexController extends ActionController
     {
         $result = array(
             'status' => 0,
-            'message' => __('Add user failed'),
+            'message' => '',
         );
 
         $identity   = _post('identity');
         $email      = _post('email');
         $credential = _post('credential');
-        $activate   = _post('activate');
-        $enable     = _post('enable');
-        $name       = _post('name');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $roles      = _post('roles');
 
-        if (!$identity || !$email || !$credential || !$name) {
+        // Check duplication
+        $where = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        $select = Pi::model('user_account')->select()->where(
+            $where,
+            Predicate\PredicateSet::OP_OR
+        );
+        $rowset = Pi::model('user_account')->selectWith($select)->toArray();
+        if (count($rowset) != 0 || empty($roles)) {
+            $result['message'] = __('Add user failed');
             return $result;
         }
 
-        // Check identity, email, display name
-        $model = Pi::model('user_account');
-        $row = $model->find($identity, 'identity');
-        if ($row) {
+        $data = array(
+            'identity'   => $identity,
+            'name'       => $name,
+            'email'      => $email,
+            'credential' => $credential,
+        );
+
+        // Add user
+        $uid = Pi::api('user', 'user')->addUser($data, false);
+        if (!$uid) {
+            $result['message'] = __('Add user failed');
             return $result;
         }
 
-        $row = $model->find($email, 'email');
-        if ($row) {
-            return $result;
+        // Activate
+        if ($activated == 1) {
+            Pi::api('user', 'user')->activateUser($uid);
         }
 
-        $row = $model->find($name, 'name');
-        if ($row) {
-            return $result;
-        }
-
-        // Set data
-        $data = array();
-        if ($activate == 1) {
-            $data['time_activated'] = time();
-        } else {
-            $data['time_activated'] = 0;
-        }
-
+        // Enable
         if ($enable == 1) {
-            $data['time_disabled'] = 0;
-        } else {
-            $data['time_disabled'] = time();
+            Pi::api('user', 'user')->enableUser($uid);
         }
 
-        if ($activate == 1 && $enable == 1) {
-            $data['active'] = 1;
-        } else {
-            $data['active'] = 0;
-        }
-        $data['identity'] = $identity;
-        $data['email']    = $email;
-        $data['name']     = $name;
+        // Set role
+        Pi::api('user', 'user')->setRole($uid, $roles);
 
-        // Save user info
-        $status = Pi::api('user', 'user')->addUser($data);
-
-        if ($status) {
-            $result['status']  = 1;
-            $result['message'] = __('Add user successfully');
-        }
+        $result['status']  = 1;
+        $result['message'] = __('Add user successfully');
 
         return $result;
+
+    }
+
+    /**
+     * Check username, email, display name exist
+     *
+     * @return array
+     */
+    public function checkExistAction()
+    {
+        $status = 1;
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+        $uid      = (int) _get('id');
+
+        if (!$identity && !$email && !$name ) {
+            return array(
+                'status' => $status,
+            );
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        return array(
+            'status' => $status,
+        );
+
     }
 
     /**
@@ -468,60 +511,6 @@ class IndexController extends ActionController
     }
 
     /**
-     * Check username, email, display name exist
-     *
-     * @return array
-     */
-    public function checkExistAction()
-    {
-        $status = 1;
-
-        $identity = _get('identity');
-        $email    = _get('email');
-        $name     = _get('name');
-        $uid      = (int) _get('uid');
-
-        if (!$identity && !$email && !$name ) {
-            return array(
-                'status' => $status,
-            );
-        }
-
-        $model = Pi::model('user_account');
-        if ($identity) {
-            $row = $model->find($identity, 'identity');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($email) {
-            $row = $model->find($email, 'email');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($name) {
-            $row = $model->find($name, 'name');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        return array(
-            'status' => $status,
-        );
-
-    }
-
-    /**
      * Activate user or users
      *
      */
@@ -651,10 +640,9 @@ class IndexController extends ActionController
             array_keys($columns)
         );
 
-        $roles = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
-            $uid = $row['uid'];
+            $uid     = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_role';
             $users[$uid][$roleKey][] = $row['role'];
@@ -883,8 +871,6 @@ class IndexController extends ActionController
         }
 
         $select->where($where);
-
-
         $rowset = Pi::db()->query($select);
 
         if ($rowset) {
