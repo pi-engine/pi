@@ -346,7 +346,6 @@ class RoleController extends ActionController
     /**
      * Users of a role
      */
-    /*
     public function userAction()
     {
         $role   = $this->params('name', 'member');
@@ -402,10 +401,10 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $uids[] = (int) $row['uid'];
         }
-        $users = Pi::service('user')->get($uids, array('name'));
+        $users = Pi::service('user')->get($uids, array('uid', 'name'));
         $avatars = Pi::service('avatar')->getList($uids, 'small');
         array_walk($users, function (&$user, $uid) use ($avatars) {
-            $user['avatar'] = $avatars[$uid];
+            //$user['avatar'] = $avatars[$uid];
             $user['url'] = Pi::service('user')->getUrl('profile', $uid);
         });
         $count = count($uids);
@@ -413,14 +412,34 @@ class RoleController extends ActionController
             $count = $model->count(array('role' => $role));
         }
 
+        /*
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
             'url_options'   => array(
                 'params'    => array('role' => $role),
             ),
         ));
+        */
         $roles = Pi::registry('role')->read();
         $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
+        if ($count > $limit) {
+            $paginator = array(
+                'page'    => $page,
+                'count'   => $count,
+                'limit'   => $limit
+            );
+        } else {
+            $paginator = array();
+        }
+
+        $data = array(
+            'title'     => $title,
+            'users'     => array_values($users),
+            'paginator' => $paginator,
+        );
+
+        return $data;
+        /*
         $this->view()->assign(array(
             'title'     => $title,
             'role'      => $role,
@@ -431,10 +450,10 @@ class RoleController extends ActionController
         ));
 
         $this->view()->setTemplate('role-user');
+        */
     }
-    */
 
-    public function userAction()
+    public function ____userAction()
     {
         $role = $this->params('name', 'member');
 

@@ -1,13 +1,13 @@
 <div class="span8" style="margin-left: 0;">
   <legend>{{'EDIT_TITLE' | translate}} "{{role}}"</legend>
   <form class="form-inline">
-    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}">
+    <input type="text" placeholder="{{'UID_OR_IDENTITY' | translate}}">
     <button class="btn">{{'ADD_USER' | translate}}</button>
   </form>
   <table class="table">
     <thead>
       <tr>
-        <th>{{'DISPLAY_NAME' | translate}}
+        <th>{{'USERS' | translate}}
     <tbody>
       <tr ng-repeat="user in users">
         <td>{{user.name}}
