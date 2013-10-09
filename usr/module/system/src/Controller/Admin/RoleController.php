@@ -346,7 +346,7 @@ class RoleController extends ActionController
     /**
      * Users of a role
      */
-/*    public function userAction()
+    public function userAction()
     {
         $role   = $this->params('name', 'member');
         $op     = $this->params('op');
