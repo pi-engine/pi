@@ -138,14 +138,12 @@ class PermController extends ComponentController
         foreach ($resources as $section => &$sectionList) {
             foreach ($sectionList as $type => &$typeList) {
                 foreach ($typeList as $name => &$resource) {
-                    if (isset($rules[$section][$name])) {
-                        $resource['roles'] = array_merge(
-                            $roleList[$section],
-                            $rules[$section][$name]
-                        );
-                    } else {
-                        $resource['roles'] = $roleList[$section];
+                    $perms = array();
+                    foreach ($roleList[$section] as $role => $val) {
+                        $perms[$role] = isset($rules[$section][$name][$role])
+                            ? $rules[$section][$name][$role] : $val;
                     }
+                    $resource['roles'] = $perms;
                     $resourceData[$section][$type][] = $resource;
                 }
             }
