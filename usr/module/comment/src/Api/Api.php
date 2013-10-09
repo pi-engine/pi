@@ -641,8 +641,8 @@ class Api extends AbstractApi
 
         $_this = $this;
         array_walk($posts, function (&$post) use ($ops, $_this) {
-            $post['content'] = $this->renderPost($post);
-            $post['url'] = $this->getUrl('post', array(
+            $post['content'] = $_this->renderPost($post);
+            $post['url'] = $_this->getUrl('post', array(
                 'post'  => $post['id']
             ));
             if (!empty($ops['users'])) {
