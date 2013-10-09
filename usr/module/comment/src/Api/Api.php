@@ -330,24 +330,6 @@ class Api extends AbstractApi
                 );
             }
         }
-        /*
-        $users = array();
-        foreach ($result['posts'] as $post) {
-            $users[$post['uid']] = array();
-        }
-        if ($users) {
-            $avatars = Pi::avatar()->getList(array_keys($users));
-            $names = Pi::user()->get(array_keys($users), 'name');
-            foreach ($users as $uid => &$user) {
-                $user = array(
-                    'name'      => $names[$uid],
-                    'avatar'    => $avatars[$uid],
-                    'url'       => Pi::user()->getUrl('profile', $uid),
-                );
-            }
-            $result['users'] = $users;
-        }
-        */
 
         return $result;
     }

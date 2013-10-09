@@ -284,28 +284,40 @@ class PostController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                // For new post
-                if (empty($values['id'])) {
-                    if ($this->config('auto_approve')) {
-                        $values['active'] = 1;
-                    } else {
-                        $values['active'] = 0;
-                    }
-                    $values['uid'] = $currentUid;
-                    $values['ip'] = Pi::service('user')->getIp();
-                } else {
-                    $post = Pi::api('comment')->getPost($values['id']);
-                    if (!$post) {
-                        $status = -2;
-                        $message = __('Invalid post parameter.');
-                    } elseif ($currentUid != $post['uid']
-                        && !$currentUser->isAdmin('comment')
-                    ) {
+                if (!empty($values['root'])) {
+                    $root = Pi::model('root', 'comment')->find($values['root']);
+                    if (!$root) {
                         $status = -1;
-                        $message = __('Operation denied.');
+                        $message = __('Root not found.');
+                    } elseif (!$root['active']) {
+                        $status = -1;
+                        $message = __('Comment is disabled.');
                     }
                 }
-                if ($status > 0) {
+                if (0 < $status) {
+                    // For new post
+                    if (empty($values['id'])) {
+                        if ($this->config('auto_approve')) {
+                            $values['active'] = 1;
+                        } else {
+                            $values['active'] = 0;
+                        }
+                        $values['uid'] = $currentUid;
+                        $values['ip'] = Pi::service('user')->getIp();
+                    } else {
+                        $post = Pi::api('comment')->getPost($values['id']);
+                        if (!$post) {
+                            $status = -2;
+                            $message = __('Invalid post parameter.');
+                        } elseif ($currentUid != $post['uid']
+                            && !$currentUser->isAdmin('comment')
+                        ) {
+                            $status = -1;
+                            $message = __('Operation denied.');
+                        }
+                    }
+                }
+                if (0 < $status) {
                     //vd($values);
                     $id = Pi::api('comment')->addPost($values);
                     if ($id) {

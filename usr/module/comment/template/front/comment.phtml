@@ -16,12 +16,13 @@ if (!Pi::comment()->active()) {
 $data = Pi::api('comment')->load(
     $this->url()->routeMatch()
 );
-if (!$data
-    || (isset($data['root']['active']) && empty($data['root']['active']))
-) {
+if (!$data) {
     return;
 }
 
+if (isset($data['root']['active']) && empty($data['root']['active'])) :
+    echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
+else:
 if (!empty($data['root']['id'])) {
     $formData = array(
         'root' => $data['root']['id']
@@ -46,7 +47,7 @@ if ($data['posts']) {
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $data['count']; ?></dd>
             <?php if ($data['count']) { ?>
-                <dt><?php _e('Read more:') ?></dt>
+                <dt><?php _e('All comments:') ?></dt>
                 <dd>
                     <a href="<?php echo $data['url_list']; ?>" title="<?php _e('Read more') ?>" target="_blank">
                         <?php _e('Read more'); ?>
@@ -98,6 +99,7 @@ if ($data['posts']) {
     </div>
 <?php
 }
+endif;
 ?>
 <!--
 <form name="comment-post" method="POST" action="<?php echo $data['url_submit']; ?>">
