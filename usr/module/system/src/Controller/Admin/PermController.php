@@ -179,7 +179,7 @@ class PermController extends ComponentController
         $resource   = $this->params('resource');
         $section    = $this->params('section');
         $module     = $this->params('name');
-        $op         = $this->params('perm', 'grant');
+        $op         = $this->params('op', 'grant');
         //$all        = $this->params('all', ''); // role, resource
 
         $model = Pi::model('permission_rule');
