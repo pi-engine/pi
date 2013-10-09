@@ -346,6 +346,7 @@ class RoleController extends ActionController
     /**
      * Users of a role
      */
+    /*
     public function userAction()
     {
         $role   = $this->params('name', 'member');
@@ -371,11 +372,22 @@ class RoleController extends ActionController
                 if ('remove' == $op && $count) {
                     $model->delete($data);
                     $message = __('User removed.');
+                    $data = array('uid' => $uid);
                 } elseif ('add' == $op && !$count) {
                     $row = $model->createRow($data);
                     $row->save();
                     $message = __('User added.');
+                    $data = array(
+                        'uid'   => $uid,
+                        'name'  => Pi::service('user')->get($uid, 'name')
+                    );
                 }
+
+                return array(
+                    'status'    => 1,
+                    'message'   => $message,
+                    'data'      => $data,
+                );
             }
         }
 
@@ -419,9 +431,11 @@ class RoleController extends ActionController
         ));
 
         $this->view()->setTemplate('role-user');
-    }*/
+    }
+    */
 
-    public function userAction() {
+    public function userAction()
+    {
         $role = $this->params('name', 'member');
 
         $model = Pi::model('user_role');
