@@ -19,7 +19,7 @@ return array(
             'route'         => 'comment',
             'label'         => _t('Commented articles'),
             'controller'    => 'list',
-            'action'        => 'index',
+            'action'        => 'article',
         ),
         'my-post'   => array(
             'route'         => 'comment',
