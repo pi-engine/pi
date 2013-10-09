@@ -37,6 +37,9 @@ class Params extends ZendParams
     /** @var array PUT params */
     protected $putParams;
 
+    /** @var array POST params */
+    protected $postParams;
+
     /** @var array Order to fetch variables */
     protected $variablesOrder = array(
         'query', 'request'
@@ -68,6 +71,34 @@ class Params extends ZendParams
         }
 
         return $value;
+    }
+
+    /**
+     * Return all post parameters or a single post parameter.
+     *
+     * @param string|null   $param
+     *      Parameter name to retrieve, or null to get all.
+     * @param mixed         $default
+     *      Default value to use when the parameter is missing.
+     * @return mixed
+     */
+    public function fromPost($param = null, $default = null)
+    {
+        if (null === $this->postParams) {
+            $request = $this->getController()->getRequest();
+            if ($request->getHeaders('accept')->match('application/json')) {
+                $content = $request->getContent();
+                $this->putParams = json_decode($content, true);
+            } else {
+                $this->putParams = parent::fromPost(null, $default);
+            }
+        }
+        if ($param === null) {
+            return $this->putParams;
+        } else {
+            return isset($this->putParams[$param])
+                ? $this->putParams[$param] : $default;
+        }
     }
 
     /**
