@@ -22,10 +22,19 @@ $config = array(
 
     'display_operation' => array(
         'title'         => _t('Display operation'),
-        'description'   => _t('Display operations on post list pages.'),
-        'edit'          => 'checkbox',
-        'value'         => 1,
-        'filter'        => 'int',
+        'description'   => _t('Level of operations on post list pages.'),
+        'value'         => 'author',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'   => array(
+                    ''          => _t('Disable'),
+                    'member'    => _t('For members'),
+                    'author'    => _t('For authors'),
+                    'admin'     => _t('For administrators'),
+                ),
+            ),
+        ),
     ),
 
     'auto_approve'  => array(

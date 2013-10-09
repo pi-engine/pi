@@ -404,45 +404,31 @@ class ListController extends ActionController
             'paginator' => $paginator,
         ));
 
-        $navTabs = array(
-            array(
-                'active'    => !$my,
-                'label'     => __('Articles with comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                ))
-            ),
-            array(
-                'active'    => $my && null === $active,
-                'label'     => __('My articles'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'my'        => 1,
-                ))
-            ),
-            array(
-                'active'    => $my && $active,
-                'label'     => __('My articles with active comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'my'        => 1,
-                    'active'    => 1,
-                ))
-            ),
-            /*
-            array(
-                'active'    => 1 == $active,
-                'label'     => __('Articles with active comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'active'    => 1,
-                ))
-            ),
-            */
-        );
-        $this->view()->assign(array(
-            'tabs'      => $navTabs,
-        ));
+        if ($my) {
+            $navTabs = array(
+                array(
+                    'active'    => $my && null === $active,
+                    'label'     => __('My articles'),
+                    'href'      => $this->url('', array(
+                        'action'    => 'article',
+                        'my'        => 1,
+                    ))
+                ),
+                array(
+                    'active'    => $my && $active,
+                    'label'     => __('My articles with active comments'),
+                    'href'      => $this->url('', array(
+                        'action'    => 'article',
+                        'my'        => 1,
+                        'active'    => 1,
+                    ))
+                ),
+            );
+            $this->view()->assign(array(
+                'tabs'      => $navTabs,
+            ));
+        }
+
         $this->view()->setTemplate('comment-article');
     }
 }

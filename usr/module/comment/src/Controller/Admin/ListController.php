@@ -50,6 +50,7 @@ class ListController extends ActionController
             'operation'     => array(
                 'uid'       => Pi::service('user')->getIdentity(),
                 'section'   => 'admin',
+                'level'     => 'admin',
             ),
         ));
         */
@@ -62,7 +63,9 @@ class ListController extends ActionController
         ));
         */
         // Default mode
-        $posts = Pi::api('comment')->renderList($posts);
+        $posts = Pi::api('comment')->renderList($posts, array(
+            'operation'     => 'admin'
+        ));
         $count = Pi::service('comment')->getCount(array('active' => $active));
 
         $params = (null === $active) ? array() : array('active' => $active);
@@ -162,7 +165,7 @@ class ListController extends ActionController
         $posts = Pi::api('comment')->renderList($posts, array(
             'user'      => false,
             'target'    => true,
-            'operation' => true,
+            'operation' => 'admin',
         ));
         $count = Pi::service('comment')->getCount($where);
 
@@ -300,9 +303,7 @@ class ListController extends ActionController
             $offset
         );
         $posts = Pi::api('comment')->renderList($posts, array(
-            'user'      => true,
-            'target'    => true,
-            'operation' => true,
+            'operation' => 'admin',
         ));
         $count = Pi::service('comment')->getCount($where);
 
