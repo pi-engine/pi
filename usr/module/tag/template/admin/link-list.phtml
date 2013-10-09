@@ -1,0 +1,59 @@
+<?php
+$this->I18nModule('admin', 'zh-CN');
+?>
+<h2 class="page-header"><?php _e('Relationships'); ?></h2>
+<div class="row">
+    <div class="span3">
+        <div class="sub-nav">
+            <?php
+            $items = array();
+            $item = array(
+                'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'linklist')),
+                'label' => __('ALL'),
+            );
+            if (null == $curModule) {
+                $item['active'] = 1;
+            }
+            $items[] = $item;
+            foreach ($moduleArray as $row) {
+                $item = array(
+                    'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'linklist', 'm' => $row)),
+                    'label'   => $this->escape(ucfirst($row)),
+                );
+                if ($curModule === $row) {
+                    $item['active'] = 1;
+                }
+                $items[] = $item;
+            }
+            echo $this->navMenu($items);
+            ?>
+        </div>
+    </div>
+    <div class="span9">
+        <h3><?php echo ucfirst($curModule) . ' ' . __('tags relationships'); ?></h3>
+        <table class="table table-hover table-bordered">
+            <tr class="box-bordered-header">
+                <th><?php _e('Tag Name'); ?></th>
+                <th><?php _e('Item'); ?></th>
+                <th class="span2"><?php _e('Module'); ?></th>
+                <th class="span2"><?php _e('Type'); ?></th>
+                <th class="span2"><?php _e('Link Time'); ?></th>
+            </tr>
+            <?php foreach ($datas as $row) { ?>
+            <?php
+            $tagUrl = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $row['tagId']));
+            ?>
+            <tr>
+                <td><?php echo sprintf('<a href="%s">%s</a>', $tagUrl, $this->escape(ucfirst($row[$row['tagId']]))); ?></td>
+                <td><?php echo sprintf('<a href="%s">%s</a>', $row['itemUrl'], $this->escape($row[$row['itemId']])); ?></td>
+                <td><?php echo $row['module']; ?></td>
+                <td><?php echo ucfirst($row['type']); ?></td>
+                <td><?php echo date("Y-m-d H:i:s", $row['time']); ?></td>
+            </tr>
+            <?php } ?>
+        </table>
+        <div class="pagination-right">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
+    </div>
+</div

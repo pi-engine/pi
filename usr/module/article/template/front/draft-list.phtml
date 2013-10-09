@@ -1,0 +1,93 @@
+<?php include 'draft-nav.phtml'; ?>
+<div id="jsList">
+    <div class="form-inline">
+        <span class="btn btn-delete"><?php _e('Delete'); ?></span>
+    </div>
+    <table class="table table-striped">
+        <tbody id="jsDraft">
+            <tr>
+                <th style="width:2.2em;">
+                    <input type="checkbox" class="check-all">
+                </th>
+                <th><?php echo __('Title'); ?></th>
+                <th style="width: 15%;"><?php _e('Category') ?></th>
+                <th style="width: 15%;"><?php _e('Tag') ?></th>
+                <th style="width: 15%;">
+                <?php echo $status == $flags['published'] ? __('Published time') 
+                    : __('Last update date'); 
+                ?></th>
+            </tr>
+            <?php foreach ($data as $draft) { ?>
+            <tr data-id="<?php echo $this->escape($draft['id']) ?>">
+                <td>
+                    <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']) ?>">
+                </td>
+                <td>
+                    <?php if ($draft['subject']) {
+                        if ($status == $flags['published']) {
+                    ?>
+                    <a target="_blank" href="<?php echo $this->escape($draft['url']) ?>">
+                    <?php
+                        }
+                        echo $this->escape($draft['subject']);
+                        if ($status == $flags['published']) { ?>
+                    </a>
+                    <?php 
+                        }
+                    } else {
+                    ?>
+                    <strong class="muted"><?php _e('No Title') ?></strong>
+                    <?php } ?>    
+                    <div class="row-actions">
+                        <?php if ($status == $flags['published']) {
+                            $controller = 'article';
+                        } else {
+                            $controller = 'draft';
+                        } ?>
+                        <a href="
+                        <?php echo $this->url('', array(
+                            'action'     => 'edit',
+                            'controller' => $controller,
+                            'id'         => $draft['id']
+                        )); ?>"><?php _e('Edit') ?></a>
+                        <span class="divider">|</span>
+                        <a href="javascript:void(0)" class="delete"><?php _e('Delete') ?></a>
+                    </div>
+                </td>
+                <td>
+                <?php if (isset($draft['categoryAncestors'])) {
+                    $step = 0;
+                    foreach ($draft['categoryAncestors'] as $ancestor) {
+                        echo $this->escape($ancestor['title']);
+                        $step++;
+                        if ($step < count($draft['categoryAncestors'])) {
+                            echo '&gt;';
+                        }
+                    }
+                } elseif (isset($draft['category_title'])) {
+                    echo $this->escape($draft['category_title']);
+                } ?>
+                </td>
+                <td><?php 
+                    echo (isset($draft['tag']) and !empty($draft['tag']))
+                        ? $this->escape(implode(',', $draft['tag'])) 
+                        : '<span class="muted">' . __('No tags') . '</span>' 
+                ?>
+                </td>
+                <td><?php 
+                    echo date('Y-m-d', $status == $flags['published'] 
+                        ? $draft['time_publish'] 
+                        : ($draft['time_update'] ?: $draft['time_save'])
+                    ); ?>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl(
+        $paginator,
+        'Sliding',
+        'paginator.phtml',
+        array('class' => 'pagination-right')
+    ); ?>
+</div>

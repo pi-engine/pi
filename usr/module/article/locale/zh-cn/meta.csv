@@ -1,0 +1,70 @@
+﻿Content Management,内容管理
+General module for content management.,内容管理系统
+Article site navigation,文章系统导航
+Article Homepage,文章首页
+Topic Homepage,专题首页
+My Article,我的文章
+All Articles,所有文章
+Topic,专题
+Media,多媒体
+Author,作者
+Category,分类
+Permission,权限
+Statistics,统计
+All Categories,所有分类
+Listing the parent category and its children,列出顶级分类及其子类
+Column Count,列数
+The max child category when to display,要显示的子类数
+Top,顶级分类
+First sub-category,一级子类
+Second sub-category,二级子类
+Default Category Name,默认分类名
+Default category name when there is no category acquired,当没有分类时的默认分类名
+Newest Published Articles,最新发布文章
+Listing the newest published articles of topic or non-topic,列出专题或非专题下的最新发布文章
+List Count,列表个数
+The max articles to display,最多需要显示的文章数
+Is Topic,是否为专题
+Whether to list topic articles,是否列出专题文章
+Category,分类
+Which category article want to list,需要列出哪一分类文章
+Topic,专题
+Which topic article want to list,需要列出哪一专题的文章
+Template Style,模板样式
+The template style of list,列表的模板样式
+Common,普通
+With summary,带摘要
+With feature,带特征图
+Target,目标
+Open url in which window,在哪一窗口打开
+Subject length,标题长度
+Maximum length of subject,允许的最大标题长度
+Recommended Articles,推荐文章
+Listing the recommended articles of topic or non-topic,列出专题或非专题下的推荐文章
+Recommended Articles With Slideshow,带有轮播图的推荐文章列表
+Listing a slideshow and recommended articles,列出一个轮播图和一个推荐文章列表
+Image ID,图片ID
+Images to display,要显示的图片
+Image Width,图片宽度
+Image width,图片宽度
+Image Height,图片高度
+Image height,图片高度
+Custom Article List,自定义文章列表
+Listing custom articles,列出自定义的文章
+Article ID,文章ID
+Articles want to list,需要显示的文章
+Submitter Statistics,提交者统计
+Listing the total article count of submitters,列出提交者提交的文章总数
+Newest Topic,最新专题
+Listing the newest topic,列出最新添加的专题
+Hot Articles,热点文章列表
+Listing the hotest articles,列出热点文章
+General,常规
+Autosave,自动保存
+SEO,搜索引擎优化
+Summary and subject,摘要和标题
+Media,多媒体
+Article List Page Limit,文章列表数
+Maximum count of articles in a front page.,文章列表页允许最大的文章数
+Topic Article List Page Limit,专题文章列表数
+Maximum count of topic articles in a front page.,专题文章列表页允许的最大文章数

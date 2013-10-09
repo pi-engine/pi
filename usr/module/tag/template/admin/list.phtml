@@ -1,0 +1,81 @@
+<?php
+$this->I18nModule('admin', 'zh-CN');
+?>
+<h2 class="page-header"><?php _e('Tags'); ?></h2>
+<div class="row">
+    <div class="span3">
+        <div class="sub-nav">
+            <?php
+            $items = array();
+            $item = array(
+                'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'list')),
+                'label' => __('All'),
+            );
+            if (null == $curModule) {
+                $item['active'] = 1;
+            }
+            $items[] = $item;
+            foreach ($moduleArray as $row) {
+                $item = array(
+                    'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $row)),
+                    'label'   => $this->escape(ucfirst($row)),
+                );
+                if ($curModule === $row) {
+                    $item['active'] = 1;
+                }
+                $items[] = $item;
+            }
+            echo $this->navMenu($items);
+            ?>
+        </div>
+    </div>
+    <div class="span9">
+        <div>
+            <?php
+            echo $this->form()->openTag($form);
+            ?>
+
+            <?php
+            $element = $form->get('tagname');
+            $element->setAttributes(array(
+                'class'         => 'input',
+                'placeholder'   => $element->getOption('label'),
+            ));
+            echo $this->formElement($element);
+            echo ' ';
+
+            $element = $form->get('submit');
+            $element->setAttributes(array(
+                'class'         => 'btn btn-primary',
+            ));
+            echo $this->formElement($element);
+            ?>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+        <table class="table table-hover table-bordered">
+            <tr class="box-bordered-header">
+                <th><?php _e('Tag Name'); ?></th>
+                <th class="span2"><?php _e('Count'); ?></th>
+                <th class="span1"><?php _e('Operator') ?></th>
+            </tr>
+            <?php foreach ($datas as $tag) {
+            $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $tag['id']));
+            $tagName = sprintf('<a href="%s">%s</a>', $url, $this->escape($tag['term']));
+            if ($curModule == null) {
+                $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'delete', 'id' => $tag['id'], 'm' => $curModule));
+            } else {
+                $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'moduledelete', 'id' => $tag['id'], 'm' => $curModule));
+            }
+            ?>
+            <tr>
+                <td><?php echo $tagName; ?></td>
+                <td><?php echo $this->escape($tag['count']); ?></td>
+                <td><?php echo sprintf('<a href="%s">%s</a>', $deleteUrl, __('Delete')); ?></td>
+            </tr>
+            <?php } ?>
+        </table>
+        <div class="pagination-right">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
+    </div>
+</div>

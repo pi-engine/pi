@@ -1,0 +1,203 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/article-admin.css'));
+    $this->jQuery();
+    $this->Backbone();
+?>
+<div class="row2 aside-right-300" id="jsList">
+    <div class="post-body-content span8">
+        <h2><?php _e('Article amounts') ?></h2>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th><?php _e('In 7 days') ?></th>
+                    <th><?php _e('In 30 days') ?></th>
+                    <th><?php _e('history') ?></th>
+                </tr>
+                <tr>
+                    <td><?php _e('All categories')?></td>
+                    <td><?php echo $this->escape($total7) ?></td>
+                    <td><?php echo $this->escape($total30) ?></td>
+                    <td><?php echo $this->escape($totalEver) ?></td>
+                </tr>
+                <?php foreach ($total7ByCategory as $key => $row) { ?>
+                <tr>
+                    <td><?php echo $this->escape($row['title']) ?></td>
+                    <td><?php echo $this->escape($row['total']) ?></td>
+                    <td><?php echo $this->escape($total30ByCategory[$key]['total']) ?></td>
+                    <td><?php echo $this->escape($totalEverByCategory[$key]['total']) ?></td>
+                </tr>
+                <?php } ?>    
+            </tbody>
+        </table>
+        <h2><?php _e('Top Articles') ?></h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="javascript:void(0)" data-toggle="tab" data-target="#top-article1">
+                <?php _e('In 7 days') ?>
+                </a>
+            <li><a href="javascript:void(0)" data-toggle="tab" data-target="#top-article2">
+                <?php _e('In 30 days') ?>
+                </a>
+            <li><a href="javascript:void(0)" data-toggle="tab" data-target="#top-article3">
+                <?php _e('history') ?>
+                </a>    
+        </ul>
+         <div class="tab-content">
+            <table class="table table-striped tab-pane active" id="top-article1">
+                <tbody>
+                    <tr>
+                        <th style="width: 2.2em;"></th>
+                        <th><?php _e('Subject') ?></th>
+                        <th><?php _e('View') ?></th>
+                    </tr>
+                    <?php 
+                        $index = 0;
+                        foreach ($topVisits7 as $row) { 
+                    ?>
+                    <tr>
+                        <td><?php echo ++$index; ?></td>
+                        <td>
+                            <a href="<?php echo $this->escape($row['url']) ?>" target="_blank">
+                                <?php echo $this->escape($row['subject']) ?>
+                            </a>
+                        </td>
+                        <td><?php echo $this->escape($row['visits']) ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <table class="table table-striped tab-pane" id="top-article2">
+                 <tr>
+                    <th style="width: 2.2em;"></th>
+                    <th><?php _e('Subject') ?></th>
+                    <th><?php _e('View') ?></th>
+                </tr>
+                <?php 
+                    $index = 0;
+                    foreach ($topVisits30 as $row) { 
+                ?>
+                <tr>
+                    <td><?php echo ++$index; ?></td>
+                    <td>
+                        <a href="<?php echo $this->escape($row['url']) ?>" target="_blank">
+                            <?php echo $this->escape($row['subject']) ?>
+                        </a>
+                    </td>
+                    <td><?php echo $this->escape($row['visits']) ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+            <table class="table table-striped tab-pane" id="top-article3">
+                 <tr>
+                    <th style="width: 2.2em;"></th>
+                    <th><?php _e('Subject') ?></th>
+                    <th><?php _e('View') ?></th>
+                </tr>
+                <?php 
+                    $index = 0;
+                    foreach ($topVisitsEver as $row) { 
+                ?>
+                <tr>
+                    <td><?php echo ++$index; ?></td>
+                    <td>
+                        <a href="<?php echo $this->escape($row['url']) ?>" target="_blank">
+                            <?php echo $this->escape($row['subject']) ?>
+                        </a>
+                    </td>
+                    <td><?php echo $this->escape($row['visits']) ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+        </div>
+    </div>
+    <div class="aside-right span4">
+        <h2><?php _e('Top editors'); ?></h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="javascript:void(0)" data-toggle="tab" data-target="#top-editor1">
+                <?php _e('In 7 days') ?>
+                </a>
+            <li><a href="javascript:void(0)" data-toggle="tab" data-target="#top-editor2">
+                <?php _e('In 30 days') ?>
+                </a>
+            <li><a href="javascript:void(0)" data-toggle="tab" data-target="#top-editor3">
+                <?php _e('history') ?>
+                </a>    
+        </ul>
+        <div class="tab-content">
+            <table class="table table-striped tab-pane active" id="top-editor1">
+                <tr>
+                    <th style="width: 2em;"></th>
+                    <th><?php _e('Submitter') ?></th>
+                    <th><?php _e('Total') ?></th>
+                </tr>
+                <?php 
+                    $index = 0;
+                    foreach ($topSubmitters7 as $row) { 
+                ?>
+                <tr>
+                    <td><?php echo ++$index; ?></td>
+                    <td><?php echo $this->escape($row['identity']); ?></td>
+                    <td><?php echo $this->escape($row['total']); ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+            <table class="table table-striped tab-pane" id="top-editor2">
+                <tr>
+                    <th style="width: 2em;"></th>
+                    <th><?php _e('Subject') ?></th>
+                    <th><?php _e('Article') ?></th>
+                </tr>
+                <?php 
+                    $index = 0;
+                    foreach ($topSubmitters30 as $row) { 
+                ?>
+                <tr>
+                    <td><?php echo ++$index; ?></td>
+                    <td><?php echo $this->escape($row['identity']); ?></td>
+                    <td><?php echo $this->escape($row['total']); ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+            <table class="table table-striped tab-pane" id="top-editor3">
+                <tr>
+                    <th style="width: 2em;"></th>
+                    <th><?php _e('Subject') ?></th>
+                    <th><?php _e('Article') ?></th>
+                </tr>
+                <?php 
+                    $index = 0;
+                    foreach ($topSubmittersEver as $row) { 
+                ?>
+                <tr>
+                    <td><?php echo ++$index; ?></td>
+                    <td><?php echo $this->escape($row['identity']) ?></td>
+                    <td><?php echo $this->escape($row['total']) ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+        </div>
+        <?php if (isset($topTags)) { ?>
+            <h2><?php _e('Top Tags') ?></h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th style="width: 2em;"></th>
+                        <th><?php _e('Name') ?></th>
+                        <th><?php _e('Article') ?></th>
+                    </tr>
+                    <?php 
+                        $i = 1;
+                        foreach ($topTags as $row) { 
+                    ?>
+                    <tr>
+                        <td><?php echo $i++ ?></td>
+                        <td><?php echo $this->escape($row['term']) ?></td>
+                        <td><?php echo $this->escape($row['count']) ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } ?>
+    </div>    
+</div>

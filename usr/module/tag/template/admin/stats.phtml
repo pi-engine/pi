@@ -1,0 +1,44 @@
+<?php
+$this->I18nModule('admin', 'zh-CN');
+?>
+
+<h2 class="page-header"><?php _e('Staticstics'); ?></h2>
+<h3><?php _e('Global Top tags'); ?></h3>
+<table class="table table-hover table-bordered">
+    <tr class="box-bordered-header">
+        <th class="span1"><?php _e('No'); ?></th>
+        <th><?php _e('Tag Name'); ?></th>
+        <th class="span2"><?php _e('Count'); ?></th>
+    </tr>
+    <?php $i = 0; ?>
+    <?php
+    foreach ($topTag as $row) { ?>
+        <tr>
+            <?php
+            $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $row['id']));
+            ?>
+            <td><?php echo ++$i; ?></td>
+            <td><a href="<?php echo $url; ?>"><?php echo $this->escape($row['term']); ?></a></td>
+            <td><?php echo $row['count'];  ?></td>
+        </tr>
+        <?php }?>
+</table>
+
+<h3><?php _e('Latest tags'); ?></h3>
+<table class="table table-hover table-bordered">
+    <tr class="box-bordered-header">
+        <th class="span1"><?php _e('No'); ?></th>
+        <th><?php _e('Tag Name'); ?></th>
+        <th class="span2"><?php _e('Link time'); ?></th>
+    </tr>
+    <?php $i = 0;?>
+    <?php foreach ($newestTag as $tag) { ?>
+    <tr><?php
+        $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $tag['tagId']));
+        ?>
+        <td><?php echo ++$i; ?></td>
+        <td><a href="<?php echo $url; ?>"><?php echo $this->escape($tag[$tag['tagId']]); ?></a></td>
+        <td><?php echo $this->escape($tag['time']); ?></td>
+    </tr>
+    <?php } ?>
+</table>

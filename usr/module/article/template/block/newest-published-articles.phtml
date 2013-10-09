@@ -1,0 +1,16 @@
+<?php
+    $style    = $block['style'];
+    $column   = $block['column'];
+    $target   = $block['target'];
+    $articles = $block['articles'];
+
+    $template = sprintf('list-%s-%s.phtml', $column, $style);
+?>
+
+<div class="article-block-newest-published">
+    <?php include $template; ?>
+</div>
+
+<script>
+    $('.article-block-newest-published').parent().addClass('block-nopadding');
+</script>

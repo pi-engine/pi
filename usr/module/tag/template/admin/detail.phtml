@@ -1,0 +1,66 @@
+<?php
+$this->I18nModule('main');
+$url = $this->url('', array('controller' => 'index', 'action' => 'list'));
+?>
+<h2 class="page-header"><?php echo $this->escape($tagTerm); ?></h2>
+<ul class="breadcrumb">
+    <li><a href="<?php echo $url ?>">Tags</a> <span class="divider">/</span></li>
+    <li class="active"><?php echo $this->escape($tagTerm); ?></li>
+</ul>
+<div class="row">
+    <div class="span3">
+        <div class="sub-nav">
+            <?php
+            $items = array();
+            $item = array(
+                'href'  => $this->url('', array('controller' => 'index', 'action' => 'detail', 'id' => $tagid)),
+                'label' => __('ALL'),
+            );
+            if (null == $curModule) {
+                $item['active'] = 1;
+            }
+            $items[] = $item;
+            foreach ($moduleArray as $row) {
+                $item = array(
+                    'href'    => $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $row, 'id' => $tagid)),
+                    'label'   => ucfirst($row),
+                );
+                if ($curModule === $row) {
+                    $item['active'] = 1;
+                }
+                $items[] = $item;
+            }
+            echo $this->navMenu($items);
+            ?>
+        </div>
+    </div>
+    <div class="span9">
+        <?php if ($details == null) { ?>
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p><?php echo $this->escape($tagTerm) . ' ' . __('not related an obj in ') . $this->escape($curModule); ?></p>
+        </div>
+        <?php } else { ?>
+        <table class="table table-hover table-bordered">
+            <tr class="box-bordered-header">
+                <th><?php _e('Title'); ?></th>
+                <th class="span2"><?php _e('Module'); ?></th>
+                <th class="span2"><?php _e('Link Time'); ?></th>
+            </tr>
+            <?php foreach ($details as $detail) { ?>
+            <tr>
+                <?php $url = sprintf('<a href="%s">%s</a>', $this->escape($detail['url']), $this->escape($detail[$detail['itemId']])); ?>
+                <td><?php echo $url; ?></td>
+                <td>
+                    <?php echo  $this->escape(ucfirst($detail['module'])); ?>
+                </td>
+                <td><?php echo $this->escape(date("Y-m-d", $detail['time']));?></td>
+            </tr>
+            <?php } ?>
+        </table>
+        <?php } ?>
+        <div class="pagination-right">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
+    </div>
+</div>
