@@ -532,12 +532,14 @@ class Api extends AbstractApi
 
             $level      = isset($op['level']) ? $op['level'] : 'author';
             $isAdmin    = Pi::service('permission')->isAdmin('comment', $uid);
+            $_this      = $this;
             $setOperations = function ($post) use (
                 $list,
                 $uid,
                 $isAdmin,
                 $level,
-                $section
+                $section,
+                $_this
             ) {
                 if ('admin' == $level && $isAdmin) {
                     $opList = array('edit', 'approve', 'delete', 'reply');
@@ -568,7 +570,7 @@ class Api extends AbstractApi
                                     )
                                 );
                             } else {
-                                $url = $this->getUrl($op, array(
+                                $url = $_this->getUrl($op, array(
                                     'post' => $post['id']
                                 ));
                             }
@@ -594,7 +596,7 @@ class Api extends AbstractApi
                                     )
                                 );
                             } else {
-                                $url = $this->getUrl($op, array(
+                                $url = $_this->getUrl($op, array(
                                     'post'  => $post['id'],
                                     'flag'  => $flag,
                                 ));
@@ -603,7 +605,7 @@ class Api extends AbstractApi
                         case 'reply':
                             if ('admin' == $section) {
                             } else {
-                                $url = $this->getUrl($op, array(
+                                $url = $_this->getUrl($op, array(
                                     'post' => $post['id']
                                 ));
                             }
