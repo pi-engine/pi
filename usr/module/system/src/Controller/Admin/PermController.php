@@ -160,7 +160,7 @@ class PermController extends ComponentController
         d($roles);
         d($modules);
         d($resourceData);
-        $this->view()->setTemplate('perm-index');
+        $this->view()->setTemplate('perm');
         $this->view()->assign('name', $module);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);

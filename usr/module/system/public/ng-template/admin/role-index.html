@@ -28,7 +28,8 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -61,7 +62,8 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">

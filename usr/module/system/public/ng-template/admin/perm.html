@@ -1,0 +1,16 @@
+<legend>{{'FRONT' | translate}}</legend>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+      <th ng-repeat="frontRole in frontRoles">
+        {{frontRole.title}}
+  <tbody>
+    <tr>
+      <th colspan="{{frontRoles.length}}">{{'GLOBAL' | translate}}
+    <tr ng-repeat="frontResource in frontResources.global">
+      <td>{{frontResource.title}}
+      <td>
+      
+</table>
+<legend>{{'ADMIN' | translate}}</legend>
