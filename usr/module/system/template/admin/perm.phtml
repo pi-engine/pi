@@ -1,0 +1,21 @@
+<?php
+$this->angular(array(
+    'angular-route.js',
+    'angular-translate.js'
+));
+?>
+<div ng-view ng-app="systemPermModule"></div>
+<script>
+var systemPermModule = angular.module('systemPermModule', ['ngRoute', 'pascalprecht.translate']);
+var systemPermModuleConfig = {
+    urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+    roles: <?php echo json_encode($roles) ?>,
+    resources: <?php echo json_encode($resources) ?>,
+    t: {
+        
+    }
+}
+</script>
+<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
+<script src="<?php echo $this->assetModule('admin/perm' . $debug . '.js'); ?>"></script>

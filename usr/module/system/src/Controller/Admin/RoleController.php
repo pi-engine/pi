@@ -346,7 +346,7 @@ class RoleController extends ActionController
     /**
      * Users of a role
      */
-    public function userAction()
+/*    public function userAction()
     {
         $role   = $this->params('name', 'member');
         $op     = $this->params('op');
@@ -419,5 +419,42 @@ class RoleController extends ActionController
         ));
 
         $this->view()->setTemplate('role-user');
+    }*/
+
+    public function userAction() {
+        $role = $this->params('name', 'member');
+
+        $model = Pi::model('user_role');
+
+        $page   = _get('page', 'int') ?: 1;
+        $limit  = 3;
+        $offset = ($page - 1) * $limit;
+
+        $select = $model->select();
+        $select->where(array('role' => $role))->limit($limit)->offset($offset);
+        $rowset = $model->selectWith($select);
+        $uids = array();
+        foreach ($rowset as $row) {
+            $uids[] = (int) $row['uid'];
+        }
+        $users = Pi::service('user')->get($uids, array('name'));
+        $avatars = Pi::service('avatar')->getList($uids, 'small');
+        array_walk($users, function (&$user, $uid) use ($avatars) {
+            //$user['avatar'] = $avatars[$uid];
+            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
+        });
+        $count = count($uids);
+        if ($count >= $limit) {
+            $count = $model->count(array('role' => $role));
+        }
+        $paginator = array(
+            'page'    => $page,
+            'count'   => $count,
+            'limit'   => $limit
+        );
+        return array(
+            'users'      => array_values($users),
+            'paginator' => $paginator,
+        );
     }
 }
