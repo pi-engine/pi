@@ -317,7 +317,12 @@ class Api extends AbstractApi
             //vd($result['count']);
             if ($result['count']) {
                 $posts = $this->getList($rootData['id'], $limit);
-                $posts = $this->renderList($posts);
+                $renderOptions = array(
+                    'target'    => false,
+                    'operation' => Pi::service('config')
+                        ->module('display_operation'),
+                );
+                $posts = $this->renderList($posts, $renderOptions);
                 $result['posts'] = $posts;
                 $result['url_list'] = $this->getUrl(
                     'root',
@@ -325,6 +330,7 @@ class Api extends AbstractApi
                 );
             }
         }
+        /*
         $users = array();
         foreach ($result['posts'] as $post) {
             $users[$post['uid']] = array();
@@ -341,6 +347,7 @@ class Api extends AbstractApi
             }
             $result['users'] = $users;
         }
+        */
 
         return $result;
     }
@@ -379,12 +386,13 @@ class Api extends AbstractApi
      *      - avatar: false|<size>
      *      - url: 'profile'|'comment'
      *
-     *  - operation:
+     *  - operation: with array
      *      - uid: int
      *      - user: object
      *      - section: 'front'|'admin'
      *      - list: array(<name> => <title>)
-     *      - admin: bool (To check admin)
+     *      - level: member, author, admin; default as author
+     *  - operation: with string for level
      *
      *  - target
      *
@@ -394,12 +402,13 @@ class Api extends AbstractApi
      *      'user'      => array(
      *          'field'     => 'name',
      *          'url'       => 'comment',
-     *          'avatar'    => 'small'
+     *          'avatar'    => 'small',
      *      ),
      *      'target'    => true,
      *      'operation'     => array(
      *          'uid'       => Pi::service('user')->getIdentity(),
      *          'section'   => 'admin',
+     *          'level'     => 'author',
      *      ),
      *  ));
      * ```
@@ -480,27 +489,20 @@ class Api extends AbstractApi
 
         // Build operations
         if (!isset($options['operation']) || $options['operation']) {
-            $op = isset($options['operation'])
-                ? (array) $options['operation'] : array();
+            if (!isset($options['operation'])) {
+                $op = array();
+            } elseif (is_string($options['operation'])) {
+                $op = array('level' => $options['operation']);
+            } else {
+                $op = (array) $options['operation'];
+            }
+
             $uid = $user = $list = $section = $admin = null;
             if (isset($op['uid'])) {
                 $uid = (int) $op['uid'];
             }
             if (isset($op['user'])) {
                 $user = $op['user'];
-            }
-            if (isset($op['section'])) {
-                $section = $op['section'];
-            } else {
-                $section = Pi::engine()->section();
-            }
-            if (isset($op['admin'])) {
-                $admin = (bool) $op['admin'];
-            } else {
-                $admin = true;
-            }
-            if (isset($op['list'])) {
-                $list = (array) $op['list'];
             }
             if (null === $uid) {
                 if (null === $user) {
@@ -509,9 +511,16 @@ class Api extends AbstractApi
                     $uid = $user->get('id');
                 }
             }
-            $isAdmin = $admin
-                && Pi::service('permission')->isAdmin('comment', $uid);
 
+            if (isset($op['section'])) {
+                $section = $op['section'];
+            } else {
+                $section = Pi::engine()->section();
+            }
+
+            if (isset($op['list'])) {
+                $list = (array) $op['list'];
+            }
             if (null === $list) {
                 $list = array(
                     'edit'      => __('Edit'),
@@ -521,15 +530,18 @@ class Api extends AbstractApi
                 );
             }
 
+            $level      = isset($op['level']) ? $op['level'] : 'author';
+            $isAdmin    = Pi::service('permission')->isAdmin('comment', $uid);
             $setOperations = function ($post) use (
                 $list,
                 $uid,
                 $isAdmin,
+                $level,
                 $section
             ) {
-                if ($isAdmin) {
+                if ('admin' == $level && $isAdmin) {
                     $opList = array('edit', 'approve', 'delete', 'reply');
-                } elseif ($uid = $post['uid']) {
+                } elseif ('author' == $level && $uid = $post['uid']) {
                     $opList = array('edit', 'delete', 'reply');
                 } elseif ($uid) {
                     $opList = array('reply');
@@ -598,8 +610,6 @@ class Api extends AbstractApi
                             $title = $list[$op];
                             break;
                         default:
-                            $url = '';
-                            $title = '';
                             break;
                     }
                     if (!$url || !$title) {
@@ -641,8 +651,8 @@ class Api extends AbstractApi
 
         $_this = $this;
         array_walk($posts, function (&$post) use ($ops, $_this) {
-            $post['content'] = $this->renderPost($post);
-            $post['url'] = $this->getUrl('post', array(
+            $post['content'] = $_this->renderPost($post);
+            $post['url'] = $_this->getUrl('post', array(
                 'post'  => $post['id']
             ));
             if (!empty($ops['users'])) {

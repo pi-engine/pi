@@ -220,28 +220,28 @@ class Admin extends AbstractController
                 'manager'   => array(
                     'name'  => __('Manager'),
                     'role'  => array(
-                        'manager'
+                        //'manager'
                         //'member'
                     ),
                 ),
                 'moderator' => array(
                     'name'  => __('Moderator'),
                     'role'  => array(
-                        'moderator'
+                        //'moderator'
                         //'member'
                     ),
                 ),
                 'editor'    => array(
                     'name'  => __('Editor'),
                     'role'  => array(
-                        'editor'
+                        //'editor'
                         //'member'
                     ),
                 ),
                 'staff'     => array(
                     'name'  => __('Staff'),
                     'role'  => array(
-                        'staff'
+                        //'staff'
                         //'member'
                     ),
                 ),

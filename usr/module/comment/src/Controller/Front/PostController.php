@@ -286,27 +286,13 @@ class PostController extends ActionController
                 $values = $form->getData();
                 // For new post
                 if (empty($values['id'])) {
-                    if (Pi::config('auto_approve', 'comment')) {
+                    if ($this->config('auto_approve')) {
                         $values['active'] = 1;
+                    } else {
+                        $values['active'] = 0;
                     }
                     $values['uid'] = $currentUid;
                     $values['ip'] = Pi::service('user')->getIp();
-
-                    /*
-                    if (empty($values['module'])) {
-                        if (!empty($values['root'])) {
-                            $row = Pi::model('root', 'comment')
-                                ->find($values['root']);
-                            $values['module'] = $row['module'];
-                        } elseif (!empty($values['reply'])) {
-                            $row = Pi::model('post', 'comment')
-                                ->find($values['reply']);
-                            if ($row) {
-                                $values['module'] = $row['module'];
-                            }
-                        }
-                    }
-                    */
                 } else {
                     $post = Pi::api('comment')->getPost($values['id']);
                     if (!$post) {
