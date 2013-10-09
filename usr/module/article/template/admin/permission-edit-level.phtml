@@ -1,0 +1,70 @@
+<?php
+    $this->jQuery();
+    $this->bootstrap();
+?>
+<h2 class="page-header"><?php echo $this->escape($title) ?></h2>
+
+<?php include 'message-box.phtml' ?>
+
+<?php echo $this->form()->openTag($form) ?>
+<div class="span12">
+    <?php $element = $form->get('name') ?>
+    <div class="control-group<?php if ($this->formElementErrors($element)) echo ' error' ?>">
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls">
+            <?php echo $this->formElement($element) ?>
+            <span class="help-inline"><?php echo $this->formElementErrors($element) ?></span>
+        </div>
+    </div>
+
+    <?php $element = $form->get('title') ?>
+    <div class="control-group<?php if ($this->formElementErrors($element)) echo ' error' ?>">
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls">
+            <?php echo $this->formElement($element) ?>
+            <span class="help-inline"><?php echo $this->formElementErrors($element) ?></span>
+        </div>
+    </div>
+    
+    <?php $element = $form->get('description') ?>
+    <div class="control-group">
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls"><?php echo $this->formElement($element) ?></div>
+    </div>
+</div>
+
+<div class="span12">
+    <?php foreach ($resources as $key => $row) { ?>
+    <div class="span12" style="margin-bottom: 10px">
+        <h4 class="page-header"><?php echo $this->escape($key) ?></h4>
+        <?php foreach ($row as $resource) { ?>
+            <div class="span3">
+            <?php $element = $form->get($resource) ?>
+                <div class="span2"><?php echo $this->formElement($element) ?></div>
+            </div>
+        <?php } ?>
+    </div>
+    <?php } ?>
+    
+    <div><?php $element = $form->get('security') ?>
+        <div><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div><?php $element = $form->get('id') ?>
+        <div><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div class="control-group span10">
+    <?php $element = $form->get('submit'); ?>
+        <div class="controls"><?php echo $this->formElement($element) ?></div>
+    </div>
+</div>
+
+<?php $this->form()->closeTag() ?>
+
+<script>
+    $('.icon-question-sign').tooltip();
+</script>

@@ -1,0 +1,70 @@
+<?php
+$this->I18nModule('admin', 'zh-CN');
+?>
+
+<h2 class="page-header"><?php _e('Verifydas'); ?></h2>
+<h3><?php _e('Invalid links'); ?></h3>
+<?php if (null != $items) { ?>
+<table class="table table-hover table-bordered">
+    <tr class="box-bordered-header">
+        <th><?php _e('Item'); ?></th>
+        <th><?php _e('Tag'); ?></th>
+        <th class="span2"><?php _e('Module'); ?></th>
+        <th class="span2"><?php _e('Type'); ?></th>
+        <th class="span2"><?php _e('Time'); ?></th>
+        <th class="span1"><?php _e('Operation'); ?></th>
+    </tr>
+    <?php foreach ($items as $row) {
+    ?>
+    <tr>
+        <td><?php echo $row['itemName']; ?></td>
+        <td><?php echo $row['term']; ?></td>
+        <td><?php echo $row['module']; ?></td>
+        <td><?php echo $row['type']; ?></td>
+        <td><?php echo date("Y-m-d H:i:s", $row['time']); ?></td>
+        <td><?php
+            $linkUrl = $this->url('admin', array('controller' => 'index', 'action' => 'linkdelete', 'id' => $row['id']));
+            $link = sprintf('<a href="%s" class="operator-color">%s</a>', $linkUrl, __('Delete'));
+            echo $link;
+            ?>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
+<?php } else { ?>
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <p><?php echo __('Congratulations') . ' !' ; ?></p>
+    <p><?php _e('No invalid link found') . '.'; ?></p>
+</div>
+<?php } ?>
+
+<h3><?php _e('Invalid tags'); ?></h3>
+<?php if (null != $invalidTag) { ?>
+<table class="table table-hover table-bordered">
+    <tr>
+        <th><?php _e('Tag'); ?></th>
+        <th class="span2"><?php _e('Count'); ?></th>
+        <th class="span1"><?php _e('Operation'); ?></th>
+    </tr>
+    <?php foreach ($invalidTag as $row) {
+    ?>
+    <tr>
+        <td><?php echo $row['term']; ?></td>
+        <td><?php echo $row['count']; ?></td>
+        <td><?php
+            $linkUrl = $this->url('admin', array('controller' => 'index', 'action' => 'delete', 'id' => $row['id'], 'verify' => 'y'));
+            $link = sprintf('<a href="%s">%s</a>', $linkUrl, __('Delete'));
+            echo $link;
+            ?>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
+<?php } else { ?>
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <p><?php echo __('Congratulations') . ' !' ; ?></p>
+    <p><?php _e('No invalid tag found') . '.'; ?></p>
+</div>
+<?php } ?>

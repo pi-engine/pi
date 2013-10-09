@@ -1,0 +1,260 @@
+<?php
+    $this->jQuery();
+    $this->bootstrap('js/bootstrap.min.js');
+    $this->css($this->assetModule('script/article-admin.css'));
+    $this->Backbone();
+?>
+<h2 class="page-header"><?php echo $this->escape($title) ?></h2>
+
+<?php include 'message-box.phtml' ?>
+
+<?php echo $this->form()->openTag($form) ?>
+<div class="span12">
+    <div class="control-group">
+    <?php $element = $form->get('uid') ?>
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls"><?php echo $this->formElement($element) ?></div>
+    </div>
+
+    <div class="control-group">
+    <?php $element = $form->get('category') ?>
+        <div><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div class="control-group">
+    <?php $element = $form->get('category') ?>
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls">
+            <div class="input-append">
+                <input name="select-category" class="span3" type="text">
+                <input name="select-id" type="hidden">
+                <div class="btn-group">
+                    <button class="btn dropdown-toggle" data-url="<?php echo $this->url('admin', array('action' => 'get-category')) ?>" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a><?php echo __('Please wait ...') ?></a></li>
+                    </ul>
+                </div>
+            </div>
+            <a class="article-add-category-button btn btn-small">
+                <i class="icon-plus"></i>
+            </a>
+        </div>
+    </div>
+    
+    <div class="span12">
+        <div class="article-user-level-category">
+            <div class="article-all-categories">
+                <?php foreach ($categories as $categoryId => $category) { ?>
+                <div class="article-each-category">
+                    <div class="label label-info" data-id="<?php echo $this->escape($categoryId) ?>" 
+                         data-name="<?php echo $this->escape($category) ?>">
+                        <?php echo $this->escape($category) ?>
+                        <button class="close" data-dismiss="alert" type="button">×</button>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    
+    <div class="control-group">
+    <?php $element = $form->get('level') ?>
+        <div class="control-label"><?php echo $this->formLabel($element) ?></div>
+        <i class="icon-question-sign" data-placement="bottom" data-original-title="<?php echo $element->getAttribute('description') ?>"></i>
+        <div class="controls"><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div><?php $element = $form->get('security') ?>
+        <div><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div><?php $element = $form->get('id') ?>
+        <div><?php echo $this->formElement($element) ?></div>
+    </div>
+    
+    <div class="control-group span10">
+    <?php $element = $form->get('submit'); ?>
+        <div class="controls"><?php echo $this->formElement($element) ?></div>
+    </div>
+</div>
+
+<?php $this->form()->closeTag() ?>
+
+<script id="article-template-category" type="text/template">
+    <div class="article-each-category">
+        <div class="label label-info" data-id="<%= id %>" data-name="<%= title %>">
+            <%= title %>
+            <button class="close" data-dismiss="alert" type="button">×</button>
+        </div>
+    </div>
+</script>
+
+<script>
+    var page = {
+        categoryListTemplate : function(key, value) {
+            return '<li data-category="' + key + '"><a style="cursor: pointer">' + value + '</a></li>';
+        }
+    };
+    
+    $('.icon-question-sign').tooltip();
+    
+    // Display delete button when hover category title 
+    $('.article-all-categories').on({'mouseenter' : function() {
+        $(this).find('button.close').css('visibility', 'visible');
+    }, 'mouseleave' : function() {
+        $(this).find('button.close').css('visibility', 'hidden');
+    }}, ".label.label-info");
+    
+    // Remove category when click close button
+    $('.article-all-categories').on('click', 'button.close', function() {
+        var id    = $(this).parent().data('id');
+        var value = $('input[name="category"]').val();
+        var ids   = new Array;
+        ids = value.split(',');
+        var newIds = new Array;
+        var j = 0;
+        for (i = 0; i < ids.length; i++) {
+            if (id == ids[i]) {
+                continue;
+            }
+            newIds[j++] = ids[i];
+        }
+        value = newIds.join(',');
+        $('input[name="category"]').val(value);
+    });
+    
+    // Get user list when click dropdown button
+    var clickCnt = 0;
+    $('button.btn.dropdown-toggle').click(function() {
+        var url = $(this).data('url');
+        var obj = $(this);
+        
+        obj.parent().find('ul.dropdown-menu').toggle('fast', function() {
+            if (!$(this).is(':hidden')) {
+                $.get(url, function(result) {
+                    result = $.parseJSON(result);
+                    var content = '';
+                    if (result.status) {
+                        var categories   = result.content;
+                        for (var i in categories) {
+                            content += page.categoryListTemplate(i, categories[i]);
+                        }
+                    } else {
+                        content = '<li><a>' + result.content + '</a></li>';
+                    }
+                    obj.parent().find('ul.dropdown-menu').html(content);
+                });
+            }
+        });
+    });
+    
+    // Add category name and id to input when click li tag of dropdown
+    $('ul.dropdown-menu').on('click', 'li', function() {
+        var id = $(this).data('category');
+        var category = $(this).children().html();
+        $('input[name="select-category"]').val(category);
+        $('input[name="select-id"]').val(id);
+        $(this).parent().css('display', 'none');
+    });
+    
+    // Add user name and id to input when click li tag of dropdown
+    $('ul.dropdown-menu').on('click', 'li', function() {
+        var id = $(this).data('user');
+        var user = $(this).children().html();
+        $(this).parent().parent().parent().find('input[name="user"]').val(user);
+        $(this).parent().parent().parent().parent().find('input[name="user-id"]').val(id);
+        $(this).parent().css('display', 'none');
+    });
+    
+    var first = '';
+    var firstId = 0;
+    // Get category name when enter character in input
+    $('input[name="select-category"]').bind('keyup', function(event) {
+        var val = $(this).val();
+        var url = $('button.btn.dropdown-toggle').data('url');
+        url += 'category/' + val;
+        var obj = $(this);
+
+        if (val.length > 0) {
+            $.get(url, function(result) {
+                result = $.parseJSON(result);
+                var content = '';
+                if (result.status) {
+                    var categories = result.content;
+                    for (var i in categories) {
+                        if ('' == first) {
+                            first   = categories[i];
+                            firstId = i;
+                        }
+                        content += page.categoryListTemplate(i, categories[i]);;
+                    }
+                    obj.parent().children().find('ul.dropdown-menu').html(content);
+                    obj.parent().children().find('ul.dropdown-menu').css('display', 'block');
+                } else {
+                    obj.tooltip('show');
+                }
+            });
+        }
+
+        // backspace
+        if (8 == event.keyCode) {
+            if (!obj.val()) {
+                obj.parent().children().find('ul.dropdown-menu').css('display', 'none');
+            }
+        }
+    });
+    
+    // Put category title and id into input when enter ENTER
+    $('input[name="select-category"]').bind('keydown', function(event) {
+        // enter
+        if (13 == event.keyCode) {
+            $(this).val(first);
+            $('input[name="category-id"]').val(firstId);
+        }
+    });
+    
+    $('input[name="select-category"]').bind('mouseleave', function() {
+        $(this).tooltip('hide');
+    });
+    
+    // Add category when click add button
+    $('a.btn.btn-small').click(function() {
+        var obj   = $(this);
+        var id    = $('input[name="select-id"]').val();
+        var title = $('input[name="select-category"]').val();
+        if (id.length <=0 || title.length <= 0) {
+            exit;
+        }
+        var value = $('input[name="category"]').val();
+        var ids   = new Array;
+        ids       = value.split(',');
+        for (i = 0; i < ids.length; i++) {
+            if (id == ids[i]) {
+                $('input[name="select-category"]').val('');
+                $('input[name="select-id"]').val('');
+                exit;
+            }
+        }
+        $('div.article-all-categories').append(_.template(
+            $('#article-template-category').html(), 
+            {
+                id    : id,
+                title : title
+            })
+        );
+        $('input[name="select-category"]').val('');
+        $('input[name="select-id"]').val('');
+        
+        var existIds = $('input[name="category"]').val();
+        if (existIds.length > 0) {
+            existIds += ',' + id;
+        } else {
+            existIds = id;
+        }
+        $('input[name="category"]').val(existIds);
+    });
+</script>

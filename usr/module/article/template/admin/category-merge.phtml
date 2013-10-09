@@ -1,0 +1,62 @@
+<h2 class="article-admin-title"><?php echo $this->escape($title) ?></h2>
+
+<?php include 'message-box.phtml' ?>
+
+<?php
+    $form->setAttributes(array(
+        'action'  => $this->url('', array('action' => 'merge')),
+        'method'  => 'post',
+        'class'   => 'form-horizontal',
+    ));
+    echo $this->form()->openTag($form);
+?>
+<div class="row-fluid">
+    <div class="span12 alert alert-info">
+        <?php _e('Move all articles from source category to target category') ?>
+    </div>
+
+    <div class="span12">
+        <div class="row-fluid">
+            <div class="span5">
+                <h3><?php _e('Source Category') ?></h3>
+                <br/>
+                <?php
+                    $element = $form->get('from');
+                    echo $this->formElement($element);
+                ?>
+                <p class="help-block">
+                </p>
+            </div>
+            <div class="span2">
+                <h3>&nbsp;</h3>
+                <br/>
+                <p class="help-block">
+                    <?php _e('merge into') ?>
+                </p>
+            </div>
+            <div class="span5">
+                <h3><?php _e('Target Category') ?></h3>
+                <br/>
+                <?php
+                    $element = $form->get('to');
+                    echo $this->formElement($element);
+                ?>
+                <p class="help-block">
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="span12">
+        <?php 
+            $elements = $form->elementList();
+            foreach ($elements['hidden'] as $element) {
+                echo $this->formElement($element);
+            }
+        ?>
+    </div>
+</div>
+<div class="form-actions">
+    <button type="submit" class="btn btn-primary"><?php echo $elements['submit']->getValue() ?></button>
+</div>
+<?php echo $this->form()->closeTag() ?>

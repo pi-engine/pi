@@ -1,0 +1,37 @@
+<?php
+$this->I18nModule('admin', 'zh-CN');
+$this->css(array($this->assetModule('script/tag-admin.css')));
+?>
+<h2 class="page-header"><?php _e('Search'); ?></h2>
+<h3><?php echo '"' . $this->escape($tagName) . '" ' . __('Search result'); ?></h3>
+<?php if ($find == 'n') { ?>
+<div class="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong><?php echo '"' . $this->escape($tagName) . '" ' . __('is not found Try some other words') . '.'; ?></strong>
+</div>
+<?php } else {  ?>
+<table class="table table-hover table-bordered">
+    <tr class="box-bordered-header">
+        <th><?php _e('Tag Name'); ?></th>
+        <th class="span2"><?php _e('Count'); ?></th>
+        <th class="span1"><?php _e('Operator') ?></th>
+    </tr>
+    <?php
+    foreach ($items as $row) { ?>
+        <tr>
+            <?php
+            $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $row['id']));
+            $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'delete', 'id' => $row['id'], 'name' => $tagName, 'search' => 'y'));
+            ?>
+            <td><a href="<?php echo $url; ?>"><?php echo $this->escape($row['term']); ?></a></td>
+            <td><?php echo $row['count'];  ?></td>
+            <td><?php echo sprintf('<a href="%s">%s</a>', $deleteUrl, __('Delete')); ?></td>
+        </tr>
+        <?php }?>
+</table>
+<?php } ?>
+<?php if ($find != 'n') { ?>
+<div class="pagination-right">
+    <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+</div>
+<?php } ?>

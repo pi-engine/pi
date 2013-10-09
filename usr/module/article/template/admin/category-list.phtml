@@ -1,0 +1,71 @@
+<?php
+    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->jQuery();
+?>
+<div id="jsList">
+    <div class="form-inline">
+        <a class="btn" href="<?php echo $this->url('', array('action' => 'add')) ?>"><?php _e('Add') ?></a>
+    </div>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th><?php _e('Image') ?></th>
+                <th><?php _e('Title') ?></th>
+                <th><?php _e('Description') ?></th>
+            </tr>
+            <?php foreach ($categories as $category) {
+                if ('root' == $category['slug']) {
+                    continue;
+                }
+                // Generate url
+                $addUrl    = $this->url('', array(
+                    'action' => 'add',
+                    'parent' => $category['id']
+                ));
+                $editUrl   = $this->url('', array(
+                    'action' => 'edit',
+                    'id'     => $category['id']
+                ));
+                $deleteUrl = $this->url('', array(
+                    'action' => 'delete',
+                    'id'     => $category['id']
+                ));
+                $mergeUrl  = $this->url('', array(
+                    'action' => 'merge',
+                    'from'   => $category['id']
+                ));
+                $moveUrl   = $this->url('', array(
+                    'action' => 'move',
+                    'from'   => $category['id']
+                ));
+            ?>
+            <tr>
+                <td><?php 
+                    if ($category['image']) {
+                        $image = Pi::url($category['image']);
+                ?>
+                        <img src="<?php echo $this->escape($image) ?>" alt="<?php echo $this->escape($category['title']) ?>">
+                <?php
+                    } else {
+                ?>
+                        <div class="list-image"><i class="icon-th-list"></i></div>
+                <?php
+                    }
+                ?>
+                </td>
+                <td><?php echo $this->escape(str_repeat('- ', $category['depth']) . $category['title']) ?>
+                    <div class="row-actions">
+                        <a href="<?php echo $this->escape($addUrl) ?>"><?php _e('Add') ?></a> |
+                        <a href="<?php echo $this->escape($editUrl) ?>"><?php _e('Edit') ?></a> |
+                        <a href="<?php echo $this->escape($deleteUrl) ?>" 
+                           onclick="return window.confirm('Really delete?');"><?php _e('Delete') ?></a> |
+                        <a href="<?php echo $this->escape($mergeUrl) ?>"><?php _e('Merge') ?></a> |
+                        <a href="<?php echo $this->escape($moveUrl) ?>"><?php _e('Move') ?></a>
+                    </div>
+                </td>
+                <td><?php echo $this->escape($category['description']) ?></td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>

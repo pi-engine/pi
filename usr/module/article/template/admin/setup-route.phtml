@@ -1,0 +1,150 @@
+<?php
+    $this->css($this->assetModule('script/article-admin.css'));
+    $this->jQuery('extension/fileupload-min.js');
+    $this->Backbone();
+    $this->bootstrap('js/bootstrap.min.js');
+?>
+
+<div>
+    <div class="span12">
+        <?php include 'setup-nav.phtml' ?>
+    </div>
+
+    <div class="span8">
+        <?php include 'message-box.phtml' ?>
+        <div id="article-js-route">
+            
+
+            <div class="article-route-content row-fluid">
+                <div class="article-route-header">
+                    <span class="pull-left"><?php _e('Custom Parameters') ?></span>
+                    <div class="pull-right">
+                        <button class="btn btn-primary route-modify" value="modify"><?php _e('Modify') ?></button>&nbsp;&nbsp;
+                        <a href="javascript:void(0)" class="route-delete"><?php _e('Delete') ?></a>
+                    </div>
+                </div>
+                <div id="article-route-form" class="hide">
+                <?php 
+                    echo $this->form()->openTag($form);
+                    include $this->templateComponent('form');
+                    echo $this->form()->closeTag();
+                ?>
+                </div>
+                <div id="article-route-param">
+                    <ol class="muted">
+                    <?php
+                        foreach ($configs as $key => $value) {
+                    ?>
+                        <li>
+                            <span><?php echo $this->escape($key) ?></span>
+                            <span class="label label-info"><?php echo $this->escape($value) ?></span>
+                        </li>
+                    <?php 
+                        }
+                    ?>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="article-route-content row-fluid">
+                <div class="article-route-header">
+                    <span class="pull-left"><?php _e('Required File') ?></span>
+                </div>
+                <div>
+                    <ol class="muted">
+                        <li>
+                            <span><?php _e('Current route: ') ?></span>
+                            <span class="label label-success"><?php echo $this->escape($route) ?></span>
+                        </li>
+                        <li>
+                            <span><?php _e('Route configuration: ') ?></span>
+                            <span class="<?php echo empty($filename) ? 'label label-important' : 'label label-success' ?>">
+                                <?php echo empty($filename) ? __('No file') : $this->escape($filename) ?>
+                            </span>
+                        </li>
+                        <li>
+                            <span><?php _e('Route class: ') ?></span>
+                            <span class="<?php echo empty($class) ? 'label label-important' : 'label label-success' ?>">
+                                <?php echo empty($class) ? __('No class') : $this->escape($class) ?>
+                            </span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary route-setup"><?php _e('Setup') ?></button>
+                <button class="btn route-default"><?php _e('Default') ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function($) {
+    var RouteView = Backbone.View.extend({
+        events   : {
+            "click .route-modify" : "togglePage",
+            "click .route-delete" : "deleteConfig",
+            "click .route-setup"  : "setupCustom",
+            "click .route-default"  : 'setupDefault'
+        },
+        initialize   : function() {
+            var status = '<?php echo $this->escape($status) ?>';
+            if ('edit' == status) {
+                this.displayForm();
+            }
+            this.$el   = $("#article-js-route");
+        },
+        togglePage     : function(e) {
+            var obj = $(e.target);
+            var val = obj.val();
+            if ('modify' == val) {
+                this.displayForm(val);
+            } else {
+                location.href = '<?php echo $this->url('', array('action' => 'route')) ?>';
+            }
+        },
+        displayForm     : function() {
+            $('#article-route-form').removeClass('hide');
+            $('#article-route-param').addClass('hide');
+            $('.route-modify').html('<?php _e('Cancel') ?>');
+            $('.route-modify').val('cancel');
+        },
+        deleteConfig    : function() {
+            location.href = '<?php echo $this->url('', array('action' => 'delete-route')) ?>';
+        },
+        setupCustom     : function() {
+            var self = this;
+            var url = '<?php echo $this->url('', array('action' => 'setup-route', 'custom' => 1)) ?>';
+            $.get(url, function(result) {
+                result = $.parseJSON(result);
+                self.renderMessage(result.status ? 'success' : 'error', result.message);
+                if (result.status) {
+                    window.location.reload();
+                }
+            });
+        },
+        setupDefault    : function() {
+            var self = this;
+            var url = '<?php echo $this->url('', array('action' => 'setup-route')) ?>';
+            $.get(url, function(result) {
+                result = $.parseJSON(result);
+                self.renderMessage(result.status ? 'success' : 'error', result.message);
+                if (result.status) {
+                    window.location.reload();
+                }
+            });
+        },
+        renderMessage   : function(status, message) {
+            $('#message-box').html(
+                _.template($('#template-message').html(), {
+                    status      : status,
+                    message     : message
+                })
+            );
+        }
+    });
+    new RouteView;   
+})(jQuery)
+</script>
