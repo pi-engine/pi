@@ -120,7 +120,7 @@ class Api extends AbstractApi
             }
         }
 
-        return $data;
+        return $result;
     }
 
     /**
