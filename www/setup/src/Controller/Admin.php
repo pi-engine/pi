@@ -241,7 +241,7 @@ class Admin extends AbstractController
                 'staff'     => array(
                     'name'  => __('Staff'),
                     'role'  => array(
-                        //'staff'
+                        'staff'
                         //'member'
                     ),
                 ),

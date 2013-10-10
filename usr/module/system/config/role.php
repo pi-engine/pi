@@ -17,9 +17,9 @@ return array(
     'admin' => array(
         // System administrator with ultra permissions
         'admin'     => __('Administrator'),
-        /*
         // Admin area user
         'staff'     => __('Staff'),
+        /*
         // Module/section moderator or administrator
         'moderator' => __('Moderator'),
         // Content editor
