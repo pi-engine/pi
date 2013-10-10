@@ -39,17 +39,6 @@ return array(
             'action'        => 'index',
         ),
 
-        'avatar' => array(
-            'label'         => _t('Avatar'),
-            'permission'    => array(
-                'resource'  => 'avatar',
-            ),
-            'route'         => 'admin',
-            'module'        => 'user',
-            'controller'    => 'avatar',
-            'action'        => 'index',
-        ),
-
         'form' => array(
             'label'         => _t('Form'),
             'permission'    => array(

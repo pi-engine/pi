@@ -24,20 +24,15 @@ class PasswordFilter extends InputFilter
     {
         $config = Pi::service('registry')->config->read('user', 'general');
 
-        if (!$type) {
-            $this->add(array(
-                'name'          => 'credential',
-                'required'      => true,
-                'filters'       => array(
-                    array(
-                        'name'  => 'StringTrim',
-                    ),
+        $this->add(array(
+            'name'          => 'credential',
+            'required'      => true,
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
                 ),
-                'validators'    => array(
-                    new CredentialVerify(),
-                ),
-            ));
-        }
+            ),
+        ));
 
         $this->add(array(
             'name'          => 'credential-new',
