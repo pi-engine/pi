@@ -413,10 +413,22 @@ class ProfileController extends ActionController
      */
     public function deleteCompoundAction()
     {
-        $uid      = Pi::user()->getIdentity();
-        $compound = _post('compound', '');
-        $set      = _post('set');
+        $result = array(
+            'status'  => 0,
+            'message' => ''
+        );
 
+        $uid        = Pi::user()->getIdentity();
+        $compoundId = _post('compound', '');
+        $set        = _post('set');
+
+        $row = $this->getModel('display_group')->find($compoundId, 'id');
+        if (!$row) {
+            $result['message'] = 'error';
+            return $result;
+        }
+
+        $compound = $row->compound;
         $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
         $newCompound = array();
         foreach ($oldCompound as $key => $value) {
@@ -427,11 +439,11 @@ class ProfileController extends ActionController
 
         // Update compound
         $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+        $result['status'] = $status ? 1 : 0;
+        $result['message'] = $status ? 'success' : 'error';
 
-        return array(
-            'status'  => $status ? 1 : 0,
-            'message' => $status ? 'ok' : 'error',
-        );
+        return $result;
+
     }
 
     /**
@@ -646,7 +658,8 @@ class ProfileController extends ActionController
     {
         $result = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate')
+            array('name', 'gender', 'birthdate'),
+            true
         );
 
         return $result;
