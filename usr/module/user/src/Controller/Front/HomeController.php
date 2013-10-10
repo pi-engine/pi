@@ -331,7 +331,8 @@ class HomeController extends ActionController
     {
         $result = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate')
+            array('name', 'gender', 'birthdate'),
+            true
         );
 
         return $result;
