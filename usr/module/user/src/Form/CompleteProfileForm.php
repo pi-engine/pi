@@ -17,7 +17,7 @@ use Pi\Form\Form as BaseForm;
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class ProfileCompleteForm extends BaseForm
+class CompleteProfileForm extends BaseForm
 {
     protected $fields;
     protected $name;

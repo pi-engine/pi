@@ -13,8 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
-use Module\User\Form\ProfileCompleteForm;
-use Module\User\Form\ProfileCompleteFilter;
+use Module\User\Form\CompleteProfileForm;
+use Module\User\Form\CompleteProfileFilter;
 
 /**
  * Register controller
@@ -49,9 +49,8 @@ class RegisterController extends ActionController
             $form->setInputFilter(new RegisterFilter($filters));
             $form->setData($post);
             if ($form->isValid()) {
-                $values     = $form->getData();
-
-                $data = array(
+                $values = $form->getData();
+                $data   = array(
                     'identity'   => $values['identity'],
                     'name'       => $values['name'],
                     'email'      => $values['email'],
@@ -62,12 +61,11 @@ class RegisterController extends ActionController
                 $uid    = $result[0];
 
                 // Set user role
-                $this->createRole($uid);
-                Pi::api('user', 'user')->setRole($uid, Acl::MEMBER);
+                Pi::api('user', 'user')->setRole($uid, 'member');
 
                 // Set user data
-                $content = md5(uniqid($uid . $data['name']));
-                $result = Pi::user()->data()->set(
+                $content = md5($uid . $data['name']);
+                $result  = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
                     $content,
@@ -82,7 +80,7 @@ class RegisterController extends ActionController
                 }
 
                 // Send activity email
-                $to = $values['email'];
+                $to  = $values['email'];
                 $url = $this->url('', array(
                     'action' => 'activate',
                     'id'     => md5($uid),
@@ -129,11 +127,6 @@ class RegisterController extends ActionController
             return $this->jumpTo404('Required resource is not found');
         }
 
-        /*
-        $userData = Pi::api('user', 'userdata')
-                    ->getData(array('content' => $token));
-        $userData = array_pop($userData);
-        */
         $userData = Pi::user()->data()->find(array(
             'name'  => 'register-activation',
             'value' => $token,
@@ -286,12 +279,12 @@ class RegisterController extends ActionController
         $uid = Pi::service('user')->getIdentity();
 
         // Get fields for generate form
-        list($fields, $filters) = $this->canonizeForm('custom.profile.perfection');
-        $form = $this->getProfileCompleteForm($fields);
+        list($fields, $filters) = $this->canonizeForm('custom.complete.profile');
+        $form = $this->getCompleteProfileForm($fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new ProfileCompleteFilter($filters));
+            $form->setInputFilter(new CompleteProfileFilter($filters));
             $form->setData($post);
 
             if ($form->isValid()) {
@@ -309,15 +302,15 @@ class RegisterController extends ActionController
                 $status = 1;
                 return $this->jump(
                     $redirect,
-                    __('Perfect information successfully')
+                    __('Complete profile successfully')
                 );
             }
             $isPost = 1;
         }
 
         $this->view()->assign(array(
-            'form'   => $form,
-            'status' => $status,
+            'form'    => $form,
+            'status'  => $status,
             'is_post' => $isPost
         ));
 
@@ -348,11 +341,11 @@ class RegisterController extends ActionController
      *
      * @param array $fields custom profile complete form fields
      * @param string $name form name
-     * @return \Module\User\Form\ProfileCompleteForm
+     * @return \Module\User\Form\CompleteCompleteForm
      */
-    protected function getProfileCompleteForm($fields, $name = 'profileComplete')
+    protected function getCompleteProfileForm($fields, $name = 'profileComplete')
     {
-        $form = new ProfileCompleteForm($name, $fields);
+        $form = new CompleteProfileForm($name, $fields);
         $form->setAttribute(
             'action',
             $this->url('', array('action' => 'complete-profile'))
@@ -437,5 +430,6 @@ class RegisterController extends ActionController
         $type = $data['format'];
 
         return array($subject, $body, $type);
+
     }
 }
