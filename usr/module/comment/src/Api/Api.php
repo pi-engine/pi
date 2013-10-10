@@ -525,7 +525,7 @@ class Api extends AbstractApi
             ) {
                 if ('admin' == $level && $isAdmin) {
                     $opList = array('edit', 'approve', 'delete', 'reply');
-                } elseif ('author' == $level && $uid = $post['uid']) {
+                } elseif ('author' == $level && $uid == $post['uid']) {
                     $opList = array('edit', 'delete', 'reply');
                 } elseif ($uid) {
                     $opList = array('reply');
@@ -617,6 +617,7 @@ class Api extends AbstractApi
                 'callback'  => $setOperations,
             );
         }
+
         // Build targets
         if (!isset($options['target']) || $options['target']) {
             $targets = array();

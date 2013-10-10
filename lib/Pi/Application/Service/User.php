@@ -318,7 +318,7 @@ class User extends AbstractService
     public function getIdentity($asId = true)
     {
         if (!$this->hasIdentity()) {
-            $identity = null;
+            $identity = 0;
         } else {
             $identity = $asId
                 ? $this->modelSession->id
