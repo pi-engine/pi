@@ -59,9 +59,16 @@ class Permission extends AbstractResource
         if ($e->isError()) {
             return;
         }
+        // Skip page access check
         if (empty($this->options['check_page'])) {
             return;
         }
+
+        // Grant permission for admin
+        if (Pi::service('permission')->isAdmin()) {
+            return;
+        }
+
         $section = $this->engine->section();
         $routeMatch = $e->getRouteMatch();
         $route = array(
@@ -109,6 +116,11 @@ class Permission extends AbstractResource
      */
     public function checkModule(MvcEvent $e)
     {
+        // Grant permission for admin
+        if (Pi::service('permission')->isAdmin()) {
+            return;
+        }
+
         //d(__METHOD__);
         $module = $e->getRouteMatch()->getParam('module');
         $access = Pi::service('permission')->modulePermission($module);
