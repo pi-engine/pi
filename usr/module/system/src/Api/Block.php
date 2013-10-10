@@ -141,7 +141,7 @@ class Block extends AbstractApi
             return $return;
         }
 
-        // Build ACL rules
+        // Build permission rules
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
             //$rule = isset($access[$role]) ? $access[$role] : 1;

@@ -110,10 +110,11 @@ class Data extends AbstractResource
      * Write user data
      *
      * @param int|array $uid
-     * @param string $name
+     * @param string    $name
      * @param mixed|int $value
-     * @param string $module
-     * @param int $time
+     * @param string    $module
+     * @param int       $time
+     *
      * @return bool
      */
     public function set($uid, $name = null, $value = null, $module = '', $time = null)
@@ -186,10 +187,11 @@ class Data extends AbstractResource
      * Write user integer data
      *
      * @param int|array $uid
-     * @param string $name
-     * @param int $value
-     * @param string $module
-     * @param int $time
+     * @param string    $name
+     * @param int       $value
+     * @param string    $module
+     * @param int       $time
+     *
      * @return bool
      */
     public function setInt($uid, $name = null, $value = 0, $module = '', $time = null)
@@ -209,16 +211,18 @@ class Data extends AbstractResource
      * @param int|int[] $uid
      * @param string    $name
      * @param int       $value
+     * @param string    $module
+     * @param int       $time
      *
      * @return bool
      */
-    public function increment($uid, $name, $value)
+    public function increment($uid, $name, $value, $module = '', $time = null)
     {
         $value = (int) $value;
         $row = $this->find(array('uid' => $uid, 'name' => $name), true);
         // Insert new value
         if (!$row) {
-            $result = $this->setInt($uid, $name, $value);
+            $result = $this->setInt($uid, $name, $value, $module, $time);
         // Reset
         } elseif (0 == $value || null == $row['value_int']) {
             $row['value_int'] = $value;

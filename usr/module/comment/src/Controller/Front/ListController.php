@@ -81,31 +81,47 @@ class ListController extends ActionController
      */
     public function rootAction()
     {
-        $root   = _get('root', 'int') ?: 1;
-        $page   = _get('page', 'int') ?: 1;
-        $limit  = $this->config('list_limit') ?: 10;
-        $offset = ($page - 1) * $limit;
-        $posts  = Pi::api('comment')->getList($root, $limit, $offset);
-        $renderOptions = array(
-            'operation' => $this->config('display_operation'),
-        );
-        $posts = Pi::api('comment')->renderList($posts, $renderOptions);
-        $count = Pi::api('comment')->getCount($root);
+        $rootId     = _get('root', 'int') ?: 1;
+        $root       = Pi::model('root', 'comment')->find($rootId);
+        $isActive   = null;
+        $count      = null;
+        $target     = null;
+        $posts      = null;
+        $paginator  = null;
 
-        $target = Pi::api('comment')->getTarget($root);
+        if ($root) {
+            if (!$root['active']) {
+                $isActive = false;
+            }
+            $page   = _get('page', 'int') ?: 1;
+            $limit  = $this->config('list_limit') ?: 10;
+            $offset = ($page - 1) * $limit;
+            $posts  = Pi::api('comment')->getList($rootId, $limit, $offset);
+            $renderOptions = array(
+                'operation' => $this->config('display_operation'),
+            );
+            $posts = Pi::api('comment')->renderList($posts, $renderOptions);
+            $count = Pi::api('comment')->getCount($rootId);
 
-        $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
-                'params'        => array(
-                    'root'      => $root,
+            $target = Pi::api('comment')->getTarget($rootId);
+
+            $paginator = Paginator::factory($count, array(
+                'page'  => $page,
+                'url_options'           => array(
+                    'params'        => array(
+                        'root'      => $root,
+                    ),
                 ),
-            ),
-        ));
-        $title = sprintf(__('Comment posts of %s'), $target['title']);
+            ));
+        } else {
+
+        }
+
+        $title = __('Comment posts of article');
         $this->view()->assign('comment', array(
             'title'     => $title,
-            'root'      => $root,
+            'root'      => $rootId,
+            'active'    => $isActive,
             'target'    => $target,
             'count'     => $count,
             'posts'     => $posts,
@@ -404,45 +420,31 @@ class ListController extends ActionController
             'paginator' => $paginator,
         ));
 
-        $navTabs = array(
-            array(
-                'active'    => !$my,
-                'label'     => __('Articles with comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                ))
-            ),
-            array(
-                'active'    => $my && null === $active,
-                'label'     => __('My articles'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'my'        => 1,
-                ))
-            ),
-            array(
-                'active'    => $my && $active,
-                'label'     => __('My articles with active comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'my'        => 1,
-                    'active'    => 1,
-                ))
-            ),
-            /*
-            array(
-                'active'    => 1 == $active,
-                'label'     => __('Articles with active comments'),
-                'href'      => $this->url('', array(
-                    'action'    => 'article',
-                    'active'    => 1,
-                ))
-            ),
-            */
-        );
-        $this->view()->assign(array(
-            'tabs'      => $navTabs,
-        ));
+        if ($my) {
+            $navTabs = array(
+                array(
+                    'active'    => $my && null === $active,
+                    'label'     => __('My articles'),
+                    'href'      => $this->url('', array(
+                        'action'    => 'article',
+                        'my'        => 1,
+                    ))
+                ),
+                array(
+                    'active'    => $my && $active,
+                    'label'     => __('My articles with active comments'),
+                    'href'      => $this->url('', array(
+                        'action'    => 'article',
+                        'my'        => 1,
+                        'active'    => 1,
+                    ))
+                ),
+            );
+            $this->view()->assign(array(
+                'tabs'      => $navTabs,
+            ));
+        }
+
         $this->view()->setTemplate('comment-article');
     }
 }

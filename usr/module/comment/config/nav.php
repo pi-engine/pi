@@ -15,6 +15,12 @@ return array(
             'controller'    => 'list',
             'action'        => 'index',
         ),
+        'article'      => array(
+            'route'         => 'comment',
+            'label'         => _t('Commented articles'),
+            'controller'    => 'list',
+            'action'        => 'article',
+        ),
         'my-post'   => array(
             'route'         => 'comment',
             'label'         => _t('My comments'),

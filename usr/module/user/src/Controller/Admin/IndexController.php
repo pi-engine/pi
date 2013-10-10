@@ -73,12 +73,6 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
@@ -202,139 +196,152 @@ class IndexController extends ActionController
     {
         $result = array(
             'status' => 0,
-            'message' => __('Add user failed'),
+            'message' => '',
         );
 
         $identity   = _post('identity');
         $email      = _post('email');
         $credential = _post('credential');
-        $activate   = _post('activate');
-        $enable     = _post('enable');
-        $name       = _post('name');
+        $activated  = (int) _post('activated');
+        $enable     = (int) _post('enable');
+        $roles      = _post('roles');
 
-        if (!$identity || !$email || !$credential || !$name) {
+        // Check duplication
+        $where = array(
+            'identity' => $identity,
+            'name'     => $name,
+            'email'    => $email,
+        );
+        $select = Pi::model('user_account')->select()->where(
+            $where,
+            Predicate\PredicateSet::OP_OR
+        );
+        $rowset = Pi::model('user_account')->selectWith($select)->toArray();
+        if (count($rowset) != 0 || empty($roles)) {
+            $result['message'] = __('Add user failed');
             return $result;
         }
 
-        // Check identity, email, display name
-        $model = Pi::model('user_account');
-        $row = $model->find($identity, 'identity');
-        if ($row) {
+        $data = array(
+            'identity'   => $identity,
+            'name'       => $name,
+            'email'      => $email,
+            'credential' => $credential,
+        );
+
+        // Add user
+        $uid = Pi::api('user', 'user')->addUser($data, false);
+        if (!$uid) {
+            $result['message'] = __('Add user failed');
             return $result;
         }
 
-        $row = $model->find($email, 'email');
-        if ($row) {
-            return $result;
+        // Activate
+        if ($activated == 1) {
+            Pi::api('user', 'user')->activateUser($uid);
         }
 
-        $row = $model->find($name, 'name');
-        if ($row) {
-            return $result;
-        }
-
-        // Set data
-        $data = array();
-        if ($activate == 1) {
-            $data['time_activated'] = time();
-        } else {
-            $data['time_activated'] = 0;
-        }
-
+        // Enable
         if ($enable == 1) {
-            $data['time_disabled'] = 0;
-        } else {
-            $data['time_disabled'] = time();
+            Pi::api('user', 'user')->enableUser($uid);
         }
 
-        if ($activate == 1 && $enable == 1) {
-            $data['active'] = 1;
-        } else {
-            $data['active'] = 0;
-        }
-        $data['identity'] = $identity;
-        $data['email']    = $email;
-        $data['name']     = $name;
+        // Set role
+        Pi::api('user', 'user')->setRole($uid, $roles);
 
-        // Save user info
-        $status = Pi::api('user', 'user')->addUser($data);
-
-        if ($status) {
-            $result['status']  = 1;
-            $result['message'] = __('Add user successfully');
-        }
+        $result['status']  = 1;
+        $result['message'] = __('Add user successfully');
 
         return $result;
+
     }
 
     /**
-     * Display search form
+     * Check username, email, display name exist
      *
-     * @return \Zend\Mvc\Controller\Plugin\Redirect
+     * @return array
      */
-    public function searchAction()
+    public function checkExistAction()
     {
-        // Initialise search options
-        $this->view()->setTemplate('index-search');
+        $status = 1;
 
-        $form = new SearchForm('search');
-        // Set admin role default
-        $options = $form->get('front-role')->getValueOptions();
-        array_shift($options);
-        $options = array_merge(array('any' => __('Any role')), $options);d($options);
-        $form->get('front-role')->setValueOptions($options);
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+        $uid      = (int) _get('id');
 
-        // Set admin role default
-        $options = $form->get('admin-role')->getValueOptions();
-        array_shift($options);
-        $options = array_merge(array('any' => __('Any role')), $options);
-        $form->get('admin-role')->setValueOptions($options);
+        if (!$identity && !$email && !$name ) {
+            return array(
+                'status' => $status,
+            );
+        }
 
-        if ($this->request->isPost()) {
-            $post = $this->request->getPost();
-            $form->setData($post);
-
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $condition = $this->canonizeSearchData($data);
-                $params = array(
-                    'controller' => 'index',
-                    'action'     => 'search.list',
-                );
-
-                $params = array_merge($params, $condition);
-                return $this->redirect('', $params);
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
             }
         }
 
-        $this->view()->assign(array(
-            'form' => $form,
-        ));
+        if ($email) {
+            $row = $model->find($email, 'email');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            if (!$row) {
+                $status = 0;
+            } else {
+                $status = ($row['id'] == $uid) ? 0 : 1;
+            }
+        }
+
+        return array(
+            'status' => $status,
+        );
+
     }
 
     /**
-     * Display search result list
+     * Display search result
      */
-    public function searchListAction()
+    public function searchAction()
     {
-        $page   = (int) $this->params('p', 1);
-        $limit  = 10;
-        $offset = (int) ($page -1) * $limit;
-
         $condition['active']            = _get('active') ?: '';
         $condition['enable']            = _get('enable') ?: '';
         $condition['activated']         = _get('activated') ?: '';
-        $condition['identity']          = _get('identity') ?: '';
-        $condition['name']              = _get('name') ?: '';
         $condition['front_role']        = _get('front_role') ?: '';
         $condition['admin_role']        = _get('admin_role') ?: '';
+        $condition['identity']          = _get('identity') ?: '';
+        $condition['name']              = _get('name') ?: '';
         $condition['email']             = _get('email') ?: '';
         $condition['time_created_form'] = _get('time_created_form') ?: '';
         $condition['time_created_to']   = _get('time_created_to') ?: '';
         $condition['ip_register']       = _get('ip_register') ?: '';
 
+        if ($condition['front_role']) {
+            $condition['front_role'] = array_unique(explode(',', $condition['front_role']));
+            $condition['front_role'] = array_filter($condition['front_role']);
+        }
+        if ($condition['admin_role']) {
+            $condition['admin_role'] = array_unique(explode(',', $condition['admin_role']));
+            $condition['admin_role'] = array_filter($condition['admin_role']);
+        }
+
+        $page   = (int) $this->params('p', 1);
+        $limit  = 10;
+        $offset = (int) ($page -1) * $limit;
+
         // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);
+        $uids  = $this->getUids($condition, $limit, $offset);;
 
         // Get user count
         $count = $this->getCount($condition);
@@ -349,17 +356,9 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        foreach ($condition as $key => $value) {
-            if ($value) {
-                $params[$key] = $value;
-            }
-        }
-
         $data = array(
             'users'       => array_values($users),
             'paginator'   => $paginator,
-            'front_roles' => $this->getRoleSelectOptions(),
-            'admin_roles' => $this->getRoleSelectOptions('admin'),
             'condition'   => $condition,
         );
 
@@ -464,60 +463,6 @@ class IndexController extends ActionController
         $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
         return $return;
-
-    }
-
-    /**
-     * Check username, email, display name exist
-     *
-     * @return array
-     */
-    public function checkExistAction()
-    {
-        $status = 1;
-
-        $identity = _get('identity');
-        $email    = _get('email');
-        $name     = _get('name');
-        $uid      = (int) _get('uid');
-
-        if (!$identity && !$email && !$name ) {
-            return array(
-                'status' => $status,
-            );
-        }
-
-        $model = Pi::model('user_account');
-        if ($identity) {
-            $row = $model->find($identity, 'identity');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($email) {
-            $row = $model->find($email, 'email');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($name) {
-            $row = $model->find($name, 'name');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        return array(
-            'status' => $status,
-        );
 
     }
 
@@ -651,10 +596,9 @@ class IndexController extends ActionController
             array_keys($columns)
         );
 
-        $roles = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
-            $uid = $row['uid'];
+            $uid     = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_role';
             $users[$uid][$roleKey][] = $row['role'];
@@ -738,33 +682,67 @@ class IndexController extends ActionController
             array('id')
         );
         if ($condition['front_role']) {
-            $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front_role'],
-                'front.section' => 'front',
-            ));
-            $where->add($whereRoleFront);
+            if (is_array($condition['front_role'])) {
+                $i = 1;
+                foreach ($condition['front_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'front' . $prefix . '.role'    => $role,
+                        'front' . $prefix . '.section'  => 'front',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('front' . $prefix => $modelRole->getTable()),
+                        'front' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'front.role'    => $condition['front_role'],
+                    'front.section' => 'front',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('front' => $modelRole->getTable()),
+                    'front.uid=account.id',
+                    array()
+                );
+            }
         }
+
         if ($condition['admin_role']) {
-            $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin_role'],
-                'admin.section' => 'admin',
-            ));
-            $where->add($whereRoleAdmin);
+            if (is_array($condition['admin_role'])) {
+                $i = 1;
+                foreach ($condition['admin_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'admin' . $prefix . '.role'     => $role,
+                        'admin' . $prefix . '.section'  => 'admin',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('admin' . $prefix => $modelRole->getTable()),
+                        'admin' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'admin.role'    => $condition['admin_role'],
+                    'admin.section' => 'admin',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('admin' => $modelRole->getTable()),
+                    'admin.uid=account.id',
+                    array()
+                );
+            }
         }
-        if ($condition['front_role']) {
-            $select->join(
-                array('front' => $modelRole->getTable()),
-                'front.uid=account.id',
-                array()
-            );
-        }
-        if ($condition['admin_role']) {
-            $select->join(
-                array('admin' => $modelRole->getTable()),
-                'admin.uid=account.id',
-                array()
-            );
-        }
+
         if ($limit) {
             $select->limit($limit);
         }
@@ -776,6 +754,7 @@ class IndexController extends ActionController
 
         $rowset = Pi::db()->query($select);
 
+        $result = array();
         foreach ($rowset as $row) {
             $result[] = (int) $row['id'];
         }
@@ -851,40 +830,68 @@ class IndexController extends ActionController
         ));
 
         if ($condition['front_role']) {
-            $whereRoleFront = Pi::db()->where()->create(array(
-                'front.role'    => $condition['front_role'],
-                'front.section' => 'front',
-            ));
-            $where->add($whereRoleFront);
+            if (is_array($condition['front_role'])) {
+                $i = 1;
+                foreach ($condition['front_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'front' . $prefix . '.role'    => $role,
+                        'front' . $prefix . '.section'  => 'front',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('front' . $prefix => $modelRole->getTable()),
+                        'front' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'front.role'    => $condition['front_role'],
+                    'front.section' => 'front',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('front' => $modelRole->getTable()),
+                    'front.uid=account.id',
+                    array()
+                );
+            }
         }
 
         if ($condition['admin_role']) {
-            $whereRoleAdmin = Pi::db()->where()->create(array(
-                'admin.role'    => $condition['admin_role'],
-                'admin.section' => 'admin',
-            ));
-            $where->add($whereRoleAdmin);
-        }
-
-        if ($condition['front_role']) {
-            $select->join(
-                array('front' => $modelRole->getTable()),
-                'front.uid=account.id',
-                array()
-            );
-        }
-
-        if ($condition['admin_role']) {
-            $select->join(
-                array('admin' => $modelRole->getTable()),
-                'admin.uid=account.id',
-                array()
-            );
+            if (is_array($condition['admin_role'])) {
+                $i = 1;
+                foreach ($condition['admin_role'] as $role) {
+                    $prefix = $i;
+                    $whereRoleFront = Pi::db()->where()->create(array(
+                        'admin' . $prefix . '.role'     => $role,
+                        'admin' . $prefix . '.section'  => 'admin',
+                    ));
+                    $where->add($whereRoleFront);
+                    $select->join(
+                        array('admin' . $prefix => $modelRole->getTable()),
+                        'admin' . $prefix . '.uid=account.id',
+                        array()
+                    );
+                    $i++;
+                }
+            } else {
+                $whereRoleFront = Pi::db()->where()->create(array(
+                    'admin.role'    => $condition['admin_role'],
+                    'admin.section' => 'admin',
+                ));
+                $where->add($whereRoleFront);
+                $select->join(
+                    array('admin' => $modelRole->getTable()),
+                    'admin.uid=account.id',
+                    array()
+                );
+            }
         }
 
         $select->where($where);
-
-
         $rowset = Pi::db()->query($select);
 
         if ($rowset) {
@@ -973,51 +980,5 @@ class IndexController extends ActionController
         }
 
         return $time;
-    }
-
-    /**
-     * Canonize search data
-     *
-     * @param $data
-     * @return array
-     */
-    protected function canonizeSearchData($data)
-    {
-        $condition = array();
-        if ($data['active'] == 'any') {
-            $condition['active'] = '';
-        } else {
-            $condition['active'] = $data['active'];
-        }
-        if ($data['enable'] == 'any') {
-            $condition['enable'] = '';
-        } else {
-            $condition['enable'] = $data['enable'];
-        }
-        if ($data['activated'] == 'any') {
-            $condition['activated'] = '';
-        } else {
-            $condition['activated'] = $data['activated'];
-        }
-        if ($data['front_role'] == 'any') {
-            $condition['front_role'] = '';
-        } else {
-            $condition['front_role'] = $data['front_role'];
-        }
-        if ($data['admin_role'] == 'any') {
-            $condition['admin_role'] = '';
-        } else {
-            $condition['admin_role'] = $data['admin_role'];
-        }
-
-        $condition['identity']          = $data['identity'];
-        $condition['name']              = $data['name'];
-        $condition['email']             = $data['email'];
-        $condition['ip_register']       = $data['ip_register'];
-        $condition['time_created_from'] = strtotime($data['time_created_from']);
-        $condition['time_created_to']   = strtotime($data['time_created_to']);
-
-        return $condition;
-
     }
 }

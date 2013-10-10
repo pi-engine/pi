@@ -17,7 +17,7 @@ return array(
     'article' => array(
         'title'     => __('Article comments'),
         'icon'      => 'icon-post',
-        'callback'  => 'Module\Comment\Comment\Article',
+        'callback'  => 'Module\Comment\Api\Article',
         'controller'    => 'demo',
         'action'        => 'index',
         'identifier'    => 'id',

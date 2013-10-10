@@ -202,6 +202,16 @@ class LoginController extends ActionController
                       : 0;
         Pi::service('event')->trigger('login', array($uid, $rememberTime));
 
+        // Set login ip
+        $ipLogin = $this->getClientIp();
+        Pi::user()->data()->set(
+            $uid,
+            'ip_login',
+            $ipLogin,
+            $this->getModule()
+        );
+        // Set login count
+        Pi::user()->data()->increment($uid, 'login_times', 1);
         // Check user complete profile
         $hasCompleteProfile = Pi::user()->data()->get(
             $uid,
@@ -236,5 +246,24 @@ class LoginController extends ActionController
         );
 
         return $form;
+    }
+
+    /**
+     * Get client ip address
+     *
+     * @return string
+     */
+    protected function getClientIp()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        return $ip;
+
     }
 }

@@ -15,7 +15,7 @@
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
         <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
-        <th style="width: 15%;" class="text-center">{{'STATUS' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
       <tr ng-repeat="role in frontRoles">
@@ -28,7 +28,8 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -61,7 +62,8 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
-        <td class="text-center">{{role.count}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">

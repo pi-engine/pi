@@ -13,30 +13,36 @@ $target = $comment['target'];
 $posts = $comment['posts'];
 // Pagination object
 $paginator = $comment['paginator'];
-
-$formData = array(
-    'root'      => $comment['root'],
-    'redirect'  => $this->url()->requestUri(true),
-);
-$form = Pi::service('comment')->getForm($formData);
 ?>
     <div class="page-header"><?php echo _escape($comment['title']); ?></div>
 <?php
-include $this->templateComponent('form');
+if (!$target) {
+    echo '<div class="alert">' . __('Item not found.') . '</div>';
+    return;
+} elseif ($comment['active']) {
+    $formData = array(
+        'root'      => $comment['root'],
+        'redirect'  => $this->url()->requestUri(true),
+    );
+    $form = Pi::service('comment')->getForm($formData);
+
+    include $this->templateComponent('form');
+} else {
+    echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
+}
 ?>
     <div class="pi-comment-header">
         <dl class="dl-horizontal">
-            <dt><?php _e('Total:') ?></dt>
-            <dd><?php echo $count; ?></dd>
             <dt><?php _e('Source:') ?></dt>
-            <dd><?php echo $target['title']; ?></dd>
-            <dt><?php _e('Time:') ?></dt>
-            <dd><?php echo _date($target['time']); ?></dd>
-            <dt><?php _e('URL:') ?></dt>
-            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php _e('Click to open'); ?>">
-                    <?php _e('Click to open'); ?>
+            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
+                    <?php echo _escape($target['title']); ?>
                 </a>
             </dd>
+
+            <dt><?php _e('Time:') ?></dt>
+            <dd><?php echo _date($target['time']); ?></dd>
+
+            <!--
             <dt><?php _e('Author:') ?></dt>
             <dd><a href="<?php echo $target['user']['url']; ?>" target="_blank" title="<?php echo $target['user']['name']; ?>">
                 <?php echo $target['user']['name']; ?>
@@ -44,6 +50,10 @@ include $this->templateComponent('form');
             </dd>
             <dt>&nbsp;</dt>
             <dd><?php echo $target['user']['avatar']; ?></dd>
+            -->
+
+            <dt><?php _e('Total comments:') ?></dt>
+            <dd><?php echo $count; ?></dd>
         </dl>
     </div>
     <div class="pi-comment-list">
@@ -52,7 +62,7 @@ if ($posts) {
     foreach ($posts as $post) {
 ?>
         <dl class="dl-horizontal pi-comment-post">
-            <dt><?php _e('Author:') ?></dt>
+            <dt><?php _e('User:') ?></dt>
             <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
                     <?php echo $post['user']['name']; ?>
                 </a>

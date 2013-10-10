@@ -59,7 +59,6 @@ class MaintenanceController extends ActionController
         }
 
         // Get user basic information and user data
-
         $user = Pi::api('user', 'user')->get(
             $uid,
             array(
@@ -73,6 +72,7 @@ class MaintenanceController extends ActionController
                 'ip_register',
             )
         );
+
         // Get user data
         $user['time_last_login'] = Pi::user()->data()->get($uid, 'time_last_login');
         $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
@@ -140,6 +140,7 @@ class MaintenanceController extends ActionController
                 'email',
                 'time_activated',
                 'time_created',
+                'time_deleted',
                 'id'
             )
         );

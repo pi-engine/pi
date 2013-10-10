@@ -122,20 +122,29 @@ class PermController extends ComponentController
         }
 
         $rowset = Pi::model('permission_rule')->select(array(
-            //'section'   => $section,
             'module'    => $module,
-            //'resource'  => $resourceList,
         ));
         $rules = array();
         foreach ($rowset as $row) {
             $rules[$row['section']][$row['resource']][$row['role']] = 1;
         }
+
+        $roleList = array();
+        foreach ($roles as $section => $rList) {
+            $roleList[$section] = array_fill_keys(array_keys($rList), 0);
+        }
+
+        $resourceData = array();
         foreach ($resources as $section => &$sectionList) {
             foreach ($sectionList as $type => &$typeList) {
                 foreach ($typeList as $name => &$resource) {
-                    if (isset($rules[$section][$name])) {
-                        $resource['roles'] = $rules[$section][$name];
+                    $perms = array();
+                    foreach ($roleList[$section] as $role => $val) {
+                        $perms[$role] = isset($rules[$section][$name][$role])
+                            ? $rules[$section][$name][$role] : $val;
                     }
+                    $resource['roles'] = $perms;
+                    $resourceData[$section][$type][] = $resource;
                 }
             }
         }
@@ -148,13 +157,13 @@ class PermController extends ComponentController
 
         d($roles);
         d($modules);
-        d($resources);
-        $this->view()->setTemplate('perm-index');
+        d($resourceData);
+        $this->view()->setTemplate('perm');
         $this->view()->assign('name', $module);
         $this->view()->assign('title', __('Module permissions'));
         $this->view()->assign('roles', $roles);
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('resources', $resources);
+        $this->view()->assign('resources', $resourceData);
     }
 
     /**
@@ -168,7 +177,7 @@ class PermController extends ComponentController
         $resource   = $this->params('resource');
         $section    = $this->params('section');
         $module     = $this->params('name');
-        $op         = $this->params('perm', 'grant');
+        $op         = $this->params('op', 'grant');
         //$all        = $this->params('all', ''); // role, resource
 
         $model = Pi::model('permission_rule');

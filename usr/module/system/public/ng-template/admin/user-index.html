@@ -1,4 +1,4 @@
-<legend>{{'TITLE12' | translate}}</legend>
+<legend>{{'TITLE' | translate}}</legend>
 <div class="alert" ng-if="alert" 
      ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
   <button type="button" class="close" ng-click="clearAlert()">×</button>
@@ -7,7 +7,7 @@
 <p style="margin-bottom: 20px;">
   <a class="btn btn-primary" href="#!/new">
     <i class="icon-plus"></i>
-    {{'Add_USER' | translate}}
+    {{'ADD_USER' | translate}}
   </a>
 <form class="form-inline" ng-submit="filterAction()">
   <select ng-model="filter.active">
@@ -29,12 +29,12 @@
     <thead>
       <tr>
         <th width="2%">
-        <th width="15%">Username
-        <th width="15%">Display name
-        <th width="10%" class="text-center">Enabled
-        <th width="10%" class="text-center">Activated
+        <th width="15%">{{'USERNAME' | translate}}
+        <th width="15%">{{'DISPLAY_NAME' | translate}}
+        <th width="10%" class="text-center">{{'ENABLED' | translate}}
+        <th width="10%" class="text-center">{{'ACTIVATED' | translate}}
         <th width="10%">{{'ROLE' | translate}}
-        <th width="15%" class="text-center">Register time
+        <th width="15%" class="text-center">{{'REGISTER_TIME' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
       <tr ng-repeat="user in users">
@@ -68,7 +68,7 @@
           </span>
           <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
                 style="padding-left: 5px;">
-            <i class="icon-laptop icon-large"></i>
+            <i class="icon-user-md icon-large"></i>
           </span>
         <td class="text-center">
           {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
