@@ -6,13 +6,6 @@
 ]).service('server', ['$http',
   function($http) {
     var root = systemPermModuleConfig.urlRoot;
-    $http.defaults.headers.post['Content-Type'] = 
-      'application/x-www-form-urlencoded;charset=utf-8';
-    $http.defaults.transformRequest = [
-      function (d) {
-        return angular.isObject(d) ? $.param(d) : d;
-      }
-    ];
     this.post = function(role, resource, section, op) {
       return $http.post(root + 'assign', {
         role: role,
@@ -20,7 +13,7 @@
         section: section,
         op: op,
         name: systemPermModuleConfig.module
-      });
+      })
     }
   }
 ]).controller('index', ['$scope', 'server',
@@ -40,14 +33,36 @@
       $scope.adminRoles = adminRoles;
       $scope.frontResources = systemPermModuleConfig.resources.front;
       $scope.adminResources = systemPermModuleConfig.resources.admin;
-      $scope.frontCols = $scope.frontRoles.length + 1;
-      $scope.adminCols = $scope.adminRoles.length + 1;
+      $scope.frontCols = $scope.frontRoles.length + 2;
+      $scope.adminCols = $scope.adminRoles.length + 2;
     }
-    parse();
 
-    $scope.clearAlert = function() {
-      $scope.alert = '';
+    function error() {
+      $scope.alert = {
+        status: 0,
+        message: systemPermModuleConfig.t.ERROR
+      }
     }
+
+    function checkCol(role) {
+      var resources;
+      if (role.section == 'front') {
+        resources = $scope.frontResources;
+      } else {
+        resources = $scope.adminResources;
+      }
+      angular.forEach(resources, function(value, key) {
+        angular.forEach(value, function(child) {
+          child.roles[role.name] = role._all;
+        });
+      });
+    }
+
+    function checkRow() {
+
+    }
+
+    parse();
 
     $scope.assignAction = function(key, item) {
       var action = item.roles[key] ? 'revoke' : 'grant';
@@ -55,10 +70,28 @@
         $scope.alert = data;
         if (data.status) {
           item.roles[key] = !item.roles[key];
-        }
-      }).error(function(data) {
+        } 
+      }).error(error);
+    }
+
+    $scope.assignAllResource = function(role, action) {
+      var action = action ? 'grant' : 'revoke';
+      server.post(role.name, '_all', role.section, action).success(function(data) {
         $scope.alert = data;
-      });
+        if (data.status) {
+          location.href = location.href;
+        }
+      }).error(error);
+    }
+
+    $scope.assignAllRole = function(resource, action) {
+      var action = action ? 'grant' : 'revoke';
+      server.post('_all', resource.resource, resource.section, action).success(function(data) {
+        $scope.alert = data;
+        if (data.status) {
+          location.href = location.href;
+        }
+      }).error(error);
     }
   }
 ]);

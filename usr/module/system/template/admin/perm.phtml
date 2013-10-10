@@ -1,21 +1,20 @@
 <?php
 $this->angular(array(
-    'angular-translate.js'
+    'angular-translate.js',
+    'ui-bootstrap-custom-tpls-0.6.0.js',
+    'pi.js'
 ));
 ?>
 <div ng-app="systemPermModule" ng-controller="index">
-    <div class="alert" ng-if="alert" 
-     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
-        <button type="button" class="close" ng-click="clearAlert()">×</button>
-        {{alert.message}}
-    </div>
+    <div pi-message="alert"></div>
     <legend>{{'FRONT' | translate}}</legend>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th style="width: 12%;">
                 <th ng-repeat="frontRole in frontRoles" class="text-center">
-                  {{frontRole.title}}
+                    {{frontRole.title}}
+                <td style="width: 5%;">
         <tbody>
             <tr>
                 <th colspan="{{frontCols}}">{{'GLOBAL' | translate}}
@@ -26,6 +25,8 @@ $this->angular(array(
                             ng-click="assignAction(key, item)">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
+                <td>
+                    <div ng-include src="'allResource.html'"></div>
             <tr ng-if="frontResources.module.length">
                 <th colspan="{{frontCols}}">{{'MODULE' | translate}}
             <tr ng-repeat="item in frontResources.module">
@@ -35,6 +36,8 @@ $this->angular(array(
                             ng-click="assignAction(key, item)">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
+                <td>
+                    <div ng-include src="'allResource.html'"></div>
             <tr ng-if="frontResources.block.length">
                 <th colspan="{{frontCols}}">{{'BLOCK' | translate}}
             <tr ng-repeat="item in frontResources.block">
@@ -44,12 +47,13 @@ $this->angular(array(
                             ng-click="assignAction(key, item)">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
+                <td>
+                    <div ng-include src="'allResource.html'"></div>
             <tr>
                 <td>
-                <td ng-repeat="frontRole in frontRoles" class="text-center">
-                    <button class="btn btn-small">
-                        <i class="icon-ok">{{'ALL' | translate}}</i>
-                    </button>
+                <td ng-repeat="item in frontRoles" class="text-center">
+                    <div ng-include src="'allRole.html'"></div>
+                <td>
     </table>
     <legend>{{'ADMIN' | translate}}</legend>
     <table class="table table-striped">
@@ -57,7 +61,8 @@ $this->angular(array(
             <tr>
                 <th style="width: 12%;">
                 <th ng-repeat="adminRole in adminRoles" class="text-center">
-                  {{adminRole.title}}
+                    {{adminRole.title}}
+                <td style="width: 5%;">
         <tbody>
             <tr>
                 <th colspan="{{adminCols}}">{{'GLOBAL' | translate}}
@@ -67,6 +72,8 @@ $this->angular(array(
                     <button class="btn btn-small" ng-class="{'btn-success': value}">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
+                <td>
+                    <div ng-include src="'allResource.html'"></div>
             <tr ng-if="adminResources.module.length">
                 <th colspan="{{adminCols}}">{{'MODULE' | translate}}
             <tr ng-repeat="item in adminResources.module">
@@ -75,10 +82,41 @@ $this->angular(array(
                     <button class="btn btn-small" ng-class="{'btn-success': value}">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
+                <td>
+                    <div ng-include src="'allResource.html'"></div>
+            <tr>
+                <td>
+                <td ng-repeat="item in adminRoles" class="text-center">
+                    <div ng-include src="'allRole.html'"></div>
+                <td>
     </table>
+    <script type="text/ng-template" id="allRole.html">
+        <div class="btn-group">
+            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                    ng-click="assignAllResource(item, 1)">
+                <i class="icon-ok"></i>
+            </button>
+            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                    ng-click="assignAllResource(item, 0)">
+                <i class="icon-remove"></i>
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="allResource.html">
+        <div class="btn-group">
+            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                    ng-click="assignAllRole(item, 1)">
+                <i class="icon-ok"></i>
+            </button>
+            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                    ng-click="assignAllRole(item, 0)">
+                <i class="icon-remove"></i>
+            </button>
+        </div>
+    </script>
 </div>
 <script>
-var systemPermModule = angular.module('systemPermModule', ['pascalprecht.translate']);
+var systemPermModule = angular.module('systemPermModule', ['pascalprecht.translate', 'ui.bootstrap', 'pi']);
 var systemPermModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
@@ -89,6 +127,7 @@ var systemPermModuleConfig = {
         GLOBAL: '<?php _e('Module Global permission'); ?>',
         MODULE: '<?php _e('Module resource'); ?>',
         BLOCK: '<?php _e('Block'); ?>',
+        ERROR: '<?php _e('Error, please try again later'); ?>'
     }
 }
 </script>
