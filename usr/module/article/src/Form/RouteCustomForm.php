@@ -42,7 +42,6 @@ class RouteCustomForm extends BaseForm
             'attributes' => array(
                 'options'   => array(
                     'front'     => __('Front'),
-                    'admin'     => __('Admin'),
                 ),
             ),
             'type'       => 'select',
@@ -141,7 +140,7 @@ class RouteCustomForm extends BaseForm
         $this->add(array(
             'name'          => 'submit',
             'attributes'    => array(                
-                'value' => __('Submit'),
+                'value' => __('Save'),
             ),
             'type'  => 'submit',
         ));

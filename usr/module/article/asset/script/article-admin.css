@@ -174,12 +174,13 @@ div .well {
     width: 100%;
 }
 .list-item {
-    height: 200px;
-    line-height: 200px;
+    height: 180px;
+    line-height: 180px;
     position: relative;
     vertical-align: bottom;
     padding: 0 5px 5px 5px;
     border: solid 1px #fff;
+    cursor: pointer;
 }
 .list-item img {
 }

@@ -59,6 +59,7 @@
             this.$(".item-delete").click(this.removeOne);
             this.$(".list-item button.btn-small").click(this.edit);
             this.$(".icon-th-list").click(this.toggleList);
+            this.$(".list-item").click(this.selectOne);
         },
         displayElement  : function(el) {
             el.find('input[type="checkbox"]').removeClass('hide');
@@ -121,6 +122,32 @@
         },
         checkOne        : function(e) {
             var obj = $(e.target);
+            this.toggleBackground(obj.parents('.one-item'));
+            
+            // Check the same item in default style
+            var id = obj.val();
+            var el = $('table').find('input[value="' + id + '"]'),
+                tr = el.parents("tr:first");
+            el.prop("checked", obj.prop("checked"));
+            if (el.prop("checked")) {
+                tr.addClass("info");
+            } else {
+                tr.removeClass("info");
+            }
+        },
+        selectOne       : function(e) {
+            var obj = $(e.target);
+            if (obj.is('input')
+                || obj.is('i')
+                || obj.is('button')
+                || obj.is('a')
+            ) {
+                return ;
+            }
+            
+            obj = obj.parents('.one-item').find('input[type="checkbox"]');
+            var status = obj.prop("checked");
+            obj.prop("checked", status ? false : true);
             this.toggleBackground(obj.parents('.one-item'));
             
             // Check the same item in default style

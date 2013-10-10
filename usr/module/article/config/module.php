@@ -33,39 +33,17 @@ return array(
     // Module dependency: list of module directory names, optional
     'dependency'    => array(
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        'resource'      => array(
-            'database'      => array(
-                'sqlfile'      => 'sql/mysql.sql',
-                'schema'       => array(
-                    'article'       => 'table',
-                    'extended'      => 'table',
-                    'field'         => 'table',
-                    'compiled'      => 'table',
-                    'draft'         => 'table',
-                    'related'       => 'table',
-                    'visit'         => 'table',
-                    'category'      => 'table',
-                    'author'        => 'table',
-                    'statistics'    => 'table',
-                    'topic'         => 'table',
-                    'article_topic' => 'table',
-                    'level'         => 'table',
-                    'user_level'    => 'table',
-                    'media'         => 'table',
-                    'media_statistics' => 'table',
-                    'asset'         => 'table',
-                    'asset_draft'   => 'table',
-                ),
-            ),
-            // Database meta
-            'navigation'    => 'navigation.php',
-            'block'         => 'block.php',
-            'config'        => 'config.php',
-            'route'         => 'route.php',
-            //'acl'           => 'acl.php',
-            'page'          => 'page.php',
+    // Maintenance resources
+    'resource'      => array(
+        'database'      => array(
+            'sqlfile'      => 'sql/mysql.sql',
         ),
+        // Database meta
+        'navigation'    => 'navigation.php',
+        'block'         => 'block.php',
+        'config'        => 'config.php',
+        'route'         => 'route.php',
+        'permission'    => 'permission.php',
+        'page'          => 'page.php',
     ),
 );

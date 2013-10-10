@@ -67,51 +67,35 @@ return array(
     'admin'   => array(
         array(
             'controller'   => 'article',
-            'permission'   => array(
-                'parent'       => 'article',
-            ),
+            'permission'   => 'article',
         ),
         array(
             'controller'   => 'topic',
-            'permission'   => array(
-                'parent'       => 'topic',
-            ),
+            'permission'   => 'topic',
         ),
         array(
             'controller'   => 'media',
-            'permission'   => array(
-                'parent'       => 'media',
-            ),
+            'permission'   => 'media',
         ),
         array(
             'controller'   => 'category',
-            'permission'   => array(
-                'parent'       => 'category',
-            ),
+            'permission'   => 'category',
         ),
         array(
             'controller'   => 'author',
-            'permission'   => array(
-                'parent'       => 'author',
-            ),
+            'permission'   => 'author',
         ),
         array(
             'controller'   => 'setup',
-            'permission'   => array(
-                'parent'       => 'setup',
-            ),
+            'permission'   => 'setup',
         ),
         array(
             'controller'   => 'permission',
-            'permission'   => array(
-                'parent'       => 'permission',
-            ),
+            'permission'   => 'permission',
         ),
         array(
             'controller'   => 'statistics',
-            'permission'   => array(
-                'parent'       => 'statistics',
-            ),
+            'permission'   => 'statistics',
         ),
     ),
 );

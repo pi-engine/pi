@@ -23,7 +23,7 @@ return array(
         // Default front navigation
         'front'   => array(
             'article-homepage'  => array(
-                'label'         => _t('Welcome Page'),
+                'label'         => _t('Homepage'),
                 'route'         => 'default',
                 'controller'    => 'index',
                 'action'        => 'index',
@@ -46,7 +46,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'article',
                 'action'        => 'published',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'article',
                 ),
             ),
@@ -55,7 +55,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'topic',
                 'action'        => 'list-topic',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'topic',
                 ),
             ),
@@ -64,7 +64,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'media',
                 'action'        => 'list',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'media',
                 ),
             ),
@@ -73,7 +73,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'category',
                 'action'        => 'list',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'category',
                 ),
             ),
@@ -82,7 +82,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'author',
                 'action'        => 'list',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'author',
                 ),
             ),
@@ -91,7 +91,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'setup',
                 'action'        => 'form',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'setup',
                 ),
             ),
@@ -99,7 +99,7 @@ return array(
                 'label'         => _t('Permission'),
                 'route'         => 'admin',
                 'controller'    => 'permission',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'permission',
                 ),
             ),
@@ -107,7 +107,7 @@ return array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
                 'controller'    => 'statistics',
-                'resource'      => array(
+                'permission'     => array(
                     'resource'  => 'statistics',
                 ),
             ),

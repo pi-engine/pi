@@ -65,6 +65,11 @@ class Install extends BasicInstall
             array($this, 'dressupBlocks'),
             -110
         );
+        $events->attach(
+            'install.post',
+            array($this, 'initClonedBlocksPermission'),
+            -120
+        );
         parent::attachDefaultListeners();
         return $this;
     }
@@ -365,5 +370,44 @@ EOD;
         }
         
         $e->setParam('result', $result);
+    }
+    
+    /**
+     * Initilize cloned blocks permission
+     * 
+     * @param Event $e
+     * @return boolean 
+     */
+    public function initClonedBlocksPermission(Event $e)
+    {
+        $module = $this->event->getParam('module');
+        
+        $rowset = Pi::model('block')->select(array(
+            'module'    => $module,
+            'cloned'    => 1,
+        ));
+        
+        $tableName = Pi::model('permission_rule')->getTable();
+        $sql = <<<EOD
+INSERT INTO `{$tableName}` (`resource`, `module`, `section`, `role`) VALUES 
+
+EOD;
+        foreach ($rowset as $row) {
+            $sql .=<<<VALUE
+('block-{$row->id}', '{$module}', 'front', 'guest'),
+('block-{$row->id}', '{$module}', 'front', 'member'),
+
+VALUE;
+        }
+        $sql = rtrim(trim($sql), ',') . ';';
+        
+        // Insert data
+        try {
+            Pi::db()->getAdapter()->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            return false;
+        }
+        
+        $e->setParam('result', true);
     }
 }
