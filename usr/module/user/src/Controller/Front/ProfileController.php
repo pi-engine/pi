@@ -63,6 +63,7 @@ class ProfileController extends ActionController
             'user'          => $user,
             'nav'           => $nav,
             'quicklink'     => $quicklink,
+            'is_owner'      => true,
         ));
 
         $this->view()->setTemplate('profile-index');
