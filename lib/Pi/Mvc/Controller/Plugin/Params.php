@@ -84,21 +84,29 @@ class Params extends ZendParams
      */
     public function fromPost($param = null, $default = null)
     {
+        $result = _post($param);
+        if (null === $result && null !== $default) {
+            $result = $default;
+        }
+
+        return $result;
+        /*
         if (null === $this->postParams) {
             $request = $this->getController()->getRequest();
             if ($request->getHeaders('accept')->match('application/json')) {
                 $content = $request->getContent();
-                $this->putParams = json_decode($content, true);
+                $this->postParams = json_decode($content, true);
             } else {
-                $this->putParams = parent::fromPost(null, $default);
+                $this->postParams = parent::fromPost(null, $default);
             }
         }
         if ($param === null) {
-            return $this->putParams;
+            return $this->postParams;
         } else {
-            return isset($this->putParams[$param])
-                ? $this->putParams[$param] : $default;
+            return isset($this->postParams[$param])
+                ? $this->postParams[$param] : $default;
         }
+        */
     }
 
     /**
@@ -112,6 +120,14 @@ class Params extends ZendParams
      */
     public function fromPut($param = null, $default = null)
     {
+        $result = _put($param);
+        if (null === $result && null !== $default) {
+            $result = $default;
+        }
+
+        return $result;
+
+        /*
         if (null === $this->putParams) {
             $request = $this->getController()->getRequest();
             $content = $request->getContent();
@@ -127,6 +143,7 @@ class Params extends ZendParams
             return isset($this->putParams[$param])
                 ? $this->putParams[$param] : $default;
         }
+        */
     }
 
     /**
