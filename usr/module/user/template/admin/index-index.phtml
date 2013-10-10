@@ -36,6 +36,14 @@ $this->angular(array(
     </ul>
     <div ng-view></div>
 </div>
+<dl class="page-header">Links</dl>
+<ul>
+    <li>
+        <a href="<?php echo $this->url('', array('controller' => 'build', 'action' => 'index'));?>">
+            <?php _e('Build user module data');?>
+        </a>
+    </li>
+</ul>
 
 <script>
 var userListModule = angular.module('userListModule', ['ngRoute', 'pagination', 'pascalprecht.translate']);

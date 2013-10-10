@@ -265,7 +265,7 @@ class RegisterController extends ActionController
             $redirect = $this->url('',
                 array(
                     'controller' => 'profile',
-                    'action'     => 'home'
+                    'action'     => 'index'
                 )
             );
         } else {
