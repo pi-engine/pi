@@ -88,8 +88,8 @@ class PluginController extends ActionController
     {
         // Get display page activity
         $displayList = array();
-        $model = $this->getModel('activity');
-        $where = array('active' => 1, 'display > 0');
+        $model  = $this->getModel('activity');
+        $where  = array('active' => 1, 'display > 0');
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
@@ -127,8 +127,8 @@ class PluginController extends ActionController
     {
         // Get display page quick
         $displayList = array();
-        $model = $this->getModel('quicklink');
-        $where = array('active' => 1, 'display > 0');
+        $model  = $this->getModel('quicklink');
+        $where  = array('active' => 1, 'display > 0');
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
@@ -177,7 +177,7 @@ class PluginController extends ActionController
         }
 
         $model = $this->getModel('timeline');
-        $row = $model->find($id, 'id');
+        $row   = $model->find($id, 'id');
         if ($row) {
             if (!$row->active) {
                 $row->assign(array('active' => 1));
@@ -217,8 +217,8 @@ class PluginController extends ActionController
         }
 
         // Get old dress up items
-        $model = $this->getModel('activity');
-        $where = array('active' => 1, 'display > 0');
+        $model  = $this->getModel('activity');
+        $where  = array('active' => 1, 'display > 0');
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
@@ -263,8 +263,8 @@ class PluginController extends ActionController
         }
 
         // Get old dress up items
-        $model = $this->getModel('quicklink');
-        $where = array('active' => 1, 'display > 0');
+        $model  = $this->getModel('quicklink');
+        $where  = array('active' => 1, 'display > 0');
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
