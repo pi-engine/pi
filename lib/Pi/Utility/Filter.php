@@ -254,8 +254,12 @@ namespace Pi\Utility
         protected static function isRequestJson()
         {
             if (null === static::$isJson) {
-                static::$isJson = static::getRequest()->getHeaders('accept')
-                    ->match('application/json');
+                static::$isJson = false;
+                $ContentType = static::getRequest()->getHeaders('Content-Type');
+                if ($ContentType) {
+                    $value = $ContentType->getFieldValue();
+                    static::$isJson = false !== stripos($value, 'application/json');
+                }
             }
 
             return static::$isJson;
@@ -404,7 +408,7 @@ namespace
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
-    function _get($variable, $filter = '', $options = null)
+    function _get($variable = null, $filter = '', $options = null)
     {
         $value = FilterManager::fromGet($variable, $filter, $options);
 
@@ -419,7 +423,7 @@ namespace
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
-    function _post($variable, $filter = '', $options = null)
+    function _post($variable = null, $filter = '', $options = null)
     {
         $value = FilterManager::fromPost($variable, $filter, $options);
 
