@@ -31,7 +31,7 @@
   <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-medium" ng-model="filter.email">
   <button class="btn" ng-click="filterAction()">{{'APPLY' | translate}}</button>
 </form>
-<div class="clearfix form-inline" style="margin-left: 8px;">
+<div class="clearfix form-inline" style="margin: 0 0 20px 8px;">
   <strong class="pull-right">{{paginator.count}} members</strong>
   <input type="checkbox" style="margin-right: 6px;"
          ng-model="allChecked" ng-click="markAll(allChecked)">
@@ -121,6 +121,7 @@
         <td>
           <a href="">{{'VIEW_LOG' | translate}}</a>
 </table>
-<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
+<pagination total-items="paginator.count" page="paginator.page" max-size="10"
+            ng-if="paginator.count" 
             class="pagination" boundary-links="true" items-per-page="paginator.limit">
 </pagination>
