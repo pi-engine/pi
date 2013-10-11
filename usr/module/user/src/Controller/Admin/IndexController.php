@@ -12,6 +12,8 @@ namespace Module\User\Controller\Admin;
 use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Zend\Db\Sql\Predicate;
+
 
 /**
 * User manage cases controller
@@ -26,7 +28,10 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('index-index');
+        $this->view()->setTemplate('user');
+        $this->view()->assign(array(
+            'roles'  => $this->getRoles()
+        ));
     }
 
     /**
@@ -175,6 +180,7 @@ class IndexController extends ActionController
 
         $identity   = _post('identity');
         $email      = _post('email');
+        $name       = _post('name');
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');
@@ -428,7 +434,7 @@ class IndexController extends ActionController
         $uids  = explode(',', $uids);
         $count = 0;
         foreach ($uids as $uid) {
-            $status = Pi::api('user', 'user')->deleteUser();
+            $status = Pi::api('user', 'user')->deleteUser($uid);
             if ($status) {
                 $count++;
             }
@@ -486,7 +492,7 @@ class IndexController extends ActionController
      */
     public function assignRoleAction()
     {
-        $uids    = _post('uids');
+        $uids    = _post('ids');
         $type    = _post('type');
         $role    = _post('role');
 
@@ -574,7 +580,7 @@ class IndexController extends ActionController
         foreach ($rowset as $row) {
             $uid     = $row['uid'];
             $section = $row['section'];
-            $roleKey = $section . '_role';
+            $roleKey = $section . '_roles';
             $users[$uid][$roleKey][] = $row['role'];
         }
 
