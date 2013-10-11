@@ -91,6 +91,15 @@ namespace Pi\Utility
      */
     class Filter
     {
+        /** @var bool Content-type is in JSON */
+        protected static $isJson;
+
+        /** @var array PUT params */
+        protected static $putParams;
+
+        /** @var array POST params */
+        protected static $postParams;
+
         /**
          * Loads filter methods, nothing to do at this moment
          *
@@ -238,6 +247,25 @@ namespace Pi\Utility
         }
 
         /**
+         * Check if request content-type is in JSON format
+         *
+         * @return bool
+         */
+        protected static function isRequestJson()
+        {
+            if (null === static::$isJson) {
+                static::$isJson = false;
+                $ContentType = static::getRequest()->getHeaders('Content-Type');
+                if ($ContentType) {
+                    $value = $ContentType->getFieldValue();
+                    static::$isJson = false !== stripos($value, 'application/json');
+                }
+            }
+
+            return static::$isJson;
+        }
+
+        /**
          * Get RouteMatch
          *
          * @return \Zend\Mvc\Router\RouteMatch|null
@@ -273,17 +301,93 @@ namespace Pi\Utility
         /**
          * Retrieve a variable from POST
          *
-         * @param string $variable
+         * @param string $param
          * @param int|string $filter
          * @param mixed $options
+         *
          * @return mixed
          */
-        public static function fromPost($variable, $filter, $options = null)
-        {
+        public static function fromPost(
+            $param = null,
+            $filter = null,
+            $options = null
+        ) {
+            /*
             $request = static::getRequest();
             $value = $request ? $request->getPost($variable) : null;
 
             return static::filter($value, $filter, $options);
+            */
+            if (null === static::$postParams) {
+                $request = static::getRequest();
+                if (static::isRequestJson()) {
+                    $content = $request->getContent();
+                    static::$postParams = json_decode($content, true);
+                } else {
+                    static::$postParams = $request->getPost()->toArray();
+                }
+            }
+            if ($param === null) {
+                $result = static::$postParams;
+            } elseif (isset(static::$postParams[$param])) {
+                $result = $filter
+                    ? static::filter(
+                        static::$postParams[$param],
+                        $filter,
+                        $options
+                    )
+                    : static::$postParams[$param];
+            } else {
+                $result = null;
+            }
+
+            return $result;
+        }
+
+        /**
+         * Retrieve a variable from PUT
+         *
+         * @param string $param
+         * @param int|string $filter
+         * @param mixed $options
+         *
+         * @return mixed
+         */
+        public static function fromPut(
+            $param = null,
+            $filter = null,
+            $options = null
+        ) {
+            /*
+            $request = static::getRequest();
+            $value = $request ? $request->getPost($variable) : null;
+
+            return static::filter($value, $filter, $options);
+            */
+            if (null === static::$putParams) {
+                $request = static::getRequest();
+                $content = $request->getContent();
+                if (static::isRequestJson()) {
+                    static::$putParams = json_decode($content, true);
+                } else {
+                    parse_str($content, static::$putParams);
+                }
+            }
+            if ($param === null) {
+                $result = static::$putParams;
+            } elseif (isset(static::$putParams[$param])) {
+                $result = $filter
+                    ? static::filter(
+                        static::$putParams[$param],
+                        $filter,
+                        $options
+                    )
+                    : static::$putParams[$param];
+            } else {
+                $result = null;
+            }
+
+            return $result;
         }
     }
 }
@@ -304,7 +408,7 @@ namespace
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
-    function _get($variable, $filter = '', $options = null)
+    function _get($variable = null, $filter = '', $options = null)
     {
         $value = FilterManager::fromGet($variable, $filter, $options);
 
@@ -319,7 +423,7 @@ namespace
      * @param array|int|string  $options    Filter options or flag
      * @return mixed
      */
-    function _post($variable, $filter = '', $options = null)
+    function _post($variable = null, $filter = '', $options = null)
     {
         $value = FilterManager::fromPost($variable, $filter, $options);
 

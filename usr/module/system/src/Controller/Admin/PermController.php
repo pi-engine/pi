@@ -80,7 +80,7 @@ class PermController extends ComponentController
                 continue;
             }
             $resources[$row['section']]['module'][$row['name']] = array(
-                'section'   => $section,
+                'section'   => $row['section'],
                 'module'    => $module,
                 'resource'  => $row['name'],
                 'title'     => __($row['title']),
@@ -113,7 +113,7 @@ class PermController extends ComponentController
         foreach ($rowset as $row) {
             $key = 'block-' . $row['id'];
             $resources['front']['block'][$key] = array(
-                'section'   => 'block',
+                'section'   => 'front',
                 'module'    => $module,
                 'resource'  => $key,
                 'title'     => $row['title'],
@@ -155,9 +155,9 @@ class PermController extends ComponentController
             $modules[$name] = $list['title'];
         }
 
-        d($roles);
-        d($modules);
-        d($resourceData);
+        //d($roles);
+        //d($modules);
+        //d($resourceData);
         $this->view()->setTemplate('perm');
         $this->view()->assign('name', $module);
         $this->view()->assign('title', __('Module permissions'));
@@ -224,6 +224,21 @@ class PermController extends ComponentController
                 foreach ($rowset as $row) {
                     unset($resources[$row['resource']]);
                 }
+
+                // Load global resources
+                $resources['module-access'] = $resources['module-admin'] = 1;
+
+                // Load block resources
+                if ('front' == $section) {
+                    $modelBlock = Pi::model('block');
+                    $select = $modelBlock->select()
+                        ->where(array('module' => $module));
+                    $rowset = $modelBlock->selectWith($select);
+                    foreach ($rowset as $row) {
+                        $resources['block-' . $row['id']] = 1;
+                    }
+                }
+
                 foreach (array_keys($resources) as $resource) {
                     $data = $where + array('resource' => $resource);
                     $row = $model->createRow($data);

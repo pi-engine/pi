@@ -215,7 +215,7 @@ class LoginController extends ActionController
         // Check user complete profile
         $hasCompleteProfile = Pi::user()->data()->get(
             $uid,
-            'profile-complete'
+            'complete-profile'
         );
         if (!$hasCompleteProfile) {
             $this->redirect()->toRoute(

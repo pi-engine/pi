@@ -36,19 +36,15 @@ class PasswordForm extends BaseForm
 
     public function init()
     {
-        $config = Pi::service('registry')->config->read('user', 'general');
-
-        if (!$this->type) {
-            $this->add(array(
-                'name'          => 'credential',
-                'options'       => array(
-                    'label' => __('Current password'),
-                ),
-                'attributes'    => array(
-                    'type'  => 'password',
-                )
-            ));
-        }
+        $this->add(array(
+            'name'          => 'credential',
+            'options'       => array(
+                'label' => __('Current password'),
+            ),
+            'attributes'    => array(
+                'type'  => 'password',
+            )
+        ));
 
 
         $this->add(array(
@@ -71,25 +67,9 @@ class PasswordForm extends BaseForm
             )
         ));
 
-        if ($config['register_captcha']) {
-            $this->add(array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => __('Please type the word.'),
-                    'separator' => '<br />',
-                )
-            ));
-        }
-
         $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',
-        ));
-
-        $this->add(array(
-            'name'  => 'identity',
-            'type'  => 'hidden',
         ));
 
         $this->add(array(
