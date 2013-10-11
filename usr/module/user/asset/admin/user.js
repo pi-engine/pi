@@ -117,14 +117,7 @@
       });
     }
 
-    this.unique = function (key, value) {
-      var params = {};
-      params[key] = value;
-      return $http.get(urlRoot + 'checkDuplication', {
-        params: params,
-        cache: true
-      });
-    }
+    this.uniqueUrl = urlRoot + 'checkExist';
   }
 ]).controller('MainCtrl', ['$scope', '$location',
   function ($scope, $location) {
@@ -336,34 +329,37 @@
   }
 ]).controller('NewCtrl', ['$scope', 'server',
   function ($scope, server) {
-    $scope.activate = 0;
-    $scope.enable = 0;
-    $scope.activateAction = function () {
-      if ($scope.activate) {
-        $scope.activate = 0;
-      } else {
-        $scope.activate = 1;
-      }
+    var entity = {
+      activated: 1,
+      enable: 1,
+      roles: ['member']
     };
-    $scope.enableAction = function () {
-      if ($scope.enable) {
-        $scope.enable = 0;
-      } else {
-        $scope.enable = 1;
+    $scope.entity = angular.copy(entity);
+    $scope.uniqueUrl = server.uniqueUrl;
+    $scope.roles = server.getRoles().roles;
+    angular.forEach($scope.roles, function (item) {
+      if ($scope.entity.roles.indexOf(item.name) != -1) {
+        item.checked = true;
       }
-    };
+    });
+    
     $scope.submit = function () {
-      server.add({
-        identity: $scope.identity,
-        name: $scope.name,
-        email: $scope.email,
-        credential: $scope.credential,
-        'credential-confirm': $scope.credential_confirm,
-        activate: $scope.activate,
-        enable: $scope.enable
-      }).success(function (data) {
+      server.add($scope.entity).success(function (data) {
         $scope.alert = data;
+        if (data.status) {
+          $scope.entity = angular.copy(entity);
+        }
       });
-    };
+    }
+
+    $scope.$watch('roles', function () {
+      var roles = [];
+      angular.forEach($scope.roles, function (item) {
+        if (item.checked) {
+          roles.push(item.name);
+        }
+      });
+      $scope.entity.roles = roles;
+    }, true);
   }
 ]);
