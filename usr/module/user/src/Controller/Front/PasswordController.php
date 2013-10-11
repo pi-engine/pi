@@ -135,8 +135,8 @@ class PasswordController extends ActionController
                 }
 
                 // Set user data
-                $uid = $userRow->id;
-                $token = md5(uniqid($uid));
+                $uid = (int) $userRow->id;
+                $token = md5(mt_rand() . $uid);
                 $result = Pi::user()->data()->set(
                     $uid,
                     'find-password',
@@ -147,13 +147,13 @@ class PasswordController extends ActionController
                 $to = $userRow->email;
                 $url = $this->url('', array(
                         'action' => 'process',
-                        'id'     => md5($uid),
-                        'token'  => $result['token']
+                        'uid'     => md5($uid),
+                        'token'  => $token
                     )
                 );
                 $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
-                    $userRow->username,
+                    $userRow->identity,
                     $link
                 );
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
@@ -180,76 +180,76 @@ class PasswordController extends ActionController
      */
     public function processAction()
     {
-        $key      = $this->params('id', '');
-        $token    = $this->params('token', '');
-
-        $data = array(
+        $result = array(
             'status'  => 0,
+            'message' => '',
         );
+        $hashUid  = _get('uid');
+        $token    = _get('token');
 
-        // Assign title to template
-        $this->view()->assign('title', __('Find password'));
         // Verify link invalid
-        if (!$key || !$token) {
-            $this->view()->assign('data', $data);
-            return;
+        if (!$hashUid || !$token) {
+            $result['message'] = __('Verify link invalid');
+
+            return $result;
+
         }
 
         $userData = Pi::user()->data()->find(array(
-            'content' => $token,
-            'name'    => 'find-password',
+            'value' => $token
         ));
+        if (!$userData) {
+            $result['message'] = __('Verify link invalid');
 
-        if ($userData) {
-            $hashUid = md5($userData['uid']);
-            $userRow = $this->getModel('account')->find($userData['uid'], 'id');
+            return $result;
+        }
 
-            if ($userRow && $hashUid == $key) {
-                $expire  =  $userData['time'] + 24 * 3600;
-                $current = time();
+        $userRow = $this->getModel('account')->find($userData['uid'], 'id');
+        if (!$userRow || md5($userRow['id']) != $hashUid) {
+            $result['message'] = __('Verify link invalid');
 
-                // Valid verify link
-                if ($current < $expire) {
-                    // Display reset password form
-                    $identity = $userRow->identity;
-                    $uid      = $userRow->id;
-                    $form     = new PasswordForm('find-password', 'find');
-                    if ($this->request->isPost()) {
-                        $data = $this->request->getPost();
-                        $form->setInputFilter(new PasswordFilter('find'));
-                        $form->setData($data);
+            return $result;
+        }
 
-                        if ($form->isValid()) {
-                            $values = $form->getData();
+        // Verify link expire time
+        $expire  =  $userData['time'] + 24 * 3600;
+        $current = time();
+        if ($current > $expire) {
+            $result['message'] = __('Verify link invalid');
 
-                            // Update user account data
-                            Pi::api('user', 'user')->updateAccount(
-                                $uid,
-                                array('credential' => $values['credential-new'])
-                            );
+            return $result;
+        }
 
-                            // Delete find password verify token
-                            Pi::user()->data()->delete($uid, 'find-password');
+        $uid      = $userRow->id;
+        $form     = new PasswordForm('find-password', 'find');
+        if ($this->request->isPost()) {
+            $data = $this->request->getPost();
+            $form->setInputFilter(new PasswordFilter('find'));
+            $form->setData($data);
 
-                            $data['status'] = 1;
-                        } else {
-                            $data['status'] = 1;
-                            $this->view()->assign(array(
-                                'form'    => $form,
-                                'message' => __('Input is invalid, please try again later'),
-                            ));
-                        }
-                    } else {
-                        $form->setData(array('identity', $identity));
-                        $this->view()->assign('form', $form);
-                        $data['status'] = 1;
-                    }
-                }
+            if ($form->isValid()) {
+                $values = $form->getData();
+
+                // Update user account data
+                Pi::api('user', 'user')->updateAccount(
+                    $uid,
+                    array('credential' => $values['credential-new'])
+                );
+
+                // Delete find password verify token
+                Pi::user()->data()->delete($uid, 'find-password');
+                $result['message'] = __('Reset password successfully');
+
+                return $result;
+            } else {
+                $result['message'] = $form->getMessages();
+
+                return $result;
             }
         }
 
         $this->view()->assign(array(
-            'data' => $data,
+            'form' => $form
         ));
     }
 
@@ -295,6 +295,25 @@ class PasswordController extends ActionController
 
     public function testAction()
     {
+//        Pi::user()->data()->set(
+//            145000,
+//            'test',
+//            'test_value'
+//        );
+//        $row = Pi::model('user_data')->createRow(array(
+//            'uid' => 12345689,
+//            'module' => 'module',
+//            'value' => 'test'
+//        ));
+//        $row->save();
+//        $value  = '"test"';
+//        $result = Pi::model('user_data')->find($value, 'value');
+//        vd($result);
+
+//        $result = Pi::user()->data()->find(array('value' => 'test_value'));
+//
+//        vd($result);
+//
         $this->view()->setTemplate(false);
     }
 }
