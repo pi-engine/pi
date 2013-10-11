@@ -12,6 +12,8 @@ namespace Module\User\Controller\Admin;
 use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Zend\Db\Sql\Predicate;
+
 
 /**
 * User manage cases controller
@@ -178,6 +180,7 @@ class IndexController extends ActionController
 
         $identity   = _post('identity');
         $email      = _post('email');
+        $name       = _post('name');
         $credential = _post('credential');
         $activated  = (int) _post('activated');
         $enable     = (int) _post('enable');

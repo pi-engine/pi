@@ -13,6 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\PasswordForm;
 use Module\User\Form\PasswordFilter;
+use Module\User\Form\ResetPasswordForm;
+use Module\User\Form\ResetPasswordFilter;
 use Module\User\Form\FindPasswordForm;
 use Module\User\Form\FindPasswordFilter;
 
@@ -220,11 +222,11 @@ class PasswordController extends ActionController
             return $result;
         }
 
-        $uid      = $userRow->id;
-        $form     = new PasswordForm('find-password', 'find');
+        $uid  = $userRow->id;
+        $form = new ResetPasswordForm('find-password', 'find');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $form->setInputFilter(new PasswordFilter('find'));
+            $form->setInputFilter(new ResetPasswordFilter('find'));
             $form->setData($data);
 
             if ($form->isValid()) {
@@ -239,6 +241,7 @@ class PasswordController extends ActionController
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
                 $result['message'] = __('Reset password successfully');
+                $result['status']  = 1;
 
                 return $result;
             } else {
@@ -250,17 +253,6 @@ class PasswordController extends ActionController
 
         $this->view()->assign(array(
             'form' => $form
-        ));
-    }
-
-
-    /**
-     * Show information about find password email result
-     */
-    public function displayAction()
-    {
-        $this->view()->assign(array(
-            'title' => __('Find password'),
         ));
     }
 
@@ -291,29 +283,5 @@ class PasswordController extends ActionController
         $type = $data['format'];
 
         return array($subject, $body, $type);
-    }
-
-    public function testAction()
-    {
-//        Pi::user()->data()->set(
-//            145000,
-//            'test',
-//            'test_value'
-//        );
-//        $row = Pi::model('user_data')->createRow(array(
-//            'uid' => 12345689,
-//            'module' => 'module',
-//            'value' => 'test'
-//        ));
-//        $row->save();
-//        $value  = '"test"';
-//        $result = Pi::model('user_data')->find($value, 'value');
-//        vd($result);
-
-//        $result = Pi::user()->data()->find(array('value' => 'test_value'));
-//
-//        vd($result);
-//
-        $this->view()->setTemplate(false);
     }
 }
