@@ -45,17 +45,8 @@ class IndexController extends ActionController
         $condition['front_role']    = _get('front_role') ?: '';
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
-        $condition['search']        = _get('search') ?: '';
-
-        // Exchange search
-        if ($condition['search']) {
-            // Check email or username
-            if (false !== strpos($condition['search'], '@')) {
-                $condition['identity'] = $condition['search'];
-            } else {
-                $condition['email'] = $condition['search'];
-            }
-        }
+        $condition['identity']      = _get('identity') ?: '';
+        $condition['email']         = _get('email') ?: '';
 
         // Get user ids
         $uids  = $this->getUids($condition, $limit, $offset);
@@ -99,16 +90,8 @@ class IndexController extends ActionController
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-
-        // Exchange search
-        if ($condition['search']) {
-            // Check email or username
-            if (false !== strpos($condition['search'], '@')) {
-                $condition['identity'] = $condition['search'];
-            } else {
-                $condition['email'] = $condition['search'];
-            }
-        }
+        $condition['identity']      = _get('identity') ?: '';
+        $condition['email']         = _get('email') ?: '';
 
         // Get user ids
         $uids  = $this->getUids($condition, $limit, $offset);
@@ -151,17 +134,8 @@ class IndexController extends ActionController
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-
-
-        // Exchange search
-        if ($condition['search']) {
-            // Check email or username
-            if (false !== strpos($condition['search'], '@')) {
-                $condition['identity'] = $condition['search'];
-            } else {
-                $condition['email'] = $condition['search'];
-            }
-        }
+        $condition['identity']      = _get('identity') ?: '';
+        $condition['email']         = _get('email') ?: '';
 
         // Get user ids
         $uids  = $this->getUids($condition, $limit, $offset);
@@ -393,7 +367,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = $count ? 1 : 0;
+        $return['status'] = 1;
         $return['message'] = sprintf(__('%d enable user successfully'), $count);
 
         return $return;
@@ -426,7 +400,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = $count ? 1 : 0;
+        $return['status'] = 1;
         $return['message'] = sprintf(__('%d disable user successfully'), $count);
 
         return $return;
@@ -459,7 +433,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = $count ? 1 : 0;
+        $return['status'] = 1;
         $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
         return $return;
@@ -497,7 +471,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = $count ? 1 : 0;
+        $return['status'] = 1;
         $return['message'] = sprintf(__('%d activated user successfully'), $count);
 
         return $return;
