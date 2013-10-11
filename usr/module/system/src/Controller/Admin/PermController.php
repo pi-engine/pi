@@ -99,6 +99,7 @@ class PermController extends ComponentController
             $resourceCustom = $callbackHandler->getResources();
             foreach ($resourceCustom as $name => $title) {
                 $resource = compact('section', 'module', 'name', 'title');
+                $resource['resource'] = $name;
                 $resource['roles'] = array();
 
                 $resources['front']['module'][$name] = $resource;
@@ -209,15 +210,21 @@ class PermController extends ComponentController
                 'module'    => $module,
                 'role'      => $role,
             );
+            $model->delete($where);
             if ('revoke' == $op) {
-                $model->delete($where);
+                //$model->delete($where);
             } else {
                 $resources = array();
+                $callback = '';
                 $rowset = Pi::model('permission_resource')->select(array(
                     'section'   => $section,
                     'module'    => $module,
                 ));
                 foreach ($rowset as $row) {
+                    if ('custom' == $row['type']) {
+                        $callback = $row['name'];
+                        continue;
+                    }
                     $resources[$row['name']] = 1;
                 }
                 $rowset = $model->select($where);
@@ -230,12 +237,26 @@ class PermController extends ComponentController
 
                 // Load block resources
                 if ('front' == $section) {
+                    // Add all block resources
                     $modelBlock = Pi::model('block');
                     $select = $modelBlock->select()
                         ->where(array('module' => $module));
                     $rowset = $modelBlock->selectWith($select);
                     foreach ($rowset as $row) {
                         $resources['block-' . $row['id']] = 1;
+                    }
+
+                    // Load module defined resources
+                    if ($callback && is_subclass_of(
+                            $callback,
+                            'Pi\Application\AbstractModuleAwareness'
+                        )
+                    ) {
+                        $callbackHandler = new $callback($module);
+                        $resourceCustom = $callbackHandler->getResources();
+                        foreach (array_keys($resourceCustom) as $name) {
+                            $resources[$name] = 1;
+                        }
                     }
                 }
 
