@@ -432,6 +432,7 @@ CREATE TABLE `{core.user_data}` (
   `time`            int(10)         unsigned    NOT NULL default '0',
   `value`           text            default NULL,
   `value_int`       int(10)         default NULL,
+  `value_multi`     text            default NULL,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user_data_name` (`uid`, `module`, `name`)
