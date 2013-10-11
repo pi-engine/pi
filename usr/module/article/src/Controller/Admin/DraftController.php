@@ -169,13 +169,7 @@ class DraftController extends FrontDraft
     public function addAction()
     {
         parent::addAction();
-        $template = sprintf(
-            '%s/%s/template/front/draft-edit.phtml',
-            Pi::path('module'),
-            $this->getModule()
-        );
-        
-        $this->view()->setTemplate($template);
+        $this->view()->setTemplate('draft-edit', $this->getModule(), 'front');
     }
     
     /**
@@ -185,12 +179,6 @@ class DraftController extends FrontDraft
     public function editAction()
     {
         parent::editAction();
-        $template = sprintf(
-            '%s/%s/template/front/draft-edit.phtml',
-            Pi::path('module'),
-            $this->getModule()
-        );
-        
-        $this->view()->setTemplate($template);
+        $this->view()->setTemplate('draft-edit', $this->getModule(), 'front');
     }
 }

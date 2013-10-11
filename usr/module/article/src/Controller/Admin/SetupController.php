@@ -465,12 +465,7 @@ EOD;
             'status'    => \Module\Article\Model\Draft::FIELD_STATUS_DRAFT,
             'currentDelete' => true,
         ));
-        $template = sprintf(
-            '%s/%s/template/front/draft-edit.phtml',
-            Pi::path('module'),
-            $module
-        );
-        $this->view()->setTemplate($template);
+        $this->view()->setTemplate('draft-edit', $this->getModule(), 'front');
     }
     
     /**

@@ -39,7 +39,7 @@ class Category extends Nest
      */
     public static function getDefaultColumns()
     {
-        return array('id', 'slug', 'title', 'image', 'depth');
+        return array('id', 'name', 'slug', 'title', 'image', 'depth');
     }
 
     /**

@@ -56,7 +56,15 @@
 $(function() {
     var page = { 
         el  : $("#jsList"),
-        url : "<?php echo $this->url('', array('action' => 'delete', 'controller' => $controller)) ?>",
+        url : "<?php echo $this->url(
+            '',
+            array(
+                'action'     => 'delete',
+                'controller' => $controller,
+                'status'     => $status,
+                'source'     => $from,
+            )
+        ) ?>",
         $   : function(selector) {
             return this.el.find(selector);
         },

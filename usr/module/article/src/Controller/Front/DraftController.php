@@ -1126,14 +1126,20 @@ class DraftController extends ActionController
         $id     = Service::getParam($this, 'id', '');
         $ids    = array_filter(explode(',', $id));
         $from   = Service::getParam($this, 'from', '');
+        $status = Service::getParam($this, 'status', 0);
+        $source = Service::getParam($this, 'source', '');
 
         if (empty($ids)) {
             return $this->jumpTo404(__('Invalid draft ID'));
         }
         
         // Delete draft articles that user has permission to do
+        $isMine = false;
+        if (ARTICLE::FIELD_STATUS_PUBLISHED != $status and 'my' == $source) {
+            $isMine = true;
+        }
         $model = $this->getModel('draft');
-        $rules = Service::getPermission();
+        $rules = Service::getPermission($isMine);
         if (1 == count($ids)) {
             $row      = $model->find($ids[0]);
             $slug     = Service::getStatusSlug($row->status);

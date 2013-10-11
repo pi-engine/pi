@@ -124,6 +124,14 @@ class ArticleController extends ActionController
             'controller'  => 'article',
             'action'      => 'detail',
         ), $params));
+        
+        // Get comment count
+        $condition = array(
+            'category'  => $module,
+            'item'      => $id,
+        );
+        $details['comments'] = Pi::service('api')
+            ->comment->getCount($condition);
 
         $config = Pi::service('module')->config('', $this->getModule());
         $this->view()->assign(array(
@@ -132,63 +140,6 @@ class ArticleController extends ActionController
             'showTitle'   => isset($showTitle) ? $showTitle : null,
             'config'      => $config,
         ));
-    }
-
-    
-
-    /**
-     * Active or deactivate articles
-     * 
-     * @return ViewModel
-     */
-    public function activateAction()
-    {
-        $id     = Service::getParam($this, 'id', '');
-        $ids    = array_filter(explode(',', $id));
-        $status = Service::getParam($this, 'status', 0);
-        $from   = Service::getParam($this, 'from', '');
-
-        if ($ids) {
-            $module         = $this->getModule();
-            $modelArticle   = $this->getModel('article');
-            
-            // Activing articles that user has permission to do
-            $rules = Service::getPermission();
-            if (1 == count($ids)) {
-                $row      = $modelArticle->find($ids[0]);
-                if (!(isset($rules[$row->category]['active']) 
-                    and $rules[$row->category]['active'])
-                ) {
-                    return $this->jumpToDenied();
-                }
-            } else {
-                $rows     = $modelArticle->select(array('id' => $ids));
-                $ids      = array();
-                foreach ($rows as $row) {
-                    if (isset($rules[$row->category]['active']) 
-                        and $rules[$row->category]['active']
-                    ) {
-                        $ids[] = $row->id;
-                    }
-                }
-            }
-            
-            $modelArticle->setActiveStatus($ids, $status ? 1 : 0);
-
-            // Clear cache
-            Pi::service('render')->flushCache($module);
-        }
-
-        if ($from) {
-            $from = urldecode($from);
-            return $this->redirect()->toUrl($from);
-        } else {
-            // Go to list page
-            return $this->redirect()->toRoute(
-                '', 
-                array('action' => 'published', 'from' => 'all')
-            );
-        }
     }
 
     /**
@@ -420,6 +371,103 @@ class ArticleController extends ActionController
         
         if ('my' == $from) {
             return $this->view()->setTemplate('draft-list');
+        }
+    }
+    
+    /**
+     * Delete published articles
+     * 
+     * @return ViewModel 
+     */
+    public function deleteAction()
+    {
+        $id     = Service::getParam($this, 'id', '');
+        $ids    = array_filter(explode(',', $id));
+        $from   = Service::getParam($this, 'from', '');
+
+        if (empty($ids)) {
+            return $this->jumpTo404(__('Invalid article ID'));
+        }
+        
+        $module         = $this->getModule();
+        $modelArticle   = $this->getModel('article');
+        $modelAsset     = $this->getModel('asset');
+        
+        // Delete articles that user has permission to do
+        $rules = Service::getPermission();
+        if (1 == count($ids)) {
+            $row      = $modelArticle->find($ids[0]);
+            $slug     = Service::getStatusSlug($row->status);
+            $resource = $slug . '-delete';
+            if (!(isset($rules[$row->category][$resource]) 
+                and $rules[$row->category][$resource])
+            ) {
+                return $this->jumpToDenied();
+            }
+        } else {
+            $rows     = $modelArticle->select(array('id' => $ids));
+            $ids      = array();
+            foreach ($rows as $row) {
+                $slug     = Service::getStatusSlug($row->status);
+                $resource = $slug . '-delete';
+                if (isset($rules[$row->category][$resource]) 
+                    and $rules[$row->category][$resource]
+                ) {
+                    $ids[] = $row->id;
+                }
+            }
+        }
+
+        $resultsetArticle = $modelArticle->select(array('id' => $ids));
+
+        // Step operation
+        foreach ($resultsetArticle as $article) {
+            // Delete feature image
+            if ($article->image) {
+                @unlink(Pi::path($article->image));
+                @unlink(Pi::path(Service::getThumbFromOriginal($article->image)));
+            }
+        }
+        
+        // Batch operation
+        // Deleting extended fields
+        $this->getModel('extended')->delete(array('article' => $ids));
+        
+        // Deleting statistics
+        $this->getModel('statistics')->delete(array('article' => $ids));
+        
+        // Deleting compiled article
+        $this->getModel('compiled')->delete(array('article' => $ids));
+        
+        // Delete tag
+        if ($this->config('enable_tag')) {
+            Pi::service('tag')->delete($module, $ids);
+        }
+        // Delete related articles
+        $this->getModel('related')->delete(array('article' => $ids));
+
+        // Delete visits
+        $this->getModel('visit')->delete(array('article' => $ids));
+
+        // Delete assets
+        $modelAsset->delete(array('article' => $ids));
+
+        // Delete article directly
+        $modelArticle->delete(array('id' => $ids));
+
+        // Clear cache
+        Pi::service('render')->flushCache($module);
+
+        if ($from) {
+            $from = urldecode($from);
+            return $this->redirect()->toUrl($from);
+        } else {
+            // Go to list page
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'article',
+                'action'     => 'published',
+                'from'       => 'all',
+            ));
         }
     }
     

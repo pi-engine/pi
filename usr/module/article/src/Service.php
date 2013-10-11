@@ -687,112 +687,64 @@ class Service
         $uid = null
     ) {
         $module     = Pi::service('module')->current();
-        $identity   = Pi::service('authentication')->getIdentity();
         
-        // Getting categories and resources
+        // Get role of current section
+        $uid     = $uid ?: Pi::user()->id;
+        $roles   = array_values(Pi::user()->getRole($uid));
+        
+        // Get all categories
         if (is_string($category)) {
             $category = Pi::model('category', $module)->slugToId($category);
         }
-        $categories = Pi::model('category', $module)->getList(array('id'));
+        $rowCategories = self::getCategoryList();
+        $categories = array();
+        foreach ($rowCategories as $row) {
+            $categories[$row['name']] = $row['id'];
+        }
+        
+        // Get all resources
         $allResources = Perm::getResources();
         $resources  = array();
         foreach ($allResources as $row) {
             $resources = array_merge($resources, array_keys($row));
         }
         
-        $rules      = array();
-        // Fetching rules of admin account
-        if (empty($uid) and 'admin' == $identity) {
-            foreach (array_keys($categories) as $key) {
-                if (!empty($category) and $key != $category) {
+        // Get all rules of current role
+        $model = Pi::service('permission')->model();
+        $where = array(
+            'module'    => $module,
+            'role'      => $roles,
+        );
+        $rowRules = $model->select($where)->toArray();
+        
+        // Get rules
+        $rules = array();
+        $resourceRules = array();
+        foreach ($rowRules as $row) {
+            $resource = preg_replace('/_/', '-', $row['resource']);
+            if (in_array($resource, $resources)) {
+                if (!empty($operation) and $resource != $operation) {
                     continue;
                 }
-                $resources[] = 'draft-edit';
-                $resources[] = 'draft-delete';
-                foreach ($resources as $resource) {
-                    if (!empty($operation) and $resource != $operation) {
-                        continue;
-                    }
-                    $rules[$key][$resource] = true;
-                }
-            }
-            $rules = empty($rules) ? true : $rules;
-            return $rules;
-        }
-        
-        // Fetching rules by passed condition
-        $where = array();
-        if (empty($uid)) {
-            $user   = Pi::service('user')->getUser();
-            $uid    = Pi::user()->id ?: 0;
-        }
-        $where['uid'] = $uid;
-        
-        $userLevels = Pi::model('user_level', $module)->select($where);
-        $levelIds   = array(0);
-        $levelCategory = array();
-        foreach ($userLevels as $level) {
-            $userCategories = array_filter(explode(',', $level['category']));
-            $userCategories = $userCategories ?: array_keys($categories);
-            $needCategories = empty($category) 
-                ? $userCategories 
-                : (in_array($category, $userCategories) 
-                    ? (array) $category : ''
-                );
-            $levelIds[]     = $level['level'];
-            if (!empty($needCategories)) {
-                if (isset($levelCategory[$level['level']])) {
-                    $levelCategory[$level['level']] = array_merge(
-                        $levelCategory[$level['level']], 
-                        $needCategories
-                    );
-                } else {
-                    $levelCategory[$level['level']] = $needCategories;
-                }
+                $resourceRules[$resource] = true;
             }
         }
-        
-        // Get level name
-        $rowLevel = Pi::model('level', $module)
-            ->select(array('id' => $levelIds))->toArray();
-        $levels   = array(0);
-        foreach ($rowLevel as $row) {
-            // Skip if level is not active
-            if (!$row['active']) {
-                continue;
-            }
-            $levels[$row['id']] = $row['name'];
-        }
-        
-        // Getting rules
-        $aclHandler = new \Pi\Acl\Acl('admin');
-        $aclHandler->setModule($module);
-        $modelRule = $aclHandler->getModel('rule');
-        $rowRules  = $modelRule->select(array('role' => $levels));
-        $rawRules  = array();
-        foreach ($rowRules as $rule) {
-            $rawRules[$rule->role][$rule->resource] = $rule->deny ? false : true;
-        }
-        
-        // Assemble rules
-        foreach ($levels as $id => $levelName) {
-            $rule = array();
-            foreach ($resources as $name) {
-                if (!empty($operation) and $name != $operation) {
+        foreach ($rowRules as $row) {
+            if (preg_match('/^category-(.+)/', $row['resource'], $matches)
+                && in_array($matches[1], array_keys($categories))
+            ) {
+                if (!empty($category) and $matches[1] != $category) {
                     continue;
                 }
-                $rule[$name] = isset($rawRules[$levelName][$name])
-                    ? $rawRules[$levelName][$name] : false;
-            }
-            foreach ($levelCategory[$id] as $categoryId) {
-                $rules[$categoryId] = $rule;
+                $categoryId = $categories[$matches[1]];
+                $rules[$categoryId] = $resourceRules;
             }
         }
         
         // If user operating its own draft, given the edit and delete permission
         if ($isMine) {
             $myRules  = array();
-            foreach (array_keys($categories) as $key) {
+            foreach ($categories as $key) {
                 $categoryRule = array();
                 if (isset($rules[$key]['compose']) 
                     and $rules[$key]['compose']
@@ -815,38 +767,6 @@ class Service
         }
         
         return array_filter($rules);
-    }
-    
-    /**
-     * Get permission of resources which define in acl config.
-     * 
-     * @param string  $resource
-     * @param int     $uid
-     * @return boolean 
-     */
-    public static function getModuleResourcePermission($resource, $uid = null)
-    {
-        $module     = Pi::service('module')->current();
-        $identity   = Pi::service('authentication')->getIdentity();
-        // If the backend role is admin, given it all permission, this will be
-        // replaced when the front-end has global role
-        if ('admin' == $identity) {
-            return true;
-        }
-        
-        // Getting front-end role of user
-        if (empty($uid)) {
-            $user   = Pi::service('user')->getUser();
-            $uid    = Pi::user()->id ?: 0;
-        }
-        $rowRole = Pi::model('user_role')->find($uid, 'user');
-        
-        // Getting permission
-        $aclHandler = new \Pi\Acl\Acl('front');
-        $aclHandler->setModule($module);
-        $result     = $aclHandler->isAllowed($rowRole->role, $resource);
-        
-        return $result;
     }
     
     /**

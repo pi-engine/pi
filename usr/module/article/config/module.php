@@ -45,5 +45,6 @@ return array(
         'route'         => 'route.php',
         'permission'    => 'permission.php',
         'page'          => 'page.php',
+        'comment'       => 'comment.php',
     ),
 );
