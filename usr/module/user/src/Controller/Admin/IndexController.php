@@ -431,7 +431,7 @@ class IndexController extends ActionController
         $uids  = explode(',', $uids);
         $count = 0;
         foreach ($uids as $uid) {
-            $status = Pi::api('user', 'user')->deleteUser();
+            $status = Pi::api('user', 'user')->deleteUser($uid);
             if ($status) {
                 $count++;
             }
@@ -489,7 +489,7 @@ class IndexController extends ActionController
      */
     public function assignRoleAction()
     {
-        $uids    = _post('uids');
+        $uids    = _post('ids');
         $type    = _post('type');
         $role    = _post('role');
 
@@ -577,7 +577,7 @@ class IndexController extends ActionController
         foreach ($rowset as $row) {
             $uid     = $row['uid'];
             $section = $row['section'];
-            $roleKey = $section . '_role';
+            $roleKey = $section . '_roles';
             $users[$uid][$roleKey][] = $row['role'];
         }
 
