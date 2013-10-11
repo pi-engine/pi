@@ -30,7 +30,6 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
-
         // If already login
         if (Pi::service('user')->hasIdentity()) {
             $this->view()->assign('title', __('User login'));
@@ -41,6 +40,10 @@ class RegisterController extends ActionController
             return;
         }
 
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
         list($fields, $filters) = $this->canonizeForm('custom.register');
         $form = $this->getRegisterForm($fields);
 
@@ -57,51 +60,49 @@ class RegisterController extends ActionController
                     'credential' => $values['credential'],
                 );
 
-                $result = Pi::api('user', 'user')->addUser($data);
-                $uid    = $result[0];
+                $uid = Pi::api('user', 'user')->addUser($data);
 
                 // Set user role
                 Pi::api('user', 'user')->setRole($uid, 'member');
 
                 // Set user data
                 $content = md5($uid . $data['name']);
-                $result  = Pi::user()->data()->set(
+                $status  = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
                     $content,
                     $this->getModule()
                 );
-                if (!$result) {
-                    $message = $result['message'];
-                    $this->jump(
-                        array('action' => 'index'),
-                        $message
-                    );
+                if (!$status) {
+                    $result['message'] = __('Register fail');
+
+                    return $result;
                 }
 
                 // Send activity email
                 $to  = $values['email'];
                 $url = $this->url('', array(
-                    'action' => 'activate',
-                    'id'     => md5($uid),
-                    'token'  => $content,
+                    'action'  => 'activate',
+                    'uid'     => md5($uid),
+                    'token'   => $content,
                     )
                 );
 
                 $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
-                    $values['username'],
+                    $values['identity'],
                     $link
                 );
 
                 Pi::api('user', 'mail')->send($to, $subject, $body, $type);
-                $this->redirect()->toUrl($this->url('',
-                    array(
-                        'action' => 'display',
-                        'type'   => 'register',
-                        'uid'    => $uid
-                    )
-                ));
+                $result['status']  = 1;
+                $result['message'] = __('Register successfully');
+
+                return $result;
+            } else {
+                $result['message'] = $form->getMessages();
+
+                return $result;
             }
         }
 
@@ -115,49 +116,71 @@ class RegisterController extends ActionController
      */
     public function activateAction()
     {
-        $data = array(
-            'title'  => __('Register'),
-            'status' => false,
+        $result = array(
+            'status'  => 0,
+            'message' => '',
         );
+        $hashUid = $this->params('uid', '');
+        $token   = $this->params('token', '');
 
-        $key   = $this->params('id', '');
-        $token = $this->params('token', '');
+        // Check link params
+        if (!$hashUid || !$token) {
+            $result['message'] = __('Activate link is invalid');
 
-        if (!$token || !$token) {
-            return $this->jumpTo404('Required resource is not found');
+            return $result;
         }
 
+        // Search user data
         $userData = Pi::user()->data()->find(array(
             'name'  => 'register-activation',
             'value' => $token,
         ));
-        if ($userData) {
-            $hashUid = md5($userData['uid']);
-            $userRow = $this->getModel('account')->find($userData['uid']);
+        if (!$userData) {
+            $result['message'] = __('Activate link is invalid');
 
-            if ($userRow && $hashUid == $key) {
-                $expire  = $userData['time'] + 24 * 3600;
-                $current = time();
-                if ($current < $expire) {
-                    // Activate user
-                    $result = Pi::api('user', 'user')->activateUser(
-                        $userData['uid']
-                    );
-
-                    if ($result) {
-                        // Delete user data
-                        Pi::user()->data()->delete(
-                            $userData['uid'],
-                            'register-activation'
-                        );
-                        $data['status'] = true;
-                        $data['title']  = __('Register done');
-                    }
-                }
-            }
+            return $result;
         }
 
-        $this->view()->assign('data', $data);
+        // Check uid
+        $userRow = $this->getModel('account')->find($userData['uid']);
+        if (!$userRow || md5($userRow['id']) != $hashUid) {
+            $result['message'] = __('Activate link is invalid');
+
+            return $result;
+        }
+
+        // Check expire time
+        $expire  = $userData['time'] + 24 * 3600;
+        $current = time();
+        if ($current > $expire) {
+            $result['message'] = __('Activate link is invalid');
+
+            return $result;
+        }
+
+        // Activate user
+        $status = Pi::api('user', 'user')->activateUser(
+            $userData['uid']
+        );
+
+        // Check result
+        if (!$status) {
+            $result['message'] = __('Activate link is invalid');
+
+            return $result;
+        }
+
+        // Delete user data
+        Pi::user()->data()->delete(
+            $userData['uid'],
+            'register-activation'
+        );
+
+        $result['status']  = 1;
+        $result['message'] = __('Activate successfully');
+
+        return $result;
+
     }
 
     /**
