@@ -29,7 +29,7 @@ class BuildController extends ActionController
         $this->addGroup();
         $this->addActivity();
 
-        $this->view()->setTemplate(false);
+        return $this->jump(array('controller' => 'index', 'action' => 'index'));
     }
 
     /**
