@@ -47,14 +47,26 @@ class Mail extends AbstractApi
      */
     protected function getSmtpOptions()
     {
-        $path = sprintf(
+        // Get smtp config file
+        $configFile = sprintf(
             '%s/extra/%s/config/smtp.php',
             Pi::path('usr'),
             $this->getModule()
         );
-
-        $smtpOptions = include $path;
+        if (!file_exists($configFile)) {
+            $configFile = sprintf(
+                '%s/%s/extra/%s/config/smtp.php',
+                Pi::path('module'),
+                $this->getModule(),
+                $this->getModule()
+            );
+            if (!file_exists($configFile)) {
+                return;
+            }
+        }
+        $smtpOptions = include $configFile;
 
         return $smtpOptions;
+
     }
 }
