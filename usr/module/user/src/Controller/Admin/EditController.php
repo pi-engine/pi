@@ -39,7 +39,7 @@ class EditController extends ActionController
         $compoundNav = $this->getCompoundNav();
 
         // Get edit form
-        $fields = $this->getFields();
+        $fields   = $this->getFields();
         $elements = array();
         $filters  = array();
         foreach ($fields as $field) {
@@ -139,7 +139,7 @@ class EditController extends ActionController
         // Generate compound edit form
         $forms = array();
         foreach ($compoundData as $set => $row) {
-            $formName = 'compound' . $set;
+            $formName    = 'compound' . $set;
             $forms[$set] = new CompoundForm($formName, $compoundElements);
             // Set form data
             $row += array(
@@ -157,7 +157,7 @@ class EditController extends ActionController
             $forms[$set]->setData($post);
 
             if ($forms[$set]->isValid()) {
-                $values = $forms[$set]->getData();
+                $values        = $forms[$set]->getData();
                 $values['uid'] = $uid;
                 unset($values['submit']);
                 unset($values['group']);
@@ -330,8 +330,8 @@ class EditController extends ActionController
      */
     protected function getCompoundNav()
     {
-        $result    = array();
-        $model = $this->getModel('display_group');
+        $result = array();
+        $model  = $this->getModel('display_group');
         $select = $model->select()->where(array('compound <> ?' => ''));
         $select->columns(array('id', 'title'));
         $select->order('order');

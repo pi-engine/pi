@@ -42,8 +42,19 @@ class Group extends AbstractApi
                 'compound' => $row->compound,
                 'order'    => $row->order,
             );
+            $action = $row->compound ? 'edit.compound' : 'edit.profile';
+            $result[$row->id]['link'] = Pi::engine()->application()
+                ->getRouter()
+                ->assemble(array(
+                    'module' => $this->getModule(),
+                    'controller' => 'profile',
+                    'action'     => $action,
+                    'group'      => $row->id
+                ), array('name' => 'default')
+            );
         }
 
         return $result;
+
     }
 }

@@ -53,7 +53,7 @@ class PrivacyController extends ActionController
         $value = _post('value');
 
         $result = array(
-            'status' => 0,
+            'status'  => 0,
             'message' => __('Set privacy failed'),
         );
 
@@ -81,7 +81,7 @@ class PrivacyController extends ActionController
                     'is_forced' => 1,
                 )
             );
-            $result['status'] = 1;
+            $result['status']  = 1;
             $result['message'] = __('Set privacy successfully');
         } catch (\Exception $e) {
             return $result;

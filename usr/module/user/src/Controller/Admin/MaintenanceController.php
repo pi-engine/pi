@@ -100,10 +100,10 @@ class MaintenanceController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $uids  = $this->getUids($sort, $limit, $offset);
-        $count = $this->getCount($sort);
+        $uids   = $this->getUids($sort, $limit, $offset);
+        $count  = $this->getCount($sort);
 
-        $logs = $this->getUserLogs($uids);
+        $logs   = $this->getUserLogs($uids);
 
         $paginator = array(
             'count'      => $count,
@@ -158,7 +158,7 @@ class MaintenanceController extends ActionController
         $rowset = $model->selectWith($select);
         if ($rowset) {
             $rowset = $rowset->current();
-            $count = $rowset['count'];
+            $count  = $rowset['count'];
         } else {
             $count = 0;
         }
