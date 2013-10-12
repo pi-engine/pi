@@ -24,6 +24,6 @@ class Data extends Model
      * @var array
      */
     protected $encodeColumns = array(
-        'value'   => true,
+        'value_multi'   => true,
     );
 }

@@ -29,7 +29,7 @@ class BuildController extends ActionController
         $this->addGroup();
         $this->addActivity();
 
-        $this->view()->setTemplate(false);
+        return $this->jump(array('controller' => 'index', 'action' => 'index'));
     }
 
     /**
@@ -313,7 +313,9 @@ class BuildController extends ActionController
             );
 
             $uid = Pi::api('user', 'user')->addUser($user);
-            Pi::api('user', 'user')->activateUser($uid);
+            if ($i > 200 && $i < 300) {
+                Pi::api('user', 'user')->activateUser($uid);
+            }
 
             // Disable user
             if ($i > 300 && $i <= 400) {

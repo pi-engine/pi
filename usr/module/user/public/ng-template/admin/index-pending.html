@@ -1,105 +1,122 @@
-<div class="alert alert-success" ng-if="alert" 
-     ng-class="{'alert-success': alert.status,'alert-error': !alert.status}">
-    <button type="button" class="close" ng-click="clearAlert()">×</button>
-    {{alert.message}}
-</div>
-<form class="form-inline user-list-form">
-    <select class="input-medium" ng-model="enable">
-        <option value="">Enable State</option>
-        <option value="enable">Enable</option>
-        <option value="disable">Disable</option>
-    </select>
-    <select class="input-medium" ng-model="front_role" ng-options="key as value for (key, value) in front_roles">
-        <option value="">Front role</option>
-    </select>
-    <select class="input-medium" ng-model="admin_role" ng-options="key as value for (key, value) in admin_roles">
-        <option value="">Admin role</option>
-    </select>
-    <select class="input-medium" ng-model="register_date">
-        <option value="">Register date</option>
-        <option value="today">Today</option>
-        <option value="last_week">Last week</option>
-        <option value="last-month">Last month</option>
-        <option value="last_3_month">Last 3 month</option>
-        <option value="last_6_month">Last 6 month</option>
-        <option value="last_year">Last year</option>
-    </select>
-    <input type="text" placeholder="Username/Email" class="input-medium" ng-model="search">
-    <button class="btn btn-primary" ng-click="searchAction()">Apply</button>
+<div pi-message="alert"></div>
+<form class="form-inline" ng-submit="filterAction()">
+  <select ng-model="filter.enable" class="input-medium">
+    <option value="">{{'ENABLE_STATUS' | translate}}
+    <option value="enable">{{'ENABLE' | translate}}
+    <option value="disable">{{'DISABLE' | translate}}
+  </select>
+  <select class="input-medium" ng-model="filter.front_role">
+    <option value="">{{'FRONT_ROLE' | translate}}
+    <option ng-repeat="item in frontRoles" value="{{item.name}}">{{item.title}}
+  </select>
+  <select class="input-medium" ng-model="filter.admin_role">
+    <option value="">{{'ADMIN_ROLE' | translate}}
+    <option ng-repeat="item in adminRoles" value="{{item.name}}">{{item.title}}
+  </select>
+  <select class="input-medium" ng-model="filter.register_time">
+    <option value="">{{'REGISTER_TIME' | translate}}
+    <option value="today">{{'TODAY' | translate}}
+    <option value="last_week">{{'LAST_WEEK' | translate}}
+    <option value="last-month">{{'LAST_MONTH' | translate}}
+    <option value="last_3_month">{{'LAST_3_MONTH' | translate}}
+    <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
+    <option value="last_year">{{'LATS_YEAR' | translate}}
+  </select>
+  <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-medium" ng-model="filter.identity">
+  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-medium" ng-model="filter.email">
+  <button class="btn" ng-click="filterAction()">{{'APPLY' | translate}}</button>
 </form>
-<div class="clearfix user-list-action">
-    <strong class="pull-right">{{paginator.count}} members</strong>
-    <input type="checkbox" style="margin-right: 6px;"
-           ng-model="allChecked" ng-click="markAll(allChecked)">
-    <div class="btn-group">
-        <button class="btn" ng-click="activeBatchAction()">
-            <i class="icon-ok-sign"></i>
-            Activate
-        </button>
-        <button class="btn" ng-click="enableBatchAction()">
-            <i class="icon-ok text-success"></i>
-            Enable
-        </button>
-        <button class="btn" ng-click="disableBatchAction()">
-            <i class="icon-power-off"></i>
-            Disable
-        </button>
-        <button class="btn" ng-click="deleteBatchAction()">
-            <i class="icon-remove text-error"></i>
-            Delete
-        </button>
-    </div>
+<div class="clearfix form-inline" style="margin: 0 0 20px 8px;">
+  <strong class="pull-right">{{paginator.count}} members</strong>
+  <input type="checkbox" style="margin-right: 6px;"
+         ng-model="allChecked" ng-click="markAll(allChecked)">
+  <div class="btn-group">
+    <button class="btn" ng-click="activeBatchAction()">
+      <i class="icon-ok-sign"></i>
+      {{'ACTIVATE' | translate}}
+    </button>
+    <button class="btn" ng-click="enableBatchAction()">
+      <i class="icon-ok text-success"></i>
+      {{'ENABLE' | translate}}
+    </button>
+    <button class="btn" ng-click="disableBatchAction()">
+      <i class="icon-power-off"></i>
+      {{'DISABLE' | translate}}
+    </button>
+    <button class="btn" ng-click="deleteBatchAction()">
+      <i class="icon-remove text-error"></i>
+      {{'DELETE' | translate}}
+    </button>
+  </div>
+  <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+          ng-options="item.title group by item.type for item in roles">
+    <option value="">{{'ASSIGN_ROLE' | translate}}
+  </select>
+  <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+          ng-options="item.title group by item.type for item in roles">
+    <option value="">{{'UNASSIGN_ROLE' | translate}}
+  </select>
 </div>
-<table class="table">
+<table class="table table-striped">
     <thead>
-        <tr>
-            <th width="1%">
-            <th>Username
-            <th>Display name
-            <th>Email
-            <th width="5%">Enable
-            <th width="5%">Activated
-            <th width="10%">Front role
-            <th width="10%">Admin role
-            <th width="12%">Register time
-            <th>Uid
+      <tr>
+        <th style="width: 14px;">
+        <th style="width: 14px;">
+        <th>{{'USERNAME' | translate}}
+        <th>{{'DISPLAY_NAME' | translate}}
+        <th width="15%">{{'EMAIL' | translate}}
+        <th width="8%" class="text-center">{{'ENABLED' | translate}}
+        <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
+        <th width="8%">{{'ROLE' | translate}}
+        <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
+        <th width="5%" class="text-center">{{'ID' | translate}}
+        <th>
     <tbody>
-        <tr ng-repeat="user in users">
-            <td>
-                <input type="checkbox" ng-model="user.checked">
-            <td>{{user.identity}}
-                <div class="row-actions">
-                    <a href="" class="">Edit</a>
-                    <a href="" class="gutter" ng-click="deleteAction($index)">Delete</a>
-                </div>
-            <td>{{user.name}}
-            <td>{{user.email}}
-            <td>
-                <button class="btn" ng-click="enableAction(user)" ng-if="user.time_disabled">
-                    <i class="icon-remove text-error"></i>
-                </button>
-                <button class="btn" ng-click="disableAction(user)" ng-if="!user.time_disabled">
-                    <i class="icon-ok text-success">
-                    </i>
-                </button>
-            <td>
-                <i ng-if="user.time_activated" class="icon-ok text-success"></i>
-                <button ng-if="!user.time_activated" class="btn" ng-click="activeAction(user)">
-                    <i class="icon-remove text-error"></i>
-                </button>
-            <td>
-                <select ng-model="user.front_role" ng-options="key as value for (key, value) in frontRoles"
-                        ng-change="roleAction(user, 'front')">
-                </select>
-            <td>
-                <select ng-model="user.admin_role" ng-options="key as value for (key, value) in adminRoles"
-                        ng-change="roleAction(user, 'admin')">
-                    <option value="">None</option>
-                </select>
-            <td>
-                {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
-            <td>
-                {{user.id}}
+      <tr ng-repeat="user in users">
+        <td>
+          <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
+        <td>
+          <i class="icon-circle text-success" ng-if="user.active"
+             tooltip="{{'ACTIVE' | translate}}">
+          </i>
+          <i class="icon-circle muted" ng-if="!user.active"
+             tooltip="{{'INACTIVE' | translate}}">
+          </i>
+        <td>
+          {{user.identity}}
+          <div class="pi-row-action">
+            <a href="">{{'EDIT' | translate}}</a>
+            <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
+          </div>
+        <td>{{user.name}}
+        <td>{{user.email}}
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': !user.time_disabled}"
+               ng-click="enableAction(user)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
+               ng-click="activeAction(user)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td>
+          <span ng-if="user.front_roles" tooltip="{{'FRONT_ROLE'| translate}} : {{user.front_roles}}" 
+                style="padding-right: 5px;">
+            <i class="icon-user icon-large"></i>
+          </span>
+          <span ng-if="user.admin_roles" tooltip="{{'ADMIN_ROLE'| translate}} : {{user.admin_roles}}"
+                style="padding-left: 5px;">
+            <i class="icon-user-md icon-large"></i>
+          </span>
+        <td class="text-center">
+          {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+        <td class="text-center">
+          {{user.id}}
+        <td>
+          <a href="">{{'VIEW_LOG' | translate}}</a>
 </table>
-<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
-    class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
+<pagination total-items="paginator.count" page="paginator.page" max-size="10"
+            ng-if="paginator.count" 
+            class="pagination" boundary-links="true" items-per-page="paginator.limit">
+</pagination>

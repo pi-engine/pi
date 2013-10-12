@@ -46,8 +46,13 @@ class Data extends AbstractResource
         $getValue = function ($row) use ($returnArray) {
             $result = false;
             if ($row) {
-                $value = (null === $row['value_int'])
-                    ? $row['value'] : (int) $row['value_int'];
+                if (null !== $row['value_int']) {
+                    $value = (int) $row['value_int'];
+                } elseif (null !== $row['value']) {
+                    $value = $row['value'];
+                } else {
+                    $value = $row['value_multi'];
+                }
                 if (!$returnArray) {
                     $result = $value;
                 } else {
@@ -117,8 +122,13 @@ class Data extends AbstractResource
      *
      * @return bool
      */
-    public function set($uid, $name = null, $value = null, $module = '', $time = null)
-    {
+    public function set(
+        $uid,
+        $name   = null,
+        $value  = null,
+        $module = '',
+        $time   = null
+    ) {
         if (is_array($uid)) {
             $id = isset($uid['uid']) ? (int) $uid['uid'] : 0;
             extract($uid);
@@ -132,11 +142,15 @@ class Data extends AbstractResource
             'module'    => $module,
             'time'      => $time,
         );
+        $vars['value']          = null;
+        $vars['value_int']      = null;
+        $vars['value_multi']    = null;
         if (is_int($value)) {
-            $vars['value_int'] = $value;
+            $vars['value_int']      = $value;
+        } elseif (is_scalar($value)) {
+            $vars['value']          = $value;
         } else {
-            $vars['value'] = $value;
-            $vars['value_int'] = null;
+            $vars['value_multi'] = $value;
         }
 
         $where = array(
@@ -194,12 +208,18 @@ class Data extends AbstractResource
      *
      * @return bool
      */
-    public function setInt($uid, $name = null, $value = 0, $module = '', $time = null)
-    {
+    public function setInt(
+        $uid,
+        $name   = null,
+        $value  = 0,
+        $module = '',
+        $time   = null
+    ) {
         if (is_array($uid) && isset($uid['value'])) {
             $uid['value'] = (int) $uid['value'];
         }
         $value = (int) $value;
+
         return $this->set($uid, $name, $value, $module, $time);
     }
 

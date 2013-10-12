@@ -330,7 +330,7 @@ class DashboardController extends ActionController
         $name = 'admin-message';
 
         $content = $this->params()->fromPost('content');
-        if (Pi::service('user')->getUser()->isAdmin()) {
+        if (Pi::service('permission')->isAdmin()) {
             Pi::user()->data->set(0, $name, $content);
         }
 
