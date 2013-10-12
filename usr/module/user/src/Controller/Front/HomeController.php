@@ -32,7 +32,6 @@ class HomeController extends ActionController
         $offset = (int) ($page -1) * $limit;
 
         $isLogin = Pi::user()->hasIdentity();
-
         if (!$isLogin) {
             $this->jump(
                 array('', array('controller' => 'login', 'action' => 'index')),
@@ -42,7 +41,7 @@ class HomeController extends ActionController
             return;
         }
 
-        $uid = Pi::user()->getIdentity();
+        $uid  = Pi::user()->getIdentity();
         // Get user information
         $user = $this->getUser($uid);
 
@@ -159,7 +158,7 @@ class HomeController extends ActionController
     {
         // Get activity list
         $items = array();
-        $nav = array(
+        $nav   = array(
             'cur'   => $cur,
             'items' => $items,
         );
