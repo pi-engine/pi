@@ -104,8 +104,6 @@ class AccountController extends ActionController
                 return $result;
             } else {
                 $result['message'] = $form->getMessages();
-                $result['groups']  = $groups;
-
                 return $result;
             }
         }
@@ -182,6 +180,45 @@ class AccountController extends ActionController
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
+
+        return $result;
+
+    }
+
+    /**
+     * Verify credential for ajax
+     *
+     * @return array
+     */
+    public function verifyCredentialAction()
+    {
+        $result = array(
+            'status' => 0,
+            'message' => __('Incorrect password'),
+        );
+        $uid        = Pi::service('user')->getIdentity();
+        $credential = _get('credential');
+
+        // Check params
+        if (!$uid || !$credential) {
+            return $result;
+        }
+
+        $user = Pi::model('user_account')->find($uid, 'id');
+        if (!$user) {
+            return $result;
+        }
+        // Verify
+        $credential = md5(sprintf(
+            '%s%s%s',
+            $user['salt'],
+            $credential,
+            Pi::config('salt')
+        ));
+        if ($credential == $user['credential']) {
+            $result['message'] = __('Correct password');
+            $result['status']  = 1;
+        }
 
         return $result;
 
