@@ -62,7 +62,6 @@ div .well {
 .article-route-content {
     border-radius: 4px;
     border: 1px solid #dddddd;
-    padding: 10px 10px 0 10px;
 }
 
 .article-route-content > div {
@@ -70,7 +69,14 @@ div .well {
 }
 
 .article-route-header {
-    height: 20px;
+    background-color: #F6F6F6;
+    background-image: linear-gradient(to bottom, #FAFAFA, #F2F2F2);
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #FFFFFF;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 0 10px 0 10px;
 }
 
 .article-route-header span {
@@ -79,8 +85,29 @@ div .well {
 }
 
 #article-route-form,
-#article-route-param {
-    margin-top: 30px;
+#article-route-param,
+.article-route-param {
+    margin: 10px;
+}
+
+.route-form input {
+    margin: 3px 0;
+}
+
+.route-param {
+    cursor: pointer;
+}
+
+.current-route-params {
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+    background-color: #eeeeee;
+    margin: 5px 20px 5px 0;
+    padding: 5px 0 5px 0;
+}
+.current-route-params li {
+    margin-left: 20px;
 }
 
 #article-js-route > div {

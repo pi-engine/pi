@@ -2,7 +2,7 @@
     $this->css($this->assetModule('script/article-admin.css'));
     $this->jQuery('extension/fileupload-min.js');
     $this->Backbone();
-    $this->bootstrap('js/bootstrap.min.js');
+    $this->bootstrap('js/bootstrap.js');
 ?>
 
 <div>
@@ -14,30 +14,27 @@
         <?php include 'message-box.phtml' ?>
         <div id="article-js-route">
             
-
             <div class="article-route-content row-fluid">
                 <div class="article-route-header">
-                    <span class="pull-left"><?php _e('Custom Parameters') ?></span>
+                    <span class="pull-left"><?php _e('Custom Parameters') ?></span>&nbsp;
+                    <span class="install-status">[<?php echo $installed ? __('Install') : __('Un-install') ?>]</span>
                     <div class="pull-right">
-                        <button class="btn btn-primary route-modify" value="modify"><?php _e('Modify') ?></button>&nbsp;&nbsp;
                         <a href="javascript:void(0)" class="route-delete"><?php _e('Delete') ?></a>
                     </div>
-                </div>
-                <div id="article-route-form" class="hide">
-                <?php 
-                    echo $this->form()->openTag($form);
-                    include $this->templateComponent('form');
-                    echo $this->form()->closeTag();
-                ?>
                 </div>
                 <div id="article-route-param">
                     <ol class="muted">
                     <?php
                         foreach ($configs as $key => $value) {
                     ?>
-                        <li>
-                            <span><?php echo $this->escape($key) ?></span>
-                            <span class="label label-info"><?php echo $this->escape($value) ?></span>
+                        <li data-key="<?php echo $this->escape($key) ?>" data-value="<?php echo $this->escape($routeConfigs[$key]) ?>">
+                            <span><?php echo ucfirst(preg_replace('/[_-]/', ' ', $key)) . ':' ?></span>
+                            <?php if (empty($value)) { ?>
+                            <span class="label label-important route-param"><?php _e('None') ?></span>
+                            <?php } else { ?>
+                            <span class="label label-info route-param"><?php echo $this->escape($value) ?></span>
+                            <?php } ?>
+                            <span class="hide route-form"><?php echo $this->formElement($form->get($key)) ?></span>
                         </li>
                     <?php 
                         }
@@ -50,21 +47,37 @@
                 <div class="article-route-header">
                     <span class="pull-left"><?php _e('Required File') ?></span>
                 </div>
-                <div>
+                <div class="article-route-param">
                     <ol class="muted">
                         <li>
                             <span><?php _e('Current route: ') ?></span>
-                            <span class="label label-success"><?php echo $this->escape($route) ?></span>
+                            <?php
+                                $params = '<ul class="current-route-params hide">';
+                                foreach ($routeConfigs as $key => $config) {
+                                    $key = ucfirst($key);
+                                    $params .= <<<EOD
+<li><span style="width: 150px">{$key}</span><span class="label label-info">{$config}</span></li>
+EOD;
+                                }
+                                $params .= '</ul>';
+                            ?>
+                            <span class="label label-success">
+                                <?php echo $this->escape($route) ?>
+                                <a class="view-route-param" href="#" style="color: #fff; margin-left: 5px" data-status="up">
+                                    <i class="icon-chevron-down"></i>
+                                </a>
+                            </span>
+                            <?php echo $params ?>
                         </li>
                         <li>
                             <span><?php _e('Route configuration: ') ?></span>
-                            <span class="<?php echo empty($filename) ? 'label label-important' : 'label label-success' ?>">
+                            <span class="file-config <?php echo empty($filename) ? 'label label-important' : 'label label-success' ?>">
                                 <?php echo empty($filename) ? __('No file') : $this->escape($filename) ?>
                             </span>
                         </li>
                         <li>
                             <span><?php _e('Route class: ') ?></span>
-                            <span class="<?php echo empty($class) ? 'label label-important' : 'label label-success' ?>">
+                            <span class="file-class <?php echo empty($class) ? 'label label-important' : 'label label-success' ?>">
                                 <?php echo empty($class) ? __('No class') : $this->escape($class) ?>
                             </span>
                         </li>
@@ -74,7 +87,7 @@
 
             <div>
                 <button class="btn btn-primary route-setup"><?php _e('Setup') ?></button>
-                <button class="btn route-default"><?php _e('Default') ?></button>
+                <button class="btn route-default"><?php _e('Use default') ?></button>
             </div>
         </div>
     </div>
@@ -84,32 +97,113 @@
 (function($) {
     var RouteView = Backbone.View.extend({
         events   : {
-            "click .route-modify" : "togglePage",
-            "click .route-delete" : "deleteConfig",
-            "click .route-setup"  : "setupCustom",
-            "click .route-default"  : 'setupDefault'
+            "click .route-delete"       : "deleteConfig",
+            "click .route-setup"        : "setupCustom",
+            "click .route-default"      : 'setupDefault',
+            "click .route-param"        : "showForm",
+            "blur  input"               : "saveData",
+            "click .view-route-param"   : "toggleCurrentConfig"
         },
         initialize   : function() {
-            var status = '<?php echo $this->escape($status) ?>';
-            if ('edit' == status) {
-                this.displayForm();
-            }
             this.$el   = $("#article-js-route");
         },
-        togglePage     : function(e) {
-            var obj = $(e.target);
-            var val = obj.val();
-            if ('modify' == val) {
-                this.displayForm(val);
-            } else {
-                location.href = '<?php echo $this->url('', array('action' => 'route')) ?>';
+        showForm        : function(e) {
+            var el = $(e.target);
+            var formObj = el.parent().find('.route-form');
+            var key = el.parents('li').data("key");
+            if ('section' != key && 'module' != key) {
+                formObj.removeClass("hide");
+                formObj.find("input").focus();
+                el.addClass("hide");
             }
         },
-        displayForm     : function() {
-            $('#article-route-form').removeClass('hide');
-            $('#article-route-param').addClass('hide');
-            $('.route-modify').html('<?php _e('Cancel') ?>');
-            $('.route-modify').val('cancel');
+        saveData        : function(e) {
+            var params = new Object;
+            $("#article-route-param").find('input').each(function() {
+                var obj = $(this);
+                params[obj.attr("name")] = obj.val();
+            });
+            
+            // Save data
+            var self = this;
+            var url = '<?php echo $this->url('', array('action' => 'save')) ?>';
+            $.post(url, params, function(result) {
+                result = $.parseJSON(result);
+                if (result.status) {
+                    self.hideForm(e);
+                    self.updateInfo(result.data);
+                    self.updateInstallStatus(e);
+                } else {
+                    alert(result.message);
+                }
+            });
+        },
+        hideForm        : function(e) {
+            var el = $(e.target);
+            el.parents('span').addClass("hide");
+            
+            // Show result
+            var value  = $(e.target).val();
+            var obj = el.parents("li").find(".route-param");
+            obj.removeClass("label-important");
+            obj.removeClass("label-info");
+            
+            if (value == '') {
+                obj.addClass("label-important");
+                obj.html('<?php _e('None') ?>');
+            } else {
+                obj.addClass("label-info");
+                obj.html(value);
+            }
+            el.parents("li").find(".route-param").removeClass("hide");
+        },
+        updateInfo      : function(data) {
+            var configObj = $(".file-config");
+            configObj.removeClass("label-important");
+            configObj.removeClass("label-success");
+            if (data.config_file) {
+                configObj.html(data.config_file);
+                configObj.addClass("label-success");
+            } else {
+                configObj.html('<?php _e('None') ?>');
+                configObj.addClass("label-important");
+            }
+            
+            var classObj = $(".file-class");
+            classObj.removeClass("label-important");
+            classObj.removeClass("label-success");
+            if (data.type) {
+                classObj.html(data.type);
+                classObj.addClass("label-success");
+            } else {
+                classObj.html('<?php _e('None') ?>');
+                classObj.addClass("label-important");
+            }
+        },
+        updateInstallStatus : function(e) {
+            var el = $(e.target);
+            var routeData = el.parents("li").data('value');
+            var content = '';
+            if (routeData != el.val()) {
+                content = '[<?php _e('Un-install') ?>]';
+            } else {
+                content = '[<?php _e('Install') ?>]';
+            }
+            $(".install-status").html(content)
+        },
+        toggleCurrentConfig : function(e) {
+            var el = $(e.target).parent();
+            if ('up' == el.data('status')) {
+                $(".current-route-params").removeClass("hide");
+                el.find('i').removeClass("icon-chevron-down");
+                el.find('i').addClass("icon-chevron-up");
+                el.data('status', 'down');
+            } else {
+                $(".current-route-params").addClass("hide");
+                el.find('i').addClass("icon-chevron-down");
+                el.find('i').removeClass("icon-chevron-up");
+                el.data('status', 'up');
+            }
         },
         deleteConfig    : function() {
             location.href = '<?php echo $this->url('', array('action' => 'delete-route')) ?>';

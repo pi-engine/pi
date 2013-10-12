@@ -26,7 +26,7 @@ class RouteCustomFilter extends InputFilter
     {
         $this->add(array(
             'name'     => 'name',
-            'required' => true,
+            'required' => false,
             'filters'  => array(
                 array(
                     'name' => 'StringTrim',
@@ -56,7 +56,7 @@ class RouteCustomFilter extends InputFilter
         
         $this->add(array(
             'name'     => 'type',
-            'required' => true,
+            'required' => false,
             'filters'  => array(
                 array(
                     'name' => 'StringTrim',
@@ -86,7 +86,7 @@ class RouteCustomFilter extends InputFilter
 
         $this->add(array(
             'name'     => 'module',
-            'required' => false,
+            'required' => true,
         ));
         
         $this->add(array(

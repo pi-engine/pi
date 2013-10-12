@@ -27,113 +27,113 @@ class RouteCustomForm extends BaseForm
         $this->add(array(
             'name'       => 'name',
             'options'    => array(
-                'label'     => __('Route Name'),
+                'label'       => __('Route Name'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Route unique name, only letter, _ and - required'),
             ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'section',
-            'options'    => array(
-                'label'     => __('Section'),
-            ),
-            'attributes' => array(
-                'options'   => array(
-                    'front'     => __('Front'),
-                ),
-            ),
-            'type'       => 'select',
         ));
         
         $this->add(array(
             'name'       => 'priority',
             'options'    => array(
-                'label'     => __('Priority'),
+                'label'       => __('Priority'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Route priority, we recommend you to set a number more that 100'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'type',
             'options'    => array(
-                'label'     => __('Class'),
+                'label'       => __('Class'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Namespace of class which use to match and assemble url'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'structure_delimiter',
             'options'    => array(
-                'label'     => __('Structure Delimiter'),
+                'label'       => __('Structure Delimiter'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Symbol use to delimit module, controller, action, etc.'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'param_delimiter',
             'options'    => array(
-                'label'     => __('Param Delimiter'),
+                'label'       => __('Param Delimiter'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Symbol use to delimit different parameter groups'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'key_value_delimiter',
             'options'    => array(
-                'label'     => __('Key Value Delimiter'),
+                'label'       => __('Key Value Delimiter'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Symbol use to delimit parameter key and its value'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'route',
             'options'    => array(
-                'label'     => __('URL Prefix'),
+                'label'       => __('URL Prefix'),
             ),
             'attributes' => array(
-                'type'      => 'text',
-            ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'module',
-            'options'    => array(
-                'label'     => __('Module'),
-            ),
-            'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Route prefix, it will help to match route more quickly and correctly'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'controller',
             'options'    => array(
-                'label'     => __('Controller'),
+                'label'       => __('Controller'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Default controller, not very important'),
             ),
         ));
         
         $this->add(array(
             'name'       => 'action',
             'options'    => array(
-                'label'     => __('Action'),
+                'label'       => __('Action'),
             ),
             'attributes' => array(
-                'type'      => 'text',
+                'type'        => 'text',
+                'description' => __('Default action, not very important'),
+            ),
+        ));
+        
+        $this->add(array(
+            'name'       => 'section',
+            'attributes' => array(
+                'type'      => 'hidden',
+            ),
+        ));
+        
+        $this->add(array(
+            'name'       => 'module',
+            'attributes' => array(
+                'type'      => 'hidden',
             ),
         ));
 

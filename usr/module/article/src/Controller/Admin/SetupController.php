@@ -178,14 +178,18 @@ EOD;
             $routeConfig = $config;
             $routeConfig['name'] = $name;
             
-            unset($routeConfig['options']);
-            $routeConfig = array_merge($routeConfig, $config['options']);
+            if (isset($routeConfig['options'])) {
+                unset($routeConfig['options']);
+                $routeConfig = array_merge($routeConfig, $config['options']);
+            }
             
-            unset($routeConfig['default']);
-            $routeConfig = array_merge(
-                $routeConfig,
-                $config['options']['default']
-            );
+            if (isset($routeConfig['default'])) {
+                unset($routeConfig['default']);
+                $routeConfig = array_merge(
+                    $routeConfig,
+                    $config['options']['default']
+                );
+            }
             break;
         }
         
@@ -237,10 +241,8 @@ return array(
         'priority' => '{$config['priority']}',
         'type'     => '{$config['type']}',
         'options'  => array(
-{$options}
-            'default'  => array(
-{$default}
-            ),
+{$options}            'default'  => array(
+{$default}            ),
         ),
     ),
 );
@@ -517,18 +519,34 @@ EOD;
             ),
             'class'     => 'form-horizontal',
         ));
+        $configs['section'] = 'front';
+        $configs['module']  = $this->getModule();
         $form->setData($configs);
         
         // Get current route
         $rowRoute = Pi::model('route')->select(array('module' => $module));
         foreach ($rowRoute as $row) {
             list($moduleName, $routeName) = explode('-', $row->name, 2);
+            $installedConfig[$routeName] = $row->data;
+            $installedConfig[$routeName]['section'] = $row->section;
+            $installedConfig[$routeName]['module'] = $row->module;
+            $installedConfig[$routeName]['priority'] = $row->priority;
+            
             if ('article' == $routeName) {
                 $routeName .= ' [default]';
             } else {
                 $routeName .= ' [custom]';
             }
             break;
+        }
+        
+        // Check whether custom route is installed
+        $installedConfig = $this->canonizeConfig($installedConfig);
+        $diff = array_diff($configs, $installedConfig);
+        $diff = array_filter($diff);
+        $installed = false;
+        if (empty($diff)) {
+            $installed = true;
         }
         
         $this->view()->assign(array(
@@ -538,31 +556,61 @@ EOD;
             'status'    => $this->params('status', 'browse'),
             'filename'  => $configFile,
             'route'     => $routeName,
+            'installed' => $installed,
+            'routeConfigs'  => $installedConfig,
         ));
+    }
+    
+    /**
+     * Save route parameter by AJAX
+     *  
+     */
+    public function saveAction()
+    {
+        Pi::service('log')->active(false);
+        
+        $return = array('status' => false);
+        
+        $form = new RouteCustomForm();
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
             $form->setInputFilter(new RouteCustomFilter);
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
-                    $form,
-                    __('There are some error occured!')
-                );
+                $return['message'] = __('Validation failed!');
+                echo json_encode($return);
+                exit;
             }
             
+            // Save data
             $data = $form->getData();
             $result = $this->saveRouteConfig($data);
             if (!$result) {
-                return Service::renderForm(
-                    $this,
-                    $form,
-                    __('Can not save configuration data!')
-                );
+                $return['message'] = __('Can not save data!');
+                echo json_encode($return);
+                exit;
             }
             
-            return $this->redirect()->toRoute('', array('action' => 'route'));
+            // Check whether class exists
+            $class = $data['type'];
+            $return['data']['type'] = '';
+            if (class_exists($class)) {
+                $return['data']['type'] = $class;
+            }
+            
+            // Get configuration file
+            $return['data']['config_file'] = sprintf(
+                '%s/%s/config/%s', 
+                Pi::path('var'),
+                $this->getModule(), 
+                Route::RESOURCE_CONFIG_NAME
+            );
+            
+            $return['status']  = true;
+            $return['message'] = __('Successful!');
+            echo json_encode($return);
+            exit;
         }
     }
     
