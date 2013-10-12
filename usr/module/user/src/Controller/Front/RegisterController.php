@@ -184,54 +184,49 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Display register relate information
-     */
-    public function displayAction()
-    {
-        $type = $this->params('type', '');
-        $uid  = $this->params('uid', '');
-        $data = array();
-
-        switch (strtolower($type)) {
-            case 'register':
-                $title = __('Register Activation');
-                $data['uid'] = $uid;
-                break;
-            default:
-                 return $this->jumpTo404('Required resource is not found');
-        }
-
-        $this->view()->assign(array(
-            'type'  => $type,
-            'title' => $title,
-            'data'  => $data,
-        ));
-    }
-
-    /**
      * Reactive user
      *
      * @return \Pi\Mvc\Controller\ActionController
      */
     public function reactivateAction()
     {
-        $uid = $this->params('uid', '');
+        $uid = _get('uid');
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
 
         if (!$uid) {
-            return $this->jumpTo404('An error occur');
+            $result['message'] = __('Resend activate mail fail');
+
+            return $result;
         }
 
-        // Get account info
-        $account = Pi::api('user', 'user')->get(
+        // Get user info
+        $user = Pi::api('user', 'user')->get(
             $uid,
-            array('id', 'name', 'email')
+            array('id', 'name', 'email', 'time_activated')
         );
-        if (!$account) {
-           return $this->jumpTo404('An error occur');
+        if (!$user || $user['time_activated']) {
+            $result['message'] = __('Resend activate mail fail');
+
+            return $result;
         }
 
-        // Set user data form send mail
-        $content = md5(uniqid($account['id'] . $account['name']));
+        // Check user data
+        $userData = Pi::user()->data()->find(array(
+            'uid'    => $uid,
+            'module' => $this->getModule(),
+            'name'   => 'register-activation'
+        ));
+        if (!$userData) {
+            $result['message'] = __('Resend activate mail fail');
+
+            return $result;
+        }
+
+        // Update user data form send mail
+        $content = md5($user['id'] . $user['name']);
         Pi::user()->data()->set(
             $uid,
             'register-activation',
@@ -241,27 +236,29 @@ class RegisterController extends ActionController
         );
 
         // Set mail params and send verify mail
-        $to = $account['email'];
+        $to = $user['email'];
         //Set verify link
         $url = $this->url('', array(
                 'action' => 'activate',
-                'id'     => md5($account['id']),
+                'uid'     => md5($user['id']),
                 'token'  => $content
             )
         );
         $link = Pi::url($url, true);
         // Set send mail params
         list($subject, $body, $type) = $this->setMailParams(
-            $account['name'],
+            $user['name'],
             $link
         );
+
         // Send...
         Pi::api('user', 'mail')->send($to, $subject, $body, $type);
 
-        // Display result message
-        $this->redirect()->toUrl($this->url('',
-            array('action' => 'display', 'type' => 'register', 'uid' => $uid)
-        ));
+        $result['status'] = 1;
+        $result['message'] = __('Resend activate mail successfully');
+
+        return $result;
+
     }
 
     /**
