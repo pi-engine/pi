@@ -2,39 +2,13 @@
 $this->css($this->assetModule('script/admin.css'));
 $this->angular(array(
     'angular-route.js',
-    'angular-translate.js',
     'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js'
 ));
 ?>
-<div ng-controller="MainCtrl" ng-app="userListModule">
-    <ul class="nav nav-tabs">
-        <li ng-class="navClass('/all')">
-            <a href="#!all">
-                <?php _e('All');?>
-            </a>
-        </li>
-        <li ng-class="navClass('/activated')">
-            <a href="#!activated">
-                <?php _e('Activated');?>
-            </a>
-        </li>
-        <li ng-class="navClass('/pending')">
-            <a href="#!pending">
-                <?php _e('Pending'); ?>
-            </a>
-        </li>
-        <li ng-class="navClass('/new')">
-            <a href="#!new">
-                <?php _e('Add new'); ?>
-            </a>
-        </li>
-        <li class="<?php echo $action == 'search' ? 'active' : ''; ?>">
-            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'addUser')); ?>">
-                <?php _e('Advanced search'); ?>
-            </a>
-        </li>
-    </ul>
+<div ng-app="userListModule">
+    <div pi-message="alert"></div>
+    <div pi-nav-tabs></div>
     <div ng-view></div>
 </div>
 <dl class="page-header">Links</dl>
@@ -46,10 +20,17 @@ $this->angular(array(
     </li>
 </ul>
 <script>
-var userListModule = angular.module('userListModule', ['ngRoute', 'ui.bootstrap', 'pascalprecht.translate', 'pi']);
+var userListModule = angular.module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi']);
 var userListModuleConfig = {
     urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+    navTabs: [
+        { text: '<?php _e('All'); ?>', href: '#!/all' },
+        { text: '<?php _e('Activated'); ?>', href: '#!/activated' },
+        { text: '<?php _e('Pending'); ?>', href: '#!/pending' },
+        { text: '<?php _e('Add new'); ?>', href: '#!/new' },
+        { text: '<?php _e('Advanced search'); ?>', href: '' },
+    ],
     t: {
         ACTIVE_STATUS: '<?php _e('Active State'); ?>',
         ENABLE_STATUS: '<?php _e('Enable State'); ?>',
