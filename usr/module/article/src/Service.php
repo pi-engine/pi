@@ -17,7 +17,6 @@ use Module\Article\Controller\Admin\SetupController as Config;
 use Module\Article\Form\DraftEditForm;
 use Module\Article\Model\Draft;
 use Module\Article\Compiled;
-use Module\Article\Controller\Admin\PermissionController as Perm;
 use Module\Article\Media;
 use Module\Article\Installer\Resource\Route;
 
@@ -632,7 +631,6 @@ class Service
      */
     public static function isMine($uid)
     {
-        $user   = Pi::service('user')->getUser();
         if ($uid == Pi::user()->id) {
             return true;
         }
@@ -671,6 +669,48 @@ class Service
     }
     
     /**
+     * Get module resources
+     * 
+     * @param  bool   $columns  Whether to fetch columns or full resources
+     * @return array 
+     */
+    public static function getResources($column = false)
+    {
+        $resources = array(
+            // Article resources
+            __('article')    => array(
+                'active'             => __('publish') . '-' . __('active'),
+                'publish-edit'       => __('publish') . '-' . __('edit'),
+                'publish-delete'     => __('publish') . '-' . __('delete'),
+            ),
+
+            // Draft resources
+            __('draft')      => array(
+                'compose'            => __('draft') . '-' . __('compose'),
+                'rejected-edit'      => __('rejected') . '-' . __('edit'),
+                'rejected-delete'    => __('rejected') . '-' . __('delete'),
+                'pending-edit'       => __('pending') . '-' . __('edit'),
+                'pending-delete'     => __('pending') . '-' . __('delete'),
+                'approve'            => __('pending') . '-' . __('approve'),
+            ),
+        );
+        
+        // Return only valid columns
+        $columns = array();
+        if ($column) {
+            foreach ($resources as $key => $res) {
+                foreach (array_keys($res) as $item) {
+                    $columns[$key][] = $item;
+                }
+            }
+            
+            return $columns;
+        }
+        
+        return $resources;
+    }
+    
+    /**
      * Get user permission according to given category or operation name.
      * The return array has a format such as:
      * array('{Category ID}' => array('{Operation name}' => true));
@@ -703,7 +743,7 @@ class Service
         }
         
         // Get all resources
-        $allResources = Perm::getResources();
+        $allResources = self::getResources();
         $resources  = array();
         foreach ($allResources as $row) {
             $resources = array_merge($resources, array_keys($row));

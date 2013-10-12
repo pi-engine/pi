@@ -168,29 +168,6 @@ CREATE TABLE `{article_topic}` (
   KEY `topic`           (`topic`)
 );
 
-CREATE TABLE `{level}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `name`            varchar(64)           NOT NULL DEFAULT '',
-  `title`           varchar(255)          NOT NULL DEFAULT '',
-  `description`     varchar(255)          NOT NULL DEFAULT '',
-  `time_create`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `time_update`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `active`          tinyint(1)            NOT NULL DEFAULT 1,
-
-  PRIMARY KEY           (`id`),
-  UNIQUE KEY `name`     (`name`),
-  KEY `active`          (`active`)
-);
-
-CREATE TABLE `{user_level}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `uid`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `category`        varchar(255)          NOT NULL DEFAULT '',
-  `level`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
-
-  PRIMARY KEY           (`id`)
-);
-
 CREATE TABLE `{media}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)           NOT NULL DEFAULT '',

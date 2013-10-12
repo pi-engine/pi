@@ -95,14 +95,6 @@ return array(
                     'resource'  => 'setup',
                 ),
             ),
-            'permission'        => array(
-                'label'         => _t('Permission'),
-                'route'         => 'admin',
-                'controller'    => 'permission',
-                'permission'     => array(
-                    'resource'  => 'permission',
-                ),
-            ),
             'analysis'          => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',

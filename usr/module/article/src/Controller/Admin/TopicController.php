@@ -151,14 +151,14 @@ class TopicController extends ActionController
         $module = $this->getModule();
         $path = sprintf(
             '%s/%s/topic-template/%s.png',
-            Pi::path('static'),
+            Pi::path('upload'),
             $module,
             $name
         );
         if (file_exists($path)) {
             $url = sprintf(
                 '%s/%s/topic-template/%s.png',
-                Pi::url('static'),
+                Pi::url('upload'),
                 $module,
                 $name
             );

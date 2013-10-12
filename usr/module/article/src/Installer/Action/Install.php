@@ -84,7 +84,7 @@ class Install extends BasicInstall
         // Skip if the initial data is exists
         $sqlPath = sprintf('%s/%s', Pi::path('module'), self::INIT_FILE_NAME);
         if (file_exists($sqlPath)) {
-            return $e->setParam('result', true);
+            return true;
         }
         
         // Add a root category and its child category
@@ -106,9 +106,9 @@ class Install extends BasicInstall
             'description' => __('The default category can not be delete, but can be modified!'),
         );
         $parent = $model->select(array('name' => 'root'))->current();
-        $itemId = $model->add($defaultCategory, $parent);
+        $model->add($defaultCategory, $parent);
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -128,7 +128,7 @@ EOD;
         $filename = Service::getModuleConfigPath('draft-edit-form', $module);
         $result   = File::addContent($filename, $content);
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -144,7 +144,7 @@ EOD;
         // Create folder in static folder
         $destFilename = sprintf(
             '%s/%s/topic-template',
-            Pi::path('static'),
+            Pi::path('upload'),
             $module
         );
         
@@ -172,7 +172,7 @@ EOD;
             }
         }
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -250,7 +250,7 @@ EOD;
             $result = false;
         }
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -299,7 +299,7 @@ EOD;
             }
         }
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -369,7 +369,7 @@ EOD;
             }
         }
         
-        $e->setParam('result', $result);
+        return $result;
     }
     
     /**
@@ -408,6 +408,6 @@ VALUE;
             return false;
         }
         
-        $e->setParam('result', true);
+        return true;
     }
 }
