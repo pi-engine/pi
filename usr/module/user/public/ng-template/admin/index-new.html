@@ -1,5 +1,4 @@
 <legend>{{'ADD_TITLE' | translate}}</legend>
-<div pi-message="alert"></div>
 <form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
 	<div class="control-group" 
 		ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
@@ -128,4 +127,3 @@
 			ng-disabled="userForm.$invalid">
 	</div>
 </form>
-<pre>{{entity | json}}</pre>
