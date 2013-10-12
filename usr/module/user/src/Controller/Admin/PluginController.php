@@ -27,7 +27,7 @@ class PluginController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('plugin-index');
+        $this->view()->setTemplate('plugin');
     }
 
     /**
