@@ -1,23 +1,16 @@
-<?php include '_user-media.phtml'; ?>
-<div>
-    <ul class="nav nav-tabs">
-        <li>
-            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'home', 'uid' => $uid)); ?>"><?php _e('Homepage');?></a>
-        </li>
-        <li>
-            <a href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index', 'uid' => $uid));?>">
-                <?php _e('Profile'); ?>
-            </a>
-        </li>
-        <?php foreach ($activity_list as $key => $value) {?>
-        <li class="<?php echo $cur_activity == $key ? 'active' : ''; ?>">
-            <a href="<?php echo $this->url('', array('controller' => 'activity', 'action' => 'index', 'name' => $key));?>">
-                <?php echo _escape($value['title']); ?>
-            </a>
-        </li>
-        <?php } ?>
-    </ul>
-<div>
 <?php
-    vd($activity_contents);
+$this->css($this->assetModule('script/front.css'));
 ?>
+<?php include '_user-media.phtml'; ?>
+<div class="clearfix">
+    <a class="pull-right" href="<?php echo $activity_contents['title'];?>">
+        <?php _e('View all');?>
+    </a>
+    <h3 class="user-activity-title"><?php echo $activity_contents['title'];?></h3>
+    <?php foreach($activity_contents['log'] as $item) { ?>
+    <div class="user-underline-list">
+        <p class="p-small"><?php echo $item['message']; ?></p>
+        <span class="muted"><?php echo _date($item['time']); ?></span>
+    </div>
+    <?php } ?>
+</div>

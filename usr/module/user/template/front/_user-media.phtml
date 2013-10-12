@@ -1,28 +1,34 @@
-<div class="media user-avatar-media">
-    <a class="pull-left">
-        <img  class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
-    </a>
-    <?php if ($is_owner) {?>
-    <a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>"><?php _e('Setting'); ?></a>
-    <?php } ?>
-    <div class="pull-right">
+<div class="user-avatar-header">
+    <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
+        <img class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
+        <?php if ($is_owner) {?>
+        <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+            <?php _e('Change avatar'); ?>
+        </a>
+        <?php } ?>
+    </div>
+    <div class="inline user-avatar-header-col user-avatar-header-center">
+        <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
+        <p class="p-small">
+            <?php echo _escape($user['gender']);?>
+        <div>
+            <?php _e('Born at'); ?> <?php echo _escape($user['birthdate']); ?>
+        </div>
+    </div>
+    <div class="inline user-avatar-header-col" style="float: right;">
         <?php if ($is_owner) { ?>
-        <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
-            <?php _e('Account settings'); ?>
+        <a class="btn" href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
+            <i class="icon-cog"></i>
+            <?php _e('Setting'); ?>
         </a>
         <?php } else { ?>
-        <a href=""><?php _e('Send message'); ?></a>
-        <?php }?>
-    </div>
-    <div class="media-body">
-        <h2 class="media-heading user-name"><?php echo _escape($user['name']); ?></h2>
-        <p>
-            <?php echo _escape($user['gender']);?>
-        <p>
-            <?php _e('Born at'); ?> <?php echo _escape($user['birthdate']); ?>
+        <a class="btn" href="">
+            <i class="icon-envelope"></i>
+            <?php _e('Send message'); ?>
+        </a>
+        <?php } ?>
     </div>
 </div>
-
 <ul class="nav nav-tabs">
     <?php foreach ($nav['items']  as $item) { ?>
     <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
