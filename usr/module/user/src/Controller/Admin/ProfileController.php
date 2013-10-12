@@ -76,19 +76,21 @@ class ProfileController extends ActionController
         $fields = Pi::registry('profile', 'user')->read();
 
         foreach ($fields as $field) {
-            if ($field['type'] == 'compound') {
-                $compounds[$field['name']] = array(
-                    'name'   => $field['name'],
-                    'title'  => $field['title'],
-                    'module' => $field['module'],
-                );
-            } else {
-                $profile[$field['name']] = array(
-                    'name'   => $field['name'],
-                    'module' => $field['module'],
-                    'title'  => $field['title'],
+            if ($field['is_display']) {
+                if ($field['type'] == 'compound') {
+                    $compounds[$field['name']] = array(
+                        'name'   => $field['name'],
+                        'title'  => $field['title'],
+                        'module' => $field['module'],
+                    );
+                } else {
+                    $profile[$field['name']] = array(
+                        'name'   => $field['name'],
+                        'module' => $field['module'],
+                        'title'  => $field['title'],
 
-                );
+                    );
+                }
             }
         }
 
@@ -205,11 +207,9 @@ class ProfileController extends ActionController
      */
     public function updateFieldAction()
     {
-        $this->view()->setTemplate(false);
         $result = array(
             'status' => 0
         );
-
         $name          = _post('name');
         $compound      = _post('compound');
         $title         = _post('title');
@@ -313,34 +313,13 @@ class ProfileController extends ActionController
         ));
         try {
             $row->save();
-            $status['status'] = 1;
+            $status['status']  = 1;
             $status['message'] = __('Set privacy successfully');
         } catch (\Exception $e) {
             return $status;
         }
 
         return $status;
-    }
-
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
-
-//        $data = _post('data');
-//        $data = $this->getGroupDisplay();
-//        d($data);
-//        list($displayGroup, $displayFiled) = $this->canonizeDressUp($data);
-//        d($displayFiled);
-//        d($displayGroup);
-        //$data = $this->getGroupDisplay();
-        //d($this->canonizeDressUp($data));
-
-//        $displayGroupModel = $this->getModel('display_group');
-//        $displayFiledModel = $this->getModel('display_field');
-
-        // Flush
-//        $displayGroupModel->delete(array());
-//        $displayFiledModel->delete(array());
     }
 
     /**
@@ -351,9 +330,9 @@ class ProfileController extends ActionController
     protected function getGroupDisplay()
     {
         $profileMeta = Pi::registry('profile', 'user')->read();
-        $result = array();
-        $groupModel = $this->getModel('display_group');
-        $select = $groupModel->select()->where(array());
+        $result      = array();
+        $groupModel  = $this->getModel('display_group');
+        $select      = $groupModel->select()->where(array());
         $select->order('order');
         $rowset = $groupModel->selectWith($select);
 
