@@ -52,7 +52,7 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get activity meta for nav display
-        $nav = $this->getNav('profile');
+        $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
         $quicklink = $this->getQuicklink();
@@ -89,7 +89,7 @@ class ProfileController extends ActionController
         // Filter field according to privacy setting
         $profileGroup = $this->filterProfile($uid, $role, $profileGroup);
         // Get activity meta for nav display
-        $nav = $this->getNav('profile', $uid);
+        $nav = Pi::api('user', 'nav')->getList('profile', $uid);
         // Get quicklink
         $quicklink = $this->getQuicklink();
 
@@ -787,135 +787,6 @@ class ProfileController extends ActionController
         }
 
         return $result;
-
-    }
-
-    /**
-     * Set nav form home page profile and activity
-     *
-     * @param $uid
-     * @return array
-     */
-    protected function getNav($cur, $uid = '')
-    {
-        // Get activity list
-        $items = array();
-        $nav   = array(
-            'cur'   => $cur,
-            'items' => $items,
-        );
-
-        if (!$uid) {
-            // Owner nav
-
-            // Set homepage
-            $homepageUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'index',
-                )
-            );
-            $items[] = array(
-                'title' => __('Homepage'),
-                'name'  => 'homepage',
-                'url'   => $homepageUrl,
-                'icon'  => '',
-            );
-
-            // Set profile
-            $profileUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index',
-                )
-            );
-            $items[] = array(
-                'title' => __('Profile'),
-                'name'  => 'profile',
-                'url'   => $profileUrl,
-                'icon'  => '',
-            );
-
-            // Set activity
-            $activityList = Pi::api('user', 'activity')->getList();
-            foreach ($activityList as $key => $value) {
-                $url = $this->url(
-                    'user',
-                    array(
-                        'controller' => 'activity',
-                        'action'     => 'index',
-                        'name'       => $key,
-                    )
-                );
-                $items[] = array(
-                    'title' => $value['title'],
-                    'name'  => $key,
-                    'icon'  => $value['icon'],
-                    'url'   => $url,
-                );
-            }
-
-            $nav['items'] = $items;
-        } else {
-            // Other view
-            // Set homepage
-            $homepageUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'index',
-                    'uid'        => $uid
-                )
-            );
-            $items[] = array(
-                'title' => __('Homepage'),
-                'name'  => 'homepage',
-                'url'   => $homepageUrl,
-                'icon'  => '',
-            );
-
-            // Set profile
-            $profileUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index',
-                    'uid'        => $uid,
-                )
-            );
-            $items[] = array(
-                'title' => __('Profile'),
-                'name'  => 'profile',
-                'url'   => $profileUrl,
-                'icon'  => '',
-            );
-
-            // Set activity
-            $activityList = Pi::api('user', 'activity')->getList();
-            foreach ($activityList as $key => $value) {
-                $url = $this->url(
-                    'user',
-                    array(
-                        'controller' => 'activity',
-                        'action'     => 'index',
-                        'uid'        => $uid,
-                        'name'       => $key,
-                    )
-                );
-                $items[] = array(
-                    'title' => $value['title'],
-                    'name'  => $key,
-                    'icon'  => $value['icon'],
-                    'url'   => $url,
-                );
-            }
-
-            $nav['items'] = $items;
-        }
-
-        return $nav;
 
     }
 
