@@ -89,6 +89,19 @@ class Name extends AbstractValidator
             }
         }
 
+        if ($this->options['checkDuplication']) {
+            $where = array('name' => $value);
+            if (!empty($context['id'])) {
+                $where['id <> ?'] = $context['id'];
+            }
+            //$rowset = Pi::model('account', 'user')->select($where);
+            $count = Pi::model('account', 'user')->count($where);
+            if ($count) {
+                $this->error(static::USED);
+                return false;
+            }
+        }
+
         return true;
     }
 
