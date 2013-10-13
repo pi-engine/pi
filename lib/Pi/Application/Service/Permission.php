@@ -44,7 +44,7 @@ use Pi\Application\AbstractApi;
 class Permission extends AbstractService
 {
     /** @var int Root user id */
-    const ROOT_UID = 1;
+    //const ROOT_UID = 1;
 
     /**
      * Application section: front, admin
@@ -458,8 +458,11 @@ class Permission extends AbstractService
      */
     public function isRoot($uid = null)
     {
+        /*
         $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
         $result = static::ROOT_UID === $uid ? true : false;
+        */
+        $result = Pi::service('user')->isRoot($uid);
 
         return $result;
     }
