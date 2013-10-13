@@ -25,6 +25,8 @@ class Activity extends AbstractResource
     /**
      * Get activity log list
      *
+     * Returns activity meta data and log list
+     *
      * @param int       $uid
      * @param string    $name
      * @param int       $limit

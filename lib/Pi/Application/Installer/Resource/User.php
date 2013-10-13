@@ -131,7 +131,7 @@ use Pi;
  *          <name>  => array(
  *              'title'     => __('Activity Title'),
  *              'callback'  => <callback>
- *              'link'      => <link-to-full-list>,
+ *              //'link'      => <link-to-full-list>,
  *
  *              ['icon'     => <img-src>,]
  *          ),
