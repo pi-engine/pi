@@ -11,7 +11,7 @@
  */
 
 /**
- * Host definition file
+ * Host definition file with comprehensive specification
  *
  * Paths/URLs to system folders
  *
@@ -25,13 +25,13 @@ return array(
     // If URI is a relative one then www root URI will be prepended
     'uri'       => array(
         // WWW root URI
-        'www'       => '%www_uri%',
+        'www'       => 'http://pi.tld',
         // URI to access uploads directory
-        'upload'    => '%upload_uri%',
+        'upload'    => 'http://upload.pi.tld',
         // URI to access assets directory
-        'asset'     => '%asset_uri%',
+        'asset'     => 'http://asset.pi.tld',
         // URI to access static files directory
-        'static'    => '%static_uri%',
+        'static'    => 'http://static.pi.tld',
     ),
 
     // Paths to resources
@@ -39,43 +39,43 @@ return array(
     'path'      => array(
         // Sharable paths
         // WWW root path, dependent sub folders: `script`, `public`
-        'www'       => '%www_path%',
+        'www'       => '/path/to/pi-application/www',
         // Library directory
-        'lib'       => '%lib_path%',
+        'lib'       => '/path/to/pi-framework/lib',
         // User extension directory
-        'usr'       => '%usr_path%',
+        'usr'       => '/path/to/pi-framework/usr',
         // Application module directory
-        'module'    => '%module_path%',
+        'module'    => '/path/to/pi-framework/module',
         // Theme directory
-        'theme'     => '%theme_path%',
+        'theme'     => '/path/to/pi-framework/theme',
         // Path to static files directory
-        'static'    => '%static_path%',
+        'static'    => '/path/to/pi-framework/static',
         // Path to vendor library directory: default as `lib/vendor`
-        'vendor'    => '%vendor_path%',
+        'vendor'    => '/path/to/pi-framework/vendor',
         // Path to module custom directory: default as `usr/custom`
-        'custom_module' => '%custom_module_path%',
+        'custom_module' => '/path/to/pi-framework/custom',
 
         // Application specific paths
         // Path to uploads directory
-        'upload'    => '%upload_path%',
+        'upload'    => '/path/to/pi-application/upload',
         // Path to assets directory
-        'asset'     => '%asset_path%',
+        'asset'     => '/path/to/pi-application/asset',
         // User data directory
-        'var'       => '%var_path%',
+        'var'       => '/path/to/pi-application/var',
 
         // Sub-paths of var
         // Path to global collective configuration directory
-        'config'    => '%config_path%',
+        'config'    => '/path/to/pi-application/config',
         // Path to custom collective configuration directory
-        'custom'    => '%custom_path%',
+        'custom'    => '/path/to/pi-application/custom',
         // Path to cache files directory
-        'cache'     => '%cache_path%',
+        'cache'     => '/path/to/pi-application/cache',
         // Path to logs directory
-        'log'       => '%log_path%',
+        'log'       => '/path/to/pi-application/log',
     ),
 
-    // Paths dependent on upper paths
-    'directory' => array(
+    // Dependent paths to resources
+    'directory'     => array(
         'public'    => array(
             'parent'    => 'www',
             'folder'    => 'public',
