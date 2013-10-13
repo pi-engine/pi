@@ -70,5 +70,7 @@ return array(
         'cache'     => '%cache_path%',
         // Path to logs directory
         'log'       => '%log_path%',
+        // Path to module custom directory
+        'custom_module' => '%custom_module_path%',
     ),
 );
