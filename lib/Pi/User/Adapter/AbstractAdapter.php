@@ -174,7 +174,7 @@ abstract class AbstractAdapter implements BindInterface
     public function isRoot($uid = null)
     {
         if ($this->rootUid) {
-            $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
+            $uid = $this->verifyUid($uid);
             $result = $this->rootUid === $uid ? true : false;
         } else {
             $result = false;

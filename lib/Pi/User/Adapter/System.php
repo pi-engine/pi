@@ -101,6 +101,9 @@ class System extends AbstractAdapter
      */
     public function deleteUser($uid)
     {
+        if ($this->isRoot($uid)) {
+            return false;
+        }
         return Pi::api('system', 'user')->deleteUser($uid);
     }
 
@@ -125,6 +128,9 @@ class System extends AbstractAdapter
      */
     public function disableUser($uid)
     {
+        if ($this->isRoot($uid)) {
+            return false;
+        }
         return Pi::api('system', 'user')->disableUser($uid);
     }
     /**#@-*/
