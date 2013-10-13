@@ -39,7 +39,7 @@ class PluginManager extends ZendPluginManager
         'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
 
         // Pi custom plugins
-        'acl'               => 'Pi\Mvc\Controller\Plugin\Acl',
+        //'acl'               => 'Pi\Mvc\Controller\Plugin\Acl',
         'cache'             => 'Pi\Mvc\Controller\Plugin\Cache',
         'config'            => 'Pi\Mvc\Controller\Plugin\Config',
         'jump'              => 'Pi\Mvc\Controller\Plugin\Jump',
