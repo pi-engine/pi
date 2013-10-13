@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Extra\Demo;
+namespace Custom\Demo;
 
 /**
  * Demo module extra class
@@ -17,4 +17,9 @@ namespace Extra\Demo;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Extra
-{}
+{
+    public function render()
+    {
+        return __METHOD__;
+    }
+}
