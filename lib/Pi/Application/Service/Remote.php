@@ -10,6 +10,7 @@
 
 namespace Pi\Application\Service;
 
+use Zend\Http\Response;
 use Zend\Http\Client\Adapter\AdapterInterface;
 use Zend\Uri\Uri;
 
@@ -144,6 +145,25 @@ class Remote extends AbstractService
     }
 
     /**
+     * Parse fetched remote content to response
+     *
+     * @param string $content
+     *
+     * @return bool|array
+     */
+    protected function parseResponse($content = '')
+    {
+        $response = Response::fromString($content);
+        if ($response->isOk()) {
+            $result = $result = json_decode($response->getBody(), true);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
      * Perform a GET request
      *
      * @param string $url
@@ -162,8 +182,8 @@ class Remote extends AbstractService
             $uri->setQuery($params);
         }
         $this->write('GET', $uri);
-        $result = $this->read();
-        $result = json_decode($result, true);
+        $response = $this->read();
+        $result = $this->parseResponse($response);
 
         return $result;
     }
@@ -191,8 +211,8 @@ class Remote extends AbstractService
             $body = $params;
         }
         $this->write('POST', $url, '1.1', array(), $body);
-        $result = $this->read();
-        $result = json_decode($result, true);
+        $response = $this->read();
+        $result = $this->parseResponse($response);
 
         return $result;
     }

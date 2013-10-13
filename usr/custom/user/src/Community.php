@@ -27,7 +27,7 @@ class Community extends AbstractActivity
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $remote = 'http://slave/api/user/community';
+        $remote = 'http://slave/api/service/community';
         $result = Pi::service('remote')->get($remote, array(
             'uid'   => $uid,
             'limit' => $limit,
