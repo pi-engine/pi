@@ -112,7 +112,7 @@ class MaintenanceController extends ActionController
         );
 
         $data = array(
-            'logs' => $logs,
+            'logs'      => $logs,
             'paginator' => $paginator,
         );
 
@@ -442,7 +442,7 @@ class MaintenanceController extends ActionController
 
         $lastMonth = mktime(
             0,0,0,
-            date("m") -1,
+            date("m") - 1,
             date("d"),
             date("Y")
         );
