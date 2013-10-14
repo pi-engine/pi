@@ -58,7 +58,7 @@ class ActivityController extends ActionController
 
         // Get activity contents
         $activityContents = Pi::api('user', 'activity')->get($uid, $name, $limit);
-vd($activityContents);
+
         // Get nav
         if ($isOwner) {
             $nav = Pi::api('user', 'nav')->getList($name);
