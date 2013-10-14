@@ -80,6 +80,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
+ * @method \Pi\User\Adapter\AbstractAdapter::isRoot($uid)
  * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields, $setRole = true)
  * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
  * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)

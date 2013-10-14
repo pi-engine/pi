@@ -122,7 +122,7 @@ CREATE TABLE `{activity}` (
   `description`     text,
   `module`          varchar(64)     NOT NULL    default '',
   -- Link to 'Get more'
-  `link`            varchar(255)    NOT NULL    default '',
+  #`link`            varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      unsigned    NOT NULL    default '0',
   -- Display order, '0' for hidden

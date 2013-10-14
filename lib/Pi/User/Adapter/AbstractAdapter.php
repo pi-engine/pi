@@ -75,6 +75,9 @@ abstract class AbstractAdapter implements BindInterface
      */
     protected $model;
 
+    /** @var int Root user id */
+    protected $rootUid = 1;
+
     /**
      * Constructor
      *
@@ -160,6 +163,25 @@ abstract class AbstractAdapter implements BindInterface
     /**#@+
      * User operations
      */
+
+    /**
+     * Check if user is root user
+     *
+     * @param null|int $uid
+     *
+     * @return bool
+     */
+    public function isRoot($uid = null)
+    {
+        if ($this->rootUid) {
+            $uid = $this->verifyUid($uid);
+            $result = $this->rootUid === $uid ? true : false;
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
 
     /**
      * Get user data model

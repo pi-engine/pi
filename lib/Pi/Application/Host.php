@@ -103,6 +103,54 @@ class Host
     );
 
     /**
+     * Paths dependent on other paths
+     *
+     * @var array
+     */
+    protected $directory = array(
+        'public'    => array(
+            'parent'    => 'www',
+            'folder'    => 'public',
+        ),
+        'asset' => array(
+            'parent'    => 'www',
+            'folder'    => 'asset',
+        ),
+        'upload' => array(
+            'parent'    => 'www',
+            'folder'    => 'upload',
+        ),
+        'static' => array(
+            'parent'    => 'www',
+            'folder'    => 'static',
+        ),
+        'module' => array(
+            'parent'    => 'usr',
+            'folder'    => 'module',
+        ),
+        'theme' => array(
+            'parent'    => 'usr',
+            'folder'    => 'theme',
+        ),
+        'custom_module' => array(
+            'parent'    => 'usr',
+            'folder'    => 'custom',
+        ),
+        'config' => array(
+            'parent'    => 'var',
+            'folder'    => 'config',
+        ),
+        'log' => array(
+            'parent'    => 'var',
+            'folder'    => 'log',
+        ),
+        'custom' => array(
+            'parent'    => 'var',
+            'folder'    => 'custom',
+        ),
+    );
+
+    /**
      * Constructor
      *
      * @param string|array $config Host file path or array of path settings
@@ -247,6 +295,14 @@ class Host
         } else {
             $hostConfig['uri'] = $configs['uri'];
         }
+        if (isset($hostConfig['directory'])) {
+            $hostConfig['directory'] = array_merge(
+                $configs['directory'],
+                $hostConfig['directory']
+            );
+        } elseif (!empty($configs['directory'])) {
+            $hostConfig['directory'] = $configs['directory'];
+        }
 
         // Canonize www URI
         if (empty($hostConfig['uri']['www'])) {
@@ -254,8 +310,11 @@ class Host
         }
 
         // Load from config file
-        $this->path = $hostConfig['path'];
-        $this->uri = $hostConfig['uri'];
+        $this->path         = $hostConfig['path'];
+        $this->uri          = $hostConfig['uri'];
+        if (!empty($hostConfig['directory'])) {
+            $this->directory    = $hostConfig['directory'];
+        }
 
         // Set baseLocation
         $pos = strpos($hostConfig['uri']['www'], '/', 9);
@@ -320,10 +379,17 @@ class Host
      */
     public function path($url)
     {
-        $uri = null;
+        $uri        = null;
+        $section    = null;
+        $path       = null;
         // Path of predefined section, w/o sub path
-        if (isset($this->path[$url])) {
+        if (!empty($this->path[$url])) {
             list($section, $path) = array($url, '');
+        // Relative path with predefined directory
+        } elseif (!empty($this->directory[$url])) {
+            $directory  = $this->directory[$url];
+            $section    = $directory['parent'];
+            $path       = $directory['folder'];
         // Relative path
         } elseif (false === strpos($url, ':') && $url{0} !== '/') {
             // No '/' included, map to www path
@@ -336,6 +402,11 @@ class Host
                 if (!isset($this->path[$section])) {
                     list($section, $path) = array('www', $url);
                 }
+            }
+            if (!empty($this->directory[$section])) {
+                $directory  = $this->directory[$section];
+                $section    = $directory['parent'];
+                $path       = $directory['folder'] . '/' . $path;
             }
         } else {
             $uri = $url;
@@ -375,11 +446,19 @@ class Host
      */
     public function url($url, $absolute = false)
     {
-        $uri = null;
-        $path = '';
+        $uri        = null;
+        $section    = null;
+        $path       = null;
         // URI of predefined section, w/o sub path
-        if (isset($this->uri[$url])) {
+        if (!empty($this->uri[$url])) {
             list($section, $path) = array($url, '');
+        // Relative URI with predefined directory
+        } elseif (!empty($this->directory[$url])
+            && !empty($this->uri[$this->directory[$url]['parent']])
+        ) {
+            $directory  = $this->directory[$url];
+            $section    = $directory['parent'];
+            $path       = $directory['folder'];
         // Relative URI
         } elseif (false === strpos($url, '://')) {
             // No '/' included, map to www path
@@ -392,6 +471,11 @@ class Host
                 if (!isset($this->uri[$section])) {
                     list($section, $path) = array('www', $url);
                 }
+            }
+            if (!empty($this->directory[$section])) {
+                $directory  = $this->directory[$section];
+                $section    = $directory['parent'];
+                $path       = $directory['folder'] . '/' . $path;
             }
         // Absolute URI
         } else {

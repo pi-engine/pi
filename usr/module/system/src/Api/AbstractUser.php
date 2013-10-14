@@ -406,6 +406,9 @@ abstract class AbstractUser extends AbstractApi
         if (!$uid) {
             return false;
         }
+        if (Pi::service('user')->isRoot($uid)) {
+            return false;
+        }
 
         $model = Pi::model('user_account');
         $row = $model->find($uid);
@@ -490,6 +493,9 @@ abstract class AbstractUser extends AbstractApi
     public function enableAccount($uid, $flag = true)
     {
         if (!$uid) {
+            return false;
+        }
+        if (!$flag && Pi::service('user')->isRoot($uid)) {
             return false;
         }
 

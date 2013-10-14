@@ -7,14 +7,15 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Extra\Demo;
+namespace Module\Service\Controller\Front;
+
+use Module\Service\Controller\Api\CommunityController as CommunityApi;
 
 /**
- * Demo module extra class
- *
- * Solely for demonstration.
+ * Community webservice controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Extra
-{}
+class CommunityController extends CommunityApi
+{
+}

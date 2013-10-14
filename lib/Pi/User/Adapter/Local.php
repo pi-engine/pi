@@ -95,6 +95,9 @@ class Local extends System
      */
     public function deleteUser($uid)
     {
+        if ($this->isRoot($uid)) {
+            return false;
+        }
         return Pi::api('user', 'user')->deleteUser($uid);
     }
 
@@ -119,6 +122,9 @@ class Local extends System
      */
     public function disableUser($uid)
     {
+        if ($this->isRoot($uid)) {
+            return false;
+        }
         return Pi::api('user', 'user')->disableUser($uid);
     }
     /**#@-*/

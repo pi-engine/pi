@@ -183,8 +183,8 @@ class Pi
         $options = array(
             // Top namespaces
             'top'           => array(
-                'Pi'    => static::path('lib') . '/Pi',
-                'Zend'  => static::path('lib') . '/Zend',
+                'Pi'        => static::path('lib') . '/Pi',
+                'Zend'      => static::path('lib') . '/Zend',
             ),
             // Regular namespaces
             'namespace'     => array(
@@ -194,10 +194,10 @@ class Pi
             ),
             // Directory of modules
             'module_path'   => static::path('module'),
-            // Directory of extras
-            'extra_path'    => !empty($paths['extra'])
-                               ? $paths['extra']
-                               : static::path('usr') . '/extra',
+            // Directory of module custom classes
+            'custom_path'   => !empty($paths['custom_module'])
+                               ? $paths['custom_module']
+                               : static::path('usr') . '/custom',
             // Vendor directory
             'include_path'  => !empty($paths['vendor'])
                                ? $paths['vendor']
