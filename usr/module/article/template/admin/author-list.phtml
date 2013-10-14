@@ -5,14 +5,14 @@
 <div id="jsList">
     <div class="clearfix form-inline">
         <a class="btn" href="<?php echo $this->url('', array('action' => 'add')) ?>"><?php _e('Add') ?></a>
-        <form class="pull-right form-search" 
+        <form class="pull-right" 
               method="get" 
-              action="<?php echo $this->url('', array('action' => 'list')) ?>">
+              action="<?php echo $this->url('', array('action' => 'list')) ?>" style="margin: 0">
             <div class="input-append">
                 <input type="text" 
                        value="" 
                        placeholder="<?php _e('Name') ?>" 
-                       class="input-medium search-query" 
+                       class="input-medium" 
                        name="name"> 
                 <button type="submit" class="btn"><?php _e('Search') ?></button>
             </div>

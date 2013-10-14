@@ -1435,6 +1435,7 @@ var FeatureView = Backbone.View.extend({
             });
         }
         this.$el   = $("#jsUpload");
+        this.$("#media-button").html($("#media-upload-button").html());
         this.input = $('input[name="upload"]');
         this.fileupload();
     },
@@ -1491,11 +1492,17 @@ var FeatureView = Backbone.View.extend({
             if (clearData == true) {
                 self.clearMediaData();
             }
+            if (!self.$('input[name="image-id"]').val()) {
+                self.disableButton(true);
+            }
+            self.$("#media-button").removeClass("hide");
         });
     },
     renderUpload    : function(obj) {
         obj.preview_url = obj.preview_url + '?' + new Date().getTime();
         $('#media-image').html(_.template($('#media-uploaded-image').html(), obj));
+        $("#media-button").addClass("hide");
+        this.disableButton(false);
     },
     saveUploadToMedia : function(id) {
         var url = '<?php echo $this->url('admin', array(
@@ -1540,7 +1547,8 @@ var FeatureView = Backbone.View.extend({
                 self.render({preview_url: result.data.preview_url});
                 // Remove all generated data
                 self.removeMedia();
-                $("#media-image").html(page.mediaDefaultTemplate);
+                $("#media-image").html('');
+                $("#media-button").removeClass("hide");
             } else {
                 alert(result.message);
             }
@@ -1622,15 +1630,20 @@ var FeatureView = Backbone.View.extend({
             title   : title
         });
         // Clearing data from upload
-        this.removeUpload(false);
+        if ('upload' == this.$('input[name="image-source"]').val()) {
+            this.removeUpload(false);
+        }
         
         // Setting data
         $('#media-select-result').html(content);
         this.setMediaData('media_id/' + id, 'media');
+        
+        this.disableButton(false);
     },
     removeMedia : function() {
         $('#media-select-result').html('');
         this.clearMediaData();
+        this.disableButton(true);
     },
     clearMediaData : function() {
         $('input[name="image-id"]').val('');
@@ -1663,6 +1676,15 @@ var FeatureView = Backbone.View.extend({
 
             // Creating temporary image for feature
             self.saveFeature();
+        }
+    },
+    disableButton   : function(status) {
+        if (status) {
+            this.$("#media-cancel").addClass("disabled");
+            this.$("#media-process").addClass("disabled");
+        } else {
+            this.$("#media-cancel").removeClass("disabled");
+            this.$("#media-process").removeClass("disabled");
         }
     }
 });

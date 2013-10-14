@@ -24,7 +24,7 @@
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']) ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']) ?>" class="check-one hide">
                     <i class="item-delete icon-remove hide"></i>
-                    <img src="<?php echo Pi::url($media['url']) ?>" style="vertical-align: bottom">
+                    <img src="<?php echo Pi::url($media['url']) ?>" style="vertical-align: bottom; max-height: 100%">
                     <div class="list-operation hide"></div>
                     <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])) ?>"><?php _e('Edit') ?></button>
                     <a class="item-detail hide" target="_blank" href="<?php echo $this->url('', array('action' => 'detail', 'id' => $media['id'])) ?>">
@@ -44,7 +44,7 @@
 <script>
 (function($){
     var normalList = {
-        url : "<?php echo $this->url('', array('controller' => 'media','action' => '')) ?>" . replace(/\/$/,""),
+        url : "<?php echo $this->url('', array('controller' => 'media','action' => '')) ?>" . replace(/list\/$/,""),
         el  : $(".article-media-normal"),
         $   : function(selector) {
             return this.el.find(selector);

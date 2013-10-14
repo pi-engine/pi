@@ -208,6 +208,7 @@ div .well {
     padding: 0 5px 5px 5px;
     border: solid 1px #fff;
     cursor: pointer;
+    text-align: center;
 }
 .list-item img {
 }

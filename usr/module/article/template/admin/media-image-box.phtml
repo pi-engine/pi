@@ -17,14 +17,16 @@
                     </a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="image-upload">
-                    <div id="media-image" class="media-upload-image">
-                    </div>
+            <div class="tab-content" style="overflow: hidden">
+                <div class="tab-pane active" id="image-upload" style="margin-top: 20px">
+                    <div id="media-image" class="media-upload-image"></div>
+                    <div id="media-button"></div>
+                    <!--
                     <span class="btn upload fileinput-button">
                         <?php _e('Upload') ?>
                         <input type="file" name="upload">
                     </span>
+                    -->
                 </div>
                 <div class="tab-pane" id="image-choose">
                     <div class="clearfix form-inline" style="margin-bottom: 20px">
@@ -68,8 +70,8 @@
     </div>
     <!-- Footer -->
     <div class="modal-footer">
-        <button id="media-cancel" class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancel') ?></button>
-        <button id="media-process" class="btn btn-primary" data-dismiss="modal" ><?php echo __('Yes') ?></button>
+        <button id="media-cancel" class="btn disabled" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancel') ?></button>
+        <button id="media-process" class="btn btn-primary disabled" data-dismiss="modal" ><?php echo __('Yes') ?></button>
     </div>
 </div>
 
@@ -101,4 +103,15 @@
 <script id="media-uploaded-image" type="text/template">
     <div class="black-bg"><i class="media icon-remove"></i></div>
     <img style="<% if (h / w > 0.75) { %>height: 240px; <% } else { %> width: 320px <% } %>" src="<%= preview_url %>">
+</script>
+
+<!-- Upload button -->
+<script id="media-upload-button" type="text/template">
+    <div class="btn upload fileinput-button" style="margin: -320px 0 0 120px">
+        <?php _e('Upload') ?>
+        <input type="file" name="upload">
+    </div>
+    <div class="muted" style="line-height: 0; margin: -140px 0 0 50px; font-size: 12px">
+        <?php echo __('Format supported: ') . implode(', ', $imageExtension) ?> (<?php echo $this->escape($maxMediaSize) ?>)
+    </div>
 </script>

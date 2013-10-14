@@ -88,7 +88,7 @@
         url     : "<?php echo $this->url(
             '', 
             array('controller' => 'article', 'action' => '')
-        ) ?>".replace(/\/$/,""),
+        ) ?>" . replace(/list-article\/$/,""),
         el      : $("#jsList"),
         $       : function (selector) {
             return this.el.find(selector);

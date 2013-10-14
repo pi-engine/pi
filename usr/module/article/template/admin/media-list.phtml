@@ -61,6 +61,7 @@
                     'action' => $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)),
                     'method' => 'get',
                     'class'  => 'pull-right',
+                    'style'  => 'margin: 0',
                 ));
                 echo $this->form()->openTag($form);
                 ?>
@@ -172,7 +173,7 @@
 <script>
 (function($){
     var page = {
-        url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')) ?>" . replace(/\/$/,""),
+        url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')) ?>" . replace(/list\/$/,""),
         type    : '<?php echo $this->escape($type) ?>',
         el      : $("#jsList"),
         $       : function(selector) {

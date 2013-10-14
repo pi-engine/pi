@@ -10,6 +10,9 @@
     .article-pull-title {
         padding: 10px 0 20px 0;
     }
+    form {
+        margin: 0;
+    }
 </style>
 
 <?php include 'message-box.phtml' ?>
@@ -35,7 +38,8 @@
                         <?php foreach ($categories as $val) { ?>
                         <option value="<?php echo $this->escape($val['id']) ?>" 
                             <?php if ($category == $val['id']) echo "selected" ?>>
-                                <?php echo $this->escape($val['title']) ?>
+                                <?php echo str_pad('', $val['depth'], '-', STR_PAD_LEFT) 
+                                    . ' ' . $this->escape($val['title']) ?>
                         </option>
                         <?php } ?>
                     </select>
@@ -44,7 +48,7 @@
                 $form->setAttributes(array(
                     'action' => $this->url('', array('action' => 'pull', 'topic' => $topic['id'])),
                     'method' => 'get',
-                    'class'  => 'pull-right form-search',
+                    'class'  => 'pull-right',
                 ));
                 echo $this->form()->openTag($form);
                 ?>
@@ -52,7 +56,7 @@
                     <?php
                     $element = $form->get('keyword');
                     $element->setAttributes(array(
-                        'class'       => 'input-medium search-query',
+                        'class'       => 'input-medium',
                         'placeholder' => $element->getOption('label') ?: __('Subject'),
                     ));
                     echo $this->formElement($element);
@@ -137,7 +141,7 @@
         url     : "<?php echo $this->url('', array(
             'controller' => 'article',
             'action'     => ''
-        )) ?>".replace(/\/$/,""),
+        )) ?>" . replace(/\/$/,""),
         el      : $("#jsList"),
         $       : function(selector){
             return this.el.find(selector);

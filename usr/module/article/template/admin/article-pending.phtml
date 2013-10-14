@@ -61,7 +61,7 @@
 (function($) {
     var page = { 
         el  : $("#jsList"),
-        url : "<?php echo $this->url('', array('controller' => 'draft','action' => '')) ?>".replace(/\/$/,""),
+        url : "<?php echo $this->url('', array('controller' => 'draft','action' => '')) ?>".replace(/list\/$/,""),
         $   : function(selector){
             return this.el.find(selector);
         },
