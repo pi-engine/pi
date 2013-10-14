@@ -15,12 +15,18 @@ if ($post) {
     <div class="pi-comment-header">
         <dl class="dl-horizontal">
             <dt><?php _e('Source:') ?></dt>
-            <dd><?php echo $target['title']; ?></dd>
-            <dt><?php _e('URL:') ?></dt>
-            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php _e('Click to open'); ?>">
-                    <?php _e('Click to open'); ?>
+            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
+                    <?php echo _escape($target['title']); ?>
                 </a>
             </dd>
+
+            <?php if ($post['reply']) { ?>
+                <dt><?php _e('Reply to:') ?></dt>
+                <dd><a href="<?php echo Pi::service('comment')->getUrl('post', array('post' => $post['reply'])); ?>" target="_blank" title="<?php _e('Click to open'); ?>">
+                        <?php echo sprintf(__('Comment #%d'), $post['reply']); ?>
+                    </a>
+                </dd>
+            <?php } ?>
         </dl>
     </div>
     <div class="pi-comment-list">
