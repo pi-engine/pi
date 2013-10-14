@@ -30,7 +30,7 @@ $paginator = $comment['paginator'];
 if ($posts) {
     foreach ($posts as $post) {
 ?>
-        <dl class="dl-horizontal pi-comment-post">
+        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
             <dt><?php _e('Source:') ?></dt>
             <dd><a href="<?php echo $post['target']['url']; ?>" target="_blank" title="<?php echo _escape($post['target']['title']); ?>">
                     <?php echo _escape($post['target']['title']); ?>
