@@ -46,10 +46,10 @@ class SendForm extends BaseForm
     public function init()
     {
         $this->add(array(
-            'name'          => 'username',
+            'name'          => 'name',
             'attributes'    => array(
-                'type'  => 'text',
-                'placeholder'     => 'Type the username',
+                'type'            => 'text',
+                'placeholder'     => 'Type the name',
             ),
             'options'       => array(
                 'label' => __('Recipient'),

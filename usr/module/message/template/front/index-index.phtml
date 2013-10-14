@@ -64,7 +64,7 @@
         <div class="media-body message-content">
             <h5 class="media-heading message-head">                
                 <span><?php echo $uid == $message['uid_from']?'To':'From';?></span>
-                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['username']; ?></a>
+                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['name']; ?></a>
             </h5>
             <p>
                 <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $message['id'])); ?>" class="message-content-link"><?php echo $message['content']; ?>

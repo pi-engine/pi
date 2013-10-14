@@ -22,7 +22,7 @@
             <?php _e('Setting'); ?>
         </a>
         <?php } else { ?>
-        <a class="btn" href="">
+        <a class="btn" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
             <i class="icon-envelope"></i>
             <?php _e('Send message'); ?>
         </a>
