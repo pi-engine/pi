@@ -58,7 +58,7 @@ class ActivityController extends ActionController
 
         // Get activity contents
         $activityContents = Pi::api('user', 'activity')->get($uid, $name, $limit);
-
+vd($activityContents);
         // Get nav
         if ($isOwner) {
             $nav = Pi::api('user', 'nav')->getList($name);
@@ -76,5 +76,13 @@ class ActivityController extends ActionController
             'is_owner'          => $isOwner,
         ));
 
+    }
+
+    /**
+     * Test for activity more link contents
+     */
+    public function moreAction()
+    {
+        $this->view()->setTemplate('activity-more');
     }
 }
