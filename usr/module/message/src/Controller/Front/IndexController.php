@@ -46,7 +46,7 @@ class IndexController extends AbstractController
         $offset = (int) ($page - 1) * $limit;
 
         //current user id
-        $userId = Pi::user()->getUser()->id;
+        $userId = Pi::user()->getIdentity();
 
         // dismiss alert
         Pi::user()->message->dismissAlert($userId);
@@ -115,8 +115,8 @@ class IndexController extends AbstractController
                 if ($userId == $v['uid_from']) {
                     $v['is_read'] = 1;
                     // get username url
-                    $v['username'] = Pi::user()->getUser($v['uid_to'])
-                                               ->identity;
+                    $v['name'] = Pi::user()->getUser($v['uid_to'])
+                                               ->name;
                     // username link, 4 locations
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_to']);
@@ -125,8 +125,8 @@ class IndexController extends AbstractController
                 } else {
                     $v['is_read'] = $v['is_read_to'];
                     //get username url
-                    $v['username'] = Pi::user()->getUser($v['uid_from'])
-                                               ->identity;
+                    $v['name'] = Pi::user()->getUser($v['uid_from'])
+                                               ->name;
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_from']);
                     //get avatar
@@ -160,7 +160,7 @@ class IndexController extends AbstractController
             $this->view()->assign('uid', $userId);
         } else {
             $messageList = array();
-        }
+        }vd($messageList);
         $this->renderNav();
         $this->view()->assign('messages', $messageList);
 
@@ -196,7 +196,22 @@ class IndexController extends AbstractController
      */
     public function sendAction()
     {
-        $form = $this->getSendForm('send');
+        $uid = Pi::user()->getIdentity();
+
+        // Redirect login page if not logged in
+        if (!$uid) {
+            $this->jump(
+                'user',
+                array('controller' => 'login', 'action' => 'index'),
+                __('Need login'),
+                2
+            );
+        }
+
+        $toUserId = _get('uid');
+        $name     = Pi::user()->get($toUserId, 'name');
+        $form     = $this->getSendForm('send');
+        $form->setData(array('name' => $name));
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -207,8 +222,9 @@ class IndexController extends AbstractController
                 return;
             }
             $data   = $form->getData();
-            //check username
-            $toUserId = Pi::user()->getUser($data['username'], 'identity')->id;
+            //check name
+            $toUserId = Pi::user()->getUids(array('name' => $data['name']));
+            $toUserId = array_shift($toUserId);
             if (!$toUserId) {
                 $this->view()->assign(
                     'errMessage',
@@ -220,11 +236,10 @@ class IndexController extends AbstractController
             }
 
             //current user id
-            $userId = Pi::user()->getUser()->id;
             $result = Pi::api('message')->send(
                 $toUserId,
                 $data['content'],
-                $userId
+                $uid
             );
             if (!$result) {
                 $this->view()->assign(
@@ -238,7 +253,7 @@ class IndexController extends AbstractController
 
             $this->redirect()->toRoute('', array(
                 'controller' => 'index',
-                'action' => 'index'
+                'action'     => 'index'
             ));
 
             return;
@@ -418,12 +433,12 @@ class IndexController extends AbstractController
 
         if ($userId == $detail['uid_from']) {
             //get username url
-            $detail['username'] = Pi::user()->getUser($detail['uid_to'])
-                                            ->identity;
+            $detail['name'] = Pi::user()->getUser($detail['uid_to'])
+                                            ->name;
         } else {
             //get username url
-            $detail['username'] = Pi::user()->getUser($detail['uid_from'])
-                                            ->identity;
+            $detail['name'] = Pi::user()->getUser($detail['uid_from'])
+                                            ->name;
         }
 
         //markup content

@@ -242,7 +242,6 @@ class Cache extends AbstractService
         $ttlOld         = null;
         if (is_string($options)) {
             $namespace = $options;
-            $options = array();
         } else {
             if (isset($options['ttl'])) {
                 $ttl = $options['ttl'];

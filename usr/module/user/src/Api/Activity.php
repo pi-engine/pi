@@ -55,12 +55,12 @@ class Activity extends AbstractApi
      */
     public function get($uid, $name, $limit, $offset = 0)
     {
-        $meta = Pi::registry('activity', 'user')->read($name);
+        $meta   = Pi::registry('activity', 'user')->read($name);
         $reader = new $meta['callback']($meta['module']);
 
-        $list = $reader->get($uid, $limit, $offset);
-        $log = array();
-        foreach ($list as $item) {
+        $contents = $reader->get($uid, $limit, $offset);
+        $log      = array();
+        foreach ($contents['list'] as $item) {
             if (is_string($item)) {
                 $log[] = array(
                     'time'      => null,
@@ -79,7 +79,7 @@ class Activity extends AbstractApi
             'description'   => $meta['description'],
             'module'        => $meta['module'],
             'icon'          => $meta['icon'],
-            'link'          => $meta['link'],
+            'link'          => $contents['link'],
             'log'           => $log,
         );
 

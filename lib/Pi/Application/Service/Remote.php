@@ -10,6 +10,7 @@
 
 namespace Pi\Application\Service;
 
+use Pi;
 use Zend\Http\Response;
 use Zend\Http\Client\Adapter\AdapterInterface;
 use Zend\Uri\Uri;
@@ -114,6 +115,9 @@ class Remote extends AbstractService
         if (!$url instanceof Uri) {
             $url = new Uri($url);
         }
+
+        $headers = $this->setAuthorization($headers);
+
         return $this->adapter()->write(
             $method,
             $url,
@@ -164,15 +168,94 @@ class Remote extends AbstractService
     }
 
     /**
+     * Set http auth to headers
+     *
+     * @param array $headers
+     *
+     * @return array
+     */
+    protected function setAuthorization($headers = array())
+    {
+        if (!array_key_exists('Authorization', $headers)) {
+            if ($this->getOption('username') && $this->getOption('password')) {
+                $httpauth = $this->getOption('httpauth') ?: 'basic';
+                $headers['Authorization'] = ucfirst($httpauth) . ' '
+                    . base64_encode($this->getOption('username') . ':'
+                    . $this->getOption('password'));
+            }
+        }
+
+        return $headers;
+    }
+
+    /**
      * Perform a GET request
      *
      * @param string $url
-     * @param array $params
+     * @param array  $params
+     * @param array  $headers
+     * @param array  $options
      *
      * @return mixed
      */
-    public function get($url, array $params = array())
-    {
+    public function get(
+        $url,
+        array $params = array(),
+        array $headers = array(),
+        array $options = array()
+    ) {
+        /**@+
+         * Check against cache
+         */
+        $cache = array();
+        if (false !== $options) {
+            $cache = $this->getOption('cache');
+            if ($options && false !== $cache) {
+                if (is_string($options)) {
+                    $cache['storage'] = $options;
+                } elseif (is_int($options)) {
+                    $cache['ttl'] = $options;
+                } elseif (is_array($options)) {
+                    if (isset($options['cache'])) {
+                        $cache = array_merge($cache, $options['cache']);
+                    } else {
+                        $cache = array_merge($cache, $options);
+                    }
+                }
+            }
+        }
+        if ($cache) {
+            $storage = null;
+            $cacheOptions = array(
+                'namespace' => 'remote',
+            );
+            if (!empty($cache['storage'])) {
+                $storage = Pi::service('cache')->loadStorage($cache['storage']);
+            }
+            if (!empty($cache['ttl'])) {
+                $cacheOptions['ttl'] = $cache['ttl'];
+            }
+            $cacheKey = md5($url . serialize($params) . serialize($headers));
+
+            $cache = array();
+            $cache['storage'] = $storage;
+            $cache['key'] = $cacheKey;
+            $cache['options'] = $cacheOptions;
+
+            $data = Pi::service('cache')->getItem(
+                $cache['key'],
+                $cache['options'],
+                $cache['storage']
+            );
+
+            if (null !== $data) {
+                $result = json_decode($data, true);
+                //d('Cache fetched.');
+                return $result;
+            }
+        }
+        /**@-*/
+
         $uri = new Uri($url);
         $host = $uri->getHost();
         $port = $uri->getPort();
@@ -181,9 +264,26 @@ class Remote extends AbstractService
         if ($params) {
             $uri->setQuery($params);
         }
-        $this->write('GET', $uri);
+
+        $headers = $this->setAuthorization($headers);
+        $this->write('GET', $uri, '1.1', $headers);
         $response = $this->read();
         $result = $this->parseResponse($response);
+
+        /**@+
+         * Save to cache
+         */
+        if ($cache) {
+            $data = json_encode($result);
+            $status = Pi::service('cache')->setItem(
+                $cache['key'],
+                $data,
+                $cache['options'],
+                $cache['storage']
+            );
+            //d('Remote cache: ' . $status);
+        }
+        /**@-*/
 
         return $result;
     }
@@ -193,11 +293,17 @@ class Remote extends AbstractService
      *
      * @param string $url
      * @param array $params
+     * @param array $headers
+     * @param array $options
      *
      * @return mixed
      */
-    public function post($url, array $params = array())
-    {
+    public function post(
+        $url,
+        array $params = array(),
+        array $headers = array(),
+        array $options = array()
+    ) {
         $uri = new Uri($url);
         $host = $uri->getHost();
         $port = $uri->getPort();
@@ -210,7 +316,8 @@ class Remote extends AbstractService
         } else {
             $body = $params;
         }
-        $this->write('POST', $url, '1.1', array(), $body);
+        $headers = $this->setAuthorization($headers);
+        $this->write('POST', $url, '1.1', $headers, $body);
         $response = $this->read();
         $result = $this->parseResponse($response);
 
