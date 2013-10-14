@@ -38,7 +38,7 @@ if (!empty($message)) { ?>
         <div class="message-detail-head">
             <h5 class="media-heading pull-left message-head">                
                 <span><?php echo $uid == $message['uid_from']?'To':'From';?></span>
-                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['username'] . ':'; ?></a>
+                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['name'] . ':'; ?></a>
             </h5>
             <p class="message-time text-right">
                <span class="muted"><?php echo date('Y/m/d H:i', $message['time_send']); ?></span>
