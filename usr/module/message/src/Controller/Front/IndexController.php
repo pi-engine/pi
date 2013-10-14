@@ -433,12 +433,12 @@ class IndexController extends AbstractController
 
         if ($userId == $detail['uid_from']) {
             //get username url
-            $detail['username'] = Pi::user()->getUser($detail['uid_to'])
-                                            ->identity;
+            $detail['name'] = Pi::user()->getUser($detail['uid_to'])
+                                            ->name;
         } else {
             //get username url
-            $detail['username'] = Pi::user()->getUser($detail['uid_from'])
-                                            ->identity;
+            $detail['name'] = Pi::user()->getUser($detail['uid_from'])
+                                            ->name;
         }
 
         //markup content
