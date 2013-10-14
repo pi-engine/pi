@@ -77,4 +77,12 @@ class ActivityController extends ActionController
         ));
 
     }
+
+    /**
+     * Test for activity more link contents
+     */
+    public function moreAction()
+    {
+        $this->view()->setTemplate('activity-more');
+    }
 }

@@ -55,42 +55,32 @@ class Activity extends AbstractApi
      */
     public function get($uid, $name, $limit, $offset = 0)
     {
-        $meta = Pi::registry('activity', 'user')->read($name);
-        $callback = $meta['callback'];
-        if (preg_match('|^http[s]://|i', $callback)) {
-            $data = Pi::service('remote')->get($callback, array(
-                'module'    => $meta['module'],
-                'uid'       => $uid,
-                'limit'     => $limit,
-                'offset'    => $offset,
-            ));
-        } else {
-            $reader = new $meta['callback']($meta['module']);
-            $data = $reader->get($uid, $limit, $offset);
-        }
-        $list = array();
-        foreach ($data['items'] as $item) {
+        $meta   = Pi::registry('activity', 'user')->read($name);
+        $reader = new $meta['callback']($meta['module']);
+
+        $contents = $reader->get($uid, $limit, $offset);
+        $log      = array();
+        foreach ($contents['list'] as $item) {
             if (is_string($item)) {
-                $list[] = array(
+                $log[] = array(
                     'time'      => null,
                     'message'   => $item,
                 );
             } else {
-                $list[] = array(
+                $log[] = array(
                     'time'      => isset($item['time']) ? $item['time'] : null,
                     'message'   => $item['message'],
                 );
             }
         }
-        $link = $data['link'];
 
         $result = array(
             'title'         => $meta['title'],
             'description'   => $meta['description'],
-            //'module'        => $meta['module'],
+            'module'        => $meta['module'],
             'icon'          => $meta['icon'],
-            'link'          => $link,
-            'items'         => $list,
+            'link'          => $contents['link'],
+            'log'           => $log,
         );
 
         return $result;
