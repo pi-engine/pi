@@ -681,12 +681,11 @@ class BuildController extends ActionController
     protected function addActivity()
     {
         $model = $this->getModel('activity');
-        for ($i = 1; $i < 8; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $data = array(
                 'name'     => 'user_activity' . $i,
                 'title'    => 'Activity' . $i,
                 'module'   => 'user',
-                'link'     => 'www.google.com',
                 'active'   => 1,
                 'display'  => $i,
                 'callback' => 'Module\\User\\ActivityTest',

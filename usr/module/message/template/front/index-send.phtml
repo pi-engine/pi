@@ -30,7 +30,7 @@
         $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
     ?>
     <?php
-        $element = $form->get('username');
+        $element = $form->get('name');
         echo sprintf('<div class="control-group%s"><label class="control-label message-label-left">%s</label><div class="controls message-input-right message-input-posi">%s%s</div></div>',
         $element->getMessages() ? ' error' : '',
         $element->getOption('label'),
