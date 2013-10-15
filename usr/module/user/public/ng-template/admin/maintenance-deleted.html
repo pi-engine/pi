@@ -1,0 +1,39 @@
+<form class="form-inline" style="margin: 0 30px 20px 8px;">
+  <div class="pull-right">
+    <button class="btn btn-link" ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
+    <strong>{{paginator.count}}</strong>
+  </div>
+  <input type="checkbox" ng-model="allChecked">
+  <button ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
+</form>
+<table class="table" ng-if="users.length">
+  <thead>
+    <tr>
+      <th style="width: 20px;">
+      <th>{{'UID' | translate}}
+      <th>{{'USERNAME' | translate}}
+      <th>{{'DISPLAYNAME' | translate}}
+      <th>{{'EMAIL' | translate}}
+      <th>{{'ACTIVATED' | translate}}
+      <th>{{'REGIESTER_TIME' | translate}}
+      <th>{{'DELET_TIME' | translate}}
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>
+        <input type="checkbox" ng-model="user.checked">
+      <td>{{user.id}}
+        <div class="pi-row-action">
+          <a href="javascript:void(0)" ng-click="clearAction(user)">{{'CLEAR' | translate}}</a>
+        </div>
+      <td>{{user.identity}}
+      <td>{{user.name}}
+      <td>{{user.email}}
+      <td>{{user.time_activated | date: 'yyyy-MM-dd HH:mm'}}
+      <td>{{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+      <td>{{user.time_deleted | date: 'yyyy-MM-dd HH:mm'}}
+</table>
+<div class="alert" ng-if="!users.length">
+  {{'NONE_DELETED_USERS' | translate}}
+</div>
+<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
+    class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
