@@ -505,21 +505,23 @@ class BuildController extends ActionController
     protected function addPrivacy()
     {
         $model = $this->getModel('field');
-        $select = $model->select()->where(array('is_display' => 1));
+        $select = $model->select()->where(array('active' => 1));
         $rowset = $model->selectWith($select);
         $privacyMap = array(0, 1, 2, 4, 255);
         $privacyModel = $this->getModel('privacy');
 
         foreach ($rowset as $row) {
-            $index = rand(0, 3);
-            $fields = array(
-                'field'     => $row->name,
-                'value'     => $privacyMap[$index],
-                'is_forced' => rand(0, 1)
-            );
+            if ($row['is_display'] || $row['type'] == 'compound') {
+                $index = rand(0, 3);
+                $fields = array(
+                    'field'     => $row->name,
+                    'value'     => $privacyMap[$index],
+                    'is_forced' => rand(0, 1)
+                );
 
-            $privacyRow = $privacyModel->createRow($fields);
-            $privacyRow->save();
+                $privacyRow = $privacyModel->createRow($fields);
+                $privacyRow->save();
+            }
         }
     }
 

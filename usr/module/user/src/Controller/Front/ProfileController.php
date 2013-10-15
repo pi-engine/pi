@@ -82,14 +82,20 @@ class ProfileController extends ActionController
 
         // Get user information
         $user = $this->getUser($uid);
+
         // Get display group
         $profileGroup = $this->getProfile($uid);
+
         // Get viewer role: public member follower following owner
         $role = $this->getPrivacyRole();
+
         // Filter field according to privacy setting
-        $profileGroup = $this->filterProfile($uid, $role, $profileGroup);
+        $profileGroup = $this->filterProfile($uid, $role, $profileGroup, 'group');
+        $user         = $this->filterProfile($uid, $role, $user, 'user');
+
         // Get activity meta for nav display
         $nav = Pi::api('user', 'nav')->getList('profile', $uid);
+
         // Get quicklink
         $quicklink = $this->getQuicklink();
 
@@ -817,7 +823,7 @@ class ProfileController extends ActionController
      * @param $role
      * @param $groups
      */
-    protected function filterProfile($uid, $role, $groups)
+    protected function filterProfile($uid, $role, $raw, $type)
     {
         $privacy = 0;
         $result  = array();
@@ -837,34 +843,43 @@ class ProfileController extends ActionController
                 break;
         }
 
-        foreach ($groups as $group) {
-            if ($group['compound']) {
-                $allow = $this->checkPrivacy(
-                    $uid,
-                    $group['compound'],
-                    $privacy
-                );
-                if ($allow) {
-                    $result[] = $group;
-                }
-            } else {
-               $data = $group;
-               $data['fields'] = array();
-               foreach (array_keys($group['fields'][0]) as $field) {
-                   $allow = $this->checkPrivacy(
-                       $uid,
-                       $field,
-                       $privacy
-                   );
+        if ($type == 'group') {
+            foreach ($raw as $group) {
+                if ($group['compound']) {
+                    $allow = $this->checkPrivacy(
+                        $uid,
+                        $group['compound'],
+                        $privacy
+                    );
+                    if ($allow) {
+                        $result[] = $group;
+                    }
+                } else {
+                    $data = $group;
+                    $data['fields'] = array();
+                    foreach (array_keys($group['fields'][0]) as $field) {
+                        $allow = $this->checkPrivacy(
+                            $uid,
+                            $field,
+                            $privacy
+                        );
 
-                   if ($allow) {
-                       $data['fields'][0] = $group['fields'][0][$field];
-                   }
-               }
-               if (!empty($data['fields'][0])) {
-                   $result[] = $data;
-               }
-               unset($data);
+                        if ($allow) {
+                            $data['fields'][0] = $group['fields'][0][$field];
+                        }
+                    }
+                    if (!empty($data['fields'][0])) {
+                        $result[] = $data;
+                    }
+                    unset($data);
+                }
+            }
+        } elseif ($type == 'user') {
+            foreach ($raw as $key => $value) {
+                $allow = $this->checkPrivacy($uid, $privacy, $key);
+                if ($allow) {
+                    $result[$key] = $value;
+                }
             }
         }
 
@@ -881,18 +896,27 @@ class ProfileController extends ActionController
      */
     protected function checkPrivacy($uid, $field, $privacy)
     {
-        $model  = $this->getModel('privacy_user');
+        $model       = $this->getModel('privacy_user');
+        $systemModel = $this->getModel('privacy');
         $select = $model->select()->where(
             array(
                 'uid'        => $uid,
                 'field'      => $field,
-                'value <= ?' => $privacy,
             )
         );
 
         $rowset = $model->selectWith($select)->current();
-
-        return $rowset ? 1 : 0;
+        if ($rowset) {
+            return $rowset['value'] <= $privacy ? 1 : 0;
+        } else {
+            // System default privacy setting
+            $row = $systemModel->find($field, 'field');
+            if ($row) {
+                return $row['value'] <= $privacy ? 1 : 0;
+            } else {
+                return 0;
+            }
+        }
     }
 
     /**
