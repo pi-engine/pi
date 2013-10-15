@@ -283,6 +283,7 @@ class User extends AbstractUseApi
      */
     public function set($uid, $field, $value)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
