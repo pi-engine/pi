@@ -3,14 +3,21 @@ $this->css($this->assetModule('script/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
 <div class="clearfix">
-    <a class="pull-right" href="<?php echo $activity_contents['title'];?>">
-        <?php _e('View all');?>
-    </a>
-    <h3 class="user-activity-title"><?php echo $activity_contents['title'];?></h3>
-    <?php foreach($activity_contents['log'] as $item) { ?>
-    <div class="user-underline-list">
-        <p class="p-small"><?php echo $item['message']; ?></p>
-        <span class="muted"><?php echo _date($item['time']); ?></span>
-    </div>
+    <?php if (!empty($data['content'])) { ?>
+    <?php } else { ?>
+        <?php if ($data['link']) { ?>
+            <a class="pull-right" href="<?php echo $data['link'];?>">
+                <?php _e('View all');?>
+            </a>
+        <?php } ?>
+        <h3 class="user-activity-title"><?php echo $data['title'];?></h3>
+        <?php foreach ($data['items'] as $item) { ?>
+        <div class="user-underline-list">
+            <p class="p-small"><?php echo $item['message']; ?></p>
+            <?php if ($item['time']) { ?>
+            <span class="muted"><?php echo _date($item['time']); ?></span>
+            <?php } ?>
+        </div>
+        <?php } ?>
     <?php } ?>
 </div>
