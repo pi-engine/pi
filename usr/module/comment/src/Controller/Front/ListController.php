@@ -91,9 +91,7 @@ class ListController extends ActionController
         $paginator  = null;
 
         if ($root) {
-            if (!$root['active']) {
-                $isActive = false;
-            }
+            $isActive = $root['active'];
             $page   = _get('page', 'int') ?: 1;
             $limit  = $this->config('list_limit') ?: 10;
             $offset = ($page - 1) * $limit;
