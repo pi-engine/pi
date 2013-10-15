@@ -60,7 +60,7 @@ if ($data['posts']) {
 <?php
     foreach ($data['posts'] as $post) {
 ?>
-        <dl class="dl-horizontal pi-comment-item">
+        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
             <dt><?php _e('User:');?></dt>
             <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
                     <?php echo $post['user']['name']; ?>

@@ -93,7 +93,7 @@ class Avatar extends AbstractService
      */
     public function getList(array $uids, $size = '', $attributes = array())
     {
-        $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
+        $avatars = (array) $this->getAdapter()->getList($uids, $size, $attributes);
         $missingUids = array();
         foreach ($uids as $uid) {
             if (empty($avatars[$uid])) {
@@ -102,11 +102,11 @@ class Avatar extends AbstractService
         }
         if ($missingUids) {
             $list = $this->getAdapter('local')->getList(
-                $uids,
+                $missingUids,
                 $size,
                 $attributes
             );
-            $avatars = array_merge($list, $avatars);
+            $avatars = $list + (array) $avatars;
         }
 
         return $avatars;

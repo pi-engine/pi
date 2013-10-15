@@ -315,7 +315,7 @@ class RegisterController extends ActionController
                 // Set perfect information flag in user table
                 Pi::user()->data()->set(
                     $uid,
-                    'profile-complete',
+                    'complete-profile',
                     1,
                     $this->getModule()
                 );
