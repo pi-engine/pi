@@ -472,4 +472,58 @@ class ListController extends ActionController
         ));
         $this->view()->setTemplate('comment-article', '', 'front');
     }
+
+    /**
+     * Batch operation
+     *
+     * @internal string|array $from
+     */
+    public function batchAction()
+    {
+        $op         = _post('op');
+        $uids       = _post('uids');
+        $uid        = _post('uid');
+        $all        = _post('all');
+        $from       = _post('from', array());
+
+        $model = Pi::model('post', 'comment');
+        if ($uid && $all) {
+            $where = array('uid' => $uid);
+        } elseif ($uids) {
+            $where = array('uid' => $uids);
+        } else {
+            $where = false;
+        }
+        if ($where) {
+            switch ($op) {
+                case 'enable':
+                    $model->update(array('active' => 1), $where);
+                    break;
+                case 'disable':
+                    $model->update(array('active' => 0), $where);
+                    break;
+                case 'delete':
+                    $model->delete($where);
+                    break;
+                default:
+                    break;
+            }
+        }
+        $result = array(
+            'status'    => 1,
+            'message'   => __('Operation succeeded.'),
+        );
+        $message = $result['message'];
+
+        // List, module/category, user
+        if (!$from) {
+            $from = array('action' => 'index');
+        } elseif (is_string($from)) {
+            $from = array('action'  => $from);
+        }
+        if (empty($from['action'])) {
+            $from['action'] = 'index';
+        }
+        $this->jump($from, $message);
+    }
 }
