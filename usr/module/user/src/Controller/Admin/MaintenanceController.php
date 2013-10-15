@@ -28,17 +28,17 @@ class MaintenanceController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('maintenance-index');
+        $this->view()->setTemplate('maintenance');
     }
 
     /**
-     * User statics
+     * User statistics
      *
      * @return array
      */
-    public function staticsAction()
+    public function statsAction()
     {
-        $data = $this->getStaticsData();d($data);exit;
+        $data = $this->getStatsData();
         return $data;
     }
 
@@ -112,7 +112,7 @@ class MaintenanceController extends ActionController
         );
 
         $data = array(
-            'logs'      => $logs,
+            'users'      => $logs,
             'paginator' => $paginator,
         );
 
@@ -215,9 +215,11 @@ class MaintenanceController extends ActionController
     /**
      * Get user ids
      *
-     * @param $sort
+     * @param string $sort
      * @param int $limit
      * @param int $offset
+     *
+     * @return array
      */
     protected function getUids($sort, $limit = 0, $offset = 0)
     {
@@ -367,7 +369,8 @@ class MaintenanceController extends ActionController
     /**
      * Get user log
      *
-     * @param $ids
+     * @param array $uids
+     *
      * @return array
      */
     protected function getUserLogs($uids)
@@ -419,11 +422,11 @@ class MaintenanceController extends ActionController
     }
 
     /**
-     * Get statics data
+     * Get stats data
      *
      * @return array
      */
-    protected function getStaticsData()
+    protected function getStatsData()
     {
         // Set time
         $today = mktime(
@@ -465,52 +468,52 @@ class MaintenanceController extends ActionController
 
 
         // Get register count
-        $userStatics['register']['today'] = $getCount(
+        $userStats['register']['today'] = $getCount(
             array('time_created > ?' => $today)
         );
-        $userStatics['register']['last_week'] = $getCount(
+        $userStats['register']['last_week'] = $getCount(
             array('time_created > ?' => $lastWeek)
         );
-        $userStatics['register']['last_month'] = $getCount(
+        $userStats['register']['last_month'] = $getCount(
             array('time_created > ?' => $lastMonth)
         );
-        $userStatics['register']['history'] = $getCount(
+        $userStats['register']['history'] = $getCount(
             array('time_created > ?' => $history)
         );
 
         // Get activated count
-        $userStatics['activated']['today'] = $getCount(
+        $userStats['activated']['today'] = $getCount(
             array('time_activated > ?' => $today)
         );
-        $userStatics['activated']['last_week'] = $getCount(
+        $userStats['activated']['last_week'] = $getCount(
             array('time_activated > ?' => $lastWeek)
         );
-        $userStatics['activated']['last_month'] = $getCount(
+        $userStats['activated']['last_month'] = $getCount(
             array('time_activated > ?' => $lastMonth)
         );
-        $userStatics['activated']['history'] = $getCount(
+        $userStats['activated']['history'] = $getCount(
             array('time_activated > ?' => $history)
         );
 
         // Get pending count
-        $userStatics['pending']['today'] = $getCount(array(
+        $userStats['pending']['today'] = $getCount(array(
             'time_activated'   => 0,
             'time_created > ?' => $today,
         ));
-        $userStatics['pending']['last_week'] = $getCount(array(
+        $userStats['pending']['last_week'] = $getCount(array(
             'time_activated'   => 0,
             'time_created > ?' => $lastWeek,
         ));
-        $userStatics['pending']['last_month'] = $getCount(array(
+        $userStats['pending']['last_month'] = $getCount(array(
             'time_activated'   => 0,
             'time_created > ?' => $lastMonth,
         ));
-        $userStatics['pending']['history'] = $getCount(array(
+        $userStats['pending']['history'] = $getCount(array(
             'time_activated'   => 0,
             'time_created > ?' => $history,
         ));
 
-        $ipStatic = function($time) {
+        $ipStats = function($time) {
             // Get top10 ip
             $modelAccount = Pi::model('user_account');
             $modelProfile = Pi::model('profile', 'user');
@@ -552,13 +555,16 @@ class MaintenanceController extends ActionController
 
         };
 
-        // Get ip static
-        $ipStatics['today']      = $ipStatic($today);
-        $ipStatics['last_week']  = $ipStatic($lastWeek);
-        $ipStatics['last_month'] = $ipStatic($lastMonth);
-        $ipStatics['history']    = $ipStatic($history);
+        // Get ip statistics
+        $ipStatistics = array();
+        $ipStatistics['today']      = $ipStats($today);
+        $ipStatistics['last_week']  = $ipStats($lastWeek);
+        $ipStatistics['last_month'] = $ipStats($lastMonth);
+        $ipStatistics['history']    = $ipStats($history);
 
-        return array($userStatics, $ipStatics);
+        $userStats['ip'] = $ipStatistics;
+
+        return $userStats;
 
     }
 }

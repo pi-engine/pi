@@ -56,8 +56,8 @@ class ActivityController extends ActionController
         // Get activity list for nav display
         $activityList = Pi::api('user', 'activity')->getList();
 
-        // Get activity contents
-        $activityContents = Pi::api('user', 'activity')->get($uid, $name, $limit);
+        // Get current activity data
+        $data = Pi::api('user', 'activity')->get($uid, $name, $limit);
 
         // Get nav
         if ($isOwner) {
@@ -67,9 +67,9 @@ class ActivityController extends ActionController
         }
 
         $this->view()->assign(array(
-            'activity_list'     => $activityList,
-            'activity_contents' => $activityContents,
-            'cur_activity'      => $name,
+            'list'              => $activityList,
+            'current'           => $name,
+            'data'              => $data,
             'user'              => $user,
             'nav'               => $nav,
             'uid'               => $uid,

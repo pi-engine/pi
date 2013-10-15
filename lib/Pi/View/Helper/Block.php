@@ -134,7 +134,7 @@ class Block extends AbstractHelper
         if ('tab' != $block['type'] && $block['cache_ttl']) {
             $cacheKey = empty($options)
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
-            $renderCache = Pi::service('render')->setType('block');
+            $renderCache = Pi::service('render_cache')->setType('block');
             $renderCache->meta('key', $cacheKey)
                         ->meta('namespace', $block['module'] ?: 'system')
                         ->meta('ttl', $block['cache_ttl']);

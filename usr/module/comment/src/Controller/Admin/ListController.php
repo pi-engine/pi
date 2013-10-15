@@ -178,7 +178,7 @@ class ListController extends ActionController
                 ),
             ),
         ));
-        $title = sprintf(__('Comment posts of user %s'), $user['name']);
+        $title = __('Comment posts of user');
         $this->view()->assign('comment', array(
             'title'     => $title,
             'count'     => $count,

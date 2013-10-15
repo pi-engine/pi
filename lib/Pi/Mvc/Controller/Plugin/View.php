@@ -360,8 +360,8 @@ class View extends AbstractPlugin
     public function helper($name)
     {
         $render = $this->getController()->getServiceLocator()
-            ->get('ViewManager')->getRenderer();
-        $helper = $render->plugin($name);
+            ->get('ViewManager')->getHelperManager();
+        $helper = $render->get($name);
 
         return $helper;
     }

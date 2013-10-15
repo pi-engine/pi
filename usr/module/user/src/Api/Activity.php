@@ -55,6 +55,10 @@ class Activity extends AbstractApi
      */
     public function get($uid, $name, $limit, $offset = 0)
     {
+        $content    = '';
+        $link       = '';
+        $items      = array();
+
         $meta = Pi::registry('activity', 'user')->read($name);
         $callback = $meta['callback'];
         if (preg_match('|^http[s]://|i', $callback)) {
@@ -68,21 +72,33 @@ class Activity extends AbstractApi
             $reader = new $meta['callback']($meta['module']);
             $data = $reader->get($uid, $limit, $offset);
         }
-        $list = array();
-        foreach ($data['items'] as $item) {
-            if (is_string($item)) {
-                $list[] = array(
-                    'time'      => null,
-                    'message'   => $item,
-                );
+        if ($data) {
+            if (is_string($data)) {
+                $content = $data;
+            } elseif (empty($meta['template'])) {
+                foreach ($data['items'] as $item) {
+                    if (is_string($item)) {
+                        $items[] = array(
+                            'time'      => null,
+                            'message'   => $item,
+                        );
+                    } else {
+                        $items[] = array(
+                            'time'      => isset($item['time']) ? $item['time'] : null,
+                            'message'   => $item['message'],
+                        );
+                    }
+                }
+                $link = isset($data['link']) ? $data['link'] : '';
             } else {
-                $list[] = array(
-                    'time'      => isset($item['time']) ? $item['time'] : null,
-                    'message'   => $item['message'],
+                // Render template()
+                $template = array(
+                    'module'    => $meta['module'],
+                    'file'      => $meta['template'],
                 );
+                $content = Pi::service('view')->render($template, $data);
             }
         }
-        $link = $data['link'];
 
         $result = array(
             'title'         => $meta['title'],
@@ -90,7 +106,8 @@ class Activity extends AbstractApi
             //'module'        => $meta['module'],
             'icon'          => $meta['icon'],
             'link'          => $link,
-            'items'         => $list,
+            'items'         => $items,
+            'content'       => $content,
         );
 
         return $result;
