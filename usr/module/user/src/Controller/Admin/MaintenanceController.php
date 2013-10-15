@@ -28,7 +28,7 @@ class MaintenanceController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('maintenance-index');
+        $this->view()->setTemplate('maintenance');
     }
 
     /**
@@ -38,7 +38,7 @@ class MaintenanceController extends ActionController
      */
     public function staticsAction()
     {
-        $data = $this->getStaticsData();d($data);exit;
+        $data = $this->getStaticsData();
         return $data;
     }
 
@@ -112,7 +112,7 @@ class MaintenanceController extends ActionController
         );
 
         $data = array(
-            'logs'      => $logs,
+            'users'      => $logs,
             'paginator' => $paginator,
         );
 
@@ -558,7 +558,9 @@ class MaintenanceController extends ActionController
         $ipStatics['last_month'] = $ipStatic($lastMonth);
         $ipStatics['history']    = $ipStatic($history);
 
-        return array($userStatics, $ipStatics);
+        $userStatics['ip'] = $ipStatics;
+
+        return $userStatics;
 
     }
 }
