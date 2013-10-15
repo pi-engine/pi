@@ -4,9 +4,9 @@
     function tpl(name) {
       return config.assetRoot + name + '.html';
     }
-    $routeProvider.when('/static', {
-      templateUrl: tpl('maintenance-static'),
-      controller: 'staticCtrl'
+    $routeProvider.when('/stats', {
+      templateUrl: tpl('maintenance-stats'),
+      controller: 'statsCtrl'
     }).when('/log', {
       templateUrl: tpl('maintenance-log'),
       controller: 'logCtrl',
@@ -52,7 +52,7 @@
         ]
       }
     }).otherwise({
-      redirectTo: '/static'
+      redirectTo: '/stats'
     });
     piProvider.hashPrefix();
     piProvider.navTabs(config.navTabs);
@@ -64,8 +64,8 @@
   function($http, config) {
     var root = config.urlRoot;
 
-    this.getStatics = function() {
-      return $http.get(root + 'statics');
+    this.getStats = function() {
+      return $http.get(root + 'stats');
     }
 
     this.getLog = function(params) {
@@ -81,9 +81,9 @@
     }
   }
 ])
-.controller('staticCtrl', ['$scope', 'server', 'config',
+.controller('statsCtrl', ['$scope', 'server', 'config',
   function($scope, server, config) {
-    server.getStatics().success(function(data) {
+    server.getStats().success(function(data) {
       var tabs = [];
       angular.forEach(data.ip, function(value, key) {
         tabs.push({
