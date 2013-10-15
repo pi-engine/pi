@@ -1,0 +1,54 @@
+<style>
+  .pi-nav-tabs-title {
+    float: left;
+  }
+</style>
+<div style="width: 800px;">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 150px;">
+        <th>{{'TODAY' | translate}}
+        <th>{{'LAST_WEEK' | translate}}
+        <th>{{'LAST_MONTH' | translate}}
+        <th>{{'HISTORY' | translate}}
+    <tbody>
+      <tr>
+        <td>{{'REGISTER_NUM' | translate}}
+        <td>{{register.today}}
+        <td>{{register.last_week}}
+        <td>{{register.last_month}}
+        <td>{{register.history}}
+      <tr>
+        <td>{{'ACTIVATED_NUM' | translate}}
+        <td>{{activated.today}}
+        <td>{{activated.last_week}}
+        <td>{{activated.last_month}}
+        <td>{{activated.history}}
+      <tr>
+        <td>{{'PENDING_NUM' | translate}}
+        <td>{{pending.today}}
+        <td>{{pending.last_week}}
+        <td>{{pending.last_month}}
+        <td>{{pending.history}}
+  </table>
+  <div>
+    <div pi-tabs tabs-title="{{'TOP_10_IP' | translate}}">
+      <div pi-panel="tab" ng-repeat="tab in tabs">
+        <table class="table" ng-if="tab.content">
+          <thead>
+            <tr>
+              <th>{{'IP_ADDRESS' | translate}}
+              <th class="text-center">{{'REGISTER_NUM' | translate}}
+          <tbody>
+            <tr ng-repeat="item in tab.content">
+              <td>{{item.ip_register}}
+              <td class="text-center">{{item.count}}
+        </table>
+        <div class="alert" ng-if="!tab.content.length">
+          {{'NONE_REGISTER' | translate}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
