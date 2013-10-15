@@ -307,3 +307,16 @@ body {
 .pi-icon-cursor:hover {
     color: #666;
 }
+
+.pi-row-action {
+    visibility: hidden;
+}
+
+.pi-row-action a {
+    padding-right: 5px;
+    font-size: 12px;
+}
+
+tr:hover .pi-row-action {
+    visibility: visible;
+}

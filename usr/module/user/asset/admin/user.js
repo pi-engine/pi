@@ -121,19 +121,22 @@
 
     this.uniqueUrl = urlRoot + 'checkExist';
   }
-]).controller('ListCtrl', ['$scope', '$location', 'server',
-  function ($scope, $location, server) {
+]).controller('ListCtrl', ['$scope', '$location', '$rootScope', 'server',
+  function ($scope, $location, $rootScope, server) {
     var action = $location.path().replace(/^\//, '');
     $scope.paginator = {
       page: 1
     };
+
     $scope.$watch('paginator.page', function (num) {
       var param = { p: num };
       angular.extend(param, $scope.filter);
+      $rootScope.alert = { status: 2 };
       server.get(action, param).success(function (data) {
         server.parse(data);
         $scope.users = data.users;
         $scope.paginator = data.paginator;
+        $rootScope.alert = '';
       });
     });
     angular.extend($scope, server.getRoles());
