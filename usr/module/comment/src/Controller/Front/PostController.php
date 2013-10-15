@@ -351,7 +351,7 @@ class PostController extends ActionController
     public function approveAction()
     {
         $currentUser    = Pi::service('user')->getUser();
-        $currentUid     = $currentUser->get('id');
+        //$currentUid     = $currentUser->get('id');
 
         $id = _get('id', 'int');
         $flag = _get('flag');

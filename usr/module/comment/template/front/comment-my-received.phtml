@@ -11,19 +11,12 @@ $posts = $comment['posts'];
 $paginator = $comment['paginator'];
 
 ?>
+<?php echo $this->tab($tabs); ?>
     <div class="pi-comment-header">
         <dl><?php echo _escape($comment['title']); ?></dl>
         <dl class="dl-horizontal">
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $count; ?></dd>
-
-            <dt><?php _e('User:') ?></dt>
-            <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo $user['name']; ?>">
-                <?php echo $user['name']; ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $user['avatar']; ?></dd>
         </dl>
     </div>
     <div class="pi-comment-list">
@@ -37,6 +30,14 @@ if ($posts) {
                     <?php echo _escape($post['target']['title']); ?>
                 </a>
             </dd>
+
+            <dt><?php _e('User:') ?></dt>
+            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
+                    <?php echo $post['user']['name']; ?>
+                </a>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd><?php echo $post['user']['avatar']; ?></dd>
 
             <dt><?php _e('Time:');?></dt>
             <dd><?php echo _date($post['time']); ?></dd>

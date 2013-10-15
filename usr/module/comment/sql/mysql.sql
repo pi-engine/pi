@@ -32,9 +32,12 @@ CREATE TABLE `{root}` (
   `category`        varchar(64)     NOT NULL    default '',
   `item`            int(10)         unsigned    NOT NULL,
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
+  -- User id of root item author
+  `author`          int(10)         unsigned    NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `module_item` (`module`, `category`, `item`)
+  UNIQUE KEY  `module_item` (`module`, `category`, `item`),
+  KEY `author` (`author`)
 );
 
 # Comment posts

@@ -46,7 +46,7 @@ class Article extends AbstractComment
                         'enable'        => 'yes',
                     )
                 ),
-                'uid'   => 1,
+                'uid'   => rand(1, 5),
                 'time'  => time(),
             );
         }
