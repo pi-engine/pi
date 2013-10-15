@@ -396,7 +396,7 @@ class MaintenanceController extends ActionController
                     'identity',
                     'time_created',
                     'ip_register',
-                    'time_activate',
+                    'time_activated',
                 )
             );
 
