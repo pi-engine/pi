@@ -29,7 +29,59 @@ class BuildController extends ActionController
         $this->addGroup();
         $this->addActivity();
 
-        return $this->jump(array('controller' => 'index', 'action' => 'index'));
+        return $this->jump(array(
+            'controller'    => 'index',
+            'action'        => 'index'
+        ));
+    }
+
+    protected function rand($name)
+    {
+        if ('ip' == $name) {
+            $result = long2ip(rand(
+                1,
+                3221234342
+            ));
+        } elseif ('year' == $name) {
+            $result = rand(1900, 2013);
+        } else {
+            switch ($name) {
+                case 'gender':
+                    $map    = array('male', 'female', 'unknown');
+                    break;
+
+                case 'language':
+                    $map    = array('en', 'fa', 'fr', 'zh-cn');
+                    break;
+
+                case 'country':
+                    $map    = array('China', 'England', 'France', 'Iran');
+                    break;
+
+                case 'degree':
+                    $map    = array('Ph.D', 'Master', 'Bachelor', 'College',
+                        'High school', 'Middle school',
+                        'Preliminary school');
+                    break;
+
+                case 'role':
+                    $map    = array(
+                        array('admin'),
+                        array('webmaster'),
+                        array('webmaster', 'admin'),
+                        array('webmaster', 'staff', 'admin'),
+                    );
+                    break;
+
+                default:
+                    $map = array();
+                    break;
+            }
+
+            $result = $map[rand(0, count($map) - 1)];
+        }
+
+        return $result;
     }
 
     /**
@@ -38,12 +90,6 @@ class BuildController extends ActionController
     protected function updateUser()
     {
         $prefix         = 'pi';
-        $genderMap      = array('male', 'female', 'unknown');
-        $languageMap    = array('en', 'fa', 'fr', 'zh-cn');
-        $countryMap     = array('China', 'England', 'France', 'Iran');
-        $degreeMap      = array('Ph.D', 'Master', 'Bachelor', 'College',
-            'High school', 'Middle school',
-            'Preliminary school');
 
         for ($i = 1; $i <= 6; $i++) {
             $data = array(
@@ -52,12 +98,12 @@ class BuildController extends ActionController
                 'signature'     => 'Signature of user ' . $i,
                 'bio'           => 'User bio: ' . $i,
 
-                'language'      => $languageMap[$i % 4],
+                'language'      => $this->rand('language'),
                 'demo_sample'   => 'Demo Sample: ' . $i,
-                'ip_register'   => sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
+                'ip_register'   => $this->rand('ip'),
                 'address'       => array(
                     array(
-                        'country'   => $countryMap[$i % 4],
+                        'country'   => $this->rand('country'),
                         'province'  => 'Province ' . $i,
                         'city'      => 'City ' . $i,
                         'street'    => 'Street ' . $i,
@@ -65,7 +111,7 @@ class BuildController extends ActionController
                         'postcode'  => 'Code ' . $i,
                     ),
                     array(
-                        'country'   => $countryMap[$i % 4],
+                        'country'   => $this->rand('country'),
                         'province'  => 'Province ' . $i,
                         'city'      => 'City ' . $i,
                         'street'    => 'Street ' . $i,
@@ -93,26 +139,26 @@ class BuildController extends ActionController
                     array(
                         'school'    => 'School 1 ' . $i,
                         'major'     => 'Major 1 ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 1 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                     array(
                         'school'    => 'School 2 ' . $i,
                         'major'     => 'Major 2  ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 2 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                     array(
                         'school'    => 'School 3 ' . $i,
                         'major'     => 'Major 3 ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 3 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
 
                 ),
@@ -123,22 +169,22 @@ class BuildController extends ActionController
                         'department'    => 'Dept 1  ' . $i,
                         'title'         => 'Title 1 ' . $i,
                         'description'   => 'Desc 1 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
                     ),
                     array(
                         'company'       => 'Company 2 ' . $i,
                         'department'    => 'Dept 2  ' . $i,
                         'title'         => 'Title 2 ' . $i,
                         'description'   => 'Desc 2 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
                     ),
                 ),
             );
             $account = array(
-                'gender'        => $genderMap[$i % 3],
-                'birthdate'     => (1900 + $i % 100) . '-'
+                'gender'        => $this->rand('gender'),
+                'birthdate'     => $this->rand('year') . '-'
                     . ($i % 12 + 1) . '-' . ($i % 30 + 1),
             );
 
@@ -153,26 +199,24 @@ class BuildController extends ActionController
             // Add user date
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'ip_login',
-                $value  = sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
-                $module = 'user',
-                $time   = null
+                'ip_login',
+                $this->rand('ip'),
+                'user'
             );
 
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'time_last_login',
-                $value  = '',
-                $module = 'user',
-                $time   = time() - 3600 * $uid
+                'time_last_login',
+                '',
+                'user',
+                time() - 3600 * $uid
             );
 
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'login_times',
-                $value  = rand(0, 400),
-                $module = 'user',
-                $time   = null
+                'login_times',
+                rand(0, 400),
+                'user'
             );
 
             Pi::user()->data()->set(
@@ -190,28 +234,10 @@ class BuildController extends ActionController
      */
     protected function addUser()
     {
-        $users  = array();
         $prefix = 'pi';
-        $count  = 500;
+        $count  = 50;
 
-        $genderMap      = array('male', 'female', 'unknown');
-        $languageMap    = array('en', 'fa', 'fr', 'zh-cn');
-        $countryMap     = array('China', 'England', 'France', 'Iran');
-        $roleMap        = array(
-            array('member'),
-            array('member', 'webmaster'),
-            array('member', 'webmaster', 'guest'),
-            array('member', 'admin'),
-            array('member', 'webmaster', 'admin'),
-            array('member', 'webmaster', 'guest', 'admin'),
-        );
-        $degreeMap      = array('Ph.D', 'Master', 'Bachelor', 'College',
-            'High school', 'Middle school',
-            'Preliminary school');
-
-        $start = 1;
-        $end  = $count + $start;
-        for ($i = $start; $i <= $end; $i++) {
+        for ($i = 1; $i <= $count; $i++) {
             $user = array(
                 'identity'      => $prefix . '_' . $i,
                 'credential'    => $prefix . '_' . $i,
@@ -219,20 +245,20 @@ class BuildController extends ActionController
                 'email'         => $prefix . '_' . $i . '@pialog.org',
 
                 'fullname'      => ucfirst($prefix) . ' User ' . $i,
-                'gender'        => $genderMap[$i % 3],
-                'birthdate'     => (1900 + $i % 100) . '-'
+                'gender'        => $this->rand('gender'),
+                'birthdate'     => $this->rand('year') . '-'
                     . ($i % 12 + 1) . '-' . ($i % 30 + 1),
                 'location'      => 'From ' . $i,
                 'signature'     => 'Signature of user ' . $i,
                 'bio'           => 'User bio: ' . $i,
 
-                'language'      => $languageMap[$i % 4],
+                'language'      => $this->rand('language'),
                 'demo_sample'   => 'Demo Sample: ' . $i,
-                'ip_register'   => sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
+                'ip_register'   => $this->rand('ip'),
 
                 'address'       => array(
                     array(
-                        'country'   => $countryMap[$i % 4],
+                        'country'   => $this->rand('country'),
                         'province'  => 'Province ' . $i,
                         'city'      => 'City ' . $i,
                         'street'    => 'Street ' . $i,
@@ -240,7 +266,7 @@ class BuildController extends ActionController
                         'postcode'  => 'Code ' . $i,
                     ),
                     array(
-                        'country'   => $countryMap[$i % 4],
+                        'country'   => $this->rand('country'),
                         'province'  => 'Province ' . $i,
                         'city'      => 'City ' . $i,
                         'street'    => 'Street ' . $i,
@@ -268,26 +294,26 @@ class BuildController extends ActionController
                     array(
                         'school'    => 'School 1 ' . $i,
                         'major'     => 'Major 1 ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 1 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                     array(
                         'school'    => 'School 2 ' . $i,
                         'major'     => 'Major 2  ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 2 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                     array(
                         'school'    => 'School 3 ' . $i,
                         'major'     => 'Major 3 ' . $i,
-                        'degree'    => $degreeMap[$i % 7],
+                        'degree'    => $this->rand('degree'),
                         'class'     => 'Class 3 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
 
                 ),
@@ -298,32 +324,35 @@ class BuildController extends ActionController
                         'department'    => 'Dept 1  ' . $i,
                         'title'         => 'Title 1 ' . $i,
                         'description'   => 'Desc 1 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                     array(
                         'company'       => 'Company 2 ' . $i,
                         'department'    => 'Dept 2  ' . $i,
                         'title'         => 'Title 2 ' . $i,
                         'description'   => 'Desc 2 ' . $i,
-                        'start'     => rand(1900, 2013),
-                        'end'       => rand(1900, 2013),
+                        'start'     => $this->rand('year'),
+                        'end'       => $this->rand('year'),
                     ),
                 ),
             );
 
             $uid = Pi::api('user', 'user')->addUser($user);
-            if ($i > 200 && $i < 300) {
+            if (!is_int($uid)) {
+                continue;
+            }
+            if ($i > ($count * 2) / 5 && $i < ($count * 3) / 5) {
                 Pi::api('user', 'user')->activateUser($uid);
             }
 
             // Disable user
-            if ($i > 300 && $i <= 400) {
+            if ($i > ($count * 3) / 5 && $i <= ($count * 4) / 5) {
                 Pi::api('user', 'user')->disableUser($uid);
             }
 
             // Add user role
-            Pi::api('user', 'user')->setRole($uid, $roleMap[$i % 6]);
+            Pi::api('user', 'user')->setRole($uid, $this->rand('role'));
 
             // Add user time log
             $this->addTimelineLog($uid, 50);
@@ -331,26 +360,24 @@ class BuildController extends ActionController
             // Add user date
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'ip_login',
-                $value  = sprintf('%s.%s.%s.%s', rand(1,255), rand(1,255), rand(1,255), rand(1,255)),
-                $module = 'user',
-                $time   = null
+                'ip_login',
+                $this->rand('ip'),
+                'user'
             );
 
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'time_last_login',
-                $value  = '',
-                $module = 'user',
-                $time   = time() - 3600 * $uid
+                'time_last_login',
+                '',
+                'user',
+                time() - 3600 * (int) $uid
             );
 
             Pi::user()->data()->set(
                 $uid,
-                $name   = 'login_times',
-                $value  = rand(0, 400),
-                $module = 'user',
-                $time   = null
+                'login_times',
+                rand(0, 400),
+                'user'
             );
 
             Pi::user()->data()->set(
@@ -361,7 +388,7 @@ class BuildController extends ActionController
             );
 
             // Delete user
-            if ($i > 400 && $i < 500) {
+            if ($i > ($count * 4) / 5 && $i < ($count * 5) / 5) {
                 Pi::api('user', 'user')->deleteUser($uid);
             }
         }
