@@ -64,6 +64,7 @@ class Api extends AbstractApi
         'module',
         'category',
         'item',
+        'author',
         'active'
     );
 
@@ -741,7 +742,7 @@ class Api extends AbstractApi
     /**
      * Add comment root of an item
      *
-     * @param array $data module, item, category, time
+     * @param array $data module, item, author, category, time
      *
      * @return int|bool
      */
@@ -750,6 +751,16 @@ class Api extends AbstractApi
         $id = isset($data['id']) ? (int) $data['id'] : 0;
         if (isset($data['id'])) {
             unset($data['id']);
+        }
+        if (!isset($data['author'])) {
+            $category = Pi::registry('category', 'comment')->read(
+                $data['module'],
+                $data['category']
+            );
+            $callback = $category['callback'];
+            $handler = new $callback($data['module']);
+            $source = $handler->get($data['item']);
+            $data['author'] = $source['uid'];
         }
         $rootData = $this->canonizeRoot($data);
         if (!$id) {
@@ -929,7 +940,7 @@ class Api extends AbstractApi
         $select = Pi::db()->select();
         $select->from(
             array('root' => Pi::model('root', 'comment')->getTable()),
-            array('id', 'module', 'category', 'item')
+            array('id', 'module', 'category', 'item', 'author')
         );
 
         $select->join(
@@ -1016,21 +1027,14 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                /*
-                if (isset($condition['module'])) {
-                    $whereRoot['module'] = $condition['module'];
-                }
-                */
                 if (isset($condition['category'])) {
                     $whereRoot['category'] = $condition['category'];
                 }
-                if (isset($whereRoot['category'])) {
+                if (isset($condition['author'])) {
+                    $whereRoot['author'] = $condition['author'];
+                }
+                if ($whereRoot) {
                     $isJoin = true;
-                    /*
-                    if (isset($wherePost['active'])) {
-                        $whereRoot['active'] = $wherePost['active'];
-                    }
-                    */
                 }
             } else {
                 $wherePost = array(
@@ -1115,21 +1119,14 @@ class Api extends AbstractApi
             //$wherePost = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                /*
-                if (isset($condition['module'])) {
-                    $whereRoot['module'] = $condition['module'];
-                }
-                */
                 if (isset($condition['category'])) {
                     $whereRoot['category'] = $condition['category'];
                 }
-                if (isset($whereRoot['category'])) {
+                if (isset($condition['author'])) {
+                    $whereRoot['author'] = $condition['author'];
+                }
+                if ($whereRoot) {
                     $isJoin = true;
-                    /*
-                    if (isset($wherePost['active'])) {
-                        $whereRoot['active'] = $wherePost['active'];
-                    }
-                    */
                 }
             } else {
                 $wherePost = array(
@@ -1185,11 +1182,9 @@ class Api extends AbstractApi
         } else {
             $whereRoot = array();
             $wherePost = $this->canonizePost($condition);
-            /**/
             if (isset($wherePost['active'])) {
                 $whereRoot['active'] = $wherePost['active'];
             }
-            /**/
             if (isset($condition['category'])) {
                 $whereRoot['category'] = $condition['category'];
             }
