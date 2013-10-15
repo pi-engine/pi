@@ -91,7 +91,7 @@ class RenderCache extends AbstractResource
     public function renderCache($type = null, $create = false)
     {
         if (empty($this->renderCache) || $create) {
-            $this->renderCache = clone Pi::service('render');
+            $this->renderCache = clone Pi::service('render_cache');
         }
         if ($type) {
             $this->renderCache->setType($type);
