@@ -61,10 +61,6 @@ class Permission extends AbstractResource
         if ($e->isError()) {
             return;
         }
-        // Skip page access check
-        if (empty($this->options['check_page'])) {
-            return;
-        }
 
         // Grant permission for admin
         if (Pi::service('permission')->isAdmin()) {
@@ -79,6 +75,18 @@ class Permission extends AbstractResource
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
         );
+
+        if ('system' != $route['module']) {
+            $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
+            if (!$moduleAccess) {
+                $this->denyAccess($e);
+            }
+        }
+
+        // Skip page access check
+        if (empty($this->options['check_page'])) {
+            return;
+        }
 
         // Check controller exceptions for permission check
         $controller = $e->getTarget();
@@ -96,11 +104,6 @@ class Permission extends AbstractResource
                     return;
                 }
             }
-        }
-
-        $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
-        if (!$moduleAccess) {
-            $this->denyAccess($e);
         }
 
         // Check action permission check against route
