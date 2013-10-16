@@ -80,7 +80,8 @@ $this->angular(array(
             <tr ng-repeat="item in adminResources.module">
                 <td class="pi-indent">{{item.title}}
                 <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}">
+                    <button class="btn btn-small" ng-class="{'btn-success': value}"
+                            ng-click="assignAction(key, item)">
                         <i class="icon-ok" ng-class="{'muted': !value}"></i>
                     </button>
                 <td>
