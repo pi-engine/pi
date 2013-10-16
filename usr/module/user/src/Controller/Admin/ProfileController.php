@@ -277,49 +277,70 @@ class ProfileController extends ActionController
         return $privacy;
     }
 
+    /**
+     * Set field privacy
+     *
+     * @return array
+     */
     public function setPrivacyAction()
     {
-        $id       = _post('id');
-        $value    = _post('value');
-        $isForced = _post('is_forced');
+        $id       = (int) _post('id');
+        $value    = (int) _post('value');
+        $isForced = (int) _post('is_forced');
 
-        $status = array(
+        $result = array(
             'status' => 0,
             'message' => __('Set privacy failed')
         );
 
+        // Check post data
         if (!$id) {
-            return $status;
+            return $result;
         }
 
-        if (!in_array($value, array('0', '1', '2', '4', '255'))) {
-            return $status;
+        if (!in_array($value, array(0, 1, 2, 4, 255))) {
+            return $result;
         }
 
-        if ($isForced != '0' && $isForced != '1') {
-            return $status;
+        if ($isForced != 0 && $isForced != 1) {
+            return $result;
         }
 
+        // Check post id
         $model = $this->getModel('privacy');
-        $row = $model->find($id, 'id');
-
+        $row   = $model->find($id, 'id');
         if (!$row) {
-            return $status;
+            return $result;
         }
 
+        // Update privacy setting
         $row->assign(array(
             'value'     => $value,
             'is_forced' => $isForced,
         ));
         try {
             $row->save();
-            $status['status']  = 1;
-            $status['message'] = __('Set privacy successfully');
         } catch (\Exception $e) {
-            return $status;
+            return $result;
         }
 
-        return $status;
+        // Set user privacy field
+        if (!$isForced) {
+            $currentPrivacyValue = $row->value;
+            $userPrivacyModel    = $this->getModel('privacy_user');
+            $userPrivacyModel->update(
+                array('value' => $currentPrivacyValue),
+                array(
+                    'field' => $row->field,
+                )
+            );
+        }
+
+        $result['status']  = 1;
+        $result['message'] = __('Set privacy successfully');
+
+        return $result;
+
     }
 
     /**
