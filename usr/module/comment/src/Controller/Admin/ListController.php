@@ -71,6 +71,7 @@ class ListController extends ActionController
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
@@ -170,8 +171,9 @@ class ListController extends ActionController
         $count = Pi::service('comment')->getCount($where);
 
         $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
+            'page'          => $page,
+            'limit'         => $limit,
+            'url_options'   => array(
                 'params'        => array(
                     'uid'       => $uid,
                     'active'    => $active,
@@ -312,8 +314,9 @@ class ListController extends ActionController
             $params['category'] = $category;
         }
         $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
+            'page'          => $page,
+            'limit'         => $limit,
+            'url_options'   => array(
                 'params'        => $params,
             ),
         ));
@@ -434,6 +437,7 @@ class ListController extends ActionController
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
