@@ -62,7 +62,7 @@ class Timeline extends AbstractApi
             ->columns(array('time', 'message', 'link', 'timeline', 'module'))
             ->limit($limit)
             ->offset($offset)
-            ->order('id DESC');
+            ->order('time DESC');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $result[] = $row->toArray();
