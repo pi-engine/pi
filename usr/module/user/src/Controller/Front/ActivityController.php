@@ -51,7 +51,14 @@ class ActivityController extends ActionController
             array('name', 'gender', 'birthdate'),
             true
         );
-
+        // Get viewer role: public member follower following owner
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        $user = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
 
         // Get activity list for nav display
         $activityList = Pi::api('user', 'activity')->getList();
@@ -67,13 +74,13 @@ class ActivityController extends ActionController
         }
 
         $this->view()->assign(array(
-            'list'              => $activityList,
-            'current'           => $name,
-            'data'              => $data,
-            'user'              => $user,
-            'nav'               => $nav,
-            'uid'               => $uid,
-            'is_owner'          => $isOwner,
+            'list'     => $activityList,
+            'current'  => $name,
+            'data'     => $data,
+            'user'     => $user,
+            'nav'      => $nav,
+            'uid'      => $uid,
+            'is_owner' => $isOwner,
         ));
 
     }

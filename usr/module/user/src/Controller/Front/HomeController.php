@@ -102,6 +102,15 @@ class HomeController extends ActionController
         // Get user information
         $user = $this->getUser($uid);
 
+        // Get viewer role: public member follower following owner
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        $user = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
+
         // Get timeline
         $count    = Pi::api('user', 'timeline')->getCount($uid);
         $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
