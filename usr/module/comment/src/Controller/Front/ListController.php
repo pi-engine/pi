@@ -52,6 +52,7 @@ class ListController extends ActionController
         //$params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             /*
             'url_options'   => array(
                 'params'    => $params,
@@ -105,8 +106,9 @@ class ListController extends ActionController
             $target = Pi::api('comment')->getTarget($rootId);
 
             $paginator = Paginator::factory($count, array(
-                'page'  => $page,
-                'url_options'           => array(
+                'page'          => $page,
+                'limit'         => $limit,
+                'url_options'   => array(
                     'params'        => array(
                         'root'      => $root,
                     ),
@@ -179,6 +181,7 @@ class ListController extends ActionController
         }
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
@@ -282,8 +285,9 @@ class ListController extends ActionController
             $params['category'] = $category;
         }
         $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
+            'page'          => $page,
+            'limit'         => $limit,
+            'url_options'   => array(
                 'params'        => $params,
             ),
         ));
@@ -389,6 +393,7 @@ class ListController extends ActionController
         }
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
@@ -491,6 +496,7 @@ class ListController extends ActionController
         }
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
