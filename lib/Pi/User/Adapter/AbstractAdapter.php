@@ -138,7 +138,7 @@ abstract class AbstractAdapter implements BindInterface
      */
     protected function verifyUid($uid)
     {
-        $uid = $uid ? intval($uid) : $this->__get($uid);
+        $uid = $uid ? intval($uid) : (int) $this->__get('id');
 
         return $uid;
     }
