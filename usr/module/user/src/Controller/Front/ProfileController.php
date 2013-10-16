@@ -87,11 +87,21 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get viewer role: public member follower following owner
-        $role = $this->getPrivacyRole();
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
 
         // Filter field according to privacy setting
-        $profileGroup = $this->filterProfile($uid, $role, $profileGroup, 'group');
-        $user         = $this->filterProfile($uid, $role, $user, 'user');
+        $profileGroup = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $profileGroup,
+            'group'
+        );
+        $user         = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
 
         // Get activity meta for nav display
         $nav = Pi::api('user', 'nav')->getList('profile', $uid);
@@ -916,26 +926,5 @@ class ProfileController extends ActionController
                 return 0;
             }
         }
-    }
-
-    /**
-     * Get privacy role
-     *
-     * @param $uid
-     * @return string
-     */
-    protected function getPrivacyRole()
-    {
-        $result   = 'public';
-        $loginUid = Pi::user()->getIdentity();
-
-        if (!$loginUid) {
-            return $result;
-        } else {
-            $result = 'member';
-        }
-
-        return $result;
-
     }
 }
