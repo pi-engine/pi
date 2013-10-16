@@ -179,36 +179,51 @@ class MaintenanceController extends ActionController
     }
 
     /**
-     * Clear user
+     * Clear deleted user
+     *
+     * @return array
      */
     public function clearAction()
     {
-        $type = _post('type') ?: 'all';
-        $uid  = _post('uid');
+        $type   = _post('type') ?: '';
+        $uids   = _post('uids');
+        $result = array(
+            'status' => 0,
+            'message' => 'Clear fail'
+        );
 
         $model = Pi::model('user_account');
+
         if ($type == 'all') {
             // Clear all
             try {
                 $model->delete(array('time_deleted > ?' => 0));
-                $status = true;
-            } catch (\Exception $e) {
-                $status = false;
-            }
+                $result['status'] = 1;
+                $result['message'] = 'Clear all deleted user successfully';
 
-        } elseif ($uid) {
-            // Clear special uid
-            try {
-                $model->delete(array('id' => $uid));
-                $status = true;
             } catch (\Exception $e) {
-                $status = false;
+                return $result;
             }
-        } else {
-           return false;
         }
 
-        return $status;
+        if ($uids) {
+            // Clear special user
+            $uids = array_filter(array_unique(explode(',', $uids)));
+            foreach ($uids as $uid) {
+                try {
+                    $model->delete(array(
+                        'id' => $uid,
+                        'time_deleted > ?' => 0,
+                    ));
+                    $result['status'] = 1;
+                    $result['message'] = 'Clear all deleted user successfully';
+                } catch (\Exception $e) {
+                    return $result;
+                }
+            }
+        }
+
+        return $result;
 
     }
 
