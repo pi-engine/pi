@@ -201,7 +201,8 @@ class AvatarController extends ActionController
             'filename' => $filename,
             'adapters' => $adapters,
             'local'    => $local,
-            'groups'   => $groups
+            'groups'   => $groups,
+            'uid'      => $uid,
         ));
     }
     
