@@ -87,11 +87,21 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get viewer role: public member follower following owner
-        $role = $this->getPrivacyRole();
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
 
         // Filter field according to privacy setting
-        $profileGroup = $this->filterProfile($uid, $role, $profileGroup, 'group');
-        $user         = $this->filterProfile($uid, $role, $user, 'user');
+        $profileGroup = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $profileGroup,
+            'group'
+        );
+        $user         = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
 
         // Get activity meta for nav display
         $nav = Pi::api('user', 'nav')->getList('profile', $uid);
@@ -813,130 +823,6 @@ class ProfileController extends ActionController
         $row   = $model->find($compoundId, 'id');
 
         return $row ? $row['compound'] : '';
-
-    }
-
-    /**
-     * Filter display information according to privacy setting
-     *
-     * @param $uid
-     * @param $role
-     * @param $groups
-     */
-    protected function filterProfile($uid, $role, $raw, $type)
-    {
-        $privacy = 0;
-        $result  = array();
-
-        switch ($role) {
-            case 'public':
-                $privacy = 0;
-                break;
-            case 'member':
-                $privacy = 1;
-                break;
-            case 'follower':
-                $privacy = 2;
-                break;
-            case 'following':
-                $privacy = 4;
-                break;
-        }
-
-        if ($type == 'group') {
-            foreach ($raw as $group) {
-                if ($group['compound']) {
-                    $allow = $this->checkPrivacy(
-                        $uid,
-                        $group['compound'],
-                        $privacy
-                    );
-                    if ($allow) {
-                        $result[] = $group;
-                    }
-                } else {
-                    $data = $group;
-                    $data['fields'] = array();
-                    foreach (array_keys($group['fields'][0]) as $field) {
-                        $allow = $this->checkPrivacy(
-                            $uid,
-                            $field,
-                            $privacy
-                        );
-
-                        if ($allow) {
-                            $data['fields'][0] = $group['fields'][0][$field];
-                        }
-                    }
-                    if (!empty($data['fields'][0])) {
-                        $result[] = $data;
-                    }
-                    unset($data);
-                }
-            }
-        } elseif ($type == 'user') {
-            foreach ($raw as $key => $value) {
-                $allow = $this->checkPrivacy($uid, $privacy, $key);
-                if ($allow) {
-                    $result[$key] = $value;
-                }
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Check access field privacy
-     *
-     * @param $uid
-     * @param $field
-     * @param $privacy
-     * @return int
-     */
-    protected function checkPrivacy($uid, $field, $privacy)
-    {
-        $model       = $this->getModel('privacy_user');
-        $systemModel = $this->getModel('privacy');
-        $select = $model->select()->where(
-            array(
-                'uid'        => $uid,
-                'field'      => $field,
-            )
-        );
-
-        $rowset = $model->selectWith($select)->current();
-        if ($rowset) {
-            return $rowset['value'] <= $privacy ? 1 : 0;
-        } else {
-            // System default privacy setting
-            $row = $systemModel->find($field, 'field');
-            if ($row) {
-                return $row['value'] <= $privacy ? 1 : 0;
-            } else {
-                return 0;
-            }
-        }
-    }
-
-    /**
-     * Get privacy role
-     *
-     * @param $uid
-     * @return string
-     */
-    protected function getPrivacyRole()
-    {
-        $result   = 'public';
-        $loginUid = Pi::user()->getIdentity();
-
-        if (!$loginUid) {
-            return $result;
-        } else {
-            $result = 'member';
-        }
-
-        return $result;
 
     }
 }

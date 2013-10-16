@@ -21,11 +21,11 @@ class BuildController extends ActionController
     public function indexAction()
     {
         $this->flush();
+        $this->addPrivacy();
         $this->updateUser();
         $this->addUser();
         $this->addTimeline();
         $this->addQuickLink();
-        $this->addPrivacy();
         $this->addGroup();
         $this->addActivity();
 
@@ -71,6 +71,10 @@ class BuildController extends ActionController
                         array('webmaster', 'admin'),
                         array('webmaster', 'staff', 'admin'),
                     );
+                    break;
+
+                case 'privacy':
+                    $map    = array(0, 1, 2, 4, 255);
                     break;
 
                 default:
@@ -195,6 +199,9 @@ class BuildController extends ActionController
 
             // Add user time log
             $this->addTimelineLog($uid, 50);
+
+            // Add user privacy setting
+            $this->addUserPrivacy($uid);
 
             // Add user date
             Pi::user()->data()->set(
@@ -390,6 +397,9 @@ class BuildController extends ActionController
             // Delete user
             if ($i > ($count * 4) / 5 && $i < ($count * 5) / 5) {
                 Pi::api('user', 'user')->deleteUser($uid);
+            } else {
+                // Add default privacy setting for user
+                $this->addUserPrivacy($uid);
             }
         }
     }
@@ -534,15 +544,13 @@ class BuildController extends ActionController
         $model = $this->getModel('field');
         $select = $model->select()->where(array('active' => 1));
         $rowset = $model->selectWith($select);
-        $privacyMap = array(0, 1, 2, 4, 255);
         $privacyModel = $this->getModel('privacy');
 
         foreach ($rowset as $row) {
             if ($row['is_display'] || $row['type'] == 'compound') {
-                $index = rand(0, 3);
                 $fields = array(
                     'field'     => $row->name,
-                    'value'     => $privacyMap[$index],
+                    'value'     => $this->rand('privacy'),
                     'is_forced' => rand(0, 1)
                 );
 
@@ -721,6 +729,33 @@ class BuildController extends ActionController
             );
 
             $model->createRow($data)->save();
+        }
+    }
+
+    /**
+     * Add default privacy setting for user
+     *
+     * @param $uid
+     */
+    protected function addUserPrivacy($uid)
+    {
+        $privacyModel     = $this->getModel('privacy');
+        $privacyUserModel = $this->getModel('privacy_user');
+        $defaultSettings  = $privacyModel->select(array());
+
+        foreach ($defaultSettings as $setting) {
+            $data = array(
+                'uid'       => $uid,
+                'field'     => $setting['field'],
+                'value'     => $setting['value'],
+                'is_forced' => $setting['is_forced'],
+            );
+            $row = $privacyUserModel->createRow($data);
+            try {
+                $row->save();
+            } catch (\Exception $e) {
+                return;
+            }
         }
     }
 
