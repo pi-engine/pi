@@ -201,13 +201,20 @@ class System extends AbstractAdapter
         switch ($type) {
             case 'account':
             case 'profile':
-                $params = array('controller' => 'profile');
+                $params = array();
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
                 } elseif (is_string($var)) {
                     $params['identity'] = $var;
                 } else {
                     $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'profile';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
@@ -231,6 +238,10 @@ class System extends AbstractAdapter
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
                 if (isset($params['section'])) {
                     $section = $params['section'];
                     unset($params['section']);
@@ -239,7 +250,6 @@ class System extends AbstractAdapter
                 }
                 if ('admin' == $section) {
                     $route = 'admin';
-                    //$params['section'] = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 if ($redirect) {
@@ -260,14 +270,21 @@ class System extends AbstractAdapter
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
                 } else {
+                    /*
                     $redirect = Pi::engine()->application()->getRequest()
                         ->getRequestUri();
+                    */
+                    $redirect = '';
                 }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }
                 if (!isset($params['action'])) {
                     $params['action'] = 'logout';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
                 }
                 if (isset($params['section'])) {
                     $section = $params['section'];
@@ -277,7 +294,6 @@ class System extends AbstractAdapter
                 }
                 if ('admin' == $section) {
                     $route = 'admin';
-                    //$params['section'] = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 if ($redirect) {
@@ -287,21 +303,35 @@ class System extends AbstractAdapter
 
             case 'register':
             case 'signup':
-                $url = Pi::service('url')->assemble($route, array(
-                    'controller'    => 'register',
-                ));
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'register';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
 
             default:
             case 'home':
-                $params = array('controller' => 'home');
+                $params = array();
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
-                } else {
+                } elseif (is_string($var)) {
                     $params['identity'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'home';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
                 }
                 $url = Pi::service('url')->assemble($route, $params);
-                break;
                 break;
         }
 

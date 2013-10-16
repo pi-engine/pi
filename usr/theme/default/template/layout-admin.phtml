@@ -48,11 +48,12 @@ $module = Pi::service('module')->current();
         </div>
 
         <div class="pi-user-bar">
-           <?php echo $this->widget('system-user-bar', array('type' => 'dropdown')); ?>
-           <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
-               <i class="icon-external-link"></i>
-               <?php _e('Go to front'); ?>
-           </a>
+            <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'))); ?>
+            <span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+                <i class="icon-external-link"></i>
+                <?php _e('Go to front'); ?>
+            </a>
         </div>
     </div>
 

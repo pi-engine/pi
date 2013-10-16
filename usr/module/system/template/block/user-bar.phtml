@@ -1,19 +1,19 @@
+
 <?php if (!isset($block['type']) || 'dropdown' != $block['type']) { ?>
     <!-- Plain display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
     <?php
-        if (!$block['id']) { ?>
+        if (!$block['user']['uid']) { ?>
         <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
-        <a href="<?php echo Pi::service('user')->getUrl('login'); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
+        <a href="<?php echo $block['user']['login']; ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
         <span class="pi-divider">|</span>
-        <a href="<?php echo Pi::service('user')->getUrl('register'); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
+        <a href="<?php echo $block['user']['register']; ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
     <?php
         } else {
-            $name = $block['name'] ?: $block['identity'];
     ?>
-            <?php echo Pi::service('user')->avatar()->get($block['id'], 'mini'); ?>
-            <a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php echo _escape($name); ?></a>
+            <?php echo Pi::service('user')->avatar()->get($block['user']['uid'], 'mini'); ?>
+            <a href="<?php echo $block['user']['profile']; ?>" title="<?php _e('Profile'); ?>"><?php echo _escape($block['user']['name']); ?></a>
             <span class="pi-divider">|</span>
-            <a href="<?php echo Pi::service('user')->getUrl('logout'); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <a href="<?php echo $block['user']['logout']; ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
     <?php
         }
     ?>
@@ -24,20 +24,19 @@
     <div class="dropdown">
 
     <?php
-        if (!$block['id']) { ?>
-        <a href="<?php echo Pi::service('user')->getUrl('login'); ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
+        if (!$block['user']['uid']) { ?>
+        <a href="<?php echo $block['user']['login']; ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
     <?php
         } else {
-            $name = $block['name'] ?: $block['identity'];
     ?>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="icon-user"></i>
-            <?php echo _escape($name); ?>
+            <?php echo _escape($block['user']['name']); ?>
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
-            <li><a href="<?php echo Pi::service('user')->getUrl('logout'); ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
+            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
         </ul>
     <?php
         }
