@@ -856,7 +856,6 @@ class ProfileController extends ActionController
                     }
                 } else {
                     $data = $group;
-                    $data['fields'] = array();
                     foreach (array_keys($group['fields'][0]) as $field) {
                         $allow = $this->checkPrivacy(
                             $uid,
@@ -864,8 +863,8 @@ class ProfileController extends ActionController
                             $privacy
                         );
 
-                        if ($allow) {
-                            $data['fields'][0] = $group['fields'][0][$field];
+                        if (!$allow) {
+                            unset($data['fields'][0][$field]);
                         }
                     }
                     if (!empty($data['fields'][0])) {
@@ -876,7 +875,7 @@ class ProfileController extends ActionController
             }
         } elseif ($type == 'user') {
             foreach ($raw as $key => $value) {
-                $allow = $this->checkPrivacy($uid, $privacy, $key);
+                $allow = $this->checkPrivacy($uid, $key, $privacy);
                 if ($allow) {
                     $result[$key] = $value;
                 }
