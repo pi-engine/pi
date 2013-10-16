@@ -46,11 +46,11 @@ class Group extends AbstractApi
             $result[$row->id]['link'] = Pi::engine()->application()
                 ->getRouter()
                 ->assemble(array(
-                    'module' => $this->getModule(),
+                    'module'     => $this->getModule(),
                     'controller' => 'profile',
                     'action'     => $action,
                     'group'      => $row->id
-                ), array('name' => 'default')
+                ), array('name' => 'user')
             );
         }
 
