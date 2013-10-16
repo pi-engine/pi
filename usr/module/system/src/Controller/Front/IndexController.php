@@ -67,6 +67,7 @@ class IndexController extends ActionController
         if (empty($params['url'])) {
             $params['url'] = Pi::url('www');
         }
+        //vd($params);
         $this->view()->assign($params);
     }
 

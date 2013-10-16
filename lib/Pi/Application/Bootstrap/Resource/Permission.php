@@ -29,12 +29,14 @@ class Permission extends AbstractResource
         $this->engine->bootResource('user');
 
         $events = $this->application->getEventManager();
+        /*
         // Check access permission before any other action is performed
         $events->attach(
             MvcEvent::EVENT_DISPATCH,
             array($this, 'checkModule'),
             9999
         );
+        */
 
         // Setup action cache strategy
         $sharedEvents = $events->getSharedManager();
@@ -96,11 +98,16 @@ class Permission extends AbstractResource
             }
         }
 
+        $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
+        if (!$moduleAccess) {
+            $this->denyAccess($e);
+        }
+
         // Check action permission check against route
-        $access = Pi::service('permission')->pagePermission($route);
+        $actionAccess = Pi::service('permission')->pagePermission($route);
 
         // Set up deny process
-        if (false === $access) {
+        if (false === $actionAccess) {
             $this->denyAccess($e);
         }
 

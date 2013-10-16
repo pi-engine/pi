@@ -61,7 +61,7 @@ class Activity extends AbstractApi
 
         $meta = Pi::registry('activity', 'user')->read($name);
         $callback = $meta['callback'];
-        if (preg_match('|^http[s]://|i', $callback)) {
+        if (preg_match('|^http[s]?://|i', $callback)) {
             $data = Pi::service('remote')->get($callback, array(
                 'module'    => $meta['module'],
                 'uid'       => $uid,

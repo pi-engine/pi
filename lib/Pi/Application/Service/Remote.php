@@ -153,13 +153,23 @@ class Remote extends AbstractService
      *
      * @param string $content
      *
-     * @return bool|array
+     * @return bool|array|string
      */
     protected function parseResponse($content = '')
     {
         $response = Response::fromString($content);
         if ($response->isOk()) {
-            $result = $result = json_decode($response->getBody(), true);
+            $result         = $response->getBody();
+            $contentType    = $response->getHeaders()->get('Content-Type');
+            vd($contentType);
+            $isJson         = false;
+            if ($contentType) {
+                $value  = $contentType->getFieldValue();
+                $isJson = false !== stripos($value, 'application/json');
+            }
+            if ($isJson) {
+                $result = json_decode($result, true);
+            }
         } else {
             $result = false;
         }
@@ -191,10 +201,10 @@ class Remote extends AbstractService
     /**
      * Perform a GET request
      *
-     * @param string $url
-     * @param array  $params
-     * @param array  $headers
-     * @param array  $options
+     * @param string            $url
+     * @param array             $params
+     * @param array             $headers
+     * @param array|int|bool    $options
      *
      * @return mixed
      */
@@ -202,28 +212,36 @@ class Remote extends AbstractService
         $url,
         array $params = array(),
         array $headers = array(),
-        array $options = array()
+        $options = array()
     ) {
         /**@+
          * Check against cache
          */
         $cache = array();
         if (false !== $options) {
-            $cache = $this->getOption('cache');
-            if ($options && false !== $cache) {
+            $cacheOption = $this->getOption('cache');
+            if (false !== $cacheOption) {
+                if (is_string($cacheOption)) {
+                    $cache['storage'] = $cacheOption;
+                } elseif (is_int($cacheOption)) {
+                    $cache['ttl'] = $cacheOption;
+                } elseif (is_array($cacheOption)) {
+                    if (isset($cacheOption['cache'])) {
+                        $cache = $cacheOption['cache'];
+                    } else {
+                        $cache = $cacheOption;
+                    }
+                }
                 if (is_string($options)) {
                     $cache['storage'] = $options;
                 } elseif (is_int($options)) {
                     $cache['ttl'] = $options;
                 } elseif (is_array($options)) {
-                    if (isset($options['cache'])) {
-                        $cache = array_merge($cache, $options['cache']);
-                    } else {
-                        $cache = array_merge($cache, $options);
-                    }
+                    $cache = array_merge($cache, $options);
                 }
             }
         }
+
         if ($cache) {
             $storage = null;
             $cacheOptions = array(

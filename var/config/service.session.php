@@ -9,7 +9,7 @@ return array(
         // @see http://www.php.net/manual/en/session.configuration.php
         'options'   => array(
             // cookie name for session
-            'name'                  => 'pisession',
+            'name'                  => 'pisess',
 
             // lifetime of the cookie in seconds which is sent to the browser
             'cookie_lifetime'       => 0,

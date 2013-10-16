@@ -62,6 +62,27 @@ class LoginController extends ActionController
     }
 
     /**
+     * Logout
+     */
+    public function logoutAction()
+    {
+        Pi::service('session')->manager()->destroy();
+        //Pi::service('session')->manager()->writeClose();
+        //Pi::service('session')->manager()->start();
+        Pi::service('user')->destroy();
+        $redirect = _get('redirect');
+        //d($redirect);
+        $redirect = $redirect
+            ? urldecode($redirect) : array('route' => 'home');
+
+        $this->jump(
+            $redirect,
+            __('You logged out successfully. Now go back to homepage.'),
+            10
+        );
+    }
+
+    /**
      * Render login form
      *
      * @param LoginForm $form
@@ -96,22 +117,6 @@ class LoginController extends ActionController
         $this->view()->assign('title', __('User login'));
         $this->view()->assign('message', $message);
         $this->view()->assign('form', $form);
-    }
-
-    /**
-     * Logout
-     */
-    public function logoutAction()
-    {
-        Pi::service('session')->manager()->destroy();
-        Pi::service('user')->destroy();
-        $redirect = _get('redirect');
-        $redirect = $redirect
-            ? urldecode($redirect) : array('route' => 'home');
-        $this->jump(
-            $redirect,
-            __('You logged out successfully. Now go back to homepage.')
-        );
     }
 
     /**
@@ -197,13 +202,15 @@ class LoginController extends ActionController
             unset($_SESSION['PI_LOGIN']);
         }
 
+        //vd($values);
         if (empty($values['redirect'])) {
             $redirect = array('route' => 'home');
         } else {
             $redirect = urldecode($values['redirect']);
         }
-
-        $this->jump($redirect, __('You have logged in successfully.'), 2);
+        //vd($redirect);
+        //exit();
+        $this->jump($redirect, __('You have logged in successfully.'), 10);
     }
 
     /**
