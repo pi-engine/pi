@@ -204,36 +204,94 @@ class System extends AbstractAdapter
                 $params = array('controller' => 'profile');
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
-                } else {
+                } elseif (is_string($var)) {
                     $params['identity'] = $var;
+                } else {
+                    $params = (array) $var;
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
+
             case 'login':
             case 'signin':
-                $params = array('controller' => 'login');
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::engine()->application()->getRequest()
+                        ->getRequestUri();
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                    //$params['section'] = 'admin';
+                }
                 $url = Pi::service('url')->assemble($route, $params);
-                if ($var) {
-                    $url .= '?redirect=' . rawurlencode($var);
+                if ($redirect) {
+                    $url .= '?redirect=' . rawurlencode($redirect);
                 }
                 break;
+
             case 'logout':
             case 'signout':
-                $params = array(
-                    'controller'    => 'login',
-                    'action'        => 'logout',
-                );
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::engine()->application()->getRequest()
+                        ->getRequestUri();
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (!isset($params['action'])) {
+                    $params['action'] = 'logout';
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                    //$params['section'] = 'admin';
+                }
                 $url = Pi::service('url')->assemble($route, $params);
-                if ($var) {
-                    $url .= '?redirect=' . rawurlencode($var);
+                if ($redirect) {
+                    $url .= '?redirect=' . rawurlencode($redirect);
                 }
                 break;
+
             case 'register':
             case 'signup':
                 $url = Pi::service('url')->assemble($route, array(
                     'controller'    => 'register',
                 ));
                 break;
+
             default:
             case 'home':
                 $params = array('controller' => 'home');

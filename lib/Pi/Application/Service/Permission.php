@@ -63,6 +63,7 @@ class Permission extends AbstractService
         ),
         'admin' => array(
             'admin' => 'admin',
+            'guest' => 'guest',
         ),
     );
 
@@ -381,7 +382,9 @@ class Permission extends AbstractService
         $uid = (int) (null !== $uid ? $uid : Pi::user()->getIdentity());
         $section = $section ?: $this->getSection();
         if (!$uid) {
-            $result[] = $this->roles[$section]['guest'];
+            if (isset($this->roles[$section]['guest'])) {
+                $result[] = $this->roles[$section]['guest'];
+            }
         } else {
             $rowset = Pi::Model('user_role')->select(array(
                 'uid'       => $uid,
