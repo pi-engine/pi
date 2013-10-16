@@ -98,12 +98,14 @@ class PermController extends ComponentController
             $callbackHandler = new $callback($module);
             $resourceCustom = $callbackHandler->getResources();
             foreach ($resourceCustom as $name => $title) {
-                $resource = compact('section', 'module', 'name', 'title');
-                $resource['resource'] = $name;
-                $resource['roles'] = array();
-
-                $resources['front']['module'][$name] = $resource;
-                //$resourceList[] = $name;
+                $key = $name;
+                $resources['front']['block'][$key] = array(
+                    'section'   => 'front',
+                    'module'    => $module,
+                    'title'     => $title,
+                    'resource'  => $key,
+                    'roles'     => array(),
+                );
             }
         }
         // Load block resources
