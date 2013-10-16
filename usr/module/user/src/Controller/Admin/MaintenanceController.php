@@ -189,7 +189,7 @@ class MaintenanceController extends ActionController
         $uids   = _post('uids');
         $result = array(
             'status' => 0,
-            'message' => 'Clear fail'
+            'message' => __('Clear failed.')
         );
 
         $model = Pi::model('user_account');
@@ -199,7 +199,7 @@ class MaintenanceController extends ActionController
             try {
                 $model->delete(array('time_deleted > ?' => 0));
                 $result['status'] = 1;
-                $result['message'] = 'Clear all deleted user successfully';
+                $result['message'] = __('Clear all deleted user successfully.');
 
             } catch (\Exception $e) {
                 return $result;
@@ -216,7 +216,7 @@ class MaintenanceController extends ActionController
                         'time_deleted > ?' => 0,
                     ));
                     $result['status'] = 1;
-                    $result['message'] = 'Clear all deleted user successfully';
+                    $result['message'] = __('Clear all deleted user successfully.');
                 } catch (\Exception $e) {
                     return $result;
                 }
