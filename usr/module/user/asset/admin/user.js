@@ -1,8 +1,9 @@
-﻿userListModule.config(['$routeProvider', 'piProvider',
-  function ($routeProvider, piProvider) {
+﻿angular.module('userListModule')
+.config(['$routeProvider', 'piProvider', 'config',
+  function ($routeProvider, piProvider, config) {
     //Get template url
     function tpl(name) {
-      return userListModuleConfig.assetRoot + name + '.html';
+      return config.assetRoot + name + '.html';
     }
     $routeProvider.when('/activated', {
       templateUrl: tpl('index-activated'),
@@ -19,13 +20,14 @@
       controller: 'ListCtrl'
     });
     piProvider.hashPrefix();
-    piProvider.navTabs(userListModuleConfig.navTabs);
-    piProvider.translations(userListModuleConfig.t);
+    piProvider.navTabs(config.navTabs);
+    piProvider.translations(config.t);
     piProvider.ajaxSetup();
   }
-]).service('server', ['$http', '$cacheFactory',
-  function ($http, $cacheFactory) {
-    var urlRoot = userListModuleConfig.urlRoot;
+])
+.service('server', ['$http', '$cacheFactory', 'config',
+  function ($http, $cacheFactory, config) {
+    var urlRoot = config.urlRoot;
 
     this.get = function (action, params) {
       return $http.get(urlRoot + action, {
@@ -36,7 +38,7 @@
     this.getRoles = function () {
       var frontRoles = [];
       var adminRoles = [];
-      angular.forEach(userListModuleConfig.roles, function(item) {
+      angular.forEach(config.roles, function(item) {
         if (item.type == 'front') {
           frontRoles.push(item);
         }
@@ -47,7 +49,7 @@
       return {
         'frontRoles': frontRoles,
         'adminRoles': adminRoles,
-        'roles': userListModuleConfig.roles
+        'roles': config.roles
       };
     }
 
@@ -121,7 +123,8 @@
 
     this.uniqueUrl = urlRoot + 'checkExist';
   }
-]).controller('ListCtrl', ['$scope', '$location', '$rootScope', 'server',
+])
+.controller('ListCtrl', ['$scope', '$location', '$rootScope', 'server',
   function ($scope, $location, $rootScope, server) {
     var action = $location.path().replace(/^\//, '');
     $scope.paginator = {
@@ -131,7 +134,7 @@
     $scope.$watch('paginator.page', function (num) {
       var param = { p: num };
       angular.extend(param, $scope.filter);
-      $rootScope.alert = { status: 2 };
+      $rootScope.alert = 2;
       server.get(action, param).success(function (data) {
         server.parse(data);
         $scope.users = data.users;
@@ -231,7 +234,7 @@
     }
 
     $scope.deleteAction = function (idx) {
-      if (!confirm(userListModuleConfig.t.CONFIRM)) return;
+      if (!confirm(config.t.CONFIRM)) return;
       var users = this.users
       var user = users[idx];
       server.remove(user.id).success(function (data) {
@@ -242,7 +245,7 @@
     }
 
     $scope.deleteBatchAction = function () {
-      if (!confirm(userListModuleConfig.t.CONFIRMS)) return;
+      if (!confirm(config.t.CONFIRMS)) return;
       server.remove(getCheckIds()).success(function (data) {
         var ret = [];
         if (data.status) {
@@ -312,7 +315,8 @@
       });
     }
   }
-]).controller('NewCtrl', ['$scope', 'server',
+])
+.controller('NewCtrl', ['$scope', 'server',
   function ($scope, server) {
     var entity = {
       activated: 1,

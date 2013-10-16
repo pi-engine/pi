@@ -4,7 +4,7 @@
     <strong>{{paginator.count}}</strong>
   </div>
   <input type="checkbox" ng-model="allChecked">
-  <button ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
+  <button class="btn" ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
 </form>
 <table class="table" ng-if="users.length">
   <thead>
@@ -23,7 +23,7 @@
         <input type="checkbox" ng-model="user.checked">
       <td>{{user.id}}
         <div class="pi-row-action">
-          <a href="javascript:void(0)" ng-click="clearAction(user)">{{'CLEAR' | translate}}</a>
+          <a href="javascript:void(0)" ng-click="clearAction($index)">{{'CLEAR' | translate}}</a>
         </div>
       <td>{{user.identity}}
       <td>{{user.name}}
@@ -35,5 +35,5 @@
 <div class="alert" ng-if="!users.length">
   {{'NONE_DELETED_USERS' | translate}}
 </div>
-<pagination total-items="paginator.count" page="paginator.page" max-size="10" 
+<pagination total-items="paginator.count" page="paginator.page" max-size="10" ng-if="paginator.count"
     class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
