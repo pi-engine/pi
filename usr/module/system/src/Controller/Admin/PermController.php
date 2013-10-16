@@ -73,10 +73,10 @@ class PermController extends ComponentController
         $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
         ));
-        $callback = '';
+        $callback = array();
         foreach ($rowset as $row) {
             if ('custom' == $row['type']) {
-                $callback = $row['name'];
+                $callback[$row['section']] = $row['name'];
                 continue;
             }
             $resources[$row['section']]['module'][$row['name']] = array(
@@ -90,22 +90,42 @@ class PermController extends ComponentController
 
         // Load module custom resources
         if ($callback
+            /*
             && is_subclass_of(
                 $callback,
                 'Pi\Application\AbstractModuleAwareness'
             )
+            */
         ) {
+            /*
             $callbackHandler = new $callback($module);
             $resourceCustom = $callbackHandler->getResources();
-            foreach ($resourceCustom as $name => $title) {
-                $key = $name;
-                $resources['front']['block'][$key] = array(
-                    'section'   => 'front',
-                    'module'    => $module,
-                    'title'     => $title,
-                    'resource'  => $key,
-                    'roles'     => array(),
+            vd($resourceCustom);
+            if (!isset($resourceCustom['front'])
+                && !isset($resourceCustom['admin'])
+            ) {
+                $resourceCustom = array(
+                    'front' => $resourceCustom,
                 );
+            }
+            */
+            foreach (array('front', 'admin') as $section) {
+                if (empty($callback[$section])) {
+                    continue;
+                }
+                $callbackClass      = $callback[$section];
+                $callbackHandler    = new $callbackClass($module);
+                $resourceCustom     = $callbackHandler->getResources();
+                foreach ($resourceCustom as $name => $title) {
+                    $key = $name;
+                    $resources[$section]['module'][$key] = array(
+                        'section'   => $section,
+                        'module'    => $module,
+                        'title'     => $title,
+                        'resource'  => $key,
+                        'roles'     => array(),
+                    );
+                }
             }
         }
         // Load block resources
@@ -237,6 +257,21 @@ class PermController extends ComponentController
                 // Load global resources
                 $resources['module-access'] = $resources['module-admin'] = 1;
 
+
+                // Load module defined resources
+                if ($callback && is_subclass_of(
+                        $callback,
+                        'Pi\Application\AbstractModuleAwareness'
+                    )
+                ) {
+                    $callbackClass      = $callback;
+                    $callbackHandler    = new $callbackClass($module);
+                    $resourceCustom     = $callbackHandler->getResources();
+                    foreach (array_keys($resourceCustom) as $name) {
+                        $resources[$name] = 1;
+                    }
+                }
+
                 // Load block resources
                 if ('front' == $section) {
                     // Add all block resources
@@ -248,6 +283,7 @@ class PermController extends ComponentController
                         $resources['block-' . $row['id']] = 1;
                     }
 
+                    /*
                     // Load module defined resources
                     if ($callback && is_subclass_of(
                             $callback,
@@ -260,6 +296,7 @@ class PermController extends ComponentController
                             $resources[$name] = 1;
                         }
                     }
+                    */
                 }
 
                 foreach (array_keys($resources) as $resource) {
