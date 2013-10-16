@@ -82,7 +82,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function addUser($data, $setRole = true)
     {
-        $uid = $this->addAccount($data);
+        $uid = (int) $this->addAccount($data);
         if ($uid && $setRole) {
             $this->setRole($uid, 'member', 'front');
         }
@@ -101,6 +101,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -119,6 +120,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function deleteUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -137,6 +139,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function activateUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -156,6 +159,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function enableUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -175,6 +179,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function disableUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -216,6 +221,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function setRole($uid, $role)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -258,6 +264,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function revokeRole($uid, $role)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -293,6 +300,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function getRole($uid, $section = '')
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -367,6 +375,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -403,6 +412,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function deleteAccount($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -443,6 +453,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function activateAccount($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -492,6 +503,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
