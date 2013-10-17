@@ -1,7 +1,3 @@
-function d (str) {
-  console.log(str);
-}
-
 (function($) {
     var jcrop_api;
     var root = {
@@ -22,13 +18,30 @@ function d (str) {
     var uploadBtn = root.uploadBtn;
     var saveBtn = root.$('.js-save');
     var uploadImg = root.$('.avatar-upload-image');
+    var emailInput = root.$('[name=email]');
+    var repositoryRadios = root.$('[name=repository-avatar]'); 
+    var ajaxCache = (function () {
+      var cache = {};
+      return function(url, params) {
+        if (params) {
+          url = url + '?'+ $.param(params);
+        }
+        if (cache[url]) {
+          return cache[url];
+        } else {
+          return cache[url] = $.get(url);
+        }
+      }
+    })();
+    
+
 
     function initJcrop(res) {
       var url = res['preview_url'];
       var boundx = 0;
       var boundy = 0;
-      var prevImgs = root.$('.avatar-preview-img');
       var uploadBoxSize = config.uploadBoxSize;
+      var prevImgs = $('#fromUpload .avatar-preview-img');
 
       uploadImg.removeClass('hide').attr('src', url);
       prevImgs.each(function() {
@@ -78,10 +91,6 @@ function d (str) {
       });
     }
 
-    function showBtns() {
-      root.$('.js-actions').show();
-    }
-
     new ajaxUpload(uploadBtn, {
       action: config.urlRoot + 'upload?fake_id=' + config.fake_id,
       name: 'upload',
@@ -94,7 +103,6 @@ function d (str) {
         if (res.status) {
           uploadBtn.trigger('remove');
           root.$('.avatar-upload-hit').remove();
-          showBtns();
           initJcrop(res.data);
         } else {
           alert(res.message);
@@ -116,13 +124,15 @@ function d (str) {
       var data = {};
       saveBtn.attr('disabled', 'disabled');
       if (source == 'upload') {
-          var result = jcrop_api.result;
-          var ret = result.w > result.h ? result.w / 300 : result.h / 300;
-          $.each(jcrop_api.tellScaled(), function(key, value) {
-            data[key] = Math.round(value * ret);
-          });
-          data['avatar'] = result.preview_url;
-          data['fake_id'] = config.fake_id;
+        var result = jcrop_api.result;
+        var ret = result.w > result.h ? result.w / 300 : result.h / 300;
+        $.each(jcrop_api.tellScaled(), function(key, value) {
+          data[key] = Math.round(value * ret);
+        });
+        data['avatar'] = result.preview_url;
+        data['fake_id'] = config.fake_id;
+      } else if (source == 'repository') {
+        data['name'] = root.$('[name=repository-avatar]:checked').val();
       }
       data.source = source;
       $.post(config.urlRoot + 'save', data).done(function(res) {
@@ -135,6 +145,44 @@ function d (str) {
           }
       });
     });
+
+    emailInput.blur(function() {
+      ajaxCache(config.urlRoot + 'gravatar', {
+        email: $.trim(emailInput.val())
+      }).done(function(res) {
+        var prevImgs = $('#fromGravatar .avatar-preview-img');
+        res = $.parseJSON(res);
+        if (res.status) {
+          prevImgs.attr('src', res.preview_url);
+        }
+      });
+    });
+
+    repositoryRadios.click(function() {
+      var name = $(this).val();
+      var prevImgs = $('#formRepository .avatar-preview-img');
+
+      ajaxCache(config.urlRoot + 'repository', {
+        name: name
+      }).done(function(res) {
+        res = $.parseJSON(res);
+        if (res.status) {
+          var idx = 0;
+          var url;
+          $.each(config.allSize, function(key) {
+            url = res.dirname + '/' + key + '.' + res.ext;
+            prevImgs.eq(idx++).attr('src', url);
+          });
+        } else {
+          alert(res.message);
+        }
+      });
+    });
+
+    if (config.source == 'repository') {
+      repositoryRadios.filter('[value=' + config.filename + ']').attr('checked', 'checked');
+    }
+
 })(jQuery)
 
 
