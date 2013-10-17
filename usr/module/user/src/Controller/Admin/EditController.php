@@ -24,37 +24,37 @@ use Module\User\Form\CompoundFilter;
 class EditController extends ActionController
 {
     /**
-     * Edit base information
+     * Edit user fields
      *
      * @return array|void
      */
     public function indexAction()
     {
-        $uid = _get('uid');
+        $result = array(
+            'status'  => 0,
+            'message' => ''
+        );
+        $uid = (int) _get('uid');
+
+        // Check user
         if (!$uid) {
-            return $this->jumpTo404('Invalid uid');
+            $result['message'] = __('Invalid user id');
+            return $result;
+        }
+        $row = Pi::model('user_account')->find($uid, 'id');
+        if (!$row) {
+            $result['message'] = __('Invalid user id');
+            return $result;
+        }
+        if ($row->time_deleted) {
+            $result['message'] = __('User not exist');
+            return $result;
         }
 
-        // Get compound nav
-        $compoundNav = $this->getCompoundNav();
-
-        // Get edit form
-        $fields   = $this->getFields();
-        $elements = array();
-        $filters  = array();
-        foreach ($fields as $field) {
-            $element = Pi::api('user', 'form')->getElement($field);
-            $filter  = Pi::api('user', 'form')->getFilter($field);
-
-            if ($element) {
-                $elements[] = $element;
-            }
-            if ($filter) {
-                $filters[] = $filter;
-            }
-        }
-
-        $elements[] =  array(
+        // Get available edit fields
+        list($fields, $formFields, $formFilters) = $this->getEditField();
+        // Add other elements
+        $formFields[] = array(
             'name'  => 'uid',
             'type'  => 'hidden',
             'attributes' => array(
@@ -62,15 +62,20 @@ class EditController extends ActionController
             ),
         );
 
-        $form = new ProfileEditForm('base', $elements);
-        $data = Pi::api('user', 'user')->get($uid, $fields);
-        if (isset($data['credential'])) {
-            unset($data['credential']);
-        }
+        $form = new ProfileEditForm('base-fields', $formFields);
+        $fieldsData = Pi::api('user', 'user')->get($uid, $fields);
+        $form->setData($fieldsData);
 
-        $form->setData($data);
-        vd($form);
-        vd($compoundNav);
+        $nav = $this->getNav($uid);
+        $this->view()->assign(array(
+            'form'    => $form,
+            'nav'     => $nav,
+            'cur_nav' => 'base_info'
+        ));
+
+        $this->view()->setTemplate('edit-index');
+
+
 
     }
 
@@ -339,6 +344,79 @@ class EditController extends ActionController
 
         foreach ($rowset as $row) {
             $result[] = $row->toArray();
+        }
+
+        return $result;
+
+    }
+
+    /**
+     * Get edit field and filter
+     *
+     * @return array
+     */
+    protected function getEditField()
+    {
+        $fields      = array();
+        $formFields  = array();
+        $formFilters = array();
+
+        $model = $this->getModel('field');
+        $rowset = $model->select(array(
+            'is_edit'    => 1,
+            'is_display' => 1,
+            'active'     => 1,
+            'type <> ?'  => 'compound',
+        ));
+
+        foreach ($rowset as $row) {
+            $fields[]      = $row['name'];
+            $formFields[]  = Pi::api('user', 'form')->getElement($row['name']);
+            $formFilters[] = Pi::api('user', 'form')->getFilter($row['name']);
+        }
+
+        return array($fields, $formFields, $formFilters);
+
+    }
+
+    protected function getNav($uid)
+    {
+        $result[] = array(
+            'name' => 'base_info',
+            'url'  => $this->url(
+                '',
+                array(
+                    'controller' => 'edit',
+                    'action'     => 'index',
+                    'uid'        => $uid
+                )
+            ),
+            'title' => __('Base info'),
+        );
+
+        $rowset = $this->getModel('field')->select(
+            array(
+                'type'       => 'compound',
+                'is_display' => 1,
+                'is_edit'    => 1,
+                'active'     => 1,
+            )
+        );
+
+        foreach ($rowset as $row) {
+            $result[] = array(
+                'name'  => $row['name'],
+                'title' => $row['title'],
+                'url'   => $this->url(
+                    '',
+                    array(
+                        'controller' => 'edit',
+                        'action'     => 'compound',
+                        'compound'   => $row['name'],
+                        'uid'        => $uid,
+                    )
+                ),
+            );
         }
 
         return $result;
