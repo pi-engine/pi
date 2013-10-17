@@ -131,6 +131,8 @@
         });
         data['avatar'] = result.preview_url;
         data['fake_id'] = config.fake_id;
+      } else if(source == 'gravatar') {
+        data['email'] = $.trim(root.$('[name=email]').val());
       } else if (source == 'repository') {
         data['name'] = root.$('[name=repository-avatar]:checked').val();
       }
@@ -138,10 +140,10 @@
       $.post(config.urlRoot + 'save', data).done(function(res) {
           res = $.parseJSON(res);
           if (res.status) {
-              window.location.reload();
+            window.location.reload();
           } else {
-              saveBtn.removeAttr('disabled');
-              alert(res.message);
+            saveBtn.removeAttr('disabled');
+            alert(res.message);
           }
       });
     });
@@ -151,9 +153,12 @@
         email: $.trim(emailInput.val())
       }).done(function(res) {
         var prevImgs = $('#fromGravatar .avatar-preview-img');
+        
         res = $.parseJSON(res);
         if (res.status) {
-          prevImgs.attr('src', res.preview_url);
+          prevImgs.each(function(idx) {
+            prevImgs.eq(idx).attr('src', res.preview_url[idx]);
+          });
         }
       });
     });
@@ -161,17 +166,14 @@
     repositoryRadios.click(function() {
       var name = $(this).val();
       var prevImgs = $('#formRepository .avatar-preview-img');
-
+      
       ajaxCache(config.urlRoot + 'repository', {
         name: name
       }).done(function(res) {
         res = $.parseJSON(res);
         if (res.status) {
-          var idx = 0;
-          var url;
-          $.each(config.allSize, function(key) {
-            url = res.dirname + '/' + key + '.' + res.ext;
-            prevImgs.eq(idx++).attr('src', url);
+          prevImgs.each(function(idx) {
+            prevImgs.eq(idx).attr('src', res.preview_url[idx]);
           });
         } else {
           alert(res.message);
@@ -181,6 +183,8 @@
 
     if (config.source == 'repository') {
       repositoryRadios.filter('[value=' + config.filename + ']').attr('checked', 'checked');
+    } else {
+      repositoryRadios.eq(0).attr('checked', 'checked');
     }
 
 })(jQuery)
