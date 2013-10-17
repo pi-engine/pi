@@ -83,6 +83,7 @@ var ajaxUpload = (function ($) {
         fixPosition(self.button, self.form);
       }).on('remove', function() {
         btn.remove();
+        self.form.remove();
         self.iframe.remove();
       });
     },
