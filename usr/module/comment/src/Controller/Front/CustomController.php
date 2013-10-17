@@ -13,7 +13,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 
-class DemoController extends ActionController
+class CustomController extends ActionController
 {
     /**
      * Demo for article with comments
@@ -27,12 +27,12 @@ class DemoController extends ActionController
             'url_options'           => array(
                 'params'        => array(
                     'id'        => $id,
-                    'enable'    => 'yes',
+                    'custom'    => 'yes',
                 ),
             ),
         ));
         $this->view()->assign(array(
-            'title'     => sprintf(__('Demo article #%d'), $id),
+            'title'     => sprintf(__('Demo custom article #%d'), $id),
             'paginator' => $paginator,
         ));
 

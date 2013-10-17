@@ -260,15 +260,28 @@ class Api extends AbstractApi
         $categoryList = Pi::registry('category', 'comment')->read($module);
         $limit = Pi::config()->module('leading_limit', 'comment') ?: 5;
 
-        if (!isset($categoryList[$controller][$action])) {
+        $lookupList = array();
+        if (isset($categoryList['route'][$controller][$action])) {
+            $lookupList = $categoryList['route'][$controller][$action];
+        } elseif (isset($categoryList['locator'])) {
+            $lookupList = $categoryList['locator'];
+        } else {
             return false;
         }
+
         //vd($routeMatch);
         // Look up root against route data
         $lookup = function ($data) use ($routeMatch) {
+            // Look up via locator callback
+            if (!empty($data['locator'])) {
+                $locator    = new $data['locator']($routeMatch->getParam('module'));
+                $item       = $locator->locate($routeMatch);
+
+                return $item;
+            }
+
+            // Look up via route
             $item = $routeMatch->getParam($data['identifier']);
-            //vd($data['identifier']);
-            //vd($item);
             if (null === $item) {
                 return false;
             }
@@ -284,7 +297,8 @@ class Api extends AbstractApi
         };
 
         $root = array();
-        foreach ($categoryList[$controller][$action] as $key => $data) {
+        // Look up against controller-action
+        foreach ($lookupList as $key => $data) {
             //d($data);
             $item = $lookup($data);
             if ($item) {

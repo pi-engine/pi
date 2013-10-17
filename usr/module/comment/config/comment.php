@@ -25,4 +25,10 @@ return array(
             'enable'   => 'yes',
         ),
     ),
+    'custom' => array(
+        'title'     => __('Custom comments'),
+        'icon'      => 'icon-post',
+        'callback'  => 'Module\Comment\Api\Custom',
+        'locator'   => 'Module\Comment\Api\Custom',
+    ),
 );

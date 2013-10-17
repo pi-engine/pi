@@ -19,8 +19,13 @@ use Pi;
  * <code>
  *  <category-name>  => array(
  *      'title'         => __('Comment category title'),
- *      'callback'      => <callback>
  *      'icon'          => <img-src>,
+ *      // Callback to fetch source meta data
+ *      'callback'      => <source-callback>
+ *
+ *      // Callback to identify root data
+ *      'locator'       => <locator-callback>
+ *      // Alternative to `locator`
  *      'controller'    => <controller-name>,
  *      'action'        => <action-name>,
  *      'identifier'    => <item-identifier-name>,
@@ -40,6 +45,7 @@ class Comment extends AbstractResource
         'id',
         'title',
         'callback',
+        'locator',
         'module',
         'controller',
         'action',
@@ -77,21 +83,23 @@ class Comment extends AbstractResource
             if (!isset($data['module'])) {
                 $data['module'] = $this->getModule();
             }
-            if (!isset($data['controller'])) {
-                $data['controller'] = 'index';
-            }
-            if (!isset($data['action'])) {
-                $data['action'] = 'index';
-            }
-            if (!isset($data['identifier'])) {
-                $data['identifier'] = 'id';
+            if (empty($data['locator'])) {
+                if (!isset($data['controller'])) {
+                    $data['controller'] = 'index';
+                }
+                if (!isset($data['action'])) {
+                    $data['action'] = 'index';
+                }
+                if (!isset($data['identifier'])) {
+                    $data['identifier'] = 'id';
+                }
             }
             if (!isset($data['name'])) {
                 $data['name'] = $category;
             }
             if (!isset($data['callback'])) {
                 $data['callback'] = sprintf(
-                    'Module\\%s\Comment\%s',
+                    'Module\\%s\Api\Comment%s',
                     ucfirst($this->event->getParam('directory')),
                     ucfirst($category)
                 );
@@ -223,22 +231,6 @@ class Comment extends AbstractResource
         }
         Pi::registry('category', 'comment')->clear();
 
-        /*
-        $modelRoot = Pi::model('root', 'comment');
-        $modelPost = Pi::model('post', 'comment');
-        $sql = 'DELETE post FROM %s AS post'
-            . ' LEFT JOIN %s AS root'
-            . ' ON root.id=post.root'
-            . ' WHERE root.module=\'%s\'';
-        $sql = sprintf(
-            $sql,
-            $modelPost->getTable(),
-            $modelRoot->getTable(),
-            $module
-        );
-        Pi::db()->query($sql);
-        */
-
         Pi::model('category', 'comment')->delete(array('module' => $module));
         Pi::model('root', 'comment')->delete(array('module' => $module));
         Pi::model('post', 'comment')->delete(array('module' => $module));
@@ -256,12 +248,6 @@ class Comment extends AbstractResource
         }
         Pi::registry('category', 'comment')->clear();
 
-        /*
-        $module = $this->getModule();
-        $model = Pi::model('category', 'comment');
-        $model->update(array('active' => 1), array('module' => $module));
-        */
-
         return true;
     }
 
@@ -274,12 +260,6 @@ class Comment extends AbstractResource
             return;
         }
         Pi::registry('category', 'comment')->clear();
-
-        /*
-        $module = $this->getModule();
-        $model = Pi::model('category', 'comment');
-        $model->update(array('active' => 0), array('module' => $module));
-        */
 
         return true;
     }
