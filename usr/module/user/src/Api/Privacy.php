@@ -22,9 +22,12 @@ class Privacy extends AbstractApi
     /**
      * Filter display information according to privacy setting
      *
-     * @param $uid
-     * @param $role
-     * @param $groups
+     * @param int $uid
+     * @param string $role
+     * @param array $rawData
+     * @param string $type
+     *
+     * @return array
      */
     public function filterProfile($uid, $role, $rawData, $type)
     {

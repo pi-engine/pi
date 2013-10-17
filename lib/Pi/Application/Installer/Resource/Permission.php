@@ -16,9 +16,6 @@ use Pi\Application\Bootstrap\Resource\AdminMode;
  * Setup permission component with configuration specs
  *
  * ```
- *          // Callback for front custom resources
- *          // @see Pi\Application\AbstractModuleAwareness
- *          'custom'  => 'Module\<Module-name>\Permission\<CallbackName>',
  *
  *          // Front resources
  *          'front'    => array(
@@ -31,11 +28,17 @@ use Pi\Application\Bootstrap\Resource\AdminMode;
  *                  ),
  *              ),
  *              <...>
+ *              // Callback for custom resources
+ *              // @see Pi\Application\AbstractModuleAwareness
+ *              'custom'  => 'Module\<Module-name>\Api\<FrontCallbackName>',
  *          ),
  *
  *          // Admin resources
  *          'admin' => array(
  *              <...>
+ *              // Callback for custom resources
+ *              // @see Pi\Application\AbstractModuleAwareness
+ *              'custom'  => 'Module\<Module-name>\Api\<AdminCallbackName>',
  *          ),
  *  );
  * ```
@@ -54,6 +57,7 @@ class Permission extends AbstractResource
 
         $result = array();
         //$module = $this->getModule();
+        /*
         if (isset($config['custom'])) {
             $resource = array(
                 'section'   => 'front',
@@ -63,9 +67,16 @@ class Permission extends AbstractResource
             $config['front']['custom'] = $resource;
             unset($config['custom']);
         }
+        */
 
         foreach ($config as $section => &$resourceList) {
             foreach ($resourceList as $key => &$resource) {
+                if ('custom' == $key && is_string($resource)) {
+                    $resource= array(
+                        'name'  => $resource,
+                        'type'  => 'custom',
+                    );
+                }
                 if (!isset($resource['name'])) {
                     $name = preg_replace('/[^a-z0-9_]/i', '_', $key);
                     $resource['name'] = $name;

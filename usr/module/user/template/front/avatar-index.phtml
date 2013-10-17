@@ -3,7 +3,7 @@
         $this->assetModule('script/front.css')
     ));
     $this->jQuery(array(
-        'extension/ajax-upload.min.js',
+        'extension/ajax-upload.js',
         'extension/jquery.Jcrop.min.js',
         'extension/jquery.Jcrop.min.css'
     ));
@@ -12,26 +12,29 @@
     $viewNavTabs = array(
         array(
             'source' => 'upload',
-            'text'   => __('Upload images'),
+            'text'   => __('Upload'),
             'href'   => '#fromUpload'
         ),
         array(
             'source' => 'gravatar',
-            'text'   => __('From Gavatar'),
+            'text'   => __('Gavatar'),
             'href'   => '#fromGravatar'
         ),
         array(
             'source' => 'repository',
-            'text'   => __('From responsitery'),
+            'text'   => __('Selection'),
             'href'   => '#formRepository'
         ),
         array(
             'source' => 'local',
-            'text'   => __('System avatar'),
+            'text'   => __('Default'),
             'href'   => '#formLocal'
         )
     );
-    d($config);
+    d($gravatar);
+    d($selected);
+    d($local);
+    d($allSize);
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="js-user-avatar">
@@ -48,12 +51,14 @@
     </div>
     <ul class="nav nav-tabs">
         <?php 
-            foreach ($viewNavTabs as $item) {
-                echo sprintf('<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a>',
-                        $item['source'],
-                        $item['href'],
-                        $item['text']);
-            }
+        foreach ($viewNavTabs as $item) {
+            echo sprintf(
+                '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a>',
+                $item['source'],
+                $item['href'],
+                $item['text']
+            );
+        }
         ?>
     </ul>
     <div class="tab-content">
@@ -69,36 +74,106 @@
                 </div>
                 <img class="hide avatar-upload-image">
             </div>
-            <div class="page-header">
+            <div class="avatar-preview-header">
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
             <ul class="unstyled avatar-preview-inline">
-                <?php 
-                    foreach ($allSize as $key => $item) {
-                        echo sprintf('<li><p>%s</p><div class="avatar-preview-box" style="width: %spx; height: %spx;">%s</div>',
-                                $key,
-                                $item,
-                                $item,
-                                Pi::service('user')->avatar()->get($uid, $key, 
-                                    array('class' => 'avatar-preview-img', 'data-size' => $item))
-                             );
-                    }
+                <?php
+                foreach ($allSize as $key => $item) {
+                    echo sprintf(
+                        '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx; height: %spx;">%s</div>',
+                        $key,
+                        $item,
+                        $item,
+                        Pi::service('user')->avatar()->get(
+                            $uid,
+                            $key,
+                            array(
+                                'class'     => 'avatar-preview-img',
+                                'data-size' => $item
+                            )
+                        )
+                    );
+                 }
                 ?>
             </ul>
         </div>
         <div class="tab-pane" id="fromGravatar">
-            123213
+            <p>
+                <a href="https://gravatar.com" target="_blank"><?php _e('Change from Gravatar') ?></a>
+            <div>
+                <span><?php _e('Gravatar email') ?></span>
+                <input name="email" value="<?php echo $email; ?>" type="text"
+                       style="margin-left: 10px; vertical-align: baseline;">
+            </div>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+            <?php 
+            foreach ($allSize as $key => $value) {
+                echo sprintf(
+                    '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx;">
+                        <img src="%s" class="avatar-preview-img"></div>',
+                    $key,
+                    $value,
+                    $gravatar
+                );
+            } 
+            ?>
+            </ul>
         </div>
         <div class="tab-pane" id="formRepository">
-            435345
+            <ul class="unstyled avatar-repository-inline">
+                <?php foreach($selects as $key => $item) { ?>
+                <li>
+                    <label>
+                        <img src="<?php echo $item; ?>">
+                        <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
+                    </label>
+                <?php } ?>
+            </ul>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+                <?php
+                foreach ($allSize as $key => $item) {
+                    echo sprintf(
+                        '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx; height: %spx;">
+                            <img src="%s" class="avatar-preview-img"></div>',
+                        $key,
+                        $item,
+                        $item,
+                        $selected[$key]
+                    );
+                 }
+                ?>
+            </ul>
         </div>
         <div class="tab-pane" id="formLocal">
-            56756
+            <div class="media">
+                <div class="pull-left">
+                    <img src="<?php echo $local; ?>">
+                </div>
+                <div class="media-body">
+                    <?php _e('Apply system avatar as your avatar'); ?>
+                </div>
+            </div>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+                <?php foreach ($allSize as $key => $item) { ?>
+                <li>
+                    <img src="<?php echo dirname($local) . '/' . $key . '.png'; ?>">
+                <?php } ?>
+            </ul>
         </div>
     </div>
-    <div style="margin-top: 30px;" class="hide js-actions">
+    <div style="margin-top: 30px;" class="js-actions">
         <button class="btn btn-primary js-save"><?php _e('Save'); ?></button>
-        <button class="btn btn-link js-cancel"><?php _e('Cancel'); ?></a>
+        <button class="btn btn-link js-cancel"><?php _e('Cancel'); ?></button>
     </div>
 </div>
 <script>
@@ -109,7 +184,9 @@ $('#js-user-avatar').data('config', {
     format: '<?php echo $config['avatar_extension']; ?>'.split(','),
     uploadText: '<?php _e('Upload avatar'); ?>',
     processText: '<?php _e('Uploading'); ?>',
-    uploadBoxSize: 300
+    uploadBoxSize: 300,
+    allSize: <?php echo json_encode($allSize); ?>,
+    filename: '<?php echo $filename; ?>'
 });
 </script>
 <script src="<?php echo $this->assetModule('front/avatar.js'); ?>"></script>

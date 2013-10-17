@@ -11,7 +11,6 @@
 namespace Pi\View\Helper;
 
 use Pi;
-//use Pi\Acl\Acl;
 use Pi\Application\Bootstrap\Resource\AdminMode;
 use Zend\View\Helper\AbstractHelper;
 

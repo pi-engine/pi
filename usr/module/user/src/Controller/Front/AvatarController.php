@@ -143,7 +143,10 @@ class AvatarController extends ActionController
         // Get gravatar photo
         if (in_array('gravatar', $adapters)) {
             $gravatarAdapter  = Pi::avatar()->getAdapter('gravatar');
-            $gravatar = $gravatarAdapter->getSource($uid);
+
+            foreach ($allSize as $key => $value) {
+                $gravatar[$key] =  $gravatarAdapter->getSource($uid, $value);
+            }
             $this->view()->assign('gravatar', $gravatar);
         }
         
@@ -171,7 +174,9 @@ class AvatarController extends ActionController
         
         // Get local photo
         $localAdapter = Pi::avatar()->getAdapter('local');
-        $local        = $localAdapter->getSource($uid);
+        foreach ($allSize as $key => $value) {
+            $local[$key] = $localAdapter->getSource($uid, $value);
+        }
         
         // Get source
         $source = '';
@@ -201,7 +206,8 @@ class AvatarController extends ActionController
             'filename' => $filename,
             'adapters' => $adapters,
             'local'    => $local,
-            'groups'   => $groups
+            'groups'   => $groups,
+            'uid'      => $uid,
         ));
     }
     

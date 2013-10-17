@@ -483,6 +483,7 @@ class Asset extends AbstractService
      */
     public function remove($component, $type = '')
     {
+        $status = true;
         if (!$type) {
             foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
                 $this->remove($component, $type);

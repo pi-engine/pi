@@ -11,7 +11,6 @@ namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl as AclManager;
 use Module\System\Form\LoginForm;
 use Module\System\Form\LoginFilter;
 
@@ -77,8 +76,7 @@ class LoginController extends ActionController
 
         $this->jump(
             $redirect,
-            __('You logged out successfully. Now go back to homepage.'),
-            10
+            __('You logged out successfully. Now go back to homepage.')
         );
     }
 
@@ -210,7 +208,7 @@ class LoginController extends ActionController
         }
         //vd($redirect);
         //exit();
-        $this->jump($redirect, __('You have logged in successfully.'), 10);
+        $this->jump($redirect, __('You have logged in successfully.'));
     }
 
     /**
