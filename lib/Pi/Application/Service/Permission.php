@@ -176,13 +176,13 @@ class Permission extends AbstractService
      * Check if a user or role(s) has permission
      *
      * @param array $resource   Array: section, module, resource
-     * @param null|int|string|string[]  $uid Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      *
      * @return bool
      */
-    public function hasPermission(array $resource, $uid = null)
+    public function hasPermission(array $resource, $roleOrUid = null)
     {
-        $roles = $this->canonizeRole($uid);
+        $roles = $this->canonizeRole($roleOrUid);
         if (!$roles) {
             return false;
         }
@@ -200,16 +200,16 @@ class Permission extends AbstractService
     /**
      * Get permitted resources of a role subject to conditions
      *
-     * @param null|int|string|string[] $role Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      * @param array $condition
      *
      * @return array
      */
-    public function getPermission($role, array $condition = array())
+    public function getPermission($roleOrUid, array $condition = array())
     {
         $result = array();
         $condition = $this->canonizeRule($condition);
-        $condition['role'] = $this->canonizeRole($role);
+        $condition['role'] = $this->canonizeRole($roleOrUid);
         $rowset = $this->model()->select($condition);
         foreach ($rowset as $row) {
             $result[] = array(
@@ -473,22 +473,22 @@ class Permission extends AbstractService
     /**
      * Canonize role(s)
      *
-     * @param null|int|string|string[] $role Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      *
      * @return string[]
      */
-    public function canonizeRole($role)
+    public function canonizeRole($roleOrUid)
     {
         // uid
-        if (null === $role) {
-            $role = (int) Pi::user()->getIdentity();
+        if (null === $roleOrUid) {
+            $roleOrUid = (int) Pi::user()->getIdentity();
         }
         // uid => roles
-        if (is_numeric($role)) {
-            $roles = $this->getRoles($role);
+        if (is_numeric($roleOrUid)) {
+            $roles = $this->getRoles($roleOrUid);
         // role
         } else {
-            $roles = (array) $role;
+            $roles = (array) $roleOrUid;
         }
 
         return $roles;
