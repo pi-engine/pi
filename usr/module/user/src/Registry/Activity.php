@@ -41,6 +41,7 @@ class Activity extends AbstractRegistry
                 //'module'        => $row['module'],
                 'icon'          => $row['icon'],
                 'callback'      => $row['callback'],
+                'template'      => $row['template']
             );
         }
 
