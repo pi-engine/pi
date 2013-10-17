@@ -65,7 +65,7 @@
 	filter:none;
 }
 .user-avatar-upload:hover {
-    color: #fff;
+  color: #fff;
 }
 
 /* Profile */
@@ -149,65 +149,70 @@
 	display: block;
 }
 .user-info-list {
-    min-height: 20px;
+  min-height: 20px;
 }
 .user-info-top {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .user-info-title {
-    font-size: 30px;
-    margin-right: 20px;
-    text-transform: capitalize;
+  font-size: 30px;
+  margin-right: 20px;
+  text-transform: capitalize;
 }
 .user-info-title strong {
 
 }
 .user-info-item {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    background: #fff;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
 }
 .user-info-item .user-info-show,
 .user-info-item form {
-    padding: 20px 0;
-    margin: 0;
+  padding: 20px 0;
+  margin: 0;
 }
 .user-info-header {
-    background: #eee;
-    cursor: move;
-    border-bottom: 1px solid #ccc;
-    text-align: right;
-    padding-right: 10px;
+  background: #eee;
+  cursor: move;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+  padding-right: 10px;
 }
 .user-info-item form,
 .user-info-item-edit .user-info-show {
-    display: none;
+  display: none;
 }
 .user-info-item-edit form {
-    display: block;
+  display: block;
 }
 .user-info-item-edit .user-info-header {
-    background: #0188cc;
+  background: #0188cc;
 }
 .user-info-item-edit .user-info-body {
-    background: #f2fbff;
+  background: #f2fbff;
 }
 .user-info-header .close {
-    float: none;
+  float: none;
 }
 .user-info-item-edit .btn-user-edit {
-    color: #fff;
+  color: #fff;
 }
 .user-add-legend {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* avatar */
+.avatar-preview-header {
+	margin: 20px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
 .avatar-upload-box {
 	border: 1px solid #e5e5e5;
 	width: 300px;
 	height: 300px;
-	margin-bottom: 20px;
+	overflow: hidden;
 }
 .avatar-preview-inline img {
 	max-width: none;
@@ -225,4 +230,13 @@
 .avatar-preview-box {
 	overflow: hidden;
 	border: 1px solid #e5e5e5;
+}
+.avatar-repository-inline li {
+	display: inline-block;
+	margin: 0 20px 10px 0;
+	text-align: center; 
+
+}
+.avatar-repository-inline img {
+	display: block;
 }
