@@ -31,6 +31,11 @@
             'href'   => '#formLocal'
         )
     );
+    $viewPreview = '<li>
+                        <p>%s</p>
+                        <div class="avatar-preview-box" style="width: %spx; height: %spx;">
+                            <img src="%s" class="avatar-preview-img">
+                        </div>';
     d($gravatar);
     d($selected);
     d($local);
@@ -78,23 +83,15 @@
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
             <ul class="unstyled avatar-preview-inline">
-                <?php
-                foreach ($allSize as $key => $item) {
-                    echo sprintf(
-                        '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx; height: %spx;">%s</div>',
+                <?php 
+                foreach ($allSize as $key => $value) {
+                    echo sprintf($viewPreview,
                         $key,
-                        $item,
-                        $item,
-                        Pi::service('user')->avatar()->get(
-                            $uid,
-                            $key,
-                            array(
-                                'class'     => 'avatar-preview-img',
-                                'data-size' => $item
-                            )
-                        )
+                        $value,
+                        $value,
+                        $uploads[$key] ? : ''
                     );
-                 }
+                } 
                 ?>
             </ul>
         </div>
@@ -111,13 +108,12 @@
             </div>
             <ul class="unstyled avatar-preview-inline">
             <?php 
-            foreach ($allSize as $key => $value) {
-                echo sprintf(
-                    '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx;">
-                        <img src="%s" class="avatar-preview-img"></div>',
+            foreach ($gravatar as $key => $value) {
+                echo sprintf($viewPreview,
                     $key,
-                    $value,
-                    $gravatar
+                    $allSize[$key],
+                    $allSize[$key],
+                    $value
                 );
             } 
             ?>
@@ -138,14 +134,12 @@
             </div>
             <ul class="unstyled avatar-preview-inline">
                 <?php
-                foreach ($allSize as $key => $item) {
-                    echo sprintf(
-                        '<li><p>%s</p><div class="avatar-preview-box" style="width: %spx; height: %spx;">
-                            <img src="%s" class="avatar-preview-img"></div>',
+                foreach ($selected as $key => $value) {
+                    echo sprintf($viewPreview,
                         $key,
-                        $item,
-                        $item,
-                        $selected[$key]
+                        $allSize[$key],
+                        $allSize[$key],
+                        $value
                     );
                  }
                 ?>
@@ -154,7 +148,7 @@
         <div class="tab-pane" id="formLocal">
             <div class="media">
                 <div class="pull-left">
-                    <img src="<?php echo $local; ?>">
+                    <img src="<?php echo $local['normal']; ?>">
                 </div>
                 <div class="media-body">
                     <?php _e('Apply system avatar as your avatar'); ?>
@@ -164,9 +158,9 @@
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
             <ul class="unstyled avatar-preview-inline">
-                <?php foreach ($allSize as $key => $item) { ?>
+                <?php foreach ($local as $key => $value) { ?>
                 <li>
-                    <img src="<?php echo dirname($local) . '/' . $key . '.png'; ?>">
+                    <img src="<?php echo $value; ?>">
                 <?php } ?>
             </ul>
         </div>
@@ -185,7 +179,6 @@ $('#js-user-avatar').data('config', {
     uploadText: '<?php _e('Upload avatar'); ?>',
     processText: '<?php _e('Uploading'); ?>',
     uploadBoxSize: 300,
-    allSize: <?php echo json_encode($allSize); ?>,
     filename: '<?php echo $filename; ?>'
 });
 </script>
