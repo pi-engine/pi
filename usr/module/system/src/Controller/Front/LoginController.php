@@ -11,7 +11,6 @@ namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl as AclManager;
 use Module\System\Form\LoginForm;
 use Module\System\Form\LoginFilter;
 

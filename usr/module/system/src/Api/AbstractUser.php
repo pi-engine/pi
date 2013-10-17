@@ -290,13 +290,13 @@ abstract class AbstractUser extends AbstractApi
      * Get user role
      *
      * Section: `admin`, `front`
-     * If section is specified, returns the role;
+     * If section is specified, returns the roles;
      * if not, return associative array of roles.
      *
      * @param int       $uid
      * @param string    $section   Section name: admin, front
      *
-     * @return string|array
+     * @return array
      */
     public function getRole($uid, $section = '')
     {
@@ -310,12 +310,12 @@ abstract class AbstractUser extends AbstractApi
             $where['section'] = $section;
         }
         $rowset = Pi::model('user_role')->select($where);
-        if ($section) {
-            $result = $rowset->current()->role;
-        } else {
-            $result = array();
-            foreach ($rowset as $row) {
-                $result[$row['section']] = $row['role'];
+        $result = array();
+        foreach ($rowset as $row) {
+            if ($section) {
+                $result[] = $row['role'];
+            } else {
+                $result[$row['section']][] = $row['role'];
             }
         }
 
