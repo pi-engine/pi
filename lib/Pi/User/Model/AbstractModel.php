@@ -26,7 +26,7 @@ abstract class AbstractModel extends ArrayObject
 
     /**
      * User role
-     * @var string
+     * @var array
      */
     protected $role;
 
@@ -155,18 +155,14 @@ abstract class AbstractModel extends ArrayObject
     /**
      * Set role or retrieve from DB
      *
-     * @param null|string $role
+     * @param null|array $role
      * @return $this|string
      */
     public function role($role = null)
     {
-        if (is_string($role)) {
-            $this->role = $role;
+        if (null !== $role) {
+            $this->role = (array) $role;
             return $this;
-        }
-
-        if (null === $this->role) {
-            $this->loadRole();
         }
 
         return $this->role;
@@ -192,7 +188,7 @@ abstract class AbstractModel extends ArrayObject
     /**
      * Load role of current user
      *
-     * @return string
+     * @return array
      */
     abstract public function loadRole();
 

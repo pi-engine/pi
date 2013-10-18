@@ -337,7 +337,7 @@ class User extends AbstractUseApi
      * If section is specified, returns the role;
      * if not, return associative array of roles.
      *
-     * @param        $uid
+     * @param int    $uid
      * @param string $section   Section name: admin, front
      *
      * @return string|array

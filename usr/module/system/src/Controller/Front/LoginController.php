@@ -192,8 +192,13 @@ class LoginController extends ActionController
                 ->rememberme($configs['rememberme'] * 86400);
         }
         Pi::service('session')->setUser($result->getData('id'));
+        $roles = Pi::service('user')->getRole(
+            $result->getData('id')
+        );
+        $persist = $result->getData();
+        $persist['role'] = $roles;
+        Pi::service('user')->setPersist($persist);
         Pi::service('user')->bind($result->getIdentity(), 'identity');
-        Pi::service('user')->setPersist($result->getData());
         Pi::service('event')->trigger('login', $result->getIdentity());
 
         if (!empty($configs['attempts'])) {

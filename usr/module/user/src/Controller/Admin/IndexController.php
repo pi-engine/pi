@@ -908,7 +908,8 @@ class IndexController extends ActionController
     /**
      * Canonize register date
      *
-     * @params $rengisterDate
+     * @param string $registerDate
+     *
      * @return int
      */
     protected function canonizeRegisterDate($registerDate)

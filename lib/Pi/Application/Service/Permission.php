@@ -28,7 +28,6 @@ use Pi\Application\AbstractApi;
  * - getPermission($role, array $condition = array())
  * - hasPermission($permission, $uid = null)
  * - inheritPermission($role, $fromRole)
- * - getRoles($uid = null)
  * - isAdminRole($role)
  * - isAdmin($uid = null)
  *
@@ -63,7 +62,7 @@ class Permission extends AbstractService
         ),
         'admin' => array(
             'admin' => 'admin',
-            'guest' => 'guest',
+            'guest' => null,
         ),
     );
 
@@ -367,38 +366,6 @@ class Permission extends AbstractService
     }
 
     /**
-     * Get roles of a user
-     *
-     * @param int|null $uid
-     * @param string   $section
-     * @param string   $section
-     *
-     * @return string[]
-     */
-    public function getRoles($uid = null, $section = '')
-    {
-        $result = array();
-
-        $uid = (int) (null !== $uid ? $uid : Pi::user()->getIdentity());
-        $section = $section ?: $this->getSection();
-        if (!$uid) {
-            if (isset($this->roles[$section]['guest'])) {
-                $result[] = $this->roles[$section]['guest'];
-            }
-        } else {
-            $rowset = Pi::Model('user_role')->select(array(
-                'uid'       => $uid,
-                'section'   => $section,
-            ));
-            foreach ($rowset as $row) {
-                $result[] = $row['role'];
-            }
-        }
-
-        return $result;
-    }
-
-    /**
      * Check if a role is admin role
      *
      * @param string $role
@@ -438,7 +405,7 @@ class Permission extends AbstractService
         }
 
         $section = $section ?: $this->getSection();
-        $roles = $this->getRoles($uid);
+        $roles = Pi::service('user')->getRole($uid);
         if (in_array($this->roles[$section]['admin'], $roles)) {
             $result = true;
         }
@@ -461,10 +428,6 @@ class Permission extends AbstractService
      */
     public function isRoot($uid = null)
     {
-        /*
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
-        $result = static::ROOT_UID === $uid ? true : false;
-        */
         $result = Pi::service('user')->isRoot($uid);
 
         return $result;
@@ -485,7 +448,7 @@ class Permission extends AbstractService
         }
         // uid => roles
         if (is_numeric($roleOrUid)) {
-            $roles = $this->getRoles($roleOrUid);
+            $roles = Pi::service('user')->getRole($roleOrUid);
         // role
         } else {
             $roles = (array) $roleOrUid;
