@@ -15,6 +15,8 @@
     };
     root.init();
     var config = root.config;
+    var allSize = config.allSize;
+    
     var uploadBtn = root.uploadBtn;
     var saveBtn = root.$('.js-save');
     var uploadImg = root.$('.avatar-upload-image');
@@ -43,10 +45,15 @@
       var boundy = 0;
       var uploadBoxSize = config.uploadBoxSize;
       var prevImgs = $('#fromUpload .avatar-preview-img');
+      var allSizeArr = [];
+      var idx = 0;
 
       uploadImg.removeClass('hide').attr('src', url);
-      prevImgs.each(function() {
-        $(this).attr('src',  url);
+      $.each(config.allSize, function(key, value) {
+        prevImgs.eq(idx++).attr({
+          src: url,
+          'data-size': value
+        })
       });
       jcrop_api && jcrop_api.destroy();
       if (res.w > res.h) {

@@ -235,8 +235,8 @@
 	display: inline-block;
 	margin: 0 20px 10px 0;
 	text-align: center; 
-
 }
 .avatar-repository-inline img {
 	display: block;
+	border: 1px solid #e5e5e5;
 }
