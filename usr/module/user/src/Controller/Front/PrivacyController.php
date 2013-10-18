@@ -39,8 +39,7 @@ class PrivacyController extends ActionController
             );
         }
 
-        // Get user privacy setting
-        $privacy = $this->getPrivacySetting($uid);
+        $privacy = Pi::api('user', 'privacy')->getUserPrivacy($uid, 'list');
 
         return $privacy;
     }
@@ -98,31 +97,6 @@ class PrivacyController extends ActionController
             $result['message'] = __('Set privacy successfully');
         } catch (\Exception $e) {
             return $result;
-        }
-
-        return $result;
-
-    }
-
-    /**
-     * Get user privacy setting
-     *
-     * @param $uid
-     * @return array
-     */
-    protected function getPrivacySetting($uid)
-    {
-        $uid = (int) $uid;
-        $result = array();
-
-        if (!$uid) {
-            return $result;
-        }
-
-        $userPrivacyModel = $this->getModel('privacy_user');
-        $rowset = $userPrivacyModel->select(array('uid' => $uid));
-        foreach ($rowset as $row) {
-            $result[] = $row->toArray();
         }
 
         return $result;
