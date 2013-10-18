@@ -417,12 +417,12 @@ class AvatarController extends ActionController
         $adapters = (array) Pi::service('avatar')->getOption('adapter');
         array_push($adapters, 'local');
         //array('upload', 'gravatar', 'repository', 'local');
-        var_dump($source);
-        var_dump($adapters);
+        //var_dump($source);
+        //var_dump($adapters);
         if (empty($source) 
             || !in_array($source, $adapters)
         ) {
-            $return['message'] = __('Invalid source.');
+            $return['message'] = sprintf(__('Invalid source %s.'), $source);
             echo json_encode($return);
             exit;
         }

@@ -141,7 +141,7 @@
         data['fake_id'] = config.fake_id;
       } else if(source == 'gravatar') {
         data['email'] = $.trim(root.$('[name=email]').val());
-      } else if (source == 'repository') {
+      } else if (source == 'select') {
         data['name'] = root.$('[name=repository-avatar]:checked').val();
       }
       data.source = source;
@@ -196,7 +196,7 @@
       });
     });
 
-    if (config.source == 'repository') {
+    if (config.source == 'select') {
       repositoryRadios.filter('[value=' + config.filename + ']').attr('checked', 'checked');
     } else {
       repositoryRadios.eq(0).attr('checked', 'checked');
