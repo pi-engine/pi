@@ -61,35 +61,12 @@ class AvatarController extends ActionController
         }
 
         if ($autoCreate) {
-            $this->mkdir(Pi::path($path));
+            Pi::service('file')->mkdir(Pi::path($path));
         }
 
         return $path;
     }
-    
-    /**
-     * Create a directory if it not exists
-     * 
-     * @param string  $dir
-     * @return bool 
-     */
-    protected function mkdir($dir)
-    {
-        /*
-        $result = true;
 
-        if (!file_exists($dir)) {
-            $oldumask = umask(0);
-
-            $result   = mkdir($dir, 0777, TRUE);
-
-            umask($oldumask);
-        }
-        */
-        $result = Pi::service('file')->mkdir($dir);
-        return $result;
-    }
-    
     /**
      * Get session instance
      * 
