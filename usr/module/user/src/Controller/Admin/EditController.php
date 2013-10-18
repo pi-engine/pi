@@ -32,7 +32,7 @@ class EditController extends ActionController
     {
         $result = array(
             'status'  => 0,
-            'message' => __('Edit user faild'),
+            'message' => __('Edit user failed'),
         );
         $uid = (int) _get('uid');
 
