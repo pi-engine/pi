@@ -435,4 +435,14 @@ abstract class AbstractAdapter implements BindInterface
      */
     abstract public function killUser($uid);
     /**#@-*/
+
+    /**
+     * Get a user model
+     *
+     * @param int|string|array  $uid
+     * @param string            $field
+     *
+     * @return UserModel
+     */
+    abstract public function getUserModel($uid, $field = 'id');
 }

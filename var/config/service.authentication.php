@@ -18,8 +18,8 @@ return array(
             'identity_column'   => 'identity',
             'credential_column' => 'credential',
 
-            'return_columns'    => null,
-            'omit_columns'      => array('credential', 'salt'),
+            'return_columns'    => array('id', 'identity'),
+            //'omit_columns'      => array('credential', 'salt'),
         ),
     ),
 );

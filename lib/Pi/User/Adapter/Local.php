@@ -212,7 +212,7 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    protected function getUserModel($uid, $field = 'id')
+    public function getUserModel($uid, $field = 'id')
     {
         $model = new UserModel($uid, $field);
 

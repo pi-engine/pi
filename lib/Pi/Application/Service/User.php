@@ -241,23 +241,37 @@ class User extends AbstractService
      *
      * @param UserModel|int|string|null $identity
      *      User id, identity or data object
-     * @param string                    $type
-     *      Type of the identity: id, identity, object
+     * @param string                    $field
+     *      Field of the identity: id, identity
      * @return self
      */
-    public function bind($identity = null, $type = '')
+    public function bind($identity = null, $field = 'id')
     {
         if (null !== $identity || null === $this->model) {
             if ($identity instanceof UserModel) {
                 $this->model = $identity;
             } else {
-                $this->model = $this->getAdapter()->getUser($identity, $type);
+                $persist = $this->getPersist();
+                if (isset($persist[$field]) && $identity == $persist[$field]) {
+                    $this->model = $this->getAdapter()->getUserModel($persist);
+                } else {
+                    $this->model = $this->getAdapter()->getUser($identity, $field);
+                }
             }
+
+            //d($identity);
+            //d($this->model);
+            /*
             // Assign persist data
-            $persist = $this->getPersist();
-            if ($persist) {
-                $this->model->assign($persist);
+            if ($this->model->get('id')) {
+                $persist = $this->getPersist();
+                //d($persist);
+                if ($persist) {
+                    $this->model->assign($persist);
+                }
             }
+            */
+
             // Store current session user model for first time
             if (null === $this->modelSession) {
                 $this->modelSession = $this->model;
@@ -457,14 +471,12 @@ class User extends AbstractService
         }
         if (null === $result) {
             $result = $this->getAdapter()->getRole($uid, $section);
-            if ($isCurrent) {
+            if ($isCurrent && $uid) {
                 // Set role for current user
                 $this->getUser()->role($result);
 
                 // Save role to persist
-                $persist = $this->getPersist();
-                $persist['role'] = $result;
-                $this->setPersist($persist);
+                $this->setPersist('role', $result);
             }
         }
 
@@ -562,9 +574,17 @@ class User extends AbstractService
     public function setPersist($name, $value = null)
     {
         if (is_string($name)) {
-            $_SESSION['PI_USER'][$name] = $value;
+            if (!isset($_SESSION['PI_USER']['field'])) {
+                $_SESSION['PI_USER']['field'] = $this->getPersist();
+            }
+            $_SESSION['PI_USER']['field'][$name] = $value;
         } else {
-            $_SESSION['PI_USER'] = $name ? (array) $name : null;
+            $_SESSION['PI_USER']['field'] = $name ? (array) $name : null;
+        }
+        if ($ttl = $this->getOption('persist', 'ttl')) {
+            $_SESSION['PI_USER']['time'] = time() + $ttl;
+        } elseif (isset($_SESSION['PI_USER']['time'])) {
+            unset($_SESSION['PI_USER']['time']);
         }
 
         return $this;
@@ -579,16 +599,22 @@ class User extends AbstractService
     public function getPersist($name = null)
     {
         $data = (array) $_SESSION['PI_USER'];
-        if ($this->getOption('persist') && !$data) {
-            $uid = $this->getIdentity();
-            $fields = $this->getOption('persist');
-            $data = $this->get($uid, $fields);
-            $this->setPersist($data);
-        }
-        if ($name) {
-            $result = isset($data[$name]) ? $data[$name] : null;
+        if (isset($data['time']) && $data['time'] < time()) {
+            $result = null;
         } else {
-            $result = $data;
+            $userData = array();
+            if (isset($data['field'])) {
+                $userData = $data['field'];
+            } elseif ($fields = $this->getOption('persist', 'field')) {
+                $uid = $this->getIdentity();
+                $userData = $this->get($uid, $fields);
+                $this->setPersist($userData);
+            }
+            if ($name) {
+                $result = isset($userData[$name]) ? $userData[$name] : null;
+            } else {
+                $result = $userData;
+            }
         }
 
         return $result;

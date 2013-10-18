@@ -366,14 +366,9 @@ class System extends AbstractAdapter
     /**#@-*/
 
     /**
-     * Get user data model
-     *
-     * @param int|string    $uid
-     * @param string        $field
-     *
-     * @return UserModel
+     * {@inheritDoc}
      */
-    protected function getUserModel($uid, $field = 'id')
+    public function getUserModel($uid, $field = 'id')
     {
         $model = new UserModel($uid, $field);
 
