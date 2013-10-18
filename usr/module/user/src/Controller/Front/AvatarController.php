@@ -130,7 +130,8 @@ class AvatarController extends ActionController
 
         // Get allowed adapter
         $adapters = (array) Pi::avatar()->getOption('adapter');
-        
+        $adapters[] = 'local';
+
         // Get upload photo
         $uploads = array();
         if (in_array('upload', $adapters)) {

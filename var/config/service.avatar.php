@@ -13,8 +13,6 @@ return array(
     // Auto detected
     'adapter'       => array('upload', 'select', 'gravatar'),
 
-    // Allowed adapters
-    //'adapter_allowed' => array('upload', 'select', 'gravatar'),
 
     // Options for named size
     'size_map'  => array(

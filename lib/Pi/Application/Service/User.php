@@ -368,7 +368,6 @@ class User extends AbstractService
         return $result;
     }
 
-
     /**
      * Set value of a user field
      *

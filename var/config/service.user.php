@@ -8,7 +8,7 @@ return array(
     'persist'   => array(
         'name',
         'email',
-        'avatar',
+        //'avatar',
         'role'
     ),
 
