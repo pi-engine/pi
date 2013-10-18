@@ -28,7 +28,6 @@ use Pi\Application\AbstractApi;
  * - getPermission($role, array $condition = array())
  * - hasPermission($permission, $uid = null)
  * - inheritPermission($role, $fromRole)
- * - getRoles($uid = null)
  * - isAdminRole($role)
  * - isAdmin($uid = null)
  *
@@ -44,7 +43,7 @@ use Pi\Application\AbstractApi;
 class Permission extends AbstractService
 {
     /** @var int Root user id */
-    const ROOT_UID = 1;
+    //const ROOT_UID = 1;
 
     /**
      * Application section: front, admin
@@ -63,6 +62,7 @@ class Permission extends AbstractService
         ),
         'admin' => array(
             'admin' => 'admin',
+            'guest' => null,
         ),
     );
 
@@ -175,13 +175,13 @@ class Permission extends AbstractService
      * Check if a user or role(s) has permission
      *
      * @param array $resource   Array: section, module, resource
-     * @param null|int|string|string[]  $uid Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      *
      * @return bool
      */
-    public function hasPermission(array $resource, $uid = null)
+    public function hasPermission(array $resource, $roleOrUid = null)
     {
-        $roles = $this->canonizeRole($uid);
+        $roles = $this->canonizeRole($roleOrUid);
         if (!$roles) {
             return false;
         }
@@ -199,16 +199,16 @@ class Permission extends AbstractService
     /**
      * Get permitted resources of a role subject to conditions
      *
-     * @param null|int|string|string[] $role Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      * @param array $condition
      *
      * @return array
      */
-    public function getPermission($role, array $condition = array())
+    public function getPermission($roleOrUid, array $condition = array())
     {
         $result = array();
         $condition = $this->canonizeRule($condition);
-        $condition['role'] = $this->canonizeRole($role);
+        $condition['role'] = $this->canonizeRole($roleOrUid);
         $rowset = $this->model()->select($condition);
         foreach ($rowset as $row) {
             $result[] = array(
@@ -366,36 +366,6 @@ class Permission extends AbstractService
     }
 
     /**
-     * Get roles of a user
-     *
-     * @param int|null $uid
-     * @param string   $section
-     * @param string   $section
-     *
-     * @return string[]
-     */
-    public function getRoles($uid = null, $section = '')
-    {
-        $result = array();
-
-        $uid = (int) (null !== $uid ? $uid : Pi::user()->getIdentity());
-        $section = $section ?: $this->getSection();
-        if (!$uid) {
-            $result[] = $this->roles[$section]['guest'];
-        } else {
-            $rowset = Pi::Model('user_role')->select(array(
-                'uid'       => $uid,
-                'section'   => $section,
-            ));
-            foreach ($rowset as $row) {
-                $result[] = $row['role'];
-            }
-        }
-
-        return $result;
-    }
-
-    /**
      * Check if a role is admin role
      *
      * @param string $role
@@ -435,7 +405,7 @@ class Permission extends AbstractService
         }
 
         $section = $section ?: $this->getSection();
-        $roles = $this->getRoles($uid);
+        $roles = Pi::service('user')->getRole($uid);
         if (in_array($this->roles[$section]['admin'], $roles)) {
             $result = true;
         }
@@ -458,8 +428,7 @@ class Permission extends AbstractService
      */
     public function isRoot($uid = null)
     {
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
-        $result = static::ROOT_UID === $uid ? true : false;
+        $result = Pi::service('user')->isRoot($uid);
 
         return $result;
     }
@@ -467,22 +436,22 @@ class Permission extends AbstractService
     /**
      * Canonize role(s)
      *
-     * @param null|int|string|string[] $role Int for uid and string for role
+     * @param null|int|string|string[] $roleOrUid
      *
      * @return string[]
      */
-    public function canonizeRole($role)
+    public function canonizeRole($roleOrUid)
     {
         // uid
-        if (null === $role) {
-            $role = (int) Pi::user()->getIdentity();
+        if (null === $roleOrUid) {
+            $roleOrUid = (int) Pi::user()->getIdentity();
         }
         // uid => roles
-        if (is_numeric($role)) {
-            $roles = $this->getRoles($role);
+        if (is_numeric($roleOrUid)) {
+            $roles = Pi::service('user')->getRole($roleOrUid);
         // role
         } else {
-            $roles = (array) $role;
+            $roles = (array) $roleOrUid;
         }
 
         return $roles;

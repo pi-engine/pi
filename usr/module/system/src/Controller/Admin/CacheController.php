@@ -210,7 +210,7 @@ class CacheController extends ActionController
      */
     protected function flushPage($namespace = null)
     {
-        Pi::service('render')->flushCache($namespace ?: null);
+        Pi::service('render_cache')->flushCache($namespace ?: null);
 
         return;
     }

@@ -82,7 +82,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function addUser($data, $setRole = true)
     {
-        $uid = $this->addAccount($data);
+        $uid = (int) $this->addAccount($data);
         if ($uid && $setRole) {
             $this->setRole($uid, 'member', 'front');
         }
@@ -101,6 +101,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function updateUser($uid, array $data)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -119,6 +120,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function deleteUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -137,6 +139,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function activateUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -156,6 +159,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function enableUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -175,6 +179,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function disableUser($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -216,6 +221,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function setRole($uid, $role)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -258,6 +264,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function revokeRole($uid, $role)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -283,31 +290,38 @@ abstract class AbstractUser extends AbstractApi
      * Get user role
      *
      * Section: `admin`, `front`
-     * If section is specified, returns the role;
+     * If section is specified, returns the roles;
      * if not, return associative array of roles.
      *
      * @param int       $uid
      * @param string    $section   Section name: admin, front
      *
-     * @return string|array
+     * @return array
      */
-    public function getRole($uid, $section = '')
+    public function getRole($uid, $section)
     {
+        $uid = (int) $uid;
         if (!$uid) {
-            return false;
+            if ('front' == $section) {
+                $result = array('guest');
+            } else {
+                $result = array();
+            }
+
+            return $result;
         }
 
-        $where = array('uid' => $uid);
-        if ($section) {
-            $where['section'] = $section;
-        }
+        $where = array(
+            'uid'       => $uid,
+            'section'   => $section,
+        );
         $rowset = Pi::model('user_role')->select($where);
-        if ($section) {
-            $result = $rowset->current()->role;
-        } else {
-            $result = array();
-            foreach ($rowset as $row) {
-                $result[$row['section']] = $row['role'];
+        $result = array();
+        foreach ($rowset as $row) {
+            if ($section) {
+                $result[] = $row['role'];
+            } else {
+                $result[$row['section']][] = $row['role'];
             }
         }
 
@@ -367,6 +381,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -403,7 +418,11 @@ abstract class AbstractUser extends AbstractApi
      */
     public function deleteAccount($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
+            return false;
+        }
+        if (Pi::service('user')->isRoot($uid)) {
             return false;
         }
 
@@ -440,6 +459,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function activateAccount($uid)
     {
+        $uid = (int) $uid;
         if (!$uid) {
             return false;
         }
@@ -489,7 +509,11 @@ abstract class AbstractUser extends AbstractApi
      */
     public function enableAccount($uid, $flag = true)
     {
+        $uid = (int) $uid;
         if (!$uid) {
+            return false;
+        }
+        if (!$flag && Pi::service('user')->isRoot($uid)) {
             return false;
         }
 

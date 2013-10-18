@@ -22,6 +22,30 @@ class AccountFilter extends InputFilter
     public function __construct()
     {
         $this->add(array(
+            'name'       => 'email',
+            'require'    => true,
+            'filters'    => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+            'validators'    => array(
+                array(
+                    'name'      => 'EmailAddress',
+                    'options'   => array(
+                        'useMxCheck'        => false,
+                        'useDeepMxCheck'    => false,
+                        'useDomainCheck'    => false,
+                    ),
+                ),
+                new \Module\User\Validator\UserEmail(array(
+                    'backlist'          => 'pi-engine.org$',
+                    'checkDuplication'  => true,
+                )),
+            ),
+        ));
+
+        $this->add(array(
             'name'       => 'name',
             'require'    => true,
             'filters'    => array(
@@ -30,10 +54,9 @@ class AccountFilter extends InputFilter
                 ),
             ),
             'validators' => array(
-                array(
-                    'name' => 'Module\User\Validator\Name',
-
-                ),
+                new \Module\User\Validator\Name(array(
+                    'checkDuplication'  => true,
+                ))
             ),
         ));
     }

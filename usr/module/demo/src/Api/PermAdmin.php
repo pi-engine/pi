@@ -7,23 +7,25 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Demo;
+namespace Module\Demo\Api;
 
 use Pi\Application\AbstractModuleAwareness;
 
-class Permission extends AbstractModuleAwareness
+class PermAdmin extends AbstractModuleAwareness
 {
     protected $module = 'demo';
 
     public function getResources()
     {
         $resources = array();
-        for ($i = 1; $i <= 10; $i++) {
+
+        for ($i = 1; $i <= 5; $i++) {
             $name = $this->module . '-resource-' . $i;
-            $title = ucwords($this->module . ' resource ' . $i);
+            $title = ucwords($this->module . ' resource admin ' . $i);
             $resources[$name] = $title;
         }
 
+        //vd($resources);
         return $resources;
     }
 }

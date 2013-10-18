@@ -8,7 +8,6 @@
  */
 
 return array(
-    'custom'    => 'Module\Demo\Permission',
     'front'    => array(
         // test
         'test'  => array(
@@ -26,5 +25,9 @@ return array(
             'title'     => __('Management privilege'),
             'access'    => 'moderator',
         ),
+        'custom'    => 'Module\Demo\Api\PermFront',
+    ),
+    'admin'     => array(
+        'custom'    => 'Module\Demo\Api\PermAdmin',
     ),
 );

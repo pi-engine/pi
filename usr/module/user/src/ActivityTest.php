@@ -14,12 +14,15 @@ class ActivityTest
     {
         $data = array();
         for ($i = 0; $i < $limit; $i++) {
-            $data[] = array(
-                'message' => $uid . $this->module . 'item' . $i,
-                'time' => time() - $i * 3600,
+            $message = sprintf('Uid %d activity  %d items', $uid, $i);
+            $data['items'][] = array(
+                'message' => $message,
+                'time'    => time() - $i * 3600,
             );
         }
+        $data['link'] = '/user/activity/more/uid/' . $uid;
 
         return $data;
+
     }
 }

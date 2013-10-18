@@ -25,6 +25,7 @@ class Directive extends AbstractController
     const DIR_CACHE     = 'cache';
     const DIR_LOG       = 'log';
     const DIR_VENDOR    = 'vendor';
+    const DIR_CUSTOM_MODULE    = 'custom';
 
     protected $host;
 
@@ -67,6 +68,9 @@ class Directive extends AbstractController
         $vars['vendor']['path'] = !empty($vars['vendor']['path'])
             ? $vars['vendor']['path']
             : $vars['lib']['path'] . '/' . static::DIR_VENDOR;
+        $vars['custom_module']['path'] = !empty($vars['custom_module']['path'])
+            ? $vars['custom_module']['path']
+            : $vars['usr']['path'] . '/' . static::DIR_CUSTOM_MODULE;
     }
 
     public function indexAction()

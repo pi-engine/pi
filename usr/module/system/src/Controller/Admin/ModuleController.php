@@ -101,7 +101,7 @@ class ModuleController extends ActionController
     public function availableAction()
     {
         $modules = array();
-        $modulesInstalled = $this->installedModules();
+        //$modulesInstalled = $this->installedModules();
         $iterator = new \DirectoryIterator(Pi::path('module'));
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isDir() || $fileinfo->isDot()) {

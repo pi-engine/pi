@@ -35,19 +35,19 @@ class Autoloader
     /** @var string Top namespace for modules */
     const TOP_NAMESPACE_MODULE = 'Module';
 
-    /** @var string Top namespace for extras */
-    const TOP_NAMESPACE_EXTRA = 'Extra';
+    /** @var string Top namespace for module custom classes */
+    const TOP_NAMESPACE_CUSTOM = 'Custom';
 
     /**
-     * Directory for module and extra source code.
+     * Directory for module and extra custom source code.
      * Module classes are located in `/usr/module/<module-name>/src/`
-     * and extra classes in `/usr/extra/<module-name>/src/`
+     * and custom classes in `/usr/custom/<module-name>/src/`
      * @var string
      */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
-     * Namespace speparator
+     * Namespace separator
      *
      * @var string
      */
@@ -77,10 +77,10 @@ class Autoloader
     protected $modulePath = '';
 
     /**
-     * Directory of extras
+     * Directory of extra custom
      * @var string
      */
-    protected $extraPath = '';
+    protected $customPath = '';
 
     /**#@+
      * Factory variables
@@ -120,7 +120,7 @@ class Autoloader
      *
      *   - include_path:    path to set for vendors
      *   - module_path:     path to modules
-     *   - extra_path:      path to extras
+     *   - custom_path:     path to custom extras
      *   - top:             paths to top namespaces
      *   - namespace:       paths to regular namespaces
      *   - class_map:       class-path map
@@ -141,9 +141,9 @@ class Autoloader
         if (!empty($options['module_path'])) {
             $this->modulePath = $options['module_path'];
         }
-        // Extra directory
-        if (!empty($options['extra_path'])) {
-            $this->extraPath = $options['extra_path'];
+        // Extra custom directory
+        if (!empty($options['custom_path'])) {
+            $this->customPath = $options['custom_path'];
         }
         // class map
         if (!empty($options['class_map'])) {
@@ -283,14 +283,14 @@ class Autoloader
                 $path
             );
 
-        // Extra classes, Extra\ModuleName\ClassNamespace\ClassName
-        } elseif (static::TOP_NAMESPACE_EXTRA === $top) {
+        // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
+        } elseif (static::TOP_NAMESPACE_CUSTOM === $top) {
             list($top, $module, $trimmedClass) = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
             );
-            $path = $this->extraPath . DIRECTORY_SEPARATOR
+            $path = $this->customPath . DIRECTORY_SEPARATOR
                   . strtolower($module) . DIRECTORY_SEPARATOR
                   . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(

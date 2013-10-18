@@ -80,6 +80,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
  *
+ * @method \Pi\User\Adapter\AbstractAdapter::isRoot($uid)
  * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields, $setRole = true)
  * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
  * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)
@@ -252,6 +253,11 @@ class User extends AbstractService
             } else {
                 $this->model = $this->getAdapter()->getUser($identity, $type);
             }
+            // Assign persist data
+            $persist = $this->getPersist();
+            if ($persist) {
+                $this->model->assign($persist);
+            }
             // Store current session user model for first time
             if (null === $this->modelSession) {
                 $this->modelSession = $this->model;
@@ -321,7 +327,7 @@ class User extends AbstractService
             $identity = 0;
         } else {
             $identity = $asId
-                ? $this->modelSession->id
+                ? (int) $this->modelSession->id
                 : $this->modelSession->identity;
         }
 
@@ -342,6 +348,50 @@ class User extends AbstractService
         $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
 
         return $ip;
+    }
+
+    /**
+     * Get user role
+     *
+     * Section: `admin`, `front`
+     * If section is specified, returns the roles;
+     * if not, return associative array of roles.
+     *
+     * @param int    $uid
+     * @param string $section    Section name: admin, front
+     *
+     * @return array
+     */
+    public function getRole($uid, $section = '')
+    {
+        $result     = null;
+        if (null === $uid) {
+            $uid = $this->getIdentity();
+        } else {
+            $uid        = (int) $uid;
+        }
+        $section = $section ?: Pi::engine()->application()->getSection();
+        $isCurrent  = false;
+        if ($uid === (int) $this->getIdentity()
+            && Pi::engine()->application()->getSection() == $section
+        ) {
+            $isCurrent = true;
+            $result = $this->getUser()->role();
+        }
+        if (null === $result) {
+            $result = $this->getAdapter()->getRole($uid, $section);
+            if ($isCurrent) {
+                // Set role for current user
+                $this->getUser()->role($result);
+
+                // Save role to persist
+                $persist = $this->getPersist();
+                $persist['role'] = $result;
+                $this->setPersist($persist);
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -446,9 +496,6 @@ class User extends AbstractService
      */
     public function getPersist($name = null)
     {
-        if (!$this->hasIdentity()) {
-            return false;
-        }
         $data = (array) $_SESSION['PI_USER'];
         if ($name) {
             $result = isset($data[$name]) ? $data[$name] : null;

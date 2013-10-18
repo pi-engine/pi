@@ -31,7 +31,7 @@ class Group extends AbstractApi
     {
         $result = array();
 
-        $model = Pi::model('display_group', $this->module);
+        $model  = Pi::model('display_group', $this->module);
         $select = $model->select()->where(array());
         $select->order('order');
         $rowset = $model->selectWith($select);
@@ -42,8 +42,19 @@ class Group extends AbstractApi
                 'compound' => $row->compound,
                 'order'    => $row->order,
             );
+            $action = $row->compound ? 'edit.compound' : 'edit.profile';
+            $result[$row->id]['link'] = Pi::engine()->application()
+                ->getRouter()
+                ->assemble(array(
+                    'module'     => $this->getModule(),
+                    'controller' => 'profile',
+                    'action'     => $action,
+                    'group'      => $row->id
+                ), array('name' => 'user')
+            );
         }
 
         return $result;
+
     }
 }

@@ -1,15 +1,7 @@
 <ul class="nav nav-tabs">
-    <li class="<?php echo $controller == 'edit' && $action == 'index' ? 'active' : ''?>">
-        <a href=""><?php _e('User info'); ?></a>
+    <?php foreach ($nav as $item) { ?>
+    <li class="<?php echo $item['name'] == $cur_nav ? 'active' : ''; ?>">
+        <a href="<?php echo $item['url']; ?>"><?php echo $item['title']; ?></a>
     </li>
-    <li class="<?php echo $controller == 'avatar' ? 'active' : ''?>">
-        <a href=""><?php _e('Avatar'); ?></a>
-    </li>
-    <?php  foreach ($groups as $key => $group) { ?>
-        <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
-            <a href="<?php echo $group['link']; ?>">
-                <?php echo _escape($group['title']); ?>
-            </a>
-        </li>
     <?php } ?>
 </ul>

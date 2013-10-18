@@ -30,6 +30,15 @@ return array(
                 'my'    => 1,
             ),
         ),
+        'my-received'   => array(
+            'route'         => 'comment',
+            'label'         => _t('My received'),
+            'controller'    => 'list',
+            'action'        => 'received',
+            'params'        => array(
+                'my'    => 1,
+            ),
+        ),
         'my-article'    => array(
             'route'         => 'comment',
             'label'         => _t('My articles'),

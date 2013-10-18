@@ -52,7 +52,7 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get activity meta for nav display
-        $nav = $this->getNav('profile');
+        $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
         $quicklink = $this->getQuicklink();
@@ -82,14 +82,30 @@ class ProfileController extends ActionController
 
         // Get user information
         $user = $this->getUser($uid);
+
         // Get display group
         $profileGroup = $this->getProfile($uid);
+
         // Get viewer role: public member follower following owner
-        $role = $this->getPrivacyRole($uid);
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+
         // Filter field according to privacy setting
-        $profileGroup = $this->filterProfile($uid, $role, $profileGroup);
+        $profileGroup = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $profileGroup,
+            'group'
+        );
+        $user         = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
+
         // Get activity meta for nav display
-        $nav = $this->getNav('profile', $uid);
+        $nav = Pi::api('user', 'nav')->getList('profile', $uid);
+
         // Get quicklink
         $quicklink = $this->getQuicklink();
 
@@ -196,17 +212,6 @@ class ProfileController extends ActionController
 
         // Get side nav items
         $groups = Pi::api('user', 'group')->getList();
-        foreach ($groups as $key => &$group) {
-            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
-            $group['link'] = $this->url(
-                '',
-                array(
-                    'controller' => 'profile',
-                    'action'     => $action,
-                    'group'      => $key,
-                )
-            );
-        }
 
         $this->view()->assign(array(
             'form'      => $form,
@@ -344,17 +349,6 @@ class ProfileController extends ActionController
 
         // Get side nav items
         $groups = Pi::api('user', 'group')->getList();
-        foreach ($groups as $key => &$group) {
-            $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
-            $group['link'] = $this->url(
-                '',
-                array(
-                    'controller' => 'profile',
-                    'action'     => $action,
-                    'group'      => $key,
-                )
-            );
-        }
 
         $this->view()->setTemplate('profile-edit-compound');
         $this->view()->assign(array(
@@ -376,8 +370,8 @@ class ProfileController extends ActionController
     public function editCompoundSetAction()
     {
         $compoundId = _post('compound');
-        $row   = $this->getModel('display_group')->find($compoundId, 'id');
-        $compound = $row ? $row->compound : '';
+        $row        = $this->getModel('display_group')->find($compoundId, 'id');
+        $compound   = $row ? $row->compound : '';
         $set        = _post('set');
         $uid        = Pi::user()->getIdentity();
         $message    = array(
@@ -454,7 +448,7 @@ class ProfileController extends ActionController
      */
     public function addCompoundItemAction()
     {
-        $uid      = Pi::user()->getIdentity();
+        $uid        = Pi::user()->getIdentity();
         $compoundId = _post('group', '');
 
         if (!$uid || !$compoundId) {
@@ -697,7 +691,7 @@ class ProfileController extends ActionController
     {
         $result = array();
 
-        $model = $this->getModel('display_field');
+        $model  = $this->getModel('display_field');
         $select = $model->select()->where(array('group' => $groupId));
         $select->columns(array('field', 'order'));
         $select->order('order ASC');
@@ -724,7 +718,7 @@ class ProfileController extends ActionController
 
         // Get account or profile meta
         $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
-        $groups = $this->getDisplayGroup();
+        $groups    = $this->getDisplayGroup();
 
         foreach ($groups as $groupId => $group) {
             $result[$groupId] = $group;
@@ -779,8 +773,8 @@ class ProfileController extends ActionController
     protected function getQuicklink($limit = null, $offset = null)
     {
         $result = array();
-        $model = $this->getModel('quicklink');
-        $where = array(
+        $model  = $this->getModel('quicklink');
+        $where  = array(
             'active'  => 1,
             'display' => 1,
         );
@@ -813,135 +807,6 @@ class ProfileController extends ActionController
     }
 
     /**
-     * Set nav form home page profile and activity
-     *
-     * @param $uid
-     * @return array
-     */
-    protected function getNav($cur, $uid = '')
-    {
-        // Get activity list
-        $items = array();
-        $nav = array(
-            'cur'   => $cur,
-            'items' => $items,
-        );
-
-        if (!$uid) {
-            // Owner nav
-
-            // Set homepage
-            $homepageUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'index',
-                )
-            );
-            $items[] = array(
-                'title' => __('Homepage'),
-                'name'  => 'homepage',
-                'url'   => $homepageUrl,
-                'icon'  => '',
-            );
-
-            // Set profile
-            $profileUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index',
-                )
-            );
-            $items[] = array(
-                'title' => __('Profile'),
-                'name'  => 'profile',
-                'url'   => $profileUrl,
-                'icon'  => '',
-            );
-
-            // Set activity
-            $activityList = Pi::api('user', 'activity')->getList();
-            foreach ($activityList as $key => $value) {
-                $url = $this->url(
-                    'user',
-                    array(
-                        'controller' => 'activity',
-                        'action'     => 'index',
-                        'name'       => $key,
-                    )
-                );
-                $items[] = array(
-                    'title' => $value['title'],
-                    'name'  => $key,
-                    'icon'  => $value['icon'],
-                    'url'   => $url,
-                );
-            }
-
-            $nav['items'] = $items;
-        } else {
-            // Other view
-            // Set homepage
-            $homepageUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'index',
-                    'uid'        => $uid
-                )
-            );
-            $items[] = array(
-                'title' => __('Homepage'),
-                'name'  => 'homepage',
-                'url'   => $homepageUrl,
-                'icon'  => '',
-            );
-
-            // Set profile
-            $profileUrl = $this->url(
-                'user',
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index',
-                    'uid'        => $uid,
-                )
-            );
-            $items[] = array(
-                'title' => __('Profile'),
-                'name'  => 'profile',
-                'url'   => $profileUrl,
-                'icon'  => '',
-            );
-
-            // Set activity
-            $activityList = Pi::api('user', 'activity')->getList();
-            foreach ($activityList as $key => $value) {
-                $url = $this->url(
-                    'user',
-                    array(
-                        'controller' => 'activity',
-                        'action'     => 'index',
-                        'uid'        => $uid,
-                        'name'       => $key,
-                    )
-                );
-                $items[] = array(
-                    'title' => $value['title'],
-                    'name'  => $key,
-                    'icon'  => $value['icon'],
-                    'url'   => $url,
-                );
-            }
-
-            $nav['items'] = $items;
-        }
-
-        return $nav;
-
-    }
-
-    /**
      * Get compound name by id
      *
      * @param string $compoundId
@@ -955,150 +820,9 @@ class ProfileController extends ActionController
         }
 
         $model = $this->getModel('display_group');
-        $row = $model->find($compoundId, 'id');
+        $row   = $model->find($compoundId, 'id');
 
         return $row ? $row['compound'] : '';
 
-    }
-
-    /**
-     * Filter display information according to privacy setting
-     *
-     * @param $uid
-     * @param $role
-     * @param $groups
-     */
-    protected function filterProfile($uid, $role, $groups)
-    {
-        $privacy = 0;
-        $result = array();
-
-        switch ($role) {
-            case 'public':
-                $privacy = 0;
-                break;
-            case 'member':
-                $privacy = 1;
-                break;
-            case 'follower':
-                $privacy = 2;
-                break;
-            case 'following':
-                $privacy = 4;
-                break;
-        }
-
-        foreach ($groups as $group) {
-            if ($group['compound']) {
-                $allow = $this->checkPrivacy(
-                    $uid,
-                    $group['compound'],
-                    $privacy
-                );
-                if ($allow) {
-                    $result[] = $group;
-                }
-            } else {
-               $data = $group;
-               $data['fields'] = array();
-               foreach (array_keys($group['fields'][0]) as $field) {
-                   $allow = $this->checkPrivacy(
-                       $uid,
-                       $field,
-                       $privacy
-                   );
-
-                   if ($allow) {
-                       $data['fields'][0] = $group['fields'][0][$field];
-                   }
-               }
-               if (!empty($data['fields'][0])) {
-                   $result[] = $data;
-               }
-               unset($data);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Check access field privacy
-     *
-     * @param $uid
-     * @param $field
-     * @param $privacy
-     * @return int
-     */
-    protected function checkPrivacy($uid, $field, $privacy)
-    {
-        $model = $this->getModel('privacy_user');
-        $select = $model->select()->where(
-            array(
-                'uid'        => $uid,
-                'field'      => $field,
-                'value <= ?' => $privacy,
-            )
-        );
-
-        $rowset = $model->selectWith($select)->current();
-
-        return $rowset ? 1 : 0;
-    }
-
-    /**
-     * Get privacy role
-     *
-     * @param $uid
-     * @return string
-     */
-    protected function getPrivacyRole($uid)
-    {
-        $result   = 'public';
-        $loginUid = Pi::user()->getIdentity();
-
-        if (!$loginUid) {
-            return $result;
-        } else {
-            $result = 'member';
-        }
-
-        return $result;
-
-    }
-
-    public function testAction()
-    {
-        //$compoundMeta = Pi::api('user', 'user')->getMeta('compound');
-        //vd($compoundMeta);
-        //$compoundElements = Pi::api('user', 'form')->getCompoundElement('address');
-
-        //vd($compoundElements);
-        //$compoundElements = Pi::api('user', 'form')->getCompoundFilter('address');
-        //vd($compoundElements);
-        //vd($this->getDisplayGroup());
-        //vd($this->getFieldDisplay('basic_info'));
-        //vd(Pi::api('user', 'user')->getMeta('', 'display'));
-        //vd(Pi::api('user', 'user')->getMeta('', 'display'));
-        //vd(Pi::registry('compound', 'user')->read(array('work', 'education')));
-        //vd(Pi::api('user', 'user')->get(7, 'work'));
-        //vd($this->getFieldDisplay('work'));
-        //vd(Pi::registry('compound', 'user')->read('work'));
-        //
-        //d($this->getProfile(7));
-        //$this->getProfile(7);
-        //d(Pi::api('user', 'user')->get(8, 'work'));
-        //$param = $this->params('test', '');
-        //vd($param);
-        //$result = $this->getQuicklink();
-        //vd($result);
-        //vd(Pi::path('module'));
-        //vd(Pi::registry('profile', 'user')->read());
-        //vd(Pi::registry('compound', 'user')->read('work'));
-        //vd($this->getQuicklink());
-        //$this->getNav(1, 'profile');
-        //vd($this->url('', array('action' => 'press')));
-        //vd($this->checkPrivacy(1, 'gender', 255));
-        $this->view()->setTemplate(false);
     }
 }

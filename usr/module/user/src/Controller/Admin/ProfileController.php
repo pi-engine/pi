@@ -76,19 +76,21 @@ class ProfileController extends ActionController
         $fields = Pi::registry('profile', 'user')->read();
 
         foreach ($fields as $field) {
-            if ($field['type'] == 'compound') {
-                $compounds[$field['name']] = array(
-                    'name'   => $field['name'],
-                    'title'  => $field['title'],
-                    'module' => $field['module'],
-                );
-            } else {
-                $profile[$field['name']] = array(
-                    'name'   => $field['name'],
-                    'module' => $field['module'],
-                    'title'  => $field['title'],
+            if ($field['is_display']) {
+                if ($field['type'] == 'compound') {
+                    $compounds[$field['name']] = array(
+                        'name'   => $field['name'],
+                        'title'  => $field['title'],
+                        'module' => $field['module'],
+                    );
+                } else {
+                    $profile[$field['name']] = array(
+                        'name'   => $field['name'],
+                        'module' => $field['module'],
+                        'title'  => $field['title'],
 
-                );
+                    );
+                }
             }
         }
 
@@ -205,11 +207,9 @@ class ProfileController extends ActionController
      */
     public function updateFieldAction()
     {
-        $this->view()->setTemplate(false);
         $result = array(
             'status' => 0
         );
-
         $name          = _post('name');
         $compound      = _post('compound');
         $title         = _post('title');
@@ -277,70 +277,70 @@ class ProfileController extends ActionController
         return $privacy;
     }
 
+    /**
+     * Set field privacy
+     *
+     * @return array
+     */
     public function setPrivacyAction()
     {
-        $id       = _post('id');
-        $value    = _post('value');
-        $isForced = _post('is_forced');
+        $id       = (int) _post('id');
+        $value    = (int) _post('value');
+        $isForced = (int) _post('is_forced');
 
-        $status = array(
+        $result = array(
             'status' => 0,
             'message' => __('Set privacy failed')
         );
 
+        // Check post data
         if (!$id) {
-            return $status;
+            return $result;
         }
 
-        if (!in_array($value, array('0', '1', '2', '4', '255'))) {
-            return $status;
+        if (!in_array($value, array(0, 1, 2, 4, 255))) {
+            return $result;
         }
 
-        if ($isForced != '0' && $isForced != '1') {
-            return $status;
+        if ($isForced != 0 && $isForced != 1) {
+            return $result;
         }
 
+        // Check post id
         $model = $this->getModel('privacy');
-        $row = $model->find($id, 'id');
-
+        $row   = $model->find($id, 'id');
         if (!$row) {
-            return $status;
+            return $result;
         }
 
+        // Update privacy setting
         $row->assign(array(
             'value'     => $value,
             'is_forced' => $isForced,
         ));
         try {
             $row->save();
-            $status['status'] = 1;
-            $status['message'] = __('Set privacy successfully');
         } catch (\Exception $e) {
-            return $status;
+            return $result;
         }
 
-        return $status;
-    }
+        // Set user privacy field
+        if (!$isForced) {
+            $currentPrivacyValue = $row->value;
+            $userPrivacyModel    = $this->getModel('privacy_user');
+            $userPrivacyModel->update(
+                array('value' => $currentPrivacyValue),
+                array(
+                    'field' => $row->field,
+                )
+            );
+        }
 
-    public function testAction()
-    {
-        $this->view()->setTemplate(false);
+        $result['status']  = 1;
+        $result['message'] = __('Set privacy successfully');
 
-//        $data = _post('data');
-//        $data = $this->getGroupDisplay();
-//        d($data);
-//        list($displayGroup, $displayFiled) = $this->canonizeDressUp($data);
-//        d($displayFiled);
-//        d($displayGroup);
-        //$data = $this->getGroupDisplay();
-        //d($this->canonizeDressUp($data));
+        return $result;
 
-//        $displayGroupModel = $this->getModel('display_group');
-//        $displayFiledModel = $this->getModel('display_field');
-
-        // Flush
-//        $displayGroupModel->delete(array());
-//        $displayFiledModel->delete(array());
     }
 
     /**
@@ -351,9 +351,9 @@ class ProfileController extends ActionController
     protected function getGroupDisplay()
     {
         $profileMeta = Pi::registry('profile', 'user')->read();
-        $result = array();
-        $groupModel = $this->getModel('display_group');
-        $select = $groupModel->select()->where(array());
+        $result      = array();
+        $groupModel  = $this->getModel('display_group');
+        $select      = $groupModel->select()->where(array());
         $select->order('order');
         $rowset = $groupModel->selectWith($select);
 

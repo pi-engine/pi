@@ -277,6 +277,7 @@ vd($content);
         d($params);
         vd(Pi::service('url')->assemble('sysuser', $params));
 
+        vd(Pi::service('remote')->get('http://www.baidu.com', array(), array(), true));
     }
 
     /**

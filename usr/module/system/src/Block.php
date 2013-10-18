@@ -47,8 +47,8 @@ class Block
         }
 
         return array(
-            'identity'  => Pi::service('user')->getUser()->identity,
-            'id'        => Pi::service('user')->getUser()->id,
+            'identity'  => Pi::service('user')->getIdentity(false),
+            'id'        => Pi::service('user')->getIdentity(),
         );
     }
 
@@ -56,40 +56,80 @@ class Block
      * User bar
      *
      * @param array $options
+     *
      * @return array
      */
     public static function userbar($options = array())
     {
+        if (!empty($options['type'])) {
+            $type = $options['type'];
+        } else {
+            $type = '';
+        }
+        if (!empty($options['params'])) {
+            $params = $options['params'];
+        } else {
+            $params = null;
+        }
+        if (Pi::service('user')->hasIdentity()) {
+            $name = Pi::service('user')->getUser()->get('name')
+                ?: Pi::service('user')->getIdentity(false);
+            $user = array(
+                'uid'       => Pi::service('user')->getIdentity(),
+                'name'      => $name,
+                'profile'   => Pi::service('user')->getUrl('profile', $params),
+                'logout'    => Pi::service('user')->getUrl('logout', $params),
+            );
+        } else {
+            $user = array(
+                'uid'       => 0,
+                'login'     => Pi::service('user')->getUrl('login', $params),
+                'register'  => Pi::service('user')->getUrl('register', $params),
+            );
+        }
+
         return array(
-            'identity'  => Pi::service('user')->getUser()->identity,
-            'id'        => Pi::service('user')->getUser()->id,
-            'name'      => Pi::service('user')->getUser()->name,
-            'type'      => isset($options['type']) ? $options['type'] : '',
+            'user'  => $user,
+            'type'  => $type,
         );
     }
 
     /**
      * User login form block
      *
+     * @param array $options
+     *
      * @return bool|array
      */
-    public static function login()
+    public static function login($options = array())
     {
         if (Pi::service('user')->hasIdentity()) {
             return false;
         }
         $form = new LoginForm('login');
-        $form->setAttribute(
-            'action',
-            Pi::service('url')->assemble(
-                'sysuser',
+        if (!empty($options['route'])) {
+            $route = $options['route'];
+            unset($options['route']);
+        } else {
+            $route = 'sysuser';
+        }
+        if (!empty($options['action'])) {
+            $action = $options['action'];
+            unset($options['action']);
+        } else {
+            $action = Pi::service('url')->assemble(
+                $route,
                 array(
                     'module'        => 'system',
                     'controller'    => 'login',
                     'action'        => 'process',
                 )
-            )
-        );
+            );
+        }
+        if ($options) {
+            $form->setData($options);
+        }
+        $form->setAttribute('action', $action);
 
         return array(
             'form'  => $form,

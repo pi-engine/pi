@@ -4,17 +4,29 @@
     <?php
     // Display custom message
     if (!empty($message)) {
-        echo _escape($message);
+        echo $message;
 
     // Prompt to login for guests
     } elseif (401 == (int) $code) {
         $url = Pi::user()->getUrl('login');
-        $login = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
-        echo sprintf(__('You are not allowed to access the page, please %s and try again.'), $login);
+        $link = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
+        echo sprintf(__('You are not allowed to access the page. Please %s and try again.'), $link);
 
     // Point to website user guide otherwise
     } else {
-        echo __('You are not allowed to access the page.');
+        if ('admin' == Pi::engine()->application()->getSection()) {
+            $url = Pi::service('url')->assemble('admin');
+        } else {
+            $url = Pi::service('url')->assemble('home');
+        }
+        $linkHome = '<a href="' . $url . '" title="' . __('homepage') . '">' . __('homepage') . '</a>';
+        $url = Pi::user()->getUrl('logout');
+        $linkLogout = '<a href="' . $url . '" title="' . __('logout') . '">' . __('logout') . '</a>';
+        echo sprintf(
+            __('You are not allowed to access the page. Please go to %s or %s and try other account.'),
+            $linkHome,
+            $linkLogout
+        );
     }
     ?>
     </p>

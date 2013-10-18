@@ -55,32 +55,59 @@ class Activity extends AbstractApi
      */
     public function get($uid, $name, $limit, $offset = 0)
     {
-        $meta = Pi::registry('activity', 'user')->read($name);
-        $reader = new $meta['callback']($meta['module']);
+        $content    = '';
+        $link       = '';
+        $items      = array();
 
-        $list = $reader->get($uid, $limit, $offset);
-        $log = array();
-        foreach ($list as $item) {
-            if (is_string($item)) {
-                $log[] = array(
-                    'time'      => null,
-                    'message'   => $item,
-                );
+        $meta = Pi::registry('activity', 'user')->read($name);
+        $callback = $meta['callback'];
+        if (preg_match('|^http[s]?://|i', $callback)) {
+            $data = Pi::service('remote')->get($callback, array(
+                'module'    => $meta['module'],
+                'uid'       => $uid,
+                'limit'     => $limit,
+                'offset'    => $offset,
+            ));
+        } else {
+            $reader = new $meta['callback']($meta['module']);
+            $data = $reader->get($uid, $limit, $offset);
+        }
+        if ($data) {
+            if (is_string($data)) {
+                $content = $data;
+            } elseif (empty($meta['template'])) {
+                foreach ($data['items'] as $item) {
+                    if (is_string($item)) {
+                        $items[] = array(
+                            'time'      => null,
+                            'message'   => $item,
+                        );
+                    } else {
+                        $items[] = array(
+                            'time'      => isset($item['time']) ? $item['time'] : null,
+                            'message'   => $item['message'],
+                        );
+                    }
+                }
+                $link = isset($data['link']) ? $data['link'] : '';
             } else {
-                $log[] = array(
-                    'time'      => isset($item['time']) ? $item['time'] : null,
-                    'message'   => $item['message'],
+                // Render template()
+                $template = array(
+                    'module'    => $meta['module'],
+                    'file'      => $meta['template'],
                 );
+                $content = Pi::service('view')->render($template, $data);
             }
         }
 
         $result = array(
             'title'         => $meta['title'],
             'description'   => $meta['description'],
-            'module'        => $meta['module'],
+            //'module'        => $meta['module'],
             'icon'          => $meta['icon'],
-            'link'          => $meta['link'],
-            'log'           => $log,
+            'link'          => $link,
+            'items'         => $items,
+            'content'       => $content,
         );
 
         return $result;

@@ -37,31 +37,33 @@ return array(
     // Paths to resources
     // If path is a relative one then www root path will be prepended
     'path'      => array(
-        // WWW root path
+        // Sharable paths
+        // WWW root path, dependent sub folders: `script`, `public`
         'www'       => '%www_path%',
         // Library directory
         'lib'       => '%lib_path%',
         // User extension directory
         'usr'       => '%usr_path%',
-        // User data directory
-        'var'       => '%var_path%',
         // Application module directory
         'module'    => '%module_path%',
         // Theme directory
         'theme'     => '%theme_path%',
+        // Path to static files directory
+        'static'    => '%static_path%',
+        // Path to vendor library directory: default as `lib/vendor`
+        'vendor'    => '%vendor_path%',
+        // Path to module custom directory: default as `usr/custom`
+        'custom_module' => '%custom_module_path%',
 
+        // Application specific paths
         // Path to uploads directory
         'upload'    => '%upload_path%',
         // Path to assets directory
         'asset'     => '%asset_path%',
-        // Path to static files directory
-        'static'    => '%static_path%',
+        // User data directory
+        'var'       => '%var_path%',
 
-        // Path to vendor library directory
-        // Optional, default as lib/vendor
-        'vendor'    => '%vendor_path%',
-
-        // Dependent paths
+        // Sub-paths of var
         // Path to global collective configuration directory
         'config'    => '%config_path%',
         // Path to custom collective configuration directory
@@ -70,5 +72,13 @@ return array(
         'cache'     => '%cache_path%',
         // Path to logs directory
         'log'       => '%log_path%',
+    ),
+
+    // Paths dependent on upper paths
+    'directory' => array(
+        'public'    => array(
+            'parent'    => 'www',
+            'folder'    => 'public',
+        ),
     ),
 );

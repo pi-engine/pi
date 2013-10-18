@@ -26,20 +26,21 @@ class ActivityController extends ActionController
      */
     public function indexAction()
     {
-        $name  = $this->params('name', '');
-        $uid   = Pi::user()->getIdentity();
-        $limit = 10;
+        $name     = _get('name');
+        $uid      = _get('uid');
+        $ownerUid = Pi::user()->getIdentity();
+        $limit    = 10;
+        $isOwner  = 0;
 
-        // Redirect login page if not logged in
-        if (!$uid) {
-            $this->jump(
-                'user',
-                array('controller' => 'login', 'action' => 'index'),
-                __('Need login'),
-                2
-            );
+        if (!$uid && !$ownerUid) {
+            return $this->jumpTo404('An error occur');
         }
 
+        // Check is owner
+        if (!$uid) {
+            $isOwner = 1;
+            $uid     = $ownerUid;
+        }
         if (!$name) {
             $this->jumpTo404('An error occur');
         }
@@ -50,20 +51,45 @@ class ActivityController extends ActionController
             array('name', 'gender', 'birthdate'),
             true
         );
-
+        // Get viewer role: public member follower following owner
+        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        $user = Pi::api('user', 'privacy')->filterProfile(
+            $uid,
+            $role,
+            $user,
+            'user'
+        );
 
         // Get activity list for nav display
         $activityList = Pi::api('user', 'activity')->getList();
 
-        // Get activity contents
-        $activityContents = Pi::api('user', 'activity')->get($uid, $name, $limit);
+        // Get current activity data
+        $data = Pi::api('user', 'activity')->get($uid, $name, $limit);
+
+        // Get nav
+        if ($isOwner) {
+            $nav = Pi::api('user', 'nav')->getList($name);
+        } else {
+            $nav = Pi::api('user', 'nav')->getList($name, $uid);
+        }
 
         $this->view()->assign(array(
-            'activity_list'     => $activityList,
-            'activity_contents' => $activityContents,
-            'cur_activity'      => $name,
-            'user'              => $user,
-            'is_owner'          => true,
+            'list'     => $activityList,
+            'current'  => $name,
+            'data'     => $data,
+            'user'     => $user,
+            'nav'      => $nav,
+            'uid'      => $uid,
+            'is_owner' => $isOwner,
         ));
+
+    }
+
+    /**
+     * Test for activity more link contents
+     */
+    public function moreAction()
+    {
+        $this->view()->setTemplate('activity-more');
     }
 }

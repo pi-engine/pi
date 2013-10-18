@@ -60,8 +60,9 @@ class Name extends AbstractValidator
     );
 
     protected $options = array(
-        'format'            => 'strict',
+        'format'            => 'loose',
         'backlist'          => array(),
+        'checkDuplication'  => true,
     );
 
     /**
@@ -84,6 +85,19 @@ class Name extends AbstractValidator
         if (!empty($this->options['backlist'])) {
             $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
+                $this->error(static::RESERVED);
+                return false;
+            }
+        }
+
+        if ($this->options['checkDuplication']) {
+            $where = array('name' => $value);
+            if (!empty($context['uid'])) {
+                $where['id <> ?'] = $context['uid'];
+            }
+            //$rowset = Pi::model('account', 'user')->select($where);
+            $count = Pi::model('account', 'user')->count($where);
+            if ($count) {
                 $this->error(static::RESERVED);
                 return false;
             }

@@ -4,45 +4,6 @@
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9">
     <h2 class="page-header"><?php _e('Basic settings'); ?></h2>
-    <?php
-        if ($is_post) {
-            echo sprintf('<div class="alert %s"><button type="button" class="close" data-dismiss="alert">×</button>
-                %s</div>',
-                $status ? 'alert-success' : 'alert-error',
-                $status ? __('Data updated successfully') : __('Data saved failed')
-             );
-        }
-    ?>
-    <?php
-        $form->setAttribute('class', 'form-horizontal');
-        $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
-        $elemnts = $form->elementList();
-        echo $this->form()->openTag($form);
-        echo sprintf('<div class="control-group"><label class="control-label">%s</label>
-                <div class="controls"><div class="controls-text">%s</div></div></div>',
-                __('Username'),
-                _escape($username)
-             );
-        echo sprintf('<div class="control-group"><label class="control-label">%s</label>
-                <div class="controls"><div class="controls-text">%s<a href="%s" class="gutter-large">%s</a>
-                </div></div></div>',
-                __('Email'),
-                _escape($email),
-                $this->url('', array('controller' => 'email', 'action' => 'index')),
-                __('Reset')
-             );
-        $element = $form->get('name');
-        echo sprintf('<div class="control-group%s"><label class="control-label">%s</label>
-              <div class="controls">%s %s</div></div>',
-                $element->getMessages() ? ' error' : '',
-                $element->getOption('label'),
-                $this->formElement($element),
-                $this->formElementErrors($element)
-             );
-        echo sprintf('<div class="controls"><input type="submit" class="%s" value="%s"></div>', 
-                'btn btn-primary',
-                __('submit')
-             );
-        echo $this->form()->closeTag(); 
-    ?>
+    <?php include $this->templateComponent('form'); ?>
 </div>
+

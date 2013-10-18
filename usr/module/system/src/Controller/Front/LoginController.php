@@ -11,7 +11,6 @@ namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl as AclManager;
 use Module\System\Form\LoginForm;
 use Module\System\Form\LoginFilter;
 
@@ -62,6 +61,26 @@ class LoginController extends ActionController
     }
 
     /**
+     * Logout
+     */
+    public function logoutAction()
+    {
+        Pi::service('session')->manager()->destroy();
+        //Pi::service('session')->manager()->writeClose();
+        //Pi::service('session')->manager()->start();
+        Pi::service('user')->destroy();
+        $redirect = _get('redirect');
+        //d($redirect);
+        $redirect = $redirect
+            ? urldecode($redirect) : array('route' => 'home');
+
+        $this->jump(
+            $redirect,
+            __('You logged out successfully. Now go back to homepage.')
+        );
+    }
+
+    /**
      * Render login form
      *
      * @param LoginForm $form
@@ -96,22 +115,6 @@ class LoginController extends ActionController
         $this->view()->assign('title', __('User login'));
         $this->view()->assign('message', $message);
         $this->view()->assign('form', $form);
-    }
-
-    /**
-     * Logout
-     */
-    public function logoutAction()
-    {
-        Pi::service('session')->manager()->destroy();
-        Pi::service('user')->destroy();
-        $redirect = _get('redirect');
-        $redirect = $redirect
-            ? urldecode($redirect) : array('route' => 'home');
-        $this->jump(
-            $redirect,
-            __('You logged out successfully. Now go back to homepage.')
-        );
     }
 
     /**
@@ -189,21 +192,28 @@ class LoginController extends ActionController
                 ->rememberme($configs['rememberme'] * 86400);
         }
         Pi::service('session')->setUser($result->getData('id'));
+        $roles = Pi::service('user')->getRole(
+            $result->getData('id')
+        );
+        $persist = $result->getData();
+        $persist['role'] = $roles;
+        Pi::service('user')->setPersist($persist);
         Pi::service('user')->bind($result->getIdentity(), 'identity');
-        Pi::service('user')->setPersist($result->getData());
         Pi::service('event')->trigger('login', $result->getIdentity());
 
         if (!empty($configs['attempts'])) {
             unset($_SESSION['PI_LOGIN']);
         }
 
+        //vd($values);
         if (empty($values['redirect'])) {
             $redirect = array('route' => 'home');
         } else {
             $redirect = urldecode($values['redirect']);
         }
-
-        $this->jump($redirect, __('You have logged in successfully.'), 2);
+        //vd($redirect);
+        //exit();
+        $this->jump($redirect, __('You have logged in successfully.'));
     }
 
     /**

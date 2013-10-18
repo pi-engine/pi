@@ -30,18 +30,18 @@ class Activity extends AbstractRegistry
     {
         $list = array();
 
-        $model = Pi::model('activity', $this->module);
-        $where = array('active' => 1, 'display > 0');
+        $model  = Pi::model('activity', $this->module);
+        $where  = array('active' => 1, 'display > 0');
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $list[$row['name']] =  array(
                 'title'         => $row['title'],
                 'description'   => $row['description'],
-                'module'        => $row['module'],
+                //'module'        => $row['module'],
                 'icon'          => $row['icon'],
-                'link'          => $row['link'],
                 'callback'      => $row['callback'],
+                'template'      => $row['template']
             );
         }
 

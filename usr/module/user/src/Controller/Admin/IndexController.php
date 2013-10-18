@@ -365,7 +365,7 @@ class IndexController extends ActionController
             return $return;
         }
 
-        $uids = explode(',', $uids);
+        $uids  = explode(',', $uids);
         $count = 0;
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->enableUser($uid);
@@ -406,7 +406,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = 1;
+        $return['status']  = 1;
         $return['message'] = sprintf(__('%d disable user successfully'), $count);
 
         return $return;
@@ -439,7 +439,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = 1;
+        $return['status']  = 1;
         $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
         return $return;
@@ -477,7 +477,7 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = 1;
+        $return['status']  = 1;
         $return['message'] = sprintf(__('%d activated user successfully'), $count);
 
         return $return;
@@ -492,9 +492,9 @@ class IndexController extends ActionController
      */
     public function assignRoleAction()
     {
-        $uids    = _post('ids');
-        $type    = _post('type');
-        $role    = _post('role');
+        $uids = _post('ids');
+        $type = _post('type');
+        $role = _post('role');
 
         $result = array(
             'status'  => 0,
@@ -539,7 +539,7 @@ class IndexController extends ActionController
             }
         }
 
-        $result['status'] = 1;
+        $result['status']  = 1;
         $result['message'] = __('Assign role successfully');
 
         return $result;
@@ -892,7 +892,7 @@ class IndexController extends ActionController
     protected function getRoles()
     {
         $roles = Pi::registry('role')->read();
-        $data = array();
+        $data  = array();
         foreach ($roles as $name => $role) {
             $data[] = array(
                 'name'  => $name,
@@ -908,7 +908,8 @@ class IndexController extends ActionController
     /**
      * Canonize register date
      *
-     * @params $rengisterDate
+     * @param string $registerDate
+     *
      * @return int
      */
     protected function canonizeRegisterDate($registerDate)
@@ -960,5 +961,6 @@ class IndexController extends ActionController
         }
 
         return $time;
+
     }
 }

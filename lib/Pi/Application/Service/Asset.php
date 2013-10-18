@@ -92,7 +92,7 @@ class Asset extends AbstractService
     public function getBasePath($type = 'asset')
     {
         if ('public' == $type) {
-            $basePath = Pi::path('www') . '/' . static::DIR_PUBLIC;
+            $basePath = Pi::path('public');// . '/' . static::DIR_PUBLIC;
         } else {
             $basePath = Pi::path('asset');
         }
@@ -110,7 +110,7 @@ class Asset extends AbstractService
     public function getBaseUrl($type = 'asset')
     {
         if ('public' == $type) {
-            $baseUrl = Pi::url('www') . '/' . static::DIR_PUBLIC;
+            $baseUrl = Pi::url('public');// . '/' . static::DIR_PUBLIC;
         } else {
             $baseUrl = Pi::url('asset');
         }
@@ -483,6 +483,7 @@ class Asset extends AbstractService
      */
     public function remove($component, $type = '')
     {
+        $status = true;
         if (!$type) {
             foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
                 $this->remove($component, $type);

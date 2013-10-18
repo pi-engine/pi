@@ -1,476 +1,183 @@
 <?php
     $this->css(array(
-        $this->assetModule('script/jquery.Jcrop.min.css')
+        $this->assetModule('script/front.css')
     ));
-    $this->jQuery();
-    $this->js(array(
-        $this->assetModule('script/ajax-upload-min.js'),
-        $this->assetModule('script/jquery.Jcrop.min.js')
+    $this->jQuery(array(
+        'extension/ajax-upload.js',
+        'extension/jquery.Jcrop.min.js',
+        'extension/jquery.Jcrop.min.css'
     ));
+    $this->bootstrap('js/bootstrap.min.js');
+
+    $viewNavTabs = array(
+        array(
+            'source' => 'upload',
+            'text'   => __('Upload'),
+            'href'   => '#fromUpload'
+        ),
+        array(
+            'source' => 'gravatar',
+            'text'   => __('Gavatar'),
+            'href'   => '#fromGravatar'
+        ),
+        array(
+            'source' => 'repository',
+            'text'   => __('Selection'),
+            'href'   => '#formRepository'
+        ),
+        array(
+            'source' => 'local',
+            'text'   => __('Default'),
+            'href'   => '#formLocal'
+        )
+    );
+    $viewPreview = '<li>
+                        <p>%s</p>
+                        <div class="avatar-preview-box" style="width: %spx; height: %spx;">
+                            <img src="%s" class="avatar-preview-img">
+                        </div>';
 ?>
-
-<style>
-    #user-js-avatar-form,
-    .user-avatar-source {
-        margin-bottom: 20px;
-    }
-    .user-uploaded-box {
-        border: 1px solid #e5e5e5;
-        float: left;
-        margin-right: 40px;
-        width: 300px;
-        height: 300px;
-        overflow: hidden !important;
-        *position: relative;
-        *z-index: 10;
-    }
-    .user-upload-hit {
-        text-align: center;
-        margin-top: 120px;
-    }
-    .user-preview-box {
-        border: 1px solid #dddddd;
-        overflow: hidden;
-    }
-    img {
-        max-width: none;
-        vertical-align: top;
-    }
-    .user-gravatar-image {
-        width: 120px;
-        height: 120px;
-        border: 1px solid #dddddd;
-    }
-</style>
-
-<h2><?php echo _escape($title) ?></h2>
-
-<?php include $this->templateComponent('form'); ?>
-
-<div class="user-avatar-source">
-    <h4 class="page-header"><?php _e('Avatar source: ') ?></h4>
-    <div>
-        <?php
-            if (in_array('upload', $adapters)) {
-        ?>
-        <input name="source" type="radio" value="upload"
-            <?php echo 'upload' == $source ? ' checked="checked"' : '' ?>><?php _e('Upload images') ?>
-        <?php
-            }
-            if (in_array('gravatar', $adapters)) {
-        ?>
-        <input name="source" type="radio" value="gravatar"
-            <?php echo 'gravatar' == $source ? ' checked="checked"' : '' ?>><?php _e('From Gravatar') ?>
-        <?php
-            }
-            if (in_array('select', $adapters)) {
-        ?>
-        <input name="source" type="radio" value="repository"
-            <?php echo 'repository' == $source ? ' checked="checked"' : '' ?>><?php _e('Select from repository') ?>
-        <?php
-            }
-        ?>
-        <input name="source" type="radio" value="local"
-            <?php echo 'local' == $source ? ' checked="checked"' : '' ?>><?php _e('Local') ?>
+<?php include '_user-side-nav.phtml' ?>
+<div class="span9" id="js-user-avatar">
+    <div class="page-header">
+        <h3><?php _e('Avatar setting'); ?></h3>
+        <div class="muted"><?php _e('Choose one way for your avatar source:'); ?></div>
     </div>
-</div>
-
-<div id="user-js-avatar-form" class="span12">
-    <?php
-        if (in_array('upload', $adapters)) {
-    ?>
-    <div id="user-avatar-source-upload" class="span12 user-source<?php echo 'upload' != $source ? ' hide' : '' ?>">
-        <div class="user-uploaded-box">
-            <div class="user-upload-hit">
-                <input class="btn user-add-avatar" type="button" value="<?php _e('Upload') ?>" style="width: 110px;">
-                <div class="muted" style="margin-top: 10px; font-size: 12px;">
-                    <?php echo __('Format supported: ') . _escape($config['avatar_extension']) ?>
-                    (<?php echo $config['max_size'] ?>MB)
+    <div>
+        <h4><?php _e('Current avatar'); ?></h4>
+        <p>
+            <?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?>
+        <p class="text-warning">
+            <?php _e('once switch source and saved,the avatar data from other source will be deleted.'); ?>
+    </div>
+    <ul class="nav nav-tabs">
+        <?php 
+        foreach ($viewNavTabs as $item) {
+            echo sprintf(
+                '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a>',
+                $item['source'],
+                $item['href'],
+                $item['text']
+            );
+        }
+        ?>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="fromUpload">
+            <div class="avatar-upload-box">
+                <div class="avatar-upload-hit">
+                    <button class="btn avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
+                    <div class="muted">
+                        <?php _e('Support'); ?>
+                        <?php echo $config['avatar_extension']; ?>
+                        (<?php echo $config['max_size']; ?>MB)
+                    </div>
+                </div>
+                <img class="hide avatar-upload-image">
+            </div>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+                <?php 
+                foreach ($allSize as $key => $value) {
+                    echo sprintf($viewPreview,
+                        $key,
+                        $value,
+                        $value,
+                        $uploads[$key] ? : ''
+                    );
+                } 
+                ?>
+            </ul>
+        </div>
+        <div class="tab-pane" id="fromGravatar">
+            <p>
+                <a href="https://gravatar.com" target="_blank"><?php _e('Change from Gravatar') ?></a>
+            <div>
+                <span><?php _e('Gravatar email') ?></span>
+                <input name="email" value="<?php echo $email; ?>" type="text"
+                       style="margin-left: 10px; vertical-align: baseline;">
+            </div>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+            <?php 
+            foreach ($gravatar as $key => $value) {
+                echo sprintf($viewPreview,
+                    $key,
+                    $allSize[$key],
+                    $allSize[$key],
+                    $value
+                );
+            } 
+            ?>
+            </ul>
+        </div>
+        <div class="tab-pane" id="formRepository">
+            <ul class="unstyled avatar-repository-inline">
+                <?php foreach($selects as $key => $item) { ?>
+                <li>
+                    <label>
+                        <img src="<?php echo $item; ?>">
+                        <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
+                    </label>
+                <?php } ?>
+            </ul>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
+            </div>
+            <ul class="unstyled avatar-preview-inline">
+                <?php
+                foreach ($selected as $key => $value) {
+                    echo sprintf($viewPreview,
+                        $key,
+                        $allSize[$key],
+                        $allSize[$key],
+                        $value
+                    );
+                 }
+                ?>
+            </ul>
+        </div>
+        <div class="tab-pane" id="formLocal">
+            <div class="media">
+                <div class="pull-left">
+                    <img src="<?php echo $local['normal']; ?>">
+                </div>
+                <div class="media-body">
+                    <?php _e('Apply system avatar as your avatar'); ?>
                 </div>
             </div>
-            <img class="hide user-upload-image">
-        </div>
-    </div>
-    <?php
-        }
-    ?>
-    
-    <?php
-        if (in_array('gravatar', $adapters)) {
-    ?>
-    <div id="user-avatar-source-gravatar" class="span12 user-source<?php echo 'gravatar' != $source ? ' hide' : '' ?>">
-        <div class="user-gravatar-image">
-            <img src="<?php echo _escape($gravatar) ?>" style="width: 120px; height: 120px">
-        </div>
-        <div>
-            <div><a href="https://gravatar.com"><?php _e('Change from Gravatar') ?></a></div>
-            <div>
-                <label><?php _e('Gravatar email') ?>
-                    <input name="email" value="<?php echo _escape($email) ?>">
-                </label>
+            <div class="avatar-preview-header">
+                <strong><?php _e('Avatar previews'); ?></strong>
             </div>
+            <ul class="unstyled avatar-preview-inline">
+                <?php foreach ($local as $key => $value) { ?>
+                <li>
+                    <img src="<?php echo $value; ?>">
+                <?php } ?>
+            </ul>
         </div>
     </div>
-    <?php
-        }
-    ?>
-    
-    <?php
-        if (in_array('select', $adapters)) {
-    ?>
-    <div id="user-avatar-source-repository" class="span12 user-source<?php echo 'repository' != $source ? ' hide' : '' ?>">
-    <?php 
-        $i = 0;
-        foreach ($selects as $name => $select) { 
-    ?>
-        <input name="repository-avatar" value="<?php echo _escape($name) ?>"
-               type="radio" <?php echo ($i++ == 0 or $name == $filename) ? 'checked="checked"' : '' ?>>
-        <img src="<?php echo _escape($select) ?>">
-    <?php } ?>
-    </div>
-    <?php
-        }
-    ?>
-    
-    <div id="user-avatar-source-local" class="span12 user-source<?php echo 'local' != $source ? ' hide' : '' ?>">
-        <img src="<?php echo _escape($local) ?>">
+    <div style="margin-top: 30px;" class="js-actions">
+        <button class="btn btn-primary js-save"><?php _e('Save'); ?></button>
+        <button class="btn btn-link js-cancel"><?php _e('Cancel'); ?></button>
     </div>
 </div>
-
-<div id="user-avatar-preview" class="span12">
-    <h4 class="page-header"><?php _e('Avatar previews') ?></h4>
-    
-    <?php
-        if (in_array('upload', $adapters)) {
-    ?>
-    <div class="preview-image upload span12<?php echo 'upload' != $source ? ' hide' : '' ?>">
-    <?php
-        foreach ($allSize as $name => $size) {
-    ?>
-        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
-            <div><?php echo _escape(ucfirst($name)) ?></div>
-            <div class="user-preview-box" 
-                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
-                <img id="user-preview-upload-<?php echo _escape($name) ?>" src="<?php
-                   if (isset($uploads[$name]) and $uploads[$name]) {
-                       echo Pi::url($uploads[$name]);
-                   }
-                ?>" style="width: <?php echo _escape($size) ?>">
-            </div>
-        </div>
-    <?php
-        }
-    ?>
-    </div>
-    <?php
-        }
-    ?>
-    
-    <?php
-        if (in_array('gravatar', $adapters)) {
-    ?>
-    <div class="preview-image gravatar span12<?php echo 'gravatar' != $source ? ' hide' : '' ?>">
-    <?php
-        foreach ($allSize as $name => $size) {
-    ?>
-        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
-            <div><?php echo _escape(ucfirst($name)) ?></div>
-            <div class="user-preview-box" 
-                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
-                <img id="user-preview-gravatar-<?php echo _escape($name) ?>" src="<?php
-                   if (!empty($gravatar)) {
-                       echo _escape($gravatar);
-                   }
-                ?>" style="width: <?php echo _escape($size) ?>px">
-            </div>
-        </div>
-    <?php
-        }
-    ?>
-    </div>
-    <?php
-        }
-    ?>
-    
-    <?php
-        if (in_array('select', $adapters)) {
-    ?>
-    <div class="preview-image repository span12<?php echo 'repository' != $source ? ' hide' : '' ?>">
-    <?php
-        foreach ($allSize as $name => $size) {
-    ?>
-        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
-            <div><?php echo _escape(ucfirst($name)) ?></div>
-            <div class="user-preview-box" 
-                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
-                <img id="user-preview-repository-<?php echo _escape($name) ?>" src="<?php
-                   if (isset($selected[$name]) and $selected[$name]) {
-                       echo Pi::url($selected[$name]);
-                   }
-                ?>" style="width: <?php echo _escape($size) ?>px">
-            </div>
-        </div>
-    <?php
-        }
-    ?>
-    </div>
-    <?php
-        }
-    ?>
-    
-    <div class="preview-image local span12<?php echo 'local' != $source ? ' hide' : '' ?>">
-    <?php
-        foreach ($allSize as $name => $size) {
-    ?>
-        <div class="pull-left" style="width: <?php echo _escape($size) ?>px; margin-right: 20px">
-            <div><?php echo _escape(ucfirst($name)) ?></div>
-            <div class="user-preview-box" 
-                 style="width: <?php echo _escape($size) ?>px; height: <?php echo _escape($size) ?>px">
-                <img id="user-preview-local-<?php echo _escape($name) ?>" src="<?php
-                   echo dirname($local) . '/' . $name . '.png';
-                ?>" style="width: <?php echo _escape($size) ?>px">
-            </div>
-        </div>
-    <?php
-        }
-    ?>
-    </div>
-    
-    <button class="btn btn-primary js-btn" id="user-avatar-save">
-        <?php _e('Update') ?>
-    </button>
-    <a class="js-btn" id="user-avatar-cancel" style="cursor: pointer"><?php _e('Cancel') ?></a>
-</div>
-
 <script>
-    var jcrop_api;
-    var page = {
-        id: function() {
-            return "<?php echo 'fake_id/' . $form->get('fake_id')->getValue() ?>";
-        },
-        sizes: function() {
-            var sizeStr = '<?php echo implode(',', array_keys($allSize)) ?>';
-            var data    = new Array();
-            data = sizeStr.split(',');
-            
-            return data;
-        },
-        sizeValue: function() {
-            var sizeStr = '<?php echo implode(',', $allSize) ?>';
-            var data    = new Array();
-            data = sizeStr.split(',');
-            
-            return data;
-        },
-        format: function() {
-            var format = '<?php echo _escape($config['avatar_extension']) ?>';
-            var data   = new Array();
-            data = format.split(',');
-            return data;
-        },
-        el: $('#user-js-avatar-form'),
-        $: function(selector) {
-            return  this.el.find(selector);      
-        },
-        init: function() {
-            var self = this;
-            this.uploadImg = this.$('.user-upload-image');
-            var sizes = page.sizes();
-            this.preImg = new Array();
-            for (var i = 0; i < sizes.length; i++) {
-                this.preImg[i] = $('#user-preview-upload-' + sizes[i]);
-            }
-            $('#user-avatar-cancel').click(this.cancelAvatar.bind(this));
-            $('#user-avatar-save').click(this.savePhoto.bind(this));
-            $('input[name="source"]').click(this.changeSource.bind(this));
-            $('input[name="email"]').blur(this.changeGravatar.bind(this));
-            $('input[name="repository-avatar"]').click(this.changeRepository.bind(this));
-            this.ajaxUpload();
-        },
-        ajaxUpload: function() {
-            new ajaxUpload($('.user-add-avatar'), {
-                action: '<?php echo $this->url('default', array(
-                    'controller' => 'avatar',
-                    'action'     => 'upload'
-                )) ?>' + page.id(),
-                format: page.format(),
-                name: 'upload',
-                json: true,
-                start: function() {
-                    page.$('.user-add-avatar').val('<?php _e('In process ...') ?>');
-                },
-                done: function(res) {
-                    if (res.status) {
-                        page.$('.user-upload-hit').remove();
-                        $('[target=ajaxUploadIframe]').remove();
-                        page.initJcrop(res.data);
-                    } else {
-                        alert(res.message);
-                        page.$('.user-add-avatar').val('<?php _e('Upload') ?>');
-                    }
-                },
-                fail: function() {
-                    alert('<?php _e('Error occured, please try again!') ?>');
-                    page.$('.user-add-avatar').val('<?php _e('Upload') ?>');
-                }
-            });
-        },
-        initJcrop: function(res) {
-            var url = res['preview_url'],
-                boundx = 0,
-                boundy = 0;
-            var preImg = this.preImg;
-            this.result = res;
-            this.uploadImg.removeClass('hide').attr('src', url);
-            var sizes = page.sizes();
-            for (var i = 0; i < sizes.length; i++) {
-                this.preImg[i].attr('src', url);
-            }
-            jcrop_api && jcrop_api.destroy();
-            if (res.w > res.h) {
-                boundx = 300;
-            } else {
-                boundy = 300;
-            }
-            if (boundx) {
-                boundy = 300 * res.h / res.w;
-                this.uploadImg.css({
-                    width: 300,
-                    height: boundy
-                });
-            } else {
-                boundx = 300 * res.w / res.h;
-                this.uploadImg.css({
-                    width: boundx,
-                    height: 300
-                });
-            }
-            this.uploadImg.Jcrop({
-                aspectRatio: 1,
-                bgOpacity: .5,
-                onChange: function(c) {
-                    var rx = new Array();
-                    var ry = new Array();
-                    var sizeValue = page.sizeValue();
-                    for (var j = 0; j < sizeValue.length; j++) {
-                        rx[j] = sizeValue[j] / c.w;
-                        ry[j] = sizeValue[j] / c.h;
-                    }
-                    var r = Math.round;
-                    
-                    var sizes = page.sizes();
-                    for (var k = 0; k < sizes.length; k++) {
-                        preImg[k].css({
-                            'width'      : r(rx[k] * boundx),
-                            'height'     : r(ry[k] * boundy),
-                            'marginLeft' : r(-rx[k] * c.x),
-                            'marginTop'  : r(-ry[k] * c.y)
-                        });
-                    }
-                }
-            }, function() {
-                jcrop_api = this;
-                var h = this.ui.holder;
-                h.css({
-                    left: (300 - h.outerWidth()) /2,
-                    top: (300 - h.outerHeight()) /2     
-                });
-                this.setSelect([40,40,200,200]);
-            });
-        },
-        savePhoto: function(e) {
-            e.preventDefault();
-            var source = $('input[name="source"]:checked').val();
-            var d      = new Object();
-            if ('upload' == source) {
-                d = jcrop_api.tellScaled();
-                var ret = this.result.w > this.result.h ? this.result.w / 300 : this.result.h / 300;
-                this.$('.btn-primary').attr('disabled', 'disabled');
-                for (var i in d) {
-                    if (d.hasOwnProperty(i)) {
-                        d[i] = Math.round(d[i] * ret);
-                    }
-                }
-                d['avatar'] = this.result.preview_url;
-                d['fake_id'] = '<?php echo $form->get('fake_id')->getValue() ?>';
-            } else if ('gravatar' == source) {
-                d['email'] = $('input[name="email"]').val();
-            } else if ('repository' == source) {
-                d['name'] = $('input[name="repository-avatar"]:checked').val();
-            }
-            
-            d['source'] = source;
-            $.post('<?php echo $this->url('', array('action' => 'save')); ?>', d).done(function(res) {
-                res = $.parseJSON(res);
-                if (res.status) {
-                    window.location.reload();
-                } else {
-                    alert(res.message);
-                }
-            });
-        },
-        cancelAvatar    : function() {
-            var source = $('input[name="source"]:checked').val();
-            if ('upload' == source) {
-                var url = '<?php echo $this->url('', array(
-                    'controller'   => 'avatar',
-                    'action'       => 'remove',
-                    'fake_id'      => $form->get('fake_id')->getValue(),
-                )) ?>';
-                $.get(url, function(result) {
-                    result = $.parseJSON(result);
-                    if (result.status) {
-                        window.location.reload();
-                    } else {
-                        alert(result.message);
-                    }
-                });
-            } else {
-                window.location.reload();
-            }
-        },
-        changeSource    : function(e) {
-            var source = $(e.target).val();
-            $('.user-source').addClass('hide');
-            $('#user-avatar-source-' + source).removeClass('hide');
-            
-            $('.preview-image').addClass('hide');
-            $('.' + source).removeClass('hide');
-        },
-        changeGravatar  : function(e) {
-            var email = $(e.target).val();
-            var d   = new Object();
-            d['email'] = email;
-            $.post('<?php echo $this->url('', array('action' => 'gravatar')); ?>', d).done(function(res) {
-                res = $.parseJSON(res);
-                if (res.status) {
-                    $('.user-gravatar-image').find('img').attr('src', res.preview_url);
-                    var sizes = page.sizes();
-                    for (var i = 0; i < sizes.length; i++) {
-                        $('#user-preview-gravatar-' + sizes[i]).attr('src', res.preview_url);
-                    }
-                } else {
-                    alert(res.message);
-                }
-            });
-        },
-        changeRepository    : function(e) {
-            var name = $(e.target).val();
-            var d   = new Object();
-            d['name'] = name;
-            $.post('<?php echo $this->url('', array('action' => 'repository')); ?>', d).done(function(res) {
-                res = $.parseJSON(res);
-                if (res.status) {
-                    var sizes = page.sizes();
-                    for (var i = 0; i < sizes.length; i++) {
-                        var url = res.dirname + '/' + sizes[i] + '.' + res.ext;
-                        $('#user-preview-repository-' + sizes[i]).attr('src', url);
-                    }
-                } else {
-                    alert(res.message);
-                }
-            });
-        }
-    }
-    page.init();
+$('#js-user-avatar').data('config', {
+    source: '<?php echo $source ?>',
+    urlRoot: '<?php echo $this->url('', array('controller' => 'avatar')); ?>',
+    fake_id: '<?php echo $form->get('fake_id')->getValue() ?>',
+    format: '<?php echo $config['avatar_extension']; ?>'.split(','),
+    uploadText: '<?php _e('Upload avatar'); ?>',
+    processText: '<?php _e('Uploading'); ?>',
+    uploadBoxSize: 300,
+    allSize: <?php echo json_encode($allSize); ?>,
+    filename: '<?php echo $filename; ?>'
+});
 </script>
+<script src="<?php echo $this->assetModule('front/avatar.js'); ?>"></script>
+

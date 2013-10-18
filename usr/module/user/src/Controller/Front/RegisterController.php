@@ -190,7 +190,7 @@ class RegisterController extends ActionController
      */
     public function reactivateAction()
     {
-        $uid = _get('uid');
+        $uid    = _get('uid');
         $result = array(
             'status'  => 0,
             'message' => '',
@@ -240,7 +240,7 @@ class RegisterController extends ActionController
         //Set verify link
         $url = $this->url('', array(
                 'action' => 'activate',
-                'uid'     => md5($user['id']),
+                'uid'    => md5($user['id']),
                 'token'  => $content
             )
         );
@@ -315,7 +315,7 @@ class RegisterController extends ActionController
                 // Set perfect information flag in user table
                 Pi::user()->data()->set(
                     $uid,
-                    'profile-complete',
+                    'complete-profile',
                     1,
                     $this->getModule()
                 );

@@ -59,15 +59,9 @@ class System extends AbstractModel
      */
     public function loadRole()
     {
-        if ($uid = $this->get('id')) {
-            $row = Pi::model('user_role')->select(array(
-                'uid'       => $uid,
-                'section'   => Pi::engine()->application()->getSection(),
-            ))->current();
-            $this->role = $row ? $row['role'] : 'guest';
-        } else {
-            $this->role = 'guest';
-        }
+        $this->role = Pi::service('user')->getRole(
+            $this->get('id')
+        );
 
         return $this->role;
     }

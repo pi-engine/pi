@@ -75,6 +75,9 @@ abstract class AbstractAdapter implements BindInterface
      */
     protected $model;
 
+    /** @var int Root user id */
+    protected $rootUid = 1;
+
     /**
      * Constructor
      *
@@ -135,7 +138,7 @@ abstract class AbstractAdapter implements BindInterface
      */
     protected function verifyUid($uid)
     {
-        $uid = $uid ? intval($uid) : $this->__get($uid);
+        $uid = $uid ? intval($uid) : (int) $this->__get('id');
 
         return $uid;
     }
@@ -160,6 +163,25 @@ abstract class AbstractAdapter implements BindInterface
     /**#@+
      * User operations
      */
+
+    /**
+     * Check if user is root user
+     *
+     * @param null|int $uid
+     *
+     * @return bool
+     */
+    public function isRoot($uid = null)
+    {
+        if ($this->rootUid) {
+            $uid = $this->verifyUid($uid);
+            $result = $this->rootUid === $uid ? true : false;
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
 
     /**
      * Get user data model
@@ -374,12 +396,13 @@ abstract class AbstractAdapter implements BindInterface
      * - logout: URI to user logout page
      * - register (signup): URI to user register/signup page
      *
-     * @param string            $type URL type
-     * @param int|string|null   $var User id for profile or redirect for login
+     * @param string    $type URL type
+     * @param mixed     $options User id for profile or redirect for login
+     *
      * @return string
      * @api
      */
-    abstract public function getUrl($type, $var = null);
+    abstract public function getUrl($type, $options = null);
 
     /**
      * Authenticate user

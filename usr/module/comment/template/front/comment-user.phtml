@@ -16,6 +16,7 @@ $paginator = $comment['paginator'];
         <dl class="dl-horizontal">
             <dt><?php _e('Total:') ?></dt>
             <dd><?php echo $count; ?></dd>
+
             <dt><?php _e('User:') ?></dt>
             <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo $user['name']; ?>">
                 <?php echo $user['name']; ?>
@@ -30,7 +31,7 @@ $paginator = $comment['paginator'];
 if ($posts) {
     foreach ($posts as $post) {
 ?>
-        <dl class="dl-horizontal pi-comment-post">
+        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
             <dt><?php _e('Source:') ?></dt>
             <dd><a href="<?php echo $post['target']['url']; ?>" target="_blank" title="<?php echo _escape($post['target']['title']); ?>">
                     <?php echo _escape($post['target']['title']); ?>

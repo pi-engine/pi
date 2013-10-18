@@ -52,14 +52,14 @@ class AccountController extends ActionController
         //$role = $user->role();
         $row = Pi::model('user_account')->find($identity);
         //$role = Pi::model('user_role')->find($row->id, 'user')->role;
-        $role = Pi::api('system', 'user')->getRole($row['id'], 'front');
-        $roleRow = Pi::model('role')->find($role, 'name');
+        $roles  = Pi::api('system', 'user')->getRole($row['id'], 'front');
+        //$roleRow = Pi::model('role')->find($role, 'name');
         $user = array(
             __('ID')        => $row['id'],
             __('Identity')  => $row['identity'],
             __('Email')     => $row['email'],
             __('Name')      => $row['name'],
-            __('Role')      => __($roleRow->title),
+            __('Role')      => $roles,
         );
         $avatar = Pi::user()->avatar($row['id']);
 

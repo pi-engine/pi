@@ -48,9 +48,9 @@ class Jump extends AbstractPlugin
      */
     public function __invoke(
         $params,
-        $message = '',
-        $time = 3,
-        $allowExternal = false
+        $message        = '',
+        $time           = 3,
+        $allowExternal  = false
     ) {
         if (is_array($params)) {
             if (!isset($params['route'])) {
@@ -79,10 +79,18 @@ class Jump extends AbstractPlugin
             'url'       => $url,
         );
         $_SESSION[static::$sessionNamespace] = $jumpParams;
+        //vd($jumpParams);
 
         $controller = $this->getController();
         $controller->view()->setTemplate(false);
-        $response = $controller->plugin('redirect')->toRoute('jump');
+        $route = 'admin' == Pi::engine()->application()->getSection()
+            ? 'admin' : 'default';
+        $response = $controller->plugin('redirect')->toRoute(
+            $route,
+            array(
+                'module'        => 'system',
+                'controller'    => 'jump',
+        ));
         if ($response instanceof Response) {
             $response->send();
         }

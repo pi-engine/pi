@@ -57,7 +57,7 @@ $config['resource']['admin_mode'] = array();
 
 // Session settings
 $config['resource']['session'] = array(
-    //'service'   => 'service.session-admin.php',
+    'service'   => 'service.session-admin.php',
 );
 
 // Application service configuration

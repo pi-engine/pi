@@ -31,8 +31,10 @@ class DemoController extends ActionController
                 ),
             ),
         ));
-        $this->view()->assign('id', $id);
-        $this->view()->assign('paginator', $paginator);
+        $this->view()->assign(array(
+            'title'     => sprintf(__('Demo article #%d'), $id),
+            'paginator' => $paginator,
+        ));
 
         $this->view()->setTemplate('demo');
     }

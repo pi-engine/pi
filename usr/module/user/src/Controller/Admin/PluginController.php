@@ -27,7 +27,7 @@ class PluginController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('plugin-index');
+        $this->view()->setTemplate('plugin');
     }
 
     /**
@@ -58,7 +58,7 @@ class PluginController extends ActionController
         }
 
         // Get count
-        $count = 0;
+        $count  = 0;
         $select = $model->select()->where(array());
         $select->columns(array('count' => new Expression('count(*)')));
         $rowset = $model->selectWith($select);
@@ -251,7 +251,7 @@ class PluginController extends ActionController
      */
     public function dressUpQuicklinkAction()
     {
-        $ids = _post('ids');
+        $ids    = _post('ids');
         $result = array(
             'status' => 0,
         );

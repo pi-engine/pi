@@ -121,14 +121,14 @@ CREATE TABLE `{activity}` (
   `title`           varchar(255)    NOT NULL    default '',
   `description`     text,
   `module`          varchar(64)     NOT NULL    default '',
-  -- Link to 'Get more'
-  `link`            varchar(255)    NOT NULL    default '',
+  -- Render template
+  `template`        varchar(255)    NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      unsigned    NOT NULL    default '0',
   -- Display order, '0' for hidden
   `display`         smallint(5)     unsigned    NOT NULL    default '0',
 
-  -- Callback to get user activity messages
+  -- Callback to get user activity data
   `callback`        varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),

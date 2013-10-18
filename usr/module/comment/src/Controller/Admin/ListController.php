@@ -71,6 +71,7 @@ class ListController extends ActionController
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
@@ -170,15 +171,16 @@ class ListController extends ActionController
         $count = Pi::service('comment')->getCount($where);
 
         $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
+            'page'          => $page,
+            'limit'         => $limit,
+            'url_options'   => array(
                 'params'        => array(
                     'uid'       => $uid,
                     'active'    => $active,
                 ),
             ),
         ));
-        $title = sprintf(__('Comment posts of user %s'), $user['name']);
+        $title = __('Comment posts of user');
         $this->view()->assign('comment', array(
             'title'     => $title,
             'count'     => $count,
@@ -312,8 +314,9 @@ class ListController extends ActionController
             $params['category'] = $category;
         }
         $paginator = Paginator::factory($count, array(
-            'page'  => $page,
-            'url_options'           => array(
+            'page'          => $page,
+            'limit'         => $limit,
+            'url_options'   => array(
                 'params'        => $params,
             ),
         ));
@@ -434,6 +437,7 @@ class ListController extends ActionController
         $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
+            'limit'         => $limit,
             'url_options'   => array(
                 'params'    => $params,
             ),
@@ -471,5 +475,59 @@ class ListController extends ActionController
             'tabs'      => $navTabs,
         ));
         $this->view()->setTemplate('comment-article', '', 'front');
+    }
+
+    /**
+     * Batch operation
+     *
+     * @internal string|array $from
+     */
+    public function batchAction()
+    {
+        $op         = _post('op');
+        $uids       = _post('uids');
+        $uid        = _post('uid');
+        $all        = _post('all');
+        $from       = _post('from', array());
+
+        $model = Pi::model('post', 'comment');
+        if ($uid && $all) {
+            $where = array('uid' => $uid);
+        } elseif ($uids) {
+            $where = array('uid' => $uids);
+        } else {
+            $where = false;
+        }
+        if ($where) {
+            switch ($op) {
+                case 'enable':
+                    $model->update(array('active' => 1), $where);
+                    break;
+                case 'disable':
+                    $model->update(array('active' => 0), $where);
+                    break;
+                case 'delete':
+                    $model->delete($where);
+                    break;
+                default:
+                    break;
+            }
+        }
+        $result = array(
+            'status'    => 1,
+            'message'   => __('Operation succeeded.'),
+        );
+        $message = $result['message'];
+
+        // List, module/category, user
+        if (!$from) {
+            $from = array('action' => 'index');
+        } elseif (is_string($from)) {
+            $from = array('action'  => $from);
+        }
+        if (empty($from['action'])) {
+            $from['action'] = 'index';
+        }
+        $this->jump($from, $message);
     }
 }

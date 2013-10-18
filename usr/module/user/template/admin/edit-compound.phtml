@@ -1,0 +1,34 @@
+<?php include '_edit-user-nav.phtml'; ?>
+
+<?php foreach ($forms as $form) { ?>
+<div class="user-info-item">
+    <div class="user-info-header">
+        <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
+        <button class="close js-delete" type="button">×</button>
+    </div>
+    <div class="user-info-body">
+        <div class="user-info-show">
+            <dl class="dl-horizontal user-field-dl" style="margin: 0;">
+            </dl>
+        </div>
+        <?php
+        $form->setAttribute('class', 'form-horizontal');
+        $elements = $form->elementList();
+        echo $this->form()->openTag($form);
+        foreach ($elements['active'] as $element) {
+            echo sprintf('<div class="control-group"><label class="control-label">%s</label>
+                        <div class="controls">%s<span class="help-inline"></span></div></div>',
+                $element->getOption('label'),
+                $this->formElement($element));
+        }
+        foreach ($elements['hidden'] as $element) {
+            echo $this->formElement($element);
+        }
+        echo sprintf('<div class="controls controls-action">%s
+                    <input type="button" value="cancel" class="btn btn-link js-reset"></div>',
+            $this->formElement($elements['submit']));
+        echo $this->form()->closeTag();
+        ?>
+    </div>
+</div>
+<?php } ?>

@@ -29,12 +29,14 @@ class Permission extends AbstractResource
         $this->engine->bootResource('user');
 
         $events = $this->application->getEventManager();
+        /*
         // Check access permission before any other action is performed
         $events->attach(
             MvcEvent::EVENT_DISPATCH,
             array($this, 'checkModule'),
             9999
         );
+        */
 
         // Setup action cache strategy
         $sharedEvents = $events->getSharedManager();
@@ -59,10 +61,6 @@ class Permission extends AbstractResource
         if ($e->isError()) {
             return;
         }
-        // Skip page access check
-        if (empty($this->options['check_page'])) {
-            return;
-        }
 
         // Grant permission for admin
         if (Pi::service('permission')->isAdmin()) {
@@ -77,6 +75,18 @@ class Permission extends AbstractResource
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
         );
+
+        if ('system' != $route['module']) {
+            $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
+            if (!$moduleAccess) {
+                $this->denyAccess($e);
+            }
+        }
+
+        // Skip page access check
+        if (empty($this->options['check_page'])) {
+            return;
+        }
 
         // Check controller exceptions for permission check
         $controller = $e->getTarget();
@@ -97,10 +107,10 @@ class Permission extends AbstractResource
         }
 
         // Check action permission check against route
-        $access = Pi::service('permission')->pagePermission($route);
+        $actionAccess = Pi::service('permission')->pagePermission($route);
 
         // Set up deny process
-        if (false === $access) {
+        if (false === $actionAccess) {
             $this->denyAccess($e);
         }
 

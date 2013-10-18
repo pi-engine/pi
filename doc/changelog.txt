@@ -21,6 +21,11 @@ August 4th, 2013
 * Changed route spec to support route name definition
 * Added API to fetch module resource meta directly
 * Added Image service based on Imagine library
+* Added Permission service
+* Added Remote access service
+* Added Avatar service
+* Added support for public web resources that require same domain as main application
+
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

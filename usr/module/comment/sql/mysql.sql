@@ -17,7 +17,10 @@ CREATE TABLE `{category}` (
   `params`          varchar(255)    NOT NULL    default '',
   `name`            varchar(64)     NOT NULL    default '',
   `title`           varchar(255)    NOT NULL    default '',
+  -- Callback to fetch source meta data
   `callback`        varchar(255)    NOT NULL    default '',
+  -- Locator to identify root meta data
+  `locator`         varchar(255)    NOT NULL    default '',
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
   `icon`            varchar(255)    NOT NULL    default '',
 
@@ -32,9 +35,12 @@ CREATE TABLE `{root}` (
   `category`        varchar(64)     NOT NULL    default '',
   `item`            int(10)         unsigned    NOT NULL,
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
+  -- User id of root item author
+  `author`          int(10)         unsigned    NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `module_item` (`module`, `category`, `item`)
+  UNIQUE KEY  `module_item` (`module`, `category`, `item`),
+  KEY `author` (`author`)
 );
 
 # Comment posts

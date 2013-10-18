@@ -1,11 +1,10 @@
-﻿userListModule.config(['$translateProvider', '$routeProvider', '$locationProvider',
-  function ($translateProvider, $routeProvider, $locationProvider) {
+﻿angular.module('userListModule')
+.config(['$routeProvider', 'piProvider', 'config',
+  function ($routeProvider, piProvider, config) {
     //Get template url
     function tpl(name) {
-      return userListModuleConfig.assetRoot + name + '.html';
+      return config.assetRoot + name + '.html';
     }
-    $translateProvider.translations(userListModuleConfig.t);
-    $locationProvider.hashPrefix('!');
     $routeProvider.when('/activated', {
       templateUrl: tpl('index-activated'),
       controller: 'ListCtrl'
@@ -20,10 +19,15 @@
       templateUrl: tpl('index-all'),
       controller: 'ListCtrl'
     });
+    piProvider.hashPrefix();
+    piProvider.navTabs(config.navTabs);
+    piProvider.translations(config.t);
+    piProvider.ajaxSetup();
   }
-]).service('server', ['$http', '$cacheFactory',
-  function ($http, $cacheFactory) {
-    var urlRoot = userListModuleConfig.urlRoot;
+])
+.service('server', ['$http', '$cacheFactory', 'config',
+  function ($http, $cacheFactory, config) {
+    var urlRoot = config.urlRoot;
 
     this.get = function (action, params) {
       return $http.get(urlRoot + action, {
@@ -34,7 +38,7 @@
     this.getRoles = function () {
       var frontRoles = [];
       var adminRoles = [];
-      angular.forEach(userListModuleConfig.roles, function(item) {
+      angular.forEach(config.roles, function(item) {
         if (item.type == 'front') {
           frontRoles.push(item);
         }
@@ -45,7 +49,7 @@
       return {
         'frontRoles': frontRoles,
         'adminRoles': adminRoles,
-        'roles': userListModuleConfig.roles
+        'roles': config.roles
       };
     }
 
@@ -119,29 +123,23 @@
 
     this.uniqueUrl = urlRoot + 'checkExist';
   }
-]).controller('MainCtrl', ['$scope', '$location',
-  function ($scope, $location) {
-    $scope.navClass = function (path) {
-      if ($location.path().substr(0, path.length) == path) {
-        return "active";
-      } else {
-        return "";
-      }
-    }
-  }
-]).controller('ListCtrl', ['$scope', '$location', 'server',
-  function ($scope, $location, server) {
+])
+.controller('ListCtrl', ['$scope', '$location', '$rootScope', 'server',
+  function ($scope, $location, $rootScope, server) {
     var action = $location.path().replace(/^\//, '');
     $scope.paginator = {
       page: 1
     };
+
     $scope.$watch('paginator.page', function (num) {
       var param = { p: num };
       angular.extend(param, $scope.filter);
+      $rootScope.alert = 2;
       server.get(action, param).success(function (data) {
         server.parse(data);
         $scope.users = data.users;
         $scope.paginator = data.paginator;
+        $rootScope.alert = '';
       });
     });
     angular.extend($scope, server.getRoles());
@@ -165,7 +163,6 @@
     $scope.disableBatchAction = function () {
       var users = $scope.users;
       server.disable(getCheckIds()).success(function (data) {
-        $scope.alert = data;
         if (data.status) {
           $scope.allChecked = 0;
           angular.forEach(users, function (user) {
@@ -182,7 +179,6 @@
     $scope.enableAction = function(user) {
       if (user.time_disabled) {
         server.enable(user.id).success(function (data) {
-          $scope.alert = data;
           if (data.status) {
             user.time_disabled = 0;
             if (user.time_activated) user.active = 1;
@@ -190,7 +186,6 @@
         });
       } else {
         server.disable(user.id).success(function (data) {
-          $scope.alert = data;
           if (data.status) {
             user.time_disabled = 1;
             user.active = 0;
@@ -202,7 +197,6 @@
     $scope.enableBatchAction = function () {
       var users = $scope.users;
       server.enable(getCheckIds()).success(function (data) {
-        $scope.alert = data;
         if (data.status) {
           $scope.allChecked = 0;
           angular.forEach(users, function (user) {
@@ -219,7 +213,6 @@
     $scope.activeAction = function (user) {
       if (user.time_activated) return;
       server.active(user.id).success(function (data) {
-        $scope.alert = data;
         if (data.status) {
           user.time_activated = 1;
         }
@@ -228,7 +221,6 @@
 
     $scope.activeBatchAction = function () {
       server.active(getCheckIds()).success(function (data) {
-        $scope.alert = data;
         if (data.status) {
           $scope.allChecked = 0;
           angular.forEach($scope.users, function (user) {
@@ -242,11 +234,10 @@
     }
 
     $scope.deleteAction = function (idx) {
-      if (!confirm(userListModuleConfig.t.CONFIRM)) return;
+      if (!confirm(config.t.CONFIRM)) return;
       var users = this.users
       var user = users[idx];
       server.remove(user.id).success(function (data) {
-        $scope.alert = data;
         if (data.status) {
           users.splice(idx, 1);
         }
@@ -254,10 +245,9 @@
     }
 
     $scope.deleteBatchAction = function () {
-      if (!confirm(userListModuleConfig.t.CONFIRMS)) return;
+      if (!confirm(config.t.CONFIRMS)) return;
       server.remove(getCheckIds()).success(function (data) {
         var ret = [];
-        $scope.alert = data;
         if (data.status) {
           $scope.allChecked = 0;
           angular.forEach($scope.users, function (user) {
@@ -272,7 +262,6 @@
       var role = $scope.assignRole;
       if (!role) return;
       server.assignRole(getCheckIds(), role.name, 'add').success(function(data) {
-        $scope.alert = data;
         $scope.assignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
@@ -302,7 +291,6 @@
       var role = $scope.unassignRole;
       if (!role) return;
       server.assignRole(getCheckIds(), role, 'remove').success(function(data) {
-        $scope.alert = data;
         $scope.unassignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
@@ -327,7 +315,8 @@
       });
     }
   }
-]).controller('NewCtrl', ['$scope', 'server',
+])
+.controller('NewCtrl', ['$scope', 'server',
   function ($scope, server) {
     var entity = {
       activated: 1,
@@ -344,12 +333,7 @@
     });
     
     $scope.submit = function () {
-      server.add($scope.entity).success(function (data) {
-        $scope.alert = data;
-        if (data.status) {
-          $scope.entity = angular.copy(entity);
-        }
-      });
+      server.add($scope.entity);
     }
 
     $scope.$watch('roles', function () {

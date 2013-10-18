@@ -92,19 +92,21 @@ return array(
         ),
     ),
 
+    /*
     // Transition page jump route
     'jump' => array(
         'name'      => 'jump',
         'priority'  => 5,
 
-        'type'      => 'Literal',
+        //'type'      => 'Literal',
         'options'   => array(
             'route'     => '/jump',
             'defaults'  => array(
                 'module'        => 'system',
-                'controller'    => 'index',
-                'action'        => 'jump'
-            )
+                'controller'    => 'jump',
+                'action'        => 'index'
+            ),
         ),
     ),
+    */
 );

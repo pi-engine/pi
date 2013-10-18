@@ -2,39 +2,13 @@
 $this->css($this->assetModule('script/admin.css'));
 $this->angular(array(
     'angular-route.js',
-    'angular-translate.js',
     'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js'
 ));
 ?>
-<div ng-controller="MainCtrl" ng-app="userListModule">
-    <ul class="nav nav-tabs">
-        <li ng-class="navClass('/all')">
-            <a href="#!all">
-                <?php _e('All');?>
-            </a>
-        </li>
-        <li ng-class="navClass('/activated')">
-            <a href="#!activated">
-                <?php _e('Activated');?>
-            </a>
-        </li>
-        <li ng-class="navClass('/pending')">
-            <a href="#!pending">
-                <?php _e('Pending'); ?>
-            </a>
-        </li>
-        <li ng-class="navClass('/new')">
-            <a href="#!new">
-                <?php _e('Add new'); ?>
-            </a>
-        </li>
-        <li class="<?php echo $action == 'search' ? 'active' : ''; ?>">
-            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'addUser')); ?>">
-                <?php _e('Advanced search'); ?>
-            </a>
-        </li>
-    </ul>
+<div ng-app="userListModule">
+    <div pi-message="alert"></div>
+    <div pi-nav-tabs></div>
     <div ng-view></div>
 </div>
 <dl class="page-header">Links</dl>
@@ -46,64 +20,75 @@ $this->angular(array(
     </li>
 </ul>
 <script>
-var userListModule = angular.module('userListModule', ['ngRoute', 'ui.bootstrap', 'pascalprecht.translate', 'pi']);
-var userListModuleConfig = {
-    urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-    t: {
-        ACTIVE_STATUS: '<?php _e('Active State'); ?>',
-        ENABLE_STATUS: '<?php _e('Enable State'); ?>',
-        SELECT_ROLES: '<?php _e('Select roles'); ?>',
-        APPLY: '<?php _e('Apply'); ?>',
-        USERNAME: '<?php _e('Username'); ?>',
-        DISPLAY_NAME: '<?php _e('Display name'); ?>',
-        ENABLED: '<?php _e('Enabled'); ?>',
-        DISABLED: '<?php _e('Disabled'); ?>',
-        ACTIVATED: '<?php _e('Activated'); ?>',
-        ROLE: '<?php _e('Role'); ?>',
-        REGISTER_TIME: '<?php _e('Register time'); ?>',
-        ACTION: '<?php _e('Action'); ?>',
-        EDIT: '<?php _e('Edit'); ?>',
-        DELETE: '<?php _e('Delete'); ?>',
-        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
-        USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
-        EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-        DISPLAY_NAME_TOKEN: '<?php _e('Display name is already token'); ?>',
-        RETURN: '<?php _e('Back to users list'); ?>',
-        REQUIRED: '<?php _e('Required'); ?>',
-        USER_NAME: '<?php _e('Username'); ?>',
-        DISPLAY_NAME: '<?php _e('Dispaly name'); ?>',
-        EMAIL: '<?php _e('Email'); ?>',
-        INVALID_EMAIL: '<?php _e('Email invalid'); ?>',
-        PASSWORD: '<?php _e('Password'); ?>',
-        CONFIRM_PASSWORD: '<?php _e('Password confirm'); ?>',
-        ACTIVATE: '<?php _e('Active'); ?>',
-        ENABLE: '<?php _e('Enable'); ?>',
-        FRONT_ROLE: '<?php _e('Front role'); ?>',
-        ADMIN_ROLE: '<?php _e('Admin role'); ?>',
-        ASSIGN_FRONT_ROLE: '<?php _e('Front role'); ?>',
-        ASSIGN_ADMIN_ROLE: '<?php _e('Admin role'); ?>',
-        CONFIRM: '<?php _e('Are you sure delete this user'); ?>',
-        CONFIRMS: '<?php _e('Are you sure delete this users'); ?>',
-        ACTIVE_STATE:'<?php _e('Active State'); ?>',
-        TITLE: '<?php _e('Add user'); ?>',
-        USER_NAME: '<?php _e('Username'); ?>',
-        DISPLAY_NAME: '<?php _e('Display name'); ?>',
-        EMAIL: '<?php _e('Email'); ?>',
-        PASSWORD: '<?php _e('Password'); ?>',
-        CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
-        ACTIVATE: '<?php _e('Activate'); ?>',
-        ENABLE: '<?php _e('Enable'); ?>',
-        SUBMIT: '<?php _e('Submit'); ?>',
-        REQUIRED: '<?php _e('required'); ?>',
-        INVALID_EMAIL: '<?php _e('invalid email'); ?>',
-        PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
-        USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
-        EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-        DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
-    },
-    roles: <?php echo json_encode($roles); ?>
-};
+angular
+    .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        navTabs: [
+            { text: '<?php _e('All'); ?>', href: '#!/all' },
+            { text: '<?php _e('Activated'); ?>', href: '#!/activated' },
+            { text: '<?php _e('Pending'); ?>', href: '#!/pending' },
+            { text: '<?php _e('Add new'); ?>', href: '#!/new' },
+            { text: '<?php _e('Advanced search'); ?>', href: '' }
+        ],
+        t: {
+            ACTIVE_STATUS: '<?php _e('Active State'); ?>',
+            ENABLE_STATUS: '<?php _e('Enable State'); ?>',
+            SELECT_ROLES: '<?php _e('Select roles'); ?>',
+            APPLY: '<?php _e('Apply'); ?>',
+            USERNAME: '<?php _e('Username'); ?>',
+            DISPLAY_NAME: '<?php _e('Display name'); ?>',
+            ENABLED: '<?php _e('Enabled'); ?>',
+            DISABLED: '<?php _e('Disabled'); ?>',
+            ACTIVATED: '<?php _e('Activated'); ?>',
+            ACTIVE: '<?php _e('Active'); ?>',
+            INACTIVE: '<?php _e('Inactive'); ?>',
+            ROLE: '<?php _e('Role'); ?>',
+            REGISTER_TIME: '<?php _e('Register time'); ?>',
+            ACTION: '<?php _e('Action'); ?>',
+            EDIT: '<?php _e('Edit'); ?>',
+            DELETE: '<?php _e('Delete'); ?>',
+            ADD_TITLE: '<?php _e('Add user'); ?>',
+            PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
+            USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
+            EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
+            DISPLAY_NAME_TOKEN: '<?php _e('Display name is already token'); ?>',
+            RETURN: '<?php _e('Back to users list'); ?>',
+            REQUIRED: '<?php _e('Required'); ?>',
+            USER_NAME: '<?php _e('Username'); ?>',
+            DISPLAY_NAME: '<?php _e('Dispaly name'); ?>',
+            EMAIL: '<?php _e('Email'); ?>',
+            INVALID_EMAIL: '<?php _e('Email invalid'); ?>',
+            PASSWORD: '<?php _e('Password'); ?>',
+            CONFIRM_PASSWORD: '<?php _e('Password confirm'); ?>',
+            ACTIVATE: '<?php _e('Active'); ?>',
+            ENABLE: '<?php _e('Enable'); ?>',
+            FRONT_ROLE: '<?php _e('Front role'); ?>',
+            ADMIN_ROLE: '<?php _e('Admin role'); ?>',
+            ASSIGN_FRONT_ROLE: '<?php _e('Front role'); ?>',
+            ASSIGN_ADMIN_ROLE: '<?php _e('Admin role'); ?>',
+            CONFIRM: '<?php _e('Are you sure delete this user'); ?>',
+            CONFIRMS: '<?php _e('Are you sure delete this users'); ?>',
+            ACTIVE_STATE:'<?php _e('Active State'); ?>',
+            TITLE: '<?php _e('Add user'); ?>',
+            USER_NAME: '<?php _e('Username'); ?>',
+            DISPLAY_NAME: '<?php _e('Display name'); ?>',
+            EMAIL: '<?php _e('Email'); ?>',
+            PASSWORD: '<?php _e('Password'); ?>',
+            CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
+            ACTIVATE: '<?php _e('Activate'); ?>',
+            ENABLE: '<?php _e('Enable'); ?>',
+            SUBMIT: '<?php _e('Submit'); ?>',
+            REQUIRED: '<?php _e('required'); ?>',
+            INVALID_EMAIL: '<?php _e('invalid email'); ?>',
+            PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
+            USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
+            EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
+            DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
+        },
+        roles: <?php echo json_encode($roles); ?>
+    });
 </script>
 <?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
 <script src="<?php echo $this->assetModule('admin/user' . $debug . '.js'); ?>"></script>

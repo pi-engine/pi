@@ -125,6 +125,7 @@ abstract class AbstractAvatar
      */
     public function getList($uids, $size = '', $attributes = array())
     {
+        $result = array();
         $srcList = $this->getSourceList($uids, $size);
         if (false === $attributes) {
             return $srcList;

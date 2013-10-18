@@ -231,17 +231,23 @@ class IndexController extends ActionController
      */
     public function buildAction()
     {
+        /*
         $roots = Pi::model('root', 'comment')->delete(array(
             'module'    => 'comment',
         ));
         foreach ($roots as $root) {
             Pi::api('comment')->delete($root->id);
         }
+        */
+        Pi::model('root', 'comment')->delete(array(
+            'module'    => 'comment',
+        ));
         Pi::model('post', 'comment')->delete(array(
             'module'    => 'comment',
         ));
 
         $rootIds = array();
+        //$key = 1;
         for ($i = 1; $i <= 10; $i++) {
             $root = array(
                 'module'    => 'comment',
@@ -249,18 +255,27 @@ class IndexController extends ActionController
                 'category'  => 'article',
                 'active'    => rand(0, 1),
             );
-            $rootIds[$i] = Pi::api('comment')->addRoot($root);
+            $rootIds[] = Pi::api('comment')->addRoot($root);
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $root = array(
+                'module'    => 'comment',
+                'item'      => $i,
+                'category'  => 'custom',
+                'active'    => rand(0, 1),
+            );
+            $rootIds[] = Pi::api('comment')->addRoot($root);
         }
 
         for ($i = 0; $i < 1000; $i++) {
             $post = array(
-                'root'      => $rootIds[rand(1, 10)],
+                'root'      => $rootIds[rand(0, 14)],
                 'uid'       => rand(1, 5),
                 'ip'        => Pi::service('user')->getIp(),
                 'active'    => rand(0, 1),
                 'content'   => sprintf(__('Demo comment %d.'), $i + 1),
                 'time'      => time() - rand(100, 100000),
-                //'module'    => 'comment',
             );
             Pi::api('comment')->addPost($post);
         }
