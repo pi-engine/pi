@@ -42,13 +42,14 @@ class Category extends AbstractRegistry
         foreach ($rowset as $row) {
             $data = array(
                 'title'         => $row['title'],
-                'identifier'    => $row['identifier'],
+                'icon'          => $row['icon'],
                 //'category'      => $row['name'],
                 'callback'      => $row['callback'],
-                'icon'          => $row['icon'],
+                'locator'       => $row['locator'],
                 //'module'        => $row['module'],
                 //'controller'    => $row['controller'],
                 //'action'        => $row['action'],
+                'identifier'    => $row['identifier'],
                 'params'        => $row['params'],
             );
             $name       = $row['name'];
@@ -57,19 +58,27 @@ class Category extends AbstractRegistry
 
             if ($options['module']) {
                 if ($options['category']) {
+                    if (empty($row['locator'])) {
+                        $data = array_merge($data, array(
+                            'controller'    => $controller,
+                            'action'        => $action,
+                        ));
+                    }
+                    $list[$row['name']] = $data;
+                } else {
+                    if (empty($row['locator'])) {
+                        $list['route'][$controller][$action][$name] = $data;
+                    } else {
+                        $list['locator'][$name] = $data;
+                    }
+                }
+            } else {
+                if (empty($row['locator'])) {
                     $data = array_merge($data, array(
                         'controller'    => $controller,
                         'action'        => $action,
                     ));
-                    $list[$row['name']] = $data;
-                } else {
-                    $list[$controller][$action][$name] = $data;
                 }
-            } else {
-                $data = array_merge($data, array(
-                    'controller'    => $controller,
-                    'action'        => $action,
-                ));
                 $list[$row['module']][$name] = $data;
             }
         }

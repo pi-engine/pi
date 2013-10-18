@@ -106,7 +106,7 @@ endif;
 <dl>
     <dt><?php _e('Post a comment:'); ?></dt>
     <dd><textarea name="content"></textarea></dd>
-    <?php if ($data['root']['id']) { ?>
+    <?php if (!empty($data['root']['id'])) { ?>
         <input type="hidden" name="root" value="<?php echo $data['root']['id']; ?>" />
     <?php } else { ?>
         <input type="hidden" name="module" value="<?php echo $data['root']['module']; ?>" />

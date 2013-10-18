@@ -19,7 +19,8 @@
     var saveBtn = root.$('.js-save');
     var uploadImg = root.$('.avatar-upload-image');
     var emailInput = root.$('[name=email]');
-    var repositoryRadios = root.$('[name=repository-avatar]'); 
+    var repositoryRadios = root.$('[name=repository-avatar]');
+    var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/; 
     var ajaxCache = (function () {
       var cache = {};
       return function(url, params) {
@@ -131,6 +132,8 @@
         });
         data['avatar'] = result.preview_url;
         data['fake_id'] = config.fake_id;
+      } else if(source == 'gravatar') {
+        data['email'] = $.trim(root.$('[name=email]').val());
       } else if (source == 'repository') {
         data['name'] = root.$('[name=repository-avatar]:checked').val();
       }
@@ -138,30 +141,37 @@
       $.post(config.urlRoot + 'save', data).done(function(res) {
           res = $.parseJSON(res);
           if (res.status) {
-              window.location.reload();
+            window.location.reload();
           } else {
-              saveBtn.removeAttr('disabled');
-              alert(res.message);
+            saveBtn.removeAttr('disabled');
+            alert(res.message);
           }
       });
     });
 
     emailInput.blur(function() {
+      var email = $.trim(emailInput.val());
+      if (!email || !EMAIL_REGEXP.test(email)) return;
       ajaxCache(config.urlRoot + 'gravatar', {
-        email: $.trim(emailInput.val())
+        email: email
       }).done(function(res) {
-        var prevImgs = $('#fromGravatar .avatar-preview-img');
         res = $.parseJSON(res);
-        if (res.status) {
-          prevImgs.attr('src', res.preview_url);
+        var prevImgs = $('#fromGravatar .avatar-preview-img');
+        var url = res.preview_url;
+        var idx = 0;
+        var replaceSize = function(value) {
+          return url.replace(/(s=).*?(&)/,'$1' + value + '$2');
         }
+        $.each(config.allSize, function(key, value) {
+          prevImgs.eq(idx++).attr('src', replaceSize(value));
+        });
       });
     });
 
     repositoryRadios.click(function() {
       var name = $(this).val();
       var prevImgs = $('#formRepository .avatar-preview-img');
-
+      
       ajaxCache(config.urlRoot + 'repository', {
         name: name
       }).done(function(res) {
@@ -181,6 +191,8 @@
 
     if (config.source == 'repository') {
       repositoryRadios.filter('[value=' + config.filename + ']').attr('checked', 'checked');
+    } else {
+      repositoryRadios.eq(0).attr('checked', 'checked');
     }
 
 })(jQuery)
