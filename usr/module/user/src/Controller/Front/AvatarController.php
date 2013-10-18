@@ -486,7 +486,7 @@ class AvatarController extends ActionController
             }
             
             $photo = $email;
-        } elseif ('repository' == $source) {
+        } elseif ('select' == $source) {
             $name = $this->params('name', '');
             if (empty($name)) {
                 $return['message'] = __('Invalid image file.');
@@ -496,7 +496,7 @@ class AvatarController extends ActionController
             
             $photo = $name;
         } else {
-            $photo = 'local';
+            $photo = '';
         }
         
         // Remove old photo
