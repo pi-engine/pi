@@ -9,12 +9,12 @@ return array(
     // System select avatars
     'adapter'       => 'select',
     // User uploaded avatars
-    'adapter'       => 'upload',
+    //'adapter'       => 'upload',
     // Auto detected
-    'adapter'       => 'auto',
+    'adapter'       => array('upload', 'select', 'gravatar'),
 
     // Allowed adapters
-    'adapter_allowed' => array('upload', 'select', 'gravatar'),
+    //'adapter_allowed' => array('upload', 'select', 'gravatar'),
 
     // Options for named size
     'size_map'  => array(
@@ -65,6 +65,8 @@ return array(
 
     // Options for upload avatars
     'upload'    => array(
+        // Allowed image extensions
+        'extension' => array('jpg', 'gif', 'png', 'bmp'),
         // Path to avatar root
         'root_path' => Pi::path('upload/avatar'),
         // URL to avatar root

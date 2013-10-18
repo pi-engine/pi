@@ -59,6 +59,16 @@ abstract class AbstractAvatar
     }
 
     /**
+     * Get options
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
      * Set user model
      *
      * @param AbstractModel $user

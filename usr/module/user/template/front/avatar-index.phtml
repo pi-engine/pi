@@ -22,7 +22,7 @@
         ),
         array(
             'source' => 'repository',
-            'text'   => __('Selection'),
+            'text'   => __('Select'),
             'href'   => '#formRepository'
         ),
         array(
@@ -68,9 +68,9 @@
                 <div class="avatar-upload-hit">
                     <button class="btn avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
                     <div class="muted">
-                        <?php _e('Support'); ?>
-                        <?php echo $config['avatar_extension']; ?>
-                        (<?php echo $config['max_size']; ?>MB)
+                        <?php foreach ($limits as $limit) { ?>
+                        <div><?php echo $limit['label']; ?> <?php echo $limit['text']; ?></div>
+                        <?php } ?>
                     </div>
                 </div>
                 <img class="hide avatar-upload-image">
@@ -81,11 +81,12 @@
             <ul class="unstyled avatar-preview-inline">
                 <?php 
                 foreach ($allSize as $key => $value) {
-                    echo sprintf($viewPreview,
+                    echo sprintf(
+                        $viewPreview,
                         $key,
                         $value,
                         $value,
-                        $uploads[$key] ? : ''
+                        isset($uploads[$key]) ? $uploads[$key] : ''
                     );
                 } 
                 ?>
@@ -105,7 +106,8 @@
             <ul class="unstyled avatar-preview-inline">
             <?php 
             foreach ($gravatar as $key => $value) {
-                echo sprintf($viewPreview,
+                echo sprintf(
+                    $viewPreview,
                     $key,
                     $allSize[$key],
                     $allSize[$key],
@@ -131,7 +133,8 @@
             <ul class="unstyled avatar-preview-inline">
                 <?php
                 foreach ($selected as $key => $value) {
-                    echo sprintf($viewPreview,
+                    echo sprintf(
+                        $viewPreview,
                         $key,
                         $allSize[$key],
                         $allSize[$key],
@@ -171,7 +174,7 @@ $('#js-user-avatar').data('config', {
     source: '<?php echo $source ?>',
     urlRoot: '<?php echo $this->url('', array('controller' => 'avatar')); ?>',
     fake_id: '<?php echo $form->get('fake_id')->getValue() ?>',
-    format: '<?php echo $config['avatar_extension']; ?>'.split(','),
+    format: '<?php echo $config['upload_extension']; ?>'.split(','),
     uploadText: '<?php _e('Upload avatar'); ?>',
     processText: '<?php _e('Uploading'); ?>',
     uploadBoxSize: 300,

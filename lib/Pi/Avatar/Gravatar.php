@@ -34,7 +34,7 @@ class Gravatar extends AbstractAvatar
                 $data = Pi::user()->get($uid, array('avatar', 'email'));
             }
             if ($data) {
-                if (false === strpos($data['avatar'], '@')) {
+                if ('gravatar' != Pi::service('avatar')->getType($data['avatar'])) {
                     $gravatar = $data['email'];
                 } else {
                     $gravatar = $data['avatar'];
@@ -56,7 +56,7 @@ class Gravatar extends AbstractAvatar
         $list = Pi::user()->get($uids, array('avatar', 'email'));
         foreach ($list as $uid => $data) {
             if ($data) {
-                if (false === strpos($data['avatar'], '@')) {
+                if ('gravatar' != Pi::service('avatar')->getType($data['avatar'])) {
                     $gravatar = $data['email'];
                 } else {
                     $gravatar = $data['avatar'];

@@ -351,6 +351,82 @@ class User extends AbstractService
     }
 
     /**
+     * Update a user
+     *
+     * @param   int         $uid
+     * @param   array       $fields
+     * @return  int|bool
+     * @api
+     */
+    public function updateUser($uid, $fields)
+    {
+        $result = $this->getAdapter()->updateUser($uid, $fields);
+        if ($result && $uid == $this->getIdentity()) {
+            $this->setPersist(false);
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * Set value of a user field
+     *
+     * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
+     * @return bool
+     * @api
+     */
+    public function set($uid, $field, $value)
+    {
+        $result = $this->getAdapter()->set($uid, $field, $value);
+        if ($result && $uid == $this->getIdentity()) {
+            $this->setPersist($field, $value);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    public function setRole($uid, $role)
+    {
+        $result = $this->getAdapter()->setRole($uid, $role);
+        if ($result && $uid == $this->getIdentity()) {
+            $role = $this->getRole($uid, '', true);
+            $this->setPersist('role', $role);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Revoke user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    public function revokeRole($uid, $role)
+    {
+        $result = $this->getAdapter()->revokeRole($uid, $role);
+        if ($result && $uid == $this->getIdentity()) {
+            $role = $this->getRole($uid, '', true);
+            $this->setPersist('role', $role);
+        }
+
+        return $result;
+    }
+
+    /**
      * Get user role
      *
      * Section: `admin`, `front`
@@ -359,20 +435,22 @@ class User extends AbstractService
      *
      * @param int    $uid
      * @param string $section    Section name: admin, front
+     * @param bool   $force      Force to fetch
      *
      * @return array
      */
-    public function getRole($uid, $section = '')
+    public function getRole($uid, $section = '', $force = false)
     {
-        $result     = null;
+        $result = null;
         if (null === $uid) {
             $uid = $this->getIdentity();
         } else {
-            $uid        = (int) $uid;
+            $uid = (int) $uid;
         }
         $section = $section ?: Pi::engine()->application()->getSection();
         $isCurrent  = false;
-        if ($uid === (int) $this->getIdentity()
+        if (!$force
+            && $uid === $this->getIdentity()
             && Pi::engine()->application()->getSection() == $section
         ) {
             $isCurrent = true;
@@ -478,12 +556,17 @@ class User extends AbstractService
      *  - email: email
      *  - <extra fields>: specified by each adapter
      *
-     * @param array|bool $data
+     * @param string|array|bool $name
+     * @param null|mixed $value
      * @return self
      */
-    public function setPersist($data = array())
+    public function setPersist($name, $value = null)
     {
-        $_SESSION['PI_USER'] = $data ? (array) $data : null;
+        if (is_string($name)) {
+            $_SESSION['PI_USER'][$name] = $value;
+        } else {
+            $_SESSION['PI_USER'] = $name ? (array) $name : null;
+        }
 
         return $this;
     }
@@ -497,6 +580,12 @@ class User extends AbstractService
     public function getPersist($name = null)
     {
         $data = (array) $_SESSION['PI_USER'];
+        if ($this->getOption('persist') && !$data) {
+            $uid = $this->getIdentity();
+            $fields = $this->getOption('persist');
+            $data = $this->get($uid, $fields);
+            $this->setPersist($data);
+        }
         if ($name) {
             $result = isset($data[$name]) ? $data[$name] : null;
         } else {
