@@ -49,26 +49,19 @@ class Privacy extends AbstractApi
                 break;
         }
 
+        // Get user setting
+        $userSetting = $this->getUserPrivacy($uid);
         if ($type == 'group') {
             foreach ($rawData as $group) {
                 if ($group['compound']) {
-                    $allow = $this->checkPrivacy(
-                        $uid,
-                        $group['compound'],
-                        $privacy
-                    );
+                    $allow = $privacy >= $userSetting[$group['compound']] ? 1 : 0;
                     if ($allow) {
                         $result[] = $group;
                     }
                 } else {
                     $data = $group;
                     foreach (array_keys($group['fields'][0]) as $field) {
-                        $allow = $this->checkPrivacy(
-                            $uid,
-                            $field,
-                            $privacy
-                        );
-
+                        $allow = $privacy >= $userSetting[$field] ? 1 : 0;
                         if (!$allow) {
                             unset($data['fields'][0][$field]);
                         }
@@ -80,8 +73,8 @@ class Privacy extends AbstractApi
                 }
             }
         } elseif ($type == 'user') {
-            foreach ($rawData as $key => $value) {
-                $allow = $this->checkPrivacy($uid, $key, $privacy);
+            foreach ($rawData as $key => $value) {d($rawData);
+                $allow = $privacy >= $userSetting[$key] ? 1 : 0;
                 if ($allow) {
                     $result[$key] = $value;
                 }
@@ -94,35 +87,40 @@ class Privacy extends AbstractApi
     }
 
     /**
-     * Check access field privacy
+     * Get user privacy setting
      *
      * @param $uid
-     * @param $field
-     * @param $privacy
-     * @return int
+     * @param $type
+     *
+     * @return array
      */
-    protected function checkPrivacy($uid, $field, $privacy)
+    public function getUserPrivacy($uid, $type = '')
     {
-        $model       = Pi::model('privacy_user', 'user');
-        $systemModel = Pi::model('privacy', 'user');
-        $select = $model->select()->where(
-            array(
-                'uid'        => $uid,
-                'field'      => $field,
-            )
-        );
 
-        $rowset = $model->selectWith($select)->current();
-        if ($rowset) {
-            return $rowset['value'] <= $privacy ? 1 : 0;
+        $result = array();
+        if (!$uid) {
+            return $result;
+        }
+
+        $rowset = Pi::model('privacy_user', 'user')
+            ->select(array('uid' => $uid));
+
+        if ($type == 'list') {
+            foreach ($rowset as $row) {
+                $result[] = array(
+                    'id'        => (int) $row['id'],
+                    'field'     => $row['field'],
+                    'value'     => (int) $row['value'],
+                    'is_forced' => (int) $row['is_forced']
+                );
+            }
         } else {
-            // System default privacy setting
-            $row = $systemModel->find($field, 'field');
-            if ($row) {
-                return $row['value'] <= $privacy ? 1 : 0;
-            } else {
-                return 0;
+            foreach ($rowset as $row) {
+                $result[$row['field']] = $row['value'];
             }
         }
+
+        return $result;
+
     }
 }
