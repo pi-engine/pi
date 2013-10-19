@@ -148,10 +148,9 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::registry('config')->read('', 'user');
-
-        $values = $form->getData();
-        $identity = $values['identity'];
+        $configs    = Pi::registry('config')->read('', 'user');
+        $values     = $form->getData();
+        $identity   = $values['identity'];
         $credential = $values['credential'];
 
         if (!empty($configs['attempts'])) {
@@ -196,7 +195,7 @@ class LoginController extends ActionController
         Pi::service('user')->bind($uid);
         Pi::service('event')->trigger('login', $uid);
 
-        if (!empty($configs['attempts'])) {
+        if (isset($_SESSION['PI_LOGIN'])) {
             unset($_SESSION['PI_LOGIN']);
         }
 

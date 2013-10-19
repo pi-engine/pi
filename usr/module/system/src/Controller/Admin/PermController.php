@@ -316,6 +316,8 @@ class PermController extends ComponentController
             }
         }
 
+        Pi::registry('navigation')->flush();
+
         $status = 1;
         $message = __('Permission assigned successfully.');
         return array(

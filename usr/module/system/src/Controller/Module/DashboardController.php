@@ -38,7 +38,6 @@ class DashboardController extends ActionController
 
         $modules = Pi::registry('modulelist')->read();
         $moduleList = array_keys($modules);
-        //$allowed = Pi::registry('moduleperm')->read($mode);
         $allowed = Pi::service('permission')->moduleList($mode);
         if (null === $allowed || !is_array($allowed)) {
             $allowed = $moduleList;
@@ -84,7 +83,8 @@ class DashboardController extends ActionController
         if (!$link) {
             $this->jump(
                 array('action' => 'system'),
-                __('No permitted operation available.')
+                __('No permitted operation available.'),
+                1
             );
 
             return;

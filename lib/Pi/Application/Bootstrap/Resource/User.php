@@ -23,10 +23,10 @@ class User extends AbstractResource
      */
     public function boot()
     {
-        /*
+
         $identity = (string) Pi::service('authentication')->getIdentity();
         Pi::service('user')->bind($identity, 'identity');
-        */
-        Pi::service('user')->bind();
+
+        //Pi::service('user')->bind();
     }
 }

@@ -41,11 +41,13 @@ return array(
     // Admin section
     'admin' => array(
         // Generic admin resource
-        'admin'     => array(
-            'title'         => __('Global admin permission'),
+        'generic'   => array(
+            'title'         => __('Generic permission'),
             'access'        => array(
                 //'admin',
                 'staff',
+                'moderator',
+                'manager',
             ),
         ),
 
@@ -96,7 +98,6 @@ return array(
             'title'         => __('Operation: modules'),
             'access'        => array(
                 'manager',
-                'webmaster',
             ),
         ),
         // Themes
@@ -104,7 +105,7 @@ return array(
             'title'         => __('Operation: themes'),
             'access'        => array(
                 //'admin',
-                'editor',
+                'manager',
             ),
         ),
         // Navigation
@@ -112,7 +113,7 @@ return array(
             'title'         => __('Operation: navigation'),
             'access'        => array(
                 //'admin',
-                'editor',
+                'manager',
             ),
         ),
         // Roles

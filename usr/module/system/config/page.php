@@ -44,13 +44,13 @@ return array(
         array(
             'title'         => __('Dashboard'),
             'controller'    => 'dashboard',
-            'permission'    => 'admin',
+            //'permission'    => 'generic',
         ),
         // System readme
         array(
             'title'         => __('Readme'),
             'controller'    => 'readme',
-            'permission'    => 'admin',
+            //'permission'    => 'generic',
         ),
 
         // System managed components
