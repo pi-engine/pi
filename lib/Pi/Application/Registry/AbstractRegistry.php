@@ -68,7 +68,7 @@ abstract class AbstractRegistry
      * Roles in process loop
      * @var array
      */
-    protected $roles = null;
+    protected $roles = array();
 
     /**
      * Data generator
@@ -157,7 +157,9 @@ abstract class AbstractRegistry
             $id = $roleList[$roleName]['id'];
             $this->roles[$id] = $roleName;
         }
-        ksort($this->roles);
+        if ($this->roles) {
+            ksort($this->roles);
+        }
 
         return $roles;
     }

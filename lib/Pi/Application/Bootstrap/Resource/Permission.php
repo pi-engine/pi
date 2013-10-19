@@ -78,7 +78,8 @@ class Permission extends AbstractResource
 
         // Skip module access check for system front section and admin login
         if ('system' == $route['module']
-            && ('front' == $section || 'login' == $route['controller'])
+            && ('front' == $section
+                || in_array($route['controller'], array('login', 'jump')))
         ) {
         // Check against module access
         } else {
