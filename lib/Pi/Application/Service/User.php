@@ -240,51 +240,51 @@ class User extends AbstractService
      * Bind a user to service
      *
      * @param UserModel|int|string|null $identity
-     *      User id, identity or data object
+     *      User id, identity or UserModel
      * @param string                    $field
      *      Field of the identity: id, identity
      * @return self
      */
     public function bind($identity = null, $field = 'id')
     {
-        if (null !== $identity || null === $this->model) {
-            if ($identity instanceof UserModel) {
-                $this->model = $identity;
+        // Set user model and persist
+        if ($identity instanceof UserModel) {
+            $model = $identity;
+            $this->setPersist($model);
+        // Use current user model
+        } elseif ($this->model
+            && (null === $identity
+                || $this->model->get($field) == $identity)
+        ) {
+            $model = $this->model;
+        // Create user model
+        } else {
+            $data = $this->getPersist() ?: array();
+            // Fetch user data and build user model
+            if (null !== $identity
+                && (!isset($data[$field])
+                    || $identity != $data[$field])
+            ) {
+                $model = $this->getAdapter()->getUser($identity, $field);
+                $this->setPersist($model);
+            // Build user model from persist data
             } else {
-                $persist = $this->getPersist();
-                if (isset($persist[$field]) && $identity == $persist[$field]) {
-                    $this->model = $this->getAdapter()->getUserModel($persist);
-                } else {
-                    $this->model = $this->getAdapter()->getUser($identity, $field);
-                }
+                $model = $this->getAdapter()->getUser($data);
             }
+        }
+        $this->model = $model;
+        // Bind user model to service adapter
+        $this->getAdapter()->bind($this->model);
+        // Bind user model to handlers
+        foreach ($this->resource as $key => $handler) {
+            if ($handler instanceof BindInterface) {
+                $handler->bind($this->model);
+            }
+        }
 
-            //d($identity);
-            //d($this->model);
-            /*
-            // Assign persist data
-            if ($this->model->get('id')) {
-                $persist = $this->getPersist();
-                //d($persist);
-                if ($persist) {
-                    $this->model->assign($persist);
-                }
-            }
-            */
-
-            // Store current session user model for first time
-            if (null === $this->modelSession) {
-                $this->modelSession = $this->model;
-            }
-
-            // Bind user model to service adapter
-            $this->getAdapter()->bind($this->model);
-            // Bind user model to handlers
-            foreach ($this->resource as $key => $handler) {
-                if ($handler instanceof BindInterface) {
-                    $handler->bind($this->model);
-                }
-            }
+        // Store current session user model for first time
+        if (null === $this->modelSession) {
+            $this->modelSession = $this->model;
         }
 
         return $this;
@@ -567,17 +567,31 @@ class User extends AbstractService
      *  - email: email
      *  - <extra fields>: specified by each adapter
      *
-     * @param string|array|bool $name
+     * @param string|array|bool|UserModel $name
      * @param null|mixed $value
      * @return self
      */
     public function setPersist($name, $value = null)
     {
-        if (is_string($name)) {
+        $fields = $this->getOption('persist', 'field');
+        if (!$fields) {
+            return $this;
+        }
+        // Fetch whole data set from user model
+        if ($name instanceof UserModel) {
+            $_SESSION['PI_USER']['field'] = array();
+            foreach ($fields as $field) {
+                if (isset($name[$field])) {
+                    $_SESSION['PI_USER']['field'][$field] = $name[$field];
+                }
+            }
+        // Set/Update one single parameter
+        } elseif (is_string($name)) {
             if (!isset($_SESSION['PI_USER']['field'])) {
                 $_SESSION['PI_USER']['field'] = $this->getPersist();
             }
             $_SESSION['PI_USER']['field'][$name] = $value;
+        // Set whole set
         } else {
             $_SESSION['PI_USER']['field'] = $name ? (array) $name : null;
         }

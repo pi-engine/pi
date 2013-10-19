@@ -42,10 +42,12 @@ class System extends AbstractAdapter
      */
     public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $uid) {
-            $model = $this->getUserModel($uid, $field);
-        } else {
+        if (null === $uid
+            || ($this->model && $this->model->get($field) == $uid)
+        ) {
             $model = $this->model;
+        } else {
+            $model = $this->getUserModel($uid, $field);
         }
 
         return $model;

@@ -174,9 +174,10 @@ class LoginController extends ActionController
             Pi::service('session')->manager()
                 ->rememberme($configs['rememberme'] * 86400);
         }
-        Pi::service('session')->setUser($result->getData('id'));
-        Pi::service('user')->bind($result->getIdentity(), 'identity');
-        Pi::service('user')->setPersist($result->getData());
+        $uid = $result->getData('id');
+        Pi::service('session')->setUser($uid);
+        Pi::service('user')->bind($uid);
+        //Pi::service('user')->setPersist($result->getData());
 
 
         if (!empty($configs['attempts'])) {
@@ -190,20 +191,21 @@ class LoginController extends ActionController
         }
 
         // Get user id according to identity
+        /*
         $uid = $this->getModel('account')->find(
             $result->getIdentity(),
             'identity'
         )->id;
+        */
 
         // Trigger login event
-        $rememberTime = isset($configs['rememberme'])
-                      && $values['rememberme']
+        $rememberTime = isset($configs['rememberme']) && $values['rememberme']
                       ? $values['rememberme'] * 86400
                       : 0;
         Pi::service('event')->trigger('login', array($uid, $rememberTime));
 
         // Set login ip
-        $ipLogin = $this->getClientIp();
+        $ipLogin = Pi::user()->getIp();
         Pi::user()->data()->set(
             $uid,
             'ip_login',
@@ -246,24 +248,5 @@ class LoginController extends ActionController
         );
 
         return $form;
-    }
-
-    /**
-     * Get client ip address
-     *
-     * @return string
-     */
-    protected function getClientIp()
-    {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-
-        return $ip;
-
     }
 }

@@ -82,6 +82,8 @@ abstract class AbstractAdapter implements BindInterface
      * Constructor
      *
      * @param array $options
+     *
+     * @return \Pi\User\Adapter\AbstractAdapter
      */
     public function __construct($options = array())
     {
@@ -191,7 +193,7 @@ abstract class AbstractAdapter implements BindInterface
      * @return UserModel
      * @api
      */
-    abstract public function getUser($uid, $field = 'id');
+    abstract public function getUser($uid = null, $field = 'id');
 
     /**
      * Get user IDs subject to conditions

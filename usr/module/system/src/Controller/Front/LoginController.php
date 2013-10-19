@@ -193,12 +193,6 @@ class LoginController extends ActionController
         }
         $uid = $result->getData('id');
         Pi::service('session')->setUser($uid);
-        /**/
-        //$roles = Pi::service('user')->getRole($uid);
-        //$persist = $result->getData();
-        //$persist['role'] = $roles;
-        //Pi::service('user')->setPersist($persist);
-        /**/
         Pi::service('user')->bind($uid);
         Pi::service('event')->trigger('login', $uid);
 
