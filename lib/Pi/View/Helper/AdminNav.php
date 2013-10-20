@@ -101,6 +101,7 @@ class AdminNav extends AbstractHelper
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $modules = Pi::registry('modulelist')->read();
+        $modulesAllowed = Pi::service('permission')->moduleList($mode);
         $navConfig = array();
 
         $navigation = '';
@@ -113,16 +114,24 @@ class AdminNav extends AbstractHelper
             }
             // Build managed navigation for all modules
             foreach ($modules as $name => $item) {
-                $navConfig[$name] = array(
+                if (!in_array($name, $modulesAllowed)) {
+                    $config = array(
+                        'uri'   => '#',
+                    );
+                } else {
+                    $config = array(
+                        'route'         => 'admin',
+                        'module'        => $params['module'],
+                        'controller'    => $params['controller'],
+                        'params'        => array(
+                            'name'          => $name,
+                        ),
+                        'active'        => $name == $params['name'] ? 1 : 0,
+                    );
+                }
+                $navConfig[$name] = array_merge($config, array(
                     'label'         => $item['title'],
-                    'route'         => 'admin',
-                    'module'        => $params['module'],
-                    'controller'    => $params['controller'],
-                    'params'        => array(
-                        'name'          => $name,
-                    ),
-                    'active'        => $name == $params['name'] ? 1 : 0,
-                );
+                ));
             }
 
             $navigation = $this->view->navigation($navConfig);
@@ -130,14 +139,21 @@ class AdminNav extends AbstractHelper
         } elseif (AdminMode::MODE_ADMIN == $mode) {
             // Build the navigation
             foreach ($modules as $name => $item) {
-                $config = array(
+                if (!in_array($name, $modulesAllowed)) {
+                    $config = array(
+                        'uri'   => '#',
+                    );
+                } else {
+                    $config = array(
+                        'route'         => 'admin',
+                        'module'        => $name,
+                        'controller'    => 'dashboard',
+                        'active'        => $name == $module ? 1 : 0,
+                    );
+                }
+                $navConfig[$name] = array_merge($config, array(
                     'label'         => $item['title'],
-                    'route'         => 'admin',
-                    'module'        => $name,
-                    'controller'    => 'dashboard',
-                    'active'        => $name == $module ? 1 : 0,
-                );
-                $navConfig[$name] = $config;
+                ));
             }
             $navigation = $this->view->navigation($navConfig);
         }
