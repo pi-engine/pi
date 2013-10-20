@@ -82,6 +82,10 @@ class BlockController extends ComponentController
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
 
+        if (!$this->permission($name, 'block')) {
+            return;
+        }
+
         // BLocks of the module
         $model = Pi::model('block');
         $select = $model->select()->where(array('module' => $name))

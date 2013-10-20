@@ -41,4 +41,28 @@ class ComponentController extends ActionController
 
         return parent::onDispatch($e);
     }
+
+    /**
+     * Check permission
+     *
+     * @param string $module
+     * @param string $op
+     *
+     * @return bool
+     */
+    protected function permission($module, $op)
+    {
+        $result = Pi::service('permission')->modulePermission($module, 'admin');
+        if ($result) {
+            $result = Pi::service('permission')->hasPermission(array(
+                'module'    => 'system',
+                'resource'  => $op
+            ));
+        }
+        if (!$result) {
+            $this->terminate('Access denied.');
+        }
+
+        return $result;
+    }
 }

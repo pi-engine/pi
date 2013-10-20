@@ -51,47 +51,6 @@ return array(
             ),
         ),
 
-        // Managed components
-        // Configurations
-        'config'    => array(
-            'title'         => __('Component: configurations'),
-            'access'        => array(
-                'moderator',
-                //'admin',
-            ),
-        ),
-        // Block content and permission
-        'block'     => array(
-            'title'         => __('Component: blocks'),
-            'access'        => array(
-                'moderator',
-                //'admin',
-            ),
-        ),
-        // Page dress up, cache and permission
-        'page'     => array(
-            'title'         => __('Component: pages'),
-            'access'        => array(
-                'moderator',
-                //'admin',
-            ),
-        ),
-        // Permissions
-        'permission'  => array(
-            'title'         => __('Component: permissions'),
-            'access'        => array(
-                //'admin',
-            ),
-        ),
-        // Event hooks
-        'event'     => array(
-            'title'         => __('Component: events/hooks'),
-            'access'        => array(
-                //'admin',
-                'moderator',
-            ),
-        ),
-
         // System operations
         // Modules
         'module'    => array(
@@ -136,6 +95,47 @@ return array(
             'access'        => array(
                 //'admin',
                 'manager',
+            ),
+        ),
+
+        // Managed components
+        // Configurations
+        'config'    => array(
+            'title'         => __('Management: configs'),
+            'access'        => array(
+                'moderator',
+                //'admin',
+            ),
+        ),
+        // Block content and permission
+        'block'     => array(
+            'title'         => __('Management: blocks'),
+            'access'        => array(
+                'moderator',
+                //'admin',
+            ),
+        ),
+        // Page dress up, cache and permission
+        'page'     => array(
+            'title'         => __('Management: pages'),
+            'access'        => array(
+                'moderator',
+                //'admin',
+            ),
+        ),
+        // Permissions
+        'permission'  => array(
+            'title'         => __('Management: permissions'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        // Event hooks
+        'event'     => array(
+            'title'         => __('Management: events/hooks'),
+            'access'        => array(
+                //'admin',
+                'moderator',
             ),
         ),
     ),

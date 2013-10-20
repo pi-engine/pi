@@ -35,6 +35,10 @@ class EventController extends ComponentController
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
 
+        if (!$this->permission($name, 'event')) {
+            return;
+        }
+
         // Events of the module
         $events = array();
         $rowset = Pi::model('event')->select(array('module' => $name));
@@ -91,6 +95,10 @@ class EventController extends ComponentController
     {
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
+
+        if (!$this->permission($name, 'event')) {
+            return;
+        }
 
         // Listeners of the module
         $select = Pi::model('event_listener')->select()

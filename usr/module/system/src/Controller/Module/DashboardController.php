@@ -27,7 +27,7 @@ class DashboardController extends ActionController
      */
     public function modeAction()
     {
-        $mode = $this->params('mode', AdminMode::MODE_ADMIN);
+        $mode = $this->params('mode', AdminMode::MODE_ACCESS);
         // Set run mode
         if (!empty($mode)) {
             $_SESSION['PI_BACKOFFICE'] = array(
@@ -52,13 +52,20 @@ class DashboardController extends ActionController
         $name = array_shift($allowed);
         $link = '';
         switch ($mode) {
-            case AdminMode::MODE_ADMIN:
+            case AdminMode::MODE_ACCESS:
                 $link = $this->url('admin', array(
                     'module'        => $name,
                     'controller'    => 'dashboard',
                 ));
                 break;
-            case AdminMode::MODE_SETTING:
+            case AdminMode::MODE_ADMIN:
+                $link = $this->url('admin', array(
+                    'module'        => 'system',
+                    'controller'    => 'component',
+                    'name'          => $name,
+                ));
+                break;
+                /*
                 $controller = '';
                 $navConfig = Pi::registry('navigation')
                     ->read('system-component') ?: array();
@@ -74,16 +81,22 @@ class DashboardController extends ActionController
                         'controller'    => $controller,
                         'name'          => $name,
                     ));
+                } else {
+                    $link = $this->url('admin', array(
+                        'module'        => 'system',
+                        'controller'    => 'dashboard',
+                    ));
                 }
                 break;
+                */
             case AdminMode::MODE_DEPLOYMENT:
             default:
                 break;
         }
         if (!$link) {
-            $this->terminate(__('No permitted operation available.'));
-            return;
-            /*
+            //$this->terminate(__('No permitted operation available.'));
+            //return;
+
             $this->jump(
                 array('action' => 'system'),
                 __('No permitted operation available.'),
@@ -91,7 +104,7 @@ class DashboardController extends ActionController
             );
 
             return;
-            */
+
         }
         //d($link);exit;
         $this->redirect()->toUrl($link);

@@ -49,6 +49,10 @@ class PageController extends ComponentController
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
 
+        if (!$this->permission($name, 'page')) {
+            return;
+        }
+
         // Pages of the module
         $select = Pi::model('page')->select()
             ->where(array('module' => $name))
