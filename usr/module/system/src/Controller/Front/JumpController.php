@@ -23,13 +23,8 @@ class JumpController extends ActionController
     public function indexAction()
     {
         $this->view()->setTemplate('jump')->setLayout('layout-simple');
-        //$params = Pi::service('session')->jump->params;
-        $params = array();
-        //vd($_SESSION['PI_JUMP']);
-        if (isset($_SESSION['PI_JUMP'])) {
-            $params = $_SESSION['PI_JUMP'];
-            unset($_SESSION['PI_JUMP']);
-        }
+        $params = Pi::service('cookie')->get('PI_JUMP', true, true);
+        //vd($params); exit();
         if (empty($params['time'])) {
             $params['time'] = 3;
         }

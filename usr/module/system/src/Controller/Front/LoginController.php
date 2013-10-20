@@ -74,7 +74,7 @@ class LoginController extends ActionController
 
         $this->jump(
             $redirect,
-            __('You logged out successfully. Now go back to homepage.'), 10
+            __('You logged out successfully. Now go back to homepage.')
         );
     }
 
