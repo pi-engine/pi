@@ -1,7 +1,7 @@
 <div class="alert alert-error">
 
     <h2 class="page-header"><?php _e('A 404 error occurred'); ?></h2>
-    <p><?php echo _escape($message); ?></p>
+    <p><?php echo $message ?: __('The page request is not found.'); ?></p>
     <p class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>

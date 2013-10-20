@@ -12,8 +12,6 @@ namespace Pi\Mvc\Controller\Plugin;
 use Pi;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\Http\Response;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\InjectApplicationEventInterface;
 
 /**
  * Jump to a page going through a transition page

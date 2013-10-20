@@ -81,6 +81,9 @@ class DashboardController extends ActionController
                 break;
         }
         if (!$link) {
+            $this->terminate(__('No permitted operation available.'));
+            return;
+            /*
             $this->jump(
                 array('action' => 'system'),
                 __('No permitted operation available.'),
@@ -88,6 +91,7 @@ class DashboardController extends ActionController
             );
 
             return;
+            */
         }
         //d($link);exit;
         $this->redirect()->toUrl($link);
