@@ -1,0 +1,44 @@
+<?php
+$this->jQuery('ui/jquery-ui-1.10.3.custom.js');
+$this->angular(array(
+    'angular-route.js',
+    'pi.js',
+    'pi-dropdown.js'
+));
+$jsSrc = $this->assetModule('admin/profile' . ('production' == Pi::environment() ? '.min' : '') . '.js');
+?>
+<div ng-app="userProfileModule">
+    <div pi-message="alert"></div>
+    <div pi-nav-tabs></div>
+    <div ng-view></div>
+</div>
+<script>
+angular
+    .module('userProfileModule', ['ngRoute', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        navTabs: [
+            { text: '<?php _e('Profile field'); ?>', href: '#!/field' },
+            { text: '<?php _e('Profile dress up'); ?>', href: '#!/dress' },
+            { text: '<?php _e('Field privacy'); ?>', href: '#!/privacy' }
+        ],
+        t: {
+           BASIC_FIELD: '<?php _e('Basic field'); ?>',
+           BASIC_FIELD_DESC: '<?php _e('Raw filed provied by the user module,you can change the display title'); ?>',
+           FIELD_TITLE: '<?php _e('Field title'); ?>',
+           DISPLAY: '<?php _e('Display'); ?>',
+           SEARCH: '<?php _e('Search'); ?>',
+           EDITABLE: '<?php _e('Editable'); ?>',
+           FORM_MODULE: '<?php _e('From module'); ?>',
+           COMPOUND: '<?php _e('Compound'); ?>',
+           COMPOUND_DESC: '<?php _e('Compound filed :Some fileds organized initially. Sub elements in the compound is directly displayed on the page,while the compound title is for programming'); ?>',
+           PRIVACY_DESC: '<?php _e('Determine the default visible objects of the profile filed and which filed can be changed by the user self'); ?>',
+           ADD_GROUP: '<?php _e('Add group'); ?>',
+           FIELD_DISPLAY: '<?php _e('Field display on profile page'); ?>',
+           BASIC_FIELD: '<?php _e('Basic field'); ?>',
+           TITLE: '<?php _e('Title'); ?>'
+        }
+    });
+</script>
+<script src="<?php echo $jsSrc; ?>"></script>

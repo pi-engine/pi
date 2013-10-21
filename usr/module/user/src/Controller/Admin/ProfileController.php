@@ -21,6 +21,11 @@ class ProfileController extends ActionController
 {
     public function indexAction()
     {
+        $this->view()->setTemplate('profile');
+    }
+    
+    public function fieldAction()
+    {
         $fields = Pi::registry('profile', 'user')->read();
 
         foreach ($fields as $field) {
@@ -62,10 +67,10 @@ class ProfileController extends ActionController
         d($compounds);
         d($profile);
 
-        $this->view()->assign(array(
+        return array(
             'profile'   => $profile,
             'compounds' => $compounds,
-        ));
+        );
     }
 
     /**
@@ -105,10 +110,10 @@ class ProfileController extends ActionController
             }
         }
 
-        $data = $this->getGroupDisplay();
+        $displays = $this->getGroupDisplay();
 
         // Canonize right display
-        foreach ($data as  $group) {
+        foreach ($display as  $group) {
             // Compound fields
             if ($group['compound']) {
                 if (isset($compounds[$group['compound']])) {
@@ -125,17 +130,13 @@ class ProfileController extends ActionController
             }
         }
 
-        $this->view()->assign(array(
-            'profile'   => $profile,
-            'compounds' => $compounds,
-            'data'      => $data,
-        ));
-
-        d($profile);
-        d($compounds);
-        d($data);
-        $this->view()->setTemplate('profile-dress-up');
+        return array(
+            'profile'   => array_values($profile),
+            'compounds' => array_values($compounds),
+            'displays'   => $displays,
+        );
     }
+
 
     /**
      * Save display for ajax
@@ -146,7 +147,7 @@ class ProfileController extends ActionController
         $result = array(
             'status' => 0,
         );
-        $data = _post('data');
+        $displays = _post('displays');
 
         $displayGroupModel = $this->getModel('display_group');
         $displayFieldModel = $this->getModel('display_field');
@@ -156,11 +157,11 @@ class ProfileController extends ActionController
         $displayFieldModel->delete(array());
 
         $groupOrder = 1;
-	    foreach ($data as $group) {
+	    foreach ($displays as $group) {
             $groupData = array(
             	'title'    => $group['title'],
                 'order'    => $groupOrder,
-                'compound' => $group['compound'],
+                'compound' => $group['name'],
             );
 
             $row = $displayGroupModel->createRow($groupData);
@@ -195,6 +196,7 @@ class ProfileController extends ActionController
         }
 
         $result['status'] = 1;
+        $result['message'] = __('Profile dressup data save successfully');
 
         return $result;
 
@@ -367,7 +369,7 @@ class ProfileController extends ActionController
             $result[$row['id']] = array(
                 'id'       => $row['id'],
                 'title'    => $row['title'],
-                'compound' => $row['compound'],
+                'name'     => $row['compound'],
             );
 
             $displayFieldModel = $this->getModel('display_field');
