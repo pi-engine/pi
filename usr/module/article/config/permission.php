@@ -13,7 +13,6 @@
  * @author Zongshu Lin <lin40553024@163.com>
  */
 return array(
-    'custom'         => 'Module\Article\Permission',
     'admin'          => array(
         'article'    => array(
             'title'       => _t('Article management'),
@@ -75,5 +74,7 @@ return array(
         'approve'           => array(
             'title'       => _t('Pending Approve'),
         ),
+        
+        'custom'         => 'Module\Article\Permission',
     ),
 );

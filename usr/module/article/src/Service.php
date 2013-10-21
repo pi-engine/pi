@@ -730,7 +730,7 @@ class Service
         
         // Get role of current section
         $uid     = $uid ?: Pi::user()->id;
-        $roles   = array_values(Pi::user()->getRole($uid));
+        $roles   = array_values(Pi::user()->getRole($uid, 'admin'));
         
         // Get all categories
         if (is_string($category)) {
