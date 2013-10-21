@@ -245,6 +245,36 @@ class EditController extends ActionController
     }
 
     /**
+     * Display user avatar and delete
+     */
+    public function avatarAction()
+    {
+        $uid  = _get('uid');
+        $type = _get('type', '');
+
+        if (!$uid) {
+            return $this->jumpTo404('Inval user id');
+        }
+
+        if ($uid && $type == 'delete') {
+            $oldAvatar = Pi::user()->get($uid, 'avatar');
+            $adapter   = Pi::avatar()->getAdapter('upload');
+            $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
+            foreach ($oldPaths as $oldPath) {
+                $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
+                if (file_exists($oldFile)) {
+                    @unlink($oldFile);
+                }
+            }
+            // Delete user avatar
+            Pi::user()->set($uid, 'avatar', '');
+            $this->view()->assign('message', __('Delete avatar successfully'));
+        }
+
+        $this->view()->assign('uid', $uid);
+    }
+
+    /**
      * Get edit field and filter
      *
      * @return array
@@ -292,6 +322,20 @@ class EditController extends ActionController
                 )
             ),
             'title' => __('Base info'),
+        );
+
+        // Avatar
+        $result[] = array(
+            'name' => 'avatar',
+            'url'  => $this->url(
+                '',
+                array(
+                    'controller' => 'edit',
+                    'action'     => 'avatar',
+                    'uid'        => $uid
+                )
+            ),
+            'title' => __('Avatar'),
         );
 
         $rowset = $this->getModel('field')->select(
