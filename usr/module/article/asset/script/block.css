@@ -1,0 +1,68 @@
+div.block-nopadding {
+    padding: 0;
+    margin: 0;
+}
+.article-front-title {
+    font-weight: bold;
+    font-size: 12px;
+    color: #48484C;
+}
+.article-size12 {
+    font-size: 12px;
+}
+.article-size14 {
+    font-size: 14px;
+}
+
+/* Block padding */
+.article-block-custom-list,
+.article-block-hot-article,
+.article-block-hot-category,
+.article-block-newest-published,
+.article-block-newest-topic {
+    padding: 10px 15px;
+}
+
+/* All category block */
+.article-all-category .category-item {
+    margin-right: 20px;
+    height: 100%;
+}
+.article-all-category {
+    position: relative;
+    padding: 10px 10px 10px 30px;
+}
+.category-deimiter {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    border-right: 1px #999999 inset;
+    max-height: 100%;
+}
+
+/* List rank template */
+.article-list-rank span {
+    font-style: italic;
+    margin-right: 6px;
+    margin-left: -5px;
+    font-weight: bold;
+    color: #808080;
+}
+.article-list-rank a {
+    color: #333333;
+}
+.article-list-rank .emphasize {
+    color: #d01628;
+}
+
+/* Recommended slideshow */
+.article-block-recommended-slide {
+    padding: 0px 10px 0px 0px;
+    height: 240px;
+}
+
+#article-recommended-slide {
+    width: 320px;
+    margin-bottom: 0;
+}

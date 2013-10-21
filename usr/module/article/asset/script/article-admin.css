@@ -1,0 +1,358 @@
+/* List page */
+.tab-content >.active.table {
+    display: table;
+}
+.nav-list > .active > a {
+    cursor: text;
+}
+.row-actions {
+    visibility: hidden;
+}
+tr:hover .row-actions {
+    visibility: visible;
+}
+td {
+    word-break: break-all;
+}
+#pi-article .nav-pills > .active > a {
+    color: #333;
+    font-weight: bold;
+    background: none;
+    cursor: text;
+}
+#jsList  .table-striped tbody tr:nth-child(2n+1) th {
+    background: #eee;
+}
+#jsList .table-striped {
+    border: 1px solid #ccc;
+}
+#jsList .form-inline {
+    margin-bottom: 15px;
+}
+#jsList .form-search {
+    margin: 0 20px 0 0;
+}
+div .well {
+    max-width: 340px;
+    padding: 8px 0;
+}
+
+/* User level edit page */
+.btn-group ul {
+     left: -220px;
+}
+.article-add-category-button {
+    margin-left: 5px;
+    border-radius: 4px;
+    height: 24px;
+    line-height: 24px;
+}
+.article-each-category .label {
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    margin: 5px;
+}
+.article-each-category .close {
+    float: none;
+    margin-left: 3px;
+    visibility: hidden;
+}
+
+.article-route-content {
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+}
+
+.article-route-content > div {
+    margin-bottom: 20px;
+}
+
+.article-route-header {
+    background-color: #F6F6F6;
+    background-image: linear-gradient(to bottom, #FAFAFA, #F2F2F2);
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #FFFFFF;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 0 10px 0 10px;
+}
+
+.article-route-header span {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#article-route-form,
+#article-route-param,
+.article-route-param {
+    margin: 10px;
+}
+
+.route-form input {
+    margin: 3px 0;
+}
+
+.route-param {
+    cursor: pointer;
+}
+
+.current-route-params {
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+    background-color: #eeeeee;
+    margin: 5px 20px 5px 0;
+    padding: 5px 0 5px 0;
+}
+.current-route-params li {
+    margin-left: 20px;
+}
+
+#article-js-route > div {
+    margin-bottom: 20px;
+}
+
+#article-js-route li > span:first-child {
+    width: 150px;
+    display: inline-block;
+}
+
+/* Author photo upload */
+.article-uploaded-box {
+    border: 1px solid #e5e5e5;
+    float: left;
+    margin-right: 40px;
+    width: 300px;
+    height: 300px;
+    overflow: hidden !important;
+    *position: relative;
+    *z-index: 10;
+}
+
+.article-upload-hit {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.article-preview-box {
+    border: 1px solid #dddddd;
+    overflow: hidden;
+}
+
+.article-preview-photo {
+    border: 1px solid #dddddd;
+    margin-left: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.article-preview-photo i {
+    color: #A7A7A7;
+    font-size: 80px;
+    margin-top: 15px;
+    display: block;
+}
+
+.article-preview {
+    margin-left: 320px;
+}
+
+.article-preview .preview-desc {
+    color: #c09853;
+    margin-bottom: 10px;
+}
+
+.article-preview .preview-desc-size {
+    margin-left: 20px;
+    width: 110px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Custom form */
+#article-config-form-elements {
+    margin: 0 0 0 60px;
+}
+#article-config-form-elements .page-header {
+    margin-top: 20px;
+}
+
+/* Media list */
+.article-media-normal {
+    border: 1px solid #dddddd;
+}
+.article-media-normal .normal-header {
+    background-color: #eeeeee;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+.article-media-normal .normal-list {
+    padding: 20px;
+    display: inline-block;
+}
+.list-one-line {
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+}
+.list-item {
+    height: 180px;
+    line-height: 180px;
+    position: relative;
+    vertical-align: bottom;
+    padding: 0 5px 5px 5px;
+    border: solid 1px #fff;
+    cursor: pointer;
+    text-align: center;
+}
+.list-item img {
+}
+.list-item input {
+    position: absolute;
+    top: -5px;
+    left: -1px;
+}
+.list-item .item-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 15px;
+    vertical-align: 15px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+}
+.list-operation {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    left: 0;
+    right: 0;
+}
+.list-item button {
+    position: absolute;
+    left: 3px;
+    bottom: 5px;
+}
+.list-item .item-detail {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+}
+
+.default-header {
+    background-color: #eeeeee;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+/* Topic edit page */
+.topic-image-desc {
+    position: absolute;
+    margin: 40px 0 0 120px;
+}
+.topic-image-desc p {
+    margin: 0;
+    font-size: 12px;
+}
+#topic-template {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border: solid 1px #dddddd;
+    border-radius: 5px;
+}
+.topic-template-title {
+    position: absolute;
+    left: 10px;
+    bottom: 40px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 20;
+}
+.topic-template-desc {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: #fff;
+    z-index: 20;
+}
+.topic-template-change {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 20;
+}
+.topic-template-screenshot {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+.topic-template-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    border-radius: 0 0 5px 5px;
+}
+#topic-templates {
+    border: solid 1px #dddddd;
+    background-color: #eeeeee;
+    margin: 20px 0 0 0;
+    border-radius: 5px;
+    padding: 20px 20px 20px 0;
+}
+.template {
+    position: relative;
+}
+.template-screenshot {
+    border: solid 1px #333333;
+}
+.template-bar {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: -1px;
+    height: 30px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+.template-apply {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 20;
+}
+.template-title {
+    color: #333333;
+    font-weight: bold;
+}
+.diable-image {
+    filter: gray;
+    -moz-opacity: .1;
+    opacity: 0.7;
+}

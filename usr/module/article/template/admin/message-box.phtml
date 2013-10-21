@@ -1,0 +1,20 @@
+<div id="message-box">
+    <?php if (isset($error)) { ?>
+    <div class="alert alert-error">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <?php echo $this->escape($error) ?>
+    </div>
+    <?php } elseif (isset($message)) { ?>
+    <div class="alert alert-success">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <?php echo $this->escape($message) ?>
+    </div>
+    <?php } ?>
+</div>
+
+<script id="template-message" type="text/template">
+    <div class="alert alert-<%= status %>">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <%= message %>
+    </div>
+</script>
