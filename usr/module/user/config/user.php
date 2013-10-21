@@ -254,6 +254,10 @@ return array(
                     'title' => __('Room'),
                 ),
             ),
+
+            'is_edit'       => true,
+            'is_display'    => true,
+            'is_search'     => false,
         ),
 
         // Compound: Education experiences
@@ -281,6 +285,9 @@ return array(
                     'title' => __('End time'),
                 ),
             ),
+            'is_edit'       => true,
+            'is_display'    => true,
+            'is_search'     => false,
         ),
 
         // Compound: Profession experiences
@@ -309,6 +316,9 @@ return array(
                     'title' => __('End time'),
                 ),
             ),
+            'is_edit'       => true,
+            'is_display'    => true,
+            'is_search'     => false,
         ),
 
     ),

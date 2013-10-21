@@ -1,7 +1,7 @@
 <div class="alert alert-error">
 
-    <h2 class="page-header"><?php _e('An error occurred'); ?></h2>
-    <p><?php echo _escape($message ?: __('Please visit later.')); ?></p>
+    <h2 class="page-header"><?php echo $title ?: __('Error occurred'); ?></h2>
+    <p><?php echo $message ?: __('Please verify your request or visit later.'); ?></p>
     <p class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>

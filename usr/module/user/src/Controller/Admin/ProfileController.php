@@ -271,10 +271,15 @@ class ProfileController extends ActionController
         $rowset = $privacyModel->selectWith($select);
 
         foreach ($rowset as $row) {
-            $privacy[] = $row->toArray();
+            $privacy[$row['id']] = array(
+                'id'        => (int) $row['id'],
+                'field'     => $row['field'],
+                'value'     => (int) $row['value'],
+                'is_forced' => (int) $row['is_forced'],
+            );
         }
 
-        return $privacy;
+        return array_values($privacy);
     }
 
     /**

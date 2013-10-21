@@ -47,7 +47,7 @@ class System extends AbstractModel
                 $data = array();
             }
         } else {
-            $data = array();
+            $data = array('id' => 0);
         }
         $this->assign($data);
 

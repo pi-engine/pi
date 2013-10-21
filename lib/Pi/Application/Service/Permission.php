@@ -209,6 +209,9 @@ class Permission extends AbstractService
         $result = array();
         $condition = $this->canonizeRule($condition);
         $condition['role'] = $this->canonizeRole($roleOrUid);
+        if (!$condition['role']) {
+            return $result;
+        }
         $rowset = $this->model()->select($condition);
         foreach ($rowset as $row) {
             $result[] = array(
@@ -225,19 +228,23 @@ class Permission extends AbstractService
      * Check permission for a module
      *
      * @param string $module
-     * @param null|int|string|string[]  $uid Int for uid and string for role
      * @param string $permission
      *      Permission type: front - access, admin; admin - manage, admin
+     * @param null|int|string|string[]  $uid Int for uid and string for role
      * @param string $section
      *
      * @return bool
      */
     public function modulePermission(
         $module,
-        $uid        = null,
         $permission = '',
+        $uid        = null,
         $section    = ''
     ) {
+        if ($this->isAdmin($module, $uid)) {
+            return true;
+        }
+
         $permission = $permission ?: 'access';
         $section = $section ?: $this->getSection();
         $resource = array(
@@ -254,7 +261,7 @@ class Permission extends AbstractService
      * Get front permitted module list
      *
      * @param string $permission
-     *      Permission type: front - access, admin; admin - manage, admin
+     *      Permission type: access, admin
      * @param string $section
      * @param null|int|string|string[]  $uid Int for uid and string for role
      *
@@ -263,6 +270,12 @@ class Permission extends AbstractService
     public function moduleList($permission, $section = '', $uid = null)
     {
         $result = array();
+        if ($this->isAdmin($uid)) {
+            $result = array_keys(Pi::registry('modulelist')->read());
+
+            return $result;
+        }
+
         $permission = $permission ?: 'access';
         $section = $section ?: $this->getSection();
         $condition = array(
@@ -285,7 +298,12 @@ class Permission extends AbstractService
      *
      * @return bool
      */
-    public function blockPermission($id, $uid = null) {
+    public function blockPermission($id, $uid = null)
+    {
+        if ($this->isAdmin('', $uid)) {
+            return true;
+        }
+
         $resource = array(
             'section'   => 'front',
             'resource'  => 'block-' . $id
@@ -330,6 +348,10 @@ class Permission extends AbstractService
      */
     public function pagePermission(array $route, $uid = null)
     {
+        if ($this->isAdmin('', $uid)) {
+            return true;
+        }
+
         $access = null;
 
         $section = $module = $controller = $action = null;

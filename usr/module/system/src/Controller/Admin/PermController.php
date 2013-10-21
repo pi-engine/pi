@@ -35,6 +35,11 @@ class PermController extends ComponentController
     public function indexAction()
     {
         $module = $this->params('name', 'system');
+
+        if (!$this->permission($module, 'permission')) {
+            return;
+        }
+
         // Load all active roles of current section
         $roles = array(
             'front' => Pi::registry('role')->read('front'),
@@ -69,6 +74,7 @@ class PermController extends ComponentController
                 'roles'     => array(),
             );
         }
+        /*
         $resources['admin']['global']['module-manage'] = array(
             'section'   => 'admin',
             'module'    => $module,
@@ -76,6 +82,7 @@ class PermController extends ComponentController
             'title'     => __('Module settings'),
             'roles'     => array(),
         );
+        */
 
         // Load module defined resources
         $rowset = Pi::model('permission_resource')->select(array(
@@ -244,9 +251,11 @@ class PermController extends ComponentController
 
                 // Load global resources
                 $resources['module-access'] = $resources['module-admin'] = 1;
+                /*
                 if ('admin' == $section) {
                     $resources['module-manage'] = 1;
                 }
+                */
 
                 // Load module defined resources
                 if ($callback && is_subclass_of(
@@ -315,6 +324,8 @@ class PermController extends ComponentController
                 $row->save();
             }
         }
+
+        Pi::registry('navigation')->flush();
 
         $status = 1;
         $message = __('Permission assigned successfully.');

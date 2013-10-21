@@ -83,13 +83,20 @@ abstract class AbstractService
     /**
      * Get an option
      *
-     * @param string $name
-     *
      * @return mixed|null
      */
-    public function getOption($name)
+    public function getOption()
     {
-        $result = isset($this->options[$name]) ? $this->options[$name] : null;
+        $args = func_get_args();
+        $result = $this->options;
+        foreach ($args as $name) {
+            if (isset($result[$name])) {
+                $result = $result[$name];
+            } else {
+                $result = null;
+                break;
+            }
+        }
 
         return $result;
     }

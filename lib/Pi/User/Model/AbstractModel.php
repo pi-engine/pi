@@ -147,7 +147,7 @@ abstract class AbstractModel extends ArrayObject
             $this->role = null;
         }
 
-        $this->data = $data;
+        $this->data = array_merge($this->data, $data);
 
         return $this;
     }

@@ -18,9 +18,11 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'config',
+
         'permission'    => array(
             'resource'  => 'config',
         ),
+
     ),
 
     'block' => array(
@@ -28,9 +30,11 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'block',
+
         'permission'    => array(
             'resource'  => 'block',
         ),
+
     ),
 
     'page' => array(
@@ -38,9 +42,11 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'page',
+
         'permission'    => array(
             'resource'  => 'page',
         ),
+
     ),
 
     'perm' => array(
@@ -48,9 +54,11 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'perm',
+
         'permission'    => array(
             'resource'  => 'permission',
         ),
+
     ),
 
     'event' => array(
@@ -58,8 +66,10 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'event',
+
         'permission'    => array(
             'resource'  => 'event',
         ),
+
     ),
 );

@@ -198,7 +198,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
                 = __('A record with the supplied identity could not be found.');
             return $this->authenticateCreateAuthResult();
         } elseif (count($resultIdentities) > 1
-            && false === $this->getAmbiguityIdentity()) {
+            && false === $this->getAmbiguityIdentity()
+        ) {
             $this->authenticateResultInfo['code']
                 = AuthenticationResult::FAILURE_IDENTITY_AMBIGUOUS;
             $this->authenticateResultInfo['messages'][]

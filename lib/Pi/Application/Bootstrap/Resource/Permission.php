@@ -76,7 +76,13 @@ class Permission extends AbstractResource
             'action'        => $routeMatch->getparam('action')
         );
 
-        if ('system' != $route['module']) {
+        // Skip module access check for system front section and admin login
+        if ('system' == $route['module']
+            && ('front' == $section
+                || in_array($route['controller'], array('login')))
+        ) {
+        // Check against module access
+        } else {
             $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
             if (!$moduleAccess) {
                 $this->denyAccess($e);

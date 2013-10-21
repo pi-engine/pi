@@ -79,4 +79,32 @@ class Result extends BaseResult
 
         return $return;
     }
+
+    /**
+     * Set result code
+     *
+     * @param int $code
+     *
+     * @return $this
+     */
+    public function setCode($code)
+    {
+        $this->code = (int) $code;
+
+        return $this;
+    }
+
+    /**
+     * Set result message
+     *
+     * @param string $message
+     *
+     * @return $this
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
 }

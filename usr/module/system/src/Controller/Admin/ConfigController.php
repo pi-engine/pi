@@ -43,8 +43,12 @@ class ConfigController extends ComponentController
             $module = $this->params('name', 'system');
         }
 
+        if (!$this->permission($module, 'config')) {
+            return;
+        }
+
         if ($module) {
-            $category = $this->params('category', '');
+            //$category = $this->params('category', '');
             Pi::service('i18n')->load('module/' . $module . ':config');
 
             $model = Pi::model('config');

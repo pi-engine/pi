@@ -9,8 +9,8 @@
 
 namespace Pi\Mvc\Router\Http;
 
+use Pi;
 use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\Router\Http\RouteInterface;
 use Zend\Stdlib\RequestInterface as Request;
 
 /**
@@ -92,7 +92,24 @@ class Home extends Standard
      */
     public function assemble(array $params = array(), array $options = array())
     {
-        return '/';
+        //return '/';
+
+        if (isset($params['section'])) {
+            $section = $params['section'];
+        } else {
+            $section = Pi::engine()->application()->getSection();
+        }
+        if ('admin' == $section) {
+            $url = Pi::service('url')->assemble('admin', array(
+                'module'        => 'system',
+                'controller'    => 'index',
+                'action'        => 'index'
+            ));
+        } else {
+            $url = Pi::url('www');
+        }
+
+        return $url;
     }
 
     /**

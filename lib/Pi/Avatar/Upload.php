@@ -33,7 +33,7 @@ class Upload extends AbstractAvatar
         } else {
             $avatar = Pi::user()->get($uid, 'avatar');
         }
-        if ($avatar && false === strpos($avatar, '@')) {
+        if ($avatar && 'upload' == Pi::service('avatar')->getType($avatar)) {
             $src = $this->build($avatar, $size, $uid);
         }
 
@@ -48,7 +48,7 @@ class Upload extends AbstractAvatar
         $result = array();
         $avatars = Pi::user()->get($uids, 'avatar');
         foreach ($avatars as $uid => $avatar) {
-            if ($avatar && false === strpos($avatar, '@')) {
+            if ($avatar && 'upload' == Pi::service('avatar')->getType($avatar)) {
                 $result[$uid] = $this->build($avatar, $size, $uid);
             }
         }

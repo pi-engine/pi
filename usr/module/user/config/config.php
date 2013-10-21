@@ -129,37 +129,40 @@ $config = array(
     ),
     
     // Avatar
+    // Allowed width of avatar image, 0 for no limit
     'max_avatar_width'  => array(
         'title'         => _t('Max Avatar Width'),
-        'description'   => _t('Avatar width limitation'),
-        'value'         => 500,
+        'description'   => _t('Allowed image width, 0 for no limit'),
+        'value'         => 2048,
         'category'      => 'avatar',
     ),
-    
+    // Allowed height of avatar image, 0 for no limit
     'max_avatar_height' => array(
         'title'         => _t('Max Avatar Height'),
-        'description'   => _t('Avatar height limitation'),
-        'value'         => 500,
+        'description'   => _t('Allowed image height, 0 for no limit'),
+        'value'         => 2048,
         'category'      => 'avatar',
     ),
-    
+    // Allowed width of avatar image file size, 0 for no limit
     'max_size'          => array(
         'title'         => _t('Max File Size'),
-        'description'   => _t('Max uploaded file size with unit MB'),
-        'value'         => 2,
+        'description'   => _t('Allowed avatar file to upload (in KB), 0 for no limit'),
+        'value'         => 1024,
         'category'      => 'avatar',
     ),
-    
+
+    /*
     'avatar_extension'  => array(
         'title'         => _t('Format Supported'),
         'description'   => _t('Image extension allowed'),
         'value'         => 'jpg,gif,png,bmp',
         'category'      => 'avatar',
     ),
+    */
     
     'path_tmp'          => array(
         'title'         => _t('Temporary Path'),
-        'description'   => _t(''),
+        'description'   => _t('For temporary storage of avatar'),
         'value'         => 'upload/user/tmp',
         'category'      => 'avatar',
     ),

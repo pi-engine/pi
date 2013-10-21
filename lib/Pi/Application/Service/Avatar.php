@@ -121,7 +121,13 @@ class Avatar extends AbstractService
      */
     public function getAdapter($adapter = '')
     {
-        $adapterName = $adapter ?: $this->options['adapter'];
+        $adapter = $adapter ?: $this->getOption('adapter');
+        if (is_array($adapter)) {
+            $adapterName = 'auto';
+            $this->options['auto']['adapter_allowed'] = $adapter;
+        } else {
+            $adapterName = $adapter;
+        }
 
         if (empty($this->adapter[$adapterName])) {
             if (false === strpos($adapterName, '\\')) {
@@ -240,5 +246,32 @@ class Avatar extends AbstractService
 
         return $size;
 
+    }
+
+    /**
+     * Detect source type
+     *
+     * @param string $source
+     *
+     * @return string
+     */
+    public function getType($source)
+    {
+        if (false !== strpos($source, '@')) {
+            $type = 'gravatar';
+        } else {
+            $uploadConfig = $this->getOption('upload');
+            $allowedExtensions = $uploadConfig['extension'];
+            $ext = strtolower(pathinfo($source, PATHINFO_EXTENSION));
+            if ($ext && in_array($ext, $allowedExtensions)) {
+                $type = 'upload';
+            } elseif (preg_match('/[a-z0-9\-\_]/i', $source)) {
+                $type = 'select';
+            } else {
+                $type = '';
+            }
+        }
+
+        return $type;
     }
 }
