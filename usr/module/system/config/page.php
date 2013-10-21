@@ -44,13 +44,13 @@ return array(
         array(
             'title'         => __('Dashboard'),
             'controller'    => 'dashboard',
-            'permission'    => 'admin',
+            //'permission'    => 'generic',
         ),
         // System readme
         array(
             'title'         => __('Readme'),
             'controller'    => 'readme',
-            'permission'    => 'admin',
+            //'permission'    => 'generic',
         ),
 
         // System managed components
@@ -145,22 +145,4 @@ return array(
             'title'         => __('What\'s new'),
         ),
     ),
-
-    /*
-    // Exception of admin pages to skip ACL check
-    'exception' => array(
-        array(
-            'controller'    => 'resource',
-            'action'        => 'assign',
-        ),
-        array(
-            'controller'    => 'perm',
-            'action'        => 'assign',
-        ),
-        array(
-            'controller'    => 'block',
-            'action'        => 'page',
-        ),
-    ),
-    */
 );

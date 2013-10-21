@@ -8,17 +8,21 @@
     </a>
     <div class="well" style="padding: 8px 0;">
         <ul class="nav nav-list">
-            <li class="<?php echo $cur_group == 'account' ? 'active' : '';?>">
+            <li class="<?php if ($controller == 'account') echo 'active'; ?>">
                 <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index'));?>">
                     <?php _e('Account settings')?>
                 </a>
             </li>
-            <li>
+            <li class="<?php if ($controller == 'password') echo 'active'; ?>">
                 <a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'index')); ?>">
                     <?php _e('Password');?>
                 </a>
             </li>
-            <li><a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>"><?php _e('Avatar settings');?></a></li>
+            <li class="<?php if ($controller == 'avatar') echo 'active'; ?>">
+                <a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+                    <?php _e('Avatar settings');?>
+                </a>
+            </li>
             <li class="nav-header"><?php _e('Profile settings');?></li>
             <?php  foreach ($groups as $key => $group) { ?>
             <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
@@ -28,7 +32,11 @@
             </li>
             <?php } ?>
             <li class="divider"></li>
-            <li><a href="#"><?php _e('Privacy settings'); ?></a></li>
+            <li class="<?php if ($controller == 'privacy') echo 'active'; ?>">
+                <a href="#">
+                    <?php _e('Privacy settings'); ?>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

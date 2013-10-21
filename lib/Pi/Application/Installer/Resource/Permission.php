@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Application\Bootstrap\Resource\AdminMode;
+//use Pi\Application\Bootstrap\Resource\AdminMode;
 
 /**
  * Setup permission component with configuration specs
@@ -149,10 +149,7 @@ class Permission extends AbstractResource
                 'access'   => array(
                     'admin',
                 ),
-                AdminMode::MODE_ADMIN   => array(
-                    'admin',
-                ),
-                AdminMode::MODE_SETTING => array(
+                'admin'   => array(
                     'admin',
                 ),
             ),

@@ -60,8 +60,9 @@ class Name extends AbstractValidator
     );
 
     protected $options = array(
-        'format'            => 'strict',
+        'format'            => 'loose',
         'backlist'          => array(),
+        'checkDuplication'  => true,
     );
 
     /**
@@ -91,13 +92,13 @@ class Name extends AbstractValidator
 
         if ($this->options['checkDuplication']) {
             $where = array('name' => $value);
-            if (!empty($context['id'])) {
-                $where['id <> ?'] = $context['id'];
+            if (!empty($context['uid'])) {
+                $where['id <> ?'] = $context['uid'];
             }
             //$rowset = Pi::model('account', 'user')->select($where);
             $count = Pi::model('account', 'user')->count($where);
             if ($count) {
-                $this->error(static::USED);
+                $this->error(static::RESERVED);
                 return false;
             }
         }

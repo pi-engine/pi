@@ -119,7 +119,7 @@ class Select extends AbstractAvatar
                 continue;
             }
             $directory = $fileinfo->getFilename();
-            if (!preg_match('/[a-z0-9\-]/i', $directory)) {
+            if ('select' != Pi::service('avatar')->getType($directory)) {
                 continue;
             }
             $result[$directory] = $this->build($directory, $size);

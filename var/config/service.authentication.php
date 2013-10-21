@@ -17,9 +17,14 @@ return array(
             'table_name'        => 'user_account',
             'identity_column'   => 'identity',
             'credential_column' => 'credential',
+            // Callback for authentication query check
+            'callback'          => function ($a, $b, $identity) {
+                return $identity['active']
+                    && $a === $identity->transformCredential($b);
+            },
 
-            'return_columns'    => null,
-            'omit_columns'      => array('credential', 'salt'),
+            'return_columns'    => array('id', 'identity'),
+            //'omit_columns'      => array('credential', 'salt'),
         ),
     ),
 );

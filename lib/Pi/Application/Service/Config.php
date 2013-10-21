@@ -232,6 +232,7 @@ class Config extends AbstractService
         $file = $path . '/' . $file;
 
         $content = '<?php' . PHP_EOL
+            . '// Generated on ' . date('Y-m-d H:i:s') . PHP_EOL
             . 'return ' . var_export($data, true) . ';';
         $result = (bool) file_put_contents($file, $content);
 

@@ -94,8 +94,8 @@ class Username extends AbstractValidator
 
         if ($this->options['checkDuplication']) {
             $where = array('identity' => $value);
-            if (!empty($context['id'])) {
-                $where['id <> ?'] = $context['id'];
+            if (!empty($context['uid'])) {
+                $where['id <> ?'] = $context['uid'];
             }
             //$rowset = Pi::model('account', 'user')->select($where);
             $count = Pi::model('account', 'user')->count($where);

@@ -21,24 +21,19 @@ use Zend\Mvc\MvcEvent;
  */
 class AdminMode extends AbstractResource
 {
-    /**#@+
-     * Operation modes
-     */
     /**
      * Admin operation mode
      */
-    const MODE_ADMIN = 'admin';
-
+    const MODE_ACCESS = 'access';
     /**
-     * Settings mode
+     * Admin manage mode
      */
-    const MODE_SETTING = 'manage';
+    const MODE_ADMIN = 'admin';
 
     /**
      * Deployment mode
      */
     const MODE_DEPLOYMENT = 'deployment';
-    /**#@-*/
 
     /**
      * {@inheritDoc}
@@ -65,7 +60,7 @@ class AdminMode extends AbstractResource
     {
         $route = $e->getRouteMatch();
         if (empty($_SESSION['PI_BACKOFFICE']['changed']) && $route) {
-            $mode = static::MODE_ADMIN;
+            $mode       = static::MODE_ACCESS;
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module) {
@@ -75,7 +70,7 @@ class AdminMode extends AbstractResource
                     $controllerClass,
                     'Module\System\Controller\ComponentController'
                 )) {
-                    $mode = static::MODE_SETTING;
+                    $mode = static::MODE_ADMIN;
                 }
             }
             $_SESSION['PI_BACKOFFICE']['mode'] = $mode;

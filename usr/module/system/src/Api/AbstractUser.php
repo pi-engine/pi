@@ -298,17 +298,23 @@ abstract class AbstractUser extends AbstractApi
      *
      * @return array
      */
-    public function getRole($uid, $section = '')
+    public function getRole($uid, $section)
     {
         $uid = (int) $uid;
         if (!$uid) {
-            return false;
+            if ('front' == $section) {
+                $result = array('guest');
+            } else {
+                $result = array();
+            }
+
+            return $result;
         }
 
-        $where = array('uid' => $uid);
-        if ($section) {
-            $where['section'] = $section;
-        }
+        $where = array(
+            'uid'       => $uid,
+            'section'   => $section,
+        );
         $rowset = Pi::model('user_role')->select($where);
         $result = array();
         foreach ($rowset as $row) {
