@@ -116,7 +116,7 @@ class Remote extends AbstractService
             $url = new Uri($url);
         }
 
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
 
         return $this->adapter()->write(
             $method,
@@ -161,7 +161,7 @@ class Remote extends AbstractService
         if ($response->isOk()) {
             $result         = $response->getBody();
             $contentType    = $response->getHeaders()->get('Content-Type');
-            vd($contentType);
+            //vd($contentType);
             $isJson         = false;
             if ($contentType) {
                 $value  = $contentType->getFieldValue();
@@ -184,8 +184,11 @@ class Remote extends AbstractService
      *
      * @return array
      */
-    protected function setAuthorization($headers = array())
+    protected function canonizeHeaders($headers = array())
     {
+        if (!isset($headers['User-Agent'])) {
+            $headers['User-Agent'] = 'Pi Engine cURL';
+        }
         if (!array_key_exists('Authorization', $headers)) {
             if ($this->getOption('username') && $this->getOption('password')) {
                 $httpauth = $this->getOption('httpauth') ?: 'basic';
@@ -283,7 +286,7 @@ class Remote extends AbstractService
             $uri->setQuery($params);
         }
 
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
         $this->write('GET', $uri, '1.1', $headers);
         $response = $this->read();
         $result = $this->parseResponse($response);
@@ -334,7 +337,7 @@ class Remote extends AbstractService
         } else {
             $body = $params;
         }
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
         $this->write('POST', $url, '1.1', $headers, $body);
         $response = $this->read();
         $result = $this->parseResponse($response);
