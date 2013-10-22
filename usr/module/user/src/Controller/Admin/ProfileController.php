@@ -64,8 +64,6 @@ class ProfileController extends ActionController
 
         $compounds = array_values($compounds);
         $profile   = array_values($profile);
-        d($compounds);
-        d($profile);
 
         return array(
             'profile'   => $profile,
@@ -113,18 +111,18 @@ class ProfileController extends ActionController
         $displays = $this->getGroupDisplay();
 
         // Canonize right display
-        foreach ($display as  $group) {
+        foreach ($displays as  $group) {
             // Compound fields
-            if ($group['compound']) {
-                if (isset($compounds[$group['compound']])) {
-                    unset($compounds[$group['compound']]);
+            if ($group['name']) {
+                if (isset($compounds[$group['name']])) {
+                    unset($compounds[$group['name']]);
                 }
 
             } else {
                 // Profile fields
-                foreach (array_keys($group['fields']) as $key) {
-                    if (isset($profile[$key])) {
-                        unset($profile[$key]);
+                foreach ($group['fields'] as $item) {
+                    if (isset($profile[$item['name']])) {
+                        unset($profile[$item['name']]);
                     }
                 }
             }
@@ -136,7 +134,6 @@ class ProfileController extends ActionController
             'displays'   => $displays,
         );
     }
-
 
     /**
      * Save display for ajax

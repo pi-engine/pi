@@ -47,6 +47,10 @@ class Privacy extends AbstractApi
             case 'following':
                 $privacy = 4;
                 break;
+            case 'owner':
+                $privacy = 255;
+                break;
+
         }
 
         // Get user setting

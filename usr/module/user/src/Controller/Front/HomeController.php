@@ -27,7 +27,7 @@ class HomeController extends ActionController
      */
     public function indexAction()
     {
-        $page   = $this->params('p', 1);
+        $page   = $this->params('page', 1);
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
@@ -91,7 +91,7 @@ class HomeController extends ActionController
      */
     public function viewAction()
     {
-        $page   = $this->params('p', 1);
+        $page   = $this->params('page', 1);
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
