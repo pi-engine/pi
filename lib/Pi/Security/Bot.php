@@ -24,6 +24,9 @@ class Bot extends AbstractAdapter
      */
     public static function check($options = array())
     {
+        if (!$options) {
+            return null;
+        }
         $key = 'HTTP_USER_AGENT';
         $agent = '';
         if (isset($_SERVER[$key])) {
