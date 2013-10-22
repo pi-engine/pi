@@ -81,8 +81,8 @@
     });
   }
 ])
-.controller('dressCtrl', ['$scope', '$route', '$timeout', 'server', 'data',
-  function ($scope, $route, $timeout, server, data) {
+.controller('dressCtrl', ['$scope', '$route', '$timeout', 'config', 'server', 'data', 
+  function ($scope, $route, $timeout, config, server, data) {
     angular.forEach(data.compounds, function(item) {
       item.$isEditing = 0;
     });
@@ -91,6 +91,8 @@
     });
     angular.extend($scope, data);
 
+    var isSaved = 1;
+    
     function sortGroupField() {
         //jQuery ui sortable
         $timeout(function() {
@@ -122,6 +124,7 @@
     $('.user-profile-groups').sortable({
       items: '.pi-widget',
       handle: '.pi-widget-header',
+      delay: 100,
       start: function (e, ui) {
         ui.item.data('start', ui.item.index());
       },
@@ -136,6 +139,10 @@
     sortGroupField();
 
     $scope.$watch('displays', function(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        $scope.saveAlert = { message: config.t.SAVE_TIP };
+        isSaved = 0;
+      }
       var customGroup = [];
       angular.forEach(newValue, function(item) {
         if (!item.name) customGroup.push(item.title);
@@ -198,11 +205,30 @@
 
     $scope.saveAction = function() {
       server.saveDressUp($scope.displays);
+      $scope.saveAlert = '';
+      isSaved = 1;
     }
 
     $scope.cancelAction = function() {
       $route.reload();
     }
+
+    var leavingPageText = config.t.LEAVE_CONFIRM;
+
+    window.onbeforeunload = function() {
+      if (!isSaved) {
+        return leavingPageText;
+      }
+    }
+
+    $scope.$on('$locationChangeStart', function(event, next, current) {
+        if (!isSaved) {
+          if(!confirm(leavingPageText)) {
+            event.preventDefault();
+          }
+        }
+    });
+
   }
 ])
 .controller('privacyCtrl', ['$scope', 'server',

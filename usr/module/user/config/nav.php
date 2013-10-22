@@ -29,7 +29,7 @@ return array(
         ),
 
         'profile' => array(
-            'label'         => _t('Profile field'),
+            'label'         => _t('Profile'),
             'permission'    => array(
                 'resource'  => 'profile',
             ),
