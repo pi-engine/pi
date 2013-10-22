@@ -51,7 +51,7 @@ class PrivacyController extends ActionController
      */
     public function setPrivacyAction()
     {
-        $uid   = (int) _post('uid');
+        $uid   = (int) Pi::user()->getIdentity();
         $field = _post('field');
         $value = (int) _post('value');
 
