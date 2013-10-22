@@ -1,0 +1,108 @@
+<legend>{{'SEARCH_TITLE' | translate}}</legend>
+<form class="form-horizontal" name="searchForm" novalidate ng-submit="submit()">
+  <div class="control-group">
+    <label class="control-label">{{'ACTIVE_STATUS' | translate}}</label>
+    <div class="controls">
+      <select ng-model="filter.active">
+        <option value="">{{'ACTIVE_STATUS' | translate}}
+        <option value="active">{{'ACTIVE' | translate}}
+        <option value="inactive">{{'INACTIVE' | translate}}
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ENABLE_STATUS' | translate}}</label>
+    <div class="controls">
+      <select ng-model="filter.enable">
+        <option value="">{{'ENABLE_STATUS' | translate}}
+        <option value="enable">{{'ENABLE' | translate}}
+        <option value="disable">{{'DISABLE' | translate}}
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ACTIVATED_STATUS' | translate}}</label>
+    <div class="controls">
+      <select ng-model="filter.enable">
+        <option value="">{{'ACTIVATED_STATUS' | translate}}
+        <option value="enable">{{'PENDING' | translate}}
+        <option value="disable">{{'ACTIVATED' | translate}}
+      </select>
+    </div>
+  </div>
+    <div class="control-group">
+    <label class="control-label">{{'FRONT_ROLE' | translate}}</label>
+    <div class="controls">
+      <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'front'}">
+        <input type="checkbox" ng-model="item.checked">{{item.title}}
+      </label>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'ADMIN_ROLE' | translate}}</label>
+    <div class="controls">
+      <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'admin'}">
+        <input type="checkbox" ng-model="item.checked">{{item.title}}
+      </label>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'USER_NAME' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="filter.identity">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="filter.name">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'EMAIL' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="filter.email">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'REGISTER_TIME' | translate}}</label>
+    <div class="controls">
+      {{'FROM' | translate}}
+      <input type="text" ng-model="filter.register_time" datepicker-popup="dd-MMMM-yyyy"
+             datepicker-options="dateOptions">
+      {{'TO' | translate}}
+      <input type="text" ng-model="filter.register_time.end">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'LAST_LOGIN_TIME' | translate}}</label>
+    <div class="controls">
+      {{'FROM' | translate}}
+      <input type="text" ng-model="filter.last_login_time.start">
+      {{'TO' | translate}}
+      <input type="text" ng-model="filter.last_login_time.end">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'REGISTER_IP' | translate}}</label>
+    <div class="controls">
+      {{'FROM' | translate}}
+      <input type="text" ng-model="filter.register_ip.start">
+      {{'TO' | translate}}
+      <input type="text" ng-model="filter.register_ip.end">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'LAST_LOGIN_IP' | translate}}</label>
+    <div class="controls">
+      {{'FROM' | translate}}
+      <input type="text" ng-model="filter.last_login_ip.start">
+      {{'TO' | translate}}
+      <input type="text" ng-model="filter.last_login_ip.end">
+    </div>
+  </div>
+  <div class="controls">
+    <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary">
+  </div>
+</form>
+<pre>{{filter | json}}</pre>
