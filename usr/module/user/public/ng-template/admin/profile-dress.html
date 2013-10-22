@@ -41,6 +41,7 @@
           <input type="submit" value="{{'ADD_GROUP' | translate}}" class="btn btn-primary" 
                  ng-disabled="displayForm.$invalid">
         </form>
+        <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
         <div class="user-profile-groups">
           <div ng-repeat="display in displays" class="pi-widget" 
                ng-class="{'user-profile-group-editing': display.$isEditing}">
@@ -68,14 +69,14 @@
         </div>
       </div>
     </div>
-    <pre>{{displays | json}}</pre>
   </div>
   <div class="span5 user-profile-source">
     <legend>{{'BASIC_FIELD' | translate}}</legend>
     <div ng-repeat="field in profile" class="pi-widget-item">
       <div class="pull-right">
-        <div class="dropdown pi-user-select-disabled" ng-if="customGroup">
-          <i dropdown-toggle class="icon-plus icon-large pi-icon-cursor"></i>
+        <div class="dropdown pi-user-select-disabled">
+          <i dropdown-toggle class="icon-plus icon-large pi-icon-cursor" tooltip="{{'ADD_FIELD_TIP' | translate}}"
+             tooltip-append-to-body="1"></i>
           <ul class="dropdown-menu" style="left: 15px;">
             <li ng-repeat="item in customGroup">
               <a href="javascript:void(0)" ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
@@ -88,7 +89,8 @@
     <div ng-repeat="compound in compounds" class="pi-widget">
       <div class="pi-widget-header">
         <span class="pull-right" ng-click="addDisplayGroup($index)">
-          <i class="icon-plus icon-large pi-icon-cursor"></i>
+          <i class="icon-plus icon-large pi-icon-cursor" tooltip="{{'ADD_GROUP_TIP' | translate}}"
+             tooltip-append-to-body="1"></i>
         </span>
         {{compound.title}}
       </div>

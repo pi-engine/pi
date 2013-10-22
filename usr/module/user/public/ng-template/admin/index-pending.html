@@ -4,13 +4,13 @@
     <option value="enable">{{'ENABLE' | translate}}
     <option value="disable">{{'DISABLE' | translate}}
   </select>
-  <select class="input-medium" ng-model="filter.front_role">
+  <select class="input-medium" ng-model="filter.front_role"
+          ng-options="item.name as item.title for item in frontRoles">
     <option value="">{{'FRONT_ROLE' | translate}}
-    <option ng-repeat="item in frontRoles" value="{{item.name}}">{{item.title}}
   </select>
-  <select class="input-medium" ng-model="filter.admin_role">
+  <select class="input-medium" ng-model="filter.admin_role"
+          ng-options="item.name as item.title for item in adminRoles">
     <option value="">{{'ADMIN_ROLE' | translate}}
-    <option ng-repeat="item in adminRoles" value="{{item.name}}">{{item.title}}
   </select>
   <select class="input-medium" ng-model="filter.register_time">
     <option value="">{{'REGISTER_TIME' | translate}}
@@ -19,11 +19,13 @@
     <option value="last-month">{{'LAST_MONTH' | translate}}
     <option value="last_3_month">{{'LAST_3_MONTH' | translate}}
     <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
-    <option value="last_year">{{'LATS_YEAR' | translate}}
+    <option value="last_year">{{'LAST_YEAR' | translate}}
   </select>
-  <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-medium" ng-model="filter.identity">
-  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-medium" ng-model="filter.email">
-  <button class="btn" ng-click="filterAction()">{{'APPLY' | translate}}</button>
+  <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filter.identity">
+  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
+  <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
+    <i class="icon-search"></i>
+  </button>
 </form>
 <div class="clearfix form-inline" style="margin: 0 0 20px 8px;">
   <strong class="pull-right">{{paginator.count}} members</strong>
