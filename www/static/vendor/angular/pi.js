@@ -117,6 +117,25 @@ angular.module('pi', [])
     }
   }
 ])
+.directive('piAlert', function() {
+  return {
+    template:
+      '<div ng-if="message" class="alert" ng-class="type && \'alert-\' + type">' +
+        '<button class="close" ng-click="close()">&times;</button>' +
+        '{{message}}' +
+      '</div>',
+    restrict: 'A',
+    scope: {
+      type: '=',
+      message: '='
+    },
+    link: function(scope, element, attr) {
+      scope.close = function() {
+        scope.message = '';
+      }
+    }
+  }
+})
 .directive('piNavTabs', ['$location',
   function($location) {
     return {
