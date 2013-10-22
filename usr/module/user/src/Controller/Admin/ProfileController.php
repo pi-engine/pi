@@ -264,19 +264,8 @@ class ProfileController extends ActionController
      */
     public function privacyAction()
     {
-        // Get display fields
-        $privacyModel = $this->getModel('privacy');
-        $select = $privacyModel->select()->where(array());
-        $rowset = $privacyModel->selectWith($select);
 
-        foreach ($rowset as $row) {
-            $privacy[$row['id']] = array(
-                'id'        => (int) $row['id'],
-                'field'     => $row['field'],
-                'value'     => (int) $row['value'],
-                'is_forced' => (int) $row['is_forced'],
-            );
-        }
+        $privacy = Pi::api('user', 'privacy')->getPrivacy();
 
         return array_values($privacy);
     }

@@ -106,6 +106,7 @@ class Privacy extends AbstractApi
             return $result;
         }
 
+        $fieldsMeta = $this->getFieldsMeta();
         $rowset = Pi::model('privacy_user', 'user')
             ->select(array('uid' => $uid));
 
@@ -114,6 +115,7 @@ class Privacy extends AbstractApi
                 $result[] = array(
                     'id'        => (int) $row['id'],
                     'field'     => $row['field'],
+                    'title'     => $fieldsMeta[$row['field']]['title'],
                     'value'     => (int) $row['value'],
                     'is_forced' => (int) $row['is_forced']
                 );
@@ -125,6 +127,41 @@ class Privacy extends AbstractApi
         }
 
         return $result;
+
+    }
+
+    public function getPrivacy()
+    {
+        // Get fields meta
+        $fieldsMeta = $this->getFieldsMeta();
+        // Get display fields
+        $privacyModel = Pi::model('privacy', $this->getModule());
+        $select = $privacyModel->select()->where(array());
+        $rowset = $privacyModel->selectWith($select);
+
+        foreach ($rowset as $row) {
+            $privacy[$row['id']] = array(
+                'id'        => (int) $row['id'],
+                'field'     => $row['field'],
+                'title'     => $fieldsMeta[$row['field']]['title'],
+                'value'     => (int) $row['value'],
+                'is_forced' => (int) $row['is_forced'],
+            );
+        }
+
+        return $privacy;
+    }
+
+    protected function getFieldsMeta()
+    {
+        $fieldsMeta = array();
+
+        $rowset = Pi::model('field', $this->getModule())->select(array());
+        foreach ($rowset as $row) {
+            $fieldsMeta[$row['name']]['title'] = $row['title'];
+        }
+
+        return $fieldsMeta;
 
     }
 }
