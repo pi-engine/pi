@@ -1,0 +1,160 @@
+<?php
+    $this->bootstrap();
+    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->jQuery();
+    $this->Backbone();
+?>
+
+<style>
+    .form-inline > span {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div id="jsList">
+            <div class="clearfix">
+                <div class="pull-left form-inline">
+                    <span><strong><?php echo __('Topic: ') . $this->escape($title) ?></strong></span>
+                    <span class="muted"><?php echo $this->escape($count) . __(' articles') ?></span>
+                    <span><a href="<?php echo $this->url('', array('action' => 'pull', 'topic' => $topic)) ?>">
+                            <?php _e('Pull articles') ?>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th><?php _e('Title') ?></th>
+                    <th style="width :100px;"><?php _e('Pulled date') ?></th>
+                    <th style="width :15%"><?php _e('Pulled by') ?></th>
+                    <th style="width :100px;"><?php _e('Publish date') ?></th>
+                </tr>
+                <?php $now = time(); ?>    
+                <?php foreach ($articles as $relation) {
+                    $article = $details[$relation['article']];
+                    $pull    = $pulls[$relation['article']];
+                    ?>
+                <tr data-id="<?php echo $this->escape($relation['id']) ?>">
+                    <td>
+                        <?php if ($article['time_publish'] > $now) { ?>
+                        <span><?php echo $this->escape($article['subject']) ?></span>
+                        <?php } else { ?>
+                        <a href="<?php echo $this->escape($article['url']) ?>" 
+                        title="<?php echo $this->escape($article['subject']); ?>" 
+                        target="_blank"><?php echo $this->escape($article['subject']); ?>
+                        </a>
+                        <?php } 
+                            if ($article['active'] == 0) {
+                        ?> - <strong class="text-warning"><?php _e('Deactive') ?></strong>
+                        <?php }
+                            if ($article['image']) {
+                        ?>
+                            <i class="icon-picture" title="<?php _e('Feature image') ?>"></i> 
+                        <?php 
+                            } 
+                        ?>
+                        <div class="row-actions">
+                            <a class="one-action" 
+                            data-value="remove-pull" 
+                            href="javascript:void(0)" 
+                            data-content="<?php echo $this->url('', array(
+                                'action' => 'remove-pull',
+                                'id'     => ''
+                            )) ?>"><?php _e('Remove Pull') ?></a>   
+                        </div>
+                    </td>
+                    <td><?php echo date('Y-m-d', $pull['time']) ?></td>
+                    <td><?php echo $this->escape($users[$pull['user_pull']]['identity']) ?></td>
+                    <td><?php echo date('Y-m-d', $article['time_publish']) ?></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        <?php echo $this->paginationControl(
+            $paginator,
+            'Sliding',
+            'paginator.phtml',
+            array('class' => 'pagination-right')
+        ) ?>
+        </div>
+    </div>
+</div>
+<script>
+(function($){
+    var page = {
+        url     : "<?php echo $this->url(
+            '', 
+            array('controller' => 'article', 'action' => '')
+        ) ?>" . replace(/list-article\/$/,""),
+        el      : $("#jsList"),
+        $       : function (selector) {
+            return this.el.find(selector);
+        },
+        init    : function() {
+            _.bindAll(this);
+            this.$(".check-all").click(this.checkAll);
+            this.$(".search-topic").change(this.search);
+            this.$(".check-one").click(this.clickOne);
+            this.$(".one-action").click(this.oneAction);
+            this.$(".remove-pull").click(this.removePull);
+        },
+        search  : function() {
+            var url = "<?php echo $this->url(
+                '',
+                array('action' => 'list-article')
+            ) ?>";
+            location.href = url + "?topic=" + this.$(".search-topic").val();
+        },
+        checkAll : function() {
+            var flag = this.$(".check-all").prop("checked");
+            this.$(".check-one").prop("checked",flag).each(function() {
+                var tr = $(this).parents("tr:first");
+                if (flag) {
+                    tr.addClass("info");
+                } else {
+                    tr.removeClass("info");
+                }
+            });
+            this.toggleBulk();
+        },
+        clickOne : function(e) {
+            var el = $(e.target),
+                tr = el.parents("tr:first");
+            if (el.prop("checked")) {
+                tr.addClass("info");
+            } else {
+                tr.removeClass("info");
+            }
+        },
+        oneAction : function(e) {
+            var el  = $(e.target),
+                id  = el.parents("tr:first").attr("data-id"),
+                val = el.attr("data-value");
+            var url = el.attr('data-content');
+            if (val == "remove-pull") {
+                location.href = url + id + "?from=" + this.encodeUrl();
+            }
+        },
+        encodeUrl : function() {
+            return encodeURIComponent(location.href);
+        },
+        removePull : function(e) {
+            var el  = $(e.target);
+            var url = el.attr('data-content');
+
+            var id = [];
+            this.$(".check-one:checked").each(function() {
+                id.push($(this).val()); 
+            });
+            var ids = id.join(',');
+            url += ids;
+
+            location.href = url + "?from" + this.encodeUrl();
+        }
+    }
+    page.init();
+})(jQuery)
+</script>

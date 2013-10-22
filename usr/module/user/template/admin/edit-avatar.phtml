@@ -1,0 +1,6 @@
+<?php include '_edit-user-nav.phtml'; ?>
+<?php if ($message) {?>
+    <div><?php echo $message;?></div>
+<?php }?>
+<img src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
+<a href="<?php echo $this->url('', array('controller' => 'edit', 'action' => 'avatar', 'uid' => $uid, 'type' => 'delete'));?>"><?php _e('Delete user avatar');?></a>

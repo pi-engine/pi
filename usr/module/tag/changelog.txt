@@ -1,0 +1,25 @@
+Tag module changelog
+
+September 11th, 2012
+=============================
+1. Add Update.php 
+2. Add changelog.txt
+3. Modify Version 
+
+September 10th, 2012
+=============================
+1. Modify fuzzy search
+2. Modify config
+
+September 7th, 2012
+=============================
+1. Modify coding style
+2. Modify config note
+3. Optimization coding
+
+September 6th, 2012
+=============================
+1. Font reconstruction
+2. Admin reconstruction
+
+Chuang Liu

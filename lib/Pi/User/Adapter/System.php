@@ -278,6 +278,7 @@ class System extends AbstractAdapter
                     */
                     $redirect = '';
                 }
+                $params['module'] = 'system';
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }

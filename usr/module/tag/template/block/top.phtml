@@ -1,0 +1,14 @@
+<style>
+    .count-right {
+        float: right;
+        padding-right: 10px;
+    }
+</style>
+<ul>
+    <?php foreach ($block['data'] as $tag) { ?>
+    <li>
+        <a href="<?php echo $tag['url']; ?>"><?php echo $tag['term']; ?></a>
+        <span class="count-right"><?php echo $tag['count']; ?></span>
+    </li>
+    <?php } ?>
+</ul>
