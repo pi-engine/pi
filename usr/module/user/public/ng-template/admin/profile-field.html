@@ -1,0 +1,41 @@
+<legend>
+  {{'BASIC_FIELD' | translate}}
+  <small>{{'BASIC_FIELD_DESC' | translate}}</small>
+</legend>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th style="width: 20px;">
+      <th style="width: 200px;">{{'FIELD_TITLE' | translate}}
+      <th width="8%">{{'DISPLAY' | translate}}
+      <th width="8%">{{'SEARCH' | translate}}
+      <th width="8%">{{'EDITABLE' | translate}}
+      <th>{{'FORM_MODULE' | translate}}
+  <tbody>
+    <tr ng-repeat="item in profile">
+      <td>
+      <td>
+        <div pi-hover-input="item" text="item.title"></div>
+      <td>
+        <i class="icon-ok icon-large text-success" ng-if="item.is_display"></i>
+      <td>
+        <i class="icon-ok icon-large text-success" ng-if="item.is_search"></i>
+      <td>
+        <i class="icon-ok icon-large text-success" ng-if="item.is_edit"></i>
+      <td>{{item.module}}
+</table>
+<legend>
+  {{'COMPOUND' | translate}}
+  <small>{{'COMPOUND_DESC' | translate}}</small>
+</legend>
+<table class="table table-condensed" ng-repeat="compound in compounds">
+  <thead>
+    <th width="40%">{{compound.title}}
+    <th>{{compound.module}}
+  <tbody>
+    <tr ng-repeat="item in compound.fields">
+      <td style="padding-left: 20px;">
+        <div pi-hover-input="item" text="item.title"></div>
+      <td>
+    </tr>
+</table>
