@@ -1,0 +1,44 @@
+<?php
+$this->css(array(
+  $this->assetModule('script/front.css')
+));
+?>
+<?php include '_user-side-nav.phtml' ?>
+<div class="span9">
+    <div class="page-header">
+        <h3><?php _e('Privacy Settings'); ?></h3>
+        <div class="muted"><?php _e('Be careful with your documents'); ?></div>
+    </div>
+    <?php
+    if (isset($result)) {
+        echo sprintf('<div class="alert%s"><button class="close">&times;</button>%s</div>',
+             $result['status'] ? 'alert-success' : 'alert-error',
+             $result['message']);
+    }
+    ?>
+    <form class="form-horizontal" method="post">
+        <?php foreach ($privacy as $item) { ?>
+        <div class="control-group">
+            <label class="control-label"><?php echo $item['field']; ?></label>
+            <div class="controls">
+                <select name="<?php echo $item['field']; ?>">
+                    <?php
+                    foreach ($limits as $key => $limit) {
+                        echo sprintf('<option value="%s"%s>%s',
+                            $key,
+                            $key == $item['value'] ? ' selected = selected ' : '',
+                            $limit
+                         );
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <?php } ?>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
+            </div>
+        </div>
+    </form>
+</div>
