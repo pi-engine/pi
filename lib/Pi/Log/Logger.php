@@ -176,8 +176,10 @@ class Logger
      * Add a writer to a logger
      *
      * @param string|Writer $writer
-     * @param int $priority
-     * @param array $options
+     * @param int           $priority
+     * @param array         $options
+     *
+     * @throws \InvalidArgumentException
      * @return self
      */
     public function addWriter($writer, $priority = 1,
@@ -238,12 +240,13 @@ class Logger
     /**
      * Add a message as a log entry
      *
-     * @param  int $priority
-     * @param  mixed $message
+     * @param  int                   $priority
+     * @param  mixed                 $message
      * @param  array|Traversable|int $extra
-     * @return self
-     * @throws \InvalidArgumentException if message can't be cast to string
+     *
+     * @throws \RuntimeException
      * @throws \InvalidArgumentException if extra can't be iterated over
+     * @return self
      */
     public function log($priority, $message, $extra = array())
     {
