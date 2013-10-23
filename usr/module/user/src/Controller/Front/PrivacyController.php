@@ -42,13 +42,12 @@ class PrivacyController extends ActionController
         $privacy = Pi::api('user', 'privacy')->getUserPrivacy($uid, 'list');
 
         $limits = array(
-            0   => 'public',
-            1   => 'member',
-            2   => 'follower',
-            4   => 'following',
-            255 => 'owner',
+            0   => __('Public'),
+            1   => __('Member'),
+            2   => __('Follower'),
+            4   => __('Following'),
+            255 => __('Owner'),
         );
-
         $this->view()->assign(array(
             'privacy' => $privacy,
             'limits'  => $limits
