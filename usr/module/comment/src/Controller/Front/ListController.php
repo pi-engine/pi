@@ -99,6 +99,9 @@ class ListController extends ActionController
             $posts  = Pi::api('comment')->getList($rootId, $limit, $offset);
             $renderOptions = array(
                 'operation' => $this->config('display_operation'),
+                'user'      => array(
+                    'avatar'    => 'medium',
+                ),
             );
             $posts = Pi::api('comment')->renderList($posts, $renderOptions);
             $count = Pi::api('comment')->getCount($rootId);
@@ -110,7 +113,7 @@ class ListController extends ActionController
                 'limit'         => $limit,
                 'url_options'   => array(
                     'params'        => array(
-                        'root'      => $root,
+                        'root'      => $root->id,
                     ),
                 ),
             ));
