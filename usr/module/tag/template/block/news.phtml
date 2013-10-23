@@ -1,0 +1,17 @@
+<style>
+    .time-right {
+        float: right;
+        padding-right: 10px;
+    }
+</style>
+<?php $time = $block['time']; ?>
+<div>
+    <ul>
+        <?php foreach ($block['data'] as $tag) { ?>
+        <li>
+            <a href="<?php echo $tag['url']; ?>"><?php echo $tag['term']; ?></a>
+            <span class="time-right"><?php echo date("Y-m-d", $time[$tag['id']]); ?></span>
+        </li>
+        <?php } ?>
+    </ul>
+</div>

@@ -171,7 +171,6 @@ class ProfileController extends ActionController
                 'value' => $groupId,
             ),
         );
-
         $form = new ProfileEditForm('profile', $fields);
         $form->setAttributes(array(
             'action' => $this->url('',

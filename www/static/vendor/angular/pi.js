@@ -117,6 +117,25 @@ angular.module('pi', [])
     }
   }
 ])
+.directive('piAlert', function() {
+  return {
+    template:
+      '<div ng-if="message" class="alert" ng-class="type && \'alert-\' + type">' +
+        '<button class="close" ng-click="close()">&times;</button>' +
+        '{{message}}' +
+      '</div>',
+    restrict: 'A',
+    scope: {
+      type: '=',
+      message: '='
+    },
+    link: function(scope, element, attr) {
+      scope.close = function() {
+        scope.message = '';
+      }
+    }
+  }
+})
 .directive('piNavTabs', ['$location',
   function($location) {
     return {
@@ -132,6 +151,21 @@ angular.module('pi', [])
     }
   }
 ])
+.directive('piHoverInput', function() {
+  return {
+    template:
+      '<div class="pi-hover-input" ng-class="{\'pi-hover-input-editing\': editing}">' +
+        '<span ng-click="inputShow()">{{text}}</span>' +
+        '<input type="text" class="input-medium" ng-model="text" ng-blur="editTextAction()" ng-keypress="enterSaveAction($event)">' +
+      '</div>',
+    replace: true,
+    scope: {
+      text: '='
+    },
+    restrict: 'A',
+    controller: 'piHoverInputCtrl'
+  }
+})
 .controller('piNavTabsCtrl', ['$scope', '$location', 'pi',
   function($scope, $location, pi) {
     var reg = /^.*\//;
@@ -144,6 +178,36 @@ angular.module('pi', [])
       }
     }
   }
+])
+.controller('piHoverInputCtrl', ['$scope', '$element', '$timeout', '$attrs',
+  function($scope, $element, $timeout, $attrs) {
+    var model = $scope.$parent[$attrs.piHoverInput] || $scope.text;
+    $scope._text = $scope.text;
+    function save () {
+      $scope.text = $scope.text.trim();
+      if (!$scope.text) {
+        $scope.text = $scope._text;
+      } else {
+        $scope.$emit('piHoverInputSave', model);
+      }
+      $scope.editing = 0;
+    }
+
+    $scope.inputShow = function() {
+      $scope.editing = 1;
+      $timeout(function() {
+        $element.find('input')[0].focus();
+      });
+    }
+
+    $scope.editTextAction = save;
+
+    $scope.enterSaveAction = function(e) {
+      if (e.which == 13) {
+        $scope.editing = 0;
+      }
+    }
+  } 
 ])
 .provider('pi', ['$httpProvider', '$locationProvider',
   function($httpProvider, $locationProvider) {

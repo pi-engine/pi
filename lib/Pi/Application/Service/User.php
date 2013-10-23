@@ -573,6 +573,10 @@ class User extends AbstractService
      */
     public function setPersist($name, $value = null)
     {
+        if (!isset($_SESSION)) {
+            return $this;
+        }
+
         $fields = $this->getOption('persist', 'field');
         if (!$fields) {
             return $this;
@@ -612,6 +616,10 @@ class User extends AbstractService
      */
     public function getPersist($name = null)
     {
+        if (!isset($_SESSION)) {
+            return null;
+        }
+
         $data = (array) $_SESSION['PI_USER'];
         if (isset($data['time']) && $data['time'] < time()) {
             $result = null;

@@ -42,8 +42,8 @@ class System extends AbstractAdapter
      */
     public function getUser($uid = null, $field = 'id')
     {
-        if (null === $uid
-            || ($this->model && $this->model->get($field) == $uid)
+        if ($this->model
+            && (null === $uid || $this->model->get($field) == $uid)
         ) {
             $model = $this->model;
         } else {
@@ -278,6 +278,7 @@ class System extends AbstractAdapter
                     */
                     $redirect = '';
                 }
+                $params['module'] = 'system';
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }

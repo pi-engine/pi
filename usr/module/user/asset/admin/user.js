@@ -5,20 +5,62 @@
     function tpl(name) {
       return config.assetRoot + name + '.html';
     }
-    $routeProvider.when('/activated', {
+
+    function resolve(action) {
+      return {
+        data: ['$q', '$route', '$rootScope', 'server',
+          function($q, $route, $rootScope, server) {
+            var deferred = $q.defer();
+            var params = $route.current.params;
+            $rootScope.alert = 2;
+            server.get(action, params).success(function(data) {
+              var users = data.users;
+              for (var i = 0, l = users.length; i < l; i++) {
+                var item = users[i];
+                item.time_disabled *= 1000;
+                item.time_created *= 1000;
+                item.time_activated *= 1000;
+                item.checked = 0;
+                if (item.front_roles) {
+                  item.front_roles = item.front_roles.join(',');
+                }
+                if (item.admin_roles) {
+                  item.admin_roles = item.admin_roles.join(',');
+                }
+              }
+              angular.extend(data, server.getRoles());
+              data.filter = params;
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          } 
+        ]
+      };
+    }
+
+    $routeProvider.when('/all', {
+      templateUrl: tpl('index-all'),
+      controller: 'ListCtrl',
+      resolve: resolve('all')
+    }).when('/activated', {
       templateUrl: tpl('index-activated'),
-      controller: 'ListCtrl'
+      controller: 'ListCtrl',
+      resolve: resolve('activated')
     }).when('/pending', {
       templateUrl: tpl('index-pending'),
-      controller: 'ListCtrl'
+      controller: 'ListCtrl',
+      resolve: resolve('pending')
     }).when('/new', {
       templateUrl: tpl('index-new'),
       controller: 'NewCtrl'
+    }).when('/search', {
+      templateUrl: tpl('advanced-search'),
+      controller: 'SearchCtrl'
     }).otherwise({
-      redirectTo: '/all',
-      templateUrl: tpl('index-all'),
-      controller: 'ListCtrl'
+      redirectTo: '/all'
     });
+
     piProvider.hashPrefix();
     piProvider.navTabs(config.navTabs);
     piProvider.translations(config.t);
@@ -31,8 +73,18 @@
 
     this.get = function (action, params) {
       return $http.get(urlRoot + action, {
-        params: params || ''
+        params: params
       });
+    }
+
+    this.filterEmpty = function(obj) {
+      var search = {};
+      for (var i in obj) {
+        if (obj[i]) {
+          search[i] = obj[i];
+        }
+      }
+      return search;
     }
 
     this.getRoles = function () {
@@ -53,22 +105,7 @@
       };
     }
 
-    this.parse = function (data) {
-      var users = data.users;
-      for (var i = 0, l = users.length; i < l; i++) {
-        var item = users[i];
-        item.time_disabled *= 1000;
-        item.time_created *= 1000;
-        item.time_activated *= 1000;
-        item.checked = 0;
-        if (item.front_roles) {
-          item.front_roles = item.front_roles.join(',');
-        }
-        if (item.admin_roles) {
-          item.admin_roles = item.admin_roles.join(',');
-        }
-      }
-    }
+    this.roles = config.roles;
 
     this.disable = function (ids) {
       if (angular.isArray(ids)) {
@@ -124,25 +161,14 @@
     this.uniqueUrl = urlRoot + 'checkExist';
   }
 ])
-.controller('ListCtrl', ['$scope', '$location', '$rootScope', 'server',
-  function ($scope, $location, $rootScope, server) {
-    var action = $location.path().replace(/^\//, '');
-    $scope.paginator = {
-      page: 1
-    };
+.controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
+  function ($scope, $location, data, config, server) {
+    angular.extend($scope, data);
 
-    $scope.$watch('paginator.page', function (num) {
-      var param = { p: num };
-      angular.extend(param, $scope.filter);
-      $rootScope.alert = 2;
-      server.get(action, param).success(function (data) {
-        server.parse(data);
-        $scope.users = data.users;
-        $scope.paginator = data.paginator;
-        $rootScope.alert = '';
-      });
+    $scope.$watch('paginator.page', function (newValue, oldValue) {
+      if(newValue === oldValue) return;
+      $location.search('p', newValue);
     });
-    angular.extend($scope, server.getRoles());
 
     function getCheckIds() {
       var ids = [];
@@ -309,10 +335,8 @@
     }
 
     $scope.filterAction = function () {
-      server.get('all', $scope.filter).success(function (data) {
-        $scope.users = data.users;
-        $scope.paginator = data.paginator;
-      });
+      $location.search(server.filterEmpty($scope.filter));
+      $location.search('p', null);
     }
   }
 ])
@@ -323,17 +347,19 @@
       enable: 1,
       roles: ['member']
     };
-    $scope.entity = angular.copy(entity);
+    
+    $scope.entity = entity;
     $scope.uniqueUrl = server.uniqueUrl;
-    $scope.roles = server.getRoles().roles;
+    $scope.roles = angular.copy(server.roles);
     angular.forEach($scope.roles, function (item) {
-      if ($scope.entity.roles.indexOf(item.name) != -1) {
+      if (entity.roles.indexOf(item.name) != -1) {
         item.checked = true;
       }
     });
-    
+
+
     $scope.submit = function () {
-      server.add($scope.entity);
+      server.add(entity);
     }
 
     $scope.$watch('roles', function () {
@@ -343,7 +369,12 @@
           roles.push(item.name);
         }
       });
-      $scope.entity.roles = roles;
+      entity.roles = roles;
     }, true);
+  }
+])
+.controller('SearchCtrl', ['$scope', 'server',
+  function($scope, server) {
+    $scope.roles = angular.copy(server.roles);
   }
 ]);

@@ -26,16 +26,20 @@ class Auto extends AbstractAvatar
         $src = '';
         if ($uid) {
             if ($uid == $this->user->get('id')) {
+                /*
                 $data = array(
                     'avatar'    => $this->user->get('avatar'),
                     'email'     => $this->user->get('email'),
                 );
+                */
+                $avatar = $this->user->get('avatar');
             } else {
-                $data = Pi::user()->get($uid, array('avatar', 'email'));
+                //$data = Pi::user()->get($uid, array('avatar', 'email'));
+                $avatar = Pi::user()->get($uid, 'avatar');
             }
 
-            if ($data) {
-                $src = $this->buildUrl($data, $size);
+            if ($avatar) {
+                $src = $this->buildUrl($avatar, $size);
             }
         }
 
@@ -48,7 +52,8 @@ class Auto extends AbstractAvatar
     public function getSourceList($uids, $size = '')
     {
         $result = array();
-        $list = Pi::user()->get($uids, array('avatar', 'email'));
+        //$list = Pi::user()->get($uids, array('avatar', 'email'));
+        $list = Pi::user()->get($uids, 'avatar');
         foreach ($list as $uid => $data) {
             if ($data) {
                 $url = $this->buildUrl($data, $size);
@@ -72,12 +77,12 @@ class Auto extends AbstractAvatar
     /**
      * Build avatar URL
      *
-     * @param array  $data
+     * @param string  $data
      * @param string $size
      *
      * @return string
      */
-    protected function buildUrl(array $data, $size)
+    protected function buildUrl($data, $size)
     {
         $src = '';
         if (!empty($this->options['adapter_allowed'])) {
@@ -87,8 +92,9 @@ class Auto extends AbstractAvatar
         }
         $list = array_fill_keys($allowedAdapters, '');
 
+        /*
         if (!$data['avatar']) {
-            if (isset($list['gravatar'])) {
+            if (isset($list['gravatar']) && isset($data['email'])) {
                 $list['gravatar'] = $data['email'];
             }
         } else {
@@ -97,10 +103,18 @@ class Auto extends AbstractAvatar
                 $list[$type] = $data['avatar'];
             }
         }
+        */
 
+        if ($data) {
+            $type = Pi::service('avatar')->getType($data);
+            if (isset($list[$type])) {
+                $list[$type] = $data;
+            }
+        }
         foreach ($list as $adapter => $avatar) {
             if ($avatar) {
                 $src = Pi::service('avatar')->getAdapter($adapter)
+                    ->setForce(false)
                     ->build($avatar, $size);
                 break;
             }

@@ -75,7 +75,7 @@ class Standard extends AbstractEngine
             return false;
         }
 
-        // Load application, which could be called during resouce setup
+        // Load application, which could be called during resource setup
         $application = $this->application();
 
         // Boot application

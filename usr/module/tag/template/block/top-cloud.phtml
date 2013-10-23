@@ -1,0 +1,28 @@
+<?php $this->I18nModule('main'); ?>
+<?php
+    $data = $block['data'];
+    $url = $block['url'];
+    $minFontSize = (int) $block['minFontSize'];
+    $maxFontSize = (int) $block['maxFontSize'];
+    $color = $block['tagColor'];
+    $minimumCount = intval(min(array_values($data)));
+    $maximumCount = intval(max(array_values($data)));
+    $spread = $maximumCount - $minimumCount;
+    $cloudHTML = ' ';
+    $cloudTags = array(); 
+    $spread === 0 && $spread = 1; 
+    $step = ($maxFontSize - $minFontSize) / $spread;
+    foreach ($data as $tag => $count) { 
+        $model = Pi::model('tag', 'tag');
+        $select = $model->select()->where(array('term' => $tag));
+        $rowset = $model->selectWith($select);
+        $re = $rowset->toArray();
+        $tagid = $re[0]['id'];
+        $size = $minFontSize + (intval($count) - $minimumCount) * $step;
+        $clouds[] = sprintf('<a style="font-size:  %spx; color: %s" href="%s">%s</a>', floor($size), $color[$tagid], $url[$tagid], htmlspecialchars(stripslashes($tag)));
+    }
+    $cloud_html = join("\n", $clouds) . "\n";
+?>
+<ul>
+    <li><?php print $cloud_html; ?></li>
+</ul>

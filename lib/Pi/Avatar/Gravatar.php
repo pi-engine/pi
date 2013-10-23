@@ -25,19 +25,32 @@ class Gravatar extends AbstractAvatar
     {
         $gravatar = '';
         if ($uid) {
-            if ($uid == $this->user->get('id')) {
-                $data = array(
-                    'avatar'    => $this->user->get('avatar'),
-                    'email'     => $this->user->get('email'),
-                );
-            } else {
-                $data = Pi::user()->get($uid, array('avatar', 'email'));
-            }
-            if ($data) {
-                if ('gravatar' != Pi::service('avatar')->getType($data['avatar'])) {
-                    $gravatar = $data['email'];
+            if ($this->force) {
+                if ($uid == $this->user->get('id')) {
+                    $data = array(
+                        'avatar'    => $this->user->get('avatar'),
+                        'email'     => $this->user->get('email'),
+                    );
                 } else {
-                    $gravatar = $data['avatar'];
+                    $data = Pi::user()->get($uid, array('avatar', 'email'));
+                }
+                if ($data) {
+                    if ($data['avatar']) {
+                        $gravatar = $data['avatar'];
+                    } else {
+                        $gravatar = $data['email'];
+                    }
+                }
+            } else {
+                if ($uid == $this->user->get('id')) {
+                    $avatar = $this->user->get('avatar');
+                } else {
+                    $avatar = Pi::user()->get($uid,'avatar');
+                }
+                if ($avatar
+                    && 'gravatar' == Pi::service('avatar')->getType($avatar)
+                ) {
+                    $gravatar = $avatar;
                 }
             }
         }
@@ -53,15 +66,24 @@ class Gravatar extends AbstractAvatar
     public function getSourceList($uids, $size = 80)
     {
         $result = array();
-        $list = Pi::user()->get($uids, array('avatar', 'email'));
-        foreach ($list as $uid => $data) {
-            if ($data) {
-                if ('gravatar' != Pi::service('avatar')->getType($data['avatar'])) {
-                    $gravatar = $data['email'];
-                } else {
-                    $gravatar = $data['avatar'];
+        if ($this->force) {
+            $list = Pi::user()->get($uids, array('avatar', 'email'));
+            foreach ($list as $uid => $data) {
+                if ($data) {
+                    if ($data['avatar']) {
+                        $gravatar = $data['avatar'];
+                    } else {
+                        $gravatar = $data['email'];
+                    }
+                    $result[$uid] = $this->build($gravatar, $size);
                 }
-                $result[$uid] = $this->build($gravatar, $size);
+            }
+        } else {
+            $list = Pi::user()->get($uids, 'avatar');
+            foreach ($list as $uid => $avatar) {
+                if ($avatar && 'gravatar' == Pi::service('avatar')->getType($avatar)) {
+                    $result[$uid] = $this->build($avatar, $size);
+                }
             }
         }
 

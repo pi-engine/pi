@@ -103,6 +103,17 @@ return array(
             'title' => __('Birth date'),
             'edit'  => array(
                 'element'       => 'date_select',
+                'options'       => array(
+                    'year_attributes' => array(
+                        'class' => 'input-small',
+                    ),
+                    'month_attributes' => array(
+                        'class' => 'input-small',
+                    ),
+                    'day_attributes' => array(
+                        'class' => 'input-small',
+                    ),
+                ),
             ),
         ),
         // Account: avatar

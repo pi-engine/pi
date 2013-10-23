@@ -42,9 +42,8 @@ class Audit extends AbstractWriter
     }
 
     /**
-     * Get formatter for loggder writer
+     * Get formatter for logger writer
      *
-     * @param Formatter $formatter
      * @return self
      */
     public function formatter()
@@ -128,26 +127,21 @@ class Audit extends AbstractWriter
         $this->extra = false;
         $data = array();
         if (!empty($this->options['role'])) {
-            if (!in_array(Pi::service('user')->getUser()->role,
-                $this->options['role'])) {
+            if (array_intersect(
+                Pi::service('user')->getUser()->role,
+                $this->options['role'])
+            ) {
                 return $this->extra;
             }
         }
-        $data['user'] = Pi::service('user')->getUser()->id ?: 0;
+        $data['user'] = Pi::service('user')->getIdentity() ?: 0;
         if (!empty($this->options['user'])) {
             if (!in_array($data['user'], $this->options['user'])) {
                 return $this->extra;
             }
         }
 
-        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        $data['ip'] = $ip;
+        $data['ip'] = Pi::service('user')->getIp();
         if (!empty($this->options['ip'])) {
             $segs = explode('.', $data['ip']);
             if (!in_array($segs[0] . '.*', $this->options['ip'])

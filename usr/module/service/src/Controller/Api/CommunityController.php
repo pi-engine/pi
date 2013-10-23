@@ -66,7 +66,7 @@ class CommunityController extends ActionController
 
     public function testAction()
     {
-        $uri = 'http://slave/api/service/community';
+        $uri = _get('url') ?: 'http://slave/api/service/community';
         $params = array(
             'test'  => 'Test',
             'int'   => 5,
@@ -74,7 +74,7 @@ class CommunityController extends ActionController
         );
         $result = Pi::service('remote')->get($uri, $params);
         vd($result);
-        $uri = 'http://slave/api/service/community/post';
+        $uri .= '/post';
         $result = Pi::service('remote')->post($uri, $params);
         vd($result);
 

@@ -52,7 +52,11 @@ class ActivityController extends ActionController
             true
         );
         // Get viewer role: public member follower following owner
-        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        if ($isOwner) {
+            $role = 'owner';
+        } else {
+            $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        }
         $user = Pi::api('user', 'privacy')->filterProfile(
             $uid,
             $role,

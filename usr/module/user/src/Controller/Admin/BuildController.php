@@ -550,8 +550,10 @@ class BuildController extends ActionController
             if ($row['is_display'] || $row['type'] == 'compound') {
                 $fields = array(
                     'field'     => $row->name,
-                    'value'     => $this->rand('privacy'),
-                    'is_forced' => rand(0, 1)
+                    //'value'     => $this->rand('privacy'),
+                    //'is_forced' => rand(0, 1)
+                    'value'     => 0,
+                    'is_forced' => 1
                 );
 
                 $privacyRow = $privacyModel->createRow($fields);

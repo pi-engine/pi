@@ -20,8 +20,8 @@ use Pi\User\Model\AbstractModel;
  */
 abstract class AbstractAvatar
 {
-    /** @var AvatarResource Avatar resource handler */
-    //protected $resource;
+    /** @var bool Force to skip type check */
+    protected $force = true;
 
     /**
      * Options
@@ -42,6 +42,20 @@ abstract class AbstractAvatar
         if ($options) {
             $this->setOptions($options);
         }
+    }
+
+    /**
+     * Set to force this type
+     *
+     * @param bool $flag
+     *
+     * @return $this
+     */
+    public function setForce($flag)
+    {
+        $this->force = (bool) $flag;
+
+        return $this;
     }
 
     /**

@@ -11,6 +11,25 @@
  */
 
 $config = include __DIR__ . '/application.front.php';
+
+// Security resource, load configs from resource.security.php
+$config['resource']['security'] = array(
+    // IP check: deny 'bad' IPs, approve 'good' IPs
+    'ip'        => true,
+
+    // Super GLOBALS
+    'globals'   => true,
+
+    // XSS check
+    'xss'       => true,
+
+    // Enable DoS protection on HTTP_USER_AGENT
+    'dos'       => false,
+
+    // crawl bots protection on HTTP_USER_AGENT
+    'bot'       => false,
+);
+
 // Translations
 $config['resource']['i18n'] = array(
     'translator'    => array(

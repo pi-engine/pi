@@ -32,9 +32,6 @@ class Remote extends AbstractService
      */
     protected $adapter;
 
-    /** @var  bool Is remote server connected */
-    //protected $isConnected;
-
     /**
      * Get adapter, instantiate it if not exist yet
      *
@@ -89,7 +86,6 @@ class Remote extends AbstractService
      */
     public function connect($host, $port = 80, $secure = false)
     {
-        //$this->isConnected = false;
         return $this->adapter()->connect($host, $port, $secure);
     }
 
@@ -102,7 +98,7 @@ class Remote extends AbstractService
      * @param array         $headers
      * @param string        $body
      *
-     * @return string Request as text
+     * @return string|bool Request as text
      */
     public function write(
         $method,
@@ -116,25 +112,39 @@ class Remote extends AbstractService
             $url = new Uri($url);
         }
 
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
 
-        return $this->adapter()->write(
-            $method,
-            $url,
-            $httpVer,
-            $headers,
-            $body
-        );
+        try {
+            $result = $this->adapter()->write(
+                $method,
+                $url,
+                $httpVer,
+                $headers,
+                $body
+            );
+        } catch (\Exception $e) {
+            $result = false;
+            trigger_error('Remote access error: ' . $e->getMessage(), E_USER_WARNING);
+        }
+
+        return $result;
     }
 
     /**
      * Read response from server
      *
-     * @return string
+     * @return string|false
      */
     public function read()
     {
-        return $this->adapter()->read();
+        try {
+            $result = $this->adapter()->read();
+        } catch (\Exception $e) {
+            $result = false;
+            trigger_error('Remote access error: ' . $e->getMessage(), E_USER_WARNING);
+        }
+
+        return $result;
     }
 
     /**
@@ -144,7 +154,6 @@ class Remote extends AbstractService
      */
     public function close()
     {
-        //$this->isConnected = false;
         return $this->adapter()->close();
     }
 
@@ -157,11 +166,15 @@ class Remote extends AbstractService
      */
     protected function parseResponse($content = '')
     {
-        $response = Response::fromString($content);
-        if ($response->isOk()) {
+        try {
+            $response = Response::fromString($content);
+        } catch (\Exception $e) {
+            $response = false;
+            trigger_error('Response error: ' . $e->getMessage(), E_USER_WARNING);
+        }
+        if ($response && $response->isOk()) {
             $result         = $response->getBody();
             $contentType    = $response->getHeaders()->get('Content-Type');
-            vd($contentType);
             $isJson         = false;
             if ($contentType) {
                 $value  = $contentType->getFieldValue();
@@ -184,8 +197,11 @@ class Remote extends AbstractService
      *
      * @return array
      */
-    protected function setAuthorization($headers = array())
+    protected function canonizeHeaders($headers = array())
     {
+        if (!isset($headers['User-Agent'])) {
+            $headers['User-Agent'] = 'Pi Engine cURL';
+        }
         if (!array_key_exists('Authorization', $headers)) {
             if ($this->getOption('username') && $this->getOption('password')) {
                 $httpauth = $this->getOption('httpauth') ?: 'basic';
@@ -283,15 +299,19 @@ class Remote extends AbstractService
             $uri->setQuery($params);
         }
 
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
         $this->write('GET', $uri, '1.1', $headers);
         $response = $this->read();
-        $result = $this->parseResponse($response);
+        if (false !== $response) {
+            $result = $this->parseResponse($response);
+        } else {
+            $result = false;
+        }
 
         /**@+
          * Save to cache
          */
-        if ($cache) {
+        if (false !== $result && $cache) {
             $data = json_encode($result);
             $status = Pi::service('cache')->setItem(
                 $cache['key'],
@@ -334,10 +354,14 @@ class Remote extends AbstractService
         } else {
             $body = $params;
         }
-        $headers = $this->setAuthorization($headers);
+        $headers = $this->canonizeHeaders($headers);
         $this->write('POST', $url, '1.1', $headers, $body);
         $response = $this->read();
-        $result = $this->parseResponse($response);
+        if (false !== $response) {
+            $result = $this->parseResponse($response);
+        } else {
+            $result = false;
+        }
 
         return $result;
     }
