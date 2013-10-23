@@ -13,6 +13,9 @@ if (!Pi::comment()->active()) {
 // - url_submit
 // - url_ajax
 
+$this->backbone();
+$this->css($this->assetModule('css/front.css', 'comment'));
+
 $data = Pi::api('comment')->load(
     $this->url()->routeMatch()
 );
@@ -37,65 +40,117 @@ if (!empty($data['root']['id'])) {
 $formData['redirect'] = $this->url()->requestUri(true);
 
 $form = Pi::service('comment')->getForm($formData);
-include $this->templateComponent('form');
+//include $this->templateComponent('form');
+?>
 
+<?php
+$uid = Pi::user()->id;
+$avatar = Pi::avatar()->get($uid, 'medium', false);
+if ($uid) {
+    $url = Pi::service('user')->getUrl('profile', $uid);
+} else {
+    $url = Pi::url('www');
+}
 if ($data['posts']) {
 ?>
-    <div class="pi-comment-header">
-        <dl><?php _e('Recent comments'); ?></dl>
-        <dl class="dl-horizontal">
-            <dt><?php _e('Total:') ?></dt>
-            <dd><?php echo $data['count']; ?></dd>
-            <?php if ($data['count']) { ?>
-                <dt><?php _e('All comments:') ?></dt>
-                <dd>
-                    <a href="<?php echo $data['url_list']; ?>" title="<?php _e('Read more') ?>" target="_blank">
-                        <?php _e('Read more'); ?>
-                    </a>
-                </dd>
-            <?php } ?>
-        </dl>
-    </div>
-    <div class="pi-comment-list">
-<?php
-    foreach ($data['posts'] as $post) {
-?>
-        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
-            <dt><?php _e('User:');?></dt>
-            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
-                    <?php echo $post['user']['name']; ?>
+    <div class="pi-comment">
+        <div class="pi-comment-header">
+            <span><?php _e('All comments ') ?></span>
+            <span>(<a href="<?php echo $data['url_list'] ?>" class="highlight"><?php echo $data['count'] ?: 0 ?></a>)
+            </span>
+        </div>
+        <div class="pi-comment-form">
+            <div class="media">
+                <a class="pull-left" href="<?php echo $url ?>">
+                    <img class="media-object" src="<?php echo $this->escape($avatar) ?>">
                 </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $post['user']['avatar']; ?></dd>
-
-            <dt><?php _e('IP:');?></dt>
-            <dd><?php echo $post['ip']; ?></dd>
-
-            <dt><?php _e('Time:');?></dt>
-            <dd><?php echo _date($post['time']); ?></dd>
-
-            <dt><?php _e('Content:');?></dt>
-            <dd><?php echo $post['content']; ?></dd>
-
-            <dt><?php _e('Operations:'); ?></dt>
-            <dd>
-                <?php if (!empty($post['operations'])) { ?>
-                    <?php foreach ($post['operations'] as $key => $op) { ?>
-                        <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
-                            <?php echo _escape($op['title']); ?>
-                        </a>
-                    <?php } ?>
-                <?php } else { ?>
-                    <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
-                        <?php _e('More details'); ?>
-                    </a>
-                <?php } ?>
-            </dd>
-        </dl>
-<?php
-    }
-?>
+                <div class="media-body">
+                <?php 
+                    if (empty($uid)) {
+                        $redirect = Pi::engine()->application()->getRequest()->getUri()->getPath();d($redirect);
+                        $loginUrl = Pi::user()->getUrl('login', $redirect);
+                ?>
+                    <div class="form-unsign">
+                        <span><a href="<?php echo $loginUrl ?>" class="highlight"><?php _e('Sign in') ?></a></span>
+                        <span><?php _e(' to leave comments.') ?></span>
+                    </div>
+                <?php
+                    } else {
+                        echo $this->form()->openTag($form);
+                ?>
+                    <div class="form-textarea">
+                        <textarea placeholder="<?php _e('Type your content') ?>" name="content"></textarea>
+                    </div>
+                    <input class="btn form-submit pull-right hide" type="submit" value="<?php _e('Post') ?>" name="submit">
+                <?php 
+                        foreach (array(
+                            'id', 'root', 'reply', 'module', 'category',
+                            'item', 'redirect', 'markup') as $hiddenElement) {
+                            echo $this->formElement($form->get($hiddenElement));
+                        }
+                        echo $this->form()->closeTag();
+                    }
+                ?>
+                </div>
+            </div>
+        </div>
+        <div class="pi-comment-list">
+        <?php 
+            foreach ($data['posts'] as $post) {
+        ?>
+            <div class="media">
+                <a class="pull-left" href="<?php echo $post['user']['url'] ?>" target="_blank">
+                    <?php echo $post['user']['avatar'] ?>
+                </a>
+                <div class="media-body">
+                    <div>
+                        <span class="pi-comment-user">
+                            <a href="<?php echo $post['user']['url'] ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
+                                <?php echo $post['user']['name'] ?>
+                            </a>
+                        </span>
+                        <span class="muted"><?php echo date('Y/m/d H:i:s', $post['time']) ?></span>
+                    </div>
+                    <div class="pi-comment-content"><?php echo $post['content'] ?></div>
+                    <div class="pi-comment-operation">
+                    <?php 
+                        foreach ($post['operations'] as $operation => $optData) {
+                            $class = '';
+                            switch ($operation) {
+                                case 'disable':
+                                    $class = 'icon-ban-circle';
+                                    break;
+                                case 'edit':
+                                    $class = 'icon-pencil';
+                                    break;
+                                case 'delete':
+                                    $class = 'icon-trash';
+                                    break;
+                                case 'reply':
+                                    $class = 'icon-share-alt';
+                                    break;
+                            }
+                    ?>
+                        <span class="operation muted">
+                            <a href="<?php echo $optData['url'] ?>">
+                                <i class="<?php echo $class ?>" style="text-decoration: none"></i><?php echo $optData['title'] ?>
+                            </a>
+                        </span>
+                    <?php
+                        }
+                    ?>
+                    </div>
+                </div>
+            </div>
+        <?php 
+            }
+        ?>
+        </div>
+        <div class="pi-comment-view-all">
+            <a href="<?php echo $data['url_list'] ?>" title="<?php _e('Read more') ?>" target="_blank" class="btn">
+                <?php _e('View all comments') ?>
+            </a>
+        </div>
     </div>
 <?php
 }
@@ -118,3 +173,66 @@ endif;
 </dl>
 </form>
 //-->
+
+<script>
+(function($) {
+var page = {
+    range   : $("div.pi-comment"),
+    $       : function(selector) {
+       return this.range.find(selector);
+    }
+};
+
+var CommentView = Backbone.View.extend({
+    template        : _.template('<div class="black-bg">'
+                    + '<i class="category icon-remove"></i></div>'
+                    + '<img src="<%=preview_url %>">'
+    ),
+    events          : {
+        "click textarea"   :"expandTextarea",
+        "mouseover .pi-comment-list .media" : "displayOperation",
+        "mouseout .pi-comment-list .media"  : "hideOperation"
+    },
+    initialize      : function() {
+        this.$el   = $(".pi-comment");
+    },
+    expandTextarea  : function() {
+        var text  = this.$("textarea");
+        var textForm = this.$(".form-textarea");
+        
+        text.css({
+            "height"     : "75px",
+            "min-height" : "75px",
+            "max-height" : "auto"
+        });
+        textForm.css({
+            "height"     : "75px"
+        });
+        this.$(".form-submit").removeClass("hide");
+    },
+    foldTextarea    : function() {
+        var text  = this.$("textarea");
+        var textForm = this.$(".form-textarea");
+        
+        text.css({
+            "height"     : "38px",
+            "min-height" : "38px",
+            "max-height" : "38px"
+        });
+        textForm.css({
+            "height"     : "38px"
+        });
+        this.$(".form-submit").addClass("hide");
+    },
+    displayOperation    : function(e) {
+        var el = $(e.target).parents(".media");
+        el.find(".pi-comment-operation").css("visibility", "visible");
+    },
+    hideOperation   : function(e) {
+        var el = $(e.target).parents(".media");
+        el.find(".pi-comment-operation").css("visibility", "hidden");
+    }
+});
+new CommentView;
+})(jQuery)
+</script>

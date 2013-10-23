@@ -336,6 +336,9 @@ class Api extends AbstractApi
                     'target'    => false,
                     'operation' => Pi::service('config')
                         ->module('display_operation'),
+                    'user'      => array(
+                        'avatar'    => 'medium',
+                    ),
                 );
                 $posts = $this->renderList($posts, $renderOptions);
                 $result['posts'] = $posts;
@@ -476,7 +479,7 @@ class Api extends AbstractApi
                 );
             }
             $users[0] = array(
-                'avatar'    => Pi::service('avatar')->get(0, 'small'),
+                'avatar'    => Pi::service('avatar')->get(0, 'medium'),
                 'url'       => Pi::url('www'),
                 'name'      => __('Guest'),
             );
