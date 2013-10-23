@@ -92,3 +92,17 @@ textarea:focus {
     padding-right: 0;
 }
 
+.pi-comment-none {
+    height: 140px;
+    line-height: 140px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #999999;
+}
+
+.pi-comment-article-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 20px 0;
+}

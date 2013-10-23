@@ -56,8 +56,6 @@ if ($uid) {
 } else {
     $url = Pi::url('www');
 }
-
-$limit = Pi::service('module')->config('list_limit', 'comment');
 ?>
     <div class="pi-comment">
         <div class="pi-comment-header">
@@ -105,11 +103,7 @@ $limit = Pi::service('module')->config('list_limit', 'comment');
         ?>
         <div class="pi-comment-list">
         <?php 
-            $index = 0;
             foreach ($data['posts'] as $post) {
-                if ($index++ >= $limit) {
-                    break;
-                }
         ?>
             <div class="media">
                 <a class="pull-left" href="<?php echo $post['user']['url'] ?>" target="_blank">
