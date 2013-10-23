@@ -14,7 +14,12 @@ if (!Pi::comment()->active()) {
 // - url_ajax
 
 $this->backbone();
-$this->css($this->assetModule('css/front.css', 'comment'));
+$this->css(
+    array(
+        $this->assetModule('css/front.css', 'comment'),
+        Pi::url('static/vendor/bootstrap/css/font-awesome.css'),
+    )
+);
 
 $data = Pi::api('comment')->load(
     $this->url()->routeMatch()
@@ -51,12 +56,13 @@ if ($uid) {
 } else {
     $url = Pi::url('www');
 }
-if ($data['posts']) {
+
+$limit = Pi::service('module')->config('list_limit', 'comment');
 ?>
     <div class="pi-comment">
         <div class="pi-comment-header">
             <span><?php _e('All comments ') ?></span>
-            <span>(<a href="<?php echo $data['url_list'] ?>" class="highlight"><?php echo $data['count'] ?: 0 ?></a>)
+            <span>(<?php echo $data['count'] ?: 0 ?>)
             </span>
         </div>
         <div class="pi-comment-form">
@@ -67,7 +73,7 @@ if ($data['posts']) {
                 <div class="media-body">
                 <?php 
                     if (empty($uid)) {
-                        $redirect = Pi::engine()->application()->getRequest()->getUri()->getPath();d($redirect);
+                        $redirect = Pi::engine()->application()->getRequest()->getUri()->getPath();
                         $loginUrl = Pi::user()->getUrl('login', $redirect);
                 ?>
                     <div class="form-unsign">
@@ -94,9 +100,16 @@ if ($data['posts']) {
                 </div>
             </div>
         </div>
+        <?php
+            if (count($data['posts'])) {
+        ?>
         <div class="pi-comment-list">
         <?php 
+            $index = 0;
             foreach ($data['posts'] as $post) {
+                if ($index++ >= $limit) {
+                    break;
+                }
         ?>
             <div class="media">
                 <a class="pull-left" href="<?php echo $post['user']['url'] ?>" target="_blank">
@@ -151,9 +164,15 @@ if ($data['posts']) {
                 <?php _e('View all comments') ?>
             </a>
         </div>
+        <?php
+            } else {
+        ?>
+        <div class="pi-comment-none"><?php _e('No one has commented yet.') ?></div>
+        <?php
+            }
+        ?>
     </div>
 <?php
-}
 endif;
 ?>
 <!--
@@ -184,10 +203,6 @@ var page = {
 };
 
 var CommentView = Backbone.View.extend({
-    template        : _.template('<div class="black-bg">'
-                    + '<i class="category icon-remove"></i></div>'
-                    + '<img src="<%=preview_url %>">'
-    ),
     events          : {
         "click textarea"   :"expandTextarea",
         "mouseover .pi-comment-list .media" : "displayOperation",
@@ -209,20 +224,6 @@ var CommentView = Backbone.View.extend({
             "height"     : "75px"
         });
         this.$(".form-submit").removeClass("hide");
-    },
-    foldTextarea    : function() {
-        var text  = this.$("textarea");
-        var textForm = this.$(".form-textarea");
-        
-        text.css({
-            "height"     : "38px",
-            "min-height" : "38px",
-            "max-height" : "38px"
-        });
-        textForm.css({
-            "height"     : "38px"
-        });
-        this.$(".form-submit").addClass("hide");
     },
     displayOperation    : function(e) {
         var el = $(e.target).parents(".media");
