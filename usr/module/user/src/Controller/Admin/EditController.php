@@ -271,7 +271,12 @@ class EditController extends ActionController
             $this->view()->assign('message', __('Delete avatar successfully'));
         }
 
-        $this->view()->assign('uid', $uid);
+        $nav = $this->getNav($uid);
+        $this->view()->assign(array(
+            'uid'     => $uid,
+            'nav'     => $nav,
+            'cur_nav' => 'avatar'
+        ));
     }
 
     /**
