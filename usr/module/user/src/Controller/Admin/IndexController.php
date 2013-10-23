@@ -133,7 +133,7 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['pending']       = 'pending';
+        $condition['activated']       = 'pending';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
         $condition['admin_role']    = _get('admin_role') ?: '';
@@ -711,7 +711,7 @@ class IndexController extends ActionController
         if ($condition['activated'] == 'activated') {
             $where['time_activated > ?'] = 0;
         }
-        if ($condition['pending'] == 'pending') {
+        if ($condition['activated'] == 'pending') {
             $where['time_activated'] = 0;
         }
         if ($condition['register_date']) {
@@ -873,7 +873,7 @@ class IndexController extends ActionController
         if ($condition['activated'] == 'activated') {
             $where['time_activated > ?'] = 0;
         }
-        if ($condition['pending'] == 'pending') {
+        if ($condition['activated'] == 'pending') {
             $where['time_activated'] = 0;
         }
         if ($condition['register_date']) {
