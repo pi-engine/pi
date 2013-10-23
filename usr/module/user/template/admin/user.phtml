@@ -5,6 +5,10 @@ $this->angular(array(
     'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js'
 ));
+$locale = Pi::config('locale');
+if ($locale != 'en') {
+    $this->angular('i18n/angular-locale_' . $locale . '.js');
+}
 ?>
 <div ng-app="userListModule">
     <div pi-message="alert"></div>
@@ -44,6 +48,7 @@ angular
             ACTIVATED: '<?php _e('Activated'); ?>',
             ACTIVE: '<?php _e('Active'); ?>',
             INACTIVE: '<?php _e('Inactive'); ?>',
+            PENDING: '<?php _e('Pending'); ?>',
             ROLE: '<?php _e('Role'); ?>',
             REGISTER_TIME: '<?php _e('Register time'); ?>',
             ACTION: '<?php _e('Action'); ?>',
@@ -57,7 +62,6 @@ angular
             RETURN: '<?php _e('Back to users list'); ?>',
             REQUIRED: '<?php _e('Required'); ?>',
             USER_NAME: '<?php _e('Username'); ?>',
-            DISPLAY_NAME: '<?php _e('Dispaly name'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
             INVALID_EMAIL: '<?php _e('Email invalid'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
@@ -81,7 +85,7 @@ angular
             ACTIVE_STATE:'<?php _e('Active State'); ?>',
             TITLE: '<?php _e('Add user'); ?>',
             USER_NAME: '<?php _e('Username'); ?>',
-            DISPLAY_NAME: '<?php _e('Display name'); ?>',
+            CONFIRM_ACTIVATED: '<?php _e('Are you sure active this account, it can not be return'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
             CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
@@ -93,9 +97,20 @@ angular
             PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
             USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
             EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-            DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
+            DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
+            ACTIVATED_STATUS: '<?php _e('Activated state'); ?>',
+            USER_ID: '<?php _e('User ID'); ?>',
+            NONE_USER: '<?php _e('No users matched your search'); ?>',
+            SEARCH_TITLE: '<?php _e('Advanced search'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
+            FROM: '<?php _e('From'); ?>',
+            TO: '<?PHP _e('To'); ?>',
+            SEARCH_RESULT: '<?PHP _e('Search result'); ?>',
+            VIEW_LOG: '<?PHP _e('View log'); ?>'
         },
-        roles: <?php echo json_encode($roles); ?>
+        roles: <?php echo json_encode($roles); ?>,
+        today: '<?php echo date("Y-m-d"); ?>'
     });
 </script>
 <?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>

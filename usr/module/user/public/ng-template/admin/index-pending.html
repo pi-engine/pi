@@ -21,13 +21,13 @@
     <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
     <option value="last_year">{{'LAST_YEAR' | translate}}
   </select>
-  <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filter.identity">
+  <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
   <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
   <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
     <i class="icon-search"></i>
   </button>
 </form>
-<div class="clearfix form-inline" style="margin: 0 0 20px 8px;">
+<div class="clearfix form-inline" style="margin: 0 20px 20px 8px;">
   <strong class="pull-right">{{paginator.count}} members</strong>
   <input type="checkbox" style="margin-right: 6px;"
          ng-model="allChecked" ng-click="markAll(allChecked)">

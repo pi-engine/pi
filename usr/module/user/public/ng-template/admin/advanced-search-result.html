@@ -1,38 +1,10 @@
-<form class="form-inline" ng-submit="filterAction()">
-  <select ng-model="filter.active" class="input-medium">
-    <option value="">{{'ACTIVE_STATUS' | translate}}
-    <option value="active">{{'ACTIVE' | translate}}
-    <option value="inactive">{{'INACTIVE' | translate}}
-  </select>
-  <select ng-model="filter.enable" class="input-medium">
-    <option value="">{{'ENABLE_STATUS' | translate}}
-    <option value="enable">{{'ENABLE' | translate}}
-    <option value="disable">{{'DISABLE' | translate}}
-  </select>
-  <select class="input-medium" ng-model="filter.front_role"
-          ng-options="item.name as item.title for item in frontRoles">
-    <option value="">{{'FRONT_ROLE' | translate}}
-  </select>
-  <select class="input-medium" ng-model="filter.admin_role"
-          ng-options="item.name as item.title for item in adminRoles">
-    <option value="">{{'ADMIN_ROLE' | translate}}
-  </select>
-  <select class="input-medium" ng-model="filter.register_time">
-    <option value="">{{'REGISTER_TIME' | translate}}
-    <option value="today">{{'TODAY' | translate}}
-    <option value="last_week">{{'LAST_WEEK' | translate}}
-    <option value="last_month">{{'LAST_MONTH' | translate}}
-    <option value="last_3_month">{{'LAST_3_MONTH' | translate}}
-    <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
-    <option value="last_year">{{'LAST_YEAR' | translate}}
-  </select>
-  <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
-  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
-  <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
-    <i class="icon-search"></i>
-  </button>
-</form>
-<div class="clearfix form-inline" style="margin: 0 20px 20px 8px;">
+<style>
+.nav-tabs>.active>a:hover {
+  cursor: pointer;
+}
+</style>
+<legend>{{'SEARCH_RESULT' | translate}}</legend>
+<div class="clearfix form-inline" style="margin: 0 20px 20px 8px;" ng-if="users">
   <strong class="pull-right">{{paginator.count}} members</strong>
   <input type="checkbox" style="margin-right: 6px;"
          ng-model="allChecked" ng-click="markAll(allChecked)">
@@ -63,7 +35,7 @@
     <option value="">{{'UNASSIGN_ROLE' | translate}}
   </select>
 </div>
-<table class="table table-striped">
+<table class="table table-striped" ng-if="users">
     <thead>
       <tr>
         <th style="width: 14px;">
@@ -74,6 +46,7 @@
         <th width="8%" class="text-center">{{'ENABLED' | translate}}
         <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
         <th width="8%">{{'ROLE' | translate}}
+        <th width="10%" class="text-center">{{'REGISTER_IP' | translate}}
         <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
         <th width="5%" class="text-center">{{'ID' | translate}}
         <th>
@@ -115,6 +88,8 @@
                 style="padding-left: 5px;">
             <i class="icon-user-md icon-large"></i>
           </span>
+        <td>
+          {{user.ip_register}}
         <td class="text-center">
           {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
         <td class="text-center">
@@ -126,3 +101,7 @@
             ng-if="paginator.count" 
             class="pagination" boundary-links="true" items-per-page="paginator.limit">
 </pagination>
+<div ng-if="!users">
+  {{'SEARCH_NONE' | translate}}
+</div>
+<div pi-alert message="noneMessage"></div>
