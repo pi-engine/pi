@@ -347,11 +347,14 @@ class IndexController extends ActionController
 
     }
 
+    /**
+     * Search user info buy display name
+     *
+     * @return array
+     */
     public function searchUserAction()
     {
         $name = _get('name');
-$name = "Pi 2";
-        $name = 'Moderator';
         $result = array();
 
         if (!$name) {
@@ -381,21 +384,45 @@ $name = "Pi 2";
         );
         $rowset = $this->getModel('field')->select($where);
         foreach ($rowset as $row) {
-            $columns = $row['name'];
+            $columns[] = $row['name'];
         }
 
+        $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
         $data = Pi::api('user', 'user')->get($uid, $columns);
+        if (isset($data['id'])) {
+            unset($data['id']);
+        }
 
         foreach ($data as $key => $value) {
-            if (is_array($row)) {
+            if (is_array($value)) {
                 // Compound
-                //$result[$key][]
-            } else {
+                // Get compound meta
+                $compoundMeta = Pi::registry('compound', 'user')->read($key);
+                $result[$key] = array(
+                    'title' => $fieldMeta[$key]['title'],
+                );
 
+
+                foreach ($value as $items) {
+                    foreach ($items as $col => $val) {
+                        $compoundItems[] = array(
+                            'title' => $compoundMeta[$col]['title'],
+                            'value' => $val,
+                        );
+                    }
+                    $result[$key]['items'][] = $compoundItems;
+                }
+            } else {
+                $result[$key] = array(
+                    'title' => $fieldMeta[$key]['title'] ? : ucfirst($key),
+                    'value' => $value,
+                );
             }
         }
 
-        d($data);exit;
+        $result = array_values($result);
+
+        return $result;
 
     }
 
