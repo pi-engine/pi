@@ -1,0 +1,94 @@
+.pi-comment {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    padding: 10px 15px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-bottom: 20px;
+}
+.pi-comment-header {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+a.highlight {
+    color: #0088cc;
+}
+.pi-comment-form {
+    margin-top: 15px;
+}
+.media > .pull-left {
+    margin-right: 15px;
+}
+img {
+    border-radius: 3px;
+}
+textarea {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 38px;
+    max-height: 38px;
+    min-height: 38px;
+}
+textarea:focus {
+    border: 0px;
+    box-shadow: none;
+}
+.media-body .form-textarea {
+    border: 1px solid #dddddd;
+    padding: 4px 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border-radius: 4px;
+    height: 38px;
+}
+.form-unsign {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    background-color: #eeeeee;
+    color: #808080;
+    height: 44px;
+    line-height: 44px;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+.form-submit {
+    margin-top: 10px;
+}
+.pi-comment-list .media {
+    margin-top: 20px;
+}
+.pi-comment-user {
+    font-weight: bold;
+    margin-right: 20px;
+}
+.pi-comment-content {
+    margin-top: 10px;
+    color: #333333;
+}
+.pi-comment-operation {
+    margin-top: 10px;
+    visibility: hidden;
+}
+.pi-comment-operation .operation {
+    margin-right: 10px;
+}
+.operation i {
+    margin-right: 2px;
+}
+.pi-comment-view-all {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.pi-comment-view-all a {
+    width: 100%;
+    color: #808080;
+    padding-left: 0;
+    padding-right: 0;
+}
+
