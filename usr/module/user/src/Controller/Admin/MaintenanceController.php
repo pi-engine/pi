@@ -115,7 +115,7 @@ class MaintenanceController extends ActionController
             'users'      => $logs,
             'paginator' => $paginator,
         );
-d($data);exit;
+
         return $data;
 
     }
