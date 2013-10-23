@@ -178,10 +178,10 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
-            $options = isset($this->options['options'])
-                ? $this->options['options'] : array();
-            if (!empty($this->options['adapter'])) {
-                $this->adapter = new $this->options['adapter']($options);
+            $options = (array) $this->getOption('options');
+            $adapter = $this->getOption('adapter');
+            if ($adapter) {
+                $this->adapter = new $adapter($options);
             } else {
                 $this->adapter = new DefaultAdapter($options);
             }
@@ -203,16 +203,16 @@ class User extends AbstractService
         if (!isset($this->resource[$name])) {
             $options = array();
             $class = '';
-            if (!empty($this->options['resource'][$name])) {
-                if (is_string($this->options['resource'][$name])) {
-                    $class = $this->options['resource'][$name];
+            $resource = $this->getOption('resource', $name);
+            if ($resource) {
+                if (is_string($resource)) {
+                    $class = $resource;
                 } else {
-                    if (!empty($this->options['resource'][$name]['class'])) {
-                        $class = $this->options['resource'][$name]['class'];
+                    if (!empty($resource['class'])) {
+                        $class = $resource['class'];
                     }
-                    if (isset($this->options['resource'][$name]['options'])) {
-                        $options =
-                            $this->options['resource'][$name]['options'];
+                    if (isset($this->$resource['options'])) {
+                        $options = $resource['options'];
                     }
                 }
             }

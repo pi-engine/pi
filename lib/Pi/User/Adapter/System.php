@@ -207,7 +207,7 @@ class System extends AbstractAdapter
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
                 } elseif (is_string($var)) {
-                    $params['identity'] = $var;
+                    $params['name'] = $var;
                 } else {
                     $params = (array) $var;
                 }
@@ -323,7 +323,7 @@ class System extends AbstractAdapter
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
                 } elseif (is_string($var)) {
-                    $params['identity'] = $var;
+                    $params['name'] = $var;
                 } else {
                     $params = (array) $var;
                 }
