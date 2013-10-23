@@ -133,7 +133,7 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['pending']       = 'pending';
+        $condition['activated']       = 'pending';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
         $condition['admin_role']    = _get('admin_role') ?: '';
@@ -711,7 +711,7 @@ class IndexController extends ActionController
         if ($condition['activated'] == 'activated') {
             $where['time_activated > ?'] = 0;
         }
-        if ($condition['pending'] == 'pending') {
+        if ($condition['activated'] == 'pending') {
             $where['time_activated'] = 0;
         }
         if ($condition['register_date']) {
@@ -810,6 +810,19 @@ class IndexController extends ActionController
             }
         }
 
+        if ($condition['ip_register']) {
+            $profileModel = $this->getModel('profile');
+            $whereProfile = Pi::db()->where()->create(array(
+                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
+            ));
+            $where->add($whereProfile);
+            $select->join(
+                array('profile' => $profileModel->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
+        }
+
         $select->order('account.time_created DESC');
         if ($limit) {
             $select->limit($limit);
@@ -860,7 +873,7 @@ class IndexController extends ActionController
         if ($condition['activated'] == 'activated') {
             $where['time_activated > ?'] = 0;
         }
-        if ($condition['pending'] == 'pending') {
+        if ($condition['activated'] == 'pending') {
             $where['time_activated'] = 0;
         }
         if ($condition['register_date']) {
@@ -961,6 +974,19 @@ class IndexController extends ActionController
                     array()
                 );
             }
+        }
+
+        if ($condition['ip_register']) {
+            $profileModel = $this->getModel('profile');
+            $whereProfile = Pi::db()->where()->create(array(
+                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
+            ));
+            $where->add($whereProfile);
+            $select->join(
+                array('profile' => $profileModel->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
         }
 
         $select->where($where);

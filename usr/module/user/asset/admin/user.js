@@ -30,6 +30,9 @@
               }
               angular.extend(data, server.getRoles());
               data.filter = params;
+              if (!users.length) {
+                data.noneMessage = config.t.NONE_USER;
+              }
               deferred.resolve(data);
               $rootScope.alert = '';
             });
@@ -57,6 +60,10 @@
     }).when('/search', {
       templateUrl: tpl('advanced-search'),
       controller: 'SearchCtrl'
+    }).when('/all/search', {
+      templateUrl: tpl('advanced-search-result'),
+      controller: 'ListCtrl',
+      resolve: resolve('search')
     }).otherwise({
       redirectTo: '/all'
     });
@@ -158,6 +165,12 @@
       });
     }
 
+    this.advanceSearch = function(params) {
+      return $http.get(urlRoot + 'search', {
+        params: params
+      });
+    }
+
     this.uniqueUrl = urlRoot + 'checkExist';
   }
 ])
@@ -238,6 +251,7 @@
 
     $scope.activeAction = function (user) {
       if (user.time_activated) return;
+      if (!confirm(config.t.CONFIRM_ACTIVATED)) return;
       server.active(user.id).success(function (data) {
         if (data.status) {
           user.time_activated = 1;
@@ -373,8 +387,48 @@
     }, true);
   }
 ])
-.controller('SearchCtrl', ['$scope', 'server',
-  function($scope, server) {
+.controller('SearchCtrl', ['$scope', '$location', 'config', 'server',
+  function($scope, $location, config, server) {
     $scope.roles = angular.copy(server.roles);
+    $scope.today = config.today;
+    $scope.filter = {};
+
+    $scope.$watch('roles', function(newValue) {
+      var front_role = [];
+      var admin_role = [];
+      var filter = $scope.filter;
+      angular.forEach(newValue, function(item) {
+        if (item.checked) {
+          if (item.type == 'front') {
+            front_role.push(item.name);
+          } else {
+            admin_role.push(item.name);
+          }
+        }
+      });
+      if (front_role.length) {
+        filter.front_role = front_role.join(',');
+      }
+      if (admin_role.length) {
+        filter.admin_role = admin_role.join(',');
+      }
+    }, true);
+
+    $scope.submit = function() {
+      var filter = angular.copy($scope.filter);
+      var parse = function(time) {
+        return parseInt((new Date(time)).getTime() / 1000, 10);
+      }
+
+      if (filter.time_created_from) {
+        filter.time_created_from = parse(filter.time_created_from);
+      }
+
+      if (filter.time_created_to) {
+        filter.time_created_to = parse(filter.time_created_to);
+      }
+
+      $location.path('/all/search').search(filter);
+    }
   }
 ]);
