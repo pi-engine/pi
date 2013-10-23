@@ -50,7 +50,7 @@ class IndexController extends ActionController
         $condition['front_role']    = _get('front_role') ?: '';
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
-        $condition['identity']      = _get('identity') ?: '';
+        $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
         // Get user ids
@@ -95,7 +95,7 @@ class IndexController extends ActionController
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-        $condition['identity']      = _get('identity') ?: '';
+        $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
         // Get user ids
@@ -139,7 +139,7 @@ class IndexController extends ActionController
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-        $condition['identity']      = _get('identity') ?: '';
+        $condition['name']      = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
         // Get user ids
@@ -295,6 +295,7 @@ class IndexController extends ActionController
      */
     public function searchAction()
     {
+        $condition['uid']               = _get('uid') ?: '';
         $condition['active']            = _get('active') ?: '';
         $condition['enable']            = _get('enable') ?: '';
         $condition['activated']         = _get('activated') ?: '';
@@ -303,7 +304,7 @@ class IndexController extends ActionController
         $condition['identity']          = _get('identity') ?: '';
         $condition['name']              = _get('name') ?: '';
         $condition['email']             = _get('email') ?: '';
-        $condition['time_created_form'] = _get('time_created_form') ?: '';
+        $condition['time_created_from'] = _get('time_created_from') ?: '';
         $condition['time_created_to']   = _get('time_created_to') ?: '';
         $condition['ip_register']       = _get('ip_register') ?: '';
 
@@ -343,6 +344,58 @@ class IndexController extends ActionController
         );
 
         return $data;
+
+    }
+
+    public function searchUserAction()
+    {
+        $name = _get('name');
+$name = "Pi 2";
+        $name = 'Moderator';
+        $result = array();
+
+        if (!$name) {
+            return $result;
+        }
+
+        // Check name
+        $rowset = $this->getModel('account')->find($name, 'name');
+        $model = $this->getModel('account');
+        $where = array(
+            'name' => $name,
+            'time_deleted' => 0,
+        );
+        $select = $model->select()->where($where);
+        $rowset = $model->selectWith($select)->current();
+
+        if (!$rowset) {
+            return $result;
+        } else {
+            $uid = $rowset->id;
+        }
+
+        // Get fields
+        $where = array(
+            'active'     => 1,
+            'is_display' => 1,
+        );
+        $rowset = $this->getModel('field')->select($where);
+        foreach ($rowset as $row) {
+            $columns = $row['name'];
+        }
+
+        $data = Pi::api('user', 'user')->get($uid, $columns);
+
+        foreach ($data as $key => $value) {
+            if (is_array($row)) {
+                // Compound
+                //$result[$key][]
+            } else {
+
+            }
+        }
+
+        d($data);exit;
 
     }
 
@@ -571,10 +624,14 @@ class IndexController extends ActionController
             'id'             => '',
         );
 
-        $users = Pi::api('user', 'user')->get(
+        // Get user data
+        $data = Pi::api('user', 'user')->get(
             $uids,
             array_keys($columns)
         );
+        foreach ($uids as $uid) {
+            $users[$uid] = $data[$uid];
+        }
 
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
@@ -634,6 +691,9 @@ class IndexController extends ActionController
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
                 $condition['register_date']
             );
+        }
+        if ($condition['uid']) {
+            $where['id'] = (int) $condition['uid'];
         }
         if ($condition['email']) {
             $where['email like ?'] = '%' .$condition['email'] . '%';
@@ -723,6 +783,7 @@ class IndexController extends ActionController
             }
         }
 
+        $select->order('account.time_created DESC');
         if ($limit) {
             $select->limit($limit);
         }
@@ -736,6 +797,7 @@ class IndexController extends ActionController
 
         $result = array();
         foreach ($rowset as $row) {
+            $result1[] = $row;
             $result[] = (int) $row['id'];
         }
 
@@ -778,6 +840,9 @@ class IndexController extends ActionController
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
                 $condition['register_date']
             );
+        }
+        if ($condition['uid']) {
+            $where['id'] = (int) $condition['uid'];
         }
         if ($condition['email']) {
             $where['email like ?'] = '%' .$condition['email'] . '%';
