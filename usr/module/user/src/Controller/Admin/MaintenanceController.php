@@ -427,7 +427,12 @@ class MaintenanceController extends ActionController
             if (isset($userData[$uid]['login_times'])) {
                 $data['login_times'] = $userData[$uid]['login_times']['value_int'];
             }
-            $logs[] = array_merge($profile, $data);
+            if ($data) {
+                $logs[] = array_merge($profile, $data);
+            } else {
+                $logs[] = $profile;
+            }
+
             unset($profile);
             unset($data);
         }
