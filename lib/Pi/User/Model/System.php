@@ -60,7 +60,9 @@ class System extends AbstractModel
     public function loadRole()
     {
         $this->role = Pi::service('user')->getRole(
-            $this->get('id')
+            $this->get('id'),
+            '',
+            true
         );
 
         return $this->role;
