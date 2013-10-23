@@ -810,6 +810,19 @@ class IndexController extends ActionController
             }
         }
 
+        if ($condition['ip_register']) {
+            $profileModel = $this->getModel('profile');
+            $whereProfile = Pi::db()->where()->create(array(
+                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
+            ));
+            $where->add($whereProfile);
+            $select->join(
+                array('profile' => $profileModel->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
+        }
+
         $select->order('account.time_created DESC');
         if ($limit) {
             $select->limit($limit);
@@ -961,6 +974,19 @@ class IndexController extends ActionController
                     array()
                 );
             }
+        }
+
+        if ($condition['ip_register']) {
+            $profileModel = $this->getModel('profile');
+            $whereProfile = Pi::db()->where()->create(array(
+                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
+            ));
+            $where->add($whereProfile);
+            $select->join(
+                array('profile' => $profileModel->getTable()),
+                'profile.uid=account.id',
+                array()
+            );
         }
 
         $select->where($where);
