@@ -163,7 +163,7 @@ class PostController extends ActionController
                     if (Pi::config('auto_approve', 'comment')) {
                         $values['active'] = 1;
                     }
-                    $values['uid'] = Pi::service('user')->getIdentity();
+                    $values['uid'] = Pi::service('user')->getId();
                     $values['ip'] = Pi::service('user')->getIp();
                 }
                 //vd($values);

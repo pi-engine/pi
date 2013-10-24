@@ -23,7 +23,7 @@ return array(
         'identity'      => array(
             'type'      => 'account',
             'name'      => 'identity',
-            'title'     => __('Identity'),
+            'title'     => __('Username'),
             // Edit element specs
             'edit'      => array(
                 'validators'    => array(
@@ -42,7 +42,7 @@ return array(
         'credential'    => array(
             'type'      => 'account',
             'name'      => 'credential',
-            'title'     => __('Credential'),
+            'title'     => __('Password'),
             'edit'      => array(
                 'element'       => 'password',
                 'validators'    => array(

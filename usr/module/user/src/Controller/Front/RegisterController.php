@@ -35,8 +35,9 @@ class RegisterController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity(false)
+                'identity'  => Pi::service('user')->getIdentity()
             ));
+
             return;
         }
 
@@ -302,7 +303,7 @@ class RegisterController extends ActionController
         }
 
         // Get uid
-        $uid = Pi::service('user')->getIdentity();
+        $uid = Pi::service('user')->getId();
 
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm('custom.complete.profile');

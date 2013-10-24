@@ -89,7 +89,7 @@ class AvatarController extends ActionController
      */
     public function indexAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         if (empty($uid)) {
             return $this->jumpToDenied();
         }
@@ -405,7 +405,7 @@ class AvatarController extends ActionController
             exit;
         }
         
-        $uid     = Pi::user()->getIdentity();
+        $uid     = Pi::user()->getId();
         $adapter = Pi::avatar()->getAdapter($source);
         
         if ('upload' == $source) {

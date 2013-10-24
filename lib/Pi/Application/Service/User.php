@@ -38,6 +38,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  *  - destroy()
  *  - hasIdentity()
  *  - getIdentity()
+ *  - getId()
  *
  * + Resource APIs
  *
@@ -323,29 +324,46 @@ class User extends AbstractService
      */
     public function hasIdentity()
     {
-        return $this->modelSession && $this->modelSession->get('id')
+        return $this->modelSession && $this->modelSession['id']
             ? true : false;
     }
 
     /**
      * Get identity of current logged user
      *
-     * @param bool $asId    Return use id as identity or user identity name
+     * @param string $field Identity field name
      *
-     * @return null|int|string
+     * @return string
      * @api
      */
-    public function getIdentity($asId = true)
+    public function getIdentity($field = 'identity')
     {
         if (!$this->hasIdentity()) {
-            $identity = 0;
+            $identity = '';
         } else {
-            $identity = $asId
-                ? (int) $this->modelSession->id
-                : $this->modelSession->identity;
+            $identity = isset($this->modelSession[$field])
+                ? $this->modelSession[$field]
+                : '';
         }
 
         return $identity;
+    }
+
+    /**
+     * Get id of current logged user
+     *
+     * @return int
+     * @api
+     */
+    public function getId()
+    {
+        if (!$this->hasIdentity()) {
+            $id = 0;
+        } else {
+            $id = (int) $this->modelSession['id'];
+        }
+
+        return $id;
     }
 
     /**
@@ -375,7 +393,7 @@ class User extends AbstractService
     public function updateUser($uid, $fields)
     {
         $result = $this->getAdapter()->updateUser($uid, $fields);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $this->setPersist(false);
         }
 
@@ -394,7 +412,7 @@ class User extends AbstractService
     public function set($uid, $field, $value)
     {
         $result = $this->getAdapter()->set($uid, $field, $value);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $this->setPersist($field, $value);
         }
 
@@ -412,7 +430,7 @@ class User extends AbstractService
     public function setRole($uid, $role)
     {
         $result = $this->getAdapter()->setRole($uid, $role);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $role = $this->getRole($uid, '', true);
             $this->setPersist('role', $role);
         }
@@ -431,7 +449,7 @@ class User extends AbstractService
     public function revokeRole($uid, $role)
     {
         $result = $this->getAdapter()->revokeRole($uid, $role);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $role = $this->getRole($uid, '', true);
             $this->setPersist('role', $role);
         }
@@ -456,14 +474,14 @@ class User extends AbstractService
     {
         $result = null;
         if (null === $uid) {
-            $uid = $this->getIdentity();
+            $uid = $this->getId();
         } else {
             $uid = (int) $uid;
         }
         $section = $section ?: Pi::engine()->application()->getSection();
         $isCurrent  = false;
         if (!$force
-            && $uid === $this->getIdentity()
+            && $uid === $this->getId()
             && Pi::engine()->application()->getSection() == $section
         ) {
             $isCurrent = true;
@@ -628,7 +646,7 @@ class User extends AbstractService
             if (isset($data['field'])) {
                 $userData = $data['field'];
             } elseif ($fields = $this->getOption('persist', 'field')) {
-                $uid = $this->getIdentity();
+                $uid = $this->getId();
                 $userData = $this->get($uid, $fields);
                 $this->setPersist($userData);
             }

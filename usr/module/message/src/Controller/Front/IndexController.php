@@ -46,7 +46,7 @@ class IndexController extends AbstractController
         $offset = (int) ($page - 1) * $limit;
 
         //current user id
-        $userId = Pi::user()->getIdentity();
+        $userId = Pi::user()->getId();
 
         // dismiss alert
         Pi::user()->message->dismissAlert($userId);
@@ -196,7 +196,7 @@ class IndexController extends AbstractController
      */
     public function sendAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
 
         // Redirect login page if not logged in
         if (!$uid) {

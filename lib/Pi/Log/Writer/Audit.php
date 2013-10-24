@@ -134,7 +134,7 @@ class Audit extends AbstractWriter
                 return $this->extra;
             }
         }
-        $data['user'] = Pi::service('user')->getIdentity() ?: 0;
+        $data['user'] = Pi::service('user')->getId() ?: 0;
         if (!empty($this->options['user'])) {
             if (!in_array($data['user'], $this->options['user'])) {
                 return $this->extra;

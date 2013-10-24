@@ -42,21 +42,21 @@ class AccountController extends ActionController
      */
     public function indexAction()
     {
-        $identity = Pi::service('user')->getIdentity();
+        $id = Pi::service('user')->getId();
         // Redirect login page if not logged in
-        if (!$identity) {
+        if (!$id) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
             return;
         }
         //$user = Pi::api('system', 'user')->getUser($identity, 'identity');
         //$role = $user->role();
-        $row = Pi::model('user_account')->find($identity);
+        $row = Pi::model('user_account')->find($id);
         //$role = Pi::model('user_role')->find($row->id, 'user')->role;
         $roles  = Pi::api('system', 'user')->getRole($row['id'], 'front');
         //$roleRow = Pi::model('role')->find($role, 'name');
         $user = array(
             __('ID')        => $row['id'],
-            __('Identity')  => $row['identity'],
+            __('Username')  => $row['identity'],
             __('Email')     => $row['email'],
             __('Name')      => $row['name'],
             __('Role')      => $roles,
@@ -79,7 +79,7 @@ class AccountController extends ActionController
      */
     public function editAction()
     {
-        $identity = Pi::service('user')->getIdentity();
+        $identity = Pi::service('user')->getId();
         // Redirect login page if not logged in
         if (!$identity) {
             $this->redirect()->toRoute('', array('controller' => 'login'));
