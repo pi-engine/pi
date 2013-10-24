@@ -7,8 +7,8 @@
     $routeProvider.when('/stats', {
       templateUrl: tpl('maintenance-stats'),
       controller: 'statsCtrl'
-    }).when('/log', {
-      templateUrl: tpl('maintenance-log'),
+    }).when('/logs', {
+      templateUrl: tpl('maintenance-logs'),
       controller: 'logCtrl',
       resolve: {
         data: ['$q', '$route', '$rootScope', 'server',
@@ -19,8 +19,9 @@
             params.sort = params.sort || 'time_activated';
             server.getLog(params).success(function (data) {
               angular.forEach(data.users, function(item) {
-                item.time_last_login *= 1000;
-                item.time_created *= 1000;
+                if (item.time_last_login) item.time_last_login *= 1000;
+                if (item.time_created) item.time_created *= 1000;
+                if (item.time_activated) item.time_activated *= 1000;
               });
               data.sort = params.sort;
               deferred.resolve(data);
@@ -51,6 +52,25 @@
           }
         ]
       }
+    }).when('/logs/:id', {
+      templateUrl: tpl('maintenance-logs-detail'),
+      controller: 'logsDetailCtrl',
+      resolve: {
+        data: ['$q', '$route', '$rootScope', 'server',
+          function($q, $route, $rootScope, server) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            server.getUserLogs($route.current.params.id).success(function(data) {
+              angular.forEach(data, function(value, key) {
+                if (value === null) data[key] = 'null';
+              });
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).otherwise({
       redirectTo: '/stats'
     });
@@ -71,6 +91,14 @@
     this.getLog = function(params) {
       return $http.get(root + 'logList', {
         params: params
+      });
+    }
+
+    this.getUserLogs = function(id) {
+      return $http.get(root + 'log', {
+        params: {
+          uid: id
+        }
       });
     }
 
@@ -167,5 +195,10 @@
         $scope.users.splice(idx, 1);
       });
     }
+  }
+])
+.controller('logsDetailCtrl', ['$scope', 'data', 
+  function($scope, data) {
+    $scope.entity = data;
   }
 ]);

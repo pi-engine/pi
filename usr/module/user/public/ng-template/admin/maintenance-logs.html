@@ -9,7 +9,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>{{'UID' | translate}}
       <th>{{'USERNAME' | translate}}
       <th>{{'REGISTER_TIME' | translate}}
       <th>{{'REGISTER_IP' | translate}}
@@ -17,16 +16,22 @@
       <th>{{'LAST_LOGIN_TIME' | translate}}
       <th>{{'LAST_LOGIN_IP' | translate}}
       <th>{{'LOGIN_TIMES' | translate}}
+      <th>{{'UID' | translate}}
   <tbody>
     <tr ng-repeat="user in users">
-      <td>{{user.id}}
-      <td>{{user.identity}}
+      <td>
+          {{user.identity}}
+          <div class="pi-row-action">
+            <a href="">{{'EDIT' | translate}}</a>
+            <a href="#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
+          </div>
       <td>{{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
       <td>{{user.ip_register}}
-      <td>{{user.id}}
+      <td>{{user.time_activated | date: 'yyyy-MM-dd HH:mm'}}
       <td>{{user.time_last_login | date: 'yyyy-MM-dd HH:mm'}}
       <td>{{user.ip_login}}
       <td>{{user.login_times}}
+      <td>{{user.id}}
 </table>
 <pagination total-items="paginator.count" page="paginator.page" max-size="10"
             ng-if="paginator.count" 

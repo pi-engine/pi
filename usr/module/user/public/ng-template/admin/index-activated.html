@@ -72,7 +72,6 @@
         <th width="8%">{{'ROLE' | translate}}
         <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
         <th width="5%" class="text-center">{{'ID' | translate}}
-        <th>
     <tbody>
       <tr ng-repeat="user in users">
         <td>
@@ -89,6 +88,7 @@
           <div class="pi-row-action">
             <a href="">{{'EDIT' | translate}}</a>
             <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
+            <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
           </div>
         <td>{{user.name}}
         <td>{{user.email}}
@@ -115,8 +115,6 @@
           {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
         <td class="text-center">
           {{user.id}}
-        <td>
-          <a href="">{{'VIEW_LOG' | translate}}</a>
 </table>
 <pagination total-items="paginator.count" page="paginator.page" max-size="10"
             ng-if="paginator.count" 

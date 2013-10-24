@@ -1,0 +1,9 @@
+<style>
+.nav-tabs>.active>a:hover {
+  cursor: pointer;
+}
+</style>
+<dl class="dl-horizontal">
+  <dt ng-repeat-start="(key, value) in entity">{{key}}
+  <dd ng-repeat-end>{{value}}
+</dl>
