@@ -48,14 +48,11 @@ class MaintenanceController extends ActionController
     public function logAction()
     {
         $uid = _get('uid');
-        if (!$uid) {
-            return $this->jumpTo404('Invalid uid');
-        }
 
         // Check user exist
         $isExist = Pi::api('user', 'user')->getUser($uid)->id;
         if (!$isExist) {
-            return $this->jumpTo404('Invalid uid');
+            return $this->jumpTo404(__('User was not found.'));
         }
 
         // Get user basic information and user data
@@ -78,9 +75,7 @@ class MaintenanceController extends ActionController
         $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
         $user['login_times']     = Pi::user()->data()->get($uid, 'login_times');
 
-        $this->view()->assign(array(
-            'user' => $user,
-        ));
+        return $user;
     }
 
     /**
