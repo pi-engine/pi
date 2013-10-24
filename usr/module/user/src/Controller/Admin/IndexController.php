@@ -1012,6 +1012,9 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
+            if ('guest' == $name) {
+                continue;
+            }
             $data[] = array(
                 'name'  => $name,
                 'title' => $role['title'],

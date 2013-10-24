@@ -16,7 +16,7 @@
       <th>{{'EMAIL' | translate}}
       <th>{{'ACTIVATED' | translate}}
       <th>{{'REGIESTER_TIME' | translate}}
-      <th>{{'DELET_TIME' | translate}}
+      <th>{{'DELETE_TIME' | translate}}
   <tbody>
     <tr ng-repeat="user in users">
       <td>
@@ -33,7 +33,7 @@
       <td>{{user.time_deleted | date: 'yyyy-MM-dd HH:mm'}}
 </table>
 <div class="alert" ng-if="!users.length">
-  {{'NONE_DELETED_USERS' | translate}}
+  {{'NONE_USER' | translate}}
 </div>
 <pagination total-items="paginator.count" page="paginator.page" max-size="10" ng-if="paginator.count"
     class="pagination" boundary-links="true" items-per-page="paginator.limit"></pagination>
