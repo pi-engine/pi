@@ -1,4 +1,11 @@
 <?php
+$this->css(
+    array(
+        $this->assetModule('css/front.css'),
+        Pi::url('static/vendor/bootstrap/css/font-awesome.css'),
+    )
+);
+
 // Target data:
 // title, time, user
 // user: uid, name, avatar, url
@@ -7,40 +14,90 @@ $target = $comment['target'];
 // Comment post
 // content, time, user
 $post = $comment['post'];
-?>
-    <div class="page-header"><?php echo _escape($comment['title']); ?></div>
-<?php
-if ($post) {
-?>
-    <div class="pi-comment-header">
-        <dl class="dl-horizontal">
-            <dt><?php _e('Source:') ?></dt>
-            <dd><?php echo $target['title']; ?></dd>
-            <dt><?php _e('URL:') ?></dt>
-            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php _e('Click to open'); ?>">
-                    <?php _e('Click to open'); ?>
-                </a>
-            </dd>
-        </dl>
-    </div>
-    <div class="pi-comment-list">
-        <dl class="dl-horizontal pi-comment-post">
-            <dt><?php _e('Author:') ?></dt>
-            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
-                    <?php echo $post['user']['name']; ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $post['user']['avatar']; ?></dd>
-            <dt><?php _e('Time:');?></dt>
-            <dd><?php echo _date($post['time']); ?></dd>
-        </dl>
-        <?php include $this->templateComponent('form'); ?>
-    </div>
-<?php
-} elseif (!empty($comment['message'])) {
-    echo _escape($comment['message']);
+
+$uid = Pi::user()->id;
+$avatar = Pi::avatar()->get($uid, 'medium', false);
+if ($uid) {
+    $url = Pi::service('user')->getUrl('profile', $uid);
 } else {
-    _e('No content');
+    $url = Pi::url('www');
 }
 ?>
+
+<style>
+    textarea {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 75px;
+        max-height: 75px;
+        min-height: 75px;
+    }
+    textarea:focus {
+        border: 0px;
+        box-shadow: none;
+    }
+    .media-body .form-textarea {
+        margin-top: 20px;
+        border: 1px solid #dddddd;
+        padding: 4px 6px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        border-radius: 4px;
+        height: 75px;
+    }
+</style>
+
+<div class="pi-comment">
+    <div class="pi-comment-header"><?php _e('Comment edit') ?></div>
+    <div class="media">
+        <a class="pull-left" href="<?php echo $url ?>">
+            <img class="media-object" src="<?php echo $this->escape($avatar) ?>">
+        </a>
+        <div class="media-body">
+        <?php
+            if ($post) {
+        ?>
+            <div>
+                <span class="pi-comment-user">
+                    <a href="<?php echo $post['user']['url'] ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
+                        <?php echo $post['user']['name'] ?>
+                    </a>
+                </span>
+                <span class="pull-right muted pi-comment-time"><?php echo date('Y/m/d H:i', $post['time']) ?></span>
+            </div>
+            <div class="pi-comment-desc">
+                <span class="muted"><?php _e('Commented on ') ?></span>
+                <a class="highlight" href="<?php echo $target['url'] ?>" title="<?php echo $target['title'] ?>">
+                    <?php echo $target['title'] ?>
+                </a>
+            </div>
+            <?php echo $this->form()->openTag($form) ?>
+            <div class="form-textarea">
+                <textarea placeholder="<?php _e('Type your content') ?>" name="content"><?php echo $form->get('content')->getValue() ?></textarea>
+            </div>
+            <div class="pull-right">
+                <a href="<?php echo $redirect ?>" class="form-cancel highlight"><?php _e('Cancel') ?></a>
+                <input class="btn form-submit" type="submit" value="<?php _e('Save') ?>" name="submit">
+            </div>
+            <?php 
+                foreach (array(
+                    'id', 'root', 'reply', 'module', 'category',
+                    'item', 'redirect', 'markup') as $hiddenElement) {
+                    echo $this->formElement($form->get($hiddenElement));
+                }
+            ?>
+            <?php echo $this->form()->closeTag() ?>
+        <?php
+            } else {
+        ?>
+            <div class="pi-comment-none"><?php _e('No content.') ?></div>
+        <?php
+            }
+        ?>
+        </div>
+    </div>
+</div>

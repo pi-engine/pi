@@ -66,14 +66,21 @@ textarea:focus {
 .pi-comment-user {
     font-weight: bold;
     margin-right: 20px;
+    font-size: 14px;
+}
+.pi-comment-time {
+    font-size: 13px;
+    font-family: 'Arial';
 }
 .pi-comment-content {
     margin-top: 10px;
     color: #333333;
+    font-size: 14px;
 }
 .pi-comment-operation {
     margin-top: 10px;
     visibility: hidden;
+    font-size: 13px;
 }
 .pi-comment-operation .operation {
     margin-right: 10px;
@@ -105,4 +112,15 @@ textarea:focus {
     font-size: 14px;
     font-weight: bold;
     margin: 10px 0 20px 0;
+}
+
+.pi-comment-desc {
+    margin: 10px 0 0 0;
+    font-size: 13px;
+}
+.form-cancel {
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 10px;
 }
