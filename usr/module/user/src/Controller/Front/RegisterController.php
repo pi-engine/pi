@@ -94,7 +94,10 @@ class RegisterController extends ActionController
                     $link
                 );
 
-                Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+                $message = Pi::service('mail')->message($subject, $body, $type);
+                $message->addTo($to);
+                $transport = Pi::service('mail')->transport();
+                $transport->send($message);
                 $result['status']  = 1;
                 $result['message'] = __('Register successfully');
 
@@ -252,7 +255,10 @@ class RegisterController extends ActionController
         );
 
         // Send...
-        Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($to);
+        $transport = Pi::service('mail')->transport();
+        $transport->send($message);
 
         $result['status'] = 1;
         $result['message'] = __('Resend activate mail successfully');
