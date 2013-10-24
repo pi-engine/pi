@@ -7,13 +7,13 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\System\Controller\Admin;
+namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\System\Form\RoleForm;
-use Module\System\Form\RoleFilter;
+use Module\User\Form\RoleForm;
+use Module\User\Form\RoleFilter;
 
 /**
  * Role controller
@@ -102,7 +102,9 @@ class RoleController extends ActionController
     public function listAction()
     {
         $roles = $this->getRoles();
-
+        if (isset($roles['guest'])) {
+            unset($roles['guest']);
+        }
         $rowset = Pi::model('user_role')->count(
             array('role' => array_keys($roles)),
             'role'
@@ -358,7 +360,7 @@ class RoleController extends ActionController
             if (is_numeric($uid)) {
                 $uid = (int) $uid;
             } else {
-                $user = Pi::service('user')->getUser($uid, 'identity');
+                $user = Pi::service('user')->getUser($uid, 'name');
                 if ($user) {
                     $uid = $user->get('id');
                 } else {
@@ -453,41 +455,4 @@ class RoleController extends ActionController
         */
     }
 
-    public function ____userAction()
-    {
-        $role = $this->params('name', 'member');
-
-        $model = Pi::model('user_role');
-
-        $page   = _get('page', 'int') ?: 1;
-        $limit  = 3;
-        $offset = ($page - 1) * $limit;
-
-        $select = $model->select();
-        $select->where(array('role' => $role))->limit($limit)->offset($offset);
-        $rowset = $model->selectWith($select);
-        $uids = array();
-        foreach ($rowset as $row) {
-            $uids[] = (int) $row['uid'];
-        }
-        $users = Pi::service('user')->get($uids, array('name'));
-        $avatars = Pi::service('avatar')->getList($uids, 'small');
-        array_walk($users, function (&$user, $uid) use ($avatars) {
-            //$user['avatar'] = $avatars[$uid];
-            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
-        });
-        $count = count($uids);
-        if ($count >= $limit) {
-            $count = $model->count(array('role' => $role));
-        }
-        $paginator = array(
-            'page'    => $page,
-            'count'   => $count,
-            'limit'   => $limit
-        );
-        return array(
-            'users'      => array_values($users),
-            'paginator' => $paginator,
-        );
-    }
 }

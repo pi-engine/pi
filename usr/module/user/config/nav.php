@@ -17,15 +17,48 @@ return array(
     'front'   => array(
     ),
     'admin' => array(
-        'users' => array(
-            'label'         => _t('Users'),
+        'user'  => array(
+            'label'         => _t('User'),
             'permission'    => array(
-                'resource'  => 'users',
+                'resource'  => 'account',
             ),
             'route'         => 'admin',
             'module'        => 'user',
             'controller'    => 'index',
             'action'        => 'index',
+        ),
+
+        'role'   => array(
+            'label'         => _t('Role'),
+            'permission'    => array(
+                'resource'  => 'role',
+            ),
+            'route'         => 'admin',
+            'module'        => 'user',
+            'controller'    => 'role',
+
+            'pages'     => array(
+                'front'      => array(
+                    'label'         => _t('Front role'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'role',
+                    'params'        => array(
+                        'type'      => 'front',
+                    ),
+                    'visible'       => 0,
+                ),
+                'admin'  => array(
+                    'label'         => _t('Admin role'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'role',
+                    'params'        => array(
+                        'type'      => 'admin',
+                    ),
+                    'visible'       => 0,
+                ),
+            ),
         ),
 
         'profile' => array(

@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\System\Form;
+namespace Module\User\Form;
 
 use Pi\Form\Form as BaseForm;
 

@@ -140,6 +140,7 @@ return array(
         ),
     ),
 
+    /*
     'role'   => array(
         'label'         => _t('Roles'),
         'permission'    => array(
@@ -217,6 +218,28 @@ return array(
             ),
         ),
     ),
+    */
+
+    'cache'     => array(
+        'label'         => _t('Cache'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'cache',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
+
+    'asset'     => array(
+        'label'         => _t('Asset'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'asset',
+        'action'        => 'index',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
 
     'toolkit'   => array(
         'label'         => _t('Toolkit'),
@@ -225,26 +248,10 @@ return array(
         ),
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'cache',
+        'controller'    => 'audit',
         'action'        => 'index',
 
         'pages'     => array(
-            'cache'     => array(
-                'label'         => _t('Cache flush'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'cache',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
-            'asset'     => array(
-                'label'         => _t('Asset publish'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'asset',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
             'audit'     => array(
                 'label'         => _t('Audit'),
                 'route'         => 'admin',
@@ -257,7 +264,7 @@ return array(
                 'label'         => _t('Mailing'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'mailing',
+                'controller'    => 'mail',
                 'action'        => 'index',
                 'visible'       => 0,
             ),
