@@ -251,7 +251,7 @@
 
     $scope.activeAction = function (user) {
       if (user.time_activated) return;
-      if (!confirm(config.t.CONFIRM_ACTIVATED)) return;
+      if (!confirm(config.t.CONFIRM_ACTIVATE)) return;
       server.active(user.id).success(function (data) {
         if (data.status) {
           user.time_activated = 1;

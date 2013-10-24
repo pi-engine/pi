@@ -124,3 +124,10 @@ textarea:focus {
     vertical-align: bottom;
     margin-right: 10px;
 }
+
+.nav-tabs a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0088cc;
+    font-family: helvetica;
+}
