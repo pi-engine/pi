@@ -24,7 +24,7 @@
 * local message
 * local avatar
 
-### remote mode:
+### Client mode:
 * remote account
 * remote profile
 * local front role
