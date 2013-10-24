@@ -88,19 +88,30 @@ class ListController extends ActionController
             'count'     => $count,
             'posts'     => $posts,
             'paginator' => $paginator,
+            'active'    => $active,
         ));
+        
+        $allCount = null === $active
+            ? $count 
+            : Pi::service('comment')->getCount(array('active' => null));
+        $activeCount = 1 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array('active' => 1));
+        $inactiveCount = 0 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array('active' => 0));
 
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts'),
+                'label'     => __('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                 ))
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts'),
+                'label'     => __('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'active'    => 1,
@@ -108,7 +119,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts'),
+                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'active'    => 0,

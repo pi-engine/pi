@@ -1,0 +1,36 @@
+.pi-comment-batch-operation {
+    margin-left: 10px;
+}
+input.check-all {
+    margin-right: 10px;
+}
+.pi-comment-list {
+    margin-top: 20px;
+}
+.pi-comment-list td {
+    padding: 10px;
+}
+.pi-comment-list .comment-important {
+    background-color: #eeeeee;
+}
+.pi-comment-content {
+    margin-top: 10px;
+    color: #333333;
+}
+.pi-comment-none {
+    height: 140px;
+    line-height: 140px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #999999;
+}
+.one-action {
+    margin-top: 10px;
+}
+.one-action .operation {
+    margin-right: 10px;
+}
+.operation i {
+    margin-right: 2px;
+}

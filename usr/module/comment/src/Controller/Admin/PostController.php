@@ -233,6 +233,32 @@ class PostController extends ActionController
             return $result;
         }
     }
+    
+    /**
+     * Batch enable or disable comment
+     * 
+     * @return viewModel 
+     */
+    public function batchApproveAction()
+    {
+        $id       = $this->params('id', '');
+        $ids      = array_filter(explode(',', $id));
+        $flag     = $this->params('flag', 0);
+        $redirect = $this->params('redirect', '');
+
+        $model  = $this->getModel('post');
+        $model->update(array('active' => $flag), array('id' => $ids));
+        
+        if ($redirect) {
+            $redirect = urldecode($redirect);
+            return $this->redirect()->toUrl($redirect);
+        } else {
+            // Go to list page
+            return $this->redirect()->toRoute('', array(
+                'action'     => 'index',
+            ));
+        }
+    }
 
     /**
      * Delete a comment post
@@ -264,6 +290,31 @@ class PostController extends ActionController
             );
 
             return $result;
+        }
+    }
+    
+    /**
+     * Batch delete comments
+     * 
+     * @return viewModel 
+     */
+    public function batchDeleteAction()
+    {
+        $id       = $this->params('id', '');
+        $ids      = array_filter(explode(',', $id));
+        $redirect = $this->params('redirect', '');
+
+        $model  = $this->getModel('post');
+        $model->delete(array('id' => $ids));
+        
+        if ($redirect) {
+            $redirect = urldecode($redirect);
+            return $this->redirect()->toUrl($redirect);
+        } else {
+            // Go to list page
+            return $this->redirect()->toRoute('', array(
+                'action'     => 'index',
+            ));
         }
     }
 }
