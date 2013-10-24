@@ -147,7 +147,10 @@ class PasswordController extends ActionController
                     $userRow->identity,
                     $link
                 );
-                Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+                $message = Pi::service('mail')->message($subject, $body, $type);
+                $message->addTo($to);
+                $transport = Pi::service('mail')->transport();
+                $transport->send($message);
 
                 return array(
                     'status'  => 1,

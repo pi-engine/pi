@@ -28,6 +28,7 @@ class BuildController extends ActionController
         $this->addQuickLink();
         $this->addGroup();
         $this->addActivity();
+        $this->setFields();
 
         return $this->jump(array(
             'controller'    => 'index',
@@ -759,6 +760,12 @@ class BuildController extends ActionController
                 return;
             }
         }
+    }
+
+    protected function setFields()
+    {
+        $model = $this->getModel('field');
+        $model->update(array('is_edit' => 1, 'is_display' => 1), array('type' => 'compound'));
     }
 
     /**
