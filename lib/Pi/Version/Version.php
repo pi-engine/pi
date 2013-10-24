@@ -114,7 +114,7 @@ class Version
      * comparing the version numbers with version_compare().
      *
      * If $service is set to VERSION_SERVICE_PI this will fall back to
-     * calling the classic style of version retreival.
+     * calling the classic style of version retrieval.
      *
      *
      * @see http://developer.github.com/v3/git/refs/#get-all-references

@@ -214,7 +214,7 @@ class Local extends System
      */
     public function getUserModel($uid, $field = 'id')
     {
-        $model = new UserModel($uid, $field);
+        $model = Pi::api('user', 'user')->getUser($uid, $field);
 
         return $model;
     }

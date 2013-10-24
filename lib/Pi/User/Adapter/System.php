@@ -373,7 +373,7 @@ class System extends AbstractAdapter
      */
     public function getUserModel($uid, $field = 'id')
     {
-        $model = new UserModel($uid, $field);
+        $model = Pi::api('system', 'user')->getUser($uid, $field);
 
         return $model;
     }

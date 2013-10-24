@@ -37,7 +37,7 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get user model
      *
-     * @param int       $uid
+     * @param int|string $uid
      * @param string    $field
      *
      * @return UserModel
