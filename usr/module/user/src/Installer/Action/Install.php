@@ -95,7 +95,7 @@ class Install extends BasicAction
         try {
             $result = Pi::db()->query($sql);
         } catch (\Exception $exception) {
-            $e->setResult('user', array(
+            $this->setResult('user', array(
                 'status'    => false,
                 'message'   => 'User profile generation failed: '
                 . $exception->getMessage(),

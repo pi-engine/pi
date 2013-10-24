@@ -12,7 +12,11 @@ return array(
     'admin' => array(
         array(
             'controller'    => 'index',
-            'permission'    => 'users',
+            'permission'    => 'user',
+        ),
+        array(
+            'controller'    => 'role',
+            'permission'    => 'role',
         ),
         array(
             'controller'    => 'profile',

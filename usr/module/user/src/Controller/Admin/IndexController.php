@@ -133,13 +133,13 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition['activated']       = 'pending';
+        $condition['activated']     = 'pending';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
         $condition['admin_role']    = _get('admin_role') ?: '';
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['search']        = _get('search') ?: '';
-        $condition['name']      = _get('name') ?: '';
+        $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
         // Get user ids

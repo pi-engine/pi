@@ -20,7 +20,7 @@ return array(
         'user'  => array(
             'label'         => _t('User'),
             'permission'    => array(
-                'resource'  => 'account',
+                'resource'  => 'user',
             ),
             'route'         => 'admin',
             'module'        => 'user',

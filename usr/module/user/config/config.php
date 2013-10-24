@@ -8,7 +8,7 @@
  */
 
 /**
- * Route specs
+ * Config specs
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
