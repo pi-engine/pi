@@ -140,9 +140,8 @@ return array(
         ),
     ),
 
-    /*
     'role'   => array(
-        'label'         => _t('Roles'),
+        'label'         => _t('Role'),
         'permission'    => array(
             'resource'  => 'role',
         ),
@@ -152,7 +151,7 @@ return array(
 
         'pages'     => array(
             'front'      => array(
-                'label'         => _t('Front roles'),
+                'label'         => _t('Front'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -162,7 +161,7 @@ return array(
                 'visible'       => 0,
             ),
             'admin'  => array(
-                'label'         => _t('Admin roles'),
+                'label'         => _t('Admin'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -174,6 +173,7 @@ return array(
         ),
     ),
 
+    /*
     'user'  => array(
         'label'         => _t('Users'),
         'permission'    => array(

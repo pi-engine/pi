@@ -7,13 +7,13 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User\Controller\Admin;
+namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\User\Form\RoleForm;
-use Module\User\Form\RoleFilter;
+use Module\System\Form\RoleForm;
+use Module\System\Form\RoleFilter;
 
 /**
  * Role controller
@@ -21,7 +21,11 @@ use Module\User\Form\RoleFilter;
  * Feature list:
  *
  *  1. List of roles with inheritance
- *  2. User list of a role
+ *  2. Add a role
+ *  3. Clone a role and its rules
+ *  4. Edit a role
+ *  5. Activate/deactivate a role
+ *  6. Delete a role
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -98,9 +102,12 @@ class RoleController extends ActionController
     public function listAction()
     {
         $roles = $this->getRoles();
+        /*
         if (isset($roles['guest'])) {
             unset($roles['guest']);
         }
+        */
+        /*
         $rowset = Pi::model('user_role')->count(
             array('role' => array_keys($roles)),
             'role'
@@ -109,12 +116,15 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $count[$row['role']] = (int) $row['count'];
         }
+        */
 
         $frontRoles = array();
         $adminRoles = array();
         foreach ($roles as $role) {
+            /*
             $role['count'] = isset($count[$role['name']])
                 ? (int) $count[$role['name']] : 0;
+            */
             if ('admin' == $role['section']) {
                 $adminRoles[] = $role;
             } else {
@@ -133,7 +143,7 @@ class RoleController extends ActionController
      *
      * @return void|array
      */
-    public function ____addAction()
+    public function addAction()
     {
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -194,7 +204,7 @@ class RoleController extends ActionController
      *
      * @return array|void
      */
-    public function ____editAction()
+    public function editAction()
     {
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -252,7 +262,7 @@ class RoleController extends ActionController
      *
      * @return array
      */
-    public function ____activateAction()
+    public function activateAction()
     {
         $status = 1;
         $data = 0;
@@ -285,7 +295,7 @@ class RoleController extends ActionController
      *
      * @return int
      */
-    public function ____renameAction()
+    public function renameAction()
     {
         $id = $this->params('id');
         $title = $this->params('title');
@@ -301,7 +311,7 @@ class RoleController extends ActionController
      *
      * @return array
      */
-    public function ____deleteAction()
+    public function deleteAction()
     {
         $status = 1;
         $id = $this->params('id');
@@ -330,7 +340,7 @@ class RoleController extends ActionController
      *
      * @return int
      */
-    public function ____checkExistAction()
+    public function checkExistAction()
     {
         $role = _get('name');
         $row = Pi::model('role')->find($role, 'name');
@@ -344,7 +354,7 @@ class RoleController extends ActionController
     /**
      * Users of a role
      */
-    public function userAction()
+    public function ____userAction()
     {
         $role   = $this->params('name', 'member');
         $op     = $this->params('op');

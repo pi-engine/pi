@@ -8,19 +8,17 @@
 }
 </style>
 <legend>{{'FRONT_TITLE' | translate}}</legend>
-        <!--
 <button class="btn" ng-click="modal('front')">{{'FRONT_ADD' | translate}}</button>
-        -->
 <table class="table table-striped system-table">
     <thead>
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
+        <!--
         <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
-          <!--
+        -->
         <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
-          -->
     <tbody>
       <tr ng-repeat="role in frontRoles">
         <td>{{role.name}}
@@ -32,9 +30,10 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
+        <!--
         <td class="text-center">
           <a href="#!/{{role.name}}/users">{{role.count}}</a>
-          <!--
+        -->
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -45,22 +44,19 @@
                   ng-click="deleteAction(role, $index)">
             {{'DELETE' | translate}}
           </button>
-        -->
 </table>
 <legend>{{'ADMIN_TITLE' | translate}}</legend>
-        <!--
 <button class="btn" ng-click="modal('admin')">{{'ADMIN_ADD' | translate}}</button>
-        -->
 <table class="table table-striped system-table">
     <thead>
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
           <!--
+        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
+          -->
         <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
-          -->
     <tbody>
       <tr ng-repeat="role in adminRoles">
         <td>{{role.name}}
@@ -72,9 +68,10 @@
             <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
                    ng-show="role.editTitle" pi-focus="role.editTitle">
           </form>
+        <!--
         <td class="text-center">
           <a href="#!/{{role.name}}/users">{{role.count}}</a>
-        <!--
+        -->
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -85,9 +82,7 @@
                   ng-click="deleteAction(role, $index)">
             {{'DELETE' | translate}}
           </button>
-        -->
 </table>
-        <!--
 <div class="modal" ng-if="entity" style="width: 600px; margin-left: -300px;">
   <form class="form-horizontal" name="roleForm" ng-submit="addRoleAction()" 
         style="margin-bottom: 0;" id="popup-form" novalidate>
@@ -110,7 +105,7 @@
           </span>
           <span class="help-inline" 
             ng-show="roleForm.name.$error.unique">
-            {{'ROLE_NAME_TAKEN' | translate}}
+            {{'ROLE_NAME_TOKEN' | translate}}
           </span>
         </div>
       </div>
@@ -161,4 +156,3 @@
 </div>
 <div class="modal-backdrop fade in" ng-if="entity" ng-click="cancelModal()">
 </div>
-        -->

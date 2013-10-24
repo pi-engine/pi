@@ -82,6 +82,7 @@ return array(
                 //'admin',
             ),
         ),
+        /*
         // Users
         'user'    => array(
             'title'         => __('Operation: users'),
@@ -89,6 +90,7 @@ return array(
                 //'admin',
             ),
         ),
+        */
         // maintenance
         'maintenance'   => array(
             'title'         => __('Operation: maintenance'),
