@@ -142,7 +142,7 @@ class ListController extends ActionController
     {
         $my = _get('my', 'int');
         if ($my) {
-            $uid    = Pi::user()->getIdentity();
+            $uid = Pi::user()->getId();
             if (!$uid) {
                 $redirect = $this->getRequest()->getRequestUri();
                 $url = Pi::service('user')->getUrl('login', $redirect);
@@ -156,7 +156,7 @@ class ListController extends ActionController
                 'admin' => false,
             );
         } else {
-            $uid        = _get('uid', 'int') ?: Pi::user()->getIdentity();
+            $uid        = _get('uid', 'int') ?: Pi::user()->getId();
             $active     = 1;
             $opOptions  = $this->config('display_operation');
         }
@@ -320,7 +320,7 @@ class ListController extends ActionController
         */
         $my = _get('my', 'int');
         if ($my) {
-            $uid    = Pi::user()->getIdentity();
+            $uid = Pi::user()->getId();
             if (!$uid) {
                 $redirect = $this->getRequest()->getRequestUri();
                 $url = Pi::service('user')->getUrl('login', $redirect);
@@ -464,7 +464,7 @@ class ListController extends ActionController
 
         } else  {
             $my     = 1;
-            $uid    = Pi::user()->getIdentity();
+            $uid    = Pi::user()->getId();
             if (!$uid) {
                 $redirect = $this->getRequest()->getRequestUri();
                 $url = Pi::service('user')->getUrl('login', $redirect);

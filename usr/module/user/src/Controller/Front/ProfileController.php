@@ -32,7 +32,7 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         if (!$uid) {
             $this->jump(
                 array(
@@ -87,7 +87,7 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get viewer role: public member follower following owner
-        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        $role = Pi::user()->hasIdentity() ? 'member' : 'public';
 
         // Filter field according to privacy setting
         $profileGroup = Pi::api('user', 'privacy')->filterProfile(
@@ -133,7 +133,7 @@ class ProfileController extends ActionController
      */
     public function editProfileAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         $groupId   = $this->params('group', '');
         $status = 0;
         $isPost = 0;
@@ -230,7 +230,7 @@ class ProfileController extends ActionController
     public function editCompoundAction()
     {
         $groupId      = $this->params('group', '');
-        $uid          = Pi::service('user')->getIdentity();
+        $uid          = Pi::service('user')->getId();
         $errorMsg     = '';
 
         // Redirect login page if not logged in
@@ -372,7 +372,7 @@ class ProfileController extends ActionController
         $row        = $this->getModel('display_group')->find($compoundId, 'id');
         $compound   = $row ? $row->compound : '';
         $set        = _post('set');
-        $uid        = Pi::user()->getIdentity();
+        $uid        = Pi::user()->getId();
         $message    = array(
             'status' => 0,
         );
@@ -412,7 +412,7 @@ class ProfileController extends ActionController
             'message' => ''
         );
 
-        $uid        = Pi::user()->getIdentity();
+        $uid        = Pi::user()->getId();
         $compoundId = _post('compound', '');
         $set        = _post('set');
 
@@ -447,7 +447,7 @@ class ProfileController extends ActionController
      */
     public function addCompoundItemAction()
     {
-        $uid        = Pi::user()->getIdentity();
+        $uid        = Pi::user()->getId();
         $compoundId = _post('group', '');
 
         if (!$uid || !$compoundId) {

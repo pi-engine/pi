@@ -32,7 +32,7 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
 
         // Redirect login page if not logged in
         if (!$uid) {

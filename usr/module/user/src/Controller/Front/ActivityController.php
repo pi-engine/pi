@@ -28,7 +28,7 @@ class ActivityController extends ActionController
     {
         $name     = _get('name');
         $uid      = _get('uid');
-        $ownerUid = Pi::user()->getIdentity();
+        $ownerUid = Pi::user()->getId();
         $limit    = 10;
         $isOwner  = 0;
 
@@ -55,7 +55,7 @@ class ActivityController extends ActionController
         if ($isOwner) {
             $role = 'owner';
         } else {
-            $role = Pi::user()->getIdentity() ? 'member' : 'public';
+            $role = Pi::user()->hasIdentity() ? 'member' : 'public';
         }
         $user = Pi::api('user', 'privacy')->filterProfile(
             $uid,

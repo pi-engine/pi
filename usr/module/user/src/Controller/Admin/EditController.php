@@ -223,7 +223,7 @@ class EditController extends ActionController
      */
     public function deleteCompoundAction()
     {
-        $uid      = Pi::user()->getIdentity();
+        $uid      = Pi::user()->getId();
         $compound = _post('compound', '');
         $set      = _post('set');
 

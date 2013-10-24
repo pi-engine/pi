@@ -43,7 +43,7 @@ class LoginController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('authentication')->getIdentity()
+                'identity'  => Pi::service('user')->getIdentity()
             ));
             return;
         }

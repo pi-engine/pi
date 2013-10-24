@@ -406,7 +406,7 @@ class Api extends AbstractApi
      *      ),
      *      'target'    => true,
      *      'operation'     => array(
-     *          'uid'       => Pi::service('user')->getIdentity(),
+     *          'uid'       => Pi::service('user')->getId(),
      *          'section'   => 'admin',
      *          'level'     => 'author',
      *      ),
@@ -506,7 +506,7 @@ class Api extends AbstractApi
             }
             if (null === $uid) {
                 if (null === $user) {
-                    $uid = Pi::service('user')->getIdentity();
+                    $uid = Pi::service('user')->getId();
                 } else {
                     $uid = $user->get('id');
                 }

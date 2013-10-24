@@ -29,7 +29,7 @@ class PrivacyController extends ActionController
     {
 
         // Redirect login page if not logged in
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         if (!$uid) {
             $this->jump(
                 'user',
@@ -61,7 +61,7 @@ class PrivacyController extends ActionController
      */
     public function setPrivacyAction()
     {
-        $uid   = (int) Pi::user()->getIdentity();
+        $uid   = (int) Pi::user()->getId();
         $field = _post('field');
         $value = (int) _post('value');
 

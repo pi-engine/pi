@@ -26,7 +26,7 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $id = Pi::user()->getIdentity();
+        $id = Pi::user()->getId();
         if (!$id) {
             $this->jump(
                 array('controller' => 'login'),
@@ -40,7 +40,7 @@ class ProfileController extends ActionController
         $userRow = Pi::user()->getUser();
         $user = array(
             __('ID')        => $userRow->id,
-            __('Identity')  => $userRow->identity,
+            __('Username')  => $userRow->identity,
             __('Email')     => $userRow->email,
             __('Name')      => $userRow->name,
             __('Role')      => __($roleRow->title),
@@ -91,7 +91,7 @@ class ProfileController extends ActionController
         $roleRow = Pi::model('role')->find($role, 'name');
         $user = array(
             __('ID')        => $row->id,
-            __('Identity')  => $row->identity,
+            __('Username')  => $row->identity,
             __('Email')     => $row->email,
             __('Name')      => $row->name,
             __('Role')      => __($roleRow->title),

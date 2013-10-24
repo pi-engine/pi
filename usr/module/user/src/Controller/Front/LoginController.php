@@ -34,8 +34,9 @@ class LoginController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity(false)
+                'identity'  => Pi::service('user')->getIdentity()
             ));
+
             return;
         }
 
@@ -97,7 +98,7 @@ class LoginController extends ActionController
      */
     public function logoutAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);

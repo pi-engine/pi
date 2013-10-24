@@ -47,8 +47,8 @@ class Block
         }
 
         return array(
-            'identity'  => Pi::service('user')->getIdentity(false),
-            'id'        => Pi::service('user')->getIdentity(),
+            'identity'  => Pi::service('user')->getIdentity(),
+            'id'        => Pi::service('user')->getId(),
         );
     }
 
@@ -72,10 +72,9 @@ class Block
             $params = null;
         }
         if (Pi::service('user')->hasIdentity()) {
-            $name = Pi::service('user')->getUser()->get('name')
-                ?: Pi::service('user')->getIdentity(false);
+            $name = Pi::service('user')->getUser()->get('name');
             $user = array(
-                'uid'       => Pi::service('user')->getIdentity(),
+                'uid'       => Pi::service('user')->getId(),
                 'name'      => $name,
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('user')->getUrl('logout', $params),
