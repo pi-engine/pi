@@ -197,7 +197,7 @@ class ListController extends ActionController
             $navTabs = array(
                 array(
                     'active'    => null === $active,
-                    'label'     => __('All Posts'),
+                    'label'     => __('My comments'),
                     'href'      => $this->url('', array(
                         'action'    => 'user',
                         'my'        => 1,
@@ -205,7 +205,7 @@ class ListController extends ActionController
                 ),
                 array(
                     'active'    => 1 == $active,
-                    'label'     => __('Active Posts'),
+                    'label'     => __('My active comments'),
                     'href'      => $this->url('', array(
                         'action'    => 'user',
                         'my'        => 1,
@@ -214,7 +214,7 @@ class ListController extends ActionController
                 ),
                 array(
                     'active'    => 0 === $active,
-                    'label'     => __('Inactive Posts'),
+                    'label'     => __('My pending comments'),
                     'href'      => $this->url('', array(
                         'action'    => 'user',
                         'my'        => 1,
