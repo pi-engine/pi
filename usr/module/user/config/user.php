@@ -28,9 +28,6 @@ return array(
             'edit'      => array(
                 'validators'    => array(
                     array(
-                        'name'      => 'StringLength',
-                    ),
-                    array(
                         'name'      => 'Module\User\Validator\Username',
                     ),
                 ),
