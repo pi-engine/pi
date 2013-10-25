@@ -1,0 +1,72 @@
+<form class="form-inline" ng-submit="filterAction()">
+    <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filter.identity">
+    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
+  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
+  <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
+    <i class="icon-search"></i>
+  </button>
+</form>
+<form class="form-inline" ng-submit="filterAction()">
+    <select class="input-medium" ng-model="filter.front_role"
+            ng-options="item.name as item.title for item in frontRoles">
+        <option value="">{{'FRONT_ROLE' | translate}}
+    </select>
+    <select class="input-medium" ng-model="filter.admin_role"
+            ng-options="item.name as item.title for item in adminRoles">
+        <option value="">{{'ADMIN_ROLE' | translate}}
+        <option value="_any">{{'ANY_ADMIN' | translate}}
+        <option value="_none">{{'NONE_ADMIN' | translate}}
+    </select>
+    <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
+        <i class="icon-search"></i>
+    </button>
+</form>
+<div class="clearfix form-inline" style="margin: 0 20px 20px 8px;">
+  <strong class="pull-right">{{paginator.count}} members</strong>
+  <input type="checkbox" style="margin-right: 6px;"
+         ng-model="allChecked" ng-click="markAll(allChecked)">
+  <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+          ng-options="item.title group by item.type for item in roles">
+    <option value="">{{'ASSIGN_ROLE' | translate}}
+  </select>
+  <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+          ng-options="item.title group by item.type for item in roles">
+    <option value="">{{'UNASSIGN_ROLE' | translate}}
+  </select>
+</div>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 14px;">
+        <th width="5%" class="text-center">{{'ID' | translate}}
+        <th>{{'USERNAME' | translate}}
+        <th>{{'DISPLAY_NAME' | translate}}
+        <th width="15%">{{'EMAIL' | translate}}
+        <th width="8%">{{'ROLE' | translate}}
+        <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td>
+          <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
+        <td class="text-center">
+          {{user.id}}
+        <td>
+          {{user.identity}}
+        <td>{{user.name}}
+        <td>{{user.email}}
+        <td>
+          <span ng-if="user.front_roles" tooltip="{{user.front_roles}}"
+                style="padding-right: 5px;">
+            <i class="icon-user icon-large"></i>
+          </span>
+          <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
+                style="padding-left: 5px;">
+            <i class="icon-user-md icon-large"></i>
+          </span>
+        <td class="text-center">
+          {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+</table>
+<pagination total-items="paginator.count" page="paginator.page" max-size="10"
+            ng-if="paginator.count" 
+            class="pagination" boundary-links="true" items-per-page="paginator.limit">
+</pagination>

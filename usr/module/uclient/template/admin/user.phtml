@@ -1,0 +1,57 @@
+<?php
+$this->css($this->assetModule('script/admin.css'));
+$this->angular(array(
+    'angular-route.js',
+    'ui-bootstrap-custom-tpls-0.6.0.js',
+    'pi.js',
+    'i18n'
+));
+/*
+$locale = Pi::config('locale');
+if ($locale != 'en') {
+    $this->angular('i18n/angular-locale_' . $locale . '.js');
+}
+*/
+?>
+<div ng-app="userListModule">
+    <div pi-message="alert"></div>
+    <div ng-view></div>
+</div>
+<dl class="page-header">Links</dl>
+<script>
+angular
+    .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        t: {
+            SELECT_ROLES: '<?php _e('Select roles'); ?>',
+            ANY_ADMIN: '<?php _e('Any'); ?>',
+            NONE_ADMIN: '<?php _e('None'); ?>',
+            APPLY: '<?php _e('Apply'); ?>',
+            USERNAME: '<?php _e('Username'); ?>',
+            DISPLAY_NAME: '<?php _e('Display name'); ?>',
+            ROLE: '<?php _e('Role'); ?>',
+            REGISTER_TIME: '<?php _e('Register time'); ?>',
+            RETURN: '<?php _e('Back to users list'); ?>',
+            EMAIL: '<?php _e('Email'); ?>',
+            FRONT_ROLE: '<?php _e('Front role'); ?>',
+            ADMIN_ROLE: '<?php _e('Admin role'); ?>',
+            ASSIGN_ROLE: '<?php _e('Assign role'); ?>',
+            UNASSIGN_ROLE: '<?php _e('Remove role'); ?>',
+            ASSIGN_FRONT_ROLE: '<?php _e('Front role'); ?>',
+            ASSIGN_ADMIN_ROLE: '<?php _e('Admin role'); ?>',
+            SUBMIT: '<?php _e('Submit'); ?>',
+            REQUIRED: '<?php _e('required'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
+            USER_ID: '<?php _e('User ID'); ?>',
+            NONE_USER: '<?php _e('No user matched your request.'); ?>',
+            FROM: '<?php _e('From'); ?>',
+            TO: '<?PHP _e('To'); ?>'
+        },
+        roles: <?php echo json_encode($roles); ?>,
+        today: '<?php echo date("Y-m-d"); ?>'
+    });
+</script>
+<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
+<script src="<?php echo $this->assetModule('admin/user' . $debug . '.js'); ?>"></script>

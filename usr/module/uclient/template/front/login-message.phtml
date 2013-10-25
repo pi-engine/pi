@@ -1,0 +1,11 @@
+
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
+
+
+<div class="login-message">
+    <?php
+    $logout_url = $this->url('', array('controller' => 'login', 'action' => 'logout'));
+    $logout_string = sprintf('<a href="%s" title="%s">%s</a>', $logout_url, __('logout'), __('logout'));
+    echo sprintf(__('You have been logged on with account <strong>%s</strong>, please %s to re-login.'), $identity, $logout_string);
+    ?>
+</div>
