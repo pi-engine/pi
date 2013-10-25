@@ -1,24 +1,30 @@
-<div class="page-header"><?php echo _escape($title); ?></div>
-
-<dl class="dl-horizontal">
+<table class="table table-striped" style="margin-top: 20px">
+    <tr>
+        <th><?php _e('Module') ?></th>
+        <th><?php _e('Category') ?></th>
+        <th><?php _e('Enable') ?></th>
+    </tr>
     <?php foreach ($modules as $name => $data) { ?>
-        <dl>
-            <?php echo _escape($data['title']); ?>
-            <a href="<?php echo $data['url']; ?>" title="<?php echo _e('Posts'); ?>" target="_blank">
-                <?php echo _e('Posts'); ?>
-            </a>
-        </dl>
-        <?php foreach ($data['categories'] as $category => $cData) { ?>
-        <dt><?php echo _escape($cData['title']); ?></dt>
-        <dd>
-            <?php echo $cData['status']; ?>
-            <a href="<?php echo $cData['enable']['url']; ?>" title="<?php echo $cData['enable']['title']; ?>" target="_blank">
-                <?php echo $cData['enable']['title']; ?>
-            </a>
-            <a href="<?php echo $cData['url']; ?>" title="<?php _e('Posts'); ?>" target="_blank">
-                <?php _e('Posts'); ?>
-            </a>
-        </dd>
+    <tr>
+        <td><?php echo $this->escape($name) ?></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <?php foreach ($data['categories'] as $category) { ?>
+    <tr>
+        <td></td>
+        <td><?php echo $category['title'] ?></td>
+        <td>
+            <div class="btn-group">
+                <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
+                    <?php _e('Yes') ?>
+                </a>
+                <a class="btn<?php echo 'disabled' == strtolower($category['status']) ? ' btn-danger' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
+                    <?php _e('No') ?>
+                </a>
+            </div>
+        </td>
+    </tr>
         <?php } ?>
     <?php } ?>
-</dl>
+</table>
