@@ -31,19 +31,6 @@ if (empty($user)) {
 }
 ?>
 
-<style>
-    .comment-title-hidden {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 40%;
-        word-break: keep-all;
-        margin: 0 20px 0 5px;
-        font-weight: bold;
-    }
-</style>
-
 <div class="pi-comment">
     <?php echo $this->tab($tabs); ?>
     
@@ -52,7 +39,7 @@ if (empty($user)) {
     ?>
     <div class="pi-comment-list">
     <?php
-            foreach ($posts as $post) {d($post);
+            foreach ($posts as $post) {
     ?>
         <div class="media<?php echo 0 == $post['active'] ? ' muted' : '' ?>">
             <a class="pull-left" href="<?php echo $user['url'] ?>" target="_blank">
