@@ -39,10 +39,9 @@ class EmailFilter extends InputFilter
                         'useDomainCheck'    => false,
                     ),
                 ),
-                new \Module\User\Validator\UserEmail(array(
-                    'backlist'          => 'pi-engine.org$',
-                    'checkDuplication'  => true,
-                )),
+                array(
+                    'name'      => 'Module\User\Validator\UserEmail',
+                ),
             ),
         ));
 
@@ -55,7 +54,9 @@ class EmailFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                new CredentialVerify(),
+                array(
+                    'name'      => 'Module\User\Validator\Password',
+                ),
             ),
         ));
     }

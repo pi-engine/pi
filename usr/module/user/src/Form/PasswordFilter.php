@@ -22,8 +22,6 @@ class PasswordFilter extends InputFilter
 {
     public function __construct($type = null)
     {
-        $config = Pi::service('registry')->config->read('user', 'general');
-
         $this->add(array(
             'name'          => 'credential',
             'required'      => true,
@@ -44,12 +42,7 @@ class PasswordFilter extends InputFilter
             ),
             'validators'    => array(
                 array(
-                    'name'      => 'StringLength',
-                    'options'   => array(
-                        'encoding'  => 'UTF-8',
-                        'min'       => $config['password_min'],
-                        'max'       => $config['password_max'],
-                    ),
+                    'name'      => 'Module\User\Validator\Password',
                 ),
             ),
         ));

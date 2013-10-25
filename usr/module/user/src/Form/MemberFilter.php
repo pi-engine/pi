@@ -24,9 +24,6 @@ class MemberFilter extends InputFilter
      */
     public function __construct()
     {
-        // Get config data.
-        $config = Pi::service('registry')->config->read('user', 'general');
-
         $this->add(array(
             'name'          => 'identity',
             'required'      => true,
@@ -36,19 +33,7 @@ class MemberFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                array(
-                    'name'      => 'StringLength',
-                    'options'   => array(
-                        'encoding'  => 'UTF-8',
-                        'min'       => $config['uname_min'],
-                        'max'       => $config['uname_max'],
-                    ),
-                ),
-                new \Module\User\Validator\Username(array(
-                    'format'            => $config['uname_format'],
-                    'backlist'          => $config['uname_backlist'],
-                    'checkDuplication'  => true,
-                )),
+
             ),
         ));
 
@@ -61,7 +46,9 @@ class MemberFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                new \Module\User\Validator\Name(),
+                array(
+                    'name' => 'Module\User\Validator\Username',
+                ),
             ),
         ));
 
@@ -75,12 +62,7 @@ class MemberFilter extends InputFilter
             ),
             'validators'    => array(
                 array(
-                    'name'      => 'StringLength',
-                    'options'   => array(
-                        'encoding'  => 'UTF-8',
-                        'min'       => $config['password_min'],
-                        'max'       => $config['password_max'],
-                    ),
+                    'name' => 'Module\User\Validator\Password',
                 ),
             ),
         ));
@@ -121,10 +103,9 @@ class MemberFilter extends InputFilter
                         'useDomainCheck'    => false,
                     ),
                 ),
-                new \Module\User\Validator\UserEmail(array(
-                    'backlist'          => $config['email_backlist'],
-                    'checkDuplication'  => true,
-                )),
+                array(
+                    'name' => 'Module\User\Validator\UserEmail',
+                ),
             ),
         ));
 

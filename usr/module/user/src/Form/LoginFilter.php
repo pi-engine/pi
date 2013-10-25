@@ -21,7 +21,7 @@ class LoginFilter extends InputFilter
 {
     public function __construct()
     {
-        $config = Pi::service('registry')->config->read('user', 'general');
+        $config = Pi::service('registry')->config->read('user', 'account');
 
         $this->add(array(
             'name'          => 'identity',

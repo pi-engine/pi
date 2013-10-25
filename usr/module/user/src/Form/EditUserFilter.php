@@ -28,7 +28,6 @@ class EditUserFilter extends InputFilter
         );
         foreach ($filters as $filter) {
             if ($filter['name'] == 'credential') {
-                $config = Pi::service('registry')->config->read('user', 'general');
                 $this->add(array(
                     'name'          => 'credential',
                     'required'      => false,
@@ -39,12 +38,7 @@ class EditUserFilter extends InputFilter
                     ),
                     'validators'    => array(
                         array(
-                            'name'      => 'StringLength',
-                            'options'   => array(
-                                'encoding'  => 'UTF-8',
-                                'min'       => $config['password_min'],
-                                'max'       => $config['password_max'],
-                            ),
+                            'name'      => 'Module\User\Validator\Password',
                         ),
                     ),
                 ));
