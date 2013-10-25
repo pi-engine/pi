@@ -16,8 +16,6 @@
   <select class="input-medium" ng-model="filter.admin_role"
           ng-options="item.name as item.title for item in adminRoles">
       <option value="">{{'ADMIN_ROLE' | translate}}
-      <option value="_any">{{'ANY_ADMIN' | translate}}
-      <option value="_none">{{'NONE_ADMIN' | translate}}
   </select>
   <select class="input-medium" ng-model="filter.register_time">
     <option value="">{{'REGISTER_TIME' | translate}}
@@ -28,7 +26,6 @@
     <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
     <option value="last_year">{{'LAST_YEAR' | translate}}
   </select>
-    <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filter.identity">
     <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
   <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
   <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
