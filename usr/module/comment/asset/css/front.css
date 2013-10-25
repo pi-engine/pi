@@ -18,7 +18,7 @@ a.highlight {
 .pi-comment-form {
     margin-top: 15px;
 }
-.media > .pull-left {
+div.media > .pull-left {
     margin-right: 15px;
 }
 img {
@@ -135,7 +135,7 @@ textarea:focus {
 }
 
 .comment-title-hidden {
-    display: block;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -143,4 +143,40 @@ textarea:focus {
     word-break: keep-all;
     margin: 0 20px 0 5px;
     font-weight: bold;
+}
+
+.pi-comment-count {
+    width: 40px;
+    border-radius: 4px;
+    background: rgb(204, 204, 204);
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 5px 1px #eeeeee;
+}
+a.pi-comment-count:hover {
+    background: #0088cc;
+    box-shadow: 0 5px 1px rgb(217, 236, 238);
+    text-decoration: none;
+    color: #fff;
+}
+.common-article-title {
+    color: #333333;
+    font-size: 13px;
+}
+.pi-comment-article {
+    margin-bottom: 20px; 
+}
+.pi-comment-article .media {
+    border-bottom: 1px solid #eee;
+}
+.pi-comment-article .media-body {
+    margin-bottom: 20px;
+}
+.pi-comment-article .media:last-child {
+    border: 0;
 }

@@ -141,6 +141,12 @@ class ListController extends ActionController
     public function userAction()
     {
         $uid        = _get('uid');
+        $keyword    = _get('keyword');
+        if (!empty($keyword)) {
+            $uid = $keyword;
+        } else {
+            $keyword = $uid;
+        }
         $userModel  = null;
         if (is_numeric($uid)) {
             $userModel = Pi::service('user')->getUser($uid);
@@ -201,6 +207,7 @@ class ListController extends ActionController
             'posts'     => $posts,
             'paginator' => $paginator,
             'user'      => $user,
+            'active'    => $active,
         ));
         
         // Get count
@@ -253,6 +260,7 @@ class ListController extends ActionController
         );
         $this->view()->assign(array(
             'tabs'      => $navTabs,
+            'keyword'   => $keyword,
         ));
         $this->view()->setTemplate('comment-user');
     }
@@ -340,6 +348,9 @@ class ListController extends ActionController
         );
         $posts = Pi::api('comment')->renderList($posts, array(
             'operation' => 'admin',
+            'user'      => array(
+                'avatar'    => 'medium',
+            ),
         ));
         $count = Pi::service('comment')->getCount($where);
 
@@ -373,12 +384,33 @@ class ListController extends ActionController
             'paginator' => $paginator,
             'module'    => $moduleData,
             'category'  => $categoryData,
+            'active'    => $active,
         ));
+        
+        // Get count
+        $allCount = null === $active
+            ? $count 
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => null)
+            ));
+        $activeCount = 1 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => 1)
+            ));
+        $inactiveCount = 0 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => 0)
+            ));
 
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts'),
+                'label'     => __('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
@@ -387,7 +419,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts'),
+                'label'     => __('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
@@ -397,7 +429,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts'),
+                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,

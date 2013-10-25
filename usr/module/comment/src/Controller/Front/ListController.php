@@ -12,6 +12,7 @@ namespace Module\Comment\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
+use Zend\Db\Sql\Expression;
 
 /**
  * Comment list controller
@@ -386,6 +387,16 @@ class ListController extends ActionController
         $count = Pi::api('comment')->getTargetCount(array(
             'active'    => $active,
         ));
+        
+        $model = $this->getModel('post');
+        $select = $model->select()
+            ->where(array('root' => array_keys($targets)))
+            ->columns(array('root', 'count' => new Expression('count(*)')))
+            ->group(array('root'));
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $targets[$row->root]['count'] = $row->count;
+        }
 
         //$params = (null === $active) ? array() : array('active' => $active);
         if ($my) {
@@ -407,7 +418,7 @@ class ListController extends ActionController
         if (null === $active) {
             $title = __('All commented articles');
         } else {
-            $title = __('All active commented articles');
+            $title = __('Articles with comments');
         }
         $this->view()->assign('comment', array(
             'title'     => $title,
