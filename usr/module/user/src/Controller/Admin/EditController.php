@@ -23,49 +23,55 @@ use Module\User\Form\CompoundFilter;
  */
 class EditController extends ActionController
 {
+
+    function indexAction() {
+        $uid = _get('uid');
+
+        // Check user exist
+        $isExist = Pi::api('user', 'user')->getUser($uid)->id;
+        if (!$isExist) {
+            return $this->jumpTo404(__('User was not found.'));
+        }
+
+        // Get user basic information and user data
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array(
+                'name',
+            )
+        );
+
+        $nav = $this->getNav($uid);
+
+        return array(
+            'user'  => $user,
+            'nav'   => $nav,
+        );
+
+    }
+
     /**
      * Edit user fields
      *
      * @return array|void
      */
-    public function indexAction()
+    public function infoAction()
     {
         $result = array(
-            'status'  => 0,
-            'message' => __('Edit user failed'),
+            'status' => 0,
+            'message' => __('Edit faild'),
         );
-        $uid = (int) _get('uid');
+        $uid = _get('uid');
 
-        // Check user
         if (!$uid) {
-            $result['message'] = __('Invalid user id');
-            return $result;
-        }
-        $row = Pi::model('user_account')->find($uid, 'id');
-        if (!$row) {
-            $result['message'] = __('Invalid user id');
-            return $result;
-        }
-        if ($row->time_deleted) {
-            $result['message'] = __('User not exist');
             return $result;
         }
 
         // Get available edit fields
         list($fields, $formFields, $formFilters) = $this->getEditField();
-        // Add other elements
-        $formFields[] = array(
-            'name'  => 'uid',
-            'type'  => 'hidden',
-            'attributes' => array(
-                'value' => $uid,
-            ),
-        );
 
-        $form = new EditUserForm('base-fields', $formFields);
-        $fieldsData = Pi::api('user', 'user')->get($uid, $fields);
-        $form->setData($fieldsData);
-
+        $form = new EditUserForm('info', $formFields);
+        
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -76,7 +82,7 @@ class EditController extends ActionController
                 // Update user
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
                 if ($status) {
-                    $result['message'] = __('Edit user successfully');
+                    $result['message'] = __('Edit user info successfully');
                     $result['status']  = 1;
 
                     return $result;
@@ -84,20 +90,20 @@ class EditController extends ActionController
                     return $result;
                 }
             } else {
-                $result['message'] = $form->getMessages();
-
+                $result['message'] = __('Edit user info fail');
+                $result['error'] = $form->getMessages();
                 return $result;
             }
+        } else {
+            $fieldsData = Pi::api('user', 'user')->get($uid, $fields);
+            $form->setData($fieldsData);
+            $this->view()->assign(array(
+                'form'    => $form
+            ));
+
+            $this->view()->setTemplate('edit-info');
         }
-
-        $nav = $this->getNav($uid);
-        $this->view()->assign(array(
-            'form'    => $form,
-            'nav'     => $nav,
-            'cur_nav' => 'base_info'
-        ));
-
-        $this->view()->setTemplate('edit-index');
+        
     }
 
     /**
@@ -196,24 +202,23 @@ class EditController extends ActionController
                 if ($status) {
                     $result['message'] = __('Update successfully');
                     $result['status']  = 1;
+                    $result['set'] = $set;
                     return $result;
                 } else {
                     return $result;
                 }
             } else {
-                $result['message'] = $forms[$set]->getMessages();
+                $result['message'] = __('Edit compound faild');
+                $result['error'] = $forms[$set]->getMessages();
+                $result['set'] = $set;
                 return $result;
             }
+        } else {
+            $this->view()->assign(array(
+                'forms'    => $forms,
+            ));
+            $this->view()->setTemplate('edit-compound');
         }
-
-        $nav = $this->getNav($uid);
-        $this->view()->assign(array(
-            'forms'    => $forms,
-            'nav'     => $nav,
-            'cur_nav' => $compound
-        ));
-
-        $this->view()->setTemplate('edit-compound');
     }
 
     /**
@@ -317,29 +322,13 @@ class EditController extends ActionController
     protected function getNav($uid)
     {
         $result[] = array(
-            'name' => 'base_info',
-            'url'  => $this->url(
-                '',
-                array(
-                    'controller' => 'edit',
-                    'action'     => 'index',
-                    'uid'        => $uid
-                )
-            ),
+            'name' => 'info',
             'title' => __('Base info'),
         );
 
         // Avatar
         $result[] = array(
             'name' => 'avatar',
-            'url'  => $this->url(
-                '',
-                array(
-                    'controller' => 'edit',
-                    'action'     => 'avatar',
-                    'uid'        => $uid
-                )
-            ),
             'title' => __('Avatar'),
         );
 
@@ -356,15 +345,6 @@ class EditController extends ActionController
             $result[] = array(
                 'name'  => $row['name'],
                 'title' => $row['title'],
-                'url'   => $this->url(
-                    '',
-                    array(
-                        'controller' => 'edit',
-                        'action'     => 'compound',
-                        'compound'   => $row['name'],
-                        'uid'        => $uid,
-                    )
-                ),
             );
         }
 
