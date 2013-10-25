@@ -28,7 +28,7 @@ class Install extends BasicAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkConflicts'), 10);
+        //$events->attach('install.pre', array($this, 'checkConflicts'), 10);
         $events->attach('install.post', array($this, 'checkModules'), 10);
         $events->attach('install.post', array($this, 'checkUsers'), 5);
         $events->attach('install.post', array($this, 'updateConfig'), 1);

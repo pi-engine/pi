@@ -660,12 +660,13 @@ class IndexController extends ActionController
             $users[$uid] = $data[$uid];
         }
 
+        $roles = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
             $uid     = $row['uid'];
             $section = $row['section'];
             $roleKey = $section . '_roles';
-            $users[$uid][$roleKey][] = $row['role'];
+            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
         }
 
         foreach ($users as &$user) {
@@ -675,6 +676,7 @@ class IndexController extends ActionController
             $user['time_created']   = (int) $user['time_created'];
             $user = array_merge($columns, $user);
         }
+
 
         return $users;
 
