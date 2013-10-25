@@ -1,10 +1,6 @@
 <?php
-$this->css(
-    array(
-        $this->assetModule('css/front.css'),
-        Pi::url('static/vendor/bootstrap/css/font-awesome.css'),
-    )
-);
+$this->css($this->assetModule('css/front.css', 'comment'));
+$this->bootstrap('css/font-awesome.css');
 
 // User data
 $user = $comment['user'];
@@ -24,24 +20,24 @@ $paginator = $comment['paginator'];
         if ($posts) {
     ?>
     <div class="pi-comment-list">
-        <div class="pi-comment-header"><?php echo $user['name'] . __("'s comments ") . "({$count})" ?></div>
+        <div class="pi-comment-header"><?php echo $user['name'] . __("'s comments ") . "({$count})"; ?></div>
     <?php
             foreach ($posts as $post) {
     ?>
         <div class="media">
-            <a class="pull-left" href="<?php echo $user['url'] ?>" target="_blank">
-                <?php echo $user['avatar'] ?>
+            <a class="pull-left" href="<?php echo $user['url']; ?>" target="_blank">
+                <?php echo $user['avatar']; ?>
             </a>
             <div class="media-body">
                 <div class="pi-comment-desc" style="margin-top: 0">
                     <span class="muted pull-left"><?php _e('Commented on ') ?></span>
-                    <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url'] ?>" title="<?php echo $post['target']['title'] ?>">
-                        <?php echo $post['target']['title'] ?>
+                    <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url']; ?>" title="<?php echo _escape($post['target']['title']); ?>">
+                        <?php echo _escape($post['target']['title']); ?>
                     </a>
-                    <span class="muted pi-comment-time"><?php echo date('Y/m/d H:i:s', $post['time']) ?></span>
+                    <span class="muted pi-comment-time"><?php echo _date($post['time']); ?></span>
                 </div>
                 <div class="pi-comment-content">
-                    <?php echo $post['content'] ?>
+                    <?php echo $post['content']; ?>
                 </div>
                 <div class="pi-comment-operation">
                 <?php 
@@ -63,8 +59,8 @@ $paginator = $comment['paginator'];
                         }
                 ?>
                     <span class="operation muted" style="visibility: visible">
-                        <a href="<?php echo $optData['url'] ?>">
-                            <i class="<?php echo $class ?>" style="text-decoration: none"></i><?php echo $optData['title'] ?>
+                        <a href="<?php echo $optData['url']; ?>">
+                            <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo _escape($optData['title']); ?>
                         </a>
                     </span>
                 <?php
@@ -81,7 +77,7 @@ $paginator = $comment['paginator'];
     <?php
         } else {
     ?>
-    <div class="pi-comment-none"><?php _e('No comments available yet.') ?></div>
+    <div class="pi-comment-none"><?php _e('No comments available yet.'); ?></div>
     <?php
         }
     ?>
