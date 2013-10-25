@@ -48,15 +48,15 @@ if ($targets) {
                 <a class="muted" href="<?php echo $target['user']['url'] ?>" target="_blank">
                     <?php echo $target['user']['name'] ?>
                 </a>
-                <span class="pull-right muted pi-comment-time"><?php echo date('Y/m/d H:i:s', $target['time']) ?></span>
+                <span class="pull-right muted pi-comment-time"><?php echo _date($target['time']); ?></span>
             </div>
             <div class="pi-comment-desc">
                 <span class="muted pull-left"><?php _e('Last commented: ') ?></span>
-                <a class="highlight pull-left" href="<?php echo $target['comment_user']['url'] ?>" style="margin-left: 5px">
+                <a class="highlight pull-left" href="<?php echo $target['comment_user']['url']; ?>" style="margin-left: 5px">
                     <?php echo $target['comment_user']['name'] ?>
                 </a>
                 <span class="muted" style="margin-left: 5px">
-                    <?php echo __(' at ') . date('Y/m/d H:i:s', $target['comment_time']) ?>
+                    <?php echo __(' at ') . _date($target['comment_time']); ?>
                 </span>
             </div>
         </div>
