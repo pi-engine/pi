@@ -42,7 +42,7 @@ class IndexController extends ActionController
     public function allAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['active']        = _get('active') ?: '';
@@ -85,7 +85,7 @@ class IndexController extends ActionController
     public function activatedAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['activated']     = 'activated';
@@ -130,7 +130,7 @@ class IndexController extends ActionController
     public function pendingAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['activated']     = 'pending';
@@ -318,7 +318,7 @@ class IndexController extends ActionController
         }
 
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         // Get user ids

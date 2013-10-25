@@ -22,9 +22,20 @@ $category = array(
         'name'  => 'avatar',
         'title' => _t('Avatar'),
     ),
+    array(
+        'name'      => 'user',
+        'title'     => _t('User account'),
+    ),
 );
 
 $config = array(
+    // General
+    'list_limit' => array(
+        'title'     => _t('Number of item on list page.'),
+        'value'         => 10,
+        'filter'        => 'int',
+    ),
+    // User account
     'uname_format'  => array(
         'title'         => _t('Username format'),
         'description'   => _t('Format of username for registration.'),
@@ -40,50 +51,88 @@ $config = array(
         ),
         'filter'        => 'string',
         'value'         => 'medium',
-        'category'      => 'general',
+        'category'      => 'user',
     ),
 
     'uname_min'     => array(
-        'title'         => _t('Minimum username'),
-        'description'   =>
-            _t('Minimum length of username for user registration'),
+        'title'         => _t('Minmum username'),
+        'description'   => _t('Minmum length of username for user registration'),
         'value'         => 3,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'uname_max'     => array(
         'title'         => _t('Maximum username'),
-        'description'   =>
-            _t('Maximum length of username for user registration'),
+        'description'   => _t('Maximum length of username for user registration'),
         'value'         => 32,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
+    ),
+    'name_format'  => array(
+        'title'         => _t('Display name format'),
+        'description'   => _t('Format of display name for registration.'),
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    'strict'    => _t('Strict: alphabet or number only'),
+                    'medium'    => _t('Medium: ASCII characters'),
+                    'loose'     => _t('Loose: multi-byte characters'),
+                ),
+            ),
+        ),
+        'filter'        => 'string',
+        'value'         => 'loose',
+        'category'      => 'user',
+    ),
+
+    'name_min'     => array(
+        'title'         => _t('Minmum display name'),
+        'description'   => _t('Minmum length of display name for user registration'),
+        'value'         => 3,
+        'filter'        => 'number_int',
+        'category'      => 'user',
+    ),
+
+    'name_max'     => array(
+        'title'         => _t('Maximum display name'),
+        'description'   => _t('Maximum length of display name for user registration'),
+        'value'         => 32,
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'password_min'  => array(
-        'title'         => _t('Minimum password'),
-        'description'   =>
-            _t('Minimum length of password for user registration'),
+        'title'         => _t('Minmum password'),
+        'description'   => _t('Minmum length of password for user registration'),
         'value'         => 5,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'password_max'  => array(
         'title'         => _t('Maximum password'),
         'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'uname_backlist'    => array(
         'title'         => _t('Username backlist'),
         'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
-        'value'         => 'webmaster|^pi|^admin|^root',
-        'category'      => 'general',
+        'value'         => 'webmaster|^pi|^admin',
+        'category'      => 'user',
+    ),
+
+    'name_backlist'    => array(
+        'title'         => _t('Display backlist'),
+        'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
+        'edit'          => 'textarea',
+        'value'         => 'webmaster|^pi|^admin',
+        'category'      => 'user',
     ),
 
     'email_backlist'    => array(
@@ -91,23 +140,41 @@ $config = array(
         'description'   => _t('Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
-        'category'      => 'general',
+        'category'      => 'user',
     ),
 
     'rememberme'        => array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'attempts'      => array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
+    ),
+
+    'login_disable'     => array(
+        'title'         => _t('Login disable'),
+        'description'   => _t('Disable user login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'user',
+    ),
+
+    'register_disable'  => array(
+        'title'         => _t('Register disable'),
+        'description'   => _t('Disable user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'login_captcha'       => array(
@@ -115,8 +182,8 @@ $config = array(
         'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
 
     'register_captcha'  => array(
@@ -124,8 +191,8 @@ $config = array(
         'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'int',
-        'category'      => 'general',
+        'filter'        => 'number_int',
+        'category'      => 'user',
     ),
     
     // Avatar

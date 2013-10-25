@@ -28,7 +28,7 @@ class HomeController extends ActionController
     public function indexAction()
     {
         $page   = $this->params('page', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $isLogin = Pi::user()->hasIdentity();
@@ -92,7 +92,7 @@ class HomeController extends ActionController
     public function viewAction()
     {
         $page   = $this->params('page', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $uid = $this->params('uid', '');
