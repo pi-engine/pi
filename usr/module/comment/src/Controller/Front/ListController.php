@@ -45,6 +45,9 @@ class ListController extends ActionController
         );
         $renderOptions = array(
             'operation' => $this->config('display_operation'),
+            'user'      => array(
+                'avatar'    => 'medium',
+            ),
         );
         $posts = Pi::api('comment')->renderList($posts, $renderOptions);
         $count = Pi::api('comment')->getCount($where);

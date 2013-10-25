@@ -76,6 +76,8 @@ textarea:focus {
     margin-top: 10px;
     color: #333333;
     font-size: 14px;
+    display: inline-block;
+    width: 100%;
 }
 .pi-comment-operation {
     margin-top: 10px;
