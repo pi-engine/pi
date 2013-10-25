@@ -13,6 +13,9 @@ input.check-all {
 .pi-comment-list .comment-important {
     background-color: #eeeeee;
 }
+.pi-comment-list img {
+    border-radius: 4px;
+}
 .pi-comment-content {
     margin-top: 10px;
     color: #333333;
