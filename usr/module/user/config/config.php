@@ -31,7 +31,7 @@ $category = array(
 $config = array(
     // General
     'list_limit' => array(
-        'title'     => _t('Number of item on list page.'),
+        'title'     => _t('Number of items on list page.'),
         'value'         => 10,
         'filter'        => 'int',
     ),
@@ -55,8 +55,8 @@ $config = array(
     ),
 
     'uname_min'     => array(
-        'title'         => _t('Minmum username'),
-        'description'   => _t('Minmum length of username for user registration'),
+        'title'         => _t('Minimum username'),
+        'description'   => _t('Minimum length of username for user registration'),
         'value'         => 3,
         'filter'        => 'number_int',
         'category'      => 'user',
@@ -104,8 +104,8 @@ $config = array(
     ),
 
     'password_min'  => array(
-        'title'         => _t('Minmum password'),
-        'description'   => _t('Minmum length of password for user registration'),
+        'title'         => _t('Minimum password'),
+        'description'   => _t('Minimum length of password for user registration'),
         'value'         => 5,
         'filter'        => 'number_int',
         'category'      => 'user',

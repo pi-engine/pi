@@ -41,6 +41,13 @@ use Pi;
  *      'a.js' => array('media' => '...', 'conditional' => '...'),
  *      'b.js',
  *  ));
+ *
+ *  // Load i18n
+ *  $this->angular(array(
+ *      <...>,
+ *      'i18n',
+ *  ));
+ *
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -52,6 +59,9 @@ class Angular extends AssetCanonize
 
     /** @var bool Angular basic file is loaded */
     protected static $rootLoaded;
+
+    /** @var bool i18n is loaded */
+    protected static $i18nLoaded;
 
     /**
      * Load angular files
@@ -68,6 +78,17 @@ class Angular extends AssetCanonize
         $appendVersion = null
     ) {
         $files = $this->canonize($files, $attributes);
+        if (isset($files['i18n'])) {
+            unset($files['i18n']);
+            if (!static::$i18nLoaded) {
+                $locale = Pi::config('locale');
+                if ('en' != $locale) {
+                    $file = 'i18n/angular-locale_' . $locale . '.js';
+                    $files[$file] = $this->canonizeFile($file);
+                }
+                static::$i18nLoaded = true;
+            }
+        }
         if (!static::$rootLoaded) {
             $autoLoad = array();
             // Required primary js
@@ -89,7 +110,6 @@ class Angular extends AssetCanonize
             $files = $autoLoad + $files;
             static::$rootLoaded = true;
         }
-
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
