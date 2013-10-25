@@ -64,6 +64,21 @@
       templateUrl: tpl('advanced-search-result'),
       controller: 'ListCtrl',
       resolve: resolve('search')
+    }).when('/edit/:action/:id', {
+      templateUrl: tpl('user-edit'),
+      controller: 'EditCtrl',
+      resolve: {
+        data: ['$q', '$route', 'editServer',
+          function($q, $route, editServer) {
+            var deferred = $q.defer();
+            var params = $route.current.params;
+            editServer.get(params).success(function(data) {
+              deferred.resolve(data);
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).otherwise({
       redirectTo: '/all'
     });
@@ -72,6 +87,7 @@
     piProvider.navTabs(config.navTabs);
     piProvider.translations(config.t);
     piProvider.ajaxSetup();
+    piProvider.setGetHeader();
   }
 ])
 .service('server', ['$http', '$cacheFactory', 'config',
@@ -172,6 +188,38 @@
     }
 
     this.uniqueUrl = urlRoot + 'checkExist';
+  }
+])
+.service('editServer', ['$http', 'config',
+  function($http, config) {
+    var urlRoot = config.editUrlRoot;
+    this.urlRoot = config.editUrlRoot;
+
+    this.get = function(params) {
+      var id = params.id;
+      return $http.get(urlRoot + 'index', {
+        cache: true,
+        params: {
+          uid: id
+        }
+      }).success(function(data) {
+          data.action = params.action;
+          angular.forEach(data.nav, function(item) {
+            item.href = '#!/edit/' + item.name + '/' + id;
+          });
+          switch (data.action) {
+            case 'info':
+              data.formHtmlUrl = urlRoot + 'info?uid=' + id;
+              break;
+            case 'avatar':
+              data.formHtmlUrl = 'avatar-template.html';
+              break;
+            default:
+              data.formHtmlUrl = urlRoot + 'compound?uid=' + id + '&compound=' + data.action
+            ;
+          }
+      });
+    }
   }
 ])
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
@@ -429,6 +477,36 @@
       }
 
       $location.path('/all/search').search(filter);
+    }
+  }
+])
+.controller('EditCtrl', ['$scope', '$templateCache', 'data', 'editServer',
+  function($scope, $templateCache, data, editServer) {
+    angular.extend($scope, data);
+
+    $scope.navChange = function(item) {
+      $scope.action = item.name;
+    }
+
+    $scope.submit = function(name) {
+      var form = $('form[name=' + name + ']');
+      var url = $scope.formHtmlUrl;
+      $.post(url, form.serialize()).done(function(data) {
+        data = $.parseJSON(data);
+        $scope.$parent.alert = data;
+        if (angular.isUndefined(data.set)) {
+          $scope.formError = data.error;
+        } else {
+          $scope['formError' + data.set] = data.error;
+        }
+
+        $templateCache.remove(url);
+        $scope.$apply();
+      });
+    }
+
+    $scope.deleteAction = function() {
+      
     }
   }
 ]);

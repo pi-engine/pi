@@ -1,17 +1,12 @@
 <?php
 $this->css($this->assetModule('script/admin.css'));
+$this->jQuery();
 $this->angular(array(
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js',
     'i18n'
 ));
-/*
-$locale = Pi::config('locale');
-if ($locale != 'en') {
-    $this->angular('i18n/angular-locale_' . $locale . '.js');
-}
-*/
 ?>
 <div ng-app="userListModule">
     <div pi-message="alert"></div>
@@ -31,6 +26,7 @@ angular
     .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+        editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>', 
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         navTabs: [
             { text: '<?php _e('All'); ?>', href: '#!/all' },
@@ -64,7 +60,12 @@ angular
             DISPLAY_NAME_TAKEN: '<?php _e('Display name is already taken.'); ?>',
             RETURN: '<?php _e('Back to users list'); ?>',
             REQUIRED: '<?php _e('Required'); ?>',
+            USER_NAME: '<?php _e('Username'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
+            INVALID_EMAIL: '<?php _e('Email invalid'); ?>',
+            PASSWORD: '<?php _e('Password'); ?>',
+            CONFIRM_PASSWORD: '<?php _e('Password confirm'); ?>',
+            ACTIVATE: '<?php _e('Active'); ?>',
             ENABLE: '<?php _e('Enable'); ?>',
             DISABLE: '<?php _e('Disable'); ?>',
             FRONT_ROLE: '<?php _e('Front role'); ?>',
@@ -82,7 +83,10 @@ angular
             CONFIRM: '<?php _e('Are you sure to delete this user?'); ?>',
             CONFIRMS: '<?php _e('Are you sure to delete this users?'); ?>',
             ACTIVE_STATE:'<?php _e('Active State'); ?>',
-            CONFIRM_ACTIVATE: '<?php _e('Are you sure to activate this account? The operation can not be reverted.'); ?>',
+            TITLE: '<?php _e('Add user'); ?>',
+            USER_NAME: '<?php _e('Username'); ?>',
+            CONFIRM_ACTIVATED: '<?php _e('Are you sure active this account, it can not be return'); ?>',
+            EMAIL: '<?php _e('Email'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
             CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
             ACTIVATE: '<?php _e('Activate'); ?>',
@@ -94,10 +98,13 @@ angular
             USER_ID: '<?php _e('User ID'); ?>',
             NONE_USER: '<?php _e('No user matched your request.'); ?>',
             SEARCH_TITLE: '<?php _e('Advanced search'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
             FROM: '<?php _e('From'); ?>',
             TO: '<?PHP _e('To'); ?>',
             SEARCH_RESULT: '<?PHP _e('Search result'); ?>',
-            VIEW_LOG: '<?PHP _e('View log'); ?>'
+            VIEW_LOG: '<?PHP _e('View log'); ?>',
+            NONE_PENDING_USERS: '<?PHP _e('None exist pending users'); ?>',
+            EDIT_TITLE: '<?PHP _e('Edit user'); ?>'
         },
         roles: <?php echo json_encode($roles); ?>,
         today: '<?php echo date("Y-m-d"); ?>'
