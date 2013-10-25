@@ -155,7 +155,7 @@ class ListController extends ActionController
             );
         } else {
             $this->view()->assign(array(
-                'title' => __('Comments by user'),
+                'title' => __('Comments by username or id'),
                 'url'   => $this->url('', array('action' => 'user')),
             ));
             $this->view()->setTemplate('comment-user-select');
