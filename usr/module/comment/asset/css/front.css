@@ -131,3 +131,14 @@ textarea:focus {
     color: #0088cc;
     font-family: helvetica;
 }
+
+.comment-title-hidden {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 40%;
+    word-break: keep-all;
+    margin: 0 20px 0 5px;
+    font-weight: bold;
+}

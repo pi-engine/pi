@@ -228,7 +228,7 @@ class ListController extends ActionController
 
         } else {
             $user           = Pi::service('user')->get($uid, array('name'));
-            $user['avatar'] = Pi::service('avatar')->get($uid);
+            $user['avatar'] = Pi::service('avatar')->get($uid, 'medium');
             $user['url']    = Pi::service('user')->getUrl('profile', $uid);
             $title          = __('Comment posts of user');
             $template       = 'comment-user';
