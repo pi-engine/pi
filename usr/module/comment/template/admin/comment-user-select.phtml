@@ -1,11 +1,7 @@
-<div class="page-header"><?php echo _escape($title); ?></div>
+<div style="font-size: 16px; font-weight: bold"><?php echo _escape($title); ?></div>
+<div style="margin-top: 10px" class="muted"><?php _e('Filter comments by a specific user.') ?></div>
 
-<form name="comment-user" method="GET" action="<?php echo $url; ?>">
-    <dl>
-        <dt><?php _e('Type user id or identity:'); ?></dt>
-        <dd>
-            <input type="text" name="uid" value="" />
-            <input type="submit" value="<?php _e('Submit'); ?>" />
-        </dd>
-    </dl>
+<form name="comment-user" method="GET" action="<?php echo $url; ?>" style="margin-top: 20px" class="form-inline">
+    <input type="text" name="uid" value="" placeholder="<?php _e('Type user id or identity'); ?>">
+    <button type="submit" class="btn"><?php _e('Submit'); ?></button>
 </form>
