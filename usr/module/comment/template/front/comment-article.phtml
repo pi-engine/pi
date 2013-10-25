@@ -1,4 +1,11 @@
 <?php
+$this->bootstrap();
+$this->css(
+    array(
+        $this->assetModule('css/front.css'),
+    )
+);
+
 // Count
 $count = $comment['count'];
 // Article list:
@@ -8,65 +15,63 @@ $targets = $comment['targets'];
 // Pagination object
 $paginator = $comment['paginator'];
 ?>
-<?php echo $this->tab($tabs); ?>
 
-    <div class="pi-comment-header">
-        <dl><?php echo _escape($comment['title']); ?></dl>
-        <dl class="dl-horizontal">
-            <dt><?php _e('Total:') ?></dt>
-            <dd><?php echo $count; ?></dd>
-        </dl>
-    </div>
-    <div class="pi-comment-list">
-<?php
-if ($targets) {
-    foreach ($targets as $root => $target) {
+<?php 
+    if (empty($tabs)) {
 ?>
-        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
-            <dt><?php _e('Source:') ?></dt>
-            <dd><a href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
-                    <?php echo _escape($target['title']); ?>
-                </a>
-            </dd>
-
-            <dt><?php _e('Author:') ?></dt>
-            <dd><a href="<?php echo $target['user']['url']; ?>" target="_blank" title="<?php echo _escape($target['user']['name']); ?>">
-                    <?php echo _escape($target['user']['name']); ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $target['user']['avatar']; ?></dd>
-
-            <dt><?php _e('Time:');?></dt>
-            <dd><?php echo _date($target['time']); ?></dd>
-
-            <dt><?php _e('Comment:');?></dt>
-            <dd><a href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php _e('Details'); ?>">
-                    <?php _e('Details'); ?>
-                </a>
-            </dd>
-
-
-            <dt><?php _e('Commented by:') ?></dt>
-            <dd><a href="<?php echo $target['comment_user']['url']; ?>" target="_blank" title="<?php echo _escape($target['comment_user']['name']); ?>">
-                    <?php echo _escape($target['comment_user']['name']); ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $target['comment_user']['avatar']; ?></dd>
-
-            <dt><?php _e('Commented at:');?></dt>
-            <dd><?php echo _date($target['comment_time']); ?></dd>
-        </dl>
+<div class="pi-comment-header" style="margin: 20px 0; border-bottom: 0">
+    <?php echo _escape($comment['title']); ?>
+</div>
 <?php
+    } else {
+        echo $this->tab($tabs);
     }
 ?>
+    
+<?php
+if ($targets) {
+?>
+<div class="pi-comment-article pi-comment-list">
+<?php
+    foreach ($targets as $root => $target) {
+?>
+    <div class="media">
+        <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php _e('Details'); ?>" target="_blank">
+            <?php echo $target['count'] ?>
+        </a>
+        <div class="media-body">
+            <div style="font-size: 13px">
+                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url'] ?>" target="_blank" title="<?php echo $target['title']; ?>" style="margin: 0; font-weight: normal; max-width: 60%; width: auto">
+                    <?php echo $target['title'] ?>
+                </a>
+                &nbsp;-
+                <a class="muted" href="<?php echo $target['user']['url'] ?>" target="_blank">
+                    <?php echo $target['user']['name'] ?>
+                </a>
+                <span class="pull-right muted pi-comment-time"><?php echo date('Y/m/d H:i:s', $target['time']) ?></span>
+            </div>
+            <div class="pi-comment-desc">
+                <span class="muted pull-left"><?php _e('Last commented: ') ?></span>
+                <a class="highlight pull-left" href="<?php echo $target['comment_user']['url'] ?>" style="margin-left: 5px">
+                    <?php echo $target['comment_user']['name'] ?>
+                </a>
+                <span class="muted" style="margin-left: 5px">
+                    <?php echo __(' at ') . date('Y/m/d H:i:s', $target['comment_time']) ?>
+                </span>
+            </div>
+        </div>
     </div>
 <?php
+    }
     if ($paginator) {
         echo $this->pagination($paginator);
     }
+?>
+</div>
+<?php
 } else {
-    _e('No data available yet.');
+?>
+<div class="pi-comment-none"><?php _e('No data available yet.'); ?></div>
+<?php
 }
 ?>

@@ -141,6 +141,12 @@ class ListController extends ActionController
     public function userAction()
     {
         $uid        = _get('uid');
+        $keyword    = _get('keyword');
+        if (!empty($keyword)) {
+            $uid = $keyword;
+        } else {
+            $keyword = $uid;
+        }
         $userModel  = null;
         if (is_numeric($uid)) {
             $userModel = Pi::service('user')->getUser($uid);
@@ -201,6 +207,7 @@ class ListController extends ActionController
             'posts'     => $posts,
             'paginator' => $paginator,
             'user'      => $user,
+            'active'    => $active,
         ));
         
         // Get count
@@ -253,6 +260,7 @@ class ListController extends ActionController
         );
         $this->view()->assign(array(
             'tabs'      => $navTabs,
+            'keyword'   => $keyword,
         ));
         $this->view()->setTemplate('comment-user');
     }
@@ -376,6 +384,7 @@ class ListController extends ActionController
             'paginator' => $paginator,
             'module'    => $moduleData,
             'category'  => $categoryData,
+            'active'    => $active,
         ));
         
         // Get count
