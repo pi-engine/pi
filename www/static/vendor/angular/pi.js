@@ -252,6 +252,11 @@ angular.module('pi', [])
       ]);
     }
 
+    this.setGetHeader = function(httpRequest) {
+      var httpRequest = httpRequest || { 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*' };
+      $httpProvider.defaults.headers.get = httpRequest;
+    }
+
     this.hashPrefix = function(str) {
       $locationProvider.hashPrefix(str || '!');
     }
