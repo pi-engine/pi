@@ -28,20 +28,7 @@ return array(
             'edit'      => array(
                 'validators'    => array(
                     array(
-                        'name'      => 'StringLength',
-                        'options'   => array(
-                            'encoding'  => 'UTF-8',
-                            'min'       => Pi::service('module')->config('uname_min', 'user'),
-                            'max'       => Pi::service('module')->config('uname_max', 'user'),
-                        ),
-                    ),
-                    array(
                         'name'      => 'Module\User\Validator\Username',
-                        'options'   => array(
-                            'checkDuplication' => true,
-                            'format'    => Pi::service('module')->config('uname_format', 'user'),
-                            'blacklist' => Pi::service('module')->config('uname_backlist', 'user'),
-                        ),
                     ),
                 ),
             ),
@@ -56,13 +43,6 @@ return array(
             'edit'      => array(
                 'element'       => 'password',
                 'validators'    => array(
-                    array(
-                        'name' => 'StringLength',
-                        'options'   => array(
-                            'min'       => Pi::service('module')->config('password_min', 'user'),
-                            'max'       => Pi::service('module')->config('password_min', 'user'),
-                        ),
-                    ),
                     array(
                         'name'      => 'Module\User\Validator\Password',
                     ),
@@ -87,10 +67,6 @@ return array(
                     ),
                     array(
                         'name'      => 'Module\User\Validator\UserEmail',
-                        'options' => array(
-                            'backlist'         => Pi::service('module')->config('uname_min', 'user'),
-                            'checkDuplication' => true,
-                        ),
                     ),
                 ),
             ),
@@ -102,20 +78,9 @@ return array(
             'title'     => __('Display name'),
             // Edit element specs
             'edit'      => array(
-                array(
-                    'name' => 'StringLength',
-                    'options'   => array(
-                        'min'       => Pi::service('module')->config('uname_min', 'user'),
-                        'max'       => Pi::service('module')->config('uname_min', 'user'),
-                    ),
-                ),
                 'validators'    => array(
                     array(
                         'name'      => 'Module\User\Validator\Name',
-                        'options' => array(
-                            'backlist'         => Pi::service('module')->config('name_backlist', 'user'),
-                            'checkDuplication' => true,
-                        ),
                     ),
                 ),
             ),

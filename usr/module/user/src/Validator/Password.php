@@ -31,8 +31,60 @@ use Zend\Validator\AbstractValidator;
 
 class Password extends AbstractValidator
 {
+    const TOO_SHORT = 'stringLengthTooShort';
+    const TOO_LONG  = 'stringLengthTooLong';
+
+    /**
+     * @var array
+     */
+    protected $messageTemplates = array(
+        self::TOO_SHORT => 'Password is less than %min% characters long',
+        self::TOO_LONG  => 'Password is more than %max% characters long'
+    );
+
+    protected $messageVariables = array(
+        'max'        => 'max',
+        'min'        => 'min',
+    );
+
+    protected $max;
+    protected $min;
+
     public function isValid($value)
     {
+        $this->setValue($value);
+        $this->setConfigOption();
+
+        if ($this->options['max']) {
+            if ($this->options['max'] < strlen($value)) {
+                $this->max = $this->options['max'];
+                $this->error(static::TOO_LONG);
+                return false;
+            }
+        }
+        if ($this->options['min']) {
+            if ($this->options['min'] > strlen($value)) {
+                $this->min = $this->options['min'];
+                $this->error(static::TOO_SHORT);
+                return false;
+            }
+        }
+
         return ture;
+    }
+
+    /**
+     * Set username validator according to config
+     *
+     * @return $this
+     */
+    public function setConfigOption()
+    {
+        $this->options = array(
+            'min'       => Pi::service('module')->config('password_min', 'user'),
+            'max'       => Pi::service('module')->config('password_max', 'user'),
+        );
+
+        return $this;
     }
 }
