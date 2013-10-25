@@ -42,8 +42,7 @@ class UserEmail extends AbstractValidator
     );
 
     protected $options = array(
-        'backlist'          => array(),
-        'checkDuplication'  => true,
+        'checkDuplication' => true,
     );
 
     /**
@@ -56,6 +55,7 @@ class UserEmail extends AbstractValidator
     public function isValid($value, $context = null)
     {
         $this->setValue($value);
+        $this->setConfigOption();
 
         if (!empty($this->options['backlist'])) {
             $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
@@ -79,5 +79,20 @@ class UserEmail extends AbstractValidator
         }
 
         return true;
+    }
+
+    /**
+     * Set email validator according to config
+     *
+     * @return $this
+     */
+    public function setConfigOption()
+    {
+        $this->options = array(
+            'backlist'         => Pi::service('module')->config('email_backlist', 'user'),
+            'checkDuplication' => true,
+        );
+
+        return $this;
     }
 }

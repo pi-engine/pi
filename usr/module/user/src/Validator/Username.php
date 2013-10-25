@@ -33,6 +33,8 @@ class Username extends AbstractValidator
     const INVALID   = 'userNameInvalid';
     const RESERVED  = 'userNameReserved';
     const TAKEN     = 'userNameTaken';
+    const TOO_SHORT = 'stringLengthTooShort';
+    const TOO_LONG  = 'stringLengthTooLong';
 
     /**
      * @var array
@@ -41,13 +43,19 @@ class Username extends AbstractValidator
         self::INVALID   => 'Invalid user name: %formatHint%',
         self::RESERVED  => 'User name is reserved',
         self::TAKEN     => 'User name is already taken',
+        self::TOO_SHORT => 'User name is less than %min% characters long',
+        self::TOO_LONG  => 'User name is more than %max% characters long'
     );
 
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
+        'max'        => 'max',
+        'min'        => 'min',
     );
 
     protected $formatHint;
+    protected $max;
+    protected $min;
 
     protected $formatMessage = array(
         'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
@@ -77,13 +85,14 @@ class Username extends AbstractValidator
     public function isValid($value, $context = null)
     {
         $this->setValue($value);
+        $this->setConfigOption();
+
         $format = empty($this->options['format']) ? 'strict' : $this->options['format'];
         if (preg_match($this->formatPattern[$format], $value)) {
             $this->formatHint = $this->formatMessage[$format];
             $this->error(static::INVALID);
             return false;
         }
-
         if (!empty($this->options['backlist'])) {
             $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
@@ -91,7 +100,20 @@ class Username extends AbstractValidator
                 return false;
             }
         }
-
+        if ($this->options['max']) {
+            if ($this->options['max'] < strlen($value)) {
+                $this->max = $this->options['max'];
+                $this->error(static::TOO_LONG);
+                return false;
+            }
+        }
+        if ($this->options['min']) {
+            if ($this->options['min'] > strlen($value)) {
+                $this->min = $this->options['min'];
+                $this->error(static::TOO_SHORT);
+                return false;
+            }
+        }
         if ($this->options['checkDuplication']) {
             $where = array('identity' => $value);
             if (!empty($context['uid'])) {
@@ -106,5 +128,24 @@ class Username extends AbstractValidator
         }
 
         return true;
+    }
+
+    /**
+     * Set username validator according to config
+     *
+     * @return $this
+     */
+    public function setConfigOption()
+    {
+        $this->options = array(
+            'min'       => Pi::service('module')->config('uname_min', 'user'),
+            'max'       => Pi::service('module')->config('uname_max', 'user'),
+            'format'    => Pi::service('module')->config('uname_format', 'user'),
+            'backlist'  => Pi::service('module')->config('uname_backlist', 'user'),
+            'format'    => Pi::service('module')->config('name_format', 'user'),
+            'checkDuplication' => true,
+        );
+
+        return $this;
     }
 }
