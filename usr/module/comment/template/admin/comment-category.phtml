@@ -2,29 +2,18 @@
     <tr>
         <th><?php _e('Module') ?></th>
         <th><?php _e('Category') ?></th>
-        <th><?php _e('Comments') ?></th>
         <th><?php _e('Enable') ?></th>
     </tr>
     <?php foreach ($modules as $name => $data) { ?>
     <tr>
         <td><?php echo $this->escape($name) ?></td>
         <td></td>
-        <td>
-            <a href="<?php echo $data['url']; ?>" title="<?php _e('Posts'); ?>" target="_blank">
-                <?php _e('Posts'); ?>
-            </a>
-        </td>
         <td></td>
     </tr>
-        <?php foreach ($data['categories'] as $categoryName => $category) { ?>
+        <?php foreach ($data['categories'] as $category) { ?>
     <tr>
         <td></td>
-        <td><?php echo $categoryName ?></td>
-        <td>
-            <a href="<?php echo $category['url']; ?>" title="<?php _e('Posts'); ?>" target="_blank">
-                <?php _e('Posts'); ?>
-            </a>
-        </td>
+        <td><?php echo $category['title'] ?></td>
         <td>
             <div class="btn-group">
                 <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
