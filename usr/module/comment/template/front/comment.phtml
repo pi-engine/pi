@@ -61,7 +61,7 @@ if ($uid) {
         <div class="pi-comment-form">
             <div class="media">
                 <a class="pull-left" href="<?php echo $url; ?>">
-                    <img class="media-object" src="<?php echo $this->escape($avatar); ?>">
+                    <img class="media-object" src="<?php echo $avatar; ?>">
                 </a>
                 <div class="media-body">
                 <?php 
@@ -78,9 +78,9 @@ if ($uid) {
                         echo $this->form()->openTag($form);
                 ?>
                     <div class="form-textarea">
-                        <textarea placeholder="<?php _e('Type your content') ?>" name="content"></textarea>
+                        <textarea placeholder="<?php _e('Type your content'); ?>" name="content"></textarea>
                     </div>
-                    <input class="btn form-submit pull-right hide" type="submit" value="<?php _e('Post') ?>" name="submit">
+                    <input class="btn form-submit pull-right hide" type="submit" value="<?php _e('Post'); ?>" name="submit">
                 <?php 
                         foreach (array(
                             'id', 'root', 'reply', 'module', 'category',
@@ -135,7 +135,7 @@ if ($uid) {
                     ?>
                         <span class="operation muted">
                             <a href="<?php echo $optData['url']; ?>">
-                                <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo $optData['title']; ?>
+                                <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo _escape($optData['title']); ?>
                             </a>
                         </span>
                     <?php

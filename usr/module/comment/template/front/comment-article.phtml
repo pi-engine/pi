@@ -1,10 +1,6 @@
 <?php
 $this->bootstrap();
-$this->css(
-    array(
-        $this->assetModule('css/front.css'),
-    )
-);
+$this->css($this->assetModule('css/front.css'));
 
 // Count
 $count = $comment['count'];
@@ -37,16 +33,16 @@ if ($targets) {
 ?>
     <div class="media">
         <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php _e('Details'); ?>" target="_blank">
-            <?php echo $target['count'] ?>
+            <?php echo $target['count']; ?>
         </a>
         <div class="media-body">
             <div style="font-size: 13px">
-                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url'] ?>" target="_blank" title="<?php echo $target['title']; ?>" style="margin: 0; font-weight: normal; max-width: 60%; width: auto">
-                    <?php echo $target['title'] ?>
+                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>" style="margin: 0; font-weight: normal; max-width: 60%; width: auto">
+                    <?php echo _escape($target['title']); ?>
                 </a>
                 &nbsp;-
                 <a class="muted" href="<?php echo $target['user']['url'] ?>" target="_blank">
-                    <?php echo $target['user']['name'] ?>
+                    <?php echo $target['user']['name']; ?>
                 </a>
                 <span class="pull-right muted pi-comment-time"><?php echo _date($target['time']); ?></span>
             </div>

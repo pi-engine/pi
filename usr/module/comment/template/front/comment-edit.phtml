@@ -1,11 +1,6 @@
 <?php
-$this->css(
-    array(
-        $this->assetModule('css/front.css'),
-        Pi::url('static/vendor/bootstrap/css/font-awesome.css'),
-    )
-);
-
+$this->css($this->assetModule('css/front.css', 'comment'));
+$this->bootstrap('css/font-awesome.css');
 // Target data:
 // title, time, user
 // user: uid, name, avatar, url
@@ -15,7 +10,7 @@ $target = $comment['target'];
 // content, time, user
 $post = $comment['post'];
 
-$uid = Pi::user()->id;
+$uid = Pi::user()->getId();
 $avatar = Pi::avatar()->get($uid, 'medium', false);
 if ($uid) {
     $url = Pi::service('user')->getUrl('profile', $uid);
@@ -54,8 +49,8 @@ if ($uid) {
 <div class="pi-comment">
     <div class="pi-comment-header"><?php _e('Comment edit') ?></div>
     <div class="media">
-        <a class="pull-left" href="<?php echo $url ?>">
-            <img class="media-object" src="<?php echo $this->escape($avatar) ?>">
+        <a class="pull-left" href="<?php echo $url; ?>">
+            <img class="media-object" src="<?php echo $avatar; ?>">
         </a>
         <div class="media-body">
         <?php
@@ -63,25 +58,25 @@ if ($uid) {
         ?>
             <div>
                 <span class="pi-comment-user">
-                    <a href="<?php echo $post['user']['url'] ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
-                        <?php echo $post['user']['name'] ?>
+                    <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
+                        <?php echo $post['user']['name']; ?>
                     </a>
                 </span>
-                <span class="pull-right muted pi-comment-time"><?php echo date('Y/m/d H:i', $post['time']) ?></span>
+                <span class="pull-right muted pi-comment-time"><?php echo _date($post['time']); ?></span>
             </div>
             <div class="pi-comment-desc">
                 <span class="muted"><?php _e('Commented on ') ?></span>
-                <a class="highlight" href="<?php echo $target['url'] ?>" title="<?php echo $target['title'] ?>">
+                <a class="highlight" href="<?php echo $target['url']; ?>" title="<?php echo _escape($target['title']); ?>">
                     <?php echo $target['title'] ?>
                 </a>
             </div>
-            <?php echo $this->form()->openTag($form) ?>
+            <?php echo $this->form()->openTag($form); ?>
             <div class="form-textarea">
-                <textarea placeholder="<?php _e('Type your content') ?>" name="content"><?php echo $form->get('content')->getValue() ?></textarea>
+                <textarea placeholder="<?php _e('Type your content'); ?>" name="content"><?php echo $form->get('content')->getValue(); ?></textarea>
             </div>
             <div class="pull-right">
-                <a href="<?php echo $redirect ?>" class="form-cancel highlight"><?php _e('Cancel') ?></a>
-                <input class="btn form-submit" type="submit" value="<?php _e('Save') ?>" name="submit">
+                <a href="<?php echo $redirect; ?>" class="form-cancel highlight"><?php _e('Cancel'); ?></a>
+                <input class="btn form-submit" type="submit" value="<?php _e('Save'); ?>" name="submit">
             </div>
             <?php 
                 foreach (array(
@@ -90,7 +85,7 @@ if ($uid) {
                     echo $this->formElement($form->get($hiddenElement));
                 }
             ?>
-            <?php echo $this->form()->closeTag() ?>
+            <?php echo $this->form()->closeTag(); ?>
         <?php
             } else {
         ?>

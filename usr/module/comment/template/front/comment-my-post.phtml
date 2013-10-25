@@ -1,11 +1,6 @@
 <?php
-$this->bootstrap();
-$this->css(
-    array(
-        $this->assetModule('css/front.css'),
-        Pi::url('static/vendor/bootstrap/css/font-awesome.css'),
-    )
-);
+$this->bootstrap('css/font-awesome.css');
+$this->css($this->assetModule('css/front.css', 'comment'));
 
 // User data
 $user = $comment['user'];
@@ -18,7 +13,7 @@ $posts = $comment['posts'];
 // Pagination object
 $paginator = $comment['paginator'];
 
-$uid = Pi::user()->id;
+$uid = Pi::user()->getId();
 $avatar = Pi::avatar()->get($uid, 'medium');
 if ($uid) {
     $url = Pi::service('user')->getUrl('profile', $uid);
@@ -42,22 +37,22 @@ if (empty($user)) {
             foreach ($posts as $post) {
     ?>
         <div class="media<?php echo 0 == $post['active'] ? ' muted' : '' ?>">
-            <a class="pull-left" href="<?php echo $user['url'] ?>" target="_blank">
-                <?php echo $user['avatar'] ?>
+            <a class="pull-left" href="<?php echo $user['url']; ?>" target="_blank">
+                <?php echo $user['avatar']; ?>
             </a>
             <div class="media-body">
                 <div class="pi-comment-desc" style="margin-top: 0">
-                    <span class="muted pull-left"><?php _e('Commented on ') ?></span>
-                    <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url'] ?>" title="<?php echo $post['target']['title'] ?>">
-                        <?php echo $post['target']['title'] ?>
+                    <span class="muted pull-left"><?php _e('Commented on '); ?></span>
+                    <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url']; ?>" title="<?php echo _escape($post['target']['title']); ?>">
+                        <?php echo _escape($post['target']['title']); ?>
                     </a>
-                    <span class="muted pi-comment-time"><?php echo date('Y/m/d H:i:s', $post['time']) ?></span>
+                    <span class="muted pi-comment-time"><?php echo _date($post['time']); ?></span>
                     <?php if (0 == $post['active']) { ?>
-                    <span class="pull-right label"><?php _e('Pending') ?></span>
+                    <span class="pull-right label"><?php _e('Pending'); ?></span>
                     <?php } ?>
                 </div>
                 <div class="pi-comment-content<?php echo 0 == $post['active'] ? ' muted' : '' ?>">
-                    <?php echo $post['content'] ?>
+                    <?php echo $post['content']; ?>
                 </div>
                 <div class="pi-comment-operation">
                 <?php 
@@ -79,8 +74,8 @@ if (empty($user)) {
                         }
                 ?>
                     <span class="operation muted" style="visibility: visible">
-                        <a href="<?php echo $optData['url'] ?>">
-                            <i class="<?php echo $class ?>" style="text-decoration: none"></i><?php echo $optData['title'] ?>
+                        <a href="<?php echo $optData['url']; ?>">
+                            <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo _escape($optData['title']); ?>
                         </a>
                     </span>
                 <?php
@@ -97,7 +92,7 @@ if (empty($user)) {
     <?php
         } else {
     ?>
-    <div class="pi-comment-none"><?php _e('No comments available yet.') ?></div>
+    <div class="pi-comment-none"><?php _e('No comments available yet.'); ?></div>
     <?php
         }
     ?>
