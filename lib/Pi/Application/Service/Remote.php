@@ -296,6 +296,13 @@ class Remote extends AbstractService
         $this->adapter()->connect($host, $port);
 
         if ($params) {
+            // FIXME: Convert sub arrays to string
+            array_walk($params, function (&$param) {
+                if (is_array($param)) {
+                    $param = implode(',', $param);
+                }
+            });
+
             $uri->setQuery($params);
         }
 
