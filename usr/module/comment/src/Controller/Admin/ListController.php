@@ -64,7 +64,10 @@ class ListController extends ActionController
         */
         // Default mode
         $posts = Pi::api('comment')->renderList($posts, array(
-            'operation'     => 'admin'
+            'operation'     => 'admin',
+            'user'          => array(
+                'avatar'    => 'medium',
+            ),
         ));
         $count = Pi::service('comment')->getCount(array('active' => $active));
 
@@ -148,11 +151,11 @@ class ListController extends ActionController
             $user = array(
                 'name'      => $userModel->get('name'),
                 'url'       => Pi::service('user')->getUrl('profile', $uid),
-                'avatar'    => Pi::service('avatar')->get($uid),
+                'avatar'    => Pi::service('avatar')->get($uid, 'medium'),
             );
         } else {
             $this->view()->assign(array(
-                'title' => __('Select a user'),
+                'title' => __('Comments by user'),
                 'url'   => $this->url('', array('action' => 'user')),
             ));
             $this->view()->setTemplate('comment-user-select');
@@ -199,11 +202,31 @@ class ListController extends ActionController
             'paginator' => $paginator,
             'user'      => $user,
         ));
+        
+        // Get count
+        $allCount = null === $active
+            ? $count 
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => null)
+            ));
+        $activeCount = 1 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => 1)
+            ));
+        $inactiveCount = 0 === $active
+            ? $count
+            : Pi::service('comment')->getCount(array_merge(
+                $where,
+                array('active' => 0)
+            ));
 
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts'),
+                'label'     => __('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -211,7 +234,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts'),
+                'label'     => __('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -220,7 +243,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts'),
+                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
