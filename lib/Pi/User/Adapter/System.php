@@ -143,7 +143,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         return Pi::api('system', 'user')->get($uid, $field, $filter);
     }

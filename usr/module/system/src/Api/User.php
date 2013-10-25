@@ -239,14 +239,14 @@ class User extends AbstractUseApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         if (!$uid) {
             return false;
         }
 
         $result = array();
-        $fields   = (array) $field;
+        $fields   = $field ? (array) $field : array_keys($this->getMeta());
         $uids   = (array) $uid;
 
         $meta   = $this->canonizeField($fields);
@@ -477,7 +477,7 @@ class User extends AbstractUseApi
         }
 
         $result = array();
-        $uids = (array) $uid;
+        $uids   = (array) $uid;
         if (!$fields) {
             $fields = array_keys($this->getMeta());
         } else {

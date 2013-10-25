@@ -135,7 +135,7 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         return Pi::api('user', 'user')->get($uid, $field, $filter);
     }

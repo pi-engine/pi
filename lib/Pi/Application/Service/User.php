@@ -92,7 +92,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
- * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field = array(), $filter = false)
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::setRole($uid, $role)
  * @method \Pi\User\Adapter\AbstractAdapter::revokeRole($uid, $role)

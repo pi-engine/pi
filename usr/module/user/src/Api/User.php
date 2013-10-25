@@ -403,17 +403,17 @@ class User extends AbstractUseApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         if (!$uid) {
             return false;
         }
 
         $result = array();
-        $keys   = (array) $field;
+        $fields = $field ? (array) $field : array_keys($this->getMeta());
         $uids   = (array) $uid;
 
-        $meta   = $this->canonizeField($keys);
+        $meta   = $this->canonizeField($fields);
         foreach ($meta as $type => $fields) {
             $fields = $this->getFields($uids, $type, $fields, $filter);
             foreach ($fields as $id => $data) {

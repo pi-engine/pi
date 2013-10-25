@@ -331,7 +331,7 @@ abstract class AbstractAdapter implements BindInterface
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($uid, $field, $filter = false);
+    abstract public function get($uid, $field = array(), $filter = false);
 
     /**
      * Set value of a user field
