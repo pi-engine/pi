@@ -50,7 +50,7 @@ abstract class AbstractUser extends AbstractApi
      * @param array|Where   $condition
      * @param int           $limit
      * @param int           $offset
-     * @param string        $order
+     * @param string|array  $order
      * @return int[]
      * @api
      */
@@ -59,6 +59,26 @@ abstract class AbstractUser extends AbstractApi
         $limit      = 0,
         $offset     = 0,
         $order      = ''
+    );
+
+    /**
+     * Get users subject to conditions
+     *
+     * @param array|Where   $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
+     * @param array         $field
+     *
+     * @return array
+     * @api
+     */
+    abstract public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
     );
 
     /**

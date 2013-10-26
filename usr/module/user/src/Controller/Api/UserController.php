@@ -30,6 +30,7 @@ use Pi\Mvc\Controller\ActionController;
  * - mget: array(<id>), array(<field>)
  * - mundelete: array(<id>)
  *
+ * - meta
  * - activate: <id>
  * - enable: <id>
  * - disable: <id>
@@ -152,6 +153,18 @@ class UserController extends ActionController
             'count' => $count,
             'users' => $users,
         );
+
+        return $response;
+    }
+
+    /**
+     * Get user meta
+     *
+     * @return array
+     */
+    public function metaAction()
+    {
+        $response = Pi::service('user')->getMeta();
 
         return $response;
     }

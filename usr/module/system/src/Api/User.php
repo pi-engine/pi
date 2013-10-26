@@ -119,6 +119,49 @@ class User extends AbstractUseApi
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
+    ) {
+        $result = array();
+
+        if ($condition instanceof Where) {
+            $where = $condition;
+        } else {
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['active'])) {
+                $data['active'] = 1;
+            }
+            $where = $data;
+        }
+
+        $modelAccount = Pi::model('user_account');
+        $select = $modelAccount->select();
+        $select->columns(array('id'));
+        $select->where($where);
+        if ($order) {
+            $select->order($order);
+        }
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+        $rowset = $modelAccount->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = (int) $row['id'];
+        }
+
+        return $result;
+    }
+
+    /**
      * Get user count subject to conditions
      *
      * @param array|Where  $condition

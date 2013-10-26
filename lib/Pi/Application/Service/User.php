@@ -91,6 +91,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getList($condition = array(), $limit = 0, $offset = 0, $order = '', $field = array()
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
  * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field = array(), $filter = false)
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)

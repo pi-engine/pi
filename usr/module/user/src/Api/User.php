@@ -77,7 +77,7 @@ class User extends AbstractUseApi
      * @param array|Where   $condition
      * @param int           $limit
      * @param int           $offset
-     * @param string        $order
+     * @param string|array  $order
      * @return int[]
      * @api
      */
@@ -184,6 +184,21 @@ class User extends AbstractUseApi
         foreach ($rowset as $row) {
             $result[] = (int) $row['id'];
         }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
+    ) {
+        $result = array();
 
         return $result;
     }

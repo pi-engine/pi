@@ -47,6 +47,7 @@ use Pi\User\Model\AbstractModel as UserModel;
  * + User account/profile field operations
  *   + Read
  *   - getUids($condition, $limit, $offset, $order)
+ *   - getList($condition, $limit, $offset, $order, $field)
  *   - getCount($condition)
  *   - get($uid, $field, $filter)
  *
@@ -210,6 +211,26 @@ abstract class AbstractAdapter implements BindInterface
         $limit      = 0,
         $offset     = 0,
         $order      = ''
+    );
+
+    /**
+     * Get users subject to conditions
+     *
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
+     * @param array         $field
+     *
+     * @return array
+     * @api
+     */
+    abstract public function getList(
+        array $condition    = array(),
+        $limit              = 0,
+        $offset             = 0,
+        $order              = '',
+        array $field        = array()
     );
 
     /**

@@ -10,17 +10,16 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-//use Pi\User\Model\System as UserModel;
 
 /**
- * Pi Engine built-in user service provided by system module
+ * Pi Engine Client user service provided by uclient module
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class System extends AbstractAdapter
+class Local extends System
 {
     /** @var string Route for user URLs */
-    protected $route = 'sysuser';
+    protected $route = 'uclient';
 
     /**#@+
      * Meta operations
@@ -30,7 +29,7 @@ class System extends AbstractAdapter
      */
     public function getMeta($type = '', $action = '')
     {
-        return Pi::api('system', 'user')->getMeta($type, $action);
+        return Pi::api('uclient', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -42,15 +41,7 @@ class System extends AbstractAdapter
      */
     public function getUser($uid = null, $field = 'id')
     {
-        if ($this->model
-            && (null === $uid || $this->model->get($field) == $uid)
-        ) {
-            $model = $this->model;
-        } else {
-            $model = $this->getUserModel($uid, $field);
-        }
-
-        return $model;
+        return parent::getUser($uid, $field);
     }
 
     /**
@@ -62,7 +53,7 @@ class System extends AbstractAdapter
         $offset     = 0,
         $order      = ''
     ) {
-        $result = Pi::api('system', 'user')->getUids(
+        $result = Pi::api('uclient', 'user')->getUids(
             $condition,
             $limit,
             $offset,
@@ -82,7 +73,7 @@ class System extends AbstractAdapter
         $order      = '',
         array $field  = array()
     ) {
-        $result = Pi::api('system', 'user')->getList(
+        $result = Pi::api('uclient', 'user')->getList(
             $condition,
             $limit,
             $offset,
@@ -98,7 +89,7 @@ class System extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        $result = Pi::api('system', 'user')->getCount($condition);
+        $result = Pi::api('uclient', 'user')->getCount($condition);
 
         return $result;
     }
@@ -108,7 +99,7 @@ class System extends AbstractAdapter
      */
     public function addUser($data, $setRole = true)
     {
-        return Pi::api('system', 'user')->addUser($data, $setRole);
+        return Pi::api('uclient', 'user')->addUser($data, $setRole);
     }
 
     /**
@@ -116,7 +107,7 @@ class System extends AbstractAdapter
      */
     public function updateUser($uid, $data)
     {
-        return Pi::api('system', 'user')->updateUser($uid, $data);
+        return Pi::api('uclient', 'user')->updateUser($uid, $data);
     }
 
     /**
@@ -127,7 +118,7 @@ class System extends AbstractAdapter
         if ($this->isRoot($uid)) {
             return false;
         }
-        return Pi::api('system', 'user')->deleteUser($uid);
+        return Pi::api('uclient', 'user')->deleteUser($uid);
     }
 
     /**
@@ -135,7 +126,7 @@ class System extends AbstractAdapter
      */
     public function activateUser($uid)
     {
-        return Pi::api('system', 'user')->activateUser($uid);
+        return Pi::api('uclient', 'user')->activateUser($uid);
     }
 
     /**
@@ -143,7 +134,7 @@ class System extends AbstractAdapter
      */
     public function enableUser($uid)
     {
-        return Pi::api('system', 'user')->enableUser($uid);
+        return Pi::api('uclient', 'user')->enableUser($uid);
     }
 
     /**
@@ -154,7 +145,7 @@ class System extends AbstractAdapter
         if ($this->isRoot($uid)) {
             return false;
         }
-        return Pi::api('system', 'user')->disableUser($uid);
+        return Pi::api('user', 'user')->disableUser($uid);
     }
     /**#@-*/
 
@@ -166,7 +157,7 @@ class System extends AbstractAdapter
      */
     public function get($uid, $field = array(), $filter = false)
     {
-        return Pi::api('system', 'user')->get($uid, $field, $filter);
+        return Pi::api('uclient', 'user')->get($uid, $field, $filter);
     }
 
     /**
@@ -174,7 +165,7 @@ class System extends AbstractAdapter
      */
     public function set($uid, $field, $value)
     {
-        return Pi::api('system', 'user')->set($uid, $field, $value);
+        return Pi::api('uclient', 'user')->set($uid, $field, $value);
     }
     /**#@-*/
 
@@ -183,7 +174,7 @@ class System extends AbstractAdapter
      */
     public function setRole($uid, $role)
     {
-        return Pi::api('system', 'user')->setRole($uid, $role);
+        return Pi::api('user', 'user')->setRole($uid, $role);
     }
 
     /**
@@ -191,7 +182,7 @@ class System extends AbstractAdapter
      */
     public function revokeRole($uid, $role)
     {
-        return Pi::api('user', 'user')->revokeRole($uid, $role);
+        return Pi::api('uclient', 'user')->revokeRole($uid, $role);
     }
 
     /**
@@ -199,7 +190,7 @@ class System extends AbstractAdapter
      */
     public function getRole($uid, $section = '')
     {
-        return Pi::api('system', 'user')->getRole($uid, $section);
+        return Pi::api('uclient', 'user')->getRole($uid, $section);
     }
 
     /**#@+
@@ -210,7 +201,7 @@ class System extends AbstractAdapter
      */
     public function getRoute()
     {
-        return $this->route;
+        return parent::getRoute();
     }
 
     /**
@@ -293,11 +284,6 @@ class System extends AbstractAdapter
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
                 } else {
-                    /*
-                    $redirect = Pi::engine()->application()->getRequest()
-                        ->getRequestUri();
-                    */
-                    $redirect = '';
                 }
                 $params['module'] = 'system';
                 if (!isset($params['controller'])) {
@@ -367,14 +353,7 @@ class System extends AbstractAdapter
      */
     public function authenticate($identity, $credential)
     {
-        $options = array();
-        if (isset($this->options['authentication'])) {
-            $options = $this->options['authentication'];
-        }
-        $service = Pi::service()->load('authentication', $options);
-        $result = $service->authenticate($identity, $credential);
-
-        return $result;
+        return parent::authenticate($identity, $credential);
     }
 
     /**
@@ -382,11 +361,8 @@ class System extends AbstractAdapter
      */
     public function killUser($uid)
     {
-        $result = Pi::service('session')->killUser($uid);
-
-        return $result;
+        return parent::killUser($uid);
     }
-
     /**#@-*/
 
     /**
@@ -394,7 +370,7 @@ class System extends AbstractAdapter
      */
     public function getUserModel($uid, $field = 'id')
     {
-        $model = Pi::api('system', 'user')->getUser($uid, $field);
+        $model = Pi::api('uclient', 'user')->getUser($uid, $field);
 
         return $model;
     }

@@ -50,7 +50,7 @@ class IndexController extends ActionController
         $condition['email']         = _get('email') ?: '';
 
         // Get user ids
-        $users  = $this->getUsers($condition, $limit, $offset);
+        $users  = Pi::service('user')->getList($condition, $limit, $offset);
 
         // Get user count
         $count = $this->getCount($condition);
@@ -211,140 +211,6 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get users according to condition
-     *
-     * @param array $condition
-     * @param int $limit
-     * @param int $offset
-     *
-     * @return array
-     */
-    protected function getUsers(array $condition, $limit = 0, $offset = 0)
-    {
-        $modelAccount = Pi::model('user_account');
-
-        if ($condition['uid']) {
-            $where['id'] = (int) $condition['uid'];
-        }
-        if ($condition['email']) {
-            $where['email like ?'] = '%' .$condition['email'] . '%';
-        }
-        if ($condition['identity']) {
-            $where['identity like ?'] = '%' . $condition['identity'] . '%';
-        }
-        if ($condition['name']) {
-            $where['name like ?'] = '%' . $condition['name'] . '%';
-        }
-
-        $whereAccount = Pi::db()->where()->create($where);
-        $where = Pi::db()->where();
-        $where->add($whereAccount);
-
-        $select = Pi::db()->select();
-        $select->from(
-            array('account' => $modelAccount->getTable()),
-            array('id')
-        );
-
-        if ($condition['ip_register']) {
-            $profileModel = $this->getModel('profile');
-            $whereProfile = Pi::db()->where()->create(array(
-                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
-            ));
-            $where->add($whereProfile);
-            $select->join(
-                array('profile' => $profileModel->getTable()),
-                'profile.uid=account.id',
-                array()
-            );
-        }
-
-        $select->order('account.time_created DESC');
-        if ($limit) {
-            $select->limit($limit);
-        }
-        if ($offset) {
-            $select->offset($offset);
-        }
-
-        $select->where($where);
-
-        $rowset = Pi::db()->query($select);
-
-        $result = array();
-        foreach ($rowset as $row) {
-            $result1[] = $row;
-            $result[] = (int) $row['id'];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get count according to condition
-     *
-     * @param array $condition
-     *
-     * @return int
-     */
-    protected function getCount(array $condition)
-    {
-        $modelAccount = Pi::model('user_account');
-
-        $where = array();
-        if ($condition['uid']) {
-            $where['id'] = (int) $condition['uid'];
-        }
-        if ($condition['email']) {
-            $where['email like ?'] = '%' .$condition['email'] . '%';
-        }
-        if ($condition['identity']) {
-            $where['identity like ?'] = '%' . $condition['identity'] . '%';
-        }
-        if ($condition['name']) {
-            $where['name like ?'] = '%' . $condition['name'] . '%';
-        }
-
-        $whereAccount = Pi::db()->where()->create($where);
-        $where = Pi::db()->where();
-        $where->add($whereAccount);
-
-        $select = Pi::db()->select();
-        $select->from(
-            array('account' => $modelAccount->getTable())
-        );
-
-        $select->columns(array(
-            'count' => Pi::db()->expression('COUNT(account.id)'),
-        ));
-
-        if ($condition['ip_register']) {
-            $profileModel = $this->getModel('profile');
-            $whereProfile = Pi::db()->where()->create(array(
-                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
-            ));
-            $where->add($whereProfile);
-            $select->join(
-                array('profile' => $profileModel->getTable()),
-                'profile.uid=account.id',
-                array()
-            );
-        }
-
-        $select->where($where);
-        $rowset = Pi::db()->query($select);
-
-        if ($rowset) {
-            $rowset = $rowset->current();
-        } else {
-            return 0;
-        }
-
-        return (int) $rowset['count'];
-
-    }
-
-    /**
      * Get user ids according to roles
      *
      * @param array $condition
@@ -365,7 +231,9 @@ class IndexController extends ActionController
             $uids[] = $row['uid'];
         }
 
-        return $uids;
+        $result = Pi::service('user')->get($uids);
+
+        return $result;
 
     }
 
