@@ -220,9 +220,10 @@ class System extends AbstractAdapter
      */
     public function getUrl($type, $var = null)
     {
-        $route = $this->getRoute();
+        $route      = $this->getRoute();
+        $redirect   = '';
         switch ($type) {
-            case 'account':
+            //case 'account':
             case 'profile':
                 $params = array();
                 if (is_numeric($var)) {
@@ -243,7 +244,7 @@ class System extends AbstractAdapter
                 break;
 
             case 'login':
-            case 'signin':
+            //case 'signin':
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -275,13 +276,10 @@ class System extends AbstractAdapter
                     $route = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params);
-                if ($redirect) {
-                    $url .= '?redirect=' . rawurlencode($redirect);
-                }
                 break;
 
             case 'logout':
-            case 'signout':
+            //case 'signout':
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -292,12 +290,6 @@ class System extends AbstractAdapter
                 if (isset($params['redirect'])) {
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
-                } else {
-                    /*
-                    $redirect = Pi::engine()->application()->getRequest()
-                        ->getRequestUri();
-                    */
-                    $redirect = '';
                 }
                 $params['module'] = 'system';
                 if (!isset($params['controller'])) {
@@ -320,13 +312,10 @@ class System extends AbstractAdapter
                     $route = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params);
-                if ($redirect) {
-                    $url .= '?redirect=' . rawurlencode($redirect);
-                }
                 break;
 
             case 'register':
-            case 'signup':
+            //case 'signup':
                 $params = (array) $var;
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'register';
@@ -357,6 +346,12 @@ class System extends AbstractAdapter
                 }
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
+        }
+
+        // Append redirect with query
+        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+        if ($redirect) {
+            $url .= '?redirect=' . rawurlencode($redirect);
         }
 
         return $url;

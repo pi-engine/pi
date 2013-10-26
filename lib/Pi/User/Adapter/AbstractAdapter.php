@@ -413,11 +413,11 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user URL
      *
-     * - account: URI to user account page
+     * - home: URI to user home (timeline) page
      * - profile: URI to user profile page
      * - login: URI to user login page
      * - logout: URI to user logout page
-     * - register (signup): URI to user register/signup page
+     * - register: URI to user register page
      *
      * @param string    $type URL type
      * @param mixed     $options User id for profile or redirect for login

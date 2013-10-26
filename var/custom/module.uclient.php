@@ -1,7 +1,7 @@
 <?php
 // Uclient configurations
 
-$root       = '<specify-remote-host>';
+$root       = 'http://master.pi';
 $apiRoot    = $root . '/api/user/user';
 $userRoot   = $root . '/user';
 

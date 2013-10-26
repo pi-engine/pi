@@ -175,6 +175,7 @@ class Module extends AbstractService
      *
      * @param string $key
      * @param string $module
+     *
      * @return array
      */
     public function config($key = null, $module = null)
@@ -184,6 +185,7 @@ class Module extends AbstractService
             $this->container['config'][$module] =
                 Pi::registry('config')->read($module);
         }
+
         return $key
             ? $this->container['config'][$module][$key]
             : $this->container['config'][$module];

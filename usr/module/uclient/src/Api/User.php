@@ -64,7 +64,9 @@ class User extends AbstractUseApi
     {
         if (null === $this->meta) {
             $uri = $this->config('url', 'meta');
-            $$this->meta = (array) Pi::service('remote')->get($uri);
+            $$this->meta = (array) Pi::service('remote')
+                ->setAuthorization($this->config('authorization'))
+                ->get($uri);
         }
 
         return $this->meta;
@@ -144,7 +146,9 @@ class User extends AbstractUseApi
             $params['field'] = implode(',', (array) $field);
         }
 
-        $result = Pi::service('remote')->get($uri, $params);
+        $result = Pi::service('remote')
+            ->setAuthorization($this->config('authorization'))
+            ->get($uri, $params);
 
         return $result;
     }
@@ -171,7 +175,9 @@ class User extends AbstractUseApi
             $params['query'] = implode(',', $query);
         }
 
-        $result = (int) Pi::service('remote')->get($uri, $params);
+        $result = (int) Pi::service('remote')
+            ->setAuthorization($this->config('authorization'))
+            ->get($uri, $params);
 
         return $result;
     }
@@ -256,7 +262,9 @@ class User extends AbstractUseApi
         if ($field) {
             $params['field'] = implode(',', (array) $field);
         }
-        $result = Pi::service('remote')->get($uri, $params);
+        $result = Pi::service('remote')
+            ->setAuthorization($this->config('authorization'))
+            ->get($uri, $params);
         if ($field && is_scalar($field)) {
             array_walk($result, function ($user) use ($field) {
                 return $user[$field];
@@ -499,4 +507,139 @@ class User extends AbstractUseApi
 
         return $result;
     }
+
+    /**
+     * Get user URL
+     *
+     * - home: URI to user home (timeline) page
+     * - profile: URI to user profile page
+     * - login: URI to user login page
+     * - logout: URI to user logout page
+     * - register: URI to user register page
+     *
+     * @param string    $type URL type
+     * @param mixed     $var User id for profile or redirect for login
+     *
+     * @return string
+     * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+     * @api
+     */
+    public function getUrl($type, $var = null)
+    {
+        $redirect   = '';
+        switch ($type) {
+            case 'login':
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::engine()->application()->getRequest()
+                        ->getRequestUri();
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                    if (!isset($params['controller'])) {
+                        $params['controller'] = 'login';
+                    }
+                    if (isset($params['route'])) {
+                        $route = $params['route'];
+                        unset($params['route']);
+                    }
+                    $url = Pi::service('url')->assemble($route, $params);
+                } else {
+                    $url = $this->config('url', 'login');
+                }
+                break;
+
+            case 'logout':
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                    $params['module'] = 'system';
+                    if (!isset($params['controller'])) {
+                        $params['controller'] = 'login';
+                    }
+                    if (!isset($params['action'])) {
+                        $params['action'] = 'logout';
+                    }
+                    if (isset($params['route'])) {
+                        $route = $params['route'];
+                        unset($params['route']);
+                    }
+                    $url = Pi::service('url')->assemble($route, $params);
+                } else {
+                    $url = $this->config('url', 'logout');
+                }
+                break;
+
+            case 'register':
+                $url = $this->config('url', 'register');
+                break;
+
+            case 'profile':
+            case 'home':
+            default:
+                $type = $type ?: 'profile';
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['name'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!empty($params['id'])) {
+                    $url = $this->config('url', $type, 'id');
+                    $url = sprintf($url, $params['id']);
+                } elseif (!empty($params['name'])) {
+                    $url = $this->config('url', $type, 'name');
+                    $url = sprintf($url, $params['name']);
+                } elseif (!empty($params['identity'])) {
+                    $url = $this->config('url', $type, 'identity');
+                    $url = sprintf($url, $params['identity']);
+                } else {
+                    $url = $this->config('url', $type, 'my');
+                }
+                break;
+        }
+
+        // Append redirect with query
+        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+        if ($redirect) {
+            $url .= '?redirect=' . rawurlencode($redirect);
+        }
+
+        return $url;
+
+    }
+
 }
