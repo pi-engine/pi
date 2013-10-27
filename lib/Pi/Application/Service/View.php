@@ -72,7 +72,7 @@ class View extends AbstractService
                 : Pi::service('module')->current();
             $file = $template['file'];
             $template = $module . ':'
-                      . $section ? $section . '/' : ''
+                      . ($section ? $section . '/' : '')
                       . $file;
         }
         $content = $this->getViewManager()->getRenderer()
