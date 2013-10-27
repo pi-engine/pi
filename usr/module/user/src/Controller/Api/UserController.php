@@ -20,7 +20,7 @@ use Pi\Mvc\Controller\ActionController;
  * - delete: <id>
  * - get: <id>, array(<field>)
  * - insert: array(<field> => <value>)
- * - list: <limit>, <offset>, <order>, array(<queryKey> => <queryValue>), array(<field>)
+ * - list: <limit>, <offset>, <order>, array(<queryKey:queryValue>), array(<field>)
  * - patch: <id>, array(<field> => <value>)
  * - undelete: <id>
  * - update: <id>, array(<field> => <value>)
@@ -31,6 +31,7 @@ use Pi\Mvc\Controller\ActionController;
  * - mundelete: array(<id>)
  *
  * - meta
+ * - count: array(<queryKey:queryValue>)
  * - activate: <id>
  * - enable: <id>
  * - disable: <id>
@@ -170,20 +171,25 @@ class UserController extends ActionController
     }
 
     /**
-     * Placeholder for TODOs
+     * Gets count of users
      *
-     * @param string $method
-     * @param array  $args
-     *
-     * @return array|mixed
+     * @return int
      */
-    public function __call($method, $args = array())
+    public function countAction()
     {
-        $response = array(
-            'status'    => 0,
-            'message'   => sprintf('The API %s is not implemented yet.', $method),
-        );
+        $query = $this->params('query');
+        $query = $query ? explode(',', $query) : array();
 
-        return $response;
+        $condition = array();
+        if ($query) {
+            $condition = Pi::db()->where();
+            foreach ($query as $qString) {
+                list($identifier, $like) = explode(':', $qString);
+                $condition->like($identifier, $like);
+            }
+        }
+        $count  = Pi::service('user')->getCount($condition);
+
+        return $count;
     }
 }

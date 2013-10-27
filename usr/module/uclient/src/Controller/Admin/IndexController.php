@@ -53,7 +53,7 @@ class IndexController extends ActionController
         $users  = Pi::service('user')->getList($condition, $limit, $offset);
 
         // Get user count
-        $count = $this->getCount($condition);
+        $count = Pi::service('user')->getCount($condition);
 
         // Set paginator
         $paginator = array(
@@ -169,45 +169,6 @@ class IndexController extends ActionController
 
         return $result;
 
-    }
-
-    /**
-     * Get user information
-     *
-     * @param int[] $uids
-     *
-     * @return array
-     */
-    protected function getUser($uids)
-    {
-        $users = array();
-        if (!$uids) {
-            return $users;
-        }
-
-        $columns = array(
-            'identity'       => '',
-            'name'           => '',
-            'email'          => '',
-            'ip_register'    => '',
-            'id'             => '',
-        );
-
-        // Get user data
-        $users = Pi::service('user')->get(
-            $uids,
-            array_keys($columns)
-        );
-
-        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
-        foreach ($rowset as $row) {
-            $uid     = $row['uid'];
-            $section = $row['section'];
-            $roleKey = $section . '_roles';
-            $users[$uid][$roleKey][] = $row['role'];
-        }
-
-        return $users;
     }
 
     /**

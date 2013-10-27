@@ -275,7 +275,7 @@ class Remote extends AbstractService
         $cache = array();
         if (false !== $options) {
             $cacheOption = $this->getOption('cache');
-            if (false !== $cacheOption) {
+            if (false !== $cacheOption && 'production' == Pi::environment()) {
                 if (is_string($cacheOption)) {
                     $cache['storage'] = $cacheOption;
                 } elseif (is_int($cacheOption)) {
