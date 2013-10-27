@@ -215,6 +215,13 @@ class LoginController extends ActionController
         );
         // Set login count
         Pi::user()->data()->increment($uid, 'login_times', 1);
+        // Set login time
+        Pi::user()->data()->set(
+            $uid,
+            'time_last_login',
+            time(),
+            $this->getModule()
+        );
         // Check user complete profile
         $hasCompleteProfile = Pi::user()->data()->get(
             $uid,

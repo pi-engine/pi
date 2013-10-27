@@ -33,6 +33,10 @@ class PasswordController extends ActionController
     public function indexAction()
     {
         $uid = Pi::user()->getId();
+        $result = array(
+            'status' => 0,
+            'message' => __('Reset password failed'),
+        );
 
         // Redirect login page if not logged in
         if (!$uid) {
@@ -72,22 +76,14 @@ class PasswordController extends ActionController
                             'credential' => $values['credential-new']
                         )
                     );
-                    return array(
-                        'status' => 1,
-                        'message' => __('Reset password successfully')
-                    );
+                    $result['status'] = 1;
+                    $result['message'] = __('Reset password successfully');
                 } else {
-                    return array(
-                        'status' => 0,
-                        'message' => __('Input password error')
-                    );
+                    $result['message'] = __('Input password error');
                 }
-            } else {
-                return array(
-                    'status' => 0,
-                    'message' => $form->getMessages(),
-                );
             }
+
+            $this->view()->assign('result', $result);
         }
 
         // Get side nav items
@@ -108,6 +104,10 @@ class PasswordController extends ActionController
      */
     public function findAction()
     {
+        $result = array(
+            'status'  => 0,
+            'message' => __('Find password failed'),
+        );
         $form = new FindPasswordForm('find-password');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -119,16 +119,18 @@ class PasswordController extends ActionController
                 // Check email is  exist
                 $userRow = $this->getModel('account')->find($value['email'], 'email');
                 if (!$userRow) {
-                    return array(
-                        'status'  => 0,
-                        'message' => __('Find password faild'),
-                    );
+                    $this->view()->assign(array(
+                        'form'   => $form,
+                        'result' => $result,
+                    ));
+
+                    return;
                 }
 
                 // Set user data
                 $uid = (int) $userRow->id;
                 $token = md5(mt_rand() . $uid);
-                $result = Pi::user()->data()->set(
+                Pi::user()->data()->set(
                     $uid,
                     'find-password',
                     $token
@@ -152,16 +154,11 @@ class PasswordController extends ActionController
                 $transport = Pi::service('mail')->transport();
                 $transport->send($message);
 
-                return array(
-                    'status'  => 1,
-                    'message' => __('Send email successfully'),
-                );
-            } else {
-                return array(
-                    'status'  => 0,
-                    'message' => $form->getMessages(),
-                );
+                $result['status'] = 1;
+                $result['message'] = __('Send email successfully. check email and reset password');
             }
+
+            $this->view()->assign('result', $result);
         }
 
         $this->view()->assign('form', $form);
@@ -184,9 +181,8 @@ class PasswordController extends ActionController
         // Verify link invalid
         if (!$hashUid || !$token) {
             $result['message'] = __('Verify link invalid');
-
-            return $result;
-
+            $this->view()->assign('result', $result);
+            return;
         }
 
         $userData = Pi::user()->data()->find(array(
@@ -194,15 +190,15 @@ class PasswordController extends ActionController
         ));
         if (!$userData) {
             $result['message'] = __('Verify link invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         $userRow = $this->getModel('account')->find($userData['uid'], 'id');
         if (!$userRow || md5($userRow['id']) != $hashUid) {
             $result['message'] = __('Verify link invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Verify link expire time
@@ -210,8 +206,8 @@ class PasswordController extends ActionController
         $current = time();
         if ($current > $expire) {
             $result['message'] = __('Verify link invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         $uid  = $userRow->id;
@@ -234,13 +230,8 @@ class PasswordController extends ActionController
                 Pi::user()->data()->delete($uid, 'find-password');
                 $result['message'] = __('Reset password successfully');
                 $result['status']  = 1;
-
-                return $result;
-            } else {
-                $result['message'] = $form->getMessages();
-
-                return $result;
             }
+            $this->view()->assign('result', $result);
         }
 
         $this->view()->assign(array(
