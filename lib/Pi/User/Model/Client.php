@@ -16,7 +16,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends System
+class Client extends System
 {
     /**
      * {@inheritDoc}

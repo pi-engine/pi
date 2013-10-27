@@ -16,10 +16,10 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Local extends System
+class Client extends System
 {
     /** @var string Route for user URLs */
-    protected $route = 'uclient';
+    //protected $route = 'uclient';
 
     /**#@+
      * Meta operations
@@ -174,7 +174,7 @@ class Local extends System
      */
     public function setRole($uid, $role)
     {
-        return Pi::api('user', 'user')->setRole($uid, $role);
+        return Pi::api('uclient', 'user')->setRole($uid, $role);
     }
 
     /**

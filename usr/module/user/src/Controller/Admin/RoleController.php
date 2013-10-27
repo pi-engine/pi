@@ -154,11 +154,11 @@ class RoleController extends ActionController
                         $status = 1;
                         $model->delete($data);
                         $message = __('User removed from the role.');
-                        $data = array('uid' => $uid);
+                        $data = array('id' => $uid);
                     } else {
                         $status = 0;
                         $message = __('User not in the role.');
-                        $data = array('uid' => $uid);
+                        $data = array('id' => $uid);
                     }
                 } else {
                     if (!$count) {
@@ -167,7 +167,7 @@ class RoleController extends ActionController
                         $row->save();
                         $message = __('User added to the role.');
                         $data = array(
-                            'uid'   => $uid,
+                            'id'    => $uid,
                             'name'  => Pi::service('user')->get($uid, 'name'),
                             'url'   => Pi::service('user')->getUrl(
                                 'profile',
@@ -183,7 +183,7 @@ class RoleController extends ActionController
             } else {
                 $status = 0;
                 $message = __('User not found.');
-                $data = array('uid' => $uid);
+                $data = array('id' => $uid);
             }
 
             return compact('status', 'message', 'data');
