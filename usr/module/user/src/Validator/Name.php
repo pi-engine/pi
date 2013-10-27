@@ -137,7 +137,7 @@ class Name extends AbstractValidator
     {
         $this->options = array(
             'min'               => Pi::service('module')->config('name_min', 'user'),
-            'max'               => Pi::service('module')->config('name_min', 'user'),
+            'max'               => Pi::service('module')->config('name_max', 'user'),
             'format'            => Pi::service('module')->config('name_format', 'user'),
             'backlist'          => Pi::service('module')->config('name_backlist', 'user'),
             'checkDuplication'  => true,

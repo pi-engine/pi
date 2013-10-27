@@ -59,7 +59,7 @@ class EditController extends ActionController
     {
         $result = array(
             'status' => 0,
-            'message' => __('Edit faild'),
+            'message' => __('Edit failed'),
         );
         $uid = _get('uid');
 
@@ -69,14 +69,20 @@ class EditController extends ActionController
 
         // Get available edit fields
         list($fields, $formFields, $formFilters) = $this->getEditField();
-
+        // Add other elements
+        $formFields[] = array(
+            'name'  => 'uid',
+            'type'  => 'hidden',
+            'attributes' => array(
+                'value' => $uid,
+            ),
+        );
         $form = new EditUserForm('info', $formFields);
-        
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
-            $form->setInputFilter(new EditUserFilter($formFilters, $uid));
-            if ($form->isValid($uid)) {
+            $form->setInputFilter(new EditUserFilter($formFilters));
+            if ($form->isValid()) {
                 $values = $form->getData();
 
                 // Update user
