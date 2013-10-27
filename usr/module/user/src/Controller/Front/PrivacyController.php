@@ -39,7 +39,33 @@ class PrivacyController extends ActionController
             );
         }
 
+        if ($this->request->isPost()) {
+            $privacySettings = $this->request->getPost()->toArray();
+            foreach ($privacySettings as $key => $value) {
+                $this->getModel('privacy_user')->update(
+                    array(
+                        'value' => $value,
+                    ),
+                    array(
+                        'uid'       => $uid,
+                        'field'     => $key,
+                        'is_forced' => 1,
+                    )
+                );
+            }
+            $result = array(
+                'status'  => 1,
+                'message' => __('Set privacy successfully'),
+            );
+            $this->view()->assign('result', $result);
+        }
+
         $privacy = Pi::api('user', 'privacy')->getUserPrivacy($uid, 'list');
+        foreach ($privacy as $key => &$value) {
+            if (!$value['is_forced']) {
+                unset($privacy[$key]);
+            }
+        }
 
         $limits = array(
             0   => __('Public'),
