@@ -551,6 +551,9 @@ class User extends AbstractUseApi
                 }
                 if ('admin' == $section) {
                     $route = 'admin';
+                    if (!isset($params['module'])) {
+                        $params['module'] = 'system';
+                    }
                     if (!isset($params['controller'])) {
                         $params['controller'] = 'login';
                     }
@@ -584,7 +587,9 @@ class User extends AbstractUseApi
                 }
                 if ('admin' == $section) {
                     $route = 'admin';
-                    $params['module'] = 'system';
+                    if (!isset($params['module'])) {
+                        $params['module'] = 'system';
+                    }
                     if (!isset($params['controller'])) {
                         $params['controller'] = 'login';
                     }

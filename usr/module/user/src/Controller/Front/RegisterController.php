@@ -54,20 +54,13 @@ class RegisterController extends ActionController
             $form->setData($post);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $data   = array(
-                    'identity'   => $values['identity'],
-                    'name'       => $values['name'],
-                    'email'      => $values['email'],
-                    'credential' => $values['credential'],
-                );
-
-                $uid = Pi::api('user', 'user')->addUser($data);
+                $uid = Pi::api('user', 'user')->addUser($values);
 
                 // Set user role
                 Pi::api('user', 'user')->setRole($uid, 'member');
 
                 // Set user data
-                $content = md5($uid . $data['name']);
+                $content = md5($uid . $values['name']);
                 $status  = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
@@ -102,6 +95,7 @@ class RegisterController extends ActionController
                 $message->addTo($to);
                 $transport = Pi::service('mail')->transport();
                 $transport->send($message);
+                $result['uid']     = $uid;
                 $result['status']  = 1;
                 $result['message'] = __('Register successfully');
             }
@@ -129,8 +123,8 @@ class RegisterController extends ActionController
         // Check link params
         if (!$hashUid || !$token) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Search user data
@@ -140,16 +134,16 @@ class RegisterController extends ActionController
         ));
         if (!$userData) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid']);
         if (!$userRow || md5($userRow['id']) != $hashUid) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check expire time
@@ -157,8 +151,8 @@ class RegisterController extends ActionController
         $current = time();
         if ($current > $expire) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Activate user
@@ -169,8 +163,8 @@ class RegisterController extends ActionController
         // Check result
         if (!$status) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Delete user data
@@ -180,7 +174,6 @@ class RegisterController extends ActionController
         );
 
         $result['status']  = 1;
-        $result['uid']     = $userData['uid'];
         $result['message'] = __('Activate successfully');
 
         $this->view()->assign('result', $result);
@@ -197,12 +190,10 @@ class RegisterController extends ActionController
         $uid    = _get('uid');
         $result = array(
             'status'  => 0,
-            'message' => '',
+            'message' => __('Resend activate mail failed'),
         );
 
         if (!$uid) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -212,8 +203,6 @@ class RegisterController extends ActionController
             array('id', 'name', 'email', 'time_activated')
         );
         if (!$user || $user['time_activated']) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -224,8 +213,6 @@ class RegisterController extends ActionController
             'name'   => 'register-activation'
         ));
         if (!$userData) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -265,7 +252,7 @@ class RegisterController extends ActionController
         $result['uid']     = $uid;
         $result['message'] = __('Resend activate mail successfully');
 
-        $this->view()->assign('result', $result);
+        return $result;
 
     }
 

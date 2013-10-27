@@ -259,6 +259,9 @@ class System extends AbstractAdapter
                     $redirect = Pi::engine()->application()->getRequest()
                         ->getRequestUri();
                 }
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }
@@ -291,7 +294,9 @@ class System extends AbstractAdapter
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
                 }
-                $params['module'] = 'system';
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'login';
                 }
