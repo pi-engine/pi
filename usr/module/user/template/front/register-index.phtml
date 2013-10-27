@@ -1,2 +1,9 @@
 <h2 class="page-header"><?php _e('Register');?></h2>
-<?php include $this->templateComponent('form'); ?>
+<?php
+if (isset($result)) {
+    echo sprintf('<div class="alert %s"><button class="close">&times;</button>%s</div>',
+        $result['status'] ? 'alert-success' : 'alert-error',
+        $result['message']);
+}
+include $this->templateComponent('form');
+?>

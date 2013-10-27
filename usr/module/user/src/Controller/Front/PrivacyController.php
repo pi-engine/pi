@@ -74,8 +74,11 @@ class PrivacyController extends ActionController
             4   => __('Following'),
             255 => __('Owner'),
         );
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
         $this->view()->assign(array(
             'privacy' => $privacy,
+            'groups'    => $groups,
             'limits'  => $limits
         ));
     }

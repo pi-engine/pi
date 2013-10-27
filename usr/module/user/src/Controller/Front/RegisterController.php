@@ -43,7 +43,7 @@ class RegisterController extends ActionController
 
         $result = array(
             'status'  => 0,
-            'message' => '',
+            'message' => __('Register failed'),
         );
         list($fields, $filters) = $this->canonizeForm('custom.register');
         $form = $this->getRegisterForm($fields);
@@ -75,9 +75,12 @@ class RegisterController extends ActionController
                     $this->getModule()
                 );
                 if (!$status) {
-                    $result['message'] = __('Register fail');
+                    $this->view()->assign(array(
+                        'result' => $result,
+                        'from'   => $form,
+                    ));
 
-                    return $result;
+                    return;
                 }
 
                 // Send activity email
@@ -101,17 +104,13 @@ class RegisterController extends ActionController
                 $transport->send($message);
                 $result['status']  = 1;
                 $result['message'] = __('Register successfully');
-
-                return $result;
-            } else {
-                $result['message'] = $form->getMessages();
-
-                return $result;
             }
+
+            $this->view()->assign('result', $result);
         }
 
         $this->view()->assign(array(
-            'form' => $form,
+            'form'   => $form,
         ));
     }
 
@@ -181,9 +180,10 @@ class RegisterController extends ActionController
         );
 
         $result['status']  = 1;
+        $result['uid']     = $userData['uid'];
         $result['message'] = __('Activate successfully');
 
-        return $result;
+        $this->view()->assign('result', $result);
 
     }
 
@@ -261,10 +261,11 @@ class RegisterController extends ActionController
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
 
-        $result['status'] = 1;
+        $result['status']  = 1;
+        $result['uid']     = $uid;
         $result['message'] = __('Resend activate mail successfully');
 
-        return $result;
+        $this->view()->assign('result', $result);
 
     }
 
