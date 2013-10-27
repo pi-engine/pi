@@ -1,9 +1,30 @@
-<h2 class="page-header"><?php _e('Register');?></h2>
+
 <?php
-if (isset($result)) {
-    echo sprintf('<div class="alert %s"><button class="close">&times;</button>%s</div>',
-        $result['status'] ? 'alert-success' : 'alert-error',
-        $result['message']);
+if (isset($result) && $result['status']) {
+?>
+    <h2 class="page-header" ><?php _e('Register Activation'); ?></h2>
+    <p>
+        A register link has been sent to your email<br>
+        Please check it to finish regestion in 24 hours
+    </p>
+    <p>
+        Get no email?
+    </p>
+    <ul>
+        <li>Wait a few minutes</li>
+        <li>Check your email rubbish</li>
+        <li><a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>">Resend a email</a></li>
+    </ul>
+<?php
+} else {
+    echo sprintf('<h2 class="page-header" >%s</h2>',
+        __('Register')
+    );
+    if (isset($result) && !$result['status']) {
+        echo sprintf('<div class="alert %s"><button class="close">&times;</button>%s</div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    }
+    include $this->templateComponent('form');
 }
-include $this->templateComponent('form');
 ?>
