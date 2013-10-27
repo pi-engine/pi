@@ -198,7 +198,13 @@ class User extends AbstractUseApi
         $order      = '',
         $field      = array()
     ) {
-        $result = array();
+        $uids = $this->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+        $result = $this->get($uids, $field);
 
         return $result;
     }

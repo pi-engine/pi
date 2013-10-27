@@ -195,7 +195,6 @@ class IndexController extends ActionController
         $result = Pi::service('user')->get($uids);
 
         return $result;
-
     }
 
     /**
@@ -216,7 +215,6 @@ class IndexController extends ActionController
         $result = (int) $row['count'];
 
         return $result;
-
     }
 
     /**
@@ -241,5 +239,4 @@ class IndexController extends ActionController
 
         return $data;
     }
-
 }
