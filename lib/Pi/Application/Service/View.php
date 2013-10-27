@@ -33,7 +33,7 @@ class View extends AbstractService
     {
         if (!$this->viewManager) {
             $this->viewManager = Pi::engine()->application()
-                ->getServiceLocator()->get('view_manager');
+                ->getServiceManager()->get('view_manager');
         }
 
         return $this->viewManager;
