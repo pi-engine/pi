@@ -164,7 +164,7 @@ class UserController extends ActionController
      */
     public function metaAction()
     {
-        $response = Pi::service('user')->getMeta();
+        $response = Pi::service('user')->getMeta('', 'display');
 
         return $response;
     }
