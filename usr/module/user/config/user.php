@@ -48,6 +48,8 @@ return array(
                     ),
                 ),
             ),
+            'is_display'    => false,
+            'is_search'     => false,
         ),
         // Account: email
         'email'     => array(

@@ -87,7 +87,7 @@ class UserController extends ActionController
         $uid    = $this->params('id');
         $field  = $this->params('field');
 
-        $fields = $field ? explode(',', $field) : array();
+        $fields = $this->splitString($field);
         $result = Pi::service('user')->get($uid, $fields);
         $response = (array) $result;
 
@@ -101,13 +101,13 @@ class UserController extends ActionController
      */
     public function mgetAction()
     {
-        $uid    = $this->params('id');
-        $field  = $this->params('field');
+        $uid        = $this->params('id');
+        $field      = $this->params('field');
 
-        $uids   = explode(',', $uid);
-        $fields = $field ? explode(',', $field) : array();
-        $result = Pi::service('user')->get($uids, $fields);
-        $response = (array) $result;
+        $uids       = $this->splitString($uid);
+        $fields     = $this->splitString($field);
+        $result     = Pi::service('user')->get($uids, $fields);
+        $response   = (array) $result;
 
         return $response;
     }
@@ -121,33 +121,32 @@ class UserController extends ActionController
     {
         $users = array();
 
-        $limit = $this->params('limit', 10);
+        $limit  = $this->params('limit', 10);
         $offset = $this->params('offset', 0);
-        $order = $this->params('order');
-        $query = $this->params('query');
-        $field = $this->params('field');
+        $order  = $this->params('order');
+        $query  = $this->params('query');
+        $field  = $this->params('field');
 
-        $order = $order ? explode(',', $order) : array();
-        $query = $query ? explode(',', $query) : array();
-        $fields = $field ? explode(',', $field) : array();
+        $order  = $this->splitString($order);
+        $fields = $this->splitString($field);
+        $query  = $this->canonizeQuery($query);
 
         $condition = array();
         if ($query) {
             $condition = Pi::db()->where();
-            foreach ($query as $qString) {
-                list($identifier, $like) = explode(':', $qString);
-                $condition->like($identifier, $like);
+            foreach ($query as $qKey => $qValue) {
+                $condition->like($qKey, $qValue);
             }
         }
         $count  = Pi::service('user')->getCount($condition);
         if ($count) {
-            $uids   = Pi::service('user')->getUids(
+            $users = Pi::service('user')->getList(
                 $condition,
                 $limit,
                 $offset,
-                $order
+                $order,
+                $fields
             );
-            $users  = Pi::service('user')->get($uids, $fields);
         }
 
         $response = array(
@@ -165,7 +164,7 @@ class UserController extends ActionController
      */
     public function metaAction()
     {
-        $response = Pi::service('user')->getMeta();
+        $response = Pi::service('user')->getMeta('', 'display');
 
         return $response;
     }
@@ -178,18 +177,70 @@ class UserController extends ActionController
     public function countAction()
     {
         $query = $this->params('query');
-        $query = $query ? explode(',', $query) : array();
-
+        $query = $this->canonizeQuery($query);
         $condition = array();
         if ($query) {
             $condition = Pi::db()->where();
-            foreach ($query as $qString) {
-                list($identifier, $like) = explode(':', $qString);
-                $condition->like($identifier, $like);
+            foreach ($query as $qKey => $qValue) {
+                $condition->like($qKey, $qValue);
             }
         }
         $count  = Pi::service('user')->getCount($condition);
 
         return $count;
+    }
+
+    /**
+     * Split string delimited by comma `,`
+     *
+     * @param string $string
+     *
+     * @return array
+     */
+    protected function splitString($string = '')
+    {
+        $result = array();
+        if (!$string) {
+            return $result;
+        }
+
+        $result = explode(',', $string);
+        array_walk($result, 'trim');
+        $result = array_unique(array_filter($result));
+
+        return $result;
+    }
+
+    /**
+     * Canonize query strings by convert `*` to `%` for LIKE query
+     *
+     * @param string $query
+     *
+     * @return array
+     */
+    protected function canonizeQuery($query = '')
+    {
+        $result = array();
+        if (!$query) {
+            return $result;
+        }
+        if (is_string($query)) {
+            $query = $this->splitString($query);
+        }
+        array_walk($query, function ($qString) use (&$result) {
+            list($identifier, $like) = explode(':', $qString);
+            $identifier = trim($identifier);
+            $like = trim($like);
+            if ($identifier && $like) {
+                $like = str_replace(
+                    array('%', '*', '_'),
+                    array('\\%', '%', '\\_'),
+                    $like
+                );
+                $result[$identifier] = $like;
+            }
+        });
+
+        return $result;
     }
 }

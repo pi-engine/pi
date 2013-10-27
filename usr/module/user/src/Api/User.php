@@ -198,7 +198,19 @@ class User extends AbstractUseApi
         $order      = '',
         $field      = array()
     ) {
-        $result = array();
+        $uids = $this->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+        if ('id' == $field[0] && 1 == count($field)) {
+            array_walk($uids, function ($uid) use (&$result) {
+                $result[$uid] = array('id' => $uid);
+            });
+        } else {
+            $result = $this->get($uids, $field);
+        }
 
         return $result;
     }
@@ -425,7 +437,7 @@ class User extends AbstractUseApi
         }
 
         $result = array();
-        $fields = $field ? (array) $field : array_keys($this->getMeta());
+        $fields = $field ? (array) $field : array_keys($this->getMeta('', 'display'));
         $uids   = (array) $uid;
 
         $meta   = $this->canonizeField($fields);
@@ -941,7 +953,7 @@ class User extends AbstractUseApi
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
-            $fields = array_keys($this->getMeta($type));
+            $fields = array_keys($this->getMeta($type, 'display'));
         } else {
             $fields = array_unique($fields);
         }
