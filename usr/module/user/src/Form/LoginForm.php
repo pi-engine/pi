@@ -44,17 +44,19 @@ class LoginForm extends BaseForm
             )
         ));
 
-        $this->add(array(
-            'name'          => 'rememberme',
-            'type'          => 'checkbox',
-            'options'       => array(
-                'label' => __('Remember me'),
-            ),
-            'attributes'    => array(
-                'value'         => '1',
-                'description'   => __('Keep me logged in.')
-            )
-        ));
+        if ($config['remberme']) {
+            $this->add(array(
+                'name'          => 'rememberme',
+                'type'          => 'checkbox',
+                'options'       => array(
+                    'label' => __('Remember me'),
+                ),
+                'attributes'    => array(
+                    'value'         => '1',
+                    'description'   => __('Keep me logged in.')
+                )
+            ));
+        }
 
 
         if ($config['login_captcha']) {

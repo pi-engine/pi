@@ -16,6 +16,7 @@
 return array(
     // Use user module field
     'email',
+    'name',
     'identity',
     'credential',
 

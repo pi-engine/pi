@@ -226,13 +226,6 @@ class BuildController extends ActionController
                 rand(0, 400),
                 'user'
             );
-
-            Pi::user()->data()->set(
-                $uid,
-                'profile-complete',
-                1,
-                $this->getModule()
-            );
         }
     }
 
@@ -386,13 +379,6 @@ class BuildController extends ActionController
                 'login_times',
                 rand(0, 400),
                 'user'
-            );
-
-            Pi::user()->data()->set(
-                $uid,
-                'profile-complete',
-                1,
-                $this->getModule()
             );
 
             // Delete user
