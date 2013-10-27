@@ -140,13 +140,13 @@ class UserController extends ActionController
         }
         $count  = Pi::service('user')->getCount($condition);
         if ($count) {
-            $uids   = Pi::service('user')->getUids(
+            $users = Pi::service('user')->getList(
                 $condition,
                 $limit,
                 $offset,
-                $order
+                $order,
+                $fields
             );
-            $users  = Pi::service('user')->get($uids, $fields);
         }
 
         $response = array(
