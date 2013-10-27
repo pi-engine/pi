@@ -2,7 +2,7 @@ Pi Engine
 =================
 
 Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops.
-Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to [Zend Framework 2](https://github.com/zendframework/zf2), jQuery, Bootstrap and Backbone.
+Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to [Zend Framework 2](https://github.com/zendframework/zf2), jQuery, Bootstrap, Angular and Backbone.
 
 Pi Project follows the philosophy of open standard, open design, open development and open management. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users. 
 
