@@ -19,7 +19,7 @@ use Zend\InputFilter\InputFilter;
  */
 class EditUserFilter extends InputFilter
 {
-    public function __construct($filters, $uid = null)
+    public function __construct($filters)
     {
         $customVerifyFields = array(
             'email',
@@ -42,6 +42,8 @@ class EditUserFilter extends InputFilter
                         ),
                     ),
                 ));
+            } else {
+                $this->add($filter);
             }
         }
 

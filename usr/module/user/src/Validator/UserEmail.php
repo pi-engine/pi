@@ -56,7 +56,6 @@ class UserEmail extends AbstractValidator
     {
         $this->setValue($value);
         $this->setConfigOption();
-
         if (!empty($this->options['backlist'])) {
             $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
