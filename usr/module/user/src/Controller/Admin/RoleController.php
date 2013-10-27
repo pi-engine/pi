@@ -110,21 +110,13 @@ class RoleController extends ActionController
             $count[$row['role']] = (int) $row['count'];
         }
 
-        $frontRoles = array();
-        $adminRoles = array();
-        foreach ($roles as $role) {
+        foreach ($roles as &$role) {
             $role['count'] = isset($count[$role['name']])
                 ? (int) $count[$role['name']] : 0;
-            if ('admin' == $role['section']) {
-                $adminRoles[] = $role;
-            } else {
-                $frontRoles[] = $role;
-            }
         }
 
         return array(
-            'frontRoles'    => $frontRoles,
-            'adminRoles'    => $adminRoles,
+            'roles'    => array_values($roles)
         );
     }
 
@@ -424,16 +416,13 @@ class RoleController extends ActionController
         */
         $roles = Pi::registry('role')->read();
         $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
-        if ($count > $limit) {
-            $paginator = array(
-                'page'    => $page,
-                'count'   => $count,
-                'limit'   => $limit
-            );
-        } else {
-            $paginator = array();
-        }
-
+        
+        $paginator = array(
+            'page'    => $page,
+            'count'   => $count,
+            'limit'   => $limit
+        );
+       
         $data = array(
             'title'     => $title,
             'users'     => array_values($users),

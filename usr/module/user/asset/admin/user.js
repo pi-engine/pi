@@ -225,7 +225,7 @@
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
   function ($scope, $location, data, config, server) {
     angular.extend($scope, data);
-
+    
     $scope.$watch('paginator.page', function (newValue, oldValue) {
       if(newValue === oldValue) return;
       $location.search('p', newValue);
@@ -241,9 +241,9 @@
       return ids;
     }
 
-    $scope.markAll = function (checked) {
-      angular.forEach(this.users, function (user) {
-        user.checked = checked;
+    $scope.markAll = function () {
+      angular.forEach($scope.users, function (user) {
+        user.checked = $scope.allChecked;
       });
     }
 
