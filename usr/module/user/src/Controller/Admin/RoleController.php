@@ -347,16 +347,20 @@ class RoleController extends ActionController
     public function userAction()
     {
         $role   = $this->params('name', 'member');
+        // Operation: add, remove
         $op     = $this->params('op');
-        $uid    = $this->params('uid');
+        // User value
+        $name   = $this->params('user');
+        // User value field: uid, identity, name, email
+        $field  = $this->params('field', 'uid');
 
         $model = Pi::model('user_role');
         $message = '';
-        if ($op && $uid) {
-            if (is_numeric($uid)) {
-                $uid = (int) $uid;
+        if ($op && $name) {
+            if ('uid' == $field) {
+                $uid = (int) $name;
             } else {
-                $user = Pi::service('user')->getUser($uid, 'name');
+                $user = Pi::service('user')->getUser($name, $field);
                 if ($user) {
                     $uid = $user->get('id');
                 } else {
@@ -450,5 +454,4 @@ class RoleController extends ActionController
         $this->view()->setTemplate('role-user');
         */
     }
-
 }
