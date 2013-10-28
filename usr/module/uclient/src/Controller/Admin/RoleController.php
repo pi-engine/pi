@@ -66,23 +66,13 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $count[$row['role']] = (int) $row['count'];
         }
-
-        $frontRoles = array();
-        $adminRoles = array();
-        foreach ($roles as $name => $role) {
-            $role['name'] = $name;
-            $role['count'] = isset($count[$name])
-                ? (int) $count[$name] : 0;
-            if ('admin' == $role['section']) {
-                $adminRoles[] = $role;
-            } else {
-                $frontRoles[] = $role;
-            }
-        }
+        array_walk($roles, function (&$role, $name) use ($count) {
+            $role['name']   = $name;
+            $role['count']  = isset($count[$name]) ? (int) $count[$name] : 0;
+        });
 
         return array(
-            'frontRoles'    => $frontRoles,
-            'adminRoles'    => $adminRoles,
+            'roles'    => array_values($roles)
         );
     }
 
@@ -92,16 +82,20 @@ class RoleController extends ActionController
     public function userAction()
     {
         $role   = $this->params('name', 'member');
+        // Operation: add, remove
         $op     = $this->params('op');
-        $uid    = $this->params('uid');
+        // User value
+        $name   = $this->params('user');
+        // User value field: uid, identity, name, email
+        $field  = $this->params('field', 'uid');
 
         $model = Pi::model('user_role');
         $message = '';
-        if ($op && $uid) {
-            if (is_numeric($uid)) {
-                $uid = (int) $uid;
+        if ($op && $name) {
+            if ('uid' == $field) {
+                $uid = (int) $name;
             } else {
-                $user = Pi::service('user')->getUser($uid, 'name');
+                $user = Pi::service('user')->getUser($name, $field);
                 if ($user) {
                     $uid = $user->get('id');
                 } else {
@@ -111,26 +105,44 @@ class RoleController extends ActionController
             if ($uid) {
                 $data = array('role' => $role, 'uid' => $uid);
                 $count = $model->count($data);
-                if ('remove' == $op && $count) {
-                    $model->delete($data);
-                    $message = __('User removed.');
-                    $data = array('uid' => $uid);
-                } elseif ('add' == $op && !$count) {
-                    $row = $model->createRow($data);
-                    $row->save();
-                    $message = __('User added.');
-                    $data = array(
-                        'uid'   => $uid,
-                        'name'  => Pi::service('user')->get($uid, 'name')
-                    );
+                if ('remove' == $op) {
+                    if ($count) {
+                        $status = 1;
+                        $model->delete($data);
+                        $message = __('User removed from the role.');
+                        $data = array('id' => $uid);
+                    } else {
+                        $status = 0;
+                        $message = __('User not in the role.');
+                        $data = array('id' => $uid);
+                    }
+                } else {
+                    if (!$count) {
+                        $status = 1;
+                        $row = $model->createRow($data);
+                        $row->save();
+                        $message = __('User added to the role.');
+                        $data = array(
+                            'id'    => $uid,
+                            'name'  => Pi::service('user')->get($uid, 'name'),
+                            'url'   => Pi::service('user')->getUrl(
+                                'profile',
+                                $uid
+                            ),
+                        );
+                    } else {
+                        $status = 0;
+                        $message = __('User already in the role.');
+                        $data = array('uid' => $uid);
+                    }
                 }
-
-                return array(
-                    'status'    => 1,
-                    'message'   => $message,
-                    'data'      => $data,
-                );
+            } else {
+                $status = 0;
+                $message = __('User not found.');
+                $data = array('id' => $uid);
             }
+
+            return compact('status', 'message', 'data');
         }
 
         $page   = _get('page', 'int') ?: 1;
@@ -146,9 +158,9 @@ class RoleController extends ActionController
         }
         $users = Pi::service('user')->get($uids, array('uid', 'name'));
         $avatars = Pi::service('avatar')->getList($uids, 'small');
-        array_walk($users, function (&$user, $uid) use ($avatars) {
+        array_walk($users, function (&$user) use ($avatars) {
             //$user['avatar'] = $avatars[$uid];
-            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
+            $user['url'] = Pi::service('user')->getUrl('profile', $user['id']);
         });
         $count = count($uids);
         if ($count >= $limit) {
@@ -165,16 +177,13 @@ class RoleController extends ActionController
         */
         $roles = Pi::registry('role')->read();
         $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
-        if ($count > $limit) {
-            $paginator = array(
-                'page'    => $page,
-                'count'   => $count,
-                'limit'   => $limit
-            );
-        } else {
-            $paginator = array();
-        }
-
+        
+        $paginator = array(
+            'page'    => $page,
+            'count'   => $count,
+            'limit'   => $limit
+        );
+       
         $data = array(
             'title'     => $title,
             'users'     => array_values($users),
@@ -195,5 +204,4 @@ class RoleController extends ActionController
         $this->view()->setTemplate('role-user');
         */
     }
-
 }

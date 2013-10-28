@@ -1,150 +1,113 @@
-﻿systemRoleModule.config(['$translateProvider', '$routeProvider', '$locationProvider',
-  function ($translateProvider, $routeProvider, $locationProvider) {
+﻿angular.module('uclientRoleModule')
+.config(['$routeProvider', 'piProvider', 'config',
+  function($routeProvider, piProvider, config) {
+    //Get template url
     function tpl(name) {
-      return systemRoleModuleConfig.assetRoot + name + '.html';
+      return config.assetRoot + name + '.html';
     }
-    $translateProvider.translations(systemRoleModuleConfig.t);
+
     $routeProvider.when('/:role/users', {
       templateUrl: tpl('role-user'),
-      controller: 'UserCtrl'
+      controller: 'UserCtrl',
+      resolve: {
+        data: ['$q', '$route', '$rootScope', 'server',
+          function($q, $route, $rootScope, server) {
+            var deferred = $q.defer();
+            var role = $route.current.params.role;
+            $rootScope.alert = 2;
+            server.getUserByRole(role).success(function(data) {
+              data.role = role;
+              data.users = data.users || [];
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).otherwise({
       templateUrl: tpl('role-index'),
-      controller: 'RoleCtrl'
+      controller: 'RoleCtrl',
+      resolve: {
+        data: ['$q', 'server',
+          function($q, server) {
+            var deferred = $q.defer();
+            server.get().success(function(data) {
+              deferred.resolve(data);
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     });
-    $locationProvider.hashPrefix('!');
+    
+    piProvider.hashPrefix();
+    piProvider.translations(config.t);
+    piProvider.ajaxSetup();
   }
-]).directive('piFocus', function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attr) {
-      scope.$watch(attr.piFocus, function (value) {
-        if (value) {
-          element[0].focus();
+])
+.service('server', ['$http', 'config',
+  function ($http, config) {
+    var root = config.urlRoot;
+    
+    this.get = function () {
+      return $http.get(root + 'list');
+    }
+
+    this.getUserByRole = function(role) {
+      return $http.get(root + 'user', {
+        params: {
+          name: role
         }
       });
     }
-  }
-}).service('server', function ($http) {
-  var root = systemRoleModuleConfig.urlRoot;
-  var isFile = function (obj) {
-    return Object.prototype.toString.apply(obj) === '[object File]';
-  };
-  //emulate jQuery post
-  $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-  $http.defaults.transformRequest = [
-    function (d) {
-      return angular.isObject(d) && !isFile(d) ? $.param(d) : d;
+
+    this.addUser = function(role, entity) {
+      return $http.post(root + 'user', {
+        name: role,
+        field: entity.field,
+        user: entity.data,
+        op: 'add'
+      });
     }
-  ];
-  this.root = root;
-  this.get = function () {
-    return $http.get(root + 'list');
+
+    this.removeUser = function(role, id) {
+      return $http.post(root + 'user', {
+        name: role,
+        field: 'uid',
+        op: 'remove',
+        user: id
+      });
+    }
   }
-  this.add = function (role) {
-    return $http.post(root + 'add', role);
-  };
-  this.putTitle = function (role) {
-    $http.post(root + 'rename', {
-      id: role.id,
-      title: role.title
-    });
-  };
-  this.putActive = function (role) {
-    return $http.post(root + 'activate', {
-      id: role.id
-    });
-  };
-  this.remove = function (role) {
-    return $http.post(root + 'delete', {
-      id: role.id
-    });
-  };
-  this.getUserByRole = function(role) {
-    return $http.get(root + 'user', {
-      params: {
-        name: role
-      }
-    });
+])
+.controller('RoleCtrl', ['$scope', 'data',
+  function($scope, data) {
+    angular.extend($scope, data);
   }
-}).controller('RoleCtrl', function ($scope, server) {
-  server.get().success(function (data) {
-    var frontRoles = data.frontRoles;
-    var adminRoles = data.adminRoles;
-    var parse = function (item) {
-      item.editTitle = 0;
-      item.originTitle = item.title;
-    };
-    angular.forEach(frontRoles, parse);
-    angular.forEach(frontRoles, parse);
-    $scope.frontRoles = data.frontRoles;
-    $scope.adminRoles = data.adminRoles;
-  });
-  $scope.uniqueUrl = server.root + 'checkExist';
-  $scope.cancelModal = function () {
-    $scope.entity = null;
-  }
-  $scope.modal = function (type) {
-    $scope.entity = {
-      section: type,
-      active: 1
-    };
-  }
-  $scope.addRoleAction = function () {
-    server.add($scope.entity).success(function (data) {
-      $scope.alert = data;
-      if (data.status) {
-        var role = data.data;
-        role.count = role.count || 0;
-        if (role.section == 'front') {
-          $scope.frontRoles.push(role);
-        } else {
-          $scope.adminRoles.push(role);
+])
+.controller('UserCtrl', ['$scope', 'data', 'server',
+  function($scope, data, server) {
+    angular.extend($scope, data);
+
+    $scope.entity = { field: 'uid' };
+
+    $scope.removeAction = function(idx) {
+      var user = $scope.users[idx];
+      server.removeUser($scope.role, user.id).success(function(data) {
+        if (data.status) {
+          $scope.users.splice(idx, 1);
         }
-        $scope.entity = '';
-      }
-    });
-  }
-  $scope.renameAction = function (role) {
-    if (role.title == '') {
-      role.title = role.originTitle;
+      });
     }
-    if (role.title != role.originTitle) {
-      server.putTitle(role);
-    }
-    role.editTitle = 0;
-  }
-  $scope.activeAction = function (role) {
-    if (!role.custom) return;
-    server.putActive(role).success(function (data) {
-      $scope.alert = data;
-      if (data.status) {
-        role.active = data.data;
-      }
-    });
-  }
-  $scope.deleteAction = function (role, index) {
-    if (!confirm(systemRoleModuleConfig.t.DELETE_CONFIRM)) return;
-    server.remove(role).success(function (data) {
-      $scope.alert = data;
-      if (data.status) {
-        if (role.section == 'front') {
-          $scope.frontRoles.splice(index, 1);
-        } else {
-          $scope.adminRoles.splice(index, 1);
+
+    $scope.submit = function() {
+      server.addUser($scope.role, $scope.entity).success(function(data) {
+        var user = data.data;
+        if (data.status) {
+          $scope.users.push(user);
         }
-      }
-    });
-  }
-  $scope.clearAlert = function () {
-    $scope.alert = '';
-  }
-}).controller('UserCtrl', ['$scope', '$routeParams', 'server',
-  function($scope, $routeParams, server) {
-    var role = $routeParams.role;
-    $scope.role = role;
-    server.getUserByRole(role).success(function(data) {
-      $scope.users = data.users;
-      $scope.paginator = data.paginator;
-    });
+      });
+    }
   }
 ]);

@@ -46,8 +46,9 @@ class IndexController extends ActionController
         $offset = (int) ($page -1) * $limit;
 
         $condition = array();
-        $condition['name']          = _get('name') ?: '';
-        $condition['email']         = _get('email') ?: '';
+        $condition['identity']  = _get('identity') ?: '';
+        $condition['name']      = _get('name') ?: '';
+        $condition['email']     = _get('email') ?: '';
         $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
         $message = '';

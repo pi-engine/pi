@@ -253,12 +253,13 @@ class User extends AbstractUseApi
         }
         if (is_scalar($uid)) {
             $uri = $this->config('url', 'get');
+            $user = $uid;
         } else {
             $uri = $this->config('url', 'mget');
-            $uid = implode(',', $uid);
+            $user = implode(',', $uid);
         }
         $params = array(
-            'id'    => $uid,
+            'id'    => $user,
         );
         if ($field) {
             $params['field'] = implode(',', (array) $field);
@@ -267,9 +268,13 @@ class User extends AbstractUseApi
             ->setAuthorization($this->config('authorization'))
             ->get($uri, $params);
         if ($field && is_scalar($field)) {
-            array_walk($result, function ($user) use ($field) {
-                return $user[$field];
-            });
+            if (is_scalar($uid)) {
+                $result = $result[$field];
+            } else {
+                array_walk($result, function (&$user) use ($field) {
+                    $user = $user[$field];
+                });
+            }
         }
 
         return $result;

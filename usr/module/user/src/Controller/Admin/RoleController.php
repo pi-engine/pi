@@ -28,55 +28,15 @@ use Module\User\Form\RoleFilter;
 class RoleController extends ActionController
 {
     /**
-     * Columns for role model
-     *
-     * @var string[]
-     */
-    protected $roleColumns = array(
-        'id', 'section', 'custom', 'active', 'name', 'title'
-    );
-
-    /**
-     * Get role model
-     *
-     * @return Pi\Application\Model\Model
-     */
-    protected function model()
-    {
-        return Pi::model('role');
-    }
-
-    /**
      * Get role list
      *
-     * Data structure
-     *
-     *  - role
-     *    - id
-     *    - name
-     *    - title
-     *    - active
-     *    - custom
-     *    - section
-     *
-     * @param string $section
      * @return array
      */
-    protected function getRoles($section = '')
+    protected function getRoles()
     {
-        $roles = array();
-
-        $select = $this->model()->select();
-        $select->order('title ASC');
-        if ($section) {
-            $select->where(array('section' => $section));
-        }
-        $rowset = $this->model()->selectWith($select);
-        foreach ($rowset as $row) {
-            $role = $row->toArray();
-            $role['active'] = (int) $role['active'];
-            $role['custom'] = (int) $role['custom'];
-            $roles[$row['name']] =$role;
+        $roles = Pi::registry('role')->read();
+        if (isset($roles['guest'])) {
+            unset($roles['guest']);
         }
 
         return $roles;
@@ -98,9 +58,6 @@ class RoleController extends ActionController
     public function listAction()
     {
         $roles = $this->getRoles();
-        if (isset($roles['guest'])) {
-            unset($roles['guest']);
-        }
         $rowset = Pi::model('user_role')->count(
             array('role' => array_keys($roles)),
             'role'
@@ -109,11 +66,10 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $count[$row['role']] = (int) $row['count'];
         }
-
-        foreach ($roles as &$role) {
-            $role['count'] = isset($count[$role['name']])
-                ? (int) $count[$role['name']] : 0;
-        }
+        array_walk($roles, function (&$role, $name) use ($count) {
+            $role['name']   = $name;
+            $role['count']  = isset($count[$name]) ? (int) $count[$name] : 0;
+        });
 
         return array(
             'roles'    => array_values($roles)
