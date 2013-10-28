@@ -29,7 +29,7 @@ class Install extends BasicAction
     {
         $events = $this->events;
         //$events->attach('install.pre', array($this, 'checkConflicts'), 10);
-        //$events->attach('install.post', array($this, 'updateConfig'), 1);
+        $events->attach('install.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
         return $this;
