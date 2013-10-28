@@ -10,15 +10,16 @@
 namespace Module\Uclient\Controller\Admin;
 
 use Pi;
+use Pi\User\Model\Client as UserModel;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Predicate;
 
-
 /**
-* User manage cases controller
-*
-* @author Liu Chuang <liuchuang@eefocus.com>
-*/
+ * User manage cases controller
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class IndexController extends ActionController
 {
     /**
@@ -160,18 +161,18 @@ class IndexController extends ActionController
         );
 
         if (!$uids || !$type || !$role) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed.');
             return $result;
         }
 
@@ -180,10 +181,11 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::service('user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed');
+                    $result['message'] = __('Assign role failed.');
                     return $result;
                 }
             }
+            $this->setAccount($uids, $role);
         }
 
         // Remove user role
@@ -191,14 +193,14 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::service('user')->revokeRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed');
+                    $result['message'] = __('Assign role failed.');
                     return $result;
                 }
             }
         }
 
         $result['status']  = 1;
-        $result['message'] = __('Assign role successfully');
+        $result['message'] = __('Assign role successfully.');
 
         return $result;
 
@@ -311,5 +313,39 @@ class IndexController extends ActionController
         }
 
         return $data;
+    }
+
+    /**
+     * Build local user accounts
+     *
+     * @param int[] $uids
+     * @param string $role
+     *
+     * @return void
+     */
+    protected function setAccount($uids, $role)
+    {
+        $roles = Pi::registry('role')->read('admin');
+        if (!isset($roles[$role])) {
+            return;
+        }
+        $ids    = Pi::api('system', 'user')->getUids(array('id' => $uids));
+        $newIds = array_diff($uids, $ids);
+        if ($newIds) {
+            $users  = Pi::service('user')->get(
+                $newIds,
+                array('id', 'identity')
+            );
+            $model = Pi::model('user_account');
+            foreach ($users as $uid => $user) {
+                $row = $model->createRow(array(
+                    'id'            => $user['id'],
+                    'identity'      => $user['identity'],
+                    'credential'    => md5(uniqid(mt_rand(), true)),
+                ));
+                $row->prepare();
+                $row->save();
+            }
+        }
     }
 }

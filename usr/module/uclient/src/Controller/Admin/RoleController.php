@@ -10,10 +10,9 @@
 namespace Module\Uclient\Controller\Admin;
 
 use Pi;
+use Pi\User\Model\Client as UserModel;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\User\Form\RoleForm;
-use Module\User\Form\RoleFilter;
 
 /**
  * Role controller
@@ -93,15 +92,11 @@ class RoleController extends ActionController
         $message = '';
         if ($op && $name) {
             if ('uid' == $field) {
-                $uid = (int) $name;
-            } else {
-                $user = Pi::service('user')->getUser($name, $field);
-                if ($user) {
-                    $uid = $user->get('id');
-                } else {
-                    $uid = 0;
-                }
+                $name   = (int) $name;
+                $field  = 'id';
             }
+            $user = Pi::service('user')->getUser($name, $field);
+            $uid = (int) $user->get('id');
             if ($uid) {
                 $data = array('role' => $role, 'uid' => $uid);
                 $count = $model->count($data);
@@ -135,6 +130,9 @@ class RoleController extends ActionController
                         $message = __('User already in the role.');
                         $data = array('uid' => $uid);
                     }
+                }
+                if (1 == $status && 'remove' != $op) {
+                    $this->setAccount($user, $role);
                 }
             } else {
                 $status = 0;
@@ -191,17 +189,39 @@ class RoleController extends ActionController
         );
 
         return $data;
-        /*
-        $this->view()->assign(array(
-            'title'     => $title,
-            'role'      => $role,
-            'count'     => $count,
-            'users'     => $users,
-            'message'   => $message,
-            'paginator' => $paginator,
-        ));
+    }
 
-        $this->view()->setTemplate('role-user');
-        */
+    /**
+     * Build local user account
+     *
+     * @param UserModel|int $user
+     * @param string $role
+     *
+     * @return void
+     */
+    protected function setAccount($user, $role)
+    {
+        $roles = Pi::registry('role')->read('admin');
+        if (!isset($roles[$role])) {
+            return;
+        }
+        if ($user instanceof UserModel) {
+            $uid = $user->get('id');
+        } else {
+            $uid = (int) $user;
+            $user = Pi::service('user')->getUser($uid);
+        }
+        $model = Pi::model('user_account');
+        $row = $model->find($uid);
+        if ($row) {
+            return;
+        }
+        $row = $model->createRow(array(
+            'id'            => $uid,
+            'identity'      => $user->get('identity'),
+            'credential'    => md5(uniqid(mt_rand(), true)),
+        ));
+        $row->prepare();
+        $row->save();
     }
 }
