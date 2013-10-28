@@ -118,23 +118,8 @@ class RoleController extends ActionController
         }
         */
 
-        $frontRoles = array();
-        $adminRoles = array();
-        foreach ($roles as $role) {
-            /*
-            $role['count'] = isset($count[$role['name']])
-                ? (int) $count[$role['name']] : 0;
-            */
-            if ('admin' == $role['section']) {
-                $adminRoles[] = $role;
-            } else {
-                $frontRoles[] = $role;
-            }
-        }
-
         return array(
-            'frontRoles'    => $frontRoles,
-            'adminRoles'    => $adminRoles,
+            'roles'    => array_values($roles),
         );
     }
 
@@ -146,7 +131,7 @@ class RoleController extends ActionController
     public function addAction()
     {
         if ($this->request->isPost()) {
-            $data = $this->request->getPost();
+            $data = _post();
             $form = new RoleForm('role', $data['section']);
             $form->setInputFilter(new RoleFilter);
             $form->setData($data);
