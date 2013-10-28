@@ -182,7 +182,7 @@ class UserController extends ActionController
     /**
      * Gets count of users
      *
-     * @return int
+     * @return array
      */
     public function countAction()
     {
@@ -196,8 +196,12 @@ class UserController extends ActionController
             }
         }
         $count  = Pi::service('user')->getCount($condition);
+        $response = array(
+            'status'    => 1,
+            'data'      => $count,
+        );
 
-        return $count;
+        return $response;
     }
 
     /**
