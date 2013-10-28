@@ -22,7 +22,7 @@ class LoginForm extends BaseForm
     public function init()
     {
         // Get config data.
-        $config = Pi::service('registry')->config->read('user', 'account');
+        $config = Pi::service('registry')->config->read('user', 'account');d($config);
 
         $this->add(array(
             'name'          => 'identity',
@@ -44,7 +44,7 @@ class LoginForm extends BaseForm
             )
         ));
 
-        if ($config['remberme']) {
+        if ($config['rememberme']) {
             $this->add(array(
                 'name'          => 'rememberme',
                 'type'          => 'checkbox',

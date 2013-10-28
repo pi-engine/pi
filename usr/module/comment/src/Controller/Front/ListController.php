@@ -282,6 +282,9 @@ class ListController extends ActionController
         );
         $renderOptions = array(
             'operation' => $this->config('display_operation'),
+            'user'      => array(
+                'avatar'    => 'medium',
+            ),
         );
         $posts = Pi::api('comment')->renderList($posts, $renderOptions);
         $count = Pi::api('comment')->getCount($where);
@@ -298,6 +301,35 @@ class ListController extends ActionController
                 'params'        => $params,
             ),
         ));
+        
+        $navTabs = array(
+            array(
+                'active'    => empty($category),
+                'label'     => __('All'),
+                'href'      => $this->url('', array(
+                    'name'      => $module,
+                    'module'    => 'list',
+                    'action'    => 'module',
+                ))
+            ),
+        );
+        $allCategory = Pi::registry('category', 'comment')->read();
+        foreach ($allCategory[$module] as $name => $row) {
+            $navTabs[] = array(
+                'active'    => $category == $name,
+                'label'     => $row['title'],
+                'href'      => $this->url('', array(
+                    'name'      => $module,
+                    'category'  => $name,
+                    'module'    => 'list',
+                    'action'    => 'module',
+                )),
+            );
+        }
+        $this->view()->assign(array(
+            'tabs'      => $navTabs,
+        ));
+            
         $title = __('Comment posts of module');
         $this->view()->assign('comment', array(
             'title'     => $title,

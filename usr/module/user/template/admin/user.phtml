@@ -1,5 +1,4 @@
 <?php
-$this->css($this->assetModule('script/admin.css'));
 $this->jQuery();
 $this->angular(array(
     'angular-route.js',
@@ -8,6 +7,11 @@ $this->angular(array(
     'i18n'
 ));
 ?>
+<style>
+.user-form-actions {
+    margin: 0 20px 20px 8px;
+}
+</style>
 <div ng-app="userListModule">
     <div pi-message="alert"></div>
     <div pi-nav-tabs></div>
@@ -100,11 +104,11 @@ angular
             SEARCH_TITLE: '<?php _e('Advanced search'); ?>',
             REGISTER_IP: '<?php _e('Register IP'); ?>',
             FROM: '<?php _e('From'); ?>',
-            TO: '<?PHP _e('To'); ?>',
-            SEARCH_RESULT: '<?PHP _e('Search result'); ?>',
-            VIEW_LOG: '<?PHP _e('View log'); ?>',
-            NONE_PENDING_USERS: '<?PHP _e('None exist pending users'); ?>',
-            EDIT_TITLE: '<?PHP _e('Edit user'); ?>'
+            TO: '<?php _e('To'); ?>',
+            SEARCH_RESULT: '<?php _e('Search result'); ?>',
+            VIEW_LOG: '<?php _e('View log'); ?>',
+            NONE_PENDING_USERS: '<?php _e('None exist pending users'); ?>',
+            EDIT_TITLE: '<?php _e('Edit user'); ?>',
         },
         roles: <?php echo json_encode($roles); ?>,
         today: '<?php echo date("Y-m-d"); ?>'

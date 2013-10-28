@@ -77,7 +77,7 @@ class Privacy extends AbstractApi
                 }
             }
         } elseif ($type == 'user') {
-            foreach ($rawData as $key => $value) {d($rawData);
+            foreach ($rawData as $key => $value) {
                 $allow = $privacy >= $userSetting[$key] ? 1 : 0;
                 if ($allow) {
                     $result[$key] = $value;
