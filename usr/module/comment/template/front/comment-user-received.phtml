@@ -1,4 +1,7 @@
 <?php
+$this->bootstrap('css/font-awesome.css');
+$this->css($this->assetModule('css/front.css', 'comment'));
+
 // User data
 $user = $comment['user'];
 // Count
@@ -11,71 +14,87 @@ $posts = $comment['posts'];
 $paginator = $comment['paginator'];
 
 ?>
-    <div class="pi-comment-header">
-        <dl><?php echo _escape($comment['title']); ?></dl>
-        <dl class="dl-horizontal">
-            <dt><?php _e('Total:') ?></dt>
-            <dd><?php echo $count; ?></dd>
 
-            <dt><?php _e('User:') ?></dt>
-            <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo $user['name']; ?>">
-                <?php echo $user['name']; ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $user['avatar']; ?></dd>
-        </dl>
-    </div>
+<div class="pi-comment">
+    <?php
+        if ($posts) {
+    ?>
     <div class="pi-comment-list">
-<?php
-if ($posts) {
-    foreach ($posts as $post) {
-?>
-        <dl class="dl-horizontal pi-comment-post" id="comment-<?php echo $post['id']; ?>">
-            <dt><?php _e('Source:') ?></dt>
-            <dd><a href="<?php echo $post['target']['url']; ?>" target="_blank" title="<?php echo _escape($post['target']['title']); ?>">
-                    <?php echo _escape($post['target']['title']); ?>
-                </a>
-            </dd>
-
-            <dt><?php _e('User:') ?></dt>
-            <dd><a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>">
-                    <?php echo $post['user']['name']; ?>
-                </a>
-            </dd>
-            <dt>&nbsp;</dt>
-            <dd><?php echo $post['user']['avatar']; ?></dd>
-
-            <dt><?php _e('Time:');?></dt>
-            <dd><?php echo _date($post['time']); ?></dd>
-
-            <dt><?php _e('Content:');?></dt>
-            <dd><?php echo $post['content']; ?></dd>
-
-            <dt><?php _e('Operations:'); ?></dt>
-            <dd>
-                <?php if (!empty($post['operations'])) { ?>
-                    <?php foreach ($post['operations'] as $key => $op) { ?>
-                        <a href="<?php echo $op['url']; ?>" title="<?php echo _escape($op['title']); ?>" target="_blank">
-                            <?php echo _escape($op['title']); ?>
-                        </a>
-                    <?php } ?>
-                <?php } else { ?>
-                    <a href="<?php echo $post['url']; ?>" title="<?php _e('More details'); ?>" target="_blank">
-                        <?php _e('More details'); ?>
+        <div class="pi-comment-header">
+            <?php echo sprintf('%s\'s received comments ', $user['name']) .  "({$count})"; ?>
+        </div>
+    <?php
+            foreach ($posts as $post) {
+    ?>
+        <div class="media">
+            <a class="pull-left" href="<?php echo $user['url'] ?>" target="_blank">
+                <?php echo $user['avatar'] ?>
+            </a>
+            <div class="media-body">
+                <div class="pi-comment-desc" style="margin-top: 0">
+                    <a href="<?php echo $post['user']['url'] ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="pi-comment-user highlight pull-left" style="margin-right: 10px">
+                        <?php echo $post['user']['name'] ?>
                     </a>
-                <?php } ?>
-            </dd>
-        </dl>
-<?php
-    }
-?>
+                    <span class="muted pull-left"><?php _e('commented on ') ?></span>
+                    <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url'] ?>" title="<?php echo $post['target']['title'] ?>">
+                        <?php echo $post['target']['title'] ?>
+                    </a>
+                    <span class="muted pi-comment-time"><?php echo _date($post['time']) ?></span>
+                </div>
+                <div class="pi-comment-content">
+                    <?php echo $post['content'] ?>
+                </div>
+                <div class="pi-comment-operation">
+                <?php 
+                    foreach ($post['operations'] as $operation => $optData) {
+                        $class = '';
+                        switch ($operation) {
+                            case 'disable':
+                                $class = 'icon-ban-circle';
+                                break;
+                            case 'edit':
+                                $class = 'icon-pencil';
+                                break;
+                            case 'delete':
+                                $class = 'icon-trash';
+                                break;
+                            case 'reply':
+                                $class = 'icon-share-alt';
+                                break;
+                        }
+                ?>
+                    <span class="operation muted" style="visibility: visible">
+                        <a href="<?php echo $optData['url'] ?>">
+                            <i class="<?php echo $class ?>" style="text-decoration: none"></i><?php echo $optData['title'] ?>
+                        </a>
+                    </span>
+                <?php
+                    }
+                ?>
+                </div>
+            </div>
+        </div>
+                
+    <?php
+            }
+    ?>
     </div>
-<?php
-    if ($paginator) {
-        echo $this->pagination($paginator);
+    <?php
+        } else {
+    ?>
+    <div class="pi-comment-none"><?php _e('No comments available yet.') ?></div>
+    <?php
+        }
+    ?>
+</div>
+
+<?php 
+    if ($posts && $paginator) {
+        echo $this->pagination(
+            $paginator,
+            'Sliding',
+            'paginator.phtml',
+            array('class' => 'pagination-right')
+        );
     }
-} else {
-    _e('No comments available yet.');
-}
 ?>

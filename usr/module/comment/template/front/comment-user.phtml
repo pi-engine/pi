@@ -24,7 +24,7 @@ $paginator = $comment['paginator'];
         if ($posts) {
     ?>
     <div class="pi-comment-list">
-        <div class="pi-comment-header"><?php echo $user['name'] . __("'s comments ") . "({$count})" ?></div>
+        <div class="pi-comment-header"><?php echo sprintf('%s\'s comments ', $user['name']) . "({$count})"; ?></div>
     <?php
             foreach ($posts as $post) {
     ?>
@@ -38,7 +38,7 @@ $paginator = $comment['paginator'];
                     <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url'] ?>" title="<?php echo $post['target']['title'] ?>">
                         <?php echo $post['target']['title'] ?>
                     </a>
-                    <span class="muted pi-comment-time"><?php echo date('Y/m/d H:i:s', $post['time']) ?></span>
+                    <span class="muted pi-comment-time"><?php echo _date($post['time']) ?></span>
                 </div>
                 <div class="pi-comment-content">
                     <?php echo $post['content'] ?>
