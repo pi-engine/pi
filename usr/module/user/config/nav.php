@@ -81,6 +81,7 @@ return array(
             'module'        => 'user',
             'controller'    => 'form',
             'action'        => 'index',
+            'visible'       => 0,
         ),
 
         'plugin' => array(
