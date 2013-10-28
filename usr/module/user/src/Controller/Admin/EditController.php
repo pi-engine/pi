@@ -44,8 +44,9 @@ class EditController extends ActionController
         $nav = $this->getNav($uid);
 
         return array(
-            'user'  => $user,
-            'nav'   => $nav,
+            'user'   => $user,
+            'nav'    => $nav,
+            'avatar' => Pi::user()->avatar()->get($uid, 'origin', false)
         );
 
     }
@@ -261,33 +262,24 @@ class EditController extends ActionController
     public function avatarAction()
     {
         $uid  = _get('uid');
-        $type = _get('type', '');
 
-        if (!$uid) {
-            return $this->jumpTo404('Inval user id');
-        }
-
-        if ($uid && $type == 'delete') {
-            $oldAvatar = Pi::user()->get($uid, 'avatar');
-            $adapter   = Pi::avatar()->getAdapter('upload');
-            $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
-            foreach ($oldPaths as $oldPath) {
-                $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
-                if (file_exists($oldFile)) {
-                    @unlink($oldFile);
-                }
+        $oldAvatar = Pi::user()->get($uid, 'avatar');
+        $adapter   = Pi::avatar()->getAdapter('upload');
+        $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
+        foreach ($oldPaths as $oldPath) {
+            $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
+            if (file_exists($oldFile)) {
+                @unlink($oldFile);
             }
-            // Delete user avatar
-            Pi::user()->set($uid, 'avatar', '');
-            $this->view()->assign('message', __('Delete avatar successfully'));
         }
-
-        $nav = $this->getNav($uid);
-        $this->view()->assign(array(
-            'uid'     => $uid,
-            'nav'     => $nav,
-            'cur_nav' => 'avatar'
-        ));
+        // Delete user avatar
+        Pi::user()->set($uid, 'avatar', '');
+        
+        return array(
+            'status'   => 1,
+            'message'  => __('Replace with system defalt avatar successfully'),
+            'avatar'   => Pi::user()->avatar()->get('', 'origin', false)
+        );
     }
 
     /**

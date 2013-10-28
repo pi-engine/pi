@@ -64,7 +64,7 @@
       templateUrl: tpl('advanced-search-result'),
       controller: 'ListCtrl',
       resolve: resolve('search')
-    }).when('/edit/:action/:id', {
+    }).when('/edit/:id/:action?', {
       templateUrl: tpl('user-edit'),
       controller: 'EditCtrl',
       resolve: {
@@ -72,6 +72,7 @@
           function($q, $route, editServer) {
             var deferred = $q.defer();
             var params = $route.current.params;
+            params.action = params.action || 'info';
             editServer.get(params).success(function(data) {
               deferred.resolve(data);
             });
@@ -205,7 +206,7 @@
       }).success(function(data) {
           data.action = params.action;
           angular.forEach(data.nav, function(item) {
-            item.href = '#!/edit/' + item.name + '/' + id;
+            item.href = '#!/edit/' + id + '/' + item.name;
           });
           switch (data.action) {
             case 'info':
@@ -218,6 +219,14 @@
               data.formHtmlUrl = urlRoot + 'compound?uid=' + id + '&compound=' + data.action
             ;
           }
+      });
+    }
+
+    this.defaultAvatar = function(id) {
+      return $http.get(urlRoot + 'avatar', {
+        params: {
+          uid: id
+        }
       });
     }
   }
@@ -502,6 +511,13 @@
 
         $templateCache.remove(url);
         $scope.$apply();
+      });
+    }
+
+    $scope.defaultAvatarAction = function() {
+      editServer.defaultAvatar($scope.user.id).success(function(data) {
+        if (!data.status) return;
+        $scope.avatar = data.avatar;
       });
     }
 
