@@ -1,4 +1,4 @@
-﻿angular.module('systemRoleModule')
+﻿angular.module('userRoleModule')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
     //Get template url
