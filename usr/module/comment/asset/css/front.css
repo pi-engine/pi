@@ -180,3 +180,10 @@ a.pi-comment-count:hover {
 .pi-comment-article .media:last-child {
     border: 0;
 }
+.pi-comment-tab {
+    margin-top: 10px;
+    font-size: 13px;
+}
+.pi-comment-tab a {
+    color: #0088cc;
+}
