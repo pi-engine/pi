@@ -6,9 +6,16 @@
   <li ng-repeat="item in nav" ng-class="{active: item.name == action}" ng-click="navChange(item)">
     <a href="{{item.href}}">{{item.title}}</a>
 </ul>
-<div class="row" ng-include="formHtmlUrl">
+<div ng-include="formHtmlUrl">
 </div>
 <script type="text/ng-template" id="avatar-template.html">
-  <h2>avataravatar avatar</h2>
+  <p>
+    <img src="{{avatar}}">
+  </p>
+  <div>
+    <button class="btn btn-link" ng-click="defaultAvatarAction()">
+      {{'REPLACE_AVATAR' | translate}}
+    </button>
+  </div>
 </script>
 

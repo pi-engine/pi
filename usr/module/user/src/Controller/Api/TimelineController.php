@@ -37,7 +37,7 @@ class TimelineController extends ActionController
      *
      * @return bool
      */
-    public function addAction()
+    public function insertAction()
     {
         $result   = array(
             'status' => 0,

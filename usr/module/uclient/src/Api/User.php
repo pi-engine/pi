@@ -175,11 +175,12 @@ class User extends AbstractUseApi
             $params['query'] = implode(',', $query);
         }
 
-        $result = (int) Pi::service('remote')
+        $result = Pi::service('remote')
             ->setAuthorization($this->config('authorization'))
             ->get($uri, $params);
+        $count = (int) $result['data'];
 
-        return $result;
+        return $count;
     }
 
     /**
