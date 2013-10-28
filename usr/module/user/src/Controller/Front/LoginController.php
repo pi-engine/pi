@@ -88,9 +88,12 @@ class LoginController extends ActionController
                 }
             }
         }
-        $this->view()->assign('title', __('User login'));
-        $this->view()->assign('message', $message);
-        $this->view()->assign('form', $form);
+        $this->view()->assign(array(
+            'title'      => __('User login'),
+            'is_captcha' => $configs['login_captcha'],
+            'message'    => $message,
+            'form'       => $form
+        ));
     }
 
     /**

@@ -46,18 +46,40 @@ class TimelineController extends ActionController
 
         $uid      = (int) _post('uid');
         $timeline = _post('timeline');
+        $title    = _post('title');
         $message  = _post('message');
         $time     = (int) _post('time');
         $link     = _post('link');
+        $app_key  = _post('app_key');
+        $module   = _post('module');
 
         if (!$uid || !$timeline || !$message ) {
             return $result;
         }
 
         // Check timeline
+
         $rowset = $this->getModel('timeline')->find($timeline, 'name');
-        if (!$rowset) {
+        if (!$rowset && !$app_key) {
             return $result;
+        }
+        $result['t'] = $_POST;
+
+        if (!$rowset && $app_key) {
+
+            $data = array(
+                'name'    => $timeline,
+                'module'  => $module,
+                'title'   => $title,
+                'app_key' => $app_key,
+            );
+
+            // Insert timeline meta
+            $row = $this->getModel('timeline')->createRow($data);
+            $row->save();
+            if (!$row) {
+                return $result;
+            }
         }
 
         $log = array(
