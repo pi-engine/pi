@@ -1,10 +1,30 @@
-
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
-
 <?php include $this->templateComponent('form'); ?>
 
-<div class="empty">
-    <strong><?php _e('Choose: ') ?></strong>
-    <span><a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>" title="<?php _e('Forget password'); ?>"><?php _e('Find password'); ?></a></span>
-    <span><a href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a></span>
+<style>
+    .link-find-password {
+        position: relative;
+        left: 127px;
+        top: <?php echo $is_captcha ? '-195' : '-95'; ?>px;
+    }
+
+    .link-register {
+        position: relative;
+        left: 70px;
+        top: -45px;
+    }
+
+    @-moz-document url-prefix() {
+        .link-find-password {
+            top: <?php echo $is_captcha ? '-191' : '-91'; ?>px;
+        }
+
+        .link-register {
+            top: -43px;
+        }
+    }
+</style>
+<div style="margin-left: 180px;">
+    <a class="link-find-password" href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>" title="<?php _e('Forget password'); ?>"><?php _e('Find password'); ?></a>
+    <a class="link-register" style="" href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
 </div>
