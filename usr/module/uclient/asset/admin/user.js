@@ -6,69 +6,36 @@
       return config.assetRoot + name + '.html';
     }
 
-    function resolve(action) {
-      return {
+    $routeProvider.when('/?', {
+      templateUrl: tpl('index-all'),
+      controller: 'ListCtrl',
+      resolve: {
         data: ['$q', '$route', '$rootScope', 'server',
           function($q, $route, $rootScope, server) {
             var deferred = $q.defer();
             var params = $route.current.params;
             $rootScope.alert = 2;
-            server.get(action, params).success(function(data) {
+            server.get(params).success(function(data) {
               var users = data.users;
-              for (var i = 0, l = users.length; i < l; i++) {
-                var item = users[i];
-                item.time_disabled *= 1000;
-                item.time_created *= 1000;
-                item.time_activated *= 1000;
-                item.checked = 0;
+              angular.forEach(users, function(item) {
                 if (item.front_roles) {
                   item.front_roles = item.front_roles.join(',');
                 }
                 if (item.admin_roles) {
                   item.admin_roles = item.admin_roles.join(',');
                 }
-              }
+              })
               angular.extend(data, server.getRoles());
               data.filter = params;
-              if (!users.length) {
-                data.noneMessage = config.t.NONE_USER;
-              }
               deferred.resolve(data);
               $rootScope.alert = '';
             });
             return deferred.promise;
-          } 
+          }
         ]
-      };
-    }
-
-    $routeProvider.when('/all', {
-      templateUrl: tpl('index-all'),
-      controller: 'ListCtrl',
-      resolve: resolve('all')
-    }).when('/activated', {
-      templateUrl: tpl('index-activated'),
-      controller: 'ListCtrl',
-      resolve: resolve('activated')
-    }).when('/pending', {
-      templateUrl: tpl('index-pending'),
-      controller: 'ListCtrl',
-      resolve: resolve('pending')
-    }).when('/new', {
-      templateUrl: tpl('index-new'),
-      controller: 'NewCtrl'
-    }).when('/search', {
-      templateUrl: tpl('advanced-search'),
-      controller: 'SearchCtrl'
-    }).when('/all/search', {
-      templateUrl: tpl('advanced-search-result'),
-      controller: 'ListCtrl',
-      resolve: resolve('search')
-    }).otherwise({
-      redirectTo: '/all'
+      }
     });
 
-    piProvider.hashPrefix();
     piProvider.navTabs(config.navTabs);
     piProvider.translations(config.t);
     piProvider.ajaxSetup();
@@ -78,8 +45,8 @@
   function ($http, $cacheFactory, config) {
     var urlRoot = config.urlRoot;
 
-    this.get = function (action, params) {
-      return $http.get(urlRoot + action, {
+    this.get = function (params) {
+      return $http.get(urlRoot + 'all', {
         params: params
       });
     }
@@ -96,62 +63,31 @@
 
     this.getRoles = function () {
       var frontRoles = [];
-      var adminRoles = [];
+      var adminRoles = [{
+        name: 'none',
+        title: config.t.NONE_ADMIN,
+        section: 'admin'
+      }];
       angular.forEach(config.roles, function(item) {
-        if (item.type == 'front') {
+        if (item.section == 'front') {
           frontRoles.push(item);
+          item._section = config.t.FRONT;
         }
-        if (item.type == 'admin') {
+        if (item.section == 'admin') {
           adminRoles.push(item);
+          item._section = config.t.ADMIN;
         }
+      });
+      adminRoles.push({
+        name: 'any',
+        title: config.t.ANY_ADMIN,
+        section: 'admin'
       });
       return {
         'frontRoles': frontRoles,
         'adminRoles': adminRoles,
         'roles': config.roles
       };
-    }
-
-    this.roles = config.roles;
-
-    this.disable = function (ids) {
-      if (angular.isArray(ids)) {
-        ids = ids.join(',');
-      }
-      return $http.post(urlRoot + 'disable', {
-        ids: ids
-      });
-    }
-
-    this.enable = function (ids) {
-      if (angular.isArray(ids)) {
-        ids = ids.join(',');
-      }
-      return $http.post(urlRoot + 'enable', {
-        ids: ids
-      });
-    }
-
-    this.active = function (ids) {
-      if (angular.isArray(ids)) {
-        ids = ids.join(',');
-      }
-      return $http.post(urlRoot + 'activateUser', {
-        ids: ids
-      });
-    }
-
-    this.remove = function (ids) {
-      if (angular.isArray(ids)) {
-        ids = ids.join(',');
-      }
-      return $http.post(urlRoot + 'deleteUser', {
-        ids: ids
-      });
-    }
-
-    this.add = function (params) {
-      return $http.post(urlRoot + 'addUser', params);
     }
 
     this.assignRole = function(ids, role, op) {
@@ -164,14 +100,6 @@
         type: op
       });
     }
-
-    this.advanceSearch = function(params) {
-      return $http.get(urlRoot + 'search', {
-        params: params
-      });
-    }
-
-    this.uniqueUrl = urlRoot + 'checkExist';
   }
 ])
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
@@ -193,110 +121,12 @@
       return ids;
     }
 
-    $scope.markAll = function (checked) {
+    $scope.markAll = function () {
       angular.forEach(this.users, function (user) {
-        user.checked = checked;
+        user.checked = $scope.allChecked;
       });
     }
 
-    $scope.disableBatchAction = function () {
-      var users = $scope.users;
-      server.disable(getCheckIds()).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach(users, function (user) {
-            if (user.checked) {
-              user.time_disabled = 1;
-              user.active = 0;
-              user.checked = 0;
-            }
-          });
-        }
-      });
-    }
-
-    $scope.enableAction = function(user) {
-      if (user.time_disabled) {
-        server.enable(user.id).success(function (data) {
-          if (data.status) {
-            user.time_disabled = 0;
-            if (user.time_activated) user.active = 1;
-          }
-        });
-      } else {
-        server.disable(user.id).success(function (data) {
-          if (data.status) {
-            user.time_disabled = 1;
-            user.active = 0;
-          }
-        });
-      }
-    }
-   
-    $scope.enableBatchAction = function () {
-      var users = $scope.users;
-      server.enable(getCheckIds()).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach(users, function (user) {
-            if (user.checked) {
-              user.time_disabled = 0;
-              if (user.time_activated) user.active = 1;
-              user.checked = 0;
-            }
-          });
-        }
-      });
-    }
-
-    $scope.activeAction = function (user) {
-      if (user.time_activated) return;
-      if (!confirm(config.t.CONFIRM_ACTIVATE)) return;
-      server.active(user.id).success(function (data) {
-        if (data.status) {
-          user.time_activated = 1;
-        }
-      });
-    }
-
-    $scope.activeBatchAction = function () {
-      server.active(getCheckIds()).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            if (user.checked) {
-              user.time_activated = 1;
-              user.checked = 0;
-            }
-          });
-        }
-      });
-    }
-
-    $scope.deleteAction = function (idx) {
-      if (!confirm(config.t.CONFIRM)) return;
-      var users = this.users
-      var user = users[idx];
-      server.remove(user.id).success(function (data) {
-        if (data.status) {
-          users.splice(idx, 1);
-        }
-      });
-    }
-
-    $scope.deleteBatchAction = function () {
-      if (!confirm(config.t.CONFIRMS)) return;
-      server.remove(getCheckIds()).success(function (data) {
-        var ret = [];
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            !user.checked && ret.push(user);
-          });
-          $scope.users = ret;
-        }
-      });
-    }
 
     $scope.assignRoleBacthAction = function() {
       var role = $scope.assignRole;
@@ -307,18 +137,18 @@
         $scope.allChecked = 0;
         angular.forEach($scope.users, function (user) {
           if (user.checked) {
-            if (role.type == 'front') {
+            if (role.section == 'front') {
               if (user.front_roles) {
-                user.front_roles += ',' + role.name;
+                user.front_roles += ',' + role.title;
               } else {
-                user.front_roles = role.name;
+                user.front_roles = role.title;
               }
             }
-            if (role.type == 'admin') {
+            if (role.section == 'admin') {
               if (user.admin_roles) {
-                user.admin_roles += ',' + role.name;
+                user.admin_roles += ',' + role.title;
               } else {
-                user.admin_roles = role.name;
+                user.admin_roles = role.title;
               } 
             }
             user.checked = 0;
@@ -336,11 +166,11 @@
         $scope.allChecked = 0;
         angular.forEach($scope.users, function (user) {
           if (user.checked) {
-            if (role.type == 'front' && user.front_roles) {
-              user.front_roles = user.front_roles.replace(RegExp(',?' + role.name), '');
+            if (role.section == 'front' && user.front_roles) {
+              user.front_roles = user.front_roles.replace(RegExp(',?' + role.title), '');
             }
-            if (role.type == 'admin' && user.admin_roles) {
-              user.admin_roles = user.admin_roles.replace(RegExp(',?' + role.name), '');
+            if (role.section == 'admin' && user.admin_roles) {
+              user.admin_roles = user.admin_roles.replace(RegExp(',?' + role.title), '');
             }
             user.checked = 0;
           }
@@ -351,84 +181,6 @@
     $scope.filterAction = function () {
       $location.search(server.filterEmpty($scope.filter));
       $location.search('p', null);
-    }
-  }
-])
-.controller('NewCtrl', ['$scope', 'server',
-  function ($scope, server) {
-    var entity = {
-      activated: 1,
-      enable: 1,
-      roles: ['member']
-    };
-    
-    $scope.entity = entity;
-    $scope.uniqueUrl = server.uniqueUrl;
-    $scope.roles = angular.copy(server.roles);
-    angular.forEach($scope.roles, function (item) {
-      if (entity.roles.indexOf(item.name) != -1) {
-        item.checked = true;
-      }
-    });
-
-
-    $scope.submit = function () {
-      server.add(entity);
-    }
-
-    $scope.$watch('roles', function () {
-      var roles = [];
-      angular.forEach($scope.roles, function (item) {
-        if (item.checked) {
-          roles.push(item.name);
-        }
-      });
-      entity.roles = roles;
-    }, true);
-  }
-])
-.controller('SearchCtrl', ['$scope', '$location', 'config', 'server',
-  function($scope, $location, config, server) {
-    $scope.roles = angular.copy(server.roles);
-    $scope.today = config.today;
-    $scope.filter = {};
-
-    $scope.$watch('roles', function(newValue) {
-      var front_role = [];
-      var admin_role = [];
-      var filter = $scope.filter;
-      angular.forEach(newValue, function(item) {
-        if (item.checked) {
-          if (item.type == 'front') {
-            front_role.push(item.name);
-          } else {
-            admin_role.push(item.name);
-          }
-        }
-      });
-      if (front_role.length) {
-        filter.front_role = front_role.join(',');
-      }
-      if (admin_role.length) {
-        filter.admin_role = admin_role.join(',');
-      }
-    }, true);
-
-    $scope.submit = function() {
-      var filter = angular.copy($scope.filter);
-      var parse = function(time) {
-        return parseInt((new Date(time)).getTime() / 1000, 10);
-      }
-
-      if (filter.time_created_from) {
-        filter.time_created_from = parse(filter.time_created_from);
-      }
-
-      if (filter.time_created_to) {
-        filter.time_created_to = parse(filter.time_created_to);
-      }
-
-      $location.path('/all/search').search(filter);
     }
   }
 ]);
