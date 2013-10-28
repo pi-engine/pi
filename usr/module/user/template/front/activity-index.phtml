@@ -4,6 +4,7 @@ $this->css($this->assetModule('script/front.css'));
 <?php include '_user-media.phtml'; ?>
 <div class="clearfix">
     <?php if (!empty($data['content'])) { ?>
+        <?php echo  $data['content'];?>
     <?php } else { ?>
         <?php if ($data['link']) { ?>
             <a class="pull-right" href="<?php echo $data['link'];?>">
