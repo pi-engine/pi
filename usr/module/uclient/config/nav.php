@@ -57,16 +57,5 @@ return array(
                 ),
             ),
         ),
-
-        'maintenance' => array(
-            'label'         => _t('Maintenance'),
-            'permission'    => array(
-                'resource'  => 'maintenance',
-            ),
-            'route'         => 'admin',
-            'module'        => 'user',
-            'controller'    => 'maintenance',
-            'action'        => 'index',
-        ),
     ),
 );

@@ -48,16 +48,28 @@ class IndexController extends ActionController
         $condition = array();
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
-
-        // Get user ids
-        $users  = Pi::service('user')->getList($condition, $limit, $offset);
+        $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
         // Get user count
         $count = Pi::service('user')->getCount($condition);
 
+        // Get users
+        if ($count) {
+            $users  = Pi::service('user')->getList(
+                $condition,
+                $limit,
+                $offset,
+                '',
+                $fields
+            );
+            $users = $this->renderRole($users);
+        } else {
+            $users = array();
+        }
+
         // Set paginator
         $paginator = array(
-            'count'      => (int) $count,
+            'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
         );
@@ -86,12 +98,24 @@ class IndexController extends ActionController
         $condition[]    = _get('front_role') ?: '';
         $condition[]    = _get('admin_role') ?: '';
         $condition = array_filter($condition);
-
-        // Get user ids
-        $users  = $this->getUsersByRole($condition, $limit, $offset);
+        $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
         // Get user count
         $count = $this->getCountByRole($condition);
+
+        // Get users
+        if ($count) {
+            $users  = $this->getUsersByRole(
+                $condition,
+                $limit,
+                $offset,
+                '',
+                $fields
+            );
+            $users = $this->renderRole($users);
+        } else {
+            $users = array();
+        }
 
         // Set paginator
         $paginator = array(
@@ -172,19 +196,59 @@ class IndexController extends ActionController
     }
 
     /**
+     * Render roles for users
+     */
+    protected function renderRole(array $users)
+    {
+        foreach ($users as $key => $user) {
+            $uids[] = $user['id'];
+        }
+        $roleList = array();
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid     = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_roles';
+            $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
+        array_walk($users, function (&$user) use ($roleList) {
+            $uid = $user['id'];
+            if (isset($roleList[$uid]['front_roles'])) {
+                $user['front_roles'] = $roleList[$uid]['front_roles'];
+            }
+            if (isset($roleList[$uid]['admin_roles'])) {
+                $user['admin_roles'] = $roleList[$uid]['admin_roles'];
+            }
+        });
+
+        return $users;
+    }
+
+    /**
      * Get user ids according to roles
      *
      * @param array $condition
      * @param int $limit
      * @param int $offset
+     * @param string|array $order
+     * @param array $fields
      *
      * @return array
      */
-    protected function getUsersByRole(array $condition, $limit = 0, $offset = 0)
-    {
+    protected function getUsersByRole(
+        array $condition,
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        $fields = array()
+    ) {
+        $order = $order ?: 'uid DESC';
         $select = Pi::model('user_role')->select();
-        $select->columns(array(Pi::db()->expression('DISTINCT uid')));
-        $select->where($condition)->limit($limit)->offset($offset)->order('uid DESC');
+        //$select->columns(array(Pi::db()->expression('DISTINCT uid')));
+        $select->columns(array('uid'));
+        $select->group('uid');
+        $select->where($condition)->limit($limit)->offset($offset)->order($order);
         $rowset = Pi::model('user_role')->selectWith($select);
 
         $uids = array();
@@ -192,7 +256,7 @@ class IndexController extends ActionController
             $uids[] = $row['uid'];
         }
 
-        $result = Pi::service('user')->get($uids);
+        $result = Pi::service('user')->get($uids, $fields);
 
         return $result;
     }
