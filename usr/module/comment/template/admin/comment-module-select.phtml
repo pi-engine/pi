@@ -1,20 +1,29 @@
-<div class="page-header"><?php echo _escape($title); ?></div>
-
-<ul>
+<table class="table table-striped" style="margin-top: 20px">
+    <tr>
+        <th><?php _e('Module') ?></th>
+        <th><?php _e('Category') ?></th>
+        <th><?php _e('Action') ?></th>
+    </tr>
     <?php foreach ($modules as $name => $data) { ?>
-    <li>
-        <ul>
-        <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>">
-            <?php echo _escape($data['title']); ?>
-        </a>
-        <?php foreach ($data['categories'] as $category => $cData) { ?>
-        <li>
-            <a href="<?php echo $cData['url']; ?>" title="<?php echo _escape($cData['title']); ?>">
-                <?php echo _escape($cData['title']); ?>
+    <tr>
+        <td><?php echo $this->escape($name) ?></td>
+        <td></td>
+        <td>
+            <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>">
+                <?php _e('View comments') ?>
             </a>
-        </li>
+        </td>
+    </tr>
+        <?php foreach ($data['categories'] as $category) { ?>
+    <tr>
+        <td></td>
+        <td><?php echo $category['title'] ?></td>
+        <td>
+            <a href="<?php echo $category['url']; ?>" title="<?php echo _escape($category['title']); ?>">
+                <?php _e('View comments') ?>
+            </a>
+        </td>
+    </tr>
         <?php } ?>
-        </ul>
-    </li>
     <?php } ?>
-</ul>
+</table>

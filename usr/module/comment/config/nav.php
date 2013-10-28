@@ -56,15 +56,9 @@ return array(
             'controller'    => 'index',
             'action'        => 'index',
         ),
-        'category'     => array(
-            'route'         => 'admin',
-            'label'         => _t('Categories'),
-            'controller'    => 'category',
-            'action'        => 'index',
-        ),
         'list'     => array(
             'route'         => 'admin',
-            'label'         => _t('Posts'),
+            'label'         => _t('All comments'),
             'controller'    => 'list',
             'action'        => 'index',
 
@@ -91,6 +85,12 @@ return array(
             ),
             */
         ),
+        'category'     => array(
+            'route'         => 'admin',
+            'label'         => _t('Categories'),
+            'controller'    => 'category',
+            'action'        => 'index',
+        ),
         'module'     => array(
             'route'         => 'admin',
             'label'         => _t('By module'),
@@ -105,7 +105,7 @@ return array(
         ),
         'article'    => array(
             'route'         => 'admin',
-            'label'         => _t('Articles'),
+            'label'         => _t('By articles'),
             'controller'    => 'list',
             'action'        => 'article',
         ),
