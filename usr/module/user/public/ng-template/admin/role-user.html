@@ -3,7 +3,7 @@
   <input type="text" required ng-model="entity.data">
   <select ng-model="entity.field" class="input-medium">
     <option value="uid">{{'UID' | translate}}
-    <option value="identity">{{'USER_NAME' | translate}}
+    <option value="identity">{{'USERNAME' | translate}}
     <option value="name">{{'DISPLAY_NAME' | translate}}
     <option value="email">{{'EMAIL' | translate}}
   </select>
@@ -25,5 +25,5 @@
             boundary-links="true" items-per-page="paginator.limit">
 </pagination>
 <div ng-if="!users.length" class="alert">
-  {{'NONE_USERS' | translate}}
+  {{'NONE_USER' | translate}}
 </div>
