@@ -128,7 +128,8 @@ class AccountController extends ActionController
 
         // Check link
         if (!$hashUid || !$token) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Get user data
@@ -138,34 +139,40 @@ class AccountController extends ActionController
         ));
         // Check user data
         if (!$userData) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check new email
         $email = urldecode($email);
         if ($userData['value'] != md5($userData['uid'] . $email)) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check token
         if ($userData['value'] != $token) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid'], 'id');
         if (!$userRow) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
         if ($hashUid != md5($userData['uid'])) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check link expire time
         $expire  = $userData['time'] + 24 * 3600;
         $current = time();
         if ($current > $expire) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Reset email
@@ -174,7 +181,8 @@ class AccountController extends ActionController
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 
-        return $result;
+        $this->view()->assign('result', $result);
+        $this->view()->setTemplate('account-reset-email');
 
     }
 
