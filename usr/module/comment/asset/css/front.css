@@ -81,7 +81,6 @@ textarea:focus {
 }
 .pi-comment-operation {
     margin-top: 10px;
-    visibility: hidden;
     font-size: 13px;
 }
 .pi-comment-operation .operation {

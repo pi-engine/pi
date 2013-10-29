@@ -501,9 +501,10 @@ class ListController extends ActionController
             'active'    => $active,
         ));
         
+        $roots = array_keys($targets);
         $model = $this->getModel('post');
         $select = $model->select()
-            ->where(array('root' => array_keys($targets)))
+            ->where(array('root' => $roots ?: array()))
             ->columns(array('root', 'count' => new Expression('count(*)')))
             ->group(array('root'));
         $rowset = $model->selectWith($select);

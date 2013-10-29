@@ -1,5 +1,4 @@
 <?php
-$this->bootstrap();
 $this->css($this->assetModule('css/front.css'));
 
 // Count
@@ -32,27 +31,27 @@ if ($targets) {
     foreach ($targets as $root => $target) {
 ?>
     <div class="media">
-        <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php _e('Details'); ?>" target="_blank">
+        <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php echo sprintf(__('%s comments'), $target['count']); ?>" target="_blank">
             <?php echo $target['count']; ?>
         </a>
         <div class="media-body">
             <div style="font-size: 13px">
-                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>" style="margin: 0; font-weight: normal; max-width: 60%; width: auto">
+                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>" style="margin: 0; font-weight: normal; max-width: 60%;">
                     <?php echo _escape($target['title']); ?>
                 </a>
                 &nbsp;-
-                <a class="muted" href="<?php echo $target['user']['url'] ?>" target="_blank">
+                <a class="muted" href="<?php echo $target['user']['url']; ?>" target="_blank">
                     <?php echo $target['user']['name']; ?>
                 </a>
                 <span class="pull-right muted pi-comment-time"><?php echo _date($target['time']); ?></span>
             </div>
             <div class="pi-comment-desc">
-                <span class="muted pull-left"><?php _e('Last commented: ') ?></span>
+                <span class="muted pull-left"><?php _e('Last commented: '); ?></span>
                 <a class="highlight pull-left" href="<?php echo $target['comment_user']['url']; ?>" style="margin-left: 5px">
-                    <?php echo $target['comment_user']['name'] ?>
+                    <?php echo $target['comment_user']['name']; ?>
                 </a>
                 <span class="muted" style="margin-left: 5px">
-                    <?php echo __(' at ') . _date($target['comment_time']); ?>
+                    <?php echo sprintf(__(' at %s'), _date($target['comment_time'])); ?>
                 </span>
             </div>
         </div>
