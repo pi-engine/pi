@@ -43,6 +43,13 @@ $config = array(
         'value'         => 1,
         'filter'        => 'int',
     ),
+    
+    'user_domain'   => array(
+        'title'         => _t('User domain'),
+        'description'   => _t('URL that add the timeline to user system'),
+        'value'         => '',
+        'filter'        => 'string',
+    ),
 );
 
 return $config;
