@@ -132,7 +132,24 @@
             ids.push(user.id);
         }
       });
+      if (!ids.length) $scope.$parent.alert = { status: 0, message: config.t.BATCH_CHECKED };
       return ids;
+    }
+
+    function handleCheckedRole(item, role) {
+      if (item.checked) {
+          if (role.front_roles) {
+            item.front_roles = role.front_roles.join(',');
+          } else {
+            item.front_roles = '';
+          }
+          if (role.admin_roles) {
+            item.admin_roles = role.admin_roles.join(',');
+          } else {
+            item.admin_roles = '';
+          }
+        item.checked = 0;
+      }
     }
 
     $scope.markAll = function () {
@@ -144,50 +161,30 @@
 
     $scope.assignRoleBacthAction = function() {
       var role = $scope.assignRole;
+      var ids = getCheckIds();
+      $scope.assignRole = '';
+      if (!ids.length) return;
       if (!role) return;
-      server.assignRole(getCheckIds(), role.name, 'add').success(function(data) {
-        $scope.assignRole = '';
+      server.assignRole(ids, role.name, 'add').success(function(data) {
         if (!data.status) return;
         $scope.allChecked = 0;
-        angular.forEach($scope.users, function (user) {
-          if (user.checked) {
-            if (role.section == 'front') {
-              if (user.front_roles) {
-                user.front_roles += ',' + role.title;
-              } else {
-                user.front_roles = role.title;
-              }
-            }
-            if (role.section == 'admin') {
-              if (user.admin_roles) {
-                user.admin_roles += ',' + role.title;
-              } else {
-                user.admin_roles = role.title;
-              } 
-            }
-            user.checked = 0;
-          }
+        angular.forEach($scope.users, function(user) {
+          handleCheckedRole(user, data.data[user.id]);
         });
       });
     }
 
     $scope.unassignRoleBacthAction = function() {
       var role = $scope.unassignRole;
+      var ids = getCheckIds();
+      $scope.unassignRole = '';
+      if (!ids.length) return;
       if (!role) return;
-      server.assignRole(getCheckIds(), role.name, 'remove').success(function(data) {
-        $scope.unassignRole = '';
+      server.assignRole(ids, role.name, 'remove').success(function(data) {
         if (!data.status) return;
         $scope.allChecked = 0;
-        angular.forEach($scope.users, function (user) {
-          if (user.checked) {
-            if (role.section == 'front' && user.front_roles) {
-              user.front_roles = user.front_roles.replace(RegExp(',?' + role.title), '');
-            }
-            if (role.section == 'admin' && user.admin_roles) {
-              user.admin_roles = user.admin_roles.replace(RegExp(',?' + role.title), '');
-            }
-            user.checked = 0;
-          }
+        angular.forEach($scope.users, function(user) {
+          handleCheckedRole(user, data.data[user.id]);
         });
       });
     }
