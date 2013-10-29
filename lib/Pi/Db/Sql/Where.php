@@ -12,6 +12,7 @@ namespace Pi\Db\Sql;
 use Zend\Db\Sql\Where as ZendWhere;
 use Zend\Db\Sql\Predicate;
 use Zend\Db\Sql\Exception;
+use Zend\Db\Sql\Predicate\NotIn;
 
 /**
  * Clause class
@@ -150,6 +151,27 @@ class Where extends ZendWhere
     public function add($predicate, $combination = null)
     {
         $this->addPredicate($this->create($predicate, $combination));
+
+        return $this;
+    }
+
+
+    /**
+     * Create "noIn" predicate
+     *
+     * Utilizes NotIn predicate
+     *
+     * @param  string $identifier
+     * @param  array|\Zend\Db\Sql\Select $valueSet
+     * @return $this
+     */
+    public function notIn($identifier, $valueSet = null)
+    {
+        $this->addPredicate(
+            new NotIn($identifier, $valueSet),
+            ($this->nextPredicateCombineOperator) ?: $this->defaultCombination
+        );
+        $this->nextPredicateCombineOperator = null;
 
         return $this;
     }

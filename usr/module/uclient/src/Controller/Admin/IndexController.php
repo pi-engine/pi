@@ -96,21 +96,30 @@ class IndexController extends ActionController
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
 
-        $condition      = array();
-        $condition[]    = _get('front_role') ?: '';
-        $condition[]    = _get('admin_role') ?: '';
-        $condition = array_filter($condition);
+        $condition = array();
+        $condition['front_role']  = _get('front_role') ?: '';
+        $condition['admin_role']  = _get('admin_role') ?: '';
         $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
-        $message = '';
-
+        $roles = array(
+            'front' => $condition['front_role'],
+            'admin' => $condition['admin_role'],
+        );
+        $data = $this->queryByRole(
+            $roles,
+            $limit,
+            $offset,
+            '',
+            $fields
+        );
+        /*
         // Get user count
-        $count = $this->getCountByRole($condition);
+        $count = $this->getCountByRole($roles);
 
         // Get users
         if ($count) {
             $users  = $this->getUsersByRole(
-                $condition,
+                $roles,
                 $limit,
                 $offset,
                 '',
@@ -121,20 +130,21 @@ class IndexController extends ActionController
             $users = array();
             $message = __('No user available.');
         }
+        */
 
         // Set paginator
         $paginator = array(
-            'count'      => (int) $count,
+            'count'      => $data['count'],
             'limit'      => $limit,
             'page'       => $page,
         );
 
-        $data = array(
-            'users'     => array_values($users),
+        $data = array_merge($data, array(
             'paginator' => $paginator,
             'condition' => $condition,
-            'message'   => $message,
-        );
+        ));
+
+        //var_dump($data);
 
         return $data;
     }
@@ -235,7 +245,7 @@ class IndexController extends ActionController
     /**
      * Get user ids according to roles
      *
-     * @param array $condition
+     * @param array $roles
      * @param int $limit
      * @param int $offset
      * @param string|array $order
@@ -243,8 +253,8 @@ class IndexController extends ActionController
      *
      * @return array
      */
-    protected function getUsersByRole(
-        array $condition,
+    protected function ____getUsersByRole(
+        array $roles,
         $limit = 0,
         $offset = 0,
         $order = '',
@@ -255,7 +265,7 @@ class IndexController extends ActionController
         //$select->columns(array(Pi::db()->expression('DISTINCT uid')));
         $select->columns(array('uid'));
         $select->group('uid');
-        $select->where($condition)->limit($limit)->offset($offset)->order($order);
+        $select->where($roles)->limit($limit)->offset($offset)->order($order);
         $rowset = Pi::model('user_role')->selectWith($select);
 
         $uids = array();
@@ -269,21 +279,112 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get user account according to roles
+     * Get users according to roles
      *
-     * @param array $condition
+     * @param array $roles
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
+     * @param array $fields
      *
-     * @return int
+     * @return array
      */
-    protected function getCountByRole(array $condition)
-    {
-        $select = Pi::model('user_role')->select();
-        $select->columns(array(
-            'count' => Pi::db()->expression('COUNT(DISTINCT uid)')
-        ));
-        $select->where($condition);
-        $row = Pi::model('user_role')->selectWith($select)->current();
-        $result = (int) $row['count'];
+    protected function queryByRole(
+        array $roles,
+        $limit = 0,
+        $offset = 0,
+        $order = 'id DESC',
+        $fields = array()
+    ) {
+        $frontRoles = Pi::registry('role')->read('front');
+        $adminRoles = Pi::registry('role')->read('admin');
+        unset($frontRoles['guest']);
+        $rolesList = array(
+            'front' => array_keys($frontRoles),
+            'admin' => array_keys($adminRoles),
+        );
+
+        if ($roles['front'] && $roles['admin']) {
+            $isJoin = true;
+        } else {
+            $isJoin = false;
+        }
+        //$isJoin = false;
+        $where = Pi::db()->where();
+        foreach (array('front', 'admin') as $section) {
+            $key = $isJoin ? $section . '.role' : 'role';
+            if ('none_' . $section == $roles[$section]) {
+                $where->notIn($key, $rolesList[$section]);
+            } elseif ('any_' . $section == $roles[$section]) {
+                $where->in($key, $rolesList[$section]);
+            } elseif ($roles[$section]) {
+                $where->equalTo($key, $roles[$section]);
+            }
+        }
+        $model = Pi::model('user_role');
+        if ($isJoin) {
+            $select = Pi::db()->select();
+            $select->from(array('front' => $model->getTable()));
+            $select->columns(array(
+                'count' => Pi::db()->expression('COUNT(DISTINCT front.uid)')
+            ));
+            $select->join(
+                array('admin' => $model->getTable()),
+                'front.uid=admin.uid',
+                array()
+            );
+            $select->where($where);
+            $row = Pi::db()->query($select)->current();
+        } else {
+            $select = $model->select();
+            $select->columns(array(
+                'count' => Pi::db()->expression('COUNT(DISTINCT uid)')
+            ));
+            $select->where($where);
+            $row = $model->selectWith($select)->current();
+        }
+        $count = (int) $row['count'];
+        $users = array();
+        if ($count) {
+            if ($isJoin) {
+                /*
+                $select = Pi::db()->select();
+                $select->where($where);
+                $select->join(
+                    array('admin' => $model->getTable()),
+                    'front.uid=admin.uid',
+                    array()
+                );
+                */
+                $select->from(array('front' => $model->getTable()));
+                $select->columns(array('uid'));
+                $select->group('front.uid');
+                $select->limit($limit)->offset($offset);
+                $order = $order ?: 'front.id DESC';
+                $select->order($order);
+                $rowset = Pi::db()->query($select);
+            } else {
+                //$select = $model->select();
+                //$select->where($where);
+                $select->columns(array('uid'));
+                $select->group('uid');
+                $select->limit($limit)->offset($offset);
+                $order = $order ?: 'id DESC';
+                $select->order($order);
+                $rowset = $model->selectWith($select);
+            }
+            $uids = array();
+            foreach ($rowset as $row) {
+                $uids[] = (int) $row['uid'];
+            }
+            $users = Pi::service('user')->get($uids, $fields);
+            $users = $this->renderRole($users);
+        }
+
+        $result = array(
+            'count' => $count,
+            'users' => $users,
+        );
 
         return $result;
     }
