@@ -40,23 +40,3 @@ input.check-all {
 .operation i {
     margin-right: 2px;
 }
-.pi-comment-portal {
-    margin: 20px 0 0 0;
-}
-.pi-comment-portal .portal-header {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.pi-comment-portal table {
-    margin-top: 5px;
-    border: 1px solid #dddddd;
-}
-.pi-comment-portal .table-striped tbody > tr:nth-child(2n+1) > th {
-    background: #eeeeee;
-}
-.pi-comment-portal ul {
-    list-style: none;
-    padding: 10px;
-    margin: 0;
-}
