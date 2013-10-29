@@ -11,7 +11,6 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-//use Pi\Acl\Acl as AclManager;
 
 /**
  * Navigation list
@@ -25,6 +24,9 @@ class Navigation extends AbstractRegistry
 
     /** @var string Section */
     protected $section = 'front';
+
+    /** @var bool Check access permission to pages */
+    protected $checkPermission = true;
 
     /**
      * Columns for URI pages
@@ -186,7 +188,19 @@ class Navigation extends AbstractRegistry
         $locale = ''
     ) {
         //$this->cache = false;
-        $role = $this->canonizeRole($role);
+        if (null === $role) {
+            if (Pi::service('permission')->isAdmin()) {
+                $role = 'admin';
+            }
+        } elseif (Pi::service('permission')->isAdminRole($role)) {
+            $role = 'admin';
+        }
+        if ('admin' === $role) {
+            $this->checkPermission = false;
+        } else {
+            $this->checkPermission = true;
+            $role = $this->canonizeRole($role);
+        }
         $options = compact('name', 'module', 'section', 'role', 'locale');
         $data = $this->loadData($options);
 
@@ -560,7 +574,8 @@ class Navigation extends AbstractRegistry
      */
     public function isAllowed($page)
     {
-        if (!empty($page['resource'])
+        if ($this->checkPermission
+            && !empty($page['resource'])
             && !empty($page['resource']['resource'])
         ) {
             $params = $page['resource'];

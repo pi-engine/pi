@@ -141,7 +141,7 @@ return array(
     ),
 
     'role'   => array(
-        'label'         => _t('Roles'),
+        'label'         => _t('Role'),
         'permission'    => array(
             'resource'  => 'role',
         ),
@@ -151,7 +151,7 @@ return array(
 
         'pages'     => array(
             'front'      => array(
-                'label'         => _t('Front roles'),
+                'label'         => _t('Front'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -161,7 +161,7 @@ return array(
                 'visible'       => 0,
             ),
             'admin'  => array(
-                'label'         => _t('Admin roles'),
+                'label'         => _t('Admin'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -173,6 +173,7 @@ return array(
         ),
     ),
 
+    /*
     'user'  => array(
         'label'         => _t('Users'),
         'permission'    => array(
@@ -217,6 +218,28 @@ return array(
             ),
         ),
     ),
+    */
+
+    'cache'     => array(
+        'label'         => _t('Cache'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'cache',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
+
+    'asset'     => array(
+        'label'         => _t('Asset'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'asset',
+        'action'        => 'index',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
 
     'toolkit'   => array(
         'label'         => _t('Toolkit'),
@@ -225,26 +248,10 @@ return array(
         ),
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'cache',
+        'controller'    => 'audit',
         'action'        => 'index',
 
         'pages'     => array(
-            'cache'     => array(
-                'label'         => _t('Cache flush'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'cache',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
-            'asset'     => array(
-                'label'         => _t('Asset publish'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'asset',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
             'audit'     => array(
                 'label'         => _t('Audit'),
                 'route'         => 'admin',
@@ -257,7 +264,7 @@ return array(
                 'label'         => _t('Mailing'),
                 'route'         => 'admin',
                 'module'        => 'system',
-                'controller'    => 'mailing',
+                'controller'    => 'mail',
                 'action'        => 'index',
                 'visible'       => 0,
             ),

@@ -14,26 +14,38 @@
  */
 return array(
     'admin' => array(
-        'users'        => array(
-            'title'         => __('User'),
+        'account'       => array(
+            'title'         => __('User account'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        'user'          => array(
+            'title'         => __('User profile'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        'role'          => array(
+            'title'         => __('Roles'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'profile'      => array(
-            'title'         => __('Profile field'),
+            'title'         => __('Profile fields'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'avatar'       => array(
-            'title'         => __('Avatar'),
+            'title'         => __('Avatars'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'form'         => array(
-            'title'         => __('Form'),
+            'title'         => __('Forms'),
             'access'        => array(
                 //'admin',
             ),

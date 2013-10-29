@@ -29,7 +29,7 @@ class PrivacyController extends ActionController
     {
 
         // Redirect login page if not logged in
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         if (!$uid) {
             $this->jump(
                 'user',
@@ -39,9 +39,48 @@ class PrivacyController extends ActionController
             );
         }
 
-        $privacy = Pi::api('user', 'privacy')->getUserPrivacy($uid, 'list');
+        if ($this->request->isPost()) {
+            $privacySettings = $this->request->getPost()->toArray();
+            foreach ($privacySettings as $key => $value) {
+                $this->getModel('privacy_user')->update(
+                    array(
+                        'value' => $value,
+                    ),
+                    array(
+                        'uid'       => $uid,
+                        'field'     => $key,
+                        'is_forced' => 1,
+                    )
+                );
+            }
+            $result = array(
+                'status'  => 1,
+                'message' => __('Set privacy successfully'),
+            );
+            $this->view()->assign('result', $result);
+        }
 
-        return $privacy;
+        $privacy = Pi::api('user', 'privacy')->getUserPrivacy($uid, 'list');
+        foreach ($privacy as $key => &$value) {
+            if (!$value['is_forced']) {
+                unset($privacy[$key]);
+            }
+        }
+
+        $limits = array(
+            0   => __('Public'),
+            1   => __('Member'),
+            2   => __('Follower'),
+            4   => __('Following'),
+            255 => __('Owner'),
+        );
+        // Get side nav items
+        $groups = Pi::api('user', 'group')->getList();
+        $this->view()->assign(array(
+            'privacy' => $privacy,
+            'groups'    => $groups,
+            'limits'  => $limits
+        ));
     }
 
     /**
@@ -51,7 +90,7 @@ class PrivacyController extends ActionController
      */
     public function setPrivacyAction()
     {
-        $uid   = (int) Pi::user()->getIdentity();
+        $uid   = (int) Pi::user()->getId();
         $field = _post('field');
         $value = (int) _post('value');
 

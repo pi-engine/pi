@@ -23,13 +23,10 @@ return array(
         'identity'      => array(
             'type'      => 'account',
             'name'      => 'identity',
-            'title'     => __('Identity'),
+            'title'     => __('Username'),
             // Edit element specs
             'edit'      => array(
                 'validators'    => array(
-                    array(
-                        'name'      => 'StringLength',
-                    ),
                     array(
                         'name'      => 'Module\User\Validator\Username',
                     ),
@@ -42,7 +39,7 @@ return array(
         'credential'    => array(
             'type'      => 'account',
             'name'      => 'credential',
-            'title'     => __('Credential'),
+            'title'     => __('Password'),
             'edit'      => array(
                 'element'       => 'password',
                 'validators'    => array(
@@ -51,6 +48,8 @@ return array(
                     ),
                 ),
             ),
+            'is_display'    => false,
+            'is_search'     => false,
         ),
         // Account: email
         'email'     => array(

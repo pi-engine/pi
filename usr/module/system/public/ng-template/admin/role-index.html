@@ -1,12 +1,3 @@
-<style>
-.system-cursor {
-  cursor: pointer;
-}
-.system-table input[type="text"],
-.system-table form {
-  margin-bottom: 0;
-}
-</style>
 <legend>{{'FRONT_TITLE' | translate}}</legend>
 <button class="btn" ng-click="modal('front')">{{'FRONT_ADD' | translate}}</button>
 <table class="table table-striped system-table">
@@ -14,22 +5,13 @@
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
         <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
-      <tr ng-repeat="role in frontRoles">
+      <tr ng-repeat="role in roles | filter: {section: 'front'}">
         <td>{{role.name}}
         <td>
-          <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
-            {{role.title}}
-          </div>
-          <form ng-submit="renameAction(role)">
-            <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
-                   ng-show="role.editTitle" pi-focus="role.editTitle">
-          </form>
-        <td class="text-center">
-          <a href="#!/{{role.name}}/users">{{role.count}}</a>
+          <div pi-hover-input="role" text="role.title"></div>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -37,7 +19,7 @@
           </div>
         <td>
           <button class="btn btn-link" ng-if="role.custom"
-                  ng-click="deleteAction(role, $index)">
+                  ng-click="deleteAction(role)">
             {{'DELETE' | translate}}
           </button>
 </table>
@@ -48,22 +30,13 @@
       <tr>
         <th style="width: 15%;">{{'NAME' | translate}}
         <th style="width: 20%;">{{'TITLE' | translate}}
-        <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
         <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
         <th>{{'ACTION' | translate}}
     <tbody>
-      <tr ng-repeat="role in adminRoles">
+      <tr ng-repeat="role in roles | filter: {section: 'admin'}">
         <td>{{role.name}}
         <td>
-          <div class="system-cursor" ng-show="!role.editTitle" ng-click="role.editTitle = 1">
-            {{role.title}}
-          </div>
-          <form ng-submit="renameAction(role)">
-            <input type="text" ng-model="role.title" ng-blur="renameAction(role)"
-                   ng-show="role.editTitle" pi-focus="role.editTitle">
-          </form>
-        <td class="text-center">
-          <a href="#!/{{role.name}}/users">{{role.count}}</a>
+          <div pi-hover-input="role" text="role.title"></div>
         <td class="text-center">
           <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
                ng-click="activeAction(role)">
@@ -71,7 +44,7 @@
           </div>
         <td>
           <button class="btn btn-link" ng-if="role.custom"
-                  ng-click="deleteAction(role, $index)">
+                  ng-click="deleteAction(role)">
             {{'DELETE' | translate}}
           </button>
 </table>

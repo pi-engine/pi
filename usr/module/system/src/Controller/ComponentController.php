@@ -52,6 +52,10 @@ class ComponentController extends ActionController
      */
     protected function permission($module, $op)
     {
+        if (Pi::service('permission')->isAdmin($module)) {
+            return true;
+        }
+
         $result = Pi::service('permission')->modulePermission($module, 'admin');
         if ($result) {
             $result = Pi::service('permission')->hasPermission(array(

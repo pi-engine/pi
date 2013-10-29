@@ -89,7 +89,7 @@ class IndexController extends ActionController
                 )),
             ),
         );
-        if ($uid = Pi::service('user')->getIdentity()) {
+        if ($uid = Pi::service('user')->getId()) {
             $links['my-post'] = array(
                 'title' => __('Comment posts by me'),
                 'url'   => Pi::api('comment')->getUrl('user', array(

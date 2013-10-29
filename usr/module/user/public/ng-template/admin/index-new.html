@@ -2,7 +2,7 @@
 <form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
 	<div class="control-group" 
 		ng-class="{'error': userForm.identity.$dirty && userForm.identity.$invalid}">
-		<label class="control-label">{{'USER_NAME' | translate}}</label>
+		<label class="control-label">{{'USERNAME' | translate}}</label>
 		<div class="controls">
 			<input type="text" ng-model="entity.identity" name="identity" required pi-unique="{{uniqueUrl}}">
 			<span class="help-inline" 
@@ -11,7 +11,7 @@
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.identity.$error.unique">
-				{{'USER_NAME_TOKEN' | translate}}
+				{{'USERNAME_TAKEN' | translate}}
 			</span>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.name.$error.unique">
-				{{'DISPLAY_NAME_TOKEN' | translate}}
+				{{'DISPLAY_NAME_TAKEN' | translate}}
 			</span>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.email.$error.unique">
-				{{'EMAIL_TOKEN' | translate}}
+				{{'EMAIL_TAKEN' | translate}}
 			</span>
 		</div>
 	</div>

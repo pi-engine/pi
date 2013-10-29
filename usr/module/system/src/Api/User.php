@@ -57,7 +57,7 @@ class User extends AbstractUseApi
     /**
      * Get user model
      *
-     * @param int       $uid
+     * @param int|string $uid
      * @param string    $field
      *
      * @return UserModel
@@ -84,6 +84,49 @@ class User extends AbstractUseApi
         $limit      = 0,
         $offset     = 0,
         $order      = ''
+    ) {
+        $result = array();
+
+        if ($condition instanceof Where) {
+            $where = $condition;
+        } else {
+            $data = $this->canonizeUser($condition);
+            if (!isset($data['active'])) {
+                $data['active'] = 1;
+            }
+            $where = $data;
+        }
+
+        $modelAccount = Pi::model('user_account');
+        $select = $modelAccount->select();
+        $select->columns(array('id'));
+        $select->where($where);
+        if ($order) {
+            $select->order($order);
+        }
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+        $rowset = $modelAccount->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = (int) $row['id'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
     ) {
         $result = array();
 
@@ -239,14 +282,14 @@ class User extends AbstractUseApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         if (!$uid) {
             return false;
         }
 
         $result = array();
-        $fields   = (array) $field;
+        $fields   = $field ? (array) $field : array_keys($this->getMeta());
         $uids   = (array) $uid;
 
         $meta   = $this->canonizeField($fields);
@@ -332,10 +375,6 @@ class User extends AbstractUseApi
 
     /**
      * Get user role
-     *
-     * Section: `admin`, `front`
-     * If section is specified, returns the role;
-     * if not, return associative array of roles.
      *
      * @param int    $uid
      * @param string $section   Section name: admin, front
@@ -477,7 +516,7 @@ class User extends AbstractUseApi
         }
 
         $result = array();
-        $uids = (array) $uid;
+        $uids   = (array) $uid;
         if (!$fields) {
             $fields = array_keys($this->getMeta());
         } else {

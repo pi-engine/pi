@@ -47,6 +47,7 @@ use Pi\User\Model\AbstractModel as UserModel;
  * + User account/profile field operations
  *   + Read
  *   - getUids($condition, $limit, $offset, $order)
+ *   - getList($condition, $limit, $offset, $order, $field)
  *   - getCount($condition)
  *   - get($uid, $field, $filter)
  *
@@ -213,6 +214,26 @@ abstract class AbstractAdapter implements BindInterface
     );
 
     /**
+     * Get users subject to conditions
+     *
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
+     * @param array         $field
+     *
+     * @return array
+     * @api
+     */
+    abstract public function getList(
+        array $condition    = array(),
+        $limit              = 0,
+        $offset             = 0,
+        $order              = '',
+        array $field        = array()
+    );
+
+    /**
      * Get user count subject to conditions
      *
      * @param array  $condition
@@ -331,7 +352,7 @@ abstract class AbstractAdapter implements BindInterface
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($uid, $field, $filter = false);
+    abstract public function get($uid, $field = array(), $filter = false);
 
     /**
      * Set value of a user field
@@ -392,11 +413,11 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user URL
      *
-     * - account: URI to user account page
+     * - home: URI to user home (timeline) page
      * - profile: URI to user profile page
      * - login: URI to user login page
      * - logout: URI to user logout page
-     * - register (signup): URI to user register/signup page
+     * - register: URI to user register page
      *
      * @param string    $type URL type
      * @param mixed     $options User id for profile or redirect for login

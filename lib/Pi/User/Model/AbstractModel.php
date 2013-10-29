@@ -163,6 +163,8 @@ abstract class AbstractModel extends ArrayObject
         if (null !== $role) {
             $this->role = (array) $role;
             return $this;
+        } elseif (null === $this->role) {
+            $this->role = $this->loadRole();
         }
 
         return $this->role;

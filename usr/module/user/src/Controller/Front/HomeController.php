@@ -28,7 +28,7 @@ class HomeController extends ActionController
     public function indexAction()
     {
         $page   = $this->params('page', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $isLogin = Pi::user()->hasIdentity();
@@ -41,7 +41,7 @@ class HomeController extends ActionController
             return;
         }
 
-        $uid  = Pi::user()->getIdentity();
+        $uid  = Pi::user()->getId();
         // Get user information
         $user = $this->getUser($uid);
 
@@ -92,7 +92,7 @@ class HomeController extends ActionController
     public function viewAction()
     {
         $page   = $this->params('page', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $uid = $this->params('uid', '');
@@ -103,7 +103,7 @@ class HomeController extends ActionController
         $user = $this->getUser($uid);
 
         // Get viewer role: public member follower following owner
-        $role = Pi::user()->getIdentity() ? 'member' : 'public';
+        $role = Pi::user()->hasIdentity() ? 'member' : 'public';
         $user = Pi::api('user', 'privacy')->filterProfile(
             $uid,
             $role,

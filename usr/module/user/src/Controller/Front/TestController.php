@@ -52,13 +52,8 @@ class TestController extends ActionController
         vd($count);
         */
 
-        $test = new \ArrayObject(array('test' => 'val'));
-        vd((array) $test);
-        $model = Pi::user()->getUser();
-        vd($model['name']);
-        vd($model->toArray());
-        $data = $model->toArray();
-        Pi::config()->write('user-data', $data, true);
+        d(Pi::config('max_avatar_height', 'account'));
+        $this->view()->setTemplate(false);
     }
 
     protected function flushUsers()

@@ -203,15 +203,54 @@ class Remote extends AbstractService
             $headers['User-Agent'] = 'Pi Engine cURL';
         }
         if (!array_key_exists('Authorization', $headers)) {
-            if ($this->getOption('username') && $this->getOption('password')) {
-                $httpauth = $this->getOption('httpauth') ?: 'basic';
-                $headers['Authorization'] = ucfirst($httpauth) . ' '
-                    . base64_encode($this->getOption('username') . ':'
-                    . $this->getOption('password'));
+            $authHeader = $this->buildAuthorization($this->options);
+            if ($authHeader) {
+                $headers['Authorization'] = $authHeader;
             }
         }
 
         return $headers;
+    }
+
+    /**
+     * Set options for authorization
+     *
+     * @param array|null $params
+     *
+     * @return $this
+     */
+    public function setAuthorization($params)
+    {
+        $params = $params ? : array();
+        foreach (array('httpauth', 'username', 'password') as $key) {
+            if (array_key_exists($key, $params)) {
+                $this->options[$key] = $params[$key];
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Build authorization header
+     *
+     * @param array|null $params
+     *
+     * @return string
+     */
+    public function buildAuthorization($params)
+    {
+        $params = $params ? : array();
+        $authorization = '';
+        if (!empty($params['username']) && !empty($params['password'])) {
+            $httpauth = !empty($params['httpauth'])
+                ? ucfirst($params['httpauth']) : 'basic';
+            $authorization = ucfirst($httpauth) . ' ' . base64_encode(
+                $params['username'] . ':' . $params['password']
+            );
+        }
+
+        return $authorization;
     }
 
     /**
@@ -236,7 +275,7 @@ class Remote extends AbstractService
         $cache = array();
         if (false !== $options) {
             $cacheOption = $this->getOption('cache');
-            if (false !== $cacheOption) {
+            if (false !== $cacheOption && 'production' == Pi::environment()) {
                 if (is_string($cacheOption)) {
                     $cache['storage'] = $cacheOption;
                 } elseif (is_int($cacheOption)) {
@@ -296,6 +335,13 @@ class Remote extends AbstractService
         $this->adapter()->connect($host, $port);
 
         if ($params) {
+            // FIXME: Convert sub arrays to string
+            array_walk($params, function (&$param) {
+                if (is_array($param)) {
+                    $param = implode(',', $param);
+                }
+            });
+
             $uri->setQuery($params);
         }
 

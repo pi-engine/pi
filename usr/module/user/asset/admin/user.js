@@ -30,6 +30,9 @@
               }
               angular.extend(data, server.getRoles());
               data.filter = params;
+              if (!users.length) {
+                data.noneMessage = config.t.NONE_USER;
+              }
               deferred.resolve(data);
               $rootScope.alert = '';
             });
@@ -57,6 +60,26 @@
     }).when('/search', {
       templateUrl: tpl('advanced-search'),
       controller: 'SearchCtrl'
+    }).when('/all/search', {
+      templateUrl: tpl('advanced-search-result'),
+      controller: 'ListCtrl',
+      resolve: resolve('search')
+    }).when('/edit/:id/:action?', {
+      templateUrl: tpl('user-edit'),
+      controller: 'EditCtrl',
+      resolve: {
+        data: ['$q', '$route', 'editServer',
+          function($q, $route, editServer) {
+            var deferred = $q.defer();
+            var params = $route.current.params;
+            params.action = params.action || 'info';
+            editServer.get(params).success(function(data) {
+              deferred.resolve(data);
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).otherwise({
       redirectTo: '/all'
     });
@@ -65,6 +88,7 @@
     piProvider.navTabs(config.navTabs);
     piProvider.translations(config.t);
     piProvider.ajaxSetup();
+    piProvider.setGetHeader();
   }
 ])
 .service('server', ['$http', '$cacheFactory', 'config',
@@ -158,13 +182,59 @@
       });
     }
 
+    this.advanceSearch = function(params) {
+      return $http.get(urlRoot + 'search', {
+        params: params
+      });
+    }
+
     this.uniqueUrl = urlRoot + 'checkExist';
+  }
+])
+.service('editServer', ['$http', 'config',
+  function($http, config) {
+    var urlRoot = config.editUrlRoot;
+    this.urlRoot = config.editUrlRoot;
+
+    this.get = function(params) {
+      var id = params.id;
+      return $http.get(urlRoot + 'index', {
+        cache: true,
+        params: {
+          uid: id
+        }
+      }).success(function(data) {
+          data.action = params.action;
+          angular.forEach(data.nav, function(item) {
+            item.href = '#!/edit/' + id + '/' + item.name;
+          });
+          switch (data.action) {
+            case 'info':
+              data.formHtmlUrl = urlRoot + 'info?uid=' + id;
+              break;
+            case 'avatar':
+              data.formHtmlUrl = 'avatar-template.html';
+              break;
+            default:
+              data.formHtmlUrl = urlRoot + 'compound?uid=' + id + '&compound=' + data.action
+            ;
+          }
+      });
+    }
+
+    this.defaultAvatar = function(id) {
+      return $http.get(urlRoot + 'avatar', {
+        params: {
+          uid: id
+        }
+      });
+    }
   }
 ])
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
   function ($scope, $location, data, config, server) {
     angular.extend($scope, data);
-
+    
     $scope.$watch('paginator.page', function (newValue, oldValue) {
       if(newValue === oldValue) return;
       $location.search('p', newValue);
@@ -180,9 +250,9 @@
       return ids;
     }
 
-    $scope.markAll = function (checked) {
-      angular.forEach(this.users, function (user) {
-        user.checked = checked;
+    $scope.markAll = function () {
+      angular.forEach($scope.users, function (user) {
+        user.checked = $scope.allChecked;
       });
     }
 
@@ -238,6 +308,7 @@
 
     $scope.activeAction = function (user) {
       if (user.time_activated) return;
+      if (!confirm(config.t.CONFIRM_ACTIVATE)) return;
       server.active(user.id).success(function (data) {
         if (data.status) {
           user.time_activated = 1;
@@ -373,8 +444,85 @@
     }, true);
   }
 ])
-.controller('SearchCtrl', ['$scope', 'server',
-  function($scope, server) {
+.controller('SearchCtrl', ['$scope', '$location', 'config', 'server',
+  function($scope, $location, config, server) {
     $scope.roles = angular.copy(server.roles);
+    $scope.today = config.today;
+    $scope.filter = {};
+
+    $scope.$watch('roles', function(newValue) {
+      var front_role = [];
+      var admin_role = [];
+      var filter = $scope.filter;
+      angular.forEach(newValue, function(item) {
+        if (item.checked) {
+          if (item.type == 'front') {
+            front_role.push(item.name);
+          } else {
+            admin_role.push(item.name);
+          }
+        }
+      });
+      if (front_role.length) {
+        filter.front_role = front_role.join(',');
+      }
+      if (admin_role.length) {
+        filter.admin_role = admin_role.join(',');
+      }
+    }, true);
+
+    $scope.submit = function() {
+      var filter = angular.copy($scope.filter);
+      var parse = function(time) {
+        return parseInt((new Date(time)).getTime() / 1000, 10);
+      }
+
+      if (filter.time_created_from) {
+        filter.time_created_from = parse(filter.time_created_from);
+      }
+
+      if (filter.time_created_to) {
+        filter.time_created_to = parse(filter.time_created_to);
+      }
+
+      $location.path('/all/search').search(filter);
+    }
+  }
+])
+.controller('EditCtrl', ['$scope', '$templateCache', 'data', 'editServer',
+  function($scope, $templateCache, data, editServer) {
+    angular.extend($scope, data);
+
+    $scope.navChange = function(item) {
+      $scope.action = item.name;
+    }
+
+    $scope.submit = function(name) {
+      var form = $('form[name=' + name + ']');
+      var url = $scope.formHtmlUrl;
+      $.post(url, form.serialize()).done(function(data) {
+        data = $.parseJSON(data);
+        $scope.$parent.alert = data;
+        if (angular.isUndefined(data.set)) {
+          $scope.formError = data.error;
+        } else {
+          $scope['formError' + data.set] = data.error;
+        }
+
+        $templateCache.remove(url);
+        $scope.$apply();
+      });
+    }
+
+    $scope.defaultAvatarAction = function() {
+      editServer.defaultAvatar($scope.user.id).success(function(data) {
+        if (!data.status) return;
+        $scope.avatar = data.avatar;
+      });
+    }
+
+    $scope.deleteAction = function() {
+      
+    }
   }
 ]);

@@ -36,7 +36,7 @@ class AccountController extends ActionController
         );
 
         // Check login in
-        $uid = Pi::service('user')->getIdentity();
+        $uid = Pi::service('user')->getId();
         if (!$uid) {
             $this->redirect()->toRoute(
                 '',
@@ -185,7 +185,7 @@ class AccountController extends ActionController
             'status' => 0,
             'message' => __('Incorrect password'),
         );
-        $uid        = Pi::service('user')->getIdentity();
+        $uid        = Pi::service('user')->getId();
         $credential = _get('credential');
 
         // Check params
@@ -256,7 +256,10 @@ class AccountController extends ActionController
         );
 
         // Sending
-        Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($to);
+        $transport = Pi::service('mail')->transport();
+        $transport->send($message);
         $result = 1;
 
         return $result;

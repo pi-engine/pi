@@ -1,0 +1,19 @@
+
+<h2 class="page-header"><?php echo $title; ?></h2>
+
+
+<div class="login-message">
+    <?php
+    $home_url = $this->url('home');
+    $home_string = sprintf('<a href="%s" title="%s">%s</a>', $home_url, __('homepage'), __('homepage'));
+    $login_url = $this->url('user', array('controller' => 'login'));
+    $login_string = sprintf('<a href="%s" title="%s">%s</a>', $login_url, __('re-login'), __('re-login'));
+    echo sprintf(__('You have logged out successfully, please go to %s or to %s.'), $home_string, $login_string);
+    ?>
+</div>
+
+<div class="empty">
+    <strong><?php _e('Choose: '); ?></strong>
+    <span><a href="<?php echo $this->url('', array('controller' => 'login')); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a></span>
+    <span><a href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a></span>
+</div>

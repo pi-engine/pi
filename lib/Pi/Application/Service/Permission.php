@@ -421,7 +421,7 @@ class Permission extends AbstractService
     public function isAdmin($module = '', $uid = null, $section = '')
     {
         $result = false;
-        $uid = null !== $uid ? (int) $uid : Pi::user()->getIdentity();
+        $uid = null !== $uid ? (int) $uid : Pi::user()->getId();
         if ($this->isRoot($uid)) {
             return true;
         }
@@ -466,7 +466,7 @@ class Permission extends AbstractService
     {
         // uid
         if (null === $roleOrUid) {
-            $roleOrUid = (int) Pi::user()->getIdentity();
+            $roleOrUid = Pi::user()->getId();
         }
         // uid => roles
         if (is_numeric($roleOrUid)) {

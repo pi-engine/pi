@@ -1,0 +1,28 @@
+<legend>{{'FRONT_TITLE' | translate}}</legend>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 15%;">{{'NAME' | translate}}
+      <th style="width: 20%;">{{'TITLE' | translate}}
+      <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
+  <tbody>
+    <tr ng-repeat="role in roles | filter: {section: 'front'}">
+      <td>{{role.name}}
+      <td>{{role.title}}
+      <td class="text-center">
+        <a href="#!/{{role.name}}/users">{{role.count}}</a>
+</table>
+<legend>{{'ADMIN_TITLE' | translate}}</legend>
+<table class="table table-striped system-table">
+  <thead>
+    <tr>
+      <th style="width: 15%;">{{'NAME' | translate}}
+      <th style="width: 20%;">{{'TITLE' | translate}}
+      <th style="width: 10%;" class="text-center">{{'USER_COUNT' | translate}}
+  <tbody>
+    <tr ng-repeat="role in roles | filter: {section: 'admin'}">
+      <td>{{role.name}}
+      <td>{{role.title}}
+      <td class="text-center">
+        <a href="#!/{{role.name}}/users">{{role.count}}</a>
+</table>

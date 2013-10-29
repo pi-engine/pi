@@ -44,7 +44,7 @@ class Admin extends AbstractController
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
             $vars['adminusername'] = 'admin';
-            $vars['adminname'] = _s('Pi Admin');
+            $vars['adminname'] = _s('PiAdmin');
             /*
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             if (false === strpos($hostname, '.')) {

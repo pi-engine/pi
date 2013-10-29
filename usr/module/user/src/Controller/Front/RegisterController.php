@@ -35,14 +35,15 @@ class RegisterController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity(false)
+                'identity'  => Pi::service('user')->getIdentity()
             ));
+
             return;
         }
 
         $result = array(
             'status'  => 0,
-            'message' => '',
+            'message' => __('Register failed'),
         );
         list($fields, $filters) = $this->canonizeForm('custom.register');
         $form = $this->getRegisterForm($fields);
@@ -53,20 +54,13 @@ class RegisterController extends ActionController
             $form->setData($post);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $data   = array(
-                    'identity'   => $values['identity'],
-                    'name'       => $values['name'],
-                    'email'      => $values['email'],
-                    'credential' => $values['credential'],
-                );
-
-                $uid = Pi::api('user', 'user')->addUser($data);
+                $uid = Pi::api('user', 'user')->addUser($values);
 
                 // Set user role
                 Pi::api('user', 'user')->setRole($uid, 'member');
 
                 // Set user data
-                $content = md5($uid . $data['name']);
+                $content = md5($uid . $values['name']);
                 $status  = Pi::user()->data()->set(
                     $uid,
                     'register-activation',
@@ -74,9 +68,12 @@ class RegisterController extends ActionController
                     $this->getModule()
                 );
                 if (!$status) {
-                    $result['message'] = __('Register fail');
+                    $this->view()->assign(array(
+                        'result' => $result,
+                        'from'   => $form,
+                    ));
 
-                    return $result;
+                    return;
                 }
 
                 // Send activity email
@@ -94,20 +91,20 @@ class RegisterController extends ActionController
                     $link
                 );
 
-                Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+                $message = Pi::service('mail')->message($subject, $body, $type);
+                $message->addTo($to);
+                $transport = Pi::service('mail')->transport();
+                $transport->send($message);
+                $result['uid']     = $uid;
                 $result['status']  = 1;
                 $result['message'] = __('Register successfully');
-
-                return $result;
-            } else {
-                $result['message'] = $form->getMessages();
-
-                return $result;
             }
+
+            $this->view()->assign('result', $result);
         }
 
         $this->view()->assign(array(
-            'form' => $form,
+            'form'   => $form,
         ));
     }
 
@@ -126,8 +123,8 @@ class RegisterController extends ActionController
         // Check link params
         if (!$hashUid || !$token) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Search user data
@@ -137,16 +134,16 @@ class RegisterController extends ActionController
         ));
         if (!$userData) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid']);
         if (!$userRow || md5($userRow['id']) != $hashUid) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check expire time
@@ -154,8 +151,8 @@ class RegisterController extends ActionController
         $current = time();
         if ($current > $expire) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Activate user
@@ -166,8 +163,8 @@ class RegisterController extends ActionController
         // Check result
         if (!$status) {
             $result['message'] = __('Activate link is invalid');
-
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Delete user data
@@ -179,7 +176,7 @@ class RegisterController extends ActionController
         $result['status']  = 1;
         $result['message'] = __('Activate successfully');
 
-        return $result;
+        $this->view()->assign('result', $result);
 
     }
 
@@ -193,12 +190,10 @@ class RegisterController extends ActionController
         $uid    = _get('uid');
         $result = array(
             'status'  => 0,
-            'message' => '',
+            'message' => __('Resend activate mail failed'),
         );
 
         if (!$uid) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -208,8 +203,6 @@ class RegisterController extends ActionController
             array('id', 'name', 'email', 'time_activated')
         );
         if (!$user || $user['time_activated']) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -220,8 +213,6 @@ class RegisterController extends ActionController
             'name'   => 'register-activation'
         ));
         if (!$userData) {
-            $result['message'] = __('Resend activate mail fail');
-
             return $result;
         }
 
@@ -252,9 +243,13 @@ class RegisterController extends ActionController
         );
 
         // Send...
-        Pi::api('user', 'mail')->send($to, $subject, $body, $type);
+        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($to);
+        $transport = Pi::service('mail')->transport();
+        $transport->send($message);
 
-        $result['status'] = 1;
+        $result['status']  = 1;
+        $result['uid']     = $uid;
         $result['message'] = __('Resend activate mail successfully');
 
         return $result;
@@ -296,7 +291,7 @@ class RegisterController extends ActionController
         }
 
         // Get uid
-        $uid = Pi::service('user')->getIdentity();
+        $uid = Pi::service('user')->getId();
 
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm('custom.complete.profile');

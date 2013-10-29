@@ -11,7 +11,7 @@ $this->css(array(
     </div>
     <?php
     if (isset($result)) {
-        echo sprintf('<div class="alert%s"><button class="close">&times;</button>%s</div>',
+        echo sprintf('<div class="alert %s"><button class="close">&times;</button>%s</div>',
              $result['status'] ? 'alert-success' : 'alert-error',
              $result['message']);
     }
@@ -19,7 +19,7 @@ $this->css(array(
     <form class="form-horizontal" method="post">
         <?php foreach ($privacy as $item) { ?>
         <div class="control-group">
-            <label class="control-label"><?php echo $item['field']; ?></label>
+            <label class="control-label"><?php echo $item['title']; ?></label>
             <div class="controls">
                 <select name="<?php echo $item['field']; ?>">
                     <?php

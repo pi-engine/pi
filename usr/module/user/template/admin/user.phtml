@@ -1,11 +1,17 @@
 <?php
-$this->css($this->assetModule('script/admin.css'));
+$this->jQuery();
 $this->angular(array(
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.6.0.js',
-    'pi.js'
+    'pi.js',
+    'i18n'
 ));
 ?>
+<style>
+.user-form-actions {
+    margin: 0 20px 20px 8px;
+}
+</style>
 <div ng-app="userListModule">
     <div pi-message="alert"></div>
     <div pi-nav-tabs></div>
@@ -24,6 +30,7 @@ angular
     .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+        editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>', 
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         navTabs: [
             { text: '<?php _e('All'); ?>', href: '#!/all' },
@@ -44,58 +51,68 @@ angular
             ACTIVATED: '<?php _e('Activated'); ?>',
             ACTIVE: '<?php _e('Active'); ?>',
             INACTIVE: '<?php _e('Inactive'); ?>',
+            PENDING: '<?php _e('Pending'); ?>',
             ROLE: '<?php _e('Role'); ?>',
             REGISTER_TIME: '<?php _e('Register time'); ?>',
             ACTION: '<?php _e('Action'); ?>',
             EDIT: '<?php _e('Edit'); ?>',
             DELETE: '<?php _e('Delete'); ?>',
             ADD_TITLE: '<?php _e('Add user'); ?>',
-            PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
-            USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
-            EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-            DISPLAY_NAME_TOKEN: '<?php _e('Display name is already token'); ?>',
+            PASSWORD_MATCH: '<?php _e("Passwords don\'t match."); ?>',
+            USERNAME_TAKEN: '<?php _e('Username is already taken.'); ?>',
+            EMAIL_TAKEN: '<?php _e('Email is already taken.'); ?>',
+            DISPLAY_NAME_TAKEN: '<?php _e('Display name is already taken.'); ?>',
             RETURN: '<?php _e('Back to users list'); ?>',
             REQUIRED: '<?php _e('Required'); ?>',
             USER_NAME: '<?php _e('Username'); ?>',
-            DISPLAY_NAME: '<?php _e('Dispaly name'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
             INVALID_EMAIL: '<?php _e('Email invalid'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
             CONFIRM_PASSWORD: '<?php _e('Password confirm'); ?>',
             ACTIVATE: '<?php _e('Active'); ?>',
             ENABLE: '<?php _e('Enable'); ?>',
+            DISABLE: '<?php _e('Disable'); ?>',
             FRONT_ROLE: '<?php _e('Front role'); ?>',
             ADMIN_ROLE: '<?php _e('Admin role'); ?>',
             TODAY: '<?php _e('Today'); ?>',
             LAST_WEEK: '<?php _e('Last week'); ?>',
             LAST_MONTH: '<?php _e('Last month'); ?>',
-            LAST_3_MONTH: '<?php _e('Last thress month'); ?>',
-            LAST_6_MONTH: '<?php _e('Last six month'); ?>',
+            LAST_3_MONTH: '<?php _e('Last three months'); ?>',
+            LAST_6_MONTH: '<?php _e('Last six months'); ?>',
             LAST_YEAR: '<?php _e('Last year'); ?>',
             ASSIGN_ROLE: '<?php _e('Assign role'); ?>',
-            UNASSIGN_ROLE: '<?php _e('Unassign role'); ?>',
+            UNASSIGN_ROLE: '<?php _e('Remove role'); ?>',
             ASSIGN_FRONT_ROLE: '<?php _e('Front role'); ?>',
             ASSIGN_ADMIN_ROLE: '<?php _e('Admin role'); ?>',
-            CONFIRM: '<?php _e('Are you sure delete this user'); ?>',
-            CONFIRMS: '<?php _e('Are you sure delete this users'); ?>',
+            CONFIRM: '<?php _e('Are you sure to delete this user?'); ?>',
+            CONFIRMS: '<?php _e('Are you sure to delete this users?'); ?>',
             ACTIVE_STATE:'<?php _e('Active State'); ?>',
             TITLE: '<?php _e('Add user'); ?>',
             USER_NAME: '<?php _e('Username'); ?>',
-            DISPLAY_NAME: '<?php _e('Display name'); ?>',
+            CONFIRM_ACTIVATED: '<?php _e('Are you sure active this account, it can not be return'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
             CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
             ACTIVATE: '<?php _e('Activate'); ?>',
-            ENABLE: '<?php _e('Enable'); ?>',
             SUBMIT: '<?php _e('Submit'); ?>',
-            REQUIRED: '<?php _e('required'); ?>',
-            INVALID_EMAIL: '<?php _e('invalid email'); ?>',
-            PASSWORD_MATCH: '<?php _e("Passwords don\'t match"); ?>',
-            USER_NAME_TOKEN: '<?php _e('Username is already token'); ?>',
-            EMAIL_TOKEN: '<?php _e('Email is already token'); ?>',
-            DISPLAY_NAME_TOKEN: '<?php _e('Dispaly name is already token'); ?>'
+            REQUIRED: '<?php _e('Required'); ?>',
+            INVALID_EMAIL: '<?php _e('Invalid email.'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
+            ACTIVATION_STATUS: '<?php _e('Activation state'); ?>',
+            USER_ID: '<?php _e('User ID'); ?>',
+            NONE_USER: '<?php _e('No user matched your request.'); ?>',
+            SEARCH_TITLE: '<?php _e('Advanced search'); ?>',
+            REGISTER_IP: '<?php _e('Register IP'); ?>',
+            FROM: '<?php _e('From'); ?>',
+            TO: '<?php _e('To'); ?>',
+            SEARCH_RESULT: '<?php _e('Search result'); ?>',
+            VIEW_LOG: '<?php _e('View log'); ?>',
+            NONE_PENDING_USERS: '<?php _e('None exist pending users'); ?>',
+            EDIT_TITLE: '<?php _e('Edit user'); ?>',
+            REPLACE_AVATAR: '<?php _e('Replace with system defalt avatar'); ?>'
         },
-        roles: <?php echo json_encode($roles); ?>
+        roles: <?php echo json_encode($roles); ?>,
+        today: '<?php echo date("Y-m-d"); ?>'
     });
 </script>
 <?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>

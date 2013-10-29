@@ -17,6 +17,7 @@
     ?>
 	<?php
         $form->setAttribute('class', 'form-horizontal');
+        $form->prepare();
         $elements = $form->elementList();
         $this->FormElementErrors()->setMessageOpenFormat('<span class="help-inline">')->setMessageCloseString('</span>');
         echo $this->form()->openTag($form);

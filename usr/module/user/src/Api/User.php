@@ -46,7 +46,7 @@ class User extends AbstractUseApi
     /**
      * Get user model
      *
-     * @param int       $uid
+     * @param int|string $uid
      * @param string    $field
      *
      * @return UserModel
@@ -77,7 +77,7 @@ class User extends AbstractUseApi
      * @param array|Where   $condition
      * @param int           $limit
      * @param int           $offset
-     * @param string        $order
+     * @param string|array  $order
      * @return int[]
      * @api
      */
@@ -183,6 +183,33 @@ class User extends AbstractUseApi
         }
         foreach ($rowset as $row) {
             $result[] = (int) $row['id'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
+    ) {
+        $uids = $this->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+        if ('id' == $field[0] && 1 == count($field)) {
+            array_walk($uids, function ($uid) use (&$result) {
+                $result[$uid] = array('id' => $uid);
+            });
+        } else {
+            $result = $this->get($uids, $field);
         }
 
         return $result;
@@ -403,17 +430,17 @@ class User extends AbstractUseApi
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field, $filter = false)
+    public function get($uid, $field = array(), $filter = false)
     {
         if (!$uid) {
             return false;
         }
 
         $result = array();
-        $keys   = (array) $field;
+        $fields = $field ? (array) $field : array_keys($this->getMeta('', 'display'));
         $uids   = (array) $uid;
 
-        $meta   = $this->canonizeField($keys);
+        $meta   = $this->canonizeField($fields);
         foreach ($meta as $type => $fields) {
             $fields = $this->getFields($uids, $type, $fields, $filter);
             foreach ($fields as $id => $data) {
@@ -492,10 +519,6 @@ class User extends AbstractUseApi
 
     /**
      * Get user role
-     *
-     * Section: `admin`, `front`
-     * If section is specified, returns the roles;
-     * if not, return associative array of roles.
      *
      * @param int       $uid
      * @param string    $section   Section name: admin, front
@@ -926,7 +949,7 @@ class User extends AbstractUseApi
         $result = array();
         $uids = (array) $uid;
         if (!$fields) {
-            $fields = array_keys($this->getMeta($type));
+            $fields = array_keys($this->getMeta($type, 'display'));
         } else {
             $fields = array_unique($fields);
         }

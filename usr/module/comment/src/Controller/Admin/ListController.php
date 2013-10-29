@@ -49,7 +49,7 @@ class ListController extends ActionController
             ),
             'target'    => true,
             'operation'     => array(
-                'uid'       => Pi::service('user')->getIdentity(),
+                'uid'       => Pi::service('user')->getId(),
                 'section'   => 'admin',
                 'level'     => 'admin',
             ),

@@ -38,6 +38,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  *  - destroy()
  *  - hasIdentity()
  *  - getIdentity()
+ *  - getId()
  *
  * + Resource APIs
  *
@@ -90,8 +91,9 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
  * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
  *
  * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getList($condition = array(), $limit = 0, $offset = 0, $order = '', $field = array()
  * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
- * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field, $action = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field = array(), $filter = false)
  * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
  * @method \Pi\User\Adapter\AbstractAdapter::setRole($uid, $role)
  * @method \Pi\User\Adapter\AbstractAdapter::revokeRole($uid, $role)
@@ -178,10 +180,10 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
-            $options = isset($this->options['options'])
-                ? $this->options['options'] : array();
-            if (!empty($this->options['adapter'])) {
-                $this->adapter = new $this->options['adapter']($options);
+            $options = (array) $this->getOption('options');
+            $adapter = $this->getOption('adapter');
+            if ($adapter) {
+                $this->adapter = new $adapter($options);
             } else {
                 $this->adapter = new DefaultAdapter($options);
             }
@@ -203,16 +205,16 @@ class User extends AbstractService
         if (!isset($this->resource[$name])) {
             $options = array();
             $class = '';
-            if (!empty($this->options['resource'][$name])) {
-                if (is_string($this->options['resource'][$name])) {
-                    $class = $this->options['resource'][$name];
+            $resource = $this->getOption('resource', $name);
+            if ($resource) {
+                if (is_string($resource)) {
+                    $class = $resource;
                 } else {
-                    if (!empty($this->options['resource'][$name]['class'])) {
-                        $class = $this->options['resource'][$name]['class'];
+                    if (!empty($resource['class'])) {
+                        $class = $resource['class'];
                     }
-                    if (isset($this->options['resource'][$name]['options'])) {
-                        $options =
-                            $this->options['resource'][$name]['options'];
+                    if (isset($this->$resource['options'])) {
+                        $options = $resource['options'];
                     }
                 }
             }
@@ -323,29 +325,46 @@ class User extends AbstractService
      */
     public function hasIdentity()
     {
-        return $this->modelSession && $this->modelSession->get('id')
+        return $this->modelSession && $this->modelSession['id']
             ? true : false;
     }
 
     /**
      * Get identity of current logged user
      *
-     * @param bool $asId    Return use id as identity or user identity name
+     * @param string $field Identity field name
      *
-     * @return null|int|string
+     * @return string
      * @api
      */
-    public function getIdentity($asId = true)
+    public function getIdentity($field = 'identity')
     {
         if (!$this->hasIdentity()) {
-            $identity = 0;
+            $identity = '';
         } else {
-            $identity = $asId
-                ? (int) $this->modelSession->id
-                : $this->modelSession->identity;
+            $identity = isset($this->modelSession[$field])
+                ? $this->modelSession[$field]
+                : '';
         }
 
         return $identity;
+    }
+
+    /**
+     * Get id of current logged user
+     *
+     * @return int
+     * @api
+     */
+    public function getId()
+    {
+        if (!$this->hasIdentity()) {
+            $id = 0;
+        } else {
+            $id = (int) $this->modelSession['id'];
+        }
+
+        return $id;
     }
 
     /**
@@ -375,7 +394,7 @@ class User extends AbstractService
     public function updateUser($uid, $fields)
     {
         $result = $this->getAdapter()->updateUser($uid, $fields);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $this->setPersist(false);
         }
 
@@ -394,7 +413,7 @@ class User extends AbstractService
     public function set($uid, $field, $value)
     {
         $result = $this->getAdapter()->set($uid, $field, $value);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $this->setPersist($field, $value);
         }
 
@@ -412,7 +431,7 @@ class User extends AbstractService
     public function setRole($uid, $role)
     {
         $result = $this->getAdapter()->setRole($uid, $role);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $role = $this->getRole($uid, '', true);
             $this->setPersist('role', $role);
         }
@@ -431,7 +450,7 @@ class User extends AbstractService
     public function revokeRole($uid, $role)
     {
         $result = $this->getAdapter()->revokeRole($uid, $role);
-        if ($result && $uid == $this->getIdentity()) {
+        if ($result && $uid == $this->getId()) {
             $role = $this->getRole($uid, '', true);
             $this->setPersist('role', $role);
         }
@@ -441,10 +460,6 @@ class User extends AbstractService
 
     /**
      * Get user role
-     *
-     * Section: `admin`, `front`
-     * If section is specified, returns the roles;
-     * if not, return associative array of roles.
      *
      * @param int    $uid
      * @param string $section    Section name: admin, front
@@ -456,14 +471,14 @@ class User extends AbstractService
     {
         $result = null;
         if (null === $uid) {
-            $uid = $this->getIdentity();
+            $uid = $this->getId();
         } else {
             $uid = (int) $uid;
         }
         $section = $section ?: Pi::engine()->application()->getSection();
         $isCurrent  = false;
         if (!$force
-            && $uid === $this->getIdentity()
+            && $uid === $this->getId()
             && Pi::engine()->application()->getSection() == $section
         ) {
             $isCurrent = true;
@@ -628,7 +643,7 @@ class User extends AbstractService
             if (isset($data['field'])) {
                 $userData = $data['field'];
             } elseif ($fields = $this->getOption('persist', 'field')) {
-                $uid = $this->getIdentity();
+                $uid = $this->getId();
                 $userData = $this->get($uid, $fields);
                 $this->setPersist($userData);
             }

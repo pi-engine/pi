@@ -28,12 +28,34 @@ class Install extends BasicAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
+        //$events->attach('install.pre', array($this, 'checkConflicts'), 10);
         $events->attach('install.post', array($this, 'checkModules'), 10);
         $events->attach('install.post', array($this, 'checkUsers'), 5);
         $events->attach('install.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
         return $this;
+    }
+
+    /**
+     * Check other modules in conflict
+     *
+     * @param Event $e
+     * @return bool
+     */
+    public function checkConflicts(Event $e)
+    {
+        $modules = Pi::registry('module')->read();
+        if (isset($modules['uclient'])) {
+            $this->setResult('user', array(
+                'status'    => false,
+                'message'   => 'The module can not co-exist with uclient module',
+            ));
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -95,7 +117,7 @@ class Install extends BasicAction
         try {
             $result = Pi::db()->query($sql);
         } catch (\Exception $exception) {
-            $e->setResult('user', array(
+            $this->setResult('user', array(
                 'status'    => false,
                 'message'   => 'User profile generation failed: '
                 . $exception->getMessage(),

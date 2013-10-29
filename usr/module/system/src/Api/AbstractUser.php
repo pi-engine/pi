@@ -37,7 +37,7 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get user model
      *
-     * @param int       $uid
+     * @param int|string $uid
      * @param string    $field
      *
      * @return UserModel
@@ -50,7 +50,7 @@ abstract class AbstractUser extends AbstractApi
      * @param array|Where   $condition
      * @param int           $limit
      * @param int           $offset
-     * @param string        $order
+     * @param string|array  $order
      * @return int[]
      * @api
      */
@@ -59,6 +59,26 @@ abstract class AbstractUser extends AbstractApi
         $limit      = 0,
         $offset     = 0,
         $order      = ''
+    );
+
+    /**
+     * Get users subject to conditions
+     *
+     * @param array|Where   $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
+     * @param array         $field
+     *
+     * @return array
+     * @api
+     */
+    abstract public function getList(
+        $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        $field      = array()
     );
 
     /**
@@ -289,18 +309,15 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get user role
      *
-     * Section: `admin`, `front`
-     * If section is specified, returns the roles;
-     * if not, return associative array of roles.
-     *
      * @param int       $uid
      * @param string    $section   Section name: admin, front
      *
-     * @return array
+     * @return string[]
      */
-    public function getRole($uid, $section)
+    public function getRole($uid, $section = '')
     {
         $uid = (int) $uid;
+        $section = $section ?: Pi::engine()->application()->getSection();
         if (!$uid) {
             if ('front' == $section) {
                 $result = array('guest');
@@ -318,11 +335,7 @@ abstract class AbstractUser extends AbstractApi
         $rowset = Pi::model('user_role')->select($where);
         $result = array();
         foreach ($rowset as $row) {
-            if ($section) {
-                $result[] = $row['role'];
-            } else {
-                $result[$row['section']][] = $row['role'];
-            }
+            $result[] = $row['role'];
         }
 
         return $result;

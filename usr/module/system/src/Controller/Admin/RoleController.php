@@ -102,7 +102,12 @@ class RoleController extends ActionController
     public function listAction()
     {
         $roles = $this->getRoles();
-
+        /*
+        if (isset($roles['guest'])) {
+            unset($roles['guest']);
+        }
+        */
+        /*
         $rowset = Pi::model('user_role')->count(
             array('role' => array_keys($roles)),
             'role'
@@ -111,22 +116,10 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $count[$row['role']] = (int) $row['count'];
         }
-
-        $frontRoles = array();
-        $adminRoles = array();
-        foreach ($roles as $role) {
-            $role['count'] = isset($count[$role['name']])
-                ? (int) $count[$role['name']] : 0;
-            if ('admin' == $role['section']) {
-                $adminRoles[] = $role;
-            } else {
-                $frontRoles[] = $role;
-            }
-        }
+        */
 
         return array(
-            'frontRoles'    => $frontRoles,
-            'adminRoles'    => $adminRoles,
+            'roles'    => array_values($roles),
         );
     }
 
@@ -138,7 +131,7 @@ class RoleController extends ActionController
     public function addAction()
     {
         if ($this->request->isPost()) {
-            $data = $this->request->getPost();
+            $data = _post();
             $form = new RoleForm('role', $data['section']);
             $form->setInputFilter(new RoleFilter);
             $form->setData($data);
@@ -295,6 +288,8 @@ class RoleController extends ActionController
         $row->title = $title;
         $row->save();
 
+        Pi::registry('role')->flush();
+
         return 1;
     }
 
@@ -340,154 +335,6 @@ class RoleController extends ActionController
 
         return array(
             'status' => $status
-        );
-    }
-
-    /**
-     * Users of a role
-     */
-    public function userAction()
-    {
-        $role   = $this->params('name', 'member');
-        $op     = $this->params('op');
-        $uid    = $this->params('uid');
-
-        $model = Pi::model('user_role');
-        $message = '';
-        if ($op && $uid) {
-            if (is_numeric($uid)) {
-                $uid = (int) $uid;
-            } else {
-                $user = Pi::service('user')->getUser($uid, 'identity');
-                if ($user) {
-                    $uid = $user->get('id');
-                } else {
-                    $uid = 0;
-                }
-            }
-            if ($uid) {
-                $data = array('role' => $role, 'uid' => $uid);
-                $count = $model->count($data);
-                if ('remove' == $op && $count) {
-                    $model->delete($data);
-                    $message = __('User removed.');
-                    $data = array('uid' => $uid);
-                } elseif ('add' == $op && !$count) {
-                    $row = $model->createRow($data);
-                    $row->save();
-                    $message = __('User added.');
-                    $data = array(
-                        'uid'   => $uid,
-                        'name'  => Pi::service('user')->get($uid, 'name')
-                    );
-                }
-
-                return array(
-                    'status'    => 1,
-                    'message'   => $message,
-                    'data'      => $data,
-                );
-            }
-        }
-
-        $page   = _get('page', 'int') ?: 1;
-        $limit  = 20;
-        $offset = ($page - 1) * $limit;
-
-        $select = $model->select();
-        $select->where(array('role' => $role))->limit(20)->offset($offset);
-        $rowset = $model->selectWith($select);
-        $uids = array();
-        foreach ($rowset as $row) {
-            $uids[] = (int) $row['uid'];
-        }
-        $users = Pi::service('user')->get($uids, array('uid', 'name'));
-        $avatars = Pi::service('avatar')->getList($uids, 'small');
-        array_walk($users, function (&$user, $uid) use ($avatars) {
-            //$user['avatar'] = $avatars[$uid];
-            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
-        });
-        $count = count($uids);
-        if ($count >= $limit) {
-            $count = $model->count(array('role' => $role));
-        }
-
-        /*
-        $paginator = Paginator::factory($count, array(
-            'page'          => $page,
-            'url_options'   => array(
-                'params'    => array('role' => $role),
-            ),
-        ));
-        */
-        $roles = Pi::registry('role')->read();
-        $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
-        if ($count > $limit) {
-            $paginator = array(
-                'page'    => $page,
-                'count'   => $count,
-                'limit'   => $limit
-            );
-        } else {
-            $paginator = array();
-        }
-
-        $data = array(
-            'title'     => $title,
-            'users'     => array_values($users),
-            'paginator' => $paginator,
-        );
-
-        return $data;
-        /*
-        $this->view()->assign(array(
-            'title'     => $title,
-            'role'      => $role,
-            'count'     => $count,
-            'users'     => $users,
-            'message'   => $message,
-            'paginator' => $paginator,
-        ));
-
-        $this->view()->setTemplate('role-user');
-        */
-    }
-
-    public function ____userAction()
-    {
-        $role = $this->params('name', 'member');
-
-        $model = Pi::model('user_role');
-
-        $page   = _get('page', 'int') ?: 1;
-        $limit  = 3;
-        $offset = ($page - 1) * $limit;
-
-        $select = $model->select();
-        $select->where(array('role' => $role))->limit($limit)->offset($offset);
-        $rowset = $model->selectWith($select);
-        $uids = array();
-        foreach ($rowset as $row) {
-            $uids[] = (int) $row['uid'];
-        }
-        $users = Pi::service('user')->get($uids, array('name'));
-        $avatars = Pi::service('avatar')->getList($uids, 'small');
-        array_walk($users, function (&$user, $uid) use ($avatars) {
-            //$user['avatar'] = $avatars[$uid];
-            $user['url'] = Pi::service('user')->getUrl('profile', $uid);
-        });
-        $count = count($uids);
-        if ($count >= $limit) {
-            $count = $model->count(array('role' => $role));
-        }
-        $paginator = array(
-            'page'    => $page,
-            'count'   => $count,
-            'limit'   => $limit
-        );
-        return array(
-            'users'      => array_values($users),
-            'paginator' => $paginator,
         );
     }
 }

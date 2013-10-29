@@ -2,6 +2,10 @@
 // User service configuration
 
 return array(
+    // Deployment mode: single, provider, consumer, default as single
+    'mode'      => 'consumer',
+
+    // User data access adapter
     'adapter'   => 'Pi\User\Adapter\Local',
     'adapter'   => 'Pi\User\Adapter\System',
 

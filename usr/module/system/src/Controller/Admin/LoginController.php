@@ -37,7 +37,7 @@ class LoginController extends LoginControllerFront
             $this->view()->assign('title', __('Admin login'));
             $this->view()->setTemplate('login-message', '', 'front');
             $this->view()->assign(array(
-                'identity'  => Pi::service('authentication')->getIdentity()
+                'identity'  => Pi::service('user')->getIdentity()
             ));
 
             return;

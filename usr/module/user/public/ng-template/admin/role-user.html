@@ -1,0 +1,29 @@
+<legend>{{title}}</legend>
+<form class="form-inline" ng-submit="submit()">
+  <input type="text" required ng-model="entity.data">
+  <select ng-model="entity.field" class="input-medium">
+    <option value="uid">{{'UID' | translate}}
+    <option value="identity">{{'USERNAME' | translate}}
+    <option value="name">{{'DISPLAY_NAME' | translate}}
+    <option value="email">{{'EMAIL' | translate}}
+  </select>
+  <button class="btn">{{'ADD_USER' | translate}}</button>
+</form>
+<table class="table" ng-if="users.length">
+  <thead>
+    <tr>
+      <th>{{'USERS' | translate}}
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>
+        <a href="{{user.url}}" target="_blank">{{user.name}}</a>
+      <td>
+        <i class="icon-remove pi-icon-cursor" ng-click="removeAction($index)"></i>
+</table>
+<pagination ng-if="paginator.count > paginator.limit" 
+            total-items="paginator.count" page="paginator.page" max-size="10"
+            boundary-links="true" items-per-page="paginator.limit">
+</pagination>
+<div ng-if="!users.length" class="alert">
+  {{'NONE_USER' | translate}}
+</div>

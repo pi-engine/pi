@@ -33,7 +33,7 @@ class View extends AbstractService
     {
         if (!$this->viewManager) {
             $this->viewManager = Pi::engine()->application()
-                ->getServiceLocator()->get('view_manager');
+                ->getServiceManager()->get('view_manager');
         }
 
         return $this->viewManager;
@@ -72,7 +72,7 @@ class View extends AbstractService
                 : Pi::service('module')->current();
             $file = $template['file'];
             $template = $module . ':'
-                      . $section ? $section . '/' : ''
+                      . ($section ? $section . '/' : '')
                       . $file;
         }
         $content = $this->getViewManager()->getRenderer()

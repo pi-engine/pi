@@ -22,7 +22,7 @@ class LoginForm extends BaseForm
     public function init()
     {
         // Get config data.
-        $config = Pi::service('registry')->config->read('user', 'general');
+        $config = Pi::service('registry')->config->read('user', 'account');
 
         $this->add(array(
             'name'          => 'identity',
@@ -44,17 +44,19 @@ class LoginForm extends BaseForm
             )
         ));
 
-        $this->add(array(
-            'name'          => 'rememberme',
-            'type'          => 'checkbox',
-            'options'       => array(
-                'label' => __('Remember me'),
-            ),
-            'attributes'    => array(
-                'value'         => '1',
-                'description'   => __('Keep me logged in.')
-            )
-        ));
+        if ($config['rememberme']) {
+            $this->add(array(
+                'name'          => 'rememberme',
+                'type'          => 'checkbox',
+                'options'       => array(
+                    'label' => __('Remember me'),
+                ),
+                'attributes'    => array(
+                    'value'         => '1',
+                    'description'   => __('Remember me')
+                )
+            ));
+        }
 
 
         if ($config['login_captcha']) {
@@ -92,7 +94,7 @@ class LoginForm extends BaseForm
             'attributes'    => array(
                 'type'  => 'submit',
                 'value' => __('Login'),
-                'class' => 'btn',
+                'class' => 'btn btn-primary',
             )
         ));
     }

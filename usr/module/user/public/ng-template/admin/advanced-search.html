@@ -16,17 +16,17 @@
       <select ng-model="filter.enable">
         <option value="">{{'ENABLE_STATUS' | translate}}
         <option value="enable">{{'ENABLE' | translate}}
-        <option value="disable">{{'DISABLE' | translate}}
+        <option value="disable">{{'DISABLED' | translate}}
       </select>
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label">{{'ACTIVATED_STATUS' | translate}}</label>
+    <label class="control-label">{{'ACTIVATION_STATUS' | translate}}</label>
     <div class="controls">
-      <select ng-model="filter.enable">
-        <option value="">{{'ACTIVATED_STATUS' | translate}}
-        <option value="enable">{{'PENDING' | translate}}
-        <option value="disable">{{'ACTIVATED' | translate}}
+      <select ng-model="filter.activated">
+        <option value="">{{'ACTIVATION_STATUS' | translate}}
+        <option value="pending">{{'PENDING' | translate}}
+        <option value="activated">{{'ACTIVATED' | translate}}
       </select>
     </div>
   </div>
@@ -47,7 +47,13 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label">{{'USER_NAME' | translate}}</label>
+    <label class="control-label">{{'USER_ID' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="filter.uid">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">{{'USERNAME' | translate}}</label>
     <div class="controls">
       <input type="text" ng-model="filter.identity">
     </div>
@@ -65,44 +71,24 @@
     </div>
   </div>
   <div class="control-group">
+    <label class="control-label">{{'REGISTER_IP' | translate}}</label>
+    <div class="controls">
+      <input type="text" ng-model="filter.ip_register">
+    </div>
+  </div>
+  <div class="control-group">
     <label class="control-label">{{'REGISTER_TIME' | translate}}</label>
     <div class="controls">
       {{'FROM' | translate}}
-      <input type="text" ng-model="filter.register_time" datepicker-popup="dd-MMMM-yyyy"
-             datepicker-options="dateOptions">
+      <input class="input-medium" type="text" ng-model="filter.time_created_from" datepicker-popup="yyyy-MM-dd"
+             show-weeks="0" max="filter.time_created_to">
       {{'TO' | translate}}
-      <input type="text" ng-model="filter.register_time.end">
+      <input class="input-medium" type="text" ng-model="filter.time_created_to" datepicker-popup="yyyy-MM-dd"
+             show-weeks="0" min="filter.time_created_from" max="today">
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">{{'LAST_LOGIN_TIME' | translate}}</label>
-    <div class="controls">
-      {{'FROM' | translate}}
-      <input type="text" ng-model="filter.last_login_time.start">
-      {{'TO' | translate}}
-      <input type="text" ng-model="filter.last_login_time.end">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label">{{'REGISTER_IP' | translate}}</label>
-    <div class="controls">
-      {{'FROM' | translate}}
-      <input type="text" ng-model="filter.register_ip.start">
-      {{'TO' | translate}}
-      <input type="text" ng-model="filter.register_ip.end">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label">{{'LAST_LOGIN_IP' | translate}}</label>
-    <div class="controls">
-      {{'FROM' | translate}}
-      <input type="text" ng-model="filter.last_login_ip.start">
-      {{'TO' | translate}}
-      <input type="text" ng-model="filter.last_login_ip.end">
-    </div>
-  </div>
+  
   <div class="controls">
     <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary">
   </div>
 </form>
-<pre>{{filter | json}}</pre>

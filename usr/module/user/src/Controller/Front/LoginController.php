@@ -34,8 +34,9 @@ class LoginController extends ActionController
             $this->view()->assign('title', __('User login'));
             $this->view()->setTemplate('login-message');
             $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity(false)
+                'identity'  => Pi::service('user')->getIdentity()
             ));
+
             return;
         }
 
@@ -61,7 +62,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $configs = Pi::service('registry')->config->read('user', 'general');
+        $configs = Pi::service('registry')->config->read('user', 'account');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -87,9 +88,12 @@ class LoginController extends ActionController
                 }
             }
         }
-        $this->view()->assign('title', __('User login'));
-        $this->view()->assign('message', $message);
-        $this->view()->assign('form', $form);
+        $this->view()->assign(array(
+            'title'      => __('User login'),
+            'is_captcha' => $configs['login_captcha'],
+            'message'    => $message,
+            'form'       => $form
+        ));
     }
 
     /**
@@ -97,7 +101,7 @@ class LoginController extends ActionController
      */
     public function logoutAction()
     {
-        $uid = Pi::user()->getIdentity();
+        $uid = Pi::user()->getId();
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);
@@ -131,7 +135,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::service('registry')->config->read('user', 'general');
+        $configs = Pi::service('registry')->config->read('user', 'account');
 
         $values = $form->getData();
         $identity = $values['identity'];
@@ -214,6 +218,13 @@ class LoginController extends ActionController
         );
         // Set login count
         Pi::user()->data()->increment($uid, 'login_times', 1);
+        // Set login time
+        Pi::user()->data()->set(
+            $uid,
+            'time_last_login',
+            time(),
+            $this->getModule()
+        );
         // Check user complete profile
         $hasCompleteProfile = Pi::user()->data()->get(
             $uid,

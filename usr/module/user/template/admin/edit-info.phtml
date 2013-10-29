@@ -1,0 +1,28 @@
+<form method="post" class="form-horizontal" ng-submit="submit('<?php echo $form->getName(); ?>')"
+      name="<?php echo $form->getName(); ?>"> 
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+$elements = $form->elementList();
+
+foreach ($elements['active'] as $element) {
+    echo sprintf(
+      '<div class="control-group" ng-class="{error: formError.%s}">
+          <label class="control-label">%s</label>
+          <div class="controls">
+              %s
+              <span class="help-inline">{{formError.%s}}</span>
+          </div>
+        </div>',
+        $element->getName(),
+        $element->getOption('label'),
+        $this->formElement($element),
+        $element->getName());
+}
+foreach ($elements['hidden'] as $element) {
+    echo $this->formElement($element);
+}
+echo sprintf('<div class="controls controls-action">%s</div>',
+    $this->formElement($elements['submit']));
+?>
+</form>

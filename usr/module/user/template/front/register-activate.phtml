@@ -1,9 +1,10 @@
-<h2 class="page-header"><?php echo _escape($title); ?></h2>
-
-<?php if ($data['status']) { ?>
-    <p><?php _e('Congratulation'); ?></p>
-    <p><?php _e('Your account has been activated'); ?></p>
+<?php if (isset($result) && $result['status']) { ?>
+    <h2 class="page-header"><?php _e('Sign up done'); ?></h2>
+    <p>Congratulations！</p>
+    <p>Your account has been activated</p>
+    <p><a href="<?php echo $this->url('', array('controller' => 'login', 'action' => 'index')); ?>">Sign in right now</a></p>
 <?php } else { ?>
-    <p><?php _e('Sorry'); ?></p>
-    <p><?php _e('Your account has been activated'); ?></p>
+    <h2 class="page-header"><?php _e('Register activation'); ?></h2>
+    <p>Sorry</p>
+    <p>The link has expired.or maybe your account has been activated</p>
 <?php } ?>

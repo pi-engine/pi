@@ -19,7 +19,7 @@ angular
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     navTabs: [
       { text: '<?php _e('Stats'); ?>', href: '#!/stats' },
-      { text: '<?php _e('User log'); ?>', href: '#!/log' },
+      { text: '<?php _e('User log'); ?>', href: '#!/logs' },
       { text: '<?php _e('Deleted users'); ?>', href: '#!/deleted' }
     ],
     t: {
@@ -34,17 +34,24 @@ angular
       NONE_REGISTER: '<?php _e('None'); ?>',
       SORT_BY: '<?php _e('Sort by key:'); ?>',
       UID: '<?php _e('uid'); ?>',
+      EDIT: '<?php _e('Edit'); ?>',
+      VIEW_LOG: '<?php _e('View log'); ?>',
       USERNAME: '<?php _e('Username'); ?>',
       REGISTER_TIME: '<?php _e('Register time'); ?>',
       REGISTER_IP: '<?php _e('Register ip'); ?>',
-      ACTIVATE_TIME: '<?php _e('Activate time'); ?>',
+      ACTIVATE_TIME: '<?php _e('Activated time'); ?>',
       LAST_LOGIN_TIME: '<?php _e('Last login time'); ?>',
       LAST_LOGIN_IP: '<?php _e('Last loin ip'); ?>',
       LOGIN_TIMES: '<?php _e('Login times'); ?>',
-      SORT_BY: '<?php _e('Sort by key:'); ?>',
-      DELETE_ONE: '<?php _e('Are you sure delete this user'); ?>',
-      DELETE_BATCH: '<?php _e('Are you sure delete these users'); ?>',
-      DELETE_ALL: '<?php _e('Are you sure delete all of these users'); ?>'
+      SORT_BY: '<?php _e('Sort by:'); ?>',
+      DELETE_ONE: '<?php _e('Are you sure to delete this user?'); ?>',
+      DELETE_BATCH: '<?php _e('Are you sure to delete these users?'); ?>',
+      DELETE_ALL: '<?php _e('Are you sure to delete all of these users?'); ?>',
+      DELETE_TIME: '<?php _e('Deleted time'); ?>',
+      IP_ADDRESS: '<?php _e('IP'); ?>',
+      CLEAR: '<?php _e('Clear the users'); ?>',
+      CLEAR_ALL: '<?php _e('CLear all deleted users'); ?>',
+      NONE_USER: '<?php _e('No user matched your request.'); ?>'
     }
 });
 </script>

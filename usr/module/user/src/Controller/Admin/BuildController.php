@@ -28,6 +28,7 @@ class BuildController extends ActionController
         $this->addQuickLink();
         $this->addGroup();
         $this->addActivity();
+        $this->setFields();
 
         return $this->jump(array(
             'controller'    => 'index',
@@ -225,13 +226,6 @@ class BuildController extends ActionController
                 rand(0, 400),
                 'user'
             );
-
-            Pi::user()->data()->set(
-                $uid,
-                'profile-complete',
-                1,
-                $this->getModule()
-            );
         }
     }
 
@@ -385,13 +379,6 @@ class BuildController extends ActionController
                 'login_times',
                 rand(0, 400),
                 'user'
-            );
-
-            Pi::user()->data()->set(
-                $uid,
-                'profile-complete',
-                1,
-                $this->getModule()
             );
 
             // Delete user
@@ -759,6 +746,12 @@ class BuildController extends ActionController
                 return;
             }
         }
+    }
+
+    protected function setFields()
+    {
+        $model = $this->getModel('field');
+        $model->update(array('is_edit' => 1, 'is_display' => 1), array('type' => 'compound'));
     }
 
     /**

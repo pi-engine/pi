@@ -48,14 +48,11 @@ class MaintenanceController extends ActionController
     public function logAction()
     {
         $uid = _get('uid');
-        if (!$uid) {
-            return $this->jumpTo404('Invalid uid');
-        }
 
         // Check user exist
         $isExist = Pi::api('user', 'user')->getUser($uid)->id;
         if (!$isExist) {
-            return $this->jumpTo404('Invalid uid');
+            return $this->jumpTo404(__('User was not found.'));
         }
 
         // Get user basic information and user data
@@ -78,9 +75,7 @@ class MaintenanceController extends ActionController
         $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
         $user['login_times']     = Pi::user()->data()->get($uid, 'login_times');
 
-        $this->view()->assign(array(
-            'user' => $user,
-        ));
+        return $user;
     }
 
     /**
@@ -97,7 +92,7 @@ class MaintenanceController extends ActionController
         $sort = _get('sort') ?: 'time_created';
 
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $uids   = $this->getUids($sort, $limit, $offset);
@@ -126,7 +121,7 @@ class MaintenanceController extends ActionController
     public function deletedListAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = 10;
+        $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $model  = Pi::model('user_account');
@@ -427,7 +422,12 @@ class MaintenanceController extends ActionController
             if (isset($userData[$uid]['login_times'])) {
                 $data['login_times'] = $userData[$uid]['login_times']['value_int'];
             }
-            $logs[] = array_merge($profile, $data);
+            if ($data) {
+                $logs[] = array_merge($profile, $data);
+            } else {
+                $logs[] = $profile;
+            }
+
             unset($profile);
             unset($data);
         }
