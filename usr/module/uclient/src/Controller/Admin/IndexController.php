@@ -160,23 +160,24 @@ class IndexController extends ActionController
         $role = _post('role');
 
         $result = array(
-            'status'  => 0,
-            'message' => '',
+            'status'    => 0,
+            'data'      => array(),
+            'message'   => '',
         );
 
         if (!$uids || !$type || !$role) {
-            $result['message'] = __('Assign role failed.');
+            $result['message'] = __('Assign role failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = __('Assign role failed.');
+            $result['message'] = __('Assign role failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = __('Assign role failed.');
+            $result['message'] = __('Assign role failed: invalid operation.');
             return $result;
         }
 
@@ -190,10 +191,9 @@ class IndexController extends ActionController
                 }
             }
             $this->setAccount($uids, $role);
-        }
 
         // Remove user role
-        if ($type == 'remove') {
+        } elseif ($type == 'remove') {
             foreach ($uids as $uid) {
                 $status = Pi::service('user')->revokeRole($uid, $role);
                 if (!$status) {
@@ -202,7 +202,12 @@ class IndexController extends ActionController
                 }
             }
         }
-
+        $users = array();
+        array_walk($uids, function ($uid) use (&$users) {
+            $users[$uid] = array('id' => $uid);
+        });
+        $data = $this->renderRole($users);
+        $result['data'] = $data;
         $result['status']  = 1;
         $result['message'] = __('Assign role successfully.');
 
@@ -238,42 +243,6 @@ class IndexController extends ActionController
         });
 
         return $users;
-    }
-
-    /**
-     * Get user ids according to roles
-     *
-     * @param array $roles
-     * @param int $limit
-     * @param int $offset
-     * @param string|array $order
-     * @param array $fields
-     *
-     * @return array
-     */
-    protected function ____getUsersByRole(
-        array $roles,
-        $limit = 0,
-        $offset = 0,
-        $order = '',
-        $fields = array()
-    ) {
-        $order = $order ?: 'uid DESC';
-        $select = Pi::model('user_role')->select();
-        //$select->columns(array(Pi::db()->expression('DISTINCT uid')));
-        $select->columns(array('uid'));
-        $select->group('uid');
-        $select->where($roles)->limit($limit)->offset($offset)->order($order);
-        $rowset = Pi::model('user_role')->selectWith($select);
-
-        $uids = array();
-        foreach ($rowset as $row) {
-            $uids[] = $row['uid'];
-        }
-
-        $result = Pi::service('user')->get($uids, $fields);
-
-        return $result;
     }
 
     /**
