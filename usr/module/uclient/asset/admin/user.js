@@ -174,7 +174,7 @@
     $scope.unassignRoleBacthAction = function() {
       var role = $scope.unassignRole;
       if (!role) return;
-      server.assignRole(getCheckIds(), role, 'remove').success(function(data) {
+      server.assignRole(getCheckIds(), role.name, 'remove').success(function(data) {
         $scope.unassignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
