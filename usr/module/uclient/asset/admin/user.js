@@ -1,4 +1,4 @@
-﻿angular.module('userListModule')
+﻿angular.module('uclientUserModule')
 .config(['$routeProvider', 'piProvider', 'config',
   function ($routeProvider, piProvider, config) {
     //Get template url
@@ -24,6 +24,7 @@
                 if (item.admin_roles) {
                   item.admin_roles = item.admin_roles.join(',');
                 }
+                item.time_created *= 1000;
               })
               angular.extend(data, server.getRoles());
               data.filter = params;

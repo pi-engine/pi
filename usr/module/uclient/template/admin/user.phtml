@@ -6,13 +6,13 @@ $this->angular(array(
     'pi.js'
 ));
 ?>
-<div ng-app="userListModule">
+<div ng-app="uclientUserModule">
     <div pi-message="alert"></div>
     <div ng-view></div>
 </div>
 <script>
 angular
-    .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .module('uclientUserModule', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
@@ -39,12 +39,12 @@ angular
             USER_ID: '<?php _e('User ID'); ?>',
             NONE_USER: '<?php _e('No user matched your request.'); ?>',
             FROM: '<?php _e('From'); ?>',
-            TO: '<?PHP _e('To'); ?>',
-            FRONT: '<?PHP _e('Front'); ?>',
-            ADMIN: '<?PHP _e('Admin'); ?>',
+            TO: '<?php _e('To'); ?>',
+            FRONT: '<?php _e('Front'); ?>',
+            ADMIN: '<?php _e('Admin'); ?>',
+            NONE_USERS: '<?php _e('No user available'); ?>'
         },
-        roles: <?php echo json_encode($roles); ?>,
-        today: '<?php echo date("Y-m-d"); ?>'
+        roles: <?php echo json_encode($roles); ?>
     });
 </script>
 <?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>

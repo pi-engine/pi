@@ -52,8 +52,6 @@ class IndexController extends ActionController
         $condition['email']     = _get('email') ?: '';
         $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
-        $message = '';
-
         // Get user count
         $count = Pi::service('user')->getCount($condition);
 
@@ -69,7 +67,6 @@ class IndexController extends ActionController
             $users = $this->renderRole($users);
         } else {
             $users = array();
-            $message = __('No user available.');
         }
 
         // Set paginator
@@ -83,7 +80,6 @@ class IndexController extends ActionController
             'users'     => array_values($users),
             'paginator' => $paginator,
             'condition' => $condition,
-            'message'   => $message,
         );
 
         return $data;
@@ -308,7 +304,7 @@ class IndexController extends ActionController
             $data[] = array(
                 'name'  => $name,
                 'title' => $role['title'],
-                'type'  => $role['section'],
+                'section'  => $role['section'],
             );
         }
 
