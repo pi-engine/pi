@@ -390,7 +390,7 @@ CREATE TABLE `{core.user_account}` (
   `credential`      varchar(255)    NOT NULL default '',
   -- Salt for credential hash
   `salt`            varchar(255)    NOT NULL default '',
-  `email`           varchar(64)     NOT NULL,
+  `email`           varchar(64)     default NULL,
 
   -- Display name
   `name`            varchar(255)    default NULL,
