@@ -113,7 +113,7 @@ class MediaController extends ActionController
         
         // Getting user ID
         $user   = Pi::service('user')->getUser();
-        $uid    = Pi::user()->id ?: 0;
+        $uid    = Pi::user()->getId() ?: 0;
         $data['uid'] = $uid;
         
         if (empty($id)) {

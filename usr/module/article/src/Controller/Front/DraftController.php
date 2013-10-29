@@ -423,7 +423,7 @@ class DraftController extends ActionController
             'time_publish' => $rowDraft->time_publish,
             'time_update'  => $rowDraft->time_update > $timestamp 
                 ? $rowDraft->time_update : $timestamp,
-            'user_update'  => Pi::user()->id,
+            'user_update'  => Pi::user()->getId(),
         );
         $rowArticle = $modelArticle->find($articleId);
         $rowArticle->assign($article);
@@ -581,10 +581,10 @@ class DraftController extends ActionController
         }
         
         // Added current logged user as submitter if there is no submitter
-        $data['uid'] = $data['uid'] ?: Pi::user()->id;
+        $data['uid'] = $data['uid'] ?: Pi::user()->getId();
 
         if (empty($id)) {
-            $data['uid']    = Pi::user()->id;
+            $data['uid']    = Pi::user()->getId();
             $data['status'] = Draft::FIELD_STATUS_DRAFT;
 
             $rowDraft = $modelDraft->saveRow($data);
@@ -648,7 +648,7 @@ class DraftController extends ActionController
         $where['status']        = $status;
         $where['article < ?']   = 1;
         if ('my' == $from) {
-            $where['uid']       = Pi::user()->id;
+            $where['uid']       = Pi::user()->getId();
         }
         if (isset($options['keyword'])) {
             $where['subject like ?'] = sprintf('%%%s%%', $options['keyword']);
@@ -741,7 +741,7 @@ class DraftController extends ActionController
         }
         
         $data = $form->getData();
-        $data['user_update'] = Pi::user()->id;
+        $data['user_update'] = Pi::user()->getId();
         $id   = $this->saveDraft($data);
         if (!$id) {
             return array(
@@ -869,7 +869,7 @@ class DraftController extends ActionController
             'category'      => $this->config('default_category'),
             'source'        => $this->config('default_source'),
             'fake_id'       => uniqid(),
-            'uid'           => Pi::user()->id,
+            'uid'           => Pi::user()->getId(),
         ));
 
         $this->setModuleConfig();
