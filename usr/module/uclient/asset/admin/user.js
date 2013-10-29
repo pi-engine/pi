@@ -63,12 +63,16 @@
     }
 
     this.getRoles = function () {
-      var frontRoles = [];
-      var adminRoles = [{
-        name: 'none',
-        title: config.t.NONE_ADMIN,
-        section: 'admin'
-      }];
+        var frontRoles = [{
+            name: 'any_front',
+            title: config.t.ANY_ROLE,
+            section: 'front'
+        }];
+        var adminRoles = [{
+            name: 'any_admin',
+            title: config.t.ANY_ROLE,
+            section: 'admin'
+        }];
       angular.forEach(config.roles, function(item) {
         if (item.section == 'front') {
           frontRoles.push(item);
@@ -78,11 +82,6 @@
           adminRoles.push(item);
           item._section = config.t.ADMIN;
         }
-      });
-      adminRoles.push({
-        name: 'any',
-        title: config.t.ANY_ADMIN,
-        section: 'admin'
       });
       return {
         'frontRoles': frontRoles,
