@@ -65,7 +65,7 @@ class IndexController extends ActionController
         // Set paginator
         $paginator = array(
             'count'      => (int) $count,
-            'limit'      => $limit,
+            'limit'      => (int) $limit,
             'page'       => $page,
         );
 
@@ -110,7 +110,7 @@ class IndexController extends ActionController
         // Set paginator
         $paginator = array(
             'count'      => (int) $count,
-            'limit'      => $limit,
+            'limit'      => (int) $limit,
             'page'       => $page,
         );
 
@@ -154,7 +154,7 @@ class IndexController extends ActionController
         // Set paginator
         $paginator = array(
             'count'      => (int) $count,
-            'limit'      => $limit,
+            'limit'      => (int) $limit,
             'page'       => $page,
         );
 
@@ -332,8 +332,8 @@ class IndexController extends ActionController
 
         // Set paginator
         $paginator = array(
-            'count'      => $count,
-            'limit'      => $limit,
+            'count'      => (int) $count,
+            'limit'      => (int) $limit,
             'page'       => $page,
         );
 

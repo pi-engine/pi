@@ -65,7 +65,7 @@
         <tr>
           <th style="width: 14px;">
           <th style="width: 14px;">
-          <th width="5%" class="text-center">{{'ID' | translate}}
+          <th width="5%">{{'ID' | translate}}
           <th>{{'USERNAME' | translate}}
           <th>{{'DISPLAY_NAME' | translate}}
           <th width="15%">{{'EMAIL' | translate}}
@@ -84,7 +84,7 @@
             <i class="icon-circle muted" ng-if="!user.active"
                tooltip="{{'INACTIVE' | translate}}">
             </i>
-          <td class="text-center">
+          <td>
             {{user.id}}
           <td>
             {{user.identity}}
@@ -117,11 +117,11 @@
           <td class="text-center">
             {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
   </table>
+  <pagination ng-if="paginator.count > paginator.limit" 
+              total-items="paginator.count" page="paginator.page" max-size="10"
+              boundary-links="true" items-per-page="paginator.limit">
+  </pagination>
 </div>
 <div class="alert" ng-if="!users.length">
   {{'NONE_USER' | translate}}
 </div>
-<pagination total-items="paginator.count" page="paginator.page" max-size="10"
-            ng-if="paginator.count" 
-            class="pagination" boundary-links="true" items-per-page="paginator.limit">
-</pagination>
