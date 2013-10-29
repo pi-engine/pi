@@ -31,7 +31,6 @@ $form = Pi::service('comment')->getForm($formData);
 $this->jQuery();
 $this->backbone();
 $this->css($this->assetModule('css/front.css', 'comment'));
-$this->bootstrap('css/font-awesome.css');
 
 $uid = Pi::user()->getId();
 $avatar = Pi::avatar()->get($uid, 'medium', false);
@@ -68,7 +67,7 @@ if ($uid) {
             ?>
                 <div class="form-unsign">
                     <span><a href="<?php echo $loginUrl; ?>" class="highlight"><?php _e('Login'); ?></a></span>
-                    <span><?php _e(' to leave comments.') ?></span>
+                    <span><?php _e(' to leave comments.'); ?></span>
                 </div>
             <?php
                 } else {
@@ -115,26 +114,9 @@ if ($uid) {
                 <div class="pi-comment-operation">
                 <?php 
                     foreach ($post['operations'] as $operation => $optData) {
-                        $class = '';
-                        switch ($operation) {
-                            case 'disable':
-                                $class = 'icon-ban-circle';
-                                break;
-                            case 'edit':
-                                $class = 'icon-pencil';
-                                break;
-                            case 'delete':
-                                $class = 'icon-trash';
-                                break;
-                            case 'reply':
-                                $class = 'icon-share-alt';
-                                break;
-                        }
                 ?>
                     <span class="operation muted">
-                        <a href="<?php echo $optData['url']; ?>">
-                            <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo _escape($optData['title']); ?>
-                        </a>
+                        <a href="<?php echo $optData['url']; ?>"><?php echo _escape($optData['title']); ?></a>
                     </span>
                 <?php
                     }
@@ -179,9 +161,7 @@ var page = {
 
 var CommentView = Backbone.View.extend({
     events          : {
-        "click textarea"   :"expandTextarea",
-        "mouseover .pi-comment-list .media" : "displayOperation",
-        "mouseout .pi-comment-list .media"  : "hideOperation"
+        "click textarea"   :"expandTextarea"
     },
     initialize      : function() {
         this.$el   = $(".pi-comment");
@@ -199,14 +179,6 @@ var CommentView = Backbone.View.extend({
             "height"     : "75px"
         });
         this.$(".form-submit").removeClass("hide");
-    },
-    displayOperation    : function(e) {
-        var el = $(e.target).parents(".media");
-        el.find(".pi-comment-operation").css("visibility", "visible");
-    },
-    hideOperation   : function(e) {
-        var el = $(e.target).parents(".media");
-        el.find(".pi-comment-operation").css("visibility", "hidden");
     }
 });
 new CommentView;
