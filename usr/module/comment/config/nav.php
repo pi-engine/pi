@@ -105,7 +105,7 @@ return array(
         ),
         'article'    => array(
             'route'         => 'admin',
-            'label'         => _t('By articles'),
+            'label'         => _t('By article'),
             'controller'    => 'list',
             'action'        => 'article',
         ),
