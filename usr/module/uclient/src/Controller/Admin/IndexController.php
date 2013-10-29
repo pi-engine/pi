@@ -142,7 +142,7 @@ class IndexController extends ActionController
             'paginator' => $paginator,
         ));
 
-        //var_dump($data);
+        //var_dump($data); exit();
 
         return $data;
     }
@@ -345,7 +345,6 @@ class IndexController extends ActionController
         $users = array();
         if ($count) {
             if ($isJoin) {
-                /*
                 $select = Pi::db()->select();
                 $select->where($where);
                 $select->join(
@@ -353,7 +352,6 @@ class IndexController extends ActionController
                     'front.uid=admin.uid',
                     array()
                 );
-                */
                 $select->from(array('front' => $model->getTable()));
                 $select->columns(array('uid'));
                 $select->group('front.uid');
@@ -362,8 +360,9 @@ class IndexController extends ActionController
                 $select->order($order);
                 $rowset = Pi::db()->query($select);
             } else {
-                //$select = $model->select();
-                //$select->where($where);
+                $select = $model->select();
+                $select->where($where);
+                //$select->columns(array('uid' => Pi::db()->expression('DISTINCT uid')));
                 $select->columns(array('uid'));
                 $select->group('uid');
                 $select->limit($limit)->offset($offset);
