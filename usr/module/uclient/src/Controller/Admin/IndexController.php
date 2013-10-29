@@ -79,7 +79,6 @@ class IndexController extends ActionController
         $data = array(
             'users'     => array_values($users),
             'paginator' => $paginator,
-            'condition' => $condition,
         );
 
         return $data;
@@ -141,7 +140,6 @@ class IndexController extends ActionController
 
         $data = array_merge($data, array(
             'paginator' => $paginator,
-            'condition' => $condition,
         ));
 
         //var_dump($data);
