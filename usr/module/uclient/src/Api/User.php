@@ -128,8 +128,8 @@ class User extends AbstractUseApi
         $params = array();
         if ($condition) {
             $query = array();
-            array_walk($condition, function ($value, $key) {
-                return $key . ':' . $value;
+            array_walk($condition, function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
             });
             $params['query'] = implode(',', $query);
         }
@@ -169,8 +169,8 @@ class User extends AbstractUseApi
         $params = array();
         if ($condition) {
             $query = array();
-            array_walk($condition, function ($value, $key) {
-                return $key . ':' . $value;
+            array_walk($condition, function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
             });
             $params['query'] = implode(',', $query);
         }
