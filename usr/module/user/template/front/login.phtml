@@ -2,29 +2,29 @@
 <?php include $this->templateComponent('form'); ?>
 
 <style>
-    .link-find-password {
+    .user-link-findpassword {
         position: relative;
         left: 127px;
         top: <?php echo $is_captcha ? '-195' : '-95'; ?>px;
     }
 
-    .link-register {
+    .user-link-register {
         position: relative;
         left: 70px;
         top: -45px;
     }
 
     @-moz-document url-prefix() {
-        .link-find-password {
+        .user-link-findpassword {
             top: <?php echo $is_captcha ? '-191' : '-91'; ?>px;
         }
 
-        .link-register {
+        .user-link-register {
             top: -43px;
         }
     }
 </style>
 <div style="margin-left: 180px;">
-    <a class="link-find-password" href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>" title="<?php _e('Forget password'); ?>"><?php _e('Find password'); ?></a>
-    <a class="link-register" style="" href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
+    <a class="user-link-findpassword" href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>" title="<?php _e('Forget password'); ?>"><?php _e('Find password'); ?></a>
+    <a class="user-link-register" href="<?php echo $this->url('', array('controller' => 'register')); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
 </div>
