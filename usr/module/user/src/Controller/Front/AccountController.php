@@ -56,7 +56,7 @@ class AccountController extends ActionController
 
         // Generate form
         $form = new AccountForm('account');
-        $data['id'] = $uid;
+        $data['uid'] = $uid;
         $form->setData($data);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -98,7 +98,9 @@ class AccountController extends ActionController
         }
 
         $user['name'] = $data['name'];
-        $user['id']   = $uid;
+        $user['identity'] = $data['identity'];
+        $user['uid']   = $uid;
+
         $this->view()->assign(array(
             'form'      => $form,
             'groups'    => $groups,
@@ -211,6 +213,30 @@ class AccountController extends ActionController
 
         return $result;
 
+    }
+
+    /**
+     * Check if email or display name exists
+     *
+     * @return int
+     */
+    public function checkExistAction()
+    {
+        $name  = _get('name');
+        $email = _get('email');
+
+        $row = '';
+        if ($name) {
+            $row = Pi::model('user_account')->find($name, 'name');
+        } else {
+            $row = Pi::model('user_account')->find($email, 'email');
+        }
+
+        $status = $row ? 1 : 0;
+
+        return array(
+            'status' => $status
+        );
     }
 
     /**

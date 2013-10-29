@@ -30,9 +30,6 @@
               }
               angular.extend(data, server.getRoles());
               data.filter = params;
-              if (!users.length) {
-                data.noneMessage = config.t.NONE_USER;
-              }
               deferred.resolve(data);
               $rootScope.alert = '';
             });
@@ -247,6 +244,7 @@
             ids.push(user.id);
         }
       });
+      if (!ids.length) $scope.$parent.alert = { status: 0, message: config.t.BATCH_CHECKED };
       return ids;
     }
 
@@ -257,11 +255,12 @@
     }
 
     $scope.disableBatchAction = function () {
-      var users = $scope.users;
-      server.disable(getCheckIds()).success(function (data) {
+      var ids = getCheckIds();
+      if (!ids.length) return;
+      server.disable(ids).success(function (data) {
         if (data.status) {
           $scope.allChecked = 0;
-          angular.forEach(users, function (user) {
+          angular.forEach($scope.users, function (user) {
             if (user.checked) {
               user.time_disabled = 1;
               user.active = 0;
@@ -291,11 +290,12 @@
     }
    
     $scope.enableBatchAction = function () {
-      var users = $scope.users;
-      server.enable(getCheckIds()).success(function (data) {
+      var ids = getCheckIds();
+      if (!ids.length) return;
+      server.enable(ids).success(function (data) {
         if (data.status) {
           $scope.allChecked = 0;
-          angular.forEach(users, function (user) {
+          angular.forEach($scope.users, function (user) {
             if (user.checked) {
               user.time_disabled = 0;
               if (user.time_activated) user.active = 1;
@@ -308,7 +308,7 @@
 
     $scope.activeAction = function (user) {
       if (user.time_activated) return;
-      if (!confirm(config.t.CONFIRM_ACTIVATE)) return;
+      if (!confirm(config.t.CONFIRM_ACTIVATED)) return;
       server.active(user.id).success(function (data) {
         if (data.status) {
           user.time_activated = 1;
@@ -317,7 +317,10 @@
     }
 
     $scope.activeBatchAction = function () {
-      server.active(getCheckIds()).success(function (data) {
+      var ids = getCheckIds();
+      if (!ids.length) return;
+      if (!confirm(config.t.CONFIRM_ACTIVATED_BATCH)) return;
+      server.active(ids).success(function (data) {
         if (data.status) {
           $scope.allChecked = 0;
           angular.forEach($scope.users, function (user) {
@@ -342,8 +345,10 @@
     }
 
     $scope.deleteBatchAction = function () {
+      var ids = getCheckIds();
+      if (!ids.length) return;
       if (!confirm(config.t.CONFIRMS)) return;
-      server.remove(getCheckIds()).success(function (data) {
+      server.remove(ids).success(function (data) {
         var ret = [];
         if (data.status) {
           $scope.allChecked = 0;
@@ -357,8 +362,10 @@
 
     $scope.assignRoleBacthAction = function() {
       var role = $scope.assignRole;
+      var ids = getCheckIds();
+      if (!ids.length) return;
       if (!role) return;
-      server.assignRole(getCheckIds(), role.name, 'add').success(function(data) {
+      server.assignRole(ids, role.name, 'add').success(function(data) {
         $scope.assignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
@@ -386,8 +393,10 @@
 
     $scope.unassignRoleBacthAction = function() {
       var role = $scope.unassignRole;
+      var ids = getCheckIds();
+      if (!ids.length) return;
       if (!role) return;
-      server.assignRole(getCheckIds(), role, 'remove').success(function(data) {
+      server.assignRole(ids, role, 'remove').success(function(data) {
         $scope.unassignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;

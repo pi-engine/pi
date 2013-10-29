@@ -1,6 +1,5 @@
 <?php
 $this->css($this->assetModule('css/front.css', 'comment'));
-$this->bootstrap('css/font-awesome.css');
 
 // Target data:
 // Title, time, user
@@ -48,10 +47,10 @@ if ($uid) {
 </style>
 
 <div class="pi-comment">
-    <div class="pi-comment-header"><?php _e('Comment reply to someone') ?></div>
+    <div class="pi-comment-header"><?php echo sprintf(__('Comment reply to %s'), $post['user']['name']); ?></div>
     <div class="media">
         <a class="pull-left" href="<?php echo $url; ?>">
-            <img class="media-object" src="<?php $avatar; ?>">
+            <img class="media-object" src="<?php echo $avatar; ?>">
         </a>
         <div class="media-body">
         <?php
@@ -66,8 +65,8 @@ if ($uid) {
                 <span class="pull-right muted pi-comment-time"><?php echo _date($post['time']); ?></span>
             </div>
             <div class="pi-comment-desc">
-                <span class="muted"><?php _e('Commented on '); ?></span>
-                <a class="highlight" href="<?php echo $target['url']; ?>" title="<?php echo _escape($target['title']); ?>">
+                <span class="muted pull-left"><?php _e('Commented on '); ?></span>
+                <a class="highlight comment-title-hidden" href="<?php echo $target['url']; ?>" title="<?php echo _escape($target['title']); ?>" style="max-width: 70%">
                     <?php echo _escape($target['title']); ?>
                 </a>
             </div>

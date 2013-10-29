@@ -22,16 +22,6 @@ class AccountForm extends BaseForm
     public function init()
     {
         $this->add(array(
-            'name'       => 'identity',
-            'options'    => array(
-                'label' => __('Username'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
-            ),
-        ));
-
-        $this->add(array(
             'name'       => 'email',
             'options'    => array(
                 'label' => __('Email'),
@@ -52,7 +42,7 @@ class AccountForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'       => 'id',
+            'name'       => 'uid',
             'attributes' => array(
                 'type' => 'hidden',
             ),
