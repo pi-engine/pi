@@ -235,7 +235,7 @@ class EditController extends ActionController
      */
     public function deleteCompoundAction()
     {
-        $uid      = Pi::user()->getId();
+        $uid      = _post('uid');
         $compound = _post('compound', '');
         $set      = _post('set');
 
@@ -252,7 +252,7 @@ class EditController extends ActionController
 
         return array(
             'status'  => $status ? 1 : 0,
-            'message' => $status ? 'ok' : 'error',
+            'message' => $status ? __('Delete compound successfully') : __('Delete compound fail'),
         );
     }
 

@@ -392,7 +392,7 @@ class Service
 
         $where['article < ?'] = 1;
         if ('my' == $from) {
-            $where['uid'] = Pi::user()->id ?: 0;
+            $where['uid'] = Pi::user()->getId() ?: 0;
         }
         $modelDraft = Pi::model('draft', $module);
         $select     = $modelDraft->select()
@@ -426,7 +426,7 @@ class Service
             'category' => !empty($categories) ? $categories : 0,
         );
         if ('my' == $from) {
-            $where['uid'] = Pi::user()->id ?: 0;
+            $where['uid'] = Pi::user()->getId() ?: 0;
         }
         $select = $modelArticle->select()
             ->columns(array('total' => new Expression('count(id)')))
@@ -631,7 +631,7 @@ class Service
      */
     public static function isMine($uid)
     {
-        if ($uid == Pi::user()->id) {
+        if ($uid == Pi::user()->getId()) {
             return true;
         }
         
@@ -729,7 +729,7 @@ class Service
         $module     = Pi::service('module')->current();
         
         // Get role of current section
-        $uid     = $uid ?: Pi::user()->id;
+        $uid     = $uid ?: Pi::user()->getId();
         $roles   = array_values(Pi::user()->getRole($uid, 'admin'));
         
         // Get all categories

@@ -53,7 +53,7 @@ class Api extends AbstractApi
     ) {
         if (empty($submitter)) {
             $user      = Pi::service('user')->getUser();
-            $submitter = Pi::user()->id;
+            $submitter = Pi::user()->getId();
         }
         if (!is_numeric($submitter)) {
             return array();

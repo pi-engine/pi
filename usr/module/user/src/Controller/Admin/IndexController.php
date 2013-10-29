@@ -658,9 +658,17 @@ class IndexController extends ActionController
         );
         foreach ($uids as $uid) {
             $users[$uid] = $data[$uid];
+            $users[$uid]['link'] = $this->url(
+                'user',
+                array(
+                    'controller' => 'home',
+                    'action'     => 'view',
+                    'uid'        => $uid,
+                )
+            );
         }
 
-        $roles = Pi::registry('role')->read();
+        $roles  = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
         foreach ($rowset as $row) {
             $uid     = $row['uid'];

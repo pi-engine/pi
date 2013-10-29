@@ -3,24 +3,24 @@
   margin: 0 20px 20px 8px;
 }
 </style>
-<form class="form-inline uc-form-inline" ng-submit="filterAction()">
-    <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filter.identity">
-    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
-  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
-  <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
+<form class="form-inline uc-form-inline" ng-submit="filterRemoteAction()">
+    <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filterRemote.identity">
+    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filterRemote.name">
+  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filterRemote.email">
+  <button class="btn btn-info" style="padding: 4px 20px;">
     <i class="icon-search"></i>
   </button>
 </form>
-<form class="form-inline uc-form-inline" ng-submit="filterAction()">
-    <select class="input-medium" ng-model="filter.front_role"
+<form class="form-inline uc-form-inline" ng-submit="filterLocalAction()">
+    <select class="input-medium" ng-model="filterLocal.front_role"
             ng-options="item.name as item.title for item in frontRoles">
         <option value="">{{'FRONT_ROLE' | translate}}
     </select>
-    <select class="input-medium" ng-model="filter.admin_role"
+    <select class="input-medium" ng-model="filterLocal.admin_role"
             ng-options="item.name as item.title for item in adminRoles">
         <option value="">{{'ADMIN_ROLE' | translate}}
     </select>
-    <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
+    <button class="btn btn-info" style="padding: 4px 20px;">
         <i class="icon-check"></i>
     </button>
 </form>
@@ -76,5 +76,5 @@
   </pagination>
 </div>
 <div class="alert" ng-show="!users.length">
-  {{'NONE_USERS' | translate}}
+  {{'NONE_USER' | translate}}
 </div>

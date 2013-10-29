@@ -13,10 +13,10 @@
         data: ['$q', '$route', '$rootScope', 'server',
           function($q, $route, $rootScope, server) {
             var deferred = $q.defer();
-            var role = $route.current.params.role;
+            var params = $route.current.params;
             $rootScope.alert = 2;
-            server.getUserByRole(role).success(function(data) {
-              data.role = role;
+            server.getUserByRole(params).success(function(data) {
+              data.role = params.role;
               data.users = data.users || [];
               deferred.resolve(data);
               $rootScope.alert = '';
@@ -54,10 +54,11 @@
       return $http.get(root + 'list');
     }
 
-    this.getUserByRole = function(role) {
+    this.getUserByRole = function(params) {
       return $http.get(root + 'user', {
         params: {
-          name: role
+          name: params.role,
+          page: params.p
         }
       });
     }
@@ -86,11 +87,16 @@
     angular.extend($scope, data);
   }
 ])
-.controller('UserCtrl', ['$scope', 'data', 'server',
-  function($scope, data, server) {
+.controller('UserCtrl', ['$scope', '$location', 'data', 'server',
+  function($scope, $location, data, server) {
     angular.extend($scope, data);
 
     $scope.entity = { field: 'uid' };
+
+    $scope.$watch('paginator.page', function(newValue, oldValue) {
+      if (newValue == oldValue) return;
+      $location.search('p', newValue);
+    });
 
     $scope.removeAction = function(idx) {
       var user = $scope.users[idx];
@@ -106,6 +112,7 @@
         var user = data.data;
         if (data.status) {
           $scope.users.push(user);
+          $scope.entity.data = '';
         }
       });
     }

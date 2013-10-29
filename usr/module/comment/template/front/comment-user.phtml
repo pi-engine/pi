@@ -1,6 +1,5 @@
 <?php
 $this->css($this->assetModule('css/front.css', 'comment'));
-$this->bootstrap('css/font-awesome.css');
 
 // User data
 $user = $comment['user'];
@@ -20,11 +19,7 @@ $paginator = $comment['paginator'];
         if ($posts) {
     ?>
     <div class="pi-comment-list">
-<<<<<<< HEAD
-        <div class="pi-comment-header"><?php echo $user['name'] . __("'s comments ") . "({$count})"; ?></div>
-=======
         <div class="pi-comment-header"><?php echo sprintf('%s\'s comments ', $user['name']) . "({$count})"; ?></div>
->>>>>>> 39dc6b938c6bf52563c73e37aa63b40d91010a7b
     <?php
             foreach ($posts as $post) {
     ?>
@@ -34,15 +29,11 @@ $paginator = $comment['paginator'];
             </a>
             <div class="media-body">
                 <div class="pi-comment-desc" style="margin-top: 0">
-                    <span class="muted pull-left"><?php _e('Commented on ') ?></span>
+                    <span class="muted pull-left"><?php _e('Commented on '); ?></span>
                     <a class="highlight comment-title-hidden pull-left" href="<?php echo $post['target']['url']; ?>" title="<?php echo _escape($post['target']['title']); ?>">
                         <?php echo _escape($post['target']['title']); ?>
                     </a>
-<<<<<<< HEAD
                     <span class="muted pi-comment-time"><?php echo _date($post['time']); ?></span>
-=======
-                    <span class="muted pi-comment-time"><?php echo _date($post['time']) ?></span>
->>>>>>> 39dc6b938c6bf52563c73e37aa63b40d91010a7b
                 </div>
                 <div class="pi-comment-content">
                     <?php echo $post['content']; ?>
@@ -50,26 +41,9 @@ $paginator = $comment['paginator'];
                 <div class="pi-comment-operation">
                 <?php 
                     foreach ($post['operations'] as $operation => $optData) {
-                        $class = '';
-                        switch ($operation) {
-                            case 'disable':
-                                $class = 'icon-ban-circle';
-                                break;
-                            case 'edit':
-                                $class = 'icon-pencil';
-                                break;
-                            case 'delete':
-                                $class = 'icon-trash';
-                                break;
-                            case 'reply':
-                                $class = 'icon-share-alt';
-                                break;
-                        }
                 ?>
-                    <span class="operation muted" style="visibility: visible">
-                        <a href="<?php echo $optData['url']; ?>">
-                            <i class="<?php echo $class; ?>" style="text-decoration: none"></i><?php echo _escape($optData['title']); ?>
-                        </a>
+                    <span class="operation muted">
+                        <a href="<?php echo $optData['url']; ?>"><?php echo _escape($optData['title']); ?></a>
                     </span>
                 <?php
                     }

@@ -2,7 +2,7 @@
     <?php foreach ($forms as $set => $form) { ?>
     <div class="pi-widget span6">
         <div class="clearfix pi-widget-header" style="margin-bottom: 20px;">
-            <button type="button" class="close" ng-click="deleteAction()">&times;</button>
+            <button type="button" class="close" ng-click="deleteAction('<?php echo $form->getName(); ?>')">&times;</button>
         </div>
         <form method="post" class="form-horizontal" name="<?php echo $form->getName(); ?>" 
               ng-submit="submit('<?php echo $form->getName(); ?>')">
@@ -36,3 +36,8 @@
     </div>
     <?php } ?>
 </div>
+<?php if (!$forms) { ?>
+<div class="alert">
+    <?php _e('This user doesn\'t have any you can view'); ?>
+</div>
+<?php } ?>

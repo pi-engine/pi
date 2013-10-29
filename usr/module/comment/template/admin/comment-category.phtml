@@ -1,30 +1,30 @@
 <table class="table table-striped" style="margin-top: 20px">
     <tr>
-        <th><?php _e('Title') ?></th>
-        <th><?php _e('Enable Category') ?></th>
-        <th><?php _e('Action') ?></th>
+        <th><?php _e('Title'); ?></th>
+        <th><?php _e('Enable Category'); ?></th>
+        <th><?php _e('Action'); ?></th>
     </tr>
     <?php foreach ($modules as $name => $data) { ?>
     <tr>
-        <td><?php echo $this->escape($name) ?></td>
+        <td><?php echo _escape($name); ?></td>
         <td></td>
-        <td><a href="<?php echo $data['url'] ?>" target="_blank"><?php _e('View comments') ?></a>
+        <td><a href="<?php echo $data['url']; ?>" target="_blank"><?php _e('View comments'); ?></a>
         </td>
     </tr>
         <?php foreach ($data['categories'] as $category) { ?>
     <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title'] ?></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title']; ?></td>
         <td>
             <div class="btn-group">
-                <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
-                    <?php _e('Yes') ?>
+                <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
+                    <?php _e('Yes'); ?>
                 </a>
-                <a class="btn<?php echo 'disabled' == strtolower($category['status']) ? ' btn-danger' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
-                    <?php _e('No') ?>
+                <a class="btn<?php echo 'disabled' == strtolower($category['status']) ? ' btn-danger' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
+                    <?php _e('No'); ?>
                 </a>
             </div>
         </td>
-        <td><a href="<?php echo $category['url'] ?>" target="_blank"><?php _e('View comments') ?></a>
+        <td><a href="<?php echo $category['url']; ?>" target="_blank"><?php _e('View comments'); ?></a>
         </td>
     </tr>
         <?php } ?>

@@ -29,10 +29,9 @@ class AccountController extends ActionController
     public function indexAction()
     {
         $result = array(
-            'status'        => 0,
-            'message'       => '',
-            'email_message' => '',
-            'name_message'  => ''
+            'status'       => 0,
+            'email_error'  => 0,
+            'name_error'   => 0,
         );
 
         // Check login in
@@ -74,22 +73,25 @@ class AccountController extends ActionController
                     );
 
                     if (!$status) {
+                        $result['email_error'] = 1;
                         return $result;
                     }
 
-                    $result['email_message'] = __('Send verify successfully');
                     $result['new_email']     = $values['email'];
                 }
                 // Reset display name
                 if ($values['name'] != $data['name']) {
-                    Pi::api('user', 'user')->updateUser(
+                    $status = Pi::api('user', 'user')->updateUser(
                         $uid,
                         array('name' => $values['name'])
                     );
-                    $result['name_message'] = __('Reset display successfully');
+                    if (!$status) {
+                        $result['name_error'] = 1;
+                        return $result;
+                    }
                 }
-                $result['status'] = 1;
 
+                $result['status'] = 1;
                 return $result;
             } else {
                 $result['message'] = $form->getMessages();
@@ -97,9 +99,9 @@ class AccountController extends ActionController
             }
         }
 
-        $user['name'] = $data['name'];
+        $user['name']     = $data['name'];
         $user['identity'] = $data['identity'];
-        $user['uid']   = $uid;
+        $user['uid']      = $uid;
 
         $this->view()->assign(array(
             'form'      => $form,
@@ -126,7 +128,8 @@ class AccountController extends ActionController
 
         // Check link
         if (!$hashUid || !$token) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Get user data
@@ -136,34 +139,40 @@ class AccountController extends ActionController
         ));
         // Check user data
         if (!$userData) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check new email
         $email = urldecode($email);
         if ($userData['value'] != md5($userData['uid'] . $email)) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check token
         if ($userData['value'] != $token) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid'], 'id');
         if (!$userRow) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
         if ($hashUid != md5($userData['uid'])) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Check link expire time
         $expire  = $userData['time'] + 24 * 3600;
         $current = time();
         if ($current > $expire) {
-            return $result;
+            $this->view()->assign('result', $result);
+            return;
         }
 
         // Reset email
@@ -172,7 +181,8 @@ class AccountController extends ActionController
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 
-        return $result;
+        $this->view()->assign('result', $result);
+        $this->view()->setTemplate('account-reset-email');
 
     }
 

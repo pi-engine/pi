@@ -6,14 +6,14 @@
       return config.assetRoot + name + '.html';
     }
 
-    $routeProvider.when('/?', {
+    $routeProvider.when('/:action', {
       templateUrl: tpl('index-all'),
       controller: 'ListCtrl',
       resolve: {
         data: ['$q', '$route', '$rootScope', 'server',
           function($q, $route, $rootScope, server) {
             var deferred = $q.defer();
-            var params = $route.current.params;
+            var params = angular.copy($route.current.params);
             $rootScope.alert = 2;
             server.get(params).success(function(data) {
               var users = data.users;
@@ -27,7 +27,12 @@
                 item.time_created *= 1000;
               })
               angular.extend(data, server.getRoles());
-              data.filter = params;
+              if (params.action == 'remote') {
+                data.filterRemote = params;
+              } else {
+                data.filterLocal = params;
+              }
+              delete params.action;
               deferred.resolve(data);
               $rootScope.alert = '';
             });
@@ -35,8 +40,11 @@
           }
         ]
       }
+    }).otherwise({
+      redirectTo: '/remote'
     });
 
+    piProvider.hashPrefix();
     piProvider.navTabs(config.navTabs);
     piProvider.translations(config.t);
     piProvider.ajaxSetup();
@@ -47,9 +55,15 @@
     var urlRoot = config.urlRoot;
 
     this.get = function (params) {
-      return $http.get(urlRoot + 'all', {
-        params: params
-      });
+      if (params.action == 'remote') {
+        return $http.get(urlRoot + 'all', {
+          params: params
+        });
+      } else {
+        return $http.get(urlRoot + 'role', {
+          params: params
+        });
+      }
     }
 
     this.filterEmpty = function(obj) {
@@ -63,12 +77,16 @@
     }
 
     this.getRoles = function () {
-      var frontRoles = [];
-      var adminRoles = [{
-        name: 'none',
-        title: config.t.NONE_ADMIN,
-        section: 'admin'
-      }];
+        var frontRoles = [{
+            name: 'any_front',
+            title: config.t.ANY_ROLE,
+            section: 'front'
+        }];
+        var adminRoles = [{
+            name: 'any_admin',
+            title: config.t.ANY_ROLE,
+            section: 'admin'
+        }];
       angular.forEach(config.roles, function(item) {
         if (item.section == 'front') {
           frontRoles.push(item);
@@ -78,11 +96,6 @@
           adminRoles.push(item);
           item._section = config.t.ADMIN;
         }
-      });
-      adminRoles.push({
-        name: 'any',
-        title: config.t.ANY_ADMIN,
-        section: 'admin'
       });
       return {
         'frontRoles': frontRoles,
@@ -161,7 +174,7 @@
     $scope.unassignRoleBacthAction = function() {
       var role = $scope.unassignRole;
       if (!role) return;
-      server.assignRole(getCheckIds(), role, 'remove').success(function(data) {
+      server.assignRole(getCheckIds(), role.name, 'remove').success(function(data) {
         $scope.unassignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
@@ -179,9 +192,18 @@
       });
     }
 
-    $scope.filterAction = function () {
-      $location.search(server.filterEmpty($scope.filter));
-      $location.search('p', null);
+    $scope.filterRemoteAction = function () {
+      $location
+        .path('/remote')
+        .search(server.filterEmpty($scope.filterRemote))
+        .search('p', null);
+    }
+
+    $scope.filterLocalAction = function() {
+      $location
+        .path('local')
+        .search(server.filterEmpty($scope.filterLocal))
+        .search('p', null);
     }
   }
 ]);

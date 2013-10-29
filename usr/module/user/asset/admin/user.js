@@ -226,6 +226,14 @@
         }
       });
     }
+
+    this.deleteCompound = function(id, compound, set) {
+      return $http.post(urlRoot + 'deleteCompound', {
+        uid: id,
+        compound: compound,
+        set: set
+      });
+    }
   }
 ])
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
@@ -498,8 +506,8 @@
     }
   }
 ])
-.controller('EditCtrl', ['$scope', '$templateCache', 'data', 'editServer',
-  function($scope, $templateCache, data, editServer) {
+.controller('EditCtrl', ['$scope', '$templateCache', 'config', 'data', 'editServer',
+  function($scope, $templateCache, config, data, editServer) {
     angular.extend($scope, data);
 
     $scope.navChange = function(item) {
@@ -530,8 +538,23 @@
       });
     }
 
-    $scope.deleteAction = function() {
-      
+    $scope.deleteAction = function(name) {
+      if (!confirm(config.t.COMPOUND_CONFIRM)) return;
+      var form = $('form[name=' + name + ']');
+      var widget = form.parents('.pi-widget');
+      var scope = widget.parent();
+      editServer
+        .deleteCompound($scope.user.id, $scope.action, form.find('[name=set]').val())
+        .success(function(data) {
+          if (!data.status) return;
+          $templateCache.remove($scope.formHtmlUrl);
+          widget.fadeOut(300, function() {
+            widget.remove();
+            scope.find('[name=set]').each(function(idx) {
+              $(this).val(idx);
+            });
+          });
+        });
     }
   }
 ]);
