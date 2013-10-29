@@ -1,19 +1,19 @@
 <table class="table table-striped" style="margin-top: 20px">
     <tr>
-        <th><?php _e('Title') ?></th>
-        <th><?php _e('Enable Category') ?></th>
-        <th><?php _e('Action') ?></th>
+        <th><?php _e('Module') ?></th>
+        <th><?php _e('Category') ?></th>
+        <th><?php _e('Enable') ?></th>
     </tr>
     <?php foreach ($modules as $name => $data) { ?>
     <tr>
         <td><?php echo $this->escape($name) ?></td>
         <td></td>
-        <td><a href="<?php echo $data['url'] ?>" target="_blank"><?php _e('View comments') ?></a>
-        </td>
+        <td></td>
     </tr>
         <?php foreach ($data['categories'] as $category) { ?>
     <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title'] ?></td>
+        <td></td>
+        <td><?php echo $category['title'] ?></td>
         <td>
             <div class="btn-group">
                 <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : '' ?>" href="<?php echo $category['enable']['url'] ?>">
@@ -23,8 +23,6 @@
                     <?php _e('No') ?>
                 </a>
             </div>
-        </td>
-        <td><a href="<?php echo $category['url'] ?>" target="_blank"><?php _e('View comments') ?></a>
         </td>
     </tr>
         <?php } ?>

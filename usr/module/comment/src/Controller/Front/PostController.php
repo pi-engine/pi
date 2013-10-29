@@ -333,41 +333,6 @@ class PostController extends ActionController
                 $message = __('Invalid data, please check and re-submit.');
             }
         }
-        
-        if (1 === $status && $id) {
-            $uri = Pi::service('module')
-                ->config('user_domain', $this->getModule());
-            if (empty($values['item']) and !empty($values['reply'])) {
-                $postMessage = sprintf(
-                    __('A new comment is added that reply to comment #%s'),
-                    $values['reply']
-                );
-            } elseif (!empty($values['item'])) {
-                $postMessage = sprintf(
-                    __('A new comment is added of article #%s'),
-                    $values['item']
-                );
-            } else {
-                $postMessage = __('A new comment is added');
-            }
-            $params = array(
-                'uid'       => Pi::user()->id,
-                'title'     => __('New comment'),
-                'timeline'  => 'new_comment',
-                'message'   => $postMessage,
-                'time'      => time(),
-                'module'    => 'comment',
-                'app_key'   => Pi::url(),
-                'link'      => sprintf(
-                    '%s%s',
-                    rtrim(Pi::url(), '/'), 
-                    Pi::api('comment')->getUrl('post', array(
-                        'post'      => $id,
-                    ))
-                ),
-            );
-            Pi::service('remote')->post($uri, $params);
-        }
 
         $result = array(
             'data'      => $id,

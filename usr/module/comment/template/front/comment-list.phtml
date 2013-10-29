@@ -90,14 +90,3 @@ $paginator = $comment['paginator'];
         }
     ?>
 </div>
-
-<?php 
-    if ($posts && $paginator) {
-        echo $this->pagination(
-            $paginator,
-            'Sliding',
-            'paginator.phtml',
-            array('class' => 'pagination-right')
-        );
-    }
-?>
