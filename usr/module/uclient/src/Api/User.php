@@ -311,7 +311,15 @@ class User extends AbstractUseApi
      */
     public function getRole($uid, $section = '')
     {
-        return parent::getRole($uid, $section);
+        $section = $section ?: Pi::engine()->application()->getSection();
+        $roles = parent::getRole($uid, $section);
+        if ($uid && 'front' == $section) {
+            if (!in_array('member', $roles)) {
+                $roles[] = 'member';
+            }
+        }
+
+        return $roles;
     }
 
     /**

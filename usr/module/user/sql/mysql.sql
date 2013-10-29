@@ -108,10 +108,11 @@ CREATE TABLE `{timeline}` (
   `title`           varchar(255)    NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `icon`            varchar(255)    NOT NULL    default '',
+  `app_key`         varchar(32)     NOT NULL    default '',
   `active`          tinyint(1)      NOT NULL    default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `name` (`name`, `app_key`)
 );
 
 # Activity meta

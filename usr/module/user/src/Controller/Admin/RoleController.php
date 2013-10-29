@@ -93,15 +93,11 @@ class RoleController extends ActionController
         $message = '';
         if ($op && $name) {
             if ('uid' == $field) {
-                $uid = (int) $name;
-            } else {
-                $user = Pi::service('user')->getUser($name, $field);
-                if ($user) {
-                    $uid = $user->get('id');
-                } else {
-                    $uid = 0;
-                }
+                $name   = (int) $name;
+                $field  = 'id';
             }
+            $user = Pi::service('user')->getUser($name, $field);
+            $uid = (int) $user->get('id');
             if ($uid) {
                 $data = array('role' => $role, 'uid' => $uid);
                 $count = $model->count($data);
@@ -191,17 +187,5 @@ class RoleController extends ActionController
         );
 
         return $data;
-        /*
-        $this->view()->assign(array(
-            'title'     => $title,
-            'role'      => $role,
-            'count'     => $count,
-            'users'     => $users,
-            'message'   => $message,
-            'paginator' => $paginator,
-        ));
-
-        $this->view()->setTemplate('role-user');
-        */
     }
 }

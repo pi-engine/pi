@@ -520,10 +520,6 @@ class User extends AbstractUseApi
     /**
      * Get user role
      *
-     * Section: `admin`, `front`
-     * If section is specified, returns the roles;
-     * if not, return associative array of roles.
-     *
      * @param int       $uid
      * @param string    $section   Section name: admin, front
      *

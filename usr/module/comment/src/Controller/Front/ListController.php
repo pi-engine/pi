@@ -530,7 +530,12 @@ class ListController extends ActionController
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts);
+        $options = array(
+            'user'  => array(
+                'avatar'    => 'medium',
+            ),
+        );
+        $posts = Pi::api('comment')->renderList($posts, $options);
         $count = Pi::api('comment')->getCount($where);
 
         if ($my) {
@@ -589,7 +594,7 @@ class ListController extends ActionController
 
         } else {
             $user           = Pi::service('user')->get($uid, array('name'));
-            $user['avatar'] = Pi::service('avatar')->get($uid);
+            $user['avatar'] = Pi::service('avatar')->get($uid, 'medium');
             $user['url']    = Pi::service('user')->getUrl('profile', $uid);
             $title          = __('Comment posts on user');
             $template       = 'comment-user-received';
