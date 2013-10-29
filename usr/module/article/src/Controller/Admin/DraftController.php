@@ -50,7 +50,7 @@ class DraftController extends FrontDraft
         $where['status']        = $status;
         $where['article < ?']   = 1;
         if ('my' == $from) {
-            $where['uid']       = Pi::user()->id;
+            $where['uid']       = Pi::user()->getId();
         }
         if (isset($options['keyword'])) {
             $where['subject like ?'] = sprintf('%%%s%%', $options['keyword']);

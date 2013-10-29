@@ -42,21 +42,18 @@ class AjaxController extends ActionController
         $name  = Service::getParam($this, 'name', '');
         $limit = Service::getParam($this, 'limit', 10);
 
-        $model = Pi::model('user');
-        $select = $model->select()
-            ->columns(array('id', 'name' => 'identity'))
-            ->order('identity ASC')
-            ->limit($limit);
+        $where = array();
         if ($name) {
-            $select->where->like('identity', "{$name}%");
+            $where = new \Pi\Db\Sql\Where;
+            $where->like('identity', "{$name}%");
         }
-
-        $result = $model->selectWith($select)->toArray();
+        $uids  = Pi::user()->getUids($where, $limit, 0, 'identity ASC');
+        $result = Pi::user()->get($uids, array('id', 'identity'));
 
         foreach ($result as $val) {
             $resultset[] = array(
                 'id'   => $val['id'],
-                'name' => $val['name'],
+                'name' => $val['identity'],
             );
         }
 
@@ -111,6 +108,7 @@ class AjaxController extends ActionController
                 ->order('name ASC')
                 ->limit($limit);
         if ($name) {
+            $name = substr($name, 0, strpos($name, '['));
             $select->where->like('name', "{$name}%");
         }
 

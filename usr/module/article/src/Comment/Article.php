@@ -11,6 +11,7 @@ namespace Module\Article\Comment;
 
 use Pi;
 use Pi\Application\AbstractComment;
+use Zend\Mvc\Router\RouteMatch;
 use Module\Article\Service;
 
 /**
@@ -35,12 +36,11 @@ class Article extends AbstractComment
         $result = array();
         $items = (array) $item;
 
-        $uid   = Pi::user()->id;
         $route = Service::getRouteName($this->module);
         
         // Get articles
         $where   = array('id' => $items);
-        $columns = array('id', 'subject', 'time_publish');
+        $columns = array('id', 'subject', 'time_publish', 'uid');
         $modelArticle = Pi::model('article', $this->module);
         $articles = $modelArticle->getSearchRows($where, null, null, $columns);
         
@@ -63,7 +63,7 @@ class Article extends AbstractComment
                         'time' => $articles[$id]['time_publish'],
                     )
                 ),
-                'uid'   => $uid,
+                'uid'   => $articles[$id]['uid'],
                 'time'  => time(),
             );
         }

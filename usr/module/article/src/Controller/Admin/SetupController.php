@@ -453,7 +453,7 @@ EOD;
             'category'      => $this->config('default_category'),
             'source'        => $this->config('default_source'),
             'fake_id'       => uniqid(),
-            'uid'           => Pi::user()->id,
+            'uid'           => Pi::user()->getId(),
         ));
         
         $module = $this->getModule();

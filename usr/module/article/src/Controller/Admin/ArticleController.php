@@ -333,7 +333,7 @@ class ArticleController extends ActionController
         // Select article of mine
         if ('my' == $from) {
             $user   = Pi::service('user')->getUser();
-            $where['uid'] = Pi::user()->id ?: 0;
+            $where['uid'] = Pi::user()->getId() ?: 0;
         }
 
         $module         = $this->getModule();
