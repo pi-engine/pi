@@ -29,10 +29,9 @@ class AccountController extends ActionController
     public function indexAction()
     {
         $result = array(
-            'status'        => 0,
-            'message'       => '',
-            'email_message' => '',
-            'name_message'  => ''
+            'status'       => 0,
+            'email_error'  => 0,
+            'name_error'   => 0,
         );
 
         // Check login in
@@ -74,22 +73,25 @@ class AccountController extends ActionController
                     );
 
                     if (!$status) {
+                        $result['email_error'] = 1;
                         return $result;
                     }
 
-                    $result['email_message'] = __('Send verify successfully');
                     $result['new_email']     = $values['email'];
                 }
                 // Reset display name
                 if ($values['name'] != $data['name']) {
-                    Pi::api('user', 'user')->updateUser(
+                    $status = Pi::api('user', 'user')->updateUser(
                         $uid,
                         array('name' => $values['name'])
                     );
-                    $result['name_message'] = __('Reset display successfully');
+                    if (!$status) {
+                        $result['name_error'] = 1;
+                        return $result;
+                    }
                 }
-                $result['status'] = 1;
 
+                $result['status'] = 1;
                 return $result;
             } else {
                 $result['message'] = $form->getMessages();
@@ -97,9 +99,9 @@ class AccountController extends ActionController
             }
         }
 
-        $user['name'] = $data['name'];
+        $user['name']     = $data['name'];
         $user['identity'] = $data['identity'];
-        $user['uid']   = $uid;
+        $user['uid']      = $uid;
 
         $this->view()->assign(array(
             'form'      => $form,
