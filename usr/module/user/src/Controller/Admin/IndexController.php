@@ -198,7 +198,7 @@ class IndexController extends ActionController
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
         if (count($rowset) != 0) {
-            $result['message'] = __('Add user failed: user exist');
+            $result['message'] = __('Add user failed: user already exists.');
             return $result;
         }
 
@@ -212,7 +212,7 @@ class IndexController extends ActionController
         // Add user
         $uid = Pi::api('user', 'user')->addUser($data);
         if (!$uid) {
-            $result['message'] = __('Add user failed');
+            $result['message'] = __('Add user failed: invalid operation.');
             return $result;
         }
 
@@ -364,7 +364,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Enable user failed');
+            $return['message'] = __('Enable user failed: invalid uid');
             return $return;
         }
 
@@ -397,7 +397,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Disable user failed');
+            $return['message'] = __('Disable user failed: invalid uid');
             return $return;
         }
 
@@ -430,7 +430,7 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $return['message'] = __('Delete user failed');
+            $return['message'] = __('Delete user failed: invalid uid');
             return $return;
         }
 
@@ -463,13 +463,13 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $result['message'] = __('Activate user failed');
+            $result['message'] = __('Activate user failed: invalid uid');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (empty($uids)) {
-            $result['message'] = __('Activate user failed');
+            $result['message'] = __('Activate user failed: invalid uid');
             return $result;
         }
 
@@ -603,11 +603,14 @@ class IndexController extends ActionController
             );
         }
 
-        $roles  = Pi::registry('role')->read();
-        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
-
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = $user['time_disabled']
+                ? _date($user['time_disabled']) : 0;
+            $user['time_activated']  = $user['time_activated']
+                ? _date($user['time_activated']) : 0;
+            $user['time_created']  = $user['time_created']
+                ? _date($user['time_created']) : 0;
             $user = array_merge($columns, $user);
         }
         $users = $this->renderRole($users);

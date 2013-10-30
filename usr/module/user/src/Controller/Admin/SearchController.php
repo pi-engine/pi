@@ -51,13 +51,6 @@ class SearchController extends ActionController
             );
         }
 
-        $model = $this->getModel('account');
-        $where = array(
-            'name' => $name,
-            'time_deleted' => 0,
-        );
-        $select = $model->select()->where($where);
-        $rowset = $model->selectWith($select)->current();
         $profile = $this->getProfileGroup($uid);
         $user = Pi::api('user', 'user')->get(
             $uid,
@@ -69,6 +62,9 @@ class SearchController extends ActionController
                 'time_disabled',
             )
         );
+
+        $user['time_activated'] = _date($user['time_activated']);
+        $user['time_disabled']  = _date($user['time_disabled']);
 
         $user['link'] = $this->url(
             'user',
@@ -82,7 +78,7 @@ class SearchController extends ActionController
         
         return array(
             'user'    => $user,
-            'groups' => array_values($profile)
+            'groups'  => array_values($profile)
         );
     }
 

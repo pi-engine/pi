@@ -202,8 +202,10 @@ class Remote extends AbstractService
         if (!isset($headers['User-Agent'])) {
             $headers['User-Agent'] = 'Pi Engine cURL';
         }
-        if (!array_key_exists('Authorization', $headers)) {
-            $authHeader = $this->buildAuthorization($this->options);
+        if (!array_key_exists('Authorization', $headers)
+            && ($auth = $this->getOption('authorization'))
+        ) {
+            $authHeader = $this->buildAuthorization($auth);
             if ($authHeader) {
                 $headers['Authorization'] = $authHeader;
             }
