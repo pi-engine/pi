@@ -11,7 +11,7 @@
 namespace Pi\Form\View\Helper;
 
 use Pi\Editor\Factory as EditorFactory;
-use Zend\Form\FieldsetInterface;
+//use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 use Zend\Form\View\Helper\AbstractHelper;
@@ -44,6 +44,8 @@ class FormEditor extends AbstractHelper
      * Render editor
      *
      * @param  ElementInterface $element
+     *
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
