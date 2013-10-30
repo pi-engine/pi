@@ -44,7 +44,8 @@ class PermController extends ComponentController
         $this->view()->assign('name', $module);
     }
 
-    public function resourcesAction() {
+    public function resourcesAction() 
+    {
         $section = _get('section') ? : 'front';
         $module = _get('name') ? : 'system';
         $roles = Pi::registry('role')->read($section);
