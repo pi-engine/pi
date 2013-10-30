@@ -5,13 +5,13 @@
 <div class="span9">
     <div class="page-header">
         <h3 style="margin: -5px 0 9px;"><?php _e('Account settings'); ?></h3>
-        <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your basic account'); ?></div>
+        <div class="muted" style="margin: 0 0 11px;"><?php _e('Basic settings'); ?></div>
     </div>
 
     <!-- Username -->
     <div class="clearfix" style="margin-bottom: 20px;">
         <div class="pull-left text-right" style="width: 160px;">
-            <?php echo _e('Username'); ?>
+            <?php _e('Username'); ?>
         </div>
         <div style="margin-left: 180px;">
             <?php echo $user['identity']; ?>
@@ -26,7 +26,7 @@
             <h3><?php _e('Save account changes'); ?></h3>
         </div>
         <div class="modal-body">
-            <p><?php _e('Re-enter your  password to save changes to your account.'); ?></p>
+            <p><?php _e('Re-enter your password to save changes to your account.'); ?></p>
             <div class="form-horizontal">
                 <div class="control-group">
                     <label class="control-label" for="password" style="width: auto; margin-right: 20px;"><?php _e('Password'); ?></label>

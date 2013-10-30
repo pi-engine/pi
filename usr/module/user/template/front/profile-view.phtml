@@ -24,20 +24,15 @@ $this->css($this->assetModule('script/front.css'));
                     }
                     ?>
                 </div>
-            <?php } else if ($is_owner) { ?>
+            <?php } elseif ($is_owner) { ?>
                 <div class="user-none-fields">
                     <a href="<?php echo $addUrl; ?>">
-                        <?php _e('Add'); echo ' ' . $group['name']; ?>
+                        <?php echo sprintf(__('Add %s'), $group['name']); ?>
                     </a>
                 </div>
             <?php } else { ?>
                 <div class="user-none-fields">
-                    <?php
-                    echo _escape($user['name']);
-                    _e(' doesn\'t have any ');
-                    echo $group['name'];
-                    _e(' you can view');
-                    ?>
+                    <?php echo sprintf(__('%s does not have any %s'), _escape($user['name']), $group['name']); ?>
                 </div>
             <?php } ?>
         <?php } ?>
