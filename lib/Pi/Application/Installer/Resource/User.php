@@ -671,8 +671,9 @@ class User extends AbstractResource
      */
     protected function addFields(array $fields)
     {
-        $meta = Pi::registry('profile_field', 'user')->read('account');
+        //$meta = Pi::registry('profile_field', 'user')->read('account');
         $table = Pi::model('profile', 'user')->getTable();
+        $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';
         foreach ($fields as $field) {
             if (isset($meta[$field])) {
@@ -704,8 +705,9 @@ class User extends AbstractResource
      */
     protected function dropFields(array $fields)
     {
-        $meta = Pi::registry('profile_field', 'user')->read('profile');
+        //$meta = Pi::registry('profile_field', 'user')->read('profile');
         $table = Pi::model('profile', 'user')->getTable();
+        $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';
         foreach ($fields as $field) {
             if (!isset($meta[$field])) {
