@@ -62,7 +62,7 @@ class HomeController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('homepage');
 
         // Get quick link
-        $quicklink = $this->getQuicklink();
+        $quicklink = Pi::api('user','quicklink')->getList();
 
 
         // Set paginator
@@ -128,8 +128,7 @@ class HomeController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('homepage', $uid);
 
         // Get quick link
-        $quicklink = $this->getQuicklink();
-
+        $quicklink = Pi::api('user','quicklink')->getList();
 
         // Set paginator
         $paginatorOption = array(
@@ -151,49 +150,6 @@ class HomeController extends ActionController
             'is_owner'     => false,
             'nav'          => $nav,
         ));
-    }
-
-    /**
-     * Get quicklink
-     *
-     * @param null $limit
-     * @param null $offset
-     * @return array
-     */
-    protected function getQuicklink($limit = null, $offset = null)
-    {
-        $result = array();
-        $model = $this->getModel('quicklink');
-        $where = array(
-            'active'  => 1,
-            'display' => 1,
-        );
-        $columns = array(
-            'id',
-            'name',
-            'title',
-            'module',
-            'link',
-            'icon',
-        );
-
-        $select = $model->select()->where($where);
-        if ($limit) {
-            $select->limit($limit);
-        }
-        if ($offset) {
-            $select->offset($offset);
-        }
-
-        $select->columns($columns);
-        $rowset = $model->selectWith($select);
-
-        foreach ($rowset as $row) {
-            $result[] = $row->toArray();
-        }
-
-        return $result;
-
     }
 
     /**
