@@ -296,19 +296,22 @@ class ProfileController extends ActionController
 
         $result = array(
             'status' => 0,
-            'message' => __('Set privacy failed')
+            'message' => ''
         );
 
         // Check post data
         if (!$id) {
+            $result['message'] = __('Set privacy failed: invalid id');
             return $result;
         }
 
         if (!in_array($value, array(0, 1, 2, 4, 255))) {
+            $result['message'] = __('Set privacy failed: invalid value');
             return $result;
         }
 
         if ($isForced != 0 && $isForced != 1) {
+            $result['message'] = __('Set privacy failed: invalid forced');
             return $result;
         }
 
@@ -327,18 +330,27 @@ class ProfileController extends ActionController
         try {
             $row->save();
         } catch (\Exception $e) {
+            $result['message'] = __('Set privacy failed: update error');
             return $result;
         }
 
         // Set user privacy field
+        $userPrivacyModel = $this->getModel('privacy_user');
         if (!$isForced) {
             $currentPrivacyValue = $row->value;
-            $userPrivacyModel    = $this->getModel('privacy_user');
             $userPrivacyModel->update(
-                array('value' => $currentPrivacyValue),
+                array(
+                    'value'     => $currentPrivacyValue,
+                    'is_forced' => 0,
+                ),
                 array(
                     'field' => $row->field,
                 )
+            );
+        } else {
+            $userPrivacyModel->update(
+                array('is_forced' => 1),
+                array('field' => $row->field)
             );
         }
 
