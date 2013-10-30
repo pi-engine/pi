@@ -115,6 +115,29 @@ use Pi;
  *                  <...>,
  *              ),
  *          ),
+ *          <...>,
+ *
+ *          // Custom compound
+ *          <custom-field-key> => array(
+ *              // Field type, MUST be 'custom'
+ *              'type'          => 'custom',
+ *              // Field name, optional, will be set as <module>_<field-key>
+ *              // if not specified
+ *              'name'          => <specified_field_name>,
+ *              'title'         => __('Custom Compound'),
+ *
+ *              'field' => array(
+ *                  <field-key> => array(
+ *                      'title'         => __('Custom Field Item'),
+ *
+ *                      // Edit element specs
+ *                      'edit'          => 'text',
+ *                      // Filter for value processing for output
+ *                      'filter'        => <output-filter>
+ *                  ),
+ *                  <...>,
+ *              ),
+ *          ),
  *      ),
  *
  *      // Timeline
@@ -192,27 +215,25 @@ class User extends AbstractResource
             if (isset($profile['compound_field'])) {
                 $result['compound_field'] = $profile['compound_field'];
             }
-            /*
-            foreach ($config['field'] as $key => &$spec) {
-                $spec = $this->canonizeField($spec);
-            }
-            */
         }
 
         foreach (array('timeline', 'activity', 'quicklink') as $op) {
             if (isset($config[$op])) {
                 foreach ($config[$op] as $key => $spec) {
                     // Canonize field name
-                    $name = !empty($spec['name'])
-                        ? $spec['name']
-                        : $module . '_' . $key;
+                    if (!empty($spec['name'])) {
+                        $name = $spec['name'];
+                    } else {
+                        $name = $module . '_' . $key;
+                        $spec['name'] = $name;
+                    }
                     if (!isset($spec['active'])) {
                         $spec['active'] = 1;
                     }
-                    $result[$op][$name] = array_merge($spec, array(
-                        'name'      => $name,
-                        'module'    => $module,
-                    ));
+                    if (!isset($spec['module'])) {
+                        $spec['module'] = $module;
+                    }
+                    $result[$op][$name] = $spec;
                 }
             }
         }
@@ -265,7 +286,6 @@ class User extends AbstractResource
         return $profile;
     }
 
-
     /**
      * Canonize a profile field specs
      *
@@ -291,15 +311,14 @@ class User extends AbstractResource
      */
     protected function canonizeField($spec)
     {
-        if (isset($spec['field'])) {
-            $spec['type'] = 'compound';
+        if (!isset($spec['type'])) {
+            if (isset($spec['field'])) {
+                $spec['type'] = 'compound';
+            } else {
+                $spec['type'] = 'profile';
+            }
         }
-        if (!isset($spec['type'])
-            || ('user' != $this->getModule() && 'compound' != $spec['type'])
-        ) {
-            $spec['type'] = 'profile';
-        }
-        if ('compound' == $spec['type']) {
+        if ('compound' == $spec['type'] || 'custom' == $spec['type']) {
             $spec['is_edit'] = 0;
             $spec['is_display'] = 0;
             $spec['is_search'] = 0;

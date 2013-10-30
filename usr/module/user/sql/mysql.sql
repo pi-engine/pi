@@ -42,11 +42,11 @@ CREATE TABLE `{field}` (
   `title`           varchar(255)    NOT NULL default '',
   -- Specs for edit form element, filters and validators, encoded with json
   `edit`            text,
-  -- Filter for display value
+  -- Filter for display value; or handler for custom
   `filter`          text,
 
   -- Field type, default as 'profile'
-  `type`            enum('profile', 'account', 'compound') NOT NULL,
+  `type`            enum('profile', 'account', 'compound', 'custom') NOT NULL,
 
   -- Is editable by user
   `is_edit`         tinyint(1)      unsigned NOT NULL default '0',
@@ -62,7 +62,7 @@ CREATE TABLE `{field}` (
   UNIQUE KEY  `name` (`name`)
 );
 
-# Entity meta for compound fields
+# Entity meta for compound fields and custom compound fields
 CREATE TABLE `{compound_field}` (
   `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
   `name`            varchar(64)     NOT NULL,

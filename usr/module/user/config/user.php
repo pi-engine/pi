@@ -184,18 +184,8 @@ return array(
             'is_search'     => false,
         ),
 
-        // Custom profile fields
+        // Profile fields
 
-        // Profile: Full name
-        'fullname'  => array(
-            'name'      => 'fullname',
-            'title'     => __('Full name'),
-        ),
-        // Profile: location
-        'location'  => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-        ),
         // Profile: bio
         'bio'  => array(
             'name'  => 'bio',
@@ -207,12 +197,25 @@ return array(
             'name'  => 'signature',
             'title' => __('Signature'),
         ),
+
+        /*
+        // Profile: Full name
+        'fullname'  => array(
+            'name'      => 'fullname',
+            'title'     => __('Full name'),
+        ),
+        // Profile: location
+        'location'  => array(
+            'name'  => 'location',
+            'title' => __('Location'),
+        ),
         // Profile: language
         'language'  => array(
             'name'  => 'language',
             'title' => __('Language'),
             'edit'  => 'locale',
         ),
+        */
         // Profile: Register IP
         'ip_register'  => array(
             'name'      => 'ip_register',
@@ -239,6 +242,7 @@ return array(
             ),
         ),
 
+        /*
         // Compound: Communication address
         'address'   => array(
             'name'  => 'address',
@@ -330,7 +334,7 @@ return array(
             'is_display'    => true,
             'is_search'     => false,
         ),
-
+        */
     ),
 
     // Timeline logs from modules
