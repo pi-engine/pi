@@ -51,11 +51,11 @@
       </button>
     </div>
     <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
-            ng-options="item.title group by item.type for item in roles">
+            ng-options="item.title group by item.type for item in assignRoles">
       <option value="">{{'ASSIGN_ROLE' | translate}}
     </select>
     <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
-            ng-options="item.title group by item.type for item in roles">
+            ng-options="item.title group by item.type for item in assignRoles">
       <option value="">{{'UNASSIGN_ROLE' | translate}}
     </select>
   </div>
