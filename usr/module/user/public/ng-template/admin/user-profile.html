@@ -1,0 +1,70 @@
+<style>
+.user-field-dl dt {
+  color: #999;
+  font-weight: normal;
+  line-height: 24px;
+}
+.user-field-dl dd {
+  line-height: 24px;
+}
+</style>
+<form class="form-inline" ng-submit="submit()">
+  <input type="text" ng-model="entity.data" required>
+  <select ng-model="entity.field" class="input-medium">
+    <option value="id">{{'UID' | translate}}
+    <option value="identity">{{'USER_NAME' | translate}}
+    <option value="name">{{'DISPLAY_NAME' | translate}}
+    <option value="email">{{'EMAIL' | translate}}
+  </select>
+  <button class="btn">{{'SEARCH' | translate}}</button>
+</form>
+<div class="alert" ng-if="!user">
+  {{'SEARCH_TEXT' | translate}}
+</div>
+<div ng-if="user">
+  <div class="media" style="margin-bottom: 10px;">
+    <div class="pull-left">
+      <img src="{{user.avatar}}">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+      </h4>
+    </div>
+  </div>
+  <legend>{{'ACOUNT_INFO' | translate}}</legend>
+  <dl class="dl-horizontal user-field-dl">
+    <dt>{{'USER_NAME' | translate}}
+    <dd>{{user.identity}}
+    <dt>{{'DISPLAY_NAME' | translate}}
+    <dd>{{user.name}}
+    <dt>{{'EMAIL' | translate}}
+    <dd>{{user.email}}
+    <dt>{{'ACTIVATED' | translate}}
+    <dd>
+      <span ng-show="!user.time_activated">
+        {{'INACTIVE' | translate}}
+      </span>
+      <span ng-show="user.time_activated">
+        {{user.time_activated | date: 'yyyy-MM-dd HH:mm'}}
+      </span>
+    <dt>{{'ENABLE' | translate}}
+    <dd>
+      <span ng-show="!user.time_disabled">
+        {{'ENABLED' | translate}}
+      </span>
+      <span ng-show="user.time_disabled">
+        {{user.time_disabled | date: 'yyyy-MM-dd HH:mm'}}
+      </span>
+  </dl>
+  <legend>{{'PROFILE_INFO' | translate}}</legend>
+  <div ng-repeat="group in groups">
+    <h4>{{group.title}}</h4>
+    <dl class="dl-horizontal user-field-dl" ng-repeat="field in group.fields">
+      <dt ng-repeat-start="item in field">{{item.title}}
+      <dd ng-repeat-end>
+        <em ng-show="!item.value" class="muted">{{'EMPTY' | translate}}</em>
+        {{item.value}}
+    </dl>
+  </div>
+</div>

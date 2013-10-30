@@ -348,108 +348,6 @@ class IndexController extends ActionController
     }
 
     /**
-     * Search user info buy display name
-     *
-     * @return array
-     */
-    public function searchUserAction()
-    {
-        $name   = _get('name');
-        $result = array();
-
-        if (!$name) {
-            return $result;
-        }
-
-        // Check name
-        $rowset = $this->getModel('account')->find($name, 'name');
-        $model = $this->getModel('account');
-        $where = array(
-            'name' => $name,
-            'time_deleted' => 0,
-        );
-        $select = $model->select()->where($where);
-        $rowset = $model->selectWith($select)->current();
-
-        if (!$rowset) {
-            return $result;
-        } else {
-            $uid = $rowset->id;
-        }
-        $profile = $this->getProfileGroup($uid);
-        $user = Pi::api('user', 'user')->get(
-            $uid,
-            array(
-                'identity',
-                'name',
-                'email',
-                'time_activated',
-                'time_disabled',
-            )
-        );
-
-        $user['link'] = $this->url(
-            'user',
-            array(
-                'controller' => 'home',
-                'action'     => 'view',
-                'uid'        => $uid
-            )
-        );
-        $user['avatar'] = Pi::user()->avatar()->get($uid, 'large', false);
-        
-        return array($user, $profile);
-
-//        // Get fields
-//        $where = array(
-//            'active'     => 1,
-//            'is_display' => 1,
-//        );
-//        $rowset = $this->getModel('field')->select($where);
-//        foreach ($rowset as $row) {
-//            $columns[] = $row['name'];
-//        }
-//
-//        $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
-//        $data = Pi::api('user', 'user')->get($uid, $columns);
-//        if (isset($data['id'])) {
-//            unset($data['id']);
-//        }
-//
-//        foreach ($data as $key => $value) {
-//            if (is_array($value)) {
-//                // Compound
-//                // Get compound meta
-//                $compoundMeta = Pi::registry('compound', 'user')->read($key);
-//                $result[$key] = array(
-//                    'title' => $fieldMeta[$key]['title'],
-//                );
-//
-//
-//                foreach ($value as $items) {
-//                    foreach ($items as $col => $val) {
-//                        $compoundItems[] = array(
-//                            'title' => $compoundMeta[$col]['title'],
-//                            'value' => $val,
-//                        );
-//                    }
-//                    $result[$key]['items'][] = $compoundItems;
-//                }
-//            } else {
-//                $result[$key] = array(
-//                    'title' => $fieldMeta[$key]['title'] ? : ucfirst($key),
-//                    'value' => $value,
-//                );
-//            }
-//        }
-//d($result);exit;
-//        $result = array_values($result);
-//
-//        return $result;
-
-    }
-
-    /**
      * Enable users
      *
      * @return array
@@ -604,19 +502,25 @@ class IndexController extends ActionController
             'message' => '',
         );
 
+        $result = array(
+            'status'    => 0,
+            'data'      => array(),
+            'message'   => '',
+        );
+
         if (!$uids || !$type || !$role) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid operation.');
             return $result;
         }
 
@@ -625,7 +529,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed');
+                    $result['message'] = __('Assign role failed.');
                     return $result;
                 }
             }
@@ -642,6 +546,12 @@ class IndexController extends ActionController
             }
         }
 
+        $users = array();
+        array_walk($uids, function ($uid) use (&$users) {
+            $users[$uid] = array('id' => $uid);
+        });
+        $data = $this->renderRole($users);
+        $result['data'] = $data;
         $result['status']  = 1;
         $result['message'] = __('Assign role successfully');
 
@@ -693,21 +603,12 @@ class IndexController extends ActionController
 
         $roles  = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
-        foreach ($rowset as $row) {
-            $uid     = $row['uid'];
-            $section = $row['section'];
-            $roleKey = $section . '_roles';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
-        }
 
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
-            $user['time_disabled']  = (int) $user['time_disabled'];
-            $user['time_activated'] = (int) $user['time_activated'];
-            $user['time_created']   = (int) $user['time_created'];
             $user = array_merge($columns, $user);
         }
-
+        $users = $this->renderRole($users);
 
         return $users;
 
@@ -1045,7 +946,7 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
-            if ('guest' == $name) {
+            if ('guest' == $name || 'member' == $name) {
                 continue;
             }
             $data[] = array(
@@ -1119,105 +1020,32 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get user profile information
-     * Group and group items title and value
-     *
-     * @param $uid User id
-     * @param string $type Display or edit
-     * @return array
+     * Render roles for users
      */
-    protected function getProfileGroup($uid)
+    protected function renderRole(array $users)
     {
-        $result = array();
-
-        // Get account or profile meta
-        $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
-        $groups    = $this->getDisplayGroup();
-
-        foreach ($groups as $groupId => $group) {
-            $result[$groupId] = $group;
-            $result[$groupId]['fields'] = array();
-            $fields = $this->getFieldDisplay($groupId);
-
-            if ($group['compound']) {
-                // Compound meta
-                $compoundMeta = Pi::registry('compound', 'user')->read(
-                    $group['compound']
-                );
-
-                // Compound value
-                $compound     = Pi::api('user', 'user')->get(
-                    $uid, $group['compound']
-                );
-                // Generate Result
-                foreach ($compound as $set => $item) {
-                    // Compound value
-                    $compoundValue = array();
-                    foreach ($fields as $field) {
-                        $compoundValue[] = array(
-                            'title' => $compoundMeta[$field]['title'],
-                            'value' => $item[$field],
-                        );
-
-                    }
-                    $result[$groupId]['fields'][$set] = $compoundValue;
-                }
-            } else {
-                // Profile
-                foreach ($fields as $field) {
-                    $result[$groupId]['fields'][0][$field] = array(
-                        'title' => $fieldMeta[$field]['title'],
-                        'value' => Pi::api('user', 'user')->get($uid, $field),
-                    );
-                }
+        foreach ($users as $key => $user) {
+            $uids[] = $user['id'];
+        }
+        $roleList = array();
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid     = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_roles';
+            $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
+        array_walk($users, function (&$user) use ($roleList) {
+            $uid = $user['id'];
+            if (isset($roleList[$uid]['front_roles'])) {
+                $user['front_roles'] = $roleList[$uid]['front_roles'];
             }
-        }
+            if (isset($roleList[$uid]['admin_roles'])) {
+                $user['admin_roles'] = $roleList[$uid]['admin_roles'];
+            }
+        });
 
-        return $result;
-
-    }
-
-    /**
-     * Get Administrator custom display group
-     *
-     * @return array
-     */
-    protected function getDisplayGroup()
-    {
-        $result = array();
-
-        $model  = $this->getModel('display_group');
-        $select = $model->select();
-        $select->order('order ASC');
-        $groups = $model->selectWith($select);
-
-        foreach ($groups as $group) {
-            $result[$group->id] = $group->toArray();
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get field display
-     *
-     * @param $group
-     * @return array
-     */
-    protected function getFieldDisplay($groupId)
-    {
-        $result = array();
-
-        $model  = $this->getModel('display_field');
-        $select = $model->select()->where(array('group' => $groupId));
-        $select->columns(array('field', 'order'));
-        $select->order('order ASC');
-        $fields = $model->selectWith($select);
-
-        foreach ($fields as $field) {
-            $result[] = $field->field;
-        }
-
-        return $result;
+        return $users;
     }
 }

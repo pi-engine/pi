@@ -91,7 +91,7 @@ angular
             USER_NAME: '<?php _e('Username'); ?>',
             CONFIRM_ACTIVATED: '<?php _e('Are you sure active this account, it can not be return'); ?>',
             CONFIRM_ACTIVATED_BATCH: '<?php _e('Are you sure active these account, it can not be return'); ?>',
-            BATCH_CHECKED: '<?php _e('Your need to check one before bactch action'); ?>',
+            BATCH_CHECKED: '<?php _e('Choose at least one item before submission.'); ?>',
             EMAIL: '<?php _e('Email'); ?>',
             PASSWORD: '<?php _e('Password'); ?>',
             CONFIRM_PASSWORD: '<?php _e('Confirm password'); ?>',
@@ -109,9 +109,10 @@ angular
             TO: '<?php _e('To'); ?>',
             SEARCH_RESULT: '<?php _e('Search result'); ?>',
             VIEW_LOG: '<?php _e('View log'); ?>',
-            NONE_PENDING_USERS: '<?php _e('None exist pending users'); ?>',
+            NONE_PENDING_USERS: '<?php _e('No pending user.'); ?>',
             EDIT_TITLE: '<?php _e('Edit user'); ?>',
-            REPLACE_AVATAR: '<?php _e('Replace with system defalt avatar'); ?>'
+            REPLACE_AVATAR: '<?php _e('Replace with defalt avatar.'); ?>',
+            COMPOUND_CONFIRM: '<?php _e('Are you sure to delete this group?'); ?>'
         },
         roles: <?php echo json_encode($roles); ?>,
         today: '<?php echo date("Y-m-d"); ?>'
