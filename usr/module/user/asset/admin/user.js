@@ -256,6 +256,22 @@
       return ids;
     }
 
+    function handleCheckedRole(item, role) {
+      if (item.checked) {
+          if (role.front_roles) {
+            item.front_roles = role.front_roles.join(',');
+          } else {
+            item.front_roles = '';
+          }
+          if (role.admin_roles) {
+            item.admin_roles = role.admin_roles.join(',');
+          } else {
+            item.admin_roles = '';
+          }
+        item.checked = 0;
+      }
+    }
+
     $scope.markAll = function () {
       angular.forEach($scope.users, function (user) {
         user.checked = $scope.allChecked;
@@ -371,30 +387,14 @@
     $scope.assignRoleBacthAction = function() {
       var role = $scope.assignRole;
       var ids = getCheckIds();
+      $scope.assignRole = '';
       if (!ids.length) return;
       if (!role) return;
       server.assignRole(ids, role.name, 'add').success(function(data) {
-        $scope.assignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
-        angular.forEach($scope.users, function (user) {
-          if (user.checked) {
-            if (role.type == 'front') {
-              if (user.front_roles) {
-                user.front_roles += ',' + role.name;
-              } else {
-                user.front_roles = role.name;
-              }
-            }
-            if (role.type == 'admin') {
-              if (user.admin_roles) {
-                user.admin_roles += ',' + role.name;
-              } else {
-                user.admin_roles = role.name;
-              } 
-            }
-            user.checked = 0;
-          }
+        angular.forEach($scope.users, function(user) {
+          handleCheckedRole(user, data.data[user.id]);
         });
       });
     }
@@ -402,22 +402,14 @@
     $scope.unassignRoleBacthAction = function() {
       var role = $scope.unassignRole;
       var ids = getCheckIds();
+      $scope.unassignRole = '';
       if (!ids.length) return;
       if (!role) return;
       server.assignRole(ids, role, 'remove').success(function(data) {
-        $scope.unassignRole = '';
         if (!data.status) return;
         $scope.allChecked = 0;
-        angular.forEach($scope.users, function (user) {
-          if (user.checked) {
-            if (role.type == 'front' && user.front_roles) {
-              user.front_roles = user.front_roles.replace(RegExp(',?' + role.name), '');
-            }
-            if (role.type == 'admin' && user.admin_roles) {
-              user.admin_roles = user.admin_roles.replace(RegExp(',?' + role.name), '');
-            }
-            user.checked = 0;
-          }
+        angular.forEach($scope.users, function(user) {
+          handleCheckedRole(user, data.data[user.id]);
         });
       });
     }
