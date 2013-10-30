@@ -198,7 +198,7 @@ class IndexController extends ActionController
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
         if (count($rowset) != 0) {
-            $result['message'] = __('Add user failed: user exist');
+            $result['message'] = __('Add user failed: user exist.');
             return $result;
         }
 
@@ -212,7 +212,7 @@ class IndexController extends ActionController
         // Add user
         $uid = Pi::api('user', 'user')->addUser($data);
         if (!$uid) {
-            $result['message'] = __('Add user failed');
+            $result['message'] = __('Add user failed: invalid operation.');
             return $result;
         }
 
@@ -364,7 +364,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Enable user failed');
+            $return['message'] = __('Enable user failed: invalid uid');
             return $return;
         }
 
@@ -397,7 +397,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Disable user failed');
+            $return['message'] = __('Disable user failed: invalid uid');
             return $return;
         }
 
@@ -430,7 +430,7 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $return['message'] = __('Delete user failed');
+            $return['message'] = __('Delete user failed: invalid uid');
             return $return;
         }
 
@@ -463,13 +463,13 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $result['message'] = __('Activate user failed');
+            $result['message'] = __('Activate user failed: invalid uid');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (empty($uids)) {
-            $result['message'] = __('Activate user failed');
+            $result['message'] = __('Activate user failed: invalid uid');
             return $result;
         }
 

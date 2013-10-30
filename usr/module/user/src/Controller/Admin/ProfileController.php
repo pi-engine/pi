@@ -182,7 +182,7 @@ class ProfileController extends ActionController
                 return $result;
             }
 
-            $groupId = (int) $row['id'];d($groupId);
+            $groupId = (int) $row['id'];
             $fieldOrder = 1;
             // Save display field
             foreach ($group['fields'] as $field )  {
