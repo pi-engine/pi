@@ -70,6 +70,11 @@ class MaintenanceController extends ActionController
             )
         );
 
+        // Time to string
+        $user['time_disabled']  = _date($user['time_disabled']);
+        $user['time_activated'] = _date($user['time_activated']);
+        $user['time_created']   = _date($user['time_created']);
+
         // Get user data
         $user['time_last_login'] = Pi::user()->data()->get($uid, 'time_last_login');
         $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
@@ -144,7 +149,14 @@ class MaintenanceController extends ActionController
         $select->offset($offset);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $users[] = $row->toArray();
+            $users[] = array(
+                'identity'       => $row->identity,
+                'name'           => $row->name,
+                'email'          => $row->email,
+                'time_activated' => _date($row->time_activated),
+                'time_created'   => _date($row->time_created),
+                'time_deleted'   => _date($row->time_deleted),
+            );
         }
 
         // Get count
