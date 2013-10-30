@@ -142,7 +142,6 @@ class IndexController extends ActionController
             'paginator' => $paginator,
         ));
 
-        //var_dump($data); exit();
 
         return $data;
     }
