@@ -111,6 +111,7 @@
     this.getRoles = function () {
       var frontRoles = [];
       var adminRoles = [];
+      var assignRoles = [];
       angular.forEach(config.roles, function(item) {
         if (item.type == 'front') {
           frontRoles.push(item);
@@ -118,11 +119,15 @@
         if (item.type == 'admin') {
           adminRoles.push(item);
         }
+        if (item.name != 'member') {
+          assignRoles.push(item);
+        }
       });
       return {
         'frontRoles': frontRoles,
         'adminRoles': adminRoles,
-        'roles': config.roles
+        'roles': config.roles,
+        'assignRoles': assignRoles
       };
     }
 
