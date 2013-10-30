@@ -60,11 +60,12 @@ class EditController extends ActionController
     {
         $result = array(
             'status' => 0,
-            'message' => __('Edit failed'),
+            'message' => '',
         );
         $uid = _get('uid');
 
         if (!$uid) {
+            $result['message'] = __('Edit failed: invalid uid.');
             return $result;
         }
 
@@ -97,7 +98,7 @@ class EditController extends ActionController
                     return $result;
                 }
             } else {
-                $result['message'] = __('Edit user info fail');
+                $result['message'] = __('Edit failed: invalid submission.');
                 $result['error'] = $form->getMessages();
                 return $result;
             }
@@ -121,24 +122,27 @@ class EditController extends ActionController
     public function compoundAction()
     {
         $result = array(
-            'status' => 0,
-            'message' => __('Edit faild'),
+            'status'  => 0,
+            'message' => '',
         );
 
         $uid      = _get('uid');
         $compound = _get('compound');
 
         if (!$uid || !$compound) {
+            $result['message'] = __('Edit failed: missing uid or compound.');
             return $result;
         }
 
         // Check uid and compound
         $row = $this->getModel('account')->find($uid, 'id');
         if (!$row) {
+            $result['message'] = __('Edit failed: user not found.');
             return $result;
         }
         $row = $this->getModel('field')->find($compound, 'name');
         if (!$row) {
+            $result['message'] = __('Edit failed: compound not exist.');
             return $result;
         }
 
@@ -215,7 +219,7 @@ class EditController extends ActionController
                     return $result;
                 }
             } else {
-                $result['message'] = __('Edit compound faild');
+                $result['message'] = __('Edit failed: input error.');
                 $result['error'] = $forms[$set]->getMessages();
                 $result['set'] = $set;
                 return $result;

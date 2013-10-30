@@ -5,9 +5,23 @@ $this->angular(array(
     'pi.js'
 ));
 ?>
+<ul class="nav nav-tabs">
+    <li<?php if ('front' == $section) { echo ' class="active"'; } ?>>
+        <a href="<?php echo $this->url('', array('action' => 'index', 'name' => $name, 'section' => 'front')); ?>" title="<?php _e('Front'); ?>">
+            <?php _e('Front'); ?>
+        </a>
+    </li>
+    <li<?php if ('admin' == $section) { echo ' class="active"'; } ?>>
+        <a href="<?php echo $this->url('', array('action' => 'index', 'name' => $name, 'section' => 'admin')); ?>" title="<?php _e('Admin'); ?>">
+            <?php _e('Admin'); ?>
+        </a>
+    </li>
+</ul>
+
 <div ng-app="systemPermModule" ng-controller="index">
     <div pi-message="alert"></div>
-    <legend>{{'FRONT' | translate}}</legend>
+    <?php if ('front' == $section) { ?>
+    <legend><?php _e('Front'); ?></legend>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -55,7 +69,8 @@ $this->angular(array(
                     <div ng-include src="'allRole.html'"></div>
                 <td>
     </table>
-    <legend>{{'ADMIN' | translate}}</legend>
+    <?php } else { ?>
+    <legend><?php _e('Admin'); ?></legend>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -92,6 +107,7 @@ $this->angular(array(
                     <div ng-include src="'allRole.html'"></div>
                 <td>
     </table>
+    <?php } ?>
     <script type="text/ng-template" id="allRole.html">
         <div class="btn-group">
             <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
