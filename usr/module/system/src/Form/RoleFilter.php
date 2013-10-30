@@ -68,5 +68,9 @@ class RoleFilter extends InputFilter
         $this->add(array(
             'name'          => 'section',
         ));
+
+        $this->add(array(
+            'name'          => 'active',
+        ));
     }
 }
