@@ -301,17 +301,17 @@ class ProfileController extends ActionController
 
         // Check post data
         if (!$id) {
-            $result['message'] = __('Set privacy failed: invalid id');
+            $result['message'] = __('Set privacy failed: invalid id.');
             return $result;
         }
 
         if (!in_array($value, array(0, 1, 2, 4, 255))) {
-            $result['message'] = __('Set privacy failed: invalid value');
+            $result['message'] = __('Set privacy failed: invalid value.');
             return $result;
         }
 
         if ($isForced != 0 && $isForced != 1) {
-            $result['message'] = __('Set privacy failed: invalid forced');
+            $result['message'] = __('Set privacy failed: invalid force flag.');
             return $result;
         }
 
@@ -330,7 +330,7 @@ class ProfileController extends ActionController
         try {
             $row->save();
         } catch (\Exception $e) {
-            $result['message'] = __('Set privacy failed: update error');
+            $result['message'] = __('Set privacy failed: update error.');
             return $result;
         }
 
