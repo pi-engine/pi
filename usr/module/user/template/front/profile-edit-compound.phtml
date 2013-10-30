@@ -4,9 +4,12 @@
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="user-js-info">
-    <div class="user-info-top">
-        <strong class="user-info-title"><?php echo _escape($title) ?></strong>
-        <a href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
+    <div class="page-header">
+        <h3 style="margin: -5px 0 9px;"><?php echo _escape($title); ?></h3>
+        <div class="muted" style="margin: 0 0 11px;">
+            <?php echo 'Change your ' . strtolower(_escape($title)) . ' info.'; ?>
+            <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
+        </div>
     </div>
     <div class="user-info-list">
         <?php foreach ($forms as $form) { ?>

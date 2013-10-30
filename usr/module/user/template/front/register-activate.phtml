@@ -1,11 +1,13 @@
 <?php if (isset($result) && $result['status']) { ?>
-    <h2 class="page-header"><?php _e('Sign up done'); ?></h2>
-    <p><?php _e('Congratulations!'); ?></p>
+    <h2 class="page-header"><?php _e('Activate account'); ?></h2>
+    <p><?php _e('Congratulations !'); ?></p>
+    <p><?php _e('Your account has been activated.'); ?></p>
     <p><?php echo sprintf(
-            __('Your account has been activated. Please <a href="%s">login</a> now.'),
+            __('<a href="%s">Login right now</a>'),
             Pi::service('user')->getUrl('login')
         ); ?></p>
 <?php } else { ?>
-    <h2 class="page-header"><?php _e('Register activation'); ?></h2>
-    <p><?php _e('Sorry, the link has expired.'); ?></p>
+    <h2 class="page-header"><?php _e('Activate account'); ?></h2>
+    <p><?php _e('Sorry !'); ?></p>
+    <p><?php _e('The link has expired, or maybe your account has been activated.'); ?></p>
 <?php } ?>

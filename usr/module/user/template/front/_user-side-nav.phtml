@@ -20,10 +20,10 @@
             </li>
             <li class="<?php if ($controller == 'avatar') echo 'active'; ?>">
                 <a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
-                    <?php _e('Avatar settings');?>
+                    <?php _e('Avatar');?>
                 </a>
             </li>
-            <li class="nav-header"><?php _e('Profile settings');?></li>
+            <li class="nav-header"><?php _e('Edit profile');?></li>
             <?php  foreach ($groups as $key => $group) { ?>
             <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
                 <a href="<?php echo $group['link']; ?>">
@@ -34,7 +34,7 @@
             <li class="divider"></li>
             <li class="<?php if ($controller == 'privacy') echo 'active'; ?>">
                 <a href="<?php echo $this->url('', array('controller' => 'privacy', 'action' => 'index')); ?>">
-                    <?php _e('Privacy settings'); ?>
+                    <?php _e('Privacy'); ?>
                 </a>
             </li>
         </ul>
