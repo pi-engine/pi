@@ -105,5 +105,13 @@ return array(
             'controller'    => 'maintenance',
             'action'        => 'index',
         ),
+
+        'search'  => array(
+            'label'         => _t('Search'),
+            'route'         => 'admin',
+            'module'        => 'user',
+            'controller'    => 'search',
+            'action'        => 'index',
+        )
     ),
 );
