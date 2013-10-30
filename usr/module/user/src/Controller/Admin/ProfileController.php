@@ -26,8 +26,14 @@ class ProfileController extends ActionController
     
     public function fieldAction()
     {
-        $fields = Pi::registry('profile', 'user')->read();
-
+        //$fields = Pi::registry('profile', 'user')->read();
+        $fields = $this->getModel('field')->select(
+            array(
+                'is_display' => 1,
+                'is_edit'    => 1,
+                'active'     => 1,
+            )
+        );
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
                 $compounds[$field['name']] = array(
@@ -76,7 +82,14 @@ class ProfileController extends ActionController
      */
     public function dressUpAction()
     {
-        $fields = Pi::registry('profile', 'user')->read();
+//        $fields = Pi::registry('profile', 'user')->read();
+        $fields = $this->getModel('field')->select(
+            array(
+                'is_display' => 1,
+                'is_edit'    => 1,
+                'active'     => 1,
+            )
+        );
 
         foreach ($fields as $field) {
             if ($field['is_display']) {
@@ -349,7 +362,6 @@ class ProfileController extends ActionController
         $select      = $groupModel->select()->where(array());
         $select->order('order');
         $rowset = $groupModel->selectWith($select);
-
 
         foreach ($rowset as $row) {
             $result[$row['id']] = array(
