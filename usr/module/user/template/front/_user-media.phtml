@@ -1,7 +1,7 @@
 <div class="user-avatar-header">
     <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
         <img class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
-        <?php if ($is_owner) {?>
+        <?php if ($is_owner) { ?>
         <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
             <?php _e('Change avatar'); ?>
         </a>
@@ -10,17 +10,36 @@
     <div class="inline user-avatar-header-col user-avatar-header-center">
         <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
         <p class="p-small">
-            <?php echo _escape($user['gender']);?>
+            <?php echo _escape($user['gender']); ?>
         <div>
             <?php _e('Born at'); ?> <?php echo _escape($user['birthdate']); ?>
         </div>
     </div>
-    <div class="inline user-avatar-header-col" style="float: right;">
+    <div class="inline user-avatar-header-col" style="float: right; margin-top: 90px;">
         <?php if ($is_owner) { ?>
-        <a class="btn" href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
-            <i class="icon-cog"></i>
-            <?php _e('Setting'); ?>
-        </a>
+        <style>
+            .user-dropdown-quicklinks:hover .dropdown-menu {
+                display: block;
+            }
+        </style>
+        <div class="dropdown user-dropdown-quicklinks">
+            <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
+                <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
+            </a>
+            <ul style="margin-top: 0;" class="dropdown-menu">
+                <li>
+                    <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
+                        <?php _e('Setting'); ?>
+                    </a>
+                </li>
+                <li class="divider" style="margin: 1px;"></li>
+                <?php foreach ($quicklink as $item) { ?>
+                <li>
+                    <a href="http://<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank"><?php echo $item['name']; ?></a>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
         <?php } else { ?>
         <a class="btn" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
             <i class="icon-envelope"></i>
@@ -29,10 +48,99 @@
         <?php } ?>
     </div>
 </div>
-<ul class="nav nav-tabs">
-    <?php foreach ($nav['items']  as $item) { ?>
-    <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
-        <a href="<?php echo $item['url']?>"><?php echo $item['title'];?></a>
-    </li>
+
+<style>
+    .user-nav > li {
+        margin-bottom: -3px;
+    }
+
+    .user-nav-icon {
+        margin-right: 3px;
+        vertical-align: middle;
+    }
+
+    .user-nav-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+</style>
+<ul class="nav nav-tabs user-nav">
+    <?php
+        $items = $nav['items'];
+        $length = count($items);
+        $isOverflow = $length > 7 ? true : false;
+
+        if (!$isOverflow) {
+            /* Nav items length = < 7 */
+            foreach ($items  as $item) { ?>
+                <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
+                    <a href="<?php echo $item['url']; ?>">
+                        <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                        <?php echo $item['title']; ?>
+                    </a>
+                </li>
+            <?php }
+        } else {
+            /* Nav length > 7 */
+            $isNeedMoveCur = false;
+            for ($i = 0; $i < $length; $i++) { 
+                $item = $items[$i];
+                if ($item['name'] == $nav['cur']) {
+                    if ($i > 5) {
+                        $isNeedMoveCur = true;
+                        $curNum = $i;
+                    }
+                    break;
+                }
+            }
+
+            if (!$isNeedMoveCur) {
+                /* Cur nav item order < 6 */
+                for ($i = 0; $i < 6; $i++) { 
+                    $item = $items[$i]; ?>
+                    <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
+                        <a href="<?php echo $item['url']; ?>">
+                            <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                            <?php echo $item['title']; ?>
+                        </a>
+                    </li>
+                <?php }
+            } else {
+                /* Cur nav item order > 6 */
+                for ($i = 0; $i < 5; $i++) {
+                    $item = $items[$i]; ?>
+                    <li>
+                        <a href="<?php echo $item['url']; ?>">
+                            <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                            <?php echo $item['title']; ?>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <li class="active">
+                    <a href="<?php echo $items[$curNum]['url']; ?>">
+                        <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                        <?php echo $items[$curNum]['title']; ?>
+                    </a>
+                </li>
+            <?php } ?>
+
+            <li class="dropdown user-nav-dropdown">
+                <a style="margin-bottom: 2px;" class="dropdown-toggle" href="javascript:;">
+                    <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                    <?php _e('More'); ?><b style="margin-left: 5px;" class="caret"></b>
+                </a>
+                <ul style="margin-top: 0;" class="dropdown-menu">
+                    <?php for (; $i < $length; $i++) {
+                        if ($isNeedMoveCur && $curNum == $i) continue;
+                        $item = $items[$i]; ?>
+                        <li>
+                            <a href="<?php echo $item['url']; ?>">
+                                <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
+                                <?php echo $item['title']; ?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </li>
     <?php } ?>
 </ul>
