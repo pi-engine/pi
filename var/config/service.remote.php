@@ -5,6 +5,13 @@ $config = array(
     // Set up default client identifier
     'adapter'   => 'curl',
 
+    // For http authorization
+    'authorization' => array(
+        'httpauth'  => '',
+        'username'  => '',
+        'password'  => '',
+    ),
+
     // Cache options
     'cache'   => array(
         // Cache storage
@@ -18,9 +25,11 @@ $config = array(
     // cURL specific configs
     'curl'      => array(
         'timeout'   => 1,
+        /*
         'httpauth'  => '',
         'username'  => '',
         'password'  => '',
+        */
         'maxredirects'  => 10,
         'curloptions'   => array(
             CURLOPT_FOLLOWLOCATION  => true,

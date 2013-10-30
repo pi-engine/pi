@@ -198,7 +198,7 @@ class IndexController extends ActionController
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
         if (count($rowset) != 0) {
-            $result['message'] = __('Add user failed: user exist');
+            $result['message'] = __('Add user failed: user already exists.');
             return $result;
         }
 
