@@ -204,6 +204,7 @@ class AvatarController extends ActionController
 
         // Get side nav items
         $groups = Pi::api('user', 'group')->getList();
+        $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         
         $this->view()->assign(array(
             'title'    => __('Avatar Settings'),
@@ -217,6 +218,7 @@ class AvatarController extends ActionController
             'local'    => $local,
             'groups'   => $groups,
             'uid'      => $uid,
+            'user'     => $user,
         ));
     }
     
