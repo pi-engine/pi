@@ -1,153 +1,35 @@
 <?php
 $this->angular(array(
-    'angular-translate.js',
+    'angular-route.js',
     'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js'
 ));
 ?>
-<ul class="nav nav-tabs">
-    <li<?php if ('front' == $section) { echo ' class="active"'; } ?>>
-        <a href="<?php echo $this->url('', array('action' => 'index', 'name' => $name, 'section' => 'front')); ?>" title="<?php _e('Front'); ?>">
-            <?php _e('Front'); ?>
-        </a>
-    </li>
-    <li<?php if ('admin' == $section) { echo ' class="active"'; } ?>>
-        <a href="<?php echo $this->url('', array('action' => 'index', 'name' => $name, 'section' => 'admin')); ?>" title="<?php _e('Admin'); ?>">
-            <?php _e('Admin'); ?>
-        </a>
-    </li>
-</ul>
-
-<div ng-app="systemPermModule" ng-controller="index">
+<div ng-app="systemPermModule">
     <div pi-message="alert"></div>
-    <?php if ('front' == $section) { ?>
-    <legend><?php _e('Front'); ?></legend>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 12%;">
-                <th ng-repeat="frontRole in frontRoles" class="text-center">
-                    {{frontRole.title}}
-                <td style="width: 5%;">
-        <tbody>
-            <tr>
-                <th colspan="{{frontCols}}">{{'GLOBAL' | translate}}
-            <tr ng-repeat="item in frontResources.global">
-                <td class="pi-indent">{{item.title}}
-                <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}"
-                            ng-click="assignAction(key, item)">
-                        <i class="icon-ok" ng-class="{'muted': !value}"></i>
-                    </button>
-                <td>
-                    <div ng-include src="'allResource.html'"></div>
-            <tr ng-if="frontResources.module.length">
-                <th colspan="{{frontCols}}">{{'MODULE' | translate}}
-            <tr ng-repeat="item in frontResources.module">
-                <td class="pi-indent">{{item.title}}
-                <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}"
-                            ng-click="assignAction(key, item)">
-                        <i class="icon-ok" ng-class="{'muted': !value}"></i>
-                    </button>
-                <td>
-                    <div ng-include src="'allResource.html'"></div>
-            <tr ng-if="frontResources.block.length">
-                <th colspan="{{frontCols}}">{{'BLOCK' | translate}}
-            <tr ng-repeat="item in frontResources.block">
-                <td class="pi-indent">{{item.title}}
-                <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}"
-                            ng-click="assignAction(key, item)">
-                        <i class="icon-ok" ng-class="{'muted': !value}"></i>
-                    </button>
-                <td>
-                    <div ng-include src="'allResource.html'"></div>
-            <tr>
-                <td>
-                <td ng-repeat="item in frontRoles" class="text-center">
-                    <div ng-include src="'allRole.html'"></div>
-                <td>
-    </table>
-    <?php } else { ?>
-    <legend><?php _e('Admin'); ?></legend>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 12%;">
-                <th ng-repeat="adminRole in adminRoles" class="text-center">
-                    {{adminRole.title}}
-                <td style="width: 5%;">
-        <tbody>
-            <tr>
-                <th colspan="{{adminCols}}">{{'GLOBAL' | translate}}
-            <tr ng-repeat="item in adminResources.global">
-                <td class="pi-indent">{{item.title}}
-                <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}"
-                            ng-click="assignAction(key, item)">
-                        <i class="icon-ok" ng-class="{'muted': !value}"></i>
-                    </button>
-                <td>
-                    <div ng-include src="'allResource.html'"></div>
-            <tr ng-if="adminResources.module.length">
-                <th colspan="{{adminCols}}">{{'MODULE' | translate}}
-            <tr ng-repeat="item in adminResources.module">
-                <td class="pi-indent">{{item.title}}
-                <td ng-repeat="(key, value) in item.roles" class="text-center">
-                    <button class="btn btn-small" ng-class="{'btn-success': value}"
-                            ng-click="assignAction(key, item)">
-                        <i class="icon-ok" ng-class="{'muted': !value}"></i>
-                    </button>
-                <td>
-                    <div ng-include src="'allResource.html'"></div>
-            <tr>
-                <td>
-                <td ng-repeat="item in adminRoles" class="text-center">
-                    <div ng-include src="'allRole.html'"></div>
-                <td>
-    </table>
-    <?php } ?>
-    <script type="text/ng-template" id="allRole.html">
-        <div class="btn-group">
-            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-                    ng-click="assignAllResource(item, 1)">
-                <i class="icon-ok"></i>
-            </button>
-            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-                    ng-click="assignAllResource(item, 0)">
-                <i class="icon-remove"></i>
-            </button>
-        </div>
-    </script>
-    <script type="text/ng-template" id="allResource.html">
-        <div class="btn-group">
-            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-                    ng-click="assignAllRole(item, 1)">
-                <i class="icon-ok"></i>
-            </button>
-            <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-                    ng-click="assignAllRole(item, 0)">
-                <i class="icon-remove"></i>
-            </button>
-        </div>
-    </script>
+    <div pi-nav-tabs></div>
+    <div ng-view></div>
 </div>
 <script>
-var systemPermModule = angular.module('systemPermModule', ['pascalprecht.translate', 'ui.bootstrap', 'pi']);
-var systemPermModuleConfig = {
-    urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-    roles: <?php echo json_encode($roles) ?>,
-    resources: <?php echo json_encode($resources) ?>,
-    module: '<?php echo $name ?>',
-    t: {
-        GLOBAL: '<?php _e('Module Global permission'); ?>',
-        MODULE: '<?php _e('Module resource'); ?>',
-        BLOCK: '<?php _e('Block'); ?>',
-        ERROR: '<?php _e('Error, please try again later'); ?>'
-    }
-}
+angular
+    .module('systemPermModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        name: '<?php echo $name ?>',
+        navTabs: [
+            { text: '<?php _e('Front'); ?>', href: '#!/front' },
+            { text: '<?php _e('Admin'); ?>', href: '#!/admin' },
+        ],
+        t: {
+            GLOBAL: '<?php _e('Module Global permission'); ?>',
+            MODULE: '<?php _e('Module resource'); ?>',
+            BLOCK: '<?php _e('Block'); ?>',
+            ERROR: '<?php _e('Error, please try again later'); ?>',
+            FRONT: '<?php _e('Front'); ?>',
+            ADMIN: '<?php _e('Admin'); ?>'
+        }
+   });
 </script>
 <?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
 <script src="<?php echo $this->assetModule('admin/perm' . $debug . '.js'); ?>"></script>

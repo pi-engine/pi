@@ -1,97 +1,99 @@
-﻿systemPermModule.config(['$translateProvider',
-  function ($translateProvider) {
-    //Get template url
-    $translateProvider.translations(systemPermModuleConfig.t);
+﻿angular.module('systemPermModule')
+.config(['$routeProvider', 'piProvider', 'config',
+  function($routeProvider, piProvider, config) {
+     function tpl(name) {
+      return config.assetRoot + name + '.html';
+    }
+
+    $routeProvider.when('/:section', {
+      templateUrl: tpl('perm'),
+      controller: 'PermCtrl',
+      resolve: {
+        data: ['$q', '$route', 'server',
+          function($q, $route, server) {
+            var deferred = $q.defer();
+            var params = $route.current.params;
+            params.name = config.name;
+            server.get(params).success(function(data) {
+              var roles = [];
+              angular.forEach(data.roles, function(item, key) {
+                item.name = key;
+                roles.push(item);
+              });
+              data.roles = roles;
+              data.cols = roles.length + 2;
+              deferred.resolve(data);
+            });
+            return deferred.promise;
+          }
+        ]
+      }
+    }).otherwise({
+      redirectTo: '/front'
+    });
+    piProvider.hashPrefix();
+    piProvider.translations(config.t);
+    piProvider.navTabs(config.navTabs);
+    piProvider.ajaxSetup();
   }
-]).service('server', ['$http',
-  function($http) {
-    var root = systemPermModuleConfig.urlRoot;
+])
+.service('server', ['$http', 'config',
+  function($http, config) {
+    var root = config.urlRoot;
+
+    this.get = function(params) {
+      return $http.get(root + 'resources', {
+        params: params
+      });
+    }
+
     this.post = function(role, resource, section, op) {
       return $http.post(root + 'assign', {
         role: role,
         resource: resource,
         section: section,
         op: op,
-        name: systemPermModuleConfig.module
+        name: config.name
       })
     }
   }
-]).controller('index', ['$scope', 'server',
-  function($scope, server) {
-    function parse() {
-      var frontRoles = [];
-      var adminRoles = [];
-      angular.forEach(systemPermModuleConfig.roles.front, function(value, key) {
-        value.name = key;
-        frontRoles.push(value);
-      });
-      angular.forEach(systemPermModuleConfig.roles.admin, function(value, key) {
-        value.name = key;
-        adminRoles.push(value);
-      });
-      $scope.frontRoles = frontRoles;
-      $scope.adminRoles = adminRoles;
-      $scope.frontResources = systemPermModuleConfig.resources.front;
-      $scope.adminResources = systemPermModuleConfig.resources.admin;
-      $scope.frontCols = $scope.frontRoles.length + 2;
-      $scope.adminCols = $scope.adminRoles.length + 2;
-    }
-
-    function error() {
-      $scope.alert = {
-        status: 0,
-        message: systemPermModuleConfig.t.ERROR
-      }
-    }
+])
+.controller('PermCtrl', ['$scope', '$location', 'server', 'config', 'data',
+  function($scope, $location, server, config, data) {
+    angular.extend($scope, data);
 
     function checkCol(role) {
-      var resources;
-      if (role.section == 'front') {
-        resources = $scope.frontResources;
-      } else {
-        resources = $scope.adminResources;
-      }
-      angular.forEach(resources, function(value, key) {
-        angular.forEach(value, function(child) {
-          child.roles[role.name] = role._all;
-        });
-      });
+      
     }
-
-    function checkRow() {
-
-    }
-
-    parse();
 
     $scope.assignAction = function(key, item) {
       var action = item.roles[key] ? 'revoke' : 'grant';
       server.post(key, item.resource, item.section, action).success(function(data) {
-        $scope.alert = data;
         if (data.status) {
           item.roles[key] = !item.roles[key];
         } 
-      }).error(error);
+      });
     }
 
     $scope.assignAllResource = function(role, action) {
-      var action = action ? 'grant' : 'revoke';
-      server.post(role.name, '_all', role.section, action).success(function(data) {
-        $scope.alert = data;
-        if (data.status) {
-          location.href = location.href;
-        }
-      }).error(error);
+      var op = action ? 'grant' : 'revoke';
+      var name = role.name;
+      server.post(name, '_all', role.section, op).success(function(data) {
+        if (!data.status) return;
+        angular.forEach($scope.resources, function(resource, key) {
+          angular.forEach(resource, function(item) {
+            item.roles[name] = action;
+          });
+        });
+      });
     }
 
     $scope.assignAllRole = function(resource, action) {
-      var action = action ? 'grant' : 'revoke';
-      server.post('_all', resource.resource, resource.section, action).success(function(data) {
-        $scope.alert = data;
-        if (data.status) {
-          location.href = location.href;
-        }
-      }).error(error);
+      var name = action ? 'grant' : 'revoke';
+      server.post('_all', resource.resource, resource.section, name).success(function(data) {
+        if (!data.status) return;
+        location.reload();
+      });
     }
   }
 ]);
