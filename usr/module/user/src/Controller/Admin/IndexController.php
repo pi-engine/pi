@@ -502,19 +502,25 @@ class IndexController extends ActionController
             'message' => '',
         );
 
+        $result = array(
+            'status'    => 0,
+            'data'      => array(),
+            'message'   => '',
+        );
+
         if (!$uids || !$type || !$role) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = __('Assign role failed');
+            $result['message'] = __('Assign role failed: invalid operation.');
             return $result;
         }
 
@@ -523,7 +529,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed');
+                    $result['message'] = __('Assign role failed.');
                     return $result;
                 }
             }
@@ -540,6 +546,12 @@ class IndexController extends ActionController
             }
         }
 
+        $users = array();
+        array_walk($uids, function ($uid) use (&$users) {
+            $users[$uid] = array('id' => $uid);
+        });
+        $data = $this->renderRole($users);
+        $result['data'] = $data;
         $result['status']  = 1;
         $result['message'] = __('Assign role successfully');
 
@@ -591,21 +603,12 @@ class IndexController extends ActionController
 
         $roles  = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
-        foreach ($rowset as $row) {
-            $uid     = $row['uid'];
-            $section = $row['section'];
-            $roleKey = $section . '_roles';
-            $users[$uid][$roleKey][] = $roles[$row['role']]['title'];
-        }
 
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
-            $user['time_disabled']  = (int) $user['time_disabled'];
-            $user['time_activated'] = (int) $user['time_activated'];
-            $user['time_created']   = (int) $user['time_created'];
             $user = array_merge($columns, $user);
         }
-
+        $users = $this->renderRole($users);
 
         return $users;
 
@@ -943,7 +946,7 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
-            if ('guest' == $name) {
+            if ('guest' == $name || 'member' == $name) {
                 continue;
             }
             $data[] = array(
@@ -1017,61 +1020,32 @@ class IndexController extends ActionController
     }
 
     /**
-     * Get user profile information
-     * Group and group items title and value
-     *
-     * @param $uid User id
-     * @param string $type Display or edit
-     * @return array
+     * Render roles for users
      */
-    protected function getProfileGroup($uid)
+    protected function renderRole(array $users)
     {
-        $result = array();
-
-        // Get account or profile meta
-        $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
-        $groups    = $this->getDisplayGroup();
-
-        foreach ($groups as $groupId => $group) {
-            $result[$groupId] = $group;
-            $result[$groupId]['fields'] = array();
-            $fields = $this->getFieldDisplay($groupId);
-
-            if ($group['compound']) {
-                // Compound meta
-                $compoundMeta = Pi::registry('compound', 'user')->read(
-                    $group['compound']
-                );
-
-                // Compound value
-                $compound     = Pi::api('user', 'user')->get(
-                    $uid, $group['compound']
-                );
-                // Generate Result
-                foreach ($compound as $set => $item) {
-                    // Compound value
-                    $compoundValue = array();
-                    foreach ($fields as $field) {
-                        $compoundValue[] = array(
-                            'title' => $compoundMeta[$field]['title'],
-                            'value' => $item[$field],
-                        );
-
-                    }
-                    $result[$groupId]['fields'][$set] = $compoundValue;
-                }
-            } else {
-                // Profile
-                foreach ($fields as $field) {
-                    $result[$groupId]['fields'][0][$field] = array(
-                        'title' => $fieldMeta[$field]['title'],
-                        'value' => Pi::api('user', 'user')->get($uid, $field),
-                    );
-                }
-            }
+        foreach ($users as $key => $user) {
+            $uids[] = $user['id'];
         }
+        $roleList = array();
+        $roles = Pi::registry('role')->read();
+        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        foreach ($rowset as $row) {
+            $uid     = $row['uid'];
+            $section = $row['section'];
+            $roleKey = $section . '_roles';
+            $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
+        }
+        array_walk($users, function (&$user) use ($roleList) {
+            $uid = $user['id'];
+            if (isset($roleList[$uid]['front_roles'])) {
+                $user['front_roles'] = $roleList[$uid]['front_roles'];
+            }
+            if (isset($roleList[$uid]['admin_roles'])) {
+                $user['admin_roles'] = $roleList[$uid]['admin_roles'];
+            }
+        });
 
-        return $result;
-
+        return $users;
     }
 }
