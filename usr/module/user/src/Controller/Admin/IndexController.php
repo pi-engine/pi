@@ -603,11 +603,14 @@ class IndexController extends ActionController
             );
         }
 
-        $roles  = Pi::registry('role')->read();
-        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
-
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = $user['time_disabled']
+                ? _date($user['time_disabled']) : 0;
+            $user['time_activated']  = $user['time_activated']
+                ? _date($user['time_activated']) : 0;
+            $user['time_created']  = $user['time_created']
+                ? _date($user['time_created']) : 0;
             $user = array_merge($columns, $user);
         }
         $users = $this->renderRole($users);

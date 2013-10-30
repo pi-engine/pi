@@ -63,6 +63,9 @@ class SearchController extends ActionController
             )
         );
 
+        $user['time_activated'] = _date($user['time_activated']);
+        $user['time_disabled']  = _date($user['time_disabled']);
+
         $user['link'] = $this->url(
             'user',
             array(
