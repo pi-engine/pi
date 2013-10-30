@@ -71,6 +71,7 @@ textarea:focus {
 .pi-comment-time {
     font-size: 13px;
     font-family: 'Arial';
+    margin-left: 5px;
 }
 .pi-comment-content {
     margin-top: 10px;
@@ -88,6 +89,13 @@ textarea:focus {
 }
 .operation i {
     margin-right: 2px;
+}
+.operation a {
+    color: #999999;
+}
+a.muted:hover,
+.operation a:hover {
+    color: #0088cc;
 }
 .pi-comment-view-all {
     margin-top: 20px;
@@ -185,4 +193,11 @@ a.pi-comment-count:hover {
 }
 .pi-comment-tab a {
     color: #0088cc;
+}
+.pi-comment-portal ul {
+    margin: 10px;
+    font-size: 13px;
+}
+.pi-comment-portal li {
+    padding: 2px 0 3px 5px;
 }

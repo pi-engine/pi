@@ -197,8 +197,8 @@ class IndexController extends ActionController
             Predicate\PredicateSet::OP_OR
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
-        if (count($rowset) != 0 || empty($roles)) {
-            $result['message'] = __('Add user failed');
+        if (count($rowset) != 0) {
+            $result['message'] = __('Add user failed: user exist');
             return $result;
         }
 
@@ -210,7 +210,7 @@ class IndexController extends ActionController
         );
 
         // Add user
-        $uid = Pi::api('user', 'user')->addUser($data, false);
+        $uid = Pi::api('user', 'user')->addUser($data);
         if (!$uid) {
             $result['message'] = __('Add user failed');
             return $result;
@@ -224,6 +224,8 @@ class IndexController extends ActionController
         // Enable
         if ($enable == 1) {
             Pi::api('user', 'user')->enableUser($uid);
+        } else {
+            Pi::api('user', 'user')->disableUser($uid);
         }
 
         // Set role

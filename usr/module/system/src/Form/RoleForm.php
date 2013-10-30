@@ -85,6 +85,14 @@ class RoleForm extends BaseForm
             ),
         ));
 
+        $this->add(array(
+            'name'  => 'active',
+            'attributes'    => array(
+                'type'  => 'hidden',
+                'value' => '1',
+            ),
+        ));
+
         /*
         $this->add(array(
             'name'  => 'security',

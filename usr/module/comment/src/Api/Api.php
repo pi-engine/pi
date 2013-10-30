@@ -349,9 +349,6 @@ class Api extends AbstractApi
             }
         }
         
-        $result['total_count'] = Pi::service('module')
-            ->config('leading_limit', 'comment');
-
         return $result;
     }
 

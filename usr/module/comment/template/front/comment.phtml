@@ -132,14 +132,12 @@ if ($uid) {
             }
         ?>
         </div>
-            <?php if ($data['count'] > $data['total_count']) { ?>
         <div class="pi-comment-view-all">
             <a href="<?php echo $data['url_list']; ?>" title="<?php _e('Read more'); ?>" target="_blank" class="btn">
                 <?php _e('View all comments'); ?>
             </a>
         </div>
         <?php
-                }
             } else {
         ?>
         <div class="pi-comment-none"><?php _e('No one has commented yet.'); ?></div>

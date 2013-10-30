@@ -77,14 +77,18 @@ class ActivityController extends ActionController
             $nav = Pi::api('user', 'nav')->getList($name, $uid);
         }
 
+        // Get quick link
+        $quicklink = Pi::api('user','quicklink')->getList();
+
         $this->view()->assign(array(
-            'list'     => $activityList,
-            'current'  => $name,
-            'data'     => $data,
-            'user'     => $user,
-            'nav'      => $nav,
-            'uid'      => $uid,
-            'is_owner' => $isOwner,
+            'list'      => $activityList,
+            'current'   => $name,
+            'data'      => $data,
+            'user'      => $user,
+            'nav'       => $nav,
+            'uid'       => $uid,
+            'quicklink' => $quicklink,
+            'is_owner'  => $isOwner,
         ));
 
     }
