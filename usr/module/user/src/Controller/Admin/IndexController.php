@@ -564,7 +564,8 @@ class IndexController extends ActionController
     /**
      * Get user information
      *
-     * @param int[] $ids
+     * @param int[] $uids
+     *
      * @return array
      */
     protected function getUser($uids)
@@ -587,6 +588,7 @@ class IndexController extends ActionController
         );
 
         // Get user data
+        /*
         $data = Pi::api('user', 'user')->get(
             $uids,
             array_keys($columns)
@@ -602,7 +604,6 @@ class IndexController extends ActionController
                 )
             );
         }
-
         foreach ($users as &$user) {
             $user['active']         = (int) $user['active'];
             $user['time_disabled']  = $user['time_disabled']
@@ -613,6 +614,23 @@ class IndexController extends ActionController
                 ? _date($user['time_created']) : 0;
             $user = array_merge($columns, $user);
         }
+        */
+        $users = Pi::api('user', 'user')->get(
+            $uids,
+            array_keys($columns)
+        );
+        array_walk($users, function (&$user) {
+            $user['link'] = Pi::service('user')->getUrl('home', array(
+                'id'    => (int) $user['id'],
+            ));
+            $user['active']         = (int) $user['active'];
+            $user['time_disabled']  = $user['time_disabled']
+                ? _date($user['time_disabled']) : 0;
+            $user['time_activated']  = $user['time_activated']
+                ? _date($user['time_activated']) : 0;
+            $user['time_created']  = $user['time_created']
+                ? _date($user['time_created']) : 0;
+        });
         $users = $this->renderRole($users);
 
         return $users;

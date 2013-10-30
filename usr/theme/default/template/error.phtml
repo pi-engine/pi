@@ -1,6 +1,6 @@
 <div class="alert alert-error">
 
-    <h2 class="page-header"><?php echo $title ?: __('Error occurred'); ?></h2>
+    <h2 class="page-header"><?php echo !empty($title) ? _escape($title) : __('Error occurred'); ?></h2>
     <p><?php echo $message ?: __('Please verify your request or visit later.'); ?></p>
     <p class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
