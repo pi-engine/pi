@@ -3,12 +3,15 @@
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9">
-    <h2 class="page-header"><?php _e('Basic settings'); ?></h2>
+    <div class="page-header">
+        <h3 style="margin: -5px 0 9px;"><?php _e('Account settings'); ?></h3>
+        <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your basic account'); ?></div>
+    </div>
 
     <!-- Username -->
     <div class="clearfix" style="margin-bottom: 20px;">
         <div class="pull-left text-right" style="width: 160px;">
-            <?php echo __('Username'); ?>
+            <?php echo _e('Username'); ?>
         </div>
         <div style="margin-left: 180px;">
             <?php echo $user['identity']; ?>
@@ -20,13 +23,13 @@
     <div class="modal hide fade user-js-comfirm" tabindex="-1" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3>Save account changes</h3>
+            <h3><?php _e('Save account changes'); ?></h3>
         </div>
         <div class="modal-body">
-            <p>Re-enter your  password to save changes to your account.</p>
+            <p><?php _e('Re-enter your  password to save changes to your account.'); ?></p>
             <div class="form-horizontal">
                 <div class="control-group">
-                    <label class="control-label" for="password" style="width: auto; margin-right: 20px;">Password</label>
+                    <label class="control-label" for="password" style="width: auto; margin-right: 20px;"><?php _e('Password'); ?></label>
                     <div class="controls" style="margin-left: 0;">
                         <input type="password" class="user-js-comfirm-password" name="password">
                     </div>
@@ -34,8 +37,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a style="margin-right: 20px;" href="javascript:;" data-dismiss="modal" aria-hidden="true" title="Cancel">Cancel</a>
-            <button class="btn btn-primary user-js-comfirm-btn">Save changes</button>
+            <a style="margin-right: 20px;" href="javascript:;" data-dismiss="modal" aria-hidden="true" title="Cancel"><?php _e('Cancel'); ?></a>
+            <button class="btn btn-primary user-js-comfirm-btn"><?php _e('Save changes'); ?></button>
         </div>
     </div>
 
@@ -98,17 +101,17 @@
                                 this.emailReset();
                                 if (result.status) {
                                     this.$email.next().remove();
-                                    this.$email.after('<ul class="help-block"><li>A message has been sent to you ( ' + result.new_email + ' ) to confirm your new email address. Check the email in 24 hours. The new email will not work until your confirm.</li></ul>');
+                                    this.$email.after('<span class="help-block"><?php _e('A message has been sent to you'); ?> ( ' + result.new_email + ' )<?php _e('to confirm your new email address. Check the email in 24 hours. The new email will not work until your confirm.'); ?> </span>');
                                     this.nameInitVal = nameVal;
                                     this.$name.next().remove();
-                                    this.$name.after('<ul class="help-inline"><li>Display name change saved.</li></ul>');
+                                    this.$name.after('<span class="help-block"><?php _e('Display name change saved.'); ?></span>');
                                 } else {
                                     this.$email.next().remove();
-                                    this.$email.after('<ul class="help-inline"><li>Sorry, email change failed. Try it later.</li></ul>').closest('.control-group').addClass('error');
+                                    this.$email.after('<span class="help-block"><?php _e('Sorry, email change failed. Try it later.'); ?></span>').closest('.control-group').addClass('error');
 
                                     this.nameReset();
                                     this.$name.next().remove();
-                                    this.$name.after('<ul class="help-inline"><li>Sorry, display name change failed. Try it later.</li></ul>').closest('.control-group').addClass('error');
+                                    this.$name.after('<span class="help-block"><?php _e('Sorry, display name change failed. Try it later.'); ?></span>').closest('.control-group').addClass('error');
                                 }
 
                                 this.$comfirm.modal('hide');
@@ -117,7 +120,7 @@
                         } else {
                             this.comfirmReset();
                             this.$comfirmPassword.next().remove();
-                            this.$comfirmPassword.after('<ul class="help-inline"><li>' + result.message + '</li></ul>').closest('.control-group').addClass('error');
+                            this.$comfirmPassword.after('<span class="help-inline">' + result.message + '</span>').closest('.control-group').addClass('error');
                         }
                     }, this));
                 },
@@ -157,7 +160,7 @@
                     switch ( true ) {
                         case !/^[0-9a-z_][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}\.){1,4}[a-z]{2,4}$/i.test(emailVal):
                             this.$email.next().remove();
-                            this.$email.after('<ul class="help-inline"><li>Invalid email.</li></ul>');
+                            this.$email.after('<span class="help-inline"><?php _e('Invalid email.'); ?></span>');
                             this.isEmailValid = false;
                             this.isValid();
                             break;
@@ -165,7 +168,7 @@
                             $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
                                 if (result.status) {
                                     this.$email.next().remove();
-                                    this.$email.after('<ul class="help-inline"><li>Email has been used.</li></ul>');
+                                    this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
                                     this.isEmailValid = false;
                                     this.isValid();
                                 } else {
@@ -182,7 +185,7 @@
                     switch ( true ) {
                         case nameVal == '' || /\s/i.test(nameVal):
                             this.$name.next().remove();
-                            this.$name.after('<ul class="help-inline"><li>Invalid display name.</li></ul>');
+                            this.$name.after('<span class="help-inline"><?php _e('Invalid display name.'); ?></span>');
                             this.isNameValid = false;
                             this.isValid();
                             break;
@@ -190,7 +193,7 @@
                             $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
                                 if (result.status) {
                                     this.$name.next().remove();
-                                    this.$name.after('<ul class="help-inline"><li>Display name has been used.</li></ul>');
+                                    this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
                                     this.isNameValid = false;
                                     this.isValid();
                                 } else {
