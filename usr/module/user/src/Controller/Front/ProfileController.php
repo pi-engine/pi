@@ -459,7 +459,7 @@ class ProfileController extends ActionController
 
         // Get compound name
         $compound = $this->getCompoundName($compoundId);
-        $compoundField = Pi::registry('profile', 'user')->read('compound');
+        $compoundField = Pi::registry('profile_field', 'user')->read('compound');
         if (!isset($compoundField[$compound])) {
             return array(
                 'status'  => 0,

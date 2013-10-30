@@ -409,7 +409,7 @@ class User extends AbstractResource
         if (empty($this->config)) {
             return;
         }
-        Pi::registry('profile', 'user')->clear();
+        Pi::registry('profile_field', 'user')->clear();
 
         $profileFields = array();
         $config = $this->canonize($this->config);
@@ -456,7 +456,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile', 'user')->clear();
+        Pi::registry('profile_field', 'user')->clear();
 
         if ($this->skipUpgrade()) {
             return;
@@ -576,7 +576,7 @@ class User extends AbstractResource
         if (!$this->isActive() || 'user' == $module) {
             return;
         }
-        Pi::registry('profile', 'user')->clear();
+        Pi::registry('profile_field', 'user')->clear();
 
         $model = Pi::model('field', 'user');
         $fields = array();
@@ -629,7 +629,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile', 'user')->clear();
+        Pi::registry('profile_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -650,7 +650,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile', 'user')->clear();
+        Pi::registry('profile_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -671,7 +671,7 @@ class User extends AbstractResource
      */
     protected function addFields(array $fields)
     {
-        $meta = Pi::registry('profile', 'user')->read('account');
+        $meta = Pi::registry('profile_field', 'user')->read('account');
         $table = Pi::model('profile', 'user')->getTable();
         $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';
         foreach ($fields as $field) {
@@ -704,7 +704,7 @@ class User extends AbstractResource
      */
     protected function dropFields(array $fields)
     {
-        $meta = Pi::registry('profile', 'user')->read('profile');
+        $meta = Pi::registry('profile_field', 'user')->read('profile');
         $table = Pi::model('profile', 'user')->getTable();
         $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';
         foreach ($fields as $field) {

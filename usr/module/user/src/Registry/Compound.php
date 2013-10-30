@@ -46,7 +46,7 @@ class Compound extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $compound Compound name: tool, address, education, wrok
+     * @param string $compound Compound name: tool, address, education, work
      * @param array
      */
     public function read($compound = '')

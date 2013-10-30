@@ -26,7 +26,7 @@ class ProfileController extends ActionController
     
     public function fieldAction()
     {
-        //$fields = Pi::registry('profile', 'user')->read();
+        //$fields = Pi::registry('profile_field', 'user')->read();
         $fields = $this->getModel('field')->select(
             array(
                 'is_display' => 1,
@@ -82,7 +82,7 @@ class ProfileController extends ActionController
      */
     public function dressUpAction()
     {
-//        $fields = Pi::registry('profile', 'user')->read();
+//        $fields = Pi::registry('profile_field', 'user')->read();
         $fields = $this->getModel('field')->select(
             array(
                 'is_display' => 1,
@@ -266,7 +266,7 @@ class ProfileController extends ActionController
 
         // Flush
         Pi::registry('compound', 'user')->flush();
-        Pi::registry('profile', 'user')->flush();
+        Pi::registry('profile_field', 'user')->flush();
 
         return $result;
 
@@ -368,7 +368,7 @@ class ProfileController extends ActionController
      */
     protected function getGroupDisplay()
     {
-        $profileMeta = Pi::registry('profile', 'user')->read();
+        $profileMeta = Pi::registry('profile_field', 'user')->read();
         $result      = array();
         $groupModel  = $this->getModel('display_group');
         $select      = $groupModel->select()->where(array());

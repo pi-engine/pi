@@ -69,7 +69,7 @@ class Form extends AbstractApi
     public function getElement($name)
     {
         $element = array();
-        $elements = Pi::registry('profile', $this->module)->read();
+        $elements = Pi::registry('profile_field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $element = $this->canonizeElement($elements[$name]);
         }
@@ -88,7 +88,7 @@ class Form extends AbstractApi
         $result = array(
             'name'  => $name,
         );
-        $elements = Pi::registry('profile', $this->module)->read();
+        $elements = Pi::registry('profile_field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $result = $this->canonizeFilter($elements[$name]);
         }

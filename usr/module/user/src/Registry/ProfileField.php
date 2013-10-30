@@ -18,7 +18,7 @@ use Pi\Application\Registry\AbstractRegistry;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Profile extends AbstractRegistry
+class ProfileField extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'user';

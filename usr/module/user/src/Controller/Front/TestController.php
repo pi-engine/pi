@@ -29,7 +29,7 @@ class TestController extends ActionController
         $this->view()->setTemplate(false);
 
         /*
-        $fields = Pi::registry('profile', 'user')->read('compound');
+        $fields = Pi::registry('profile_field', 'user')->read('compound');
         vd($fields);
         $fields = Pi::registry('compound', 'user')->read('education');
         vd($fields);

@@ -38,7 +38,7 @@ class User extends AbstractUseApi
      */
     public function getMeta($type = '', $action = '')
     {
-        $meta = Pi::registry('profile', 'user')->read($type, $action);
+        $meta = Pi::registry('profile_field', 'user')->read($type, $action);
 
         return $meta;
     }
@@ -145,7 +145,7 @@ class User extends AbstractUseApi
 
                 if ($order) {
                     if (is_array($order)) {
-                        $fields = Pi::registry('profile', 'user')->read();
+                        $fields = Pi::registry('profile_field', 'user')->read();
                         $result = array();
                         foreach ($order as $key => $val) {
                             if (is_string($key)) {
@@ -480,7 +480,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $fieldMeta = Pi::registry('profile', 'user')->read();
+        $fieldMeta = Pi::registry('profile_field', 'user')->read();
         if (isset($fieldMeta[$field])) {
             $type = $fieldMeta[$field]['type'];
             $result = $this->setTypeField($uid, $type, $field, $value);
