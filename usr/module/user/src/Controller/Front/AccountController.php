@@ -126,6 +126,7 @@ class AccountController extends ActionController
         $token   = _get('token');
         $email   = _get('email');
 
+        $this->view()->setTemplate('account-reset-email');
         // Check link
         if (!$hashUid || !$token) {
             $this->view()->assign('result', $result);
@@ -182,8 +183,6 @@ class AccountController extends ActionController
         $result['message'] = __('Reset email successfully');
 
         $this->view()->assign('result', $result);
-        $this->view()->setTemplate('account-reset-email');
-
     }
 
     /**
