@@ -162,6 +162,7 @@ class MaintenanceController extends ActionController
         // Get count
         $select = $model->select()->where(array('time_deleted > ?' => 0));
         $select->columns(array('count' => new Expression('count(*)')));
+        $select->order('time_deleted DESC');
         $rowset = $model->selectWith($select);
         if ($rowset) {
             $rowset = $rowset->current();
