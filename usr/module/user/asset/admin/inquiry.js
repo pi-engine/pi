@@ -1,4 +1,4 @@
-﻿angular.module('userSearchModule')
+﻿angular.module('userInquiryModule')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
     //Get template url

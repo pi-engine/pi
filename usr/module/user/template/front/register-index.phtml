@@ -1,17 +1,20 @@
 <?php if (!(isset($result) && $result['status'])) {
-    echo sprintf('<h2 class="page-header">%s</h2>',
-        __('Register')
+    echo sprintf(
+        '<h2 class="page-header">%s</h2>',
+        __('Register sitename')
     );
 
     if (isset($result)) {
-        echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
+        echo sprintf(
+            '<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
             'alert-error',
-            $result['message']);
+            $result['message']
+        );
     }
     
     include $this->templateComponent('form');
 } else { ?>
-    <h2 class="page-header"><?php _e('Register'); ?></h2>
+    <h2 class="page-header"><?php _e('Register sitename'); ?></h2>
     <div class="span12">
         <div class="span8">
             <p><?php _e('An activation link has been sent to your email'); ?></p>

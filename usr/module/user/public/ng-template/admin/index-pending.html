@@ -21,7 +21,7 @@
     <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
     <option value="last_year">{{'LAST_YEAR' | translate}}
   </select>
-  <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filter.name">
+  <input type="text" placeholder="{{'DISPLAYNAME' | translate}}" class="input-small" ng-model="filter.name">
   <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filter.email">
   <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
     <i class="icon-search"></i>
@@ -66,7 +66,7 @@
           <th style="width: 14px;">
           <th width="5%">{{'ID' | translate}}
           <th>{{'USERNAME' | translate}}
-          <th>{{'DISPLAY_NAME' | translate}}
+          <th>{{'DISPLAYNAME' | translate}}
           <th width="15%">{{'EMAIL' | translate}}
           <th width="8%" class="text-center">{{'ENABLED' | translate}}
           <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
@@ -92,7 +92,8 @@
               <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
               <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
             </div>
-          <td>{{user.name}}
+          <td>
+            <a href="{{user.link}}" target="_blank">{{user.name}}</a>
           <td>{{user.email}}
           <td class="text-center">
             <div class="pi-status" ng-class="{'active': !user.time_disabled}"
@@ -114,7 +115,7 @@
               <i class="icon-user-md icon-large"></i>
             </span>
           <td class="text-center">
-            {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+            {{user.time_created}}
   </table>
   <pagination ng-if="paginator.count > paginator.limit" 
               total-items="paginator.count" page="paginator.page" max-size="10"

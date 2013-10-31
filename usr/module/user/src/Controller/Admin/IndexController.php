@@ -356,16 +356,15 @@ class IndexController extends ActionController
      */
     public function enableAction()
     {
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => '',
         );
 
         $uids = _post('ids', '');
-
         if (!$uids) {
-            $return['message'] = __('Enable user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Enable user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -376,10 +375,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = 1;
-        $return['message'] = sprintf(__('%d enable user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d enable user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -390,15 +392,15 @@ class IndexController extends ActionController
      */
     public function disableAction()
     {
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => ''
         );
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Disable user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Disable user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -409,10 +411,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d disable user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d disable user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -424,14 +429,14 @@ class IndexController extends ActionController
     public function deleteUserAction()
     {
         $uids   = _post('ids');
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => '',
         );
 
         if (!$uids) {
-            $return['message'] = __('Delete user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Delete user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -441,11 +446,18 @@ class IndexController extends ActionController
             if ($status) {
                 $count++;
             }
-        }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d delete user successfully'), $count);
 
-        return $return;
+            // Clear user other info
+            $this->deleteUser($uid, 'user_data');
+            $this->deleteUser($uid, 'user_role');
+            $this->deleteUser($uid, 'user_log', 'user');
+            $this->deleteUser($uid, 'privacy_user', 'user');
+            $this->deleteUser($uid, 'timeline_log', 'user');
+        }
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d delete user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -480,10 +492,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d activated user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d activated user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -587,38 +602,14 @@ class IndexController extends ActionController
             'id'             => '',
         );
 
-        // Get user data
-        /*
-        $data = Pi::api('user', 'user')->get(
+        $noSortUser = Pi::api('user', 'user')->get(
             $uids,
             array_keys($columns)
         );
+
         foreach ($uids as $uid) {
-            $users[$uid] = $data[$uid];
-            $users[$uid]['link'] = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'view',
-                    'uid'        => $uid,
-                )
-            );
+            $users[] = $noSortUser[$uid];
         }
-        foreach ($users as &$user) {
-            $user['active']         = (int) $user['active'];
-            $user['time_disabled']  = $user['time_disabled']
-                ? _date($user['time_disabled']) : 0;
-            $user['time_activated']  = $user['time_activated']
-                ? _date($user['time_activated']) : 0;
-            $user['time_created']  = $user['time_created']
-                ? _date($user['time_created']) : 0;
-            $user = array_merge($columns, $user);
-        }
-        */
-        $users = Pi::api('user', 'user')->get(
-            $uids,
-            array_keys($columns)
-        );
         array_walk($users, function (&$user) {
             $user['link'] = Pi::service('user')->getUrl('home', array(
                 'id'    => (int) $user['id'],
@@ -780,7 +771,7 @@ class IndexController extends ActionController
             );
         }
 
-        $select->order('account.time_created DESC');
+        $select->order('account.id DESC');
         if ($limit) {
             $select->limit($limit);
         }
@@ -969,7 +960,7 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
-            if ('guest' == $name || 'member' == $name) {
+            if ('guest' == $name) {
                 continue;
             }
             $data[] = array(
@@ -1070,5 +1061,63 @@ class IndexController extends ActionController
         });
 
         return $users;
+    }
+
+    /**
+     * Get users status: active, activated, disable
+     *
+     * @param $uids
+     * @return array
+     */
+    protected function getUserStatus($uids)
+    {
+        $uids  = (array) $uids;
+        $users = Pi::api('user', 'user')->get(
+            $uids,
+            array(
+                'active','time_activated', 'time_disabled'
+            )
+        );
+
+        $usersStatus = array();
+        foreach ($users as $user) {
+            $usersStatus[$user['id']] = array(
+                'active'    => (int) $user['active'],
+                'activated' => $user['time_activated'] ? 1 : 0,
+                'disabled'  => $user['time_disabled'] ? 1 : 0,
+            );
+        }
+
+        return $usersStatus;
+
+    }
+
+    /**
+     * Delete user field
+     *
+     * @param $uid
+     * @param $field
+     * @param string $type core or user
+     * @return int
+     */
+    protected function deleteUser($uid, $field, $type = '')
+    {
+        if ($type) {
+            try {
+                Pi::model($field, $type)->delete(array('uid' => $uid));
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        } else {
+            try {
+                Pi::model($field)->delete(array('uid' => $uid));
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        }
+
+        return $status;
     }
 }

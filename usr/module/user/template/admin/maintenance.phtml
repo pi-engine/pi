@@ -1,7 +1,6 @@
 <?php
 $this->angular(array(
     'angular-route.js',
-    'ui-bootstrap-custom-tpls-0.6.0.js',
     'pi.js',
     'pi-tabs.js',
 ));
@@ -13,7 +12,7 @@ $this->angular(array(
 </div>
 <script>
 angular
-  .module('userMaintenanceModule', ['ngRoute', 'pi', 'piTabs', 'ui.bootstrap'])
+  .module('userMaintenanceModule', ['ngRoute', 'pi', 'piTabs'])
   .constant('config', {
     urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
@@ -49,9 +48,20 @@ angular
       DELETE_ALL: '<?php _e('Are you sure to delete all of these users?'); ?>',
       DELETE_TIME: '<?php _e('Deleted time'); ?>',
       IP_ADDRESS: '<?php _e('IP'); ?>',
+      ACTIVATED: '<?php _e('Activated'); ?>',
+      REGIESTER_TIME: '<?php _e('Register time'); ?>',
+      DISPLAYNAME: '<?php _e('Displayname'); ?>',
       CLEAR: '<?php _e('Clear the users'); ?>',
+      EMAIL: '<?php _e('Email'); ?>',
       CLEAR_ALL: '<?php _e('CLear all deleted users'); ?>',
-      NONE_USER: '<?php _e('No user matched your request.'); ?>'
+      NONE_USER: '<?php _e('No user matched your request.'); ?>',
+      ACTIVE: '<?php _e('Active'); ?>',
+      LOGIN_IP: '<?php _e('Login ip'); ?>',
+      TIME_CREATED: '<?php _e('Created time'); ?>',
+      TIME_DISABLED: '<?php _e('Disabled time'); ?>',
+      TIME_LAST_LOGIN: '<?php _e('Last login time'); ?>',
+      TIME_ACTIVATED: '<?php _e('Activated time'); ?>',
+      NULL: '<?php _e('Null'); ?>'
     }
 });
 </script>
