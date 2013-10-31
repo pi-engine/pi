@@ -97,7 +97,8 @@
               <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
               <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
             </div>
-          <td>{{user.name}}
+          <td>
+            <a href="{{user.link}}" target="_blank">{{user.name}}</a>
           <td>{{user.email}}
           <td class="text-center">
             <div class="pi-status" ng-class="{'active': !user.time_disabled}"
