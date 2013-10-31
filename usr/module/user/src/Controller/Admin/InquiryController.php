@@ -20,7 +20,7 @@ use Zend\Db\Sql\Predicate;
 *
 * @author Liu Chuang <liuchuang@eefocus.com>
 */
-class SearchController extends ActionController
+class InquiryController extends ActionController
 {
     /**
      * Default action
@@ -28,7 +28,7 @@ class SearchController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('search');
+        $this->view()->setTemplate('inquiry');
     }
 
     
@@ -86,8 +86,8 @@ class SearchController extends ActionController
      * Get user profile information
      * Group and group items title and value
      *
-     * @param $uid User id
-     * @param string $type Display or edit
+     * @param int $uid User id
+     *
      * @return array
      */
     protected function getProfileGroup($uid)
@@ -165,7 +165,8 @@ class SearchController extends ActionController
     /**
      * Get field display
      *
-     * @param $group
+     * @param int $groupId
+     *
      * @return array
      */
     protected function getFieldDisplay($groupId)
@@ -184,5 +185,4 @@ class SearchController extends ActionController
 
         return $result;
     }
-
 }

@@ -106,11 +106,11 @@ return array(
             'action'        => 'index',
         ),
 
-        'search'  => array(
-            'label'         => _t('Search'),
+        'inquiry'  => array(
+            'label'         => _t('Inquiry'),
             'route'         => 'admin',
             'module'        => 'user',
-            'controller'    => 'search',
+            'controller'    => 'inquiry',
             'action'        => 'index',
         )
     ),
