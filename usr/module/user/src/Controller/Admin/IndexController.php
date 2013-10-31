@@ -448,9 +448,11 @@ class IndexController extends ActionController
             }
 
             // Clear user other info
-
-
-
+            $this->deleteUser($uid, 'user_data');
+            $this->deleteUser($uid, 'user_role');
+            $this->deleteUser($uid, 'user_log', 'user');
+            $this->deleteUser($uid, 'privacy_user', 'user');
+            $this->deleteUser($uid, 'timeline_log', 'user');
         }
         $result['status']  = 1;
         $result['message'] = sprintf(__('%d delete user successfully'), $count);
@@ -1088,5 +1090,34 @@ class IndexController extends ActionController
 
         return $usersStatus;
 
+    }
+
+    /**
+     * Delete user field
+     *
+     * @param $uid
+     * @param $field
+     * @param string $type core or user
+     * @return int
+     */
+    protected function deleteUser($uid, $field, $type = '')
+    {
+        if ($type) {
+            try {
+                Pi::model($field, $type)->delete(array('uid' => $uid));
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        } else {
+            try {
+                Pi::model($field)->delete(array('uid' => $uid));
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        }
+
+        return $status;
     }
 }
