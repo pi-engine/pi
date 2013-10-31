@@ -147,24 +147,6 @@ class UserController extends ActionController
         );
 
         return $users;
-
-        $count  = Pi::service('user')->getCount($condition);
-        if ($count) {
-            $users = Pi::service('user')->getList(
-                $condition,
-                $limit,
-                $offset,
-                $order,
-                $fields
-            );
-        }
-
-        $response = array(
-            'count' => $count,
-            'users' => $users,
-        );
-
-        return $response;
     }
 
     /**
