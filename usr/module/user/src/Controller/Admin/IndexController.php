@@ -1060,7 +1060,7 @@ class IndexController extends ActionController
      */
     protected function getUserStatus($uids)
     {
-        $uids = (array) $uids;
+        $uids  = (array) $uids;
         $users = Pi::api('user', 'user')->get(
             $uids,
             array(
@@ -1071,20 +1071,13 @@ class IndexController extends ActionController
         $usersStatus = array();
         foreach ($users as $user) {
             $usersStatus[$user['id']] = array(
-                'active' => (int) $user['active'],
+                'active'    => (int) $user['active'],
                 'activated' => $user['time_activated'] ? 1 : 0,
-                'disable'   => $user['time_disabled'] ? 1 : 0,
+                'disabled'  => $user['time_disabled'] ? 1 : 0,
             );
         }
 
         return $usersStatus;
 
-    }
-
-    public function testAction()
-    {
-        $result = $this->getUserStatus(array(1,2,3,4));
-        d($result);
-        $this->view()->setTemplate(false);
     }
 }
