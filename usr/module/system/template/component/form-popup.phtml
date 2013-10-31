@@ -18,7 +18,7 @@ $this->bootstrap('js/bootstrap.min.js');
 <div class="modal-body">
 <?php $elements = $form->elementList();
 foreach ($elements['active'] as $element) { ?>
-    <div class="control-group" data-name="<?php echo $element -> getName(); ?>">
+    <div id="<?php echo $element->getAttribute('name'); ?>" class="control-group" data-name="<?php echo $element -> getName(); ?>">
             <?php if ($element->getAttribute('type') != 'checkbox') {
                 $element->setLabelAttributes(array('class' => 'control-label'));
                 echo $this->formLabel($element);
