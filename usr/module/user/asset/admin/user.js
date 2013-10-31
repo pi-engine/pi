@@ -17,9 +17,6 @@
               var users = data.users;
               for (var i = 0, l = users.length; i < l; i++) {
                 var item = users[i];
-                item.time_disabled *= 1000;
-                item.time_created *= 1000;
-                item.time_activated *= 1000;
                 item.checked = 0;
                 if (item.front_roles) {
                   item.front_roles = item.front_roles.join(',');

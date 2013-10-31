@@ -119,7 +119,7 @@
               <i class="icon-user-md icon-large"></i>
             </span>
           <td class="text-center">
-            {{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
+            {{user.time_created}}
   </table>
   <pagination ng-if="paginator.count > paginator.limit" 
               total-items="paginator.count" page="paginator.page" max-size="10"
