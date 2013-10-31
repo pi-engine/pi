@@ -446,6 +446,11 @@ class IndexController extends ActionController
             if ($status) {
                 $count++;
             }
+
+            // Clear user other info
+
+
+
         }
         $result['status']  = 1;
         $result['message'] = sprintf(__('%d delete user successfully'), $count);
@@ -595,10 +600,14 @@ class IndexController extends ActionController
             'id'             => '',
         );
 
-        $users = Pi::api('user', 'user')->get(
+        $noSortUser = Pi::api('user', 'user')->get(
             $uids,
             array_keys($columns)
         );
+
+        foreach ($uids as $uid) {
+            $users[] = $noSortUser[$uid];
+        }
         array_walk($users, function (&$user) {
             $user['link'] = Pi::service('user')->getUrl('home', array(
                 'id'    => (int) $user['id'],
@@ -760,7 +769,7 @@ class IndexController extends ActionController
             );
         }
 
-        $select->order('account.time_created DESC');
+        $select->order('account.id DESC');
         if ($limit) {
             $select->limit($limit);
         }
