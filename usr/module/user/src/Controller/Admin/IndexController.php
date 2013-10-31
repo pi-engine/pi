@@ -356,16 +356,15 @@ class IndexController extends ActionController
      */
     public function enableAction()
     {
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => '',
         );
 
         $uids = _post('ids', '');
-
         if (!$uids) {
-            $return['message'] = __('Enable user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Enable user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -376,10 +375,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status'] = 1;
-        $return['message'] = sprintf(__('%d enable user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d enable user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -390,15 +392,15 @@ class IndexController extends ActionController
      */
     public function disableAction()
     {
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => ''
         );
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $return['message'] = __('Disable user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Disable user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -409,10 +411,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d disable user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d disable user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -424,14 +429,14 @@ class IndexController extends ActionController
     public function deleteUserAction()
     {
         $uids   = _post('ids');
-        $return = array(
+        $result = array(
             'status'  => 0,
             'message' => '',
         );
 
         if (!$uids) {
-            $return['message'] = __('Delete user failed: invalid uid');
-            return $return;
+            $result['message'] = __('Delete user failed: invalid uid');
+            return $result;
         }
 
         $uids  = explode(',', $uids);
@@ -442,10 +447,10 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d delete user successfully'), $count);
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d delete user successfully'), $count);
 
-        return $return;
+        return $result;
 
     }
 
@@ -455,7 +460,7 @@ class IndexController extends ActionController
      */
     public function activateUserAction()
     {
-        $uids = _post('ids');
+        $uids = _post('ids');$uids = '2,3,4,5';
 
         $result = array(
             'status'  => 0,
@@ -480,10 +485,13 @@ class IndexController extends ActionController
                 $count++;
             }
         }
-        $return['status']  = 1;
-        $return['message'] = sprintf(__('%d activated user successfully'), $count);
 
-        return $return;
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
+        $result['status']  = 1;
+        $result['message'] = sprintf(__('%d activated user successfully'), $count);
+
+        return $result;
 
     }
 
@@ -587,34 +595,6 @@ class IndexController extends ActionController
             'id'             => '',
         );
 
-        // Get user data
-        /*
-        $data = Pi::api('user', 'user')->get(
-            $uids,
-            array_keys($columns)
-        );
-        foreach ($uids as $uid) {
-            $users[$uid] = $data[$uid];
-            $users[$uid]['link'] = $this->url(
-                'user',
-                array(
-                    'controller' => 'home',
-                    'action'     => 'view',
-                    'uid'        => $uid,
-                )
-            );
-        }
-        foreach ($users as &$user) {
-            $user['active']         = (int) $user['active'];
-            $user['time_disabled']  = $user['time_disabled']
-                ? _date($user['time_disabled']) : 0;
-            $user['time_activated']  = $user['time_activated']
-                ? _date($user['time_activated']) : 0;
-            $user['time_created']  = $user['time_created']
-                ? _date($user['time_created']) : 0;
-            $user = array_merge($columns, $user);
-        }
-        */
         $users = Pi::api('user', 'user')->get(
             $uids,
             array_keys($columns)
@@ -969,7 +949,7 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
-            if ('guest' == $name) {
+            if ('guest' == $name || 'member' == $name) {
                 continue;
             }
             $data[] = array(
@@ -1070,5 +1050,41 @@ class IndexController extends ActionController
         });
 
         return $users;
+    }
+
+    /**
+     * Get users status: active, activated, disable
+     *
+     * @param $uids
+     * @return array
+     */
+    protected function getUserStatus($uids)
+    {
+        $uids = (array) $uids;
+        $users = Pi::api('user', 'user')->get(
+            $uids,
+            array(
+                'active','time_activated', 'time_disabled'
+            )
+        );
+
+        $usersStatus = array();
+        foreach ($users as $user) {
+            $usersStatus[$user['id']] = array(
+                'active' => (int) $user['active'],
+                'activated' => $user['time_activated'] ? 1 : 0,
+                'disable'   => $user['time_disabled'] ? 1 : 0,
+            );
+        }
+
+        return $usersStatus;
+
+    }
+
+    public function testAction()
+    {
+        $result = $this->getUserStatus(array(1,2,3,4));
+        d($result);
+        $this->view()->setTemplate(false);
     }
 }
