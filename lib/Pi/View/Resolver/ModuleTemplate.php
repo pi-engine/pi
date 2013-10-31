@@ -35,6 +35,12 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *   - for module "democlone":
  *      'theme/default/module/democlone/template/[front/template.html]`
  *
+ * - Module custom templates:
+ *   - for module "demo":
+ *      `custom/demo/template/[front/template.html]`
+ *   - for module "democlone":
+ *      'custom/democlone/template/[front/template.html]`
+ *
  * - Module native templates:
  *   - for both module "demo" and cloned "democlone":
  *      `module/demo/template/[front/template.html]`
@@ -140,6 +146,18 @@ class ModuleTemplate implements ResolverInterface
             '%s/%s/module/%s/%s/%s.%s',
             Pi::path('theme'),
             Pi::service('theme')->current(),
+            $module,
+            $this->templateDirectory,
+            $template,
+            $this->suffix
+        );
+        if (file_exists($path)) {
+            return $path;
+        }
+        // Check custom template in module custom path
+        $path = sprintf(
+            '%s/%s/%s/%s.%s',
+            Pi::path('custom_module'),
             $module,
             $this->templateDirectory,
             $template,
