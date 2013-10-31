@@ -24,7 +24,7 @@ class Compound extends AbstractFieldRowGateway
      */
     protected function getMetaList()
     {
-        return Pi::registry('compound', 'user')->read($this['compound']);
+        return Pi::registry('compound_field', 'user')->read($this['compound']);
     }
 
     /**

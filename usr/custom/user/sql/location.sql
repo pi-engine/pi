@@ -11,7 +11,7 @@
 CREATE TABLE `{location}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
-  `order`           smallint(5)     unsigned    NOT NULL default '0',
+  #`order`           smallint(5)     unsigned    NOT NULL default '0',
 
   `country`         varchar(64)     NOT NULL,
   `province`        varchar(64)     NOT NULL,

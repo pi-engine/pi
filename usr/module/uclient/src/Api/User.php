@@ -347,7 +347,7 @@ class User extends AbstractUseApi
         array $rawData,
         $set = 0
     ) {
-        $meta = Pi::registry('compound', 'user')->read($compound);
+        $meta = Pi::registry('compound_field', 'user')->read($compound);
         $canonizeSet = function ($data, $set) use ($uid, $compound, $meta) {
             $result = array();
             foreach (array_keys($data) as $key) {

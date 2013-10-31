@@ -18,7 +18,7 @@ use Pi\Application\Registry\AbstractRegistry;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ProfileField extends AbstractRegistry
+class Field extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'user';
@@ -31,11 +31,6 @@ class ProfileField extends AbstractRegistry
         $fields = array();
 
         $columns = array();
-        $where = array('active' => 1);
-        if ($options['type']) {
-            $where['type'] = $options['type'];
-        }
-
         switch ($options['action']) {
             case 'display':
                 $columns = array('name', 'title', 'filter');
@@ -51,6 +46,15 @@ class ProfileField extends AbstractRegistry
                 break;
             default:
                 break;
+        }
+        $where = array('active' => 1);
+        if (!empty($options['type'])) {
+            $where['type'] = $options['type'];
+        }
+        if ($columns &&
+            (empty($options['type']) || 'custom' == $options['type'])
+        ) {
+            $columns[] = 'handler';
         }
         $model = Pi::model('field', $this->module);
         $select = $model->select()->where($where);

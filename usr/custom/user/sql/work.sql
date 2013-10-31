@@ -7,14 +7,20 @@
 # User custom compound
 # >>>>
 
-# Entity for user custom compound: subscription
-CREATE TABLE `{subscription}` (
+# Entity for user custom compound: work experiences
+CREATE TABLE `{work}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
   `order`           smallint(5)     unsigned    NOT NULL default '0',
 
-  `item`            varchar(64)     NOT NULL,
+  `company`         varchar(64)     NOT NULL,
+  `sector`          varchar(64)     NOT NULL,
+  `department`      varchar(64)     NOT NULL,
+  `title`           varchar(64)     NOT NULL,
+  `start`           varchar(64)     NOT NULL,
+  `end`             varchar(64)     NOT NULL,
+  `description`     text,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `uid` (`uid`, `item`)
+  KEY  `uid` (`uid`)
 );

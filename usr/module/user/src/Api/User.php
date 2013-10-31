@@ -37,7 +37,7 @@ class User extends AbstractUseApi
      */
     public function getMeta($type = '', $action = '')
     {
-        $meta = Pi::registry('profile_field', 'user')->read($type, $action);
+        $meta = Pi::registry('field', 'user')->read($type, $action);
 
         return $meta;
     }
@@ -144,7 +144,7 @@ class User extends AbstractUseApi
 
                 if ($order) {
                     if (is_array($order)) {
-                        $fields = Pi::registry('profile_field', 'user')->read();
+                        $fields = Pi::registry('field', 'user')->read();
                         $result = array();
                         foreach ($order as $key => $val) {
                             if (is_string($key)) {
@@ -492,7 +492,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $fieldMeta = Pi::registry('profile_field', 'user')->read();
+        $fieldMeta = Pi::registry('field', 'user')->read();
         if (isset($fieldMeta[$field])) {
             $type = $fieldMeta[$field]['type'];
             $result = $this->setTypeField($uid, $type, $field, $value);
@@ -616,7 +616,7 @@ class User extends AbstractUseApi
         array $rawData,
         $set = 0
     ) {
-        $meta = Pi::registry('compound', 'user')->read($compound);
+        $meta = Pi::registry('compound_field', 'user')->read($compound);
         $canonizeSet = function ($data, $set) use ($uid, $compound, $meta) {
             $result = array();
             foreach (array_keys($data) as $key) {
@@ -927,19 +927,13 @@ class User extends AbstractUseApi
         }
 
         $type = 'custom';
-        $data = $this->canonizeUser($data, $type);
-        foreach ($data as $filed => $valueSet) {
-            $model = Pi::model('custom_' . $filed, 'user');
-            $order = 0;
-            foreach ($valueSet as $set) {
-                $set['order'] = $order++;
-                $row = $model->createRow($set);
-                try {
-                    $row->save();
-                } catch (\Exception $e) {
-                    return false;
-                }
+        $meta = $this->getMeta($type);
+        foreach ($data as $field => $valueSet) {
+            if (!isset($meta[$field]) || empty($meta[$field]['handler'])) {
+                continue;
             }
+            $handler = new $meta[$field]['handler']($field);
+            $handler->add($uid, $valueSet);
         }
 
         return true;
@@ -959,12 +953,17 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $status = $this->deleteCustom($uid);
-        if ($status) {
-            $status = $this->addCustom($uid, $data);
+        $type = 'custom';
+        $meta = $this->getMeta($type);
+        foreach ($data as $field => $valueSet) {
+            if (!isset($meta[$field]) || empty($meta[$field]['handler'])) {
+                continue;
+            }
+            $handler = new $meta[$field]['handler']($field);
+            $handler->update($uid, $valueSet);
         }
 
-        return $status;
+        return true;
     }
 
     /**
@@ -981,18 +980,13 @@ class User extends AbstractUseApi
         }
 
         $type = 'custom';
-        $fields = array_keys($this->getMeta($type));
-        foreach ($fields as $field) {
-            try {
-                $model = Pi::model('custom_' . $field, 'user');
-            } catch (\Exception $e) {
+        $meta = $this->getMeta($type);
+        foreach ($meta as $field => $spec) {
+            if (empty($spec['handler'])) {
                 continue;
             }
-            try {
-                $model->delete(array('uid' => $uid));
-            } catch (\Exception $e) {
-                continue;
-            }
+            $handler = new $spec['handler']($field);
+            $handler->delete($uid);
         }
 
         return true;
@@ -1022,8 +1016,8 @@ class User extends AbstractUseApi
             $fields = array_unique($fields);
         }
 
-        vd($type);
-        vd($fields);
+        //vd($type);
+        //vd($fields);
         if ('account' == $type || 'profile' == $type) {
             if ('account' == $type) {
                 $primaryKey = 'id';
@@ -1081,15 +1075,15 @@ class User extends AbstractUseApi
                 $result[$uid][$field][$set][$var] = $value;
             }
         } elseif ('custom' == $type) {
+            $meta = $this->getMeta($type);
             foreach ($fields as $field) {
-                $model = Pi::model('custom_' . $field, 'user');
-                $select = $model->select();
-                $select->order('order ASC')->where(array('uid' => $uids));
-                $rowset = $model->selectWith($select);
-                foreach ($rowset as $row) {
-                    $uid            = (int) $row['uid'];
-                    $result[$uid][$field][] = $row->toArray();
+                if (!isset($meta[$field])
+                    || empty($meta[$field]['handler'])
+                ) {
+                    continue;
                 }
+                $handler = new $meta[$field]['handler']($field);
+                $result[$uid][$field] = $handler->get($uid);
             }
         }
         if (is_scalar($uid)) {

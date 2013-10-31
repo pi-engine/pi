@@ -29,9 +29,9 @@ class TestController extends ActionController
         $this->view()->setTemplate(false);
 
         /*
-        $fields = Pi::registry('profile_field', 'user')->read('compound');
+        $fields = Pi::registry('field', 'user')->read('compound');
         vd($fields);
-        $fields = Pi::registry('compound', 'user')->read('education');
+        $fields = Pi::registry('compound_field', 'user')->read('education');
         vd($fields);
 
         vd(Pi::user()->hasIdentity());

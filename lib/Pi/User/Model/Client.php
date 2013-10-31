@@ -24,7 +24,12 @@ class Client extends System
     public function load($uid, $field = 'id')
     {
         if ($uid) {
-            $data = (array) Pi::service('user')->get($uid);
+            if ('id' == $field) {
+                $data = (array) Pi::service('user')->get($uid);
+            } else {
+                $list = Pi::service('user')->getList(array($field => $uid), 1);
+                $data = array_pop(array_values($list));
+            }
         } else {
             $data = array('id' => 0);
         }

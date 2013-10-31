@@ -119,8 +119,6 @@ class UserController extends ActionController
      */
     public function listAction()
     {
-        $users = array();
-
         $limit  = $this->params('limit', 10);
         $offset = $this->params('offset', 0);
         $order  = $this->params('order');

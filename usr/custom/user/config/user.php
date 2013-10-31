@@ -152,10 +152,4 @@ return array(
     'quicklink' => array(
     ),
 
-    // Database schema files
-    'database'  => array(
-        'sql/mysql.sql',
-        'sql/subscription.sql',
-        'sql/location.sql'
-    ),
 );

@@ -69,7 +69,7 @@ class Form extends AbstractApi
     public function getElement($name)
     {
         $element = array();
-        $elements = Pi::registry('profile_field', $this->module)->read();
+        $elements = Pi::registry('field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $element = $this->canonizeElement($elements[$name]);
         }
@@ -88,7 +88,7 @@ class Form extends AbstractApi
         $result = array(
             'name'  => $name,
         );
-        $elements = Pi::registry('profile_field', $this->module)->read();
+        $elements = Pi::registry('field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $result = $this->canonizeFilter($elements[$name]);
         }
@@ -107,7 +107,7 @@ class Form extends AbstractApi
     public function getCompoundElement($compound, $field = '')
     {
         $result = array();
-        $elements = Pi::registry('compound', $this->module)->read($compound);
+        $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
             if (isset($elements[$field])) {
                 $result = $this->canonizeElement($elements[$field]);
@@ -132,7 +132,7 @@ class Form extends AbstractApi
     public function getCompoundFilter($compound, $field = '')
     {
         $result = array();
-        $elements = Pi::registry('compound', $this->module)->read($compound);
+        $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
             if (isset($elements[$field])) {
                 $result = $this->canonizeFilter($elements[$field]);
