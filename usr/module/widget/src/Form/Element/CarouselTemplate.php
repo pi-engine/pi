@@ -17,10 +17,31 @@ class CarouselTemplate extends Select
     protected function getStyles()
     {
         $styles = array(
-            'carousel-bootstrap'    => __('Bootstrap slide'),
-            'carousel-jcarousel'    => __('jCarousel riding Carousel'),
-            'carousel-parallax'     => __('Parallax Content Slider'),
+            'carousel/bootstrap'    => __('Bootstrap slide'),
+            'carousel/jcarousel'    => __('jCarousel riding Carousel'),
+            'carousel/parallax'     => __('Parallax Content Slider'),
         );
+        // Load custom templates
+        $customPath = sprintf(
+            '%s/widget/template/block/carousel',
+            Pi::path('custom_module')
+        );
+        $iterator = new \DirectoryIterator($customPath);
+        foreach ($iterator as $fileinfo) {
+            if (!$fileinfo->isFile()) {
+                continue;
+            }
+            $filename = $fileinfo->getFilename();
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            if ('phtml' != $extension) {
+                continue;
+            }
+            $name = pathinfo($filename, PATHINFO_FILENAME);
+            if (preg_match('/[^a-z0-9_\-]/', $name)) {
+                continue;
+            }
+            $styles['carousel/' . $name] = $name;
+        }
 
         return $styles;
     }

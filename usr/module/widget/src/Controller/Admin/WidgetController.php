@@ -96,11 +96,15 @@ abstract class WidgetController extends ActionController
             if ($status) {
                 $row->delete();
                 Pi::registry('block')->clear($this->getModule());
-                $message = sprintf(__('The widget "%s" is uninstalled.'),
-                                   $row->name);
+                $message = sprintf(
+                    __('The widget "%s" is uninstalled.'),
+                    $row->name
+                );
             } else {
-                $message = sprintf(__('The widget "%s" is not uninstalled.'),
-                                   $row->name);
+                $message = sprintf(
+                    __('The widget "%s" is not uninstalled.'),
+                    $row->name
+                );
             }
         }
 
@@ -177,8 +181,10 @@ abstract class WidgetController extends ActionController
             $status = $this->processPost($form);
             if ($status > 0) {
                 $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $this->jump(
+                    array('action' => 'index', 'name' => ''),
+                    $message
+                );
 
                 return;
             } elseif ($status < 0) {
@@ -211,8 +217,10 @@ abstract class WidgetController extends ActionController
             $status = $this->processPost($form);
             if ($status > 0) {
                 $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $this->jump(
+                    array('action' => 'index', 'name' => ''),
+                    $message
+                );
 
                 return;
             } elseif ($status < 0) {
