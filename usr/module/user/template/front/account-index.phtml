@@ -58,8 +58,8 @@
                     this.isEmailValid = false;
                     this.isNameValid = false;
                     this.isValid();
-                    this.emailInitVal = this.$email.val();
-                    this.nameInitVal = this.$name.val();
+                    this.emailInitVal = $.trim(this.$email.val());
+                    this.nameInitVal = $.trim(this.$name.val());
                 },
 
                 cacheElements: function() {
@@ -164,6 +164,12 @@
                             this.isEmailValid = false;
                             this.isValid();
                             break;
+                        case emailVal == this.emailInitVal:
+                            this.$email.next().remove();
+                            this.$email.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
+                            this.isEmailValid = false;
+                            this.isValid();
+                            break;
                         default:
                             $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
                                 if (result.status) {
@@ -186,6 +192,12 @@
                         case nameVal == '' || /\s/i.test(nameVal):
                             this.$name.next().remove();
                             this.$name.after('<span class="help-inline"><?php _e('Invalid display name.'); ?></span>');
+                            this.isNameValid = false;
+                            this.isValid();
+                            break;
+                        case nameVal == this.nameInitVal:
+                            this.$name.next().remove();
+                            this.$name.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
                             this.isNameValid = false;
                             this.isValid();
                             break;
@@ -222,7 +234,8 @@
         userAccountIndex({
             accountIndexUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>',
             checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
-            comfirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>'
+            comfirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',
+            THAT_IS_YOU: '<?php _e('That\\\'s you !'); ?>'
         });
     </script>
 </div>
