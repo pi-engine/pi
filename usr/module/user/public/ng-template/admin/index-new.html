@@ -17,7 +17,7 @@
 	</div>
 	<div class="control-group"
 		ng-class="{'error': userForm.name.$dirty && userForm.name.$invalid}">
-		<label class="control-label">{{'DISPLAY_NAME' | translate}}</label>
+		<label class="control-label">{{'DISPLAYNAME' | translate}}</label>
 		<div class="controls">
 			<input type="text" ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
 			<span class="help-inline" 
@@ -26,7 +26,7 @@
 			</span>
 			<span class="help-inline" 
 				ng-show="userForm.name.$error.unique">
-				{{'DISPLAY_NAME_TAKEN' | translate}}
+				{{'DISPLAYNAME_TAKEN' | translate}}
 			</span>
 		</div>
 	</div>

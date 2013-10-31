@@ -18,11 +18,6 @@
             $rootScope.alert = 2;
             params.sort = params.sort || 'time_activated';
             server.getLog(params).success(function (data) {
-              angular.forEach(data.users, function(item) {
-                if (item.time_last_login) item.time_last_login *= 1000;
-                if (item.time_created) item.time_created *= 1000;
-                if (item.time_activated) item.time_activated *= 1000;
-              });
               data.sort = params.sort;
               deferred.resolve(data);
               $rootScope.alert = '';
@@ -40,11 +35,6 @@
             var deferred = $q.defer();
             $rootScope.alert = 2;
             server.getDeleted($route.current.params).success(function (data) {
-              angular.forEach(data.users, function(item) {
-                item.time_activated *= 1000;
-                item.time_created *= 1000;
-                item.time_deleted *= 1000;
-              });
               deferred.resolve(data);
               $rootScope.alert = '';
             });
@@ -62,7 +52,7 @@
             $rootScope.alert = 2;
             server.getUserLogs($route.current.params.id).success(function(data) {
               angular.forEach(data, function(value, key) {
-                if (value === null) data[key] = 'null';
+                if (!value) data[key] = config.t.NULL;
               });
               deferred.resolve(data);
               $rootScope.alert = '';

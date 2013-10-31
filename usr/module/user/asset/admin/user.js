@@ -274,6 +274,27 @@
       }
     }
 
+    function handleStatus(users, data) {
+      if (!data.status) return;
+      var status = data.users_status;
+      var handleItem = function(item) {
+        var ret = status[item.id];
+        item.active = item.active;
+        item.time_disabled = ret.disabled;
+        item.time_activated = ret.activated;
+        item.checked = 0;
+      };
+      if (angular.isArray(users)) {
+        $scope.allChecked = 0;
+        angular.forEach(users, function (user) {
+          if(!user.checked) return;
+          handleItem(user);
+        });
+      } else {
+        handleItem(users);
+      }
+    }
+
     $scope.markAll = function () {
       angular.forEach($scope.users, function (user) {
         user.checked = $scope.allChecked;
@@ -284,33 +305,18 @@
       var ids = getCheckIds();
       if (!ids.length) return;
       server.disable(ids).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            if (user.checked) {
-              user.time_disabled = 1;
-              user.active = 0;
-              user.checked = 0;
-            }
-          });
-        }
+        handleStatus($scope.users, data);
       });
     }
 
     $scope.enableAction = function(user) {
       if (user.time_disabled) {
         server.enable(user.id).success(function (data) {
-          if (data.status) {
-            user.time_disabled = 0;
-            if (user.time_activated) user.active = 1;
-          }
+          handleStatus(user, data);
         });
       } else {
         server.disable(user.id).success(function (data) {
-          if (data.status) {
-            user.time_disabled = 1;
-            user.active = 0;
-          }
+          handleStatus(user, data);
         });
       }
     }
@@ -319,16 +325,7 @@
       var ids = getCheckIds();
       if (!ids.length) return;
       server.enable(ids).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            if (user.checked) {
-              user.time_disabled = 0;
-              if (user.time_activated) user.active = 1;
-              user.checked = 0;
-            }
-          });
-        }
+        handleStatus($scope.users, data);
       });
     }
 
@@ -336,9 +333,7 @@
       if (user.time_activated) return;
       if (!confirm(config.t.CONFIRM_ACTIVATED)) return;
       server.active(user.id).success(function (data) {
-        if (data.status) {
-          user.time_activated = 1;
-        }
+        handleStatus(user, data);
       });
     }
 
@@ -347,15 +342,7 @@
       if (!ids.length) return;
       if (!confirm(config.t.CONFIRM_ACTIVATED_BATCH)) return;
       server.active(ids).success(function (data) {
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            if (user.checked) {
-              user.time_activated = 1;
-              user.checked = 0;
-            }
-          });
-        }
+        handleStatus($scope.users, data);
       });
     }
 

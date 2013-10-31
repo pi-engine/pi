@@ -467,7 +467,7 @@ class IndexController extends ActionController
      */
     public function activateUserAction()
     {
-        $uids = _post('ids');$uids = '2,3,4,5';
+        $uids = _post('ids');
 
         $result = array(
             'status'  => 0,
@@ -960,7 +960,7 @@ class IndexController extends ActionController
         $roles = Pi::registry('role')->read();
         $data  = array();
         foreach ($roles as $name => $role) {
-            if ('guest' == $name || 'member' == $name) {
+            if ('guest' == $name) {
                 continue;
             }
             $data[] = array(
