@@ -92,7 +92,10 @@
       var name = action ? 'grant' : 'revoke';
       server.post('_all', resource.resource, resource.section, name).success(function(data) {
         if (!data.status) return;
-        location.reload();
+        var roles = resource.roles;
+        angular.forEach(roles, function(value, key) {
+          roles[key] = action;
+        });
       });
     }
   }
