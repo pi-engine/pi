@@ -163,7 +163,7 @@ class AbstractResource
      */
     protected function getModule()
     {
-        $module = $this->event ? $this->event->getParam('module') : null;
+        $module = $this->event ? $this->event->getParam('module') : '';
         
         return $module;
     }

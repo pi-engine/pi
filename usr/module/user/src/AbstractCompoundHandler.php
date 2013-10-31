@@ -9,6 +9,7 @@
 
 namespace Module\User;
 
+use Pi;
 use Pi\Application\Installer\SqlSchema;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Form\Form;
@@ -138,13 +139,13 @@ abstract class AbstractCompoundHandler
                     Pi::path('custom_module'),
                     $this->getName()
                 );
-                if (!file_eixsts($file)) {
+                if (!file_exists($file)) {
                     $file = '';
                 }
             }
             if ($file) {
                 $sqlHandler = new SqlSchema;
-                $sqlHandler->queryFile($this->sqlFile, 'user_custom');
+                $sqlHandler->queryFile($file, 'user_custom');
             }
         }
 
@@ -361,7 +362,7 @@ abstract class AbstractCompoundHandler
     ) {
         $form = null;
         $formClass = $this->form
-            ?: 'Custom\User\Form\\Form' . ucfirst($this->getName());
+            ?: 'Custom\User\Form\Form' . ucfirst($this->getName());
         if (class_exists($formClass)) {
             $form = new $formClass($name);
             if ($action) {

@@ -33,29 +33,15 @@ return array(
 
         // Compound fields
 
-        // Compound: Communication address
-        'location'   => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-
-            'field' => array(
-                'country'   => array(
-                    'title' => __('Country'),
-                ),
-                'province'   => array(
-                    'title' => __('Province'),
-                ),
-                'city'   => array(
-                    'title' => __('City'),
-                ),
-            ),
-        ),
-
         // Compound: Education experiences
         'education'  => array(
             'name'  => 'education',
             'title' => __('Education'),
 
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Education',
+
+            // Fields
             'field' => array(
                 'school'    => array(
                     'title' => __('School name'),
@@ -86,6 +72,10 @@ return array(
             'name'  => 'work',
             'title' => __('Work'),
 
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Work',
+
+            // Fields
             'field' => array(
                 'company'    => array(
                     'title' => __('Company name'),
@@ -114,6 +104,11 @@ return array(
             'name'  => 'location',
             'title' => __('Location'),
 
+
+            // Custom handler
+            //'handler'   => 'Custom\User\Compound\Location',
+
+            // Fields
             'field'     => array(
                 'country'    => array(
                     'title' => __('Country'),
@@ -131,12 +126,32 @@ return array(
         'interest'      => array(
             'name'  => 'interest',
             'title' => __('Interests'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Interest',
+
+            // Fields
+            'field' => array(
+                'interest' => array(
+                    'title' => __('Interest'),
+                ),
+            ),
         ),
 
         // Compound: Subscriptions
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Subscription',
+
+            // Fields
+            'field' => array(
+                'item' => array(
+                    'title' => __('Item'),
+                ),
+            ),
         ),
     ),
 

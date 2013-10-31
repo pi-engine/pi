@@ -486,7 +486,7 @@ class User extends AbstractResource
     /**
      * {@inheritDoc}
      */
-    public function updateAction()
+    public function updateAction($force = false)
     {
         if (!$this->isActive()) {
             return;
@@ -494,7 +494,7 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
 
-        if ($this->skipUpgrade()) {
+        if (!$force && $this->skipUpgrade()) {
             return;
         }
 
