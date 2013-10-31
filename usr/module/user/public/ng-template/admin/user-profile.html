@@ -13,7 +13,7 @@
   <select ng-model="entity.field" class="input-medium">
     <option value="id">{{'UID' | translate}}
     <option value="identity">{{'USERNAME' | translate}}
-    <option value="name">{{'DISPLAY_NAME' | translate}}
+    <option value="name">{{'DISPLAYNAME' | translate}}
     <option value="email">{{'EMAIL' | translate}}
   </select>
   <button class="btn">{{'SEARCH' | translate}}</button>
@@ -34,9 +34,9 @@
   </div>
   <legend>{{'ACCOUNT' | translate}}</legend>
   <dl class="dl-horizontal user-field-dl">
-    <dt>{{'USER_NAME' | translate}}
+    <dt>{{'USERNAME' | translate}}
     <dd>{{user.identity}}
-    <dt>{{'DISPLAY_NAME' | translate}}
+    <dt>{{'DISPLAYNAME' | translate}}
     <dd>{{user.name}}
     <dt>{{'EMAIL' | translate}}
     <dd>{{user.email}}
