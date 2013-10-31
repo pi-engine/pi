@@ -159,6 +159,13 @@ class Client extends System
     {
         return Pi::api('uclient', 'user')->get($uid, $field, $filter);
     }
+    /**
+     * {@inheritDoc}
+     */
+    public function mget(array $uids, $field = array(), $filter = false)
+    {
+        return Pi::api('uclient', 'user')->mget($uids, $field, $filter);
+    }
 
     /**
      * {@inheritDoc}

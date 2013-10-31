@@ -154,7 +154,7 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $uids[] = (int) $row['uid'];
         }
-        $users = Pi::service('user')->get($uids, array('uid', 'name'));
+        $users = Pi::service('user')->mget($uids, array('uid', 'name'));
         $avatars = Pi::service('avatar')->getList($uids, 'small');
         array_walk($users, function (&$user) use ($avatars) {
             //$user['avatar'] = $avatars[$uid];

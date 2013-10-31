@@ -106,7 +106,7 @@ class UserController extends ActionController
 
         $uids       = $this->splitString($uid);
         $fields     = $this->splitString($field);
-        $result     = Pi::service('user')->get($uids, $fields);
+        $result     = Pi::service('user')->mget($uids, $fields);
         $response   = (array) $result;
 
         return $response;

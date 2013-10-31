@@ -316,6 +316,22 @@ class User extends AbstractUseApi
     }
 
     /**
+     * Get field value(s) of users
+     *
+     * @param int[]             $uids
+     * @param string|string[]   $field
+     * @param bool              $filter
+     * @return mixed[]
+     * @api
+     */
+    public function mget(array $uids, $field = array(), $filter = false)
+    {
+        $result = $this->get($uids, $field, $filter);
+
+        return $result;
+    }
+
+    /**
      * Set value of a user field
      *
      * @param int       $uid
