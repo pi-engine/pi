@@ -69,7 +69,7 @@ class Install extends BasicInstall
             'title'         => __('Pi Highlights'),
             'description'   => __('Introduction to Pi Engine with carousel.'),
             'type'          => 'carousel',
-            'template'      => 'carousel-bootstrap',
+            'template'      => 'carousel/bootstrap',
         );
         $block['config'] = array(
             'interval' => array(
