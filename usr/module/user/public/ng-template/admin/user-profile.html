@@ -24,7 +24,7 @@
 <div ng-if="user">
   <div class="media" style="margin-bottom: 10px;">
     <div class="pull-left">
-      <img src="{{user.avatar}}">
+      <img ng-src="{{user.avatar}}">
     </div>
     <div class="media-body">
       <h4 class="media-heading">
@@ -46,7 +46,7 @@
         {{'INACTIVE' | translate}}
       </span>
       <span ng-show="user.time_activated">
-        {{user.time_activated | date: 'yyyy-MM-dd HH:mm'}}
+        {{user.time_activated}}
       </span>
     <dt>{{'ENABLE' | translate}}
     <dd>
@@ -54,7 +54,7 @@
         {{'ENABLED' | translate}}
       </span>
       <span ng-show="user.time_disabled">
-        {{user.time_disabled | date: 'yyyy-MM-dd HH:mm'}}
+        {{user.time_disabled}}
       </span>
   </dl>
   <legend>{{'PROFILE_INFO' | translate}}</legend>

@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th style="width: 20px;">
-      <th>{{'UID' | translate}}
+      <th>{{'ID' | translate}}
       <th>{{'USERNAME' | translate}}
       <th>{{'DISPLAYNAME' | translate}}
       <th>{{'EMAIL' | translate}}
@@ -22,15 +22,16 @@
       <td>
         <input type="checkbox" ng-model="user.checked">
       <td>{{user.id}}
+      <td>
+        {{user.identity}}
         <div class="pi-row-action">
           <a href="javascript:void(0)" ng-click="clearAction($index)">{{'CLEAR' | translate}}</a>
         </div>
-      <td>{{user.identity}}
       <td>{{user.name}}
       <td>{{user.email}}
-      <td>{{user.time_activated | date: 'yyyy-MM-dd HH:mm'}}
-      <td>{{user.time_created | date: 'yyyy-MM-dd HH:mm'}}
-      <td>{{user.time_deleted | date: 'yyyy-MM-dd HH:mm'}}
+      <td>{{user.time_activated}}
+      <td>{{user.time_created}}
+      <td>{{user.time_deleted}}
 </table>
 <div class="alert" ng-if="!users.length">
   {{'NONE_USER' | translate}}
