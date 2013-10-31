@@ -129,6 +129,8 @@ class ModuleTemplate implements ResolverInterface
     /**
      * Retrieve the filesystem path to a view script
      *
+     * @FIXME Is performance a problem?
+     *
      * @param  string $name Relative or full path to template,
      *      it is highly recommended to remove suffix from relative template
      * @param  null|Renderer $renderer
