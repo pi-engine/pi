@@ -186,6 +186,20 @@ return array(
 
         // Profile fields
 
+        // Profile: Level
+        'level'    => array(
+            'name'      => 'level',
+            'title'     => __('Level'),
+
+            'is_display'    => false,
+            'is_edit'       => false,
+            'is_search'     => true,
+        ),
+        // Profile: homepage
+        'homepage'  => array(
+            'name'  => 'homepage',
+            'title' => __('Homepage'),
+        ),
         // Profile: bio
         'bio'  => array(
             'name'  => 'bio',
@@ -196,26 +210,9 @@ return array(
         'signature'  => array(
             'name'  => 'signature',
             'title' => __('Signature'),
+            'edit'  => 'textarea',
         ),
 
-        /*
-        // Profile: Full name
-        'fullname'  => array(
-            'name'      => 'fullname',
-            'title'     => __('Full name'),
-        ),
-        // Profile: location
-        'location'  => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-        ),
-        // Profile: language
-        'language'  => array(
-            'name'  => 'language',
-            'title' => __('Language'),
-            'edit'  => 'locale',
-        ),
-        */
         // Profile: Register IP
         'ip_register'  => array(
             'name'      => 'ip_register',
@@ -242,99 +239,6 @@ return array(
             ),
         ),
 
-        /*
-        // Compound: Communication address
-        'address'   => array(
-            'name'  => 'address',
-            'title' => __('Address'),
-
-            'field' => array(
-                'postcode'   => array(
-                    'title' => __('Post code'),
-                ),
-                'country'   => array(
-                    'title' => __('Country'),
-                ),
-                'province'   => array(
-                    'title' => __('Province'),
-                ),
-                'city'   => array(
-                    'title' => __('City'),
-                ),
-                'street'   => array(
-                    'title' => __('Street'),
-                ),
-                'room'      => array(
-                    'title' => __('Room'),
-                ),
-            ),
-
-            'is_edit'       => true,
-            'is_display'    => true,
-            'is_search'     => false,
-        ),
-
-        // Compound: Education experiences
-        'education'  => array(
-            'name'  => 'education',
-            'title' => __('Education'),
-
-            'field' => array(
-                'school'    => array(
-                    'title' => __('School name'),
-                ),
-                'major'    => array(
-                    'title' => __('Major'),
-                ),
-                'degree'    => array(
-                    'title' => __('Degree'),
-                ),
-                'class'    => array(
-                    'title' => __('Class'),
-                ),
-                'start'    => array(
-                    'title' => __('Start time'),
-                ),
-                'end'    => array(
-                    'title' => __('End time'),
-                ),
-            ),
-            'is_edit'       => true,
-            'is_display'    => true,
-            'is_search'     => false,
-        ),
-
-        // Compound: Profession experiences
-        'work'      => array(
-            'name'  => 'work',
-            'title' => __('Work'),
-
-            'field' => array(
-                'company'    => array(
-                    'title' => __('Company name'),
-                ),
-                'department'    => array(
-                    'title' => __('Department'),
-                ),
-                'title'    => array(
-                    'title' => __('Job title'),
-                ),
-                'description'   => array(
-                    'title' => __('Description'),
-                    'edit'  => 'textarea',
-                ),
-                'start'    => array(
-                    'title' => __('Start time'),
-                ),
-                'end'    => array(
-                    'title' => __('End time'),
-                ),
-            ),
-            'is_edit'       => true,
-            'is_display'    => true,
-            'is_search'     => false,
-        ),
-        */
     ),
 
     // Timeline logs from modules
