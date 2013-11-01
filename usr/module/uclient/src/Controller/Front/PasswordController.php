@@ -27,6 +27,7 @@ class PasswordController extends ActionController
     {
         $this->view()->setTemplate(false);
     }
+
     /**
      * 1. Display find password form
      * 2. Verify email
@@ -46,11 +47,14 @@ class PasswordController extends ActionController
             if ($form->isValid()) {
                 $value = $form->getData();
                 // Check email is  exist
+                /*
                 $userRow = Pi::api('uclient', 'user')->getList(
                         array('email' => $value['email']),
                         0, 0, '', array('email', 'id')
                     );
                 $userRow = array_pop($userRow);
+                */
+                $userRow = Pi::service('user')->getUser($value['email'], 'email');
                 if (!$userRow) {
                     $this->view()->assign(array(
                         'form'   => $form,
