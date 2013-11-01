@@ -23,6 +23,10 @@ return array(
             'permission'    => 'profile',
         ),
         array(
+            'controller'    => 'import',
+            'permission'    => 'import',
+        ),
+        array(
             'controller'    => 'avatar',
             'permission'    => 'avatar',
         ),

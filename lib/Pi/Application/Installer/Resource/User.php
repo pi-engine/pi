@@ -325,9 +325,9 @@ class User extends AbstractResource
             }
         }
         if ('compound' == $spec['type'] || 'custom' == $spec['type']) {
-            $spec['is_edit'] = 0;
-            $spec['is_display'] = 0;
-            $spec['is_search'] = 0;
+            $spec['is_display'] = 1;
+            $spec['is_edit']    = 0;
+            $spec['is_search']  = 0;
 
             return $spec;
         }

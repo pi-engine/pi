@@ -30,6 +30,7 @@ class Field extends AbstractRegistry
     {
         $fields = array();
 
+        $where = array('active' => 1);
         $columns = array();
         switch ($options['action']) {
             case 'display':
@@ -45,17 +46,20 @@ class Field extends AbstractRegistry
                 $where['is_search'] = 1;
                 break;
             default:
+                //$columns = array('name', 'title');
                 break;
         }
-        $where = array('active' => 1);
         if (!empty($options['type'])) {
             $where['type'] = $options['type'];
+        } else {
+            $columns[] = 'type';
         }
         if ($columns &&
             (empty($options['type']) || 'custom' == $options['type'])
         ) {
             $columns[] = 'handler';
         }
+
         $model = Pi::model('field', $this->module);
         $select = $model->select()->where($where);
         if ($columns) {
