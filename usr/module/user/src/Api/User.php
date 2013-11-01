@@ -28,7 +28,7 @@ class User extends AbstractUseApi
      * Get fields specs of specific type and action
      *
      * - Available types: `account`, `profile`, `compound`, `custom`
-     * - Available actions: `display`, `edit`, `search`
+     * - Available actions: `display`, `edit`, `search`, `all`
      *
      * @param string $type
      * @param string $action
@@ -144,7 +144,7 @@ class User extends AbstractUseApi
 
                 if ($order) {
                     if (is_array($order)) {
-                        $fields = Pi::registry('field', 'user')->read();
+                        $fields = Pi::registry('field', 'user')->read('', 'search');
                         $result = array();
                         foreach ($order as $key => $val) {
                             if (is_string($key)) {
@@ -508,7 +508,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $fieldMeta = Pi::registry('field', 'user')->read();
+        $fieldMeta = Pi::registry('field', 'user')->read('', 'all');
         if (isset($fieldMeta[$field])) {
             $type = $fieldMeta[$field]['type'];
             $result = $this->setTypeField($uid, $type, $field, $value);

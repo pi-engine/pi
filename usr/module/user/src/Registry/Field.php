@@ -33,20 +33,23 @@ class Field extends AbstractRegistry
         $where = array('active' => 1);
         $columns = array();
         switch ($options['action']) {
-            case 'display':
-                $columns = array('name', 'title', 'filter');
-                $where['is_display'] = 1;
+            case 'all':
                 break;
+
             case 'edit':
-                $columns = array('name', 'title', 'edit');
+                $columns[] = 'edit';
                 $where['is_edit'] = 1;
                 break;
+
             case 'search':
-                $columns = array('name', 'title');
+                //$columns = array('name', 'title');
                 $where['is_search'] = 1;
                 break;
+
+            case 'display':
             default:
-                //$columns = array('name', 'title');
+                $columns[] = 'filter';
+                $where['is_display'] = 1;
                 break;
         }
         if (!empty($options['type'])) {
@@ -58,6 +61,10 @@ class Field extends AbstractRegistry
             (empty($options['type']) || 'custom' == $options['type'])
         ) {
             $columns[] = 'handler';
+        }
+        if ($columns) {
+            $columns[] = 'name';
+            $columns[] = 'title';
         }
 
         $model = Pi::model('field', $this->module);
@@ -77,11 +84,12 @@ class Field extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $type Field types: account, profile, compound
-     * @param string $action Actions: display, edit, search
+     * @param string $action Actions: display, edit, search, all
      * @param array
      */
     public function read($type = '', $action = '')
     {
+        $action = $action ?: 'display';
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 

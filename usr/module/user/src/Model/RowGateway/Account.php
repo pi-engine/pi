@@ -24,6 +24,6 @@ class Account extends AccountRowGateway
      */
     protected function getMetaList()
     {
-        return Pi::registry('field', 'user')->read('account');
+        return Pi::registry('field', 'user')->read('account', 'all');
     }
 }

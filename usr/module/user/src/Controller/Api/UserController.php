@@ -155,7 +155,8 @@ class UserController extends ActionController
     public function metaAction()
     {
         $response = array();
-        $meta = Pi::registry('field', 'user')->read('', 'display');
+        //$meta = Pi::registry('field', 'user')->read('', 'display');
+        $meta = Pi::registry('field', 'user')->read();
         array_walk($meta, function ($data) use (&$response) {
             $field = $data['name'];
             $response[$field] = array(
