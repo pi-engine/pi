@@ -17,13 +17,13 @@ use Zend\Form\Element;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Country extends Element
+class Location extends Element
 {
     /**
      * Seed attributes
      * @var array
      */
     protected $attributes = array(
-        'type'  => 'Custom\User\Form\View\Helper\Country',
+        'type'  => 'Custom\User\Form\View\Helper\Location',
     );
 }

@@ -34,6 +34,7 @@ class Field extends AbstractRegistry
         $columns = array();
         switch ($options['action']) {
             case 'all':
+                $options['type'] = '';
                 break;
 
             case 'edit':
@@ -54,7 +55,7 @@ class Field extends AbstractRegistry
         }
         if (!empty($options['type'])) {
             $where['type'] = $options['type'];
-        } else {
+        } elseif ($columns) {
             $columns[] = 'type';
         }
         if ($columns &&

@@ -17,7 +17,6 @@ CREATE TABLE `{education}` (
   `department`      varchar(64)     NOT NULL,
   `major`           varchar(64)     NOT NULL,
   `degree`          varchar(64)     NOT NULL,
-  `class`           varchar(64)     NOT NULL,
   `start`           varchar(64)     NOT NULL,
   `end`             varchar(64)     NOT NULL,
   `description`     text,

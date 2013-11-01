@@ -24,11 +24,35 @@ return array(
             'name'      => 'fullname',
             'title'     => __('Full name'),
         ),
-        // Profile: language
+
+        // Profile: Language
         'language'  => array(
             'name'  => 'language',
             'title' => __('Language'),
             'edit'  => 'locale',
+        ),
+
+        // Profile: Country
+        'country'  => array(
+            'name'  => 'country',
+            'title' => __('Country'),
+            'edit'  => 'Custom\User\Form\Element\Location',
+        ),
+
+        // Profile: Province
+        'province'  => array(
+            'name'  => 'province',
+            'title' => __('Province'),
+
+            'is_edit'  => false,
+        ),
+
+        // Profile: City
+        'city'  => array(
+            'name'  => 'city',
+            'title' => __('city'),
+
+            'is_edit'  => false,
         ),
 
         // Compound fields
@@ -95,29 +119,6 @@ return array(
                 ),
                 'end'    => array(
                     'title' => __('End time'),
-                ),
-            ),
-        ),
-
-        // Compound: location
-        'location'      => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-
-
-            // Custom handler
-            //'handler'   => 'Custom\User\Compound\Location',
-
-            // Fields
-            'field'     => array(
-                'country'    => array(
-                    'title' => __('Country'),
-                ),
-                'province'    => array(
-                    'title' => __('Province'),
-                ),
-                'city'    => array(
-                    'title' => __('City'),
                 ),
             ),
         ),
