@@ -26,7 +26,7 @@ class ProfileController extends ActionController
     
     public function fieldAction()
     {
-        $fields = Pi::registry('field', 'user')->read();
+        $fields = Pi::registry('field', 'user')->read('', 'all');
         /*
         $fields = $this->getModel('field')->select(
             array(
@@ -84,7 +84,7 @@ class ProfileController extends ActionController
      */
     public function dressUpAction()
     {
-        $fields = Pi::registry('field', 'user')->read();
+        $fields = Pi::registry('field', 'user')->read('', 'all');
         /*
         $fields = $this->getModel('field')->select(
             array(
@@ -95,6 +95,8 @@ class ProfileController extends ActionController
         );
         */
 
+        $compounds = array();
+        $profile = array();
         foreach ($fields as $field) {
             //if ($field['is_display']) {
                 if ($field['type'] == 'custom' || $field['type'] == 'compound') {
@@ -103,7 +105,7 @@ class ProfileController extends ActionController
                         'title'  => $field['title'],
                         'module' => $field['module'],
                     );
-                } else {
+                } elseif ($field['is_display']) {
                     $profile[$field['name']] = array(
                         'name'   => $field['name'],
                         'module' => $field['module'],
@@ -113,6 +115,7 @@ class ProfileController extends ActionController
                 }
             //}
         }
+        //var_dump($fields);
 
         // Get compound
         foreach ($compounds as $name => &$compound) {
