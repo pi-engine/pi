@@ -60,6 +60,7 @@
                     this.isValid();
                     this.emailInitVal = $.trim(this.$email.val());
                     this.nameInitVal = $.trim(this.$name.val());
+                    this.checkRequest = null;
                 },
 
                 cacheElements: function() {
@@ -171,18 +172,23 @@
                             this.isValid();
                             break;
                         default:
-                            $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
-                                if (result.status) {
-                                    this.$email.next().remove();
-                                    this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
-                                    this.isEmailValid = false;
-                                    this.isValid();
-                                } else {
-                                    this.$email.next().remove();
-                                    this.isEmailValid = true;
-                                    this.isValid();
-                                }
-                            }, this));
+                            if (this.checkRequest) {
+                                clearTimeout(this.checkRequest);
+                            }
+                            this.checkRequest = setTimeout($.proxy(function(){
+                                $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
+                                    if (result.status) {
+                                        this.$email.next().remove();
+                                        this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
+                                        this.isEmailValid = false;
+                                        this.isValid();
+                                    } else {
+                                        this.$email.next().remove();
+                                        this.isEmailValid = true;
+                                        this.isValid();
+                                    }
+                                }, this));
+                            }, this), 400);
                     }
                 },
 
@@ -202,18 +208,23 @@
                             this.isValid();
                             break;
                         default:
-                            $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
-                                if (result.status) {
-                                    this.$name.next().remove();
-                                    this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
-                                    this.isNameValid = false;
-                                    this.isValid();
-                                } else {
-                                    this.$name.next().remove();
-                                    this.isNameValid = true;
-                                    this.isValid();
-                                }
-                            }, this));
+                            if (this.checkRequest) {
+                                clearTimeout(this.checkRequest);
+                            }
+                            this.checkRequest = setTimeout($.proxy(function(){
+                                $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
+                                    if (result.status) {
+                                        this.$name.next().remove();
+                                        this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
+                                        this.isNameValid = false;
+                                        this.isValid();
+                                    } else {
+                                        this.$name.next().remove();
+                                        this.isNameValid = true;
+                                        this.isValid();
+                                    }
+                                }, this));
+                            }, this), 400);
                     }
                 },
 
