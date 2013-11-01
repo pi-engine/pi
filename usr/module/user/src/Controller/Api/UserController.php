@@ -84,12 +84,12 @@ class UserController extends ActionController
      */
     public function getAction()
     {
-        $uid    = $this->params('id');
-        $field  = $this->params('field');
+        $uid        = $this->params('id');
+        $field      = $this->params('field');
 
-        $fields = $this->splitString($field);
-        $result = Pi::service('user')->get($uid, $fields);
-        $response = (array) $result;
+        $fields     = $this->splitString($field);
+        $result     = Pi::service('user')->get($uid, $fields);
+        $response   = (array) $result;
 
         return $response;
     }
@@ -106,7 +106,7 @@ class UserController extends ActionController
 
         $uids       = $this->splitString($uid);
         $fields     = $this->splitString($field);
-        $result     = Pi::service('user')->get($uids, $fields);
+        $result     = Pi::service('user')->mget($uids, $fields);
         $response   = (array) $result;
 
         return $response;
@@ -119,8 +119,6 @@ class UserController extends ActionController
      */
     public function listAction()
     {
-        $users = array();
-
         $limit  = $this->params('limit', 10);
         $offset = $this->params('offset', 0);
         $order  = $this->params('order');
@@ -156,7 +154,26 @@ class UserController extends ActionController
      */
     public function metaAction()
     {
-        $response = Pi::service('user')->getMeta('', 'display');
+        $response = array();
+        //$meta = Pi::registry('field', 'user')->read('', 'display');
+        $meta = Pi::registry('field', 'user')->read();
+        array_walk($meta, function ($data) use (&$response) {
+            $field = $data['name'];
+            $response[$field] = array(
+                'name'  => $field,
+                'title' => $data['title'],
+            );
+            if ('compound' == $data['type'] || 'custom' == $data['type']) {
+                $fields = Pi::registry('compound_field', 'user')->read($field);
+                array_walk($fields, function ($fData) use (&$response) {
+                    $field = $fData['compound'];
+                    $response[$field]['field'][$fData['name']] = array(
+                        'name'  => $fData['name'],
+                        'title' => $fData['title'],
+                    );
+                });
+            }
+        });
 
         return $response;
     }

@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Widget\Render;
+namespace Custom\Widget\Render;
 
 use Pi;
 

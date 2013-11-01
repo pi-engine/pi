@@ -471,7 +471,7 @@ class ListController extends ActionController
         }
         if ($uids) {
             $uids = array_unique($uids);
-            $users = Pi::service('user')->get($uids, array('name'));
+            $users = Pi::service('user')->mget($uids, array('name'));
             $avatars = Pi::service('avatar')->getList($uids, 'small');
             array_walk($users, function (&$data, $uid) use ($avatars) {
                 $data['url'] = Pi::service('user')->getUrl(

@@ -38,6 +38,13 @@ return array(
                 //'admin',
             ),
         ),
+        'import'      => array(
+            'title'         => __('Custom fields'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+
         'avatar'       => array(
             'title'         => __('Avatars'),
             'access'        => array(

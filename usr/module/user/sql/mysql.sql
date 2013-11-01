@@ -42,8 +42,10 @@ CREATE TABLE `{field}` (
   `title`           varchar(255)    NOT NULL default '',
   -- Specs for edit form element, filters and validators, encoded with json
   `edit`            text,
-  -- Filter for display value; or handler for custom
+  -- Filter for display value
   `filter`          text,
+  -- Handler for custom compound
+  `handler`         text,
 
   -- Field type, default as 'profile'
   `type`            enum('profile', 'account', 'compound', 'custom') NOT NULL,

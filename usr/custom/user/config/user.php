@@ -24,38 +24,48 @@ return array(
             'name'      => 'fullname',
             'title'     => __('Full name'),
         ),
-        // Profile: language
+
+        // Profile: Language
         'language'  => array(
             'name'  => 'language',
             'title' => __('Language'),
             'edit'  => 'locale',
         ),
 
-        // Compound fields
-
-        // Compound: Communication address
-        'location'   => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-
-            'field' => array(
-                'country'   => array(
-                    'title' => __('Country'),
-                ),
-                'province'   => array(
-                    'title' => __('Province'),
-                ),
-                'city'   => array(
-                    'title' => __('City'),
-                ),
-            ),
+        // Profile: Country
+        'country'  => array(
+            'name'  => 'country',
+            'title' => __('Country'),
+            'edit'  => 'Custom\User\Form\Element\Location',
         ),
+
+        // Profile: Province
+        'province'  => array(
+            'name'  => 'province',
+            'title' => __('Province'),
+
+            'is_edit'  => false,
+        ),
+
+        // Profile: City
+        'city'  => array(
+            'name'  => 'city',
+            'title' => __('city'),
+
+            'is_edit'  => false,
+        ),
+
+        // Compound fields
 
         // Compound: Education experiences
         'education'  => array(
             'name'  => 'education',
             'title' => __('Education'),
 
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Education',
+
+            // Fields
             'field' => array(
                 'school'    => array(
                     'title' => __('School name'),
@@ -86,6 +96,10 @@ return array(
             'name'  => 'work',
             'title' => __('Work'),
 
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Work',
+
+            // Fields
             'field' => array(
                 'company'    => array(
                     'title' => __('Company name'),
@@ -109,34 +123,36 @@ return array(
             ),
         ),
 
-        // Compound: location
-        'location'      => array(
-            'name'  => 'location',
-            'title' => __('Location'),
-
-            'field'     => array(
-                'country'    => array(
-                    'title' => __('Country'),
-                ),
-                'province'    => array(
-                    'title' => __('Province'),
-                ),
-                'city'    => array(
-                    'title' => __('City'),
-                ),
-            ),
-        ),
-
         // Compound: Profession interests
         'interest'      => array(
             'name'  => 'interest',
             'title' => __('Interests'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Interest',
+
+            // Fields
+            'field' => array(
+                'interest' => array(
+                    'title' => __('Interest'),
+                ),
+            ),
         ),
 
         // Compound: Subscriptions
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Compound\Subscription',
+
+            // Fields
+            'field' => array(
+                'item' => array(
+                    'title' => __('Item'),
+                ),
+            ),
         ),
     ),
 
@@ -152,10 +168,4 @@ return array(
     'quicklink' => array(
     ),
 
-    // Database schema files
-    'database'  => array(
-        'sql/mysql.sql',
-        'sql/subscription.sql',
-        'sql/location.sql'
-    ),
 );

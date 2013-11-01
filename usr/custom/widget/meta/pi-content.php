@@ -24,7 +24,7 @@ return array(
         // Yes or No option
         'show_github'    => array(
             'title'         => 'Github activities',
-            'description'   => 'To display commit activites from github.',
+            'description'   => 'To display commit activities from github.',
             'edit'          => 'checkbox',
             //'filter'        => 'number_int',
             'value'         => '1',

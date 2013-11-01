@@ -124,7 +124,7 @@ class IndexController extends ActionController
             );
         }
         if ($users) {
-            $userNames = Pi::service('user')->get(array_keys($users), 'name');
+            $userNames = Pi::service('user')->mget(array_keys($users), 'name');
             array_walk($users, function (&$user, $uid) use ($userNames) {
                 $user['name'] = $userNames[$uid];
                 $user['profile'] = Pi::service('user')->getUrl('profile', $uid);

@@ -11,7 +11,7 @@ namespace Module\User\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicAction;
-use Pi\Application\Installer\Module as ModuleInstaller;
+//use Pi\Application\Installer\Module as ModuleInstaller;
 use Pi\Application\Installer\Resource\User as UserResource;
 use Zend\EventManager\Event;
 

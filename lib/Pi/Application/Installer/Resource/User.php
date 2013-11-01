@@ -10,6 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
+use Module\User\AbstractCompoundHandler;
 
 /**
  * User meta setup
@@ -125,6 +126,9 @@ use Pi;
  *              // if not specified
  *              'name'          => <specified_field_name>,
  *              'title'         => __('Custom Compound'),
+ *
+ *              // Callback class for operation handling
+ *              'handler'       => <Custom\User\Field\HandlerClass>,
  *
  *              'field' => array(
  *                  <field-key> => array(
@@ -276,7 +280,7 @@ class User extends AbstractResource
             if (isset($data['field'])) {
                 $profile['compound_field'] += $this->canonizeCompoundField(
                     $data['field'],
-                    $data['name']
+                    $data
                 );
                 unset($data['field']);
             }
@@ -312,16 +316,18 @@ class User extends AbstractResource
     protected function canonizeField($spec)
     {
         if (!isset($spec['type'])) {
-            if (isset($spec['field'])) {
+            if (!empty($spec['handler'])) {
+                $spec['type'] = 'custom';
+            } elseif (isset($spec['field'])) {
                 $spec['type'] = 'compound';
             } else {
                 $spec['type'] = 'profile';
             }
         }
         if ('compound' == $spec['type'] || 'custom' == $spec['type']) {
-            $spec['is_edit'] = 0;
-            $spec['is_display'] = 0;
-            $spec['is_search'] = 0;
+            $spec['is_display'] = 1;
+            $spec['is_edit']    = 0;
+            $spec['is_search']  = 0;
 
             return $spec;
         }
@@ -360,31 +366,35 @@ class User extends AbstractResource
      * Indexing compound field with <compound-name>-<field-name>
      *
      * @param array $config
-     * @param string $compound
+     * @param array $compound   Compound specs
      * @return array
      */
-    protected function canonizeCompoundField(array $config, $compound)
+    protected function canonizeCompoundField(array $config, array $compound)
     {
         $fields = array();
-        $module = $this->getModule();
         foreach ($config as $key => &$data) {
+            $data['compound'] = $compound['name'];
             if (!isset($data['name'])) {
                 $data['name'] = $key;
             }
-            if (!isset($data['edit'])) {
-                $data['edit'] = 'text';
+            if (!isset($data['module'])) {
+                $data['module'] = $compound['module'];
             }
-            $data['edit'] = $this->canonizeFieldEdit($data['edit']);
-            if (isset($data['filter'])) {
-                if (empty($data['filter'])) {
-                    $data['filter'] = array();
-                } else {
-                    $data['filter'] = (array) $data['filter'];
+            //if ('compound' == $compound['type']) {
+                if (!isset($data['edit'])) {
+                    $data['edit'] = 'text';
                 }
-            }
-            $data['module'] = $module;
-            $data['compound'] = $compound;
-            $fields[$compound . '-' . $key] = $data;
+                $data['edit'] = $this->canonizeFieldEdit($data['edit']);
+                if (isset($data['filter'])) {
+                    if (empty($data['filter'])) {
+                        $data['filter'] = array();
+                    } else {
+                        $data['filter'] = (array) $data['filter'];
+                    }
+                }
+            //}
+
+            $fields[$compound['name'] . '-' . $key] = $data;
         }
 
         return $fields;
@@ -428,10 +438,11 @@ class User extends AbstractResource
         if (empty($this->config)) {
             return;
         }
-        Pi::registry('profile_field', 'user')->clear();
+        Pi::registry('field', 'user')->clear();
 
-        $profileFields = array();
-        $config = $this->canonize($this->config);
+        $profileFields  = array();
+        $customNew      = array();
+        $config         = $this->canonize($this->config);
         foreach (array(
             'field',
             'compound_field',
@@ -453,14 +464,20 @@ class User extends AbstractResource
                         ),
                     );
                 }
-                if ('field' == $op && 'profile' == $spec['type']) {
-                    $profileFields[] = $key;
+                if ('field' == $op) {
+                    if ('profile' == $spec['type']) {
+                        $profileFields[] = $key;
+                    } elseif ('custom' == $spec['type']) {
+                        $customNew[] = $spec;
+                    }
                 }
             }
         }
-
         if ($profileFields) {
             $this->addFields($profileFields);
+        }
+        if ($customNew) {
+            $this->custom('add', $customNew);
         }
 
         return true;
@@ -469,20 +486,21 @@ class User extends AbstractResource
     /**
      * {@inheritDoc}
      */
-    public function updateAction()
+    public function updateAction($force = false)
     {
         if (!$this->isActive()) {
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile_field', 'user')->clear();
+        Pi::registry('field', 'user')->clear();
 
-        if ($this->skipUpgrade()) {
+        if (!$force && $this->skipUpgrade()) {
             return;
         }
 
-        $fieldsNew = array();
-        $itemsDeleted = array();
+        $custom         = array();
+        $fieldsNew      = array();
+        $itemsDeleted   = array();
         $config = $this->canonize($this->config);
         foreach (array(
             'field',
@@ -498,9 +516,9 @@ class User extends AbstractResource
             $itemsDeleted[$op] = array();
             foreach ($rowset as $row) {
                 if ('compound_field' == $op) {
-                    $key = $row->compound . '-' . $row->name;
+                    $key = $row['compound'] . '-' . $row['name'];
                 } else {
-                    $key = $row->name;
+                    $key = $row['name'];
                 }
                 // Update existent item
                 if (isset($items[$key])) {
@@ -514,10 +532,19 @@ class User extends AbstractResource
 
                     $row->assign($items[$key]);
                     $row->save();
+
+                    if ('field' == $op && 'custom' == $row['type']) {
+                        $custom['update'][] = $row->toArray();
+                    }
+
                     unset($items[$key]);
 
                 // Delete deprecated items
                 } else {
+                    if ('field' == $op && 'custom' == $row['type']) {
+                        $custom['delete'][] = $row->toArray();
+                    }
+
                     $itemsDeleted[$op][] = $key;
                     $row->delete();
                 }
@@ -536,8 +563,12 @@ class User extends AbstractResource
                         ),
                     );
                 }
-                if ('field' == $op && 'profile' == $spec['type']) {
-                    $fieldsNew[] = $key;
+                if ('field' == $op) {
+                    if ('profile' == $spec['type']) {
+                        $fieldsNew[] = $key;
+                    } elseif ('custom' == $spec['type']) {
+                        $custom['add'][] = $spec;
+                    }
                 }
             }
         }
@@ -550,11 +581,6 @@ class User extends AbstractResource
         // Delete deprecated user custom profile data
         if ($itemsDeleted['field']) {
             $this->dropFields($itemsDeleted['field']);
-            /*
-            Pi::model('profile', 'user')->delete(array(
-                'field' => $itemsDeleted['field'],
-            ));
-            */
             Pi::model('compound_field', 'user')->delete(array(
                 'compound' => $itemsDeleted['field'],
             ));
@@ -581,6 +607,11 @@ class User extends AbstractResource
             ));
         }
 
+        // Custom compound
+        foreach ($custom as $op => $list) {
+            $this->custom($op, $list);
+        }
+
         return true;
     }
 
@@ -595,17 +626,20 @@ class User extends AbstractResource
         if (!$this->isActive() || 'user' == $module) {
             return;
         }
-        Pi::registry('profile_field', 'user')->clear();
+        Pi::registry('field', 'user')->clear();
 
-        $model = Pi::model('field', 'user');
-        $fields = array();
-        $rowset = $model->select(array('module' => $module));
+        $fields         = array();
+        $customDelete   = array();
+        $model          = Pi::model('field', 'user');
+        $rowset         = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
-            $fields[] = $row->name;
+            $fields[] = $row['name'];
+            if ('custom' == $row['type']) {
+                $customDelete[] = $row->toArray();
+            }
         }
         // Remove module profile data
         if ($fields) {
-            //Pi::model('profile', 'user')->delete(array('field' => $fields));
             $this->dropFields($fields);
         }
 
@@ -636,6 +670,10 @@ class User extends AbstractResource
             $model->delete(array('module' => $module));
         }
 
+        if ($customDelete) {
+            $this->custom('drop', $customDelete);
+        }
+
         return true;
     }
 
@@ -648,7 +686,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile_field', 'user')->clear();
+        Pi::registry('field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -669,7 +707,7 @@ class User extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('profile_field', 'user')->clear();
+        Pi::registry('field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -690,7 +728,7 @@ class User extends AbstractResource
      */
     protected function addFields(array $fields)
     {
-        //$meta = Pi::registry('profile_field', 'user')->read('account');
+        //$meta = Pi::registry('field', 'user')->read('account');
         $table = Pi::model('profile', 'user')->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';
@@ -724,7 +762,7 @@ class User extends AbstractResource
      */
     protected function dropFields(array $fields)
     {
-        //$meta = Pi::registry('profile_field', 'user')->read('profile');
+        //$meta = Pi::registry('field', 'user')->read('profile');
         $table = Pi::model('profile', 'user')->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';
@@ -748,4 +786,39 @@ class User extends AbstractResource
 
         return true;
     }
+
+
+    /**
+     * Custom compound operations
+     *
+     * @param string $op
+     * @param array $list
+     *
+     * @return bool
+     */
+    protected function custom($op, array $list)
+    {
+        foreach ($list as $compound) {
+            $handler = new $compound['handler'];
+            if (!$handler instanceof AbstractCompoundHandler) {
+                continue;
+            }
+            switch ($op) {
+                case 'add':
+                    $handler->install();
+                    break;
+                case 'update':
+                    $handler->modify();
+                    break;
+                case 'drop':
+                    $handler->uninstall();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return true;
+    }
+
 }

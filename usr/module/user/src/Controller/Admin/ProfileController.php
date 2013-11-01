@@ -26,7 +26,8 @@ class ProfileController extends ActionController
     
     public function fieldAction()
     {
-        //$fields = Pi::registry('profile_field', 'user')->read();
+        $fields = Pi::registry('field', 'user')->read('', 'all');
+        /*
         $fields = $this->getModel('field')->select(
             array(
                 'is_display' => 1,
@@ -34,8 +35,9 @@ class ProfileController extends ActionController
                 'active'     => 1,
             )
         );
+        */
         foreach ($fields as $field) {
-            if ($field['type'] == 'compound') {
+            if ($field['type'] == 'compound' || $field['type'] == 'custom') {
                 $compounds[$field['name']] = array(
                     'name'   => $field['name'],
                     'title'      => $field['title'],
@@ -59,7 +61,7 @@ class ProfileController extends ActionController
 
         // Get compound
         foreach ($compounds as $name => &$compound) {
-            $compoundMeta = Pi::registry('compound', 'user')->read($name);
+            $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
                 $compound['fields'][] = array(
                     'name'  => $meta['name'],
@@ -82,7 +84,8 @@ class ProfileController extends ActionController
      */
     public function dressUpAction()
     {
-//        $fields = Pi::registry('profile_field', 'user')->read();
+        $fields = Pi::registry('field', 'user')->read('', 'all');
+        /*
         $fields = $this->getModel('field')->select(
             array(
                 'is_display' => 1,
@@ -90,16 +93,19 @@ class ProfileController extends ActionController
                 'active'     => 1,
             )
         );
+        */
 
+        $compounds = array();
+        $profile = array();
         foreach ($fields as $field) {
-            if ($field['is_display']) {
-                if ($field['type'] == 'compound') {
+            //if ($field['is_display']) {
+                if ($field['type'] == 'custom' || $field['type'] == 'compound') {
                     $compounds[$field['name']] = array(
                         'name'   => $field['name'],
                         'title'  => $field['title'],
                         'module' => $field['module'],
                     );
-                } else {
+                } elseif ($field['is_display']) {
                     $profile[$field['name']] = array(
                         'name'   => $field['name'],
                         'module' => $field['module'],
@@ -107,12 +113,13 @@ class ProfileController extends ActionController
 
                     );
                 }
-            }
+            //}
         }
+        //var_dump($fields);
 
         // Get compound
         foreach ($compounds as $name => &$compound) {
-            $compoundMeta = Pi::registry('compound', 'user')->read($name);
+            $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
                 $compound['fields'][] = array(
                     'name'  => $meta['name'],
@@ -265,8 +272,8 @@ class ProfileController extends ActionController
         }
 
         // Flush
-        Pi::registry('compound', 'user')->flush();
-        Pi::registry('profile_field', 'user')->flush();
+        Pi::registry('compound_field', 'user')->flush();
+        Pi::registry('field', 'user')->flush();
 
         return $result;
 
@@ -368,7 +375,7 @@ class ProfileController extends ActionController
      */
     protected function getGroupDisplay()
     {
-        $profileMeta = Pi::registry('profile_field', 'user')->read();
+        $profileMeta = Pi::registry('field', 'user')->read();
         $result      = array();
         $groupModel  = $this->getModel('display_group');
         $select      = $groupModel->select()->where(array());
@@ -393,7 +400,7 @@ class ProfileController extends ActionController
             }
 
             if ($row['compound']) {
-                $compoundMeta = Pi::registry('compound', 'user')->read(
+                $compoundMeta = Pi::registry('compound_field', 'user')->read(
                     $row['compound']
                 );
                 $result[$row['id']]['module'] = $profileMeta[$row['compound']]['module'];

@@ -459,7 +459,7 @@ class ProfileController extends ActionController
 
         // Get compound name
         $compound = $this->getCompoundName($compoundId);
-        $compoundField = Pi::registry('profile_field', 'user')->read('compound');
+        $compoundField = Pi::registry('field', 'user')->read('compound');
         if (!isset($compoundField[$compound])) {
             return array(
                 'status'  => 0,
@@ -468,7 +468,7 @@ class ProfileController extends ActionController
         }
 
         // Get compound element for edit
-        $compoundMeta     = Pi::registry('compound', 'user')->read($compound);
+        $compoundMeta     = Pi::registry('compound_field', 'user')->read($compound);
         $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
         $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
         $compoundData     = Pi::api('user', 'user')->get($uid, $compound);
@@ -726,7 +726,7 @@ class ProfileController extends ActionController
 
             if ($group['compound']) {
                 // Compound meta
-                $compoundMeta = Pi::registry('compound', 'user')->read(
+                $compoundMeta = Pi::registry('compound_field', 'user')->read(
                     $group['compound']
                 );
 

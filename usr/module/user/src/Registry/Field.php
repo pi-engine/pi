@@ -18,7 +18,7 @@ use Pi\Application\Registry\AbstractRegistry;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ProfileField extends AbstractRegistry
+class Field extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'user';
@@ -30,28 +30,44 @@ class ProfileField extends AbstractRegistry
     {
         $fields = array();
 
-        $columns = array();
         $where = array('active' => 1);
-        if ($options['type']) {
-            $where['type'] = $options['type'];
-        }
-
+        $columns = array();
         switch ($options['action']) {
-            case 'display':
-                $columns = array('name', 'title', 'filter');
-                $where['is_display'] = 1;
+            case 'all':
+                $options['type'] = '';
                 break;
+
             case 'edit':
-                $columns = array('name', 'title', 'edit');
+                $columns[] = 'edit';
                 $where['is_edit'] = 1;
                 break;
+
             case 'search':
-                $columns = array('name', 'title');
+                //$columns = array('name', 'title');
                 $where['is_search'] = 1;
                 break;
+
+            case 'display':
             default:
+                $columns[] = 'filter';
+                $where['is_display'] = 1;
                 break;
         }
+        if (!empty($options['type'])) {
+            $where['type'] = $options['type'];
+        } elseif ($columns) {
+            $columns[] = 'type';
+        }
+        if ($columns &&
+            (empty($options['type']) || 'custom' == $options['type'])
+        ) {
+            $columns[] = 'handler';
+        }
+        if ($columns) {
+            $columns[] = 'name';
+            $columns[] = 'title';
+        }
+
         $model = Pi::model('field', $this->module);
         $select = $model->select()->where($where);
         if ($columns) {
@@ -69,11 +85,12 @@ class ProfileField extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $type Field types: account, profile, compound
-     * @param string $action Actions: display, edit, search
+     * @param string $action Actions: display, edit, search, all
      * @param array
      */
     public function read($type = '', $action = '')
     {
+        $action = $action ?: 'display';
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 

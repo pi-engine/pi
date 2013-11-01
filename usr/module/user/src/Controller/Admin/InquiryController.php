@@ -105,7 +105,7 @@ class InquiryController extends ActionController
 
             if ($group['compound']) {
                 // Compound meta
-                $compoundMeta = Pi::registry('compound', 'user')->read(
+                $compoundMeta = Pi::registry('compound_field', 'user')->read(
                     $group['compound']
                 );
 

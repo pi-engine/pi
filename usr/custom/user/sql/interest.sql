@@ -7,16 +7,14 @@
 # User custom compound
 # >>>>
 
-# Entity for user custom compound: location
-CREATE TABLE `{location}` (
+# Entity for user custom compound: interest
+CREATE TABLE `{interest}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `uid`             int(10)         unsigned    NOT NULL,
   `order`           smallint(5)     unsigned    NOT NULL default '0',
 
-  `country`         varchar(64)     NOT NULL,
-  `province`        varchar(64)     NOT NULL,
-  `city`            varchar(64)     NOT NULL,
+  `interest`        varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `uid` (`uid`)
+  UNIQUE KEY  `uid` (`uid`, `interest`)
 );

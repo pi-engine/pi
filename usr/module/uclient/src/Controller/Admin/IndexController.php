@@ -342,7 +342,7 @@ class IndexController extends ActionController
             foreach ($rowset as $row) {
                 $uids[] = (int) $row['uid'];
             }
-            $users = Pi::service('user')->get($uids, $fields);
+            $users = Pi::service('user')->mget($uids, $fields);
             $users = $this->renderRole($users);
         }
 
@@ -395,7 +395,7 @@ class IndexController extends ActionController
         $ids    = Pi::api('system', 'user')->getUids($where);
         $newIds = array_diff($uids, $ids);
         if ($newIds) {
-            $users  = Pi::service('user')->get(
+            $users  = Pi::service('user')->mget(
                 $newIds,
                 array('id', 'identity')
             );

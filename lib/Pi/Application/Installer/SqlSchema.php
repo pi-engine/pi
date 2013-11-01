@@ -69,14 +69,16 @@ class SqlSchema
      * Parse and canonize schema definition content
      *
      * @param string $content
+     * @param string $type
+     *
      * @return string
      */
-    public function parseContent($content)
+    public function parseContent($content, $type = '')
     {
         // Remove comments to prevent from invalid syntax
         $content = preg_replace('/(#.*|-- .*)/', '', $content);
 
-        $type = static::$type;
+        $type = $type ?: static::$type;
         $canonizePrefix = function ($matches) use ($type) {
             $name = $matches[1];
             // Core tables: {core.<table_name>}
@@ -104,11 +106,13 @@ class SqlSchema
      * Performe query on content
      *
      * @param string $content
+     * @param string $type
+     *
      * @return bool
      */
-    public function queryContent($content = null)
+    public function queryContent($content = null, $type = '')
     {
-        $sql = $this->parseContent($content);
+        $sql = $this->parseContent($content, $type);
         Pi::db()->adapter()->query($sql, 'execute');
 
         return true;
@@ -118,13 +122,15 @@ class SqlSchema
      * Query content from a file
      *
      * @param string $file
+     * @param string $type
+     *
      * @return bool
      */
-    public function queryFile($file = null)
+    public function queryFile($file = null, $type = '')
     {
         $content = file_get_contents($file ?: $this->file);
 
-        return $this->queryContent($content);
+        return $this->queryContent($content, $type);
     }
 
     /**
@@ -132,14 +138,15 @@ class SqlSchema
      *
      * @param string $file
      * @param string $type
+     *
      * @return bool
      */
     public static function query($file, $type = 'core')
     {
         $schema = new self;
-        static::setType($type);
+        //static::setType($type);
 
-        return $schema->queryFile($file);
+        return $schema->queryFile($file, $type);
     }
 
     /**

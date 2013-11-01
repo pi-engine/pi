@@ -50,6 +50,7 @@ use Pi\User\Model\AbstractModel as UserModel;
  *   - getList($condition, $limit, $offset, $order, $field)
  *   - getCount($condition)
  *   - get($uid, $field, $filter)
+ *   - mget($uids, $field, $filter)
  *
  *   + Update
  *   - set($uid, $field, $value)
@@ -353,6 +354,65 @@ abstract class AbstractAdapter implements BindInterface
      * @api
      */
     abstract public function get($uid, $field = array(), $filter = false);
+
+    /**
+     * Get field value(s) of users per operation actions
+     *
+     * Usage:
+     *
+     * - Get single-field
+     *
+     * ```
+     *  // Raw data
+     *  $fields = Pi::api('user', 'user')->get(array(12, 34), 'gender');
+     *  // Output:
+     *  array(
+     *      12  => 'male',
+     *      34  => 'unknown',
+     *  );
+     *
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(array(12, 34), 'gender', true);
+     *  // Output:
+     *  array(
+     *      12  => 'Male',
+     *      34  => 'Unknown',
+     *  );
+     * ```
+     *
+     * - Get multi-field for display
+     *
+     * ```
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(
+     *      array(12, 34, 56),
+     *      array('name', 'gender'),
+     *      true
+     *  );
+     *  // Output:
+     *  array(
+     *      12  => array(
+     *          'name'      => 'John',
+     *          'gender'    => 'Male',
+     *      ),
+     *      34  => array(
+     *          'name'      => 'Joe',
+     *          'gender'    => 'Unknown',
+     *      ),
+     *      56  => array(
+     *          'name'      => 'Rose',
+     *          'gender'    => 'Female',
+     *      ),
+     *  );
+     * ```
+     *
+     * @param int[]         $uids
+     * @param string|string[]   $field
+     * @param bool              $filter
+     * @return mixed[]
+     * @api
+     */
+    abstract public function mget(array $uids, $field = array(), $filter = false);
 
     /**
      * Set value of a user field

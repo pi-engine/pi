@@ -19,7 +19,7 @@ use Zend\Form\View\Helper\AbstractHelper;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Country extends AbstractHelper
+class Location extends AbstractHelper
 {
     /**
      * Invoke helper as function
