@@ -1053,23 +1053,6 @@ class User extends AbstractUseApi
                     $result[$id] = $row->toArray();
                 }
             }
-        } elseif ('profile' == $type) {
-            $model = Pi::model($type, 'user');
-            $where = array(
-                'uid'   => $uids,
-                'field' => $fields,
-            );
-            $columns = array('uid', 'field', 'value');
-            $select = $model->select()->where($where)->columns($columns);
-            $rowset = $model->selectWith($select);
-            foreach ($rowset as $row) {
-                if ($filter) {
-                    $value = $row->filter();
-                } else {
-                    $value = $row['value'];
-                }
-                $result[(int) $row['uid']][$row['field']] = $value;
-            }
         } elseif ('compound' == $type) {
             $model = Pi::model($type, 'user');
             $select = $model->select();
@@ -1084,11 +1067,11 @@ class User extends AbstractUseApi
                 } else {
                     $value = $row['value'];
                 }
-                $uid        = (int) $row['uid'];
+                $id         = (int) $row['uid'];
                 $field      = $row['compound'];
                 $set        = (int) $row['set'];
                 $var        = $row['field'];
-                $result[$uid][$field][$set][$var] = $value;
+                $result[$id][$field][$set][$var] = $value;
             }
         } elseif ('custom' == $type) {
             $meta = $this->getMeta($type);
@@ -1099,9 +1082,14 @@ class User extends AbstractUseApi
                     continue;
                 }
                 $handler = new $meta[$field]['handler']($field);
-                $result[$uid][$field] = $handler->get($uid);
+                $data  = $handler->mget($uids);
+                foreach ($data as $id => $user) {
+                    $result[$id][$field] = $user;
+                }
             }
         }
+
+        // Canonize uid
         if (is_scalar($uid)) {
             if (isset($result[$uid])) {
                 $result = $result[$uid];
@@ -1159,6 +1147,12 @@ class User extends AbstractUseApi
             }
         } elseif ('compound' == $type) {
             $result = $this->setCompoundField($uid, $field, $value);
+        } elseif ('custom' == $type) {
+            $meta = $this->getMeta('custom', 'all');
+            if (isset($meta[$field]) && !empty($meta[$field]['hanlder'])) {
+                $handler = new $meta[$field]['hanlder']($field);
+                $result = $handler->update($value);
+            }
         } else {
             $result = false;
         }
