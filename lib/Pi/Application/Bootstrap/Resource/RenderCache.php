@@ -269,7 +269,7 @@ class RenderCache extends AbstractResource
             return;
         }
 
-        $this-renderCache()->saveCache($content);
+        $this->renderCache()->saveCache($content);
 
         return;
     }
