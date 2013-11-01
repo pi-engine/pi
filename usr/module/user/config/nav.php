@@ -112,6 +112,13 @@ return array(
             'module'        => 'user',
             'controller'    => 'inquiry',
             'action'        => 'index',
-        )
+        ),
+
+        'import'  => array(
+            'label'         => _t('Import'),
+            'route'         => 'admin',
+            'module'        => 'user',
+            'controller'    => 'import',
+        ),
     ),
 );
