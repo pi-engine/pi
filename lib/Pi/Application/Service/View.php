@@ -13,6 +13,7 @@ namespace Pi\Application\Service;
 use Pi;
 use Zend\Mvc\View\Http\ViewManager;
 use Zend\View\Helper\AbstractHelper;
+use Zend\View\Model\ViewMode;
 
 /**
  * View handling service
@@ -54,16 +55,18 @@ class View extends AbstractService
     }
 
     /**
-     * Render a template
+     * Render a template or a view model
      *
-     * @param string|array  $template
+     * @param string|array|ViewModel  $template
      * @param array         $variables
      *
      * @return string
      */
-    public function render($template, array $variables)
+    public function render($template, array $variables = array())
     {
-        if (is_array($template)) {
+        if ($template instanceof ViewModel) {
+            $template->setVariables($variables);
+        } elseif (is_array($template)) {
             $section = isset($template['section'])
                 ? $template['section']
                 : Pi::engine()->application()->getSection();
