@@ -316,6 +316,21 @@ class Api extends AbstractApi
         }
 
         $rootData = $this->getRoot($root);
+
+        // Check against cache
+        if ($rootData['id']) {
+            $result = Pi::service('comment')->loadCache($rootData['id']);
+            if ($result) {
+                if (Pi::service()->hasService('log')) {
+                    Pi::service('log')->info(
+                        sprintf('Comment root %d is cached.', $rootData['id'])
+                    );
+                }
+
+                return $result;
+            }
+        }
+
         //vd($rootData['id']);
         $result = array(
             'root'          => $rootData ?: $root,
@@ -346,6 +361,17 @@ class Api extends AbstractApi
                     'root',
                     array('root'  => $rootData['id'])
                 );
+
+                $status = Pi::service('comment')->saveCache(
+                    $rootData['id'],
+                    $result
+                );
+                if ($status && Pi::service()->hasService('log')) {
+                    Pi::service('log')->info(sprintf(
+                        'Comment root %d is saved to cache.',
+                        $rootData['id']
+                    ));
+                }
             }
         }
         

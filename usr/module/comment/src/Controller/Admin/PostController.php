@@ -184,6 +184,10 @@ class PostController extends ActionController
             $message = __('Invalid submission.');
         }
 
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
+        }
+
         $result = array(
             'data'      => $id,
             'status'    => $status,
@@ -212,6 +216,10 @@ class PostController extends ActionController
         }
         $message = $status
             ? __('Operation succeeded.') : __('Operation failed');
+
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
+        }
 
         if (!$return) {
             if ($redirect) {
@@ -248,7 +256,9 @@ class PostController extends ActionController
 
         $model  = $this->getModel('post');
         $model->update(array('active' => $flag), array('id' => $ids));
-        
+
+        Pi::service('comment')->clearCache($ids);
+
         if ($redirect) {
             $redirect = urldecode($redirect);
             return $this->redirect()->toUrl($redirect);
@@ -274,6 +284,10 @@ class PostController extends ActionController
         $status     = Pi::api('comment')->deletePost($id);
         $message = $status
             ? __('Operation succeeded.') : __('Operation failed');
+
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
+        }
 
         if (!$return) {
             if ($redirect) {
@@ -306,7 +320,9 @@ class PostController extends ActionController
 
         $model  = $this->getModel('post');
         $model->delete(array('id' => $ids));
-        
+
+        Pi::service('comment')->clearCache($ids);
+
         if ($redirect) {
             $redirect = urldecode($redirect);
             return $this->redirect()->toUrl($redirect);

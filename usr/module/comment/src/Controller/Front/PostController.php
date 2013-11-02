@@ -334,6 +334,10 @@ class PostController extends ActionController
             }
         }
 
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
+        }
+
         $result = array(
             'data'      => $id,
             'status'    => $status,
@@ -353,10 +357,10 @@ class PostController extends ActionController
         $currentUser    = Pi::service('user')->getUser();
         //$currentUid     = $currentUser->get('id');
 
-        $id = _get('id', 'int');
-        $flag = _get('flag');
-        $return = _get('return');
-        $redirect = _get('redirect');
+        $id         = _get('id', 'int');
+        $flag       = _get('flag');
+        $return     = _get('return');
+        $redirect   = _get('redirect');
 
         if (!$currentUser->isAdmin('comment')) {
             $status     = -1;
@@ -369,6 +373,10 @@ class PostController extends ActionController
             }
             $message = $status
                 ? __('Operation succeeded.') : __('Operation failed');
+        }
+
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {
@@ -418,6 +426,10 @@ class PostController extends ActionController
             $status         = Pi::api('comment')->deletePost($id);
             $message        = $status
                 ? __('Operation succeeded.') : __('Operation failed');
+        }
+
+        if (0 < $status && $id) {
+            Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {
