@@ -44,7 +44,7 @@
 
     <script>
         (function($) {
-            var app = {
+            var userAccountIndex = {
                 options: {},
 
                 $: function(selector) {
@@ -60,7 +60,8 @@
                     this.isValid();
                     this.emailInitVal = $.trim(this.$email.val());
                     this.nameInitVal = $.trim(this.$name.val());
-                    this.checkRequest = null;
+                    this.checkEmailRequest = null;
+                    this.checkNameRequest = null;
                 },
 
                 cacheElements: function() {
@@ -172,10 +173,10 @@
                             this.isValid();
                             break;
                         default:
-                            if (this.checkRequest) {
-                                clearTimeout(this.checkRequest);
+                            if (this.checkEmailRequest) {
+                                clearTimeout(this.checkEmailRequest);
                             }
-                            this.checkRequest = setTimeout($.proxy(function(){
+                            this.checkEmailRequest = setTimeout($.proxy(function(){
                                 $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
                                     if (result.status) {
                                         this.$email.next().remove();
@@ -208,10 +209,10 @@
                             this.isValid();
                             break;
                         default:
-                            if (this.checkRequest) {
-                                clearTimeout(this.checkRequest);
+                            if (this.checkNameRequest) {
+                                clearTimeout(this.checkNameRequest);
                             }
-                            this.checkRequest = setTimeout($.proxy(function(){
+                            this.checkNameRequest = setTimeout($.proxy(function(){
                                 $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
                                     if (result.status) {
                                         this.$name.next().remove();
@@ -237,12 +238,10 @@
                 }
             };
 
-            this.userAccountIndex = function(opts) {
-                app.init(opts);
-            }
+            window.userAccountIndex = userAccountIndex;
        })(jQuery);
 
-        userAccountIndex({
+        userAccountIndex.init({
             accountIndexUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>',
             checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
             comfirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',

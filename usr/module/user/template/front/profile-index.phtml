@@ -2,10 +2,15 @@
     $this->css($this->assetModule('script/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
-<div>
-    <div>
-        <?php foreach ($profile_group as $group) {?>
-        <div class="clearfix user-legend">
+<style>
+    .user-profile-item:hover .user-legend-edit {
+        display: block;
+    }
+</style>
+<div class="user-profile-list">
+    <?php foreach ($profile_group as $group) {?>
+    <div class="user-profile-item">
+        <div class="clearfix user-legend" style="height: 30px;">
             <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
             <?php
                 if ($group['compound']) {
@@ -15,7 +20,7 @@
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
                 }
             ?>
-            <a class="btn user-legend-edit" href="<?php echo $editUrl; ?>">
+            <a class="btn hide user-legend-edit" href="<?php echo $editUrl; ?>">
                 <i class="icon-pencil"></i>
                 <?php _e('Edit'); ?>
             </a>
@@ -52,6 +57,6 @@
             ?>
         </div>  
         <?php } ?>
-        <?php } ?>
-    </div>
+        </div>
+    <?php } ?>
 </div>
