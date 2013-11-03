@@ -588,7 +588,7 @@ class User extends AbstractUseApi
                         $params['controller'] = 'login';
                     }
                     if (isset($params['route'])) {
-                        $route = $params['route'];
+                        //$route = $params['route'];
                         unset($params['route']);
                     }
                     $url = Pi::service('url')->assemble($route, $params);
@@ -627,7 +627,7 @@ class User extends AbstractUseApi
                         $params['action'] = 'logout';
                     }
                     if (isset($params['route'])) {
-                        $route = $params['route'];
+                        //$route = $params['route'];
                         unset($params['route']);
                     }
                     $url = Pi::service('url')->assemble($route, $params);
