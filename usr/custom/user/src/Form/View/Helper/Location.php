@@ -13,6 +13,7 @@ namespace Custom\User\Form\View\Helper;
 use Zend\Form\ElementInterface;
 //use Zend\Form\Exception;
 use Zend\Form\View\Helper\AbstractHelper;
+use Pi;
 
 /**
  * Editor element helper
@@ -56,6 +57,6 @@ class Location extends AbstractHelper
         </script>
 EOD;
 
-        return sprintf($html, Pi::url('static/js/eefocus-data.min.js'), $element->getValue());
+        return sprintf($html, Pi::url('static/js/eefocus-data.js'), $element->getValue());
     }
 }
