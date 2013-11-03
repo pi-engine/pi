@@ -45,6 +45,10 @@ class Deactivate extends BasicAction
         $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
 
+        $config = Pi::config()->load('service.avatar.php');
+        $config['adapter'] = 'local';
+        Pi::config()->write('service.avatar.php', $config, true);
+
         return true;
     }
 }

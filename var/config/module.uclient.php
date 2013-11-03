@@ -24,6 +24,8 @@ return array (
         'list'  => $apiUser . '/list',
         'count' => $apiUser . '/count',
 
+        'avatar'    => $root . '/script/avatar.php?id=%d&s=%s',
+
         'profile'   => array(
             'id'        => $userRoot . '/profile/%d',
             'name'      => $userRoot . '/profile/name/%s',

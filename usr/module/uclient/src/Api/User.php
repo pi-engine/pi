@@ -558,6 +558,22 @@ class User extends AbstractUseApi
     {
         $redirect   = '';
         switch ($type) {
+            case 'avatar':
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['size'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                $id = isset($params['id'])
+                    ? $params['id'] : Pi::service('user')->getId();
+                $size = isset($params['size']) ? _escape($params['size']) : '';
+                $url = $this->config('url', 'avatar');
+                $url = sprintf($url, $id, $size);
+                break;
+
             case 'login':
                 if (is_string($var)) {
                     $params = array(
