@@ -179,7 +179,10 @@ EEFOCUS_DATA.Linkage = function(root, names) {
   this.el = $('#' + root);
   this.data = EEFOCUS_DATA[names[0]];
   this.names = names;
-  this.init();
+  var self = this;
+  $(function() {
+    self.init();
+  });
 }
 
 EEFOCUS_DATA.Linkage.prototype = {
@@ -187,17 +190,17 @@ EEFOCUS_DATA.Linkage.prototype = {
     var html = '';
     var length = this.names.length;
     var form = this.el.parents('form');
+    var self = this
     $.each(this.names, function(index, item) {
-        html += '<select name=' + item + ' class="input-medium"></select> ';
+        html += '<select name=' + item + ' class="input-medium"></select>';
     });
     this.el.html(html);
     this.elements = this.$('select');
     this.events();
     this.render(0).val(this.el.attr('data-value')).trigger('change');
-    var elements = this.elements;
     $.each(this.names, function(index, item) {
       if (index == 0) return;
-      var element = elements.eq(index);
+      var element = self.elements.eq(index);
       element.val(form.find('input[name=' + item + ']').remove().val());
       if (index != length - 1) element.trigger('change');
     });
@@ -206,10 +209,11 @@ EEFOCUS_DATA.Linkage.prototype = {
     return this.el.find(selector);
   },
   render: function(index) {
-    var element = this.elements.eq(index);
+    var element = this.elements.eq(index).val('');
     var arr = this.getData(index);
+    element.nextAll().val('').hide();
     if (!arr.length) {
-      element.nextAll().andSelf().val('').hide();
+      element.hide();
       return;
     }
     var html = '<option value="">请选择</option>';
@@ -231,7 +235,9 @@ EEFOCUS_DATA.Linkage.prototype = {
           ret = this.keys(data[elements.eq(0).val()]);
           break;
         case 2:
-          ret = data[elements.eq(0).val()][elements.eq(1).val()];
+          var firstValue = elements.eq(0).val();
+          if (!firstValue) return [];
+          ret = data[firstValue][elements.eq(1).val()];
       }
     } else if (elements.length == 2) {
       switch (index) {
