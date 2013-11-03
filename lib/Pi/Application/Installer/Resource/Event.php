@@ -19,7 +19,7 @@ use Pi;
  * ```
  * array(
  *  // Event list
- *  'events'    => array(
+ *  'event'    => array(
  *      // event name (unique)
  *      'user_call' => array(
  *          // title
@@ -27,7 +27,7 @@ use Pi;
  *      ),
  *  ),
  *  // Listener list
- *  'listeners' => array(
+ *  'listener' => array(
  *      array(
  *          // event info: module, event name
  *          'event'     => array('pm', 'test'),
@@ -55,25 +55,58 @@ use Pi;
 class Event extends AbstractResource
 {
     /**
-     * Canonize listener data
+     * Canonize event spec data
      *
-     * @param array $listener
+     * @param array $config
      * @return array
      */
-    protected function canonize($listener)
+    protected function canonize(array $config)
     {
+        $result = array(
+            'event'     => array(),
+            'listener'  => array(),
+        );
+
+        if (isset($config['event'])) {
+            $events = $config['event'];
+        } elseif (isset($config['events'])) {
+            $events = $config['events'];
+        } else {
+            $events = array();
+        }
+        if (isset($config['listener'])) {
+            $listeners = $config['listener'];
+        } elseif (isset($config['listeners'])) {
+            $listeners = $config['listeners'];
+        } else {
+            $listeners = array();
+        }
         $module = $this->event->getParam('module');
-        list($class, $method) = $listener['listener'];
-        list($eventModule, $eventName) = $listener['event'];
+        foreach ($events as $key => $event) {
+            if (!isset($event['module'])) {
+                $event['module'] = $module;
+            }
+            if (!isset($event['name'])) {
+                $event['name'] = $key;
+            }
+            $result['event'][$event['name']] = $event;
+        }
+        foreach ($listeners as $listener) {
+            list($eventModule, $eventName) = $listener['event'];
+            $callback = !empty($listener['callback'])
+                ? $listener['callback'] : $listener['listener'];
+            list($class, $method) = $callback;
+            $data = array();
+            $data['event_module']   = $eventModule;
+            $data['event_name']     = $eventName;
+            $data['module']         = $module;
+            $data['class']          = ucfirst($class);
+            $data['method']         = $method;
 
-        $data = array();
-        $data['event_module']   = $eventModule;
-        $data['event_name']     = $eventName;
-        $data['module']         = $module;
-        $data['class']          = ucfirst($class);
-        $data['method']         = $method;
+            $result['listener'][] = $data;
+        }
 
-        return $data;
+        return $result;
     }
 
     /**
@@ -86,14 +119,11 @@ class Event extends AbstractResource
         }
         $module = $this->event->getParam('module');
         Pi::registry('event')->clear($module);
-
+        $config = $this->canonize($this->config);
         // Install events
         $modelEvent = Pi::model('event');
-        $events = isset($this->config['events'])
-            ? $this->config['events'] : array();
+        $events = $config['event'];
         foreach ($events as $name => $event) {
-            $event['module'] = $module;
-            $event['name'] = $name;
             $status = $modelEvent->insert($event);
             if (!$status) {
                 $message = 'Event "%s" is not created.';
@@ -105,21 +135,19 @@ class Event extends AbstractResource
         }
 
         // Install listeners
-        $listeners = isset($this->config['listeners'])
-            ? $this->config['listeners'] : array();
+        $listeners = $config['listener'];
         $flushList = array();
         $modelListener = Pi::model('event_listener');
-        foreach ($listeners as $listner) {
-            $data = $this->canonize($listner);
-            $status = $modelListener->insert($data);
+        foreach ($listeners as $listener) {
+            $status = $modelListener->insert($listener);
             if (!$status) {
                 $message = 'Listener for event "%s" is not created.';
                 return array(
                     'status'    => false,
-                    'message'   => srpintf($message, $data['event_name']),
+                    'message'   => srpintf($message, $listener['event_name']),
                 );
             }
-            $flushList[$data['event_module']] = 1;
+            $flushList[$listener['event_module']] = 1;
         }
         foreach (array_keys($flushList) as $moduleName) {
             Pi::registry('event')->clear($moduleName);
@@ -140,11 +168,11 @@ class Event extends AbstractResource
             return;
         }
 
+        $config = $this->canonize($this->config);
         $modelEvent = Pi::model('event');
         $modelListener = Pi::model('event_listener');
 
-        $events = isset($this->config['events'])
-            ? $this->config['events'] : array();
+        $events = $config['event'];
         $eventList = $modelEvent->select(array('module' => $module));
         foreach ($eventList as $row) {
             // Delete deprecated events
@@ -190,8 +218,6 @@ class Event extends AbstractResource
         }
         // Add new events
         foreach ($events as $name => $event) {
-            $event['module'] = $module;
-            $event['name'] = $name;
             $row = $modelEvent->createRow($event);
             $status = $row->save();
             if (!$status) {
@@ -203,26 +229,25 @@ class Event extends AbstractResource
             }
         }
 
-        $listeners = isset($this->config['listeners'])
-            ? $this->config['listeners'] : array();
+        $listeners = $config['listener'];
         $listenerList = array();
         foreach ($listeners as $listener) {
-            $data = $this->canonize($listener);
-            $key = $data['event_module'] . '-' . $data['event_name']
-                 . '-' . $data['class'] . '-' . $data['method'];
-            $listenerList[$key] = $data;
+            $key = $listener['event_module'] . '-' . $listener['event_name']
+                 . '-' . $listener['class'] . '-' . $listener['method'];
+            $listenerList[$key] = $listener;
         }
 
         $rowset = $modelListener->select(array('module' => $module));
         $flushList = array();
         foreach ($rowset as $row) {
-            $key = $row->event_module . '-' . $row->event_name
-                 . '-' . $row->class . '-' . $row->method;
+            $key = $row['event_module'] . '-' . $row['event_name']
+                 . '-' . $row['class'] . '-' . $row['method'];
 
             // Delete deprecated listeners
             if (!isset($listenerList[$key])) {
                 $row->delete();
                 $status = true;
+                /*
                 if (!$status) {
                     $message = 'Deprecated listener "%s" is not deleted.';
                     return array(
@@ -230,7 +255,8 @@ class Event extends AbstractResource
                         'message'   => sprintf($message, $key),
                     );
                 }
-                $flushList[$row->event_module] = 1;
+                */
+                $flushList[$row['event_module']] = 1;
             // Skip existent listeners
             } else {
                 unset($listenerList[$key]);
@@ -296,7 +322,7 @@ class Event extends AbstractResource
         );
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
-            Pi::registry('event')->clear($row->event_module);
+            Pi::registry('event')->clear($row['event_module']);
         }
         Pi::registry('event')->clear($module);
 
@@ -320,7 +346,7 @@ class Event extends AbstractResource
         );
         $rowset = $modelListener->select(array('module' => $module));
         foreach ($rowset as $row) {
-            Pi::registry('event')->clear($row->event_module);
+            Pi::registry('event')->clear($row['event_module']);
         }
         Pi::registry('event')->clear($module);
 

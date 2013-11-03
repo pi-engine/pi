@@ -598,6 +598,11 @@ class ProfileController extends ActionController
                 if ($element) {
                     $elements[] = $element;
                     $filters[]  = $filter;
+                } else {
+                    $elements[] = array(
+                        'name'  => $row->field,
+                        'type'  => 'hidden',
+                    );
                 }
             }
 
