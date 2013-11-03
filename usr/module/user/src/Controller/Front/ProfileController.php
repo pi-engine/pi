@@ -155,15 +155,6 @@ class ProfileController extends ActionController
 
         // Get fields and filters for edit
         list($fields, $filters) = $this->getGroupElements($groupId);
-
-        // Add other elements
-        $fields[] = array(
-            'name'  => 'uid',
-            'type'  => 'hidden',
-            'attributes' => array(
-                'value' => $uid,
-            ),
-        );
         $fields[] = array(
             'name'  => 'group',
             'type'  => 'hidden',
@@ -188,6 +179,7 @@ class ProfileController extends ActionController
             $form->setInputFilter(new ProfileEditFilter($filters));
             if ($form->isValid()) {
                 $data = $form->getData();
+                $data = $post;
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
                 $status = 1;
@@ -603,8 +595,10 @@ class ProfileController extends ActionController
             foreach ($rowset as $row) {
                 $element    = Pi::api('user', 'form')->getElement($row->field);
                 $filter     = Pi::api('user', 'form')->getFilter($row->field);
-                $elements[] = $element;
-                $filters[]  = $filter;
+                if ($element) {
+                    $elements[] = $element;
+                    $filters[]  = $filter;
+                }
             }
 
             return array($elements, $filters);

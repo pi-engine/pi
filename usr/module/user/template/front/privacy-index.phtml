@@ -7,7 +7,14 @@ $this->css(array(
 <div class="span9">
     <div class="page-header">
         <h3 style="margin: -5px 0 9px;"><?php _e('Privacy'); ?></h3>
-        <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your privacy settings.'); ?></div>
+        <?php if (!empty($privacy)) {?>
+            <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your privacy settings.'); ?></div>
+        <?php }  else { ?>
+            <div class="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong><?php _e('No  available privacy setting'); ?>
+            </div>
+        <?php }?>
     </div>
     <?php
     if (isset($result)) {
@@ -16,6 +23,7 @@ $this->css(array(
              $result['message']);
     }
     ?>
+
     <form class="form-horizontal" method="post">
         <?php foreach ($privacy as $item) { ?>
         <div class="control-group">
@@ -35,10 +43,12 @@ $this->css(array(
             </div>
         </div>
         <?php } ?>
+        <?php if (!empty($privacy)) {?>
         <div class="control-group">
             <div class="controls">
                 <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
             </div>
         </div>
+        <?php } ?>
     </form>
 </div>
