@@ -44,7 +44,7 @@
 
     <script>
         (function($) {
-            var app = {
+            var userAccountIndex = {
                 options: {},
 
                 $: function(selector) {
@@ -60,6 +60,8 @@
                     this.isValid();
                     this.emailInitVal = $.trim(this.$email.val());
                     this.nameInitVal = $.trim(this.$name.val());
+                    this.checkEmailRequest = null;
+                    this.checkNameRequest = null;
                 },
 
                 cacheElements: function() {
@@ -171,18 +173,23 @@
                             this.isValid();
                             break;
                         default:
-                            $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
-                                if (result.status) {
-                                    this.$email.next().remove();
-                                    this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
-                                    this.isEmailValid = false;
-                                    this.isValid();
-                                } else {
-                                    this.$email.next().remove();
-                                    this.isEmailValid = true;
-                                    this.isValid();
-                                }
-                            }, this));
+                            if (this.checkEmailRequest) {
+                                clearTimeout(this.checkEmailRequest);
+                            }
+                            this.checkEmailRequest = setTimeout($.proxy(function(){
+                                $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
+                                    if (result.status) {
+                                        this.$email.next().remove();
+                                        this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
+                                        this.isEmailValid = false;
+                                        this.isValid();
+                                    } else {
+                                        this.$email.next().remove();
+                                        this.isEmailValid = true;
+                                        this.isValid();
+                                    }
+                                }, this));
+                            }, this), 400);
                     }
                 },
 
@@ -202,18 +209,23 @@
                             this.isValid();
                             break;
                         default:
-                            $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
-                                if (result.status) {
-                                    this.$name.next().remove();
-                                    this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
-                                    this.isNameValid = false;
-                                    this.isValid();
-                                } else {
-                                    this.$name.next().remove();
-                                    this.isNameValid = true;
-                                    this.isValid();
-                                }
-                            }, this));
+                            if (this.checkNameRequest) {
+                                clearTimeout(this.checkNameRequest);
+                            }
+                            this.checkNameRequest = setTimeout($.proxy(function(){
+                                $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
+                                    if (result.status) {
+                                        this.$name.next().remove();
+                                        this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
+                                        this.isNameValid = false;
+                                        this.isValid();
+                                    } else {
+                                        this.$name.next().remove();
+                                        this.isNameValid = true;
+                                        this.isValid();
+                                    }
+                                }, this));
+                            }, this), 400);
                     }
                 },
 
@@ -226,12 +238,10 @@
                 }
             };
 
-            this.userAccountIndex = function(opts) {
-                app.init(opts);
-            }
+            window.userAccountIndex = userAccountIndex;
        })(jQuery);
 
-        userAccountIndex({
+        userAccountIndex.init({
             accountIndexUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>',
             checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
             comfirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',
