@@ -46,7 +46,7 @@ class User extends AbstractUseApi
         $args = func_get_args();
         $result = $this->config;
         foreach ($args as $name) {
-            if (isset($result[$name])) {
+            if (is_array($result) && isset($result[$name])) {
                 $result = $result[$name];
             } else {
                 $result = null;
@@ -559,6 +559,7 @@ class User extends AbstractUseApi
         $redirect   = '';
         switch ($type) {
             case 'avatar':
+                /*
                 $params = array();
                 if (is_numeric($var)) {
                     $params['id'] = (int) $var;
@@ -572,6 +573,9 @@ class User extends AbstractUseApi
                 $size = isset($params['size']) ? _escape($params['size']) : '';
                 $url = $this->config('url', 'avatar');
                 $url = sprintf($url, $id, $size);
+                */
+                $type = $var ?: 'get';
+                $url = $this->config('url', 'avatar', $type);
                 break;
 
             case 'login':

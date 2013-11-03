@@ -87,7 +87,7 @@ class Avatar extends AbstractService
      *
      * @param int[]  $uids
      * @param string $size
-     * @param array  $attributes
+     * @param array|bool|string  $attributes
      *
      * @return array
      */
@@ -106,7 +106,7 @@ class Avatar extends AbstractService
                 $size,
                 $attributes
             );
-            $avatars = $list + (array) $avatars;
+            $avatars = $avatars + $list;
         }
 
         return $avatars;

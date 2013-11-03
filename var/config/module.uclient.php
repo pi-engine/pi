@@ -4,6 +4,7 @@
 $root           = 'http://master.pi';
 $userRoot       = $root . '/user';
 $apiUser        = $root . '/api/user/user';
+$apiAvatar      = $root . '/api/user/avatar';
 $apiTimeline    = $root . '/api/user/timeline';
 $apiMessage     = $root . '/api/message/message';
 $apiRelation    = $root . '/api/user/relation';
@@ -24,7 +25,12 @@ return array (
         'list'  => $apiUser . '/list',
         'count' => $apiUser . '/count',
 
-        'avatar'    => $root . '/script/avatar.php?id=%d&s=%s',
+        //'avatar'    => $root . '/script/avatar.php?id=%d&s=%s',
+        'avatar'    => array(
+            'get'   => $apiAvatar . '/get',
+            'mget'  => $apiAvatar . '/mget',
+            //'list'  => $apiAvatar . '/list',
+        ),
 
         'profile'   => array(
             'id'        => $userRoot . '/profile/%d',
