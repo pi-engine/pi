@@ -55,6 +55,8 @@ class Form extends AbstractApi
         }
         if (isset($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
+        } else {
+            $result['required'] = false;
         }
 
         return $result;

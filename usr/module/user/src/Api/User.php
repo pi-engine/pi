@@ -35,7 +35,7 @@ class User extends AbstractUseApi
      * @return array
      * @api
      */
-    public function getMeta($type = '', $action = '')
+    public function getMeta($type = '', $action = 'all')
     {
         $meta = Pi::registry('field', 'user')->read($type, $action);
 
