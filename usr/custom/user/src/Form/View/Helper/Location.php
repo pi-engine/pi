@@ -47,8 +47,15 @@ class Location extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        $html = '';
+        $html = <<<EOD
+        <script src="%s"></script>
+        <div id="js-country-element" data-value="%s">
+        </div>
+        <script>
+            new EEFOCUS_DATA.Linkage("js-country-element", ["country", "province", "city"]);
+        </script>
+EOD;
 
-        return $html;
+        return sprintf($html, Pi::url('static/js/eefocus-data.min.js'), $element->getValue());
     }
 }
