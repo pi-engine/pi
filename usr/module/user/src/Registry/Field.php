@@ -33,10 +33,6 @@ class Field extends AbstractRegistry
         $where = array('active' => 1);
         $columns = array();
         switch ($options['action']) {
-            case 'all':
-                $options['type'] = '';
-                break;
-
             case 'edit':
                 $columns[] = 'edit';
                 $where['is_edit'] = 1;
@@ -48,9 +44,13 @@ class Field extends AbstractRegistry
                 break;
 
             case 'display':
-            default:
                 $columns[] = 'filter';
                 $where['is_display'] = 1;
+                break;
+
+            case 'all':
+            default:
+                $options['type'] = '';
                 break;
         }
         if (!empty($options['type'])) {
@@ -90,7 +90,7 @@ class Field extends AbstractRegistry
      */
     public function read($type = '', $action = '')
     {
-        $action = $action ?: 'display';
+        //$action = $action ?: 'display';
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 

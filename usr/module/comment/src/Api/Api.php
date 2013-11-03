@@ -350,7 +350,7 @@ class Api extends AbstractApi
                 $renderOptions = array(
                     'target'    => false,
                     'operation' => Pi::service('config')
-                        ->module('display_operation'),
+                        ->module('display_operation', 'comment'),
                     'user'      => array(
                         'avatar'    => 'medium',
                     ),
