@@ -135,8 +135,10 @@ class ProfileController extends ActionController
     {
         $uid = Pi::user()->getId();
         $groupId   = $this->params('group', '');
-        $status = 0;
-        $isPost = 0;
+        $result = array(
+            'status'  => 0,
+            'message' => '',
+        );
 
         // Redirect login page if not logged in
         if (!$uid) {
@@ -182,10 +184,13 @@ class ProfileController extends ActionController
                 $data = $post;
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
-                $status = 1;
+                $result['status']  = 1;
+                $result['message'] = __('Update successfully');
+            } else {
+                $result['message'] = $form->getMessages();
             }
 
-            $isPost = 1;
+            $this->view()->assign('result', $result);
         } else {
             // Get profile data
             $model = $this->getModel('display_field');
@@ -209,8 +214,7 @@ class ProfileController extends ActionController
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'cur_group' => $groupId,
-            'status'    => $status,
-            'is_post'   => $isPost,
+            'result'    => $result,
             'user'      => $this->getUser($uid)
         ));
         $this->view()->setTemplate('profile-edit');
