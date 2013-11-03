@@ -90,7 +90,7 @@ class Field extends AbstractRegistry
      */
     public function read($type = '', $action = '')
     {
-        $action = $action ?: 'display';
+        //$action = $action ?: 'display';
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 
