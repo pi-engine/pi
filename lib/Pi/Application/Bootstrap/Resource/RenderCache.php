@@ -72,11 +72,13 @@ class RenderCache extends AbstractResource
                 array($this, 'checkAction'),
                 999
             );
+            // Collect cachable content
+            // Go after Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
             $sharedEvents->attach(
                 'PI_CONTROLLER',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'saveAction'),
-                -999
+                -91
             );
         }
     }
@@ -181,7 +183,7 @@ class RenderCache extends AbstractResource
      * Check if action content is cached
      *
      * Load cache if available,
-     * otherwise generated content will be stored to cache if action is cacable
+     * otherwise generated content will be stored to cache if action is cachable
      *
      * @param MvcEvent $e
      * @return void
@@ -219,6 +221,8 @@ class RenderCache extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 $content = $renderCache->cachedContent();
+                $e->setResult($content);
+                /*
                 if (is_array($content)) {
                     $viewModel->setVariables($content);
                 } else {
@@ -226,6 +230,7 @@ class RenderCache extends AbstractResource
                     $viewModel->setVariable('content', $content);
                 }
                 $e->setResult($viewModel);
+                */
                 $e->getTarget()->skipExecute();
                 Pi::service('log')->info('Action cached');
             }
@@ -257,19 +262,24 @@ class RenderCache extends AbstractResource
 
         $response = $e->getResult();
         if ($response instanceof ViewModel) {
+            /*
             $content = (array) $response->getVariables();
             if (!$this->isCachable($content)) {
-                trigger_error('Action content is not cachable.',
-                              E_USER_WARNING);
+                trigger_error(
+                    'Action content is not cachable.',
+                    E_USER_WARNING
+                );
                 return;
             }
+            */
+            $content = Pi::service('view')->render($response);
         } elseif (is_scalar($response)) {
             $content = $response;
         } else {
             return;
         }
 
-        $this-renderCache()->saveCache($content);
+        $this->renderCache()->saveCache($content);
 
         return;
     }
@@ -298,11 +308,9 @@ class RenderCache extends AbstractResource
             return $cacheInfo;
         }
 
-        if (isset($info[sprintf('%s-%s-%s', $module, $controller, $action)])) {
-            $cacheInfo = $info[sprintf('%s-%s-%s',
-                                       $module,
-                                       $controller,
-                                       $action)];
+        $key = sprintf('%s-%s-%s', $module, $controller, $action);
+        if (isset($info[$key])) {
+            $cacheInfo = $info[$key];
         } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
             $cacheInfo = $info[sprintf('%s-%s', $module, $controller)];
         } elseif (isset($info[$module])) {
@@ -320,6 +328,7 @@ class RenderCache extends AbstractResource
      * @param mixed $content
      * @return bool
      */
+    /*
     protected function isCachable($content)
     {
         if (is_scalar($content)) {
@@ -336,4 +345,5 @@ class RenderCache extends AbstractResource
 
         return true;
     }
+    */
 }

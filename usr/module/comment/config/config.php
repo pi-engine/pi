@@ -9,13 +9,15 @@
 
 $config = array(
     'leading_limit' => array(
-        'title'     => _t('Number of comments on leading page.'),
+        'title'         => _t('Leading page comment limit.'),
+        'description'   => _t('Number of comments on leading page.'),
         'value'         => 5,
         'filter'        => 'int',
     ),
 
     'list_limit' => array(
-        'title'     => _t('Number of comments on list page.'),
+        'title'         => _t('List page comment limit.'),
+        'description'   => _t('Number of comments on list page.'),
         'value'         => 20,
         'filter'        => 'int',
     ),
@@ -43,13 +45,15 @@ $config = array(
         'value'         => 1,
         'filter'        => 'int',
     ),
-    
+
+     /*
     'user_domain'   => array(
         'title'         => _t('User domain'),
         'description'   => _t('URL that add the timeline to user system'),
         'value'         => '',
         'filter'        => 'string',
     ),
+    */
 );
 
 return $config;

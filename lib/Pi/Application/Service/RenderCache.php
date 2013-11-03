@@ -302,8 +302,8 @@ class RenderCache extends AbstractService
         // Remove an item
         if (null !== $key) {
             Pi::service('cache')->removeItem(
-                $namespace,
                 $key,
+                $this->meta,
                 $this->getStorage()
             );
 

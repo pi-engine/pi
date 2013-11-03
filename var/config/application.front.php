@@ -64,9 +64,9 @@ return array(
         // Instantiate render cache manager
         'render_cache'     => array(
             // Enable page caching, default as false
-            'page'      => true,
+            'page'      => false,
             // Enable action caching, default as false
-            'action'    => false,
+            'action'    => true,
         ),
     ),
 

@@ -39,6 +39,7 @@ class CacheController extends ActionController
             'folder'        => __('System cache file folder'),
             'persist'       => __('System persistent data'),
             'application'   => __('Application cache'),
+            'comment'       => __('Comment cache'),
         );
         if (!function_exists('apc_clear_cache')) {
             unset($cacheList['apc']);
@@ -121,6 +122,9 @@ class CacheController extends ActionController
                 break;
             case 'page':
                 $this->flushPage($item);
+                break;
+            case 'comment':
+                $this->flushComment();
                 break;
             case 'registry':
                 if (!empty($item)) {
@@ -211,6 +215,18 @@ class CacheController extends ActionController
     protected function flushPage($namespace = null)
     {
         Pi::service('render_cache')->flushCache($namespace ?: null);
+
+        return;
+    }
+
+    /**
+     * Flush comment caches
+     *
+     * @return void
+     */
+    protected function flushComment()
+    {
+        Pi::service('cache')->clearByNamespace('comment');
 
         return;
     }

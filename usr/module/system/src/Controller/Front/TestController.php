@@ -27,10 +27,10 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate(false);
+        //$this->view()->setTemplate(false);
         $content = array();
 
-        /*
+
         $text = <<<EOT
         Test for user and tag:
             @admin tested tag #good# ok?
@@ -63,6 +63,9 @@ EOT;
             $display .= $string;
         }
 
+        echo $display;
+
+        /*
         trigger_error('test notice message', E_USER_NOTICE);
         trigger_error('test warning message', E_USER_WARNING);
 

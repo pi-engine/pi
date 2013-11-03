@@ -636,7 +636,8 @@ class User extends AbstractService
             return null;
         }
 
-        $data = (array) $_SESSION['PI_USER'];
+        $data = isset($_SESSION['PI_USER'])
+            ? (array) $_SESSION['PI_USER'] : array();
         if (isset($data['time']) && $data['time'] < time()) {
             $result = null;
         } else {

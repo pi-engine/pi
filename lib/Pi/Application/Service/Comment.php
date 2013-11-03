@@ -12,6 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Db\Sql\Where;
+use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
 use Module\Comment\Form\PostForm;
 
 /**
@@ -35,6 +36,12 @@ use Module\Comment\Form\PostForm;
  */
 class Comment extends AbstractService
 {
+    /** {@inheritDoc} */
+    protected $fileIdentifier = 'comment';
+
+    /** @var array TTL and CacheAdapter */
+    protected $cache;
+
     /**
      * Is comment service available
      *
@@ -142,7 +149,7 @@ class Comment extends AbstractService
             return false;
         }
 
-        return Pi::api('comment')->get($id);
+        return Pi::api('comment')->getPost($id);
     }
 
     /**
@@ -293,5 +300,141 @@ class Comment extends AbstractService
         }
 
         return Pi::api('comment')->deleteRoot($root);
+    }
+
+    /**
+     * Get cache specs
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function cache($id = null)
+    {
+        if (null === $this->cache) {
+            $ttl = $this->getOption('cache', 'ttl');
+            $storage = $this->getOption('cache', 'storage');
+            if ($ttl) {
+                if ($storage) {
+                    $storage = Pi::service('cache')->loadStorage($storage);
+                } else {
+                    $storage = null;
+                }
+
+                $this->cache = array(
+                    'namespace' => 'comment',
+                    'ttl'       => $ttl,
+                    'storage'   => $storage,
+                );
+            } else {
+                $this->cache = array();
+            }
+        }
+        $spec = (array) $this->cache;
+        if ($id && $spec) {
+            $spec['key'] = md5((string) $id);
+        }
+
+        return $spec;
+    }
+
+    /**
+     * Load comments on leading page from cache
+     *
+     * @param int $root
+     *
+     * @return array
+     */
+    public function loadCache($root)
+    {
+        $result = array();
+        $cache = $this->cache($root);
+        if ($root && $cache) {
+            $data = Pi::service('cache')->getItem(
+                $cache['key'],
+                $cache,
+                $cache['storage']
+            );
+            if (null !== $data) {
+                $result = json_decode($data, true);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Save comments on leading page to cache
+     *
+     * @param int   $root
+     * @param array $data
+     *
+     * @return bool
+     */
+    public function saveCache($root, array $data)
+    {
+        $result = false;
+        $cache = $this->cache($root);
+        if ($root && $cache) {
+            Pi::service('cache')->setItem(
+                $cache['key'],
+                json_encode($data),
+                $cache,
+                $cache['storage']
+            );
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Flush cache for a root or all comments
+     *
+     * @param int|int[ $id
+     * @param bool $isRoot
+     *
+     * @return bool
+     */
+    public function clearCache($id = null, $isRoot = false)
+    {
+        $result = false;
+
+        if (!$id) {
+            $cache = $this->cache();
+            if ($cache) {
+                Pi::service('cache')->clearByNamespace(
+                    $cache['namespace'],
+                    $cache['storage']
+                );
+                $result = true;
+            }
+        } else {
+            $ids = (array) $id;
+            foreach ($ids as $id) {
+                if (!$isRoot) {
+                    $post = $this->getPost($id);
+                    if ($post) {
+                        $id = $post['root'];
+                    } else {
+                        $id = 0;
+                    }
+                }
+                if ($id) {
+                    $cache = $this->cache($id);
+                    // Remove an item
+                    if ($cache) {
+                        Pi::service('cache')->removeItem(
+                            $cache['key'],
+                            $cache,
+                            $cache['storage']
+                        );
+                        $result = true;
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 }
