@@ -9,6 +9,7 @@
 
 namespace Pi\User\Resource;
 
+use Pi;
 use Pi\User\Adapter\AbstractAdapter;
 
 /**
