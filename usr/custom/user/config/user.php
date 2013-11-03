@@ -76,9 +76,6 @@ return array(
                 'degree'    => array(
                     'title' => __('Degree'),
                 ),
-                'class'    => array(
-                    'title' => __('Class'),
-                ),
                 'start'    => array(
                     'title' => __('Start time'),
                 ),
@@ -106,6 +103,15 @@ return array(
                 ),
                 'department'    => array(
                     'title' => __('Department'),
+                ),
+                'industry'    => array(
+                    'title' => __('Industry'),
+                ),
+                'sector'    => array(
+                    'title' => __('Sector'),
+                ),
+                'position'    => array(
+                    'title' => __('Job Position'),
                 ),
                 'title'    => array(
                     'title' => __('Job title'),
