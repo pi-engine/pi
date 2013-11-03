@@ -11,7 +11,7 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Application\Installer\Resource\User as UserResource;
+use Pi\Application\Installer\Resource\User as UserInstaller;
 
 /**
  * Custom compound controller
@@ -41,8 +41,11 @@ class ImportController extends ActionController
         );
         $meta = include $metaFile;
 
-        $resourceHandler = new UserResource($meta);
+        $resourceHandler = new UserInstaller($meta);
         $resourceHandler->updateAction(true);
+
+        Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         return $meta;
 

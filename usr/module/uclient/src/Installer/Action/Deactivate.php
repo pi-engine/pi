@@ -42,7 +42,7 @@ class Deactivate extends BasicAction
     public function updateConfig(Event $e)
     {
         $config = Pi::config()->load('service.user.php', false);
-        $config['adapter'] = 'Pi\User\Adapter\System';
+        $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
 
         return true;

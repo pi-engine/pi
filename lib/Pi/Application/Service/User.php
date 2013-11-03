@@ -181,10 +181,17 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
-            $options = (array) $this->getOption('options');
             $adapter = $this->getOption('adapter');
-            if ($adapter) {
-                $this->adapter = new $adapter($options);
+            $class = $this->getOption($adapter, 'class');
+            if ($class) {
+                $options    = (array) $this->getOption($adapter, 'options');
+            } else {
+                $class      = $this->getOption($adapter);
+                $options    = array();
+            }
+
+            if ($class) {
+                $this->adapter = new $class($options);
             } else {
                 $this->adapter = new DefaultAdapter($options);
             }
@@ -201,7 +208,7 @@ class User extends AbstractService
      *
      * @return AbstractResource|mixed
      */
-    public function getResource($name, $args = array())
+    public function ____getResource($name, $args = array())
     {
         if (!isset($this->resource[$name])) {
             $options = array();
@@ -278,12 +285,14 @@ class User extends AbstractService
         $this->model = $model;
         // Bind user model to service adapter
         $this->getAdapter()->bind($this->model);
+        /*
         // Bind user model to handlers
         foreach ($this->resource as $key => $handler) {
             if ($handler instanceof BindInterface) {
                 $handler->bind($this->model);
             }
         }
+        */
 
         // Store current session user model for first time
         if (null === $this->modelSession) {
@@ -507,6 +516,7 @@ class User extends AbstractService
      */
     public function __get($var)
     {
+        /*
         switch ($var) {
             // User activity
             case 'activity':
@@ -527,6 +537,9 @@ class User extends AbstractService
                 $result = $this->getAdapter()->{$var};
                 break;
         }
+        */
+
+        $result = $this->getAdapter()->{$var};
 
         return $result;
     }
@@ -542,6 +555,7 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
+        /*
         switch ($method) {
             // User activity
             case 'activity':
@@ -568,7 +582,12 @@ class User extends AbstractService
                 );
                 break;
         }
+        */
 
+        $result = call_user_func_array(
+            array($this->getAdapter(), $method),
+            $args
+        );
         return $result;
     }
 
@@ -593,7 +612,7 @@ class User extends AbstractService
             return $this;
         }
 
-        $fields = $this->getOption('persist', 'field');
+        $fields = $this->getOption('options', 'persist', 'field');
         if (!$fields) {
             return $this;
         }
@@ -644,10 +663,13 @@ class User extends AbstractService
             $userData = array();
             if (isset($data['field'])) {
                 $userData = $data['field'];
-            } elseif ($fields = $this->getOption('persist', 'field')) {
-                $uid = $this->getId();
-                $userData = $this->get($uid, $fields);
-                $this->setPersist($userData);
+            } else {
+                $fields = $this->getOption('options', 'persist', 'field');
+                if ($fields) {
+                    $uid = $this->getId();
+                    $userData = $this->get($uid, $fields);
+                    $this->setPersist($userData);
+                }
             }
             if ($name) {
                 $result = isset($userData[$name]) ? $userData[$name] : null;

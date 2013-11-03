@@ -333,7 +333,8 @@ class PostController extends ActionController
                 $message = __('Invalid data, please check and re-submit.');
             }
         }
-        
+
+        /*
         if (1 === $status && $id) {
             $uri = Pi::service('module')
                 ->config('user_domain', $this->getModule());
@@ -369,9 +370,14 @@ class PostController extends ActionController
             );
             Pi::service('remote')->post($uri, $params);
         }
+        */
 
         if (0 < $status && $id) {
+            // Clear cache for leading comments
             Pi::service('comment')->clearCache($id);
+
+            // Insert timeline item
+            Pi::service('comment')->timeline($id);
         }
 
         $result = array(

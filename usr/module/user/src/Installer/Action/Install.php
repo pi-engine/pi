@@ -139,7 +139,7 @@ class Install extends BasicAction
     public function updateConfig(Event $e)
     {
         $config = Pi::config()->load('service.user.php', false);
-        $config['adapter'] = 'Pi\User\Adapter\Local';
+        $config['adapter'] = 'local';
         Pi::config()->write('service.user.php', $config, true);
 
         return true;

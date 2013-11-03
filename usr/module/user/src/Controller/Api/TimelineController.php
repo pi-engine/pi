@@ -98,7 +98,7 @@ class TimelineController extends ActionController
         $stauts = Pi::api('user', 'timeline')->add($log);
         if ($stauts) {
             $result['status']  = 1;
-            $result['message'] = 'Add timeline successfully';
+            $result['message'] = 'Timeline added successfully.';
         }
 
         return $result;

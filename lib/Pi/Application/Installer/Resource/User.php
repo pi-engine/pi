@@ -439,6 +439,7 @@ class User extends AbstractResource
             return;
         }
         Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         $profileFields  = array();
         $customNew      = array();
@@ -493,6 +494,7 @@ class User extends AbstractResource
         }
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         if (!$force && $this->skipUpgrade()) {
             return;
@@ -627,6 +629,7 @@ class User extends AbstractResource
             return;
         }
         Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         $fields         = array();
         $customDelete   = array();
@@ -687,6 +690,7 @@ class User extends AbstractResource
         }
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -708,6 +712,7 @@ class User extends AbstractResource
         }
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
+        Pi::registry('compound_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -810,6 +815,7 @@ class User extends AbstractResource
                 case 'update':
                     $handler->modify();
                     break;
+                case 'delete':
                 case 'drop':
                     $handler->uninstall();
                     break;

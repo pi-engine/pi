@@ -391,7 +391,7 @@ class Comment extends AbstractService
     /**
      * Flush cache for a root or all comments
      *
-     * @param int|int[ $id
+     * @param int|int[] $id
      * @param bool $isRoot
      *
      * @return bool
@@ -434,6 +434,34 @@ class Comment extends AbstractService
                 }
             }
         }
+
+        return $result;
+    }
+
+    /**
+     * Insert user timeline for a new comment
+     *
+     * @param int $id
+     * @param int $uid
+     *
+     * @return bool
+     */
+    public function timeline($id, $uid = null)
+    {
+        $result = true;
+        $uid = $uid ?: Pi::service('user')->getId();
+
+        $params = array(
+            'uid'       => $uid,
+            'message'   => __('Posted a new comment.'),
+            'timeline'  => 'new_comment',
+            'time'      => time(),
+            'module'    => 'comment',
+            'link'      => Pi::url(Pi::api('comment')->getUrl('post', array(
+                        'post'      => $id,
+            )), true),
+        );
+        Pi::service('user')->timeline()->add($params);
 
         return $result;
     }

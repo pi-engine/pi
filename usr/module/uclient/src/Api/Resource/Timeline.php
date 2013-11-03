@@ -7,9 +7,10 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\User\Resource;
+namespace Module\Uclient\Api\Resource;
 
 use Pi;
+use Pi\User\Resource\Timeline as UserTimeline;
 
 /**
  * User timeline handler
@@ -29,7 +30,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Timeline extends AbstractResource
+class Timeline extends UserTimeline
 {
     /**
      * Get timeline log list
@@ -42,14 +43,7 @@ class Timeline extends AbstractResource
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $result = array();
-
-        if (!$this->isAvailable()) {
-            return $result;
-        }
-        $result = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
-
-        return $result;
+        return array();
     }
 
     /**
@@ -61,14 +55,7 @@ class Timeline extends AbstractResource
      */
     public function getCount($uid)
     {
-        $result = 0;
-
-        if (!$this->isAvailable()) {
-            return $result;
-        }
-        $result = Pi::api('user', 'timeline')->getCount($uid);
-
-        return $result;
+        return 0;
     }
 
     /**
@@ -82,15 +69,24 @@ class Timeline extends AbstractResource
      *  - link
      *  - time
      *
-     * @param array $log
+     * @param array $params
      * @return bool
      */
-    public function add(array $log)
+    public function add(array $params)
     {
-        if (!$this->isAvailable()) {
-            return false;
+        if (!isset($params['uid'])) {
+            $params['uid'] = Pi::service('user')->getId();
         }
-        $result = Pi::api('user', 'timeline')->add($log);
+        if (!isset($params['time'])) {
+            $params['time'] = time();
+        }
+        $params['app_key'] = $this->config('app_key');
+
+        $uri = $this->config('url', 'timeline', 'add');
+        $result = Pi::service('remote')
+            ->setAuthorization($this->config('authorization'))
+            ->get($uri, $params);
+        $result = (bool) $result['status'];
 
         return $result;
     }

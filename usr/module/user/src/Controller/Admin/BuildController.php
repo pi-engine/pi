@@ -196,6 +196,7 @@ class BuildController extends ActionController
             $uid = $i;
             Pi::api('user', 'user')->addProfile($uid, $data);
             Pi::api('user', 'user')->addCompound($uid, $data);
+            Pi::api('user', 'user')->addCustom($uid, $data);
             Pi::api('user', 'user')->updateUser($uid, $account);
 
             // Add user time log

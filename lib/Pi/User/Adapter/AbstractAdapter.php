@@ -12,6 +12,7 @@ namespace Pi\User\Adapter;
 use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
+use Pi\User\Resource\AbstractResource;
 
 /**
  * User service abstract class
@@ -64,12 +65,37 @@ use Pi\User\Model\AbstractModel as UserModel;
  *   - authenticate($identity, $credential)
  *   - killUser($uid)
  *
+ *
+ * @method activity()
+ * @method avatar()
+ * @method data()
+ * @method message()
+ * @method timeline()
+ *
+ * @property-read AbstractResource $activity
+ * @property-read AbstractResource $avatar
+ * @property-read AbstractResource $data
+ * @property-read AbstractResource $message
+ * @property-read AbstractResource $timeline
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractAdapter implements BindInterface
 {
     /** @var array Options */
     protected $options = array();
+
+    /**
+     * Resource handlers
+     *
+     * @var array
+     */
+    protected $resource = array(
+        'avatar'    => null,
+        'message'   => null,
+        'timeline'  => null,
+        'relation'  => null,
+    );
 
     /**
      * Bound user account
@@ -106,6 +132,77 @@ abstract class AbstractAdapter implements BindInterface
     }
 
     /**
+     * Get an option
+     *
+     * @return mixed|null
+     */
+    public function getOption()
+    {
+        $args = func_get_args();
+        $result = $this->options;
+        foreach ($args as $name) {
+            if (!is_array($result)) {
+                $result = null;
+                break;
+            }
+            if (isset($result[$name])) {
+                $result = $result[$name];
+            } else {
+                $result = null;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get resource handler or result from handler if args specified
+     *
+     * @param string $name
+     * @param array  $args
+     *
+     * @return AbstractResource|mixed
+     */
+    public function getResource($name, $args = array())
+    {
+        if (!isset($this->resource[$name])) {
+            $options = array();
+            $class = '';
+            $resource = $this->getOption('resource', $name);
+            if ($resource) {
+                if (is_string($resource)) {
+                    $class = $resource;
+                } else {
+                    if (!empty($resource['class'])) {
+                        $class = $resource['class'];
+                    }
+                    if (isset($this->$resource['options'])) {
+                        $options = $resource['options'];
+                    }
+                }
+            }
+            if (!$class) {
+                $class = 'Pi\User\Resource\\' . ucfirst($name);
+            }
+            $this->resource[$name] = new $class;
+            if ($options) {
+                $this->resource[$name]->setOptions($options);
+            }
+        }
+        if ($args) {
+            $result = call_user_func_array(
+                array($this->resource[$name], 'get'),
+                $args
+            );
+        } else {
+            $result = $this->resource[$name];
+        }
+
+        return $result;
+    }
+
+    /**
      * Bind a user to service
      *
      * @param UserModel $user
@@ -114,6 +211,12 @@ abstract class AbstractAdapter implements BindInterface
     public function bind(UserModel $user = null)
     {
         $this->model = $user;
+        // Bind user model to handlers
+        foreach ($this->resource as $key => $handler) {
+            if ($handler instanceof BindInterface) {
+                $handler->bind($this->model);
+            }
+        }
 
         return $this;
     }
@@ -127,8 +230,65 @@ abstract class AbstractAdapter implements BindInterface
     public function __get($var)
     {
         $result = null;
-        if ($this->model) {
-            $result = $this->model[$var];
+        switch ($var) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($var);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                break;
+            // User profile field
+            default:
+                if ($this->model) {
+                    $result = $this->model[$var];
+                }
+                break;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Method adapter allows a shortcut
+     *
+     * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
+     *
+     * @param  string  $method
+     * @param  array  $args
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        $result = null;
+        switch ($method) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($method, $args);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                if ($args) {
+                    $result = call_user_func_array(array($result,'get'), $args);
+                }
+                break;
+            // User profile adapter methods
+            default:
+                break;
         }
 
         return $result;

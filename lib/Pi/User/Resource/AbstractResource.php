@@ -9,6 +9,8 @@
 
 namespace Pi\User\Resource;
 
+use Pi\User\Adapter\AbstractAdapter;
+
 /**
  * User resource handler abstraction
  *
@@ -16,6 +18,9 @@ namespace Pi\User\Resource;
  */
 class AbstractResource
 {
+    /** @var  AbstractAdapter */
+    protected $adapter;
+
     /** @var array Options */
     protected $options = array();
 
@@ -24,6 +29,16 @@ class AbstractResource
      * @var bool|null
      */
     protected $isAvailable = null;
+
+    /**
+     * Constructor
+     *
+     * @param AbstractAdapter $adapter
+     */
+    public function __construct(AbstractAdapter $adapter = null)
+    {
+        $this->adapater = $adapter;
+    }
 
     /**
      * Check if relation function available

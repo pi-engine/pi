@@ -90,6 +90,10 @@ abstract class AbstractService
         $args = func_get_args();
         $result = $this->options;
         foreach ($args as $name) {
+            if (!is_array($result)) {
+                $result = null;
+                break;
+            }
             if (isset($result[$name])) {
                 $result = $result[$name];
             } else {
