@@ -25,6 +25,24 @@ return array(
             'title'     => __('Full name'),
         ),
 
+        // Profile: Telephone
+        'telephone'  => array(
+            'name'      => 'telephone',
+            'title'     => __('Telephone'),
+        ),
+
+        // Profile: Address
+        'address'  => array(
+            'name'      => 'address',
+            'title'     => __('Address'),
+        ),
+
+        // Profile: Zip code
+        'zip_code'  => array(
+            'name'      => 'zip_code',
+            'title'     => __('Zip code'),
+        ),
+
         // Profile: Language
         'language'  => array(
             'name'  => 'language',
