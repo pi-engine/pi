@@ -44,7 +44,7 @@ return array(
             'name'  => 'province',
             'title' => __('Province'),
 
-            'is_edit'  => false,
+            'edit'  => 'hidden',
         ),
 
         // Profile: City
@@ -52,7 +52,7 @@ return array(
             'name'  => 'city',
             'title' => __('city'),
 
-            'is_edit'  => false,
+            'edit'  => 'hidden',
         ),
 
         // Compound fields
