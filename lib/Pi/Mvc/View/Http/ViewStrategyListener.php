@@ -229,8 +229,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Controller view
         $controllerVew = $controller->plugin('view');
 
+        // Collect captured contents
         if ($this->obStarted) {
-            $content = ob_end_clean();
+            $content = ob_get_clean();
             if ($content) {
                 if (null === $result && !$controllerVew->hasViewModel()) {
                     $result = $content;
