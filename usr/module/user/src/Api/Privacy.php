@@ -98,7 +98,7 @@ class Privacy extends AbstractApi
      *
      * @return array
      */
-    public function getUserPrivacy($uid, $type = '')
+    public function getUserPrivacy($uid)
     {
 
         $result = array();
@@ -106,23 +106,19 @@ class Privacy extends AbstractApi
             return $result;
         }
 
-        $fieldsMeta = $this->getFieldsMeta();
-        $rowset = Pi::model('privacy_user', 'user')
+        // User privacy setting
+        $rowset     = Pi::model('privacy_user', 'user')
             ->select(array('uid' => $uid));
+        foreach ($rowset as $row) {
+            $result[$row['field']] = $row['value'];
+            $userPrivacyFields[] = $row['field'];
+        }
 
-        if ($type == 'list') {
-            foreach ($rowset as $row) {
-                $result[] = array(
-                    'id'        => (int) $row['id'],
-                    'field'     => $row['field'],
-                    'title'     => $fieldsMeta[$row['field']]['title'],
-                    'value'     => (int) $row['value'],
-                    'is_forced' => (int) $row['is_forced']
-                );
-            }
-        } else {
-            foreach ($rowset as $row) {
-                $result[$row['field']] = $row['value'];
+        // Default privacy setting
+        $rowset = Pi::model('privacy', 'user')->select(array());
+        foreach ($rowset as $row) {
+            if (!in_array($row['field'], $userPrivacyFields)) {
+                $result[$row['field']] = $row['vlaue'];
             }
         }
 
@@ -130,15 +126,46 @@ class Privacy extends AbstractApi
 
     }
 
+    public function getUserPrivacyList($uid)
+    {
+        $result = array();
+        if (!$uid) {
+            return $result;
+        }
+
+        $this->updateUserPrivacyFields($uid);
+        $fieldsMeta = $this->getFieldsMeta();
+        $rowset     = Pi::model('privacy_user', 'user')
+            ->select(array('uid' => $uid));
+        foreach ($rowset as $row) {
+            $result[] = array(
+                'id'        => (int) $row['id'],
+                'field'     => $row['field'],
+                'title'     => $fieldsMeta[$row['field']]['title'],
+                'value'     => (int) $row['value'],
+                'is_forced' => (int) $row['is_forced']
+            );
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * Get system privacy setting
+     *
+     * @return mixed
+     */
     public function getPrivacy()
     {
+        $this->updatePrivacyFields();
         // Get fields meta
-        $fieldsMeta = $this->getFieldsMeta();
-        // Get display fields
+        $fieldsMeta    = $this->getFieldsMeta();
+        // Get current privacy fields
         $privacyModel = Pi::model('privacy', $this->getModule());
-        $select = $privacyModel->select()->where(array());
-        $rowset = $privacyModel->selectWith($select);
-
+        $userPrivacyModel = Pi::model('privacy_user', $this->getModule());
+        $select       = $privacyModel->select()->where(array());
+        $rowset       = $privacyModel->selectWith($select)->toArray();
         foreach ($rowset as $row) {
             $privacy[$row['id']] = array(
                 'id'        => (int) $row['id'],
@@ -156,12 +183,91 @@ class Privacy extends AbstractApi
     {
         $fieldsMeta = array();
 
-        $rowset = Pi::model('field', $this->getModule())->select(array());
+        $rowset = Pi::model('field', $this->getModule())
+            ->select(array(
+                'is_display' => 1,
+                'active'     => 1,
+            ));
         foreach ($rowset as $row) {
             $fieldsMeta[$row['name']]['title'] = $row['title'];
         }
 
         return $fieldsMeta;
 
+    }
+
+    /**
+     * Update privacy fields according to user system fields
+     */
+    protected function updatePrivacyFields()
+    {
+        // Get fields meta
+        $fieldsMeta    = $this->getFieldsMeta();
+        $currentFields = array_keys($fieldsMeta);
+
+        // Get current privacy fields
+        $privacyModel     = Pi::model('privacy', $this->getModule());
+        $userPrivacyModel = Pi::model('privacy_user', $this->getModule());
+        $select           = $privacyModel->select()->where(array());
+        $rowset           = $privacyModel->selectWith($select)->toArray();
+
+        // Update privacy fields
+        // Delete invalid privacy fields and user privacy fields setting
+        foreach ($rowset as $row) {
+            if (!in_array($row['field'], $currentFields)) {
+                $userPrivacyModel->delete(array('field' => $row['field']));
+                $privacyModel->delete(array('field' => $row['field']));
+            } else {
+                $validPrivacyFields[] = $row['field'];
+            }
+        }
+        // Insert new fields to privacy
+        foreach ($currentFields as $field) {
+            if (!in_array($field, $validPrivacyFields)) {
+                $row = $privacyModel->createRow(array(
+                    'field'    => $field,
+                    'value'    => 0,
+                    'is_forced' => 0,
+                ));
+                $row->save();
+            }
+        }
+    }
+
+    /**
+     * Update user privacy setting list
+     *
+     * @param $uid
+     */
+    protected function updateUserPrivacyFields($uid)
+    {
+        // Get current user privacy fields
+        $userPrivacyModel = Pi::model('privacy_user', $this->getModule());
+
+        $defaultPrivacy = $this->getPrivacy();
+        foreach ($defaultPrivacy as $row) {
+            $privacyFields[] = $row['field'];
+        }
+
+        $select = $userPrivacyModel->select()->where(array('uid' => $uid));
+        $rowset = $userPrivacyModel->selectWith($select)->toArray();
+        foreach ($rowset as $row) {
+            $curUserPrivacyFields[] = $row['field'];
+        }
+
+        foreach ($defaultPrivacy as $row) {
+            if (!in_array($row['field'], $curUserPrivacyFields)) {
+                // Insert default privacy field
+                if ($row['is_forced']) {
+                    $privacyRow = $userPrivacyModel->createRow(array(
+                        'uid'       => $uid,
+                        'field'     => $row['field'],
+                        'value'     => $row['value'],
+                        'is_forced' => $row['is_forced']
+                    ));
+                    $privacyRow->save();
+                }
+            }
+        }
     }
 }

@@ -84,16 +84,15 @@ class ProfileController extends ActionController
      */
     public function dressUpAction()
     {
-        $fields = Pi::registry('field', 'user')->read('', 'all');
-        /*
+        //$fields = Pi::registry('field', 'user')->read('', 'all');
+
         $fields = $this->getModel('field')->select(
             array(
                 'is_display' => 1,
-                'is_edit'    => 1,
                 'active'     => 1,
             )
         );
-        */
+
 
         $compounds = array();
         $profile = array();
@@ -344,21 +343,7 @@ class ProfileController extends ActionController
         // Set user privacy field
         $userPrivacyModel = $this->getModel('privacy_user');
         if (!$isForced) {
-            $currentPrivacyValue = $row->value;
-            $userPrivacyModel->update(
-                array(
-                    'value'     => $currentPrivacyValue,
-                    'is_forced' => 0,
-                ),
-                array(
-                    'field' => $row->field,
-                )
-            );
-        } else {
-            $userPrivacyModel->update(
-                array('is_forced' => 1),
-                array('field' => $row->field)
-            );
+            $userPrivacyModel->delete(array('field' => $row->field));
         }
 
         $result['status']  = 1;
