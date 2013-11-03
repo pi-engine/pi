@@ -1148,7 +1148,7 @@ class User extends AbstractUseApi
         } elseif ('compound' == $type) {
             $result = $this->setCompoundField($uid, $field, $value);
         } elseif ('custom' == $type) {
-            $meta = $this->getMeta('custom', 'all');
+            $meta = $this->getMeta('custom');
             if (isset($meta[$field]) && !empty($meta[$field]['hanlder'])) {
                 $handler = new $meta[$field]['hanlder']($field);
                 $result = $handler->update($value);

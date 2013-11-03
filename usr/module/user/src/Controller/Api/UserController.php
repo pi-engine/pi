@@ -45,6 +45,10 @@ use Pi\Mvc\Controller\ActionController;
  */
 class UserController extends ActionController
 {
+    protected $protectedFields = array(
+        'credential', 'salt'
+    );
+
     /**
      * Placeholder
      *
@@ -88,6 +92,7 @@ class UserController extends ActionController
         $field      = $this->params('field');
 
         $fields     = $this->splitString($field);
+        $fields     = array_diff($fields, $this->protectedFields);
         $result     = Pi::service('user')->get($uid, $fields);
         $response   = (array) $result;
 
@@ -106,6 +111,7 @@ class UserController extends ActionController
 
         $uids       = $this->splitString($uid);
         $fields     = $this->splitString($field);
+        $fields     = array_diff($fields, $this->protectedFields);
         $result     = Pi::service('user')->mget($uids, $fields);
         $response   = (array) $result;
 
@@ -127,6 +133,7 @@ class UserController extends ActionController
 
         $order  = $this->splitString($order);
         $fields = $this->splitString($field);
+        $fields = array_diff($fields, $this->protectedFields);
         $query  = $this->canonizeQuery($query);
 
         $condition = array();
@@ -155,8 +162,8 @@ class UserController extends ActionController
     public function metaAction()
     {
         $response = array();
-        //$meta = Pi::registry('field', 'user')->read('', 'display');
-        $meta = Pi::registry('field', 'user')->read();
+        $meta = Pi::registry('field', 'user')->read('', 'display');
+        //$meta = Pi::registry('field', 'user')->read();
         array_walk($meta, function ($data) use (&$response) {
             $field = $data['name'];
             $response[$field] = array(
