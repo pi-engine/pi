@@ -99,7 +99,7 @@ return array(
         'birthdate'  => array(
             'type'  => 'account',
             'name'  => 'birthdate',
-            'title' => __('Birth date'),
+            'title' => __('Birthdate'),
             'edit'  => array(
                 'element'       => 'date_select',
                 'options'       => array(
