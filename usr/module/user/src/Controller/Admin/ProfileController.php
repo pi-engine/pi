@@ -26,7 +26,7 @@ class ProfileController extends ActionController
     
     public function fieldAction()
     {
-        $fields = Pi::registry('field', 'user')->read('', 'all');
+        $fields = Pi::registry('field', 'user')->read();
         /*
         $fields = $this->getModel('field')->select(
             array(

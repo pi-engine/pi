@@ -38,7 +38,7 @@ class User extends AbstractUseApi
     public function getMeta($type = '', $action = '')
     {
         $meta = Pi::registry('field', 'user')->read($type, $action);
-
+        
         return $meta;
     }
 
@@ -508,7 +508,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $fieldMeta = Pi::registry('field', 'user')->read('', 'all');
+        $fieldMeta = Pi::registry('field', 'user')->read();
         if (isset($fieldMeta[$field])) {
             $type = $fieldMeta[$field]['type'];
             $result = $this->setTypeField($uid, $type, $field, $value);

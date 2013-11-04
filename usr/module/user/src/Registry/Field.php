@@ -49,9 +49,14 @@ class Field extends AbstractRegistry
                 break;
 
             case 'all':
-            default:
-                $options['type'] = '';
+                $options['action'] = '';
                 break;
+
+            default:
+                break;
+        }
+        if ('all' == $options['type']) {
+            $options['type'] = '';
         }
         if (!empty($options['type'])) {
             $where['type'] = $options['type'];
@@ -90,7 +95,6 @@ class Field extends AbstractRegistry
      */
     public function read($type = '', $action = '')
     {
-        //$action = $action ?: 'display';
         $options = compact('type', 'action');
         $data = $this->loadData($options);
 

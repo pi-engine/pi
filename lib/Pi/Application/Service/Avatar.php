@@ -93,7 +93,7 @@ class Avatar extends AbstractService
      */
     public function getList(array $uids, $size = '', $attributes = array())
     {
-        $avatars = (array) $this->getAdapter()->getList($uids, $size, $attributes);
+        $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
         $missingUids = array();
         foreach ($uids as $uid) {
             if (empty($avatars[$uid])) {

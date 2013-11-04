@@ -24,7 +24,7 @@ class Profile extends AbstractFieldRowGateway
      */
     protected function getMetaList()
     {
-        return Pi::registry('field', 'user')->read('profile', 'all');
+        return Pi::registry('field', 'user')->read('profile');
     }
 
     /**
