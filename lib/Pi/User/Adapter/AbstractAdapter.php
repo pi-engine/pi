@@ -313,7 +313,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get fields specs of specific type and action
      *
-     * - Available types: `account`, `profile`, `compound`, `custom`
+     * - Available types: `account`, `profile`, `compound`
      * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type

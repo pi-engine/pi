@@ -64,7 +64,7 @@ class Field extends AbstractRegistry
             $columns[] = 'type';
         }
         if ($columns &&
-            (empty($options['type']) || 'custom' == $options['type'])
+            (empty($options['type']) || 'compound' == $options['type'])
         ) {
             $columns[] = 'handler';
         }

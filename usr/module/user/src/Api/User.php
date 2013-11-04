@@ -28,7 +28,7 @@ class User extends AbstractUseApi
      * Get fields specs of specific type and action
      *
      * - Available types: `account`, `profile`, `compound`, `custom`
-     * - Available actions: `display`, `edit`, `search`, `all`
+     * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
      * @param string $action
@@ -38,7 +38,7 @@ class User extends AbstractUseApi
     public function getMeta($type = '', $action = '')
     {
         $meta = Pi::registry('field', 'user')->read($type, $action);
-        
+
         return $meta;
     }
 
@@ -315,10 +315,12 @@ class User extends AbstractUseApi
             if (!$status) {
                 $error[] = 'compound';
             }
+            /*
             $status = $this->addCustom($uid, $data);
             if (!$status) {
                 $error[] = 'custom';
             }
+            */
         }
 
         return $error ? array($uid, $error) : $uid;
@@ -352,10 +354,12 @@ class User extends AbstractUseApi
         if (!$status) {
             $error[] = 'compound';
         }
+        /*
         $status = $this->updateCustom($uid, $data);
         if (!$status) {
             $error[] = 'custom';
         }
+        */
 
         return $error ? $error : true;
     }
@@ -386,10 +390,12 @@ class User extends AbstractUseApi
         if (!$status) {
             $error[] = 'compound';
         }
+        /*
         $status = $this->deleteCustom($uid);
         if (!$status) {
             $error[] = 'custom';
         }
+        */
 
         return $error ? $error : $result;
     }
@@ -861,9 +867,14 @@ class User extends AbstractUseApi
         }
 
         $type = 'compound';
+        $custom = array();
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
         foreach ($data as $compound => $value) {
+            if (!empty($value['handler'])) {
+                $custom[$compound] = $value;
+                continue;
+            }
             $compoundSet = $this->canonizeCompound($uid, $compound, $value);
             foreach ($compoundSet as $field) {
                 $row = $model->createRow($field);
@@ -874,6 +885,7 @@ class User extends AbstractUseApi
                 }
             }
         }
+        $this->addCustom($uid, $custom);
 
         return true;
     }
@@ -893,13 +905,19 @@ class User extends AbstractUseApi
         }
 
         $type = 'compound';
+        $custom = array();
         $data = $this->canonizeUser($data, $type);
         foreach ($data as $compound => $value) {
+            if (!empty($value['handler'])) {
+                $custom[$compound] = $value;
+                continue;
+            }
             $result = $this->setCompoundField($uid, $compound, $value);
             if (!$result) {
                 return false;
             }
         }
+        $this->updateCustom($uid, $custom);
 
         return true;
     }
@@ -924,6 +942,9 @@ class User extends AbstractUseApi
         } catch (\Exception $e) {
             $status = false;
         }
+        if ($status) {
+            $status = $this->deleteCustom($uid);
+        }
 
         return $status;
     }
@@ -942,7 +963,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $type = 'custom';
+        $type = 'compound';
         $meta = $this->getMeta($type);
         foreach ($data as $field => $valueSet) {
             if (!isset($meta[$field]) || empty($meta[$field]['handler'])) {
@@ -969,7 +990,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $type = 'custom';
+        $type = 'compound';
         $meta = $this->getMeta($type);
         foreach ($data as $field => $valueSet) {
             if (!isset($meta[$field]) || empty($meta[$field]['handler'])) {
@@ -995,7 +1016,7 @@ class User extends AbstractUseApi
             return false;
         }
 
-        $type = 'custom';
+        $type = 'compound';
         $meta = $this->getMeta($type);
         foreach ($meta as $field => $spec) {
             if (empty($spec['handler'])) {
@@ -1054,25 +1075,44 @@ class User extends AbstractUseApi
                 }
             }
         } elseif ('compound' == $type) {
-            $model = Pi::model($type, 'user');
-            $select = $model->select();
-            $select->order('set ASC')->where(array(
-                'uid'       => $uids,
-                'compound'  => $fields,
-            ));
-            $rowset = $model->selectWith($select);
-            foreach ($rowset as $row) {
-                if ($filter) {
-                    $value = $row->filter();
-                } else {
-                    $value = $row['value'];
+            $meta = $this->getMeta($type);
+            $compound = array();
+            foreach ($fields as $field) {
+                if (!isset($meta[$field])
+                    || empty($meta[$field]['handler'])
+                ) {
+                    $compound[] = $field;
+                    continue;
                 }
-                $id         = (int) $row['uid'];
-                $field      = $row['compound'];
-                $set        = (int) $row['set'];
-                $var        = $row['field'];
-                $result[$id][$field][$set][$var] = $value;
+                $handler = new $meta[$field]['handler']($field);
+                $data  = $handler->mget($uids);
+                foreach ($data as $id => $user) {
+                    $result[$id][$field] = $user;
+                }
             }
+
+            if ($compound) {
+                $model = Pi::model($type, 'user');
+                $select = $model->select();
+                $select->order('set ASC')->where(array(
+                    'uid'       => $uids,
+                    'compound'  => $compound,
+                ));
+                $rowset = $model->selectWith($select);
+                foreach ($rowset as $row) {
+                    if ($filter) {
+                        $value = $row->filter();
+                    } else {
+                        $value = $row['value'];
+                    }
+                    $id         = (int) $row['uid'];
+                    $field      = $row['compound'];
+                    $set        = (int) $row['set'];
+                    $var        = $row['field'];
+                    $result[$id][$field][$set][$var] = $value;
+                }
+            }
+            /*
         } elseif ('custom' == $type) {
             $meta = $this->getMeta($type);
             foreach ($fields as $field) {
@@ -1087,6 +1127,7 @@ class User extends AbstractUseApi
                     $result[$id][$field] = $user;
                 }
             }
+            */
         }
 
         // Canonize uid
@@ -1146,13 +1187,23 @@ class User extends AbstractUseApi
                 $result = false;
             }
         } elseif ('compound' == $type) {
-            $result = $this->setCompoundField($uid, $field, $value);
+            $meta = $this->getMeta($type);
+            if (isset($meta[$field])) {
+                if (!empty($meta[$field]['handler'])) {
+                    $handler = new $meta[$field]['handler']($field);
+                    $result = $handler->update($value);
+                } else {
+                    $result = $this->setCompoundField($uid, $field, $value);
+                }
+            }
+            /*
         } elseif ('custom' == $type) {
             $meta = $this->getMeta('custom');
             if (isset($meta[$field]) && !empty($meta[$field]['handler'])) {
                 $handler = new $meta[$field]['handler']($field);
-                $result = $handler->update($uid, $value);
+                $result = $handler->update($value);
             }
+            */
         } else {
             $result = false;
         }

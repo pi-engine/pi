@@ -48,7 +48,7 @@ CREATE TABLE `{field}` (
   `handler`         text,
 
   -- Field type, default as 'profile'
-  `type`            enum('profile', 'account', 'compound', 'custom') NOT NULL,
+  `type`            enum('profile', 'account', 'compound') NOT NULL,
 
   -- Is editable by user
   `is_edit`         tinyint(1)      unsigned NOT NULL default '0',

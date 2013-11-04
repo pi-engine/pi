@@ -170,7 +170,7 @@ class UserController extends ActionController
                 'name'  => $field,
                 'title' => $data['title'],
             );
-            if ('compound' == $data['type'] || 'custom' == $data['type']) {
+            if ('compound' == $data['type']/* || 'custom' == $data['type']*/) {
                 $fields = Pi::registry('compound_field', 'user')->read($field);
                 array_walk($fields, function ($fData) use (&$response) {
                     $field = $fData['compound'];

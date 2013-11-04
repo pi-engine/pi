@@ -315,16 +315,22 @@ class User extends AbstractResource
      */
     protected function canonizeField($spec)
     {
+        if (!isset($spec['handler'])) {
+            $spec['handler'] = '';
+        }
         if (!isset($spec['type'])) {
+            /*
             if (!empty($spec['handler'])) {
                 $spec['type'] = 'custom';
-            } elseif (isset($spec['field'])) {
+            } else
+                */
+            if (isset($spec['field'])) {
                 $spec['type'] = 'compound';
             } else {
                 $spec['type'] = 'profile';
             }
         }
-        if ('compound' == $spec['type'] || 'custom' == $spec['type']) {
+        if ('compound' == $spec['type']/* || 'custom' == $spec['type']*/) {
             $spec['is_display'] = 1;
             $spec['is_edit']    = 1;
             $spec['is_search']  = 0;
@@ -468,7 +474,9 @@ class User extends AbstractResource
                 if ('field' == $op) {
                     if ('profile' == $spec['type']) {
                         $profileFields[] = $key;
-                    } elseif ('custom' == $spec['type']) {
+                    } elseif ('compound' == $spec['type']
+                        && $spec['handler']
+                    ) {
                         $customNew[] = $spec;
                     }
                 }
@@ -535,7 +543,10 @@ class User extends AbstractResource
                     $row->assign($items[$key]);
                     $row->save();
 
-                    if ('field' == $op && 'custom' == $row['type']) {
+                    if ('field' == $op
+                        && 'compound' == $row['type']
+                        && $row['handler']
+                    ) {
                         $custom['update'][] = $row->toArray();
                     }
 
@@ -543,7 +554,10 @@ class User extends AbstractResource
 
                 // Delete deprecated items
                 } else {
-                    if ('field' == $op && 'custom' == $row['type']) {
+                    if ('field' == $op
+                        && 'compound' == $row['type']
+                        && $row['handler']
+                    ) {
                         $custom['delete'][] = $row->toArray();
                     }
 
@@ -568,7 +582,9 @@ class User extends AbstractResource
                 if ('field' == $op) {
                     if ('profile' == $spec['type']) {
                         $fieldsNew[] = $key;
-                    } elseif ('custom' == $spec['type']) {
+                    } elseif ('compound' == $spec['type']
+                        && $spec['handler']
+                    ) {
                         $custom['add'][] = $spec;
                     }
                 }
@@ -637,7 +653,7 @@ class User extends AbstractResource
         $rowset         = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
             $fields[] = $row['name'];
-            if ('custom' == $row['type']) {
+            if ('compound' == $row['type'] && $row['handler']) {
                 $customDelete[] = $row->toArray();
             }
         }
