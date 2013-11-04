@@ -118,6 +118,7 @@ class Install extends BasicInstall
         Pi::user()->data->set($user, $name, $links, $module);
 
         // Add update list
+        /*
         $model = Pi::model('update', $module);
         $data = array(
             'title'     => __('System installed'),
@@ -126,6 +127,8 @@ class Install extends BasicInstall
             'time'      => time(),
         );
         $model->insert($data);
+        */
+        Pi::service('event')->trigger('system-module_install', 'system');
     }
 
     /**

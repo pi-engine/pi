@@ -200,6 +200,8 @@ class ModuleController extends ActionController
                 __('Module "%s" is installed successfully.'),
                 $name ?: $directory
             );
+
+            Pi::service('event')->trigger('module_install', $name);
         } elseif ($directory) {
             $message = sprintf(
                 __('Module "%s" is not installed.'),
@@ -305,6 +307,8 @@ class ModuleController extends ActionController
         if ($result) {
             $message = sprintf(__('Module "%s" is uninstalled successfully.'),
                                $row->title);
+
+            Pi::service('event')->trigger('module_uninstall', $row->name);
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not uninstalled.'),
                                $row->title);
@@ -362,6 +366,9 @@ class ModuleController extends ActionController
         if ($result) {
             $message = sprintf(__('Module "%s" is updated successfully.'),
                                $row->title);
+
+            Pi::service('event')->trigger('module_updatel', $name);
+
         } elseif ($row) {
             $message = sprintf(__('Module "%s" is not updated.'), $row->title);
         } elseif ($id || $name) {
@@ -424,6 +431,8 @@ class ModuleController extends ActionController
             if ($result) {
                 $message = sprintf(__('Module "%s" is enabled successfully.'),
                                    $row->title);
+
+                Pi::service('event')->trigger('module_activate', $name);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not enabled.'),
                                    $row->title);
@@ -437,6 +446,8 @@ class ModuleController extends ActionController
             if ($result) {
                 $message = sprintf(__('Module "%s" is disabled successfully.'),
                                   $row->title);
+
+                Pi::service('event')->trigger('module_deactivate', $name);
             } elseif ($row) {
                 $message = sprintf(__('Module "%s" is not disabled.'),
                                    $row->title);

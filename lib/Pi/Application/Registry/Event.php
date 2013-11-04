@@ -27,15 +27,17 @@ class Event extends AbstractRegistry
     protected function loadDynamic($options)
     {
         $listeners = array();
+        /*
         $modelEvent = Pi::model('event');
         $count = $modelEvent->count(array(
             'module'    => $options['module'],
             'name'      => $options['event'],
             'active'    => 1
         ));
-        if ($count) {
+        if (!$count) {
             return $listeners;
         }
+        */
 
         $modelListener = Pi::model('event_listener');
         $select = $modelListener->select()->where(array(
@@ -46,12 +48,25 @@ class Event extends AbstractRegistry
         $listenerList = $modelListener->selectWith($select);
         $directory = Pi::service('module')->directory($options['module']);
         foreach ($listenerList as $row) {
-            $class = sprintf(
-                'Module\\%s\\%s',
-                ucfirst($directory),
-                ucfirst($row['class'])
-            );
-            $listeners[] = array($class, $row['method'], $row['module']);
+            $module = $row['module'];
+            if (false === strpos($row['class'], '\\')) {
+                $class = sprintf(
+                    'Custom\\%s\\%s',
+                    ucfirst($module),
+                    ucfirst($row['class'])
+                );
+                if (!class_exists($class)) {
+                    $directory = Pi::service('module')->directory($module);
+                    $class = sprintf(
+                        'Module\\%s\\%s',
+                        ucfirst($directory),
+                        ucfirst($row['class'])
+                    );
+                }
+            } else {
+                $class = $row['class'];
+            }
+            $listeners[] = array($class, $row['method'], $module);
         }
 
         return $listeners;

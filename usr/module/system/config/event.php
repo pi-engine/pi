@@ -14,32 +14,48 @@
  */
 return array(
     // Event list
-    'events'    => array(
+    'event'    => array(
         // event name (unique)
         'module_install' => array(
             // title
-            'title' => __('Module installation'),
+            'title' => __('Module installed'),
         ),
         'module_uninstall'  => array(
-            'title' => __('Module uninstallation'),
+            'title' => __('Module uninstalled'),
         ),
         'module_activate'  => array(
-            'title' => __('Module activation'),
+            'title' => __('Module activated'),
         ),
         'module_deactivate'  => array(
-            'title' => __('Module deactivation'),
+            'title' => __('Module deactivated'),
         ),
         'module_update'  => array(
-            'title' => __('Module update'),
+            'title' => __('Module updated'),
         ),
     ),
     // Listener list
-    'listeners' => array(
+    'listener' => array(
         array(
             // event info: module, event name
             'event'     => array('system', 'module_install'),
             // listener callback: class, method
-            'listener'  => array('event', 'moduleinstall'),
+            'callback'  => array('event', 'moduleinstall'),
+        ),
+        array(
+            'event'     => array('system', 'module_uninstall'),
+            'callback'  => array('event', 'moduleuninstall'),
+        ),
+        array(
+            'event'     => array('system', 'module_update'),
+            'callback'  => array('event', 'moduleupdate'),
+        ),
+        array(
+            'event'     => array('system', 'module_activate'),
+            'callback'  => array('event', 'moduleactivate'),
+        ),
+        array(
+            'event'     => array('system', 'module_deactivate'),
+            'callback'  => array('event', 'moduledeactivate'),
         ),
     ),
 );
