@@ -26,8 +26,10 @@ class Event extends AbstractRegistry
      */
     protected function loadDynamic($options)
     {
-        $listeners = array();
-        /*
+        $result = array(
+            'event'     => '',
+            'listener'  => array(),
+        );
         $modelEvent = Pi::model('event');
         $count = $modelEvent->count(array(
             'module'    => $options['module'],
@@ -35,9 +37,9 @@ class Event extends AbstractRegistry
             'active'    => 1
         ));
         if (!$count) {
-            return $listeners;
+            return $result;
         }
-        */
+        $result['event'] = $options['module'] . '-' . $options['event'];
 
         $modelListener = Pi::model('event_listener');
         $select = $modelListener->select()->where(array(
@@ -46,7 +48,8 @@ class Event extends AbstractRegistry
             'active'        => 1
         ));
         $listenerList = $modelListener->selectWith($select);
-        $directory = Pi::service('module')->directory($options['module']);
+        //$directory = Pi::service('module')->directory($options['module']);
+        $listeners = array();
         foreach ($listenerList as $row) {
             $module = $row['module'];
             if (false === strpos($row['class'], '\\')) {
@@ -69,7 +72,9 @@ class Event extends AbstractRegistry
             $listeners[] = array($class, $row['method'], $module);
         }
 
-        return $listeners;
+        $result['listener'] = $listeners;
+
+        return $result;
     }
 
     /**
@@ -83,7 +88,14 @@ class Event extends AbstractRegistry
         if (empty($event)) return false;
         $options = compact('module', 'event');
 
-        return $this->loadData($options);
+        $data = $this->loadData($options);
+        if (empty($data['event'])) {
+            $result = false;
+        } else {
+            $result = (array) $data['listener'];
+        }
+
+        return $result;
     }
 
     /**

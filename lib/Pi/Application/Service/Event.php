@@ -72,6 +72,10 @@ class Event extends AbstractService
 
         // Load pre-defined listeners
         $listeners = $this->loadListeners($module, $event);
+        if (false === $listeners) {
+            return true;
+        }
+
         $isStopped = false;
         foreach ($listeners as $listener) {
             $moduleName = array_pop($listener);
@@ -115,7 +119,7 @@ class Event extends AbstractService
      *
      * @param string    $module
      * @param string    $event
-     * @return array
+     * @return array|bool
      */
     public function loadListeners($module, $event)
     {
