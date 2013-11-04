@@ -25,32 +25,6 @@ return array(
             'title'     => __('Full name'),
         ),
 
-        // Profile: Telephone
-        'telephone'  => array(
-            'name'      => 'telephone',
-            'title'     => __('Telephone'),
-            'edit'      => array(
-                'element' => array(
-                    'type'          => 'textarea',
-                    'attributes'    => array(
-                        'class' => 'large',
-                    ),
-                ),
-            ),
-        ),
-
-        // Profile: Address
-        'address'  => array(
-            'name'      => 'address',
-            'title'     => __('Address'),
-        ),
-
-        // Profile: Zip code
-        'zip_code'  => array(
-            'name'      => 'zip_code',
-            'title'     => __('Zip code'),
-        ),
-
         // Profile: Language
         'language'  => array(
             'name'  => 'language',
@@ -80,6 +54,29 @@ return array(
 
             'edit'  => 'hidden',
         ),
+
+        //Contact
+        'telphone' => array(
+            'name'  => 'telphone',
+            'title' => __('Telphone'),
+        ),
+
+        'address' => array(
+            'name'  => 'address',
+            'title' => __('Address'),
+            'edit'  => array(
+                'class' => 'input-xxlarge',
+                'attributes' => array(
+                    'class' => 'input-xxlarge'
+                )
+            )
+        ),
+
+        'zip' => array(
+            'name'  => 'zip',
+            'title' => __('Zip'),
+        ),
+
 
         // Compound fields
 
@@ -132,25 +129,49 @@ return array(
                 ),
                 'industry'    => array(
                     'title' => __('Industry'),
+                    'edit'  => 'Custom\User\Form\Element\Industry',
                 ),
                 'sector'    => array(
                     'title' => __('Sector'),
+                    'edit'  => 'hidden',
                 ),
                 'position'    => array(
                     'title' => __('Job Position'),
+                    'edit'  => array(
+                        'element'    => 'select',
+                        'attributes' => array(
+                            'options' => array(
+                                ''                   => '请选择',
+                                '研发'               => '研发',
+                                '研发管理/项目管理'  => '研发管理/项目管理',
+                                '测试测量'           => '测试测量',
+                                '生产管理/质量控制'  => '生产管理/质量控制',
+                                '采购/市场/服务'     => '采购/市场/服务',
+                                '学生'               => '学生',
+                            )
+                        )
+                    )
                 ),
                 'title'    => array(
                     'title' => __('Job title'),
                 ),
                 'description'   => array(
                     'title' => __('Description'),
-                    'edit'  => 'textarea',
+                    'edit'  => array(
+                        'element' => 'textarea',
+                        'attributes' => array(
+                            'rows'    => 5,
+                            'class'   => 'input-block-level',
+                        )
+                    ),
                 ),
                 'start'    => array(
-                    'title' => __('Start time'),
+                    'title' => __('Time'),
+                    'edit'  => 'Custom\User\Form\Element\Time'
                 ),
                 'end'    => array(
                     'title' => __('End time'),
+                    'edit'  => 'hidden'
                 ),
             ),
         ),
