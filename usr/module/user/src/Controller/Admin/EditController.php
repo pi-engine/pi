@@ -293,9 +293,9 @@ class EditController extends ActionController
      */
     protected function getEditField()
     {
-        $fields      = array();
-        $formFields  = array();
-        $formFilters = array();
+        $fields   = array();
+        $elements = array();
+        $filters  = array();
 
         $model = $this->getModel('field');
         $rowset = $model->select(array(
@@ -306,12 +306,18 @@ class EditController extends ActionController
         ));
 
         foreach ($rowset as $row) {
-            $fields[]      = $row['name'];
-            $formFields[]  = Pi::api('user', 'form')->getElement($row['name']);
-            $formFilters[] = Pi::api('user', 'form')->getFilter($row['name']);
+            $fields[]   = $row['name'];
+            $element    = Pi::api('user', 'form')->getElement($row['name']);
+            $filter     = Pi::api('user', 'form')->getFilter($row['name']);
+            if ($element) {
+                $elements[] = $element;
+            }
+            if ($filter) {
+                $filters[] = $filter;
+            }
         }
 
-        return array($fields, $formFields, $formFilters);
+        return array($fields, $elements, $filters);
 
     }
 

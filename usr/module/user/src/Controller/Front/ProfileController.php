@@ -176,12 +176,11 @@ class ProfileController extends ActionController
 
         if ($this->request->isPost()) {
             // Get profile filter
-            $post = $this->request->getPost();
-            $form->setData($post);
+            $filters = array_filter($filters);
             $form->setInputFilter(new ProfileEditFilter($filters));
+            $form->setData($this->request->getPost());
             if ($form->isValid()) {
                 $data = $form->getData();
-                $data = $post;
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
                 $result['status']  = 1;
@@ -601,12 +600,9 @@ class ProfileController extends ActionController
                 $filter     = Pi::api('user', 'form')->getFilter($row->field);
                 if ($element) {
                     $elements[] = $element;
-                    $filters[]  = $filter;
-                } else {
-                    $elements[] = array(
-                        'name'  => $row->field,
-                        'type'  => 'hidden',
-                    );
+                }
+                if ($filter) {
+                    $filters[] = $filter;
                 }
             }
 

@@ -405,8 +405,14 @@ class RegisterController extends ActionController
 
         foreach ($config as $value) {
             if (is_string($value)) {
-                $elements[] = Pi::api('user', 'form')->getElement($value);
-                $filters[]  = Pi::api('user', 'form')->getFilter($value);
+                $element    = Pi::api('user', 'form')->getElement($value);
+                $filter     = Pi::api('user', 'form')->getFilter($value);
+                if ($element) {
+                    $elements[] = $element;
+                }
+                if ($filter) {
+                    $filters[] = $filter;
+                }
             } else {
                 if ($value['element']) {
                     $elements[] = $value['element'];
