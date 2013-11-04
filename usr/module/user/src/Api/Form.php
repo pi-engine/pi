@@ -35,9 +35,6 @@ class Form extends AbstractApi
         $element['name'] = $data['name'];
         $element['options'] = $data['edit']['options'] ? : array();
         $element['options']['label'] = $data['title'];
-        if (isset($data['edit']['class'])) {
-            $element['attributes']['class'] = $data['edit']['class'];
-        }
 
         return $element;
     }

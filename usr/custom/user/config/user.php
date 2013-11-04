@@ -23,7 +23,6 @@ return array(
         'fullname'  => array(
             'name'      => 'fullname',
             'title'     => __('Full name'),
-
         ),
 
         // Profile: Telephone
@@ -31,8 +30,12 @@ return array(
             'name'      => 'telephone',
             'title'     => __('Telephone'),
             'edit'      => array(
-                'class' => 'large',
-                'element' => 'textarea',
+                'element' => array(
+                    'type'          => 'textarea',
+                    'attributes'    => array(
+                        'class' => 'large',
+                    ),
+                ),
             ),
         ),
 
