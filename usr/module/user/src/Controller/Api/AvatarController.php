@@ -65,12 +65,8 @@ class AvatarController extends ActionController
 
         $uids       = $this->splitString($uid);
         $result     = Pi::service('avatar')->getList($uids, $size, false);
-        $response   = array(
-            'status'    => 1,
-            'data'      => $result,
-        );
 
-        return $response;
+        return $result;
     }
 
     /**

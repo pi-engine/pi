@@ -45,9 +45,13 @@ class Uninstall extends BasicAction
         $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
 
+        /*
         $config = Pi::config()->load('service.avatar.php');
         $config['adapter'] = 'local';
         Pi::config()->write('service.avatar.php', $config, true);
+        */
+        $file = Pi::config()->getPath('service.avatar.php', true);
+        @unlink($file);
 
         return true;
     }

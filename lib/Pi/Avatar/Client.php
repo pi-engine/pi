@@ -53,12 +53,10 @@ class Client extends AbstractAvatar
         */
 
         $uri = Pi::service('user')->getUrl('avatar', 'mget');
-        $data = Pi::service('remote')->get($uri, array(
+        $result = Pi::service('remote')->get($uri, array(
             'id'    => $uids,
             'size'  => $size
         ));
-        $result = $data['data'];
-        //var_dump($result);
 
         return $result;
     }

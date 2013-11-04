@@ -113,7 +113,7 @@ class UserController extends ActionController
         $fields     = $this->splitString($field);
         $fields     = array_diff($fields, $this->protectedFields);
         $result     = Pi::service('user')->mget($uids, $fields);
-        $response   = (array) $result;
+        $response   = $result;
 
         return $response;
     }

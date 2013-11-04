@@ -48,9 +48,12 @@ class Activate extends BasicAction
         $config = Pi::config()->load('module.uclient.php', false);
         Pi::config()->write('module.uclient.php', $config, true);
 
-        $config = Pi::config()->load('service.avatar.php');
-        $config['adapter'] = 'client';
-        Pi::config()->write('service.avatar.php', $config, true);
+        $config = Pi::config()->load('service.avatar.php', false);
+        $newConfig = array(
+            'adapter' => 'client',
+            'size_map'  => $config['size_map'],
+        );
+        Pi::config()->write('service.avatar.php', $newConfig, true);
 
         return true;
     }
