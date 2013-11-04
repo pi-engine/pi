@@ -223,7 +223,7 @@ abstract class AbstractCompoundHandler
     {
         $meta = $this->getMeta();
         foreach (array_keys($data) as $key) {
-            if (!isset($meta[$key])) {
+            if (!isset($meta[$key]) ) {
                 unset($data[$key]);
             }
         }
@@ -244,9 +244,10 @@ abstract class AbstractCompoundHandler
         if ($this->isMultiple) {
             $order = 0;
             foreach ($data as $set) {
+                $set = $this->canonize($set);
                 $set['uid'] = (int) $uid;
                 $set['order'] = $order++;
-                $row = $this->getModel()->createRow($this->canonize($set));
+                $row = $this->getModel()->createRow($set);
                 $row->save();
             }
         } else {
@@ -283,7 +284,7 @@ abstract class AbstractCompoundHandler
     public function delete($uid)
     {
         $row = $this->getModel()->find($uid, 'uid');
-        if ($row) {
+        if ($row->id) {
             $row->delete();
         }
 
