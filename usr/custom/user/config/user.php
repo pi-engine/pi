@@ -23,12 +23,17 @@ return array(
         'fullname'  => array(
             'name'      => 'fullname',
             'title'     => __('Full name'),
+
         ),
 
         // Profile: Telephone
         'telephone'  => array(
             'name'      => 'telephone',
             'title'     => __('Telephone'),
+            'edit'      => array(
+                'class' => 'large',
+                'element' => 'textarea',
+            ),
         ),
 
         // Profile: Address
