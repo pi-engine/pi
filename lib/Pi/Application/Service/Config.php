@@ -196,13 +196,15 @@ class Config extends AbstractService
         $configs = array();
         $file = '';
         if ($checkCustom) {
-            $file = $this->customLocation . '/' . $configFile;
+            $file = $this->getPath($configFile, true);
+            //$file = $this->customLocation . '/' . $configFile;
             if (!file_exists($file)) {
                 $file = '';
             }
         }
         if (!$file) {
-            $file = $this->configLocation . '/' . $configFile;
+            $file = $this->getPath($configFile);
+            //$file = $this->configLocation . '/' . $configFile;
             if (!file_exists($file)) {
                 $file = '';
             }
@@ -228,8 +230,9 @@ class Config extends AbstractService
         if ('.php' != substr($file, -4)) {
             $file .= '.php';
         }
-        $path = $toCustom ? $this->customLocation : $this->configLocation;
-        $file = $path . '/' . $file;
+        //$path = $toCustom ? $this->customLocation : $this->configLocation;
+        //$file = $path . '/' . $file;
+        $file = $this->getPath($file, $toCustom);
 
         $content = '<?php' . PHP_EOL
             . '// Generated on ' . date('Y-m-d H:i:s') . PHP_EOL
@@ -237,5 +240,21 @@ class Config extends AbstractService
         $result = (bool) file_put_contents($file, $content);
 
         return $result;
+    }
+
+    /**
+     * Get full path to a config file
+     *
+     * @param string $file
+     * @param bool $isCustom
+     *
+     * @return string
+     */
+    public function getPath($file, $isCustom = false)
+    {
+        $path = $isCustom ? $this->customLocation : $this->configLocation;
+        $file = $path . '/' . $file;
+
+        return $file;
     }
 }
