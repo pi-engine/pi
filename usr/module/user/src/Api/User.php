@@ -38,7 +38,7 @@ class User extends AbstractUseApi
     public function getMeta($type = '', $action = '')
     {
         $meta = Pi::registry('field', 'user')->read($type, $action);
-
+        
         return $meta;
     }
 
@@ -1149,9 +1149,9 @@ class User extends AbstractUseApi
             $result = $this->setCompoundField($uid, $field, $value);
         } elseif ('custom' == $type) {
             $meta = $this->getMeta('custom');
-            if (isset($meta[$field]) && !empty($meta[$field]['hanlder'])) {
-                $handler = new $meta[$field]['hanlder']($field);
-                $result = $handler->update($value);
+            if (isset($meta[$field]) && !empty($meta[$field]['handler'])) {
+                $handler = new $meta[$field]['handler']($field);
+                $result = $handler->update($uid, $value);
             }
         } else {
             $result = false;
