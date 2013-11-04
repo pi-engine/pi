@@ -41,5 +41,6 @@ return array(
         'navigation'    => 'nav.php',
         'route'         => 'route.php',
         'comment'       => 'comment.php',
+        'event'         => 'event.php',
     ),
 );

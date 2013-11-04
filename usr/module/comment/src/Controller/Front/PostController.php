@@ -269,6 +269,8 @@ class PostController extends ActionController
 
         $id             = 0;
         $status         = 1;
+        $isNew          = false;
+        $isEnabled      = false;
 
         if (!$currentUid) {
             $status = -1;
@@ -304,6 +306,7 @@ class PostController extends ActionController
                         }
                         $values['uid'] = $currentUid;
                         $values['ip'] = Pi::service('user')->getIp();
+                        $isNew = true;
                     } else {
                         $post = Pi::api('comment')->getPost($values['id']);
                         if (!$post) {
@@ -320,6 +323,7 @@ class PostController extends ActionController
                 if (0 < $status) {
                     //vd($values);
                     $id = Pi::api('comment')->addPost($values);
+                    $isEnabled = empty($values['active']) ? false : true;
                     if ($id) {
                         $status = 1;
                         $message = __('Comment post saved successfully.');
@@ -373,11 +377,20 @@ class PostController extends ActionController
         */
 
         if (0 < $status && $id) {
+            if ($isNew) {
+                if ($isEnabled) {
+                    Pi::service('event')->trigger('post_publish', $id);
+                } else {
+                    Pi::service('event')->trigger('post_submit', $id);
+                }
+            } elseif ($isEnabled) {
+                Pi::service('event')->trigger('post_update', $id);
+            }
             // Clear cache for leading comments
-            Pi::service('comment')->clearCache($id);
+            //Pi::service('comment')->clearCache($id);
 
             // Insert timeline item
-            Pi::service('comment')->timeline($id);
+            //Pi::service('comment')->timeline($id);
         }
 
         $result = array(
@@ -409,7 +422,7 @@ class PostController extends ActionController
             $message    = __('Operation denied.');
         } else {
             if (null === $flag) {
-                $status     = Pi::api('comment')->approve($id);
+                $status = Pi::api('comment')->approve($id);
             } else {
                 $status = Pi::api('comment')->approve($id, $flag);
             }
@@ -418,7 +431,12 @@ class PostController extends ActionController
         }
 
         if (0 < $status && $id) {
-            Pi::service('comment')->clearCache($id);
+            if (null === $flag || $flag) {
+                Pi::service('event')->trigger('post_enable', $id);
+            } else {
+                Pi::service('event')->trigger('post_disable', $id);
+            }
+            //Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {
@@ -471,7 +489,8 @@ class PostController extends ActionController
         }
 
         if (0 < $status && $id) {
-            Pi::service('comment')->clearCache($id);
+            Pi::service('event')->trigger('post_delete', $id);
+            //Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {

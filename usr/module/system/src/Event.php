@@ -11,8 +11,19 @@ namespace Module\System;
 
 use Pi;
 
+/**
+ * System Event Handler
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Event
 {
+    /**
+     * Module installation
+     *
+     * @param string $data
+     * @param string $module
+     */
     public static function moduleinstall($data, $module)
     {
         $model = Pi::model('update', $module);
@@ -25,6 +36,12 @@ class Event
         $model->insert($data);
     }
 
+    /**
+     * Module uninstallation
+     *
+     * @param string $data
+     * @param string $module
+     */
     public static function moduleuninstall($data, $module)
     {
         $model = Pi::model('update', $module);
@@ -37,6 +54,12 @@ class Event
         $model->insert($data);
     }
 
+    /**
+     * Module update
+     *
+     * @param string $data
+     * @param string $module
+     */
     public static function moduleupdate($data, $module)
     {
         $model = Pi::model('update', $module);
@@ -49,6 +72,12 @@ class Event
         $model->insert($data);
     }
 
+    /**
+     * Module activation
+     *
+     * @param string $data
+     * @param string $module
+     */
     public static function moduleactivate($data, $module)
     {
         $model = Pi::model('update', $module);
@@ -61,6 +90,12 @@ class Event
         $model->insert($data);
     }
 
+    /**
+     * Module deactivation
+     *
+     * @param string $data
+     * @param string $module
+     */
     public static function moduledeactivate($data, $module)
     {
         $model = Pi::model('update', $module);

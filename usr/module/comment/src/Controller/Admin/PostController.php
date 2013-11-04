@@ -151,6 +151,7 @@ class PostController extends ActionController
     protected function processPost()
     {
         $id = 0;
+        $isNew = false;
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $markup = $data['markup'];
@@ -160,11 +161,12 @@ class PostController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 if (empty($values['id'])) {
-                    if (Pi::config('auto_approve', 'comment')) {
+                    if (Pi::config()->module('auto_approve', 'comment')) {
                         $values['active'] = 1;
                     }
                     $values['uid'] = Pi::service('user')->getId();
                     $values['ip'] = Pi::service('user')->getIp();
+                    $isNew = true;
                 }
                 //vd($values);
                 $id = Pi::api('comment')->addPost($values);
@@ -185,7 +187,11 @@ class PostController extends ActionController
         }
 
         if (0 < $status && $id) {
-            Pi::service('comment')->clearCache($id);
+            if ($isNew) {
+                Pi::service('event')->trigger('post_submit', $id);
+            } else {
+                Pi::service('event')->trigger('post_update', $id);
+            }
         }
 
         $result = array(
@@ -210,7 +216,7 @@ class PostController extends ActionController
         $redirect   = _get('redirect');
 
         if (null === $flag) {
-            $status     = Pi::api('comment')->approve($id);
+            $status = Pi::api('comment')->approve($id);
         } else {
             $status = Pi::api('comment')->approve($id, $flag);
         }
@@ -218,7 +224,11 @@ class PostController extends ActionController
             ? __('Operation succeeded.') : __('Operation failed');
 
         if (0 < $status && $id) {
-            Pi::service('comment')->clearCache($id);
+            if (null === $flag || $flag) {
+                Pi::service('event')->trigger('post_enable', $id);
+            } else {
+                Pi::service('event')->trigger('post_disable', $id);
+            }
         }
 
         if (!$return) {
@@ -257,7 +267,11 @@ class PostController extends ActionController
         $model  = $this->getModel('post');
         $model->update(array('active' => $flag), array('id' => $ids));
 
-        Pi::service('comment')->clearCache($ids);
+        if (null === $flag || $flag) {
+            Pi::service('event')->trigger('post_enable', $ids);
+        } else {
+            Pi::service('event')->trigger('post_disable', $ids);
+        }
 
         if ($redirect) {
             $redirect = urldecode($redirect);
@@ -286,7 +300,7 @@ class PostController extends ActionController
             ? __('Operation succeeded.') : __('Operation failed');
 
         if (0 < $status && $id) {
-            Pi::service('comment')->clearCache($id);
+            Pi::service('event')->trigger('post_delete', $id);
         }
 
         if (!$return) {
@@ -321,7 +335,7 @@ class PostController extends ActionController
         $model  = $this->getModel('post');
         $model->delete(array('id' => $ids));
 
-        Pi::service('comment')->clearCache($ids);
+        Pi::service('event')->trigger('post_delete', $ids);
 
         if ($redirect) {
             $redirect = urldecode($redirect);
