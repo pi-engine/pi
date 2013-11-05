@@ -63,14 +63,11 @@ class Field extends AbstractRegistry
         } elseif ($columns) {
             $columns[] = 'type';
         }
-        if ($columns &&
-            (empty($options['type']) || 'compound' == $options['type'])
-        ) {
-            $columns[] = 'handler';
-        }
         if ($columns) {
+            $columns[] = 'handler';
             $columns[] = 'name';
             $columns[] = 'title';
+            $columns = array_unique($columns);
         }
 
         $model = Pi::model('field', $this->module);

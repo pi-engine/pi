@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Module\User\AbstractCompoundHandler;
+use Module\User\AbstractCustomHandler;
 
 /**
  * User meta setup
@@ -91,6 +91,17 @@ use Module\User\AbstractCompoundHandler;
  *              'title'         => __('Field Name D'),
  *              'description'   => __('Description of field D.'),
  *              'value'         => <field-value>,
+ *          ),
+ *
+ *
+ *          // Field with custom handler
+ *          <field-key> => array(
+ *              'title'         => __('Field Name E'),
+ *              'description'   => __('Description of field E.'),
+ *              'value'         => <field-value>,
+ *
+ *              // Callback class for operation handling
+ *              'handler'       => <Custom\User\Field\HandlerClass>,
  *          ),
  *
  *          <...>,
@@ -319,11 +330,6 @@ class User extends AbstractResource
             $spec['handler'] = '';
         }
         if (!isset($spec['type'])) {
-            /*
-            if (!empty($spec['handler'])) {
-                $spec['type'] = 'custom';
-            } else
-                */
             if (isset($spec['field'])) {
                 $spec['type'] = 'compound';
             } else {
@@ -472,12 +478,10 @@ class User extends AbstractResource
                     );
                 }
                 if ('field' == $op) {
-                    if ('profile' == $spec['type']) {
-                        $profileFields[] = $key;
-                    } elseif ('compound' == $spec['type']
-                        && $spec['handler']
-                    ) {
+                    if ($spec['handler']) {
                         $customNew[] = $spec;
+                    } elseif ('profile' == $spec['type']) {
+                        $profileFields[] = $key;
                     }
                 }
             }
@@ -543,10 +547,7 @@ class User extends AbstractResource
                     $row->assign($items[$key]);
                     $row->save();
 
-                    if ('field' == $op
-                        && 'compound' == $row['type']
-                        && $row['handler']
-                    ) {
+                    if ('field' == $op && $row['handler']) {
                         $custom['update'][] = $row->toArray();
                     }
 
@@ -554,14 +555,20 @@ class User extends AbstractResource
 
                 // Delete deprecated items
                 } else {
-                    if ('field' == $op
-                        && 'compound' == $row['type']
-                        && $row['handler']
-                    ) {
-                        $custom['delete'][] = $row->toArray();
+                    if ('field' == $op) {
+                        if ($row['handler']) {
+                            $custom['delete'][] = $row->toArray();
+                        } elseif ('profile' == $row['type']) {
+                            $itemsDeleted[$op]['profile'][] = $key;
+                        } elseif ('compound' == $row['type']) {
+                            $itemsDeleted[$op]['compound'][] = $key;
+                        }
+                        if ('compound' == $row['type']) {
+                            $itemsDeleted[$op]['compound_field'][] = $key;
+                        }
+                    } else {
+                        $itemsDeleted[$op][] = $key;
                     }
-
-                    $itemsDeleted[$op][] = $key;
                     $row->delete();
                 }
             }
@@ -580,12 +587,10 @@ class User extends AbstractResource
                     );
                 }
                 if ('field' == $op) {
-                    if ('profile' == $spec['type']) {
-                        $fieldsNew[] = $key;
-                    } elseif ('compound' == $spec['type']
-                        && $spec['handler']
-                    ) {
+                    if ($spec['handler']) {
                         $custom['add'][] = $spec;
+                    } elseif ('profile' == $spec['type']) {
+                        $fieldsNew[] = $key;
                     }
                 }
             }
@@ -598,13 +603,19 @@ class User extends AbstractResource
 
         // Delete deprecated user custom profile data
         if ($itemsDeleted['field']) {
-            $this->dropFields($itemsDeleted['field']);
-            Pi::model('compound_field', 'user')->delete(array(
-                'compound' => $itemsDeleted['field'],
-            ));
-            Pi::model('compound', 'user')->delete(array(
-                'compound' => $itemsDeleted['field'],
-            ));
+            if (!empty($itemsDeleted['field']['profile'])) {
+                $this->dropFields($itemsDeleted['field']['profile']);
+            }
+            if (!empty($itemsDeleted['field']['compound_field'])) {
+                Pi::model('compound_field', 'user')->delete(array(
+                    'compound' => $itemsDeleted['field']['compound_field'],
+                ));
+            }
+            if (!empty($itemsDeleted['field']['compound'])) {
+                Pi::model('compound', 'user')->delete(array(
+                    'compound' => $itemsDeleted['field']['compound'],
+                ));
+            }
         }
 
         // Delete deprecated user compound profile data
@@ -648,13 +659,17 @@ class User extends AbstractResource
         Pi::registry('compound_field', 'user')->clear();
 
         $fields         = array();
-        $customDelete   = array();
+        $compounds      = array();
+        $customs        = array();
         $model          = Pi::model('field', 'user');
         $rowset         = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
-            $fields[] = $row['name'];
-            if ('compound' == $row['type'] && $row['handler']) {
-                $customDelete[] = $row->toArray();
+            if ($row['handler']) {
+                $customs[] = $row->toArray();
+            } elseif ('profile' == $row['type']) {
+                $fields[] = $row['name'];
+            } elseif ('compound' == $row['type']) {
+                $compounds[] = $row['name'];
             }
         }
         // Remove module profile data
@@ -662,14 +677,6 @@ class User extends AbstractResource
             $this->dropFields($fields);
         }
 
-        $compounds = array();
-        $rowset = $model->select(array(
-            'module'    => $module,
-            'type'      => 'compound',
-        ));
-        foreach ($rowset as $row) {
-            $compounds[] = $row->name;
-        }
         // Remove module profile data
         if ($compounds) {
             Pi::model('compound', 'user')->delete(array(
@@ -689,8 +696,8 @@ class User extends AbstractResource
             $model->delete(array('module' => $module));
         }
 
-        if ($customDelete) {
-            $this->custom('drop', $customDelete);
+        if ($customs) {
+            $this->custom('drop', $customs);
         }
 
         return true;
@@ -821,7 +828,7 @@ class User extends AbstractResource
     {
         foreach ($list as $compound) {
             $handler = new $compound['handler'];
-            if (!$handler instanceof AbstractCompoundHandler) {
+            if (!$handler instanceof AbstractCustomHandler) {
                 continue;
             }
             switch ($op) {

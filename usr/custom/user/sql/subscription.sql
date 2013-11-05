@@ -13,8 +13,8 @@ CREATE TABLE `{subscription}` (
   `uid`             int(10)         unsigned    NOT NULL,
   `order`           smallint(5)     unsigned    NOT NULL default '0',
 
-  `item`            varchar(64)     NOT NULL,
+  `value`           varchar(64)     NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `uid` (`uid`, `item`)
+  UNIQUE KEY  `uid` (`uid`, `value`)
 );

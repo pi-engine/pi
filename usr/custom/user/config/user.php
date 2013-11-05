@@ -77,6 +77,21 @@ return array(
             'title' => __('Postcode'),
         ),
 
+        'interest' => array(
+            'name'  => 'interest',
+            'title' => __('Interest'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Field\Interest',
+        ),
+
+        'subscription'      => array(
+            'name'  => 'subscription',
+            'title' => __('Subscriptions'),
+
+            // Custom handler
+            'handler'   => 'Custom\User\Field\Subscription',
+        ),
 
         // Compound fields
 
@@ -86,7 +101,7 @@ return array(
             'title' => __('Education'),
 
             // Custom handler
-            'handler'   => 'Custom\User\Compound\Education',
+            'handler'   => 'Custom\User\Field\Education',
 
             // Fields
             'field' => array(
@@ -120,7 +135,7 @@ return array(
             'title' => __('Work'),
 
             // Custom handler
-            'handler'   => 'Custom\User\Compound\Work',
+            'handler'   => 'Custom\User\Field\Work',
 
             // Fields
             'field' => array(
@@ -179,13 +194,14 @@ return array(
             ),
         ),
 
+            /*
         // Compound: Profession interests
         'interest'      => array(
             'name'  => 'interest',
             'title' => __('Interests'),
 
             // Custom handler
-            'handler'   => 'Custom\User\Compound\Interest',
+            'handler'   => 'Custom\User\Field\Interest',
 
             // Fields
             'field' => array(
@@ -195,13 +211,14 @@ return array(
             ),
         ),
 
+
         // Compound: Subscriptions
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
 
             // Custom handler
-            'handler'   => 'Custom\User\Compound\Subscription',
+            'handler'   => 'Custom\User\Field\Subscription',
 
             // Fields
             'field' => array(
@@ -210,6 +227,7 @@ return array(
                 ),
             ),
         ),
+        */
     ),
 
     // Timeline logs from modules

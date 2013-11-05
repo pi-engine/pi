@@ -23,17 +23,17 @@ use Zend\InputFilter\InputFilter;
  * Skeleton
  *
  * - Specs: usr/custom/user/config/user.php
- * - Handler: usr/custom/user/src/Compound/<FieldName>.php
+ * - Handler: usr/custom/user/src/Field/<FieldName>.php
  * - Form/Filter: usr/custom/user/src/Form/FieldNameForm.php
  * - schema: usr/custom/user/sql/<field>.sql
  * - locale: usr/custom/user/locale/en/main.csv
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractCompoundHandler
+abstract class AbstractCustomHandler
 {
     /** @var bool Is multi-record per user? */
-    //protected $isMultiple = true;
+    protected $isMultiple = true;
 
     /** @var string Field name and table name */
     protected $name = '';
@@ -70,12 +70,10 @@ abstract class AbstractCompoundHandler
      *
      * @return bool
      */
-    /*
     public function isMultiple()
     {
         return $this->isMultiple;
     }
-    */
 
     /**
      * Get name, retrieve from class name if not specified
@@ -217,11 +215,12 @@ abstract class AbstractCompoundHandler
     /**
      * Canonize field data
      *
+     * @param int $uid
      * @param array $data
      *
      * @return array
      */
-    protected function canonize(array $data)
+    protected function canonize($uid, array $data)
     {
         $meta = $this->getMeta();
         foreach (array_keys($data) as $key) {
@@ -229,6 +228,7 @@ abstract class AbstractCompoundHandler
                 unset($data[$key]);
             }
         }
+        $data['uid'] = $uid;
 
         return $data;
     }
@@ -243,27 +243,16 @@ abstract class AbstractCompoundHandler
      */
     public function add($uid, array $data)
     {
-        /*
         if ($this->isMultiple) {
             $order = 0;
             foreach ($data as $set) {
-                $set = $this->canonize($set);
-                $set['uid'] = (int) $uid;
+                $set = $this->canonize($uid, $set);
                 $set['order'] = $order++;
                 $row = $this->getModel()->createRow($set);
                 $row->save();
             }
         } else {
-            $row = $this->getModel()->createRow($this->canonize($data));
-            $row->save();
-        }
-        */
-        $order = 0;
-        foreach ($data as $set) {
-            $set = $this->canonize($set);
-            $set['uid'] = (int) $uid;
-            $set['order'] = $order++;
-            $row = $this->getModel()->createRow($set);
+            $row = $this->getModel()->createRow($this->canonize($uid, $data));
             $row->save();
         }
 
@@ -313,7 +302,6 @@ abstract class AbstractCompoundHandler
     public function get($uid)
     {
         $result = array();
-        /*
         if ($this->isMultiple) {
             $select = $this->getModel()->select();
             $select->order('order ASC');
@@ -325,14 +313,6 @@ abstract class AbstractCompoundHandler
         } else {
             $row = $this->getModel()->find($uid, 'uid');
             $result = $row ? $row->toArray() : array();
-        }
-        */
-        $select = $this->getModel()->select();
-        $select->order('order ASC');
-        $select->where(array('uid' => $uid));
-        $rowset = $this->getModel()->selectWith($select);
-        foreach ($rowset as $row) {
-            $result[] = $row->toArray();
         }
 
         return $result;
@@ -350,7 +330,6 @@ abstract class AbstractCompoundHandler
         $result = array();
         $select = $this->getModel()->select();
         $select->where(array('uid' => $uids));
-        /*
         if ($this->isMultiple) {
             $select->order('order ASC');
             $rowset = $this->getModel()->selectWith($select);
@@ -362,12 +341,6 @@ abstract class AbstractCompoundHandler
             foreach ($rowset as $row) {
                 $result[(int) $row['uid']] = $row->toArray();
             }
-        }
-        */
-        $select->order('order ASC');
-        $rowset = $this->getModel()->selectWith($select);
-        foreach ($rowset as $row) {
-            $result[(int) $row['uid']][] = $row->toArray();
         }
 
         return $result;
@@ -406,7 +379,7 @@ abstract class AbstractCompoundHandler
         } else {
             $template = $this->template
                 ?: sprintf(
-                    '%s/user/template/compound/%s.phtml',
+                    '%s/user/template/field/%s.phtml',
                     Pi::path('custom_module'),
                     $this->getName()
                 );
@@ -432,7 +405,7 @@ abstract class AbstractCompoundHandler
     {
         $filter = null;
         $filterClass = $this->filter
-            ?: 'Custom\User\Form\\Filter' . ucfirst($this->getName());
+            ?: 'Custom\User\Form\Filter' . ucfirst($this->getName());
         if (class_exists($filterClass)) {
             $filter = new $filterClass();
         }

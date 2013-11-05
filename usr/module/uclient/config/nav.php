@@ -15,8 +15,7 @@
  */
 
 return array(
-    'front'   => array(
-    ),
+    'front'   => false,
     'admin' => array(
         'user'  => array(
             'label'         => _t('User'),

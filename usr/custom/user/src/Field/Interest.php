@@ -7,21 +7,21 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Custom\User\Compound;
+namespace Custom\User\Field;
 
 use Pi;
-use Module\User\AbstractCompoundHandler;
+use Module\User\CustomFieldHandler;
 
 /**
- * Custom subscription handler
+ * Custom interest handler
  *
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Subscription extends AbstractCompoundHandler
+class Interest extends CustomFieldHandler
 {
     /** @var string Field name and table name */
-    protected $name = 'subscription';
+    protected $name = 'interest';
 
     /** @var string Form class */
     protected $form = '';
