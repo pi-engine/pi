@@ -222,11 +222,146 @@ class ProfileController extends ActionController
     /**
      * Edit compound action
      */
+
+//    public function editCompoundAction()
+//    {
+//        $groupId      = $this->params('group', '');
+//        $uid          = Pi::service('user')->getId();
+//        $errorMsg     = '';
+//
+//        // Redirect login page if not logged in
+//        if (!$uid) {
+//            $this->jump(
+//                'user',
+//                array('controller' => 'login', 'action' => 'index'),
+//                __('Need login'),
+//                2
+//            );
+//        }
+//
+//        if ($this->request->isPost()) {
+//            $groupId = _post('group');
+//        }
+//
+//        // Get compound name
+//        $rowset = $this->getModel('display_group')->find($groupId, 'id');
+//        $compound = $rowset ? $rowset->compound : '';
+//
+//        if (!$groupId || !$compound) {
+//            return $this->jumpTo404();
+//        }
+//
+//        // Get compound element for edit
+//        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
+//        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+//
+//
+//        // Get user compound
+//        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
+//        // Generate compound edit form
+//        $forms = array();
+//        $i = 0;
+//        foreach ($compoundData as $set => $row) {
+//            $formName = 'compound' . $set;
+//            $forms[$set] = new CompoundForm($formName, $compoundElements);
+//            // Set form data
+//            $row += array(
+//                'set'   => $set,
+//                'group' => $groupId,
+//                'uid'   => $uid,
+//            );
+//
+//            $forms[$set]->setData($row);
+//            $i++;
+//        }
+//
+//        // New compound form
+//        $addForm = new CompoundForm('new-compound', $compoundElements);
+//        $addForm->setData(array(
+//            'set'   => $i,
+//            'group' => $groupId,
+//            'uid'   => $uid,
+//        ));
+//        unset($i);
+//
+//        if ($this->request->isPost()) {
+//            $post = $this->request->getPost();
+//            $set  = (int) $post['set'];
+//            $forms[$set]->setInputFilter(new CompoundFilter($compoundFilters));
+//            $forms[$set]->setData($post);
+//
+//            if ($forms[$set]->isValid()) {
+//                $values = $forms[$set]->getData();
+//                $values['uid'] = $uid;
+//                unset($values['submit']);
+//                unset($values['group']);
+//
+//                // Canonize column function
+//                $canonizeColumn = function ($data, $meta) {
+//                    $result = array();
+//                    foreach ($data as $col => $val) {
+//                        if (in_array($col, $meta)) {
+//                            $result[$col] = $val;
+//                        }
+//                    }
+//
+//                    return $result;
+//                };
+//
+//                // Get new compound
+//                $newCompoundData = $compoundData;
+//                $i = 0;
+//                foreach ($compoundData as $key => $item) {
+//                    $i++;
+//                    if ($key == $values['set']) {
+//                        $newCompoundData[$key] = $canonizeColumn(
+//                            $values,
+//                            array_keys($item)
+//                        );
+//                    }
+//                }
+//
+//                // Add compound
+//                if ($values['set'] == $i) {
+//                    $newCompoundData[$i] = $canonizeColumn(
+//                        $values,
+//                        array_keys($item)
+//                    );
+//                }
+//
+//                // Update compound
+//                Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+//                return array(
+//                    'status' => 1
+//                );
+//            } else {
+//                return array(
+//                    'status' => 0,
+//                    'message' => $forms[$set]->getMessages(),
+//                );
+//            }
+//        }
+//
+//        // Get side nav items
+//        $groups = Pi::api('user', 'group')->getList();
+//
+//        $this->view()->setTemplate('profile-edit-compound');
+//        $this->view()->assign(array(
+//            'forms'     => $forms,
+//            'cur_group' => $groupId,
+//            'title'     => $groups[$groupId]['title'],
+//            'groups'    => $groups,
+//            'add_form'  => $addForm,
+//            'user'      => $this->getUser($uid)
+//        ));
+//    }
+
+
+
     public function editCompoundAction()
     {
-        $groupId      = $this->params('group', '');
-        $uid          = Pi::service('user')->getId();
-        $errorMsg     = '';
+        $groupId = $this->params('group', '');
+        $uid     = Pi::service('user')->getId();
 
         // Redirect login page if not logged in
         if (!$uid) {
@@ -236,10 +371,6 @@ class ProfileController extends ActionController
                 __('Need login'),
                 2
             );
-        }
-
-        if ($this->request->isPost()) {
-            $groupId = _post('group');
         }
 
         // Get compound name
@@ -253,47 +384,59 @@ class ProfileController extends ActionController
         // Get compound element for edit
         $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
         $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $form = new CompoundForm('new-compound', $compoundElements);
+        $form->setData(array('group' => $groupId));
 
+        // Get side nav items
+        $groups       = Pi::api('user', 'group')->getList();
+        $profileGroup = $this->getProfile($uid);
+        $compounds    = $profileGroup[$groupId];
+        $this->view()->assign(array(
+            'compounds' => $compounds,
+            'cur_group' => $groupId,
+            'title'     => $groups[$groupId]['title'],
+            'groups'    => $groups,
+            'form'      => $form,
+            'user'      => $this->getUser($uid)
+        ));
 
-        // Get user compound
-        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
-        // Generate compound edit form
-        $forms = array();
-        $i = 0;
-        foreach ($compoundData as $set => $row) {
-            $formName = 'compound' . $set;
-            $forms[$set] = new CompoundForm($formName, $compoundElements);
-            // Set form data
-            $row += array(
-                'set'   => $set,
-                'group' => $groupId,
-                'uid'   => $uid,
-            );
+        $this->view()->setTemplate('profile-edit-compound');
+    }
 
-            $forms[$set]->setData($row);
-            $i++;
+    /**
+     * Get edit compound form
+     *
+     * @return $this|array
+     */
+    public function getEditCompoundFormAction()
+    {
+        $groupId = _get('group');
+        $set     = _get('set', '');d($set);
+        $set     = $set !== '' ? $set : _get('order');
+        $uid     = Pi::service('user')->getId();
+
+        // Get compound name
+        $rowset = $this->getModel('display_group')->find($groupId, 'id');
+        $compound = $rowset ? $rowset->compound : '';
+
+        if (!$groupId || !$compound) {
+            return $this->jumpTo404();
         }
 
-        // New compound form
-        $addForm = new CompoundForm('new-compound', $compoundElements);
-        $addForm->setData(array(
-            'set'   => $i,
-            'group' => $groupId,
-            'uid'   => $uid,
-        ));
-        unset($i);
+        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $form     = new CompoundForm('new-compound', $compoundElements);
+        $compound = Pi::api('user', 'user')->get($uid, $compound);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $set  = (int) $post['set'];
-            $forms[$set]->setInputFilter(new CompoundFilter($compoundFilters));
-            $forms[$set]->setData($post);
+            $form->setInputFilter(new CompoundFilter($compoundFilters));
+            $form->setData($post);
 
-            if ($forms[$set]->isValid()) {
-                $values = $forms[$set]->getData();
+            if ($form->isValid()) {
+                $values = $form->getData();
                 $values['uid'] = $uid;
-                unset($values['submit']);
-                unset($values['group']);
 
                 // Canonize column function
                 $canonizeColumn = function ($data, $meta) {
@@ -308,52 +451,37 @@ class ProfileController extends ActionController
                 };
 
                 // Get new compound
-                $newCompoundData = $compoundData;
-                $i = 0;
-                foreach ($compoundData as $key => $item) {
-                    $i++;
+                $newCompound = $compound;
+                foreach ($compound as $key => $item) {
                     if ($key == $values['set']) {
-                        $newCompoundData[$key] = $canonizeColumn(
+                        $newCompound[$key] = $canonizeColumn(
                             $values,
                             array_keys($item)
                         );
                     }
                 }
 
-                // Add compound
-                if ($values['set'] == $i) {
-                    $newCompoundData[$i] = $canonizeColumn(
-                        $values,
-                        array_keys($item)
-                    );
-                }
-
                 // Update compound
-                Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+                Pi::api('user', 'user')->set($uid, $compound, $newCompound);
                 return array(
                     'status' => 1
                 );
             } else {
                 return array(
                     'status' => 0,
-                    'message' => $forms[$set]->getMessages(),
+                    'message' => $form->getMessages(),
                 );
             }
         }
 
-        // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();
+        if (isset($compound[$set])) {
+            $compound[$set]['set']   = $set;
+            $compound[$set]['group'] = $groupId;
+            $form->setData($compound[$set]);
+        }
 
-        $this->view()->setTemplate('profile-edit-compound');
-        $this->view()->assign(array(
-            'forms'     => $forms,
-            'error_msg' => $errorMsg,
-            'cur_group' => $groupId,
-            'title'     => $groups[$groupId]['title'],
-            'groups'    => $groups,
-            'add_form'  => $addForm,
-            'user'      => $this->getUser($uid)
-        ));
+        $this->view()->assign('form', $form);
+        $this->view()->setTemplate('_form');
     }
 
     /**
@@ -367,6 +495,7 @@ class ProfileController extends ActionController
         $row        = $this->getModel('display_group')->find($compoundId, 'id');
         $compound   = $row ? $row->compound : '';
         $set        = _post('set');
+        $set        = $set !== '' ? $set : _post('order');
         $uid        = Pi::user()->getId();
         $message    = array(
             'status' => 0,
@@ -454,13 +583,6 @@ class ProfileController extends ActionController
 
         // Get compound name
         $compound = $this->getCompoundName($compoundId);
-//        $compoundField = Pi::registry('field', 'user')->read('');
-//        if (!isset($compoundField[$compound])) {
-//            return array(
-//                'status'  => 0,
-//                'message' => 'compound name invalid',
-//            );
-//        }
 
         // Get compound element for edit
         $compoundMeta     = Pi::registry('compound_field', 'user')->read($compound);
