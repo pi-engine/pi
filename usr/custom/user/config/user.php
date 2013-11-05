@@ -93,6 +93,9 @@ return array(
                 'school'    => array(
                     'title' => __('School name'),
                 ),
+                'department'    => array(
+                    'title' => __('Department'),
+                ),
                 'major'    => array(
                     'title' => __('Major'),
                 ),
@@ -141,16 +144,16 @@ return array(
                         'element'    => 'select',
                         'attributes' => array(
                             'options' => array(
-                                ''                   => '��ѡ��',
-                                '�з�'               => '�з�',
-                                '�з�����/��Ŀ����'  => '�з�����/��Ŀ����',
-                                '���Բ���'           => '���Բ���',
-                                '������/��������'  => '������/��������',
-                                '�ɹ�/�г�/����'     => '�ɹ�/�г�/����',
-                                'ѧ��'               => 'ѧ��',
-                            )
-                        )
-                    )
+                                ''                  => __('Select'),
+                                __('R&D')           => __('R&D'),
+                                __('Management')    => __('Management'),
+                                __('Measurement')   => __('Measurement'),
+                                __('QA')            => __('QA'),
+                                __('Market')        => __('Market'),
+                                __('Student')       => __('Student'),
+                            ),
+                        ),
+                    ),
                 ),
                 'title'    => array(
                     'title' => __('Job title'),
@@ -162,7 +165,7 @@ return array(
                         'attributes' => array(
                             'rows'    => 5,
                             'class'   => 'input-block-level',
-                        )
+                        ),
                     ),
                 ),
                 'start'    => array(

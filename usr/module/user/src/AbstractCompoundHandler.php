@@ -33,7 +33,7 @@ use Zend\InputFilter\InputFilter;
 abstract class AbstractCompoundHandler
 {
     /** @var bool Is multi-record per user? */
-    protected $isMultiple = true;
+    //protected $isMultiple = true;
 
     /** @var string Field name and table name */
     protected $name = '';
@@ -70,10 +70,12 @@ abstract class AbstractCompoundHandler
      *
      * @return bool
      */
+    /*
     public function isMultiple()
     {
         return $this->isMultiple;
     }
+    */
 
     /**
      * Get name, retrieve from class name if not specified
@@ -241,6 +243,7 @@ abstract class AbstractCompoundHandler
      */
     public function add($uid, array $data)
     {
+        /*
         if ($this->isMultiple) {
             $order = 0;
             foreach ($data as $set) {
@@ -254,8 +257,17 @@ abstract class AbstractCompoundHandler
             $row = $this->getModel()->createRow($this->canonize($data));
             $row->save();
         }
+        */
+        $order = 0;
+        foreach ($data as $set) {
+            $set = $this->canonize($set);
+            $set['uid'] = (int) $uid;
+            $set['order'] = $order++;
+            $row = $this->getModel()->createRow($set);
+            $row->save();
+        }
 
-        return (int) $row->id;
+        return (int) $row['id'];
     }
 
     /**
@@ -301,6 +313,7 @@ abstract class AbstractCompoundHandler
     public function get($uid)
     {
         $result = array();
+        /*
         if ($this->isMultiple) {
             $select = $this->getModel()->select();
             $select->order('order ASC');
@@ -312,6 +325,14 @@ abstract class AbstractCompoundHandler
         } else {
             $row = $this->getModel()->find($uid, 'uid');
             $result = $row ? $row->toArray() : array();
+        }
+        */
+        $select = $this->getModel()->select();
+        $select->order('order ASC');
+        $select->where(array('uid' => $uid));
+        $rowset = $this->getModel()->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = $row->toArray();
         }
 
         return $result;
@@ -329,6 +350,7 @@ abstract class AbstractCompoundHandler
         $result = array();
         $select = $this->getModel()->select();
         $select->where(array('uid' => $uids));
+        /*
         if ($this->isMultiple) {
             $select->order('order ASC');
             $rowset = $this->getModel()->selectWith($select);
@@ -340,6 +362,12 @@ abstract class AbstractCompoundHandler
             foreach ($rowset as $row) {
                 $result[(int) $row['uid']] = $row->toArray();
             }
+        }
+        */
+        $select->order('order ASC');
+        $rowset = $this->getModel()->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[(int) $row['uid']][] = $row->toArray();
         }
 
         return $result;
