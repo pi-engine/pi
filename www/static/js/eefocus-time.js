@@ -1,122 +1,110 @@
 /*
-    new EEFOCUS_DATA.Time('js-time', {
-      year: '2013',
-      month: '11'
-    }, ['start', 'end']);
+  new eefocus.StartTime('js-time', maxYear, 'start');
  */
-var EEFOCUS_DATA = EEFOCUS_DATA || {};
-EEFOCUS_DATA.Time = function(root, time, names) {
-  this.el = $('#' + root);
-  this.time = time;
-  this.names = names;
-  self = this;
-  $(function() {
-     self.init();
-  });
-}
-
-EEFOCUS_DATA.Time.prototype = {
-  init: function() {
-    this.form = this.el.parents('form');
-    this.template();
-    this.startYear = this.$('start-year');
-    this.startMonth = this.$('start-month');
-    this.endYear = this.$('end-year');
-    this.endMonth = this.$('end-month');
-    this.startInput = this.el.find('[name=' + this.names[0] + ']');
-    this.endInput = this.form.find('input[name=' + this.names[1] +']');
-    this.events();
-
-    var startInputValue = this.el.attr('data-value');
-    var endInputValue = this.endInput.val();
-    if (startInputValue) {
-      startInputValue = startInputValue.split('-');
-      this.startYear.val(startInputValue[0]);
-      this.startMonth.val(startInputValue[1]);
-    }
-    if (endInputValue) {
-      if (endInputValue == '至今') {
-        this.$('today').attr('checked', 'checked').trigger('change');
+(function($) {
+  var eefocus = eefocus || {};
+  var obj = {
+    optionFragment: function(start, end) {
+      var html = '<option value="">请选择';
+      if (start > end) {
+        for(var i = start; i >= end; i--) {
+          html += '<option value="' + i + '">' + i;
+        }
       } else {
-        endInputValue = endInputValue.split('-');
-        this.endYear.val(endInputValue[0]);
-        this.endMonth.val(endInputValue[1]);
+        for(var i = start; i <= end; i++) {
+          html += '<option value="' + i + '">' + i;
+        }
       }
-    }
-  },
-  template: function() {
-    var time = this.time;
-    var self = this;
-    var select = function(name) {
+      return html;
+    },
+    select: function(name) {
       var str = ' 年 ';
-      var ret = name.split('-');
       var options;
-      if (ret[1] == 'month') {
+      if (name == 'month') {
         str = ' 月 ';
-        options = self.optionFragment(1, 12);
+        options = this.optionFragment(1, 12);
       } else {
-        options = self.optionFragment(time.year, 1950);
+        options = this.optionFragment(this.maxYear, 1950);
       }
       return '<select class="input-small" data-name="' + name + '">' + options + '</select>' + str;
-    };
-    var html = select('start-year') +  select('start-month') + ' - ' + select('end-year')
-               + select('end-month') + '<label class="checkbox"><input type="checkbox" data-name="today">至今</label><input type="hidden" name="' + this.names[0] + '">';
-    this.el.html(html);
-  },
-  $: function(selector) {
-    return this.el.find('[data-name=' + selector + ']');
-  },
-  events: function() {
-    var self = this;
-    var setValue = $.proxy(this.setValue, this);
-    this.$('today').change(function() {
-      if ($(this).attr('checked')) {
-        self.endYear.attr('disabled', 'disabled');
-        self.endMonth.attr('disabled', 'disabled');
+    },
+    $: function(name) {
+      return this.el.find('[data-name=' + name + ']');
+    },
+    setValue: function() {
+      var yearValue = this.year.val();
+      var monthValue = this.month.val();
+      if (yearValue && monthValue) {
+        this.input.val(yearValue + '-' + monthValue);
       } else {
-        self.endYear.removeAttr('disabled');
-        self.endMonth.removeAttr('disabled');
+        this.input.val('');
       }
-      setValue();
-    });
-    this.startYear.change(setValue);
-    this.startMonth.change(setValue);
-    this.endYear.change(setValue);
-    this.endMonth.change(setValue);
-  },
-  optionFragment: function(start, end) {
-    var html = '<option value="">请选择';
-    start = parseInt(start);
-    end = parseInt(end);
-    if (start > end) {
-      for(var i = start; i >= end; i--) {
-        html += '<option value="' + i + '">' + i;
-      }
-    } else {
-      for(var i = start; i <= end; i++) {
-        html += '<option value="' + i + '">' + i;
-      }
-    }
-    return html;
-  },
-  setValue: function() {
-    var startYearValue = this.startYear.val();
-    var startMonthValue = this.startMonth.val();
-    var endYearValue = this.endYear.val();
-    var endMonthValue = this.endMonth.val();
+    } 
+  };
 
-    if (this.$('today').attr('checked')) {
-      this.endInput.val('至今');
-    } else if (endYearValue && endMonthValue) {
-      this.endInput.val(endYearValue + '-' + endMonthValue) ;
-    } else {
-      this.endInput.val('');
-    }
-
-    if (startYearValue && startMonthValue) {
-      this.startInput.val(startYearValue + '-' + startMonthValue);
-    } else {
-      this.startInput.val('');
-    }
+  eefocus.StartTime = function(root, maxYear, name) {
+    this.el = $('#' + root);
+    this.maxYear = maxYear;
+    this.name = name;
+    this.render();
+    this.events();
   }
-};
+
+  eefocus.EndTime = function(root, maxYear, name) {
+    this.el = $('#' + root);
+    this.maxYear = maxYear;
+    this.name = name;
+    this.render();
+    this.events();
+  }
+
+  $.extend(eefocus.StartTime.prototype, obj, {
+    render: function() {
+      var html = this.select('year') + this.select('month')
+        + '<input type="hidden" name="' + this.name + '">'; 
+      this.el.html(html);
+      this.input = this.el.find('[name=' + this.name + ']');
+      this.year = this.$('year');
+      this.month = this.$('month');
+    },
+    events: function() {
+      var setValue = $.proxy(this.setValue, this);
+      this.year.change(setValue);
+      this.month.change(setValue);
+    }
+  });
+  
+  $.extend(eefocus.EndTime.prototype, obj, {
+    render: function() {
+      var html = this.select('year') + this.select('month') 
+      + '<label class="checkbox"><input type="checkbox" data-name="sofar">至今</label><input type="hidden" name="' + this.name + '">';
+      this.el.html(html);
+      this.input = this.el.find('[name=' + this.name + ']');
+      this.year = this.$('year');
+      this.month = this.$('month');
+    },
+    events: function() {
+      var self = this;
+      var setValue = $.proxy(this.setValue, this);
+      this.$('sofar').change(function() {
+        if ($(this).attr('checked')) {
+          self.year.val('').attr('disabled', 'disabled');
+          self.month.val('').attr('disabled', 'disabled');
+          self.input.val('至今');
+        } else {
+          self.year.removeAttr('disabled');
+          self.month.removeAttr('disabled');
+          self.input.val('');
+        }
+      });
+      this.year.change(setValue);
+      this.month.change(setValue);
+    }
+  });
+
+  this.eefocus = eefocus;
+})(jQuery)
+
+
+
+
