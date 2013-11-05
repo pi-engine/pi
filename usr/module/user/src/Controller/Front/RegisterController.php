@@ -382,24 +382,10 @@ class RegisterController extends ActionController
 
         $file = strtolower($file);
         $configFile = sprintf(
-            '%s/extra/%s/config/%s.php',
-            Pi::path('usr'),
-            $this->getModule(),
+            '%s/user/config/%s.php',
+            Pi::path('custom_module'),
             $file
         );
-
-        if (!file_exists($configFile)) {
-            $configFile = sprintf(
-                '%s/%s/extra/%s/config/%s.php',
-                Pi::path('module'),
-                $this->getModule(),
-                $this->getModule(),
-                $file
-            );
-            if (!file_exists($configFile)) {
-                return;
-            }
-        }
 
         $config = include $configFile;
 
