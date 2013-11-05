@@ -20,7 +20,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Time extends AbstractHelper
+class EndTime extends AbstractHelper
 {
     /**
      * Invoke helper as function
@@ -48,21 +48,20 @@ class Time extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        $html = <<<EOD
-        <script src="%s"></script>
-        <div id="js-time-element" data-value="%s" class="form-inline">
-        </div>
+        Pi::service('view')->getHelper('js')->load(Pi::url('static/js/eefocus-time.js'));
+        $maxYear = date('Y');
+        $id = uniqid();
+
+        return sprintf('
+        <div class="form-inline" id="%s"></div>
         <script>
-            new EEFOCUS_DATA.Time("js-time-element", %s, ['start', 'end']);
+        new eefocus.EndTime("%s", %s, "%s");
         </script>
-EOD;
-        return sprintf($html, 
-            Pi::url('static/js/eefocus-time.js'),
-            $element->getValue(),
-            json_encode(array(
-                'year'  => date('Y'),
-                'month' => date('n')
-            )) 
+        ',
+            $id,
+            $id,
+            $maxYear,
+            $element->getName()
         );
     }
 }

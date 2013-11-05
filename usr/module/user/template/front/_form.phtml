@@ -12,7 +12,7 @@
         echo $this->formElement($element);
     }
     echo sprintf('<div class="controls controls-action">%s
-        <input type="button" value="cancel" class="btn btn-link js-reset"></div>', 
+        <input type="reset" value="cancel" class="btn btn-link js-cancel"></div>', 
         $this->formElement($elements['submit']));
     echo $this->form()->closeTag();
 ?>

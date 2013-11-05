@@ -17,13 +17,13 @@ use Zend\Form\Element;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Time extends Element
+class StartTime extends Element
 {
     /**
      * Seed attributes
      * @var array
      */
     protected $attributes = array(
-        'type'  => 'Custom\User\Form\View\Helper\Time',
+        'type'  => 'Custom\User\Form\View\Helper\StartTime',
     );
 }
