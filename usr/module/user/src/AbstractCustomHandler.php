@@ -216,11 +216,11 @@ abstract class AbstractCustomHandler
      * Canonize field data
      *
      * @param int $uid
-     * @param array $data
+     * @param mixed $data
      *
      * @return array
      */
-    protected function canonize($uid, array $data)
+    protected function canonize($uid, $data)
     {
         $meta = $this->getMeta();
         foreach (array_keys($data) as $key) {
@@ -237,15 +237,15 @@ abstract class AbstractCustomHandler
      * Add user custom compound
      *
      * @param int   $uid
-     * @param array $data
+     * @param mixed $data
      *
      * @return int
      */
-    public function add($uid, array $data)
+    public function add($uid, $data)
     {
         if ($this->isMultiple) {
             $order = 0;
-            foreach ($data as $set) {
+            foreach ((array) $data as $set) {
                 $set = $this->canonize($uid, $set);
                 $set['order'] = $order++;
                 $row = $this->getModel()->createRow($set);
@@ -263,11 +263,11 @@ abstract class AbstractCustomHandler
      * Update user custom compound
      *
      * @param int   $uid
-     * @param array $data
+     * @param mixed $data
      *
      * @return int
      */
-    public function update($uid, array $data)
+    public function update($uid, $data)
     {
         $this->delete($uid);
         $id = $this->add($uid, $data);
