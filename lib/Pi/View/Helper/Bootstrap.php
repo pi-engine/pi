@@ -51,9 +51,6 @@ class Bootstrap extends AssetCanonize
     /** @var bool Bootstrap basic file is loaded */
     protected static $rootLoaded;
 
-    /** @var bool Bootstrap responsive file is loaded */
-    protected static $responsiveLoaded;
-
     /**
      * Load bootstrap files
      *
@@ -70,42 +67,26 @@ class Bootstrap extends AssetCanonize
     ) {
         $files = $this->canonize($files, $attributes);
 
-        $_this = $this;
-        $loadResponsive = function () use (&$files, $_this) {
-            $bootstrap = 'css/bootstrap.min.css';
-            $responsive = 'css/bootstrap-responsive.min.css';
-            if (isset($files[$responsive])
-                && $files[$responsive]['media'] == 'screen'
-            ) {
-                $files = array(
-                    $bootstrap  => $_this->canonizeFile($bootstrap),
-                    $responsive  => $_this->canonizeFile(
-                        $responsive,
-                        array(
-                            'media' => 'only screen and (max-width: 979px)'
-                        )
-                    )
-                ) + $files;
-
-                return true;
-            }
-
-            return false;
-        };
-
+        $bootstrap = 'css/bootstrap.min.css';
+        $responsive = 'css/bootstrap-responsive.min.css';
         if (!static::$rootLoaded) {
-            if ($loadResponsive()) {
-                static::$responsiveLoaded = true;
-            } elseif (!isset($files['css/bootstrap.min.css'])) {
-                $files = array(
-                    'css/bootstrap.min.css' => $this->canonizeFile(
-                        'css/bootstrap.min.css'
-                    ),
-                ) + $files;
-            }
+            $files = array(
+                $bootstrap  => $this->canonizeFile($bootstrap),
+                $responsive => $this->canonizeFile(
+                    $responsive,
+                    array(
+                        'media' => 'only screen and (max-width: 979px)'
+                    )
+                )
+            ) + $files;
             static::$rootLoaded = true;
-        } elseif (!static::$responsiveLoaded && $loadResponsive()) {
-           static::$responsiveLoaded = true;
+        } else {
+            if (isset($files[$bootstrap])) {
+                unset($files[$bootstrap]);
+            }
+            if (isset($files[$responsive])) {
+                unset($files[$responsive]);
+            }
         }
 
         foreach ($files as $file => $attrs) {
