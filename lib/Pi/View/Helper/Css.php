@@ -45,6 +45,9 @@ use Pi;
  */
 class Css extends AssetCanonize
 {
+    /** @var array Container for loaded files */
+    static protected $loaded = array();
+
     /**
      * Load CSS files
      *
@@ -60,6 +63,12 @@ class Css extends AssetCanonize
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headLink();
         foreach ($files as $file => $attrs) {
+            if (isset(static::$loaded[$file])) {
+                continue;
+            } else {
+                static::$loaded[$file] = $attrs;
+            }
+
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
