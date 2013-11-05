@@ -296,10 +296,11 @@ abstract class AbstractCustomHandler
      * Get user custom compound
      *
      * @param int   $uid
+     * @param bool  $filter     To filter for display
      *
      * @return array
      */
-    public function get($uid)
+    public function get($uid, $filter = false)
     {
         $result = array();
         if ($this->isMultiple) {
@@ -322,10 +323,11 @@ abstract class AbstractCustomHandler
      * Get multiple user custom compound fields
      *
      * @param int[]   $uids
+     * @param bool  $filter     To filter for display
      *
      * @return array
      */
-    public function mget($uids)
+    public function mget($uids, $filter = false)
     {
         $result = array();
         $select = $this->getModel()->select();

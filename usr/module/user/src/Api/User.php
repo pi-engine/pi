@@ -1093,7 +1093,7 @@ class User extends AbstractUseApi
                     continue;
                 }
                 $handler = new $meta[$field]['handler']($field);
-                $data  = $handler->mget($uids);
+                $data  = $handler->mget($uids, $filter);
                 foreach ($data as $id => $user) {
                     $result[$id][$field] = $user;
                 }
@@ -1129,7 +1129,7 @@ class User extends AbstractUseApi
                     continue;
                 }
                 $handler = new $meta[$field]['handler']($field);
-                $data  = $handler->mget($uids);
+                $data  = $handler->mget($uids, $filter);
                 foreach ($data as $id => $user) {
                     $result[$id][$field] = $user;
                 }

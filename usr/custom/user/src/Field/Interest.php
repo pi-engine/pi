@@ -23,13 +23,51 @@ class Interest extends CustomFieldHandler
     /** @var string Field name and table name */
     protected $name = 'interest';
 
-    /** @var string Form class */
-    protected $form = '';
+    protected function lookup(array $data)
+    {
+        // Key => Value
+        $interestMap = array();
 
-    /** @var string File to form template */
-    protected $template = '';
+        $result = array();
+        foreach ($data as $value) {
+            if (isset($interestMap[$value])) {
+                $list[] = $interestMap[$value];
+            }
+        }
 
-    /** @var string Form filter class */
-    protected $filter = '';
+        return $result;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    public function get($uid, $filter = false)
+    {
+        $data = parent::get($uid);
+        if ($filter) {
+            $list = $this->lookup($data);
+            $result = implode(' ', $list);
+        } else {
+            $result = $data;
+        }
 
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function mget($uids, $filter = false)
+    {
+        $data = parent::mget($uids);
+        if ($filter) {
+            foreach ($data as $uid => $uData) {
+                $list = $this->lookup($uData);
+                $result[$uid] = implode(' ', $list);
+            }
+        } else {
+            $result = $data;
+        }
+
+        return $result;
+    }
 }

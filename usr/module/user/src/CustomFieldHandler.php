@@ -53,7 +53,7 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
     /**
      * {@inheritDoc}
      */
-    public function get($uid)
+    public function get($uid, $filter = false)
     {
         $result = null;
         if ($this->isMultiple) {
@@ -75,7 +75,7 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
     /**
      * {@inheritDoc}
      */
-    public function mget($uids)
+    public function mget($uids, $filter = false)
     {
         $result = array();
         $select = $this->getModel()->select();
