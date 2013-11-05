@@ -1,4 +1,6 @@
 
+i18n File skeleton
+
 * usr/locale: Global, locale folder name must be in lower case
   * /en
     * main.csv: General
@@ -18,6 +20,11 @@
     * ...
   * /zh-cn
     * ...
+
+Translation tools:
+
+* Create POT file: <TODO>
+* Edit POT file: http://www.poedit.net/
 
 
 Taiwen Jiang
