@@ -390,10 +390,10 @@ class ProfileController extends ActionController
         // Get side nav items
         $groups       = Pi::api('user', 'group')->getList();
         $profileGroup = $this->getProfile($uid);
-        $fields    = $profileGroup[$groupId]['fields'];
+        $compounds    = $profileGroup[$groupId];
         $this->view()->assign(array(
-            'fields'    => $fields,
-            'cur_group' => $groupId,
+            'compounds' => $compounds,
+            'groupId'   => $groupId,
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'form'      => $form,
@@ -408,13 +408,13 @@ class ProfileController extends ActionController
      *
      * @return $this|array
      */
-    public function getEditCompoundFormAction()
+    public function compoundFormAction()
     {
-        $groupId = _get('group');
+        $groupId = _get('groupId');
         $set     = _get('set', '');d($set);
         $set     = $set !== '' ? $set : _get('order');
         $uid     = Pi::service('user')->getId();
-
+   
         // Get compound name
         $rowset = $this->getModel('display_group')->find($groupId, 'id');
         $compound = $rowset ? $rowset->compound : '';
@@ -494,13 +494,13 @@ class ProfileController extends ActionController
      */
     public function editCompoundSetAction()
     {
-        $compoundId = _post('compound');
-        $row        = $this->getModel('display_group')->find($compoundId, 'id');
+        $groupId    = _post('groupId');
+        $row        = $this->getModel('display_group')->find($groupId, 'id');
         $compound   = $row ? $row->compound : '';
         $set        = _post('set');
         $set        = $set !== '' ? $set : _post('order');
         $uid        = Pi::user()->getId();
-        $message    = array(
+        $result    = array(
             'status' => 0,
         );
 
@@ -512,7 +512,7 @@ class ProfileController extends ActionController
         $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
 
         if (!$oldCompound) {
-            return $message;
+            return $result;
         }
 
         foreach ($order as $key => $value) {
@@ -524,7 +524,7 @@ class ProfileController extends ActionController
         Pi::api('user', 'user')->set($uid, $compound, $newCompound);
         $result['status'] = 1;
 
-        return $message;
+        return $result;
     }
 
     /**
@@ -624,8 +624,7 @@ class ProfileController extends ActionController
                 $profileGroup = $this->getProfile($uid);
                 $data    = array_pop($profileGroup[$compoundId]['fields']);
                 return array(
-                    'status'  => $status ? 1 : 0,
-                    'message' => $status ? 'ok' : 'error',
+                    'status'  => $status ? 1 : 0,    
                     'data'    => $data
                 );
             } else {

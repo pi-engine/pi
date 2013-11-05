@@ -119,9 +119,12 @@ return array(
                 ),
                 'start'    => array(
                     'title' => __('Start time'),
+                    'edit'  => 'Custom\User\Form\Element\StartTime',
+                    ),
                 ),
                 'end'    => array(
                     'title' => __('End time'),
+                    'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
                 'description'   => array(
                     'title' => __('Description'),
@@ -185,11 +188,11 @@ return array(
                 ),
                 'start'    => array(
                     'title' => __('Start time'),
-                    'edit'  => 'Custom\User\Form\Element\Time'
+                    'edit'  => 'Custom\User\Form\Element\StartTime',
                 ),
                 'end'    => array(
                     'title' => __('End time'),
-                    'edit'  => 'hidden'
+                    'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
             ),
         ),

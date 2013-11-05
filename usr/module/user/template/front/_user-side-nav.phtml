@@ -25,7 +25,7 @@
             </li>
             <li class="nav-header"><?php _e('Edit profile');?></li>
             <?php  foreach ($groups as $key => $group) { ?>
-            <li class="<?php  echo $cur_group == $key ? 'active' : ''; ?>">
+            <li class="<?php  echo $groupId == $key ? 'active' : ''; ?>">
                 <a href="<?php echo $group['link']; ?>">
                     <?php echo _escape($group['title']); ?>
                 </a>

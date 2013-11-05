@@ -1,279 +1,53 @@
 <?php
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
+    $this->Backbone();
+    d($compounds);
 ?>
 <?php include '_user-side-nav.phtml' ?>
-<div class="span9" id="user-js-info">
+<div class="span9" id="user-js-compound">
     <div class="page-header">
-        <h3 style="margin: -5px 0 9px;"><?php echo _escape($title); ?></h3>
+        <h3 style="margin: -5px 0 9px;"><?php echo _escape($compounds['title']); ?></h3>
         <div class="muted" style="margin: 0 0 11px;">
             <?php echo 'Change your ' . strtolower(_escape($title)) . ' info.'; ?>
             <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
         </div>
     </div>
+    <div class="user-info-list" id="user-info-list">
+    </div>
     <div class="user-info-add" id="user-info-add">
         <div class="clearfix user-add-legend">
             <h4 class="user-legend-title">
                 <?php _e('Add new'); ?>
-                <?php echo $cur_group; ?>
             </h4>
             <div class="user-legend-linea"></div>
         </div>
-        <?php
-            $form->setAttribute('class', 'form-horizontal');
-            $elements = $form->elementList();
-            foreach ($elements['active'] as $element) {
-                $elementsList[$element->getOption('label')] = $element->getName();
-            }
-            echo $this->form()->openTag($form);
-            foreach ($elements['active'] as $element) {
-                echo sprintf('<div class="control-group"><label class="control-label">%s</label>
-                    <div class="controls">%s<span class="help-inline"></span></div></div>',
-                    $element->getOption('label'),
-                    $this->formElement($element));
-            }
-            foreach ($elements['hidden'] as $element) {
-                echo $this->formElement($element);
-            }
-            $elements['submit']->setAttribute('class', 'btn btn-primary');
-            echo sprintf('<div class="controls controls-action">%s</div>', 
-                $this->formElement($elements['submit']));
-            echo $this->form()->closeTag();
-        ?>
+        <?php include '_form.phtml'; ?>
     </div>
 </div>
-<script type="text/template" id="item-template">
+<script type="text/template" id="field-template">
     <div class="user-info-header">
         <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
         <button class="close js-delete" type="button">×</button>
     </div>
     <div class="user-info-body">
-        <div class="user-info-show">
-            <dl class="dl-horizontal user-field-dl" style="margin: 0;">
-            </dl>
-        </div>
+        <dl class="dl-horizontal user-field-dl" style="margin: 15px 0;">
+            <% _.each(fields, function(field) { %>
+            <dt><%- field.title %>
+            <dd><% print(field.value ? field.value : '<em class="muted"><?php _e('Unfiled'); ?></em>'); %>
+            <% }); %>
+        </dl>
     </div>
 </script>
-<script type="text/template" id="form-action-template">
-    <input type="submit" value="<?php _e('Submit'); ?>" name="submit" class="btn">
-    <input type="button" class="btn btn-link js-reset" value="<?php _e('cancel'); ?>">
-</script>
-<script src="<?php echo $this->assetModule('script/jquery-ui-1.10.3.custom.js'); ?>"></script>
+<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
+<script src="<?php echo $this->assetModule('script/jquery-ui-1.10.3.custom' . $debug . '.js'); ?>"></script>
 <script>
-(function($) {
-    var opts = {};
-    var userCompoundEdit = {
-        $: function(selector) {
-            return this.$el.find(selector);
-        },
-        init: function(options) {
-            $.extend(opts, options);
-            this.cacheElements();
-            this.bindEvents();
-        },
-        cacheElements: function() {
-            this.$el = $('#user-js-info');
-            this.$list = this.$('.user-info-list');
-            this.$addForm = this.$('.user-info-add form');
-            this.$('.user-info-item').each(function() {
-                new UserItem($(this));
-            });
-            new UserAdd(this.$addForm);
-        },
-        bindEvents: function() {
-            var self = this;
-            this.$list.sortable({
-                handle: '.user-info-header',
-                items: '.user-info-item',
-                update: function(event, ui) {
-                    var set = [];
-                    var items = self.$el.find('.user-info-item');
-                    var length = items.length;
-                    for (var i = 0; i < length; i++) {
-                        items.each(function(index) {
-                            if ($(this).find('[name=set]').val() == i) {
-                                set.push(index);
-                            }
-                        });
-                    }
-                    //Reset index
-                    self.resetIndex();
-                    $.post(opts.urlRoot + 'editCompoundSet', {
-                        compound: opts.compound,
-                        set: set.join(',')
-                    });
-                }
-            });
-        },
-        resetIndex: function() {
-            var items = this.$list.find('.user-info-item');
-            items.each(function(index) {
-                $(this).find('[name=set]').val(index);
-            });
-            this.$('.user-info-add [name=set]').val(items.length);
-        },
-        toggleSortable: function() {
-            var list = this.$list;
-            var disabled = list.sortable('option', 'disabled');
-            if (disabled) {
-                list.find('.user-info-header')
-                    .css('cursor', 'move');
-                list.sortable('option', 'disabled', false);
+$('#user-js-compound').data('config', {
+    urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
+    groupId: '<?php echo $groupId; ?>',
+    compounds: <?php echo json_encode($compounds) ?>,
+    deleteConfirm: '<?php _e('Are you sure delete this one'); ?>'
+});
+</script>
+<script src="<?php echo $this->assetModule('front/compound' . $debug . '.js'); ?>"></script>
 
-            } else {
-                list.find('.user-info-header')
-                    .css('cursor', 'default');
-                list.sortable('option', 'disabled', true);
-            }
-        },
-        addOne: function(form) {
-            var item = $('<div class="user-info-item">');
-            var index = 'compound' + this.$('.user-info-item').length;
-            item.html($('#item-template').html());
-            form.attr({
-                id: index,
-                name: index
-            }).find('.controls-action')
-            .html($('#form-action-template').html());
-            item.append(form);
-            new UserItem(item);
-            this.$list.append(item);
-        }
-    };
-    var submitTip = function(form, res) {
-        //clear error
-        form.find('.error')
-            .removeClass('error')
-            .find('.help-inline')
-            .html('');
-        if (!res.status) {
-            var msg = res.message;
-            for(var i in msg) {
-                var err = [];
-                for (var j in msg[i]) {
-                    err.push(msg[i][j]);
-                }
-                form.find('[name=' + i + ']')
-                    .parents('.control-group')
-                    .addClass('error')
-                    .find('.help-inline')
-                    .html(err.join(','));
-            }
-        }
-    };
-    //show list
-    var UserItem = function(el) {
-        this.$el = el;
-        this.$show = this.$('.user-field-dl');
-        this.$form = this.$('form');
-        this.render();
-        this.bindEvents();
-    };
-    $.extend(UserItem.prototype, {
-        $: function(selector) {
-            return this.$el.find(selector);
-        },
-        render: function() {
-            var form = this.$form[0];
-            var list = opts.elementsList;
-            var ret = '';
-            for (var i in list) {
-                var value = form[list[i]].value || '<em class="muted">unfiled</em>';
-                ret += '<dt>' + i + '<dd>' + 
-                    $.trim(value);
-            }
-            this.$show.html(ret);
-        },
-        bindEvents: function() {
-            var el = this.$el;
-            var self = this;
-            el.on('click', '.js-edit', $.proxy(this.toggleEdit, this));
-            el.on('click', '.js-reset', $.proxy(this.toggleEdit, this));
-            el.on('click', '.js-delete', $.proxy(this.deleteAction, this));
-            this.$form.submit(function(e) {
-                e.preventDefault();
-                $.post(opts.urlRoot + 'editCompound', self.$form.serialize())
-                 .done(function(res) {
-                    self.submit(res);
-                 });
-            });
-        },
-        deleteAction: function() {
-            var el = this.$el;
-            var form = this.$form;
-            var get = function(name) {
-                return form.find('[name=' + name + ']').val();
-            };
-            if (confirm(opts.deleteConfirm)) {
-                $.post(opts.urlRoot + 'deleteCompound', {
-                    compound: get('group'),
-                    set: get('set')
-                }).done(function(res) {
-                    res = $.parseJSON(res);
-                    if (res.status) {
-                        el.fadeOut(300, function() {
-                            el.remove();
-                            userCompoundEdit.resetIndex();
-                        });
-                    }
-                });
-            }
-        },
-        toggleEdit: function() {
-            var el = this.$el;
-            userCompoundEdit.toggleSortable();
-            el.toggleClass('user-info-item-edit');
-        },
-        submit: function(res) {
-            var el = this.$el;
-            res = $.parseJSON(res);
-            submitTip(this.$form, res);
-            if (res.status) {
-                this.render();
-                this.toggleEdit();
-            }
-        }
-    });
-    //add form
-    var UserAdd = function(el) {
-        this.$el = el;
-        this.bindEvents();
-    }
-    $.extend(UserAdd.prototype, {
-        bindEvents: function() {
-            var self = this;
-            var el = this.$el;
-            el.submit(function(e) {
-                e.preventDefault();
-                $.post(opts.urlRoot + 'addCompoundItem', el.serialize())
-                 .done(function(res) {
-                    res = $.parseJSON(res);
-                    submitTip(el, res);
-                    if (res.status) {
-                        self.submit(res);
-                    }
-                 });
-            });
-        },
-        $: function(selector) {
-            return this.$el.find(selector);
-        },
-        submit: function() {
-            var set = this.$('[name=set]');
-            var num = parseInt(set.val(), 10);
-            userCompoundEdit.addOne(this.$el.clone());
-            this.$el[0].reset();
-            set.val(num + 1);
-        }
-    });
-    this.userCompoundEdit = userCompoundEdit;
-})(jQuery)
-</script>
-<script>
-    userCompoundEdit.init({
-        urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
-        elementsList: <?php echo json_encode($elementsList); ?>,
-        compound: '<?php echo $cur_group; ?>',
-        deleteConfirm: '<?php _e('Are you sure delete this one'); ?>'
-    });
-</script>
