@@ -19,4 +19,5 @@ return array(
     'gender',
     'birthdate',
     'country',
+    //'subscription'
 );

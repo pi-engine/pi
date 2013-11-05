@@ -31,10 +31,19 @@ $category = array(
 $config = array(
     // General
     'list_limit' => array(
-        'title'     => _t('Number of items on list page.'),
-        'value'         => 10,
-        'filter'        => 'int',
+        'title'  => _t('Number of items on list page.'),
+        'value'  => 10,
+        'filter' => 'int',
     ),
+    'register_form' => array(
+        'title'  => _t('Register form config file name'),
+        'value'  => 'register',
+    ),
+    'complete_profile_form' => array(
+        'title'  => _t('Complete profile form config file name'),
+        'value'  => 'complete.profile',
+    ),
+
     // User account
     'uname_format'  => array(
         'title'         => _t('Username format'),
