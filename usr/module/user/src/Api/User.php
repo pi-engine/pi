@@ -1191,7 +1191,7 @@ class User extends AbstractUseApi
             if (isset($meta[$field])) {
                 if (!empty($meta[$field]['handler'])) {
                     $handler = new $meta[$field]['handler']($field);
-                    $result = $handler->update($value);
+                    $result = $handler->update($uid, $value);
                 } else {
                     $result = $this->setCompoundField($uid, $field, $value);
                 }
