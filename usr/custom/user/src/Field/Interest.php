@@ -23,6 +23,13 @@ class Interest extends CustomFieldHandler
     /** @var string Field name and table name */
     protected $name = 'interest';
 
+    /**
+     * Look up interest values against given map
+     *
+     * @param array $data
+     *
+     * @return array
+     */
     protected function lookup(array $data)
     {
         // Key => Value
@@ -31,14 +38,15 @@ class Interest extends CustomFieldHandler
         $result = array();
         foreach ($data as $value) {
             if (isset($interestMap[$value])) {
-                $list[] = $interestMap[$value];
+                $result[] = $interestMap[$value];
             } else {
-                $list[] = $value;
+                $result[] = $value;
             }
         }
 
         return $result;
     }
+
     /**
      * {@inheritDoc}
      */
