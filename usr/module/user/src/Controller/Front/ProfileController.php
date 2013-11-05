@@ -390,9 +390,9 @@ class ProfileController extends ActionController
         // Get side nav items
         $groups       = Pi::api('user', 'group')->getList();
         $profileGroup = $this->getProfile($uid);
-        $compounds    = $profileGroup[$groupId];
+        $fields    = $profileGroup[$groupId]['fields'];
         $this->view()->assign(array(
-            'compounds' => $compounds,
+            'fields'    => $fields,
             'cur_group' => $groupId,
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
@@ -426,7 +426,7 @@ class ProfileController extends ActionController
         $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
         $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
         $form     = new CompoundForm('new-compound', $compoundElements);
-        $compound = Pi::api('user', 'user')->get($uid, $compound);
+        $compoundData = Pi::api('user', 'user')->get($uid, $compound);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -451,10 +451,10 @@ class ProfileController extends ActionController
                 };
 
                 // Get new compound
-                $newCompound = $compound;
-                foreach ($compound as $key => $item) {
+                $newCompoundData = $compoundData;
+                foreach ($compoundData as $key => $item) {
                     if ($key == $values['set']) {
-                        $newCompound[$key] = $canonizeColumn(
+                        $newCompoundData[$key] = $canonizeColumn(
                             $values,
                             array_keys($item)
                         );
@@ -462,9 +462,12 @@ class ProfileController extends ActionController
                 }
 
                 // Update compound
-                Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+                Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+                $profileGroup = $this->getProfile($uid);
+                $data         = $profileGroup[$groupId]['fields'][$set];
                 return array(
-                    'status' => 1
+                    'status' => 1,
+                    'data'   => $data,
                 );
             } else {
                 return array(
@@ -474,10 +477,10 @@ class ProfileController extends ActionController
             }
         }
 
-        if (isset($compound[$set])) {
-            $compound[$set]['set']   = $set;
-            $compound[$set]['group'] = $groupId;
-            $form->setData($compound[$set]);
+        if (isset($compoundData[$set])) {
+            $compoundData[$set]['set']   = $set;
+            $compoundData[$set]['group'] = $groupId;
+            $form->setData($compoundData[$set]);
         }
 
         $this->view()->assign('form', $form);
@@ -519,7 +522,7 @@ class ProfileController extends ActionController
 
         // Update compound
         Pi::api('user', 'user')->set($uid, $compound, $newCompound);
-        $message['status'] = 1;
+        $result['status'] = 1;
 
         return $message;
     }
@@ -618,9 +621,12 @@ class ProfileController extends ActionController
                     $compoundData
                 );
 
+                $profileGroup = $this->getProfile($uid);
+                $data    = array_pop($profileGroup[$compoundId]['fields']);
                 return array(
                     'status'  => $status ? 1 : 0,
                     'message' => $status ? 'ok' : 'error',
+                    'data'    => $data
                 );
             } else {
                 return array(
