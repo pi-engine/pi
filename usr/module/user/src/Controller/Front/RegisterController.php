@@ -45,7 +45,8 @@ class RegisterController extends ActionController
             'status'  => 0,
             'message' => __('Register failed'),
         );
-        list($fields, $filters) = $this->canonizeForm('custom.register');
+
+        list($fields, $filters) = $this->canonizeForm($this->config('register_form'));
         $form = $this->getRegisterForm($fields);
 
         if ($this->request->isPost()) {
@@ -294,7 +295,9 @@ class RegisterController extends ActionController
         $uid = Pi::service('user')->getId();
 
         // Get fields for generate form
-        list($fields, $filters) = $this->canonizeForm('custom.complete.profile');
+        list($fields, $filters) = $this->canonizeForm(
+            $this->config('complete_profile_form')
+        );
         $form = $this->getCompleteProfileForm($fields);
 
         if ($this->request->isPost()) {
@@ -388,7 +391,6 @@ class RegisterController extends ActionController
         );
 
         $config = include $configFile;
-
         foreach ($config as $value) {
             if (is_string($value)) {
                 $element    = Pi::api('user', 'form')->getElement($value);
