@@ -796,7 +796,7 @@ class User extends AbstractUseApi
                 unset($data[$field]);
             }
         }
-        $this->addCustomField($uid, $custom, $type);
+        $this->addCustom($uid, $custom, $type);
 
         $data['uid'] = $uid;
         $model = Pi::model($type, 'user');
@@ -834,7 +834,7 @@ class User extends AbstractUseApi
                 unset($data[$field]);
             }
         }
-        $this->updateCustomField($uid, $custom, $type);
+        $this->updateCustom($uid, $custom, $type);
 
         $model = Pi::model($type, 'user');
         $row = $model->find($uid, 'uid');
@@ -869,7 +869,7 @@ class User extends AbstractUseApi
         } catch (\Exception $e) {
             $status = false;
         }
-        $this->deleteCustomField($uid, $type);
+        $this->deleteCustom($uid, $type);
 
         return $status;
     }
