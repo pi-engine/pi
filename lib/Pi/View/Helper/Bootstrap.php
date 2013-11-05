@@ -51,6 +51,9 @@ class Bootstrap extends AssetCanonize
     /** @var bool Bootstrap basic file is loaded */
     protected static $rootLoaded;
 
+    /** @var bool Bootstrap responsive file is loaded */
+    protected static $responsiveLoaded;
+
     /**
      * Load bootstrap files
      *
@@ -66,29 +69,43 @@ class Bootstrap extends AssetCanonize
         $appendVersion = null
     ) {
         $files = $this->canonize($files, $attributes);
-        if (empty(static::$rootLoaded)) {
-            if (!isset($files['css/bootstrap.min.css'])) {
+
+        $_this = $this;
+        $loadResponsive = function () use (&$files, $_this) {
+            $bootstrap = 'css/bootstrap.min.css';
+            $responsive = 'css/bootstrap-responsive.min.css';
+            if (isset($files[$responsive])
+                && $files[$responsive]['media'] == 'screen'
+            ) {
                 $files = array(
-                    'css/bootstrap.min.css'             => $this->canonizeFile(
-                        'css/bootstrap.min.css'
-                    ),
-                ) + $files;
-            }
-            if (isset($files['css/bootstrap-responsive.min.css']) 
-                && $files['css/bootstrap-responsive.min.css']['media'] == 'screen') {
-                $files = array(
-                    'css/bootstrap.min.css'             => $this->canonizeFile(
-                        'css/bootstrap.min.css'
-                    ),
-                    'css/bootstrap-responsive.min.css'  => $this->canonizeFile(
-                        'css/bootstrap-responsive.min.css',
+                    $bootstrap  => $_this->canonizeFile($bootstrap),
+                    $responsive  => $_this->canonizeFile(
+                        $responsive,
                         array(
                             'media' => 'only screen and (max-width: 979px)'
                         )
                     )
                 ) + $files;
+
+                return true;
+            }
+
+            return false;
+        };
+
+        if (!static::$rootLoaded) {
+            if ($loadResponsive()) {
+                static::$responsiveLoaded = true;
+            } elseif (!isset($files['css/bootstrap.min.css'])) {
+                $files = array(
+                    'css/bootstrap.min.css' => $this->canonizeFile(
+                        'css/bootstrap.min.css'
+                    ),
+                ) + $files;
             }
             static::$rootLoaded = true;
+        } elseif (!static::$responsiveLoaded && $loadResponsive()) {
+           static::$responsiveLoaded = true;
         }
 
         foreach ($files as $file => $attrs) {
