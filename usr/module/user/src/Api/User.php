@@ -790,8 +790,9 @@ class User extends AbstractUseApi
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $custom = array();
+        $meta = $this->getMeta($type);
         foreach ($data as $field => $value) {
-            if (!empty($value['handler'])) {
+            if (!empty($meta[$field]['handler'])) {
                 $custom[$field] = $value;
                 unset($data[$field]);
             }
@@ -828,8 +829,9 @@ class User extends AbstractUseApi
         $type = 'profile';
         $data = $this->canonizeUser($data, $type);
         $custom = array();
+        $meta = $this->getMeta($type);
         foreach ($data as $field => $value) {
-            if (!empty($value['handler'])) {
+            if (!empty($meta[$field]['handler'])) {
                 $custom[$field] = $value;
                 unset($data[$field]);
             }
@@ -892,8 +894,9 @@ class User extends AbstractUseApi
         $data = $this->canonizeUser($data, $type);
         $model = Pi::model($type, 'user');
         $custom = array();
+        $meta = $this->getMeta($type);
         foreach ($data as $compound => $value) {
-            if (!empty($value['handler'])) {
+            if (!empty($meta[$compound]['handler'])) {
                 $custom[$compound] = $value;
                 continue;
             }
@@ -927,10 +930,11 @@ class User extends AbstractUseApi
         }
 
         $type = 'compound';
-        $custom = array();
         $data = $this->canonizeUser($data, $type);
+        $custom = array();
+        $meta = $this->getMeta($type);
         foreach ($data as $compound => $value) {
-            if (!empty($value['handler'])) {
+            if (!empty($meta[$compound]['handler'])) {
                 $custom[$compound] = $value;
                 continue;
             }
