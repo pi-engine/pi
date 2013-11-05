@@ -32,6 +32,8 @@ class Interest extends CustomFieldHandler
         foreach ($data as $value) {
             if (isset($interestMap[$value])) {
                 $list[] = $interestMap[$value];
+            } else {
+                $list[] = $value;
             }
         }
 
