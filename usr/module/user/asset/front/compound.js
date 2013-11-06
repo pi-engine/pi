@@ -204,7 +204,23 @@
       set.val(num + 1);
     }
   });
-    
+  
+
+  var PageView = Backbone.View.extend({
+    el: $('#user-js-compound'),
+    initialize: function() {
+      this.listView = new FieldListView({
+        el: this.$('.user-info-list'),
+        collection: new Backbone.Collection(config.compounds)
+      });
+      this.addView = new AddItemView({
+        el: this.$('.user-info-add')
+      });
+      this.listView.parentView = this;
+      this.addView.parentView = this;
+    }
+  });
+
   var FieldView = Backbone.View.extend({
     className: 'user-info-item',
     events: {
@@ -212,10 +228,13 @@
       'click .js-cancel': 'render',
       'submit form': 'submit'
     },
+    initialize: function() {
+      this.listenTo(this.model, 'change', this.render);
+    },
     template: _.template($('#field-template').html()),
     render: function() {
       this.$el.removeClass('user-info-item-edit');
-      this.$el.html(this.template(this.model));
+      this.$el.html(this.template(this.model.toJSON()));
       return this.el;
     },
     toggleEdit: function() {
@@ -234,47 +253,36 @@
       var self = this;
       e.preventDefault();
       $.post(config.urlRoot + 'compoundForm?' + $.param(this.getParams()), 
-             this.$('form').serialize())
-       .done(function(res) {
-        res = $.parseJSON(res);
-        if (res.status) {
-          self.model.fields = res.data;
-          self.render();
-        }
-       })
+        this.$('form').serialize()).
+        done(function(res) {
+          res = $.parseJSON(res);
+          if (res.status) {
+            self.model.set(res.data);
+          }
+        })
     },
     getParams: function() {
       return {
         groupId: config.groupId,
-        set: this.model.set
+        set: this.model.get('set')
       }
     }
   });
 
   var FieldListView = Backbone.View.extend({
-    el: $('#user-info-list'),
     initialize: function() {
-      var ret = [];
-      var collection = this.collection;
-      _.each(collection.fields, function(field, index) {
-        var item = {};
-        item.id = collection.id;
-        item.fields = field;
-        ret.push(item);
-      });
-      this.collection = ret;
       this.render();
       this.sortable();
+      this.listenTo(this.collection, 'add', this.addOne);
     },
-    addOne: function(model, index) {
-      model.set = index;
+    addOne: function(model) {
       this.$el.append(new FieldView({
         model: model
       }).render());
     },
     render: function() {
       this.$el.html('');
-      _.each(this.collection, this.addOne, this);
+      this.collection.forEach(this.addOne, this);
     },
     sortable: function() {
       var self = this;
@@ -289,8 +297,6 @@
             var end = ui.item.index();
             var list = self.collection;
             list.splice(end, 0, list.splice(start, 1)[0]);
-
-
             //self.render();
             //d(self);
             //Reset index
@@ -302,10 +308,28 @@
       });
     }
   });
-  new FieldListView({
-    collection: config.compounds
+
+  var AddItemView = Backbone.View.extend({
+    events: {
+      'submit form': 'submit'
+    },
+    submit: function(e) {
+      var form = this.$('form');
+      var self = this;
+      e.preventDefault();
+      $.post(config.urlRoot + 'addCompoundItem', form.serialize()).
+        done(function(res) {
+          res = $.parseJSON(res); 
+          if (!res.status) return;
+          self.parentView.listView.collection.push(res.data);
+       });
+    }
   });
-  new UserAdd($('#user-info-add form'))
+
+
+  new PageView();
+
+  //new UserAdd($('#user-info-add form'))
 
   function d(str) {
     console.log(str);
