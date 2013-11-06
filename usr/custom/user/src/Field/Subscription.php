@@ -13,7 +13,7 @@ use Pi;
 use Module\User\CustomFieldHandler;
 
 /**
- * Custom interest handler
+ * Custom subscription handler
  *
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -21,7 +21,7 @@ use Module\User\CustomFieldHandler;
 class Subscription extends CustomFieldHandler
 {
     /** @var string Field name and table name */
-    protected $name = 'interest';
+    protected $name = 'subscription';
 
     /**
      * Look up interest values against given map
@@ -55,7 +55,7 @@ class Subscription extends CustomFieldHandler
         $data = parent::get($uid);
         if ($filter) {
             $list = $this->lookup($data);
-            $result = implode(',', $list);
+            $result = implode(', ', $list);
         } else {
             $result = $data;
         }
@@ -72,7 +72,7 @@ class Subscription extends CustomFieldHandler
         if ($filter) {
             foreach ($data as $uid => $uData) {
                 $list = $this->lookup($uData);
-                $result[$uid] = implode(',', $list);
+                $result[$uid] = implode(', ', $list);
             }
         } else {
             $result = $data;
