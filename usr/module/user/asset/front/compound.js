@@ -204,14 +204,23 @@
       set.val(num + 1);
     }
   });
-  
+  var CompoundsCollection = Backbone.Collection.extend({
+    initialize: function() {
+      this.on('remove', this.resetSet);
+    },
+    resetSet: function() {
+      this.forEach(function(model, index) {
+        model.set('set', index);
+      });
+    }
+  });
 
   var PageView = Backbone.View.extend({
     el: $('#user-js-compound'),
     initialize: function() {
       this.listView = new FieldListView({
         el: this.$('.user-info-list'),
-        collection: new Backbone.Collection(config.compounds)
+        collection: new CompoundsCollection(config.compounds)
       });
       this.addView = new AddItemView({
         el: this.$('.user-info-add')
@@ -226,7 +235,8 @@
     events: {
       'click .js-edit': 'toggleEdit',
       'click .js-cancel': 'render',
-      'submit form': 'submit'
+      'submit form': 'submit',
+      'click .js-delete': 'fadeRemove'
     },
     initialize: function() {
       this.listenTo(this.model, 'change', this.render);
@@ -263,6 +273,20 @@
             }
           }
         })
+    },
+    fadeRemove: function() {
+      if (!confirm(config.deleteConfirm)) return;
+      var self = this;
+      var collection = this.model.collection;
+      $.post(config.urlRoot + 'deleteCompound', this.getParams()).done(function(res) {
+        res = $.parseJSON(res);
+        if (res.status) {
+          self.$el.fadeOut(250, function() {
+            self.remove();
+            collection.remove(self.model);
+          });
+        }
+      });
     },
     getParams: function() {
       return {
@@ -325,6 +349,7 @@
           res = $.parseJSON(res); 
           if (!res.status) return;
           self.parentView.listView.collection.push(res.data);
+          form[0].reset();
        });
     }
   });
