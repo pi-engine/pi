@@ -258,6 +258,9 @@
           res = $.parseJSON(res);
           if (res.status) {
             self.model.set(res.data);
+            if(!self.model.hasChanged()) {
+              self.render();
+            }
           }
         })
     },

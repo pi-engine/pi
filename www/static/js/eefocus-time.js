@@ -42,20 +42,34 @@
     } 
   };
 
-  eefocus.StartTime = function(root, maxYear, name) {
+  eefocus.StartTime = function(root, maxYear, name, value) {
     this.el = $('#' + root);
     this.maxYear = maxYear;
     this.name = name;
     this.render();
     this.events();
+    if (value) {
+      value = value.split('-');
+      this.year.val(value[0]);
+      this.month.val(value[1]).trigger('change');
+    }
   }
 
-  eefocus.EndTime = function(root, maxYear, name) {
+  eefocus.EndTime = function(root, maxYear, name, value) {
     this.el = $('#' + root);
     this.maxYear = maxYear;
     this.name = name;
     this.render();
     this.events();
+    if (value) {
+      if (value == '至今') {
+        this.$('sofar').attr('checked', 'checked').trigger('change');
+      } else {
+        value = value.split('-');
+        this.year.val(value[0]);
+        this.month.val(value[1]).trigger('change');
+      }
+    }
   }
 
   $.extend(eefocus.StartTime.prototype, obj, {
@@ -97,6 +111,9 @@
           self.input.val('');
         }
       });
+      /*this.el.parents('form').submit(function(e) {
+        
+      });*/
       this.year.change(setValue);
       this.month.change(setValue);
     }
