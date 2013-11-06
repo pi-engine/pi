@@ -49,6 +49,23 @@ class Translator extends ZendTranslator
      */
     protected $loader;
 
+    /** @var string File extension */
+    protected $extension;
+
+    /**
+     * Set translation file extension
+     *
+     * @param string $extension
+     *
+     * @return $this
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
     /**
      * Set locale
      *
@@ -290,24 +307,20 @@ class Translator extends ZendTranslator
             array($options['domain'],
             $options['file']),
             $options['locale']
-        );
+        ) . '.' . $this->extension;
         try {
             $result = $this->loader->load($options['locale'], $filename);
+            $result = (array) $result;
         } catch (\Exception $e) {
-            $result = false;
-        }
-        if (false === $result) {
             if (Pi::service()->hasService('log')) {
                 Pi::service()->getService('log')->info(sprintf(
-                    'Translation "%s-%s.%s" load failed.',
+                    'Translation "%s-%s.%s" load failed: ' . $e->getMessage(),
                     $options['domain'],
                     $options['file'],
                     $options['locale']
                 ));
             }
             $result = array();
-        } else {
-            $result = (array) $result;
         }
 
         return $result;

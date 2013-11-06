@@ -38,10 +38,10 @@ return array(
             // Translations to be loaded on bootstrap
             'translator'    => array(
                 // Global available
-                'global'    => array('usr:main'),
+                'global'    => array('usr:default'),
                 // Module wide
-                'module'    => array('main'),
-            )
+                'module'    => array('default'),
+            ),
         ),
         // Module resource, instantiate module service and load module configs
         'module'    => array(),

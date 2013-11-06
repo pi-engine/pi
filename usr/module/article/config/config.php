@@ -123,7 +123,7 @@ return array(
         'default_topic_template_image' => array(
             'category'    => 'general',
             'title'       => _t('Default Topic Template Screenshot'),
-            'description' => _t(''),
+            'description' => '',
             'value'       => 'image/default-topic-template.png',
         ),
         'max_sub_category' => array(
