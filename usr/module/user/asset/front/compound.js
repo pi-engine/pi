@@ -1,6 +1,25 @@
 (function($) {
   var config = $('#user-js-compound').data('config');
 
+  function submitTip(form, msg) {
+    form.find('.error').
+      removeClass('error').
+      find('.help-inline').hide();
+    if (!msg) return;
+    for(var i in msg) {
+      var err = [];
+      for (var j in msg[i]) {
+        err.push(msg[i][j]);
+      }
+      form.find('[name=' + i + ']').
+        parents('.control-group').
+        addClass('error').
+        find('.help-inline').
+        show().
+        html(err.join(','));
+    }
+  }
+
   var CompoundsCollection = Backbone.Collection.extend({
     initialize: function() {
       this.on('remove', this.resetSet);
@@ -58,9 +77,10 @@
     },
     submit: function(e) {
       var self = this;
+      var form = this.$('form');
       e.preventDefault();
       $.post(config.urlRoot + 'compoundForm?' + $.param(this.getParams()), 
-        this.$('form').serialize()).
+        form.serialize()).
         done(function(res) {
           res = $.parseJSON(res);
           if (res.status) {
@@ -68,6 +88,8 @@
             if(!self.model.hasChanged()) {
               self.render();
             }
+          } else {
+            submitTip(form, res.message);
           }
         })
     },
@@ -155,13 +177,17 @@
       $.post(config.urlRoot + 'addCompoundItem', form.serialize()).
         done(function(res) {
           res = $.parseJSON(res); 
-          if (!res.status) return;
-          self.parentView.listView.collection.push(res.data);
-          form.find('[disabled=disabled]').removeAttr('disabled');
-          form[0].reset();
+          if (res.status) {
+            self.parentView.listView.collection.push(res.data);
+            form.find('[disabled=disabled]').removeAttr('disabled');
+            submitTip(form);
+            form[0].reset();
+          } else {
+            submitTip(form, res.message);
+          }
        });
     }
   });
-  
+
   new PageView();
 })(jQuery)
