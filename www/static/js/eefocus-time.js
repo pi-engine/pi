@@ -2,7 +2,7 @@
   new eefocus.StartTime('js-time', maxYear, 'start');
  */
 (function($) {
-  var eefocus = eefocus || {};
+  var eefocus = this.eefocus || {};
   var obj = {
     optionFragment: function(start, end) {
       var html = '<option value="">请选择';
@@ -103,7 +103,7 @@
   });
 
   this.eefocus = eefocus;
-})(jQuery)
+})(jQuery);
 
 
 

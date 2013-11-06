@@ -120,7 +120,6 @@ return array(
                 'start'    => array(
                     'title' => __('Start time'),
                     'edit'  => 'Custom\User\Form\Element\StartTime',
-                    ),
                 ),
                 'end'    => array(
                     'title' => __('End time'),
