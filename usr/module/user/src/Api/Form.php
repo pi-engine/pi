@@ -51,12 +51,17 @@ class Form extends AbstractApi
     protected function canonizeFilter($data)
     {
         if (isset($data['edit']['filters']) ||
-            isset($data['edit']['validators'])
+            isset($data['edit']['validators']) ||
+            isset($data['edit']['required'])
         ) {
             $result = array(
                 'name'  => $data['name'],
             );
+            if (isset($data['edit']['required'])) {
+                $result['required'] = $data['edit']['required'];
+            }
         }
+
 
         if (isset($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];

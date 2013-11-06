@@ -13,6 +13,7 @@
  * @see Pi\Application\Installer\Resource\User
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
+//return array();
 return array(
     // Fields
     'field'     => array(
@@ -23,6 +24,9 @@ return array(
         'fullname'  => array(
             'name'      => 'fullname',
             'title'     => __('Full name'),
+            'edit' => array(
+                'required' => true,
+            ),
         ),
 
         // Profile: Language
@@ -36,7 +40,10 @@ return array(
         'country'  => array(
             'name'  => 'country',
             'title' => __('Country'),
-            'edit'  => 'Custom\User\Form\Element\Location',
+            'edit' => array(
+                'required' => true,
+                'element'  => 'Custom\User\Form\Element\Location',
+            ),
         ),
 
         // Profile: Province
@@ -59,29 +66,44 @@ return array(
         'telephone' => array(
             'name'  => 'telephone',
             'title' => __('Telephone'),
+            'edit' => array(
+                'required' => true,
+            ),
+        ),
+
+        // Profile: Province
+        'registered_source'  => array(
+            'name'  => 'registered_source',
+            'title' => __('Registered source'),
+            'is_display'    => false,
+            'is_search'     => false,
         ),
 
         'address' => array(
             'name'  => 'address',
             'title' => __('Address'),
             'edit'  => array(
+                'required' => true,
                 'class' => 'input-xxlarge',
                 'attributes' => array(
                     'class' => 'input-xxlarge'
                 )
+
             )
         ),
 
         'postcode' => array(
             'name'  => 'postcode',
             'title' => __('Postcode'),
+            'edit' => array(
+                'required' => true,
+            ),
         ),
 
         'interest' => array(
             'name'  => 'interest',
             'title' => __('Interest'),
             'edit'  => 'Custom\User\Form\Element\Interest',
-
             // Custom handler
             'handler'   => 'Custom\User\Field\Interest',
         ),
@@ -108,15 +130,27 @@ return array(
             'field' => array(
                 'school'    => array(
                     'title' => __('School name'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'department'    => array(
                     'title' => __('Department'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'major'    => array(
                     'title' => __('Major'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'degree'    => array(
                     'title' => __('Degree'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'start'    => array(
                     'title' => __('Start time'),
@@ -144,13 +178,22 @@ return array(
             'field' => array(
                 'company'    => array(
                     'title' => __('Company name'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'department'    => array(
                     'title' => __('Department'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'industry'    => array(
                     'title' => __('Industry'),
-                    'edit'  => 'Custom\User\Form\Element\Industry',
+                    'edit' => array(
+                        'element'  => 'Custom\User\Form\Element\Industry',
+                        'required' => true,
+                    ),
                 ),
                 'sector'    => array(
                     'title' => __('Sector'),
@@ -175,6 +218,9 @@ return array(
                 ),
                 'title'    => array(
                     'title' => __('Job title'),
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'description'   => array(
                     'title' => __('Description'),
