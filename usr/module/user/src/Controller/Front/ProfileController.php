@@ -412,10 +412,10 @@ class ProfileController extends ActionController
         );
 
         $uid        = Pi::user()->getId();
-        $compoundId = _post('compound', '');
+        $groupId = _post('groupId', '');
         $set        = _post('set');
 
-        $row = $this->getModel('display_group')->find($compoundId, 'id');
+        $row = $this->getModel('display_group')->find($groupId, 'id');
         if (!$row) {
             $result['message'] = 'error';
             return $result;

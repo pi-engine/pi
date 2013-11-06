@@ -2,12 +2,11 @@
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
     $this->Backbone();
-    d($compounds);
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="user-js-compound">
     <div class="page-header">
-        <h3 style="margin: -5px 0 9px;"><?php echo _escape($compounds['title']); ?></h3>
+        <h3 style="margin: -5px 0 9px;"><?php echo _escape($title); ?></h3>
         <div class="muted" style="margin: 0 0 11px;">
             <?php echo 'Change your ' . strtolower(_escape($title)) . ' info.'; ?>
             <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
@@ -15,7 +14,7 @@
     </div>
     <div class="user-info-list">
     </div>
-    <div class="user-info-add">
+    <div class="user-info-add" id="user-info-add">
         <div class="clearfix user-add-legend">
             <h4 class="user-legend-title">
                 <?php _e('Add new'); ?>
