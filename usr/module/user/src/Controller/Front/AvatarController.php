@@ -246,7 +246,7 @@ class AvatarController extends ActionController
         
         // Rename
         $ext      = strtolower(pathinfo($rawInfo['name'], PATHINFO_EXTENSION));
-        $rename   = $fakeId . $ext;
+        $rename   = $fakeId . '.' . $ext;
 
         // Get path to store
         $destination = $this->getTargetDir('tmp', $module, true, false);
@@ -443,7 +443,7 @@ class AvatarController extends ActionController
             $paths    = $adapter->getMeta($uid);
             foreach ($paths as $path) {
                 Pi::image()->crop(
-                    $image['tmp_name'],
+                    Pi::path($image['tmp_name']),
                     array($x, $y),
                     array($width, $height),
                     $path['path']
