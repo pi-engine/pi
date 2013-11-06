@@ -1,0 +1,1646 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Timezone\n"
+"POT-Creation-Date: 2013-11-06 14:31+0800\n"
+"PO-Revision-Date: 2013-11-06 14:31+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\locale\\en\n"
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:3
+msgid "Africa/Abidjan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:4
+msgid "Africa/Accra"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:5
+msgid "Africa/Addis_Ababa"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:6
+msgid "Africa/Algiers"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:7
+msgid "Africa/Asmara"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:8
+msgid "Africa/Bamako"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:9
+msgid "Africa/Bangui"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:10
+msgid "Africa/Banjul"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:11
+msgid "Africa/Bissau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:12
+msgid "Africa/Blantyre"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:13
+msgid "Africa/Brazzaville"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:14
+msgid "Africa/Bujumbura"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:15
+msgid "Africa/Cairo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:16
+msgid "Africa/Casablanca"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:17
+msgid "Africa/Ceuta"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:18
+msgid "Africa/Conakry"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:19
+msgid "Africa/Dakar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:20
+msgid "Africa/Dar_es_Salaam"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:21
+msgid "Africa/Djibouti"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:22
+msgid "Africa/Douala"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:23
+msgid "Africa/El_Aaiun"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:24
+msgid "Africa/Freetown"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:25
+msgid "Africa/Gaborone"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:26
+msgid "Africa/Harare"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:27
+msgid "Africa/Johannesburg"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:28
+msgid "Africa/Kampala"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:29
+msgid "Africa/Khartoum"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:30
+msgid "Africa/Kigali"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:31
+msgid "Africa/Kinshasa"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:32
+msgid "Africa/Lagos"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:33
+msgid "Africa/Libreville"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:34
+msgid "Africa/Lome"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:35
+msgid "Africa/Luanda"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:36
+msgid "Africa/Lubumbashi"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:37
+msgid "Africa/Lusaka"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:38
+msgid "Africa/Malabo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:39
+msgid "Africa/Maputo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:40
+msgid "Africa/Maseru"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:41
+msgid "Africa/Mbabane"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:42
+msgid "Africa/Mogadishu"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:43
+msgid "Africa/Monrovia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:44
+msgid "Africa/Nairobi"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:45
+msgid "Africa/Ndjamena"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:46
+msgid "Africa/Niamey"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:47
+msgid "Africa/Nouakchott"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:48
+msgid "Africa/Ouagadougou"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:49
+msgid "Africa/Porto-Novo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:50
+msgid "Africa/Sao_Tome"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:51
+msgid "Africa/Tripoli"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:52
+msgid "Africa/Tunis"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:53
+msgid "Africa/Windhoek"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:54
+msgid "America/Adak"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:55
+msgid "America/Anchorage"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:56
+msgid "America/Anguilla"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:57
+msgid "America/Antigua"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:58
+msgid "America/Araguaina"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:59
+msgid "America/Argentina/Buenos_Aires"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:60
+msgid "America/Argentina/Catamarca"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:61
+msgid "America/Argentina/Cordoba"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:62
+msgid "America/Argentina/Jujuy"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:63
+msgid "America/Argentina/La_Rioja"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:64
+msgid "America/Argentina/Mendoza"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:65
+msgid "America/Argentina/Rio_Gallegos"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:66
+msgid "America/Argentina/Salta"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:67
+msgid "America/Argentina/San_Juan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:68
+msgid "America/Argentina/San_Luis"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:69
+msgid "America/Argentina/Tucuman"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:70
+msgid "America/Argentina/Ushuaia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:71
+msgid "America/Aruba"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:72
+msgid "America/Asuncion"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:73
+msgid "America/Atikokan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:74
+msgid "America/Bahia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:75
+msgid "America/Bahia_Banderas"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:76
+msgid "America/Barbados"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:77
+msgid "America/Belem"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:78
+msgid "America/Belize"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:79
+msgid "America/Blanc-Sablon"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:80
+msgid "America/Boa_Vista"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:81
+msgid "America/Bogota"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:82
+msgid "America/Boise"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:83
+msgid "America/Cambridge_Bay"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:84
+msgid "America/Campo_Grande"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:85
+msgid "America/Cancun"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:86
+msgid "America/Caracas"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:87
+msgid "America/Cayenne"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:88
+msgid "America/Cayman"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:89
+msgid "America/Chicago"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:90
+msgid "America/Chihuahua"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:91
+msgid "America/Costa_Rica"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:92
+msgid "America/Cuiaba"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:93
+msgid "America/Curacao"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:94
+msgid "America/Danmarkshavn"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:95
+msgid "America/Dawson"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:96
+msgid "America/Dawson_Creek"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:97
+msgid "America/Denver"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:98
+msgid "America/Detroit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:99
+msgid "America/Dominica"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:100
+msgid "America/Edmonton"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:101
+msgid "America/Eirunepe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:102
+msgid "America/El_Salvador"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:103
+msgid "America/Fortaleza"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:104
+msgid "America/Glace_Bay"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:105
+msgid "America/Godthab"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:106
+msgid "America/Goose_Bay"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:107
+msgid "America/Grand_Turk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:108
+msgid "America/Grenada"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:109
+msgid "America/Guadeloupe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:110
+msgid "America/Guatemala"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:111
+msgid "America/Guayaquil"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:112
+msgid "America/Guyana"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:113
+msgid "America/Halifax"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:114
+msgid "America/Havana"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:115
+msgid "America/Hermosillo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:116
+msgid "America/Indiana/Indianapolis"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:117
+msgid "America/Indiana/Knox"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:118
+msgid "America/Indiana/Marengo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:119
+msgid "America/Indiana/Petersburg"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:120
+msgid "America/Indiana/Tell_City"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:121
+msgid "America/Indiana/Vevay"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:122
+msgid "America/Indiana/Vincennes"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:123
+msgid "America/Indiana/Winamac"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:124
+msgid "America/Inuvik"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:125
+msgid "America/Iqaluit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:126
+msgid "America/Jamaica"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:127
+msgid "America/Juneau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:128
+msgid "America/Kentucky/Louisville"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:129
+msgid "America/Kentucky/Monticello"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:130
+msgid "America/La_Paz"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:131
+msgid "America/Lima"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:132
+msgid "America/Los_Angeles"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:133
+msgid "America/Maceio"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:134
+msgid "America/Managua"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:135
+msgid "America/Manaus"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:136
+msgid "America/Marigot"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:137
+msgid "America/Martinique"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:138
+msgid "America/Matamoros"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:139
+msgid "America/Mazatlan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:140
+msgid "America/Menominee"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:141
+msgid "America/Merida"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:142
+msgid "America/Mexico_City"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:143
+msgid "America/Miquelon"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:144
+msgid "America/Moncton"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:145
+msgid "America/Monterrey"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:146
+msgid "America/Montevideo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:147
+msgid "America/Montreal"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:148
+msgid "America/Montserrat"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:149
+msgid "America/Nassau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:150
+msgid "America/New_York"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:151
+msgid "America/Nipigon"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:152
+msgid "America/Nome"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:153
+msgid "America/Noronha"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:154
+msgid "America/North_Dakota/Center"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:155
+msgid "America/North_Dakota/New_Salem"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:156
+msgid "America/Ojinaga"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:157
+msgid "America/Panama"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:158
+msgid "America/Pangnirtung"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:159
+msgid "America/Paramaribo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:160
+msgid "America/Phoenix"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:161
+msgid "America/Port-au-Prince"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:162
+msgid "America/Port_of_Spain"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:163
+msgid "America/Porto_Velho"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:164
+msgid "America/Puerto_Rico"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:165
+msgid "America/Rainy_River"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:166
+msgid "America/Rankin_Inlet"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:167
+msgid "America/Recife"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:168
+msgid "America/Regina"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:169
+msgid "America/Resolute"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:170
+msgid "America/Rio_Branco"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:171
+msgid "America/Santa_Isabel"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:172
+msgid "America/Santarem"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:173
+msgid "America/Santiago"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:174
+msgid "America/Santo_Domingo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:175
+msgid "America/Sao_Paulo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:176
+msgid "America/Scoresbysund"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:177
+msgid "America/Shiprock"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:178
+msgid "America/St_Barthelemy"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:179
+msgid "America/St_Johns"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:180
+msgid "America/St_Kitts"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:181
+msgid "America/St_Lucia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:182
+msgid "America/St_Thomas"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:183
+msgid "America/St_Vincent"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:184
+msgid "America/Swift_Current"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:185
+msgid "America/Tegucigalpa"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:186
+msgid "America/Thule"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:187
+msgid "America/Thunder_Bay"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:188
+msgid "America/Tijuana"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:189
+msgid "America/Toronto"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:190
+msgid "America/Tortola"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:191
+msgid "America/Vancouver"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:192
+msgid "America/Whitehorse"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:193
+msgid "America/Winnipeg"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:194
+msgid "America/Yakutat"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:195
+msgid "America/Yellowknife"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:196
+msgid "Antarctica/Casey"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:197
+msgid "Antarctica/Davis"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:198
+msgid "Antarctica/DumontDUrville"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:199
+msgid "Antarctica/Macquarie"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:200
+msgid "Antarctica/Mawson"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:201
+msgid "Antarctica/McMurdo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:202
+msgid "Antarctica/Palmer"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:203
+msgid "Antarctica/Rothera"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:204
+msgid "Antarctica/South_Pole"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:205
+msgid "Antarctica/Syowa"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:206
+msgid "Antarctica/Vostok"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:207
+msgid "Arctic/Longyearbyen"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:208
+msgid "Asia/Aden"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:209
+msgid "Asia/Almaty"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:210
+msgid "Asia/Amman"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:211
+msgid "Asia/Anadyr"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:212
+msgid "Asia/Aqtau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:213
+msgid "Asia/Aqtobe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:214
+msgid "Asia/Ashgabat"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:215
+msgid "Asia/Baghdad"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:216
+msgid "Asia/Bahrain"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:217
+msgid "Asia/Baku"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:218
+msgid "Asia/Bangkok"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:219
+msgid "Asia/Beirut"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:220
+msgid "Asia/Bishkek"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:221
+msgid "Asia/Brunei"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:222
+msgid "Asia/Choibalsan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:223
+msgid "Asia/Chongqing"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:224
+msgid "Asia/Colombo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:225
+msgid "Asia/Damascus"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:226
+msgid "Asia/Dhaka"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:227
+msgid "Asia/Dili"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:228
+msgid "Asia/Dubai"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:229
+msgid "Asia/Dushanbe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:230
+msgid "Asia/Gaza"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:231
+msgid "Asia/Harbin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:232
+msgid "Asia/Ho_Chi_Minh"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:233
+msgid "Asia/Hong_Kong"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:234
+msgid "Asia/Hovd"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:235
+msgid "Asia/Irkutsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:236
+msgid "Asia/Jakarta"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:237
+msgid "Asia/Jayapura"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:238
+msgid "Asia/Jerusalem"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:239
+msgid "Asia/Kabul"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:240
+msgid "Asia/Kamchatka"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:241
+msgid "Asia/Karachi"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:242
+msgid "Asia/Kashgar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:243
+msgid "Asia/Kathmandu"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:244
+msgid "Asia/Kolkata"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:245
+msgid "Asia/Krasnoyarsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:246
+msgid "Asia/Kuala_Lumpur"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:247
+msgid "Asia/Kuching"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:248
+msgid "Asia/Kuwait"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:249
+msgid "Asia/Macau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:250
+msgid "Asia/Magadan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:251
+msgid "Asia/Makassar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:252
+msgid "Asia/Manila"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:253
+msgid "Asia/Muscat"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:254
+msgid "Asia/Nicosia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:255
+msgid "Asia/Novokuznetsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:256
+msgid "Asia/Novosibirsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:257
+msgid "Asia/Omsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:258
+msgid "Asia/Oral"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:259
+msgid "Asia/Phnom_Penh"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:260
+msgid "Asia/Pontianak"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:261
+msgid "Asia/Pyongyang"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:262
+msgid "Asia/Qatar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:263
+msgid "Asia/Qyzylorda"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:264
+msgid "Asia/Rangoon"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:265
+msgid "Asia/Riyadh"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:266
+msgid "Asia/Sakhalin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:267
+msgid "Asia/Samarkand"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:268
+msgid "Asia/Seoul"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:269
+msgid "Asia/Shanghai"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:270
+msgid "Asia/Singapore"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:271
+msgid "Asia/Taipei"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:272
+msgid "Asia/Tashkent"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:273
+msgid "Asia/Tbilisi"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:274
+msgid "Asia/Tehran"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:275
+msgid "Asia/Thimphu"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:276
+msgid "Asia/Tokyo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:277
+msgid "Asia/Ulaanbaatar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:278
+msgid "Asia/Urumqi"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:279
+msgid "Asia/Vientiane"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:280
+msgid "Asia/Vladivostok"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:281
+msgid "Asia/Yakutsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:282
+msgid "Asia/Yekaterinburg"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:283
+msgid "Asia/Yerevan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:284
+msgid "Atlantic/Azores"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:285
+msgid "Atlantic/Bermuda"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:286
+msgid "Atlantic/Canary"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:287
+msgid "Atlantic/Cape_Verde"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:288
+msgid "Atlantic/Faroe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:289
+msgid "Atlantic/Madeira"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:290
+msgid "Atlantic/Reykjavik"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:291
+msgid "Atlantic/South_Georgia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:292
+msgid "Atlantic/St_Helena"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:293
+msgid "Atlantic/Stanley"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:294
+msgid "Australia/Adelaide"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:295
+msgid "Australia/Brisbane"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:296
+msgid "Australia/Broken_Hill"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:297
+msgid "Australia/Currie"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:298
+msgid "Australia/Darwin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:299
+msgid "Australia/Eucla"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:300
+msgid "Australia/Hobart"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:301
+msgid "Australia/Lindeman"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:302
+msgid "Australia/Lord_Howe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:303
+msgid "Australia/Melbourne"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:304
+msgid "Australia/Perth"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:305
+msgid "Australia/Sydney"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:306
+msgid "Europe/Amsterdam"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:307
+msgid "Europe/Andorra"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:308
+msgid "Europe/Athens"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:309
+msgid "Europe/Belgrade"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:310
+msgid "Europe/Berlin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:311
+msgid "Europe/Bratislava"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:312
+msgid "Europe/Brussels"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:313
+msgid "Europe/Bucharest"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:314
+msgid "Europe/Budapest"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:315
+msgid "Europe/Chisinau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:316
+msgid "Europe/Copenhagen"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:317
+msgid "Europe/Dublin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:318
+msgid "Europe/Gibraltar"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:319
+msgid "Europe/Guernsey"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:320
+msgid "Europe/Helsinki"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:321
+msgid "Europe/Isle_of_Man"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:322
+msgid "Europe/Istanbul"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:323
+msgid "Europe/Jersey"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:324
+msgid "Europe/Kaliningrad"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:325
+msgid "Europe/Kiev"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:326
+msgid "Europe/Lisbon"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:327
+msgid "Europe/Ljubljana"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:328
+msgid "Europe/London"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:329
+msgid "Europe/Luxembourg"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:330
+msgid "Europe/Madrid"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:331
+msgid "Europe/Malta"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:332
+msgid "Europe/Mariehamn"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:333
+msgid "Europe/Minsk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:334
+msgid "Europe/Monaco"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:335
+msgid "Europe/Moscow"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:336
+msgid "Europe/Oslo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:337
+msgid "Europe/Paris"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:338
+msgid "Europe/Podgorica"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:339
+msgid "Europe/Prague"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:340
+msgid "Europe/Riga"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:341
+msgid "Europe/Rome"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:342
+msgid "Europe/Samara"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:343
+msgid "Europe/San_Marino"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:344
+msgid "Europe/Sarajevo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:345
+msgid "Europe/Simferopol"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:346
+msgid "Europe/Skopje"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:347
+msgid "Europe/Sofia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:348
+msgid "Europe/Stockholm"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:349
+msgid "Europe/Tallinn"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:350
+msgid "Europe/Tirane"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:351
+msgid "Europe/Uzhgorod"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:352
+msgid "Europe/Vaduz"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:353
+msgid "Europe/Vatican"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:354
+msgid "Europe/Vienna"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:355
+msgid "Europe/Vilnius"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:356
+msgid "Europe/Volgograd"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:357
+msgid "Europe/Warsaw"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:358
+msgid "Europe/Zagreb"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:359
+msgid "Europe/Zaporozhye"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:360
+msgid "Europe/Zurich"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:361
+msgid "Indian/Antananarivo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:362
+msgid "Indian/Chagos"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:363
+msgid "Indian/Christmas"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:364
+msgid "Indian/Cocos"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:365
+msgid "Indian/Comoro"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:366
+msgid "Indian/Kerguelen"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:367
+msgid "Indian/Mahe"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:368
+msgid "Indian/Maldives"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:369
+msgid "Indian/Mauritius"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:370
+msgid "Indian/Mayotte"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:371
+msgid "Indian/Reunion"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:372
+msgid "Pacific/Apia"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:373
+msgid "Pacific/Auckland"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:374
+msgid "Pacific/Chatham"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:375
+msgid "Pacific/Chuuk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:376
+msgid "Pacific/Easter"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:377
+msgid "Pacific/Efate"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:378
+msgid "Pacific/Enderbury"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:379
+msgid "Pacific/Fakaofo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:380
+msgid "Pacific/Fiji"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:381
+msgid "Pacific/Funafuti"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:382
+msgid "Pacific/Galapagos"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:383
+msgid "Pacific/Gambier"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:384
+msgid "Pacific/Guadalcanal"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:385
+msgid "Pacific/Guam"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:386
+msgid "Pacific/Honolulu"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:387
+msgid "Pacific/Johnston"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:388
+msgid "Pacific/Kiritimati"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:389
+msgid "Pacific/Kosrae"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:390
+msgid "Pacific/Kwajalein"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:391
+msgid "Pacific/Majuro"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:392
+msgid "Pacific/Marquesas"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:393
+msgid "Pacific/Midway"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:394
+msgid "Pacific/Nauru"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:395
+msgid "Pacific/Niue"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:396
+msgid "Pacific/Norfolk"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:397
+msgid "Pacific/Noumea"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:398
+msgid "Pacific/Pago_Pago"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:399
+msgid "Pacific/Palau"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:400
+msgid "Pacific/Pitcairn"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:401
+msgid "Pacific/Pohnpei"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:402
+msgid "Pacific/Port_Moresby"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:403
+msgid "Pacific/Rarotonga"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:404
+msgid "Pacific/Saipan"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:405
+msgid "Pacific/Tahiti"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:406
+msgid "Pacific/Tarawa"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:407
+msgid "Pacific/Tongatapu"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:408
+msgid "Pacific/Wake"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:409
+msgid "Pacific/Wallis"
+msgstr ""
+
+#: C:\wamp\www\master\usr\locale\en/timezone.php:410
+msgid "UTC"
+msgstr ""

@@ -1,0 +1,1927 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2013-11-06 09:54+0800\n"
+"PO-Revision-Date: 2013-11-06 09:54+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master-i18n\\usr\\module\\user\n"
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:19
+msgid "General"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:23
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:122
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:340
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:23
+msgid "Avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:27
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:18
+msgid "User account"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:34
+msgid "Number of items on list page."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:39
+msgid "Register form config file name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:43
+msgid "Complete profile form config file name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:49
+msgid "Username format"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:50
+msgid "Format of username for registration."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:55
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:88
+msgid "Strict: alphabet or number only"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:56
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:89
+msgid "Medium: ASCII characters"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:57
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:90
+msgid "Loose: multi-byte characters"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:67
+msgid "Minimum username"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:68
+msgid "Minimum length of username for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:75
+msgid "Maximum username"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:76
+msgid "Maximum length of username for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:82
+msgid "Display name format"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:83
+msgid "Format of display name for registration."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:100
+msgid "Minmum display name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:101
+msgid "Minmum length of display name for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:108
+msgid "Maximum display name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:109
+msgid "Maximum length of display name for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:116
+msgid "Minimum password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:117
+msgid "Minimum length of password for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:124
+msgid "Maximum password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:125
+msgid "Maximum length of password for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:132
+msgid "Username backlist"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:133
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:141
+msgid ""
+"Reserved and forbidden username list. Separate each with a <strong>|</"
+"strong>, regexp syntax is allowed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:140
+msgid "Display backlist"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:148
+msgid "Email backlist"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:149
+msgid ""
+"Forbidden username list. Separate each with a <strong>|</strong>, regexp "
+"syntax is allowed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:156
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:52
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:56
+msgid "Remember me"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:157
+msgid "Days to remember login, 0 for disable."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:164
+msgid "Maximum attempts"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:165
+msgid "Maximum attempts allowed to try for user login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:172
+msgid "Login disable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:173
+msgid "Disable user login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:181
+msgid "Register disable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:182
+msgid "Disable user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:190
+msgid "Login CAPTCHA"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:191
+msgid "Enable CAPTCHA for user login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:199
+msgid "Register CAPTCHA"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:200
+msgid "Enable CAPTCHA for user registration"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:210
+msgid "Max Avatar Width"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:211
+msgid "Allowed image width, 0 for no limit"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:217
+msgid "Max Avatar Height"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:218
+msgid "Allowed image height, 0 for no limit"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:224
+msgid "Max File Size"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:225
+msgid "Allowed avatar file to upload (in KB), 0 for no limit"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:240
+msgid "Temporary Path"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/config.php:241
+msgid "For temporary storage of avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/module.php:17
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:21
+msgid "User"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/module.php:18
+msgid "User profile and services."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:32
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:55
+msgid "Role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:75
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:71
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:75
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:85
+msgid "Front role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:52
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:84
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:80
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:76
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:86
+msgid "Admin role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:65
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Nav.php:59
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:30
+msgid "Profile"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:76
+msgid "Form"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:88
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:61
+msgid "Plugin management"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:99
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:67
+msgid "Maintenance"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:110
+msgid "Inquiry"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/nav.php:118
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/import.phtml:2
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/import.phtml:4
+msgid "Import"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:24
+msgid "User profile"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:30
+msgid "Roles"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:36
+msgid "Profile fields"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:42
+msgid "Custom fields"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:49
+msgid "Avatars"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/permission.php:55
+msgid "Forms"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:26
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:30
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:30
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:90
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:21
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:38
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:36
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:47
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:67
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:91
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:14
+msgid "Username"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:40
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:70
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:96
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:32
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:18
+msgid "Password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:58
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/AccountForm.php:27
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/FindPasswordForm.php:27
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:48
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:108
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:22
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:55
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:38
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:68
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:95
+msgid "Email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:80
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/AccountForm.php:37
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:39
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:99
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:18
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:37
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:48
+msgid "Display name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:94
+msgid "Gender"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:102
+msgid "Birthdate"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:133
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:32
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:58
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:52
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:72
+msgid "Active"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:144
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:39
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:52
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:56
+#, fuzzy
+msgid "Register time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:155
+#, fuzzy
+msgid "Activation time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:166
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:61
+#, fuzzy
+msgid "Disabled time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:178
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:49
+#, fuzzy
+msgid "Deleted time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:192
+msgid "Level"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:201
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Nav.php:43
+msgid "Homepage"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:206
+msgid "Short bio"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:212
+msgid "Signature"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:219
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:102
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:107
+msgid "Register IP"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:230
+msgid "Social tools"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:234
+msgid "Tool name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:237
+msgid "ID or URL"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:247
+msgid "User action"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/config/user.php:259
+msgid "Logout"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Relation.php:53
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:70
+msgid "Public"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Relation.php:57
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:71
+msgid "Member"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Relation.php:61
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:72
+msgid "Follower"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Relation.php:65
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:73
+msgid "Following"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Api/Relation.php:69
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:74
+msgid "Owner"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:33
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
+msgid "User was not found."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:68
+msgid "Edit failed: invalid uid."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:93
+msgid "Edit user info successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:101
+msgid "Edit failed: invalid submission."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:133
+msgid "Edit failed: missing uid or compound."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:140
+msgid "Edit failed: user not found."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:145
+msgid "Edit failed: compound not exist."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:214
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/ProfileController.php:187
+msgid "Update successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:222
+msgid "Edit failed: input error."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:259
+msgid "Delete compound successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:259
+msgid "Delete compound fail"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:284
+msgid "Replace with system defalt avatar successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/EditController.php:334
+msgid "Base info"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:201
+msgid "Add user failed: user already exists."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:215
+msgid "Add user failed: invalid operation."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:235
+msgid "Add user successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:366
+msgid "Enable user failed: invalid uid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:382
+#, php-format
+msgid "%d enable user successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:402
+msgid "Disable user failed: invalid uid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:418
+#, php-format
+msgid "%d disable user successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:438
+msgid "Delete user failed: invalid uid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:458
+#, php-format
+msgid "%d delete user successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:478
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:484
+msgid "Activate user failed: invalid uid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:499
+#, php-format
+msgid "%d activated user successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:529
+msgid "Assign role failed: invalid parameters."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:535
+msgid "Assign role failed: invalid user ids."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:540
+msgid "Assign role failed: invalid operation."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:549
+msgid "Assign role failed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:560
+msgid "Assign role failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/IndexController.php:573
+msgid "Assign role successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/MaintenanceController.php:200
+msgid "Clear failed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/MaintenanceController.php:210
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/MaintenanceController.php:227
+msgid "Clear all deleted user successfully."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:217
+msgid "Profile dressup data save successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:312
+msgid "Set privacy failed: invalid id."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:317
+msgid "Set privacy failed: invalid value."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:322
+msgid "Set privacy failed: invalid force flag."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:341
+msgid "Set privacy failed: update error."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/ProfileController.php:352
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:57
+msgid "Set privacy successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:108
+msgid "User removed from the role."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:112
+msgid "User not in the role."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:120
+msgid "User added to the role."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:131
+msgid "User already in the role."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:137
+msgid "User not found."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Admin/RoleController.php:175
+#, php-format
+msgid "Users of role %s"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AccountController.php:123
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:185
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:194
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:201
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:210
+msgid "Verify link invalid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AccountController.php:183
+msgid "Reset email successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AccountController.php:197
+msgid "Incorrect password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AccountController.php:219
+msgid "Correct password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:119
+msgid "Allowed extensions:"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:210
+msgid "Avatar Settings"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:240
+msgid "Invalid fake ID!"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:338
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:463
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:101
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:165
+msgid "Invalid email."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:349
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:382
+msgid "Successful"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:366
+msgid "No image selected!"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:405
+#, php-format
+msgid "Invalid source %s."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:416
+msgid "Not image selected."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:427
+msgid "Image does not exist."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:437
+msgid "Image width or height is needed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:472
+msgid "Invalid image file."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:497
+msgid "Avatar set successfully."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:512
+msgid "Image is not removed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/AvatarController.php:527
+msgid "Image removed successfully."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/HomeController.php:38
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/ProfileController.php:42
+msgid "Please login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/HomeController.php:100
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/ProfileController.php:80
+msgid "Invalid user ID!"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:34
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:92
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:35
+msgid "User login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:76
+#, php-format
+msgid ""
+"Login with the account is suspended,\n"
+"                            please wait for %d minutes to try again."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:85
+#, php-format
+msgid "You have %d times to try."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:111
+msgid "You logged out successfully. Now go back to homepage."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:123
+msgid "Invalid request."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:133
+msgid "Invalid input, please try again."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:152
+msgid "You have tried too many times. Please try later."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:171
+msgid "Invalid credentials provided, please try again."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/LoginController.php:245
+msgid "You have logged in successfully."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:38
+msgid "Reset password failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:49
+msgid "Change password need login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:80
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:233
+msgid "Reset password successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:82
+msgid "Input password error"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:111
+msgid "Find password failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PasswordController.php:160
+msgid "Send email successfully. check email and reset password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/PrivacyController.php:36
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/ProfileController.php:148
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/ProfileController.php:371
+msgid "Need login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:46
+msgid "Register failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:101
+msgid "Register successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:126
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:137
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:145
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:154
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:166
+msgid "Activate link is invalid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:178
+msgid "Activate successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:194
+msgid "Resend activate mail failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:254
+msgid "Resend activate mail successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Controller/Front/RegisterController.php:323
+msgid "Complete profile successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/AccountForm.php:54
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/CompleteProfileForm.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/CompoundForm.php:58
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/EditUserForm.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/EmailForm.php:58
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:122
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/PasswordForm.php:79
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/ProfileEditForm.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/RegisterForm.php:42
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/ResetPasswordForm.php:68
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/RoleForm.php:99
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:19
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:26
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:99
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/privacy-index.phtml:49
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:58
+msgid "Submit"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/EmailForm.php:27
+msgid "New email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/EmailForm.php:37
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/FindPasswordForm.php:52
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login.phtml:28
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-find.phtml:1
+msgid "Find password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:67
+msgid "Please type the word."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/LoginForm.php:96
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:17
+msgid "Login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:57
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/PasswordForm.php:53
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:66
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/PasswordForm.php:63
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/ResetPasswordForm.php:52
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:97
+msgid "Confirm password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:94
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:98
+msgid "Activate"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/MemberForm.php:106
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:46
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:73
+msgid "Enable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/RoleForm.php:44
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:21
+msgid "Name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/RoleForm.php:54
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:41
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:22
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:25
+msgid "Title"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:31
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:45
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:59
+msgid "Any"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:33
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:53
+msgid "Inactive"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:47
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:74
+msgid "Disable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:60
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:38
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:54
+msgid "Pending"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:61
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:24
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:51
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:37
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:51
+msgid "Activated"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/SearchForm.php:143
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:32
+msgid "Search"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/Element/Gender.php:30
+msgid "Male"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/Element/Gender.php:31
+msgid "Female"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/src/Form/Element/Gender.php:32
+msgid "Unknown"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/edit-compound.phtml:41
+msgid "This user doesn't have any you can view"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/form-complete-profile.phtml:4
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/form-register.phtml:4
+msgid "Register form"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/form-complete-profile.phtml:9
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/form-register.phtml:9
+msgid "Complete profile form"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:20
+msgid ""
+"Inquire of user information via his ID, username, display name or email."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:23
+msgid "Activation"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:25
+msgid "Not activated"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:26
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:31
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:49
+msgid "Enabled"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:27
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:50
+msgid "Disabled"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:28
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:30
+msgid "Yes"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:29
+msgid "Account"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/inquiry.phtml:32
+msgid "Unavailable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:20
+msgid "Stats"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:21
+msgid "User log"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:22
+msgid "Deleted users"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:25
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:77
+msgid "Today"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:26
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:78
+msgid "Last week"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:27
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:79
+msgid "Last month"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:28
+msgid "History"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:29
+msgid "Register num"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:30
+msgid "Activated num"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:31
+msgid "Pending num"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:32
+msgid "Top 10 registered IP"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:33
+msgid "None"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:34
+msgid "Sort by key:"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:35
+msgid "uid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:36
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:58
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:47
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-index.phtml:25
+msgid "Edit"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:37
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:111
+msgid "View log"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:40
+msgid "Register ip"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:41
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:63
+#, fuzzy
+msgid "Activated time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:42
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:62
+msgid "Last login time"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:43
+msgid "Last loin ip"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:44
+msgid "Login times"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:45
+msgid "Sort by:"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:46
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:87
+msgid "Are you sure to delete this user?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:47
+msgid "Are you sure to delete these users?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:48
+msgid "Are you sure to delete all of these users?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:50
+msgid "IP"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:53
+msgid "Displayname"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:54
+msgid "Clear the users"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:56
+msgid "CLear all deleted users"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:57
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:105
+msgid "No user matched your request."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:59
+msgid "Login ip"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:60
+#, fuzzy
+msgid "Created time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/maintenance.phtml:64
+msgid "Null"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:21
+msgid "Timeline"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:22
+msgid "Activity"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:23
+msgid "Quicklink"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:26
+msgid "Item name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:27
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:34
+msgid "From module"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:28
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:31
+msgid "Display"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:29
+msgid "Items displayed on the homepage timeline"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:31
+msgid "No"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:32
+msgid "Activities"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:33
+msgid "Activities items repository"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:34
+msgid ""
+"Items to display on the user\\'s homepage, Drag items vertically to "
+"determine the order displays"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:35
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:27
+msgid "Quicklinks"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/plugin.phtml:36
+msgid "Quicklinks items repository"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:23
+msgid "Profile field"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:24
+msgid "Profile dress up"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:25
+msgid "Field privacy"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:28
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:40
+msgid "Basic field"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:29
+msgid "Raw filed provied by the user module,you can change the display title"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:30
+msgid "Field title"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:33
+msgid "Editable"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:35
+msgid "Compound"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:36
+msgid ""
+"Compound filed :Some fileds organized initially. Sub elements in the "
+"compound is directly displayed on the page,while the compound title is for "
+"programming"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:37
+msgid ""
+"Determine the default visible objects of the profile filed and which filed "
+"can be changed by the user self"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:38
+msgid "Add group"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:39
+msgid "Field display on profile page"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:42
+msgid "Data will not be saved before you click save button"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:43
+msgid "Click to select a group added in"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:44
+msgid "Click to added a group"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:45
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:40
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:178
+msgid "Cancel"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:46
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:177
+msgid "Save"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/profile.phtml:47
+msgid "You have made unsaved changes. Would you still like to leave this page?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:19
+msgid "Admin roles"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:20
+msgid "Front roles"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:23
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:31
+msgid "Users in role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:24
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:57
+msgid "Action"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:27
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:66
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:100
+msgid "Required"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:28
+msgid "Type"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:29
+msgid "Front"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:30
+msgid "Admin"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:32
+msgid "User id or name"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:33
+msgid "Users"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:34
+msgid "First"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:35
+msgid "User id"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:39
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:60
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:90
+msgid "Add user"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/role.phtml:40
+msgid "None user in this role."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:24
+msgid "Build user module data"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:36
+#, fuzzy
+msgid "All"
+msgstr "All Categories"
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:39
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:11
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:17
+msgid "Add new"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:40
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:106
+msgid "Advanced search"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:43
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:89
+msgid "Active State"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:44
+msgid "Enable State"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:45
+msgid "Select roles"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:46
+msgid "Apply"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:59
+msgid "Delete"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:61
+msgid "Passwords don\\'t match."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:62
+msgid "Username is already taken."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:63
+msgid "Email is already taken."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:64
+msgid "Display name is already taken."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:65
+msgid "Back to users list"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:69
+msgid "Email invalid"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:71
+msgid "Password confirm"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:80
+msgid "Last three months"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:81
+msgid "Last six months"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:82
+msgid "Last year"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:83
+msgid "Assign role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:84
+msgid "Remove role"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:88
+msgid "Are you sure to delete this users?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:92
+msgid "Are you sure active this account, it can not be return"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:93
+msgid "Are you sure active these account, it can not be return"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:94
+msgid "Choose at least one item before submission."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:103
+msgid "Activation state"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:104
+msgid "User ID"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:108
+msgid "From"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:109
+msgid "To"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:110
+msgid "Search result"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:112
+msgid "No pending user."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:113
+msgid "Edit user"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:114
+msgid "Replace with defalt avatar."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/admin/user.phtml:115
+msgid "Are you sure to delete this group?"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:7
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:13
+msgid "Account settings"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:8
+msgid "Basic settings"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:26
+msgid "Save account changes"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:29
+msgid "Re-enter your password to save changes to your account."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:41
+msgid "Save changes"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:106
+msgid "A message has been sent to you"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:106
+msgid ""
+"to confirm your new email address. Check the email in 24 hours. The new "
+"email will not work until your confirm."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:109
+msgid "Display name change saved."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:112
+msgid "Sorry, email change failed. Try it later."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:116
+msgid "Sorry, display name change failed. Try it later."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:183
+msgid "Email has been used."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:201
+msgid "Invalid display name."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:219
+msgid "Display name has been used."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-index.phtml:248
+msgid "That\\'s you !"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:1
+msgid "Change email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:3
+msgid "Congratulations !"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:4
+msgid "Your email has been changed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:6
+#, php-format
+msgid "<a href=\"%s\">Login right now</a>"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:10
+msgid "Sorry !"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/account-reset-email.phtml:11
+msgid "The link has expired, or maybe your email has been changed."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/activity-index.phtml:11
+#, fuzzy
+msgid "View all"
+msgstr "All Categories"
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:15
+msgid "Upload"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:20
+msgid "Gavatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:25
+msgid "Select"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:30
+msgid "Default"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:43
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:6
+msgid "Change avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:44
+msgid "Customize your avatar anyway you like"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:47
+msgid "Current avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:51
+msgid ""
+"once switch source and saved,the avatar data from other source will be "
+"deleted."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:73
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:187
+msgid "Upload avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:83
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:110
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:139
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:166
+msgid "Avatar previews"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:103
+msgid "Change from Gravatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:105
+msgid "Gravatar email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:162
+msgid "Apply system avatar as your avatar"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/avatar-index.phtml:188
+msgid "Uploading"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:8
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-success.phtml:8
+msgid "homepage"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:10
+msgid "re-login"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:11
+#, php-format
+msgid "You have logged out successfully, please go to %s or to %s."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:16
+msgid "Choose: "
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-logout.phtml:18
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login.phtml:29
+msgid "Register"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-message.phtml:8
+msgid "logout"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-message.phtml:9
+#, php-format
+msgid ""
+"You have been logged on with account <strong>%s</strong>, please %s to re-"
+"login."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login-success.phtml:9
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/login.phtml:28
+msgid "Forget password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-find.phtml:11
+msgid "A reset link has been sent to your email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-find.phtml:12
+msgid "Please check it to reset your password in 24 hours"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-index.phtml:7
+msgid "Change password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-index.phtml:8
+msgid "To ensure your account security , complex password is required."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:6
+msgid "Sorry, your link has expired."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:8
+#, php-format
+msgid "<a href=\"%s\">Try to find password agagin</a>"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:13
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-activate.phtml:3
+msgid "Congratulations!"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:14
+msgid "Your new password has worked"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/password-process.phtml:16
+#, php-format
+msgid "<a href=\"%s\">Please Sign in</a>."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/privacy-index.phtml:9
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:37
+msgid "Privacy"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/privacy-index.phtml:11
+msgid "Change your privacy settings."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/privacy-index.phtml:15
+msgid "No  available privacy setting"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:59
+msgid "cancel"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit-compound.phtml:277
+msgid "Are you sure delete this one"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit.phtml:7
+msgid "Basic info"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit.phtml:8
+msgid "Change your basic profile info"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit.phtml:15
+msgid "Data updated successfully"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-edit.phtml:15
+msgid "Data saved failed"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-index.phtml:47
+msgid "Add"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-index.phtml:54
+msgid " doesn't have any "
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-index.phtml:56
+msgid " you can view"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-view.phtml:30
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/profile-view.phtml:35
+#, php-format
+msgid "%s does not have any %s"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-activate.phtml:1
+msgid "Activate account"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-activate.phtml:4
+msgid "Your account has been activated."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-activate.phtml:6
+msgid "Login right now."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-activate.phtml:10
+msgid "Sorry, the link has expired."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-complete-profile.phtml:1
+msgid "Complete profile"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-display.phtml:5
+msgid ""
+"A link for activation has been sent to you. Please check it in 24 hours."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-display.phtml:9
+msgid "Resend activation email."
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:4
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:17
+msgid "Register sitename"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:20
+msgid "An activation link has been sent to your email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:21
+msgid "Please check it to finish registration in 24 hours"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:24
+msgid "Get no email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:26
+msgid "Wait a few minutes"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:27
+msgid "Check your email rubbish"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:28
+msgid "Resend a email"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-index.phtml:63
+msgid "Alreaday sent"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/register-prefect-information.phtml:1
+msgid "Perfect your profiles"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:15
+msgid "Born at"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:32
+msgid "Setting"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:46
+msgid "Send message"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-media.phtml:126
+msgid "More"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:6
+msgid "View my profile"
+msgstr ""
+
+#: C:\wamp\www\master-i18n\usr\module\user/template/front/_user-side-nav.phtml:26
+msgid "Edit profile"
+msgstr ""

@@ -27,7 +27,7 @@ class Csv implements FileLoaderInterface
      * File extension
      * @var string
      */
-    protected $fileExtension = '.csv';
+    //protected $fileExtension = '.csv';
 
     /**
      * Options for CSV file
@@ -60,7 +60,7 @@ class Csv implements FileLoaderInterface
      */
     public function load($locale, $filename)
     {
-        $filename .= $this->fileExtension;
+        //$filename .= $this->fileExtension;
         $messages = array();
 
         ErrorHandler::start();
