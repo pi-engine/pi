@@ -55,7 +55,7 @@ class Interest extends CustomFieldHandler
         $data = parent::get($uid);
         if ($filter) {
             $list = $this->lookup($data);
-            $result = implode(',', $list);
+            $result = implode(', ', $list);
         } else {
             $result = $data;
         }
@@ -72,7 +72,7 @@ class Interest extends CustomFieldHandler
         if ($filter) {
             foreach ($data as $uid => $uData) {
                 $list = $this->lookup($uData);
-                $result[$uid] = implode(',', $list);
+                $result[$uid] = implode(', ', $list);
             }
         } else {
             $result = $data;
