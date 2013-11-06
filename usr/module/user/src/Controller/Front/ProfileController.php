@@ -389,8 +389,11 @@ class ProfileController extends ActionController
 
         // Get side nav items
         $groups       = Pi::api('user', 'group')->getList();
-        $profileGroup = $this->getProfile($uid);
-        $compounds    = $profileGroup[$groupId];
+        $profileGroup = $this->getProfile($uid);d($profileGroup);
+        foreach ($profileGroup[$groupId]['fields'] as $key => $value) {
+            $compounds[$key]['set']    = $key;
+            $compounds[$key]['fields'] = $value;
+        }
         $this->view()->assign(array(
             'compounds' => $compounds,
             'groupId'   => $groupId,
@@ -464,10 +467,14 @@ class ProfileController extends ActionController
                 // Update compound
                 Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
                 $profileGroup = $this->getProfile($uid);
-                $data         = $profileGroup[$groupId]['fields'][$set];
+                $compounds = array();
+                foreach ($profileGroup[$groupId]['fields'] as $key => $value) {
+                    $compounds[$key]['set']    = $key;
+                    $compounds[$key]['fields'] = $value;
+                }
                 return array(
                     'status' => 1,
-                    'data'   => $data,
+                    'data'   => $compounds[$set],
                 );
             } else {
                 return array(
@@ -853,7 +860,8 @@ class ProfileController extends ActionController
             if ($group['compound']) {
                 // Compound meta
                 $compoundMeta = Pi::registry('compound_field', 'user')->read(
-                    $group['compound']
+                    $group['compound'],
+                    true
                 );
 
                 // Compound value
@@ -878,7 +886,7 @@ class ProfileController extends ActionController
                 foreach ($fields as $field) {
                     $result[$groupId]['fields'][0][$field] = array(
                         'title' => $fieldMeta[$field]['title'],
-                        'value' => Pi::api('user', 'user')->get($uid, $field),
+                        'value' => Pi::api('user', 'user')->get($uid, $field, true),
                     );
                 }
             }
