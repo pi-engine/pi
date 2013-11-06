@@ -113,6 +113,7 @@ class Translator
             );
         }
 
+        /*
         while (($data = fgetcsv($file, $options['length'],
                 $options['delimiter'], $options['enclosure'])
             ) !== false
@@ -132,6 +133,126 @@ class Translator
                 $result[$singular] = $data;
             }
         }
+        */
+
+        // Verify magic number
+        $magic = fread($file, 4);
+
+        if ($magic == "\x95\x04\x12\xde") {
+            $littleEndian = false;
+        } elseif ($magic == "\xde\x12\x04\x95") {
+            $littleEndian = true;
+        } else {
+            fclose($file);
+            throw new \InvalidArgumentException(sprintf(
+                '%s is not a valid gettext file',
+                $filename
+            ));
+        }
+
+        $readInteger = function () use (
+            $file,
+            $littleEndian
+        ) {
+            if ($littleEndian) {
+                $result = unpack('Vint', fread($file, 4));
+            } else {
+                $result = unpack('Nint', fread($file, 4));
+            }
+
+            return $result['int'];
+        };
+
+        $readIntegerList = function ($num) use (
+            $file,
+            $littleEndian
+        ) {
+            if ($littleEndian) {
+                return unpack('V' . $num, fread($file, 4 * $num));
+            }
+
+            return unpack('N' . $num, fread($file, 4 * $num));
+        };
+
+        $textDomain = array();
+
+        // Verify major revision (only 0 and 1 supported)
+        $majorRevision = ($readInteger() >> 16);
+
+        if ($majorRevision !== 0 && $majorRevision !== 1) {
+            fclose($file);
+            throw new \InvalidArgumentException(sprintf(
+                '%s has an unknown major revision',
+                $filename
+            ));
+        }
+
+        // Gather main information
+        $numStrings                   = $readInteger();
+        $originalStringTableOffset    = $readInteger();
+        $translationStringTableOffset = $readInteger();
+
+        // Usually there follow size and offset of the hash table, but we have
+        // no need for it, so we skip them.
+        fseek($file, $originalStringTableOffset);
+        $originalStringTable = $readIntegerList(2 * $numStrings);
+
+        fseek($file, $translationStringTableOffset);
+        $translationStringTable = $readIntegerList(2 * $numStrings);
+
+        // Read in all translations
+        for ($current = 0; $current < $numStrings; $current++) {
+            $sizeKey                 = $current * 2 + 1;
+            $offsetKey               = $current * 2 + 2;
+            $originalStringSize      = $originalStringTable[$sizeKey];
+            $originalStringOffset    = $originalStringTable[$offsetKey];
+            $translationStringSize   = $translationStringTable[$sizeKey];
+            $translationStringOffset = $translationStringTable[$offsetKey];
+
+            $originalString = array('');
+            if ($originalStringSize > 0) {
+                fseek($file, $originalStringOffset);
+                $originalString = explode("\0", fread($file, $originalStringSize));
+            }
+
+            if ($translationStringSize > 0) {
+                fseek($file, $translationStringOffset);
+                $translationString = explode("\0", fread($file, $translationStringSize));
+
+                if (count($originalString) > 1 && count($translationString) > 1) {
+                    $textDomain[$originalString[0]] = $translationString;
+
+                    array_shift($originalString);
+
+                    foreach ($originalString as $string) {
+                        $textDomain[$string] = '';
+                    }
+                } else {
+                    $textDomain[$originalString[0]] = $translationString[0];
+                }
+            }
+        }
+
+        /*
+        // Read header entries
+        if (array_key_exists('', $textDomain)) {
+            $rawHeaders = explode("\n", trim($textDomain['']));
+
+            foreach ($rawHeaders as $rawHeader) {
+                list($header, $content) = explode(':', $rawHeader, 2);
+
+                if (trim(strtolower($header)) === 'plural-forms') {
+                    $textDomain->setPluralRule(PluralRule::fromString($content));
+                }
+            }
+
+            unset($textDomain['']);
+        }
+        */
+
+        fclose($file);
+
+        $result = $textDomain;
 
         return $result;
     }
