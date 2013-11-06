@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
 "POT-Creation-Date: 2013-11-06 09:57+0800\n"
-"PO-Revision-Date: 2013-11-06 14:01+0800\n"
+"PO-Revision-Date: 2013-11-06 13:35+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -15,15 +15,15 @@ msgstr ""
 
 #: C:\wamp\www\master-i18n\www\setup/include/config.php:15
 msgid "Web server"
-msgstr ""
+msgstr "服务器"
 
 #: C:\wamp\www\master-i18n\www\setup/include/config.php:16
 msgid "PHP"
-msgstr ""
+msgstr "PHP语言"
 
 #: C:\wamp\www\master-i18n\www\setup/include/config.php:17
 msgid "Persist options"
-msgstr ""
+msgstr "持久数据参数"
 
 #: C:\wamp\www\master-i18n\www\setup/include/config.php:18
 msgid "PDO drivers"
@@ -127,7 +127,7 @@ msgstr ""
 
 #: C:\wamp\www\master-i18n\www\setup/include/page.php:13
 msgid "Presettings"
-msgstr ""
+msgstr " 基本设置"
 
 #: C:\wamp\www\master-i18n\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
@@ -370,7 +370,7 @@ msgstr ""
 
 #: C:\wamp\www\master-i18n\www\setup/src/Controller/Presetting.php:89
 msgid "Language Selection"
-msgstr ""
+msgstr "语言选择"
 
 #: C:\wamp\www\master-i18n\www\setup/src/Controller/Presetting.php:91
 msgid "Choose the language for the installation and website"

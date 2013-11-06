@@ -40,8 +40,8 @@ class Translator
      */
     public static function translate($messageId)
     {
-        $message = isset(static::$data[static::$locale][$messageId])
-            ? static::$data[static::$locale][$messageId] : $messageId;
+        $message = isset(static::$data[$messageId])
+            ? static::$data[$messageId] : $messageId;
 
         return $message;
     }
@@ -82,11 +82,12 @@ class Translator
             static::$locale,
             $domain
         );
+        //var_dump($filename);
         try {
-            if (isset(static::$data[$domain])) {
-                static::$data[$domain] += (array) static::loadFile($filename);
+            if (isset(static::$data)) {
+                static::$data += (array) static::loadFile($filename);
             } else {
-                static::$data[$domain] = (array) static::loadFile($filename);
+                static::$data = (array) static::loadFile($filename);
             }
         } catch (\Exception $e) {
         }
@@ -233,9 +234,9 @@ class Translator
             }
         }
 
-        /*
         // Read header entries
         if (array_key_exists('', $textDomain)) {
+            /*
             $rawHeaders = explode("\n", trim($textDomain['']));
 
             foreach ($rawHeaders as $rawHeader) {
@@ -245,10 +246,10 @@ class Translator
                     $textDomain->setPluralRule(PluralRule::fromString($content));
                 }
             }
+            */
 
             unset($textDomain['']);
         }
-        */
 
         fclose($file);
 
