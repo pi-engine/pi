@@ -80,6 +80,7 @@ return array(
         'interest' => array(
             'name'  => 'interest',
             'title' => __('Interest'),
+            'edit'  => 'Custom\User\Form\Element\Interest',
 
             // Custom handler
             'handler'   => 'Custom\User\Field\Interest',
@@ -88,7 +89,7 @@ return array(
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
-
+            'edit'  => 'Custom\User\Form\Element\Subscription',
             // Custom handler
             'handler'   => 'Custom\User\Field\Subscription',
         ),
