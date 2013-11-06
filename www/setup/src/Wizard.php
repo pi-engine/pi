@@ -125,7 +125,7 @@ class Wizard
             ? $this->persistentData['charset'] : $this->charset;
         Translator::setPath(static::$root . '/locale');
         Translator::setLocale($this->locale);
-        Translator::loadDomain('setup');
+        Translator::loadDomain('default');
     }
 
     public function setLocale($locale)

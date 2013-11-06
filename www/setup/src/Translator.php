@@ -77,7 +77,7 @@ class Translator
     public static function loadDomain($domain)
     {
         $filename = sprintf(
-            '%s/%s/%s.csv',
+            '%s/%s/%s.mo',
             static::$basePath,
             static::$locale,
             $domain

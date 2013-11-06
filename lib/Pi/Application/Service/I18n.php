@@ -374,21 +374,26 @@ namespace Pi\Application\Service
         {
             if (!$this->__translator) {
                 $translator = new Translator;
-                if (!empty($this->options['translator']['pluginManager'])) {
-                    $class = $this->options['translator']['pluginManager'];
+                if ($this->getOption('translator', 'pluginManager')) {
+                    $class = $this->getOption('translator', 'pluginManager');
                     $pluginManager = new $class;
                 } else {
                     $pluginManager = new LoaderPluginManager;
                 }
                 $translator->setPluginManager($pluginManager);
                 $loader =
-                    $pluginManager->get($this->options['translator']['type']);
+                    $pluginManager->get($this->getOption('translator', 'type'));
                 $translator->setLoader($loader);
-                if (!empty($this->options['translator']['options'])
+                if ($this->getOption('translator', 'options')
                     && is_callable(array($loader, 'setOptions'))
                 ) {
                     $loader->setOptions(
-                        $this->options['translator']['options']
+                        $this->getOption('translator', 'options')
+                    );
+                }
+                if ($this->getOption('translator', 'extension')) {
+                    $translator->setExtension(
+                        $this->getOption('translator', 'extension')
                     );
                 }
                 $this->__translator = $translator;
