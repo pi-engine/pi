@@ -284,7 +284,7 @@ abstract class AbstractCustomHandler
      */
     public function delete($uid)
     {
-        $this->getModule()->delete(array('uid' => (int) $uid));
+        $this->getModel()->delete(array('uid' => (int) $uid));
 
         return true;
     }
