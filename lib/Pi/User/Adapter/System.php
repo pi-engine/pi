@@ -264,8 +264,7 @@ class System extends AbstractAdapter
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
                 } else {
-                    $redirect = Pi::engine()->application()->getRequest()
-                        ->getRequestUri();
+                    $redirect = Pi::service('url')->getRequestUri();
                 }
                 if (!isset($params['module'])) {
                     $params['module'] = 'system';

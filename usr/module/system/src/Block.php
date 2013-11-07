@@ -77,12 +77,12 @@ class Block
                 'uid'       => Pi::service('user')->getId(),
                 'name'      => $name,
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
-                'logout'    => Pi::service('user')->getUrl('logout', $params),
+                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
             );
         } else {
             $user = array(
                 'uid'       => 0,
-                'login'     => Pi::service('user')->getUrl('login', $params),
+                'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
         }

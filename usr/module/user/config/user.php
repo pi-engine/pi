@@ -257,7 +257,7 @@ return array(
     'quicklink' => array(
         'logout'    => array(
             'title' => __('Logout'),
-            'link'  => Pi::user()->getUrl('logout'),
+            'link'  => Pi::service('authentication')->getUrl('logout'),
             'icon'  => 'icon-off',
         ),
     ),

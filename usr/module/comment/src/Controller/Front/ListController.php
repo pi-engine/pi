@@ -148,8 +148,8 @@ class ListController extends ActionController
         if ($my) {
             $uid = Pi::user()->getId();
             if (!$uid) {
-                $redirect = $this->getRequest()->getRequestUri();
-                $url = Pi::service('user')->getUrl('login', $redirect);
+                //$redirect = $this->getRequest()->getRequestUri();
+                $url = Pi::service('authentication')->getUrl('login');
                 $this->jump($url, __('Please login.'));
             }
             $active = _get('active');
@@ -358,8 +358,7 @@ class ListController extends ActionController
         if ($my) {
             $uid = Pi::user()->getId();
             if (!$uid) {
-                $redirect = $this->getRequest()->getRequestUri();
-                $url = Pi::service('user')->getUrl('login', $redirect);
+                $url = Pi::service('authentication')->getUrl('login');
                 $this->jump($url, __('Please login.'));
             }
             $active = _get('active');
@@ -512,8 +511,7 @@ class ListController extends ActionController
             $my     = 1;
             $uid    = Pi::user()->getId();
             if (!$uid) {
-                $redirect = $this->getRequest()->getRequestUri();
-                $url = Pi::service('user')->getUrl('login', $redirect);
+                $url = Pi::service('authentication')->getUrl('login');
                 $this->jump($url, __('Please login.'));
             }
             if (null !== $active) {
