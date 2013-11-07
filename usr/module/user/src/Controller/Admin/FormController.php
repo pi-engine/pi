@@ -13,8 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
-use Module\User\Form\CompleteProfileForm;
-use Module\User\Form\CompleteProfileFilter;
+use Module\User\Form\ProfileCompleteForm;
+use Module\User\Form\ProfileCompleteFilter;
 
 /**
  * Form preview controller
@@ -54,16 +54,16 @@ class FormController extends ActionController
     }
 
     /**
-     * Preview profile perfection form
+     * Preview profile complete form
      */
-    public function completeProfileAction()
+    public function ProfileCompleteAction()
     {
-        list($fields, $filters) = $this->canonizeForm('custom.complete.profile');
-        $form = new CompleteProfileForm('complete-profile', $fields);
+        list($fields, $filters) = $this->canonizeForm('complete.custom.profile');
+        $form = new ProfileCompleteForm('profile-complete', $fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new CompleteProfileFilter($filters));
+            $form->setInputFilter(new ProfileCompleteFilter($filters));
             $form->setData($post);
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -76,7 +76,7 @@ class FormController extends ActionController
             'data' => $data,
         ));
 
-        $this->view()->setTemplate('form-complete-profile');
+        $this->view()->setTemplate('form-profile-complete');
     }
 
     /**

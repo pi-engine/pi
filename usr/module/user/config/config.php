@@ -36,16 +36,19 @@ $config = array(
         'filter' => 'int',
     ),
     'register_form' => array(
-        'title'  => _t('Register form config file name'),
-        'value'  => 'register',
+        'title'         => _t('Register form config file name'),
+        'description'   => _t('Set it only if necessary.'),
+        'value'         => '', // 'register',
     ),
-    'register_next_form' => array(
-        'title'  => _t('Register next step form config file name'),
-        'value'  => '',
+    'register_complete_form' => array(
+        'title'         => _t('Register complete form config file name'),
+        'description'   => _t('Set it only if necessary.'),
+        'value'         => '',
     ),
-    'complete_profile_form' => array(
-        'title'  => _t('Complete profile form config file name'),
-        'value'  => 'complete.profile',
+    'profile_complete_form' => array(
+        'title'         => _t('Profile complete form config file name'),
+        'description'   => _t('Set it only if necessary.'),
+        'value'         => '', // 'profile.complete',
     ),
 
     // User account

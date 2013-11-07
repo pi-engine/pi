@@ -226,16 +226,16 @@ class LoginController extends ActionController
             $this->getModule()
         );
         // Check user complete profile
-        $hasCompleteProfile = Pi::user()->data()->get(
+        $hasProfileComplete = Pi::user()->data()->get(
             $uid,
-            'complete-profile'
+            'profile-complete'
         );
-        if (!$hasCompleteProfile) {
+        if (!$hasProfileComplete) {
             $this->redirect()->toRoute(
                 'user',
                 array(
                     'controller' => 'register',
-                    'action' => 'complete.profile',
+                    'action' => 'profile.complete',
                     'redirect' => urlencode($redirect),
                 )
             );

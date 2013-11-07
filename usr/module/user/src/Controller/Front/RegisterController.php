@@ -13,8 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
-use Module\User\Form\CompleteProfileForm;
-use Module\User\Form\CompleteProfileFilter;
+use Module\User\Form\ProfileCompleteForm;
+use Module\User\Form\ProfileCompleteFilter;
 
 /**
  * Register controller
@@ -264,7 +264,7 @@ class RegisterController extends ActionController
      * 2. Save user information
      * 3. Sign user data
      */
-    public function completeProfileAction()
+    public function profileCompleteAction()
     {
         $status = 0;
         $isPost = 0;
@@ -296,13 +296,13 @@ class RegisterController extends ActionController
 
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm(
-            $this->config('complete_profile_form')
+            $this->config('profile_complete_form')
         );
-        $form = $this->getCompleteProfileForm($fields);
+        $form = $this->getProfileCompleteForm($fields);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new CompleteProfileFilter($filters));
+            $form->setInputFilter(new ProfileCompleteFilter($filters));
             $form->setData($post);
 
             if ($form->isValid()) {
@@ -313,14 +313,14 @@ class RegisterController extends ActionController
                 // Set perfect information flag in user table
                 Pi::user()->data()->set(
                     $uid,
-                    'complete-profile',
+                    'profile-complete',
                     1,
                     $this->getModule()
                 );
                 $status = 1;
                 return $this->jump(
                     $redirect,
-                    __('Complete profile successfully')
+                    __('Complete profile successfully.')
                 );
             }
             $isPost = 1;
@@ -332,7 +332,7 @@ class RegisterController extends ActionController
             'is_post' => $isPost
         ));
 
-        $this->view()->setTemplate('register-complete-profile');
+        $this->view()->setTemplate('register-profile-complete');
     }
 
     /**
@@ -361,12 +361,12 @@ class RegisterController extends ActionController
      * @param string $name form name
      * @return \Module\User\Form\CompleteCompleteForm
      */
-    protected function getCompleteProfileForm($fields, $name = 'profileComplete')
+    protected function getProfileCompleteForm($fields, $name = 'profileComplete')
     {
-        $form = new CompleteProfileForm($name, $fields);
+        $form = new ProfileCompleteForm($name, $fields);
         $form->setAttribute(
             'action',
-            $this->url('', array('action' => 'complete-profile'))
+            $this->url('', array('action' => 'profile-complete'))
         );
 
         return $form;
