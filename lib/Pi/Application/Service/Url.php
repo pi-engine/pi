@@ -79,6 +79,9 @@ class Url extends AbstractService
     /** @var  RouteMatch */
     protected $routeMatch;
 
+    /** @var  string Request URI */
+    protected $requestUri;
+
     /**
      * Set router
      *
@@ -241,5 +244,46 @@ class Url extends AbstractService
     public function route($url, $route = '')
     {
         return $this->match($url, $route);
+    }
+
+    /**
+     * Get current request URI
+     *
+     * @return string
+     */
+    public function getRequestUri()
+    {
+        if (null === $this->requestUri) {
+            $this->requestUri = Pi::engine()->application()->getRequest()
+                ->getRequestUri();
+        }
+
+        return $this->requestUri;
+    }
+
+    /**
+     * Redirect to a URL
+     *
+     * @param string    $url
+     * @param bool      $return
+     *
+     * @return void
+     */
+    public function redirect($url, $return = false)
+    {
+        if ($return) {
+            $requestUri = $this->getRequestUri();
+            if (false == strpos($url, '?')) {
+                $url .= '?redirect=' . rawurlencode($requestUri);
+            } else {
+                $url .= '&redirect=' . rawurlencode($requestUri);
+            }
+        }
+
+        $response = Pi::engine()->application()->getResponse();
+        $response->getHeaders()->addHeaderLine('Location', $url);
+        $response->setStatusCode(302);
+        $response->send();
+        exit();
     }
 }
