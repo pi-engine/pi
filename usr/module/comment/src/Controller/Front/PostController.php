@@ -541,7 +541,7 @@ class PostController extends ActionController
             $ops = array(
                 'login' => array(
                     'title' => __('Login'),
-                    'url'   => Pi::service('user')->getUrl('login'),
+                    'url'   => Pi::service('authentication')->getUrl('login'),
                 ),
                 'edit' => array(
                     'title' => __('Edit'),

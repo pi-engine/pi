@@ -635,8 +635,8 @@ abstract class AbstractAdapter implements BindInterface
      *
      * - home: URI to user home (timeline) page
      * - profile: URI to user profile page
-     * - login: URI to user login page
-     * - logout: URI to user logout page
+     * - (login: URI to user login page)
+     * - (logout: URI to user logout page)
      * - register: URI to user register page
      *
      * @param string    $type URL type

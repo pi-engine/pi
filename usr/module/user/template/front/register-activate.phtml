@@ -2,7 +2,7 @@
 <?php if (isset($result) && $result['status']) { ?>
     <p><?php _e('Congratulations!'); ?></p>
     <p><?php _e('Your account has been activated.'); ?></p>
-    <p><a href="<?php echo Pi::service('user')->getUrl('login'); ?>">
+    <p><a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>">
         <?php _e('Login right now.'); ?>
         </a>
     </p>

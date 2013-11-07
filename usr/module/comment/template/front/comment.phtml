@@ -65,8 +65,7 @@ if ($uid) {
                 <div class="media-body">
                 <?php 
                     if (empty($uid)) {
-                        $redirect = Pi::engine()->application()->getRequest()->getUri()->getPath();
-                        $loginUrl = Pi::user()->getUrl('login', $redirect);
+                        $loginUrl = Pi::service('authentication')->getUrl('login');
                 ?>
                     <div class="form-unsign">
                         <span><a href="<?php echo $loginUrl; ?>" class="highlight"><?php _e('Login'); ?></a></span>

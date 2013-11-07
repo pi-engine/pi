@@ -11,9 +11,8 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\Authentication\Adapter\AdapterInterface;
-use Pi\Authentication\Storage\StorageInterface;
-use Zend\Authentication\Result;
+use Pi\Authentication\Strategy\AbstractStrategy;
+use Zend\Authentication\Result as AuthenticationResult;
 
 /**
  * Authentication service
@@ -60,137 +59,59 @@ class Authentication extends AbstractService
     protected $fileIdentifier = 'authentication';
 
     /**
-     * Adapter handler
+     * Authentication strategy
      *
-     * @var AdapterInterface
+     * @var AbstractStrategy
      */
-    protected $adapter;
+    protected $strategy;
 
     /**
-     * Storage handler
+     * Get strategy
      *
-     * @var StorageInterface
+     * @return AbstractStrategy
      */
-    protected $storage;
-
-    /**
-     * Authenticates against the supplied adapter
-     *
-     * @param string $identity
-     * @param string $credential
-     * @param AdapterInterface $adapter
-     * @param StorageInterface $storage
-     * @return Result
-     */
-    public function authenticate(
-        $identity,
-        $credential,
-        AdapterInterface $adapter = null,
-        StorageInterface $storage = null
-    ) {
-        $adapter = $adapter ?: $this->getAdapter();
-        $adapter->setIdentity($identity);
-        $adapter->setCredential($credential);
-        $result = $adapter->authenticate();
-
-        if ($this->hasIdentity()) {
-            $this->clearIdentity();
+    public function getStrategy()
+    {
+        if (!$this->strategy) {
+            $option = $this->getOption('strategy');
+            if (is_string($option)) {
+                $class = $option;
+                $options = array();
+            } else {
+                $class = $option['class'];
+                $options = isset($option['options'])
+                    ? $option['options'] : array();
+            }
+            if (false === strpos($class, '\\')) {
+                $class = 'Pi\Authentication\Strategy\\' . ucfirst($class);
+            }
+            $this->strategy = new $class($options);
         }
 
-        if ($result->isValid()) {
-            $storage = $storage ?: $this->getStorage();
-            $storage->write($result->getIdentity());
-            $result->setData($adapter->getResultRow());
-        }
-
-        return $result;
+        return $this->strategy;
     }
 
     /**
-     * Set adapter
+     * Get URIs
      *
-     * @param AdapterInterface $adapter
-     * @return $this
+     * @param string $type  Type for URI: login, logout
+     * @param array|string $params
+     *
+     * @return string
      */
-    public function setAdapter(AdapterInterface $adapter)
+    public function getUrl($type, $params = null)
     {
-        $this->adapter = $adapter;
-
-        return $this;
+        return $this->getStrategy()->getUrl($type, $params);
     }
 
     /**
-     * Get adapter
+     * Load current session user and bind to user service
      *
-     * @return AdapterInterface
+     * @return bool
      */
-    public function getAdapter()
+    public function bind()
     {
-        if (!$this->adapter) {
-            $this->adapter = $this->loadAdapter($this->options['adapter']);
-        }
-
-        return $this->adapter;
-    }
-
-    /**
-     * Set storage
-     *
-     * @param StorageInterface $storage
-     * @return $this
-     */
-    public function setStorage(StorageInterface $storage)
-    {
-        $this->storage = $storage;
-
-        return $this;
-    }
-
-    /**
-     * Get storage
-     *
-     * @return StorageInterface
-     */
-    public function getStorage()
-    {
-        if (!$this->storage) {
-            $this->storage = $this->loadStorage($this->options['storage']);
-        }
-
-        return $this->storage;
-    }
-
-    /**
-     * Load authentication adapter
-     *
-     * @param array $config
-     * @return AdapterInterface
-     */
-    public function loadAdapter($config = array())
-    {
-        $class      = $config['class'];
-        $options    = isset($config['options']) ? $config['options'] : array();
-        $adapter = new $class;
-        if ($options) {
-            $adapter->setOptions($options);
-        }
-
-        return $adapter;
-    }
-
-    /**
-     * Load authentication storage
-     *
-     * @param array $config
-     * @return StorageInterface
-     */
-    public function loadStorage($config = array())
-    {
-        $class      = $config['class'];
-        $options    = isset($config['options']) ? $config['options'] : array();
-        $storage = new $class($options);
-
-        return $storage;
+        return $this->getStrategy()->bind();
     }
 
     /**
@@ -202,7 +123,7 @@ class Authentication extends AbstractService
      */
     public function hasIdentity()
     {
-        return !$this->getStorage()->isEmpty();
+        return $this->getStrategy()->hasIdentity();
     }
 
     /**
@@ -212,21 +133,77 @@ class Authentication extends AbstractService
      */
     public function getIdentity()
     {
-        $storage = $this->getStorage();
-        if ($storage->isEmpty()) {
-            return null;
-        }
-
-        return $storage->read();
+        return $this->getStrategy()->getIdentity();
     }
 
     /**
      * Clears the identity from persistent storage
      *
-     * @return void
+     * @return bool
      */
     public function clearIdentity()
     {
-        $this->getStorage()->clear();
+        return $this->getStrategy()->clearIdentity();
+    }
+
+    /**
+     * Authenticates against the supplied adapter
+     *
+     * @param string $identity
+     * @param string $credential
+     *
+     * @return AuthenticationResult
+     */
+    public function authenticate($identity, $credential)
+    {
+        return $this->getStrategy()->authenticate($identity, $credential);
+    }
+
+    /**
+     * Check if authenticated and go to authentication process if not
+     *
+     * @param array $params
+     *
+     * @return void
+     */
+    public function requireLogin(array $params = array())
+    {
+        return $this->getStrategy()->requireLogin($params);
+    }
+
+    /**
+     * Go to login process
+     *
+     * @param array $params
+     *
+     * @return void
+     */
+    public function login(array $params = array())
+    {
+        return $this->getStrategy()->login($params);
+    }
+
+    /**
+     * Go to logout process
+     *
+     * @param array $params
+     *
+     * @return void
+     */
+    public function logout(array $params = array())
+    {
+        return $this->getStrategy()->logout($params);
+    }
+
+    /**
+     * Get user profile data from current session
+     *
+     * @param array $fields
+     *
+     * @return array
+     */
+    public function getData(array $fields = array())
+    {
+        return $this->getStrategy()->getData($fields);
     }
 }

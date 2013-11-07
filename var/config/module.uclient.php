@@ -44,8 +44,8 @@ return array (
             'identity'  => $userRoot . '/home/identity/%s',
             'my'        => $userRoot . '/home',
         ),
-        'login'     => $userRoot . '/login',
-        'logout'    => $userRoot . '/logout',
+        //'login'     => $userRoot . '/login',
+        //'logout'    => $userRoot . '/logout',
         'register'  => $userRoot . '/register',
 
         // Timeline API uri

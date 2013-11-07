@@ -8,7 +8,7 @@
 
     // Prompt to login for guests
     } elseif (401 == (int) $code) {
-        $url = Pi::user()->getUrl('login');
+        $url = Pi::service('authentication')->getUrl('login');
         $link = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
         echo sprintf(__('You are not allowed to access the page. Please %s and try again.'), $link);
 
@@ -20,7 +20,7 @@
             $url = Pi::service('url')->assemble('home');
         }
         $linkHome = '<a href="' . $url . '" title="' . __('homepage') . '">' . __('homepage') . '</a>';
-        $url = Pi::user()->getUrl('logout');
+        $url = Pi::service('authentication')->getUrl('logout');
         $linkLogout = '<a href="' . $url . '" title="' . __('logout') . '">' . __('logout') . '</a>';
         echo sprintf(
             __('You are not allowed to access the page. Please go to %s or %s and try other account.'),
