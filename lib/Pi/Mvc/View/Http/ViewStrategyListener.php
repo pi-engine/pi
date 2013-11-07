@@ -341,10 +341,10 @@ class ViewStrategyListener extends AbstractListenerAggregate
             // For Json
             case 'json':
                 if ($result instanceof JsonModel) {
-                    $model = $result;
+                    $model      = $result;
                 } else {
                     $options    = array();
-                    $data  = array();
+                    $data       = array();
                     if ($result instanceof ViewModel) {
                         $data = $result->getVariables();
                         $options = $result->getOptions();
@@ -357,6 +357,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
                             (array) $variables,
                             $result
                         );
+                    } else {
+                        $data = $result;
                     }
                     $model = new JsonModel($data, $options);
                 }
