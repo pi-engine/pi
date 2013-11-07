@@ -26,6 +26,15 @@ return array(
             'module'        => 'user',
             'controller'    => 'index',
             'action'        => 'index',
+
+            'pages'     => array(
+                'edit'      => array(
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'edit',
+                    'visible'       => 0,
+                )
+            ),
         ),
 
         'role'   => array(
@@ -37,7 +46,7 @@ return array(
             'module'        => 'user',
             'controller'    => 'role',
 
-            'pages'     => array(
+            /*'pages'     => array(
                 'front'      => array(
                     'label'         => _t('Front role'),
                     'route'         => 'admin',
@@ -58,7 +67,7 @@ return array(
                     ),
                     'visible'       => 0,
                 ),
-            ),
+            ),*/
         ),
 
         'profile' => array(

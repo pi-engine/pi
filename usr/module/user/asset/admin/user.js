@@ -24,6 +24,8 @@
                 if (item.admin_roles) {
                   item.admin_roles = item.admin_roles.join(',');
                 }
+                item.editUrl = config.editUrlRoot + 'index/uid/' + item.id;
+                console.log(item);
               }
               angular.extend(data, server.getRoles());
               data.filter = params;
@@ -58,22 +60,6 @@
       templateUrl: tpl('advanced-search-result'),
       controller: 'ListCtrl',
       resolve: resolve('search')
-    }).when('/edit/:id/:action?', {
-      templateUrl: tpl('user-edit'),
-      controller: 'EditCtrl',
-      resolve: {
-        data: ['$q', '$route', 'editServer',
-          function($q, $route, editServer) {
-            var deferred = $q.defer();
-            var params = $route.current.params;
-            params.action = params.action || 'info';
-            editServer.get(params).success(function(data) {
-              deferred.resolve(data);
-            });
-            return deferred.promise;
-          }
-        ]
-      }
     }).otherwise({
       redirectTo: '/all'
     });
@@ -416,19 +402,26 @@
       enable: 1,
       roles: ['member']
     };
+    function setRole() {
+      angular.forEach($scope.roles, function (item) {
+        if (entity.roles.indexOf(item.name) != -1) {
+          item.checked = true;
+        } else {
+          item.checked = false;
+        }
+      });
+    }
     
-    $scope.entity = entity;
+    $scope.entity = angular.copy(entity);
     $scope.uniqueUrl = server.uniqueUrl;
     $scope.roles = angular.copy(server.roles);
-    angular.forEach($scope.roles, function (item) {
-      if (entity.roles.indexOf(item.name) != -1) {
-        item.checked = true;
-      }
-    });
-
+    setRole();
 
     $scope.submit = function () {
-      server.add(entity);
+      server.add($scope.entity);
+      $scope.entity = angular.copy(entity);
+      $scope.userForm.$setPristine();
+      setRole();
     }
 
     $scope.$watch('roles', function () {
@@ -438,7 +431,7 @@
           roles.push(item.name);
         }
       });
-      entity.roles = roles;
+      $scope.entity.roles = roles;
     }, true);
   }
 ])
@@ -484,58 +477,6 @@
       }
 
       $location.path('/all/search').search(filter);
-    }
-  }
-])
-.controller('EditCtrl', ['$scope', '$templateCache', 'config', 'data', 'editServer',
-  function($scope, $templateCache, config, data, editServer) {
-    angular.extend($scope, data);
-
-    $scope.navChange = function(item) {
-      $scope.action = item.name;
-    }
-
-    $scope.submit = function(name) {
-      var form = $('form[name=' + name + ']');
-      var url = $scope.formHtmlUrl;
-      $.post(url, form.serialize()).done(function(data) {
-        data = $.parseJSON(data);
-        $scope.$parent.alert = data;
-        if (angular.isUndefined(data.set)) {
-          $scope.formError = data.error;
-        } else {
-          $scope['formError' + data.set] = data.error;
-        }
-
-        $templateCache.remove(url);
-        $scope.$apply();
-      });
-    }
-
-    $scope.defaultAvatarAction = function() {
-      editServer.defaultAvatar($scope.user.id).success(function(data) {
-        if (!data.status) return;
-        $scope.avatar = data.avatar;
-      });
-    }
-
-    $scope.deleteAction = function(name) {
-      if (!confirm(config.t.COMPOUND_CONFIRM)) return;
-      var form = $('form[name=' + name + ']');
-      var widget = form.parents('.pi-widget');
-      var scope = widget.parent();
-      editServer
-        .deleteCompound($scope.user.id, $scope.action, form.find('[name=set]').val())
-        .success(function(data) {
-          if (!data.status) return;
-          $templateCache.remove($scope.formHtmlUrl);
-          widget.fadeOut(300, function() {
-            widget.remove();
-            scope.find('[name=set]').each(function(idx) {
-              $(this).val(idx);
-            });
-          });
-        });
     }
   }
 ]);
