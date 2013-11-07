@@ -289,7 +289,11 @@
       var name = this.name;
       var data = EEFOCUS_DATA[name];
       $.each(data, function(index ,item) {
-        var checked = values.indexOf(item) == -1 ? '' : 'checked="checked"';
+        var checked = '';
+        if (values && values.indexOf(item) != -1) {
+          checked = 'checked="checked"';
+        }
+        
         html += '<label class="inline checkbox"><input type="checkbox" name="' + name + '[]" value="' + item + '"' + checked + '>' + item + '</label>';
       });
       this.el.html(html);
