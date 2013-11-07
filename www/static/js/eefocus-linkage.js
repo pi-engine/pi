@@ -154,7 +154,7 @@
       "2087": "EDA\/IP\/IC\/PCB\u8bbe\u8ba1",
       "2088": "\u5236\u9020\/\u5c01\u88c5"
     },
-    "newsletter": {
+    "subscription": {
       "1": "\u5d4c\u5165\u5f0f\u7cfb\u7edf\u8bbe\u8ba1",
       "2": "\u6d4b\u8bd5\u6d4b\u91cf",
       "3": "\u6a21\u62df\u0026\u7535\u6e90",
@@ -276,5 +276,25 @@
       return keys;
     }
   };
+
+  eefocus.Checkboxs = function(root, name, values) {
+    this.el = $('#' + root);
+    this.name = name;
+    this.init(values);
+  }
+
+  eefocus.Checkboxs.prototype = {
+    init: function(values) {
+      var html = '';
+      var name = this.name;
+      var data = EEFOCUS_DATA[name];
+      $.each(data, function(key ,value) {
+        var checked = values.indexOf(key) == -1 ? '' : 'checked="checked"';
+        html += '<label class="inline checkbox"><input type="checkbox" name="' + name + '[]" value="' + key + '"' + checked + '>' + value + '</label>';
+      });
+      this.el.html(html);
+    }
+  }
+
   this.eefocus = eefocus;
 })();

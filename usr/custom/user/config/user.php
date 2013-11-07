@@ -103,7 +103,7 @@ return array(
         'interest' => array(
             'name'  => 'interest',
             'title' => __('Interest'),
-            'edit'  => 'Custom\User\Form\Element\Interest',
+            'edit'  => 'Custom\User\Form\Element\Checkboxs',
             // Custom handler
             'handler'   => 'Custom\User\Field\Interest',
         ),
@@ -111,7 +111,7 @@ return array(
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
-            'edit'  => 'Custom\User\Form\Element\Subscription',
+            'edit'  => 'Custom\User\Form\Element\Checkboxs',
             // Custom handler
             'handler'   => 'Custom\User\Field\Subscription',
         ),
@@ -289,6 +289,11 @@ return array(
 
     // Quicklinks
     'quicklink' => array(
+        'eefocus'    => array(
+            'title' =>  __('eefocus'),
+            'link'  => 'http://www.eefocus.com/',
+            'icon'  => 'icon-eefocus',
+        ),
     ),
 
 );
