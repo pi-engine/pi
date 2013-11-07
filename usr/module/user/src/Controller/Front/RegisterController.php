@@ -428,7 +428,6 @@ class RegisterController extends ActionController
                             'action' => 'index'
                         )
                     )
-                    __('Complete profile successfully.')
                 );
             } else {
                 $this->view()->assign('result', $result);
