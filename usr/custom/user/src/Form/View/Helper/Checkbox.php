@@ -52,7 +52,7 @@ class Checkbox extends AbstractHelper
         $id = uniqid();
 
         return sprintf('
-        <div id="%s" class="pi-checkboxs">
+        <div id="%s" class="pi-checkbox">
         </div>
         <script>
             new eefocus.Checkbox("%s", "%s", %s);

@@ -103,7 +103,7 @@ return array(
         'interest' => array(
             'name'  => 'interest',
             'title' => __('Interest'),
-            'edit'  => 'Custom\User\Form\Element\Checkboxs',
+            'edit'  => 'Custom\User\Form\Element\Checkbox',
             // Custom handler
             'handler'   => 'Custom\User\Field\Interest',
         ),
