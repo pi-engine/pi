@@ -231,7 +231,6 @@ class System extends AbstractAdapter
         $route      = $this->getRoute();
         $redirect   = '';
         switch ($type) {
-            //case 'account':
             case 'profile':
                 $params = array();
                 if (is_numeric($var)) {
@@ -252,7 +251,6 @@ class System extends AbstractAdapter
                 break;
 
             case 'login':
-            //case 'signin':
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -289,7 +287,6 @@ class System extends AbstractAdapter
                 break;
 
             case 'logout':
-            //case 'signout':
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -327,10 +324,21 @@ class System extends AbstractAdapter
                 break;
 
             case 'register':
-            //case 'signup':
                 $params = (array) $var;
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'register';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            case 'password':
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'password';
                 }
                 if (isset($params['route'])) {
                     $route = $params['route'];
@@ -363,7 +371,11 @@ class System extends AbstractAdapter
         // Append redirect with query
         // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
         if ($redirect) {
-            $url .= '?redirect=' . rawurlencode($redirect);
+            if (false == strpos($url, '?')) {
+                $url .= '?redirect=' . rawurlencode($redirect);
+            } else {
+                $url .= '&redirect=' . rawurlencode($redirect);
+            }
         }
 
         return $url;

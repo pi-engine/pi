@@ -32,7 +32,7 @@ abstract class AbstractResource
 
     /**
      * Pi Application handler
-     * @var Pi\Mvc\Application
+     * @var \Pi\Mvc\Application
      */
     protected $application;
 
@@ -44,9 +44,9 @@ abstract class AbstractResource
      */
     public function __construct(AbstractEngine $engine, $options = array())
     {
-        $this->options = $options;
-        $this->engine = $engine;
-        $this->application = $engine->application();
+        $this->options      = $options;
+        $this->engine       = $engine;
+        $this->application  = $engine->application();
     }
 
     /**

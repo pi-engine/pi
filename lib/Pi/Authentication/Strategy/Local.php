@@ -22,18 +22,16 @@ use Pi\Authentication\Storage\StorageInterface;
 class Local extends AbstractStrategy
 {
     /**
+     * {@inheritDoc}
+     */
+    protected $fileIdentifier = 'local';
+
+    /**
      * Adapter handler
      *
      * @var AdapterInterface
      */
     protected $adapter;
-
-    /**
-     * Storage handler
-     *
-     * @var StorageInterface
-     */
-    protected $storage;
 
     /**
      * {@inheritDoc}

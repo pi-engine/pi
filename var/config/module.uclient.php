@@ -1,7 +1,9 @@
 <?php
 // Uclient configurations
 
-$root           = 'http://master.pi';
+$sourceId       = '';
+
+$root           = 'http://pi.master';
 $userRoot       = $root . '/user';
 $apiUser        = $root . '/api/user/user';
 $apiAvatar      = $root . '/api/user/avatar';
@@ -46,7 +48,7 @@ return array (
         ),
         //'login'     => $userRoot . '/login',
         //'logout'    => $userRoot . '/logout',
-        'register'  => $userRoot . '/register',
+        'register'  => $userRoot . '/register?source=' . $sourceId,
 
         // Timeline API uri
         'timeline'  => array(

@@ -46,14 +46,6 @@ class PasswordController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $value = $form->getData();
-                // Check email is  exist
-                /*
-                $userRow = Pi::api('uclient', 'user')->getList(
-                        array('email' => $value['email']),
-                        0, 0, '', array('email', 'id')
-                    );
-                $userRow = array_pop($userRow);
-                */
                 $userRow = Pi::service('user')->getUser($value['email'], 'email');
                 if (!$userRow) {
                     $this->view()->assign(array(
@@ -76,16 +68,16 @@ class PasswordController extends ActionController
                 // Send verify email
                 $to = $userRow['email'];
                 $url = $this->url('', array(
-                        'action' => 'process',
-                        'uid'     => md5($uid),
-                        'token'  => $token
+                        'action'    => 'process',
+                        'uid'       => md5($uid),
+                        'token'     => $token
                     )
                 );
                 $link = Pi::url($url, true);
                 list($subject, $body, $type) = $this->setMailParams(
                     $userRow['identity'],
                     $link
-                );//d($to);exit;
+                );
                 $message = Pi::service('mail')->message($subject, $body, $type);
                 $message->addTo($to);
                 $transport = Pi::service('mail')->transport();
@@ -93,7 +85,7 @@ class PasswordController extends ActionController
 
                 $result['status']  = 1;
                 $result['message'] = __(
-                    'Send email successfully. check email and reset password'
+                    'Send email successfully. check email and reset password.'
                 );
             }
 
@@ -119,16 +111,14 @@ class PasswordController extends ActionController
 
         // Verify link invalid
         if (!$hashUid || !$token) {
-            $result['message'] = __('Verify link invalid');
+            $result['message'] = __('Invalid information provided.');
             $this->view()->assign('result', $result);
             return;
         }
 
-        $userData = Pi::user()->data()->find(array(
-            'value' => $token
-        ));
+        $userData = Pi::user()->data()->find(array('value' => $token));
         if (!$userData) {
-            $result['message'] = __('Verify link invalid');
+            $result['message'] = __('Invalid information provided.');
             $this->view()->assign('result', $result);
             return;
         }
@@ -136,7 +126,7 @@ class PasswordController extends ActionController
         $userRow = Pi::api('uclient', 'user')->get($userData['uid']);
         $uid  = $userRow['uid'];
         if (!$uid || md5($uid) != $hashUid) {
-            $result['message'] = __('Verify link invalid');
+            $result['message'] = __('Invalid information provided.');
             $this->view()->assign('result', $result);
             return;
         }
@@ -145,7 +135,7 @@ class PasswordController extends ActionController
         $expire  =  $userData['time'] + 24 * 3600;
         $current = time();
         if ($current > $expire) {
-            $result['message'] = __('Verify link invalid: time out');
+            $result['message'] = __('Verification link is invalid: time out.');
             $this->view()->assign('result', $result);
             return;
         }
@@ -167,7 +157,7 @@ class PasswordController extends ActionController
 
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
-                $result['message'] = __('Reset password successfully');
+                $result['message'] = __('Reset password successfully.');
                 $result['status']  = 1;
             }
             $this->view()->assign('result', $result);
