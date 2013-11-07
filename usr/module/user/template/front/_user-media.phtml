@@ -2,7 +2,12 @@
     <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
         <img class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
         <?php if ($is_owner) { ?>
-        <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+        <style>
+            .user-avatar-header-left:hover .user-avatar-upload {
+                display: block;
+            }
+        </style>
+        <a class="hide user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
             <?php _e('Change avatar'); ?>
         </a>
         <?php } ?>
@@ -17,31 +22,45 @@
     </div>
     <div class="inline user-avatar-header-col" style="float: right; margin-top: 90px;">
         <?php if ($is_owner) { ?>
-        <style>
-            .user-dropdown-quicklinks:hover .dropdown-menu {
-                display: block;
-            }
-        </style>
-        <div class="dropdown user-dropdown-quicklinks">
-            <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
-                <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
-            </a>
-            <ul style="margin-top: 0;" class="dropdown-menu">
-                <li>
-                    <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
-                        <?php _e('Setting'); ?>
-                    </a>
-                </li>
-                <li class="divider" style="margin: 1px;"></li>
-                <?php foreach ($quicklink as $item) { ?>
-                <li>
-                    <a href="http://<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank"><?php echo $item['name']; ?></a>
-                </li>
-                <?php } ?>
-            </ul>
+        <a style="margin-right: 15px;" class="btn btn-small pull-left" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
+            <i class="icon-eye-open"></i>
+            <?php _e('Switch to view of others'); ?>
+        </a>
+        <div class="pull-right">
+            <style>
+                .user-dropdown-quicklinks:hover .dropdown-menu {
+                    display: block;
+                }
+            </style>
+            <div class="dropdown user-dropdown-quicklinks">
+                <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
+                    <i class="icon-sort-by-attributes"></i>
+                    <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
+                </a>
+                <ul style="margin-top: 0;" class="dropdown-menu">
+                    <li>
+                        <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
+                            <?php _e('Setting'); ?>
+                        </a>
+                    </li>
+                    <li class="divider" style="margin: 1px;"></li>
+                    <?php foreach ($quicklink as $item) { ?>
+                    <li>
+                        <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank"><?php echo $item['name']; ?></a>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
         <?php } else { ?>
-        <a class="btn" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+        <?php if (Pi::user()->getId()) { ?>
+        <a style="margin-right: 15px;" class="btn btn-small" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
+            <i class="icon-eye-open"></i>
+            <?php _e('Back to view of own'); ?>
+        </a>
+        <?php } ?>
+    
+        <a class="btn btn-small" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
             <i class="icon-envelope"></i>
             <?php _e('Send message'); ?>
         </a>
