@@ -39,6 +39,10 @@ $config = array(
         'title'  => _t('Register form config file name'),
         'value'  => 'register',
     ),
+    'register_next_form' => array(
+        'title'  => _t('Register next step form config file name'),
+        'value'  => '',
+    ),
     'complete_profile_form' => array(
         'title'  => _t('Complete profile form config file name'),
         'value'  => 'complete.profile',
