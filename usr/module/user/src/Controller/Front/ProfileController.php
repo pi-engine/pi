@@ -55,7 +55,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
-        $quicklink = $this->getQuicklink();
+        $quicklink = $this->getQuicklink();d($quicklink);
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -212,7 +212,7 @@ class ProfileController extends ActionController
             'form'      => $form,
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
-            'cur_group' => $groupId,
+            'group_id'  => $groupId,
             'result'    => $result,
             'user'      => $this->getUser($uid)
         ));
@@ -261,7 +261,7 @@ class ProfileController extends ActionController
         }
         $this->view()->assign(array(
             'compounds' => $compounds,
-            'groupId'   => $groupId,
+            'group_id'  => $groupId,
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'form'      => $form,
@@ -378,7 +378,7 @@ class ProfileController extends ActionController
 
         $order = explode(',', $set);
         if (!$order || !$uid) {
-            return $message;
+            return $result;
         }
 
         $oldCompound = Pi::api('user', 'user')->get($uid, $compound);
@@ -778,8 +778,8 @@ class ProfileController extends ActionController
         $result = array();
         $model  = $this->getModel('quicklink');
         $where  = array(
-            'active'  => 1,
-            'display' => 1,
+            'active'      => 1,
+            'display <>?' => 0,
         );
         $columns = array(
             'id',
