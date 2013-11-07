@@ -17,13 +17,13 @@ use Zend\Form\Element;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Checkboxs extends Element
+class Checkbox extends Element
 {
     /**
      * Seed attributes
      * @var array
      */
     protected $attributes = array(
-        'type'  => 'Custom\User\Form\View\Helper\Checkboxs',
+        'type'  => 'Custom\User\Form\View\Helper\Checkbox',
     );
 }

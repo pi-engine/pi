@@ -111,7 +111,7 @@ return array(
         'subscription'      => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
-            'edit'  => 'Custom\User\Form\Element\Checkboxs',
+            'edit'  => 'Custom\User\Form\Element\Checkbox',
             // Custom handler
             'handler'   => 'Custom\User\Field\Subscription',
         ),
@@ -290,7 +290,7 @@ return array(
     // Quicklinks
     'quicklink' => array(
         'eefocus'    => array(
-            'title' =>  __('eefocus'),
+            'title' =>  __('EEFOCUS homepage'),
             'link'  => 'http://www.eefocus.com/',
             'icon'  => 'icon-eefocus',
         ),

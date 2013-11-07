@@ -20,7 +20,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Checkboxs extends AbstractHelper
+class Checkbox extends AbstractHelper
 {
     /**
      * Invoke helper as function
@@ -55,7 +55,7 @@ class Checkboxs extends AbstractHelper
         <div id="%s" class="pi-checkboxs">
         </div>
         <script>
-            new eefocus.Checkboxs("%s", "%s", %s);
+            new eefocus.Checkbox("%s", "%s", %s);
         </script> 
         ',
         $id,
