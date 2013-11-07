@@ -26,10 +26,31 @@ class Uninstall extends BasicAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
+        $events->attach('uninstall.pre', array($this, 'removeCustom'), 1);
         $events->attach('uninstall.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
         return $this;
+    }
+
+    /**
+     * Remove custom tables
+     *
+     * @param Event $e
+     *
+     * @return bool
+     */
+    public function removeCustom(Event $e)
+    {
+        $rowset = Pi::model('field', 'user')->select(array());
+        foreach ($rowset as $row) {
+            if ($row['handler']) {
+                $handler = new $row['handler'];
+                $handler->uninstall();
+            }
+        }
+
+        return true;
     }
 
     /**
