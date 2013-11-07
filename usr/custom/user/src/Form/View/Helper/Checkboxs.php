@@ -20,7 +20,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Subscription extends AbstractHelper
+class Checkboxs extends AbstractHelper
 {
     /**
      * Invoke helper as function
@@ -48,15 +48,20 @@ class Subscription extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        $html = <<<EOD
-        <input type="checkbox" value='subscription1' name="subscription[]">Subscription1
-        <input type="checkbox" value='subscription2' name="subscription[]">Subscription2
-        <input type="checkbox" value='subscription3' name="subscription[]">Subscription3
-        <input type="checkbox" value='subscription4' name="subscription[]">Subscription4
-        <input type="checkbox" value='subscription5' name="subscription[]">Subscription5
-        <input type="checkbox" value='subscription6' name="subscription[]">Subscription6
-EOD;
+        Pi::service('view')->getHelper('js')->load(Pi::url('static/js/eefocus-linkage.js'));
+        $id = uniqid();
 
-        return $html;
+        return sprintf('
+        <div id="%s" class="pi-checkboxs">
+        </div>
+        <script>
+            new eefocus.Checkboxs("%s", "%s", %s);
+        </script> 
+        ',
+        $id,
+        $id,
+        $element->getName(),
+        json_encode($element->getValue())
+        );
     }
 }
