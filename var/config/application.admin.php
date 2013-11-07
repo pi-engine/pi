@@ -16,8 +16,8 @@ $config = include __DIR__ . '/application.front.php';
 // Translations
 $config['resource']['i18n'] = array(
     'translator'    => array(
-        'global'    => array('user:main', 'usr:admin'),
-        'module'    => array('main', 'admin'),
+        'global'    => array('user:default', 'usr:admin'),
+        'module'    => array('default', 'admin'),
     ),
 );
 

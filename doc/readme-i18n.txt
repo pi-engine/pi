@@ -3,8 +3,8 @@ i18n File skeleton
 
 * usr/locale: Global, locale folder name must be in lower case
   * /en
-    * main.csv: General
-    * navigation.csv: Navigation and menu
+    * default.mo: General
+    * navigation.mo: Navigation and menu
     * ...
   * /zh-cn
     * ...
@@ -12,11 +12,11 @@ i18n File skeleton
   * /en
     * /mail: Mail templates
       * mail-template.phtml
-    * main.csv
-    * navigation.csv
-    * admin.csv: Admin area
-    * config.csv: Config edit
-    * feed.csv: Feed
+    * default.mo
+    * navigation.mo
+    * admin.mo: Admin area
+    * config.mo: Config edit
+    * feed.mo: Feed
     * ...
   * /zh-cn
     * ...

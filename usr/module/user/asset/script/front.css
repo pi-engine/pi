@@ -141,13 +141,6 @@
 	border-bottom: 1px solid #ccc;
 	text-align: right;
 }
-.user-info-item form,
-.user-info-item-edit .user-info-show {
-	display: none;
-}
-.user-info-item-edit form {
-	display: block;
-}
 .user-info-list {
   min-height: 20px;
 }
@@ -167,9 +160,8 @@
   border: 1px solid #ccc;
   background: #fff;
 }
-.user-info-item .user-info-show,
 .user-info-item form {
-  padding: 20px 0;
+  padding: 15px;
   margin: 0;
 }
 .user-info-header {
@@ -179,13 +171,7 @@
   text-align: right;
   padding-right: 10px;
 }
-.user-info-item form,
-.user-info-item-edit .user-info-show {
-  display: none;
-}
-.user-info-item-edit form {
-  display: block;
-}
+
 .user-info-item-edit .user-info-header {
   background: #0188cc;
 }

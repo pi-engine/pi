@@ -343,21 +343,22 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 if ($result instanceof JsonModel) {
                     $model = $result;
                 } else {
-                    $options = array();
+                    $options    = array();
+                    $data  = array();
                     if ($result instanceof ViewModel) {
-                        $result = $result->getVariables();
+                        $data = $result->getVariables();
                         $options = $result->getOptions();
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
                         if ($viewModel) {
                             $variables = $viewModel->getVariables();
                             $options = $viewModel->getOptions();
                         }
-                        $result = array_merge_recursive(
+                        $data = array_merge_recursive(
                             (array) $variables,
                             $result
                         );
                     }
-                    $model = new JsonModel($result, $options);
+                    $model = new JsonModel($data, $options);
                 }
                 break;
 

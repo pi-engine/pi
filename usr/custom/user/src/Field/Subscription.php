@@ -23,13 +23,61 @@ class Subscription extends CustomFieldHandler
     /** @var string Field name and table name */
     protected $name = 'subscription';
 
-    /** @var string Form class */
-    protected $form = '';
+    /**
+     * Look up interest values against given map
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function lookup(array $data)
+    {
+        // Key => Value
+        $subscriptionMap = array();
 
-    /** @var string File to form template */
-    protected $template = '';
+        $result = array();
+        foreach ($data as $value) {
+            if (isset($subscriptionMap[$value])) {
+                $result[] = $subscriptionMap[$value];
+            } else {
+                $result[] = $value;
+            }
+        }
 
-    /** @var string Form filter class */
-    protected $filter = '';
+        return $result;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function get($uid, $filter = false)
+    {
+        $data = parent::get($uid);
+        if ($filter) {
+            $list = $this->lookup($data);
+            $result = implode(', ', $list);
+        } else {
+            $result = $data;
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function mget($uids, $filter = false)
+    {
+        $data = parent::mget($uids);
+        if ($filter) {
+            foreach ($data as $uid => $uData) {
+                $list = $this->lookup($uData);
+                $result[$uid] = implode(', ', $list);
+            }
+        } else {
+            $result = $data;
+        }
+
+        return $result;
+    }
 }

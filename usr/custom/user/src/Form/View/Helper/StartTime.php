@@ -55,13 +55,14 @@ class StartTime extends AbstractHelper
         return sprintf('
         <div class="form-inline" id="%s"></div>
         <script>
-        new eefocus.StartTime("%s", %s, "%s");
+        new eefocus.StartTime("%s", %s, "%s", "%s");
         </script>
         ',
             $id,
             $id,
             $maxYear,
-            $element->getName()
+            $element->getName(),
+            $element->getValue()
         );
     }
 }

@@ -284,10 +284,7 @@ abstract class AbstractCustomHandler
      */
     public function delete($uid)
     {
-        $row = $this->getModel()->find($uid, 'uid');
-        if ($row->id) {
-            $row->delete();
-        }
+        $this->getModel()->delete(array('uid' => (int) $uid));
 
         return true;
     }

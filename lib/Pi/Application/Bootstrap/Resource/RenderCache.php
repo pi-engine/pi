@@ -199,10 +199,12 @@ class RenderCache extends AbstractResource
         }
 
         $cacheMeta = $this->cacheMeta($e, 'action');
+
         // Skip cache if disabled by preference
         if (empty($cacheMeta['ttl'])) {
             return;
         }
+
 
         $renderCache    = $this->renderCache('action');
         $viewModel      = $e->getTarget()->view()->getViewModel();
@@ -215,13 +217,24 @@ class RenderCache extends AbstractResource
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
+
             if (isset($_GET['CLEAR'])) {
                 Pi::service('log')->info('Action cache cleared');
                 $renderCache->flushCache($namespace, $cacheKey);
                 $renderCache->isOpened(true);
             } else {
-                $content = $renderCache->cachedContent();
-                $e->setResult($content);
+                $actionData = $renderCache->cachedContent();
+                $data = json_decode($actionData, true);
+                if (!empty($data['template'])) {
+                    $viewModel->setTemplate($data['template']);
+                }
+                if (!empty($data['options'])) {
+                    $viewModel->setOptions($data['options']);
+                }
+                $viewModel->setVariables($data['variables']);
+                $e->setResult($viewModel);
+                //vd($content);
+                //$e->setResult($content);
                 /*
                 if (is_array($content)) {
                     $viewModel->setVariables($content);
@@ -229,6 +242,7 @@ class RenderCache extends AbstractResource
                     $e->getTarget()->view()->setTemplate(false);
                     $viewModel->setVariable('content', $content);
                 }
+                //vd($viewModel);
                 $e->setResult($viewModel);
                 */
                 $e->getTarget()->skipExecute();
@@ -261,25 +275,35 @@ class RenderCache extends AbstractResource
         }
 
         $response = $e->getResult();
+        $data = array(
+            'variables' => array(),
+            'template'  => '',
+            'options'   => array(),
+        );
         if ($response instanceof ViewModel) {
-            /*
-            $content = (array) $response->getVariables();
-            if (!$this->isCachable($content)) {
+            $variables = (array) $response->getVariables();
+            if (!$this->isCachable($variables)) {
                 trigger_error(
                     'Action content is not cachable.',
                     E_USER_WARNING
                 );
                 return;
             }
-            */
-            $content = Pi::service('view')->render($response);
+            $data = array(
+                'variables' => $variables,
+                'template'  => $response->getTemplate(),
+                'options'   => $response->getOptions(),
+            );
+            //$content = Pi::service('view')->render($response);
         } elseif (is_scalar($response)) {
-            $content = $response;
+            $data['variables']['content'] = $response;
         } else {
-            return;
+            $data['variables'] = $response;
+            //return;
         }
 
-        $this->renderCache()->saveCache($content);
+        //vd($content); exit;
+        $this->renderCache()->saveCache(json_encode($data));
 
         return;
     }
@@ -328,7 +352,6 @@ class RenderCache extends AbstractResource
      * @param mixed $content
      * @return bool
      */
-    /*
     protected function isCachable($content)
     {
         if (is_scalar($content)) {
@@ -345,5 +368,4 @@ class RenderCache extends AbstractResource
 
         return true;
     }
-    */
 }

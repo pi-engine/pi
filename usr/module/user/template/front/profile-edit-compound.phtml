@@ -2,18 +2,17 @@
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
     $this->Backbone();
-    d($compounds);
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9" id="user-js-compound">
     <div class="page-header">
-        <h3 style="margin: -5px 0 9px;"><?php echo _escape($compounds['title']); ?></h3>
+        <h3 style="margin: -5px 0 9px;"><?php echo _escape($title); ?></h3>
         <div class="muted" style="margin: 0 0 11px;">
             <?php echo 'Change your ' . strtolower(_escape($title)) . ' info.'; ?>
             <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
         </div>
     </div>
-    <div class="user-info-list" id="user-info-list">
+    <div class="user-info-list">
     </div>
     <div class="user-info-add" id="user-info-add">
         <div class="clearfix user-add-legend">
@@ -31,7 +30,7 @@
         <button class="close js-delete" type="button">×</button>
     </div>
     <div class="user-info-body">
-        <dl class="dl-horizontal user-field-dl" style="margin: 15px 0;">
+        <dl class="dl-horizontal user-field-dl" style="margin: 15px;">
             <% _.each(fields, function(field) { %>
             <dt><%- field.title %>
             <dd><% print(field.value ? field.value : '<em class="muted"><?php _e('Unfiled'); ?></em>'); %>

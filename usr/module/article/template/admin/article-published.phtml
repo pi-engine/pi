@@ -196,7 +196,7 @@
                 val = el.attr("data-value"),
                 status=el.attr("data-status");
             if (val == "delete") {
-                if (confirm("<?php _e('Are you sure delete this article？'); ?>")) {
+                if (confirm("<?php _e('Are you sure delete this article?'); ?>")) {
                     location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl(); 
                 }
             } else if (status) {

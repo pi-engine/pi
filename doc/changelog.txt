@@ -26,6 +26,7 @@ August 4th, 2013
 * Added Avatar service
 * Added support for public web resources that require same domain as main application
 * Added support for custom templates in usr/<module>/template/<template.file>
+* Changed i18n adapter from CSV to gettext
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad

@@ -55,13 +55,14 @@ class EndTime extends AbstractHelper
         return sprintf('
         <div class="form-inline" id="%s"></div>
         <script>
-        new eefocus.EndTime("%s", %s, "%s");
+        new eefocus.EndTime("%s", %s, "%s", "%s");
         </script>
         ',
             $id,
             $id,
             $maxYear,
-            $element->getName()
+            $element->getName(),
+            $element->getValue()
         );
     }
 }

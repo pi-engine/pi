@@ -131,39 +131,39 @@
       "\u884c\u4e1a\u670d\u52a1": ["\u4ee3\u7406\/\u5206\u9500", "PCB\u670d\u52a1", "\u534a\u5bfc\u4f53\u5236\u9020", "\u9ad8\u6821\u9662\u6240\/\u653f\u5e9c"]
     },
     'position': ["\u7814\u53d1","\u7814\u53d1\u7ba1\u7406\/\u9879\u76ee\u7ba1\u7406","\u6d4b\u8bd5\u6d4b\u91cf","\u751f\u4ea7\u7ba1\u7406\/\u8d28\u91cf\u63a7\u5236","\u91c7\u8d2d\/\u5e02\u573a\/\u670d\u52a1","\u5b66\u751f"],
-    "interest": {
-      "2037": "\u4f20\u611f\/MEMS",
-      "2038": "\u653e\u5927\u548c\u7ebf\u6027\u4ea7\u54c1",
-      "2039": "\u6570\u636e\u8f6c\u6362\u5668",
-      "2040": "\u7535\u6e90\/\u7535\u6c60\u7ba1\u7406",
-      "2041": "\u6570\u5b57\/\u53ef\u7f16\u7a0b\u903b\u8f91",
-      "2042": "\u65f6\u949f\/\u5b9a\u65f6",
-      "2043": "\u63a7\u5236\u5668\/\u5904\u7406\u5668\/DSP",
-      "2044": "\u5b58\u50a8",
-      "2045": "\u63a5\u53e3",
-      "2046": "\u97f3\/\u89c6\u9891",
-      "2047": "\u5206\u7acb\/\u65e0\u6e90\u5668\u4ef6",
-      "2048": "\u4fdd\u62a4\/\u9694\u79bb",
-      "2049": "\u8fde\u63a5\u5668",
-      "2050": "\u5149\u7535\/\u663e\u793a",
-      "2051": "RF\/\u5fae\u6ce2",
-      "2052": "\u901a\u4fe1\/\u7f51\u7edcIC",
-      "2053": "\u5f00\u5173\/\u591a\u8def\u590d\u7528\u5668",
-      "2085": "\u6d4b\u8bd5\u6d4b\u91cf",
-      "2086": "\u5d4c\u5165\u5f0f\u5f00\u53d1\u5de5\u5177",
-      "2087": "EDA\/IP\/IC\/PCB\u8bbe\u8ba1",
-      "2088": "\u5236\u9020\/\u5c01\u88c5"
-    },
-    "newsletter": {
-      "1": "\u5d4c\u5165\u5f0f\u7cfb\u7edf\u8bbe\u8ba1",
-      "2": "\u6d4b\u8bd5\u6d4b\u91cf",
-      "3": "\u6a21\u62df\u0026\u7535\u6e90",
-      "5": "\u6d88\u8d39\u7535\u5b50",
-      "6": "\u5de5\u4e1a\u7535\u5b50",
-      "7": "\u7eff\u8272\u8bbe\u8ba1",
-      "8": "\u7535\u5b50\u8d44\u8baf\u96c6\u9526",
-      "10": "\u65e0\u7ebf\u0026\u5c04\u9891"
-    }
+    "interest": [
+      "\u4f20\u611f\/MEMS", 
+      "\u653e\u5927\u548c\u7ebf\u6027\u4ea7\u54c1",
+      "\u6570\u636e\u8f6c\u6362\u5668",
+      "\u7535\u6e90\/\u7535\u6c60\u7ba1\u7406",
+      "\u6570\u5b57\/\u53ef\u7f16\u7a0b\u903b\u8f91",
+      "\u65f6\u949f\/\u5b9a\u65f6",
+      "\u63a7\u5236\u5668\/\u5904\u7406\u5668\/DSP",
+      "\u5b58\u50a8",
+      "\u63a5\u53e3",
+      "\u97f3\/\u89c6\u9891",
+      "\u5206\u7acb\/\u65e0\u6e90\u5668\u4ef6",
+      "\u4fdd\u62a4\/\u9694\u79bb",
+      "\u8fde\u63a5\u5668",
+      "\u5149\u7535\/\u663e\u793a",
+      "RF\/\u5fae\u6ce2",
+      "\u901a\u4fe1\/\u7f51\u7edcIC",
+      "\u5f00\u5173\/\u591a\u8def\u590d\u7528\u5668",
+      "\u6d4b\u8bd5\u6d4b\u91cf",
+      "\u5d4c\u5165\u5f0f\u5f00\u53d1\u5de5\u5177",
+      "EDA\/IP\/IC\/PCB\u8bbe\u8ba1",
+      "\u5236\u9020\/\u5c01\u88c5"
+    ],
+    "subscription": [
+      "\u5d4c\u5165\u5f0f\u7cfb\u7edf\u8bbe\u8ba1",
+      "\u6d4b\u8bd5\u6d4b\u91cf",
+      "\u6a21\u62df\u0026\u7535\u6e90",
+      "\u6d88\u8d39\u7535\u5b50",
+      "\u5de5\u4e1a\u7535\u5b50",
+      "\u7eff\u8272\u8bbe\u8ba1",
+      "\u7535\u5b50\u8d44\u8baf\u96c6\u9526",
+      "\u65e0\u7ebf\u0026\u5c04\u9891"
+    ]
   }
   /*
     <div id="js-country-element" data-value="上海">
@@ -276,5 +276,25 @@
       return keys;
     }
   };
+
+  eefocus.Checkboxs = function(root, name, values) {
+    this.el = $('#' + root);
+    this.name = name;
+    this.init(values);
+  }
+
+  eefocus.Checkboxs.prototype = {
+    init: function(values) {
+      var html = '';
+      var name = this.name;
+      var data = EEFOCUS_DATA[name];
+      $.each(data, function(index ,item) {
+        var checked = values.indexOf(item) == -1 ? '' : 'checked="checked"';
+        html += '<label class="inline checkbox"><input type="checkbox" name="' + name + '[]" value="' + item + '"' + checked + '>' + item + '</label>';
+      });
+      this.el.html(html);
+    }
+  }
+
   this.eefocus = eefocus;
 })();

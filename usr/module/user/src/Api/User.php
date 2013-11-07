@@ -1112,9 +1112,14 @@ class User extends AbstractUseApi
                 foreach ($rowset as $row) {
                     $id = (int) $row[$primaryKey];
                     if ($filter) {
-                        $result[$id] = $row->filter($pFields);
+                        $user = $row->filter($pFields);
                     } else {
-                        $result[$id] = $row->toArray();
+                        $user = $row->toArray();
+                    }
+                    if (isset($result[$id])) {
+                        $result[$id] = array_merge($result[$id], $user);
+                    } else {
+                        $result[$id] = $user;
                     }
                 }
             }
