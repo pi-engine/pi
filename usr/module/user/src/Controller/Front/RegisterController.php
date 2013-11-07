@@ -383,17 +383,6 @@ class RegisterController extends ActionController
             $this->jumpTo404(__('An error occur'));
         }
 
-        $request = Pi::engine()->application()->getRequest();
-        $redirect = $request->getQuery('redirect');
-        if (!$redirect) {
-            $redirect = $this->url(
-                '',
-                array(
-                    'controller' => 'profile',
-                    'action' => 'index'
-                )
-            );
-        }
         // Check login
         if (!Pi::service('user')->hasIdentity()) {
             $this->redirect()->toUrl($this->url('',
@@ -432,7 +421,13 @@ class RegisterController extends ActionController
                     $this->getModule()
                 );
                 return $this->jump(
-                    $redirect,
+                    $this->url(
+                        '',
+                        array(
+                            'controller' => 'profile',
+                            'action' => 'index'
+                        )
+                    )
                     __('Complete profile successfully.')
                 );
             } else {
