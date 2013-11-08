@@ -101,7 +101,7 @@ class AccountController extends ActionController
 
         $user['name']     = $data['name'];
         $user['identity'] = $data['identity'];
-        $user['uid']      = $uid;
+        $user['id']      = $uid;
 
         $this->view()->assign(array(
             'form'      => $form,

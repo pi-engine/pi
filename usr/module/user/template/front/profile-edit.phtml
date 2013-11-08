@@ -8,13 +8,12 @@
         <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your basic profile info'); ?></div>
     </div>
     <?php
-        if ($is_post) {
-            echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a></button>
-                %s</div>',
-                $status ? 'alert-success' : 'alert-error',
-                $status ? __('Data updated successfully') : __('Data saved failed') 
-             );
-        }
+    if (isset($result)) {
+        echo sprintf('<div class="alert %s">%s
+            <button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    }
     ?>
 	<?php
         $form->setAttribute('class', 'form-horizontal');
