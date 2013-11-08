@@ -46,7 +46,7 @@ class EventController extends ComponentController
             $events[$row->name] = array(
                 'id'        => $row->id,
                 'title'     => __($row->title),
-                'active'    => $row->active,
+                'active'    => (int) $row->active,
                 'listeners' => array(),
             );
         }
@@ -62,7 +62,7 @@ class EventController extends ComponentController
                     'module'    => $row->module,
                     'class'     => $row->class,
                     'method'    => $row->method,
-                    'active'    => $row->active,
+                    'active'    => (int) $row->active,
                 );
             }
         }
@@ -76,20 +76,25 @@ class EventController extends ComponentController
         foreach ($rowset as $row) {
             $listeners[$row->id] = array(
                 'id'        => $row->id,
-                'active'    => $row->active,
+                'active'    => (int) $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
                 'event'     => sprintf('%s-%s',
                                        $row->event_module, $row->event_name),
             );
         }
-
-        $this->view()->assign('events', $events);
-        $this->view()->assign('listeners', $listeners);
-        $this->view()->assign('name', $name);
+	
+        $this->view()->assign(array(
+            'events'     => $events,
+            'listeners'  => $listeners,
+            'name'       => $name
+        ));
+        $this->view()->setTemplate('event');
     }
 
     /**
      * List of listener/event sorted by module
+     *
+     * Not used yet
      */
     public function listenerAction()
     {

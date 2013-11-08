@@ -1,0 +1,42 @@
+<legend>{{'Events' | translate}}</legend>
+<div ng-show="events.length">
+  <table class="table" ng-repeat="event in events">
+    <thead>
+      <tr>
+        <th width="30%">{{event.title}}
+        <td>
+          <div class="pi-status" ng-class="{'active': event.active}"
+               ng-click="toggleAction(event)">
+            <div class="pi-status-director"></div>
+          </div>
+    <tbody>
+      <tr ng-repeat="item in event.listeners">
+        <td style="padding-left: 20px;">{{item.module}} - {{item.class}} :: {{item.method}}
+        <td>
+          <div class="pi-status" ng-class="{'active': item.active}"
+               ng-click="toggleAction(item)">
+          <div class="pi-status-director"></div>
+          </div>
+  </table>
+</div>
+<div ng-show="!events.length" class="alert">
+  {{'NoneEvents' | translate}}
+</div>
+<legend>{{'Listeners' | translate}}</legend>
+<table class="table" ng-show="listeners.length">
+  <thead>
+    <tr>
+      <th width="30%">{{'Title' | translate}}
+      <th>{{'Action' | translate}}
+  <tbody>
+    <tr ng-repeat="item in listeners">
+      <td>{{item.title}}
+      <td>
+        <div class="pi-status" ng-class="{'active': item.active}"
+             ng-click="toggleAction(item)">
+          <div class="pi-status-director"></div>
+        </div>
+</table>
+<div ng-show="!listeners.length" class="alert">
+  {{'NoneListeners' | translate}}
+</div>

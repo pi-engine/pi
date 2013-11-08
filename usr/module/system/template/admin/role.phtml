@@ -48,5 +48,4 @@ angular
         }
     });
 </script>
-<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('admin/role' . $debug . '.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/role.js'); ?>"></script>

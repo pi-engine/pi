@@ -277,13 +277,13 @@
     }
   };
 
-  eefocus.Checkboxs = function(root, name, values) {
+  eefocus.Checkbox = function(root, name, values) {
     this.el = $('#' + root);
     this.name = name;
     this.init(values);
   }
 
-  eefocus.Checkboxs.prototype = {
+  eefocus.Checkbox.prototype = {
     init: function(values) {
       var html = '';
       var name = this.name;
