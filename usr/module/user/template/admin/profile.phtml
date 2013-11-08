@@ -6,7 +6,6 @@ $this->angular(array(
     'pi.js',
     'pi-dropdown.js'
 ));
-$jsSrc = $this->assetModule('admin/profile' . ('production' == Pi::environment() ? '.min' : '') . '.js');
 ?>
 <div ng-app="userProfileModule">
     <div pi-message="alert"></div>
@@ -48,4 +47,4 @@ angular
         }
     });
 </script>
-<script src="<?php echo $jsSrc; ?>"></script>
+<script src="<?php echo $this->assetModule('admin/profile.js'); ?>"></script>

@@ -44,7 +44,8 @@ class RegisterController extends ActionController
 
         // Get register form
         $registerFormConfig = $this->config('register_form');
-        $registerTemplate   = $this->config('register_template') ? : 'register-index';
+        $registerTemplate   = $this->config('register_template')
+            ? : 'register-index';
         $this->view()->setTemplate($registerTemplate);
         list($fields, $filters) = $this->canonizeForm($registerFormConfig, 'register');
         $form = $this->getRegisterForm($fields);
@@ -213,6 +214,7 @@ class RegisterController extends ActionController
             $transport->send($message);
             $result['uid']     = $uid;
             $result['status']  = 1;
+            $result['email']   = $to;
         }
 
         $this->view()->assign(array(
@@ -220,7 +222,8 @@ class RegisterController extends ActionController
             'complete' => 1,
             'form'     => $form
         ));
-        $registerTemplate   = $this->config('register_template') ? : 'register-index';
+        $registerTemplate   = $this->config('register_template')
+            ? : 'register-index';
         $this->view()->setTemplate($registerTemplate);
     }
 

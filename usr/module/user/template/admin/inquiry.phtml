@@ -33,5 +33,4 @@ angular
         }
     });
 </script>
-<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('admin/inquiry' . $debug . '.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/inquiry.js'); ?>"></script>
