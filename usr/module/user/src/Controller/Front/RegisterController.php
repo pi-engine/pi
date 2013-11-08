@@ -165,8 +165,8 @@ class RegisterController extends ActionController
         ));
         if ($form->isValid()) {
             $values = $form->getData();
-            $uid = Pi::api('user', 'user')->addUser($values);
 
+            $uid = Pi::api('user', 'user')->addUser($values);
             // Set user role
             Pi::api('user', 'user')->setRole($uid, 'member');
 
@@ -379,7 +379,7 @@ class RegisterController extends ActionController
         );
 
         $profileCompleteFormConfig = $this->config('profile_complete_form');
-        if ($profileCompleteFormConfig) {
+        if (!$profileCompleteFormConfig) {
             $this->jumpTo404(__('An error occur'));
         }
 
