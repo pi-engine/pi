@@ -89,6 +89,7 @@ class RoleController extends ActionController
         // User value field: uid, identity, name, email
         $field  = $this->params('field', 'uid');
 
+        $roles = Pi::registry('role')->read();
         $model = Pi::model('user_role');
         $message = '';
         if ($op && $name) {
@@ -115,6 +116,7 @@ class RoleController extends ActionController
                 } else {
                     if (!$count) {
                         $status = 1;
+                        $data['section'] = $roles[$role]['section'];
                         $row = $model->createRow($data);
                         $row->save();
                         $message = __('User added to the role.');
@@ -171,7 +173,7 @@ class RoleController extends ActionController
             ),
         ));
         */
-        $roles = Pi::registry('role')->read();
+
         $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
         
         $paginator = array(
