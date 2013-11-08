@@ -1,0 +1,30 @@
+<?php
+$this->angular(array(
+    'angular-route.js',
+    'pi.js'
+));
+?>
+<div ng-app="systemEventModule">
+    <div pi-message="alert"></div>
+    <div ng-view></div>
+</div>
+<script>
+angular
+    .module('systemEventModule', ['ngRoute', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'event')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        name: '<?php echo $name ?>',
+        events: <?php echo json_encode($events); ?>,
+        listeners: <?php echo json_encode(array_values($listeners)); ?>,
+        t: {
+            Listeners: '<?php _e('Listeners'); ?>',
+            NoneListeners: '<?php _e('No listeners available'); ?>',
+            NoneEvents: '<?php _e('No events available'); ?>',
+            ERROR: '<?php _e('Error, please try again later.'); ?>',
+            FRONT: '<?php _e('Front'); ?>',
+            ADMIN: '<?php _e('Admin'); ?>'
+        }
+   });
+</script>
+<script src="<?php echo $this->assetModule('admin/event.js'); ?>"></script>
