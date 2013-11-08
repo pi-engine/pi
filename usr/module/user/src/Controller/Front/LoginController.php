@@ -135,7 +135,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::service('registry')->config->read('user', 'account');
+        $configs = Pi::service('registry')->config->read('user');
 
         $values = $form->getData();
         $identity = $values['identity'];
@@ -226,7 +226,7 @@ class LoginController extends ActionController
             $this->getModule()
         );
         // Check user complete profile
-        if ($this->config('profile_complete_form')) {
+        if ($configs['profile_complete_form']) {
             $hasProfileComplete = Pi::user()->data()->get(
                 $uid,
                 'profile-complete'
