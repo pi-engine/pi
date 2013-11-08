@@ -25,19 +25,19 @@ class Event
 
     public static function moduleupdate($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
+        Pi::service('log')->log("Called by {$module} through "
             . __METHOD__);
     }
 
     public static function moduleinstall($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
+        Pi::service('log')->log("Called by {$module} through "
             . __METHOD__);
     }
 
     public static function runtime($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
+        Pi::service('log')->log("Called by {$module} through "
             . __METHOD__);
     }
 
