@@ -83,6 +83,12 @@ class Asset extends AbstractService
     const DIR_PUBLIC = 'public';
 
     /**
+     * Specified name for compressed asset folder
+     * @var string
+     */
+    const DIR_BUILD = '_build';
+
+    /**
      * Get path to assets root folder
      *
      * @param string $type      Type: asset, public
@@ -326,6 +332,9 @@ class Asset extends AbstractService
     {
         $dir = ('public' == $type) ? static::DIR_PUBLIC : static::DIR_ASSET;
         $sourcePath = Pi::path($component) . '/' . $dir;
+        if (is_dir($sourcePath . '/' . static::DIR_BUILD)) {
+            $sourcePath .= '/' . static::DIR_BUILD;
+        }
         if (!empty($file)) {
             $sourcePath .= '/' . $file;
         }

@@ -76,6 +76,7 @@ class Saml extends AbstractStrategy
         } else {
             $return = Pi::service('url')->getRequestUri();
         }
+        $return = Pi::url($return, true);
         if ('login' == $type) {
             $url = $this->getAuthSource()->getLoginURL($return);
         } elseif ('logout' == $type) {
