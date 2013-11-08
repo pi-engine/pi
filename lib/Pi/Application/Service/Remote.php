@@ -272,7 +272,7 @@ class Remote extends AbstractService
             parse_str($query, $list);
             $params = array_merge($list, $params);
         }
-        
+
         return true;
     }
 
