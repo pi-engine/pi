@@ -25,7 +25,6 @@
                   item.admin_roles = item.admin_roles.join(',');
                 }
                 item.editUrl = config.editUrlRoot + 'index/uid/' + item.id;
-                console.log(item);
               }
               angular.extend(data, server.getRoles());
               data.filter = params;

@@ -33,7 +33,8 @@
       <td>{{user.ip_login}}
       <td>{{user.login_times}}
 </table>
-<pagination total-items="paginator.count" page="paginator.page" max-size="10"
-            ng-if="paginator.count" 
+<pagination ng-if="paginator.count > paginator.limit" 
+            total-items="paginator.count" page="paginator.page" max-size="10"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
             boundary-links="true" items-per-page="paginator.limit">
 </pagination>
