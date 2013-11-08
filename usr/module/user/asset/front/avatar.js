@@ -111,6 +111,7 @@
         if (res.status) {
           uploadBtn.trigger('remove');
           root.$('.avatar-upload-hit').remove();
+          saveBtn.removeAttr('disabled');
           initJcrop(res.data);
         } else {
           alert(res.message);
@@ -124,11 +125,17 @@
     });
 
     root.$('.avatar-source-nav').on('shown', function(e) {
-      saveBtn.attr('data-source', $(this).data('source'));
+      var source = $(this).data('source');
+      saveBtn.attr('data-source', source);
+      if (source == 'upload') {
+        saveBtn.attr('disabled', 'disabled');
+      } else {
+        saveBtn.removeAttr('disabled');
+      }
     }).filter('[data-source=' + config.source + ']').tab('show'); 
 
     saveBtn.click(function() {
-      var source = saveBtn.data('source');
+      var source = saveBtn.attr('data-source');
       var data = {};
       saveBtn.attr('disabled', 'disabled');
       if (source == 'upload') {
