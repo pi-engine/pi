@@ -220,7 +220,8 @@ class RegisterController extends ActionController
             'complete' => 1,
             'form'     => $form
         ));
-        $this->view()->setTemplate('eefocus-register');
+        $registerTemplate   = $this->config('register_template') ? : 'register-index';
+        $this->view()->setTemplate($registerTemplate);
     }
 
     /**
