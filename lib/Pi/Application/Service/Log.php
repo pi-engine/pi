@@ -374,6 +374,9 @@ class Log extends AbstractService
         if (!$this->active()) {
             return $this;
         }
+        if ('log' == $method && count($args) < 2) {
+            $method = 'info';
+        }
         if (method_exists($this->logger, $method)) {
             call_user_func_array(array($this->logger, $method), $args);
         }
