@@ -44,6 +44,8 @@ class RegisterController extends ActionController
 
         // Get register form
         $registerFormConfig = $this->config('register_form');
+        $registerTemplate   = $this->config('register_template') ? : 'register-index';
+        $this->view()->setTemplate($registerTemplate);
         list($fields, $filters) = $this->canonizeForm($registerFormConfig, 'register');
         $form = $this->getRegisterForm($fields);
 
@@ -73,7 +75,10 @@ class RegisterController extends ActionController
                         ),
                     ));
 
-                    $this->view()->assign('form', $form);
+                    $this->view()->assign(array(
+                        'form'     => $form,
+                        'complete' => 1
+                    ));
                     return;
                 } else {
                     // Complete register
@@ -165,7 +170,7 @@ class RegisterController extends ActionController
         ));
         if ($form->isValid()) {
             $values = $form->getData();
-
+            $values = $this->canonizeUser($values, 'work');
             $uid = Pi::api('user', 'user')->addUser($values);
             // Set user role
             Pi::api('user', 'user')->setRole($uid, 'member');
@@ -211,10 +216,11 @@ class RegisterController extends ActionController
         }
 
         $this->view()->assign(array(
-            'result' => $result,
-            'form'   => $form
+            'result'   => $result,
+            'complete' => 1,
+            'form'     => $form
         ));
-        $this->view()->setTemplate('register-index');
+        $this->view()->setTemplate('eefocus-register');
     }
 
     /**
@@ -578,10 +584,26 @@ class RegisterController extends ActionController
 
     }
 
-    public function textAction()
+    /**
+     * Canonize user compound
+     *
+     * @param $data
+     * @param $type
+     * @return mixed
+     */
+    protected function canonizeUser($data, $type)
     {
-        d(Pi::registry('field', 'user')->read());
-        d(Pi::path('usr/user/config'));
-        $this->view()->setTemplate(false);
+        if ($type == 'work') {
+            $workMeta = Pi::registry('compound_field', 'user')->read($type);
+            $workMeta = array_keys($workMeta);
+            foreach ($workMeta as $field) {
+                if (isset($data[$field])) {
+                    $data[$type][0][$field] = $data[$field];
+                    unset($data[$field]);
+                }
+            }
+        }
+
+        return $data;
     }
 }
