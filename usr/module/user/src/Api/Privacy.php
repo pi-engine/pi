@@ -118,7 +118,7 @@ class Privacy extends AbstractApi
         $rowset = Pi::model('privacy', 'user')->select(array());
         foreach ($rowset as $row) {
             if (!in_array($row['field'], $userPrivacyFields)) {
-                $result[$row['field']] = $row['vlaue'];
+                $result[$row['field']] = $row['value'];
             }
         }
 
