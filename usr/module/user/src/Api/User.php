@@ -1111,7 +1111,7 @@ class User extends AbstractUseApi
                 foreach ($rowset as $row) {
                     $id = (int) $row[$primaryKey];
                     if ($filter) {
-                        $user = $row->filter($pFields);
+                        $user = $row->filter($pFields) ? : $row->toArray();
                     } else {
                         $user = $row->toArray();
                     }
