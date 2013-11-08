@@ -90,6 +90,8 @@ class EventController extends ComponentController
 
     /**
      * List of listener/event sorted by module
+     *
+     * Not used yet
      */
     public function listenerAction()
     {

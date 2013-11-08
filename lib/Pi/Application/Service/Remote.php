@@ -256,6 +256,27 @@ class Remote extends AbstractService
     }
 
     /**
+     * Canonize URL with params
+     *
+     * @param string $url
+     * @param array $params
+     *
+     * @return bool
+     */
+    protected function canonizeUrl(&$url, array &$params = array())
+    {
+        $pos = strpos($url, '?');
+        if (false !== $pos) {
+            $query = substr($url, $pos);
+            $url = substr($url, 0, $pos);
+            parse_str($query, $list);
+            $params = array_merge($list, $params);
+        }
+        
+        return true;
+    }
+
+    /**
      * Perform a GET request
      *
      * @param string            $url
@@ -331,6 +352,7 @@ class Remote extends AbstractService
         }
         /**@-*/
 
+        $this->canonizeUrl($url, $params);
         $uri = new Uri($url);
         $host = $uri->getHost();
         $port = $uri->getPort();
@@ -390,6 +412,7 @@ class Remote extends AbstractService
         array $headers = array(),
         array $options = array()
     ) {
+        $this->canonizeUrl($url, $params);
         $uri = new Uri($url);
         $host = $uri->getHost();
         $port = $uri->getPort();
