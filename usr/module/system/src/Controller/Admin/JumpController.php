@@ -7,22 +7,23 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\System\Controller\Front;
+namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Module\System\Controller\Front\JumpController as FrontJump;
 
 /**
  * Page jump
  */
-class JumpController extends ActionController
+class JumpController extends FrontJump
 {
     /**
      * Transition page jump
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('jump')->setLayout('layout-simple');
+        parent::indexAction();
+        /*
         $params = Pi::service('cookie')->get('PI_JUMP', true, true);
         if (empty($params['time'])) {
             $params['time'] = 3;
@@ -31,8 +32,12 @@ class JumpController extends ActionController
             $params['url'] = '';
         }
         if (empty($params['url'])) {
-            $params['url'] = $this->url('home');
+            $params['url'] = Pi::url('www');
         }
         $this->view()->assign($params);
+        */
+        $this->view()
+            ->setTemplate('system:front/jump')
+            ->setLayout('layout-simple');
     }
 }

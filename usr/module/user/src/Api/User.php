@@ -458,7 +458,6 @@ class User extends AbstractUseApi
             ? (array) $field : array_keys($this->getMeta('', 'display'));
         $uids   = (array) $uid;
 
-
         $meta   = $this->canonizeField($fields);
 
         foreach ($meta as $type => $fields) {

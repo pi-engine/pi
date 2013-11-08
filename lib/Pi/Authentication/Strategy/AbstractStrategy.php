@@ -10,7 +10,7 @@
 namespace Pi\Authentication\Strategy;
 
 use Pi;
-use Pi\Authentication\Adapter\AdapterInterface;
+//use Pi\Authentication\Adapter\AdapterInterface;
 use Pi\Authentication\Storage\StorageInterface;
 use Zend\Authentication\Result as AuthenticationResult;
 
@@ -21,15 +21,11 @@ use Zend\Authentication\Result as AuthenticationResult;
  */
 abstract class AbstractStrategy
 {
+    /** @var string Identifier for file name of config data */
+    protected $fileIdentifier = '';
+
     /** @var array Options */
     protected $options = array();
-
-    /**
-     * Adapter handler
-     *
-     * @var AdapterInterface
-     */
-    protected $adapter;
 
     /**
      * Storage handler

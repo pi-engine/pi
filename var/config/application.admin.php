@@ -60,6 +60,13 @@ $config['resource']['session'] = array(
     'service'   => 'service.session-admin.php',
 );
 
+// Load authentication configs
+$config['resource']['authentication'] = array(
+    'service'   => array(
+        'strategy'  => 'Local',
+    ),
+);
+
 // Application service configuration
 $config['application']['view_manager']['layout'] = 'layout-admin';
 

@@ -66,6 +66,27 @@ class Authentication extends AbstractService
     protected $strategy;
 
     /**
+     * Set strategy
+     *
+     * @param AbstractStrategy|string   $strategy
+     * @param array                     $options
+     *
+     * @return $this
+     */
+    public function setStrategy($strategy, array $options = array())
+    {
+        if (!$strategy instanceof AbstractStrategy) {
+            if (false === strpos($strategy, '\\')) {
+                $strategy = 'Pi\Authentication\Strategy\\' . ucfirst($strategy);
+            }
+            $strategy = new $strategy($options);
+        }
+        $this->strategy = $strategy;
+
+        return $this;
+    }
+
+    /**
      * Get strategy
      *
      * @return AbstractStrategy

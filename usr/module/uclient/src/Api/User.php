@@ -575,8 +575,7 @@ class User extends AbstractUseApi
                     $redirect = $params['redirect'];
                     unset($params['redirect']);
                 } else {
-                    $redirect = Pi::engine()->application()->getRequest()
-                        ->getRequestUri();
+                    $redirect = Pi::service('url')->getRequestUri();
                 }
                 if (isset($params['section'])) {
                     $section = $params['section'];
@@ -645,6 +644,23 @@ class User extends AbstractUseApi
                 $url = $this->config('url', 'register');
                 break;
 
+            case 'password':
+                if (is_string($var)) {
+                    $params = array(
+                        'action' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                $params['module'] = 'uclient';
+                $params['controller'] = 'password';
+                if (!isset($params['action'])) {
+                    $params['action'] = 'find';
+                }
+                $route = 'default';
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
             case 'profile':
             case 'home':
             default:
@@ -675,7 +691,11 @@ class User extends AbstractUseApi
         // Append redirect with query
         // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
         if ($redirect) {
-            $url .= '?redirect=' . rawurlencode($redirect);
+            if (false == strpos($url, '?')) {
+                $url .= '?redirect=' . rawurlencode($redirect);
+            } else {
+                $url .= '&redirect=' . rawurlencode($redirect);
+            }
         }
 
         return $url;

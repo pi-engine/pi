@@ -428,8 +428,10 @@ class IndexController extends AbstractController
         $detail = $rowset->toArray();
         //get avatar
         $detail['avatar'] = Pi::user()->avatar($detail['uid_from'], 'small');
-        $detail['profileUrl'] = Pi::user()->getUrl('profile',
-                                                   $detail['uid_from']);
+        $detail['profileUrl'] = Pi::user()->getUrl(
+            'profile',
+            $detail['uid_from']
+        );
 
         if ($userId == $detail['uid_from']) {
             //get username url

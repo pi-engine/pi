@@ -12,22 +12,22 @@ namespace Pi\Application\Bootstrap\Resource;
 use Pi;
 
 /**
- * User load
+ * Authentication and user service load
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class User extends AbstractResource
+class Authentication extends AbstractResource
 {
     /**
      * {@inheritDoc}
      */
     public function boot()
     {
-        /*
-        $identity = Pi::service('authentication')->getIdentity();
-        Pi::service('user')->bind($identity, 'identity');
-        */
-        //Pi::service('user')->bind();
+        if (!empty($this->options['service'])) {
+            foreach ($this->options['service'] as $key => $value) {
+                Pi::service('authentication')->setOption($key, $value);
+            }
+        }
 
         Pi::service('authentication')->bind();
     }

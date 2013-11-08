@@ -26,7 +26,7 @@ class Permission extends AbstractResource
     public function boot()
     {
         // Boot user resource
-        $this->engine->bootResource('user');
+        $this->engine->bootResource('authentication');
 
         $events = $this->application->getEventManager();
         /*

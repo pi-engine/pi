@@ -50,19 +50,33 @@ class Saml extends AbstractStrategy
      */
     public function getUrl($type, $params = null)
     {
-        if ($params) {
-            if (is_string($params)) {
-                $return = $params;
-            } elseif (isset($params['redirect'])) {
-                $return = $params['redirect'];
-            }
+        if (is_string($params)) {
+            $params = array(
+                'redirect'  => $params,
+            );
+        } else {
+            $params = (array) $params;
+        }
+        /*
+        if (isset($params['section'])) {
+            $section = $params['section'];
+        } else {
+            $section = Pi::engine()->application()->getSection();
+        }
+        if ('front' != $section) {
+            return Pi::service('user')->getUrl($type, $params);
+        }
+        */
+
+        if (isset($params['redirect'])) {
+            $return = $params['redirect'];
         } else {
             $return = Pi::service('url')->getRequestUri();
         }
         if ('login' == $type) {
-            $url = $this->getAuthSource()>getLoginURL($return);
+            $url = $this->getAuthSource()->getLoginURL($return);
         } elseif ('logout' == $type) {
-            $url = $this->getAuthSource()>getLogoutURL($return);
+            $url = $this->getAuthSource()->getLogoutURL($return);
         } else {
             $url = '';
         }
@@ -75,6 +89,7 @@ class Saml extends AbstractStrategy
      */
     public function bind()
     {
+        //return;
         $ssoAuthenticated = $this->getAuthSource()->isAuthenticated();
         $identity = $this->getIdentity();
 
@@ -83,10 +98,10 @@ class Saml extends AbstractStrategy
         } elseif ($ssoAuthenticated && !$identity) {
             $profile = $this->getAuthSource()->getAttributes();
             $identity = $profile['identity'];
-            Pi::service('authentication')->getStorage()->write($identity);
+            $this->getStorage()->write($identity);
             Pi::service('user')->setPersist($profile);
-            Pi::service('user')->bind($identity);
         }
+        Pi::service('user')->bind($identity);
 
         return;
     }

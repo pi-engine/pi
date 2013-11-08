@@ -82,12 +82,12 @@ class Jump extends AbstractPlugin
 
         $controller = $this->getController();
         $controller->view()->setTemplate(false);
-        /*
+        /**/
         $route = 'admin' == Pi::engine()->application()->getSection()
             ? 'admin' : 'default';
-        */
+        /**/
         $response = $controller->plugin('redirect')->toRoute(
-            'default',
+            $route,
             array(
                 'module'        => 'system',
                 'controller'    => 'jump',
