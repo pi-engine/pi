@@ -13,29 +13,29 @@ $this->angular(array(
     <div ng-view></div>
 </div>
 <script>
-var userPluginModule = angular.module('userPluginModule', ['ngRoute', 'ui.bootstrap', 'pi']);
-var userPluginModuleConfig = {
-    urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-    navTabs: [
-        { text: '<?php _e('Timeline'); ?>', href: '#!/timeline' },
-        { text: '<?php _e('Activity'); ?>', href: '#!/activity' },
-        { text: '<?php _e('Quicklink'); ?>', href: '#!/quicklink' }
-    ],
-    t: {
-        ITEM_NAME: '<?php _e('Item name'); ?>',
-        FROM: '<?php _e('From module'); ?>',
-        DISPLAY: '<?php _e('Display'); ?>',
-        TITLE: '<?php _e('Items displayed on the homepage timeline'); ?>',
-        YES: '<?php _e('Yes'); ?>',
-        NO: '<?php _e('No'); ?>',
-        ACTIVITIES: '<?php _e('Activities'); ?>',
-        ACTIVITIES_REPOSITORY: '<?php _e('Activities items repository'); ?>',
-        ACTIVITIES_DESC: '<?php _e("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
-        QUICKLINK: '<?php _e('Quicklinks'); ?>',
-        QUICKLINK_REPOSITORY: '<?php _e('Quicklinks items repository'); ?>'
-    }
-};
+angular
+    .module('userPluginModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        navTabs: [
+            { text: '<?php _e('Timeline'); ?>', href: '#!/timeline' },
+            { text: '<?php _e('Activity'); ?>', href: '#!/activity' },
+            { text: '<?php _e('Quicklink'); ?>', href: '#!/quicklink' }
+        ],
+        t: {
+            ITEM_NAME: '<?php _e('Item name'); ?>',
+            FROM: '<?php _e('From module'); ?>',
+            DISPLAY: '<?php _e('Display'); ?>',
+            TITLE: '<?php _e('Items displayed on the homepage timeline'); ?>',
+            YES: '<?php _e('Yes'); ?>',
+            NO: '<?php _e('No'); ?>',
+            ACTIVITIES: '<?php _e('Activities'); ?>',
+            ACTIVITIES_REPOSITORY: '<?php _e('Activities items repository'); ?>',
+            ACTIVITIES_DESC: '<?php _e("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
+            QUICKLINK: '<?php _e('Quicklinks'); ?>',
+            QUICKLINK_REPOSITORY: '<?php _e('Quicklinks items repository'); ?>'
+        }
+    });
 </script>
-<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('admin/plugin' . $debug . '.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/plugin.js'); ?>"></script>

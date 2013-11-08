@@ -23,7 +23,7 @@
       <td>
           {{user.identity}}
           <div class="pi-row-action">
-            <a href="">{{'EDIT' | translate}}</a>
+            <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
             <a href="#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
           </div>
       <td>{{user.time_created}}

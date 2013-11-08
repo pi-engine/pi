@@ -17,6 +17,7 @@ angular
   .constant('config', {
     urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+    editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>',
     navTabs: [
       { text: '<?php _e('Stats'); ?>', href: '#!/stats' },
       { text: '<?php _e('User log'); ?>', href: '#!/logs' },
@@ -66,5 +67,5 @@ angular
     }
 });
 </script>
-<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('admin/maintenance' . $debug . '.js'); ?>"></script>
+<?php $dest = 'production' == Pi::environment() ? 'dest' : 'src'; ?>
+<script src="<?php echo $this->assetModule('admin/maintenance.js'); ?>"></script>

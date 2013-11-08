@@ -1,0 +1,228 @@
+/* Common */
+.inline {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+.controls-text {
+	padding-top: 3px;
+}
+.gutter {
+	margin: 0 10px;
+}
+.gutter-large {
+	margin: 0 20px;
+}
+.p-small {
+	margin-bottom: 5px;
+}
+
+/* Home page */
+.user-underline-list {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.user-avatar-header {
+	padding: 15px 20px;
+	background-color: #565656;
+	margin-bottom: 20px;
+	color: #fff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#4d4d4d', GradientType=0);
+  background-image: -moz-linear-gradient(top, #7f7f7f, #4d4d4d);
+  background-image: -webkit-linear-gradient(top, #7f7f7f, #4d4d4d);
+  background-image: -o-linear-gradient(top, #7f7f7f, #4d4d4d);
+  background-image: linear-gradient(to bottom, #7f7f7f, #4d4d4d);
+}
+.user-name {
+	margin-bottom: 5px;
+}
+.user-avatar-header-col {
+	vertical-align: bottom;
+}
+.user-media-name {
+	margin-right: 5px;
+}
+.user-avatar-header-left {
+	position: relative;
+	margin-right: 8px;
+}
+.user-avatar-upload {
+  display: block;
+  text-align: center;
+  line-height: 24px;
+  height: 24px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);
+  font-size: 12px;
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+:root .user-avatar-upload {
+	background: rgba(0,0,0, .4);
+	filter:none;
+}
+.user-avatar-upload:hover {
+  color: #fff;
+}
+
+/* Profile */
+.user-avatar-media {
+	margin-bottom: 20px;
+}
+.user-legend-title {
+	float: left;
+	margin: 0 10px 0;
+}
+.user-legend-edit {
+	float: right;
+}
+.user-legend-linea {
+	overflow: hidden;
+	height: 0;
+	border-top: 1px solid #e5e5e5;
+	margin-top: 10px;
+}
+.user-field-dl {
+	border-top: 1px dashed #ccc;
+	padding-top: 20px;
+	margin: 20px 0 30px;
+}
+.user-field-dl:first-child {
+	border-top: none;
+	padding-top: 0;
+}
+.user-field-dl dt {
+	color: #999;
+	font-weight: normal;
+	line-height: 24px;
+}
+.user-field-dl dd {
+	line-height: 24px;
+}
+.user-none-fields {
+	background: #e6e6e6;
+	padding: 40px 0;
+	text-align: center;
+	margin: 20px 0;
+}
+
+/* Activity */
+.user-activity-title {
+	margin: 0 0 10px;
+}
+
+/* Edit */
+.user-profile-back {
+	padding: 8px 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	display: block;
+}
+.user-profile-back:hover {
+	text-decoration: none;
+}
+.user-profile-back .media-heading {
+	color: #333;
+}
+.user-profile-back:hover .media-heading {
+	color: #005580;
+}
+.user-info-item {
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+}
+.user-info-header {
+	background: #eee;
+	cursor: move;
+	border-bottom: 1px solid #ccc;
+	text-align: right;
+}
+.user-info-list {
+  min-height: 20px;
+}
+.user-info-top {
+  margin-bottom: 20px;
+}
+.user-info-title {
+  font-size: 30px;
+  margin-right: 20px;
+  text-transform: capitalize;
+}
+.user-info-title strong {
+
+}
+.user-info-item {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.user-info-item form {
+  padding: 15px;
+  margin: 0;
+}
+.user-info-header {
+  background: #eee;
+  cursor: move;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.user-info-item-edit .user-info-header {
+  background: #0188cc;
+}
+.user-info-item-edit .user-info-body {
+  background: #f2fbff;
+}
+.user-info-header .close {
+  float: none;
+}
+.user-info-item-edit .btn-user-edit {
+  color: #fff;
+}
+.user-add-legend {
+  margin-bottom: 20px;
+}
+
+/* avatar */
+.avatar-preview-header {
+	margin: 20px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.avatar-upload-box {
+	border: 1px solid #e5e5e5;
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+}
+.avatar-preview-inline img {
+	max-width: none;
+	vertical-align: top;
+}
+.avatar-upload-hit {
+	margin-top: 120px;
+	text-align: center;
+}
+.avatar-preview-inline li {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.avatar-preview-box {
+	overflow: hidden;
+	border: 1px solid #e5e5e5;
+}
+.avatar-repository-inline li {
+	display: inline-block;
+	margin: 0 20px 10px 0;
+	text-align: center; 
+}
+.avatar-repository-inline img {
+	display: block;
+	border: 1px solid #e5e5e5;
+}

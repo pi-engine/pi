@@ -19,6 +19,9 @@
             params.sort = params.sort || 'time_activated';
             server.getLog(params).success(function (data) {
               data.sort = params.sort;
+              angular.forEach(data.users, function(item) {
+                item.editUrl = config.editUrlRoot + 'index/uid/' + item.id;
+              });
               deferred.resolve(data);
               $rootScope.alert = '';
             });
