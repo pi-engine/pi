@@ -55,7 +55,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
-        $quicklink = $this->getQuicklink();d($quicklink);
+        $quicklink = $this->getQuicklink();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -213,7 +213,6 @@ class ProfileController extends ActionController
             'title'     => $groups[$groupId]['title'],
             'groups'    => $groups,
             'group_id'  => $groupId,
-            'result'    => $result,
             'user'      => $this->getUser($uid)
         ));
         $this->view()->setTemplate('profile-edit');
