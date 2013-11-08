@@ -65,7 +65,7 @@ $renderRow = function ($element) use ($_this, $validate, $renderElement)
 
         $eles = $element->elementList();
         foreach ($eles['active'] as $ele) {
-            echo '<div class="control-group">';
+            echo '<div id="' . $element->getAttribute('name') . '" class="control-group">';
             $renderElement($ele);
             echo '</div>';
         }
@@ -74,7 +74,7 @@ $renderRow = function ($element) use ($_this, $validate, $renderElement)
             $(".help-inline").parents(".control-group").addClass("error");
         </script>';
     } else {
-        echo '<div class="control-group';
+        echo '<div id="' . $element->getAttribute('name') . '" class="control-group';
         if (!empty($validate[$element->getName()])) {
             echo ' error';
         }
