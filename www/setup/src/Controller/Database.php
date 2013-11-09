@@ -162,9 +162,6 @@ class Database extends AbstractController
 
     public function indexAction()
     {
-        //define('PI_BOOT_SKIP', true);
-        //include dirname($this->wizard->getRoot()) . '/boot.php';
-        //echo Pi::path('config');
         $this->loadForm();
     }
 
@@ -255,12 +252,12 @@ $(document).ready(function(){
     });
 
     checkConnection();
-    $("#DB_HOST, #DB_USER, #DB_PASS").each(function(index) {
+    $("#DB_HOST, #DB_USER, #DB_PASS, #DB_DBNAME").each(function(index) {
         $(this).bind("change", function() {
             updateConnection($(this).attr("name"), this.value);
         });
     });
-    $("#DB_DBNAME, #DB_PREFIX").each(function(index) {
+    $("#DB_PREFIX").each(function(index) {
         $(this).bind("change", function() {
             update($(this).attr("name"));
         });
