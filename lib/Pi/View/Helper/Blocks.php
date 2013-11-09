@@ -105,8 +105,6 @@ class Blocks extends AbstractHelper
             // Profiling
             Pi::service('log')->start('BLOCKS');
 
-            $layoutBlocks = array();
-
             // Read block IDs
             $route      = Pi::engine()->application()->getRouteMatch();
             $module     = $route->getParam('module');
@@ -115,10 +113,9 @@ class Blocks extends AbstractHelper
             $info = Pi::registry('block')->read($module);
 
             $blocks = array();
-            if (isset($info[sprintf('%s-%s-%s',
-                $module, $controller, $action)])) {
-                $blocks = $info[sprintf('%s-%s-%s',
-                                        $module, $controller, $action)];
+            $key = sprintf('%s-%s-%s', $module, $controller, $action);
+            if (isset($info[$key])) {
+                $blocks = $info[$key];
             } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
                 $blocks = $info[sprintf('%s-%s', $module, $controller)];
             } elseif (isset($info[$module])) {
