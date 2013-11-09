@@ -111,11 +111,42 @@ abstract class ActionController extends AbstractActionController
         $actionResponse = null;
         if (!$this->skipExecute) {
             Pi::service('log')->start('ACTIION');
-            $actionResponse = parent::onDispatch($e);
+            $result = $this->preAction($e);
+            if (false !== $result) {
+                $actionResponse = parent::onDispatch($e);
+                $this->postAction($e, $actionResponse);
+            }
             Pi::service('log')->end('ACTIION');
         }
 
         return $actionResponse;
+    }
+
+    /**
+     * Perform tasks before controller action
+     *
+     * Controller action will be skipped if this method returns false
+     *
+     * @param  MvcEvent $e
+     *
+     * @return bool
+     */
+    protected function preAction(MvcEvent $e)
+    {
+        return true;
+    }
+
+    /**
+     * Perform tasks after action
+     *
+     * @param  MvcEvent $e
+     * @param mixed $result Action result
+     *
+     * @return bool
+     */
+    protected function postAction(MvcEvent $e, &$result)
+    {
+        return true;
     }
 
     /**

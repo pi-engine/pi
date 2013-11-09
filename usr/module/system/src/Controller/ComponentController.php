@@ -27,7 +27,7 @@ class ComponentController extends ActionController
      * @return mixed
      * @throws \DomainException
      */
-    public function onDispatch(MvcEvent $e)
+    public function ____onDispatch(MvcEvent $e)
     {
         $routeMatch = $e->getRouteMatch();
         $name = $routeMatch->getParam('name');
@@ -40,6 +40,28 @@ class ComponentController extends ActionController
         $_SESSION['PI_BACKOFFICE']['component'] = $component;
 
         return parent::onDispatch($e);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function preAction(MvcEvent $e)
+    {
+        $routeMatch = $e->getRouteMatch();
+        $name = $routeMatch->getParam('name');
+        $component = $routeMatch->getParam('controller');
+
+        // Settings for admin navigation
+        // Set module
+        if (!empty($name)) {
+            $_SESSION['PI_BACKOFFICE']['module'] = $name;
+        }
+        // Set component
+        $_SESSION['PI_BACKOFFICE']['component'] = $component;
+
+        // Load translations
+        Pi::service('i18n')->load('module/' . $name . ':default');
+        Pi::service('i18n')->load('module/' . $name . ':admin');
     }
 
     /**
