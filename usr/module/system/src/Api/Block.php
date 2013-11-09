@@ -12,7 +12,6 @@ namespace Module\System\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
-use Pi\Acl\Acl as AclHandler;
 
 /**
  * Block manipulation APIs
@@ -99,7 +98,6 @@ class Block extends AbstractApi
         $module = (string) $block['module'];
         $modelBlock = Pi::model('block');
         $modelRoot = Pi::model('block_root');
-        //$modelRule = Pi::model('acl_rule');
 
         // Create block root for module block
         if ($module && empty($block['root'])) {
@@ -144,8 +142,6 @@ class Block extends AbstractApi
         // Build permission rules
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
-            //$rule = isset($access[$role]) ? $access[$role] : 1;
-            //AclHandler::addRule($rule, $role, 'block', $module, $rowBlock->id);
             Pi::service('permission')->grantPermission($role, array(
                 'section'   => 'front',
                 'module'    => $module,

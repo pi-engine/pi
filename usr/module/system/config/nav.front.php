@@ -18,6 +18,18 @@ return array(
         'order'         => -100,
         'label'         => _t('Home'),
         'route'         => 'home',
+
+        'pages'         => array(
+            'front'     => array(
+                'label'     => _t('Front'),
+                'route'     => 'home',
+            ),
+            'admin'     => array(
+                'label'     => _t('Admin'),
+                'route'     => 'home',
+                'section'   => 'admin',
+            ),
+        ),
     ),
 
     // Account
@@ -39,6 +51,7 @@ return array(
                 'controller'    => 'login',
                 'visible'       => 0,
             ),
+            
             'register'     => array(
                 'label'         => _t('Register'),
                 'route'         => 'sysuser',
@@ -57,18 +70,8 @@ return array(
                 'controller'    => 'email',
                 'visible'       => 0,
             ),
+            
         ),
-    ),
-
-    // Admin page
-    'admin'     => array(
-        'label'         => _t('Admin Area'),
-        'route'         => 'admin',
-        'permission'    => array(
-            'module'    => 'system',
-            'resource'  => 'member',
-        ),
-        //'visible'       => 0,
     ),
 
     'modules'   => array(
