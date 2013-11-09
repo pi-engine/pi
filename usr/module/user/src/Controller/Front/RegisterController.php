@@ -85,6 +85,14 @@ class RegisterController extends ActionController
                     // Complete register
                     $values = $form->getData();
                     $uid = Pi::api('user', 'user')->addUser($values);
+                    if (is_array($uid)) {
+                        $this->view()->assign(array(
+                            'result' => $result,
+                            'from'   => $form,
+                        ));
+
+                        return;
+                    }
 
                     // Set user role
                     Pi::api('user', 'user')->setRole($uid, 'member');
@@ -97,14 +105,6 @@ class RegisterController extends ActionController
                         $content,
                         $this->getModule()
                     );
-                    if (!$status) {
-                        $this->view()->assign(array(
-                            'result' => $result,
-                            'from'   => $form,
-                        ));
-
-                        return;
-                    }
 
                     // Send activity email
                     $to  = $values['email'];
@@ -173,18 +173,7 @@ class RegisterController extends ActionController
             $values = $form->getData();
             $values = $this->canonizeUser($values, 'work');
             $uid = Pi::api('user', 'user')->addUser($values);
-            // Set user role
-            Pi::api('user', 'user')->setRole($uid, 'member');
-
-            // Set user data
-            $content = md5($uid . $values['name']);
-            $status  = Pi::user()->data()->set(
-                $uid,
-                'register-activation',
-                $content,
-                $this->getModule()
-            );
-            if (!$status) {
+            if (is_array($uid)) {
                 $this->view()->assign(array(
                     'result' => $result,
                     'from'   => $form,
@@ -192,6 +181,17 @@ class RegisterController extends ActionController
 
                 return;
             }
+            // Set user role
+            Pi::api('user', 'user')->setRole($uid, 'member');
+
+            // Set user data
+            $content = md5($uid . $values['name']);
+            Pi::user()->data()->set(
+                $uid,
+                'register-activation',
+                $content,
+                $this->getModule()
+            );
 
             // Send activity email
             $to  = $values['email'];
