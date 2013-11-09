@@ -64,4 +64,18 @@ return array(
         ),
         'filter'  => array(),
     ),
+
+    'terms_of_service' => array(
+        'element' => array(
+            'name' => 'terms_of_service',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => __('I agree to the terms of service and privacy policy'),
+            )
+        ),
+        'filter' => array(
+            'name' => 'terms_of_service',
+            'required' => true,
+        ),
+    ),
 );
