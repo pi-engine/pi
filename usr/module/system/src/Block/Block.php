@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\System;
+namespace Module\System\Block;
 
 use Pi;
 use Module\System\Form\LoginForm;
@@ -27,10 +27,10 @@ class Block
     public static function site()
     {
         return array(
-            'caption'   => sprintf(__('About %s'), Pi::config('sitename')),
+            'caption'   => sprintf(_b('About %s'), Pi::config('sitename')),
             'items'     => array(
-                __('Site name') => Pi::config('sitename'),
-                __('Slogan')    => Pi::config('slogan'),
+                _b('Site name') => Pi::config('sitename'),
+                _b('Slogan')    => Pi::config('slogan'),
             ),
         );
     }

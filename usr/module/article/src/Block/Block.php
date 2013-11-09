@@ -7,7 +7,7 @@
  * @license      http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Article;
+namespace Module\Article\Block;
 
 use Pi;
 use Module\Article\Service;
