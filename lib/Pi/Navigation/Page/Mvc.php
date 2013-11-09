@@ -46,6 +46,12 @@ class Mvc extends ZendMvcPage
     protected $module;
 
     /**
+     * Section name to use when assembling URL
+     * @var string
+     */
+    protected $section;
+
+    /**
      * Default RouteMatch to be used if RouteMatch is not given.
      * @var RouteMatch
      */
@@ -167,6 +173,9 @@ class Mvc extends ZendMvcPage
                 /**#@+
                  * Added by Taiwen Jiang
                  */
+                if (null !== $this->section) {
+                    $myParams['section'] = $this->section;
+                }
                 if (null !== $this->module) {
                     $myParams['module'] = $this->module;
                 }
@@ -299,6 +308,9 @@ class Mvc extends ZendMvcPage
         /**#@+
          * Added by Taiwen Jiang
          */
+        if (($param = $this->getSection()) != null) {
+            $params['section'] = $param;
+        }
         if (($param = $this->getModule()) != null) {
             $params['module'] = $param;
         }
@@ -355,6 +367,34 @@ class Mvc extends ZendMvcPage
     /**#@+
      * Added by Taiwen Jiang
      */
+    /**
+     * Sets section name to use when assembling URL
+     *
+     * @see getHref()
+     *
+     * @param  string|null $section    section name
+     * @return $this
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+        $this->hrefCache  = null;
+
+        return $this;
+    }
+
+    /**
+     * Returns section name to use when assembling URL
+     *
+     * @see getHref()
+     *
+     * @return string|null  module name or null
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
+
     /**
      * Sets module name to use when assembling URL
      *
@@ -454,7 +494,8 @@ class Mvc extends ZendMvcPage
                 /**#@+
                  * Added by Taiwen Jiang
                  */
-                 'module'       => $this->getModule(),
+                'section'      => $this->getSection(),
+                'module'       => $this->getModule(),
                 /**#@-*/
             )
         );

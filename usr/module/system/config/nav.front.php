@@ -20,14 +20,14 @@ return array(
         'route'         => 'home',
 
         'pages'         => array(
-            'front'     => array(
-                'label'     => _t('Front'),
-                'route'     => 'home',
-            ),
             'admin'     => array(
                 'label'     => _t('Admin'),
                 'route'     => 'home',
                 'section'   => 'admin',
+            ),
+            'feed'     => array(
+                'label'     => _t('Feed'),
+                'route'     => 'feed',
             ),
         ),
     ),
