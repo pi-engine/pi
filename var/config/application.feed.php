@@ -11,13 +11,6 @@
  */
 
 $config = include __DIR__ . '/application.front.php';
-// Translations
-$config['resource']['i18n'] = array(
-    'translator'    => array(
-        'global'    => array('usr:feed'),
-        'module'    => array('feed'),
-    ),
-);
 // Session resource, load configs from resource.session.php and instantiate session service
 $config['resource']['session'] = false;
 // Load authentication configs from resource.authentication.php and instantiate authentication service

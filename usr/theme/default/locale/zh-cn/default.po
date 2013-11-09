@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2013-11-09 19:23+0800\n"
-"PO-Revision-Date: 2013-11-09 19:34+0800\n"
+"POT-Creation-Date: 2013-11-09 19:26+0800\n"
+"PO-Revision-Date: 2013-11-09 19:26+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -89,6 +89,7 @@ msgstr ""
 #: C:\wamp\www\master\usr\theme\default/template/layout-admin.phtml:88
 #: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:250
 #: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:53
+#, fuzzy
 msgid "Execution time"
 msgstr "Application Execution Time"
 
