@@ -34,12 +34,12 @@ class CacheController extends ActionController
         $type = $this->params('type');
 
         $cacheList = array(
-            'stat'          => __('File status cache'),
-            'apc'           => __('APC file cache'),
-            'folder'        => __('System cache file folder'),
-            'persist'       => __('System persistent data'),
-            'application'   => __('Application cache'),
-            'comment'       => __('Comment cache'),
+            'stat'          => _a('File status cache'),
+            'apc'           => _a('APC file cache'),
+            'folder'        => _a('System cache file folder'),
+            'persist'       => _a('System persistent data'),
+            'application'   => _a('Application cache'),
+            'comment'       => _a('Comment cache'),
         );
         if (!function_exists('apc_clear_cache')) {
             unset($cacheList['apc']);
@@ -60,7 +60,7 @@ class CacheController extends ActionController
             strrpos($cacheStorageClass, '\\') + 1
         );
         $cacheList['application'] = sprintf(
-            __('Application cache [%s]'),
+            _a('Application cache [%s]'),
             $cacheStorageName
         );
 
@@ -78,7 +78,7 @@ class CacheController extends ActionController
                 $cacheStorageClass,
                 strrpos($cacheStorageClass, '\\') + 1
             );
-            $page['title'] = sprintf(__('Page cache [%s]'), $cacheStorageName);
+            $page['title'] = sprintf(_a('Page cache [%s]'), $cacheStorageName);
             $modules = Pi::service('module')->meta();
             $page['modules'] = array_keys($modules);
             $this->view()->assign('page', $page);
@@ -90,7 +90,7 @@ class CacheController extends ActionController
         $this->view()->assign('type', $type);
         $this->view()->assign('list', $cacheList);
         $this->view()->assign('registry', $registryList);
-        $this->view()->assign('title', __('Cache list'));
+        $this->view()->assign('title', _a('Cache list'));
         //$this->view()->setTemplate('cache-list');
     }
 
@@ -147,7 +147,7 @@ class CacheController extends ActionController
 
         return array(
             'status'    => 1,
-            'message'   => __('Cache is flushed successfully.'),
+            'message'   => _a('Cache is flushed successfully.'),
         );
     }
 

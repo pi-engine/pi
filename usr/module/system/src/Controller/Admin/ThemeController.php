@@ -46,10 +46,10 @@ class ThemeController extends ActionController
 
         $themeName = '';
         if ('_admin' == $section) {
-            $subject = __('admin');
+            $subject = _a('admin');
             $themeName = Pi::config('theme_admin');
         } else {
-            $subject = __('front');
+            $subject = _a('front');
             $themeName = Pi::config('theme');
         }
         $data = isset($themes[$themeName])
@@ -63,7 +63,7 @@ class ThemeController extends ActionController
         $this->view()->assign('themes', $themes);
         $this->view()->assign(
             'title',
-            sprintf(__('Select theme for %s'), $subject)
+            sprintf(_a('Select theme for %s'), $subject)
         );
     }
 
@@ -106,7 +106,7 @@ class ThemeController extends ActionController
 
         $result = array(
             'status'    => 1,
-            'message'   => __('Theme set up successfully.'),
+            'message'   => _a('Theme set up successfully.'),
         );
         return $result;
     }
@@ -121,7 +121,7 @@ class ThemeController extends ActionController
             $theme['name'] = $key;
         }
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('title', __('Installed themes'));
+        $this->view()->assign('title', _a('Installed themes'));
     }
 
     /**
@@ -160,7 +160,7 @@ class ThemeController extends ActionController
         $this->view()->assign('themes', $themes);
         $this->view()->assign(
             'title',
-            __('Themes available for installation')
+            _a('Themes available for installation')
         );
     }
 
@@ -179,10 +179,10 @@ class ThemeController extends ActionController
         if (!$ret) {
             $status = 0;
             $message = $installer->renderMessage()
-                ?: sprintf(__('The theme "%s" is not updated.'), $themeName);
+                ?: sprintf(_a('The theme "%s" is not updated.'), $themeName);
         }
         $message = $message
-            ?: sprintf(__('The theme "%s" is updated.'), $themeName);
+            ?: sprintf(_a('The theme "%s" is updated.'), $themeName);
         $themelist = Pi::registry('themelist')->read();
 
         return $themelist[$themeName];
@@ -202,11 +202,11 @@ class ThemeController extends ActionController
         $message = '';
         if (!$ret) {
             $message = $installer->renderMessage()
-                ?: sprintf(__('The theme "%s" is not installed.'), $themeName);
+                ?: sprintf(_a('The theme "%s" is not installed.'), $themeName);
             $status = 0;
         }
         $message = $message
-            ?: sprintf(__('The theme "%s" is installed.'), $themeName);
+            ?: sprintf(_a('The theme "%s" is installed.'), $themeName);
 
         return array(
             'status'    => $status,
@@ -225,7 +225,7 @@ class ThemeController extends ActionController
         $themeName = $this->params('name');
         if ('default' == $themeName) {
             $status = 0;
-            $message = __('Default theme is protected from uninstallation.');
+            $message = _a('Default theme is protected from uninstallation.');
         } else {
             $installer = new ThemeInstaller;
             $ret = $installer->uninstall($themeName);
@@ -234,13 +234,13 @@ class ThemeController extends ActionController
                 $status = 0;
                 $message = $installer->renderMessage()
                     ?: sprintf(
-                        __('The theme "%s" is not uninstalled.'),
+                        _a('The theme "%s" is not uninstalled.'),
                         $themeName
                     );
             }
         }
         $message = $message
-            ?: sprintf(__('The theme "%s" is uninstalled.'), $themeName);
+            ?: sprintf(_a('The theme "%s" is uninstalled.'), $themeName);
         $result = array(
             'status'    => $status,
             'message'   => $message,

@@ -16,26 +16,26 @@ return array(
     // Admin section
     'admin' => array(
         // System administrator with ultra permissions
-        'admin'     => __('Administrator'),
+        'admin'     => _a('Administrator'),
         // Admin area user
-        'staff'     => __('Staff'),
+        'staff'     => _a('Staff'),
         /*
         // Module/section moderator or administrator
-        'moderator' => __('Moderator'),
+        'moderator' => _a('Moderator'),
         // Content editor
-        'editor'    => __('Editor'),
+        'editor'    => _a('Editor'),
         // Module manager for content and moderation
-        'manager'   => __('Manager'),
+        'manager'   => _a('Manager'),
         */
     ),
 
     // Front section
     'front' => array(
         // System webmaster with ultra permissions
-        'webmaster' => __('Webmaster'),
+        'webmaster' => _a('Webmaster'),
         // User
-        'member'    => __('Member'),
+        'member'    => _a('Member'),
         // Visitor
-        'guest'     => __('Guest'),
+        'guest'     => _a('Guest'),
     ),
 );

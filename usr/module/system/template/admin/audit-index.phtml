@@ -5,24 +5,24 @@
 ?>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php _e('Audit'); ?>"><?php _e('Audit'); ?></a></li>
-    <li class="disabled"><a href="#" title="<?php _e('Mailing'); ?>"><?php _e('Mailing'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'audit', 'action' => 'index')); ?>" title="<?php echo _a('Audit'); ?>"><?php echo _a('Audit'); ?></a></li>
+    <li class="disabled"><a href="#" title="<?php echo _a('Mailing'); ?>"><?php echo _a('Mailing'); ?></a></li>
 </ul>
 
-<h2 class="page-header"><?php _e('Audit list') ?></h2>
+<h2 class="page-header"><?php echo _a('Audit list') ?></h2>
 
 <table class="table table-hover">
     <thead>
-        <td width="12%"><?php _e('time') ?></td>
-        <td width="5%"><?php _e('User') ?></td>
-        <td width="5%"><?php _e('IP') ?></td>
-        <td width="2%"><?php _e('Section') ?></td>
-        <td width="8%"><?php _e('Module') ?></td>
-        <td width="8%"><?php _e('Controller') ?></td>
-        <td width="8%"><?php _e('Action') ?></td>
-        <td width="2%"><?php _e('Method') ?></td>
-        <td width="30%"><?php _e('Message') ?></td>
-        <td><?php _e('extra') ?></td>
+        <td width="12%"><?php echo _a('time') ?></td>
+        <td width="5%"><?php echo _a('User') ?></td>
+        <td width="5%"><?php echo _a('IP') ?></td>
+        <td width="2%"><?php echo _a('Section') ?></td>
+        <td width="8%"><?php echo _a('Module') ?></td>
+        <td width="8%"><?php echo _a('Controller') ?></td>
+        <td width="8%"><?php echo _a('Action') ?></td>
+        <td width="2%"><?php echo _a('Method') ?></td>
+        <td width="30%"><?php echo _a('Message') ?></td>
+        <td><?php echo _a('extra') ?></td>
     </thead>
     <?php foreach ($items as $row) { ?>
     <tr>
@@ -44,10 +44,10 @@
 
 <div style="padding: 10px">
 <form method='GET'>
-    <?php _e('Count of items to display: '); ?><select id='audit-count' audit-url='<?php echo $this->url('admin', array('controller' => 'audit', 'count' => '')) ?>'>
-        <option value='10' <?php echo (!isset($count) or (10 === $count) ? 'selected' : '')?>><?php _e('10') ?></option>
-        <option value='20' <?php echo (20 === $count ? 'selected' : '') ?>><?php _e('20') ?></option>
-        <option value='50' <?php echo (50 === $count ? 'selected' : '') ?>><?php _e('50') ?></option>
+    <?php echo _a('Count of items to display: '); ?><select id='audit-count' audit-url='<?php echo $this->url('admin', array('controller' => 'audit', 'count' => '')) ?>'>
+        <option value='10' <?php echo (!isset($count) or (10 === $count) ? 'selected' : '')?>><?php echo _a('10') ?></option>
+        <option value='20' <?php echo (20 === $count ? 'selected' : '') ?>><?php echo _a('20') ?></option>
+        <option value='50' <?php echo (50 === $count ? 'selected' : '') ?>><?php echo _a('50') ?></option>
     </select>
 </form>
 </div>

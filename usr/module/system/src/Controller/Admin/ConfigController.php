@@ -47,9 +47,10 @@ class ConfigController extends ComponentController
             return;
         }
 
+        $updateLanguage = false;
         if ($module) {
             //$category = $this->params('category', '');
-            Pi::service('i18n')->load('module/' . $module . ':config');
+            //Pi::service('i18n')->load('module/' . $module . ':admin');
 
             $model = Pi::model('config');
             $select = $model->select()
@@ -96,14 +97,32 @@ class ConfigController extends ComponentController
                     $post = $this->request->getPost();
                     $form->setData($post);
                     if ($form->isValid()) {
+
+                        // Prepare for language check
+                        $currentLocale = null;
+                        if ('system' == $module) {
+                            $currentLocale = array(
+                                'locale' => Pi::config('locale'),
+                                'charset'   => Pi::config('charset'),
+                            );
+                        }
+
                         $values = $form->getData();
                         foreach ($configs as $row) {
                             $row->value = $values[$row->name];
                             $row->save();
+
+                            // Check for language update
+                            if ($currentLocale
+                                && isset($currentLocale[$row->name])
+                                && $row->value != $currentLocale[$row->name]
+                            ) {
+                                $updateLanguage = true;
+                            }
                         }
                         Pi::registry('config')->clear($module);
                         $messageSuccessful =
-                            __('Configuration data saved successfully.');
+                            _a('Configuration data saved successfully.');
                     }
                 }
 
@@ -122,9 +141,13 @@ class ConfigController extends ComponentController
             $configCounts[$row->module] = $row->count;
         }
 
+        if ($updateLanguage) {
+            Pi::registry('navigation')->flush();
+        }
+
         $this->view()->assign('name', $module);
 
-        $this->view()->assign('title', __('Module configurations'));
+        $this->view()->assign('title', _a('Module configurations'));
         //$this->view()->setTemplate('config-module');
     }
 

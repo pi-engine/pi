@@ -17,7 +17,7 @@ return array(
     'front' => array(
         // global public
         'public'    => array(
-            'title'         => __('Global public resource'),
+            'title'         => _t('Global public resource'),
             'access'        => array(
                 'guest',
                 'member',
@@ -25,14 +25,14 @@ return array(
         ),
         // global guest
         'guest' => array(
-            'title'         => __('Guest only'),
+            'title'         => _t('Guest only'),
             'access'        => array(
                 'guest',
             ),
         ),
         // global member
         'member'    => array(
-            'title'         => __('Member only'),
+            'title'         => _t('Member only'),
             'access'        => array(
                 'member',
             ),
@@ -42,7 +42,7 @@ return array(
     'admin' => array(
         // Generic admin resource
         'generic'   => array(
-            'title'         => __('Generic permission'),
+            'title'         => _t('Generic permission'),
             'access'        => array(
                 //'admin',
                 'staff',
@@ -54,14 +54,14 @@ return array(
         // System operations
         // Modules
         'module'    => array(
-            'title'         => __('Operation: modules'),
+            'title'         => _t('Operation: modules'),
             'access'        => array(
                 'manager',
             ),
         ),
         // Themes
         'theme'    => array(
-            'title'         => __('Operation: themes'),
+            'title'         => _t('Operation: themes'),
             'access'        => array(
                 //'admin',
                 'manager',
@@ -69,7 +69,7 @@ return array(
         ),
         // Navigation
         'navigation'    => array(
-            'title'         => __('Operation: navigation'),
+            'title'         => _t('Operation: navigation'),
             'access'        => array(
                 //'admin',
                 'manager',
@@ -77,7 +77,7 @@ return array(
         ),
         // Roles
         'role'    => array(
-            'title'         => __('Operation: roles'),
+            'title'         => _t('Operation: roles'),
             'access'        => array(
                 //'admin',
             ),
@@ -85,7 +85,7 @@ return array(
         /*
         // Users
         'user'    => array(
-            'title'         => __('Operation: users'),
+            'title'         => _t('Operation: users'),
             'access'        => array(
                 //'admin',
             ),
@@ -93,7 +93,7 @@ return array(
         */
         // maintenance
         'maintenance'   => array(
-            'title'         => __('Operation: maintenance'),
+            'title'         => _t('Operation: maintenance'),
             'access'        => array(
                 //'admin',
                 'manager',
@@ -103,7 +103,7 @@ return array(
         // Managed components
         // Configurations
         'config'    => array(
-            'title'         => __('Management: configs'),
+            'title'         => _t('Management: configs'),
             'access'        => array(
                 'moderator',
                 //'admin',
@@ -111,7 +111,7 @@ return array(
         ),
         // Block content and permission
         'block'     => array(
-            'title'         => __('Management: blocks'),
+            'title'         => _t('Management: blocks'),
             'access'        => array(
                 'moderator',
                 //'admin',
@@ -119,7 +119,7 @@ return array(
         ),
         // Page dress up, cache and permission
         'page'     => array(
-            'title'         => __('Management: pages'),
+            'title'         => _t('Management: pages'),
             'access'        => array(
                 'moderator',
                 //'admin',
@@ -127,14 +127,14 @@ return array(
         ),
         // Permissions
         'permission'  => array(
-            'title'         => __('Management: permissions'),
+            'title'         => _t('Management: permissions'),
             'access'        => array(
                 //'admin',
             ),
         ),
         // Event hooks
         'event'     => array(
-            'title'         => __('Management: events/hooks'),
+            'title'         => _t('Management: events/hooks'),
             'access'        => array(
                 //'admin',
                 'moderator',

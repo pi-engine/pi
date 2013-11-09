@@ -18,12 +18,12 @@ angular
         events: <?php echo json_encode($events); ?>,
         listeners: <?php echo json_encode(array_values($listeners)); ?>,
         t: {
-            Listeners: '<?php _e('Listeners'); ?>',
-            NoneListeners: '<?php _e('No listeners available'); ?>',
-            NoneEvents: '<?php _e('No events available'); ?>',
-            ERROR: '<?php _e('Error, please try again later.'); ?>',
-            FRONT: '<?php _e('Front'); ?>',
-            ADMIN: '<?php _e('Admin'); ?>'
+            Listeners: '<?php echo _a('Listeners'); ?>',
+            NoneListeners: '<?php echo _a('No listeners available'); ?>',
+            NoneEvents: '<?php echo _a('No events available'); ?>',
+            ERROR: '<?php echo _a('Error, please try again later.'); ?>',
+            FRONT: '<?php echo _a('Front'); ?>',
+            ADMIN: '<?php echo _a('Admin'); ?>'
         }
    });
 </script>

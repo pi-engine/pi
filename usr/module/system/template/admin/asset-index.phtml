@@ -8,19 +8,19 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width: 250px;"><?php _e('Title'); ?></th>
-                <th><?php _e('Action'); ?></th>
+                <th style="width: 250px;"><?php echo _a('Title'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
             </tr>
         </thead>        
         <tbody>
             <tr>
                 <td></td>
                 <td>
-                    <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php _e('Re-publish all'); ?></span>
+                    <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php echo _a('Re-publish all'); ?></span>
                 </td>    
             </tr>
             <tr>
-                <td colspan="2"><?php _e('Modules'); ?></td>
+                <td colspan="2"><?php echo _a('Modules'); ?></td>
             </tr>   
             <?php foreach ($modules as $name => $label) { ?>
             <tr>
@@ -28,12 +28,12 @@
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
-                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>
+                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
             <?php } ?>
             <tr>
-                <td colspan="2"><?php _e('Themes'); ?></td>
+                <td colspan="2"><?php echo _a('Themes'); ?></td>
             </tr>    
             <?php foreach ($themes as $name => $label) { ?>
             <tr>
@@ -41,7 +41,7 @@
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
-                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php _e('Publish'); ?></span>
+                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
             <?php } ?>  
@@ -51,7 +51,7 @@
 <script>
 (function($) {
     $("#asset-list").on("click", ".btn", function() {
-       systemMessage.wait("<?php _e('Asset publish in process'); ?>");
+       systemMessage.wait("<?php echo _a('Asset publish in process'); ?>");
        $.getJSON($(this).attr("data-link")).done(function(result) {
           if (result.status == 1) {
              systemMessage.succ(result.message);

@@ -22,7 +22,6 @@ return array(
         'permission'    => array(
             'resource'  => 'config',
         ),
-
     ),
 
     'block' => array(

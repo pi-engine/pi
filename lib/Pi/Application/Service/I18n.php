@@ -908,17 +908,6 @@ namespace
     }
 
     /**
-     * Translate a message for navigation
-     *
-     * @param string    $message    The string to be localized
-     * @return string
-     */
-    function _n($message)
-    {
-        return $message;
-    }
-
-    /**
      * Register a message to translation queue
      *
      * @param string    $message    The string to be localized
