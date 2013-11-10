@@ -17,8 +17,11 @@ return array(
     // Quicklinks
     'quicklink' => array(
         'message'    => array(
-            'title' => __('Messages'),
-            'link'  => Pi::service('url')->assemble('default', array('module' => 'message')),
+            'title' => _a('Messages'),
+            'link'  => Pi::service('url')->assemble(
+                    'default',
+                    array('module' => 'message')
+                ),
             'icon'  => 'icon-bell',
         ),
     ),

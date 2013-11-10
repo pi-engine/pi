@@ -1,7 +1,7 @@
 <?php
 $this->I18nModule('admin', 'zh-CN');
 ?>
-<h2 class="page-header"><?php _e('Tags'); ?></h2>
+<h2 class="page-header"><?php echo _a('Tags'); ?></h2>
 <div class="row">
     <div class="span3">
         <div class="sub-nav">
@@ -9,7 +9,7 @@ $this->I18nModule('admin', 'zh-CN');
             $items = array();
             $item = array(
                 'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'list')),
-                'label' => __('All'),
+                'label' => _a('All'),
             );
             if (null == $curModule) {
                 $item['active'] = 1;
@@ -54,9 +54,9 @@ $this->I18nModule('admin', 'zh-CN');
         </div>
         <table class="table table-hover table-bordered">
             <tr class="box-bordered-header">
-                <th><?php _e('Tag Name'); ?></th>
-                <th class="span2"><?php _e('Count'); ?></th>
-                <th class="span1"><?php _e('Operator') ?></th>
+                <th><?php echo _a('Tag Name'); ?></th>
+                <th class="span2"><?php echo _a('Count'); ?></th>
+                <th class="span1"><?php echo _a('Operator') ?></th>
             </tr>
             <?php foreach ($datas as $tag) {
             $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $tag['id']));
@@ -70,7 +70,7 @@ $this->I18nModule('admin', 'zh-CN');
             <tr>
                 <td><?php echo $tagName; ?></td>
                 <td><?php echo $this->escape($tag['count']); ?></td>
-                <td><?php echo sprintf('<a href="%s">%s</a>', $deleteUrl, __('Delete')); ?></td>
+                <td><?php echo sprintf('<a href="%s">%s</a>', $deleteUrl, _a('Delete')); ?></td>
             </tr>
             <?php } ?>
         </table>

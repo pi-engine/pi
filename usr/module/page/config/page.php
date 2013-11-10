@@ -12,7 +12,7 @@ return array(
     'front' => array(
         // homepage
         array(
-            'title'         => __('Homepage'),
+            'title'         => _a('Homepage'),
             'module'        => 'page',
             'controller'    => 'index',
             'action'        => 'index',

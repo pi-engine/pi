@@ -7,7 +7,7 @@
 
 <div class="pi-block">
     <div class="clearfix pi-block-header">
-        <h4 class="pi-block-title"><?php _e('All') ?></h4>
+        <h4 class="pi-block-title"><?php _e('All'); ?></h4>
     </div>
     <div class="article-list-content">
         <ul class="list list14">
@@ -18,8 +18,8 @@
                         <span class="pull-right article-list-desc">
                             <?php echo date('Y-m-d', $row['time_publish']); ?>
                         </span>
-                        <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']) ?>" title="<?php echo $this->escape($row['subject']) ?>">
-                            <?php echo $this->escape($row['subject']) ?>
+                        <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>" title="<?php echo $this->escape($row['subject']); ?>">
+                            <?php echo $this->escape($row['subject']); ?>
                         </a>
                     </div>
                 </li>

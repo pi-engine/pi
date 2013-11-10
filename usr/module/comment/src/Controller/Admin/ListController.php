@@ -81,11 +81,11 @@ class ListController extends ActionController
             ),
         ));
         if (null === $active) {
-            $title = __('All comment posts');
+            $title = _a('All comment posts');
         } elseif (!$active) {
-            $title = __('All inactive comment posts');
+            $title = _a('All inactive comment posts');
         } else {
-            $title = __('All active comment posts');
+            $title = _a('All active comment posts');
         }
         $this->view()->assign('comment', array(
             'title'     => $title,
@@ -108,14 +108,14 @@ class ListController extends ActionController
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts') . " ({$allCount})",
+                'label'     => _a('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                 ))
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts') . " ({$activeCount})",
+                'label'     => _a('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'active'    => 1,
@@ -123,7 +123,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
+                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'active'    => 0,
@@ -162,7 +162,7 @@ class ListController extends ActionController
             );
         } else {
             $this->view()->assign(array(
-                'title' => __('Comments by username or id'),
+                'title' => _a('Comments by username or id'),
                 'url'   => $this->url('', array('action' => 'user')),
             ));
             $this->view()->setTemplate('comment-user-select');
@@ -201,7 +201,7 @@ class ListController extends ActionController
                 ),
             ),
         ));
-        $title = __('Comment posts of user');
+        $title = _a('Comment posts of user');
         $this->view()->assign('comment', array(
             'title'     => $title,
             'count'     => $count,
@@ -234,7 +234,7 @@ class ListController extends ActionController
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts') . " ({$allCount})",
+                'label'     => _a('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -242,7 +242,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts') . " ({$activeCount})",
+                'label'     => _a('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -251,7 +251,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
+                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -273,7 +273,7 @@ class ListController extends ActionController
     {
         $module = _get('name');
         if (!$module) {
-            $title = __('Comment categories');
+            $title = _a('Comment categories');
 
             $modulelist = Pi::registry('modulelist')->read('active');
             $rowset = Pi::model('category', 'comment')->select(array(
@@ -368,13 +368,13 @@ class ListController extends ActionController
         ));
         if ($categoryData) {
             $title = sprintf(
-                __('Comment posts of Module %s with Category %s'),
+                _a('Comment posts of Module %s with Category %s'),
                 $moduleData['title'],
                 $categoryData['title']
             );
         } else {
             $title = sprintf(
-                __('Comment posts of Module %s'),
+                _a('Comment posts of Module %s'),
                 $moduleData['title']
             );
         }
@@ -411,7 +411,7 @@ class ListController extends ActionController
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('All Posts') . " ({$allCount})",
+                'label'     => _a('All Posts') . " ({$allCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
@@ -420,7 +420,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Active Posts') . " ({$activeCount})",
+                'label'     => _a('Active Posts') . " ({$activeCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
@@ -430,7 +430,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => __('Inactive Posts') . " ({$inactiveCount})",
+                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
@@ -484,7 +484,7 @@ class ListController extends ActionController
         $users[0] = array(
             'avatar'    => Pi::service('avatar')->get(0, 'small'),
             'url'       => Pi::url('www'),
-            'name'      => __('Guest'),
+            'name'      => _a('Guest'),
         );
         array_walk($targets, function (&$data, $root) use ($users) {
             $data['user'] = isset($users[$data['uid']])
@@ -521,9 +521,9 @@ class ListController extends ActionController
             ),
         ));
         if (null === $active) {
-            $title = __('All commented articles');
+            $title = _a('All commented articles');
         } else {
-            $title = __('All active commented articles');
+            $title = _a('All active commented articles');
         }
         $this->view()->assign('comment', array(
             'title'     => $title,
@@ -535,14 +535,14 @@ class ListController extends ActionController
         $navTabs = array(
             array(
                 'active'    => null === $active,
-                'label'     => __('Articles with comments'),
+                'label'     => _a('Articles with comments'),
                 'href'      => $this->url('', array(
                     'action'    => 'article',
                 ))
             ),
             array(
                 'active'    => 1 == $active,
-                'label'     => __('Articles with active comments'),
+                'label'     => _a('Articles with active comments'),
                 'href'      => $this->url('', array(
                     'action'    => 'article',
                     'active'    => 1,
@@ -593,7 +593,7 @@ class ListController extends ActionController
         }
         $result = array(
             'status'    => 1,
-            'message'   => __('Operation succeeded.'),
+            'message'   => _a('Operation succeeded.'),
         );
         $message = $result['message'];
 

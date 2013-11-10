@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2013-11-09 19:14+0800\n"
-"PO-Revision-Date: 2013-11-09 19:14+0800\n"
+"POT-Creation-Date: 2013-11-10 14:04+0800\n"
+"PO-Revision-Date: 2013-11-10 14:04+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1373,6 +1373,26 @@ msgstr ""
 #: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:243
 #, php-format
 msgid "The theme \"%s\" is uninstalled."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:87
+msgid "Default taxonomy"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:89
+msgid "Default global taxonomy domain. Not allowed to change."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:94
+msgid "Welcome to Pi powered system."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:46
+msgid "System updated"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:47
+msgid "The system is updated successfully."
 msgstr ""
 
 #: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:11

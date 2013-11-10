@@ -7,7 +7,7 @@
 
 <style>
     .each-category {
-        width: <?php echo $this->escape($width) ?>px;
+        width: <?php echo $this->escape($width); ?>px;
         float: left;
         padding-bottom: 5px;
     }
@@ -20,7 +20,7 @@
     ?>
     <div class="each-category<?php echo (++$index != $maxCount) ? ' category-item' : ''; ?>">
         <div>
-            <a target="<?php echo $this->escape($block['target']) ?>" href="<?php echo $this->escape($top['url']) ?>" class="article-front-title"><?php echo $this->escape($top['title']) ?></a>
+            <a target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($top['url']); ?>" class="article-front-title"><?php echo $this->escape($top['title']); ?></a>
         </div>
         <?php 
         if (isset($top['child'])) {
@@ -32,8 +32,8 @@
                     echo '-';
                 }
             ?>
-            <a class="muted" target="<?php echo $this->escape($block['target']) ?>" href="<?php echo $this->escape($sub['url']) ?>">
-                <?php echo $this->escape($sub['title']) ?>
+            <a class="muted" target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($sub['url']); ?>">
+                <?php echo $this->escape($sub['title']); ?>
             </a>
         </div>
         <?php 

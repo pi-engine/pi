@@ -1,6 +1,6 @@
-<h2 class="article-admin-title"><?php echo $this->escape($title) ?></h2>
+<h2 class="article-admin-title"><?php echo $this->escape($title); ?></h2>
 
-<?php include 'message-box.phtml' ?>
+<?php include 'message-box.phtml'; ?>
 
 <?php
     $form->setAttributes(array(
@@ -12,13 +12,13 @@
 ?>
 <div class="row-fluid">
     <div class="span12 alert alert-info">
-        <?php _e('Move all articles from source category to target category') ?>
+        <?php echo _a('Move all articles from source category to target category'); ?>
     </div>
 
     <div class="span12">
         <div class="row-fluid">
             <div class="span5">
-                <h3><?php _e('Source Category') ?></h3>
+                <h3><?php echo _a('Source Category'); ?></h3>
                 <br/>
                 <?php
                     $element = $form->get('from');
@@ -31,11 +31,11 @@
                 <h3>&nbsp;</h3>
                 <br/>
                 <p class="help-block">
-                    <?php _e('merge into') ?>
+                    <?php echo _a('merge into'); ?>
                 </p>
             </div>
             <div class="span5">
-                <h3><?php _e('Target Category') ?></h3>
+                <h3><?php echo _a('Target Category'); ?></h3>
                 <br/>
                 <?php
                     $element = $form->get('to');
@@ -57,6 +57,6 @@
     </div>
 </div>
 <div class="form-actions">
-    <button type="submit" class="btn btn-primary"><?php echo $elements['submit']->getValue() ?></button>
+    <button type="submit" class="btn btn-primary"><?php echo $elements['submit']->getValue(); ?></button>
 </div>
-<?php echo $this->form()->closeTag() ?>
+<?php echo $this->form()->closeTag(); ?>

@@ -16,7 +16,7 @@ use Zend\Form\View\Helper\AbstractHelper;
 use Pi;
 
 /**
- * Editor element helper
+ * Collective checkbox element helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -40,28 +40,29 @@ class Checkbox extends AbstractHelper
     }
 
     /**
-     * Render editor
-     *
-     * @param  ElementInterface $element
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function render(ElementInterface $element)
     {
-        Pi::service('view')->getHelper('js')->load(Pi::url('static/custom/js/eefocus-linkage.js'));
-        $id = uniqid();
+        $this->view->plugin('js')->load(
+            Pi::url('static/custom/js/eefocus-linkage.js')
+        );
+        $id = md5(uniqid());
 
-        return sprintf('
+        $html = <<<'EOT'
         <div id="%s" class="pi-checkbox">
         </div>
         <script>
             new eefocus.Checkbox("%s", "%s", %s);
-        </script> 
-        ',
-        $id,
-        $id,
-        $element->getName(),
-        json_encode($element->getValue())
+        </script>
+EOT;
+
+        return sprintf(
+            $html,
+            $id,
+            $id,
+            $element->getName(),
+            json_encode($element->getValue())
         );
     }
 }

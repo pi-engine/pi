@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => __('Page'),
+        'title'         => _a('Page'),
         // Description, for admin, optional
-        'description'   => __('Page configurations for cache, blocks and permissions.'),
+        'description'   => _a('Page configurations for cache, blocks and permissions.'),
         // Version number, required
         'version'       => '1.0.0-beta.4',
         // Distribution license, required

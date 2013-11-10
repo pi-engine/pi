@@ -15,8 +15,8 @@
 return array(
     // Module meta
     'meta'         => array(
-        'title'         => __('Article'),
-        'description'   => __('General module for content management.'),
+        'title'         => _a('Article'),
+        'description'   => _a('General module for content management.'),
         'version'       => '1.0.1-beta.1',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',

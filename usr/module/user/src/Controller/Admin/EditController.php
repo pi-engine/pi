@@ -44,13 +44,13 @@ class EditController extends ActionController
         if ($this->request->isPost()) {
             $form->setData($this->request->getPost());
             $form->setInputFilter(new EditUserFilter($formFilters));
-            $result['message'] = __('Edit user info failed');
+            $result['message'] = _a('Edit user info failed');
             $result['status']  = 0;
             if ($form->isValid()) {
                 // Update user
                 $status = Pi::api('user', 'user')->updateUser($uid, $form->getData());
                 if ($status) {
-                    $result['message'] = __('Edit user info successfully');
+                    $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
                 }
             }
@@ -93,12 +93,12 @@ class EditController extends ActionController
             $status = Pi::user()->set($uid, 'avatar', '');
             $result = array(
                 'status'  => 0,
-                'message' => __('Replace user avater failed')
+                'message' => _a('Replace user avater failed')
             );
             if ($status) {
                 $result = array(
                     'status'  => 1,
-                    'message' => __('Replace user avater successfully')
+                    'message' => _a('Replace user avater successfully')
                 );
             }
             $this->view()->assign('result', $result);
@@ -158,7 +158,7 @@ class EditController extends ActionController
             $forms[$set]->setData($post);
             $result = array(
                 'status'  => 0,
-                'message' => __('Edit user info failed')
+                'message' => _a('Edit user info failed')
             );
             if ($forms[$set]->isValid()) {
                 $values        = $forms[$set]->getData();
@@ -198,7 +198,7 @@ class EditController extends ActionController
                 );
 
                 if ($status) {
-                    $result['message'] = __('Edit user info successfully');
+                    $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
                 }
                 
@@ -243,7 +243,7 @@ class EditController extends ActionController
             'action'      => 'compound',
             'uid'         => $uid,
             'name'        => $name
-        ), __('Delete this group successfully'));
+        ), _a('Delete this group successfully'));
         
     }
 
@@ -294,14 +294,14 @@ class EditController extends ActionController
     {
         $result[] = array(
             'name'  => 'info',
-            'title' => __('Base info'),
+            'title' => _a('Base info'),
             'link'  => $this->url('', array('controller' => 'edit', 'uid' => $uid)),
         );
 
         // Avatar
         $result[] = array(
             'name'  => 'avatar',
-            'title' => __('Avatar'),
+            'title' => _a('Avatar'),
             'link'  => $this->url('', array('controller' => 'edit', 
                                             'action' => 'avatar', 
                                             'uid' => $uid)),
@@ -341,7 +341,7 @@ class EditController extends ActionController
         );
 
         if (!$user['name']) {
-            return $this->jumpTo404(__('User was not found.'));
+            return $this->jumpTo404(_a('User was not found.'));
         }
 
         return $user;

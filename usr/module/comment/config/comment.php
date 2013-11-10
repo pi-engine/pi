@@ -15,7 +15,7 @@
  */
 return array(
     'article' => array(
-        'title'     => __('Article comments'),
+        'title'     => _a('Article comments'),
         'icon'      => 'icon-post',
         'callback'  => 'Module\Comment\Api\Article',
         'controller'    => 'demo',
@@ -26,7 +26,7 @@ return array(
         ),
     ),
     'custom' => array(
-        'title'     => __('Custom comments'),
+        'title'     => _a('Custom comments'),
         'icon'      => 'icon-post',
         'callback'  => 'Module\Comment\Api\Custom',
         'locator'   => 'Module\Comment\Api\Custom',

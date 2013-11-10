@@ -15,7 +15,7 @@
  */
 return array(
     'article' => array(
-        'title'     => __('Article comments'),
+        'title'     => _a('Article comments'),
         'icon'      => 'icon-post',
         'callback'  => 'Module\Article\Comment\Article',
         'controller'    => 'article',

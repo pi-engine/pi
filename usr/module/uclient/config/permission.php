@@ -15,19 +15,19 @@
 return array(
     'admin' => array(
         'user'       => array(
-            'title'         => __('Users'),
+            'title'         => _a('Users'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'role'          => array(
-            'title'         => __('Roles'),
+            'title'         => _a('Roles'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'maintenance'  => array(
-            'title'         => __('Maintenance'),
+            'title'         => _a('Maintenance'),
             'access'        => array(
                 //'admin',
             ),

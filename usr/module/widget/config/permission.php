@@ -10,16 +10,16 @@
 return array(
     'admin' => array(
         'script'    => array(
-            'title'         => __('Script widgets'),
+            'title'         => _t('Script widgets'),
         ),
         'static'    => array(
-            'title'         => __('Static widgets'),
+            'title'         => _t('Static widgets'),
         ),
         'carousel'  => array(
-            'title'         => __('Carousel widgets'),
+            'title'         => _t('Carousel widgets'),
         ),
         'tab'       => array(
-            'title'         => __('Compound tabs'),
+            'title'         => _t('Compound tabs'),
         ),
     ),
 );

@@ -57,7 +57,7 @@ class ArticleController extends ActionController
         $from   = Service::getParam($this, 'from', '');
 
         if (empty($ids)) {
-            return $this->jumpTo404(__('Invalid article ID'));
+            return $this->jumpTo404(_a('Invalid article ID'));
         }
         
         $module         = $this->getModule();
@@ -209,7 +209,7 @@ class ArticleController extends ActionController
         $module = $this->getModule();
 
         if (!$id) {
-            return $this->jumpTo404(__('Invalid article ID'));
+            return $this->jumpTo404(_a('Invalid article ID'));
         }
         
         $model = $this->getModel('article');
@@ -235,7 +235,7 @@ class ArticleController extends ActionController
 
         // Create new draft if no draft exists
         if (!$row->id or $row->status != Article::FIELD_STATUS_PUBLISHED) {
-            return $this->jumpTo404(__('Can not create draft'));
+            return $this->jumpTo404(_a('Can not create draft'));
         }
         $draft = array(
             'article'         => $row->id,
@@ -410,7 +410,7 @@ class ArticleController extends ActionController
 
         $cacheCategories = Service::getCategoryList();
         $this->view()->assign(array(
-            'title'      => __('Published'),
+            'title'      => _a('Published'),
             'data'       => $data,
             'form'       => $form,
             'paginator'  => $paginator,

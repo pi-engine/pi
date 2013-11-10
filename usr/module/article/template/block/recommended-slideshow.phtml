@@ -14,19 +14,19 @@
         <ol class="carousel-indicators">
             <?php $i = 0; ?>
             <?php for ($i = 0; $i < count($block['images']); $i++) { ?>
-            <li data-target="#article-recommended-slide" data-slide-to="<?php echo $i ?>" <?php if ($i == 0) echo 'class="active"' ?>></li>
+            <li data-target="#article-recommended-slide" data-slide-to="<?php echo $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
             <?php } ?>
         </ol>
         <div class="carousel-inner">
             <?php $j = 0 ?>
             <?php foreach ($block['images'] as $image) { ?>
-            <div class="item <?php if ($j++ == 0) echo 'active' ?>">
-                <a href="<?php echo $this->escape($image['link']) ?>">
-                    <img style="width: 320px; height: 240px" src="<?php echo $this->escape($image['url']) ?>">
+            <div class="item <?php if ($j++ == 0) echo 'active'; ?>">
+                <a href="<?php echo $this->escape($image['link']); ?>">
+                    <img style="width: 320px; height: 240px" src="<?php echo $this->escape($image['url']); ?>">
                 </a>
                 <div class="carousel-caption">
                     <p class="article-size12">
-                        <?php echo $this->escape(mb_substr($image['description'], 0, 60, 'UTF-8')) ?>
+                        <?php echo $this->escape(mb_substr($image['description'], 0, 60, 'UTF-8')); ?>
                     </p>
                 </div>
             </div>

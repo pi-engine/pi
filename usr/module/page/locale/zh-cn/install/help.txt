@@ -1,0 +1,88 @@
+
+All documents and information could be found at [Pi Wiki](https://github.com/pi-engine/pi/wiki) or [P Engine Web](http://pi-engine.org).
+
+
+# Introduction
+* [Pi Project](https://github.com/pi-engine/pi/blob/master/README.md)
+* [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)
+* [Pi VI](https://github.com/pi-engine/pi/wiki/Pi-VI)
+
+# User Guide
+  * Setup
+    * [Installation](https://github.com/pi-engine/pi/wiki/Pi-Installation)
+    * [Deployment](https://github.com/pi-engine/pi/wiki/Pi-Deployment)
+  * Operation guide
+    * [Nginx Deployment](https://github.com/pi-engine/pi/blob/master/doc/nginx.conf)
+    * [Nginx Virtual Host](https://github.com/pi-engine/pi/blob/master/doc/nginx-site.conf)
+
+# Developer Guide
+* Best Practices
+  * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
+  * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)
+  * [Code Review](https://github.com/pi-engine/pi/wiki/Dev.Code-Review)
+  * [Pi Security](https://github.com/pi-engine/pi/wiki/Dev.Security)
+* Engine Development
+  * [Role Oriented Architecture (PPT)](https://github.com/pi-engine/pi/blob/master/doc/RoleOrientedAchitecture-20121201.pdf)
+  * [Backoffice Readme](https://github.com/pi-engine/pi/blob/master/doc/readme-backoffice.txt)
+* Module Development
+  * [Module Workflow](https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow)
+  * [Module Structure](https://github.com/pi-engine/pi/wiki/Dev.Module-Structure)
+  * [Kernel APIs](https://github.com/pi-engine/pi/wiki/Dev.Kernel-APIs)
+  * [Configuration](https://github.com/pi-engine/pi/wiki/Dev.Module-Configuration)
+  * [Authorization](https://github.com/pi-engine/pi/wiki/Dev.Module-Authorization)
+  * [Custom setup](https://github.com/pi-engine/pi/wiki/Dev.Module-Installation)
+  * [Route](https://github.com/pi-engine/pi/wiki/Dev.Module-Route)
+  * [I18n](https://github.com/pi-engine/pi/wiki/Dev.Module-I18n)
+  * [Pagination](https://github.com/pi-engine/pi/wiki/Dev.Module-Pagination)
+  * [Session](https://github.com/pi-engine/pi/wiki/Dev.Module-Session)
+  * [Parameters](https://github.com/pi-engine/pi/wiki/Dev.Module-Parameters)
+  * [Databse](https://github.com/pi-engine/pi/wiki/Dev.Module-Database)
+  * [Form](https://github.com/pi-engine/pi/wiki/Dev.Module-Form)
+* Theme Design
+  * [Theme Structure](https://github.com/pi-engine/pi/wiki/Dev.Theme-Structure)
+  * [Theme Helpers](https://github.com/pi-engine/pi/wiki/Dev.Theme-Helpers)
+* Readme Readings
+  * [Permission](https://github.com/pi-engine/pi/blob/master/doc/readme-permission.txt)
+  * [Route](https://github.com/pi-engine/pi/blob/master/doc/readme-route.txt)
+  * [Taxonomy](https://github.com/pi-engine/pi/blob/master/doc/readme-taxonomy.txt)
+  * [Template](https://github.com/pi-engine/pi/blob/master/doc/readme-template.txt)
+
+# Translator Guide
+* [Translation Skeleton](https://github.com/pi-engine/pi/blob/master/doc/readme-i18n.txt)
+
+# Tutorials
+* [Training Checklist](https://github.com/pi-engine/pi/wiki/Tutorial.Training-Checklist)
+* [Course Schedule](https://github.com/pi-engine/pi/wiki/Tutorial.Course-Schedule)
+* Courses
+  * [Course 1: Introduction and Setup](https://github.com/pi-engine/pi/wiki/Tutorial.Introduction-And-Installation-I)
+  * [Course 2: Module Design](https://github.com/pi-engine/pi/wiki/Tutorial.Module-Design-I)
+  * [Course 3: Form Generation and Validation](https://github.com/pi-engine/pi/wiki/Tutorial.Form-Generation-and-Validation-I)
+  * [Course 4: Database Operation](https://github.com/pi-engine/pi/wiki/Tutorial.Database-Operation-I)
+  * [Course 5: Theme and Block](https://github.com/pi-engine/pi/wiki/Tutorial.Theme-and-Block-I)
+  * [Course 6: Navigation and Custom Navigation](https://github.com/pi-engine/pi/wiki/Tutorial.Navigation-and-Custom-Navigation)
+  * [Course 7: Custom Route](https://github.com/pi-engine/pi/wiki/Tutorial.Custom-Route)
+  * [Course 8: Authentication Management](https://github.com/pi-engine/pi/wiki/Tutorial.Authentication-Management-I)
+  * [Course 9: Others (APIs/Localization/Updating/Cache)](https://github.com/pi-engine/pi/wiki/Tutorial.Others-I:-Module-API)
+* Enhance
+  * [Course 11: Pi Engine Mechanism](https://github.com/pi-engine/pi/wiki/Toturial.Pi-Engine-Mechanism)
+
+# Front-end
+  * [Course Schedule](https://github.com/pi-engine/pi/wiki/front-end-course-schedule)
+  * Theme
+   * [Concept and compose](https://github.com/pi-engine/pi/wiki/concept-and-compose)
+   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/file-structor-and-file-explain)
+   * Step by step
+   * [Advanced](https://github.com/pi-engine/pi/wiki/Theme-advance)
+  * Module
+   * [Concept and compose](https://github.com/pi-engine/pi/wiki/module-concept-and-compose)
+   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/module-file)
+   * Step by step
+   * [Advanced](https://github.com/pi-engine/pi/wiki/Module-advance)
+  * Standard
+   * [css](https://github.com/pi-engine/pi/wiki/css-standard)
+   * js
+   * html
+   * phtml
+  * [API](https://github.com/pi-engine/pi/wiki/template-API)
+  * Backbone
+   * [Form validate demo](https://github.com/pi-engine/pi/wiki/Js-Backbone-demo)

@@ -10,23 +10,23 @@
                     <input type="checkbox" class="check-all">
                 </th>
                 <th><?php echo __('Title'); ?></th>
-                <th style="width: 15%;"><?php _e('Category') ?></th>
-                <th style="width: 15%;"><?php _e('Tag') ?></th>
+                <th style="width: 15%;"><?php _e('Category'); ?></th>
+                <th style="width: 15%;"><?php _e('Tag'); ?></th>
                 <th style="width: 15%;">
                 <?php echo $status == $flags['published'] ? __('Published time') 
                     : __('Last update date'); 
                 ?></th>
             </tr>
             <?php foreach ($data as $draft) { ?>
-            <tr data-id="<?php echo $this->escape($draft['id']) ?>">
+            <tr data-id="<?php echo $this->escape($draft['id']); ?>">
                 <td>
-                    <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']) ?>">
+                    <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']); ?>">
                 </td>
                 <td>
                     <?php if ($draft['subject']) {
                         if ($status == $flags['published']) {
                     ?>
-                    <a target="_blank" href="<?php echo $this->escape($draft['url']) ?>">
+                    <a target="_blank" href="<?php echo $this->escape($draft['url']); ?>">
                     <?php
                         }
                         echo $this->escape($draft['subject']);
@@ -36,7 +36,7 @@
                         }
                     } else {
                     ?>
-                    <strong class="muted"><?php _e('No Title') ?></strong>
+                    <strong class="muted"><?php _e('No Title'); ?></strong>
                     <?php } ?>    
                     <div class="row-actions">
                         <?php if ($status == $flags['published']) {
@@ -49,9 +49,9 @@
                             'action'     => 'edit',
                             'controller' => $controller,
                             'id'         => $draft['id']
-                        )); ?>"><?php _e('Edit') ?></a>
+                        )); ?>"><?php _e('Edit'); ?></a>
                         <span class="divider">|</span>
-                        <a href="javascript:void(0)" class="delete"><?php _e('Delete') ?></a>
+                        <a href="javascript:void(0)" class="delete"><?php _e('Delete'); ?></a>
                     </div>
                 </td>
                 <td>

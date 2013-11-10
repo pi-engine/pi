@@ -96,7 +96,7 @@ class CategoryController extends ActionController
             if (empty($rowCategory)) {
                 Service::jumpToErrorOperation(
                     $this,
-                    __('Category is not exists.')
+                    _a('Category is not exists.')
                 );
                 return false;
             }
@@ -112,7 +112,7 @@ class CategoryController extends ActionController
                 if (array_search($parent, $children) !== false) {
                     Service::jumpToErrorOperation(
                         $this,
-                        __('Category cannot be moved to self or a child.')
+                        _a('Category cannot be moved to self or a child.')
                     );
                     return false;
                 } else {
@@ -182,7 +182,7 @@ class CategoryController extends ActionController
 
         Service::setModuleConfig($this);
         $this->view()->assign(array(
-            'title'                 => __('Add Category Info'),
+            'title'                 => _a('Add Category Info'),
             'form'                  => $form,
         ));
         $this->view()->setTemplate('category-edit');
@@ -196,7 +196,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('There are some error occured!')
+                    _a('There are some error occured!')
                 );
             }
             
@@ -206,7 +206,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not save data!')
+                    _a('Can not save data!')
                 );
             }
             
@@ -231,7 +231,7 @@ class CategoryController extends ActionController
     public function editAction()
     {
         Service::setModuleConfig($this);
-        $this->view()->assign('title', __('Edit Category Info'));
+        $this->view()->assign('title', _a('Edit Category Info'));
         
         $form = $this->getCategoryForm('edit');
         
@@ -247,7 +247,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not update data!')
+                    _a('Can not update data!')
                 );
             }
             $data = $form->getData();
@@ -270,13 +270,13 @@ class CategoryController extends ActionController
         
         $id     = $this->params('id', 0);
         if (empty($id)) {
-            $this->jumpto404(__('Invalid category ID!'));
+            $this->jumpto404(_a('Invalid category ID!'));
         }
 
         $model = $this->getModel('category');
         $row   = $model->find($id);
         if (!$row->id) {
-            return $this->jumpTo404(__('Can not find category!'));
+            return $this->jumpTo404(_a('Can not find category!'));
         }
         
         $form->setData($row->toArray());
@@ -299,7 +299,7 @@ class CategoryController extends ActionController
         if ($id == 1) {
             return Service::jumpToErrorOperation(
                 $this,
-                __('Root node cannot be deleted.')
+                _a('Root node cannot be deleted.')
             );
         } else if ($id) {
             $categoryModel = $this->getModel('category');
@@ -308,7 +308,7 @@ class CategoryController extends ActionController
             if ($this->config('default_category') == $id) {
                 return Service::jumpToErrorOperation(
                     $this,
-                    __('Cannot remove default category')
+                    _a('Cannot remove default category')
                 );
             }
 
@@ -316,7 +316,7 @@ class CategoryController extends ActionController
             if ($categoryModel->hasChildren($id)) {
                 return Service::jumpToErrorOperation(
                     $this,
-                    __('Cannot remove category with children')
+                    _a('Cannot remove category with children')
                 );
             }
 
@@ -326,7 +326,7 @@ class CategoryController extends ActionController
             if ($linkedArticles->count()) {
                 return Service::jumpToErrorOperation(
                     $this,
-                    __('Cannot remove category in used')
+                    _a('Cannot remove category in used')
                 );
             }
 
@@ -349,7 +349,7 @@ class CategoryController extends ActionController
             $this->redirect()->toRoute('', array('action' => 'list'));
             $this->view()->setTemplate(false);
         } else {
-            return $this->jumpTo404(__('Invalid category ID!'));
+            return $this->jumpTo404(_a('Invalid category ID!'));
         }
     }
 
@@ -362,7 +362,7 @@ class CategoryController extends ActionController
         $rowset = $model->enumerate(null, null, true);
 
         $this->view()->assign('categories', $rowset);
-        $this->view()->assign('title', __('Category List'));
+        $this->view()->assign('title', _a('Category List'));
         $this->view()->assign(
             'defaultLogo',
             Pi::service('asset')
@@ -379,7 +379,7 @@ class CategoryController extends ActionController
     {
         $form = new CategoryMergeForm();
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Merge Category'));
+        $this->view()->assign('title', _a('Merge Category'));
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -390,7 +390,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not merge category!')
+                    _a('Can not merge category!')
                 );
             }
             $data = $form->getData();
@@ -403,7 +403,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Category cannot be moved to self or a child!')
+                    _a('Category cannot be moved to self or a child!')
                 );
             }
 
@@ -412,7 +412,7 @@ class CategoryController extends ActionController
                return Service::renderForm(
                    $this,
                    $form,
-                   __('Cannot merge default category')
+                   _a('Cannot merge default category')
                );
             }
 
@@ -423,7 +423,7 @@ class CategoryController extends ActionController
                     return Service::renderForm(
                         $this,
                         $form,
-                        __('Move children error.')
+                        _a('Move children error.')
                     );
                 }
             }
@@ -470,7 +470,7 @@ class CategoryController extends ActionController
     {
         $form = new CategoryMoveForm();
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Move Category'));
+        $this->view()->assign('title', _a('Move Category'));
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -481,7 +481,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not move category!')
+                    _a('Can not move category!')
                 );
             }
                 
@@ -494,7 +494,7 @@ class CategoryController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Category cannot be moved to self or a child!')
+                    _a('Category cannot be moved to self or a child!')
                 );
             }
 
@@ -545,7 +545,7 @@ class CategoryController extends ActionController
         }
         // Check is id valid
         if (empty($id)) {
-            $return['message'] = __('Invalid ID!');
+            $return['message'] = _a('Invalid ID!');
             echo json_encode($return);
             exit;
         }
@@ -564,13 +564,13 @@ class CategoryController extends ActionController
             $rowMedia = $this->getModel('media')->find($mediaId);
             // Check is media exists
             if (!$rowMedia->id or !$rowMedia->url) {
-                $return['message'] = __('Media is not exists!');
+                $return['message'] = _a('Media is not exists!');
                 echo json_encode($return);
                 exit;
             }
             // Check is media an image
             if (!in_array(strtolower($rowMedia->type), $extensions)) {
-                $return['message'] = __('Invalid file extension!');
+                $return['message'] = _a('Invalid file extension!');
                 echo json_encode($return);
                 exit;
             }
@@ -579,7 +579,7 @@ class CategoryController extends ActionController
             $rename = $id . '.' . $ext;
             $fileName = rtrim($destination, '/') . '/' . $rename;
             if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-                $return['message'] = __('Can not create image file!');
+                $return['message'] = _a('Can not create image file!');
                 echo json_encode($return);
                 exit;
             }

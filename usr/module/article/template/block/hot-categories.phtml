@@ -10,8 +10,8 @@
             <?php foreach ($categories as $category) { ?>
                 <?php if ($i++ % 2 == 0) { ?>
             <div class="muted">
-                <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($category['url']) ?>" style="color: #48484C">
-                    <?php echo $this->escape($category['title']) ?>
+                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
+                    <?php echo $this->escape($category['title']); ?>
                 </a>
             </div>
                 <?php } ?>
@@ -22,8 +22,8 @@
             <?php foreach ($categories as $category) { ?>
                 <?php if ($j++ % 2 == 1) { ?>
             <div class="muted">
-                <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($category['url']) ?>" style="color: #48484C">
-                    <?php echo $this->escape($category['title']) ?>
+                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
+                    <?php echo $this->escape($category['title']); ?>
                 </a>
             </div>
                 <?php } ?>

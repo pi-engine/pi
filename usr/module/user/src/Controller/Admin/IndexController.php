@@ -198,7 +198,7 @@ class IndexController extends ActionController
         );
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
         if (count($rowset) != 0) {
-            $result['message'] = __('Add user failed: user already exists.');
+            $result['message'] = _a('Add user failed: user already exists.');
             return $result;
         }
 
@@ -212,7 +212,7 @@ class IndexController extends ActionController
         // Add user
         $uid = Pi::api('user', 'user')->addUser($data);
         if (!$uid) {
-            $result['message'] = __('Add user failed: invalid operation.');
+            $result['message'] = _a('Add user failed: invalid operation.');
             return $result;
         }
 
@@ -232,7 +232,7 @@ class IndexController extends ActionController
         Pi::api('user', 'user')->setRole($uid, $roles);
 
         $result['status']  = 1;
-        $result['message'] = __('Add user successfully');
+        $result['message'] = _a('Add user successfully');
 
         return $result;
 
@@ -363,7 +363,7 @@ class IndexController extends ActionController
 
         $uids = _post('ids', '');
         if (!$uids) {
-            $result['message'] = __('Enable user failed: invalid uid');
+            $result['message'] = _a('Enable user failed: invalid uid');
             return $result;
         }
 
@@ -379,7 +379,7 @@ class IndexController extends ActionController
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
         $result['status']  = 1;
-        $result['message'] = sprintf(__('%d enable user successfully'), $count);
+        $result['message'] = sprintf(_a('%d enable user successfully'), $count);
 
         return $result;
 
@@ -399,7 +399,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $result['message'] = __('Disable user failed: invalid uid');
+            $result['message'] = _a('Disable user failed: invalid uid');
             return $result;
         }
 
@@ -415,7 +415,7 @@ class IndexController extends ActionController
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
         $result['status']  = 1;
-        $result['message'] = sprintf(__('%d disable user successfully'), $count);
+        $result['message'] = sprintf(_a('%d disable user successfully'), $count);
 
         return $result;
 
@@ -435,7 +435,7 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $result['message'] = __('Delete user failed: invalid uid');
+            $result['message'] = _a('Delete user failed: invalid uid');
             return $result;
         }
 
@@ -455,7 +455,7 @@ class IndexController extends ActionController
             $this->deleteUser($uid, 'timeline_log', 'user');
         }
         $result['status']  = 1;
-        $result['message'] = sprintf(__('%d delete user successfully'), $count);
+        $result['message'] = sprintf(_a('%d delete user successfully'), $count);
 
         return $result;
 
@@ -475,13 +475,13 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $result['message'] = __('Activate user failed: invalid uid');
+            $result['message'] = _a('Activate user failed: invalid uid');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (empty($uids)) {
-            $result['message'] = __('Activate user failed: invalid uid');
+            $result['message'] = _a('Activate user failed: invalid uid');
             return $result;
         }
 
@@ -496,7 +496,7 @@ class IndexController extends ActionController
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
         $result['status']  = 1;
-        $result['message'] = sprintf(__('%d activated user successfully'), $count);
+        $result['message'] = sprintf(_a('%d activated user successfully'), $count);
 
         return $result;
 
@@ -526,18 +526,18 @@ class IndexController extends ActionController
         );
 
         if (!$uids || !$type || !$role) {
-            $result['message'] = __('Assign role failed: invalid parameters.');
+            $result['message'] = _a('Assign role failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = __('Assign role failed: invalid user ids.');
+            $result['message'] = _a('Assign role failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = __('Assign role failed: invalid operation.');
+            $result['message'] = _a('Assign role failed: invalid operation.');
             return $result;
         }
 
@@ -546,7 +546,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed.');
+                    $result['message'] = _a('Assign role failed.');
                     return $result;
                 }
             }
@@ -557,7 +557,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->revokeRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = __('Assign role failed');
+                    $result['message'] = _a('Assign role failed');
                     return $result;
                 }
             }
@@ -570,7 +570,7 @@ class IndexController extends ActionController
         $data = $this->renderRole($users);
         $result['data'] = $data;
         $result['status']  = 1;
-        $result['message'] = __('Assign role successfully');
+        $result['message'] = _a('Assign role successfully');
 
         return $result;
 

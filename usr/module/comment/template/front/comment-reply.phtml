@@ -75,7 +75,7 @@ if ($uid) {
             </div>
             <?php echo $this->form()->openTag($form); ?>
             <div class="form-textarea">
-                <textarea placeholder="<?php _e('Type your content') ?>" name="content"><?php echo $form->get('content')->getValue(); ?></textarea>
+                <textarea placeholder="<?php _e('Type your content'); ?>" name="content"><?php echo $form->get('content')->getValue(); ?></textarea>
             </div>
             <input class="btn form-submit pull-right" type="submit" value="<?php _e('Reply'); ?>" name="submit">
             <?php 

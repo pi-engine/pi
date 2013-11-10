@@ -106,7 +106,7 @@ class DraftController extends FrontDraft
         $where  = json_decode(urldecode($where), true);
         $where  = array_filter($where);
         if (!in_array($from, array('my', 'all'))) {
-            throw new \Exception(__('Invalid source'));
+            throw new \Exception(_a('Invalid source'));
         }
         
         if (Draft::FIELD_STATUS_DRAFT == $status) {
@@ -130,15 +130,15 @@ class DraftController extends FrontDraft
         $title  = '';
         switch ($status) {
             case Draft::FIELD_STATUS_DRAFT:
-                $title = __('Draft');
+                $title = _a('Draft');
                 $name  = 'draft';
                 break;
             case Draft::FIELD_STATUS_PENDING:
-                $title = __('Pending');
+                $title = _a('Pending');
                 $name  = 'pending';
                 break;
             case Draft::FIELD_STATUS_REJECTED:
-                $title = __('Rejected');
+                $title = _a('Rejected');
                 $name  = 'rejected';
                 break;
         }

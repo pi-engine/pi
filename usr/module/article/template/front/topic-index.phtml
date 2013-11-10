@@ -19,20 +19,20 @@
 </style>
 <div class="row pi-block block-nopadding" style="padding: 10px; background-color: #eeeeee">
     <div style="float: left; margin: 0 10px 10px 0">
-        <img src="<?php echo $this->escape($image) ?>">
+        <img src="<?php echo $this->escape($image); ?>">
     </div>
     <div>
-        <div class="article-topic-title"><?php echo $this->escape($title) ?></div>
+        <div class="article-topic-title"><?php echo $this->escape($title); ?></div>
         <div style="margin-top: 5px; font-size: 12px">
             <span class="muted">
-                <?php echo __('Created at ') . date('Y/m/d', $topic['time_create']) ?>
+                <?php echo __('Created at ') . date('Y/m/d', $topic['time_create']); ?>
             </span>
             <span class="muted" style="margin-left: 10px">
-                <?php echo current($pullTime) ? __('Last added at ') . date('Y/m/d', current($pullTime)) : '' ?>
+                <?php echo current($pullTime) ? __('Last added at ') . date('Y/m/d', current($pullTime)) : ''; ?>
             </span>
             <span class="pull-right">
-                <a href="<?php echo $this->escape($url) ?>">
-                    <?php echo $this->escape($count) . ' articles' ?>
+                <a href="<?php echo $this->escape($url); ?>">
+                    <?php echo $this->escape($count) . ' articles'; ?>
                 </a>
             </span>
         </div>
@@ -44,18 +44,18 @@
     <div class="article-list-content">
         <?php foreach ($articles as $row) { ?>
             <div class="" style="margin-bottom: 20px">
-                <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']) ?>" 
-                    title="<?php echo $this->escape($row['subject']) ?>" style="color: #333333">
-                        <?php echo $this->escape($row['subject']) ?>
+                <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
+                    title="<?php echo $this->escape($row['subject']); ?>" style="color: #333333">
+                        <?php echo $this->escape($row['subject']); ?>
                 </a>
                 <div class="muted" style="font-size: 12px">
-                    <span><?php echo __('Created at ') . date('Y/m/d', $row['time_published']) ?></span>
+                    <span><?php echo __('Created at ') . date('Y/m/d', $row['time_published']); ?></span>
                     <span style="margin-left: 10px">
-                        <?php echo __('Last added at ') . date('Y/m/d', $pullTime[$row['id']]) ?>
+                        <?php echo __('Last added at ') . date('Y/m/d', $pullTime[$row['id']]); ?>
                     </span>
                 </div>
                 <div style="margin-top: 5px; color: #333333" class="article-size12">
-                    <p><?php echo $this->escape($row['summary']) ?></p>
+                    <p><?php echo $this->escape($row['summary']); ?></p>
                 </div>
             </div>
         <?php 
@@ -64,4 +64,4 @@
     </div>
 </div>
 
-<a class="btn span12" style="margin-left: 0" href="<?php echo $this->escape($url) ?>"><?php _e('View All') ?></a>
+<a class="btn span12" style="margin-left: 0" href="<?php echo $this->escape($url); ?>"><?php _e('View All'); ?></a>

@@ -142,7 +142,7 @@ class AuthorController extends ActionController
     {
         $form = $this->getAuthorForm('add');
         Service::setModuleConfig($this);
-        $this->view()->assign('title', __('Add author info'));
+        $this->view()->assign('title', _a('Add author info'));
         $this->view()->setTemplate('author-edit');
         
         if ($this->request->isPost()) {
@@ -155,7 +155,7 @@ class AuthorController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('There are some error occured!')
+                    _a('There are some error occured!')
                 );
             }
             
@@ -165,7 +165,7 @@ class AuthorController extends ActionController
             if (!$id) {
                 return $this->renderForm(
                     $form,
-                    __('Can not save data!')
+                    _a('Can not save data!')
                 );
             }
             
@@ -191,7 +191,7 @@ class AuthorController extends ActionController
     {
         $form = $this->getAuthorForm('edit');
         Service::setModuleConfig($this);
-        $this->view()->assign('title', __('Edit Author Info'));
+        $this->view()->assign('title', _a('Edit Author Info'));
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -203,7 +203,7 @@ class AuthorController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('There are some error occured!')
+                    _a('There are some error occured!')
                 );
             }
             
@@ -221,12 +221,12 @@ class AuthorController extends ActionController
         
         $id  = $this->params('id', 0);
         if (empty($id)) {
-            return $this->jumpto404(__('Invalid author id'));
+            return $this->jumpto404(_a('Invalid author id'));
         }
 
         $row = $this->getModel('author')->find($id);
         if (!$row->id) {
-            return $this->jumpTo404(__('The author is not exists'));
+            return $this->jumpTo404(_a('The author is not exists'));
         }
         $form->setData($row->toArray());
         $form->setData(array('fake_id'  => uniqid()));
@@ -243,7 +243,7 @@ class AuthorController extends ActionController
         $id     = $this->params('id');
         $ids    = array_filter(explode(',', $id));
         if (empty($ids)) {
-            return $this->jumpTo404(__('Invalid author id!'));
+            return $this->jumpTo404(_a('Invalid author id!'));
         }
 
         $modelAuthor = $this->getModel('author');
@@ -323,7 +323,7 @@ class AuthorController extends ActionController
             ));
 
         $this->view()->assign(array(
-            'title'     => __('Author List'),
+            'title'     => _a('Author List'),
             'authors'   => $resultset,
             'paginator' => $paginator,
         ));
@@ -347,14 +347,14 @@ class AuthorController extends ActionController
             $id = $this->params('fake_id', 0);
         }
         if (empty($id)) {
-            $return['message'] = __('Invalid ID!');
+            $return['message'] = _a('Invalid ID!');
             echo json_encode($return);
             exit;
         }
         
         $uploadFakeId = $this->params('upload_id', 0);
         if (empty($uploadFakeId)) {
-            $return['message'] = __('Invalid image fake ID!');
+            $return['message'] = _a('Invalid image fake ID!');
             echo json_encode($return);
             exit;
         }
@@ -365,7 +365,7 @@ class AuthorController extends ActionController
         if (empty($image['tmp_name']) 
             or !file_exists(Pi::path($image['tmp_name']))
         ) {
-            $return['message'] = __('Image is not exists!');
+            $return['message'] = _a('Image is not exists!');
             echo json_encode($return);
             exit;
         }
@@ -379,7 +379,7 @@ class AuthorController extends ActionController
         $x      = $this->params('x', 0);
         $y      = $this->params('y', 0);
         if (empty($width) or empty($height)) {
-            $return['message'] = __('Image width or height is needed');
+            $return['message'] = _a('Image width or height is needed');
             echo json_encode($return);
             exit;
         }
@@ -496,7 +496,7 @@ class AuthorController extends ActionController
 
         // Checking whether ID is empty
         if (empty($fakeId)) {
-            $return['message'] = __('Invalid fake ID!');
+            $return['message'] = _a('Invalid fake ID!');
             echo json_encode($return);
             exit ;
         }
@@ -583,7 +583,7 @@ class AuthorController extends ActionController
         
         // Checking whether ID is empty
         if (empty($fakeId)) {
-            $return['message'] = __('Invalid fake ID!');
+            $return['message'] = _a('Invalid fake ID!');
             echo json_encode($return);
             exit ;
         }

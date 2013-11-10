@@ -10,23 +10,23 @@
 return array(
     // Comment posts
     'post'   => array(
-        'title'         => __('Recent comments'),
-        'description'   => __('Recent active comment posts.'),
+        'title'         => _a('Recent comments'),
+        'description'   => _a('Recent active comment posts.'),
         'render'        => array('block', 'post'),
         'template'      => 'post-list',
         'config'        => array(
             // Display limit
             'limit' => array(
-                'title' => __('Post count'),
-                'description'   => __('Number of posts to display.'),
+                'title' => _a('Post count'),
+                'description'   => _a('Number of posts to display.'),
                 'edit'          => 'text',
                 'filter'        => 'int',
                 'value'         => 10,
             ),
             // Module
             'module'    => array(
-                'title'         => __('Module'),
-                'description'   => __('Select module for articles'),
+                'title'         => _a('Module'),
+                'description'   => _a('Select module for articles'),
                 'edit'          => 'module_select',
                 'value'         => ''
             ),
@@ -35,37 +35,37 @@ return array(
 
     // Commented articles
     'article'   => array(
-        'title'         => __('Commented articles'),
-        'description'   => __('Articles being commented.'),
+        'title'         => _a('Commented articles'),
+        'description'   => _a('Articles being commented.'),
         'render'        => array('block', 'article'),
         'template'      => 'article-list',
         'config'        => array(
             // Display limit
             'limit' => array(
-                'title' => __('Article count'),
-                'description'   => __('Number of articles to display.'),
+                'title' => _a('Article count'),
+                'description'   => _a('Number of articles to display.'),
                 'edit'          => 'text',
                 'filter'        => 'int',
                 'value'         => 10,
             ),
             // Module
             'module'    => array(
-                'title'         => __('Module'),
-                'description'   => __('Select module for articles.'),
+                'title'         => _a('Module'),
+                'description'   => _a('Select module for articles.'),
                 'edit'          => 'module_select',
                 'value'         => ''
             ),
             // Order
             'order'    => array(
-                'title'         => __('Sort order'),
-                'description'   => __('Criteria to select articles.'),
+                'title'         => _a('Sort order'),
+                'description'   => _a('Criteria to select articles.'),
                 'edit'          => array(
                     'type'          => 'select',
                     'options'    => array(
                         'options'   => array(
-                            'host'          => __('Most commented'),
-                            'recent'        => __('Last commented'),
-                            'publish_time'  => __('Last published'),
+                            'host'          => _a('Most commented'),
+                            'recent'        => _a('Last commented'),
+                            'publish_time'  => _a('Last published'),
                         ),
                     ),
                 ),
@@ -76,30 +76,30 @@ return array(
 
     // Top posters
     'user'   => array(
-        'title'         => __('Top posters'),
-        'description'   => __('Users with most posts'),
+        'title'         => _a('Top posters'),
+        'description'   => _a('Users with most posts'),
         'render'        => array('block', 'user'),
         'template'      => 'user-list',
         'config'        => array(
             // Display limit
             'limit' => array(
-                'title' => __('User count'),
-                'description'   => __('Number of users to display.'),
+                'title' => _a('User count'),
+                'description'   => _a('Number of users to display.'),
                 'edit'          => 'text',
                 'filter'        => 'int',
                 'value'         => 10,
             ),
             // Uid exception
             'uid_exception'    => array(
-                'title'         => __('Excluded user ids'),
-                'description'   => __('Users to exclude, separated by ",".'),
+                'title'         => _a('Excluded user ids'),
+                'description'   => _a('Users to exclude, separated by ",".'),
                 'edit'          => 'text',
                 'value'         => '1,2',
             ),
             // Role exception
             'role_exception'    => array(
-                'title'         => __('Excluded roles'),
-                'description'   => __('Roles to exclude.'),
+                'title'         => _a('Excluded roles'),
+                'description'   => _a('Roles to exclude.'),
                 'edit'          => array(
                     'type'          => 'role_select',
                     'options'    => array(

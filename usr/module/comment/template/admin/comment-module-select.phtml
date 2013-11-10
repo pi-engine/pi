@@ -1,14 +1,14 @@
 <table class="table table-striped" style="margin-top: 20px">
     <tr>
-        <th><?php _e('Title'); ?></th>
-        <th><?php _e('Action'); ?></th>
+        <th><?php echo _a('Title'); ?></th>
+        <th><?php echo _a('Action'); ?></th>
     </tr>
     <?php foreach ($modules as $name => $data) { ?>
     <tr>
         <td><?php echo _escape($name); ?></td>
         <td>
             <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>">
-                <?php _e('View comments'); ?>
+                <?php echo _a('View comments'); ?>
             </a>
         </td>
     </tr>
@@ -17,7 +17,7 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title']; ?></td>
         <td>
             <a href="<?php echo $category['url']; ?>" title="<?php echo _escape($category['title']); ?>">
-                <?php _e('View comments'); ?>
+                <?php echo _a('View comments'); ?>
             </a>
         </td>
     </tr>

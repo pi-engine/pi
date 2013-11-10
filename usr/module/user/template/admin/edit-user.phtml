@@ -1,6 +1,6 @@
 <?php $this->jQuery(); ?>
 <legend>
-    <?php _e('Edit user: '); ?> <?php echo $user['name']; ?>
+    <?php echo _a('Edit user: '); ?> <?php echo $user['name']; ?>
 </legend>
 <ul class="nav nav-tabs">
     <?php foreach ($nav as $value) { ?>
@@ -31,13 +31,13 @@
     </form>
     ',
     $avatar,
-    __('Replace with defalt avatar.'));
+    _a('Replace with defalt avatar.'));
     return;
     }
 ?>
 <?php
      if (!$forms) {
-        echo sprintf('<div class="alert">%s</div>', __('This user doesn\'t have any you can view'));
+        echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
         return;
      }
  ?>
@@ -62,7 +62,7 @@
 <?php } ?>
 <script>
     $('.js-user-compound-delete').click(function() {
-        if (!confirm('<?php _e('Are you sure delete this group?'); ?>')) return;
+        if (!confirm('<?php echo _a('Are you sure delete this group?'); ?>')) return;
         location.href = $(this).attr('data-url');
     });
 </script>

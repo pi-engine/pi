@@ -52,7 +52,7 @@ class MaintenanceController extends ActionController
         // Check user exist
         $isExist = Pi::api('user', 'user')->getUser($uid)->id;
         if (!$isExist) {
-            return $this->jumpTo404(__('User was not found.'));
+            return $this->jumpTo404(_a('User was not found.'));
         }
 
         // Get user basic information and user data
@@ -197,7 +197,7 @@ class MaintenanceController extends ActionController
         $uids   = _post('uids');
         $result = array(
             'status' => 0,
-            'message' => __('Clear failed.')
+            'message' => _a('Clear failed.')
         );
 
         $model = Pi::model('user_account');
@@ -207,7 +207,7 @@ class MaintenanceController extends ActionController
             try {
                 $model->delete(array('time_deleted > ?' => 0));
                 $result['status'] = 1;
-                $result['message'] = __('Clear all deleted user successfully.');
+                $result['message'] = _a('Clear all deleted user successfully.');
 
             } catch (\Exception $e) {
                 return $result;
@@ -224,7 +224,7 @@ class MaintenanceController extends ActionController
                         'time_deleted > ?' => 0,
                     ));
                     $result['status'] = 1;
-                    $result['message'] = __('Clear all deleted user successfully.');
+                    $result['message'] = _a('Clear all deleted user successfully.');
                 } catch (\Exception $e) {
                     return $result;
                 }

@@ -51,40 +51,40 @@ return array(
         // Custom navigation
         'site' => array(
             'home'     => array(
-                'label'         => _t('Home'),
+                'label'         => _a('Home'),
                 'route'         => 'home',
             ),
             'about'     => array(
-                'label'         => _t('About us'),
+                'label'         => _a('About us'),
                 'route'         => '.page',
                 'action'        => 'about',
             ),
             'contact'     => array(
-                'label'         => _t('Contact us'),
+                'label'         => _a('Contact us'),
                 'route'         => '.page',
                 'action'        => 'contact',
             ),
             'term'     => array(
-                'label'         => _t('Terms of use'),
+                'label'         => _a('Terms of use'),
                 'route'         => '.page',
                 'action'        => 'terms',
             ),
             'privacy'     => array(
-                'label'         => _t('Privacy guidelines'),
+                'label'         => _a('Privacy guidelines'),
                 'route'         => '.page',
                 'action'        => 'privacy',
             ),
             'join'     => array(
-                'label'         => _t('Join us'),
+                'label'         => _a('Join us'),
                 'route'         => 'user',
             ),
             'app'       => array(
-                'label'         => _t('Applications'),
+                'label'         => _a('Applications'),
                 'uri'           => '',
                 'callback'      => 'Module\\Page\\Navigation::modules',
             ),
             'eefocus'   => array(
-                'label'         => _t('Pi Engine'),
+                'label'         => _a('Pi Engine'),
                 'uri'           => 'http://pialog.org',
                 'target'        => '_blank',
             ),

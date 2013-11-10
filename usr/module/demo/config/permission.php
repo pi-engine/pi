@@ -11,18 +11,18 @@ return array(
     'front'    => array(
         // test
         'test'  => array(
-            'title'         => __('Test resource'),
+            'title'         => _a('Test resource'),
             'access'    => array(
                 'guest',
                 'member',
             ),
         ),
         'write'  => array(
-            'title'     => __('Write privilege'),
+            'title'     => _a('Write privilege'),
             'access'    => 'member',
         ),
         'manage'  => array(
-            'title'     => __('Management privilege'),
+            'title'     => _a('Management privilege'),
             'access'    => 'moderator',
         ),
         'custom'    => 'Module\Demo\Api\PermFront',

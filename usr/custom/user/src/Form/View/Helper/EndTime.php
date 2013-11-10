@@ -16,7 +16,7 @@ use Zend\Form\View\Helper\AbstractHelper;
 use Pi;
 
 /**
- * Editor element helper
+ * Start/end time element helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -40,24 +40,25 @@ class EndTime extends AbstractHelper
     }
 
     /**
-     * Render editor
-     *
-     * @param  ElementInterface $element
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function render(ElementInterface $element)
     {
-        Pi::service('view')->getHelper('js')->load(Pi::url('static/custom/js/eefocus-time.js'));
+        $this->view->plugin('js')->load(
+            Pi::url('static/custom/js/eefocus-time.js')
+        );
+        $id = md5(uniqid());
         $maxYear = date('Y');
-        $id = uniqid();
 
-        return sprintf('
+        $html = <<<'EOT'
         <div class="form-inline" id="%s"></div>
         <script>
         new eefocus.EndTime("%s", %s, "%s", "%s");
         </script>
-        ',
+EOT;
+
+        return sprintf(
+            $html,
             $id,
             $id,
             $maxYear,

@@ -14,8 +14,8 @@
  */
 return array(
     'meta'  => array(
-        'title'         => __('Comment'),
-        'description'   => __('Comment management and services.'),
+        'title'         => _a('Comment'),
+        'description'   => _a('Comment management and services.'),
         'version'       => '1.0.0-alpha',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org'

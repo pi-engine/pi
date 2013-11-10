@@ -1,0 +1,15 @@
+Please contact us with following contacts:
+
+Email: dev@xoopsengine.org
+Pi Engine Team: https://github.com/pi-engine/pi/wiki/Pi-Team
+Pi Engine Website: http://www.pi-engine.org
+Pi Engine Github: http://github.com/pi-engine
+Pi Engine Code: https://github.com/pi-engine/pi
+Pi Engine Docs: https://github.com/pi-engine/pi/wiki
+Pi Engine Tickets: https://github.com/pi-engine/pi/issues
+Pi Engine Google+: https://plus.google.com/communities/113415243547871753745
+
+Pi demo websites:
+Pi Dialogue: http://pialog.org; http://pialogue.org
+Pi Demo: http://pi-demo.org
+Xoops/Pi: http://demo.xoopsengine.org

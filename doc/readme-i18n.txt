@@ -1,30 +1,51 @@
+Pi Locale
+=========
 
-i18n File skeleton
+SPECs
+-----
+* Top folder name as identifier for a language
+* Folder name must be in lowercase
+* Folder name, i.e. language tag must respect [RFC 4646](http://www.ietf.org/rfc/rfc4646.txt)
+* Locale files are in po/mo format except mail templates which are in plain text
+* All files must be encoded in the same charset as Pi system, default as `UTF-8`
 
-* usr/locale: Global, locale folder name must be in lower case
-  * /en
-    * default.mo: General
-    * navigation.mo: Navigation and menu
+Skeleton
+--------
+
+* `usr/locale`: Global
+  * `/en`
+    * `default.mo`: Global, loaded on every request
+    * `timezone.mo`: Timezone
     * ...
-  * /zh-cn
+  * `/zh-cn`
     * ...
-* usr/module/demo: Module, locale folder name must be in lower case
-  * /en
-    * /mail: Mail templates
-      * mail-template.phtml
-    * default.mo
-    * navigation.mo
-    * admin.mo: Admin area
-    * config.mo: Config edit
-    * feed.mo: Feed
+* `usr/module/system`: Module `system`
+  * `/en`
+    * `default.mo`: module global, loaded on every request of current module
+    * `admin.mo`: Admin area
+    * `block.mo`: Module block
     * ...
-  * /zh-cn
+  * `/zh-cn`
+    * ...
+* `usr/module/demo`: Module `demo`
+  * `/en`
+    * `/mail`: Mail templates
+      * `mail-template.text`
+    * `default.mo`: module global, loaded on every request of current module
+    * `admin.mo`: Admin area
+    * `block.mo`: Module block
+    * ...
+  * `/zh-cn`
+    * ...
+* `usr/theme/default`: Theme `default`
+  * `/en`
+    * `default.mo`: theme global
+    * `admin.mo`: Admin area
+    * ...
+  * `/zh-cn`
     * ...
 
-Translation tools:
-
-* Create POT file: <TODO>
-* Edit POT file: http://www.poedit.net/
-
-
-Taiwen Jiang
+Use `poedit` to extract module language items:
+* _a(), t() => admin.mo
+* _b() => block.mo
+* __(), _e() and others => default.mo

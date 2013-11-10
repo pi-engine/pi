@@ -1,0 +1,191 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-page\n"
+"POT-Creation-Date: 2013-11-10 14:00+0800\n"
+"PO-Revision-Date: 2013-11-10 14:00+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\page\n"
+
+#: C:\wamp\www\master\usr\module\page/config/module.php:14
+msgid "Page"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/module.php:16
+msgid "Page configurations for cache, blocks and permissions."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:13
+msgid "Custom site navigation"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:21
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:54
+msgid "Page list"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:28
+msgid "Edit page"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:35
+msgid "Delete page"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:44
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:115
+msgid "Add a page"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:54
+msgid "Home"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:58
+msgid "About us"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:63
+msgid "Contact us"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:68
+msgid "Terms of use"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:73
+msgid "Privacy guidelines"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:78
+msgid "Join us"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:82
+msgid "Applications"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/nav.php:87
+msgid "Pi Engine"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/page.php:15
+msgid "Homepage"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:96
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:241
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:316
+msgid "Page data saved successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:100
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:173
+msgid "Page data not saved."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:103
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:245
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:157
+msgid "Page added successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:261
+msgid "Page edit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:345
+msgid "Page deleleted successfaully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:371
+msgid "Page updated successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Installer/Action/Install.php:71
+msgid "Pages added."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:4
+msgid "Page content type:"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:5
+msgid "Only plaintext content is allowed."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:5
+msgid "Text"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:6
+msgid "HTML tags allowed in content."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:6
+msgid "HTML"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:7
+msgid "Markdown syntax allowed in content."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:7
+msgid "Markdown"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:17
+msgid "Active pages"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:22
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:43
+msgid "Edit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:23
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:44
+msgid "View"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:24
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:87
+msgid "Deactivate"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:25
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:46
+msgid "Delete"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:29
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:50
+msgid "name: "
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:31
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:52
+msgid "slug: "
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:38
+msgid "Inactive pages"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:45
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:90
+msgid "Activate"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:74
+msgid "Are you sure to delete the page?"
+msgstr ""

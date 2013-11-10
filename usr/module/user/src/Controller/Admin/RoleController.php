@@ -106,11 +106,11 @@ class RoleController extends ActionController
                     if ($count) {
                         $status = 1;
                         $model->delete($data);
-                        $message = __('User removed from the role.');
+                        $message = _a('User removed from the role.');
                         $data = array('id' => $uid);
                     } else {
                         $status = 0;
-                        $message = __('User not in the role.');
+                        $message = _a('User not in the role.');
                         $data = array('id' => $uid);
                     }
                 } else {
@@ -119,7 +119,7 @@ class RoleController extends ActionController
                         $data['section'] = $roles[$role]['section'];
                         $row = $model->createRow($data);
                         $row->save();
-                        $message = __('User added to the role.');
+                        $message = _a('User added to the role.');
                         $data = array(
                             'id'    => $uid,
                             'name'  => Pi::service('user')->get($uid, 'name'),
@@ -130,13 +130,13 @@ class RoleController extends ActionController
                         );
                     } else {
                         $status = 0;
-                        $message = __('User already in the role.');
+                        $message = _a('User already in the role.');
                         $data = array('uid' => $uid);
                     }
                 }
             } else {
                 $status = 0;
-                $message = __('User not found.');
+                $message = _a('User not found.');
                 $data = array('id' => $uid);
             }
 
@@ -174,7 +174,7 @@ class RoleController extends ActionController
         ));
         */
 
-        $title = sprintf(__('Users of role %s'), $roles[$role]['title']);
+        $title = sprintf(_a('Users of role %s'), $roles[$role]['title']);
         
         $paginator = array(
             'page'    => $page,

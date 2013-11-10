@@ -40,6 +40,8 @@ use Pi\Mvc\Controller\ActionController;
  * - menable: array(<id>)
  * - mdisable: array(<id>)
  *
+ * - checkExist: array($key => value)
+ *
  * @see https://developers.google.com/admin-sdk/directory/v1/reference/users
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -152,6 +154,48 @@ class UserController extends ActionController
         );
 
         return $users;
+    }
+
+    /**
+     * Check username, email, display name exist
+     *
+     * @return array
+     */
+    public function checkExistAction()
+    {
+        $result = array(
+            'status' => 1,
+        );
+
+        $identity = _get('identity');
+        $email    = _get('email');
+        $name     = _get('name');
+
+        if (!$identity && !$email && !$name ) {
+            return $result;
+        }
+
+        $model = Pi::model('user_account');
+        if ($identity) {
+            $row = $model->find($identity, 'identity');
+            $result['status'] = $row ? 1 : 0;
+
+            return $result;
+        }
+
+        if ($email) {
+            $row = $model->find($email, 'email');
+            $result['status'] = $row ? 1 : 0;
+
+            return $result;
+        }
+
+        if ($name) {
+            $row = $model->find($name, 'name');
+            $result['status'] = $row ? 1 : 0;
+
+            return $result;
+        }
     }
 
     /**

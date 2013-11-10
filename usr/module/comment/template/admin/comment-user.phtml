@@ -15,8 +15,8 @@ $active = $comment['active'];
 ?>
 
 <form name="comment-user" method="GET" action="<?php echo $url; ?>" style="margin-top: 10px" class="form-inline">
-    <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php _e('Type user id or identity'); ?>">
-    <button type="submit" class="btn"><?php _e('Submit'); ?></button>
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo _a('Type user id or identity'); ?>">
+    <button type="submit" class="btn"><?php echo _a('Submit'); ?></button>
 </form>
 
 <?php echo $this->tab($tabs); ?>
@@ -30,16 +30,16 @@ $active = $comment['active'];
     <?php
         if (0 === $active || null === $active) {
     ?>
-        <input type="button" name="enable" class="btn disabled" value="<?php _e('Enable'); ?>">
+        <input type="button" name="enable" class="btn disabled" value="<?php echo _a('Enable'); ?>">
     <?php
         }
         if (1 === $active || null === $active) {
     ?>
-        <input type="button" name="disable" class="btn disabled" value="<?php _e('Disable'); ?>">
+        <input type="button" name="disable" class="btn disabled" value="<?php echo _a('Disable'); ?>">
     <?php
         }
     ?>
-        <input type="button" name="delete" class="btn disabled" value="<?php _e('Delete'); ?>">
+        <input type="button" name="delete" class="btn disabled" value="<?php echo _a('Delete'); ?>">
     </div>
 
     <div class="pi-comment-list">
@@ -100,7 +100,7 @@ $active = $comment['active'];
                 <td style="width: 60px">
                 <?php if (0 === $post['active'] && 0 !== $active) {
                 ?>
-                    <span style="color: #999999"><strong><?php _e('Pending'); ?></strong></span>
+                    <span style="color: #999999"><strong><?php echo _a('Pending'); ?></strong></span>
                 <?php
                 }
                 ?>
@@ -114,7 +114,7 @@ $active = $comment['active'];
     <?php
         } else {
     ?>
-    <div class="pi-comment-none"><?php _e('No comments available yet.'); ?></div>
+    <div class="pi-comment-none"><?php echo _a('No comments available yet.'); ?></div>
     <?php
         }
     ?>
@@ -129,7 +129,7 @@ $active = $comment['active'];
 <script>
 (function($) {
     var page = {
-        url : "<?php echo $this->url('', array('controller' => 'list', 'action' => 'index')) ?>".replace(/index\/$/,""),
+        url : "<?php echo $this->url('', array('controller' => 'list', 'action' => 'index')); ?>".replace(/index\/$/,""),
         el  : $("#pi-js-comment"),
         $   : function(selector) {
             return this.el.find(selector);
@@ -165,7 +165,7 @@ $active = $comment['active'];
             this.toggleBulk();
         },
         batchOperation : function(e) {
-            var url = "<?php echo $this->url('', array('controller' => 'post', 'action' => 'index')) ?>".replace(/index\/$/,"");
+            var url = "<?php echo $this->url('', array('controller' => 'post', 'action' => 'index')); ?>".replace(/index\/$/,"");
             var el = $(e.target);
             var name = el.attr('name');
             var operation, flag;
@@ -194,7 +194,7 @@ $active = $comment['active'];
                 };
             if (name) {
                 if (name == "delete") {
-                    if (confirm("<?php _e('Are you sure delete these comments?'); ?>")) {
+                    if (confirm("<?php echo _a('Are you sure delete these comments?'); ?>")) {
                         fn.call(this);
                     }
                 } else {
@@ -240,7 +240,7 @@ $active = $comment['active'];
                 val = el.attr("data-value"),
                 status=el.attr("data-status");
             if (val == "delete") {
-                if (confirm("<?php _e('Are you sure delete this article?'); ?>")) {
+                if (confirm("<?php echo _a('Are you sure delete this article?'); ?>")) {
                     location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl(); 
                 }
             } else if (status) {

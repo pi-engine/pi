@@ -10,31 +10,31 @@
 return array(
     // Block with options and template
     'block-a'   => array(
-        'title'         => __('First Block'),
-        'description'   => __('Block with options and tempalte'),
+        'title'         => _a('First Block'),
+        'description'   => _a('Block with options and tempalte'),
         'render'        => array('block', 'blocka'),
         'template'      => 'block-a',
         'config'        => array(
             // text option
             'first' => array(
-                'title'         => __('Your input'),
-                'description'   => __('The first option for first block'),
+                'title'         => _a('Your input'),
+                'description'   => _a('The first option for first block'),
                 'edit'          => 'text',
                 'filter'        => 'string',
-                'value'         => __('Demo option 1'),
+                'value'         => _a('Demo option 1'),
             ),
             // Yes or No option
             'second'    => array(
-                'title'         => __('Yes or No'),
-                'description'   => __('Demo for Yes-No'),
+                'title'         => _a('Yes or No'),
+                'description'   => _a('Demo for Yes-No'),
                 'edit'          => 'checkbox',
                 'filter'        => 'number_int',
                 'value'         => 0
             ),
             // Number
             'third'    => array(
-                'title'         => __('Input some figure'),
-                'description'   => __('Demo for number'),
+                'title'         => _a('Input some figure'),
+                'description'   => _a('Demo for number'),
                 'edit'          => 'text',
                 //'filter'        => 'number_int',
                 'value'         => 10,
@@ -47,22 +47,22 @@ return array(
     ),
     // Block with custom options and template
     'block-b'   => array(
-        'title'         => __('Second Block'),
-        'description'   => __('Block with custom options and tempalte'),
+        'title'         => _a('Second Block'),
+        'description'   => _a('Block with custom options and tempalte'),
         'render'        => array('block', 'blockb'),
         'template'      => 'block-b',
         'config'        => array(
             // select option
             'third' => array(
-                'title'         => __('Select it'),
+                'title'         => _a('Select it'),
                 'description'   => '',
                 'edit'          => array(
                     'type'          => 'select',
                     'options'    => array(
                         'options'   => array(
-                            'one'   => __('One'),
-                            'two'   => __('Two'),
-                            'three' => __('Three'),
+                            'one'   => _a('One'),
+                            'two'   => _a('Two'),
+                            'three' => _a('Three'),
                         ),
                     ),
                 ),
@@ -72,7 +72,7 @@ return array(
 
             // module custom field option
             'fourth'    => array(
-                'title'         => __('Choose it'),
+                'title'         => _a('Choose it'),
                 'description'   => '',
                 'edit'          => 'Module\Demo\Form\Element\Choose',
                 'filter'        => 'string',
@@ -83,8 +83,8 @@ return array(
     ),
     // Simple block w/o option, no template
     'block-c'   => array(
-        'title'         => __('Third Block'),
-        'description'   => __('Block w/o options, no tempalte'),
+        'title'         => _a('Third Block'),
+        'description'   => _a('Block w/o options, no tempalte'),
         'render'        => array('block', 'random'),
     ),
 );

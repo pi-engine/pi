@@ -4,31 +4,31 @@
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
 ?>
-<h2 class="page-header"><?php echo $this->escape($title) ?></h2>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 
-<?php include 'message-box.phtml' ?>
+<?php include 'message-box.phtml'; ?>
 
 <div id="jsUpload">
-    <?php include $this->templateComponent('form') ?>
+    <?php include $this->templateComponent('form'); ?>
     
     <script id="temp-upload" type="text/template">
         <div>
             <div id="category-image" class="upload-image-bg">
-                <?php $src = $form->get('image')->getValue() ?>
+                <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
                     <div class="black-bg"><i class="category icon-remove"></i></div>    
-                    <img src="<?php echo Pi::url($src) ?>">
+                    <img src="<?php echo Pi::url($src); ?>">
                     <?php } else { ?>    
                     <i class="icon-columns"></i>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
-                <?php _e('Upload') ?>
+                <?php echo _a('Upload'); ?>
             </button>
         </div>
     </script>
     
-    <?php include 'media-image-box.phtml' ?>
+    <?php include 'media-image-box.phtml'; ?>
 </div>
 
 <script>
@@ -43,7 +43,7 @@ var page = {
     $       : function(selector) {
        return this.form.find(selector);
     },
-    mediaFakeId : '<?php echo uniqid() ?>'
+    mediaFakeId : '<?php echo uniqid(); ?>'
 };
 
 var UploadView = Backbone.View.extend({
@@ -143,7 +143,7 @@ var UploadView = Backbone.View.extend({
             'controller' => 'media',
             'action'     => 'save',
             'source'     => 'category',
-        )) ?>/' + id;
+        )); ?>/' + id;
         var self = this;
         $.ajax({
             cache       : false,
@@ -164,7 +164,7 @@ var UploadView = Backbone.View.extend({
             error       : function() {
                 self.renderMessage(
                     'error',
-                    '<?php _e('Error ocurred when request saving image!') ?>'
+                    '<?php echo _a('Error ocurred when request saving image!'); ?>'
                 );
             }
         })

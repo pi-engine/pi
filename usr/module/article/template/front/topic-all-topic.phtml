@@ -4,7 +4,7 @@
 
 <div class="pi-block">
     <div class="clearfix pi-block-header">
-        <h4 class="pi-block-title"><?php echo $this->escape($title) ?></h4>
+        <h4 class="pi-block-title"><?php echo $this->escape($title); ?></h4>
     </div>
     <div class="topic-list-content">
         <?php foreach ($topics as $row) {
@@ -13,26 +13,26 @@
             <div class="muted" style="margin-bottom: 20px">
                 <div class="list-hover">
                     <div class="media">
-                        <img class="pull-left" src="<?php echo Pi::url($row['image']) ?>">
+                        <img class="pull-left" src="<?php echo Pi::url($row['image']); ?>">
                         <div class="media-body">
                             <div class="span10">
-                                <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']) ?>" 
-                                    title="<?php echo $this->escape($row['title']) ?>" style="color: #333333">
-                                        <?php echo $this->escape($row['title']) ?>
+                                <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
+                                    title="<?php echo $this->escape($row['title']); ?>" style="color: #333333">
+                                        <?php echo $this->escape($row['title']); ?>
                                 </a>
                                 <div class="muted" style="font-size: 12px">
-                                    <span><?php echo __('Created at ') . date('Y/m/d', $row['time_create']) ?></span>
+                                    <span><?php echo __('Created at ') . date('Y/m/d', $row['time_create']); ?></span>
                                     <span style="margin-left: 10px">
-                                        <?php echo isset($lastAdded[$row['id']]) ? __('Last added at ') . date('Y/m/d', $lastAdded[$row['id']]) : '' ?>
+                                        <?php echo isset($lastAdded[$row['id']]) ? __('Last added at ') . date('Y/m/d', $lastAdded[$row['id']]) : ''; ?>
                                     </span>
                                 </div>
                                 <div style="margin-top: 5px; color: #333333; font-size: 12px">
-                                    <p><?php echo $this->escape($row['description']) ?></p>
+                                    <p><?php echo $this->escape($row['description']); ?></p>
                                 </div>
                             </div>
                             <span class="pull-right span2" style="text-align: right">
-                                <a href="<?php echo $this->url($route, array('topic' => $row['slug'] ?: $row['id'], 'list' => 'all')) ?>">
-                                    <?php echo $this->escape($eachCount) . __(' articles') ?>
+                                <a href="<?php echo $this->url($route, array('topic' => $row['slug'] ?: $row['id'], 'list' => 'all')); ?>">
+                                    <?php echo $this->escape($eachCount) . __(' articles'); ?>
                                 </a>
                             </span>
                         </div>

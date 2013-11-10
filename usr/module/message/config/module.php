@@ -14,9 +14,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => __('Message'),
+        'title'         => _a('Message'),
         // Description, for admin, optional
-        'description'   => __('A module to send message'),
+        'description'   => _a('A module to send message'),
         // Version number, required
         'version'       => '1.0.0',
         // Distribution license, required

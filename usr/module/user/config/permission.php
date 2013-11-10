@@ -15,56 +15,56 @@
 return array(
     'admin' => array(
         'account'       => array(
-            'title'         => __('User account'),
+            'title'         => _a('User account'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'user'          => array(
-            'title'         => __('User profile'),
+            'title'         => _a('User profile'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'role'          => array(
-            'title'         => __('Roles'),
+            'title'         => _a('Roles'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'profile'      => array(
-            'title'         => __('Profile fields'),
+            'title'         => _a('Profile fields'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'import'      => array(
-            'title'         => __('Custom fields'),
+            'title'         => _a('Custom fields'),
             'access'        => array(
                 //'admin',
             ),
         ),
 
         'avatar'       => array(
-            'title'         => __('Avatars'),
+            'title'         => _a('Avatars'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'form'         => array(
-            'title'         => __('Forms'),
+            'title'         => _a('Forms'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'plugin'       => array(
-            'title'         => __('Plugin management'),
+            'title'         => _a('Plugin management'),
             'access'        => array(
                 //'admin',
             ),
         ),
         'maintenance'  => array(
-            'title'         => __('Maintenance'),
+            'title'         => _a('Maintenance'),
             'access'        => array(
                 //'admin',
             ),

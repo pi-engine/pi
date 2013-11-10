@@ -43,8 +43,8 @@ class Update extends BasicUpdate
     {
         $model = Pi::model('update', $this->module);
         $data = array(
-            'title'     => __('System updated'),
-            'content'   => __('The system is updated successfully.'),
+            'title'     => _a('System updated'),
+            'content'   => _a('The system is updated successfully.'),
             'uri'       => Pi::url('www', true),
             'time'      => time(),
         );

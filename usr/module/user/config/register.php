@@ -25,7 +25,7 @@ return array(
         'element' => array(
             'name'          => 'credential-confirm',
             'options'       => array(
-                'label' => __('Confirm credential'),
+                'label' => _a('Confirm credential'),
             ),
             'attributes'    => array(
                 'type'  => 'password',
@@ -57,7 +57,7 @@ return array(
             'name'          => 'captcha',
             'type'          => 'captcha',
             'options'       => array(
-                'label'     => __('Please type the word.'),
+                'label'     => _a('Please type the word.'),
                 'separator'         => '<br />',
                 'captcha_position'  => 'append',
             )

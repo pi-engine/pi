@@ -7,8 +7,8 @@
         <div>
             <h4 style="margin-top: 0">
                 <strong>
-                    <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($topArticleOne['url']) ?>">
-                        <?php echo $this->escape($topArticleOne['subject']) ?>
+                    <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($topArticleOne['url']); ?>">
+                        <?php echo $this->escape($topArticleOne['subject']); ?>
                     </a>
                 </strong>
             </h4>
@@ -20,7 +20,7 @@
                 <?php foreach ($articles as $article) { ?>
                     <?php if ($i++ % 2 == 1) { ?>
                     <li class="muted" style="padding: 2px">
-                        <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($article['url']) ?>" class="article-front-title"><?php echo $this->escape($article['subject']) ?></a>
+                        <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title"><?php echo $this->escape($article['subject']); ?></a>
                     </li>
                     <?php } ?>
                 <?php } ?>
@@ -31,8 +31,8 @@
         <div>
             <h4 style="margin-top: 0;">
                 <strong>
-                    <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($topArticleTwo['url']) ?>">
-                        <?php echo $this->escape($topArticleTwo['subject']) ?>
+                    <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($topArticleTwo['url']); ?>">
+                        <?php echo $this->escape($topArticleTwo['subject']); ?>
                     </a>
                 </strong>
             </h4>
@@ -44,7 +44,7 @@
                 <?php foreach ($articles as $article) { ?>
                     <?php if ($j++ % 2 == 0) { ?>
                     <li class="muted" style="padding: 2px">
-                        <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($article['url']) ?>" class="article-front-title"><?php echo $this->escape($article['subject']) ?></a>
+                        <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title"><?php echo $this->escape($article['subject']); ?></a>
                     </li>
                     <?php } ?>
                 <?php } ?>

@@ -63,19 +63,19 @@
     <img src="<%= image %>">
     <div class="form-horizontal">
         <div class="control-group">
-            <label class="control-label"><?php _e('Caption'); ?></label>
+            <label class="control-label"><?php echo _a('Caption'); ?></label>
             <div class="controls">
                 <input type="text" value="<%= caption %>" name="caption" class="input-medium">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label"><?php _e('Link'); ?></label>
+            <label class="control-label"><?php echo _a('Link'); ?></label>
             <div class="controls">
                 <input type="text" value="<%= link %>" name="link" class="input-medium">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label"><?php _e('Desc'); ?></label>
+            <label class="control-label"><?php echo _a('Desc'); ?></label>
             <div class="controls">
                 <textarea name="desc" class="input-medium" rows="5"><%= desc %></textarea>
             </div>

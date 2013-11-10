@@ -2,13 +2,13 @@
 $this->I18nModule('admin', 'zh-CN');
 ?>
 
-<h2 class="page-header"><?php _e('Statistics'); ?></h2>
-<h3><?php _e('Global Top tags'); ?></h3>
+<h2 class="page-header"><?php echo _a('Statistics'); ?></h2>
+<h3><?php echo _a('Global Top tags'); ?></h3>
 <table class="table table-hover table-bordered">
     <tr class="box-bordered-header">
-        <th class="span1"><?php _e('No'); ?></th>
-        <th><?php _e('Tag Name'); ?></th>
-        <th class="span2"><?php _e('Count'); ?></th>
+        <th class="span1"><?php echo _a('No'); ?></th>
+        <th><?php echo _a('Tag Name'); ?></th>
+        <th class="span2"><?php echo _a('Count'); ?></th>
     </tr>
     <?php $i = 0; ?>
     <?php
@@ -24,12 +24,12 @@ $this->I18nModule('admin', 'zh-CN');
         <?php }?>
 </table>
 
-<h3><?php _e('Latest tags'); ?></h3>
+<h3><?php echo _a('Latest tags'); ?></h3>
 <table class="table table-hover table-bordered">
     <tr class="box-bordered-header">
-        <th class="span1"><?php _e('No'); ?></th>
-        <th><?php _e('Tag Name'); ?></th>
-        <th class="span2"><?php _e('Link time'); ?></th>
+        <th class="span1"><?php echo _a('No'); ?></th>
+        <th><?php echo _a('Tag Name'); ?></th>
+        <th class="span2"><?php echo _a('Link time'); ?></th>
     </tr>
     <?php $i = 0;?>
     <?php foreach ($newestTag as $tag) { ?>

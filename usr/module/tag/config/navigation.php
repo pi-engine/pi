@@ -23,30 +23,22 @@ return array(
     'front'     => false,
     'admin'     => array(
         'pagea'    => array(
-            'label'         => 'Tags',
+            'label'         => _t('Tags'),
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'list',
         ),
         'pagec'    => array(
-            'label'         => 'Relationships',
+            'label'         => _t('Relationships'),
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'linklist',
         ),
         'pagef'    => array(
-            'label'         => 'Statistics',
+            'label'         => _t('Statistics'),
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'stats',
         ),
-        /*
-        'pageg'   => array(
-            'label'         => __('Verify'),
-            'route'         => 'admin',
-            'controller'    => 'index',
-            'action'        => 'verify',
-        ),
-        */
     ),
 );
