@@ -46,6 +46,7 @@ Skeleton
     * ...
 
 Use `poedit` to extract module language items:
-* _a(), t() => admin.mo
-* _b() => block.mo
-* __(), _e() and others => default.mo
+* `_a()`, `_t()` => admin.mo
+  * Use `_t()` in: config/config.php, navigation.php admin[, event.php, permission.php, navigation.php meta]
+* `_b()` => block.mo
+* `__()`, `_e()` and others => default.mo
