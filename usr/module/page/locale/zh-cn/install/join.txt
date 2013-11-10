@@ -1,0 +1,6 @@
+Pi Engine is started as the next generation of Xoops and developed as a successor to Xoops by Taiwen Jiang (Xoops Project Lead and Dev Lead), Marc Desrousseaux (Xoops QA Lead), Hossein Azizabadi (Xoops Persian Lead), Kris (Xoops Council Member and Xoops France Lead), etc. Pi Team is highly inspired by the Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) successively since 2001 and will continue to support and promote Xoops.
+
+All open source contributors including Xoopsers are welcome.
+
+To join the team, please contact: infomax#gmail.com
+Or visit Pi Team page: https://github.com/pi-engine/pi/wiki/Pi-Team
