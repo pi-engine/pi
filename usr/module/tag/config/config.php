@@ -21,7 +21,7 @@ return array(
     // Categories for config edit or display
     'category'  => array(
         array(
-            'title' => 'General',
+            'title' => _t('General'),
             'name'  => 'general',
         ),
     ),
@@ -30,8 +30,8 @@ return array(
         // Tag list item per page
         'item_per_page' => array(
             'category'      => 'general',
-            'title'         => 'Item per page',
-            'description'   => 'Number of items on tag list page.',
+            'title'         => _t('Item per page'),
+            'description'   => _t('Number of items on tag list page.'),
             'value'         => 10,
             'edit'          => array(
                 'type'      => 'select',
@@ -48,8 +48,8 @@ return array(
         // Tag link item per page
         'detail_per_page' => array(
             'category'      => 'general',
-            'title'         => 'Detail per page',
-            'description'   => 'Number of items on tag detail page.',
+            'title'         => _t('Detail per page'),
+            'description'   => _t('Number of items on tag detail page.'),
             'value'         => 10,
             'edit'          => array(
                 'type'      => 'select',
@@ -66,8 +66,8 @@ return array(
         // Link list item per page
         'link_per_page' => array(
             'category'      => 'general',
-            'title'         => 'Link per page',
-            'description'   => 'Number of items on one relationships page.',
+            'title'         => _t('Link per page'),
+            'description'   => _t('Number of items on one relationships page.'),
             'value'         => 10,
             'edit'          => array(
                 'type'      => 'select',

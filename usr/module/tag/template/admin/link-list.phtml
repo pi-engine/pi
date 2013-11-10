@@ -1,7 +1,7 @@
 <?php
 $this->I18nModule('admin', 'zh-CN');
 ?>
-<h2 class="page-header"><?php _e('Relationships'); ?></h2>
+<h2 class="page-header"><?php echo _a('Relationships'); ?></h2>
 <div class="row">
     <div class="span3">
         <div class="sub-nav">
@@ -9,7 +9,7 @@ $this->I18nModule('admin', 'zh-CN');
             $items = array();
             $item = array(
                 'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'linklist')),
-                'label' => __('ALL'),
+                'label' => _a('ALL'),
             );
             if (null == $curModule) {
                 $item['active'] = 1;
@@ -30,14 +30,14 @@ $this->I18nModule('admin', 'zh-CN');
         </div>
     </div>
     <div class="span9">
-        <h3><?php echo ucfirst($curModule) . ' ' . __('tags relationships'); ?></h3>
+        <h3><?php echo ucfirst($curModule) . ' ' . _a('tags relationships'); ?></h3>
         <table class="table table-hover table-bordered">
             <tr class="box-bordered-header">
-                <th><?php _e('Tag Name'); ?></th>
-                <th><?php _e('Item'); ?></th>
-                <th class="span2"><?php _e('Module'); ?></th>
-                <th class="span2"><?php _e('Type'); ?></th>
-                <th class="span2"><?php _e('Link Time'); ?></th>
+                <th><?php echo _a('Tag Name'); ?></th>
+                <th><?php echo _a('Item'); ?></th>
+                <th class="span2"><?php echo _a('Module'); ?></th>
+                <th class="span2"><?php echo _a('Type'); ?></th>
+                <th class="span2"><?php echo _a('Link Time'); ?></th>
             </tr>
             <?php foreach ($datas as $row) { ?>
             <?php

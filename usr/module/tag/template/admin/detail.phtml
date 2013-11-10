@@ -14,7 +14,7 @@ $url = $this->url('', array('controller' => 'index', 'action' => 'list'));
             $items = array();
             $item = array(
                 'href'  => $this->url('', array('controller' => 'index', 'action' => 'detail', 'id' => $tagid)),
-                'label' => __('ALL'),
+                'label' => _a('ALL'),
             );
             if (null == $curModule) {
                 $item['active'] = 1;
@@ -38,14 +38,14 @@ $url = $this->url('', array('controller' => 'index', 'action' => 'list'));
         <?php if ($details == null) { ?>
         <div class="alert">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <p><?php echo $this->escape($tagTerm) . ' ' . __('not related an obj in ') . $this->escape($curModule); ?></p>
+            <p><?php echo $this->escape($tagTerm) . ' ' . _a('not related an obj in ') . $this->escape($curModule); ?></p>
         </div>
         <?php } else { ?>
         <table class="table table-hover table-bordered">
             <tr class="box-bordered-header">
-                <th><?php _e('Title'); ?></th>
-                <th class="span2"><?php _e('Module'); ?></th>
-                <th class="span2"><?php _e('Link Time'); ?></th>
+                <th><?php echo _a('Title'); ?></th>
+                <th class="span2"><?php echo _a('Module'); ?></th>
+                <th class="span2"><?php echo _a('Link Time'); ?></th>
             </tr>
             <?php foreach ($details as $detail) { ?>
             <tr>

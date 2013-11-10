@@ -24,9 +24,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Tags',
+        'title'         => _a('Tags'),
         // Description, for admin, optional
-        'description'   => 'Tag',
+        'description'   => _a('Tag'),
         // Version number, required
         'version'       => '1.0.0-beta.1',
         // Distribution license, required
