@@ -87,7 +87,7 @@
                     <?php } ?>
                     </td>
                     <td>
-                        <?php if ($article['time_publish'] > $now ) { ?>
+                        <?php if ($article['time_publish'] > $now) { ?>
                         <span><?php echo $this->escape($article['subject']); ?></span>    
                         <?php } else { ?>    
                         <a href="<?php echo $this->escape($article['url']); ?>"
