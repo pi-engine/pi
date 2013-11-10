@@ -28,11 +28,9 @@ class AccountController extends ActionController
      */
     public function indexAction()
     {
-        $result = array(
-            'status'       => 0,
-            'email_error'  => 0,
-            'name_error'   => 0,
-        );
+//        $result = array(
+//            'status'       => 0,
+//        );
 
         // Check login in
         $uid = Pi::service('user')->getId();
@@ -71,12 +69,11 @@ class AccountController extends ActionController
                         $data['identity'],
                         $values['email']
                     );
-
                     if (!$status) {
                         $result['email_error'] = 1;
-                        return $result;
                     }
 
+                    $result['email_error']   = 0;
                     $result['new_email']     = $values['email'];
                 }
                 // Reset display name
@@ -87,12 +84,12 @@ class AccountController extends ActionController
                     );
                     if (!$status) {
                         $result['name_error'] = 1;
-                        return $result;
                     }
+                    $result['name_error'] = 0;
                 }
 
-                $result['status'] = 1;
                 return $result;
+
             } else {
                 $result['message'] = $form->getMessages();
                 return $result;
