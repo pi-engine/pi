@@ -15,31 +15,31 @@
     }
 </style>
 
-<?php include 'message-box.phtml' ?>
+<?php include 'message-box.phtml'; ?>
 
 <div class="row-fluid">
     <div class="span12">
         <div id="jsList">
             <div class="article-pull-title">
-                <strong><?php echo _a('Pull articles for ') ?>
-                    <a href="<?php echo $this->url('', array('action' => 'list-article', 'topic' => $topic['id'])) ?>">
-                        <?php echo $this->escape($topic['title']) ?>
+                <strong><?php echo _a('Pull articles for '); ?>
+                    <a href="<?php echo $this->url('', array('action' => 'list-article', 'topic' => $topic['id'])); ?>">
+                        <?php echo $this->escape($topic['title']); ?>
                     </a>
                 </strong>
             </div>
             <div class="clearfix">
                 <div class="pull-left form-inline">
                     <a class="btn btn-primary" id="article-pull"
-                    data-content="<?php echo $this->url('', array('action' => 'pull-article', 'topic' => $topic['id'], 'id' => '')) ?>">
-                        <?php echo _a('Pull') ?>
+                    data-content="<?php echo $this->url('', array('action' => 'pull-article', 'topic' => $topic['id'], 'id' => '')); ?>">
+                        <?php echo _a('Pull'); ?>
                     </a>
                     <select class="search-cate">
-                        <option value=""><?php echo _a('All categories') ?></option>
+                        <option value=""><?php echo _a('All categories'); ?></option>
                         <?php foreach ($categories as $val) { ?>
-                        <option value="<?php echo $this->escape($val['id']) ?>" 
-                            <?php if ($category == $val['id']) echo "selected" ?>>
+                        <option value="<?php echo $this->escape($val['id']); ?>"
+                            <?php if ($category == $val['id']) echo "selected"; ?>>
                                 <?php echo str_pad('', $val['depth'], '-', STR_PAD_LEFT) 
-                                    . ' ' . $this->escape($val['title']) ?>
+                                    . ' ' . $this->escape($val['title']); ?>
                         </option>
                         <?php } ?>
                     </select>
@@ -61,7 +61,7 @@
                     ));
                     echo $this->formElement($element);
                     ?>
-                    <button type="submit" class="btn"><?php echo _a('Search') ?></button>
+                    <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
                 </div>
                 <?php echo $this->form()->closeTag(); ?>
             </div>
@@ -71,18 +71,18 @@
                     <th style="width:2.2em;">
                         <input type="checkbox" class="check-all">
                     </th>
-                    <th><?php echo _a('Title') ?></th>
-                    <th style="width: 10%"><?php echo _a('Category') ?></th>
-                    <th style="width: 15%"><?php echo _a('Topic') ?></th>
-                    <th style="width: 8%"><?php echo _a('Submitter') ?></th>
-                    <th style="width: 100px"><?php echo _a('Publish date') ?></th>
+                    <th><?php echo _a('Title'); ?></th>
+                    <th style="width: 10%"><?php echo _a('Category'); ?></th>
+                    <th style="width: 15%"><?php echo _a('Topic'); ?></th>
+                    <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
+                    <th style="width: 100px"><?php echo _a('Publish date'); ?></th>
                 </tr>
-                <?php $now = time() ?>    
+                <?php $now = time(); ?>
                 <?php foreach ($data as $article) { ?>
-                <tr data-id="<?php echo $this->escape($article['id']) ?>">
+                <tr data-id="<?php echo $this->escape($article['id']); ?>">
                     <td>
                     <?php if (!in_array($article['id'], $pulled)) { ?>
-                        <input type="checkbox" value="<?php echo $this->escape($article['id']) ?>" 
+                        <input type="checkbox" value="<?php echo $this->escape($article['id']); ?>"
                                class="check-one">
                     <?php } ?>
                     </td>
@@ -90,16 +90,16 @@
                         <?php if ($article['time_publish'] > $now ) { ?>
                         <span><?php echo $this->escape($article['subject']); ?></span>    
                         <?php } else { ?>    
-                        <a href="<?php echo $this->escape($article['url']) ?>" 
-                        title="<?php echo $this->escape($article['subject']) ?>" 
-                        target="_blank"><?php echo $this->escape($article['subject']) ?>
+                        <a href="<?php echo $this->escape($article['url']); ?>"
+                        title="<?php echo $this->escape($article['subject']); ?>"
+                        target="_blank"><?php echo $this->escape($article['subject']); ?>
                         </a>
                         <?php } ?>
                         <?php if (in_array($article['id'], $pulled)) { ?>
-                            - <strong class="text-warning"><?php echo _a('Pulled') ?></strong>
+                            - <strong class="text-warning"><?php echo _a('Pulled'); ?></strong>
                         <?php } ?>
                         <?php if ($article['image']) { ?>
-                            <i class="icon-picture" title="<?php echo _a('Feature image') ?>"></i>
+                            <i class="icon-picture" title="<?php echo _a('Feature image'); ?>"></i>
                         <?php } ?>
                         <div class="row-actions">
                             <?php if (!in_array($article['id'], $pulled)) { ?>
@@ -108,11 +108,11 @@
                                 'action' => 'pull-article',
                                 'topic'  => $topic['id'],
                                 'id'     => ''
-                            )) ?>"><?php echo _a('Pull') ?></a>
+                            )); ?>"><?php echo _a('Pull'); ?></a>
                             <?php } ?>
                         </div>
                     </td>
-                    <td><?php echo $this->escape($article['category_title']) ?></td>
+                    <td><?php echo $this->escape($article['category_title']); ?></td>
                     <td><?php echo isset($relation[$article['id']]) 
                         ? $this->escape($relation[$article['id']]) 
                         : '<span class="muted">' . _a('No topics') . '</span>'
@@ -121,7 +121,7 @@
                     <td><?php echo !empty($article['user_name']) 
                         ? $this->escape($article['user_name']) : '&nbsp;'; ?>
                     </td>
-                    <td><?php echo date('Y-m-d', $article['time_publish']) ?></td>
+                    <td><?php echo date('Y-m-d', $article['time_publish']); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>
@@ -141,7 +141,7 @@
         url     : "<?php echo $this->url('', array(
             'controller' => 'article',
             'action'     => ''
-        )) ?>" . replace(/\/$/,""),
+        )); ?>" . replace(/\/$/,""),
         el      : $("#jsList"),
         $       : function(selector){
             return this.el.find(selector);
@@ -155,14 +155,14 @@
             this.$("#article-pull").click(this.pullArticle);
             this.$("#pull-topic").click(this.pullToTopic);
             
-            var count = '<?php echo $this->escape($count) ?>';
+            var count = '<?php echo $this->escape($count); ?>';
             if (count.length) {
                 var message = count + ' article have been pull into '
-                            + '<?php echo $this->escape($topic['title']) ?>'
+                            + '<?php echo $this->escape($topic['title']); ?>'
                             + '&nbsp;&nbsp;&nbsp;&nbsp'
                             + '<a href="<?php 
                                 echo $this->url('', array('action' => 'list-article', 'topic' => $topic['id'])) 
-                            ?>"><?php echo _a('Preview') ?></a>';
+                            ?>"><?php echo _a('Preview'); ?></a>';
                 this.renderMessage(true, message);
             }
             
@@ -180,7 +180,7 @@
             this.toggleBulk();
         },
         search  : function() {
-            var url = "<?php echo $this->url('', array('action' => 'pull', 'topic' => $topic['id'])) ?>";
+            var url = "<?php echo $this->url('', array('action' => 'pull', 'topic' => $topic['id'])); ?>";
             location.href = url + "?category=" + this.$(".search-cate").val();
         },
         clickOne : function(e) {

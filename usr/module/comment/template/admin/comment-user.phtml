@@ -129,7 +129,7 @@ $active = $comment['active'];
 <script>
 (function($) {
     var page = {
-        url : "<?php echo $this->url('', array('controller' => 'list', 'action' => 'index')) ?>".replace(/index\/$/,""),
+        url : "<?php echo $this->url('', array('controller' => 'list', 'action' => 'index')); ?>".replace(/index\/$/,""),
         el  : $("#pi-js-comment"),
         $   : function(selector) {
             return this.el.find(selector);
@@ -165,7 +165,7 @@ $active = $comment['active'];
             this.toggleBulk();
         },
         batchOperation : function(e) {
-            var url = "<?php echo $this->url('', array('controller' => 'post', 'action' => 'index')) ?>".replace(/index\/$/,"");
+            var url = "<?php echo $this->url('', array('controller' => 'post', 'action' => 'index')); ?>".replace(/index\/$/,"");
             var el = $(e.target);
             var name = el.attr('name');
             var operation, flag;

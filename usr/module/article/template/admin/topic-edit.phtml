@@ -8,9 +8,9 @@
     $this->bootstrap('js/bootstrap.min.js');
 ?>
 
-<h2 class="page-header"><?php echo $this->escape($title) ?></h2>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 
-<?php include 'message-box.phtml' ?>
+<?php include 'message-box.phtml'; ?>
 
 <div id="jsUpload">
     <?php include $this->templateComponent('form'); ?>
@@ -18,25 +18,25 @@
     <script id="temp-upload" type="text/template">
         <div>
             <div id="topic-image" class="upload-image-bg">
-                <?php $src = $form->get('image')->getValue() ?>
+                <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
                     <div class="black-bg"><i class="topic icon-remove"></i></div>    
-                    <img src="<?php echo Pi::url($src) ?>">
+                    <img src="<?php echo Pi::url($src); ?>">
                     <?php } else { ?>    
                     <i class="icon-columns"></i>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
-                <?php echo _a('Upload') ?>
+                <?php echo _a('Upload'); ?>
             </button>
             <div class="topic-image-desc muted">
-                <p><?php echo _a('Feature image for topic') ?></p>
-                <p><?php echo _a('Required size: ') . $this->escape($topicWidth) . '×' . $this->escape($topicHeight) . 'px' ?></p>
+                <p><?php echo _a('Feature image for topic'); ?></p>
+                <p><?php echo _a('Required size: ') . $this->escape($topicWidth) . '×' . $this->escape($topicHeight) . 'px'; ?></p>
             </div>
         </div>
     </script>
     
-    <?php include 'media-image-box.phtml' ?>
+    <?php include 'media-image-box.phtml'; ?>
 </div>
 
 <script id="template-template" type="text/template">
@@ -45,12 +45,12 @@
             $template = $form->get('template')->getValue();
         ?>
         <div class="topic-template-title"><?php echo ucfirst($template)  ?></div>
-        <div class="topic-template-desc"><?php echo _a('This is screenshot') ?></div>
+        <div class="topic-template-desc"><?php echo _a('This is screenshot'); ?></div>
         <a class="topic-template-change" href="javascript:void(0)" value="0" style="color: #0082bf">
-            <?php echo _a('Change') ?>
+            <?php echo _a('Change'); ?>
         </a>
         <div class="topic-template-bar"></div>
-        <img class="topic-template-screenshot" src="<?php echo $this->escape($url) ?>">
+        <img class="topic-template-screenshot" src="<?php echo $this->escape($url); ?>">
     </div>
     <div id="topic-templates" class="span12 hide" style="width: auto"></div>
 </script>
@@ -59,10 +59,10 @@
     <div class="template span2" id="<%= name %>">
         <img class="template-screenshot" src="<%= url %>">
         <div class="template-bar"></div>
-        <a class="template-apply" href="javascript:void(0)" style="color: #fff"><?php echo _a('Apply') ?></a>
+        <a class="template-apply" href="javascript:void(0)" style="color: #fff"><?php echo _a('Apply'); ?></a>
         <div style="height: 20px; margin-top: 5px">
             <span class="template-title"><%= title %></span>
-            <a class="template-fullsize pull-right" target="_blank" href="<%= fullsize %>"><?php echo _a('Fullsize') ?></a>
+            <a class="template-fullsize pull-right" target="_blank" href="<%= fullsize %>"><?php echo _a('Fullsize'); ?></a>
         </div>
     </div>
 </script>
@@ -91,7 +91,7 @@ var page = {
     $       : function(selector) {
        return this.form.find(selector);
     },
-    mediaFakeId : '<?php echo uniqid() ?>'
+    mediaFakeId : '<?php echo uniqid(); ?>'
 };
 
 var UploadView = Backbone.View.extend({
@@ -195,7 +195,7 @@ var UploadView = Backbone.View.extend({
             'controller' => 'media',
             'action'     => 'save',
             'source'     => 'topic',
-        )) ?>/' + id;
+        )); ?>/' + id;
         var self = this;
         $.ajax({
             cache:    false,
@@ -216,7 +216,7 @@ var UploadView = Backbone.View.extend({
             error:    function() {
                 self.renderMessage(
                     'error',
-                    '<?php echo _a('Error ocurred when request saving image!') ?>'
+                    '<?php echo _a('Error ocurred when request saving image!'); ?>'
                 );
             }
         })
@@ -391,7 +391,7 @@ var UploadView = Backbone.View.extend({
     renderTemplates     : function(page) {
         var self = this;
         var templateObj = $('#topic-templates');
-        var url = '<?php echo $this->url('', array('action' => 'get-template')) ?>';
+        var url = '<?php echo $this->url('', array('action' => 'get-template')); ?>';
         if (page > 0) {
             url += 'page/' + page;
         }
@@ -429,7 +429,7 @@ var UploadView = Backbone.View.extend({
                 }
             },
             error       : function() {
-                alert('<?php echo _a('Error occured when required url!') ?>');
+                alert('<?php echo _a('Error occured when required url!'); ?>');
             }
         });
     },

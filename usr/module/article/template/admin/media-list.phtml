@@ -14,46 +14,46 @@
         <div id="jsList">
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="<?php echo 'image' == $type ? 'active' : '' ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'image')) ?>">
-                            <?php echo _a('Images') ?>
+                    <li class="<?php echo 'image' == $type ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'image')); ?>">
+                            <?php echo _a('Images'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'doc' == $type ? 'active' : '' ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'doc')) ?>">
-                            <?php echo _a('Docs') ?>
+                    <li class="<?php echo 'doc' == $type ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'doc')); ?>">
+                            <?php echo _a('Docs'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'video' == $type ? 'active' : '' ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'video')) ?>">
-                            <?php echo _a('Videos') ?>
+                    <li class="<?php echo 'video' == $type ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'video')); ?>">
+                            <?php echo _a('Videos'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'zip' == $type ? 'active' : '' ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'zip')) ?>">
-                            <?php echo _a('Zips') ?>
+                    <li class="<?php echo 'zip' == $type ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'zip')); ?>">
+                            <?php echo _a('Zips'); ?>
                         </a>
                     </li>
-                    <a class="btn pull-right" href="<?php echo $this->url('', array('action' => 'add')) ?>">
-                        <?php echo _a('Upload') ?>
+                    <a class="btn pull-right" href="<?php echo $this->url('', array('action' => 'add')); ?>">
+                        <?php echo _a('Upload'); ?>
                     </a>
                 </ul>
             </div>
             <div class="clearfix">
                 <div class="pull-left form-inline">
                     <select class="bulk-operation hide">
-                        <option value=""><?php echo _a('Bulk operation') ?></option>
-                        <option value="download"><?php echo _a('Download') ?></option>
-                        <option value="delete"><?php echo _a('Delete') ?></option>
+                        <option value=""><?php echo _a('Bulk operation'); ?></option>
+                        <option value="download"><?php echo _a('Download'); ?></option>
+                        <option value="delete"><?php echo _a('Delete'); ?></option>
                     </select>
-                    <select class="search-type" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)) ?>" style="margin-right: 20px">
-                        <option value=""><?php echo _a('All') ?></option>
+                    <select class="search-type" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)); ?>" style="margin-right: 20px">
+                        <option value=""><?php echo _a('All'); ?></option>
                         <?php foreach ($types as $key => $val) { ?>
-                        <option value="<?php echo $this->escape($key) ?>" <?php if ($miniType == $key) echo "selected" ?>><?php echo $this->escape($val) ?></option>
+                        <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
                         <?php } ?>
                     </select>
                     <div class="muted pull-right" style="padding-top: 5px">
-                        <?php echo $this->escape($count) . ' results' ?>
+                        <?php echo $this->escape($count) . ' results'; ?>
                     </div>
                 </div>
                 <?php
@@ -74,14 +74,14 @@
                         ));
                         echo $this->formElement($element);
                         ?>
-                        <button type="submit" class="btn"><?php echo _a('Search') ?></button>
+                        <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
                     </div>
                 <?php echo $this->form()->closeTag(); ?>
             </div>
             <?php if ('image' == $type) { ?>
-            <div class="default-header<?php echo 'default' == $style ? '' : ' hide' ?>" style="margin-bottom: 10px">
+            <div class="default-header<?php echo 'default' == $style ? '' : ' hide'; ?>" style="margin-bottom: 10px">
                 <input type="checkbox" class="check-all">
-                <button class="btn remove-checked" style="margin-left: 10px"><?php echo _a('Delete') ?></button>
+                <button class="btn remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
                 <div class="pull-right btn-toolbar" style="margin-top: 0">
                     <div class="btn-group">
                         <a class="btn" href="#"><i class="icon-th-large"></i></a>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <?php } ?>
-            <table class="table table-striped<?php echo 'default' == $style ? '' : ' hide' ?>">
+            <table class="table table-striped<?php echo 'default' == $style ? '' : ' hide'; ?>">
                 <tbody>
                 <tr>
                     <th style="width:2.2em;">
@@ -98,28 +98,28 @@
                         <input type="checkbox" class="check-all">
                     <?php } ?>
                     </th>
-                    <th style="width: 40px"><?php echo _a('ID') ?></th>
-                    <th style="width: 50px"><?php echo _a('Image') ?></th>
-                    <th><?php echo _a('Title') ?></th>
-                    <th style="width: 5%;"><?php echo _a('Type') ?></th>
-                    <th style="width: 8%"><?php echo _a('File size') ?></th>
-                    <th style="width: 10%"><?php echo _a('Size') ?></th>
-                    <th style="width: 12%"><?php echo _a('Description') ?></th>
-                    <th style="width: 8%"><?php echo _a('Download') ?></th>
-                    <th style="width: 8%"><?php echo _a('Submitter') ?></th>
-                    <th style="width: 80px;"><?php echo _a('Uploaded date') ?></th>
+                    <th style="width: 40px"><?php echo _a('ID'); ?></th>
+                    <th style="width: 50px"><?php echo _a('Image'); ?></th>
+                    <th><?php echo _a('Title'); ?></th>
+                    <th style="width: 5%;"><?php echo _a('Type'); ?></th>
+                    <th style="width: 8%"><?php echo _a('File size'); ?></th>
+                    <th style="width: 10%"><?php echo _a('Size'); ?></th>
+                    <th style="width: 12%"><?php echo _a('Description'); ?></th>
+                    <th style="width: 8%"><?php echo _a('Download'); ?></th>
+                    <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
+                    <th style="width: 80px;"><?php echo _a('Uploaded date'); ?></th>
                 </tr>
                 <?php foreach ($medias as $media) { ?>
-                <tr data-id="<?php echo $this->escape($media['id']) ?>">
+                <tr data-id="<?php echo $this->escape($media['id']); ?>">
                     <td>
-                        <input type="checkbox" value="<?php echo $this->escape($media['id']) ?>" class="check-one">
+                        <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one">
                     </td>
-                    <td><?php echo $this->escape($media['id']) ?></td>
+                    <td><?php echo $this->escape($media['id']); ?></td>
                     <td><?php 
                         if ('image' == $type) {
                             $image = Pi::url($media['url']);
                     ?>
-                        <img src="<?php echo $this->escape($image) ?>" style="width: 40px;">
+                        <img src="<?php echo $this->escape($image); ?>" style="width: 40px;">
                     <?php
                         } else {
                     ?>
@@ -129,19 +129,19 @@
                     ?>
                     </td>
                     <td>
-                        <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="<?php echo $this->escape($media['title']) ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8') ?></a>
+                        <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="<?php echo $this->escape($media['title']); ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8'); ?></a>
                         <div class="row-actions">
-                            <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])) ?>"><?php echo _a('Edit') ?></a>
+                            <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></a>
                             <span class="divider">|</span>
-                            <a href="javascript:void(0)" class="one-action" data-value="delete"><?php echo _a('Delete') ?></a>
+                            <a href="javascript:void(0)" class="one-action" data-value="delete"><?php echo _a('Delete'); ?></a>
                             <span class="divider">|</span>
-                            <a class="one-action" data-value="download" href="javascript:void(0)"><?php echo _a('Download') ?></a>
+                            <a class="one-action" data-value="download" href="javascript:void(0)"><?php echo _a('Download'); ?></a>
                         </div>
                     </td>
-                    <td><?php echo $this->escape($media['type']) ?></td>
-                    <td><?php echo $this->escape($media['size']) ?></td>
+                    <td><?php echo $this->escape($media['type']); ?></td>
+                    <td><?php echo $this->escape($media['size']); ?></td>
                     <td><?php if ('image' == $type) { ?>
-                        <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']) ?>
+                        <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']); ?>
                     <?php } else {
                         echo '<span class="muted">' . _a('None') . '</span>';
                     } ?>
@@ -153,8 +153,8 @@
                         ?>
                     </td>
                     <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
-                    <td><?php echo $this->escape($media['submitter']) ?></td>
-                    <td><?php echo date('Y-m-d', $media['time_upload']) ?></td>
+                    <td><?php echo $this->escape($media['submitter']); ?></td>
+                    <td><?php echo date('Y-m-d', $media['time_upload']); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>
@@ -173,8 +173,8 @@
 <script>
 (function($){
     var page = {
-        url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')) ?>" . replace(/list\/$/,""),
-        type    : '<?php echo $this->escape($type) ?>',
+        url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')); ?>" . replace(/list\/$/,""),
+        type    : '<?php echo $this->escape($type); ?>',
         el      : $("#jsList"),
         $       : function(selector) {
             return this.el.find(selector);

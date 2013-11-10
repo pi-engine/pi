@@ -17,15 +17,15 @@
                         <input type="checkbox" class="check-all">
                     </th>
                     <th><?php echo _a('Title'); ?></th>
-                    <th style="width: 10%;"><?php echo _a('Category') ?></th>
-                    <th style="width: 14%"><?php echo _a('Tag') ?></th>
-                    <th style="width: 8%"><?php echo _a('Submitter') ?></th>
-                    <th style="width: 100px;"><?php echo _a('Last update') ?></th>
+                    <th style="width: 10%;"><?php echo _a('Category'); ?></th>
+                    <th style="width: 14%"><?php echo _a('Tag'); ?></th>
+                    <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
+                    <th style="width: 100px;"><?php echo _a('Last update'); ?></th>
                 </tr>
                 <?php foreach ($data as $draft) { ?>
-                <tr data-id="<?php echo $this->escape($draft['id']) ?>">
+                <tr data-id="<?php echo $this->escape($draft['id']); ?>">
                     <td>
-                        <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']) ?>">
+                        <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']); ?>">
                     </td>
                     <td>
                         <?php echo $this->escape($draft['subject']); ?>
@@ -53,7 +53,7 @@
                 <?php } ?>
             </tbody>
         </table>
-        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-right')); ?>
+        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array('class' => 'pagination-right')); ?>
         </div>
     </div>
 </div>
@@ -61,7 +61,7 @@
 (function($) {
     var page = { 
         el  : $("#jsList"),
-        url : "<?php echo $this->url('', array('controller' => 'draft','action' => '')) ?>".replace(/list\/$/,""),
+        url : "<?php echo $this->url('', array('controller' => 'draft', 'action' => '')); ?>".replace(/list\/$/,""),
         $   : function(selector){
             return this.el.find(selector);
         },

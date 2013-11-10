@@ -5,7 +5,7 @@
             <?php foreach ($articles as $article) { ?>
                 <?php if ($i++ % 2 == 0) { ?>
             <li class="muted" style="padding: 2px">
-                <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($article['url']) ?>" class="article-front-title"><?php echo $this->escape($article['subject']) ?></a>
+                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title"><?php echo $this->escape($article['subject']); ?></a>
             </li>
                 <?php } ?>
             <?php } ?>
@@ -17,7 +17,7 @@
             <?php foreach ($articles as $article) { ?>
                 <?php if ($j++ % 2 == 1) { ?>
             <li class="muted" style="padding: 2px">
-                <a target="<?php echo $this->escape($target) ?>" href="<?php echo $this->escape($article['url']) ?>" class="article-front-title"><?php echo $this->escape($article['subject']) ?></a>
+                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title"><?php echo $this->escape($article['subject']); ?></a>
             </li>
                 <?php } ?>
             <?php } ?>

@@ -8,9 +8,9 @@
 
 <div class="pi-block">
     <div class="clearfix pi-block-header">
-        <h4 class="pi-block-title"><?php echo $this->escape($title) . '"' . $keyword . '"' ?></h4>
+        <h4 class="pi-block-title"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></h4>
         <span class="muted span2" style="margin: 10px 0 0 10px">
-            (<?php echo $this->escape($count) . __(' articles') ?>)
+            (<?php echo $this->escape($count) . __(' articles'); ?>)
         </span>
         <div style="margin-right: 10px">
             <?php
@@ -31,7 +31,7 @@
                 ));
                 echo $this->formElement($element);
                 ?>
-                <button type="submit" class="btn"><?php _e('Search') ?></button>
+                <button type="submit" class="btn"><?php _e('Search'); ?></button>
             </div>
             <?php echo $this->form()->closeTag(); ?>
         </div>
@@ -43,7 +43,7 @@
                 <li class="muted">
                     <div class="list-hover">
                         <span class="pull-right article-list-desc">
-                            <?php echo date('Y/m/d H:i', $article['time_publish']) ?>
+                            <?php echo date('Y/m/d H:i', $article['time_publish']); ?>
                         </span>
                         <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>" title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
                             <?php echo $this->escape($article['subject']); ?>

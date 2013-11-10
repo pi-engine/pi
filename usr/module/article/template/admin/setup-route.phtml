@@ -7,19 +7,19 @@
 
 <div>
     <div class="span12">
-        <?php include 'setup-nav.phtml' ?>
+        <?php include 'setup-nav.phtml'; ?>
     </div>
 
     <div class="span8">
-        <?php include 'message-box.phtml' ?>
+        <?php include 'message-box.phtml'; ?>
         <div id="article-js-route">
             
             <div class="article-route-content row-fluid">
                 <div class="article-route-header">
-                    <span class="pull-left"><?php echo _a('Custom Parameters') ?></span>&nbsp;
-                    <span class="install-status">[<?php echo $installed ? _a('Install') : _a('Un-install') ?>]</span>
+                    <span class="pull-left"><?php echo _a('Custom Parameters'); ?></span>&nbsp;
+                    <span class="install-status">[<?php echo $installed ? _a('Install') : _a('Un-install'); ?>]</span>
                     <div class="pull-right">
-                        <a href="javascript:void(0)" class="route-delete"><?php echo _a('Delete') ?></a>
+                        <a href="javascript:void(0)" class="route-delete"><?php echo _a('Delete'); ?></a>
                     </div>
                 </div>
                 <div id="article-route-param">
@@ -27,14 +27,14 @@
                     <?php
                         foreach ($configs as $key => $value) {
                     ?>
-                        <li data-key="<?php echo $this->escape($key) ?>" data-value="<?php echo $this->escape($routeConfigs[$key]) ?>">
-                            <span><?php echo ucfirst(preg_replace('/[_-]/', ' ', $key)) . ':' ?></span>
+                        <li data-key="<?php echo $this->escape($key); ?>" data-value="<?php echo $this->escape($routeConfigs[$key]); ?>">
+                            <span><?php echo ucfirst(preg_replace('/[_-]/', ' ', $key)) . ':'; ?></span>
                             <?php if (empty($value)) { ?>
-                            <span class="label label-important route-param"><?php echo _a('None') ?></span>
+                            <span class="label label-important route-param"><?php echo _a('None'); ?></span>
                             <?php } else { ?>
-                            <span class="label label-info route-param"><?php echo $this->escape($value) ?></span>
+                            <span class="label label-info route-param"><?php echo $this->escape($value); ?></span>
                             <?php } ?>
-                            <span class="hide route-form"><?php echo $this->formElement($form->get($key)) ?></span>
+                            <span class="hide route-form"><?php echo $this->formElement($form->get($key)); ?></span>
                         </li>
                     <?php 
                         }
@@ -45,12 +45,12 @@
 
             <div class="article-route-content row-fluid">
                 <div class="article-route-header">
-                    <span class="pull-left"><?php echo _a('Required File') ?></span>
+                    <span class="pull-left"><?php echo _a('Required File'); ?></span>
                 </div>
                 <div class="article-route-param">
                     <ol class="muted">
                         <li>
-                            <span><?php echo _a('Current route: ') ?></span>
+                            <span><?php echo _a('Current route: '); ?></span>
                             <?php
                                 $params = '<ul class="current-route-params hide">';
                                 foreach ($routeConfigs as $key => $config) {
@@ -62,7 +62,7 @@ EOD;
                                 $params .= '</ul>';
                             ?>
                             <span class="label label-success">
-                                <?php echo $this->escape($route) ?>
+                                <?php echo $this->escape($route); ?>
                                 <a class="view-route-param" href="#" style="color: #fff; margin-left: 5px" data-status="up">
                                     <i class="icon-chevron-down"></i>
                                 </a>
@@ -70,15 +70,15 @@ EOD;
                             <?php echo $params ?>
                         </li>
                         <li>
-                            <span><?php echo _a('Route configuration: ') ?></span>
-                            <span class="file-config <?php echo empty($filename) ? 'label label-important' : 'label label-success' ?>">
-                                <?php echo empty($filename) ? _a('No file') : $this->escape($filename) ?>
+                            <span><?php echo _a('Route configuration: '); ?></span>
+                            <span class="file-config <?php echo empty($filename) ? 'label label-important' : 'label label-success'; ?>">
+                                <?php echo empty($filename) ? _a('No file') : $this->escape($filename); ?>
                             </span>
                         </li>
                         <li>
-                            <span><?php echo _a('Route class: ') ?></span>
-                            <span class="file-class <?php echo empty($class) ? 'label label-important' : 'label label-success' ?>">
-                                <?php echo empty($class) ? _a('No class') : $this->escape($class) ?>
+                            <span><?php echo _a('Route class: '); ?></span>
+                            <span class="file-class <?php echo empty($class) ? 'label label-important' : 'label label-success'; ?>">
+                                <?php echo empty($class) ? _a('No class') : $this->escape($class); ?>
                             </span>
                         </li>
                     </ol>
@@ -86,8 +86,8 @@ EOD;
             </div>
 
             <div>
-                <button class="btn btn-primary route-setup"><?php echo _a('Setup') ?></button>
-                <button class="btn route-default"><?php echo _a('Use default') ?></button>
+                <button class="btn btn-primary route-setup"><?php echo _a('Setup'); ?></button>
+                <button class="btn route-default"><?php echo _a('Use default'); ?></button>
             </div>
         </div>
     </div>
@@ -126,7 +126,7 @@ EOD;
             
             // Save data
             var self = this;
-            var url = '<?php echo $this->url('', array('action' => 'save')) ?>';
+            var url = '<?php echo $this->url('', array('action' => 'save')); ?>';
             $.post(url, params, function(result) {
                 result = $.parseJSON(result);
                 if (result.status) {
@@ -150,7 +150,7 @@ EOD;
             
             if (value == '') {
                 obj.addClass("label-important");
-                obj.html('<?php echo _a('None') ?>');
+                obj.html('<?php echo _a('None'); ?>');
             } else {
                 obj.addClass("label-info");
                 obj.html(value);
@@ -165,7 +165,7 @@ EOD;
                 configObj.html(data.config_file);
                 configObj.addClass("label-success");
             } else {
-                configObj.html('<?php echo _a('None') ?>');
+                configObj.html('<?php echo _a('None'); ?>');
                 configObj.addClass("label-important");
             }
             
@@ -176,7 +176,7 @@ EOD;
                 classObj.html(data.type);
                 classObj.addClass("label-success");
             } else {
-                classObj.html('<?php echo _a('None') ?>');
+                classObj.html('<?php echo _a('None'); ?>');
                 classObj.addClass("label-important");
             }
         },
@@ -185,9 +185,9 @@ EOD;
             var routeData = el.parents("li").data('value');
             var content = '';
             if (routeData != el.val()) {
-                content = '[<?php echo _a('Un-install') ?>]';
+                content = '[<?php echo _a('Un-install'); ?>]';
             } else {
-                content = '[<?php echo _a('Install') ?>]';
+                content = '[<?php echo _a('Install'); ?>]';
             }
             $(".install-status").html(content)
         },
@@ -206,11 +206,11 @@ EOD;
             }
         },
         deleteConfig    : function() {
-            location.href = '<?php echo $this->url('', array('action' => 'delete-route')) ?>';
+            location.href = '<?php echo $this->url('', array('action' => 'delete-route')); ?>';
         },
         setupCustom     : function() {
             var self = this;
-            var url = '<?php echo $this->url('', array('action' => 'setup-route', 'custom' => 1)) ?>';
+            var url = '<?php echo $this->url('', array('action' => 'setup-route', 'custom' => 1)); ?>';
             $.get(url, function(result) {
                 result = $.parseJSON(result);
                 self.renderMessage(result.status ? 'success' : 'error', result.message);
@@ -221,7 +221,7 @@ EOD;
         },
         setupDefault    : function() {
             var self = this;
-            var url = '<?php echo $this->url('', array('action' => 'setup-route')) ?>';
+            var url = '<?php echo $this->url('', array('action' => 'setup-route')); ?>';
             $.get(url, function(result) {
                 result = $.parseJSON(result);
                 self.renderMessage(result.status ? 'success' : 'error', result.message);

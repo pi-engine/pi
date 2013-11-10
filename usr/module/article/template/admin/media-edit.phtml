@@ -4,7 +4,7 @@
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
 ?>
-<h2 class="page-header"><?php echo $this->escape($title) ?></h2>
+<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 
 <?php 
     $error = $this->formElementErrors(
@@ -14,12 +14,12 @@
 <?php if (!empty($error)) { ?>
 <div class="alert alert-error">
     <button class="close" data-dismiss="alert" type="button">×</button>
-    <?php echo $this->escape($error) ?>
+    <?php echo $this->escape($error); ?>
 </div>
 <?php } elseif (isset($message)) { ?>
 <div class="alert alert-success">
     <button class="close" data-dismiss="alert" type="button">×</button>
-    <?php echo $this->escape($message) ?>
+    <?php echo $this->escape($message); ?>
 </div>
 <?php } ?>
 
@@ -30,7 +30,7 @@
     </div>
 </script>
 
-<?php include $this->templateComponent('form') ?>
+<?php include $this->templateComponent('form'); ?>
 
 <script id="temp-upload" type="text/template">
     <div id="jsUpload">
@@ -46,20 +46,20 @@
         ?>
                 <div class="upload-image-bg">
                     <div class="black-bg"><i class="icon-remove"></i></div>    
-                    <img src="<?php echo Pi::url($src) ?>">
+                    <img src="<?php echo Pi::url($src); ?>">
                 </div>
             <?php } else { ?>
                 <div class="alert alert-success span4">
                     <button class="close" data-dismiss="alert" type="button">×</button>
-                    <?php echo basename($src) ?>
+                    <?php echo basename($src); ?>
                 </div>
             <?php } ?>
         <?php } else { ?>
-            <div class="alert alert-warning span2"><?php echo _a('No item!') ?></div>
+            <div class="alert alert-warning span2"><?php echo _a('No item!'); ?></div>
         <?php } ?>
         </div>
         <span class="btn upload fileinput-button">
-            <?php echo _a('Upload') ?> <input type="file" name="upload">
+            <?php echo _a('Upload'); ?> <input type="file" name="upload">
         </span>
     </div>
 </script>
@@ -69,7 +69,7 @@
         id      : function() {
             return "<?php echo $form->get('id')->getValue()
                 ? 'id/' . $form->get('id')->getValue()
-                : 'fake_id/' . $form->get('fake_id')->getValue() ?>";
+                : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
         },
         form    : $("form.form-horizontal"),
         $       : function(selector) {
@@ -98,7 +98,7 @@
         },
         fileupload: function() {
             var self      = this;
-            var imageExt  = '<?php echo implode(',', $imageExtension) ?>';
+            var imageExt  = '<?php echo implode(',', $imageExtension); ?>';
             var imageExts = new Array;
             imageExts = imageExt.split(',');
             this.input.fileupload({
@@ -153,7 +153,7 @@
                 page.$("[name=url]").val('');
                 page.$("[name=type]").val('');
                 content = '<div class="alert alert-warning span2">'
-                        + '<?php echo _a('No item!') ?>'
+                        + '<?php echo _a('No item!'); ?>'
                         + '</div>';
                 self.$(".upload-media").html(content);
             });
