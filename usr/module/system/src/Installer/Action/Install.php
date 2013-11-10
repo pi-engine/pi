@@ -84,14 +84,14 @@ class Install extends BasicInstall
         // Add default taxonomy domain
         Pi::service('taxonomy')->addDomain(array(
             'name'          => 'taxon',
-            'title'         => __('Default taxonomy'),
+            'title'         => _a('Default taxonomy'),
             'description'   =>
-                __('Default global taxonomy domain. Not allowed to change.'),
+                _a('Default global taxonomy domain. Not allowed to change.'),
         ), false);
 
         // Add system messages
         $name       = 'admin-welcome';
-        $message    = __('Welcome to Pi powered system.');
+        $message    = _a('Welcome to Pi powered system.');
         Pi::user()->data->set(0, $name, $message, $module);
 
         // Add quick links
@@ -121,8 +121,8 @@ class Install extends BasicInstall
         /*
         $model = Pi::model('update', $module);
         $data = array(
-            'title'     => __('System installed'),
-            'content'   => __('The system is installed successfully.'),
+            'title'     => _a('System installed'),
+            'content'   => _a('The system is installed successfully.'),
             'uri'       => Pi::url('www', true),
             'time'      => time(),
         );
