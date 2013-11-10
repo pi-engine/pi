@@ -520,8 +520,8 @@ class Block
                 $image = array(
                     'url'         => Pi::service('asset')->getModuleAsset($url, $module),
                     'link'        => $imageLinks[$key + 1],
-                    'title'       => __('This is default recommended image'),
-                    'description' => __('You should to add your own images and its title and description!'),
+                    'title'       => _b('This is default recommended image'),
+                    'description' => _b('You should to add your own images and its title and description!'),
                 );
             }
         }

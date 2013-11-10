@@ -14,8 +14,8 @@
  */
 return array(
     'all-categories'           => array(
-        'title'       => _t('All Categories'),
-        'description' => _t('Listing the parent category and its children'),
+        'title'       => _a('All Categories'),
+        'description' => _a('Listing the parent category and its children'),
         'render'      => 'block::allCategories',
         'template'    => 'all-categories',
         'config'      => array(
@@ -38,7 +38,7 @@ return array(
                 'description'  => _t('Default category name when there is no category acquired'),
                 'edit'         => 'text',
                 'filter'       => 'string',
-                'value'        => _t('None'),
+                'value'        => _a('None'),
             ),
             'target'           => array(
                 'title'        => _t('Target'),
@@ -66,20 +66,20 @@ return array(
         'template'    => 'hot-categories',
         'config'      => array(
             'list-count'       => array(
-                'title'        => _t('List Count'),
-                'description'  => _t('The max categories to display'),
+                'title'        => _a('List Count'),
+                'description'  => _a('The max categories to display'),
                 'filter'       => 'number_int',
                 'value'        => 18,
             ),
             'day-range'        => array(
-                'title'        => _t('Day Range'),
-                'description'  => _t('Day range'),
+                'title'        => _a('Day Range'),
+                'description'  => _a('Day range'),
                 'filter'       => 'number_int',
                 'value'        => 7,
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -103,15 +103,15 @@ return array(
         'template'    => 'newest-published-articles',
         'config'      => array(
             'list-count'       => array(
-                'title'        => _t('List Count'),
-                'description'  => _t('The max articles to display'),
+                'title'        => _a('List Count'),
+                'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'number_int',
                 'value'        => 10,
             ),
             'category'         => array(
-                'title'        => _t('Category'),
-                'description'  => _t('Which category article want to list'),
+                'title'        => _a('Category'),
+                'description'  => _a('Which category article want to list'),
                 'edit'         => array(
                     'type'        => 'Module\Article\Form\Element\CategoryWithRoot',
                 ),
@@ -119,8 +119,8 @@ return array(
                 'value'        => 0,
             ),
             'is-topic'         => array(
-                'title'        => _t('Is Topic'),
-                'description'  => _t('Whether to list topic articles'),
+                'title'        => _a('Is Topic'),
+                'description'  => _a('Whether to list topic articles'),
                 'edit'         => array(
                     'type'        => 'checkbox',
                     'attributes'  => array(
@@ -130,8 +130,8 @@ return array(
                 'filter'       => 'number_int',
             ),
             'topic'            => array(
-                'title'        => _t('Topic'),
-                'description'  => _t('Which topic article want to list'),
+                'title'        => _a('Topic'),
+                'description'  => _a('Which topic article want to list'),
                 'edit'         => array(
                     'type'        => 'Module\Article\Form\Element\Topic',
                 ),
@@ -139,14 +139,14 @@ return array(
                 'value'        => 0,
             ),
             'column-number'    => array(
-                'title'        => _t('List Column Number'),
-                'description'  => _t('Whether to display only one column or two columns'),
+                'title'        => _a('List Column Number'),
+                'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'single'    => _t('Single column'),
-                            'double'    => _t('Double columns'),
+                            'single'    => _a('Single column'),
+                            'double'    => _a('Double columns'),
                         ),
                     ),
                 ),
@@ -154,19 +154,19 @@ return array(
                 'value'        => 'single',
             ),
             'block-style'      => array(
-                'title'        => _t('Template Style'),
-                'description'  => _t('The template style of list'),
+                'title'        => _a('Template Style'),
+                'description'  => _a('The template style of list'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _t('basic'),
-                            'common'       => _t('Common'),
-                            'summary'      => _t('With summary'),
-                            'feature'      => _t('With feature'),
-                            'all-featured' => _t('All with feature'),
-                            'all-summary'  => _t('All with summary'),
-                            'rank'         => _t('With rank number'),
+                            'basic'        => _a('basic'),
+                            'common'       => _a('Common'),
+                            'summary'      => _a('With summary'),
+                            'feature'      => _a('With feature'),
+                            'all-featured' => _a('All with feature'),
+                            'all-summary'  => _a('All with summary'),
+                            'rank'         => _a('With rank number'),
                         ),
                     ),
                 ),
@@ -174,8 +174,8 @@ return array(
                 'value'        => 'basic',
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -191,15 +191,15 @@ return array(
                 'value'         => '_blank',
             ),
             'max_subject_length' => array(
-                'title'         => _t('Subject length'),
-                'description'   => _t('Maximum length of subject'),
+                'title'         => _a('Subject length'),
+                'description'   => _a('Maximum length of subject'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
             'max_summary_length' => array(
-                'title'         => _t('Summary length'),
-                'description'   => _t('Maximum length of summary'),
+                'title'         => _a('Summary length'),
+                'description'   => _a('Maximum length of summary'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
@@ -207,29 +207,29 @@ return array(
         ),
     ),
     'recommended-slideshow'    => array(
-        'title'       => _t('Recommended Articles With Slideshow'),
+        'title'       => _a('Recommended Articles With Slideshow'),
         'title_hidden' => 1,
-        'description' => _t('Listing a slideshow and recommended articles'),
+        'description' => _a('Listing a slideshow and recommended articles'),
         'render'      => 'block::recommendedSlideshow',
         'template'    => 'recommended-slideshow',
         'config'      => array(
             'articles'         => array(
-                'title'        => _t('Article ID'),
-                'description'  => _t('Articles want to list'),
+                'title'        => _a('Article ID'),
+                'description'  => _a('Articles want to list'),
                 'edit'         => 'text',
                 'filter'       => 'string',
                 'value'        => 0,
             ),
             'block-style'      => array(
-                'title'        => _t('Template Style'),
-                'description'  => _t('The template style of list'),
+                'title'        => _a('Template Style'),
+                'description'  => _a('The template style of list'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'     => _t('Basic'),
-                            'common'    => _t('Common'),
-                            'summary'   => _t('With summary'),
+                            'basic'     => _a('Basic'),
+                            'common'    => _a('Common'),
+                            'summary'   => _a('With summary'),
                         ),
                     ),
                 ),
@@ -237,22 +237,22 @@ return array(
                 'value'        => 'common',
             ),
             'images'           => array(
-                'title'        => _t('Image ID'),
-                'description'  => _t('Images to display'),
+                'title'        => _a('Image ID'),
+                'description'  => _a('Images to display'),
                 'edit'         => 'text',
                 'filter'       => 'string',
                 'value'        => 'image/default-recommended.png',
             ),
             'image-link'       => array(
-                'title'        => _t('Image Link'),
-                'description'  => _t('URL to redirect when click image'),
+                'title'        => _a('Image Link'),
+                'description'  => _a('URL to redirect when click image'),
                 'edit'         => 'textarea',
                 'filter'       => 'string',
                 'value'        => '',
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -268,15 +268,15 @@ return array(
                 'value'         => '_blank',
             ),
             'max_subject_length' => array(
-                'title'         => _t('Subject length'),
-                'description'   => _t('Maximum length of subject'),
+                'title'         => _a('Subject length'),
+                'description'   => _a('Maximum length of subject'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
             'max_summary_length' => array(
-                'title'         => _t('Summary length'),
-                'description'   => _t('Maximum length of summary'),
+                'title'         => _a('Summary length'),
+                'description'   => _a('Maximum length of summary'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
@@ -284,27 +284,27 @@ return array(
         ),
     ),
     'custom-article-list'      => array(
-        'title'       => _t('Custom Article List'),
-        'description' => _t('Listing custom articles'),
+        'title'       => _a('Custom Article List'),
+        'description' => _a('Listing custom articles'),
         'render'      => 'block::customArticleList',
         'template'    => 'custom-article-list',
         'config'      => array(
             'articles'         => array(
-                'title'        => _t('Article ID'),
-                'description'  => _t('Articles want to list'),
+                'title'        => _a('Article ID'),
+                'description'  => _a('Articles want to list'),
                 'edit'         => 'text',
                 'filter'       => 'string',
                 'value'        => 0,
             ),
             'column-number'    => array(
-                'title'        => _t('List Column Number'),
-                'description'  => _t('Whether to display only one column or two columns'),
+                'title'        => _a('List Column Number'),
+                'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'single'    => _t('Single column'),
-                            'double'    => _t('Double columns'),
+                            'single'    => _a('Single column'),
+                            'double'    => _a('Double columns'),
                         ),
                     ),
                 ),
@@ -312,19 +312,19 @@ return array(
                 'value'        => 'single',
             ),
             'block-style'      => array(
-                'title'        => _t('Template Style'),
-                'description'  => _t('The template style of list'),
+                'title'        => _a('Template Style'),
+                'description'  => _a('The template style of list'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _t('basic'),
-                            'common'       => _t('Common'),
-                            'summary'      => _t('With summary'),
-                            'feature'      => _t('With feature'),
-                            'all-featured' => _t('All with feature'),
-                            'all-summary'  => _t('All with summary'),
-                            'rank'         => _t('With rank number'),
+                            'basic'        => _a('basic'),
+                            'common'       => _a('Common'),
+                            'summary'      => _a('With summary'),
+                            'feature'      => _a('With feature'),
+                            'all-featured' => _a('All with feature'),
+                            'all-summary'  => _a('All with summary'),
+                            'rank'         => _a('With rank number'),
                         ),
                     ),
                 ),
@@ -332,8 +332,8 @@ return array(
                 'value'        => 'common',
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -349,15 +349,15 @@ return array(
                 'value'         => '_blank',
             ),
             'max_subject_length' => array(
-                'title'         => _t('Subject length'),
-                'description'   => _t('Maximum length of subject'),
+                'title'         => _a('Subject length'),
+                'description'   => _a('Maximum length of subject'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
             'max_summary_length' => array(
-                'title'         => _t('Summary length'),
-                'description'   => _t('Maximum length of summary'),
+                'title'         => _a('Summary length'),
+                'description'   => _a('Maximum length of summary'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
@@ -365,14 +365,14 @@ return array(
         ),
     ),
     'submitter-statistics'     => array(
-        'title'       => _t('Submitter Statistics'),
-        'description' => _t('Listing the total article count of submitters'),
+        'title'       => _a('Submitter Statistics'),
+        'description' => _a('Listing the total article count of submitters'),
         'render'      => 'block::submitterStatistics',
         'template'    => 'submitter-statistics',
         'config'      => array(
             'list-count'       => array(
-                'title'        => _t('List Count'),
-                'description'  => _t('The max articles to display'),
+                'title'        => _a('List Count'),
+                'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'number_int',
                 'value'        => 10,
@@ -380,21 +380,21 @@ return array(
         ),
     ),
     'newest-topic'             => array(
-        'title'       => _t('Newest Topic'),
-        'description' => _t('Listing the newest topic'),
+        'title'       => _a('Newest Topic'),
+        'description' => _a('Listing the newest topic'),
         'render'      => 'block::newestTopic',
         'template'    => 'newest-topic',
         'config'      => array(
             'list-count'       => array(
-                'title'        => _t('List Count'),
-                'description'  => _t('The max articles to display'),
+                'title'        => _a('List Count'),
+                'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'number_int',
                 'value'        => 10,
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -410,15 +410,15 @@ return array(
                 'value'         => '_blank',
             ),
             'max_title_length'  => array(
-                'title'         => _t('Title length'),
-                'description'   => _t('Maximum length of title'),
+                'title'         => _a('Title length'),
+                'description'   => _a('Maximum length of title'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
             'max_description_length' => array(
-                'title'         => _t('Description length'),
-                'description'   => _t('Maximum length of description'),
+                'title'         => _a('Description length'),
+                'description'   => _a('Maximum length of description'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
@@ -426,21 +426,21 @@ return array(
         ),
     ),
     'hot-article'              => array(
-        'title'       => _t('Hot Articles'),
-        'description' => _t('Listing the hotest articles'),
+        'title'       => _a('Hot Articles'),
+        'description' => _a('Listing the hotest articles'),
         'render'      => 'block::hotArticles',
         'template'    => 'hot-article',
         'config'      => array(
             'list-count'       => array(
-                'title'        => _t('List Count'),
-                'description'  => _t('The max articles to display'),
+                'title'        => _a('List Count'),
+                'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'number_int',
                 'value'        => 10,
             ),
             'is-topic'         => array(
-                'title'        => _t('Is Topic'),
-                'description'  => _t('Whether to list topic articles'),
+                'title'        => _a('Is Topic'),
+                'description'  => _a('Whether to list topic articles'),
                 'edit'         => array(
                     'type'        => 'checkbox',
                     'attributes'  => array(
@@ -450,21 +450,21 @@ return array(
                 'filter'       => 'number_int',
             ),
             'day-range'        => array(
-                'title'        => _t('Day Range'),
-                'description'  => _t('Day range'),
+                'title'        => _a('Day Range'),
+                'description'  => _a('Day range'),
                 'edit'         => 'text',
                 'filter'       => 'number_int',
                 'value'        => 7,
             ),
             'column-number'    => array(
-                'title'        => _t('List Column Number'),
-                'description'  => _t('Whether to display only one column or two columns'),
+                'title'        => _a('List Column Number'),
+                'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'single'    => _t('Single column'),
-                            'double'    => _t('Double columns'),
+                            'single'    => _a('Single column'),
+                            'double'    => _a('Double columns'),
                         ),
                     ),
                 ),
@@ -472,19 +472,19 @@ return array(
                 'value'        => 'single',
             ),
             'block-style'      => array(
-                'title'        => _t('Template Style'),
-                'description'  => _t('The template style of list'),
+                'title'        => _a('Template Style'),
+                'description'  => _a('The template style of list'),
                 'edit'         => array(
                     'type'        => 'radio',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _t('basic'),
-                            'common'       => _t('Common'),
-                            'summary'      => _t('With summary'),
-                            'feature'      => _t('With feature'),
-                            'all-featured' => _t('All with feature'),
-                            'all-summary'  => _t('All with summary'),
-                            'rank'         => _t('With rank number'),
+                            'basic'        => _a('basic'),
+                            'common'       => _a('Common'),
+                            'summary'      => _a('With summary'),
+                            'feature'      => _a('With feature'),
+                            'all-featured' => _a('All with feature'),
+                            'all-summary'  => _a('All with summary'),
+                            'rank'         => _a('With rank number'),
                         ),
                     ),
                 ),
@@ -492,8 +492,8 @@ return array(
                 'value'        => 'common',
             ),
             'target'           => array(
-                'title'        => _t('Target'),
-                'description'  => _t('Open url in which window'),
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
                 'edit'         => array(
                     'type'        => 'select',
                     'attributes'  => array(
@@ -509,15 +509,15 @@ return array(
                 'value'         => '_blank',
             ),
             'max_subject_length' => array(
-                'title'         => _t('Subject length'),
-                'description'   => _t('Maximum length of subject'),
+                'title'         => _a('Subject length'),
+                'description'   => _a('Maximum length of subject'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
             'max_summary_length' => array(
-                'title'         => _t('Summary length'),
-                'description'   => _t('Maximum length of summary'),
+                'title'         => _a('Summary length'),
+                'description'   => _a('Maximum length of summary'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
@@ -525,9 +525,9 @@ return array(
         ),
     ),
     'simple-search'             => array(
-        'title'       => _t('Simple Search'),
+        'title'       => _a('Simple Search'),
         'title_hidden'  => 1,
-        'description' => _t('Search form for searching articles by article title'),
+        'description' => _a('Search form for searching articles by article title'),
         'render'      => 'block::simpleSearch',
         'template'    => 'simple-search',
         'class'       => 'block-noborder',

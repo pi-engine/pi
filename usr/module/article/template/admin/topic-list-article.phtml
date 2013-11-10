@@ -16,10 +16,10 @@
         <div id="jsList">
             <div class="clearfix">
                 <div class="pull-left form-inline">
-                    <span><strong><?php echo __('Topic: ') . $this->escape($title) ?></strong></span>
-                    <span class="muted"><?php echo $this->escape($count) . __(' articles') ?></span>
+                    <span><strong><?php echo _a('Topic: ') . $this->escape($title) ?></strong></span>
+                    <span class="muted"><?php echo $this->escape($count) . _a(' articles') ?></span>
                     <span><a href="<?php echo $this->url('', array('action' => 'pull', 'topic' => $topic)) ?>">
-                            <?php _e('Pull articles') ?>
+                            <?php echo _a('Pull articles') ?>
                         </a>
                     </span>
                 </div>
@@ -27,10 +27,10 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
-                    <th><?php _e('Title') ?></th>
-                    <th style="width :100px;"><?php _e('Pulled date') ?></th>
-                    <th style="width :15%"><?php _e('Pulled by') ?></th>
-                    <th style="width :100px;"><?php _e('Publish date') ?></th>
+                    <th><?php echo _a('Title') ?></th>
+                    <th style="width :100px;"><?php echo _a('Pulled date') ?></th>
+                    <th style="width :15%"><?php echo _a('Pulled by') ?></th>
+                    <th style="width :100px;"><?php echo _a('Publish date') ?></th>
                 </tr>
                 <?php $now = time(); ?>    
                 <?php foreach ($articles as $relation) {
@@ -48,11 +48,11 @@
                         </a>
                         <?php } 
                             if ($article['active'] == 0) {
-                        ?> - <strong class="text-warning"><?php _e('Deactive') ?></strong>
+                        ?> - <strong class="text-warning"><?php echo _a('Deactive') ?></strong>
                         <?php }
                             if ($article['image']) {
                         ?>
-                            <i class="icon-picture" title="<?php _e('Feature image') ?>"></i> 
+                            <i class="icon-picture" title="<?php echo _a('Feature image') ?>"></i>
                         <?php 
                             } 
                         ?>
@@ -63,7 +63,7 @@
                             data-content="<?php echo $this->url('', array(
                                 'action' => 'remove-pull',
                                 'id'     => ''
-                            )) ?>"><?php _e('Remove Pull') ?></a>   
+                            )) ?>"><?php echo _a('Remove Pull') ?></a>
                         </div>
                     </td>
                     <td><?php echo date('Y-m-d', $pull['time']) ?></td>

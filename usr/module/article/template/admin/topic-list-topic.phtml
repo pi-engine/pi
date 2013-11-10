@@ -10,11 +10,11 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th><?php _e('Image') ?></th>
-                <th style="width: 250px"><?php _e('Title') ?></th>
-                <th><?php _e('Article Number') ?></th>
-                <th><?php _e('Template') ?></th>
-                <th><?php _e('Description') ?></th>
+                <th><?php echo _a('Image') ?></th>
+                <th style="width: 250px"><?php echo _a('Title') ?></th>
+                <th><?php echo _a('Article Number') ?></th>
+                <th><?php echo _a('Template') ?></th>
+                <th><?php echo _a('Description') ?></th>
             </tr>
             <?php foreach ($topics as $topic) { ?>
             <tr>
@@ -37,36 +37,36 @@
                     'topic'      => $topic['slug'] ?: $topic['id']))
                 ?>"><?php echo $this->escape($topic['title']) ?></a>
                     <?php if (!$topic['active']) { ?>
-                    - <strong class="text-warning"><?php _e('Deactive') ?></strong> 
+                    - <strong class="text-warning"><?php echo _a('Deactive') ?></strong>
                     <?php } ?>
                     <div class="row-actions">
                         <a href="<?php echo $this->url('', array('action' => 'list-article', 'topic' => $topic['id'])) ?>">
-                            <?php _e('Manage') ?>
+                            <?php echo _a('Manage') ?>
                         </a> |
                         <a href="<?php echo $this->url('', array('action' => 'pull', 'topic' => $topic['id'])) ?>">
-                            <?php _e('Pull') ?>
+                            <?php echo _a('Pull') ?>
                         </a> |
                         <a href="<?php echo $this->url('', array(
                             'action' => 'edit',
                             'id'     => $topic['id']
-                        )) ?>"><?php _e('Edit') ?></a> |
+                        )) ?>"><?php echo _a('Edit') ?></a> |
                         <?php if ($topic['active']) { ?>
                             <a class="one-action" 
                                data-id="<?php echo $this->escape($topic['id']) ?>" 
                                data-value="active" 
                                data-status="0" 
-                               href="javascript:void(0)"><?php _e('Deactivate') ?></a>
+                               href="javascript:void(0)"><?php echo _a('Deactivate') ?></a>
                         <?php } else { ?>
                             <a class="one-action" 
                                data-id="<?php echo $this->escape($topic['id']) ?>" 
                                data-value="active" 
                                data-status="1" 
-                               href="javascript:void(0)"><?php _e('Active') ?></a>
+                               href="javascript:void(0)"><?php echo _a('Active') ?></a>
                         <?php } ?> |
                         <a href="<?php echo $this->url('', array(
                             'action' => 'delete',
                             'id'     => $topic['id']
-                        )) ?>" onclick="return window.confirm('Really delete?');"><?php _e('Delete') ?></a>
+                        )) ?>" onclick="return window.confirm('Really delete?');"><?php echo _a('Delete') ?></a>
                     </div>
                 </td>
                 <td><?php echo isset($count[$topic['id']]) ? $this->escape($count[$topic['id']]) : 0 ?></td>
@@ -74,7 +74,7 @@
                 <td><?php 
                     echo $topic['description'] 
                         ? $this->escape($topic['description'])
-                        : '<span class="muted">' . __('No description') . '</span>'
+                        : '<span class="muted">' . _a('No description') . '</span>'
                 ?>
                 </td>
             </tr>

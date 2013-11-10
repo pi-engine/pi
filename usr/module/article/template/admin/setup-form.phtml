@@ -28,7 +28,7 @@
                         <?php echo $this->escape($label) ?>
                 </label>
                 <a class="article-form-mode" data-mode="<?php echo $this->escape($name) ?>" href="javascript:void(0)">
-                    <?php _e('Preview') ?>
+                    <?php echo _a('Preview') ?>
                 </a>
             </div>
             <?php
@@ -43,9 +43,9 @@
                 }
             ?>>
             <h5 class="span12 page-header">
-                <?php _e('Form Elements') ?>
+                <?php echo _a('Form Elements') ?>
                 <a class="btn btn-small btn-primary custom-form-update" style="margin-left: 10px">
-                    <?php _e('Save') ?>
+                    <?php echo _a('Save') ?>
                 </a>
             </h5>
             <?php foreach ($items as $name => $item) { ?>

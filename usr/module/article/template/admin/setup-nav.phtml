@@ -2,12 +2,12 @@
     <ul class="nav nav-tabs">
         <li class="<?php echo $action == 'form' ? 'active' : '' ?>">
             <a href="<?php echo $this->url('admin', array('action' => 'form')) ?>">
-                <?php _e('Custom Form') ?>
+                <?php echo _a('Custom Form') ?>
             </a>
         </li>
         <li class="<?php echo $action == 'route' ? 'active' : '' ?>">
             <a href="<?php echo $this->url('admin', array('action' => 'route')) ?>">
-                <?php _e('Custom Route') ?>
+                <?php echo _a('Custom Route') ?>
             </a>
         </li>
     </ul>

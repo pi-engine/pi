@@ -283,7 +283,7 @@ class TopicController extends ActionController
         $topic      = Service::getParam($this, 'topic', '');
         
         if (empty($topic)) {
-            return $this->jumpTo404(__('Invalid topic ID!'));
+            return $this->jumpTo404(_a('Invalid topic ID!'));
         }
         
         if (is_numeric($topic)) {
@@ -382,7 +382,7 @@ class TopicController extends ActionController
         $form->setData($this->params()->fromQuery());
         
         $this->view()->assign(array(
-            'title'      => __('All Articles'),
+            'title'      => _a('All Articles'),
             'data'       => $data,
             'form'       => $form,
             'paginator'  => $paginator,
@@ -410,13 +410,13 @@ class TopicController extends ActionController
         if (empty($topic)) {
             return Service::jumpToErrorOperation(
                 $this, 
-                __('Target topic is needed!')
+                _a('Target topic is needed!')
             );
         }
         if (empty($ids)) {
             return Service::jumpToErrorOperation(
                 $this, 
-                __('No articles are selected, please try again!')
+                _a('No articles are selected, please try again!')
             );
         }
         
@@ -494,7 +494,7 @@ class TopicController extends ActionController
 
         Service::setModuleConfig($this);
         $this->view()->assign(array(
-            'title'   => __('Add Topic Info'),
+            'title'   => _a('Add Topic Info'),
             'form'    => $form,
             'module'  => $this->getModule(),
             'url'     => $this->getScreenshot('default'),
@@ -511,7 +511,7 @@ class TopicController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('There are some error occured!')
+                    _a('There are some error occured!')
                 );
             }
             
@@ -522,7 +522,7 @@ class TopicController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not save data!')
+                    _a('Can not save data!')
                 );
             }
             return $this->redirect()->toRoute(
@@ -540,7 +540,7 @@ class TopicController extends ActionController
     public function editAction()
     {
         Service::setModuleConfig($this);
-        $this->view()->assign('title', __('Edit Topic Info'));
+        $this->view()->assign('title', _a('Edit Topic Info'));
         $this->view()->assign('module', $this->getModule());
         
         $form = $this->getTopicForm('edit');
@@ -558,7 +558,7 @@ class TopicController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not update data!')
+                    _a('Can not update data!')
                 );
             }
             $data = $form->getData();
@@ -572,13 +572,13 @@ class TopicController extends ActionController
         
         $id     = $this->params('id', 0);
         if (empty($id)) {
-            $this->jumpto404(__('Invalid topic ID!'));
+            $this->jumpto404(_a('Invalid topic ID!'));
         }
 
         $model = $this->getModel('topic');
         $row   = $model->find($id);
         if (!$row->id) {
-            return $this->jumpTo404(__('Can not find topic!'));
+            return $this->jumpTo404(_a('Can not find topic!'));
         }
         
         $form->setData($row->toArray());
@@ -596,7 +596,7 @@ class TopicController extends ActionController
     {
         $id     = $this->params('id');
         if (empty($id)) {
-            return $this->jumpTo404(__('Invalid topic ID!'));
+            return $this->jumpTo404(_a('Invalid topic ID!'));
         }
 
         $topicModel = $this->getModel('topic');
@@ -677,7 +677,7 @@ class TopicController extends ActionController
         ));
 
         $this->view()->assign(array(
-            'title'   => __('Topic List'),
+            'title'   => _a('Topic List'),
             'topics'  => $rowset,
             'action'  => 'list-topic',
             'route'   => Service::getRouteName($module),
@@ -696,7 +696,7 @@ class TopicController extends ActionController
         $id     = Service::getParam($this, 'id', 0);
         $from   = Service::getParam($this, 'from', 0);
         if (empty($id)) {
-            return $this->jumpTo404(__('Invalid topic ID!'));
+            return $this->jumpTo404(_a('Invalid topic ID!'));
         }
         
         $this->getModel('topic')->setActiveStatus($id, $status);
@@ -732,7 +732,7 @@ class TopicController extends ActionController
         }
         // Checking is ID exists
         if (empty($id)) {
-            $return['message'] = __('Invalid ID!');
+            $return['message'] = _a('Invalid ID!');
             echo json_encode($return);
             exit;
         }
@@ -750,13 +750,13 @@ class TopicController extends ActionController
             $rowMedia = $this->getModel('media')->find($mediaId);
             // Checking is media exists
             if (!$rowMedia->id or !$rowMedia->url) {
-                $return['message'] = __('Media is not exists!');
+                $return['message'] = _a('Media is not exists!');
                 echo json_encode($return);
                 exit;
             }
             // Checking is media an image
             if (!in_array(strtolower($rowMedia->type), $extensions)) {
-                $return['message'] = __('Invalid file extension!');
+                $return['message'] = _a('Invalid file extension!');
                 echo json_encode($return);
                 exit;
             }
@@ -765,7 +765,7 @@ class TopicController extends ActionController
             $rename      = $id . '.' . $ext;
             $fileName    = rtrim($destination, '/') . '/' . $rename;
             if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-                $return['message'] = __('Can not create image file!');
+                $return['message'] = _a('Can not create image file!');
                 echo json_encode($return);
                 exit;
             }
@@ -946,7 +946,7 @@ class TopicController extends ActionController
         
         $return = array(
             'status'    => true,
-            'message'   => __('Success'),
+            'message'   => _a('Success'),
             'data'      => $data,
             'previous'  => $page - 1,
             'next'      => $nextPage,
@@ -966,7 +966,7 @@ class TopicController extends ActionController
         if (empty($name)) {
             return Service::jumpToErrorOperation(
                 $this,
-                __('Invalid template name!')
+                _a('Invalid template name!')
             );
         }
         

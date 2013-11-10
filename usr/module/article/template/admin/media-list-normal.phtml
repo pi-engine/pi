@@ -1,7 +1,7 @@
 <div class="article-media-normal<?php echo 'normal' == $style ? '' : ' hide' ?>">
     <div class="normal-header">
         <input type="checkbox" class="check-all">
-        <button class="btn remove-checked" style="margin-left: 10px"><?php _e('Delete') ?></button>
+        <button class="btn remove-checked" style="margin-left: 10px"><?php echo _a('Delete') ?></button>
         <div class="pull-right btn-toolbar" style="margin-top: 0">
             <div class="btn-group">
                 <a class="btn" disabled="disabled"><i class="icon-th-large"></i></a>
@@ -26,9 +26,9 @@
                     <i class="item-delete icon-remove hide"></i>
                     <img src="<?php echo Pi::url($media['url']) ?>" style="vertical-align: bottom; max-height: 100%">
                     <div class="list-operation hide"></div>
-                    <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])) ?>"><?php _e('Edit') ?></button>
+                    <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])) ?>"><?php echo _a('Edit') ?></button>
                     <a class="item-detail hide" target="_blank" href="<?php echo $this->url('', array('action' => 'detail', 'id' => $media['id'])) ?>">
-                        <?php _e('Full size') ?>
+                        <?php echo _a('Full size') ?>
                     </a>
                 </div>
             </div>
@@ -200,7 +200,7 @@
                 count++;
             });
             if (count) {
-                if (confirm("<?php _e('Are you sure want to delete selected images?'); ?>")) {
+                if (confirm("<?php echo _a('Are you sure want to delete selected images?'); ?>")) {
                     location.href = this.url + "delete?id=" + id.join(",") + "&from=" + this.encodeUrl();
                 }
             }
@@ -208,7 +208,7 @@
         removeOne       : function(e) {
             var el = $(e.target);
             var id = el.parents(".list-item").data('id');
-            if (confirm("<?php _e('Are you sure want to delete this images?'); ?>")) {
+            if (confirm("<?php echo _a('Are you sure want to delete this images?'); ?>")) {
                 location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl();
             }
         },

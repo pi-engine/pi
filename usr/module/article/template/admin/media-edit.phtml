@@ -9,7 +9,7 @@
 <?php 
     $error = $this->formElementErrors(
         $form->get('url')
-    ) ? __('Media must be uploaded!') : null;
+    ) ? _a('Media must be uploaded!') : null;
 ?>
 <?php if (!empty($error)) { ?>
 <div class="alert alert-error">
@@ -55,11 +55,11 @@
                 </div>
             <?php } ?>
         <?php } else { ?>
-            <div class="alert alert-warning span2"><?php _e('No item!') ?></div>
+            <div class="alert alert-warning span2"><?php echo _a('No item!') ?></div>
         <?php } ?>
         </div>
         <span class="btn upload fileinput-button">
-            <?php _e('Upload') ?> <input type="file" name="upload">
+            <?php echo _a('Upload') ?> <input type="file" name="upload">
         </span>
     </div>
 </script>
@@ -153,7 +153,7 @@
                 page.$("[name=url]").val('');
                 page.$("[name=type]").val('');
                 content = '<div class="alert alert-warning span2">'
-                        + '<?php _e('No item!') ?>'
+                        + '<?php echo _a('No item!') ?>'
                         + '</div>';
                 self.$(".upload-media").html(content);
             });

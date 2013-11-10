@@ -15,7 +15,7 @@
 return array(
     'meta'  => array(
         'cms'    => array(
-            'title'     => _t('Article site navigation'),
+            'title'     => _a('Article site navigation'),
             'section'   => 'front',
         ),
     ),
@@ -23,13 +23,13 @@ return array(
         // Default front navigation
         'front'   => array(
             'article-homepage'  => array(
-                'label'         => _t('Homepage'),
+                'label'         => _a('Homepage'),
                 'route'         => 'default',
                 'controller'    => 'index',
                 'action'        => 'index',
             ),
             'my-draft'          => array(
-                'label'         => _t('My Draft'),
+                'label'         => _a('My Draft'),
                 'route'         => 'default',
                 'controller'    => 'article',
                 'action'        => 'published',
@@ -108,18 +108,18 @@ return array(
         // Custom front navigation, need setup at backend
         'cms'     => array(
             'article-homepage'  => array(
-                'label'         => _t('Article Homepage'),
+                'label'         => _a('Article Homepage'),
                 'route'         => 'default',
                 'controller'    => 'article',
             ),
             'topic'             => array(
-                'label'         => _t('Topic'),
+                'label'         => _a('Topic'),
                 'route'         => 'default',
                 'controller'    => 'topic',
                 'action'        => 'all-topic',
             ),
             'draft'             => array(
-                'label'         => _t('My Article'),
+                'label'         => _a('My Article'),
                 'route'         => 'default',
                 'controller'    => 'article',
                 'action'        => 'article',

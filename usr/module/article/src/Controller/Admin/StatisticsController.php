@@ -48,7 +48,7 @@ class StatisticsController extends ActionController
         }
 
         $this->view()->assign(array(
-            'title'               => __('Statistic'),
+            'title'               => _a('Statistic'),
 
             'topVisitsEver'       => $topVisitsEver,
             'topVisits7'          => $topVisits7,

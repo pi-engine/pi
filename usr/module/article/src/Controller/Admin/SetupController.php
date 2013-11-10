@@ -321,7 +321,7 @@ EOD;
         }
         
         $this->view()->assign(array(
-            'title'     => __('Form Configuration'),
+            'title'     => _a('Form Configuration'),
             'form'      => $form,
             'custom'    => self::FORM_MODE_CUSTOM,
             'action'    => 'form',
@@ -343,7 +343,7 @@ EOD;
                 return Service::renderForm(
                     $this, 
                     $form, 
-                    __('Items marked red is required!')
+                    _a('Items marked red is required!')
                 );
             }
             
@@ -375,14 +375,14 @@ EOD;
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not save data!')
+                    _a('Can not save data!')
                 );
             }
             
             Service::renderForm(
                 $this,
                 $form,
-                __('Data saved successful!'),
+                _a('Data saved successful!'),
                 false
             );
         }
@@ -399,7 +399,7 @@ EOD;
         
         echo json_encode(array(
             'status'    => $result,
-            'message'   => $result ? __('Success!') : __('Can not save file!'),
+            'message'   => $result ? _a('Success!') : _a('Can not save file!'),
         ));
         exit;
     }
@@ -415,7 +415,7 @@ EOD;
         $options = array();
         $mode    = $this->params('mode', '');
         if (empty($mode)) {
-            return $this->jumpTo404(__('Invalid mode!'));
+            return $this->jumpTo404(_a('Invalid mode!'));
         }
         $options['mode'] = $mode;
         
@@ -578,7 +578,7 @@ EOD;
             $form->setData($post);
             $form->setInputFilter(new RouteCustomFilter);
             if (!$form->isValid()) {
-                $return['message'] = __('Validation failed!');
+                $return['message'] = _a('Validation failed!');
                 echo json_encode($return);
                 exit;
             }
@@ -587,7 +587,7 @@ EOD;
             $data = $form->getData();
             $result = $this->saveRouteConfig($data);
             if (!$result) {
-                $return['message'] = __('Can not save data!');
+                $return['message'] = _a('Can not save data!');
                 echo json_encode($return);
                 exit;
             }
@@ -608,7 +608,7 @@ EOD;
             );
             
             $return['status']  = true;
-            $return['message'] = __('Successful!');
+            $return['message'] = _a('Successful!');
             echo json_encode($return);
             exit;
         }
@@ -652,13 +652,13 @@ EOD;
         $return = array('status' => false);
         $resourceClass = 'Pi\Application\Installer\Resource\Route';
         if (!class_exists($resourceClass)) {
-            $return['message'] = __('Route resource class is not exists!');
+            $return['message'] = _a('Route resource class is not exists!');
             echo json_encode($return);
             exit;
         }
         $methodAction = 'updateAction';
         if (!method_exists($resourceClass, $methodAction)) {
-            $return['message'] = __('Update method is not exists!');
+            $return['message'] = _a('Update method is not exists!');
             echo json_encode($return);
             exit;
         }
@@ -676,7 +676,7 @@ EOD;
         }
         
         if (!file_exists($optionsFile)) {
-            $return['message'] = __('Config file is not exists!');
+            $return['message'] = _a('Config file is not exists!');
             echo json_encode($return);
             exit;
         }
@@ -687,7 +687,7 @@ EOD;
             break;
         }
         if (!class_exists($class)) {
-            $return['message'] = __('Route class is not exists!');
+            $return['message'] = _a('Route class is not exists!');
             echo json_encode($return);
             exit;
         }
@@ -707,7 +707,7 @@ EOD;
         Pi::service('registry')->handler('route', $module)->clear($module);
         
         $return['status'] = $ret;
-        $return['message'] = $ret ? __('Success!') : __('Setup failed!');
+        $return['message'] = $ret ? _a('Success!') : _a('Setup failed!');
         echo json_encode($return);
         exit;
     }

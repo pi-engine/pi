@@ -7,12 +7,12 @@
 <ul class="nav nav-pills">
     <li class="<?php if ($status == $flags['published']) echo 'active' ?>">
         <a href="<?php echo $this->url('', array('action' => 'published', 'controller' => 'article', 'from' => $from)) ?>">
-            <?php _e('Published'); ?>(<?php echo $this->escape($summary['published']) ?>)
+            <?php echo _a('Published'); ?>(<?php echo $this->escape($summary['published']) ?>)
         </a>
     </li>
     <li  class="<?php if ($status == $flags['pending']) echo 'active' ?>">
         <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['pending']))); ?>">
-            <?php _e('Pending'); ?>(<?php echo $this->escape($summary['pending']) ?>)
+            <?php echo _a('Pending'); ?>(<?php echo $this->escape($summary['pending']) ?>)
         </a>
     </li>
     <?php $allowCompose = false;
@@ -25,7 +25,7 @@
     <?php if ($allowCompose) { ?>
         <li style="margin-left: 20px;">
         <a href="<?php echo $this->url('admin', array('controller' => 'draft' ,'action'=>'add')); ?>" class="btn">
-            <?php _e('Compose'); ?>
+            <?php echo _a('Compose'); ?>
         </a>
         </li>
     <?php } ?>

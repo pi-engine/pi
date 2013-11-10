@@ -23,7 +23,7 @@
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
-                <?php _e('Upload') ?>
+                <?php echo _a('Upload') ?>
             </button>
         </div>
     </script>
@@ -164,7 +164,7 @@ var UploadView = Backbone.View.extend({
             error       : function() {
                 self.renderMessage(
                     'error',
-                    '<?php _e('Error ocurred when request saving image!') ?>'
+                    '<?php echo _a('Error ocurred when request saving image!') ?>'
                 );
             }
         })

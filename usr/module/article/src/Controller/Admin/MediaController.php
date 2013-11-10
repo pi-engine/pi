@@ -276,13 +276,13 @@ class MediaController extends ActionController
         }
         
         if (!isset($imageSize['w']) or !isset($imageSize['h'])) {
-            throw \Exception(__('Raw image width and height data is needed!'));
+            throw \Exception(_a('Raw image width and height data is needed!'));
         }
         
         if (!isset($allowSize['image_width'])
             or !isset($allowSize['image_height'])
         ) {
-            throw \Exception(__('The limitation data is needed!'));
+            throw \Exception(_a('The limitation data is needed!'));
         }
         
         $scaleImage = $imageSize;
@@ -384,7 +384,7 @@ class MediaController extends ActionController
         $form = new SimpleSearchForm;
 
         $this->view()->assign(array(
-            'title'         => __('All Media'),
+            'title'         => _a('All Media'),
             'medias'        => $resultSet,
             'paginator'     => $paginator,
             'type'          => $type,
@@ -404,7 +404,7 @@ class MediaController extends ActionController
     {
         $id = $this->params('id', 0);
         if (empty($id)) {
-            return Service::jumpToErrorOperation($this, __('Invalid ID!'));
+            return Service::jumpToErrorOperation($this, _a('Invalid ID!'));
         }
         
         $module = $this->getModule();
@@ -421,14 +421,14 @@ class MediaController extends ActionController
             exit();
         } else {
             $this->view()->assign(array(
-                'content' => __('This page have not been considered yet!'))
+                'content' => _a('This page have not been considered yet!'))
             );
             $this->view()->setTemplate(false);
             return ;
         }
         
         $this->view()->assign(array(
-            'title'     => __('Media Detail'),
+            'title'     => _a('Media Detail'),
             'type'      => $type,
             'media'     => $media->toArray(),
         ));
@@ -448,7 +448,7 @@ class MediaController extends ActionController
 
         Service::setModuleConfig($this);
         $this->view()->assign(array(
-            'title'                 => __('Add Media'),
+            'title'                 => _a('Add Media'),
             'form'                  => $form,
         ));
         $this->view()->setTemplate('media-edit');
@@ -463,7 +463,7 @@ class MediaController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('There are some error occured!')
+                    _a('There are some error occured!')
                 );
             }
             
@@ -473,7 +473,7 @@ class MediaController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not save data!')
+                    _a('Can not save data!')
                 );
             }
             return $this->redirect()->toRoute('', array('action' => 'list'));
@@ -488,7 +488,7 @@ class MediaController extends ActionController
     public function editAction()
     {
         Service::setModuleConfig($this);
-        $this->view()->assign('title', __('Edit Media Info'));
+        $this->view()->assign('title', _a('Edit Media Info'));
         
         $form = $this->getMediaForm('edit');
         
@@ -505,7 +505,7 @@ class MediaController extends ActionController
                 return Service::renderForm(
                     $this,
                     $form,
-                    __('Can not update data!')
+                    _a('Can not update data!')
                 );
             }
             $data = $form->getData();
@@ -516,13 +516,13 @@ class MediaController extends ActionController
         
         $id = $this->params('id', 0);
         if (empty($id)) {
-            $this->jumpto404(__('Invalid media ID!'));
+            $this->jumpto404(_a('Invalid media ID!'));
         }
 
         $model = $this->getModel('media');
         $row   = $model->find($id);
         if (!$row->id) {
-            return $this->jumpTo404(__('Can not find media!'));
+            return $this->jumpTo404(_a('Can not find media!'));
         }
         
         $data = $row->toArray();
@@ -548,7 +548,7 @@ class MediaController extends ActionController
         if (empty($ids)) {
             return Service::jumpToErrorOperation(
                 $this,
-                __('Invalid media ID')
+                _a('Invalid media ID')
             );
         }
         
@@ -561,7 +561,7 @@ class MediaController extends ActionController
         if (!empty($medias)) {
             return Service::jumpToErrorOperation(
                 $this,
-                __('The following medias is in used, and can not be delete: ')
+                _a('The following medias is in used, and can not be delete: ')
                 . implode(', ', $medias)
             );
         }
@@ -612,7 +612,7 @@ class MediaController extends ActionController
 
         // Checking whether ID is empty
         if (empty($id)) {
-            $return['message'] = __('Invalid ID!');
+            $return['message'] = _a('Invalid ID!');
             return json_encode($return);
             exit ;
         }
@@ -774,7 +774,7 @@ class MediaController extends ActionController
         $ids    = array_filter(explode(',', $id));
 
         if (empty($ids)) {
-            throw new \Exception(__('Invalid media ID!'));
+            throw new \Exception(_a('Invalid media ID!'));
         }
         
         // Export files
@@ -789,7 +789,7 @@ class MediaController extends ActionController
         }
         
         if (empty($affectRows)) {
-            return $this->jumpTo404(__('Can not find file!'));
+            return $this->jumpTo404(_a('Can not find file!'));
         }
         
         // Statistics
@@ -941,7 +941,7 @@ class MediaController extends ActionController
             $result = array(
                 'status'     => self::AJAX_RESULT_FALSE,
                 'data'       => array(
-                    'message'   => __('Invalid ID!'),
+                    'message'   => _a('Invalid ID!'),
                 ),
             );
         } else {
@@ -960,7 +960,7 @@ class MediaController extends ActionController
                 $result = array(
                     'status'     => self::AJAX_RESULT_FALSE,
                     'data'       => array(
-                        'message'   => __('Can not save data!'),
+                        'message'   => _a('Can not save data!'),
                     ),
                 );
             } else {
@@ -969,7 +969,7 @@ class MediaController extends ActionController
                     'data'       => array(
                         'id'        => $mediaId,
                         'newid'     => uniqid(),
-                        'message'   => __('Media data saved successful!'),
+                        'message'   => _a('Media data saved successful!'),
                     ),
                 );
             }

@@ -8,7 +8,7 @@
     <div id="jsList">
         <?php include "article-nav.phtml"; ?>
         <div class="form-inline">
-            <span class="btn btn-approve" data-action="batch.approve"><?php _e('Approve'); ?></span>
+            <span class="btn btn-approve" data-action="batch.approve"><?php echo _a('Approve'); ?></span>
         </div>
         <table class="table table-striped">
             <tbody>
@@ -16,11 +16,11 @@
                     <th style="width: 2.2em;">
                         <input type="checkbox" class="check-all">
                     </th>
-                    <th><?php _e('Title'); ?></th>
-                    <th style="width: 10%;"><?php _e('Category') ?></th>
-                    <th style="width: 14%"><?php _e('Tag') ?></th>
-                    <th style="width: 8%"><?php _e('Submitter') ?></th>
-                    <th style="width: 100px;"><?php _e('Last update') ?></th>
+                    <th><?php echo _a('Title'); ?></th>
+                    <th style="width: 10%;"><?php echo _a('Category') ?></th>
+                    <th style="width: 14%"><?php echo _a('Tag') ?></th>
+                    <th style="width: 8%"><?php echo _a('Submitter') ?></th>
+                    <th style="width: 100px;"><?php echo _a('Last update') ?></th>
                 </tr>
                 <?php foreach ($data as $draft) { ?>
                 <tr data-id="<?php echo $this->escape($draft['id']) ?>">
@@ -31,11 +31,11 @@
                         <?php echo $this->escape($draft['subject']); ?>
                         <div class="row-actions">
                             <a href="<?php echo $this->url('default', array('action' => 'edit', 'controller' => 'draft', 'id' => $draft['id'])); ?>?from=all">
-                                <?php _e('Edit'); ?>
+                                <?php echo _a('Edit'); ?>
                             </a>
                             <span class="divider">|</span>
                             <a href="javascript:void(0)" data-action="batch.approve" class="one-action" >
-                                <?php _e('Approve'); ?>
+                                <?php echo _a('Approve'); ?>
                             </a>
                         </div>
                     </td>
@@ -44,7 +44,7 @@
                     </td>
                     <td><?php 
                         echo !empty($draft['tag']) ? $this->escape(implode(',', $draft['tag'])) 
-                            : '<span class="muted">' . __('No tags') . '</span>' 
+                            : '<span class="muted">' . _a('No tags') . '</span>'
                     ?>
                     </td>
                     <td><?php echo $this->escape($draft['user_name']); ?></td>

@@ -99,16 +99,16 @@ class Install extends BasicInstall
             'id'          => null,
             'name'        => 'root',
             'slug'        => 'root',
-            'title'       => __('Root'),
-            'description' => __('Module root category'),
+            'title'       => _a('Root'),
+            'description' => _a('Module root category'),
         );
         $result = $model->add($data);
         $defaultCategory = array(
             'id'          => null,
             'name'        => 'default',
             'slug'        => 'slug',
-            'title'       => __('Default'),
-            'description' => __('The default category can not be delete, but can be modified!'),
+            'title'       => _a('Default'),
+            'description' => _a('The default category can not be delete, but can be modified!'),
         );
         $parent = $model->select(array('name' => 'root'))->current();
         $model->add($defaultCategory, $parent);
