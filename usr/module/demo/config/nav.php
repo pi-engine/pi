@@ -11,38 +11,38 @@ return array(
     //'translate' => 'navigation',
     'front'   => array(
         'tree'     => array(
-            'label'         => _t('Test User Call'),
+            'label'         => _a('Test User Call'),
             'route'         => 'default',
             'controller'    => 'index',
             'action'        => 'user',
         ),
         'pagea'     => array(
-            'label'         => _t('Homepage'),
+            'label'         => _a('Homepage'),
             'route'         => 'default',
             'controller'    => 'index',
             'action'        => 'index',
 
             'pages'         => array(
                 'paginator' => array(
-                    'label'         => _t('Full Paginator'),
+                    'label'         => _a('Full Paginator'),
                     'route'         => 'default',
                     'controller'    => 'index',
                     'action'        => 'page',
                 ),
                 'simple'    => array(
-                    'label'         => _t('Lean Paginator'),
+                    'label'         => _a('Lean Paginator'),
                     'route'         => 'default',
                     'controller'    => 'index',
                     'action'        => 'simple',
                 ),
                 'pageaa'    => array(
-                    'label'         => _t('Subpage one'),
+                    'label'         => _a('Subpage one'),
                     'route'         => 'default',
                     'controller'    => 'index',
                     'action'        => 'index',
                 ),
                 'pageab'    => array(
-                    'label'         => _t('Subpage two'),
+                    'label'         => _a('Subpage two'),
                     'route'         => 'default',
                     'controller'    => 'index',
                     'action'        => 'index',
@@ -52,7 +52,7 @@ return array(
 
                     'pages'         => array(
                         'pageaba'   => array(
-                            'label'         => _t('Leaf one'),
+                            'label'         => _a('Leaf one'),
                             'route'         => 'default',
                             'controller'    => 'index',
                             'action'        => 'index',
@@ -66,7 +66,7 @@ return array(
             ),
         ),
         'route' => array(
-            'label'         => _t('Routes'),
+            'label'         => _a('Routes'),
             'route'         => 'default',
             'controller'    => 'route'
         ),
