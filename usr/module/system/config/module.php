@@ -16,10 +16,10 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => __('System'),
+        'title'         => _a('System'),
         // Description, for admin, optional
         'description'   =>
-            __('For administration of core functions of the site.'),
+            _a('For administration of core functions of the site.'),
         // Version number, required
         'version'       => '3.2.3',
         // Distribution license, required

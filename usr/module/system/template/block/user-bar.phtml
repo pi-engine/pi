@@ -4,16 +4,16 @@
     <?php
         if (!$block['user']['uid']) { ?>
         <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
-        <a href="<?php echo $block['user']['login']; ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a>
+        <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><?php echo _b('Login'); ?></a>
         <span class="pi-divider">|</span>
-        <a href="<?php echo $block['user']['register']; ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a>
+        <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>"><?php echo _b('Register'); ?></a>
     <?php
         } else {
     ?>
             <?php echo Pi::service('user')->avatar()->get($block['user']['uid'], 'mini'); ?>
-            <a href="<?php echo $block['user']['profile']; ?>" title="<?php _e('Profile'); ?>"><?php echo _escape($block['user']['name']); ?></a>
+            <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _escape($block['user']['name']); ?></a>
             <span class="pi-divider">|</span>
-            <a href="<?php echo $block['user']['logout']; ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
     <?php
         }
     ?>
@@ -25,7 +25,7 @@
 
     <?php
         if (!$block['user']['uid']) { ?>
-        <a href="<?php echo $block['user']['login']; ?>" title="<?php _e('Login'); ?>"><i class="icon-user"></i><?php _e('Login'); ?></a>
+        <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><i class="icon-user"></i><?php echo _b('Login'); ?></a>
     <?php
         } else {
     ?>
@@ -35,8 +35,8 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php _e('Profile'); ?>"><?php _e('Profile'); ?></a>
-            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php _e('Logout'); ?>"><?php _e('Logout'); ?></a>
+            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
+            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
         </ul>
     <?php
         }

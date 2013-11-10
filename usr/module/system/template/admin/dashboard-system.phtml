@@ -24,18 +24,18 @@
                         <div>
                             <a href="javascript:void(0)" class="system-js-edit">
                                 <i class="icon-pencil"></i>
-                                <?php _e('Edit'); ?>
+                                <?php echo _a('Edit'); ?>
                             </a>
                         </div>
                         <?php } ?>
                     </div>
                     <div class="hide system-notice-edit">
-                        <textarea class="span8" placeholder="<?php _e('notice'); ?>"></textarea>
+                        <textarea class="span8" placeholder="<?php echo _a('notice'); ?>"></textarea>
                         <p class="muted">
-                            <?php _e('Add/update site announcement.'); ?>
+                            <?php echo _a('Add/update site announcement.'); ?>
                         <div>
-                            <span class="btn system-js-save"><?php _e('Save'); ?></span>
-                            <span class="btn btn-link system-js-cancel"><?php _e('Cancel'); ?></span>
+                            <span class="btn system-js-save"><?php echo _a('Save'); ?></span>
+                            <span class="btn btn-link system-js-cancel"><?php echo _a('Cancel'); ?></span>
                         </div>
                     </div>
                 </div>
@@ -44,10 +44,10 @@
         <div class="pi-widget system-quick-link" id="system-js-quick-link">
             <div class="clearfix pi-widget-header">
                 <div class="pull-right">
-                    <span class="btn system-quick-all-edit system-js-all-edit"><?php _e('Edit'); ?></span>
-                    <span class="hide btn system-quick-all-save system-js-all-save" data-placement="top" data-original-title="<?php _e('Click the button to switch to view mode.'); ?>"><?php _e('Save'); ?></span>
+                    <span class="btn system-quick-all-edit system-js-all-edit"><?php echo _a('Edit'); ?></span>
+                    <span class="hide btn system-quick-all-save system-js-all-save" data-placement="top" data-original-title="<?php echo _a('Click the button to switch to view mode.'); ?>"><?php echo _a('Save'); ?></span>
                 </div>
-                <strong><?php _e('Quick links')?></strong>
+                <strong><?php echo _a('Quick links')?></strong>
             </div>
             <div class="pi-widget-body">
                 <div class="hide well form-horizontal system-quick-link-form">
@@ -63,9 +63,9 @@
         <div class="pi-widget system-module-summary" id="system-js-module-summary">
             <div class="clearfix pi-widget-header">
                 <div class="pull-right">
-                    <span class="btn system-js-all"><?php _e('Toggle all'); ?></span>
+                    <span class="btn system-js-all"><?php echo _a('Toggle all'); ?></span>
                 </div>
-                <strong><?php _e('Module summary')?></strong>
+                <strong><?php echo _a('Module summary')?></strong>
             </div>
             <div class="pi-widget-body">
                 <div class="accordion" id="summary-accordion">
@@ -88,15 +88,15 @@
     <div class="span4">
         <div class="pi-widget">
             <div class="pi-widget-header">
-                <strong><?php _e('Powered by Pi Engine'); ?></strong>
+                <strong><?php echo _a('Powered by Pi Engine'); ?></strong>
             </div>
             <div class="pi-widget-body">
-                <p><?php _e('
+                <p><?php echo _a('
                     Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops.
                     Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.
                     ');?>
                 </p>
-                <p><?php _e('
+                <p><?php echo _a('
                     Pi Project follows the philosophy of open standard, open design, open development and open structure.
                     Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.
                     ');?>
@@ -118,26 +118,26 @@
         <a href="<%= url %>" title="<%= title %>"><%= title %></a>
     </div>
     <div class="inline-block system-quick-link-icon">
-        <i class="icon-pencil system-js-edit" title="<?php _e('Edit'); ?>"></i>
-        <i class="icon-remove system-js-remove" title="<?php _e('Remove'); ?>"></i>
+        <i class="icon-pencil system-js-edit" title="<?php echo _a('Edit'); ?>"></i>
+        <i class="icon-remove system-js-remove" title="<?php echo _a('Remove'); ?>"></i>
     </div>
 </script>
 <script id="temp-form" type="text/template">
     <div class="control-group">
-        <label class="control-label"><?php _e('Title'); ?></label>
+        <label class="control-label"><?php echo _a('Title'); ?></label>
         <div class="controls">
             <input type="text" name="title" value="<%= form.title %>">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><?php _e('URL'); ?></label>
+        <label class="control-label"><?php echo _a('URL'); ?></label>
         <div class="controls">
             <input type="text" name="url" value="<%= form.url %>">
         </div>
     </div>
     <div class="controls">
-        <span class="btn system-js-save" data-action="<%= form.action %>"><?php _e('Save'); ?></span>
-        <span class="btn btn-link system-js-cancel"><?php _e('Cancel'); ?></span>
+        <span class="btn system-js-save" data-action="<%= form.action %>"><?php echo _a('Save'); ?></span>
+        <span class="btn btn-link system-js-cancel"><?php echo _a('Cancel'); ?></span>
     </div>
 </script>
 <script src="<?php echo $this->assetModule('/script/dashboard-system.js'); ?>"></script>

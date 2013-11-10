@@ -45,7 +45,7 @@ class EventController extends ComponentController
         foreach ($rowset as $row) {
             $events[$row->name] = array(
                 'id'        => $row->id,
-                'title'     => __($row->title),
+                'title'     => _a($row->title),
                 'active'    => (int) $row->active,
                 'listeners' => array(),
             );
@@ -140,7 +140,7 @@ class EventController extends ComponentController
         $this->view()->assign('modules', $modules);
         $this->view()->assign(
             'title',
-            sprintf(__('Event listeners of module %s'), $name)
+            sprintf(_a('Event listeners of module %s'), $name)
         );
 
         $this->view()->setTemplate('event-listener');
@@ -165,7 +165,7 @@ class EventController extends ComponentController
         }
         if (!$row) {
             $status = -1;
-            $message = __('The item not found.');
+            $message = _a('The item not found.');
         } else {
             // Disable
             if ($row->active) {
@@ -180,14 +180,14 @@ class EventController extends ComponentController
                     $status = 0;
                 }
                 if (!$status) {
-                    $message = __('The item is not allowed to activate since module is inactive.');
+                    $message = _a('The item is not allowed to activate since module is inactive.');
                 } else {
                     $row->active = 1;
                 }
             }
             if ($status) {
                 $row->save();
-                $message = __('The item updated successfully.');
+                $message = _a('The item updated successfully.');
 
                 $flush = 'listener' == $type
                     ? $row->event_module : $row->module;

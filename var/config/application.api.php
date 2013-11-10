@@ -30,13 +30,6 @@ $config['resource']['security'] = array(
     'bot'       => false,
 );
 
-// Translations
-$config['resource']['i18n'] = array(
-    'translator'    => array(
-        'global'    => array('usr:api'),
-        'module'    => array('api'),
-    ),
-);
 // Session resource, load configs from resource.session.php and instantiate session service
 $config['resource']['session'] = false;
 // Load authentication configs from resource.authentication.php and instantiate authentication service

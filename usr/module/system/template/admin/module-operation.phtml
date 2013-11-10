@@ -4,14 +4,14 @@
     $this->jQuery();
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
-    <li class="disabled"><a title="<?php _e('Repository'); ?>"><?php _e('Repository'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
+    <li class="disabled"><a title="<?php echo _a('Repository'); ?>"><?php echo _a('Repository'); ?></a></li>
 </ul>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
     // Display result message
-    echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', _escape($message), $url, __('Press to continue ...'));
+    echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', _escape($message), $url, _a('Press to continue ...'));
     // Display summary error message
     if ($error) {
         echo '<div class="text-error">' . _escape($error) . '</div>';
@@ -21,9 +21,9 @@
         echo '<ol>';
         foreach ($details as $action => $state) {
             if (isset($state['status']) && $state['status'] === false) {
-                echo '<li>' . _escape($action)  . ': <strong class="text-error">' . __('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
+                echo '<li>' . _escape($action)  . ': <strong class="text-error">' . _a('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
             } else {
-                echo '<li>' . _escape($action)  . ': <strong class="text-success">' . __('Succeeded'). '</strong>';
+                echo '<li>' . _escape($action)  . ': <strong class="text-success">' . _a('Succeeded'). '</strong>';
             }
             
             if (!empty($state['message'])) {

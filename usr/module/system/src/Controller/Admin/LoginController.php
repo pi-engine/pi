@@ -34,7 +34,7 @@ class LoginController extends LoginControllerFront
     {
         // If already logged in
         if (Pi::service('user')->hasIdentity()) {
-            $this->view()->assign('title', __('Admin login'));
+            $this->view()->assign('title', _a('Admin login'));
             $this->view()->setTemplate('login-message', '', 'front');
             $this->view()->assign(array(
                 'identity'  => Pi::service('user')->getIdentity()
@@ -65,7 +65,7 @@ class LoginController extends LoginControllerFront
     protected function preProcess()
     {
         if (!$this->request->isPost()) {
-            $this->jump(array('action' => 'index'), __('Invalid request.'));
+            $this->jump(array('action' => 'index'), _a('Invalid request.'));
 
             return;
         }
@@ -86,7 +86,7 @@ class LoginController extends LoginControllerFront
         $adminRoles = Pi::service('user')->getRole($result->getData('id'));
         if (!$adminRoles) {
             Pi::service('authentication')->clearIdentity();
-            $result->setCode(-4)->setMessage(__('Not privileged.'));
+            $result->setCode(-4)->setMessage(_a('Not privileged.'));
         }
 
         return $result;

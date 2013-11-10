@@ -110,6 +110,13 @@ class Block extends AbstractHelper
         }
         $block = $blockRow->toArray();
 
+        /*
+        // Load translations for non-tab block
+        if ('tab' != $block['type']) {
+            Pi::service('i18n')->loadModule('block', $block['module']);
+        }
+        */
+
         // Override with instant options
         foreach (array(
             'title',
@@ -214,11 +221,16 @@ class Block extends AbstractHelper
         $isCustom = $block['type'] ? true : false;
         // Module-generated block, return array
         if (!empty($block['render'])) {
+            // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
+
+            // Merge run-time configs with system settings
             $options = isset($block['config']) ? $block['config'] : array();
             if (!empty($configs)) {
                 $options = array_merge($options, $configs);
             }
+
+            // Render contents
             $result = call_user_func_array(
                 $block['render'],
                 array($options, $block['module'])

@@ -88,8 +88,8 @@ class Block extends AbstractResource
     protected function canonizeAdd($block)
     {
         $module = $this->event->getParam('module');
-        $classPrefix = 'Module\\'
-                     . ucfirst($this->event->getParam('directory'));
+        $directory = $this->event->getParam('directory');
+        $classPrefix = sprintf('Module\\%s\Block', ucfirst($directory));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
@@ -123,8 +123,8 @@ class Block extends AbstractResource
     protected function canonizeUpdate($block)
     {
         $module = $this->event->getParam('module');
-        $classPrefix = 'Module\\'
-                     . ucfirst($this->event->getParam('directory'));
+        $directory = $this->event->getParam('directory');
+        $classPrefix = sprintf('Module\\%s\Block', ucfirst($directory));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }

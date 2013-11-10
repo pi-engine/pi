@@ -886,6 +886,28 @@ namespace
     }
 
     /**
+     * Translate a message for block
+     *
+     * @param string    $message    The string to be localized
+     * @return string
+     */
+    function _b($message)
+    {
+        return $message;
+    }
+
+    /**
+     * Translate a message for admin
+     *
+     * @param string    $message    The string to be localized
+     * @return string
+     */
+    function _a($message)
+    {
+        return $message;
+    }
+
+    /**
      * Register a message to translation queue
      *
      * @param string    $message    The string to be localized

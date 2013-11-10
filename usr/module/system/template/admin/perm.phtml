@@ -18,16 +18,16 @@ angular
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         name: '<?php echo $name ?>',
         navTabs: [
-            { text: '<?php _e('Front'); ?>', href: '#!/front' },
-            { text: '<?php _e('Admin'); ?>', href: '#!/admin' },
+            { text: '<?php echo _a('Front'); ?>', href: '#!/front' },
+            { text: '<?php echo _a('Admin'); ?>', href: '#!/admin' },
         ],
         t: {
-            GLOBAL: '<?php _e('Module Global permission'); ?>',
-            MODULE: '<?php _e('Module resource'); ?>',
-            BLOCK: '<?php _e('Block'); ?>',
-            ERROR: '<?php _e('Error, please try again later.'); ?>',
-            FRONT: '<?php _e('Front'); ?>',
-            ADMIN: '<?php _e('Admin'); ?>'
+            GLOBAL: '<?php echo _a('Module Global permission'); ?>',
+            MODULE: '<?php echo _a('Module resource'); ?>',
+            BLOCK: '<?php echo _a('Block'); ?>',
+            ERROR: '<?php echo _a('Error, please try again later.'); ?>',
+            FRONT: '<?php echo _a('Front'); ?>',
+            ADMIN: '<?php echo _a('Admin'); ?>'
         }
    });
 </script>

@@ -18,8 +18,8 @@
 </style>
 
 <ul class="tabmenu">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Check events'); ?>"><?php _e('Events'); ?></a>
-    <li class="tabmenu-active"><?php _e('Listeners'); ?>
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Check events'); ?>"><?php echo _a('Events'); ?></a>
+    <li class="tabmenu-active"><?php echo _a('Listeners'); ?>
 </ul>
 <ul class="submenu1">
 <?php foreach ($modules as $module) { ?>
@@ -42,7 +42,7 @@
     <tr class="<?php echo $event['active']?"":"disable";  ?>">
         <td><?php echo $listener['title']; ?></td>
         <td><?php echo $listener['event']; ?></td>
-        <td><button class="pi-ui-btn1" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? _e('Disable') : _e('Enable'); ?></button></td>
+        <td><button class="pi-ui-btn1" data-action="<?php echo $listener['active']; ?>" data-link="<?php echo $this->url('', array('action' => 'active', 'type' => 'listener', 'id' => $listener['id'])); ?>"><?php $listener['active'] ? echo _a('Disable') : echo _a('Enable'); ?></button></td>
     <?php } ?>
    </tbody>
 
@@ -52,14 +52,14 @@
 (function($) {
     $("#event-list").on("click", "button", function() {
         var $this = $(this);
-        beautAlert.done("<?php _e('Being updated.'); ?>", "wait");
+        beautAlert.done("<?php echo _a('Being updated.'); ?>", "wait");
         $.getJSON($this.attr("data-link")).done(function(result) {
             if (result.status == 1) {
                 if ($this.attr("data-action") == "0") {
-                    $this.html("<?php _e('Disable'); ?>");
+                    $this.html("<?php echo _a('Disable'); ?>");
                     $this.attr("data-action", "1").parents("tr").removeClass("disable");
                 } else {
-                    $this.html("<?php _e('Enable'); ?>");
+                    $this.html("<?php echo _a('Enable'); ?>");
                     $this.attr("data-action", "0").parents("tr").addClass("disable");
                 }
                 beautAlert.done(result.message, "succ");

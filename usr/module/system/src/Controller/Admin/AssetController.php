@@ -47,7 +47,7 @@ class AssetController extends ActionController
 
         $this->view()->assign('modules', $modules);
         $this->view()->assign('themes', $themes);
-        $this->view()->assign('title', __('Asset component list'));
+        $this->view()->assign('title', _a('Asset component list'));
         //$this->view()->setTemplate('asset-list');
     }
 
@@ -77,9 +77,9 @@ class AssetController extends ActionController
         }
         clearstatcache();
         if (!$status) {
-            $message = __('Asset files are not published correctly, please copy asset files manually.');
+            $message = _a('Asset files are not published correctly, please copy asset files manually.');
         } else {
-            $message = __('Asset files are published correctly.');
+            $message = _a('Asset files are published correctly.');
         }
 
         //$this->redirect()->toRoute('', array('action' => 'index'));
@@ -106,13 +106,13 @@ class AssetController extends ActionController
         foreach ($modules as $name => $item) {
             $assetList['module-' . $name] = array(
                 'source'    => 'module/' . $item['directory'],
-                'title'     => sprintf(__('module %s'), $item['title']),
+                'title'     => sprintf(_a('module %s'), $item['title']),
             );
         }
         foreach ($themes as $name => $item) {
             $assetList['theme-' . $name] = array(
                 'source'    => 'theme/' . $name,
-                'title'     => sprintf(__('theme %s'), $item['title']),
+                'title'     => sprintf(_a('theme %s'), $item['title']),
             );
             $assetCustom[] = $name;
         }
@@ -151,12 +151,12 @@ class AssetController extends ActionController
         if ($erroneous) {
             $status = 0;
             $message = sprintf(
-                __('There are errors with: %s.'),
+                _a('There are errors with: %s.'),
                 implode(' | ', $erroneous)
             );
         } else {
             $status = 1;
-            $message = __('Assets re-published successfully.');
+            $message = _a('Assets re-published successfully.');
         }
 
         return array(

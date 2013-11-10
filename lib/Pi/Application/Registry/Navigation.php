@@ -69,6 +69,7 @@ class Navigation extends AbstractRegistry
         'callback',
         'pages',
 
+        'section',
         'route',
         'module',
         'controller',

@@ -55,7 +55,7 @@ class ComponentController extends BasicController
             );
         }
         if (empty($data['update'])) {
-            $data['update'] = __('Never updated.');
+            $data['update'] = _a('Never updated.');
         } else {
             $data['update'] = _date($data['update']);
         }
@@ -64,7 +64,7 @@ class ComponentController extends BasicController
         //d($data);exit();
         $this->view()->assign('summary', $summary);
         $this->view()->assign('data', $data);
-        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->assign('title', _a('Dashboard'));
         $this->view()->setTemplate('dashboard-module', 'system');
     }
 }

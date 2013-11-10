@@ -1,2628 +1,627 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2013-11-06 09:52+0800\n"
-"PO-Revision-Date: 2013-11-06 09:52+0800\n"
+"POT-Creation-Date: 2013-11-09 19:14+0800\n"
+"PO-Revision-Date: 2013-11-09 19:14+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master-i18n\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\system\n"
 
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:18
-msgid "Site Info"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:19
-msgid "Website information"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:26
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:116
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:17
-msgid "User"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:27
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:33
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:66
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/AccountForm.php:47
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:59
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:32
-msgid "User account"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:34
-msgid "User bar"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:35
-msgid "User profile or login bar"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:42
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:37
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:105
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:28
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-send.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:17
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-find.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register.phtml:11
-msgid "Login"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:43
-msgid "User login block"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:50
-msgid "Pi feature"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/block.php:51
-msgid "Introduction to Pi Engine"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:21
-msgid "General"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:25
-msgid "Head meta"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:29
-msgid "Internationalization"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:37
-msgid "Text processing"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:41
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:264
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:9
-msgid "Mailing"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:53
-#: C:\wamp\www\master-i18n\usr\module\system/src/Block.php:32
-msgid "Site name"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:54
-msgid "Website name."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:61
-#: C:\wamp\www\master-i18n\usr\module\system/src/Block.php:33
-msgid "Slogan"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:62
-msgid "Website slogan."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:68
-msgid "Locale"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:69
-msgid "Locale for application content."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:76
-msgid "Charset"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:77
-msgid "Charset for page display."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:83
-msgid "Timezone"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:84
-msgid "Timezone for application system."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:90
-msgid "List count"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:91
-msgid "Number of items on a list."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:98
-msgid "GA account"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:99
-msgid "Google Analytics account. Or use following custom foot scripts."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:104
-msgid "Foot scripts"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:105
-msgid ""
-"Scripts that will be appended to each page footer. Either naked or wrapped "
-"js scripts are allowed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:122
-msgid "Theme"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:129
-msgid "Admin theme"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:138
-msgid "Meta copyright"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:139
-msgid ""
-"The copyright meta tag defines any copyright statements you wish to disclose "
-"about your web page documents."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:146
-msgid "Meta author"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:147
-msgid ""
-"The author meta tag defines the name of the author of the document being "
-"read. Supported data formats include the name, email address of the "
-"webmaster, company name or URL."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:154
-msgid "Meta generator"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:155
-msgid "Generator of the document being read."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:162
-msgid "Meta keywords"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:163
-msgid ""
-"The keywords meta tag is a series of keywords that represents the content of "
-"your site. Separated keywords by a comma."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:170
-msgid "Meta description"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:171
-msgid ""
-"The description meta tag is a general description of what is contained in "
-"your web page"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:180
-msgid "Default number style"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:181
-msgid ""
-"See http://www.php.net/manual/en/class.numberformatter.php#intl."
-"numberformatter-constants.unumberformatstyle"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:186
-msgid "Default format for the locale"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:187
-msgid "Decimal format defined by pattern"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:188
-msgid "Decimal format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:189
-msgid "Percent format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:190
-msgid "Scientific format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:191
-msgid "Spellout rule-based format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:192
-msgid "Ordinal rule-based format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:193
-msgid "Duration rule-based format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:194
-msgid "Rule-based format defined by pattern"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:203
-msgid "Default pattern for selected number style"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:204
-msgid "Only if required by style"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:211
-msgid "Default currency type"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:212
-msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:219
-msgid "Default calendar for the locale"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:220
-msgid ""
-"\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
-"en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:227
-msgid "Default date type"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:228
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:247
-msgid ""
-"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
-"intldateformatter-constants"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:233
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:252
-msgid "Do not include this element"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:234
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:253
-msgid ""
-"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:235
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:254
-msgid "Long style (January 12, 1952 or 3:30:32pm)"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:236
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:255
-msgid "Medium style (Jan 12, 1952)"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:237
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:256
-msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:246
-msgid "Default time type"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:265
-msgid "Default formatting pattern for date-time"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:266
-msgid "See http://userguide.icu-project.org/formatparse/datetime"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:273
-msgid "Default format for legacy date function"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:274
-msgid ""
-"The format is required in case Intl extension is not available. See http://"
-"www.php.net/manual/en/function.date.php"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:283
-msgid "Admin email"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:284
-msgid "Admin email address for contact."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:290
-msgid "Admin name"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:291
-msgid "User name used to send emails"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:296
-msgid "Email encoding"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:297
-msgid "Encoding for email contents"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:305
-msgid "Editor"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:306
-msgid "Default editor for text processing"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:311
-msgid "Enable word censoring"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:312
-msgid ""
-"Words will be censored if this option is enabled. This option may be turned "
-"off for enhanced site speed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:320
-msgid "Words to censor"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:321
-msgid ""
-"Enter words that should be censored in user posts. Separate each with a \"|"
-"\", case insensitive."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:328
-msgid "Word to replace censored words"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:329
-msgid ""
-"Censored words will be replaced with the characters entered in this textbox"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:337
-msgid "Username format"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:338
-msgid "Format of username for registration."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:343
-msgid "Strict: alphabet or number only"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:344
-msgid "Medium: ASCII characters"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:345
-msgid "Loose: multi-byte characters"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:355
-msgid "Minmum username"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:356
-msgid "Minmum length of username for user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:363
-msgid "Maximum username"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:364
-msgid "Maximum length of username for user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:371
-msgid "Minmum password"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:372
-msgid "Minmum length of password for user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:379
-msgid "Maximum password"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:380
-msgid "Maximum length of password for user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:387
-msgid "Username backlist"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:388
-msgid ""
-"Reserved and forbidden username list. Separate each with a <strong>|</"
-"strong>, regexp syntax is allowed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:395
-msgid "Email backlist"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:396
-msgid ""
-"Forbidden username list. Separate each with a <strong>|</strong>, regexp "
-"syntax is allowed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:403
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:50
-msgid "Remember me"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:404
-msgid "Days to remember login, 0 for disable."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:411
-msgid "Maximum attempts"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:412
-msgid "Maximum attempts allowed to try for user login"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:419
-msgid "Login disable"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:420
-msgid "Disable user login"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:428
-msgid "Register disable"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:429
-msgid "Disable user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:437
-msgid "Login CAPTCHA"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:438
-msgid "Enable CAPTCHA for user login"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:446
-msgid "Register CAPTCHA"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:447
-msgid "Enable CAPTCHA for user registration"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:456
-msgid "Module themes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:457
-msgid "Themes for modules."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:465
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.php:21
-msgid "Front navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:466
-msgid "Global navigation for front end."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:473
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.php:27
-msgid "Admin navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/config.php:474
-msgid "Global navigation for admin."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/event.php:21
-msgid "Module installed"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/event.php:24
-msgid "Module uninstalled"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/event.php:27
-msgid "Module activated"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/event.php:30
-msgid "Module deactivated"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/event.php:33
-msgid "Module updated"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/module.php:19
-msgid "System"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/module.php:22
-msgid "For administration of core functions of the site."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:17
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:91
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:23
-msgid "Modules"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:28
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:74
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:10
-msgid "Installed"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:36
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:82
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:11
-msgid "Availables"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:44
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:90
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:11
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:11
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:12
-msgid "Repository"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:55
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:97
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:36
-msgid "Themes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:66
-msgid "In action"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:102
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:103
-msgid "Navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:113
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:79
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:127
-msgid "Navigation list"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:122
-msgid "Data manipulation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:133
-msgid "Navigation setup"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:144
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:62
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:46
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:97
-msgid "Role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:154
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:63
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:21
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:29
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:39
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:19
-msgid "Front"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:164
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:67
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:22
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:30
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:40
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:24
-msgid "Admin"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:224
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:135
-msgid "Cache"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:234
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:123
-msgid "Asset"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:245
-msgid "Toolkit"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.admin.php:256
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:8
-msgid "Audit"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.component.php:17
-msgid "Configurations"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.component.php:29
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:65
-msgid "Blocks"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.component.php:41
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:71
-msgid "Pages"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.component.php:53
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:72
-msgid "Permission"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.component.php:65
-msgid "Event/Hook"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:19
-msgid "Home"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:25
-msgid "Account"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:31
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:14
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:38
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user.phtml:3
-msgid "Profile"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:43
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/RegisterController.php:125
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-send.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:18
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-find.phtml:10
-msgid "Register"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:49
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:41
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:62
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:37
-msgid "Password"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:55
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:60
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:44
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:95
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:25
-msgid "Email"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.front.php:65
-msgid "Admin Area"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/nav.php:33
-msgid "Managed components"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:20
-msgid "Homepage"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:28
-msgid "Utility"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:35
-msgid "Error reporting"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:45
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ComponentController.php:67
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Module/DashboardController.php:229
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Module/DashboardController.php:276
-msgid "Dashboard"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:51
-msgid "Readme"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:59
-msgid "Config"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:77
-msgid "Event/listener"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:83
-msgid "Permissions"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:110
-msgid "Roles"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:129
-msgid "Auditing"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/page.php:145
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Feed/IndexController.php:32
-msgid "What's new"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:20
-msgid "Global public resource"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:28
-msgid "Guest only"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:35
-msgid "Member only"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:45
-msgid "Generic permission"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:57
-msgid "Operation: modules"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:64
-msgid "Operation: themes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:72
-msgid "Operation: navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:80
-msgid "Operation: roles"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:96
-msgid "Operation: maintenance"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:106
-msgid "Management: configs"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:114
-msgid "Management: blocks"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:122
-msgid "Management: pages"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:130
-msgid "Management: permissions"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/permission.php:137
-msgid "Management: events/hooks"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/role.php:19
-msgid "Administrator"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/role.php:21
-msgid "Staff"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/role.php:35
-msgid "Webmaster"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/role.php:37
-msgid "Member"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/config/role.php:39
-msgid "Guest"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Block.php:30
-#, php-format
-msgid "About %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:31
+#: C:\wamp\www\master\usr\module\system/src/Event.php:31
 #, php-format
 msgid "Module %s installed"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:32
+#: C:\wamp\www\master\usr\module\system/src/Event.php:32
 #, php-format
 msgid "The module %s is installed successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:49
+#: C:\wamp\www\master\usr\module\system/src/Event.php:49
 #, php-format
 msgid "Module %s uninstalled"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:50
+#: C:\wamp\www\master\usr\module\system/src/Event.php:50
 #, php-format
 msgid "The module %s is uninstalled successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:67
+#: C:\wamp\www\master\usr\module\system/src/Event.php:67
 #, php-format
 msgid "Module %s updated"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:68
+#: C:\wamp\www\master\usr\module\system/src/Event.php:68
 #, php-format
 msgid "The module %s is updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:85
+#: C:\wamp\www\master\usr\module\system/src/Event.php:85
 #, php-format
 msgid "Module %s activated"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:86
+#: C:\wamp\www\master\usr\module\system/src/Event.php:86
 #, php-format
 msgid "The module %s is activated successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:103
+#: C:\wamp\www\master\usr\module\system/src/Event.php:103
 #, php-format
 msgid "Module %s deactivated"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Event.php:104
+#: C:\wamp\www\master\usr\module\system/src/Event.php:104
 #, php-format
 msgid "The module %s is deactivated successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Navigation.php:161
+#: C:\wamp\www\master\usr\module\system/src/Navigation.php:161
 msgid "Edit a block"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Navigation.php:172
+#: C:\wamp\www\master\usr\module\system/src/Navigation.php:172
 msgid "Clone a block"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Navigation.php:218
+#: C:\wamp\www\master\usr\module\system/src/Navigation.php:218
 msgid "Block layout"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Navigation.php:229
+#: C:\wamp\www\master\usr\module\system/src/Navigation.php:229
 msgid "Setup page"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:50
-msgid "Asset component list"
+#: C:\wamp\www\master\usr\module\system/src/Controller/Feed/IndexController.php:32
+msgid "What's new"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:80
-msgid ""
-"Asset files are not published correctly, please copy asset files manually."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:82
-msgid "Asset files are published correctly."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:109
-#, php-format
-msgid "module %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:115
-#, php-format
-msgid "theme %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:154
-#, php-format
-msgid "There are errors with: %s."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/AssetController.php:159
-msgid "Assets re-published successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:113
-msgid "Block list"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:129
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:167
-msgid "The block is not allowed to clone."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:151
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:237
-msgid "Block data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:158
-msgid "Block data not saved."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:161
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:244
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:196
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:342
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:117
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/PasswordController.php:66
-msgid "Invalid data, please check and re-submit."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:200
-#, php-format
-msgid "Block clone from: %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:250
-msgid "Block is not found."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/BlockController.php:265
-#, php-format
-msgid "Block edit: %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:37
-msgid "File status cache"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:38
-msgid "APC file cache"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:39
-msgid "System cache file folder"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:40
-msgid "System persistent data"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:41
-msgid "Application cache"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:42
-msgid "Comment cache"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:63
-#, php-format
-msgid "Application cache [%s]"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:81
-#, php-format
-msgid "Page cache [%s]"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:93
-msgid "Cache list"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/CacheController.php:150
-msgid "Cache is flushed successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ComponentController.php:58
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:88
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Module/DashboardController.php:269
-msgid "Never updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ConfigController.php:106
-msgid "Configuration data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ConfigController.php:127
-msgid "Module configurations"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/EventController.php:138
-#, php-format
-msgid "Event listeners of module %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/EventController.php:163
-msgid "The item not found."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/EventController.php:178
-msgid "The item is not allowed to activate since module is inactive."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/EventController.php:185
-msgid "The item updated successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/LoginController.php:37
-msgid "Admin login"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/LoginController.php:68
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:229
-msgid "Invalid request."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/LoginController.php:89
-msgid "Not privileged."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:95
-msgid "Installed modules"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:137
-msgid "Modules ready for installation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:162
-msgid "Directory is not specified."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:168
-#, php-format
-msgid "Meta data are not loaded for \"%s\"."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:185
-msgid "The module has already been installed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:200
-#, php-format
-msgid "Module \"%s\" is installed successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:207
-#, php-format
-msgid "Module \"%s\" is not installed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:211
-msgid "Module is not installed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:215
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:269
-msgid "Module installation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:289
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:350
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:410
-msgid "Module is not specified."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:298
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:359
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:419
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:500
-msgid "Module is not found."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:300
-msgid "System module is protected."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:308
-#, php-format
-msgid "Module \"%s\" is uninstalled successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:313
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:316
-#, php-format
-msgid "Module \"%s\" is not uninstalled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:319
-msgid "Module is not uninstalled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:323
-msgid "Module uninstallation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:367
-#, php-format
-msgid "Module \"%s\" is updated successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:373
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:375
-#, php-format
-msgid "Module \"%s\" is not updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:378
-msgid "Module is not updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:382
-msgid "Module update"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:432
-#, php-format
-msgid "Module \"%s\" is enabled successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:437
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:440
-#, php-format
-msgid "Module \"%s\" is not enabled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:443
-msgid "Module is not enabled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:447
-#, php-format
-msgid "Module \"%s\" is disabled successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:452
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:455
-#, php-format
-msgid "Module \"%s\" is not disabled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:458
-msgid "Module is not disabled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:463
-msgid "Module activation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ModuleController.php:486
-msgid "Title is required."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:63
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:90
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:41
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:41
-msgid "Custom"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:159
-msgid "Navigation set up successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:190
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:254
-msgid "Navigation saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:194
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:260
-msgid "Navigation data not saved."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:221
-msgid "Add a navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:298
-msgid "Clone navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:318
-msgid "The navigation is in use and not allowed to delete."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:330
-msgid "The navigation is deleted successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:397
-#, php-format
-msgid "View of navigation details: %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:399
-#, php-format
-msgid "Navigation data edit: %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:485
-msgid "Navigation data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:492
-msgid "Navigation not found."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/NavController.php:496
-msgid "Only custom navigations are allowed to manipulate."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:71
-msgid "Feed"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:87
-#, php-format
-msgid "%s module wide"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:115
-msgid "Pages list"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:141
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:239
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:340
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:388
-msgid "Page data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:193
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:298
-msgid "Page data not saved."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:206
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:9
-msgid "Setup a page"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:356
-msgid "Pages edit"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:449
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:625
-msgid "Page is not found."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:454
-msgid "Page is deleted."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:567
-#, php-format
-msgid "%s blocks"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PageController.php:650
-msgid "Page block links are updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PermController.php:75
-msgid "Module access"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PermController.php:82
-msgid "Module admin"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/PermController.php:315
-msgid "Permission assigned successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:60
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:84
-#, php-format
-msgid "A new version %s is available"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:65
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:89
-msgid "No update available"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:69
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RepoController.php:93
-msgid "Error occurred, check later."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:156
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:210
-msgid "Role data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:159
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:213
-msgid "Role data not saved."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:181
-msgid "Add a role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:239
-msgid "Edit a role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:259
-msgid "Only custom roles are allowed to activate/deactivate."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:269
-msgid "Role updated successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:308
-msgid "Only custom roles are allowed to delete."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/RoleController.php:313
-msgid "Role deleted successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:49
-msgid "admin"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:52
-msgid "front"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:66
-#, php-format
-msgid "Select theme for %s"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:109
-msgid "Theme set up successfully."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:124
-msgid "Installed themes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:163
-msgid "Themes available for installation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:182
-#, php-format
-msgid "The theme \"%s\" is not updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:185
-#, php-format
-msgid "The theme \"%s\" is updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:205
-#, php-format
-msgid "The theme \"%s\" is not installed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:209
-#, php-format
-msgid "The theme \"%s\" is installed."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:228
-msgid "Default theme is protected from uninstallation."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:237
-#, php-format
-msgid "The theme \"%s\" is not uninstalled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Admin/ThemeController.php:243
-#, php-format
-msgid "The theme \"%s\" is uninstalled."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Feed/IndexController.php:33
+#: C:\wamp\www\master\usr\module\system/src/Controller/Feed/IndexController.php:33
 msgid "Recent module updates."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:58
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:42
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:93
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:58
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:42
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:93
 msgid "ID"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:59
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:43
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:94
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:33
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:23
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:59
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:43
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:94
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:33
 msgid "Username"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:61
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:45
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:96
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RoleForm.php:44
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:24
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:25
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:60
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:44
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:95
+msgid "Email"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:61
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:45
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:96
+#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:44
 msgid "Name"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:106
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:62
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:46
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:97
+msgid "Role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:66
+#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:47
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:59
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:32
+msgid "User account"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:106
 msgid "User data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:114
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:114
 msgid "User data not saved."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/AccountController.php:123
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account-edit.phtml:5
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account.phtml:5
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:6
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-change.phtml:6
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:117
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:66
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:123
+#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:6
 msgid "Edit account"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/EmailController.php:41
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/EmailController.php:41
 msgid "Change Email"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/EmailController.php:53
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/EmailController.php:53
 msgid "Send activation"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:35
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:35
 msgid "Login is disabled. Please come back later."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:43
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:113
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:43
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:113
 msgid "User login"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:77
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:77
 msgid "You logged out successfully. Now go back to homepage."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:100
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:100
 #, php-format
 msgid ""
 "Login with the account is suspended, please wait for %d minutes to try again."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:107
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:107
 #, php-format
 msgid "You have %d times to try."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:133
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/RegisterController.php:95
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:133
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:95
 msgid "Invalid input, please try again."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:151
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:151
 msgid "You have tried too many times. Please try later."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:171
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:171
 msgid "Invalid credentials provided, please try again."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:195
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:195
 msgid "You have logged in successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/LoginController.php:223
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:223
 msgid "Login is closed. Please try later."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/PasswordController.php:55
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:229
+msgid "Invalid request."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:55
 msgid "Password changed successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/PasswordController.php:63
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:63
 msgid "Password not changed."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/PasswordController.php:73
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account-edit.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-change.phtml:8
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:73
+#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:8
 msgid "Change password"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/PasswordController.php:87
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-send.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register.phtml:10
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:87
+#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:10
 msgid "Find password"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:33
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:33
 msgid "Please log in."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:49
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:100
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:49
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:100
 msgid "User profile"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:70
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/ProfileController.php:85
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:70
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:85
 msgid "The user does not exists."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/RegisterController.php:35
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:35
 msgid "Registration is disabled. Please come back later."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/RegisterController.php:66
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:66
 msgid "User account register"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/RegisterController.php:114
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:114
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/TestController.php:44
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/home.phtml:8
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:125
+#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:10
+msgid "Register"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/TestController.php:44
+#: C:\wamp\www\master\usr\module\system/template/front/home.phtml:8
 msgid "site name"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Front/TestController.php:385
+#: C:\wamp\www\master\usr\module\system/src/Controller/Front/TestController.php:385
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Module/DashboardController.php:102
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:102
 msgid "No permitted operation available."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Controller/Module/IndexController.php:30
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:229
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:276
+msgid "Dashboard"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:269
+msgid "Never updated."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/IndexController.php:30
 msgid "Admin area"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/AccountForm.php:58
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:70
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:42
+#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:58
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:70
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:42
 msgid "Display name"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/AccountForm.php:69
+#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:69
 msgid "Birthdate"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/AccountForm.php:93
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:164
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/ConfigForm.php:58
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:157
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/ModuleForm.php:58
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavForm.php:67
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:131
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:109
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageEditForm.php:69
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PasswordForm.php:84
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:100
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RoleForm.php:107
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-block.phtml:163
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:35
+#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:93
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:164
+#: C:\wamp\www\master\usr\module\system/src/Form/ConfigForm.php:58
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:157
+#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:58
+#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:67
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:131
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:109
+#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:69
+#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:84
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:100
+#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:107
 msgid "Submit"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:61
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/ModuleForm.php:40
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavForm.php:40
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:45
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RoleForm.php:54
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:11
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:16
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:10
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:127
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:18
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:17
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:14
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:13
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:26
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:34
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:61
+#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:40
+#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:40
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:45
+#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:54
 msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:72
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:72
 msgid "Hide title"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:75
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:75
 msgid "Hide block title from display."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:82
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/ModuleForm.php:30
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavForm.php:30
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:33
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:82
+#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:30
+#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:86
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:86
 msgid "Set a unique name to be called as widget or leave as blank."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:93
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:17
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:20
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:20
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:38
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:61
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:40
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:93
 msgid "Description"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:97
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:97
 msgid "Set a hint to distinguish the block."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:104
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:104
 msgid "Subline"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:109
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:109
 msgid "For block header subline. HTML is allowed."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:116
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:116
 msgid "Style class"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:120
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:120
 msgid "Specified block container css class."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:128
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:80
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageEditForm.php:31
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:128
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:80
+#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:31
 msgid "Cache TTL"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:136
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:88
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageEditForm.php:44
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:136
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:88
+#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:44
 msgid "Cache level"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/BlockModuleForm.php:184
+#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:184
 msgid "Configs"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:54
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:41
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:62
+msgid "Password"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:50
+msgid "Remember me"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:54
 msgid "Keep me logged in."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/LoginForm.php:64
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PasswordForm.php:64
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:84
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:64
+#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:64
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:84
 msgid "Please type the word."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:81
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:52
+#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:105
+#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:11
+msgid "Login"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:81
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:52
 msgid "Email address"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:93
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PasswordForm.php:42
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:93
+#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:42
 msgid "New password"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:101
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PasswordForm.php:52
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/RegisterForm.php:72
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:101
+#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:52
+#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:72
 msgid "Confirm password"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:110
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:110
 msgid "User role"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:121
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:121
 msgid "Management role"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/MemberForm.php:133
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:28
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:29
+#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:133
 msgid "Active"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:30
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:51
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:30
 msgid "Label"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:37
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:90
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:37
 msgid "Route"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:40
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:40
 msgid "Route to assemble URI."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:47
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:20
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:106
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:47
 msgid "Module"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:54
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:63
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:21
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:96
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:54
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:63
 msgid "Controller"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:61
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PageAddForm.php:72
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:12
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:22
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:19
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:11
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:21
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:21
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:112
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:17
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:14
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:32
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:61
+#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:72
 msgid "Action"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:68
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:68
 msgid "URI"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:76
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:76
 msgid "Open target"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:78
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/Element/Controller.php:53
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:66
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:78
+#: C:\wamp\www\master\usr\module\system/src/Form/Element/Controller.php:53
 msgid "None"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:79
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:80
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:88
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:88
 msgid "Permission resource"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:92
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:100
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:100
 msgid "Display"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/NavPageForm.php:103
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:80
+#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:103
 msgid "To display in menu."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Form/PasswordForm.php:32
+#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:32
 msgid "Current password"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Installer/Action/Install.php:87
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Installer/Action/Install.php:89
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:89
 msgid "Default global taxonomy domain. Not allowed to change."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Installer/Action/Install.php:94
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:94
 msgid "Welcome to Pi powered system."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Installer/Action/Update.php:46
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:46
 msgid "System updated"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/src/Installer/Action/Update.php:47
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:47
 msgid "The system is updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:19
-msgid "Re-publish all"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:31
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:44
-msgid "Publish"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/asset-index.phtml:54
-msgid "Asset publish in process"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:12
-msgid "Audit list"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:16
-#, fuzzy
-msgid "time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:18
-msgid "IP"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:19
-msgid "Section"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:23
-msgid "Method"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:24
-msgid "Message"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:25
-msgid "extra"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:47
-msgid "Count of items to display: "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:48
-msgid "10"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:49
-msgid "20"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/audit-index.phtml:50
-msgid "50"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:9
-msgid "No block available."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:12
-msgid "Search in block title"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:18
-msgid "Related pages"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:34
-msgid "pages"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:42
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:27
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:47
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:121
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:35
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:50
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:26
-msgid "Edit"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:44
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:39
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:51
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:32
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:23
-msgid "Delete"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:46
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:70
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:48
-msgid "Clone"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:67
-msgid "No page uses this block yet."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/block-list.phtml:84
-msgid "Are you sure to delete this block? "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:17
-#, fuzzy
-msgid "Flush all"
-msgstr "All Categories"
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:24
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:33
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:41
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:50
-msgid "Flush"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:39
-msgid "Registry"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/cache-index.phtml:62
-msgid "Cache flush in process"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/config-index.phtml:3
-msgid "Select a module on the left to set up configurations."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/config-index.phtml:5
-msgid "No configuration available."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:14
-msgid "About"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:21
-msgid "Module information"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:23
-msgid "Title:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:25
-msgid "Version:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:27
-msgid "Update:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:29
-msgid "Description:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:32
-msgid "Demo:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:38
-msgid "Author information"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-module.phtml:53
-msgid "Summary"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:33
-msgid "notice"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:35
-msgid "Add/update site announcement."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:37
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:48
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:139
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:121
-msgid "Save"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:38
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:140
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:36
-msgid "Cancel"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:48
-msgid "Click the button to switch to view mode."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:50
-msgid "Quick links"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:66
-#, fuzzy
-msgid "Toggle all"
-msgstr "All Categories"
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:68
-msgid "Module summary"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:91
-msgid "Powered by Pi Engine"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:94
-msgid ""
-"\n"
-"                    Pi Engine is a role oriented application development "
-"engine for web and mobile, designed as the next generation and a successor "
-"to Xoops.\n"
-"                    Pi is developed upon PHP and MySQL with selected third-"
-"party frameworks including but not limited to Zend Framework library, "
-"jQuery, Bootstrap and Backbone.\n"
-"                    "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:99
-msgid ""
-"\n"
-"                    Pi Project follows the philosophy of open standard, open "
-"design, open development and open structure.\n"
-"                    Pi is born as a complete open source project and "
-"intended to build a sustainable ecosystem that benefits all contributors and "
-"users.\n"
-"                    "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:122
-msgid "Remove"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/dashboard-system.phtml:133
-msgid "URL"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:38
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:21
-msgid "Events"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:41
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:46
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:57
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:69
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:89
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:45
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:59
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:71
-msgid "Disable"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:41
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:46
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:57
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:72
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:92
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:45
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:62
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:73
-msgid "Enable"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:44
-msgid "Listeners:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:53
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:22
-msgid "Listeners"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:65
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-index.phtml:85
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:55
-msgid "Being updated."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/event-listener.phtml:21
-msgid "Check events"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/index.phtml:3
-msgid "There is no entry page for this module management. Please:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/index.phtml:5
-msgid "Module config"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/index.phtml:5
-msgid "Go to set up module configs;"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/index.phtml:6
-msgid "System admin"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/index.phtml:6
-msgid "Go back to system dashboard."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:6
-msgid "Add a member"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:11
-msgid "Select a role: "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:26
-msgid "Front role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:27
-msgid "Admin role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:43
-msgid "Not set"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:46
-msgid "Yes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/member-index.phtml:46
-msgid "No"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:17
-msgid "Icon"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:19
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:18
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:34
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:59
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:36
-msgid "Version"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:44
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:50
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:30
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:56
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:31
-msgid "Detail"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:47
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:55
-msgid "Directory:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-available.phtml:67
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:29
-msgid "Install"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:16
-msgid "Logo"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:19
-msgid "Last Update"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:38
-msgid "Rename"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:46
-msgid "update"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:53
-msgid "Name:"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:57
-msgid "Author"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:75
-msgid "Are you sure uninstall this module?"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-index.phtml:75
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:29
-msgid "Uninstall"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:14
-msgid "Press to continue ..."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:24
-msgid "Failed"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/module-operation.phtml:26
-msgid "Succeeded"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:14
-msgid "Only click this button to save data"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:16
-msgid "Save menu"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:22
-msgid "Add to menu"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:29
-msgid "This navgation is only for viewing"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:40
-msgid "Click to toggle edit"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:57
-msgid "Url"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:59
-msgid "Page link by url or by the after of route"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:63
-msgid "Target"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:67
-msgid "_blank"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:85
-msgid "Page link by route"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-data.phtml:423
-msgid "You have made unsaved changes. Would you still like to leave this page?"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:10
-msgid "Add a custom navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:15
-msgid "Setup"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:16
-msgid "Related"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:24
-msgid "None to use"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:35
-msgid "Set global"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:47
-msgid "View"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/nav-index.phtml:80
-msgid "Are you sure to delete this navigation"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-block.phtml:169
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-block.phtml:170
-msgid "Available Themes"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:29
-msgid "Dress up"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/page-list.phtml:81
-msgid "Are you sure to delete the page?"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:25
-msgid "Module Global permission"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:26
-msgid "Module resource"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:27
-msgid "Block"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/perm.phtml:28
-msgid "Error, please try again later."
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:18
-msgid "Admin roles"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:19
-msgid "Add admin role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:20
-msgid "Front roles"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:21
-msgid "Add front role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:22
-msgid "Add role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:24
-msgid "Edit permission"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:27
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:43
-msgid "Users in role"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:28
-msgid "Status"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:30
-msgid "Activated"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:31
-msgid "Inactive"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:37
-msgid "Required"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:38
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:36
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:38
-msgid "Type"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:41
-msgid "Role name is already token"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:42
-msgid "Are you sure to delete this role?"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:44
-msgid "User id or name"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:45
-msgid "Users"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:46
-msgid "First"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/role.phtml:47
-msgid "Add user"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:9
-msgid "Theme in action"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:21
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:50
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:20
-msgid "Click To preview"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-available.phtml:31
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:32
-msgid "Check"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:30
-msgid "Theme in use"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:43
-msgid "Themes available to use"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-index.phtml:55
-msgid "Apply"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:33
-msgid "Update"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:71
-msgid "theme Update ok!"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/admin/theme-installed.phtml:79
-msgid "Are you sure to uninstall this theme ? "
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:16
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user-bar.phtml:39
-#: C:\wamp\www\master-i18n\usr\module\system/template/block/user.phtml:4
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account-edit.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:9
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-change.phtml:9
-msgid "Logout"
-msgstr ""
-
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account-edit.phtml:4
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account.phtml:4
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:5
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-change.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:4
+#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:4
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:5
 msgid "View account"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account-edit.phtml:6
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/account.phtml:6
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-change.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:7
 msgid "Change email"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-change.phtml:14
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-send.phtml:4
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-find.phtml:4
+#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:9
+msgid "Logout"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:4
+#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:4
 msgid "Coming soon ..."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/email-send.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:16
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-find.phtml:7
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:8
 msgid "Choose: "
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/home.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/home.phtml:9
 msgid "module name"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/jump.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/jump.phtml:8
 msgid "the link"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/jump.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/jump.phtml:9
 #, php-format
 msgid "The page will redirected in %d seconds. Or you can click %s directly."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-success.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register-success.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/login-success.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:8
 msgid "homepage"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-logout.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-message.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/login-message.phtml:8
 msgid "logout"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-message.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/login-message.phtml:9
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/login-success.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/login-success.phtml:9
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/password-find.phtml:8
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:9
 msgid "Re-send activation email"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register-success.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:10
 msgid "login"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\system/template/front/register-success.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:11
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr ""
+
+#, fuzzy
+#~ msgid "time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Flush all"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Toggle all"
+#~ msgstr "All Categories"

@@ -17,7 +17,7 @@ return array(
     'front' => array(
         // homepage
         array(
-            'title'         => __('Homepage'),
+            'title'         => _a('Homepage'),
             'module'        => 'system',
             'controller'    => 'index',
             'action'        => 'index',
@@ -25,14 +25,14 @@ return array(
         ),
         // utility page, not used yet
         array(
-            'title'         => __('Utility'),
+            'title'         => _a('Utility'),
             'module'        => 'system',
             'controller'    => 'utility',
             'block'         => 1,
         ),
         // error message page
         array(
-            'title'         => __('Error reporting'),
+            'title'         => _a('Error reporting'),
             'module'        => 'system',
             'controller'    => 'error',
             'block'         => 0,
@@ -42,13 +42,13 @@ return array(
     'admin' => array(
         // System dashboard access
         array(
-            'title'         => __('Dashboard'),
+            'title'         => _a('Dashboard'),
             'controller'    => 'dashboard',
             //'permission'    => 'generic',
         ),
         // System readme
         array(
-            'title'         => __('Readme'),
+            'title'         => _a('Readme'),
             'controller'    => 'readme',
             //'permission'    => 'generic',
         ),
@@ -56,31 +56,31 @@ return array(
         // System managed components
         // config
         array(
-            'title'         => __('Config'),
+            'title'         => _a('Config'),
             'controller'    => 'config',
             'permission'    => 'config',
         ),
         // block
         array(
-            'title'         => __('Blocks'),
+            'title'         => _a('Blocks'),
             'controller'    => 'block',
             'permission'    => 'block',
         ),
         // page
         array(
-            'title'         => __('Pages'),
+            'title'         => _a('Pages'),
             'controller'    => 'page',
             'permission'    => 'page',
         ),
         // event
         array(
-            'title'         => __('Event/listener'),
+            'title'         => _a('Event/listener'),
             'controller'    => 'event',
             'permission'    => 'event',
         ),
         // Permissions
         array(
-            'title'         => __('Permissions'),
+            'title'         => _a('Permissions'),
             'controller'    => 'perm',
             'permission'    => 'permission',
         ),
@@ -88,51 +88,51 @@ return array(
         // Operations
         // module
         array(
-            'title'         => __('Modules'),
+            'title'         => _a('Modules'),
             'controller'    => 'module',
             'permission'    => 'module',
         ),
         // theme
         array(
-            'title'         => __('Themes'),
+            'title'         => _a('Themes'),
             'controller'    => 'theme',
             'permission'    => 'theme',
         ),
         // navigation
         array(
-            'title'         => __('Navigation'),
+            'title'         => _a('Navigation'),
             'controller'    => 'nav',
             'permission'    => 'navigation',
         ),
 
         // Role
         array(
-            'title'         => __('Roles'),
+            'title'         => _a('Roles'),
             'controller'    => 'role',
             'permission'    => 'role',
         ),
         // User
         array(
-            'title'         => __('User'),
+            'title'         => _a('User'),
             'controller'    => 'user',
             'permission'    => 'user',
         ),
         // Maintenance operations
         // asset
         array(
-            'title'         => __('Asset'),
+            'title'         => _a('Asset'),
             'controller'    => 'asset',
             'permission'    => 'maintenance',
         ),
         // audit
         array(
-            'title'         => __('Auditing'),
+            'title'         => _a('Auditing'),
             'controller'    => 'audit',
             'permission'    => 'maintenance',
         ),
         // cache
         array(
-            'title'         => __('Cache'),
+            'title'         => _a('Cache'),
             'controller'    => 'cache',
             'permission'    => 'maintenance',
         ),
@@ -142,7 +142,7 @@ return array(
         array(
             'cache_ttl'     => 0,
             'cache_level'   => '',
-            'title'         => __('What\'s new'),
+            'title'         => _a('What\'s new'),
         ),
     ),
 );

@@ -16,59 +16,61 @@ return array(
     // Homepage
     'nav-home' => array(
         'order'         => -100,
-        'label'         => _t('Home'),
+        'label'         => _a('Home'),
         'route'         => 'home',
+
+        'pages'         => array(
+            'admin'     => array(
+                'label'     => _a('Admin'),
+                'route'     => 'home',
+                'section'   => 'admin',
+            ),
+            'feed'     => array(
+                'label'     => _a('Feed'),
+                'route'     => 'feed',
+            ),
+        ),
     ),
 
     // Account
     'account'   => array(
-        'label'         => _t('Account'),
+        'label'         => _a('Account'),
         'route'         => 'sysuser',
         'controller'    => 'account',
         //'visible'       => 0,
         'pages'         => array(
             'profile'     => array(
-                'label'         => _t('Profile'),
+                'label'         => _a('Profile'),
                 'route'         => 'sysuser',
                 'controller'    => 'profile',
                 'visible'       => 0,
             ),
             'login'     => array(
-                'label'         => _t('Login'),
+                'label'         => _a('Login'),
                 'route'         => 'sysuser',
                 'controller'    => 'login',
                 'visible'       => 0,
             ),
+            
             'register'     => array(
-                'label'         => _t('Register'),
+                'label'         => _a('Register'),
                 'route'         => 'sysuser',
                 'controller'    => 'register',
                 'visible'       => 0,
             ),
             'password'     => array(
-                'label'         => _t('Password'),
+                'label'         => _a('Password'),
                 'route'         => 'sysuser',
                 'controller'    => 'password',
                 'visible'       => 0,
             ),
             'email'     => array(
-                'label'         => _t('Email'),
+                'label'         => _a('Email'),
                 'route'         => 'sysuser',
                 'controller'    => 'email',
                 'visible'       => 0,
             ),
         ),
-    ),
-
-    // Admin page
-    'admin'     => array(
-        'label'         => _t('Admin Area'),
-        'route'         => 'admin',
-        'permission'    => array(
-            'module'    => 'system',
-            'resource'  => 'member',
-        ),
-        //'visible'       => 0,
     ),
 
     'modules'   => array(

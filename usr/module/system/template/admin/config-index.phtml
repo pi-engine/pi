@@ -1,8 +1,8 @@
 <div class="config-page">
     <?php if (empty($name)) { ?>
-        <div class="alert alert-info"><?php _e('Select a module on the left to set up configurations.'); ?></div>
+        <div class="alert alert-info"><?php echo _a('Select a module on the left to set up configurations.'); ?></div>
     <?php } elseif (empty($form)) { ?>
-        <div class="alert alert-info"><?php _e('No configuration available.'); ?></div>
+        <div class="alert alert-info"><?php echo _a('No configuration available.'); ?></div>
     <?php } else { ?>
     <?php include $this->templateComponent('form'); ?>
     <?php } ?>     

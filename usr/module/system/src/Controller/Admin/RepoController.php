@@ -57,16 +57,16 @@ class RepoController extends ActionController
             switch ($status) {
                 case 1:
                     $message = sprintf(
-                        __('A new version %s is available'),
+                        _a('A new version %s is available'),
                         $version
                     );
                     break;
                 case 0:
-                    $message = __('No update available');
+                    $message = _a('No update available');
                     break;
                 case -1:
                 default:
-                    $message = __('Error occurred, check later.');
+                    $message = _a('Error occurred, check later.');
                     break;
             }
             $result = array(
@@ -81,16 +81,16 @@ class RepoController extends ActionController
                 switch ($status) {
                     case 1:
                         $message = sprintf(
-                            __('A new version %s is available'),
+                            _a('A new version %s is available'),
                             $version
                         );
                         break;
                     case 0:
-                        $message = __('No update available');
+                        $message = _a('No update available');
                         break;
                     case -1:
                     default:
-                        $message = __('Error occurred, check later.');
+                        $message = _a('Error occurred, check later.');
                         break;
                 }
                 $result[$key] = array(

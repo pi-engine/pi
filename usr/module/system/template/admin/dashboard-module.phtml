@@ -11,31 +11,31 @@
     <div class="span8">
         <div class="pi-widget">
              <div class="pi-widget-header">
-                 <strong><?php _e('About')?></strong>
+                 <strong><?php echo _a('About')?></strong>
              </div>
              <div class="pi-widget-body">
                  <div class="media">
                      <img src="<?php echo $data['logo']; ?>" class="pull-left">
                      <div class="media-body">
                          <fieldset style="margin-top: -10px;">
-                             <legend><?php _e('Module information'); ?></legend>
+                             <legend><?php echo _a('Module information'); ?></legend>
                              <dl class="dl-horizontal">
-                                 <dt><?php _e('Title:'); ?>
+                                 <dt><?php echo _a('Title:'); ?>
                                  <dd><?php echo _escape($data['title']); ?>
-                                 <dt><?php _e('Version:'); ?>
+                                 <dt><?php echo _a('Version:'); ?>
                                  <dd><?php echo _escape($data['version']); ?>
-                                 <dt><?php _e('Update:'); ?>
+                                 <dt><?php echo _a('Update:'); ?>
                                  <dd><?php echo _escape($data['update']); ?>
-                                 <dt><?php _e('Description:'); ?>
+                                 <dt><?php echo _a('Description:'); ?>
                                  <dd><?php echo _escape($data['description']); ?>
                                  <?php if (!empty($data['demo'])) { ?>
-                                 <dt><?php _e('Demo:'); ?>
+                                 <dt><?php echo _a('Demo:'); ?>
                                  <dd><?php echo _escape($data['demo']); ?>
                                  <?php } ?>
                              </dl>
                          </fieldset>
                          <fieldset>
-                             <legend><?php _e('Author information'); ?></legend>
+                             <legend><?php echo _a('Author information'); ?></legend>
                              <dl class="dl-horizontal">
                                 <?php foreach ($data['author'] as $key => $value) {
                                     echo '<dt>' . _escape($key) . ':';
@@ -50,7 +50,7 @@
         <?php if ($summary) { ?>
         <div class="pi-widget">
              <div class="pi-widget-header">
-                 <strong><?php _e('Summary'); ?></strong>
+                 <strong><?php echo _a('Summary'); ?></strong>
              </div>
              <div class="pi-widget-body">
                  <?php echo $summary; ?>

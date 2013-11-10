@@ -17,7 +17,7 @@
  * @version         $Id$
  */
 
-namespace Module\Tag;
+namespace Module\Tag\Block;
 
 use Pi;
 
@@ -68,12 +68,15 @@ class Block
             return false;
         }
         // Set font size
-        $maxFontSize = isset($options['max_font_size']) ? intval($options['max_font_size']) : 22;
-        $minFontSize = isset($options['min_font_size']) ? intval($options['min_font_size']) : 13;
+        $maxFontSize = isset($options['max_font_size'])
+            ? intval($options['max_font_size']) : 22;
+        $minFontSize = isset($options['min_font_size'])
+            ? intval($options['min_font_size']) : 13;
         // Set color
         $color = isset($options['color']) ? $options['color'] : '_black';
         $offset = 0;
-        $limit = isset($options['item_page']) ? intval($options['item_page']) : 20;
+        $limit = isset($options['item_page'])
+            ? intval($options['item_page']) : 20;
         $model = Pi::model('tag', $module);
         $select = $model->select()->where(array())
                                   ->order(array('count DESC'))
@@ -93,17 +96,12 @@ class Block
             }
 
             // Set tag url
-            $url[$row['id']] = Pi::engine()->application()->getRouter()->assemble(
-                array(
-                    'module'        => $module,
-                    'controller'    => 'index',
-                    'action'        => 'detail',
-                    'id'            => $row['id']
-                ),
-                array(
-                    'name'          => 'default',
-                )
-            );
+            $url[$row['id']] = Pi::service('url')->assemble('default', array(
+                'module'        => $module,
+                'controller'    => 'index',
+                'action'        => 'detail',
+                'id'            => $row['id']
+            ));
         }
 
         foreach ($result as $row) {
@@ -146,17 +144,11 @@ class Block
             $time[$row['tag']] = $row['time'];
         }
         foreach ($data as &$row) {
-            $row['url'] = Pi::engine()->application()->getRouter()->assemble(
-                array(
-                    'module'        => $module,
-                    'controller'    => 'index',
-                    'action'        => 'detail',
-                    'id'            => $row['id']
-                ),
-                array(
-                    'name'          => 'default',
-                )
-            );
+            $row['url'] = Pi::service('url')->assemble('default', array(
+                'module'        => $module,
+                'controller'    => 'index',
+                'action'        => 'detail',
+            ));
         }
 
         return array(

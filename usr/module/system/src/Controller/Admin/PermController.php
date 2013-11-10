@@ -72,14 +72,14 @@ class PermController extends ComponentController
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-access',
-            'title'     => __('Module access'),
+            'title'     => _a('Module access'),
             'roles'     => array(),
         );
         $resources['global']['module-admin'] = array(
             'section'   => $section,
             'module'    => $module,
             'resource'  => 'module-admin',
-            'title'     => __('Module admin'),
+            'title'     => _a('Module admin'),
             'roles'     => array(),
         );
 
@@ -98,7 +98,7 @@ class PermController extends ComponentController
                 'section'   => $section,
                 'module'    => $module,
                 'resource'  => $row['name'],
-                'title'     => __($row['title']),
+                'title'     => _a($row['title']),
                 'roles'     => array(),
             );
         }
@@ -312,7 +312,7 @@ class PermController extends ComponentController
         Pi::registry('navigation')->flush();
 
         $status = 1;
-        $message = __('Permission assigned successfully.');
+        $message = _a('Permission assigned successfully.');
         return array(
             'status'    => $status,
             'message'   => $message,

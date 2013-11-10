@@ -18,19 +18,19 @@ return array(
         // event name (unique)
         'module_install' => array(
             // title
-            'title' => __('Module installed'),
+            'title' => _t('Module installed'),
         ),
         'module_uninstall'  => array(
-            'title' => __('Module uninstalled'),
+            'title' => _t('Module uninstalled'),
         ),
         'module_activate'  => array(
-            'title' => __('Module activated'),
+            'title' => _t('Module activated'),
         ),
         'module_deactivate'  => array(
-            'title' => __('Module deactivated'),
+            'title' => _t('Module deactivated'),
         ),
         'module_update'  => array(
-            'title' => __('Module updated'),
+            'title' => _t('Module updated'),
         ),
     ),
     // Listener list

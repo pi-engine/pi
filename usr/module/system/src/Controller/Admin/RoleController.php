@@ -153,10 +153,10 @@ class RoleController extends ActionController
                 if ($row->id) {
                     Pi::registry('role')->flush();
                     $roleData = $row->toArray();
-                    $message = __('Role data saved successfully.');
+                    $message = _a('Role data saved successfully.');
                 } else {
                     $status = 0;
-                    $message = __('Role data not saved.');
+                    $message = _a('Role data not saved.');
                 }
             } else {
                 $status = 0;
@@ -178,7 +178,7 @@ class RoleController extends ActionController
                 'action',
                 $this->url('', array('action' => 'add'))
             );
-            $this->view()->assign('title', __('Add a role'));
+            $this->view()->assign('title', _a('Add a role'));
             $this->view()->assign('form', $form);
             $this->view()->setTemplate('system:component/form-popup');
         }
@@ -207,10 +207,10 @@ class RoleController extends ActionController
                     $row->save();
                     Pi::registry('role')->flush();
                     $roleData = $row->toArray();
-                    $message = __('Role data saved successfully.');
+                    $message = _a('Role data saved successfully.');
                 } catch (\Exception $e) {
                     $status = 0;
-                    $message = __('Role data not saved.');
+                    $message = _a('Role data not saved.');
                 }
             } else {
                 $status = 0;
@@ -236,7 +236,7 @@ class RoleController extends ActionController
                 $this->url('', array('action' => 'edit'))
             );
             $form->setData($data);
-            $this->view()->assign('title', __('Edit a role'));
+            $this->view()->assign('title', _a('Edit a role'));
             $this->view()->assign('form', $form);
             $this->view()->setTemplate('system:component/form-popup');
         }
@@ -256,7 +256,7 @@ class RoleController extends ActionController
         if (!$row['custom']) {
             $status = 0;
             $message =
-                __('Only custom roles are allowed to activate/deactivate.');
+                _a('Only custom roles are allowed to activate/deactivate.');
         } else {
             if ($row->active) {
                 $row->active = 0;
@@ -266,7 +266,7 @@ class RoleController extends ActionController
             $data = $row->active;
             $row->save();
             Pi::registry('role')->flush();
-            $message = __('Role updated successfully.');
+            $message = _a('Role updated successfully.');
         }
         return array(
             'status'    => $status,
@@ -305,12 +305,12 @@ class RoleController extends ActionController
         $row = $this->model()->find($id);
         if (!$row['custom']) {
             $status = 0;
-            $message = __('Only custom roles are allowed to delete.');
+            $message = _a('Only custom roles are allowed to delete.');
         } else {
             Pi::model('permission_rule')->delete(array('role' => $row->name));
             $row->delete();
             Pi::registry('role')->flush();
-            $message = __('Role deleted successfully.');
+            $message = _a('Role deleted successfully.');
         }
 
         $data = $this->getRoles($row->section);

@@ -60,15 +60,15 @@ class PageController extends ComponentController
         $rowset = Pi::model('page')->selectWith($select);
         $sections = array(
             'front' => array(
-                'title' => __('Front'),
+                'title' => _a('Front'),
                 'pages' => array(),
             ),
             'admin' => array(
-                'title' => __('Admin'),
+                'title' => _a('Admin'),
                 'pages' => array(),
             ),
             'feed'  => array(
-                'title' => __('Feed'),
+                'title' => _a('Feed'),
                 'pages' => array(),
             ),
         );
@@ -84,12 +84,12 @@ class PageController extends ComponentController
             } else {
                 $key = $row->module;
                 $title = sprintf(
-                    __('%s module wide'),
+                    _a('%s module wide'),
                     $row->title ?: $row->module
                 );
             }
 
-            //$title = $row->title ?: ($key ?: __('Module wide'));
+            //$title = $row->title ?: ($key ?: _a('Module wide'));
             $sections[$row->section]['pages'][] = array(
                 'id'        => $row->id,
                 'title'     => $title,
@@ -112,7 +112,7 @@ class PageController extends ComponentController
 
         $this->view()->assign('pagesBySection', $sections);
         $this->view()->assign('name', $name);
-        $this->view()->assign('title', __('Pages list'));
+        $this->view()->assign('title', _a('Pages list'));
 
         $this->view()->setTemplate('page-list');
     }
@@ -138,7 +138,7 @@ class PageController extends ComponentController
                 $row = Pi::model('page')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    $message = __('Page data saved successfully.');
+                    $message = _a('Page data saved successfully.');
 
                     /*
                     // Add ACL resource
@@ -190,10 +190,10 @@ class PageController extends ComponentController
                     );
                     $this->view()->setTemplate(false);
                 } else {
-                    $message = __('Page data not saved.');
+                    $message = _a('Page data not saved.');
                 }
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $form = new AddForm('page-edit', $this->params('name'));
@@ -203,7 +203,7 @@ class PageController extends ComponentController
         }
 
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Setup a page'));
+        $this->view()->assign('title', _a('Setup a page'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('system:component/form-popup');
     }
@@ -236,7 +236,7 @@ class PageController extends ComponentController
             $row = Pi::model('page')->createRow($values);
             $row->save();
             if ($row->id) {
-                $message = __('Page data saved successfully.');
+                $message = _a('Page data saved successfully.');
 
                 /*
                 // Add ACL resource
@@ -295,7 +295,7 @@ class PageController extends ComponentController
                 Pi::registry('page')->clear($row->module);
 
             } else {
-                $message = __('Page data not saved.');
+                $message = _a('Page data not saved.');
                 $status = 1;
             }
         } else {
@@ -337,9 +337,9 @@ class PageController extends ComponentController
                 $row->assign($values);
                 $row->save();
                 Pi::registry('page')->clear($row->module);
-                $message = __('Page data saved successfully.');
+                $message = _a('Page data saved successfully.');
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $id = $this->params('id');
@@ -353,7 +353,7 @@ class PageController extends ComponentController
         }
 
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Pages edit'));
+        $this->view()->assign('title', _a('Pages edit'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('system:component/form-popup');
     }
@@ -385,7 +385,7 @@ class PageController extends ComponentController
             $row = Pi::model('page')->find($id);
             $row->assign($values);
             $row->save();
-            $message = __('Page data saved successfully.');
+            $message = _a('Page data saved successfully.');
 
             $page = array(
                 'id'    => $row->id,
@@ -446,12 +446,12 @@ class PageController extends ComponentController
             Pi::registry('page')->clear($row->module);
             $result = array(
                 'status'    => 0,
-                'message'   => __('Page is not found.'),
+                'message'   => _a('Page is not found.'),
             );
         } else {
             $result = array(
                 'status'    => 1,
-                'message'   => __('Page is deleted.'),
+                'message'   => _a('Page is deleted.'),
             );
         }
 
@@ -564,7 +564,7 @@ class PageController extends ComponentController
         $this->view()->assign('name', $name);
         $this->view()->assign('pageZone', $this->getZoneTemplate());
         $this->view()->assign('title',
-                              sprintf(__('%s blocks'), $pageData['title']));
+                              sprintf(_a('%s blocks'), $pageData['title']));
         $this->view()->setTemplate('page-block');
     }
 
@@ -622,7 +622,7 @@ class PageController extends ComponentController
         if (!$row) {
             $result = array(
                 'status'    => 0,
-                'message'   => __('Page is not found.'),
+                'message'   => _a('Page is not found.'),
             );
 
             return $result;
@@ -647,7 +647,7 @@ class PageController extends ComponentController
         Pi::registry('block')->clear($row->module);
         $result = array(
             'status'    => 1,
-            'message'   => __('Page block links are updated.'),
+            'message'   => _a('Page block links are updated.'),
         );
 
         return $result;
