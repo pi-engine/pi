@@ -12,6 +12,7 @@ namespace Pi\Application\Bootstrap\Resource;
 use Pi;
 use Locale;
 use Zend\Mvc\MvcEvent;
+use Zend\Validator\AbstractValidator;
 
 /**
  * I18n bootstrap
@@ -59,6 +60,12 @@ class I18n extends AbstractResource
                 );
             }
         }
+
+        // Set default translator for validators
+        AbstractValidator::setDefaultTranslator(
+            Pi::service('i18n')->getTranslator(),
+            'validator'
+        );
     }
 
     /**
