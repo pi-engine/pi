@@ -86,7 +86,7 @@ class CarouselController extends WidgetController
     public function indexAction()
     {
         $this->view()->assign('widgets', $this->widgetList());
-        $this->view()->assign('title', __('Carousel widgets'));
+        $this->view()->assign('title', _a('Carousel widgets'));
         $this->view()->setTemplate('list-carousel');
     }
 
@@ -184,13 +184,13 @@ class CarouselController extends WidgetController
         if (empty($values['id'])) {
             $values['config'] = array(
                 'interval' => array(
-                    'title'         => _t('Time interval (ms)'),
+                    'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
                     'filter'        => 'number_int',
                     'value'         => 2000,
                 ),
                 'pause' => array(
-                    'title'         => _t('Mouse event to pause cycle'),
+                    'title'         => _a('Mouse event to pause cycle'),
                     'edit'          => array(
                         'type'  =>  'select',
                         'options'   => array(

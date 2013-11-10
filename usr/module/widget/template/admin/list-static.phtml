@@ -1,9 +1,9 @@
 <div style="margin-bottom: 10px;">
-    <span class="label label-info" style="margin-right: 10px;"><?php _e('Add a static block :'); ?></span>
+    <span class="label label-info" style="margin-right: 10px;"><?php echo _a('Add a static block :'); ?></span>
     <div class="btn-group">
-        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'html')); ?>" title="<?php _e('HTML tags allowed in content.'); ?>"><?php echo $types['html']; ?></a>
-        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'text')); ?>" title="<?php _e('Only plaintext content is allowed.'); ?>"><?php echo $types['text']; ?></a>
-        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'markdown')); ?>" title="<?php _e('Markdown syntax allowed in content.'); ?>"><?php echo $types['markdown']; ?></a>
+        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'html')); ?>" title="<?php echo _a('HTML tags allowed in content.'); ?>"><?php echo $types['html']; ?></a>
+        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'text')); ?>" title="<?php echo _a('Only plaintext content is allowed.'); ?>"><?php echo $types['text']; ?></a>
+        <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'markdown')); ?>" title="<?php echo _a('Markdown syntax allowed in content.'); ?>"><?php echo $types['markdown']; ?></a>
     </div>
 </div>
 

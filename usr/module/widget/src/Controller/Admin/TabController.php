@@ -37,7 +37,7 @@ class TabController extends WidgetController
         }
         $modules[0] = array(
             'name'  => '',
-            'title' => __('Custom blocks'),
+            'title' => _a('Custom blocks'),
         );
 
         $this->view()->assign('modules', array_values($modules));
@@ -49,7 +49,7 @@ class TabController extends WidgetController
     public function indexAction()
     {
         $this->view()->assign('widgets', $this->widgetList());
-        $this->view()->assign('title', __('Compound tab widgets'));
+        $this->view()->assign('title', _a('Compound tab widgets'));
         $this->view()->setTemplate('list-tab');
     }
 

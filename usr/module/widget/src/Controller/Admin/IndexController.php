@@ -73,7 +73,7 @@ class IndexController extends WidgetController
         );
 
         $this->view()->assign('widgets', $list);
-        $this->view()->assign('title', __('Widget list'));
+        $this->view()->assign('title', _a('Widget list'));
         $this->view()->setTemplate('list-script');
     }
 
@@ -127,9 +127,9 @@ class IndexController extends WidgetController
         $status = $this->addBlock($block);
 
         if ($status) {
-            $message = sprintf(__('The widget "%s" is installed.'), $name);
+            $message = sprintf(_a('The widget "%s" is installed.'), $name);
         } else {
-            $message = sprintf(__('The widget "%s" is not installed.'), $name);
+            $message = sprintf(_a('The widget "%s" is not installed.'), $name);
         }
 
         return array(
