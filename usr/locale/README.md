@@ -33,7 +33,6 @@ Skeleton
       * `mail-template.text`
     * `default.mo`: module global, loaded on every request of current module
     * `admin.mo`: Admin area
-    * `feed.mo`: Feed
     * `block.mo`: Module block
     * ...
   * `/zh-cn`
