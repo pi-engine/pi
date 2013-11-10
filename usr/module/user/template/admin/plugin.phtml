@@ -19,22 +19,22 @@ angular
         urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         navTabs: [
-            { text: '<?php _e('Timeline'); ?>', href: '#!/timeline' },
-            { text: '<?php _e('Activity'); ?>', href: '#!/activity' },
-            { text: '<?php _e('Quicklink'); ?>', href: '#!/quicklink' }
+            { text: '<?php echo _a('Timeline'); ?>', href: '#!/timeline' },
+            { text: '<?php echo _a('Activity'); ?>', href: '#!/activity' },
+            { text: '<?php echo _a('Quicklink'); ?>', href: '#!/quicklink' }
         ],
         t: {
-            ITEM_NAME: '<?php _e('Item name'); ?>',
-            FROM: '<?php _e('From module'); ?>',
-            DISPLAY: '<?php _e('Display'); ?>',
-            TITLE: '<?php _e('Items displayed on the homepage timeline'); ?>',
-            YES: '<?php _e('Yes'); ?>',
-            NO: '<?php _e('No'); ?>',
-            ACTIVITIES: '<?php _e('Activities'); ?>',
-            ACTIVITIES_REPOSITORY: '<?php _e('Activities items repository'); ?>',
-            ACTIVITIES_DESC: '<?php _e("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
-            QUICKLINK: '<?php _e('Quicklinks'); ?>',
-            QUICKLINK_REPOSITORY: '<?php _e('Quicklinks items repository'); ?>'
+            ITEM_NAME: '<?php echo _a('Item name'); ?>',
+            FROM: '<?php echo _a('From module'); ?>',
+            DISPLAY: '<?php echo _a('Display'); ?>',
+            TITLE: '<?php echo _a('Items displayed on the homepage timeline'); ?>',
+            YES: '<?php echo _a('Yes'); ?>',
+            NO: '<?php echo _a('No'); ?>',
+            ACTIVITIES: '<?php echo _a('Activities'); ?>',
+            ACTIVITIES_REPOSITORY: '<?php echo _a('Activities items repository'); ?>',
+            ACTIVITIES_DESC: '<?php echo _a("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
+            QUICKLINK: '<?php echo _a('Quicklinks'); ?>',
+            QUICKLINK_REPOSITORY: '<?php echo _a('Quicklinks items repository'); ?>'
         }
     });
 </script>

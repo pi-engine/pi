@@ -214,7 +214,7 @@ class ProfileController extends ActionController
         }
 
         $result['status'] = 1;
-        $result['message'] = __('Profile dressup data save successfully');
+        $result['message'] = _a('Profile dressup data save successfully');
 
         return $result;
 
@@ -309,17 +309,17 @@ class ProfileController extends ActionController
 
         // Check post data
         if (!$id) {
-            $result['message'] = __('Set privacy failed: invalid id.');
+            $result['message'] = _a('Set privacy failed: invalid id.');
             return $result;
         }
 
         if (!in_array($value, array(0, 1, 2, 4, 255))) {
-            $result['message'] = __('Set privacy failed: invalid value.');
+            $result['message'] = _a('Set privacy failed: invalid value.');
             return $result;
         }
 
         if ($isForced != 0 && $isForced != 1) {
-            $result['message'] = __('Set privacy failed: invalid force flag.');
+            $result['message'] = _a('Set privacy failed: invalid force flag.');
             return $result;
         }
 
@@ -338,7 +338,7 @@ class ProfileController extends ActionController
         try {
             $row->save();
         } catch (\Exception $e) {
-            $result['message'] = __('Set privacy failed: update error.');
+            $result['message'] = _a('Set privacy failed: update error.');
             return $result;
         }
 
@@ -349,7 +349,7 @@ class ProfileController extends ActionController
         }
 
         $result['status']  = 1;
-        $result['message'] = __('Set privacy successfully');
+        $result['message'] = _a('Set privacy successfully');
 
         return $result;
 

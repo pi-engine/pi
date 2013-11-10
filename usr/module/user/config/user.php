@@ -23,7 +23,7 @@ return array(
         'identity'      => array(
             'type'      => 'account',
             'name'      => 'identity',
-            'title'     => __('Username'),
+            'title'     => _a('Username'),
             // Edit element specs
             'edit'      => array(
                 'validators'    => array(
@@ -39,7 +39,7 @@ return array(
         'credential'    => array(
             'type'      => 'account',
             'name'      => 'credential',
-            'title'     => __('Password'),
+            'title'     => _a('Password'),
             'edit'      => array(
                 'element'       => 'password',
                 'validators'    => array(
@@ -55,7 +55,7 @@ return array(
         'email'     => array(
             'type'      => 'account',
             'name'      => 'email',
-            'title'     => __('Email'),
+            'title'     => _a('Email'),
             'edit'      => array(
                 'element'       => 'email',
                 'validators'    => array(
@@ -77,7 +77,7 @@ return array(
         'name'      => array(
             'type'      => 'account',
             'name'      => 'name',
-            'title'     => __('Display name'),
+            'title'     => _a('Display name'),
             // Edit element specs
             'edit'      => array(
                 'validators'    => array(
@@ -91,7 +91,7 @@ return array(
         'gender'    => array(
             'type'      => 'account',
             'name'      => 'gender',
-            'title'     => __('Gender'),
+            'title'     => _a('Gender'),
             'edit'      => 'Module\User\Form\Element\Gender',
             'filter'    => 'Gender',
         ),
@@ -99,7 +99,7 @@ return array(
         'birthdate'  => array(
             'type'  => 'account',
             'name'  => 'birthdate',
-            'title' => __('Birthdate'),
+            'title' => _a('Birthdate'),
             'edit'  => array(
                 'element'       => 'date_select',
                 'options'       => array(
@@ -119,7 +119,7 @@ return array(
         'avatar'    => array(
             'type'      => 'account',
             'name'      => 'avatar',
-            'title'     => __('Avatar'),
+            'title'     => _a('Avatar'),
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -130,7 +130,7 @@ return array(
         'active'    => array(
             'type'      => 'account',
             'name'      => 'active',
-            'title'     => __('Active'),
+            'title'     => _a('Active'),
             'edit'      => 'text',
             'filter'    => 'YesNo',
 
@@ -141,7 +141,7 @@ return array(
         'time_created'  => array(
             'type'      => 'account',
             'name'      => 'time_created',
-            'title'     => __('Register time'),
+            'title'     => _a('Register time'),
             'edit'      => 'text',
             'filter'    => array('Int', 'DateTimeFormatter'),
 
@@ -152,7 +152,7 @@ return array(
         'time_activated'    => array(
             'type'      => 'account',
             'name'      => 'time_activated',
-            'title'     => __('Activation time'),
+            'title'     => _a('Activation time'),
             'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
@@ -163,7 +163,7 @@ return array(
         'time_disabled' => array(
             'type'      => 'account',
             'name'      => 'time_disabled',
-            'title'     => __('Disabled time'),
+            'title'     => _a('Disabled time'),
             'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
@@ -175,7 +175,7 @@ return array(
         'time_deleted'  => array(
             'type'      => 'account',
             'name'      => 'time_deleted',
-            'title'     => __('Deleted time'),
+            'title'     => _a('Deleted time'),
             'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
@@ -189,7 +189,7 @@ return array(
         // Profile: Level
         'level'    => array(
             'name'      => 'level',
-            'title'     => __('Level'),
+            'title'     => _a('Level'),
 
             'is_display'    => false,
             'is_edit'       => false,
@@ -198,25 +198,25 @@ return array(
         // Profile: homepage
         'homepage'  => array(
             'name'  => 'homepage',
-            'title' => __('Homepage'),
+            'title' => _a('Homepage'),
         ),
         // Profile: bio
         'bio'  => array(
             'name'  => 'bio',
-            'title' => __('Short bio'),
+            'title' => _a('Short bio'),
             'edit'  => 'textarea',
         ),
         // Profile: signature
         'signature'  => array(
             'name'  => 'signature',
-            'title' => __('Signature'),
+            'title' => _a('Signature'),
             'edit'  => 'textarea',
         ),
 
         // Profile: Register IP
         'ip_register'  => array(
             'name'      => 'ip_register',
-            'title'     => __('Register IP'),
+            'title'     => _a('Register IP'),
 
             'is_edit'       => false,
             'is_display'    => false,
@@ -227,14 +227,14 @@ return array(
         // Compound: Social networking tools
         'tool'      => array(
             'name'  => 'tool',
-            'title' => __('Social tools'),
+            'title' => _a('Social tools'),
 
             'field' => array(
                 'title'         => array(
-                    'title' => __('Tool name'),
+                    'title' => _a('Tool name'),
                 ),
                 'identifier'    => array(
-                    'title' => __('ID or URL'),
+                    'title' => _a('ID or URL'),
                 ),
             ),
         ),
@@ -244,7 +244,7 @@ return array(
     // Timeline logs from modules
     'timeline'  => array(
         'operation' => array(
-            'title' => __('User action'),
+            'title' => _a('User action'),
             'icon'  => 'icon-user',
         ),
     ),
@@ -256,7 +256,7 @@ return array(
     // Quicklinks
     'quicklink' => array(
         'logout'    => array(
-            'title' => __('Logout'),
+            'title' => _a('Logout'),
             'link'  => Pi::service('authentication')->getUrl('logout'),
             'icon'  => 'icon-off',
         ),

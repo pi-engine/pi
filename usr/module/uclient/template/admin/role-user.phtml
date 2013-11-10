@@ -2,10 +2,10 @@
 
     <form name="comment-post" method="GET" action="<?php echo $this->url('', array('action' => 'user')); ?>">
         <dl>
-            <input type="text" name="uid" placeholder="<?php _e('Added a user')?>" />
+            <input type="text" name="uid" placeholder="<?php echo _a('Added a user')?>" />
             <input type="hidden" name="op" value="add" />
             <input type="hidden" name="role" value="<?php echo $role; ?>" />
-            <input type="submit" value="<?php _e('Add'); ?>" />
+            <input type="submit" value="<?php echo _a('Add'); ?>" />
         </dl>
     </form>
 
@@ -20,10 +20,10 @@
         <dl class="dl-horizontal">
             <dt><?php echo _escape($user['name']); ?></dt>
             <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
-                    <?php _e('Profile'); ?>
+                    <?php echo _a('Profile'); ?>
                 </a>
                 <a href="<?php echo $this->url('', array('action' => 'user', 'uid' => $uid, 'role' => $role, 'op' => 'remove')); ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
-                    <?php _e('Remove'); ?>
+                    <?php echo _a('Remove'); ?>
                 </a>
             </dd>
             <dt>&nbsp;</dt>
@@ -38,6 +38,6 @@ if ($paginator) {
     echo $this->pagination($paginator);
 }
 } else {
-    _e('No users available yet.');
+    echo _a('No users available yet.');
 }
 ?>
