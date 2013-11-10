@@ -20,14 +20,14 @@
 
     <?php include $this->templateComponent('form'); ?>
 
-    <div class="modal hide fade user-js-comfirm" tabindex="-1" aria-hidden="true">
+    <form class="form-horizontal modal hide fade user-js-comfirm" tabindex="-1" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3><?php _e('Save account changes'); ?></h3>
         </div>
         <div class="modal-body">
             <p><?php _e('Re-enter your password to save changes to your account.'); ?></p>
-            <div class="form-horizontal">
+            <div>
                 <div class="control-group">
                     <label class="control-label" for="password" style="width: auto; margin-right: 20px;"><?php _e('Password'); ?></label>
                     <div class="controls" style="margin-left: 0;">
@@ -38,9 +38,9 @@
         </div>
         <div class="modal-footer">
             <a style="margin-right: 20px;" href="javascript:;" data-dismiss="modal" aria-hidden="true" title="Cancel"><?php _e('Cancel'); ?></a>
-            <button class="btn btn-primary user-js-comfirm-btn"><?php _e('Save changes'); ?></button>
+            <button class="btn btn-primary user-js-comfirm-btn" type="submit"><?php _e('Save changes'); ?></button>
         </div>
-    </div>
+    </form>
 
     <script>
         (function($) {
@@ -77,7 +77,7 @@
 
                 bindEvents: function() {
                     this.$el.on('submit', $.proxy(this.submitAction, this));
-                    this.$comfirmBtn.on('click', $.proxy(this.comfirmAction, this));
+                    this.$comfirm.on('submit', $.proxy(this.comfirmSubmitAction, this));
                     this.$comfirm.on('show', $.proxy(this.modalShowAction, this));
                     this.$comfirm.on('hide', $.proxy(this.modalHideAction, this));
                     this.$comfirmPassword.focus(this.focusAction);
@@ -90,7 +90,7 @@
                     this.$comfirm.modal('show');
                 },
 
-                comfirmAction: function(e) {
+                comfirmSubmitAction: function(e) {
                     e.preventDefault();
                     this.$comfirmBtn.addClass('disabled').attr('disabled', 'disabled');
                     var passwordVal = $.trim(this.$comfirmPassword.val());

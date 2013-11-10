@@ -285,6 +285,33 @@ return array(
 
     // Activity logs
     'activity'  => array(
+        // Community bbs
+        'community_bbs'    => array(
+            'title' => __('Community bbs'),
+            'callback'  => 'Custom\User\Activity\CommunityBbs',
+            'template'  => 'activity-community-bbs'
+        ),
+
+        // CNDZZ
+        'cndzz'    => array(
+            'title' => __('CNDZZ'),
+            'callback'  => 'Custom\User\Activity\Cndzz',
+            'template'  => 'activity-cndzz'
+        ),
+
+        // Blog
+        'Blog'    => array(
+            'title' => __('Blog'),
+            'callback'  => 'Custom\User\Activity\Blog',
+            'template'  => 'activity-blog'
+        ),
+
+        // Community
+        'community'    => array(
+            'title' => __('Community'),
+            'callback'  => 'Custom\User\Activity\Community',
+            'template'  => 'activity-community'
+        ),
     ),
 
     // Quicklinks
