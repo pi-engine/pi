@@ -13,7 +13,7 @@ namespace Custom\User\Form\Element;
 use Zend\Form\Element;
 
 /**
- * Country setup element
+ * Start/end time
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
