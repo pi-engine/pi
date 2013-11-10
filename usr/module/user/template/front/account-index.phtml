@@ -1,5 +1,5 @@
 <?php
-    $this->css($this->assetModule('front/front.css'));
+    $this->css($this->assetModule('script/front.css'));
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9">
@@ -60,6 +60,7 @@
                     this.isValid();
                     this.emailInitVal = $.trim(this.$email.val());
                     this.nameInitVal = $.trim(this.$name.val());
+                    this.uidVal      = $.trim(this.$el.find('[name=uid]').val());
                     this.checkEmailRequest = null;
                     this.checkNameRequest = null;
                 },
@@ -99,20 +100,26 @@
                             var emailVal = $.trim(this.$email.val());
                             var nameVal = $.trim(this.$name.val());
 
-                            $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal }, $.proxy(function(result) {
+                            $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'uid': this.uidVal}, $.proxy(function(result) {
                                 this.emailReset();
-                                if (result.status) {
-                                    this.$email.next().remove();
-                                    this.$email.after('<span class="help-block"><?php _e('A message has been sent to you'); ?> ( ' + result.new_email + ' )<?php _e('to confirm your new email address. Check the email in 24 hours. The new email will not work until your confirm.'); ?> </span>');
-                                    this.nameInitVal = nameVal;
-                                    this.$name.next().remove();
-                                    this.$name.after('<span class="help-block"><?php _e('Display name change saved.'); ?></span>');
-                                } else {
-                                    this.$email.next().remove();
-                                    this.$email.after('<span class="help-block"><?php _e('Sorry, email change failed. Try it later.'); ?></span>').closest('.control-group').addClass('error');
+                                this.$email.next().remove();
+                                this.$name.next().remove();
 
+                                if (result.email_error === 0) {
+                                    this.$email.after('<span class="help-block"><?php _e('A message has been sent to you'); ?> ( ' + result.new_email + ' )<?php _e('to confirm your new email address. Check the email in 24 hours. The new email will not work until your confirm.'); ?> </span>');
+                                }
+
+                                if (result.email_error === 1) {
+                                    this.$email.after('<span class="help-block"><?php _e('Sorry, email change failed. Try it later.'); ?></span>').closest('.control-group').addClass('error');
+                                }
+
+                                if (result.name_error === 0) {
+                                    this.nameInitVal = nameVal;
+                                    this.$name.after('<span class="help-block"><?php _e('Display name change saved.'); ?></span>');
+                                }
+
+                                if (result.name_error === 1) {
                                     this.nameReset();
-                                    this.$name.next().remove();
                                     this.$name.after('<span class="help-block"><?php _e('Sorry, display name change failed. Try it later.'); ?></span>').closest('.control-group').addClass('error');
                                 }
 
