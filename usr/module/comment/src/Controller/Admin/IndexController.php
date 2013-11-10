@@ -20,30 +20,30 @@ class IndexController extends ActionController
     public function indexAction()
     {
         // Portal
-        $title = sprintf(__('Comment portal for %s'), Pi::config('sitename'));
+        $title = sprintf(_a('Comment portal for %s'), Pi::config('sitename'));
         $links = array(
             'build'   => array(
-                'title' => __('Build comment data for demo articles'),
+                'title' => _a('Build comment data for demo articles'),
                 'url'   => $this->url('', array(
                     'controller'    => 'index',
                     'action'        => 'build',
                 )),
             ),
             'demo'   => array(
-                'title' => __('Demo article with comments'),
+                'title' => _a('Demo article with comments'),
                 'url'   => $this->url('comment', array(
                     'controller'    => 'demo',
                 )),
             ),
             'all'   => array(
-                'title' => __('All comment posts'),
+                'title' => _a('All comment posts'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
                 )),
             ),
             'all-active'   => array(
-                'title' => __('All active comment posts'),
+                'title' => _a('All active comment posts'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -51,7 +51,7 @@ class IndexController extends ActionController
                 )),
             ),
             'all-inactive'   => array(
-                'title' => __('All inactive comment posts'),
+                'title' => _a('All inactive comment posts'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -59,21 +59,21 @@ class IndexController extends ActionController
                 )),
             ),
             'article'   => array(
-                'title' => __('Commented articles'),
+                'title' => _a('Commented articles'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'article',
                 )),
             ),
             'user'   => array(
-                'title' => __('Comment posts by user'),
+                'title' => _a('Comment posts by user'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'user',
                 )),
             ),
             'module'   => array(
-                'title' => __('Comment posts by module'),
+                'title' => _a('Comment posts by module'),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'module',
@@ -84,7 +84,7 @@ class IndexController extends ActionController
         // Statistics
         $counts = array(
             'total'     => array(
-                'title' => __('Total posts'),
+                'title' => _a('Total posts'),
                 'count' => Pi::api('comment')->getCount(),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
@@ -92,7 +92,7 @@ class IndexController extends ActionController
                 )),
             ),
             'active'     => array(
-                'title' => __('Active posts'),
+                'title' => _a('Active posts'),
                 'count' => Pi::api('comment')->getCount(array('active' => 1)),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
@@ -101,7 +101,7 @@ class IndexController extends ActionController
                 )),
             ),
             'inactive'     => array(
-                'title' => __('Inactive posts'),
+                'title' => _a('Inactive posts'),
                 'count' => Pi::api('comment')->getCount(array('active' => 0)),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
@@ -274,7 +274,7 @@ class IndexController extends ActionController
                 'uid'       => rand(1, 5),
                 'ip'        => Pi::service('user')->getIp(),
                 'active'    => rand(0, 1),
-                'content'   => sprintf(__('Demo comment %d.'), $i + 1),
+                'content'   => sprintf(_a('Demo comment %d.'), $i + 1),
                 'time'      => time() - rand(100, 100000),
             );
             Pi::api('comment')->addPost($post);

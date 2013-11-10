@@ -11,19 +11,19 @@ return array(
     'front' => array(
         'list'      => array(
             'route'         => 'comment',
-            'label'         => _t('All comments'),
+            'label'         => _a('All comments'),
             'controller'    => 'list',
             'action'        => 'index',
         ),
         'article'      => array(
             'route'         => 'comment',
-            'label'         => _t('Commented articles'),
+            'label'         => _a('Commented articles'),
             'controller'    => 'list',
             'action'        => 'article',
         ),
         'my-post'   => array(
             'route'         => 'comment',
-            'label'         => _t('My comments'),
+            'label'         => _a('My comments'),
             'controller'    => 'list',
             'action'        => 'user',
             'params'        => array(
@@ -32,7 +32,7 @@ return array(
         ),
         'my-received'   => array(
             'route'         => 'comment',
-            'label'         => _t('My received'),
+            'label'         => _a('My received'),
             'controller'    => 'list',
             'action'        => 'received',
             'params'        => array(
@@ -41,7 +41,7 @@ return array(
         ),
         'my-article'    => array(
             'route'         => 'comment',
-            'label'         => _t('My articles'),
+            'label'         => _a('My articles'),
             'controller'    => 'list',
             'action'        => 'article',
             'params'        => array(

@@ -41,21 +41,21 @@ class PostController extends ActionController
             $active = $post['active'];
             $post['operations'] = array(
                 'edit'  => array(
-                    'title' => __('Edit'),
+                    'title' => _a('Edit'),
                     'url'   => $this->url('', array(
                         'action'        => 'edit',
                         'id'            => $id,
                     )),
                 ),
                 'delete'  => array(
-                    'title' => __('Delete'),
+                    'title' => _a('Delete'),
                     'url'   => $this->url('', array(
                         'action'        => 'delete',
                         'id'            => $id,
                     )),
                 ),
                 'approve'  => array(
-                    'title' => $active ? __('Disable') : __('Enable'),
+                    'title' => $active ? _a('Disable') : _a('Enable'),
                     'url'   => $this->url('', array(
                         'action'        => 'approve',
                         'id'            => $id,
@@ -64,7 +64,7 @@ class PostController extends ActionController
                 ),
             );
         }
-        $title = __('Comment post');
+        $title = _a('Comment post');
         $this->view()->assign('comment', array(
             'title'     => $title,
             'post'      => $post,
@@ -88,7 +88,7 @@ class PostController extends ActionController
             $post['user'] = $user;
         }
 
-        $title = __('Comment post edit');
+        $title = _a('Comment post edit');
         $this->view()->assign('comment', array(
             'title'     => $title,
             'post'      => $post,
@@ -172,18 +172,18 @@ class PostController extends ActionController
                 $id = Pi::api('comment')->addPost($values);
                 if ($id) {
                     $status = 1;
-                    $message = __('Comment post saved successfully.');
+                    $message = _a('Comment post saved successfully.');
                 } else {
                     $status = 0;
-                    $message = __('Comment post not saved.');
+                    $message = _a('Comment post not saved.');
                 }
             } else {
                 $status = -1;
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $status = -2;
-            $message = __('Invalid submission.');
+            $message = _a('Invalid submission.');
         }
 
         if (0 < $status && $id) {
@@ -221,7 +221,7 @@ class PostController extends ActionController
             $status = Pi::api('comment')->approve($id, $flag);
         }
         $message = $status
-            ? __('Operation succeeded.') : __('Operation failed');
+            ? _a('Operation succeeded.') : _a('Operation failed');
 
         if (0 < $status && $id) {
             if (null === $flag || $flag) {
@@ -297,7 +297,7 @@ class PostController extends ActionController
 
         $status     = Pi::api('comment')->deletePost($id);
         $message = $status
-            ? __('Operation succeeded.') : __('Operation failed');
+            ? _a('Operation succeeded.') : _a('Operation failed');
 
         if (0 < $status && $id) {
             Pi::service('event')->trigger('post_delete', $id);

@@ -19,7 +19,7 @@ class CategoryController extends ActionController
      */
     public function indexAction()
     {
-        $title = __('Comment categories');
+        $title = _a('Comment categories');
 
         $modulelist = Pi::registry('modulelist')->read('active');
         $rowset = Pi::model('category', 'comment')->select(array(
@@ -30,7 +30,7 @@ class CategoryController extends ActionController
             $category = $row['name'];
             $categories[$row['module']][$category] = array(
                 'title'     => $row['title'],
-                'status'    => $row['active'] ? __('Active') : __('Disabled'),
+                'status'    => $row['active'] ? _a('Active') : _a('Disabled'),
                 'url'       => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'module',
@@ -38,7 +38,7 @@ class CategoryController extends ActionController
                     'category'      => $category,
                 )),
                 'enable'    => array(
-                    'title' => $row['active'] ? __('Disable') : __('Enable'),
+                    'title' => $row['active'] ? _a('Disable') : _a('Enable'),
                     'url'   => $this->url('', array(
                         'controller'    => 'category',
                         'action'        => 'enable',
@@ -88,20 +88,20 @@ class CategoryController extends ActionController
         $row = Pi::model('category', 'comment')->find($id);
         if (!$row) {
             $status = -1;
-            $message = __('Category was not found.');
+            $message = _a('Category was not found.');
         } else {
             if ($flag == (int) $row['active']) {
                 $status = 0;
-                $message = __('Invalid operation.');
+                $message = _a('Invalid operation.');
             } else {
                 $row['active'] = $flag;
                 try {
                     $row->save();
                     $status = 1;
-                    $message = __('Operation succeeded.');
+                    $message = _a('Operation succeeded.');
                 } catch (\Exception $e) {
                     $status = 0;
-                    $message = __('Operation failed.');
+                    $message = _a('Operation failed.');
                 }
             }
         }
