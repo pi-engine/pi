@@ -181,6 +181,7 @@ class ProfileController extends ActionController
             $form->setData($this->request->getPost());
             if ($form->isValid()) {
                 $data = $form->getData();
+                $data['last_modified'] = time();
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
                 $result['status']  = 1;

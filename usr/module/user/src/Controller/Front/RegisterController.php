@@ -80,6 +80,7 @@ class RegisterController extends ActionController
                 } else {
                     // Complete register
                     $values = $form->getData();
+                    $values['last_modified'] = time();
                     $uid = Pi::api('user', 'user')->addUser($values);
                     if (is_array($uid)) {
                         $this->view()->assign(array(
@@ -168,6 +169,7 @@ class RegisterController extends ActionController
         if ($form->isValid()) {
             $values = $form->getData();
             $values = $this->canonizeUser($values, 'work');
+            $values['last_modified'] = time();
             $uid = Pi::api('user', 'user')->addUser($values);
             if (is_array($uid)) {
                 $this->view()->assign(array(
@@ -416,6 +418,7 @@ class RegisterController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 $values['level'] = 1;
+                $values['last_modified'] = time();
                 Pi::api('user', 'user')->updateUser($uid, $values);
 
                 return $this->jump(

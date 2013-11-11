@@ -195,6 +195,14 @@ return array(
             'is_edit'       => false,
             'is_search'     => true,
         ),
+        // Profile: Last modified
+        'last_modified'  => array(
+            'name'  => 'last_modified',
+            'title' => _a('Last modified'),
+            'is_display'    => false,
+            'is_edit'       => false,
+            'is_search'     => true,
+        ),
         // Profile: homepage
         'homepage'  => array(
             'name'  => 'homepage',
