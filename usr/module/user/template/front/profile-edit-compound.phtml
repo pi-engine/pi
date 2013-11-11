@@ -41,7 +41,7 @@
 <script>
 $('#user-js-compound').data('config', {
     urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
-    groupId: '<?php echo $groupId; ?>',
+    groupId: '<?php echo $group_id; ?>',
     compounds: <?php echo json_encode($compounds) ?>,
     deleteConfirm: '<?php _e('Are you sure delete this one'); ?>'
 });

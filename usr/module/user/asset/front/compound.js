@@ -170,6 +170,9 @@
     events: {
       'submit form': 'submit'
     },
+    initialize: function() {
+      this.$('.js-cancel').remove();
+    },
     submit: function(e) {
       var form = this.$('form');
       var self = this;
