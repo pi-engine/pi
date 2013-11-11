@@ -3,6 +3,7 @@
  */
 (function($) {
   var eefocus = this.eefocus || {};
+  var SOFAR_STR = '至今';
   var obj = {
     optionFragment: function(start, end) {
       var html = '<option value="">请选择';
@@ -55,14 +56,14 @@
     }
   }
 
-  eefocus.EndTime = function(root, maxYear, name, value) {
+  eefocus.EndTime = function(root, maxYear, name, value, sofar) {
     this.el = $('#' + root);
     this.maxYear = maxYear;
     this.name = name;
     this.render();
     this.events();
     if (value) {
-      if (value == '至今') {
+      if (value == SOFAR_STR) {
         this.$('sofar').attr('checked', 'checked').trigger('change');
       } else {
         value = value.split('-');
@@ -70,6 +71,8 @@
         this.month.val(value[1]).trigger('change');
       }
     }
+    this.valiate();
+    this.sofar = sofar;
   }
 
   $.extend(eefocus.StartTime.prototype, obj, {
@@ -104,18 +107,62 @@
         if ($(this).attr('checked')) {
           self.year.val('').attr('disabled', 'disabled');
           self.month.val('').attr('disabled', 'disabled');
-          self.input.val('至今');
+          self.input.val(SOFAR_STR);
         } else {
           self.year.removeAttr('disabled');
           self.month.removeAttr('disabled');
           self.input.val('');
         }
       });
-      /*this.el.parents('form').submit(function(e) {
-        
-      });*/
       this.year.change(setValue);
       this.month.change(setValue);
+    },
+    valiate: function() {
+      var form = this.el.parents('form');
+      var startInput = form.find('[name=start]');
+      var endInput = this.input;
+      var self = this;
+      form.submit(function(e) {
+        var startValue = startInput.val();
+        var endValue = endInput.val();
+        var pass = true;
+        if (!startValue || !endValue) {
+          self.showErrMsg('开始时间和结束时间不能为空', e);
+          pass = false;
+        }
+        if (startValue && endValue) {
+          startValue = startValue.split('-');
+          if (endValue == SOFAR_STR) {
+            endValue = self.sofar.split('-');
+          } else {
+            endValue = endValue.split('-');
+          }
+          startValue[0] = parseInt(startValue[0]);
+          startValue[1] = parseInt(startValue[1]);
+          endValue[0] = parseInt(endValue[0]);
+          endValue[1] = parseInt(endValue[1]);
+
+          if (startValue[0] > endValue[0] || 
+              (startValue[0] == endValue[0] && startValue[1] > endValue[1])) {
+            self.showErrMsg('开始时间不能大于结束时间');
+            pass = false;
+          }
+        }
+
+        if (pass) {
+          setTimeout(function() {
+            startInput.val('');
+            endInput.val('');
+          }, 2000);
+        } else {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      })
+    },
+    showErrMsg: function(msg) {
+      this.el.parents('.control-group').addClass('error')
+        .find('.help-inline').html(msg).show();
     }
   });
 

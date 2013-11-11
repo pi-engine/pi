@@ -162,6 +162,13 @@ return array(
                 ),
                 'description'   => array(
                     'title' => __('Description'),
+                    'edit'  => array(
+                        'element' => 'textarea',
+                        'attributes' => array(
+                            'rows'    => 5,
+                            'class'   => 'input-block-level',
+                        ),
+                    ),
                 ),
             ),
         ),
