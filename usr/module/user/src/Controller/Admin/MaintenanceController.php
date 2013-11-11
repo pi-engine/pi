@@ -76,9 +76,11 @@ class MaintenanceController extends ActionController
         $user['time_created']   = _date($user['time_created']);
 
         // Get user data
-        $user['time_last_login'] = Pi::user()->data()->get($uid, 'time_last_login');
-        $user['ip_login']        = Pi::user()->data()->get($uid, 'ip_login');
-        $user['login_times']     = Pi::user()->data()->get($uid, 'login_times');
+        $user['last_login']      = _date(
+            Pi::user()->data()->get($uid, 'last_login')
+        );
+        $user['last_login_ip']   = Pi::user()->data()->get($uid, 'last_login_ip');
+        $user['count_login']     = Pi::user()->data()->get($uid, 'count_login');
 
         return $user;
     }
@@ -91,7 +93,7 @@ class MaintenanceController extends ActionController
         /**
          * Sort type:
          * 1. time_register    default
-         * 2. time_last_login
+         * 2. last_login
          * 3. time_activated
          */
         $sort = _get('sort') ?: 'time_created';
@@ -297,7 +299,7 @@ class MaintenanceController extends ActionController
         $where->add($whereData);
 
         // Sort
-        if ($sort == 'time_last_login') {
+        if ($sort == 'last_login') {
             $select->order('data.time DESC');
         }
 
@@ -374,7 +376,7 @@ class MaintenanceController extends ActionController
         if ($sort == 'time_activated') {
             $select->order('account.time_activated DESC');
         }
-        if ($sort == 'time_last_login') {
+        if ($sort == 'last_login') {
             $select->order('data.time DESC');
         }
 
@@ -426,14 +428,17 @@ class MaintenanceController extends ActionController
                 )
             );
 
-            if (isset($userData[$uid]['time_last_login'])) {
-                $data['time_last_login'] = $userData[$uid]['time_last_login']['time'];
+            $profile['time_activated'] = _date($profile['time_activated']);
+            if (isset($userData[$uid]['last_login'])) {
+                $data['last_login'] = _date(
+                    $userData[$uid]['last_login']['time']
+                );
             }
-            if (isset($userData[$uid]['ip_login'])) {
-                $data['ip_login'] = $userData[$uid]['ip_login']['value'];
+            if (isset($userData[$uid]['last_login_ip'])) {
+                $data['last_login_ip'] = $userData[$uid]['last_login_ip']['value'];
             }
-            if (isset($userData[$uid]['login_times'])) {
-                $data['login_times'] = $userData[$uid]['login_times']['value_int'];
+            if (isset($userData[$uid]['count_login'])) {
+                $data['count_login'] = $userData[$uid]['count_login']['value_int'];
             }
             if ($data) {
                 $logs[] = array_merge($profile, $data);

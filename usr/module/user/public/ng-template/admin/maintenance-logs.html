@@ -2,7 +2,7 @@
   {{'SORT_BY' | translate}}
   <select ng-change="sortAction()" ng-model="sort">
     <option value="time_created">{{'REGISTER_TIME' | translate}}
-    <option value="time_last_login">{{'LAST_LOGIN_TIME' | translate}}
+    <option value="last_login">{{'LAST_LOGIN_TIME' | translate}}
     <option value="time_activated">{{'ACTIVATE_TIME' | translate}}
   </select>
 </form>
@@ -16,7 +16,7 @@
       <th>{{'ACTIVATE_TIME' | translate}}
       <th>{{'LAST_LOGIN_TIME' | translate}}
       <th>{{'LAST_LOGIN_IP' | translate}}
-      <th>{{'LOGIN_TIMES' | translate}}
+      <th>{{'COUNT_LOGIN' | translate}}
   <tbody>
     <tr ng-repeat="user in users">
       <td>{{user.id}}
@@ -29,9 +29,9 @@
       <td>{{user.time_created}}
       <td>{{user.ip_register}}
       <td>{{user.time_activated}}
-      <td>{{user.time_last_login}}
-      <td>{{user.ip_login}}
-      <td>{{user.login_times}}
+      <td>{{user.last_login}}
+      <td>{{user.last_login_ip}}
+      <td>{{user.count_login}}
 </table>
 <pagination ng-if="paginator.count > paginator.limit" 
             total-items="paginator.count" page="paginator.page" max-size="10"
