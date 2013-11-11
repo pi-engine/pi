@@ -21,14 +21,14 @@ class BuildController extends ActionController
     public function indexAction()
     {
         $this->flush();
-        $this->addPrivacy();
+        //$this->addPrivacy();
         $this->updateUser();
         $this->addUser();
         $this->addTimeline();
-        $this->addQuickLink();
-        $this->addGroup();
-        $this->addActivity();
-        $this->setFields();
+        //$this->addQuickLink();
+        //$this->addGroup();
+        //$this->addActivity();
+        //$this->setFields();
 
         return $this->jump(array(
             'controller'    => 'index',
@@ -45,7 +45,12 @@ class BuildController extends ActionController
             ));
         } elseif ('year' == $name) {
             $result = rand(1900, 2013);
-        } else {
+        } elseif ('telephone' == $name) {
+            $result = rand(138, 158) . rand(1000, 5000) . rand(1000, 5000);
+        } elseif ('postcode' == $name) {
+            $result = rand(100081, 200081);
+        }
+        else {
             switch ($name) {
                 case 'gender':
                     $map    = array('male', 'female', 'unknown');
@@ -106,24 +111,10 @@ class BuildController extends ActionController
                 'language'      => $this->rand('language'),
                 'demo_sample'   => 'Demo Sample: ' . $i,
                 'ip_register'   => $this->rand('ip'),
-                'address'       => array(
-                    array(
-                        'country'   => $this->rand('country'),
-                        'province'  => 'Province ' . $i,
-                        'city'      => 'City ' . $i,
-                        'street'    => 'Street ' . $i,
-                        'room'      => 'Room ' . $i,
-                        'postcode'  => 'Code ' . $i,
-                    ),
-                    array(
-                        'country'   => $this->rand('country'),
-                        'province'  => 'Province ' . $i,
-                        'city'      => 'City ' . $i,
-                        'street'    => 'Street ' . $i,
-                        'room'      => 'Room ' . $i,
-                        'postcode'  => 'Code ' . $i,
-                    ),
-                ),
+                'telephone'     => $this->rand('telephone'),
+                'address'       => 'Address ' . $i,
+                'postcode'      => $this->rand('postcode'),
+                'last_modified' => time() - $i * rand(1,100),
 
                 'tool'          => array(
                     array(
@@ -142,28 +133,34 @@ class BuildController extends ActionController
 
                 'education' => array(
                     array(
-                        'school'    => 'School 1 ' . $i,
-                        'major'     => 'Major 1 ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 1 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 1 ' . $i,
+                        'major'       => 'Major 1 ' . $i,
+                        'department'  => 'Department 1' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 1' . $i,
+                        'class'       => 'Class 1 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
                     array(
-                        'school'    => 'School 2 ' . $i,
-                        'major'     => 'Major 2  ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 2 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 2 ' . $i,
+                        'major'       => 'Major 2 ' . $i,
+                        'department'  => 'Department 2 ' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 2' . $i,
+                        'class'       => 'Class 2 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
                     array(
-                        'school'    => 'School 3 ' . $i,
-                        'major'     => 'Major 3 ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 3 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 3 ' . $i,
+                        'major'       => 'Major 3 ' . $i,
+                        'department'  => 'Department 3 ' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 3 ' . $i,
+                        'class'       => 'Class 3 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
 
                 ),
@@ -172,6 +169,8 @@ class BuildController extends ActionController
                     array(
                         'company'       => 'Company 1 ' . $i,
                         'department'    => 'Dept 1  ' . $i,
+                        'industry'      => 'industry 1 ' . $i,
+                        'sector'        => 'sector 1' . $i,
                         'title'         => 'Title 1 ' . $i,
                         'description'   => 'Desc 1 ' . $i,
                         'start'         => $this->rand('year'),
@@ -179,9 +178,21 @@ class BuildController extends ActionController
                     ),
                     array(
                         'company'       => 'Company 2 ' . $i,
-                        'department'    => 'Dept 2  ' . $i,
+                        'department'    => 'Dept 2 ' . $i,
+                        'industry'      => 'industry 2 ' . $i,
+                        'sector'        => 'sector 2 ' . $i,
                         'title'         => 'Title 2 ' . $i,
                         'description'   => 'Desc 2 ' . $i,
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
+                    ),
+                    array(
+                        'company'       => 'Company 3 ' . $i,
+                        'department'    => 'Dept 3 ' . $i,
+                        'industry'      => 'industry 3 ' . $i,
+                        'sector'        => 'sector 3 ' . $i,
+                        'title'         => 'Title 3 ' . $i,
+                        'description'   => 'Desc 3 ' . $i,
                         'start'         => $this->rand('year'),
                         'end'           => $this->rand('year'),
                     ),
@@ -202,28 +213,25 @@ class BuildController extends ActionController
             // Add user time log
             $this->addTimelineLog($uid, 50);
 
-            // Add user privacy setting
-            $this->addUserPrivacy($uid);
-
             // Add user date
             Pi::user()->data()->set(
                 $uid,
-                'ip_login',
+                'last_login_ip',
                 $this->rand('ip'),
                 'user'
             );
 
             Pi::user()->data()->set(
                 $uid,
-                'time_last_login',
+                'last_login',
                 '',
                 'user',
-                time() - 3600 * $uid
+                time() - 3600 * (int) $uid
             );
 
             Pi::user()->data()->set(
                 $uid,
-                'login_times',
+                'count_login',
                 rand(0, 400),
                 'user'
             );
@@ -258,6 +266,12 @@ class BuildController extends ActionController
                 'demo_sample'   => 'Demo Sample: ' . $i,
                 'ip_register'   => $this->rand('ip'),
 
+                'telephone'     => $this->rand('telephone'),
+                'address'       => 'Address ' . $i,
+                'postcode'      => $this->rand('postcode'),
+                'last_modified' => time() - $i * rand(1,100),
+
+                /*
                 'address'       => array(
                     array(
                         'country'   => $this->rand('country'),
@@ -276,6 +290,7 @@ class BuildController extends ActionController
                         'postcode'  => 'Code ' . $i,
                     ),
                 ),
+                */
 
                 'tool'          => array(
                     array(
@@ -294,28 +309,34 @@ class BuildController extends ActionController
 
                 'education' => array(
                     array(
-                        'school'    => 'School 1 ' . $i,
-                        'major'     => 'Major 1 ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 1 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 1 ' . $i,
+                        'major'       => 'Major 1 ' . $i,
+                        'department'  => 'Department 1' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 1' . $i,
+                        'class'       => 'Class 1 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
                     array(
-                        'school'    => 'School 2 ' . $i,
-                        'major'     => 'Major 2  ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 2 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 2 ' . $i,
+                        'major'       => 'Major 2 ' . $i,
+                        'department'  => 'Department 2 ' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 2' . $i,
+                        'class'       => 'Class 2 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
                     array(
-                        'school'    => 'School 3 ' . $i,
-                        'major'     => 'Major 3 ' . $i,
-                        'degree'    => $this->rand('degree'),
-                        'class'     => 'Class 3 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'school'      => 'School 3 ' . $i,
+                        'major'       => 'Major 3 ' . $i,
+                        'department'  => 'Department 3 ' . $i,
+                        'degree'      => $this->rand('degree'),
+                        'description' => 'Description 3 ' . $i,
+                        'class'       => 'Class 3 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
                     ),
 
                 ),
@@ -324,18 +345,32 @@ class BuildController extends ActionController
                     array(
                         'company'       => 'Company 1 ' . $i,
                         'department'    => 'Dept 1  ' . $i,
+                        'industry'      => 'industry 1 ' . $i,
+                        'sector'        => 'sector 1' . $i,
                         'title'         => 'Title 1 ' . $i,
                         'description'   => 'Desc 1 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
                     ),
                     array(
                         'company'       => 'Company 2 ' . $i,
-                        'department'    => 'Dept 2  ' . $i,
+                        'department'    => 'Dept 2 ' . $i,
+                        'industry'      => 'industry 2 ' . $i,
+                        'sector'        => 'sector 2 ' . $i,
                         'title'         => 'Title 2 ' . $i,
                         'description'   => 'Desc 2 ' . $i,
-                        'start'     => $this->rand('year'),
-                        'end'       => $this->rand('year'),
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
+                    ),
+                    array(
+                        'company'       => 'Company 3 ' . $i,
+                        'department'    => 'Dept 3 ' . $i,
+                        'industry'      => 'industry 3 ' . $i,
+                        'sector'        => 'sector 3 ' . $i,
+                        'title'         => 'Title 3 ' . $i,
+                        'description'   => 'Desc 3 ' . $i,
+                        'start'         => $this->rand('year'),
+                        'end'           => $this->rand('year'),
                     ),
                 ),
             );
@@ -362,14 +397,14 @@ class BuildController extends ActionController
             // Add user date
             Pi::user()->data()->set(
                 $uid,
-                'ip_login',
+                'last_login_ip',
                 $this->rand('ip'),
                 'user'
             );
 
             Pi::user()->data()->set(
                 $uid,
-                'time_last_login',
+                'last_login',
                 '',
                 'user',
                 time() - 3600 * (int) $uid
@@ -377,7 +412,7 @@ class BuildController extends ActionController
 
             Pi::user()->data()->set(
                 $uid,
-                'login_times',
+                'count_login',
                 rand(0, 400),
                 'user'
             );
@@ -385,18 +420,17 @@ class BuildController extends ActionController
             // Delete user
             if ($i > ($count * 4) / 5 && $i < ($count * 5) / 5) {
                 Pi::api('user', 'user')->deleteUser($uid);
-            } else {
-                // Add default privacy setting for user
-                $this->addUserPrivacy($uid);
             }
         }
     }
+
 
     /**
      * Add user timeline log
      * @param $uid
      * @param $limit
      */
+
     protected function addTimelineLog($uid, $limit)
     {
         if (!$uid) {
@@ -426,7 +460,7 @@ class BuildController extends ActionController
     }
 
     /**
-     * Add time meta
+     * Add time line meta
      */
     protected function addTimeline()
     {
@@ -471,6 +505,7 @@ class BuildController extends ActionController
     /**
      * Add quick link
      */
+    /*
     protected function addQuickLink()
     {
 
@@ -523,10 +558,13 @@ class BuildController extends ActionController
             $row->save();
         }
     }
+    */
+
 
     /**
      * Add privacy
      */
+    /*
     protected function addPrivacy()
     {
         $model = $this->getModel('field');
@@ -549,10 +587,12 @@ class BuildController extends ActionController
             }
         }
     }
+    */
 
     /**
      * Add group
      */
+    /*
     protected function addGroup()
     {
         $groups = array(
@@ -701,10 +741,12 @@ class BuildController extends ActionController
             }
         }
     }
+    */
 
     /**
      * Add activity
      */
+    /*
     protected function addActivity()
     {
         $model = $this->getModel('activity');
@@ -721,12 +763,15 @@ class BuildController extends ActionController
             $model->createRow($data)->save();
         }
     }
+    */
+
 
     /**
      * Add default privacy setting for user
      *
      * @param $uid
      */
+    /*
     protected function addUserPrivacy($uid)
     {
         $privacyModel     = $this->getModel('privacy');
@@ -748,12 +793,15 @@ class BuildController extends ActionController
             }
         }
     }
+    */
 
+    /*
     protected function setFields()
     {
         $model = $this->getModel('field');
         $model->update(array('is_edit' => 1, 'is_display' => 1), array('type' => 'compound'));
     }
+    */
 
     /**
      * Clear all user module data
@@ -776,7 +824,7 @@ class BuildController extends ActionController
         Pi::model('user_role')->delete(array('uid > ?' => 6));
 
         // Flush user activity
-        Pi::model('activity', 'user')->delete(array());
+        //Pi::model('activity', 'user')->delete(array());
 
         // Flush user compound
         Pi::model('compound', 'user')->delete(array());
@@ -796,11 +844,8 @@ class BuildController extends ActionController
         // Flush privacy user
         Pi::model('privacy_user', 'user')->delete(array());
 
-        // Flush profile
-        Pi::model('profile', 'user')->delete(array());
-
         // Flush quicklink
-        Pi::model('quicklink', 'user')->delete(array());
+        //Pi::model('quicklink', 'user')->delete(array());
 
         // Flush timeline
         Pi::model('timeline', 'user')->delete(array());
