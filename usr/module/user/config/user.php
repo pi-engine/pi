@@ -198,7 +198,7 @@ return array(
         // Profile: Last modified
         'last_modified'  => array(
             'name'  => 'last_modified',
-            'title' => __('Last modified'),
+            'title' => _a('Last modified'),
             'is_display'    => false,
             'is_edit'       => false,
             'is_search'     => true,
