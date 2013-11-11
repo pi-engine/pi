@@ -203,10 +203,11 @@ class IndexController extends ActionController
         }
 
         $data = array(
-            'identity'   => $identity,
-            'name'       => $name,
-            'email'      => $email,
-            'credential' => $credential,
+            'identity'      => $identity,
+            'name'          => $name,
+            'email'         => $email,
+            'credential'    => $credential,
+            'last_modified' => time(),
         );
 
         // Add user

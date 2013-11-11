@@ -48,7 +48,9 @@ class EditController extends ActionController
             $result['status']  = 0;
             if ($form->isValid()) {
                 // Update user
-                $status = Pi::api('user', 'user')->updateUser($uid, $form->getData());
+                $values = $form->getData();
+                $values['last_modified'] = time();
+                $status = Pi::api('user', 'user')->updateUser($uid, $values);
                 if ($status) {
                     $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
@@ -196,6 +198,7 @@ class EditController extends ActionController
                     $compound,
                     $userNewCompound
                 );
+                Pi::api('user', 'user')->updateUser($uid, array('last_modified' => time()));
 
                 if ($status) {
                     $result['message'] = _a('Edit user info successfully');
@@ -237,6 +240,10 @@ class EditController extends ActionController
 
         // Update compound
         Pi::api('user', 'user')->set($uid, $name, $newCompound);
+        Pi::api('user', 'user')->updateUser(
+            $uid,
+            array('last_modified' => time())
+        );
 
         return $this->jump(array(
             'controller'  => 'edit',
