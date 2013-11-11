@@ -12,7 +12,9 @@ namespace Pi\I18n\Translator;
 use Pi;
 use Zend\I18n\Translator\Translator as ZendTranslator;
 use Zend\I18n\Translator\Loader\FileLoaderInterface;
+use Zend\Validator\Translator\TranslatorInterface as ValidatorInterface;
 use Zend\I18n\Translator\TextDomain;
+
 
 /**
  * Translator handler
@@ -20,7 +22,7 @@ use Zend\I18n\Translator\TextDomain;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Translator extends ZendTranslator
+class Translator extends ZendTranslator implements ValidatorInterface
 {
     /** @var string Default locale */
     const DEFAULT_LOCALE = 'en';
