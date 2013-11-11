@@ -70,14 +70,12 @@ Skeleton
 * `usr/theme/default`: Theme `default`
   * `/en`
     * `default.mo`: theme global
-    * `admin.mo`: Admin area
     * ...
   * `/zh-cn`
     * ...
 
-Use `poedit` to extract module language items
+Tools
+-----
 
-* `_a()`, `_t()` => admin.mo
-  * Use `_t()` in: config/config.php, navigation.php admin[, event.php, permission.php, navigation.php meta]
-* `_b()` => block.mo
-* `__()`, `_e()` and others => default.mo
+* `Poedit`
+  * Download: http://www.poedit.net/download.php
