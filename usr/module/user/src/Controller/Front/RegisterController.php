@@ -44,12 +44,8 @@ class RegisterController extends ActionController
 
         // Get register form
         $registerFormConfig = $this->config('register_form');
-        $registerTemplate   = $this->config('register_template')
-            ? : 'register-index';
-        $this->view()->setTemplate($registerTemplate);
         list($fields, $filters) = $this->canonizeForm($registerFormConfig, 'register');
         $form = $this->getRegisterForm($fields);
-
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new RegisterFilter($filters));
@@ -84,6 +80,7 @@ class RegisterController extends ActionController
                 } else {
                     // Complete register
                     $values = $form->getData();
+                    $values['last_modified'] = time();
                     $uid = Pi::api('user', 'user')->addUser($values);
                     if (is_array($uid)) {
                         $this->view()->assign(array(
@@ -99,7 +96,7 @@ class RegisterController extends ActionController
 
                     // Set user data
                     $content = md5($uid . $values['name']);
-                    $status  = Pi::user()->data()->set(
+                    Pi::user()->data()->set(
                         $uid,
                         'register-activation',
                         $content,
@@ -172,6 +169,7 @@ class RegisterController extends ActionController
         if ($form->isValid()) {
             $values = $form->getData();
             $values = $this->canonizeUser($values, 'work');
+            $values['last_modified'] = time();
             $uid = Pi::api('user', 'user')->addUser($values);
             if (is_array($uid)) {
                 $this->view()->assign(array(
@@ -222,9 +220,8 @@ class RegisterController extends ActionController
             'complete' => 1,
             'form'     => $form
         ));
-        $registerTemplate   = $this->config('register_template')
-            ? : 'register-index';
-        $this->view()->setTemplate($registerTemplate);
+
+        $this->view()->setTemplate('register-index');
     }
 
     /**
@@ -420,16 +417,10 @@ class RegisterController extends ActionController
 
             if ($form->isValid()) {
                 $values = $form->getData();
-
+                $values['level'] = 1;
+                $values['last_modified'] = time();
                 Pi::api('user', 'user')->updateUser($uid, $values);
 
-                // Set perfect information flag in user table
-                Pi::user()->data()->set(
-                    $uid,
-                    'profile-complete',
-                    1,
-                    $this->getModule()
-                );
                 return $this->jump(
                     $this->url(
                         '',

@@ -248,19 +248,25 @@ class Api extends AbstractApi
      * - url_submit
      * - url_ajax
      *
-     * @param RouteMatch $routeMatch
+     * @param RouteMatch|array $routeMatch
      *
      * @return array|bool
      */
-    public function load(RouteMatch $routeMatch)
+    public function load($routeMatch)
     {
-        $module = $routeMatch->getParam('module');
-        $controller = $routeMatch->getParam('controller');
-        $action = $routeMatch->getParam('action');
-        $categoryList = Pi::registry('category', 'comment')->read($module);
-        $limit = Pi::config()->module('leading_limit', 'comment') ?: 5;
+        if ($routeMatch instanceof $routeMatch) {
+            $params = $routeMatch->getParams();
+        } else {
+            $params = (array) $routeMatch;
+        }
 
-        $lookupList = array();
+        $module         = $params['module'];
+        $controller     = $params['controller'];
+        $action         = $params['action'];
+        $categoryList   = Pi::registry('category', 'comment')->read($module);
+        $limit          = Pi::config()->module('leading_limit', 'comment')
+            ?: 5;
+
         if (isset($categoryList['route'][$controller][$action])) {
             $lookupList = $categoryList['route'][$controller][$action];
         } elseif (isset($categoryList['locator'])) {
@@ -271,23 +277,23 @@ class Api extends AbstractApi
 
         //vd($routeMatch);
         // Look up root against route data
-        $lookup = function ($data) use ($routeMatch) {
+        $lookup = function ($data) use ($params) {
             // Look up via locator callback
             if (!empty($data['locator'])) {
-                $locator    = new $data['locator']($routeMatch->getParam('module'));
-                $item       = $locator->locate($routeMatch);
+                $locator    = new $data['locator']($params['module']);
+                $item       = $locator->locate($params);
 
                 return $item;
             }
 
             // Look up via route
-            $item = $routeMatch->getParam($data['identifier']);
-            if (null === $item) {
+            if (!isset($params[$data['identifier']])) {
                 return false;
             }
+            $item = $params[$data['identifier']];
             if ($data['params']) {
                 foreach ($data['params'] as $param => $value) {
-                    if ($value != $routeMatch->getParam($param)) {
+                    if (!isset($params[$param]) || $value != $params[$param]) {
                         return false;
                     }
                 }

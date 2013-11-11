@@ -28,10 +28,6 @@ class AccountController extends ActionController
      */
     public function indexAction()
     {
-//        $result = array(
-//            'status'       => 0,
-//        );
-
         // Check login in
         $uid = Pi::service('user')->getId();
         if (!$uid) {
@@ -80,7 +76,10 @@ class AccountController extends ActionController
                 if ($values['name'] != $data['name']) {
                     $status = Pi::api('user', 'user')->updateUser(
                         $uid,
-                        array('name' => $values['name'])
+                        array(
+                            'name' => $values['name'],
+                            'last_modified' => time(),
+                        )
                     );
                     if (!$status) {
                         $result['name_error'] = 1;
@@ -174,7 +173,13 @@ class AccountController extends ActionController
         }
 
         // Reset email
-        Pi::api('user', 'user')->updateUser($userData['uid'], array('email' => urldecode($email)));
+        Pi::api('user', 'user')->updateUser(
+            $userData['uid'],
+            array(
+                'email'         => urldecode($email),
+                'last_modified' => time(),
+            )
+        );
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');

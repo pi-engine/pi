@@ -40,11 +40,6 @@ $config = array(
         'description'   => _t('Set it only if necessary.'),
         'value'         => '', // 'register',
     ),
-    'register_template' => array(
-        'title'         => _t('Register template file name'),
-        'description'   => _t('Set it only if necessary.'),
-        'value'         => '', // '',
-    ),
     'register_complete_form' => array(
         'title'         => _t('Register complete form config file name'),
         'description'   => _t('Set it only if necessary.'),

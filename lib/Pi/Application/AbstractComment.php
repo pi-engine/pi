@@ -9,7 +9,7 @@
 
 namespace Pi\Application;
 
-use Zend\Mvc\Router\RouteMatch;
+//use Zend\Mvc\Router\RouteMatch;
 /**
  * Abstract class for module comment callback
  *
@@ -39,12 +39,12 @@ abstract class AbstractComment extends AbstractModuleAwareness
     /**
      * Locate source id via route
      *
-     * @param RouteMatch|array $params
+     * @param array $params
      *
      * @throws \exception
      * @return mixed|bool
      */
-    public function locate($params = null)
+    public function locate(array $params)
     {
         throw new \exception('Method is not defined.');
     }

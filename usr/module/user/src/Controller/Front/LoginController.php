@@ -212,26 +212,23 @@ class LoginController extends ActionController
         $ipLogin = Pi::user()->getIp();
         Pi::user()->data()->set(
             $uid,
-            'ip_login',
+            'last_login_ip',
             $ipLogin,
             $this->getModule()
         );
         // Set login count
-        Pi::user()->data()->increment($uid, 'login_times', 1);
+        Pi::user()->data()->increment($uid, 'count_login', 1);
         // Set login time
         Pi::user()->data()->set(
             $uid,
-            'time_last_login',
+            'last_login',
             time(),
             $this->getModule()
         );
         // Check user complete profile
         if ($configs['profile_complete_form']) {
-            $hasProfileComplete = Pi::user()->data()->get(
-                $uid,
-                'profile-complete'
-            );
-            if (!$hasProfileComplete) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
                 $this->redirect()->toRoute(
                     'user',
                     array(
