@@ -28,13 +28,13 @@ API calls
   - `config/event.php`: `_t()`
   - `config/permission.php`: `_t()`
   - `config/navigation.php` [admin], [meta]: `_t()`
-  - `config/`<others>: `_a()`
-  - `src/Controller/Admin`: `_a()`
-  - `src/Installer`: `_a()`
-  - `template/admin`: `_a()`
+  - `config/*` [others]: `_a()`
+  - `src/Controller/Admin/*`: `_a()`
+  - `src/Installer/*`: `_a()`
+  - `template/admin/*`: `_a()`
 * To be collected in `block.mo`
-  - `src/Block`: `_b()`
-  - `template/block`: `_b()`
+  - `src/Block/*`: `_b()`
+  - `template/block/*`: `_b()`
 * To be collected in `default.mo`
   - All other files: `__()` or `_e()`
 
