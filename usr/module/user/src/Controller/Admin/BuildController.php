@@ -251,7 +251,7 @@ class BuildController extends ActionController
             $user = array(
                 'identity'      => $prefix . '_' . $i,
                 'credential'    => $prefix . '_' . $i,
-                'name'          => ucfirst($prefix) . ' ' . $i,
+                'name'          => ucfirst($prefix) . $i,
                 'email'         => $prefix . '_' . $i . '@pialog.org',
 
                 'fullname'      => ucfirst($prefix) . ' User ' . $i,
