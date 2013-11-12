@@ -69,6 +69,12 @@ class AccountController extends ActionController
                         $result['email_error'] = 1;
                     }
 
+                    $this->sendConfirmMail(
+                        $data['identity'],
+                        $data['email'],
+                        $values['email']
+                    );
+
                     $result['email_error']   = 0;
                     $result['new_email']     = $values['email'];
                 }
@@ -287,10 +293,18 @@ class AccountController extends ActionController
             )
         );
         $link = Pi::url($url, true);
-        list($subject, $body, $type) = $this->setMailParams(
-            $username,
-            $link
+
+        $params = array(
+            'username'          => $username,
+            'change_email_link' => $link,
+            'sn'                => _date(),
         );
+        // Load from HTML template
+        $data = Pi::service('mail')->template('reset-email-html', $params);
+        // Set subject and body
+        $subject = $data['subject'];
+        $body    = $data['body'];
+        $type    = $data['format'];
 
         // Sending
         $message = Pi::service('mail')->message($subject, $body, $type);
@@ -304,28 +318,30 @@ class AccountController extends ActionController
     }
 
     /**
-     * Set mail params
+     * Send reset email confirm
      *
      * @param $username
-     * @param $link
-     * @return array
+     * @param $oldEmail
+     * @param $newEmail
      */
-    protected function setMailParams($username, $link)
+    protected function sendConfirmMail($username, $oldEmail, $newEmail)
     {
+        // Set mail params
         $params = array(
-            'username'          => $username,
-            'change_email_link' => $link,
-            'sn'                => _date(),
+            'old_email' => $oldEmail,
+            'new_email' => $newEmail,
+            'username'  => $username,
+            'sn'        => _date(),
         );
-
         // Load from HTML template
-        $data = Pi::service('mail')->template('reset-email-html', $params);
+        $data = Pi::service('mail')->template('reset-email-confirm-html', $params);
         // Set subject and body
         $subject = $data['subject'];
         $body    = $data['body'];
         $type    = $data['format'];
-
-        return array($subject, $body, $type);
-
+        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($oldEmail);
+        $transport = Pi::service('mail')->transport();
+        $transport->send($message);
     }
 }
