@@ -1,5 +1,6 @@
 <?php
     $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
     $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
     $elements = $form->elementList();
     echo $this->form()->openTag($form);
