@@ -199,7 +199,7 @@
       this.el.html(html);
       this.elements = this.$('select');
       this.events();
-      this.render(0).val(this.el.attr('data-value')).trigger('change');
+      this.render(0, true).val(this.el.attr('data-value')).trigger('change');
       $.each(this.names, function(index, item) {
         if (index == 0) return;
         var element = self.elements.eq(index);
@@ -210,15 +210,18 @@
     $: function(selector) {
       return this.el.find(selector);
     },
-    render: function(index) {
+    render: function(index, flag) {
       var element = this.elements.eq(index).val('');
       var arr = this.getData(index);
+      var html = '';
       element.nextAll().val('').hide();
       if (!arr.length) {
         element.hide();
         return;
       }
-      var html = '<option value="">请选择</option>';
+      if (flag) {
+        html = '<option value="">请选择</option>';
+      }
       $.each(arr, function(index, item) {
           html += "<option value=" + item +">" + item;
       });
@@ -258,7 +261,10 @@
       this.elements.each(function(index) {
         if (index + 1 == length) return;
         self.elements.eq(index).change(function() {
-          self.render(index + 1);
+          var i = index + 1;
+          while(i < length) {
+            self.render(i++);
+          }
         });
       });
     },
