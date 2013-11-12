@@ -162,7 +162,7 @@ class RoleController extends ActionController
             //$user['avatar'] = $avatars[$uid];
             $user['url'] = Pi::service('user')->getUrl('profile', $user['id']);
         });
-        $count = count($uids);
+        $count = $model->count(array('role' => $role));
         if ($count >= $limit) {
             $count = $model->count(array('role' => $role));
         }
