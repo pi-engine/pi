@@ -133,7 +133,7 @@ class Navigation extends AbstractRegistry
             $domain = 'usr:navigation';
         }
         */
-        $domain = sprintf('module/%s:default', $this->module);
+        $domain = '';
 
         $navigation = $this->translateConfig($row->data, $domain, $locale);
 
