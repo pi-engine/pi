@@ -20,7 +20,7 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $this->forward('', array('action' => 'login'));
+        $this->redirect()->toRoute('', array('action' => 'login'));
     }
 
     /**
