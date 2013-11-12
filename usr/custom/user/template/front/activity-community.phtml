@@ -1,5 +1,15 @@
-<h3>Test Community</h3>
-
-<p>
-    <?php echo 'UID: ' . $uid . $contents ?>
-</p>
+<?php if ($community) { ?>
+<ul>
+	<?php foreach($community as $item) { ?>
+	<li class="clearfix community-item">
+		<a class="ellipsis community-item-text" href="<?php echo $item['url']; ?>" target="_blank">
+			<?php echo $item['name']; ?>
+		</a>
+		<?php _e('Point'); ?> <?php echo $item['point']; ?>
+	<?php } ?>
+</ul>
+<?php } else { ?>
+<div>
+	<?php _e('You do not join in community'); ?>
+</div>
+<?php } ?>
