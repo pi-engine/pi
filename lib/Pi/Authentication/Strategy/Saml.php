@@ -39,7 +39,7 @@ class Saml extends AbstractStrategy
     {
         if (!$this->authSource) {
             $sourceId = $this->getOption('source_id');
-            require_once Pi::path('vendor') . '/simplesamlphp/_autoload.php';
+            require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
             $configPath = Pi::path('config/saml');
             SimpleSAML_Configuration::setConfigDir($configPath, 'simplesaml');
             $this->authSource = new SimpleSAML_Auth_Simple($sourceId);

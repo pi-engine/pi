@@ -22,17 +22,17 @@ $config = array (
 	 * external url, no matter where you come from (direct access or via the
 	 * reverse proxy).
 	 */
-	'baseurlpath'           => 'simplesaml/',
-	'certdir'               => 'cert/',
-	'loggingdir'            => 'log/',
-	'datadir'               => 'data/',
+    'baseurlpath'           => 'sso/',
+    'certdir'               => 'cert/',
+    'loggingdir'            => '/var/log/vhosts/ssp-client/',
+    'datadir'               => 'data/',
 
 	/*
 	 * A directory where simpleSAMLphp can save temporary files.
 	 *
 	 * SimpleSAMLphp will attempt to create this directory if it doesn't exist.
 	 */
-	'tempdir'               => '/tmp/simplesaml',
+    'tempdir'               => '/data/vhosts/ssp-client/tmp',
 	
 
 	/*
@@ -47,7 +47,7 @@ $config = array (
 	'debug' => FALSE,
 
 
-	'showerrors'            =>	TRUE,
+	'showerrors'            =>	FALSE,
 
 	/**
 	 * Custom error show function called from SimpleSAML_Error_Error::show.
@@ -69,7 +69,7 @@ $config = array (
 	 * metadata listing and diagnostics pages.
 	 * You can also put a hash here; run "bin/pwgen.php" to generate one.
 	 */
-	'auth.adminpassword'		=> '123',
+	'auth.adminpassword'		=> 'zznkI2#!Pd*ssle44<x,4',
 	'admin.protectindexpage'	=> false,
 	'admin.protectmetadata'		=> false,
 
@@ -81,7 +81,7 @@ $config = array (
 	 * A possible way to generate a random salt is by running the following command from a unix shell:
 	 * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
 	 */
-	'secretsalt' => 'defaultsecretsalt',
+	'secretsalt' => '010-defaultsecretsalt',
 	
 	/*
 	 * Some information about the technical persons running this installation.
@@ -98,7 +98,7 @@ $config = array (
 	 *
 	 * See this page for a list of valid timezones: http://php.net/manual/en/timezones.php
 	 */
-	'timezone' => NULL,
+	'timezone' => 'Asia/Shanghai',
 
 	/*
 	 * Logging.
@@ -116,7 +116,7 @@ $config = array (
 	 * 
 	 */
 	'logging.level'         => SimpleSAML_Logger::NOTICE,
-	'logging.handler'       => 'syslog',
+	'logging.handler'       => 'file',
 
 	/*
 	 * Choose which facility should be used when logging with syslog.
@@ -218,7 +218,7 @@ $config = array (
 	/*
 	 * Option to override the default settings for the session cookie name
 	 */
-	'session.cookie.name' => 'SimpleSAMLSessionID',
+	'session.cookie.name' => 'SSOSessionID',
 
 	/*
 	 * Expiration time for the session cookie, in seconds.
@@ -295,7 +295,7 @@ $config = array (
 	 */
 	'language.available'	=> array('en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'fr', 'it', 'nl', 'lb', 'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru', 'et', 'he', 'id', 'sr', 'lv'),
 	'language.rtl'		=> array('ar','dv','fa','ur','he'),
-	'language.default'		=> 'en',
+	'language.default'		=> 'zh',
 
 	/*
 	 * Options to override the default settings for the language parameter
@@ -465,12 +465,12 @@ $config = array (
 		/*
 		 * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
 		 */
- 		60 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
+ 		//60 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
  		// All users will be members of 'users' and 'members' 	
- 		61 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
+ 		//61 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
  		
 		// Adopts language from attribute to use in UI
- 		90 => 'core:LanguageAdaptor',
+ 		//90 => 'core:LanguageAdaptor',
 
 	),
 	
@@ -523,7 +523,7 @@ $config = array (
 	 *     ),
 	 */
 	'metadata.sources' => array(
-		array('type' => 'flatfile'),
+		array('type' => 'flatfile', 'directory'=>'/home/mingquan/htdocs/pi-ssp/var/config/saml/metadata/'),
 	),
 
 
@@ -538,7 +538,7 @@ $config = array (
 	 *
 	 * (This option replaces the old 'session.handler'-option.)
 	 */
-	'store.type' => 'phpsession',
+	'store.type' => 'memcache',
 
 
 	/*
@@ -614,7 +614,7 @@ $config = array (
 	 */
 	'memcache_store.servers' => array(
 		array(
-			array('hostname' => 'localhost'),
+            array('hostname' => '192.168.18.14', 'port' => '11211'),
 		),
 	),
 
