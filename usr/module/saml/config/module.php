@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-       'title'         => __('Saml'),
+       'title'         => __('SAML Client'),
        // Description, for admin, optional
-       'description'   => __('Saml'),
+       'description'   => __('Client for Simplesamlphp client'),
        // Version number, required
        'version'       => '1.0.0',
        // Distribution license, required
