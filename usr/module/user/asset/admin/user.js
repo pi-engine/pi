@@ -440,7 +440,15 @@
     $scope.today = config.today;
     $scope.filter = {};
 
-    $scope.$watch('roles', function(newValue) {
+    $scope.$watch('roles', function(newValue, oldValue) {
+      if (newValue === oldValue) {
+        angular.forEach(newValue, function(item) {
+          if (item.name == 'member') {
+            item.checked = true;
+          }
+        });
+        return;
+      }
       var front_role = [];
       var admin_role = [];
       var filter = $scope.filter;

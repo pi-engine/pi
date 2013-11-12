@@ -187,7 +187,7 @@ class ProfileController extends ActionController
                 $result['status']  = 1;
                 $result['message'] = __('Update successfully');
             } else {
-                $result['message'] = $form->getMessages();
+                $result['message'] = __('Data saved failed');
             }
 
             $this->view()->assign('result', $result);
@@ -355,8 +355,11 @@ class ProfileController extends ActionController
             $form->setData($compoundData[$set]);
         }
 
-        $this->view()->assign('form', $form);
-        $this->view()->setTemplate('_form');
+        $this->view()->assign(array(
+            'form'      => $form,
+            'ResetShow' => 1
+        ));
+        $this->view()->setTemplate('system:component/form-horizontal');
     }
 
     /**

@@ -310,7 +310,7 @@ return array(
         'Blog'    => array(
             'title' => __('Blog'),
             'callback'  => 'Custom\User\Activity\Blog',
-            'template'  => 'activity-blog'
+            //'template'  => 'activity-blog'
         ),
 
         // Community

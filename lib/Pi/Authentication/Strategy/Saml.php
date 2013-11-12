@@ -39,7 +39,7 @@ class Saml extends AbstractStrategy
     {
         if (!$this->authSource) {
             $sourceId = $this->getOption('source_id');
-            require_once Pi::path('vendor') . '/simplesamlphp/_autoload.php';
+            require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
             $configPath = Pi::path('config/saml');
             SimpleSAML_Configuration::setConfigDir($configPath, 'simplesaml');
             $this->authSource = new SimpleSAML_Auth_Simple($sourceId);
@@ -78,11 +78,24 @@ class Saml extends AbstractStrategy
         }
         $return = Pi::url($return, true);
         if ('login' == $type) {
-            $url = $this->getAuthSource()->getLoginURL($return);
+            //$url = $this->getAuthSource()->getLoginURL($return);
+            $url = Pi::service('url')->assemble('default', array(
+                'module'        => 'saml',
+                'controller'    => 'index',
+                'action'        => 'login',
+            ));
         } elseif ('logout' == $type) {
-            $url = $this->getAuthSource()->getLogoutURL($return);
+            //$url = $this->getAuthSource()->getLogoutURL($return);
+            $url = Pi::service('url')->assemble('default', array(
+                'module'        => 'saml',
+                'controller'    => 'index',
+                'action'        => 'logout',
+            ));
         } else {
             $url = '';
+        }
+        if ($url && $return) {
+            $url .= '?redirect=' . rawurlencode($return);
         }
 
         return $url;
