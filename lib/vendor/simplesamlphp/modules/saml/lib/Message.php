@@ -507,16 +507,10 @@ class sspmod_saml_Message {
 		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
 		$msgDestination = $response->getDestination();
 
-        /**
-         * HACK FOR PI
-         * close url check
-         */
-        /*
-		if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
+        if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
 			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
 				$msgDestination . '", current URL is "' . $currentURL . '".');
 		}
-        */
 
         $responseSigned = self::checkSign($idpMetadata, $response);
 
@@ -685,17 +679,11 @@ class sspmod_saml_Message {
 				continue;
 			}
 
-            /**
-             * HACK FOR PI
-             * close url check
-             */
-            /*
-			if ($scd->Recipient !== NULL && $scd->Recipient !== $currentURL) {
+            if ($scd->Recipient !== NULL && $scd->Recipient !== $currentURL) {
 				$lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
 					var_export($scd->Recipient, TRUE) . ', current URL is ' . var_export($currentURL, TRUE) . '.';
 				continue;
 			}
-            */
 
 			if ($scd->InResponseTo !== NULL && $response->getInResponseTo() !== NULL && $scd->InResponseTo !== $response->getInResponseTo()) {
 				$lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has ' .

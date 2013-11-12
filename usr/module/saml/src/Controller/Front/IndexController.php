@@ -46,10 +46,8 @@ class IndexController extends ActionController
      */
     public function acsAction()
     {
-        /*
-         * TODO
-         */
-        $_SERVER['PATH_INFO'] = '/sp';
+        $_SERVER['SCRIPT_NAME'] = $this->url('',array('action'=>'acs')).'sid';
+        $_SERVER['PATH_INFO']   = '-'._get('sid');
 
         require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
         require_once Pi::path('vendor') . '/simplesamlphp/modules/saml/www/sp/saml2-acs.php';
@@ -60,10 +58,8 @@ class IndexController extends ActionController
      */
     public function acslogoutAction()
     {
-        /*
-         * TODO
-         */
-        $_SERVER['PATH_INFO'] = '/sp';
+        $_SERVER['SCRIPT_NAME'] = $this->url('',array('action'=>'acslogout')).'sid';
+        $_SERVER['PATH_INFO']   = '-'._get('sid');
 
         require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
         require_once Pi::path('vendor') . '/simplesamlphp/modules/saml/www/sp/saml2-logout.php';
