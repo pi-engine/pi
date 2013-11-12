@@ -1,4 +1,6 @@
-<div><h3><?php _e('Resend activate email');?></h3></div>
+<div class="page-header">
+    <h3><?php _e('Resend activate email');?></h3>
+</div>
 <?php
 if (isset($result)) {
     echo sprintf('<div class="alert %s">%s
@@ -7,4 +9,4 @@ if (isset($result)) {
         $result['message']);
 }
 ?>
-<?php include $this->templateComponent('form'); ?>
+<?php include $this->templateComponent('form-horizontal'); ?>
