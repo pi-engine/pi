@@ -590,6 +590,7 @@ class ProfileController extends ActionController
      */
     protected function getGroupElements($groupId, $compound = '')
     {
+        $meta        = Pi::registry('field', 'user')->read('', 'edit');
         $fieldsModel = $this->getModel('display_field');
         $select      = $fieldsModel
                        ->select()
@@ -603,6 +604,9 @@ class ProfileController extends ActionController
         if (!$compound) {
             // Profile
             foreach ($rowset as $row) {
+                if (!isset($meta[$row->field])) {
+                    continue;
+                }
                 $element    = Pi::api('user', 'form')->getElement($row->field);
                 $filter     = Pi::api('user', 'form')->getFilter($row->field);
                 if ($element) {
@@ -616,15 +620,17 @@ class ProfileController extends ActionController
             return array($elements, $filters);
         } else {
             // Compound
-            foreach ($rowset as $row) {
-                $element = Pi::api('user', 'form')
-                    ->getCompoundElement($compound, $row->field);
-                $filter = Pi::api('user', 'form')
-                    ->getCompoundFilter($compound, $row->field);
-                $elements[] = $element;
-                $filters[]  = $filter;
+            if (isset($meta[$row->field])) {
+                foreach ($rowset as $row) {
+                    $element = Pi::api('user', 'form')
+                        ->getCompoundElement($compound, $row->field);
+                    $filter = Pi::api('user', 'form')
+                        ->getCompoundFilter($compound, $row->field);
+                    $elements[] = $element;
+                    $filters[]  = $filter;
+                }
+                return array($elements, $filters);
             }
-            return array($elements, $filters);
         }
     }
 
@@ -829,6 +835,5 @@ class ProfileController extends ActionController
         $row   = $model->find($compoundId, 'id');
 
         return $row ? $row['compound'] : '';
-
     }
 }
