@@ -1,0 +1,25 @@
+<?php
+// Load register.css
+$this->css(array(
+    $this->assetTheme('css/register.css'),
+));
+?>
+
+<div class="pi-minheight">
+    <div class="page-header">
+        <h3><?php _e('Change email'); ?></h3>
+    </div>
+
+    <div class="text-center text-large" style="padding-top: 40px;">
+        <?php if ($result['status']) { ?>
+            <p><?php _e('Congratulations!'); ?></p>
+            <p><?php _e('Your email has been changed.'); ?></p>
+            <p><?php echo sprintf(
+                    __('<a href="%s">Login right now</a>'),
+                    Pi::service('authentication')->getUrl('login')
+                ); ?></p>
+        <?php } else { ?>
+            <p><?php _e('Sorry, the link has expired, or maybe your email has been changed.'); ?></p>
+        <?php } ?>
+    </div>
+</div>

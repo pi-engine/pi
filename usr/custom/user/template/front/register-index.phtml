@@ -37,7 +37,9 @@ $this->css(array(
             <script src="<?php echo $this->assetTheme('js/register-index.js'); ?>"></script>
             <script src="<?php echo $this->assetTheme('js/temp-email.js'); ?>"></script>
             <script>
-                jQuery(function() {
+                jQuery(function($) {
+                    $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
+
                     userRegisterIndex.init({
                         checkExistUrl: "<?php echo $this->url('api', array('module' => 'user', 'controller' => 'user', 'action' => 'check.exist')); ?>"
                     });
@@ -56,18 +58,27 @@ $this->css(array(
                 <li><?php _e('与非网郑重承诺：'); ?></li>
                 <li><?php _e('我们一定保护您的信息资料安全'); ?></li>
             </ul>
+
+            <script>
+                jQuery(function($) {
+                    $('#register_complete input, #register_complete select').focus(function(){
+                        var $controlGroupParent = $(this).closest('.control-group');
+                        $controlGroupParent.removeClass('error').find('.help-inline').html('');
+                    });
+                });
+            </script>
         <?php } ?>
         </div>
     </div>
 <?php } else { ?>
     <!-- Step -->
-    <div class="user-step-reg user-step-reg3"></div>
+    <div class="pi-step-reg pi-step-reg3"></div>
 
     <div class="row-fluid pi-minheight">
         <div class="span8 text-large" style="padding-top: 10px;">
             <p>
                 <?php _e('系统已经向你邮箱'); ?>
-                <strong class="text-error"><?php echo $result['email']; ?></strong>
+                <span class="text-error"><?php echo $result['email']; ?></span>
                 <?php _e('发送了一封电子邮件'); ?>。
             </p>
             <p><?php _e('请点击邮件中的链接，以完成注册'); ?>。</p>
