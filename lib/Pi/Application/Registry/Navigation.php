@@ -126,11 +126,14 @@ class Navigation extends AbstractRegistry
         $this->module = $row->module;
 
         // Translate global admin navigation
+        /*
         if ($this->module) {
             $domain = sprintf('module/%s:navigation', $this->module);
         } else {
             $domain = 'usr:navigation';
         }
+        */
+        $domain = sprintf('module/%s:default', $this->module);
 
         $navigation = $this->translateConfig($row->data, $domain, $locale);
 
@@ -266,7 +269,7 @@ class Navigation extends AbstractRegistry
     protected function translateConfig($config, $domain, $locale)
     {
         if ($config) {
-            Pi::service('i18n')->load($domain, $locale);
+            //Pi::service('i18n')->load($domain, $locale);
             foreach ($config as $p => &$page) {
                 $this->translatePage($page, $config, $p, true);
             }
