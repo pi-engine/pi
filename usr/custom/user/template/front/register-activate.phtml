@@ -30,36 +30,8 @@ $this->css(array(
                 <?php _e('你可以选择'); ?>
                 <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
                 <?php _e('，或'); ?>
-                <span class="user-js-reactivate">
-                    <a class="user-js-reactivate-link" style="margin-left: 4px;" href="javascript:;" title="<?php _e('重新发送激活邮件');?>">
-                        <?php _e('重新发送激活邮件');?>
-                    </a>
-                    <span class="hide user-js-reactivate-tip">
-                        ( <span class="user-js-reactivate-message"></span><span class="user-js-reactivate-countdown"></span> )
-                    </span>
-                </span>
+                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('重新发送激活邮件');?></a>
             </p>
-
-            <style>
-                a.disabled {
-                    opacity: 0.65;
-                    filter: alpha(opacity=65);
-                    cursor: not-allowed;
-                }
-
-                a.disabled:hover {
-                    text-decoration: none;
-                }
-            </style>
-            <script src="<?php echo $this->assetTheme('js/register-reactivate.js'); ?>"></script>
-            <script>
-                jQuery(function() {
-                    userRegisterReactivate.init({
-                        reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>',
-                        AlREADY_SENT: '<?php _e('邮件已发送'); ?>'
-                    });
-                });
-            </script>
         <?php } ?>
     </div>
 </div>

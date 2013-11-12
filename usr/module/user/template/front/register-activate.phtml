@@ -8,4 +8,7 @@
     </p>
 <?php } else { ?>
     <p><?php _e('Sorry, the link has expired.'); ?></p>
+    <p>
+        <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('resend active mail');?></a>
+    </p>
 <?php } ?>
