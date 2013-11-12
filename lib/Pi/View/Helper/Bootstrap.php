@@ -102,6 +102,7 @@ class Bootstrap extends AssetCanonize
                     $this->view->headLink()->appendStylesheet($attrs);
                 }
             } else {
+                $this->view->jQuery();
                 if ('prepend' == $position) {
                     $this->view->headScript()
                         ->prependFile($url, 'text/javascript', $attrs);

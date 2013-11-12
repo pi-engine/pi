@@ -44,6 +44,7 @@ class Industry extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
+        $this->view->jQuery();
         $this->view->plugin('js')->load(
             Pi::url('static/custom/js/eefocus-linkage.js')
         );
