@@ -17,7 +17,7 @@
           ng-options="item.name as item.title for item in adminRoles">
       <option value="">{{'ADMIN_ROLE' | translate}}
   </select>
-  <select class="input-medium" ng-model="filter.register_time">
+  <select class="input-medium" ng-model="filter.register_date">
     <option value="">{{'REGISTER_TIME' | translate}}
     <option value="today">{{'TODAY' | translate}}
     <option value="last_week">{{'LAST_WEEK' | translate}}
@@ -39,19 +39,15 @@
            ng-model="allChecked" ng-change="markAll()">
     <div class="btn-group">
       <button class="btn" ng-click="activeBatchAction()">
-        <i class="icon-ok-sign"></i>
         {{'ACTIVATE' | translate}}
       </button>
       <button class="btn" ng-click="enableBatchAction()">
-        <i class="icon-ok text-success"></i>
         {{'ENABLE' | translate}}
       </button>
       <button class="btn" ng-click="disableBatchAction()">
-        <i class="icon-power-off"></i>
         {{'DISABLE' | translate}}
       </button>
       <button class="btn" ng-click="deleteBatchAction()">
-        <i class="icon-remove text-error"></i>
         {{'DELETE' | translate}}
       </button>
     </div>

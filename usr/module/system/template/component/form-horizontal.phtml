@@ -14,8 +14,8 @@
     foreach ($elements['hidden'] as $element) {
         echo $this->formElement($element);
     }
-    echo sprintf('<div class="controls controls-action">%s
-        <input type="reset" value="cancel" class="btn btn-link js-cancel"></div>', 
-        $this->formElement($elements['submit']));
+    echo sprintf('<div class="controls controls-action">%s%s</div>', 
+        $this->formElement($elements['submit']),
+        empty($ResetShow) ? '' : '<input type="reset" value="cancel" class="btn btn-link js-cancel">');
     echo $this->form()->closeTag();
 ?>
