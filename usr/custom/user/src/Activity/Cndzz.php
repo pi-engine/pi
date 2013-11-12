@@ -23,21 +23,21 @@ class Cndzz
     public function get($uid, $limit, $offset = 0)
     {
 
-        $uri = Pi::url(Pi::service('url')->assemble(
-            'default',
-            array(
-                'module'     => 'demo',
-                'controller' => 'activity',
-                'action'     => 'get'
-            )
-        ), true);
+        $uriBBS = 'http://bbs.cndzz.com/api/bbs_api.php?uid=1';
+        $uriCndzz = 'http://www.cndzz.com/api/api.php';
 
-        $params = array(
-            'uid' => $uid,
-        );
+        $dataBBS = json_decode(Pi::service('remote')->get($uriBBS, array(
+            'uid'   => $uid
+        )), true);
 
-        $data = Pi::service('remote')->get($uri, $params);
+        $dataCndzz = json_decode(Pi::service('remote')->get($uriCndzz, array(
+            'uid'   => $uid,
+            'action'  => 'cndzz'
+        )), true);
 
-        return $data;
+        d($dataBBS);
+
+
+        return array_merge($dataBBS, $dataCndzz);
     }
 }

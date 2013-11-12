@@ -23,20 +23,23 @@ class Community
     public function get($uid, $limit, $offset = 0)
     {
 
-        $uri = Pi::url(Pi::service('url')->assemble(
+/*        $uri = Pi::url(Pi::service('url')->assemble(
             'default',
             array(
                 'module'     => 'demo',
                 'controller' => 'activity',
                 'action'     => 'get'
             )
-        ), true);
+        ), true);*/
+
+        $uri = 'http://www.eefocus.com/passport/api.php';
 
         $params = array(
             'uid' => $uid,
+            'act' => 'basic'
         );
 
-        $data = Pi::service('remote')->get($uri, $params);
+        $data = json_decode(Pi::service('remote')->get($uri, $params), true);
 
         return $data;
     }
