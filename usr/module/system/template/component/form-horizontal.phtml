@@ -5,13 +5,23 @@
     $elements = $form->elementList();
     echo $this->form()->openTag($form);
     foreach ($elements['active'] as $element) {
-        echo sprintf('<div class="control-group%s"><label class="control-label">%s</label>
-            <div class="controls">%s<span class="help-inline%s">%s</span></div></div>',
-            $element->getMessages() ? ' error' : '',
-            $element->getOption('label'),
+        $rendered = sprintf(
+            '<div class="control-group%s">',
+            $element->getMessages() ? ' error' : ''
+        );
+        if ($element->getAttribute('type') != 'checkbox') {
+            $rendered .= sprintf(
+                '<label class="control-label">%s</label>',
+                $element->getOption('label')
+            );
+        }
+        $rendered .= sprintf(
+            '<div class="controls">%s<span class="help-inline%s">%s</span></div></div>',
             $this->formElement($element),
             $element->getMessages() ? '' : ' hide',
-            $this->formElementErrors($element));
+            $this->formElementErrors($element)
+        );
+        echo $rendered;
     }
     foreach ($elements['hidden'] as $element) {
         echo $this->formElement($element);

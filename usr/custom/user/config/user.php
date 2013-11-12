@@ -14,6 +14,63 @@
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 //return array();
+
+
+$interestOptsArr = array(
+    __('chuangan/MEMS'),
+    __('kongzhiqi/chuliqi/DSP'),
+    __('baohu/geli'),
+    __('kaiguan/duolufuyongqi'),
+    __('fadahexianxingchanpin'),
+    __('cunchu'),
+    __('lianjieqi'),
+    __('ceshiceliang'),
+    __('shujuzhuanhuanqi'),
+    __('jiekou'),
+    __('guangdian/xianshi'),
+    __('qianrushikaifagongju'),
+    __('dianyuan/dianchiguanli'),
+    __('yin/shipin'),
+    __('RF/weibo'),
+    __('EDA/IP/IC/PCBsheji'),
+    __('shuzi/kebianchengluoji'),
+    __('fenli/wuyuanqijian'),
+    __('tongxin/wangluoIC'),
+    __('zhizao/fengzhuang'),
+    __('shizhong/dingshi'),
+);
+
+foreach ($interestOptsArr as $value) {
+    $interestOpts[$value] = array(
+        'value'            => $value,
+        'label'            => $value,
+        'label_attributes' => array(
+            'class' => 'checkbox interest-checkbox'
+        )
+    );
+}
+
+$subscriptionOptsArr = array(
+    __('qianrushixitongsheji'),
+    __('wuxian&shepin'),
+    __('lvsesheji'),
+    __('ceshiceliang'),
+    __('xiaofeidianzi'),
+    __('dianzizixunjinji'),
+    __('moni&dianyuan'),
+    __('gongyedianzi'),
+);
+
+foreach ($subscriptionOptsArr as $value) {
+    $subscriptionOpts[$value] = array(
+        'value'            => $value,
+        'label'            => $value,
+        'label_attributes' => array(
+            'class' => 'checkbox subscription-checkbox'
+        )
+    );
+}
+
 return array(
     // Fields
     'field'     => array(
@@ -88,8 +145,7 @@ return array(
                 'attributes' => array(
                     'class' => 'input-xxlarge'
                 )
-
-            )
+            ),
         ),
 
         'postcode' => array(
@@ -103,17 +159,27 @@ return array(
         'interest' => array(
             'name'  => 'interest',
             'title' => __('Interest'),
-            'edit'  => 'Custom\User\Form\Element\Checkbox',
-            // Custom handler
             'handler'   => 'Custom\User\Field\Interest',
+            'edit'  => array(
+                'element'  => 'multi_checkbox',
+                'required' => true,
+                'attributes' => array(
+                    'options' => $interestOpts
+                ),
+            ),
         ),
 
-        'subscription'      => array(
+        'subscription' => array(
             'name'  => 'subscription',
             'title' => __('Subscriptions'),
-            'edit'  => 'Custom\User\Form\Element\Checkbox',
-            // Custom handler
             'handler'   => 'Custom\User\Field\Subscription',
+            'edit'  => array(
+                'element'  => 'multi_checkbox',
+                'required' => false,
+                'attributes' => array(
+                    'options' => $subscriptionOpts
+                ),
+            ),
         ),
 
         // Compound fields
@@ -165,7 +231,7 @@ return array(
                     'edit'  => array(
                         'element' => 'textarea',
                         'attributes' => array(
-                            'rows'    => 5,
+                            'rows'    => 4,
                             'class'   => 'input-block-level',
                         ),
                     ),
@@ -234,7 +300,7 @@ return array(
                     'edit'  => array(
                         'element' => 'textarea',
                         'attributes' => array(
-                            'rows'    => 5,
+                            'rows'    => 4,
                             'class'   => 'input-block-level',
                         ),
                     ),
@@ -249,41 +315,6 @@ return array(
                 ),
             ),
         ),
-
-            /*
-        // Compound: Profession interests
-        'interest'      => array(
-            'name'  => 'interest',
-            'title' => __('Interests'),
-
-            // Custom handler
-            'handler'   => 'Custom\User\Field\Interest',
-
-            // Fields
-            'field' => array(
-                'interest' => array(
-                    'title' => __('Interest'),
-                ),
-            ),
-        ),
-
-
-        // Compound: Subscriptions
-        'subscription'      => array(
-            'name'  => 'subscription',
-            'title' => __('Subscriptions'),
-
-            // Custom handler
-            'handler'   => 'Custom\User\Field\Subscription',
-
-            // Fields
-            'field' => array(
-                'item' => array(
-                    'title' => __('Item'),
-                ),
-            ),
-        ),
-        */
     ),
 
     // Timeline logs from modules
