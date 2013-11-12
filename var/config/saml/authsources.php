@@ -1,7 +1,15 @@
 <?php
 
 $config = array(
-
+    'sp' => array(
+        'saml:SP',
+        'idp'      => 'https://sso.eefocus.com/saml2/idp/metadata.php',
+        # Artifact binding test
+        //        'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+        //        'privatekey' => 'sp-eefocus-com.key',
+        //        'certificate' => 'sp-eefocus-com.crt',
+    ),
+/*
 	// This is a authentication source which handles admin authentication.
 	'admin' => array(
 		// The default is to use core:AdminPassword, but it can be replaced with
@@ -33,7 +41,7 @@ $config = array(
         'saml:SP',
         'idp'      => 'https://sso.eefocus.com/saml2/idp/metadata.php',
     ),
-
+*/
 	/*
 	'example-sql' => array(
 		'sqlauth:SQL',
