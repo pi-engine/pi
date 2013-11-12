@@ -212,13 +212,25 @@ return array(
         'bio'  => array(
             'name'  => 'bio',
             'title' => _a('Short bio'),
-            'edit'  => 'textarea',
+            'edit'  => array(
+                'element' => 'textarea',
+                'attributes' => array(
+                    'rows'    => 4,
+                    'class'   => 'input-block-level',
+                ),
+            )
         ),
         // Profile: signature
         'signature'  => array(
             'name'  => 'signature',
             'title' => _a('Signature'),
-            'edit'  => 'textarea',
+            'edit'  => array(
+                'element' => 'textarea',
+                'attributes' => array(
+                    'rows'    => 4,
+                    'class'   => 'input-block-level',
+                ),
+            )
         ),
 
         // Profile: Register IP
