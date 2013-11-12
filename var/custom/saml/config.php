@@ -6,8 +6,8 @@
  */
 
 $config = array();
-$customFile = Pi::path('config/custom/saml/config.php');
-include $customFile;
+$defaultFile = Pi::path('config/saml/config.default.php');
+include $defaultFile;
 
 $config = array_merge($config, array (
 
