@@ -46,8 +46,9 @@ class IndexController extends ActionController
      */
     public function acsAction()
     {
-        $_SERVER['SCRIPT_NAME'] = $this->url('', array('action' => 'acs')) . 'sid';
-        $_SERVER['PATH_INFO']   = '-' . _get('sid');
+        $this->canonizeRequest();
+        //$_SERVER['SCRIPT_NAME'] = $this->url('', array('action' => 'acs')) . 'sid';
+        //$_SERVER['PATH_INFO']   = '-' . _get('sid');
 
         require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
         require_once Pi::path('vendor') . '/simplesamlphp/modules/saml/www/sp/saml2-acs.php';
@@ -58,11 +59,28 @@ class IndexController extends ActionController
      */
     public function acslogoutAction()
     {
-        $_SERVER['SCRIPT_NAME'] = $this->url('', array('action' => 'acslogout')) . 'sid';
-        $_SERVER['PATH_INFO']   = '-' . _get('sid');
+        $this->canonizeRequest();
+        //$_SERVER['SCRIPT_NAME'] = $this->url('', array('action' => 'acslogout')) . 'sid';
+        //$_SERVER['PATH_INFO']   = '-' . _get('sid');
 
         require_once Pi::path('vendor') . '/simplesamlphp/lib/_autoload.php';
         require_once Pi::path('vendor') . '/simplesamlphp/modules/saml/www/sp/saml2-logout.php';
+    }
+
+    /**
+     * Canonize `SCRIPT_NAME` and `PATH_INFO` for SSP URL check
+     *
+     * @return void
+     * @see lib/vendor/simplesamlphp/modules/saml/www/sp/saml2-acs.php
+     * @see lib/vendor/simplesamlphp/modules/saml/www/sp/saml2-logout.php
+     */
+    protected function canonizeRequest()
+    {
+        $requestUri = Pi::service('url')->getRequestUri();
+        $sourceId = $this->params('sid');
+        $sidPos = -1 * strlen($sourceId) - 1;
+        $_SERVER['SCRIPT_NAME'] = substr($requestUri, 0, $sidPos);
+        $_SERVER['PATH_INFO'] = substr($requestUri, $sidPos);
     }
 
     /**
