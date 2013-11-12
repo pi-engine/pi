@@ -446,7 +446,7 @@ class Navigation extends AbstractResource
             return array();
         }
         $module = $this->event->getParam('module');
-        Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
+        //Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
         $navigations = $this->canonizeConfig($navigations);
 
         return $navigations;
