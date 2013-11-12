@@ -38,12 +38,15 @@ class Wizard
 
     public function __construct()
     {
+        /*
         $docroot = $_SERVER['DOCUMENT_ROOT'];
         $root = str_replace('\\', '/', realpath($docroot));
-        $pwd = str_replace('\\', '/', dirname(__DIR__));
+        $pwd = str_replace('\\', '/', dirname($_SERVER["SCRIPT_FILENAME"]));
         static::$root = str_replace($root, $docroot, $pwd);
+        */
 
-        //static::$root = dirname(__DIR__);
+        $pwd = dirname($_SERVER["SCRIPT_FILENAME"]);
+        static::$root = str_replace('\\', '/', $pwd);
         spl_autoload_register('static::autoload');
         $this->request = new Request();
     }
