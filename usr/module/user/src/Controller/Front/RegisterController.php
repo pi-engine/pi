@@ -15,6 +15,8 @@ use Module\User\Form\RegisterForm;
 use Module\User\Form\RegisterFilter;
 use Module\User\Form\ProfileCompleteForm;
 use Module\User\Form\ProfileCompleteFilter;
+use Module\User\Form\ResendActivateMailForm;
+use Module\User\Form\ResendActivateMailFilter;
 
 /**
  * Register controller
@@ -370,6 +372,90 @@ class RegisterController extends ActionController
 
         return $result;
 
+    }
+
+    public function resendActiveMailAction()
+    {
+        $form = new ResendActivateMailForm();
+        $this->view()->setTemplate('register-resend-activate-mail');
+
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $form->setData($post);
+            $form->setInputFilter(new ResendActivateMailFilter());
+
+            if ($form->isValid()) {
+                $values = $form->getData();
+
+                // Check email
+                $row = $this->getModel('account')->find($values['email'], 'email');
+                if (!$row) {
+                    $result['status'] = 0;
+                    $result['message'] = __('Email not exist');
+                }
+
+                if ($row->time_activated) {
+                    $result['status'] = 0;
+                    $result['message'] = __('Account has activated');
+                }
+                if (isset($result['status'])) {
+                    $this->view()->assign(array(
+                        'form'   => $form,
+                        'result' => $result,
+                    ));
+
+                    return;
+                }
+
+                $uid = $row->id;
+                // Update user data form send mail
+                $content = md5($row['id'] . $row['name']);
+                Pi::user()->data()->set(
+                    $uid,
+                    'register-activation',
+                    $content,
+                    $this->getModule()
+                );
+
+                // Set mail params and send verify mail
+                $to = $values['email'];
+                //Set verify link
+                $url = $this->url('', array(
+                        'action' => 'activate',
+                        'uid'    => md5($row->id),
+                        'token'  => $content
+                    )
+                );
+                $link = Pi::url($url, true);
+                $params = array(
+                    'username'      => $row->identity,
+                    'activity_link' => $link,
+                    'sn'            => _date(),
+                );
+
+                // Load from HTML template
+                $data = Pi::service('mail')->template('activity-mail-html', $params);
+                // Send...
+                $message = Pi::service('mail')->message(
+                    $data['subject'],
+                    $data['body'],
+                    $data['format']
+                );
+                $message->addTo($to);
+                $transport = Pi::service('mail')->transport();
+                $transport->send($message);
+
+                $result['status']  = 1;
+                $result['message'] = __('Resend activate mail successfully');
+            } else {
+                $result['status'] = 0;
+                $result['message'] = __('Input error');
+            }
+
+            $this->view()->assign('result', $result);
+        }
+
+        $this->view()->assign('form', $form);
     }
 
     /**
