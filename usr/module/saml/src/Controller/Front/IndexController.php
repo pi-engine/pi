@@ -77,6 +77,10 @@ class IndexController extends ActionController
     protected function canonizeRequest()
     {
         $requestUri = Pi::service('url')->getRequestUri();
+        if (($qpos = strpos($requestUri, '?')) !== false) {
+            $requestUri = substr($requestUri, 0, $qpos);
+        }
+
         $sourceId = $this->params('sid');
         $sidPos = -1 * strlen($sourceId) - 1;
         $_SERVER['SCRIPT_NAME'] = substr($requestUri, 0, $sidPos);
