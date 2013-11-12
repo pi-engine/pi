@@ -1,3 +1,11 @@
-<h2 class="page-header"><?php _e('Complete profile'); ?></h2>
+<?php
+// Load register.css
+$this->css(array(
+    $this->assetTheme('css/register.css'),
+));
+?>
 
-<?php include $this->templateComponent('form'); ?>
+<div class="page-header">
+    <h3><?php _e('Complete profile'); ?></h3>
+</div>
+<?php include $this->templateComponent('form-horizontal'); ?>

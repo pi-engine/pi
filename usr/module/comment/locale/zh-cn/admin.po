@@ -1,532 +1,619 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2013-11-10 13:52+0800\n"
-"PO-Revision-Date: 2013-11-10 13:52+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
-"Language-Team: \n"
+"Project-Id-Version: comment\n"
+"POT-Creation-Date: 2013-11-12 09:59+0800\n"
+"PO-Revision-Date: 2013-11-12 09:59+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: eefocus\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-KeywordsList: _t;_a\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\comment\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Z:\\article\\usr\\module\\comment\n"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:13
-#, fuzzy
+#: Z:\article\usr\module\comment/config/block.php:13
 msgid "Recent comments"
-msgstr "All Categories"
+msgstr "最新评论"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:14
+#: Z:\article\usr\module\comment/config/block.php:14
 msgid "Recent active comment posts."
-msgstr ""
+msgstr "最新活跃评论"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:20
+#: Z:\article\usr\module\comment/config/block.php:20
 msgid "Post count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:21
+#: Z:\article\usr\module\comment/config/block.php:21
 msgid "Number of posts to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:28
-#: C:\wamp\www\master\usr\module\comment/config/block.php:53
+#: Z:\article\usr\module\comment/config/block.php:28
+#: Z:\article\usr\module\comment/config/block.php:53
 msgid "Module"
-msgstr ""
+msgstr "模块"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:29
+#: Z:\article\usr\module\comment/config/block.php:29
 msgid "Select module for articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:38
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:20
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:62
+#: Z:\article\usr\module\comment/config/block.php:38
+#: Z:\article\usr\module\comment/config/nav.php:20
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:62
 msgid "Commented articles"
-msgstr ""
+msgstr "已评论文章"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:39
+#: Z:\article\usr\module\comment/config/block.php:39
 msgid "Articles being commented."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:45
+#: Z:\article\usr\module\comment/config/block.php:45
 msgid "Article count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:46
+#: Z:\article\usr\module\comment/config/block.php:46
 msgid "Number of articles to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:54
+#: Z:\article\usr\module\comment/config/block.php:54
 msgid "Select module for articles."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:60
+#: Z:\article\usr\module\comment/config/block.php:60
 msgid "Sort order"
-msgstr ""
+msgstr "排序"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:61
+#: Z:\article\usr\module\comment/config/block.php:61
 msgid "Criteria to select articles."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:66
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:89
-#, fuzzy
+#: Z:\article\usr\module\comment/config/block.php:66
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:89
 msgid "Most commented"
-msgstr "All Categories"
+msgstr "热评文章排行"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:67
-#, fuzzy
+#: Z:\article\usr\module\comment/config/block.php:67
 msgid "Last commented"
-msgstr "All Categories"
+msgstr "最新评论文章"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:68
+#: Z:\article\usr\module\comment/config/block.php:68
 msgid "Last published"
-msgstr ""
+msgstr "最后发布"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:79
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:25
+#: Z:\article\usr\module\comment/config/block.php:79
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:25
 msgid "Top posters"
-msgstr ""
+msgstr "热心网友排行"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:80
+#: Z:\article\usr\module\comment/config/block.php:80
 msgid "Users with most posts"
-msgstr ""
+msgstr "最活跃用户"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:86
+#: Z:\article\usr\module\comment/config/block.php:86
 msgid "User count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:87
+#: Z:\article\usr\module\comment/config/block.php:87
 msgid "Number of users to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:94
+#: Z:\article\usr\module\comment/config/block.php:94
 msgid "Excluded user ids"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:95
+#: Z:\article\usr\module\comment/config/block.php:95
 msgid "Users to exclude, separated by \",\"."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:101
+#: Z:\article\usr\module\comment/config/block.php:101
 msgid "Excluded roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:102
+#: Z:\article\usr\module\comment/config/block.php:102
 msgid "Roles to exclude."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/comment.php:18
-#, fuzzy
+#: Z:\article\usr\module\comment/config/module.php:17
+msgid "Comment"
+msgstr "评论"
+
+#: Z:\article\usr\module\comment/config/module.php:18
+msgid "Comment management and services."
+msgstr "评论管理与服务"
+
+#: Z:\article\usr\module\comment/config/comment.php:18
 msgid "Article comments"
-msgstr "All Categories"
+msgstr "文章评论"
 
-#: C:\wamp\www\master\usr\module\comment/config/comment.php:29
-#, fuzzy
+#: Z:\article\usr\module\comment/config/comment.php:29
 msgid "Custom comments"
-msgstr "All Categories"
+msgstr "定制评论"
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:12
+#: Z:\article\usr\module\comment/config/user.php:20
+msgid "Comment posts by me"
+msgstr "我发表的评论"
+
+#: Z:\article\usr\module\comment/config/user.php:26
+msgid "Comment posts on my articles"
+msgstr "我文章里面的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:14
+#: Z:\article\usr\module\comment/config/nav.php:61
+msgid "All comments"
+msgstr "全部评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:26
+msgid "My comments"
+msgstr "我的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:35
+msgid "My received"
+msgstr "我收到的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:44
+msgid "My articles"
+msgstr "我的文章"
+
+#: Z:\article\usr\module\comment/config/nav.php:55
+msgid "Portal"
+msgstr "评论首页"
+
+#: Z:\article\usr\module\comment/config/nav.php:90
+msgid "Categories"
+msgstr "分类"
+
+#: Z:\article\usr\module\comment/config/nav.php:96
+msgid "By module"
+msgstr "通过模块查询"
+
+#: Z:\article\usr\module\comment/config/nav.php:102
+msgid "By user"
+msgstr "通过用户查询"
+
+#: Z:\article\usr\module\comment/config/nav.php:108
+msgid "By article"
+msgstr "通过文章查询"
+
+#: Z:\article\usr\module\comment/config/config.php:12
 msgid "Leading page comment limit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:13
+#: Z:\article\usr\module\comment/config/config.php:13
 msgid "Number of comments on leading page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:19
+#: Z:\article\usr\module\comment/config/config.php:19
 msgid "List page comment limit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:20
+#: Z:\article\usr\module\comment/config/config.php:20
 msgid "Number of comments on list page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:26
+#: Z:\article\usr\module\comment/config/config.php:26
 msgid "Display operation"
-msgstr ""
+msgstr "显示设置"
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:27
+#: Z:\article\usr\module\comment/config/config.php:27
 msgid "Level of operations on post list pages."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:33
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:41
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:58
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:30
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:37
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:38
+#: Z:\article\usr\module\comment/config/config.php:33
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:41
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:38
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:30
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:37
 msgid "Disable"
-msgstr ""
+msgstr "关闭"
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:34
+#: Z:\article\usr\module\comment/config/config.php:34
 msgid "For members"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:35
+#: Z:\article\usr\module\comment/config/config.php:35
 msgid "For authors"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:36
+#: Z:\article\usr\module\comment/config/config.php:36
 msgid "For administrators"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:43
+#: Z:\article\usr\module\comment/config/config.php:43
 msgid "Auto approve submission."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/module.php:17
-msgid "Comment"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/module.php:18
-#, fuzzy
-msgid "Comment management and services."
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:14
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:61
-#, fuzzy
-msgid "All comments"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:26
-msgid "My comments"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:35
-msgid "My received"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:44
-msgid "My articles"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:55
-msgid "Portal"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:90
-#, fuzzy
-msgid "Categories"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:96
-msgid "By module"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:102
-msgid "By user"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:108
-msgid "By article"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/user.php:20
-msgid "Comment posts by me"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/config/user.php:26
-#, fuzzy
-msgid "Comment posts on my articles"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:22
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:276
-#, fuzzy
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:22
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:276
 msgid "Comment categories"
-msgstr "All Categories"
+msgstr "评论分类"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:33
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:33
 msgid "Active"
-msgstr ""
+msgstr "激活"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:33
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:33
 msgid "Disabled"
-msgstr ""
+msgstr "关闭"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:41
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:58
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:25
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:32
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:33
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:41
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:33
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:25
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:32
 msgid "Enable"
-msgstr ""
+msgstr "打开"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:91
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:91
 msgid "Category was not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:95
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:95
 msgid "Invalid operation."
-msgstr ""
+msgstr "无效操作"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:101
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:596
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:300
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:101
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:596
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:300
 msgid "Operation succeeded."
-msgstr ""
+msgstr "操作成功"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:104
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:104
 msgid "Operation failed."
-msgstr ""
+msgstr "操作失败"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:23
-#, php-format
-msgid "Comment portal for %s"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:26
-msgid "Build comment data for demo articles"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:33
-msgid "Demo article with comments"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:39
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:84
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:84
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:39
 msgid "All comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:46
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:88
-msgid "All active comment posts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:54
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:86
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:86
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:54
 msgid "All inactive comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:69
-msgid "Comment posts by user"
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:88
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:46
+msgid "All active comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:76
-msgid "Comment posts by module"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:87
-#, fuzzy
-msgid "Total posts"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:95
-msgid "Active posts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:104
-msgid "Inactive posts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:277
-#, fuzzy, php-format
-msgid "Demo comment %d."
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:111
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:237
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:414
-#, fuzzy
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:111
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:237
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:414
 msgid "All Posts"
-msgstr "All Categories"
+msgstr "全部评论"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:118
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:245
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:423
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:118
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:245
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:423
 msgid "Active Posts"
-msgstr ""
+msgstr "激活评论"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:126
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:254
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:433
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:126
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:254
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:433
 msgid "Inactive Posts"
-msgstr ""
+msgstr "已屏蔽评论"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:165
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:165
 msgid "Comments by username or id"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:204
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:204
 msgid "Comment posts of user"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:371
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:371
 #, php-format
 msgid "Comment posts of Module %s with Category %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:377
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:377
 #, php-format
 msgid "Comment posts of Module %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:487
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:487
 msgid "Guest"
-msgstr ""
+msgstr "访客"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:524
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:524
 msgid "All commented articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:526
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:526
 msgid "All active commented articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:538
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:538
 msgid "Articles with comments"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:545
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:545
 msgid "Articles with active comments"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:44
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:23
+#, php-format
+msgid "Comment portal for %s"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:26
+msgid "Build comment data for demo articles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:33
+msgid "Demo article with comments"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:69
+msgid "Comment posts by user"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:76
+msgid "Comment posts by module"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:87
+msgid "Total posts"
+msgstr "全部评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:95
+msgid "Active posts"
+msgstr "激活评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:104
+msgid "Inactive posts"
+msgstr "已屏蔽评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:277
+#, php-format
+msgid "Demo comment %d."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:44
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:51
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:34
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:41
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:42
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:51
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:42
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:34
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:41
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:67
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:67
 msgid "Comment post"
-msgstr ""
+msgstr "发表评论"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:91
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:91
 msgid "Comment post edit"
-msgstr ""
+msgstr "编辑评论"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:175
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:175
 msgid "Comment post saved successfully."
-msgstr ""
+msgstr "评论成功"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:178
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:178
 msgid "Comment post not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:182
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:182
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:186
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:186
 msgid "Invalid submission."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:300
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:300
 msgid "Operation failed"
-msgstr ""
+msgstr "操作失败"
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:3
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:9
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:52
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:3
-msgid "Title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:4
-msgid "Enable Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:5
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:4
-msgid "Action"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:11
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:27
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:11
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:20
-#, fuzzy
-msgid "View comments"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:20
-msgid "Yes"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:23
-msgid "No"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:6
-#, fuzzy
-msgid "Comment stats"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:10
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:53
-msgid "Amounts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:29
-msgid "Submitters"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:30
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:94
-#, fuzzy
-msgid "Comments"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:49
-msgid "Active comment posts by module"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:76
-msgid "Links"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:93
-msgid "Article title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:95
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:102
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:103
-msgid "Pending"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:109
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:116
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:117
-msgid "No comments available yet."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:189
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:196
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:197
-msgid "Are you sure delete these comments?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:235
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:242
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:243
-msgid "Are you sure delete this article?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:2
-msgid "Filter comments by a specific user."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:5
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:18
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:18
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:5
 msgid "Type user id or identity"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:6
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:19
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:19
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:6
 msgid "Submit"
+msgstr "提交"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:103
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:95
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:102
+msgid "Pending"
 msgstr ""
 
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:117
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:109
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:116
 #, fuzzy
+msgid "No comments available yet."
+msgstr "评论已关闭"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:197
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:189
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:196
+msgid "Are you sure delete these comments?"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:243
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:235
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:242
+msgid "Are you sure delete this article?"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:3
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:3
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:9
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:52
+msgid "Title"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:4
+msgid "Enable Category"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:5
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:4
+#, fuzzy
+msgid "Action"
+msgstr "激活"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:11
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:27
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:11
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:20
+#, fuzzy
+msgid "View comments"
+msgstr "文章评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:20
+msgid "Yes"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:23
+msgid "No"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:6
+#, fuzzy
+msgid "Comment stats"
+msgstr "发表评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:10
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:53
+msgid "Amounts"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:29
+#, fuzzy
+msgid "Submitters"
+msgstr "提交"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:30
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:94
+#, fuzzy
+msgid "Comments"
+msgstr "评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:49
+#, fuzzy
+msgid "Active comment posts by module"
+msgstr "我发表的评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:76
+msgid "Links"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:93
+#, fuzzy
+msgid "Article title"
+msgstr "文章评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:2
+msgid "Filter comments by a specific user."
+msgstr ""
+
+#~ msgid "Please login."
+#~ msgstr "请登录。"
+
+#~ msgid "My active comments"
+#~ msgstr "我的激活评论"
+
+#~ msgid "My pending comments"
+#~ msgstr "我的评论草稿"
+
 #~ msgid "All"
-#~ msgstr "All Categories"
+#~ msgstr "全部"
+
+#~ msgid "My articles with active comments"
+#~ msgstr "我的被评论文章"
+
+#~ msgid "Reply"
+#~ msgstr "回复"
+
+#~ msgid "Operation denied."
+#~ msgstr "禁止操作"
+
+#~ msgid "Comment is disabled."
+#~ msgstr "评论已关闭"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Enable/Disable"
+#~ msgstr "打开/关闭"
+
+#~ msgid "Type your content"
+#~ msgstr "请发表评论……"
+
+#, fuzzy
+#~ msgid "Commented on "
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "Comment edit"
+#~ msgstr "编辑评论"
+
+#, fuzzy
+#~ msgid "No content."
+#~ msgstr "请发表评论……"
+
+#, fuzzy
+#~ msgid "All comments "
+#~ msgstr "全部评论"
+
+#, fuzzy
+#~ msgid " to leave comments."
+#~ msgstr "我的激活评论"
+
+#, fuzzy
+#~ msgid "Post"
+#~ msgstr "全部评论"
+
+#, fuzzy
+#~ msgid "No one has commented yet."
+#~ msgstr "热评文章排行"
+
+#, fuzzy
+#~ msgid "commented on "
+#~ msgstr "热评文章排行"
+
+#, fuzzy
+#~ msgid "All active comments "
+#~ msgstr "我的激活评论"
+
+#, fuzzy
+#~ msgid "%s comments"
+#~ msgstr "我的评论"
+
+#, fuzzy
+#~ msgid "Last commented: "
+#~ msgstr "最新评论文章"
+
+#, fuzzy
+#~ msgid "Comments for %s module"
+#~ msgstr "我发表的评论"
+
+#, fuzzy
+#~ msgid "Comment detail"
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "Comment #%d"
+#~ msgstr "评论"
+
+#, fuzzy
+#~ msgid "Comment reply to %s"
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "View all comments"
+#~ msgstr "全部评论"
