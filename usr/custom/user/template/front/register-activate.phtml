@@ -21,14 +21,14 @@ $this->css(array(
         <?php if (isset($result) && $result['status']) { ?>
             <img style="margin-right: 10px; vertical-align: middle;" src="<?php echo $this->assetTheme('image/icon-success-large.png'); ?>">
             <?php _e('激活成功，请'); ?>
-            <a href=""><?php _e('登录'); ?></a>
+            <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
         <?php } else { ?>
             <p>
                 <?php _e('对不起，此链接已失效。可能您已完成激活，或者超过有效激活时间。'); ?>
             </p>
             <p>
                 <?php _e('你可以选择'); ?>
-                <a href="" title="<?php _e('登录'); ?>"><?php _e('登录'); ?></a>
+                <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
                 <?php _e('，或'); ?>
                 <span class="user-js-reactivate">
                     <a class="user-js-reactivate-link" style="margin-left: 4px;" href="javascript:;" title="<?php _e('重新发送激活邮件');?>">
