@@ -3,7 +3,7 @@
 
 return array(
     // Source ID for simplesamlphp
-    'source_id' => 'pi',
+    'source_id' => 'sp',
 
     // Storage
     'storage'   => array(
