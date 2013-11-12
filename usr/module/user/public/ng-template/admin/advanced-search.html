@@ -34,7 +34,7 @@
     <label class="control-label">{{'FRONT_ROLE' | translate}}</label>
     <div class="controls">
       <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'front'}">
-        <input type="checkbox" ng-model="item.checked">{{item.title}}
+        <input type="checkbox" ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
       </label>
     </div>
   </div>
