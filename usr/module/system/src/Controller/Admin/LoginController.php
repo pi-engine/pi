@@ -55,7 +55,6 @@ class LoginController extends LoginControllerFront
         }
         $this->renderForm($form);
 
-        $this->view()->setLayout('layout-simple');
         $this->view()->setTemplate('login', '', 'front');
     }
 
@@ -99,5 +98,6 @@ class LoginController extends LoginControllerFront
     {
         parent::renderForm($form, $message);
         $this->view()->setTemplate('login', '', 'front');
+        $this->view()->setLayout('layout-simple');
     }
 }
