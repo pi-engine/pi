@@ -225,4 +225,20 @@ abstract class AbstractModel extends ArrayObject
      * @return bool
      */
     abstract public function hasRole($role);
+
+    /**
+     * Get guest data
+     *
+     * @return array
+     */
+    public function getGuest()
+    {
+        $guest = array(
+            'id'    => 0,
+            'identity'  => '',
+            'name'      => __('Guest'),
+        );
+
+        return $guest;
+    }
 }

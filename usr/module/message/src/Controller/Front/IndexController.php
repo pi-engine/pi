@@ -114,9 +114,10 @@ class IndexController extends AbstractController
 
                 if ($userId == $v['uid_from']) {
                     $v['is_read'] = 1;
+                    $user = Pi::user()->getUser($v['uid_to'])
+                        ?: Pi::user()->getUser(0);
                     // get username url
-                    $v['name'] = Pi::user()->getUser($v['uid_to'])
-                                               ->name;
+                    $v['name'] = $user->name;
                     // username link, 4 locations
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_to']);
@@ -124,9 +125,10 @@ class IndexController extends AbstractController
                     $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
                     $v['is_read'] = $v['is_read_to'];
+                    $user = Pi::user()->getUser($v['uid_to'])
+                        ?: Pi::user()->getUser(0);
                     //get username url
-                    $v['name'] = Pi::user()->getUser($v['uid_from'])
-                                               ->name;
+                    $v['name'] = $user->name;
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                                                           $v['uid_from']);
                     //get avatar
@@ -270,7 +272,8 @@ class IndexController extends AbstractController
     {
         try {
             $username = _get('username', 'string');
-            $uid = Pi::user()->getUser($username, 'identity')->id;
+            $user = Pi::user()->getUser($username, 'identity');
+            $uid = $user ? $user->id : 0;
             //current user id
             $selfUid = Pi::user()->getUser()->id;
             //check username
@@ -435,12 +438,14 @@ class IndexController extends AbstractController
 
         if ($userId == $detail['uid_from']) {
             //get username url
-            $detail['name'] = Pi::user()->getUser($detail['uid_to'])
-                                            ->name;
+            $user = Pi::user()->getUser($detail['uid_to'])
+                ?: Pi::user()->getUser(0);
+            $detail['name'] = $user->name;
         } else {
             //get username url
-            $detail['name'] = Pi::user()->getUser($detail['uid_from'])
-                                            ->name;
+            $user = Pi::user()->getUser($detail['uid_from'])
+                ?: Pi::user()->getUser(0);
+            $detail['name'] = $user->name;
         }
 
         //markup content

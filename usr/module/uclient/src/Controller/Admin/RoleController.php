@@ -97,7 +97,7 @@ class RoleController extends ActionController
                 $field  = 'id';
             }
             $user = Pi::service('user')->getUser($name, $field);
-            $uid = (int) $user->get('id');
+            $uid = $user ? (int) $user->get('id') : 0;
             if ($uid) {
                 $data = array('role' => $role, 'uid' => $uid);
                 $count = $model->count($data);
@@ -212,6 +212,9 @@ class RoleController extends ActionController
         } else {
             $uid = (int) $user;
             $user = Pi::service('user')->getUser($uid);
+            if (!$user) {
+                return;
+            }
         }
         $model = Pi::model('user_account');
         $row = $model->find($uid);

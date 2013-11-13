@@ -32,7 +32,7 @@ class Client extends System
                 $data = array_pop($data);
             }
         } else {
-            $data = array('id' => 0);
+            $data = $this->getGuest();
         }
         $this->assign($data);
 

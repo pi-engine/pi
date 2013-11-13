@@ -347,7 +347,7 @@ class EditController extends ActionController
             )
         );
 
-        if (!$user['name']) {
+        if (!$user || !$user['name']) {
             return $this->jumpTo404(_a('User was not found.'));
         }
 

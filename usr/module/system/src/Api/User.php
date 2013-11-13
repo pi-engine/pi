@@ -60,11 +60,14 @@ class User extends AbstractUseApi
      * @param int|string $uid
      * @param string    $field
      *
-     * @return UserModel
+     * @return UserModel|null
      */
     public function getUser($uid, $field = 'id')
     {
         $user = new UserModel($uid, $field);
+        if ($uid && !$user->id) {
+            $user = null;
+        }
 
         return $user;
     }

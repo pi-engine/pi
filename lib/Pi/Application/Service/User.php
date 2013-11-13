@@ -276,10 +276,16 @@ class User extends AbstractService
                     || $identity != $data[$field])
             ) {
                 $model = $this->getAdapter()->getUser($identity, $field);
+                if (!$model) {
+                    throw new \Exception('User was not found.');
+                }
                 $this->setPersist($model);
             // Build user model from persist data
             } else {
                 $model = $this->getAdapter()->getUser($data);
+                if (!$model) {
+                    throw new \Exception('User was not found.');
+                }
             }
         }
         $this->model = $model;

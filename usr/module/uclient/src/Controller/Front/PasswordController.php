@@ -47,7 +47,7 @@ class PasswordController extends ActionController
             if ($form->isValid()) {
                 $value = $form->getData();
                 $userRow = Pi::service('user')->getUser($value['email'], 'email');
-                if (!$userRow->id) {
+                if (!$userRow) {
                     $this->view()->assign(array(
                         'form'   => $form,
                         'result' => $result,

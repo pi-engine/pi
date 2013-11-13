@@ -40,7 +40,7 @@ abstract class AbstractUser extends AbstractApi
      * @param int|string $uid
      * @param string    $field
      *
-     * @return UserModel
+     * @return UserModel|null
      */
     abstract public function getUser($uid, $field = 'id');
 

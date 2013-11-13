@@ -50,7 +50,7 @@ class MaintenanceController extends ActionController
         $uid = _get('uid');
 
         // Check user exist
-        $isExist = Pi::api('user', 'user')->getUser($uid)->id;
+        $isExist = Pi::api('user', 'user')->getUser($uid);
         if (!$isExist) {
             return $this->jumpTo404(_a('User was not found.'));
         }

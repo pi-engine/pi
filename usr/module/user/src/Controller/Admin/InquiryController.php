@@ -42,15 +42,15 @@ class InquiryController extends ActionController
         $field = _get('field') ? : 'name';
         $data = _get('data'); 
         $user = Pi::service('user')->getUser($data, $field);
-        $uid = $user->get('id');
 
-        if (!$uid) {
+        if (!$user) {
             $this->response->setStatusCode(404);
             return array(
                 'message' => 'User not found'
             );
         }
 
+        $uid = $user->get('id');
         $profile = $this->getProfileGroup($uid);
         $user = Pi::api('user', 'user')->get(
             $uid,

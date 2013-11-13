@@ -352,7 +352,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @param int|string|null   $uid    User id, identity
      * @param string            $field  Field of the identity
-     * @return UserModel
+     * @return UserModel|null
      * @api
      */
     abstract public function getUser($uid = null, $field = 'id');
