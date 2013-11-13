@@ -43,7 +43,7 @@ class IndexController extends WidgetController
         $available = array();
         $paths = array(
             Pi::service('module')->path($this->getModule()) . '/meta',
-            Pi::path('custom_module') . '/' . $this->getModule() . '/meta',
+            Pi::path('custom') . '/' . $this->getModule() . '/meta',
         );
         foreach ($paths as $metaPath) {
             $iterator = new \DirectoryIterator($metaPath);
@@ -96,7 +96,7 @@ class IndexController extends WidgetController
         if (!file_exists($meta)) {
             $meta = sprintf(
                 '%s/meta/%s.php',
-                Pi::path('custom_module') . '/' . $module,
+                Pi::path('custom') . '/' . $module,
                 $name
             );
         }

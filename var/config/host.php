@@ -53,7 +53,7 @@ return array(
         // Path to vendor library directory: default as `lib/vendor`
         'vendor'    => 'path/to/pi-framework/lib/vendor',
         // Path to module custom directory: default as `usr/custom`
-        'custom_module' => 'path/to/pi-framework/usr/custom',
+        'custom'    => 'path/to/pi-framework/usr/custom',
 
         // Application specific paths
         // Path to uploads directory
@@ -66,8 +66,6 @@ return array(
         // Sub-paths of var
         // Path to global collective configuration directory
         'config'    => 'path/to/pi-application/var/config',
-        // Path to custom collective configuration directory
-        'custom'    => 'path/to/pi-application/var/custom',
         // Path to cache files directory
         'cache'     => 'path/to/pi-application/var/cache',
         // Path to logs directory

@@ -53,7 +53,7 @@ return array(
         // Path to vendor library directory: default as `lib/vendor`
         'vendor'    => '%vendor_path%',
         // Path to module custom directory: default as `usr/custom`
-        'custom_module' => '%custom_module_path%',
+        'custom'    => '%custom_path%',
 
         // Application specific paths
         // Path to uploads directory
@@ -66,8 +66,6 @@ return array(
         // Sub-paths of var
         // Path to global collective configuration directory
         'config'    => '%config_path%',
-        // Path to custom collective configuration directory
-        'custom'    => '%custom_path%',
         // Path to cache files directory
         'cache'     => '%cache_path%',
         // Path to logs directory

@@ -136,7 +136,7 @@ abstract class AbstractCustomHandler
             if (!$file) {
                 $file = sprintf(
                     '%s/user/sql/%s.sql',
-                    Pi::path('custom_module'),
+                    Pi::path('custom'),
                     $this->getName()
                 );
                 if (!file_exists($file)) {
@@ -379,7 +379,7 @@ abstract class AbstractCustomHandler
             $template = $this->template
                 ?: sprintf(
                     '%s/user/template/field/%s.phtml',
-                    Pi::path('custom_module'),
+                    Pi::path('custom'),
                     $this->getName()
                 );
             if (file_eixsts($template)) {

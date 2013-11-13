@@ -1,6 +1,6 @@
 <?php
 
-$customFile = Pi::path('custom/saml/metadata/saml20-idp-remote.php');
+$customFile = Pi::path('config/custom/saml/metadata/saml20-idp-remote.php');
 if (is_readable($customFile)) {
     include $customFile;
     return;

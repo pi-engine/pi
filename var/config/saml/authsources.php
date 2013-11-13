@@ -1,6 +1,6 @@
 <?php
 
-$customFile = Pi::path('custom/saml/authsources.php');
+$customFile = Pi::path('config/custom/saml/authsources.php');
 if (is_readable($customFile)) {
     include $customFile;
     return;

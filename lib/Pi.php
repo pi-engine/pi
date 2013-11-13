@@ -195,8 +195,8 @@ class Pi
             // Directory of modules
             'module_path'   => static::path('module'),
             // Directory of module custom classes
-            'custom_path'   => !empty($paths['custom_module'])
-                               ? $paths['custom_module']
+            'custom_path'   => !empty($paths['custom'])
+                               ? $paths['custom']
                                : static::path('usr') . '/custom',
             // Vendor directory
             'include_path'  => !empty($paths['vendor'])

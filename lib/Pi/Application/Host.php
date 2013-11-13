@@ -132,7 +132,7 @@ class Host
             'parent'    => 'usr',
             'folder'    => 'theme',
         ),
-        'custom_module' => array(
+        'custom' => array(
             'parent'    => 'usr',
             'folder'    => 'custom',
         ),
@@ -143,10 +143,6 @@ class Host
         'log' => array(
             'parent'    => 'var',
             'folder'    => 'log',
-        ),
-        'custom' => array(
-            'parent'    => 'var',
-            'folder'    => 'custom',
         ),
     );
 

@@ -62,7 +62,7 @@ class Config extends AbstractService
         if (!empty($this->options['custom_path'])) {
             $this->customLocation = $this->options['custom_path'];
         } else {
-            $this->customLocation = Pi::path('custom');
+            $this->customLocation =$this->configLocation . '/custom';
         }
     }
 

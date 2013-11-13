@@ -25,7 +25,7 @@ class Directive extends AbstractController
     const DIR_CACHE     = 'cache';
     const DIR_LOG       = 'log';
     const DIR_VENDOR    = 'vendor';
-    const DIR_CUSTOM_MODULE    = 'custom';
+    //const DIR_CUSTOM_MODULE    = 'custom';
 
     protected $host;
 
@@ -50,15 +50,15 @@ class Directive extends AbstractController
         $vars['module']['path'] = !empty($vars['module']['path'])
             ? $vars['module']['path']
             : $vars['usr']['path'] . '/' . static::DIR_MODULE;
+        $vars['custom']['path'] = !empty($vars['custom']['path'])
+            ? $vars['custom']['path']
+            : $vars['usr']['path'] . '/' . static::DIR_CUSTOM;
         $vars['theme']['path']  = !empty($vars['theme']['path'])
             ? $vars['theme']['path']
             : $vars['usr']['path'] . '/' . static::DIR_THEME;
         $vars['config']['path'] = !empty($vars['config']['path'])
             ? $vars['config']['path']
             : $vars['var']['path'] . '/' . static::DIR_CONFIG;
-        $vars['custom']['path'] = !empty($vars['custom']['path'])
-            ? $vars['custom']['path']
-            : $vars['var']['path'] . '/' . static::DIR_CUSTOM;
         $vars['cache']['path']  = !empty($vars['cache']['path'])
             ? $vars['cache']['path']
             : $vars['var']['path'] . '/' . static::DIR_CACHE;
@@ -68,9 +68,6 @@ class Directive extends AbstractController
         $vars['vendor']['path'] = !empty($vars['vendor']['path'])
             ? $vars['vendor']['path']
             : $vars['lib']['path'] . '/' . static::DIR_VENDOR;
-        $vars['custom_module']['path'] = !empty($vars['custom_module']['path'])
-            ? $vars['custom_module']['path']
-            : $vars['usr']['path'] . '/' . static::DIR_CUSTOM_MODULE;
     }
 
     public function indexAction()
