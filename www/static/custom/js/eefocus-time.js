@@ -149,12 +149,7 @@
           }
         }
 
-        if (pass) {
-          setTimeout(function() {
-            startInput.val('');
-            endInput.val('');
-          }, 2000);
-        } else {
+        if (!pass) {
           e.preventDefault();
           e.stopPropagation();
         }

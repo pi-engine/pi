@@ -104,6 +104,8 @@
             self.remove();
             collection.remove(self.model);
           });
+        } else {
+          alert(res.message);
         }
       });
     },
@@ -175,18 +177,18 @@
     },
     submit: function(e) {
       var form = this.$('form');
+      var submit = this.$('[name=submit]');
       var self = this;
       e.preventDefault();
+      submit.attr('disabled', 'disabled');
       $.post(config.urlRoot + 'addCompoundItem', form.serialize()).
         done(function(res) {
           res = $.parseJSON(res); 
           if (res.status) {
-            self.parentView.listView.collection.push(res.data);
-            form.find('[disabled=disabled]').removeAttr('disabled');
-            submitTip(form);
-            form[0].reset();
+            location.href = location.href;
           } else {
             submitTip(form, res.message);
+            submit.removeAttr('disabled', 'disabled');
           }
        });
     }
