@@ -125,6 +125,11 @@ return array(
             'title' => __('Telephone'),
             'edit' => array(
                 'required' => true,
+                'validators'    => array(
+                    array(
+                        'name' => 'Module\User\Validator\Telephone',
+                    ),
+                ),
             ),
         ),
 
@@ -153,6 +158,11 @@ return array(
             'title' => __('Postcode'),
             'edit' => array(
                 'required' => true,
+                'validators'    => array(
+                    array(
+                        'name' => 'Module\User\Validator\Postcode',
+                    ),
+                ),
             ),
         ),
 
