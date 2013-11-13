@@ -65,6 +65,7 @@ class RegisterController extends ActionController
                         $fields,
                         'register_complete'
                     );
+                    unset($values['submit']);
                     $form->setData($values);
                     $form->setAttributes(array(
                         'action' => $this->url('', array(
@@ -160,6 +161,7 @@ class RegisterController extends ActionController
             $fields,
             'register_complete'
         );
+        unset($post['submit']);
         $form->setData($post);
         $form->setInputFilter(new RegisterFilter($filters));
         $form->setAttributes(array(
