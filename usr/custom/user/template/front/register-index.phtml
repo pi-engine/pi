@@ -19,6 +19,13 @@ $this->css(array(
     <div class="row-fluid">
         <div class="span9">
             <?php include $this->templateComponent('form-horizontal'); ?>
+
+            <?php if (!$complete) { ?>
+            <div style="margin: 50px 0 100px 180px;">
+                <?php _e('已注册，未激活？'); ?>
+                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('重新发送激活邮件');?></a>
+            </div>
+            <?php } ?>
         </div>
 
         <div class="span3 muted">
