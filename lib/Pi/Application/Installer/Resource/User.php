@@ -50,6 +50,8 @@ use Module\User\AbstractCustomHandler;
  *              'is_display'    => true,
  *              // Search user by this field, default as true
  *              'is_search'     => false,
+ *              // Is required by profile, default as false
+ *              'is_required'   => false,
  *          ),
  *          // Field with specified edit with form element and filter
  *          <field-key> => array(

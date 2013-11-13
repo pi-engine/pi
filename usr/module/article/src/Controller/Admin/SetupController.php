@@ -32,8 +32,8 @@ use Zend\EventManager\Event;
  */
 class SetupController extends ActionController
 {
-    const ELEMENT_EDIT_PATH = 'var/article/config/elements.edit.php';
-    const ELEMENT_CUSTOM_PATH = 'config/elements.custom.php';
+    const ELEMENT_EDIT_PATH = 'config/custom/article/config/elements.edit.php';
+    const ELEMENT_CUSTOM_PATH = 'config/elements.edit.php';
     
     const FORM_MODE_NORMAL   = 'normal';
     const FORM_MODE_EXTENDED = 'extension';
@@ -152,7 +152,7 @@ EOD;
 
         $filename = sprintf(
             '%s/%s/%s',
-            Pi::path('var'),
+            Pi::path('custom'),
             $this->getModule(),
             self::ELEMENT_CUSTOM_PATH
         );
@@ -633,6 +633,7 @@ EOD;
         }
         
         // Clear cache
+        $module   = $this->getModule();
         Pi::service('registry')->handler('route', $module)->clear($module);
         
         return $this->redirect()->toRoute('', array('action' => 'route'));

@@ -280,7 +280,7 @@ return array(
             'category'    => 'media',
             'title'       => _t('Pattern'),
             'description' => _t('Use datetime as pattern of sub directory.'),
-            'value'       => _t('Y/m/d'),
+            'value'       => 'Y/m/d',
             'edit'        => array(
                 'type'    => 'select',
                 'options' => array(
@@ -431,9 +431,9 @@ return array(
                 'type'    => 'select',
                 'options' => array(
                     'options' => array(
-                        0  => _t('Site default'),
-                        1  => _t('Use tag'),
-                        2  => _t('Use category'),
+                        0  => _a('Site default'),
+                        1  => _a('Use tag'),
+                        2  => _a('Use category'),
                     ),
                 ),
             ),
@@ -448,8 +448,8 @@ return array(
                 'type'    => 'select',
                 'options' => array(
                     'options' => array(
-                        0  => _t('Site default'),
-                        1  => _t('Use summary'),
+                        0  => _a('Site default'),
+                        1  => _a('Use summary'),
                     ),
                 ),
             ),
