@@ -1,14 +1,14 @@
 <?php
 // Load register.css
 $this->css(array(
-    $this->assetTheme('css/register.css'),
+    Pi::url('static/custom/user/register.css'),
 ));
 ?>
 
 <!-- Subheader -->
 <div class="pi-subheader">
-    <a href="/login/register" title="EEFOCUS 与非网 通行证">
-        <img src="<?php echo $this->assetTheme('image/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
+    <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>" title="EEFOCUS 与非网 通行证">
+        <img src="<?php echo Pi::url('static/custom/user/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
     </a>
 </div>
 
@@ -19,7 +19,7 @@ $this->css(array(
 
     <div class="text-center text-large">
         <?php if (isset($result) && $result['status']) { ?>
-            <img style="margin-right: 10px; vertical-align: middle;" src="<?php echo $this->assetTheme('image/icon-success-large.png'); ?>">
+            <img style="margin-right: 10px; vertical-align: middle;" src="<?php echo Pi::url('static/custom/user/icon-success-large.png'); ?>">
             <?php _e('激活成功，请'); ?>
             <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
         <?php } else { ?>

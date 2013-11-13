@@ -1,14 +1,14 @@
 <?php
 // Load register.css
 $this->css(array(
-    $this->assetTheme('css/register.css'),
+    Pi::url('static/custom/user/register.css'),
 ));
 ?>
 
 <!-- Subheader -->
 <div class="pi-subheader">
-    <a href="/login/register" title="EEFOCUS 与非网 通行证">
-        <img src="<?php echo $this->assetTheme('image/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
+    <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>" title="EEFOCUS 与非网 通行证">
+        <img src="<?php echo Pi::url('static/custom/user/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
     </a>
 </div>
 
@@ -19,6 +19,13 @@ $this->css(array(
     <div class="row-fluid">
         <div class="span9">
             <?php include $this->templateComponent('form-horizontal'); ?>
+
+            <?php if (!$complete) { ?>
+            <div style="margin: 50px 0 100px 180px;">
+                <?php _e('已注册，未激活？'); ?>
+                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('重新发送激活邮件');?></a>
+            </div>
+            <?php } ?>
         </div>
 
         <div class="span3 muted">
@@ -34,8 +41,8 @@ $this->css(array(
                 <li><?php _e('去“爱板网”选购开发板'); ?></li>
             </ul>
 
-            <script src="<?php echo $this->assetTheme('js/register-index.js'); ?>"></script>
-            <script src="<?php echo $this->assetTheme('js/temp-email.js'); ?>"></script>
+            <script src="<?php echo Pi::url('static/custom/user/register-index.js'); ?>"></script>
+            <script src="<?php echo Pi::url('static/custom/user/temp-email.js'); ?>"></script>
             <script>
                 jQuery(function($) {
                     $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
@@ -125,7 +132,7 @@ $this->css(array(
             text-decoration: none;
         }
     </style>
-    <script src="<?php echo $this->assetTheme('js/register-reactivate.js'); ?>"></script>
+    <script src="<?php echo Pi::url('static/custom/user/register-reactivate.js'); ?>"></script>
     <script>
         jQuery(function() {
             userRegisterReactivate.init({

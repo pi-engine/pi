@@ -1,21 +1,34 @@
 <?php
+    // Load activity.css
+    $this->css(array(
+        Pi::url('static/custom/user/register.css'),
+    ));
+
     $this->bootstrap('js/bootstrap.min.js');
     $tabItemView = '
         <tr>
             <td>
-                <a href="%s" target="_blank">%s</a>
-            <td>%s
+                <div style="width: 360px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
+            <td class="muted">%s
             <td>
-                <a href="%s" target="_blank">%s</a>
+                <div style="width: 180px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
     ';
     $tabItemMoreView = '
         <tr>
             <td>
-                <a href="%s" target="_blank">%s</a>
-            <td>%s
-            <td>%s
+                <div style="width: 260px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
+            <td class="muted">%s
+            <td class="muted">%s
             <td>
-                <a href="%s" target="_blank">%s</a>
+                <div style="width: 180px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
     ';
     $tabEmpty = '
         <tr>
@@ -205,7 +218,7 @@
             </a>
             <span class="activity-icon activity-icon-blog"><?php _e('Blog'); ?></span>
         </div>
-        <ul class="activity-panel-body">
+        <ul class="activity-panel-body activity-panel-body-blog">
             <?php foreach ($blog as $item) { ?>
             <li>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
@@ -221,7 +234,7 @@
             <a class="pull-right" href="<?php echo $rel[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
-            <span class="activity-icon activity-icon-blog"><?php _e('Relationship'); ?></span>
+            <span class="activity-icon activity-icon-rel"><?php _e('Relationship'); ?></span>
         </div>
         <ul class="activity-panel-body">
             <?php foreach ($rel as $item) { ?>

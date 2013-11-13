@@ -1,12 +1,21 @@
 <?php
+    // Load activity.css
+    $this->css(array(
+        Pi::url('static/custom/user/register.css'),
+    ));
+
     $this->bootstrap('js/bootstrap.min.js');
     $tabItemView = '
         <tr>
             <td>
-                <a href="%s" target="_blank">%s</a>
-            <td>%s
+                <div style="width: 360px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
+            <td class="muted">%s
             <td>
-                <a href="%s" target="_blank">%s</a>
+                <div style="width: 180px;" class="ellipsis">
+                    <a href="%s" target="_blank">%s</a>
+                </div>
     ';
     $tabEmpty = '
         <tr>
@@ -92,7 +101,7 @@
             <a class="pull-right" href="<?php echo $blog[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
-            <span class="activity-icon activity-icon-blog"><?php _e('Topic'); ?></span>
+            <span class="activity-icon activity-icon-cndzzbbs"><?php _e('Topic'); ?></span>
         </div>
         <ul class="activity-panel-body">
             <?php foreach ($bbs as $item) { ?>
@@ -110,7 +119,7 @@
             <a class="pull-right" href="<?php echo $rel[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
-            <span class="activity-icon activity-icon-blog"><?php _e('Circuit diagram'); ?></span>
+            <span class="activity-icon activity-icon-circuit"><?php _e('Circuit diagram'); ?></span>
         </div>
         <ul class="activity-panel-body">
             <?php foreach ($circuit as $item) { ?>
