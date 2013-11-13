@@ -32,7 +32,7 @@ use Zend\EventManager\Event;
  */
 class SetupController extends ActionController
 {
-    const ELEMENT_EDIT_PATH = 'config/custom/article/config/elements.edit.php';
+    const ELEMENT_EDIT_PATH = 'config/custom/article/elements.edit.php';
     const ELEMENT_CUSTOM_PATH = 'config/elements.edit.php';
     
     const FORM_MODE_NORMAL   = 'normal';
