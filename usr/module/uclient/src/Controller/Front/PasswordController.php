@@ -47,7 +47,7 @@ class PasswordController extends ActionController
             if ($form->isValid()) {
                 $value = $form->getData();
                 $userRow = Pi::service('user')->getUser($value['email'], 'email');
-                if (!$userRow) {
+                if (!$userRow->id) {
                     $this->view()->assign(array(
                         'form'   => $form,
                         'result' => $result,
@@ -150,7 +150,7 @@ class PasswordController extends ActionController
                 $values = $form->getData();
 
                 // Update user account data
-                Pi::api('uclient', 'user')->updateAccount(
+                Pi::api('system', 'user')->updateAccount(
                     $uid,
                     array('credential' => $values['credential-new'])
                 );
