@@ -33,16 +33,21 @@ module.exports = function(grunt) {
       pi: {
         
       }
+    },
+    clean: {
+      user: {
+        src: assetCwdBuild('user')
+      }
     }
   });
 
   // Load the plugin.
   grunt.loadNpmTasks('grunt-contrib-copy');
-  //grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
  
 
   // Default task(s).
   grunt.registerTask('default', ['copy', 'uglify']);
-
+  grunt.registerTask('clear', ['clean']);
 };
