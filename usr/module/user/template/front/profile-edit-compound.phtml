@@ -33,7 +33,12 @@
         <dl class="dl-horizontal user-field-dl" style="margin: 15px;">
             <% _.each(fields, function(field) { %>
             <dt><%- field.title %>
-            <dd><% print(field.value ? field.value : '<em class="muted"><?php _e('Unfiled'); ?></em>'); %>
+            <dd>
+                <% if (field.value) { %>
+                <%- field.value %>
+                <% } else { %>
+                <em class="muted"><?php _e('Unfiled'); ?></em>
+                <% } %>
             <% }); %>
         </dl>
     </div>
