@@ -63,7 +63,6 @@ class TimelineController extends ActionController
         if (!$rowset && !$app_key) {
             return $result;
         }
-        $result['t'] = $_POST;
 
         if (!$rowset && $app_key) {
 

@@ -55,7 +55,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
-        $quicklink = $this->getQuicklink();
+        $quicklink = Pi::api('user','quicklink')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -107,7 +107,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile', $uid);
 
         // Get quicklink
-        $quicklink = $this->getQuicklink();
+        $quicklink = Pi::api('user','quicklink')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -433,8 +433,17 @@ class ProfileController extends ActionController
             }
         }
 
+        $meta = Pi::registry('field', 'user')->read('compound');
         // Update compound
-        $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+        if (empty($newCompound) &&
+            isset($meta[$compound]) &&
+            $meta[$compound]['is_required']
+        ) {
+            $status = 0;
+        } else {
+            $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+        }
+
         $result['status'] = $status ? 1 : 0;
         $result['message'] = $status ? 'success' : 'error';
 
@@ -774,50 +783,6 @@ class ProfileController extends ActionController
         return $result;
 
     }
-
-    /**
-     * Get quicklink
-     *
-     * @param null $limit
-     * @param null $offset
-     * @return array
-     */
-    protected function getQuicklink($limit = null, $offset = null)
-    {
-        $result = array();
-        $model  = $this->getModel('quicklink');
-        $where  = array(
-            'active'      => 1,
-            'display <>?' => 0,
-        );
-        $columns = array(
-            'id',
-            'name',
-            'title',
-            'module',
-            'link',
-            'icon',
-        );
-
-        $select = $model->select()->where($where);
-        if ($limit) {
-            $select->limit($limit);
-        }
-        if ($offset) {
-            $select->offset($offset);
-        }
-
-        $select->columns($columns);
-        $rowset = $model->selectWith($select);
-
-        foreach ($rowset as $row) {
-            $result[] = $row->toArray();
-        }
-
-        return $result;
-
-    }
-
     /**
      * Get compound name by id
      *

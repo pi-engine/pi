@@ -269,6 +269,9 @@ abstract class AbstractCustomHandler
      */
     public function update($uid, $data)
     {
+        if (!$data) {
+            return $this->delete($uid);
+        }
         $this->delete($uid);
         $id = $this->add($uid, $data);
 

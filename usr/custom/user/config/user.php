@@ -253,7 +253,7 @@ return array(
         'work'      => array(
             'name'  => 'work',
             'title' => __('Work'),
-
+            'is_required' => true,
             // Custom handler
             'handler'   => 'Custom\User\Field\Work',
 
