@@ -23,11 +23,11 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'dev'       => 'Taiwen Jiang; Liu Chuang',
+        'Dev'       => 'Taiwen Jiang; Liu Chuang',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
-        'architect' => 'Taiwen Jiang',
-        'design'    => '@voltan, @zhangsimon'
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        'UI/UE'     => '@zhangsimon, @loidco',
+        'QA'        => '@lavenderli',
     ),
 
     // Resource

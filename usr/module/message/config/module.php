@@ -27,27 +27,27 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Xingyu Ji',
+        'Dev'      => 'Xingyu Ji; Liu Chuang',
         // Email address, optional
-        'email'     => 'xingyu@eefocus.com',
+        'Email'     => 'xingyu@eefocus.com',
+        'UI/UE'     => '@zhangsimon, @loidco',
+        'QA'        => 'Zhang Hua, @lavenderli',
         // Website link, optional
-        'website'   => 'http://www.xoopsengine.org',
+        'Website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Zend Framework Team; Pi Engine Team; EEFOCUS Team.'
+        'Credits'   => 'Zend Framework Team; Pi Engine Team; EEFOCUS Team.'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-            ),
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // User specs
-            'user'          => 'user.php',
+    // resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
         ),
+        // Navigation definition
+        'navigation'    => 'navigation.php',
+        // User specs
+        'user'          => 'user.php',
     ),
+
 );

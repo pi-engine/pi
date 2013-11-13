@@ -39,14 +39,14 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'Dev'      => 'Taiwen Jiang',
+        'Dev'      => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
+        'Architect' => '@taiwen',
+        'UI/UE'     => '@zhangsimon, @loidco, @voltan, Zeng Long',
+        'QA'        => '@MarcoXoops, Zhang Hua, @lavenderli',
         // Email address, optional
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
         'Website'   => 'http://pialog.org',
-        'Architect' => '@taiwen',
-        'Front'     => '@sexnothing',
-        'Design'    => '@zhangsimon, @loidco',
         // Credits and aknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),

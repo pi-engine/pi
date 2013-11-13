@@ -25,10 +25,11 @@ return array(
     ),
     // Author information
     'author'        => array(
-        'name'          => 'Zongshu Lin',
-        'email'         => 'zongshu@eefocus.com',
-        'website'       => 'http://www.github.com/linzongshu',
-        'credits'       => 'Pi Engine Team.'
+        'Name'          => 'Zongshu Lin',
+        'Email'         => 'zongshu@eefocus.com',
+        'Website'       => 'http://www.github.com/linzongshu',
+        'QA'            => '@lavenderli',
+        'Credits'       => 'Pi Engine Team.'
     ),
     // Module dependency: list of module directory names, optional
     'dependency'    => array(

@@ -23,9 +23,13 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'dev'       => 'Taiwen Jiang',
+        'Dev'       => 'Taiwen Jiang; Zongshu Lin',
+        'UI/UE'     => '@zhangsimon, @loidco',
+        'QA'        => '@lavenderli',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        // Website link, optional
+        'Website'   => 'http://pialog.org',
     ),
 
     // Resource

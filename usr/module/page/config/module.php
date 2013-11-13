@@ -29,13 +29,13 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Taiwen Jiang',
+        'Dev'       => 'Taiwen Jiang; Voltan; Liao Wei',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://pialog.org',
+        'Website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Pi Engine Team; @voltan'
+        'Credits'   => 'Pi Engine Team'
     ),
 
     // Resource

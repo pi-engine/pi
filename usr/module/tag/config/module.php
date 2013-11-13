@@ -1,21 +1,12 @@
 <?php
 /**
- * Tag module config
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Chuang Liu <liuchuang@eefocus.com>
- * @since           3.0
- * @package         Module\Tag
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
+
 
 /**
  * Application manifest
@@ -37,31 +28,28 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Chuang Liu',
+        'Dev'      => 'Chuang Liu; Taiwen Jiang; Liao Wei',
         // Email address, optional
-        'email'     => 'liuchuang@eefocus.com',
+        'Email'     => 'liuchuang@eefocus.com',
     ),
-    // Module dependency: list of module directory names, optional
-    'maintenance'   => array(
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall, optional - the table list will be generated automatically upon installation
-                'schema'    => array(
-                    'tag'          => 'table',
-                    'link'         => 'table',
-                    'stats'        => 'table',
-                ),
+    // resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall, optional - the table list will be generated automatically upon installation
+            'schema'    => array(
+                'tag'          => 'table',
+                'link'         => 'table',
+                'stats'        => 'table',
             ),
-            // Navigation definition
-            'navigation' => 'navigation.php',
-            // Config definition.
-            'config'     => 'config.php',
-            // Block definition.
-            'block'      => 'block.php',
-        )
-    )
+        ),
+        // Navigation definition
+        'navigation' => 'navigation.php',
+        // Config definition.
+        'config'     => 'config.php',
+        // Block definition.
+        'block'      => 'block.php',
+    ),
 );

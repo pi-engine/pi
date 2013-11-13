@@ -23,11 +23,16 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'dev'       => 'Taiwen Jiang; Liu Chuang',
+        'Dev'      => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
+        'Architect' => '@taiwen',
+        'UI/UE'     => '@zhangsimon, @loidco, @voltan, Zeng Long',
+        'QA'        => '@lavenderli, @MarcoXoops, Zhang Hua',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
-        'architect' => 'Taiwen Jiang',
-        'design'    => '@voltan, @zhangsimon'
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        // Website link, optional
+        'Website'   => 'http://pialog.org',
+        // Credits and aknowledgement, optional
+        'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
 
     // Resource
