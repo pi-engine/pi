@@ -29,6 +29,8 @@ August 4th, 2013
 * Changed i18n adapter from CSV to gettext
 * Added support for asset compress, located in `asset/_build/`
 * Pi Engine GitHub repository welcomes its 2,000th commit on November 8th, 2013 from @sexnothing for asset compress build #9fa21de4fa5205faec97e643529a5b307dacd9c2
+* Added `simplesamlphp` as SSO solution
+* Changed block handler class to sub namespace of Block as `Module\<ModuleName>\Block`
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
