@@ -1,0 +1,20 @@
+<?php
+// Load register.css
+$this->css(array(
+    $this->assetTheme('css/register.css'),
+));
+?>
+
+<div class="page-header">
+    <h3><?php _e('Complete profile'); ?></h3>
+</div>
+<?php include $this->templateComponent('form-horizontal'); ?>
+
+<script>
+    jQuery(function($) {
+        $('#profileComplete input, #profileComplete select').focus(function(){
+            var $controlGroupParent = $(this).closest('.control-group');
+            $controlGroupParent.removeClass('error').find('.help-inline').html('');
+        });
+    });
+</script>

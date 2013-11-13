@@ -1,0 +1,137 @@
+<?php
+// Load register.css
+$this->css(array(
+    $this->assetTheme('css/register.css'),
+));
+?>
+
+<!-- Subheader -->
+<div class="pi-subheader">
+    <a href="/login/register" title="EEFOCUS 与非网 通行证">
+        <img src="<?php echo $this->assetTheme('image/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
+    </a>
+</div>
+
+<?php if (!(isset($result) && $result['status'])) { ?>
+    <!-- Step -->
+    <div class="pi-step-reg pi-step-reg<?php echo $complete ? '2' : '1'; ?>"></div>
+
+    <div class="row-fluid">
+        <div class="span9">
+            <?php include $this->templateComponent('form-horizontal'); ?>
+        </div>
+
+        <div class="span3 muted">
+        <?php if (!$complete) { ?>
+            <h4>
+                <?php _e('申领与非网通行证'); ?><br>
+                <?php _e('轻松实现“任我行”'); ?>
+            </h4>
+            <ul class="unstyled">
+                <li><?php _e('去“与非网”交流技术'); ?></li>
+                <li><?php _e('去“电子电路网”下载电路图'); ?></li>
+                <li><?php _e('去“集成电路查询网”查询器件信息'); ?></li>
+                <li><?php _e('去“爱板网”选购开发板'); ?></li>
+            </ul>
+
+            <script src="<?php echo $this->assetTheme('js/register-index.js'); ?>"></script>
+            <script src="<?php echo $this->assetTheme('js/temp-email.js'); ?>"></script>
+            <script>
+                jQuery(function($) {
+                    $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
+
+                    userRegisterIndex.init({
+                        checkExistUrl: "<?php echo $this->url('api', array('module' => 'user', 'controller' => 'user', 'action' => 'check.exist')); ?>"
+                    });
+                });
+            </script>
+        <?php } else { ?>
+            <h4>
+                <?php _e('告诉与非你喜欢的'); ?><br>
+                <?php _e('与非提供你想要的'); ?>
+            </h4>
+            <ul class="unstyled">
+                <li><?php _e('我们会根据您的兴趣打造专属服务'); ?></li>
+                <li><?php _e('我们会依据您的地址快递获奖礼品'); ?></li>
+                <li><?php _e('我们更会珍视您的这份信任'); ?></li>
+                <li class="pi-dashed"></li>
+                <li><?php _e('与非网郑重承诺：'); ?></li>
+                <li><?php _e('我们一定保护您的信息资料安全'); ?></li>
+            </ul>
+
+            <script>
+                jQuery(function($) {
+                    $('#register_complete input, #register_complete select').focus(function(){
+                        var $controlGroupParent = $(this).closest('.control-group');
+                        $controlGroupParent.removeClass('error').find('.help-inline').html('');
+                    });
+                });
+            </script>
+        <?php } ?>
+        </div>
+    </div>
+<?php } else { ?>
+    <!-- Step -->
+    <div class="pi-step-reg pi-step-reg3"></div>
+
+    <div class="row-fluid pi-minheight">
+        <div class="span8 text-large" style="padding-top: 10px;">
+            <p>
+                <?php _e('系统已经向你邮箱'); ?>
+                <span class="text-error"><?php echo $result['email']; ?></span>
+                <?php _e('发送了一封电子邮件'); ?>。
+            </p>
+            <p><?php _e('请点击邮件中的链接，以完成注册'); ?>。</p>
+        </div>
+
+        <div class="span4">
+            <h4>
+                <?php _e('没有收到激活邮件怎么办？'); ?>
+            </h4>
+            <ol>
+                <li>
+                    <?php _e('Email 地址是否写错？');?>
+                    <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'index')); ?>" 
+                       title="<?php _e('重新注册') ?>">
+                        <?php _e('重新注册') ?>
+                    </a>
+                </li>
+                <li><?php _e('看看是否在垃圾箱中'); ?></li>
+                <li><?php _e('稍等几分钟再看');?></li>
+                <li>
+                    <?php _e('或者');?>
+                    <span class="user-js-reactivate">
+                        <a class="user-js-reactivate-link" href="javascript:;" title="<?php _e('重新发送激活邮件');?>">
+                            <?php _e('重新发送激活邮件');?>
+                        </a>
+                        <span class="hide user-js-reactivate-tip">
+                            (<span class="user-js-reactivate-message"></span><span class="user-js-reactivate-countdown"></span>)
+                        </span>
+                    </span>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <style>
+        a.disabled {
+            opacity: 0.65;
+            filter: alpha(opacity=65);
+            cursor: not-allowed;
+        }
+
+        a.disabled:hover {
+            text-decoration: none;
+        }
+    </style>
+    <script src="<?php echo $this->assetTheme('js/register-reactivate.js'); ?>"></script>
+    <script>
+        jQuery(function() {
+            userRegisterReactivate.init({
+                reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>',
+                AlREADY_SENT: '<?php _e('邮件已发送'); ?>'
+            });
+        });
+    </script>
+<?php } ?>
