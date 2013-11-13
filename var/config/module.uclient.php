@@ -1,9 +1,19 @@
 <?php
 // Uclient configurations
 
+// Source id for register
+// Specify accordingly
 $sourceId       = '';
 
-$root           = 'http://pi.master';
+// App key for remote user center
+// Specify accordingly
+$appKey         = '';
+
+// Root domain of remote user center
+// Specify accordingly
+$root           = 'http://master.pi';
+
+// Following derived specs
 $userRoot       = $root . '/user';
 $apiUser        = $root . '/api/user/user';
 $apiAvatar      = $root . '/api/user/avatar';
@@ -12,7 +22,7 @@ $apiMessage     = $root . '/api/message/message';
 $apiRelation    = $root . '/api/user/relation';
 
 return array (
-    'app_key'        => md5(Pi::url('www')),
+    'app_key'        => $appKey,
 
     'authorization' => array(
         'httpauth'  => '',
