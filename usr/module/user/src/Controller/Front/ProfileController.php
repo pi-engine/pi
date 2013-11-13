@@ -55,7 +55,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile');
 
         // Get quicklink
-        $quicklink = Pi::api('user','quicklink')->getList();
+        $quicklink = Pi::api('user', 'quicklink')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -107,7 +107,7 @@ class ProfileController extends ActionController
         $nav = Pi::api('user', 'nav')->getList('profile', $uid);
 
         // Get quicklink
-        $quicklink = Pi::api('user','quicklink')->getList();
+        $quicklink = Pi::api('user', 'quicklink')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,

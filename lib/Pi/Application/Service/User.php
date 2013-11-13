@@ -253,6 +253,8 @@ class User extends AbstractService
      *      User id, identity or UserModel
      * @param string                    $field
      *      Field of the identity: id, identity
+     *
+     * @throws \Exception
      * @return self
      */
     public function bind($identity = null, $field = 'id')

@@ -3,11 +3,11 @@
 
 // Source id for register
 // Specify accordingly
-$sourceId       = '';
+//$sourceId       = '';
 
 // App key for remote user center
 // Specify accordingly
-$appKey         = '';
+$appKey         = Pi::config('identifier');
 
 // Root domain of remote user center
 // Specify accordingly
@@ -58,7 +58,7 @@ return array (
         ),
         //'login'     => $userRoot . '/login',
         //'logout'    => $userRoot . '/logout',
-        'register'  => $userRoot . '/register?source=' . $sourceId,
+        'register'  => $userRoot . '/register?app=' . $appKey,
 
         // Timeline API uri
         'timeline'  => array(

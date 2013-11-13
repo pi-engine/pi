@@ -112,7 +112,7 @@ class Timeline extends UserTimeline
         $uri = $this->config('url', 'timeline', 'add');
         $result = Pi::service('remote')
             ->setAuthorization($this->config('authorization'))
-            ->get($uri, $params);
+            ->post($uri, $params);
         $result = (bool) $result['status'];
 
         return $result;

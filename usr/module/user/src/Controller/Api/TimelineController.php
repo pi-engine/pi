@@ -29,11 +29,13 @@ class TimelineController extends ActionController
      * Write a timeline log
      *
      * Log array:
+     *  - uid
      *  - message
      *  - timeline
      *  - module
      *  - link
      *  - time
+     *  - app_key
      *
      * @return bool
      */
@@ -41,66 +43,52 @@ class TimelineController extends ActionController
     {
         $result   = array(
             'status' => 0,
-            'message' => 'Add timeline fail',
+            'message' => __('Timeline post failed.'),
         );
 
-        $uid      = (int) _post('uid');
-        $timeline = _post('timeline');
-        $title    = _post('title');
-        $message  = _post('message');
-        $time     = (int) _post('time');
-        $link     = _post('link');
-        $app_key  = _post('app_key');
-        $module   = _post('module');
+        $uid        = (int) _post('uid');
+        $timeline   = _post('timeline');
+        $title      = _post('title');
+        $message    = _post('message');
+        $time       = (int) _post('time') ?: time();
+        $link       = _post('link');
+        $appKey     = _post('app_key');
+        $module     = _post('module');
 
         if (!$uid || !$timeline || !$message ) {
             return $result;
         }
 
         // Check timeline
-
         $rowset = $this->getModel('timeline')->find($timeline, 'name');
-        if (!$rowset && !$app_key) {
+        if (!$rowset && !$appKey) {
             return $result;
-        }
-
-        if (!$rowset && $app_key) {
-
+        // Register timeline meta if not exist
+        } elseif (!$rowset && $appKey) {
             $data = array(
-                'name'    => $timeline,
-                'module'  => $module,
-                'title'   => $title,
-                'app_key' => $app_key,
+                'name'      => $timeline,
+                'module'    => $module,
+                'title'     => $title ?: $timeline,
+                'app_key'   => $appKey,
+                'active'    => 1,
             );
 
             // Insert timeline meta
             $row = $this->getModel('timeline')->createRow($data);
             $row->save();
-            if (!$row) {
+            if (!$row->id) {
                 return $result;
             }
         }
 
-        $log = array(
-            'uid'      => $uid,
-            'timeline' => $timeline,
-            'message'  => $message,
-        );
-        if ($time) {
-            $log['time'] = $time;
-        }
-        if ($link) {
-            $log['link'] = $link;
-        }
-
-        // Add timeline
+        // Add timeline log
+        $log = compact('uid', 'timeline', 'message', 'time', 'link');
         $stauts = Pi::api('user', 'timeline')->add($log);
         if ($stauts) {
             $result['status']  = 1;
-            $result['message'] = 'Timeline added successfully.';
+            $result['message'] = __('Timeline added successfully.');
         }
 
         return $result;
-
     }
 }

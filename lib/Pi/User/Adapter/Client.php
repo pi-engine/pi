@@ -216,6 +216,8 @@ class Client extends System
      */
     public function getUrl($type, $var = null)
     {
+        return parent::getUrl($type, $var);
+
         $url = Pi::api('uclient', 'user')->getUrl($type, $var);
 
         return $url;
