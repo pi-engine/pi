@@ -434,8 +434,8 @@
     }, true);
   }
 ])
-.controller('SearchCtrl', ['$scope', '$location', 'config', 'server',
-  function($scope, $location, config, server) {
+.controller('SearchCtrl', ['$scope', '$location', '$filter', 'config', 'server',
+  function($scope, $location, $filter, config, server) {
     $scope.roles = angular.copy(server.roles);
     $scope.today = config.today;
     $scope.filter = {};
@@ -472,7 +472,7 @@
     $scope.submit = function() {
       var filter = angular.copy($scope.filter);
       var parse = function(time) {
-        return parseInt((new Date(time)).getTime() / 1000, 10);
+        return $filter('date')(time, 'yyyy-M-d');
       }
 
       if (filter.time_created_from) {
@@ -482,7 +482,7 @@
       if (filter.time_created_to) {
         filter.time_created_to = parse(filter.time_created_to);
       }
-
+     
       $location.path('/all/search').search(filter);
     }
   }

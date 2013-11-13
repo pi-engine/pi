@@ -682,10 +682,10 @@ class IndexController extends ActionController
 
         }
         if ($condition['time_created_from']) {
-            $where['time_created >= ?'] = $condition['time_created_from'];
+            $where['time_created >= ?'] = strtotime($condition['time_created_from']);
         }
         if ($condition['time_created_to']) {
-            $where['time_created <= ?'] = $condition['time_created_to'];
+            $where['time_created <= ?'] = strtotime($condition['time_created_to'] . ' +1 day');
         }
 
         $whereAccount = Pi::db()->where()->create($where);
@@ -844,10 +844,10 @@ class IndexController extends ActionController
 
         }
         if ($condition['time_created_from']) {
-            $where['time_created >= ?'] = $condition['time_created_from'];
+            $where['time_created >= ?'] = strtotime($condition['time_created_from']);
         }
         if ($condition['time_created_to']) {
-            $where['time_created <= ?'] = $condition['time_created_to'];
+            $where['time_created <= ?'] = strtotime($condition['time_created_to'] . ' +1 day');
         }
 
         $whereAccount = Pi::db()->where()->create($where);
