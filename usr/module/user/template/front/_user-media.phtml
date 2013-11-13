@@ -14,11 +14,14 @@
     </div>
     <div class="inline user-avatar-header-col user-avatar-header-center">
         <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
-        <p class="p-small">
+        <p style="margin-bottom: 5px;">
             <?php echo _escape($user['gender']); ?>
+        <?php if($user['birthdate']) { ?>
         <div>
-            <?php _e('Born at'); ?> <?php echo _escape($user['birthdate']); ?>
+            <?php _e('Born at'); ?>
+            <?php echo _escape($user['birthdate']); ?> 
         </div>
+        <?php } ?>
     </div>
     <div class="inline user-avatar-header-col" style="float: right; margin-top: 90px;">
         <?php if ($is_owner) { ?>
@@ -45,8 +48,10 @@
                     </li>
                     <li class="divider" style="margin: 1px;"></li>
                     <?php foreach ($quicklink as $item) { ?>
-                    <li>
-                        <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank"><?php echo $item['name']; ?></a>
+                    <li class="<?php echo $item['icon']; ?>">
+                        <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
+                            <?php echo $item['title']; ?>
+                        </a>
                     </li>
                     <?php } ?>
                 </ul>

@@ -364,11 +364,54 @@ return array(
 
     // Quicklinks
     'quicklink' => array(
-        'eefocus'    => array(
-            'title' =>  __('EEFOCUS homepage'),
+        'eefocus'  => array(
+            'title' =>  __('EEFOCUS'),
             'link'  => 'http://www.eefocus.com/',
-            'icon'  => 'icon-eefocus',
+            'icon'  => 'quicklink-icon-eefocus',
+        ),
+        'article'  => array(
+            'title' =>  __('Article channel'),
+            'link'  => 'http://www.eefocus.com/article/',
+        ),
+        'blog'  => array(
+            'title' =>  __('Blog channel'),
+            'link'  => 'http://www.eefocus.com/blog/',
+        ),
+        'forum'  => array(
+            'title' =>  __('Forum'),
+            'link'  => 'http://www.eefocus.com/bbs/',
+        ),
+        'cndzz'  => array(
+            'title' =>  __('CNDZZ'),
+            'link'  => 'http://www.cndzz.com/',
+            'icon'  => 'quicklink-icon-cndzz',
+        ),
+        'diagram'  => array(
+            'title' =>  __('Diagram'),
+            'link'  => 'http://www.cndzz.com/diagram/',
+        ),
+        'cndzzForum'  => array(
+            'title' =>  __('Forum'),
+            'link'  => 'http://bbs.cndzz.com/forum.php',
+        ),
+        'eeboard'  => array(
+            'title' =>  __('EEboard'),
+            'link'  => 'http://www.eeboard.com/',
+            'icon'  => 'quicklink-icon-eeboard',
+        ),
+        'kaifaban'  => array(
+            'title' =>  __('Kaifaban'),
+            'link'  => 'http://www.eeboard.com/category/news/',
+            'icon'  => 'quicklink-icon-forum',
+        ),
+        'eeboardForum'  => array(
+            'title' =>  __('Forum'),
+            'link'  => 'http://www.eeboard.com/bbs/forum.php',
+        ),
+        'd5'  => array(
+            'title' =>  __('Datasheet 5'),
+            'link'  => 'http://www.datasheet5.com/',
+            'icon'  => 'quicklink-icon-d5',
         ),
     ),
-
 );
