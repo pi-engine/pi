@@ -33,8 +33,8 @@ class  Quicklink extends AbstractApi
         $result = array();
         $model = Pi::model('quicklink', $this->module);
         $where = array(
-            'active'  => 1,
-            'display' => 1,
+            'active'       => 1,
+            'display <> ?' => 0,
         );
         $columns = array(
             'id',
