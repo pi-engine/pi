@@ -56,6 +56,8 @@ CREATE TABLE `{field}` (
   `is_search`       tinyint(1)      unsigned NOT NULL default '0',
   -- Available for display
   `is_display`      tinyint(1)      unsigned NOT NULL default '0',
+  -- Required by profile
+  `is_required`     tinyint(1)      unsigned NOT NULL default '0',
 
   -- Available, usually set by module activation/deactivation
   `active`          tinyint(1)      unsigned NOT NULL default '0',

@@ -67,6 +67,7 @@ class Field extends AbstractRegistry
             $columns[] = 'handler';
             $columns[] = 'name';
             $columns[] = 'title';
+            $columns[] = 'is_required';
             $columns = array_unique($columns);
         }
 
