@@ -138,12 +138,10 @@ class IndexController extends ActionController
             'page'       => $page,
         );
 
-        $data = array_merge($data, array(
-            'paginator' => $paginator,
-        ));
-
-
-        return $data;
+        return array(
+            'users'     => array_values($data['users']),
+            'paginator' => $paginator
+        );
     }
 
     /**
