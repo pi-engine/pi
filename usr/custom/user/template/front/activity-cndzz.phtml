@@ -98,9 +98,11 @@
 <div class="span3">
   <div class="activity-panel">
         <div class="activity-panel-header">
+            <?php if ($is_owner) { ?>
             <a class="pull-right" href="<?php echo $blog[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
+            <?php } ?>
             <span class="activity-icon activity-icon-cndzzbbs"><?php _e('Topic'); ?></span>
         </div>
         <ul class="activity-panel-body">
@@ -116,9 +118,11 @@
     </div>
     <div class="activity-panel">
         <div class="activity-panel-header">
+            <?php if ($is_owner) { ?>
             <a class="pull-right" href="<?php echo $rel[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
+            <?php } ?>
             <span class="activity-icon activity-icon-circuit"><?php _e('Circuit diagram'); ?></span>
         </div>
         <ul class="activity-panel-body">

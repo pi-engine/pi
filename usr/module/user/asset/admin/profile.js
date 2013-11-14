@@ -195,8 +195,11 @@
     $scope.removeDisplay = function(idx) {
       var display = $scope.displays[idx];
       $scope.displays.splice(idx, 1);
-      if (!display.name) return;
-      $scope.compounds.push(display);
+      if (display.name) {
+        $scope.compounds.push(display);
+      } else {
+        $scope.profile = $scope.profile.concat(display.fields);
+      }
     }
 
     $scope.toggleGroup = function(display) {
@@ -211,6 +214,14 @@
 
     $scope.cancelAction = function() {
       $route.reload();
+    }
+
+    $scope.checkCustomGroup = function() {
+      if ($scope.customGroup.length) return;
+      $scope.$parent.alert = {
+        status: 0,
+        message: config.t.CHECK_GROUP
+      };
     }
 
     var leavingPageText = config.t.LEAVE_CONFIRM;

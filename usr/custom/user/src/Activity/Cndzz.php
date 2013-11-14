@@ -35,9 +35,10 @@ class Cndzz
             'action'  => 'cndzz'
         )), true);
 
-        d($dataBBS);
+        $data = array_merge($dataBBS, $dataCndzz);
 
+        $data['is_owner'] = _get('uid') ? false : true;
 
-        return array_merge($dataBBS, $dataCndzz);
+        return $data;
     }
 }
