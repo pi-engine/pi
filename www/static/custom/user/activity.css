@@ -6,28 +6,25 @@
 
 /* Icon */
 .activity-icon {
-    padding: 1px 0 1px 22px;
-    background: url(activity-icon.png) no-repeat 20px 3px;
+    padding: 3px 0 3px 25px;
+    background: url(activity-icon.png) no-repeat 0 0;
 }
 
 .activity-icon-cndzzbbs {
-    padding: 3px 0 3px 25px;
-    background-position: 0 -120px;
+    background-position: 0 2px;
 }
 
 .activity-icon-circuit {
-    padding: 3px 0 3px 26px;
-    background-position: 0 -480px;
+    padding-left: 26px;
+    background-position: 0 -28px;
 }
 
 .activity-icon-blog {
-    padding: 3px 0 3px 25px;
-    background-position: 0 -89px;
+    background-position: 0 -58px;
 }
 
 .activity-icon-rel {
-    padding: 3px 0 3px 25px;
-    background-position: 0 -151px;
+    background-position: 0 -88px;
 }
 
 /* Tab */
