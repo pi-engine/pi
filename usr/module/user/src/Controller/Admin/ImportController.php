@@ -35,12 +35,8 @@ class ImportController extends ActionController
      */
     public function doAction()
     {
-        $customPath = Pi::path('custom');
-        Pi::service('i18n')->load(sprintf('%s/user:main', $customPath));
-        $metaFile = sprintf(
-            '%s/user/config/user.php',
-            $customPath
-        );
+        Pi::service('i18n')->load('custom/user:default');
+        $metaFile = Pi::path('custom/user/config/user.php');
         $meta = include $metaFile;
 
         $resourceHandler = new UserInstaller($meta);

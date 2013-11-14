@@ -172,7 +172,7 @@ class AvatarController extends ActionController
                     $selected[$name] = array_shift($metas);
                 }
             }
-            
+
             $this->view()->assign(array(
                 'selects'   => $selects,
                 'selected'  => $selected,
