@@ -39,7 +39,7 @@ class Auto extends AbstractAvatar
             }
 
             if ($avatar) {
-                $src = $this->buildUrl($avatar, $size);
+                $src = $this->buildUrl($avatar, $size, $uid);
             }
         }
 
@@ -82,7 +82,7 @@ class Auto extends AbstractAvatar
      *
      * @return string
      */
-    protected function buildUrl($data, $size)
+    protected function buildUrl($data, $size, $uid)
     {
         $src = '';
         if (!empty($this->options['adapter_allowed'])) {
@@ -115,7 +115,7 @@ class Auto extends AbstractAvatar
             if ($avatar) {
                 $src = Pi::service('avatar')->getAdapter($adapter)
                     ->setForce(false)
-                    ->build($avatar, $size);
+                    ->build($avatar, $size, $uid);
                 break;
             }
         }
