@@ -57,7 +57,7 @@ class User extends AbstractUseApi
     /**
      * Get user model
      *
-     * @param int|string $uid
+     * @param int|string|array $uid
      * @param string    $field
      *
      * @return UserModel|null
@@ -65,7 +65,7 @@ class User extends AbstractUseApi
     public function getUser($uid, $field = 'id')
     {
         $user = new UserModel($uid, $field);
-        if ($uid && !$user->id) {
+        if ($uid && is_scalar($uid) && !$user->id) {
             $user = null;
         }
 

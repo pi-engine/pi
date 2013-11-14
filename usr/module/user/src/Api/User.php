@@ -53,7 +53,7 @@ class User extends AbstractUseApi
     public function getUser($uid, $field = 'id')
     {
         $user = new UserModel($uid, $field);
-        if ($uid && !$user->id) {
+        if ($uid && is_scalar($uid) && !$user->id) {
             $user = null;
         }
 
