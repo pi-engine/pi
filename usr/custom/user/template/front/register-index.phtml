@@ -47,8 +47,11 @@ $this->css(array(
                 jQuery(function($) {
                     $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
 
+                    <?php $configs = Pi::service('module')->config('', 'user'); ?>
                     userRegisterIndex.init({
-                        checkExistUrl: "<?php echo $this->url('api', array('module' => 'user', 'controller' => 'user', 'action' => 'check.exist')); ?>"
+                        checkExistUrl: "<?php echo $this->url('api', array('module' => 'user', 'controller' => 'user', 'action' => 'check.exist')); ?>",
+                        NAME_MIN: '<?php echo $configs['name_min']; ?>',
+                        NAME_MAX: '<?php echo $configs['name_max']; ?>'
                     });
                 });
             </script>
