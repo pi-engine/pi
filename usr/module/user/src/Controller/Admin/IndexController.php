@@ -186,6 +186,48 @@ class IndexController extends ActionController
         $enable     = (int) _post('enable');
         $roles      = _post('roles');
 
+        $configs = Pi::service('module')->config('', 'user');
+        // Check username
+        if (strlen($identity) > $configs['uname_max'] ||
+            strlen($identity) < $configs['uname_min']
+        ) {
+
+            $result['message'] = _a(sprintf(
+                'Add user failed: username should between %s to %s',
+                $configs['uname_min'],
+                $configs['uname_max']
+            ));
+
+            return $result;
+        }
+
+        // Check name
+        if (strlen($name) > $configs['name_max'] ||
+            strlen($name) < $configs['name_min']
+        ) {
+            $result['message'] = _a(sprintf(
+                'Add user failed: name should between %s to %s',
+                $configs['name_min'],
+                $configs['name_max']
+            ));
+
+            return $result;
+        }
+
+        // Check credential
+        if (strlen($credential) > $configs['password_max'] ||
+            strlen($credential) < $configs['password_min]']
+        ) {
+            $result['message'] = _a(sprintf(
+                'Add user failed: password should between %s to %s',
+                $minCredential,
+                $maxCredential
+            ));
+
+            return $result;
+        }
+
+
         // Check duplication
         $where = array(
             'identity' => $identity,
@@ -199,21 +241,6 @@ class IndexController extends ActionController
         $rowset = Pi::model('user_account')->selectWith($select)->toArray();
         if (count($rowset) != 0) {
             $result['message'] = _a('Add user failed: user already exists.');
-            return $result;
-        }
-
-        // Check credential
-        $maxCredential = $this->config('password_max');
-        $minCredential = $this->config('password_min');
-        if (strlen($credential) > $maxCredential ||
-            strlen($credential) < $minCredential
-        ) {
-            $result['message'] = _a(sprintf(
-                'Add user failed: password should between %s to %s',
-                $minCredential,
-                $maxCredential
-            ));
-
             return $result;
         }
 
