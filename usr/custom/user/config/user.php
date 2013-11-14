@@ -367,7 +367,7 @@ return array(
         'eefocus'  => array(
             'title' =>  __('EEFOCUS'),
             'link'  => 'http://www.eefocus.com/',
-            'icon'  => 'quicklink-icon-eefocus',
+            'icon'  => 'icon-eefocus',
         ),
         'article'  => array(
             'title' =>  __('Article channel'),
@@ -384,7 +384,7 @@ return array(
         'cndzz'  => array(
             'title' =>  __('CNDZZ'),
             'link'  => 'http://www.cndzz.com/',
-            'icon'  => 'quicklink-icon-cndzz',
+            'icon'  => 'icon-cndzz',
         ),
         'diagram'  => array(
             'title' =>  __('Diagram'),
@@ -397,12 +397,11 @@ return array(
         'eeboard'  => array(
             'title' =>  __('EEboard'),
             'link'  => 'http://www.eeboard.com/',
-            'icon'  => 'quicklink-icon-eeboard',
+            'icon'  => 'icon-eeboard',
         ),
         'kaifaban'  => array(
             'title' =>  __('Kaifaban'),
             'link'  => 'http://www.eeboard.com/category/news/',
-            'icon'  => 'quicklink-icon-forum',
         ),
         'eeboardForum'  => array(
             'title' =>  __('Forum'),
@@ -411,7 +410,7 @@ return array(
         'd5'  => array(
             'title' =>  __('Datasheet 5'),
             'link'  => 'http://www.datasheet5.com/',
-            'icon'  => 'quicklink-icon-d5',
+            'icon'  => 'icon-d5',
         ),
     ),
 );

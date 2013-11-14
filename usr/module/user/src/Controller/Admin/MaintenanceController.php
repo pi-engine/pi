@@ -152,6 +152,7 @@ class MaintenanceController extends ActionController
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $users[] = array(
+                'id'             => $row->id,
                 'identity'       => $row->identity,
                 'name'           => $row->name,
                 'email'          => $row->email,
