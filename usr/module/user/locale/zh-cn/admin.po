@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-10 14:09+0800\n"
-"PO-Revision-Date: 2013-11-10 14:09+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2013-11-14 11:16+0800\n"
+"PO-Revision-Date: 2013-11-14 14:59+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,1204 +11,1195 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\user\n"
+"X-Poedit-SearchPath-0: Z:\\test\\usr\\module\\user\n"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:19
+#: Z:\test\usr\module\user/config/module.php:17
+#: Z:\test\usr\module\user/config/nav.php:21
+msgid "User"
+msgstr "用户管理"
+
+#: Z:\test\usr\module\user/config/module.php:18
+msgid "User profile and services."
+msgstr "用户信息和服务。"
+
+#: Z:\test\usr\module\user/config/permission.php:18
+#: Z:\test\usr\module\user/config/config.php:27
+msgid "User account"
+msgstr "用户账号"
+
+#: Z:\test\usr\module\user/config/permission.php:24
+msgid "User profile"
+msgstr "用户信息"
+
+#: Z:\test\usr\module\user/config/permission.php:30
+msgid "Roles"
+msgstr "角色"
+
+#: Z:\test\usr\module\user/config/permission.php:36
+msgid "Profile fields"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/permission.php:42
+msgid "Custom fields"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/permission.php:49
+msgid "Avatars"
+msgstr "头像"
+
+#: Z:\test\usr\module\user/config/permission.php:55
+msgid "Forms"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/permission.php:61
+#: Z:\test\usr\module\user/config/nav.php:97
+msgid "Plugin management"
+msgstr "插件管理"
+
+#: Z:\test\usr\module\user/config/permission.php:67
+#: Z:\test\usr\module\user/config/nav.php:108
+msgid "Maintenance"
+msgstr "维护"
+
+#: Z:\test\usr\module\user/config/user.php:26
+#: Z:\test\usr\module\user/template/admin/role.phtml:36
+#: Z:\test\usr\module\user/template/admin/user.phtml:47
+#: Z:\test\usr\module\user/template/admin/user.phtml:67
+#: Z:\test\usr\module\user/template/admin/user.phtml:91
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:21
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:40
+msgid "Username"
+msgstr "用户名"
+
+#: Z:\test\usr\module\user/config/user.php:42
+#: Z:\test\usr\module\user/template/admin/user.phtml:70
+#: Z:\test\usr\module\user/template/admin/user.phtml:96
+msgid "Password"
+msgstr "密码"
+
+#: Z:\test\usr\module\user/config/user.php:58
+#: Z:\test\usr\module\user/template/admin/role.phtml:38
+#: Z:\test\usr\module\user/template/admin/user.phtml:68
+#: Z:\test\usr\module\user/template/admin/user.phtml:95
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:22
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:57
+msgid "Email"
+msgstr "邮箱"
+
+#: Z:\test\usr\module\user/config/user.php:81
+#: Z:\test\usr\module\user/template/admin/role.phtml:37
+#: Z:\test\usr\module\user/template/admin/user.phtml:48
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:18
+msgid "Display name"
+msgstr "昵称"
+
+#: Z:\test\usr\module\user/config/user.php:96
+msgid "Gender"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/user.php:104
+msgid "Birthdate"
+msgstr "生日"
+
+#: Z:\test\usr\module\user/config/user.php:124
+#: Z:\test\usr\module\user/config/config.php:23
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:311
+msgid "Avatar"
+msgstr "头像"
+
+#: Z:\test\usr\module\user/config/user.php:135
+#: Z:\test\usr\module\user/template/admin/user.phtml:52
+#: Z:\test\usr\module\user/template/admin/user.phtml:72
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:60
+msgid "Active"
+msgstr "激活"
+
+#: Z:\test\usr\module\user/config/user.php:146
+#: Z:\test\usr\module\user/template/admin/user.phtml:56
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:41
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:54
+msgid "Register time"
+msgstr "注册时间"
+
+#: Z:\test\usr\module\user/config/user.php:157
+msgid "Activation time"
+msgstr "激活时间"
+
+#: Z:\test\usr\module\user/config/user.php:168
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:63
+msgid "Disabled time"
+msgstr "关闭时间"
+
+#: Z:\test\usr\module\user/config/user.php:180
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:51
+msgid "Deleted time"
+msgstr "删除时间"
+
+#: Z:\test\usr\module\user/config/user.php:194
+msgid "Level"
+msgstr "等级"
+
+#: Z:\test\usr\module\user/config/user.php:203
+#, fuzzy
+msgid "Last modified"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/config/user.php:211
+msgid "Homepage"
+msgstr "首页"
+
+#: Z:\test\usr\module\user/config/user.php:216
+msgid "Short bio"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/user.php:228
+msgid "Signature"
+msgstr "签名"
+
+#: Z:\test\usr\module\user/config/user.php:241
+#: Z:\test\usr\module\user/template/admin/user.phtml:102
+#: Z:\test\usr\module\user/template/admin/user.phtml:107
+msgid "Register IP"
+msgstr "注册IP"
+
+#: Z:\test\usr\module\user/config/user.php:252
+msgid "Social tools"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/user.php:256
+msgid "Tool name"
+msgstr ""
+
+#: Z:\test\usr\module\user/config/user.php:259
+msgid "ID or URL"
+msgstr "ID 或 URL"
+
+#: Z:\test\usr\module\user/config/user.php:269
+msgid "User action"
+msgstr "用户动作"
+
+#: Z:\test\usr\module\user/config/user.php:281
+msgid "Logout"
+msgstr "退出"
+
+#: Z:\test\usr\module\user/config/nav.php:41
+#: Z:\test\usr\module\user/template/admin/user.phtml:55
+msgid "Role"
+msgstr "角色管理"
+
+#: Z:\test\usr\module\user/config/nav.php:74
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:30
+msgid "Profile"
+msgstr "用户信息"
+
+#: Z:\test\usr\module\user/config/nav.php:85
+msgid "Form"
+msgstr "从"
+
+#: Z:\test\usr\module\user/config/nav.php:119
+msgid "Inquiry"
+msgstr "查询"
+
+#: Z:\test\usr\module\user/config/nav.php:127
+#: Z:\test\usr\module\user/template/admin/import.phtml:2
+#: Z:\test\usr\module\user/template/admin/import.phtml:4
+msgid "Import"
+msgstr "导入"
+
+#: Z:\test\usr\module\user/config/config.php:19
 msgid "General"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:23
-#: C:\wamp\www\master\usr\module\user/config/user.php:122
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:304
-msgid "Avatar"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/config.php:27
-#: C:\wamp\www\master\usr\module\user/config/permission.php:18
-msgid "User account"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/config.php:34
+#: Z:\test\usr\module\user/config/config.php:34
 msgid "Number of items on list page."
-msgstr ""
+msgstr "页面展示数。"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:39
+#: Z:\test\usr\module\user/config/config.php:39
 msgid "Register form config file name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:40
-#: C:\wamp\www\master\usr\module\user/config/config.php:45
-#: C:\wamp\www\master\usr\module\user/config/config.php:50
-#: C:\wamp\www\master\usr\module\user/config/config.php:55
+#: Z:\test\usr\module\user/config/config.php:40
+#: Z:\test\usr\module\user/config/config.php:45
+#: Z:\test\usr\module\user/config/config.php:50
 msgid "Set it only if necessary."
-msgstr ""
+msgstr "仅在必要时设置。"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:44
-#, fuzzy
-msgid "Register template file name"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/config.php:49
+#: Z:\test\usr\module\user/config/config.php:44
 msgid "Register complete form config file name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:54
+#: Z:\test\usr\module\user/config/config.php:49
 msgid "Profile complete form config file name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:61
+#: Z:\test\usr\module\user/config/config.php:56
 msgid "Username format"
-msgstr ""
+msgstr "用户名规则"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:62
+#: Z:\test\usr\module\user/config/config.php:57
 msgid "Format of username for registration."
-msgstr ""
+msgstr "注册用户名规则。"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:67
-#: C:\wamp\www\master\usr\module\user/config/config.php:100
+#: Z:\test\usr\module\user/config/config.php:62
+#: Z:\test\usr\module\user/config/config.php:95
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:68
-#: C:\wamp\www\master\usr\module\user/config/config.php:101
+#: Z:\test\usr\module\user/config/config.php:63
+#: Z:\test\usr\module\user/config/config.php:96
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:69
-#: C:\wamp\www\master\usr\module\user/config/config.php:102
+#: Z:\test\usr\module\user/config/config.php:64
+#: Z:\test\usr\module\user/config/config.php:97
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:79
+#: Z:\test\usr\module\user/config/config.php:74
 msgid "Minimum username"
-msgstr ""
+msgstr "最小用户名长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:80
+#: Z:\test\usr\module\user/config/config.php:75
 msgid "Minimum length of username for user registration"
-msgstr ""
+msgstr "用户注册的用户名最小长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:87
+#: Z:\test\usr\module\user/config/config.php:82
 msgid "Maximum username"
-msgstr ""
+msgstr "用户名最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:88
+#: Z:\test\usr\module\user/config/config.php:83
 msgid "Maximum length of username for user registration"
-msgstr ""
+msgstr "用户注册时用户名最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:94
+#: Z:\test\usr\module\user/config/config.php:89
 msgid "Display name format"
-msgstr ""
+msgstr "昵称规则"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:95
+#: Z:\test\usr\module\user/config/config.php:90
 msgid "Format of display name for registration."
-msgstr ""
+msgstr "注册时昵称规则。"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:112
+#: Z:\test\usr\module\user/config/config.php:107
 msgid "Minmum display name"
-msgstr ""
+msgstr "昵称最小长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:113
+#: Z:\test\usr\module\user/config/config.php:108
 msgid "Minmum length of display name for user registration"
-msgstr ""
+msgstr "注册时昵称最小长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:120
+#: Z:\test\usr\module\user/config/config.php:115
 msgid "Maximum display name"
-msgstr ""
+msgstr "昵称最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:121
+#: Z:\test\usr\module\user/config/config.php:116
 msgid "Maximum length of display name for user registration"
-msgstr ""
+msgstr "注册时昵称最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:128
+#: Z:\test\usr\module\user/config/config.php:123
 msgid "Minimum password"
-msgstr ""
+msgstr "密码最小长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:129
+#: Z:\test\usr\module\user/config/config.php:124
 msgid "Minimum length of password for user registration"
-msgstr ""
+msgstr "用户注册密码最小长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:136
+#: Z:\test\usr\module\user/config/config.php:131
 msgid "Maximum password"
-msgstr ""
+msgstr "密码最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:137
+#: Z:\test\usr\module\user/config/config.php:132
 msgid "Maximum length of password for user registration"
-msgstr ""
+msgstr "用户注册密码最大长度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:144
+#: Z:\test\usr\module\user/config/config.php:139
 msgid "Username backlist"
-msgstr ""
+msgstr "用户名黑名单"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:145
-#: C:\wamp\www\master\usr\module\user/config/config.php:153
+#: Z:\test\usr\module\user/config/config.php:140
+#: Z:\test\usr\module\user/config/config.php:148
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:152
+#: Z:\test\usr\module\user/config/config.php:147
 msgid "Display backlist"
-msgstr ""
+msgstr "显示黑名单"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:160
+#: Z:\test\usr\module\user/config/config.php:155
 msgid "Email backlist"
-msgstr ""
+msgstr "邮箱黑名单"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:161
+#: Z:\test\usr\module\user/config/config.php:156
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:168
+#: Z:\test\usr\module\user/config/config.php:163
 msgid "Remember me"
-msgstr ""
+msgstr "自动登陆"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:169
+#: Z:\test\usr\module\user/config/config.php:164
 msgid "Days to remember login, 0 for disable."
-msgstr ""
+msgstr "账号保持时间，0是关闭。"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:176
+#: Z:\test\usr\module\user/config/config.php:171
 msgid "Maximum attempts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:177
+#: Z:\test\usr\module\user/config/config.php:172
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:184
+#: Z:\test\usr\module\user/config/config.php:179
 msgid "Login disable"
-msgstr ""
+msgstr "登陆关闭"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:185
+#: Z:\test\usr\module\user/config/config.php:180
 msgid "Disable user login"
-msgstr ""
+msgstr "禁止用户登陆"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:193
+#: Z:\test\usr\module\user/config/config.php:188
 #, fuzzy
 msgid "Register disable"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:194
+#: Z:\test\usr\module\user/config/config.php:189
 msgid "Disable user registration"
-msgstr ""
+msgstr "禁止用户注册"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:202
+#: Z:\test\usr\module\user/config/config.php:197
 msgid "Login CAPTCHA"
-msgstr ""
+msgstr "登陆 CAPTCHA"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:203
+#: Z:\test\usr\module\user/config/config.php:198
 msgid "Enable CAPTCHA for user login"
-msgstr ""
+msgstr "打开用户登陆验证码"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:211
-#, fuzzy
+#: Z:\test\usr\module\user/config/config.php:206
 msgid "Register CAPTCHA"
-msgstr "Application Execution Time"
+msgstr "注册验证码"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:212
+#: Z:\test\usr\module\user/config/config.php:207
 msgid "Enable CAPTCHA for user registration"
-msgstr ""
+msgstr "打开用户注册验证码"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:222
+#: Z:\test\usr\module\user/config/config.php:217
 msgid "Max Avatar Width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:223
+#: Z:\test\usr\module\user/config/config.php:218
 msgid "Allowed image width, 0 for no limit"
-msgstr ""
+msgstr "允许的图片宽度，0到无限"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:229
+#: Z:\test\usr\module\user/config/config.php:224
 msgid "Max Avatar Height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:230
+#: Z:\test\usr\module\user/config/config.php:225
 msgid "Allowed image height, 0 for no limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:236
+#: Z:\test\usr\module\user/config/config.php:231
 msgid "Max File Size"
-msgstr ""
+msgstr "最大文件尺寸"
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:237
+#: Z:\test\usr\module\user/config/config.php:232
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:252
+#: Z:\test\usr\module\user/config/config.php:247
 msgid "Temporary Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/config.php:253
+#: Z:\test\usr\module\user/config/config.php:248
 msgid "For temporary storage of avatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/module.php:17
-#: C:\wamp\www\master\usr\module\user/config/nav.php:21
-msgid "User"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/module.php:18
-msgid "User profile and services."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:41
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:55
-msgid "Role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:74
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:30
-msgid "Profile"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:85
-msgid "Form"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:97
-#: C:\wamp\www\master\usr\module\user/config/permission.php:61
-msgid "Plugin management"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:108
-#: C:\wamp\www\master\usr\module\user/config/permission.php:67
-msgid "Maintenance"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:119
-msgid "Inquiry"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/nav.php:127
-#: C:\wamp\www\master\usr\module\user/template/admin/import.phtml:2
-#: C:\wamp\www\master\usr\module\user/template/admin/import.phtml:4
-msgid "Import"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:24
-msgid "User profile"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:30
-msgid "Roles"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:36
-msgid "Profile fields"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:42
-msgid "Custom fields"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:49
-msgid "Avatars"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/permission.php:55
-msgid "Forms"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/register.php:28
+#: Z:\test\usr\module\user/config/register.php:28
 msgid "Confirm credential"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/config/register.php:60
+#: Z:\test\usr\module\user/config/register.php:60
 msgid "Please type the word."
-msgstr ""
+msgstr "请输入字母。"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:26
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:21
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:40
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:36
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:47
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:67
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:91
-msgid "Username"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:109
+msgid "User removed from the role."
+msgstr "用户已从该用户组移除。"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:42
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:70
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:96
-msgid "Password"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:113
+msgid "User not in the role."
+msgstr "用户不在该用户组"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:58
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:22
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:57
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:38
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:68
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:95
-msgid "Email"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:122
+msgid "User added to the role."
+msgstr "用户已添加到本用户组"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:80
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:18
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:37
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:48
-msgid "Display name"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:133
+msgid "User already in the role."
+msgstr "用户已在本用户组"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:94
-msgid "Gender"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:139
+msgid "User not found."
+msgstr "用户不能在。"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:102
-msgid "Birthdate"
-msgstr ""
+#: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:177
+#, php-format
+msgid "Users of role %s"
+msgstr "用户角色 %s"
 
-#: C:\wamp\www\master\usr\module\user/config/user.php:133
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:60
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:52
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:72
-msgid "Active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:144
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:41
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:54
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:56
-#, fuzzy
-msgid "Register time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:155
-#, fuzzy
-msgid "Activation time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:166
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:63
-#, fuzzy
-msgid "Disabled time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:178
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:51
-#, fuzzy
-msgid "Deleted time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:192
-msgid "Level"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:201
-msgid "Homepage"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:206
-msgid "Short bio"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:212
-msgid "Signature"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:219
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:102
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:107
-#, fuzzy
-msgid "Register IP"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:230
-msgid "Social tools"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:234
-msgid "Tool name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:237
-msgid "ID or URL"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:247
-msgid "User action"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/config/user.php:259
-msgid "Logout"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:47
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:161
-msgid "Edit user info failed"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:53
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:201
-msgid "Edit user info successfully"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:96
-msgid "Replace user avater failed"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:101
-msgid "Replace user avater successfully"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:246
-msgid "Delete this group successfully"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:297
-msgid "Base info"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/EditController.php:344
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
-msgid "User was not found."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:201
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:201
 msgid "Add user failed: user already exists."
-msgstr ""
+msgstr "添加用户失败：该用户已存在。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:215
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:216
 msgid "Add user failed: invalid operation."
-msgstr ""
+msgstr "添加用户失败：操作失败。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:235
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:236
 msgid "Add user successfully"
-msgstr ""
+msgstr "添加用户成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:366
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:367
 msgid "Enable user failed: invalid uid"
-msgstr ""
+msgstr "激活用户失败：uid错误"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:382
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:383
 #, php-format
 msgid "%d enable user successfully"
-msgstr ""
+msgstr "%d 激活用户成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:402
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:403
 msgid "Disable user failed: invalid uid"
-msgstr ""
+msgstr "锁定用户失败：UID不存在"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:418
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:419
 #, php-format
 msgid "%d disable user successfully"
-msgstr ""
+msgstr "%d 锁定用户成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:438
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:439
 msgid "Delete user failed: invalid uid"
-msgstr ""
+msgstr "删除用户失败：uid错误"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:458
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:459
 #, php-format
 msgid "%d delete user successfully"
-msgstr ""
+msgstr "%d 删除用户成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:478
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:484
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:479
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:485
 msgid "Activate user failed: invalid uid"
-msgstr ""
+msgstr "用户激活失败：UID错误"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:499
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:500
 #, php-format
 msgid "%d activated user successfully"
-msgstr ""
+msgstr "%d 用户激活成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:529
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:530
 msgid "Assign role failed: invalid parameters."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:535
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:536
 msgid "Assign role failed: invalid user ids."
-msgstr ""
+msgstr "角色分配失败：用户id不存在。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:540
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:541
 msgid "Assign role failed: invalid operation."
-msgstr ""
+msgstr "角色分配失败：操作错误。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:549
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:550
 msgid "Assign role failed."
-msgstr ""
+msgstr "设置角色失败。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:560
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:561
 msgid "Assign role failed"
-msgstr ""
+msgstr "设置角色失败"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/IndexController.php:573
+#: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:574
 msgid "Assign role successfully"
-msgstr ""
+msgstr "角色分配成功"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/MaintenanceController.php:200
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:47
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:163
+msgid "Edit user info failed"
+msgstr "编辑用户信息失败"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:55
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:204
+msgid "Edit user info successfully"
+msgstr "编辑用户信息成功。"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:98
+msgid "Replace user avater failed"
+msgstr "设置用户头像失败"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:103
+msgid "Replace user avater successfully"
+msgstr "设置用户头像成功。"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:253
+msgid "Delete this group successfully"
+msgstr "删除该组成功"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:304
+msgid "Base info"
+msgstr "基本信息"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:351
+#: Z:\test\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
+msgid "User was not found."
+msgstr "用户不存在。"
+
+#: Z:\test\usr\module\user/src/Controller/Admin/MaintenanceController.php:202
 msgid "Clear failed."
-msgstr ""
+msgstr "清除失败。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/MaintenanceController.php:210
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/MaintenanceController.php:227
+#: Z:\test\usr\module\user/src/Controller/Admin/MaintenanceController.php:212
+#: Z:\test\usr\module\user/src/Controller/Admin/MaintenanceController.php:229
 msgid "Clear all deleted user successfully."
-msgstr ""
+msgstr "成功清除已删除用户。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:217
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:217
 msgid "Profile dressup data save successfully"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:312
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:312
 msgid "Set privacy failed: invalid id."
-msgstr ""
+msgstr "隐私设置失败：id错误。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:317
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:317
 msgid "Set privacy failed: invalid value."
-msgstr ""
+msgstr "隐私设置失败：值错误。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:322
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:322
 msgid "Set privacy failed: invalid force flag."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:341
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:341
 msgid "Set privacy failed: update error."
-msgstr ""
+msgstr "隐私设置失败"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/ProfileController.php:352
+#: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:352
 msgid "Set privacy successfully"
-msgstr ""
+msgstr "设置隐私成功。"
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:109
-msgid "User removed from the role."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:113
-msgid "User not in the role."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:122
-msgid "User added to the role."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:133
-msgid "User already in the role."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:139
-msgid "User not found."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Admin/RoleController.php:177
-#, php-format
-msgid "Users of role %s"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/edit-user.phtml:3
-msgid "Edit user: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/edit-user.phtml:34
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:114
-msgid "Replace with defalt avatar."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/edit-user.phtml:40
-msgid "This user doesn't have any you can view"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/edit-user.phtml:65
-msgid "Are you sure delete this group?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/form-profile-complete.phtml:4
-#: C:\wamp\www\master\usr\module\user/template/admin/form-register.phtml:4
+#: Z:\test\usr\module\user/template/admin/form-profile-complete.phtml:4
+#: Z:\test\usr\module\user/template/admin/form-register.phtml:4
 #, fuzzy
 msgid "Register form"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/form-profile-complete.phtml:9
-#: C:\wamp\www\master\usr\module\user/template/admin/form-register.phtml:9
+#: Z:\test\usr\module\user/template/admin/form-profile-complete.phtml:9
+#: Z:\test\usr\module\user/template/admin/form-register.phtml:9
 msgid "Profile complete form"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:19
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:26
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:99
-msgid "Submit"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:20
-msgid ""
-"Inquire of user information via his ID, username, display name or email."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:23
-#, fuzzy
-msgid "Activation"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:24
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:53
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:37
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:51
-msgid "Activated"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:25
-msgid "Not activated"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:26
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:31
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:49
-msgid "Enabled"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:27
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:50
-#, fuzzy
-msgid "Disabled"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:28
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:31
-msgid "Yes"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:29
-msgid "Account"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/inquiry.phtml:32
-msgid "Unavailable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:22
-msgid "Stats"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:23
-msgid "User log"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:24
-#, fuzzy
-msgid "Deleted users"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:27
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:77
-msgid "Today"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:28
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:78
-msgid "Last week"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:29
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:79
-msgid "Last month"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:30
-msgid "History"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:31
-#, fuzzy
-msgid "Register num"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:32
-#, fuzzy
-msgid "Activated num"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:33
-msgid "Pending num"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:34
-msgid "Top 10 registered IP"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:35
-msgid "None"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:36
-msgid "Sort by key:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:37
-msgid "uid"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:38
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:58
-msgid "Edit"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:39
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:111
-#, fuzzy
-msgid "View log"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:42
-#, fuzzy
-msgid "Register ip"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:43
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:65
-#, fuzzy
-msgid "Activated time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:44
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:64
-#, fuzzy
-msgid "Last login time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:45
-msgid "Last loin ip"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:46
-msgid "Login times"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:47
-msgid "Sort by:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:48
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:87
-msgid "Are you sure to delete this user?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:49
-msgid "Are you sure to delete these users?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:50
-msgid "Are you sure to delete all of these users?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:52
-msgid "IP"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:55
-msgid "Displayname"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:56
-msgid "Clear the users"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:58
-msgid "CLear all deleted users"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:59
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:105
-msgid "No user matched your request."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:61
-msgid "Login ip"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:62
-#, fuzzy
-msgid "Created time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/maintenance.phtml:66
-msgid "Null"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:22
-msgid "Timeline"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:23
-#, fuzzy
-msgid "Activity"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:24
-msgid "Quicklink"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:27
-msgid "Item name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:28
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:33
-msgid "From module"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:29
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:30
-msgid "Display"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:30
-msgid "Items displayed on the homepage timeline"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:32
-msgid "No"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:33
-#, fuzzy
-msgid "Activities"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:34
-msgid "Activities items repository"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:35
-msgid ""
-"Items to display on the user\\'s homepage, Drag items vertically to "
-"determine the order displays"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:36
-msgid "Quicklinks"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/plugin.phtml:37
-msgid "Quicklinks items repository"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:22
+#: Z:\test\usr\module\user/template/admin/profile.phtml:22
 msgid "Profile field"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:23
+#: Z:\test\usr\module\user/template/admin/profile.phtml:23
 msgid "Profile dress up"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:24
+#: Z:\test\usr\module\user/template/admin/profile.phtml:24
 msgid "Field privacy"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:27
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:39
+#: Z:\test\usr\module\user/template/admin/profile.phtml:27
+#: Z:\test\usr\module\user/template/admin/profile.phtml:39
 msgid "Basic field"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:28
+#: Z:\test\usr\module\user/template/admin/profile.phtml:28
 msgid "Raw filed provied by the user module,you can change the display title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:29
+#: Z:\test\usr\module\user/template/admin/profile.phtml:29
 #, fuzzy
 msgid "Field title"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:31
-msgid "Search"
-msgstr ""
+#: Z:\test\usr\module\user/template/admin/profile.phtml:30
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:29
+msgid "Display"
+msgstr "显示"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:32
+#: Z:\test\usr\module\user/template/admin/profile.phtml:31
+msgid "Search"
+msgstr "搜索"
+
+#: Z:\test\usr\module\user/template/admin/profile.phtml:32
 msgid "Editable"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:34
+#: Z:\test\usr\module\user/template/admin/profile.phtml:33
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:28
+msgid "From module"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/profile.phtml:34
 msgid "Compound"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:35
+#: Z:\test\usr\module\user/template/admin/profile.phtml:35
 msgid ""
 "Compound filed :Some fileds organized initially. Sub elements in the "
 "compound is directly displayed on the page,while the compound title is for "
 "programming"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:36
+#: Z:\test\usr\module\user/template/admin/profile.phtml:36
 msgid ""
 "Determine the default visible objects of the profile filed and which filed "
 "can be changed by the user self"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:37
+#: Z:\test\usr\module\user/template/admin/profile.phtml:37
 msgid "Add group"
-msgstr ""
+msgstr "添加组"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:38
+#: Z:\test\usr\module\user/template/admin/profile.phtml:38
 msgid "Field display on profile page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:40
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:22
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:25
+#: Z:\test\usr\module\user/template/admin/profile.phtml:40
+#: Z:\test\usr\module\user/template/admin/role.phtml:22
+#: Z:\test\usr\module\user/template/admin/role.phtml:25
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:41
+#: Z:\test\usr\module\user/template/admin/profile.phtml:41
 msgid "Data will not be saved before you click save button"
-msgstr ""
+msgstr "保存信息请点击保存按钮"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:42
+#: Z:\test\usr\module\user/template/admin/profile.phtml:42
 msgid "Click to select a group added in"
-msgstr ""
+msgstr "点击选择已有用户组"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:43
+#: Z:\test\usr\module\user/template/admin/profile.phtml:43
 msgid "Click to added a group"
-msgstr ""
+msgstr "点击添加用户组"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:44
+#: Z:\test\usr\module\user/template/admin/profile.phtml:44
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:45
+#: Z:\test\usr\module\user/template/admin/profile.phtml:45
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/profile.phtml:46
+#: Z:\test\usr\module\user/template/admin/profile.phtml:46
 msgid "You have made unsaved changes. Would you still like to leave this page?"
-msgstr ""
+msgstr "修改未保存，请确认是否离开该页面？"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:19
+#: Z:\test\usr\module\user/template/admin/role.phtml:19
 msgid "Admin roles"
-msgstr ""
+msgstr "管理员组"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:20
+#: Z:\test\usr\module\user/template/admin/role.phtml:20
 msgid "Front roles"
-msgstr ""
+msgstr "前台用户组"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:21
+#: Z:\test\usr\module\user/template/admin/role.phtml:21
 msgid "Name"
-msgstr ""
+msgstr "姓名"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:23
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:31
+#: Z:\test\usr\module\user/template/admin/role.phtml:23
+#: Z:\test\usr\module\user/template/admin/role.phtml:31
 msgid "Users in role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:24
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:57
+#: Z:\test\usr\module\user/template/admin/role.phtml:24
+#: Z:\test\usr\module\user/template/admin/user.phtml:57
 msgid "Action"
-msgstr ""
+msgstr "动作"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:27
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:66
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:100
+#: Z:\test\usr\module\user/template/admin/role.phtml:26
+#: Z:\test\usr\module\user/template/admin/user.phtml:99
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:19
+msgid "Submit"
+msgstr "提交"
+
+#: Z:\test\usr\module\user/template/admin/role.phtml:27
+#: Z:\test\usr\module\user/template/admin/user.phtml:66
+#: Z:\test\usr\module\user/template/admin/user.phtml:100
 msgid "Required"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:28
+#: Z:\test\usr\module\user/template/admin/role.phtml:28
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:29
+#: Z:\test\usr\module\user/template/admin/role.phtml:29
 msgid "Front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:30
+#: Z:\test\usr\module\user/template/admin/role.phtml:30
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:32
+#: Z:\test\usr\module\user/template/admin/role.phtml:32
 msgid "User id or name"
-msgstr ""
+msgstr "用户 id 或 名称"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:33
+#: Z:\test\usr\module\user/template/admin/role.phtml:33
 msgid "Users"
-msgstr ""
+msgstr "用户"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:34
+#: Z:\test\usr\module\user/template/admin/role.phtml:34
 msgid "First"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:35
+#: Z:\test\usr\module\user/template/admin/role.phtml:35
 msgid "User id"
-msgstr ""
+msgstr "用户 ID"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:39
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:60
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:90
+#: Z:\test\usr\module\user/template/admin/role.phtml:39
+#: Z:\test\usr\module\user/template/admin/user.phtml:60
+#: Z:\test\usr\module\user/template/admin/user.phtml:90
 msgid "Add user"
-msgstr ""
+msgstr "添加用户"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/role.phtml:40
+#: Z:\test\usr\module\user/template/admin/role.phtml:40
 msgid "None user in this role."
-msgstr ""
+msgstr "该角色内无用户。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:24
+#: Z:\test\usr\module\user/template/admin/user.phtml:24
 msgid "Build user module data"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:36
-#, fuzzy
+#: Z:\test\usr\module\user/template/admin/user.phtml:36
 msgid "All"
-msgstr "All Categories"
+msgstr "全部"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:38
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:54
+#: Z:\test\usr\module\user/template/admin/user.phtml:37
+#: Z:\test\usr\module\user/template/admin/user.phtml:51
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:24
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:53
+msgid "Activated"
+msgstr "未锁定"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:38
+#: Z:\test\usr\module\user/template/admin/user.phtml:54
 msgid "Pending"
-msgstr ""
+msgstr "待激活"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:39
+#: Z:\test\usr\module\user/template/admin/user.phtml:39
 msgid "Add new"
-msgstr ""
+msgstr "添加新"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:40
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:106
+#: Z:\test\usr\module\user/template/admin/user.phtml:40
+#: Z:\test\usr\module\user/template/admin/user.phtml:106
 msgid "Advanced search"
-msgstr ""
+msgstr "高级搜索"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:43
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:89
+#: Z:\test\usr\module\user/template/admin/user.phtml:43
+#: Z:\test\usr\module\user/template/admin/user.phtml:89
 #, fuzzy
 msgid "Active State"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:44
+#: Z:\test\usr\module\user/template/admin/user.phtml:44
 msgid "Enable State"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:45
+#: Z:\test\usr\module\user/template/admin/user.phtml:45
 msgid "Select roles"
-msgstr ""
+msgstr "选择角色"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:46
+#: Z:\test\usr\module\user/template/admin/user.phtml:46
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:53
+#: Z:\test\usr\module\user/template/admin/user.phtml:49
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:26
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:31
+msgid "Enabled"
+msgstr "打开"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:50
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:27
+msgid "Disabled"
+msgstr "已关闭"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:53
 msgid "Inactive"
-msgstr ""
+msgstr "未激活"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:59
-#, fuzzy
+#: Z:\test\usr\module\user/template/admin/user.phtml:58
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:38
+msgid "Edit"
+msgstr "编辑"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:59
 msgid "Delete"
-msgstr "Application Execution Time"
+msgstr "删除"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:61
+#: Z:\test\usr\module\user/template/admin/user.phtml:61
 msgid "Passwords don\\'t match."
-msgstr ""
+msgstr "密码错误"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:62
+#: Z:\test\usr\module\user/template/admin/user.phtml:62
 msgid "Username is already taken."
-msgstr ""
+msgstr "用户名已存在。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:63
+#: Z:\test\usr\module\user/template/admin/user.phtml:63
 msgid "Email is already taken."
-msgstr ""
+msgstr "邮箱已存在。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:64
+#: Z:\test\usr\module\user/template/admin/user.phtml:64
 msgid "Display name is already taken."
-msgstr ""
+msgstr "昵称不存在"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:65
+#: Z:\test\usr\module\user/template/admin/user.phtml:65
 msgid "Back to users list"
-msgstr ""
+msgstr "返回用户列表"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:69
+#: Z:\test\usr\module\user/template/admin/user.phtml:69
 msgid "Email invalid"
-msgstr ""
+msgstr "邮箱错误"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:71
+#: Z:\test\usr\module\user/template/admin/user.phtml:71
 msgid "Password confirm"
-msgstr ""
+msgstr "确认密码"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:73
+#: Z:\test\usr\module\user/template/admin/user.phtml:73
 msgid "Enable"
-msgstr ""
+msgstr "打开"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:74
+#: Z:\test\usr\module\user/template/admin/user.phtml:74
 msgid "Disable"
-msgstr ""
+msgstr "关闭"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:75
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:85
+#: Z:\test\usr\module\user/template/admin/user.phtml:75
+#: Z:\test\usr\module\user/template/admin/user.phtml:85
 msgid "Front role"
-msgstr ""
+msgstr "前台角色"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:76
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:86
+#: Z:\test\usr\module\user/template/admin/user.phtml:76
+#: Z:\test\usr\module\user/template/admin/user.phtml:86
 msgid "Admin role"
-msgstr ""
+msgstr "后台角色"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:80
+#: Z:\test\usr\module\user/template/admin/user.phtml:77
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:27
+msgid "Today"
+msgstr "今天"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:78
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:28
+msgid "Last week"
+msgstr "上周"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:79
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:29
+msgid "Last month"
+msgstr "上个月"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:80
 msgid "Last three months"
-msgstr ""
+msgstr "过去3个月"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:81
+#: Z:\test\usr\module\user/template/admin/user.phtml:81
 msgid "Last six months"
-msgstr ""
+msgstr "过去半年"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:82
+#: Z:\test\usr\module\user/template/admin/user.phtml:82
 msgid "Last year"
-msgstr ""
+msgstr "去年"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:83
+#: Z:\test\usr\module\user/template/admin/user.phtml:83
 msgid "Assign role"
-msgstr ""
+msgstr "设置角色"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:84
+#: Z:\test\usr\module\user/template/admin/user.phtml:84
 msgid "Remove role"
-msgstr ""
+msgstr "移除角色"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:88
+#: Z:\test\usr\module\user/template/admin/user.phtml:87
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:48
+msgid "Are you sure to delete this user?"
+msgstr "请确认是否删除该用户。"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:88
 msgid "Are you sure to delete this users?"
-msgstr ""
+msgstr "请确认是否删除该用户？"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:92
+#: Z:\test\usr\module\user/template/admin/user.phtml:92
 msgid "Are you sure active this account, it can not be return"
-msgstr ""
+msgstr "请确认是否激活该账号，本操作无法撤销"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:93
+#: Z:\test\usr\module\user/template/admin/user.phtml:93
 msgid "Are you sure active these account, it can not be return"
-msgstr ""
+msgstr "请确认是否激活这些账号，本操作无法撤销"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:94
+#: Z:\test\usr\module\user/template/admin/user.phtml:94
 msgid "Choose at least one item before submission."
-msgstr ""
+msgstr "请至少选择一项提交。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:97
+#: Z:\test\usr\module\user/template/admin/user.phtml:97
 msgid "Confirm password"
-msgstr ""
+msgstr "确认密码"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:98
+#: Z:\test\usr\module\user/template/admin/user.phtml:98
 msgid "Activate"
-msgstr ""
+msgstr "未锁定"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:101
+#: Z:\test\usr\module\user/template/admin/user.phtml:101
 msgid "Invalid email."
-msgstr ""
+msgstr "邮箱不存在。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:103
+#: Z:\test\usr\module\user/template/admin/user.phtml:103
 #, fuzzy
 msgid "Activation state"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:104
+#: Z:\test\usr\module\user/template/admin/user.phtml:104
 msgid "User ID"
-msgstr ""
+msgstr "用户 ID"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:108
+#: Z:\test\usr\module\user/template/admin/user.phtml:105
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:59
+msgid "No user matched your request."
+msgstr "未找到匹配用户。"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:108
 msgid "From"
-msgstr ""
+msgstr "从"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:109
+#: Z:\test\usr\module\user/template/admin/user.phtml:109
 msgid "To"
-msgstr ""
+msgstr "到"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:110
+#: Z:\test\usr\module\user/template/admin/user.phtml:110
 msgid "Search result"
-msgstr ""
+msgstr "搜索结果"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:112
+#: Z:\test\usr\module\user/template/admin/user.phtml:111
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:39
+msgid "View log"
+msgstr "查看log"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:112
 msgid "No pending user."
-msgstr ""
+msgstr "未激活用户。"
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:113
+#: Z:\test\usr\module\user/template/admin/user.phtml:113
 msgid "Edit user"
+msgstr "编辑用户"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:114
+#: Z:\test\usr\module\user/template/admin/edit-user.phtml:34
+msgid "Replace with defalt avatar."
+msgstr "重置为默认头像。"
+
+#: Z:\test\usr\module\user/template/admin/user.phtml:115
+msgid "Are you sure to delete this group?"
+msgstr "请确认是否删除该用户组。"
+
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:20
+msgid ""
+"Inquire of user information via his ID, username, display name or email."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/admin/user.phtml:115
-msgid "Are you sure to delete this group?"
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:23
+#, fuzzy
+msgid "Activation"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:25
+msgid "Not activated"
+msgstr "锁定"
+
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:28
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:31
+msgid "Yes"
+msgstr "是"
+
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:29
+msgid "Account"
+msgstr "账号"
+
+#: Z:\test\usr\module\user/template/admin/inquiry.phtml:32
+msgid "Unavailable"
+msgstr "不可用"
+
+#: Z:\test\usr\module\user/template/admin/edit-user.phtml:3
+msgid "Edit user: "
+msgstr "编辑用户："
+
+#: Z:\test\usr\module\user/template/admin/edit-user.phtml:40
+msgid "This user doesn't have any you can view"
+msgstr "你无权查看该用户"
+
+#: Z:\test\usr\module\user/template/admin/edit-user.phtml:65
+msgid "Are you sure delete this group?"
+msgstr "请确认是否删除该组？"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:22
+msgid "Stats"
 msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:23
+msgid "User log"
+msgstr "用户 log"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:24
+msgid "Deleted users"
+msgstr "已删除用户"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:30
+msgid "History"
+msgstr "历史"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:31
+#, fuzzy
+msgid "Register num"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:32
+#, fuzzy
+msgid "Activated num"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:33
+msgid "Pending num"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:34
+msgid "Top 10 registered IP"
+msgstr "注册IP排行"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:35
+msgid "None"
+msgstr "误"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:36
+msgid "Sort by key:"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:37
+msgid "uid"
+msgstr "uid"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:42
+msgid "Register ip"
+msgstr "注册IP"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:43
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:65
+msgid "Activated time"
+msgstr "激活时间"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:44
+msgid "Last login time"
+msgstr "最后登录时间"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:45
+msgid "Last loin ip"
+msgstr "最后登录IP"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:46
+msgid "Login count"
+msgstr "登陆次数"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:47
+msgid "Sort by:"
+msgstr "排序："
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:49
+msgid "Are you sure to delete these users?"
+msgstr "请确认是否删除这些用户？"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:50
+msgid "Are you sure to delete all of these users?"
+msgstr "Unavailable"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:52
+msgid "IP"
+msgstr "IP"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:55
+msgid "Displayname"
+msgstr "昵称"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:56
+msgid "Clear the users"
+msgstr "清除用户"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:58
+msgid "CLear all deleted users"
+msgstr "清除已删除用户"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:61
+msgid "Last login ip"
+msgstr "最后登录IP"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:62
+msgid "Created time"
+msgstr "创建时间"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:64
+msgid "Last login"
+msgstr "最后登录"
+
+#: Z:\test\usr\module\user/template/admin/maintenance.phtml:66
+msgid "Null"
+msgstr "空"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:22
+msgid "Timeline"
+msgstr "时间线"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:23
+#, fuzzy
+msgid "Activity"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:24
+msgid "Quicklink"
+msgstr "快速链接"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:27
+msgid "Item name"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:30
+msgid "Items displayed on the homepage timeline"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:32
+msgid "No"
+msgstr "否"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:33
+#, fuzzy
+msgid "Activities"
+msgstr "Application Execution Time"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:34
+msgid "Activities items repository"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:35
+msgid ""
+"Items to display on the user\\'s homepage, Drag items vertically to "
+"determine the order displays"
+msgstr ""
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:36
+msgid "Quicklinks"
+msgstr "快速链接"
+
+#: Z:\test\usr\module\user/template/admin/plugin.phtml:37
+msgid "Quicklinks items repository"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Register template file name"
+#~ msgstr "Application Execution Time"
