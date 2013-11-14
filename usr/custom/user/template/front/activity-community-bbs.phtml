@@ -213,13 +213,15 @@
 <div class="span3">
     <div class="activity-panel">
         <div class="activity-panel-header">
+            <?php if ($is_owner) { ?>
             <a class="pull-right" href="<?php echo $blog[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
-            <span class="activity-icon activity-icon-blog"><?php _e('Blog'); ?></span>
+            <?php } ?>
+            <span class="activity-icon activity-icon-cndzzbbs"><?php _e('Topic'); ?></span>
         </div>
-        <ul class="activity-panel-body activity-panel-body-blog">
-            <?php foreach ($blog as $item) { ?>
+        <ul class="activity-panel-body">
+            <?php foreach ($bbs as $item) { ?>
             <li>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
                     <?php echo $item['count']; ?>
@@ -231,9 +233,11 @@
     </div>
     <div class="activity-panel">
         <div class="activity-panel-header">
+            <?php if ($is_owner) { ?>
             <a class="pull-right" href="<?php echo $rel[0]['url']; ?>" target="_blank">
                 <?php _e('Manage'); ?>
             </a>
+            <?php } ?>
             <span class="activity-icon activity-icon-rel"><?php _e('Relationship'); ?></span>
         </div>
         <ul class="activity-panel-body">

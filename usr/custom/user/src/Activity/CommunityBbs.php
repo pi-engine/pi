@@ -84,6 +84,7 @@ class CommunityBbs
         $data['answers'] = array();
         $data['projects'] = array();
 
+        $data['is_owner'] = _get('uid') ? false : true;
 
         return $data;
     }
