@@ -14,7 +14,7 @@ $this->css($this->assetModule('front/front.css'));
         <h3 class="user-activity-title"><?php echo $data['title'];?></h3>
         <?php foreach ($data['items'] as $item) { ?>
         <div class="user-underline-list">
-            <p class="p-small"><?php echo $item['message']; ?></p>
+            <p style="margin-bottom: 5px;"><?php echo $item['message']; ?></p>
             <?php if ($item['time']) { ?>
             <span class="muted"><?php echo _date($item['time']); ?></span>
             <?php } ?>
