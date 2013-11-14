@@ -48,8 +48,16 @@
                     </li>
                     <li class="divider" style="margin: 1px;"></li>
                     <?php foreach ($quicklink as $item) { ?>
-                    <li class="<?php echo $item['icon']; ?>">
+                    <li>
                         <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
+                            <?php 
+                            if ($item['icon']) {
+                                echo sprintf(
+                                    '<i class="%s"></i>',
+                                    $item['icon']
+                                );
+                            }
+                            ?>
                             <?php echo $item['title']; ?>
                         </a>
                     </li>
