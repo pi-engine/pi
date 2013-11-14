@@ -121,13 +121,13 @@ class AvatarController extends ActionController
             ));
             if (!empty($config['max_size'])) {
                 $limits[] = array(
-                    'label' => 'Max files ize:',
+                    'label' => __('Max files ize:'),
                     'text'  => $config['max_size'] . ' KB',
                 );
             }
             if (!empty($config['max_avatar_width'])) {
                 $limits[] = array(
-                    'label' => 'Max image size:',
+                    'label' => __('Max image size:'),
                     'text'  => $config['max_avatar_width'] . ' x '
                             . $config['max_avatar_height'],
                 );

@@ -214,11 +214,12 @@
       var element = this.elements.eq(index).val('');
       var arr = this.getData(index);
       var html = '';
-      element.nextAll().val('').hide();
+      element.nextAll().html('').hide();
       if (!arr.length) {
-        element.hide();
+        element.html('').hide();
         return;
       }
+
       if (flag) {
         html = '<option value="">请选择</option>';
       }
