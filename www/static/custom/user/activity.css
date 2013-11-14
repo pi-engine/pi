@@ -95,6 +95,7 @@
     border-left: 1px solid #E6E6E6;
     _border-left-width: expression(this.previousSibling==null ? '0':'1px');
     width: 72px;
+    width: 71px\9;
     text-align: center;
 }
 
