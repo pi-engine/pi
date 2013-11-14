@@ -7,7 +7,7 @@ $this->css($this->assetModule('front/front.css'));
     <div class="media user-underline-list">
         <div class="pull-left">
             <?php
-            echo $item['icon'] ? : '<i class="icon-search icon-2x"></i>';
+            echo $item['icon'] ? '<i class="' . $item['icon'] . '"></i>' : '<i class="icon-search icon-2x"></i>';
             ?>
         </div>
         <div class="media-body">
