@@ -46,6 +46,7 @@ $this->css(array(
             <script>
                 jQuery(function($) {
                     $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
+                    $('[name="terms_of_service"]').filter('[type=checkbox]').after('<?php _e('我已经阅读并同意相关'); ?><a target="_blank" href="http://www.eefocus.com/passport/Tpl/index/xieyi.html"><?php _e('服务条款'); ?></a>');
 
                     <?php $configs = Pi::service('module')->config('', 'user'); ?>
                     userRegisterIndex.init({
