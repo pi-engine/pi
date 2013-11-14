@@ -255,17 +255,12 @@ class Client extends System
      */
     public function getResource($name, $args = array())
     {
-        $resource = parent::getResource($name, $args);
-        $clientConfig = Pi::api('uclient', 'user')->config();
-        $config = array(
-            'app_key'       => $clientConfig['app_key'],
-            'authorization' => $clientConfig['authorization'],
-        );
-        if (!empty($clientConfig[$name]))  {
-            $config = array_merge($config, $clientConfig[$name]);
+        if (!isset($this->resource[$name])) {
+            $resource = Pi::api('uclient', 'user')->getResource($name);
+            $this->resource[$name] = $resource;
         }
-        $resource->setOptions($config);
+        $result = parent::getResource($name, $args);
 
-        return $resource;
+        return $result;
     }
 }

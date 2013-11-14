@@ -13,6 +13,7 @@ use Pi;
 use Module\System\Api\AbstractUser as AbstractUseApi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\Client as UserModel;
+use Pi\User\Resource\AbstractResource;
 
 /**
  * User account manipulation APIs
@@ -702,5 +703,33 @@ class User extends AbstractUseApi
         }
 
         return $url;
+    }
+
+    /**
+     * Get resource handler or result from handler if args specified
+     *
+     * @param string $name
+     *
+     * @return AbstractResource
+     */
+    public function getResource($name)
+    {
+        $class = 'Module\Uclient\Api\Resource\\' . ucfirst($name);
+        if (!class_exists($class)) {
+            $class = 'Pi\User\Resource\\' . ucfirst($name);
+        }
+        $resource = new $class;
+        $clientConfig = Pi::api('uclient', 'user')->config();
+        $config = array(
+            'app_key'       => $this->config('app_key'),
+            'authorization' => $this->config('authorization'),
+        );
+        $options = $this->config($name);
+        if (!empty($options))  {
+            $config = array_merge($config, $options);
+        }
+        $resource->setOptions($config);
+
+        return $resource;
     }
 }

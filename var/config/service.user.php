@@ -47,13 +47,14 @@ return array(
         'options'   => array(
             // Authentication config
             'authentication'    => 'service.authentication.php',
-
+            /*
             // Resources
             'resource'  => array(
                 'timeline'  => 'Module\Uclient\Api\Resource\Timeline',
                 'message'   => 'Module\Uclient\Api\Resource\Message',
                 'relation'  => 'Module\Uclient\Api\Resource\Relation',
             ),
+            */
         ),
     ),
 
