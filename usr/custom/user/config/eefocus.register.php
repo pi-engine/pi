@@ -70,7 +70,7 @@ return array(
             'name' => 'terms_of_service',
             'type' => 'checkbox',
             'options' => array(
-                'label' => __('I agree to the terms of service and privacy policy'),
+                'label' => __(''),
             )
         ),
         'filter' => array(
