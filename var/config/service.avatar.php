@@ -45,9 +45,9 @@ return array(
     // Options for selective avatars
     'select'    => array(
         // Path to avatar root
-        'root_path' => Pi::path('static/avatar'),
+        //'root_path' => Pi::path('static/avatar/select'),
         // URL to avatar root
-        'root_url'  => Pi::url('static/avatar', true),
+        //'root_url'  => Pi::url('static/avatar/select', true),
         'extension' => 'png',
         // Callback for path with parameters: source file name, size
         'path'      => function($data) {
