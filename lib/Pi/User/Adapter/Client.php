@@ -249,4 +249,23 @@ class Client extends System
 
         return $model;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResource($name, $args = array())
+    {
+        $resource = parent::getResource($name, $args);
+        $clientConfig = Pi::api('uclient', 'user')->config();
+        $config = array(
+            'app_key'       => $clientConfig['app_key'],
+            'authorization' => $clientConfig['authorization'],
+        );
+        if (!empty($clientConfig[$name]))  {
+            $config = array_merge($config, $clientConfig[$name]);
+        }
+        $resource->setOptions($config);
+
+        return $resource;
+    }
 }

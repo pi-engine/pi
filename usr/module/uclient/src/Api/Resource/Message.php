@@ -53,13 +53,19 @@ class Message extends UserMessage
      */
     public function send($uid, $message, $from)
     {
-        $id = Pi::api('message')->send(
-            $uid,
-            $message,
-            $from
-        );
+        if (!$this->isAvailable()) {
+            return false;
+        }
+        $time = time();
+        $params = compact('uid', 'message', 'from', 'time');
+        $params['app_key'] = $this->options['app_key'];
+        $uri = $this->options['api']['send'];
+        $result = Pi::service('remote')
+            ->setAuthorization($this->options['authorization'])
+            ->post($uri, $params);
+        $result = (bool) $result['status'];
 
-        return $id;
+        return $result;
     }
 
     /**
@@ -77,14 +83,16 @@ class Message extends UserMessage
         if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::api('message')->notify(
-            $uid,
-            $message,
-            $subject,
-            $tag
-        );
+        $time = time();
+        $params = compact('uid', 'message', 'subject', 'time', 'tag');
+        $params['app_key'] = $this->options['app_key'];
+        $uri = $this->options['api']['notify'];
+        $result = Pi::service('remote')
+            ->setAuthorization($this->options['authorization'])
+            ->post($uri, $params);
+        $result = (bool) $result['status'];
 
-        return $id;
+        return $result;
     }
 
     /**
@@ -98,7 +106,13 @@ class Message extends UserMessage
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->getCount($uid);
+        $params = compact('uid');
+        $params['app_key'] = $this->options['app_key'];
+        $uri = $this->options['api']['count'];
+        $result = Pi::service('remote')
+            ->setAuthorization($this->options['authorization'])
+            ->get($uri, $params);
+        $result = (bool) $result['status'];
 
         return $result;
     }
@@ -136,5 +150,20 @@ class Message extends UserMessage
         $result = Pi::api('message')->dismissAlert($uid);
 
         return $result;
+    }
+
+    /**
+     * Get link to message service
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        if (!$this->isAvailable()) {
+            return '';
+        }
+        $url = $this->options['link'];
+
+        return $url;
     }
 }

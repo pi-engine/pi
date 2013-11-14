@@ -137,4 +137,22 @@ class Message extends AbstractResource
 
         return $result;
     }
+
+    /**
+     * Get link to message service
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        if (!$this->isAvailable()) {
+            return '';
+        }
+        $url = Pi::service('url')->assemble(
+            'default',
+            array('module' => 'message')
+        );
+
+        return $url;
+    }
 }

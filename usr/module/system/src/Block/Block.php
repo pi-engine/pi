@@ -79,17 +79,22 @@ class Block
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
             );
+            $message = array(
+                'url'       => Pi::service('user')->message()->getUrl(),
+            );
         } else {
             $user = array(
                 'uid'       => 0,
                 'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
+            $message = array();
         }
 
         return array(
-            'user'  => $user,
-            'type'  => $type,
+            'user'      => $user,
+            'message'   => $message,
+            'type'      => $type,
         );
     }
 

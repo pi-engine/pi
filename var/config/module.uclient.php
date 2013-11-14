@@ -60,19 +60,27 @@ return array (
         //'logout'    => $userRoot . '/logout',
         'register'  => $userRoot . '/register?app=' . $appKey,
 
-        // Timeline API uri
-        'timeline'  => array(
+    ),
+
+    // Timeline API uri
+    'timeline'  => array(
+        'api'       => array(
             'add'   => $apiTimeline . '/insert',
         ),
-        // Message API uri
-        'message'  => array(
+    ),
+    // Message API uri
+    'message'  => array(
+        'link'      => $root . '/message',
+        'api'       => array(
             'send'      => $apiMessage . '/send',
             'notify'    => $apiMessage . '/notify',
             'count'     => $apiMessage . '/count',
             'alert'     => $apiMessage . '/alert',
         ),
-        // Relation API uri
-        'relation'  => array(
+    ),
+    // Relation API uri
+    'relation'  => array(
+        'api'       => array(
             'follow'    => $apiRelation . '/follow',
             'list'      => $apiRelation . '/list',
             'count'     => $apiRelation . '/count',

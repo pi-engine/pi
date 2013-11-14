@@ -702,7 +702,5 @@ class User extends AbstractUseApi
         }
 
         return $url;
-
     }
-
 }

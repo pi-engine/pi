@@ -32,33 +32,6 @@ use Pi\User\Resource\Timeline as UserTimeline;
  */
 class Timeline extends UserTimeline
 {
-    /** @var  array Config for remote access */
-    protected $config;
-
-    /**
-     * Get an option
-     *
-     * @return mixed|null
-     */
-    public function config()
-    {
-        if (null === $this->config) {
-            $this->config = Pi::service('config')->load('module.uclient.php');
-        }
-        $args = func_get_args();
-        $result = $this->config;
-        foreach ($args as $name) {
-            if (is_array($result) && isset($result[$name])) {
-                $result = $result[$name];
-            } else {
-                $result = null;
-                break;
-            }
-        }
-
-        return $result;
-    }
-
     /**
      * Get timeline log list
      *
@@ -107,11 +80,10 @@ class Timeline extends UserTimeline
         if (!isset($params['time'])) {
             $params['time'] = time();
         }
-        $params['app_key'] = $this->config('app_key');
-
-        $uri = $this->config('url', 'timeline', 'add');
+        $params['app_key'] = $this->options['app_key'];
+        $uri = $this->options['api']['add'];
         $result = Pi::service('remote')
-            ->setAuthorization($this->config('authorization'))
+            ->setAuthorization($this->options['authorization'])
             ->post($uri, $params);
         $result = (bool) $result['status'];
 

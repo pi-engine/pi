@@ -13,6 +13,8 @@
             <?php echo Pi::service('user')->avatar()->get($block['user']['uid'], 'mini'); ?>
             <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _escape($block['user']['name']); ?></a>
             <span class="pi-divider">|</span>
+            <a href="<?php echo $block['message']['url']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+            <span class="pi-divider">|</span>
             <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
     <?php
         }
@@ -36,6 +38,7 @@
         </a>
         <ul class="dropdown-menu">
             <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
+            <li><a href="<?php echo $block['message']['url']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
             <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
         </ul>
     <?php
