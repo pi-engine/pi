@@ -307,6 +307,7 @@ class RoleController extends ActionController
             $status = 0;
             $message = _a('Only custom roles are allowed to delete.');
         } else {
+            Pi::model('user_role')->delete(array('role' => $row->name));
             Pi::model('permission_rule')->delete(array('role' => $row->name));
             $row->delete();
             Pi::registry('role')->flush();
