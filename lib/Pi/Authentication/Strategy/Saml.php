@@ -108,17 +108,21 @@ class Saml extends AbstractStrategy
     {
         //return;
         $ssoAuthenticated = $this->getAuthSource()->isAuthenticated();
-        $identity = $this->getIdentity();
+        $identity = $this->getIdentity() ?: '';
 
         if (!$ssoAuthenticated && $identity) {
             $this->clearIdentity();
         } elseif ($ssoAuthenticated && !$identity) {
-            $profile = $this->getAuthSource()->getAttributes();
+            $profile = array();
+            $attributes = $this->getAuthSource()->getAttributes();
+            array_walk($attributes, function($data, $key) use (&$profile) {
+                $profile[$key] = is_array($data) ? array_pop($data) : $data;
+            });
             $identity = $profile['identity'];
-            $this->getStorage()->write($identity);
+            $this->getStorage()->write($profile);
             Pi::service('user')->setPersist($profile);
         }
-        Pi::service('user')->bind($identity);
+        Pi::service('user')->bind($identity, 'identity');
 
         return;
     }
@@ -170,7 +174,7 @@ class Saml extends AbstractStrategy
      */
     public function hasIdentity()
     {
-        return !$this->getStorage()->isEmpty();
+        return $this->getIdentity() ? true : false;
     }
 
     /**
@@ -180,10 +184,13 @@ class Saml extends AbstractStrategy
     {
         $storage = $this->getStorage();
         if ($storage->isEmpty()) {
-            return null;
+            return '';
         }
 
-        return $storage->read();
+        $profile = $storage->read();
+        $identity = isset($profile['idenity']) ? $profile['idenity'] : null;
+
+        return $identity;
     }
 
     /**
