@@ -72,6 +72,7 @@ return array(
                     ),
                 ),
             ),
+            'is_edit'   => false,
         ),
         // Account: display name
         'name'      => array(
@@ -86,6 +87,7 @@ return array(
                     ),
                 ),
             ),
+            'is_edit'   => false,
         ),
         // Account: gender
         'gender'    => array(

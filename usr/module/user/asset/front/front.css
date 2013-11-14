@@ -13,9 +13,6 @@
 .gutter-large {
 	margin: 0 20px;
 }
-.p-small {
-	margin-bottom: 5px;
-}
 
 /* Home page */
 .user-underline-list {
@@ -104,9 +101,10 @@
 }
 .user-none-fields {
 	background: #e6e6e6;
-	padding: 40px 0;
+	padding: 20px 0;
 	text-align: center;
 	margin: 20px 0;
+	display: block;
 }
 
 /* Activity */
