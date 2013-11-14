@@ -202,6 +202,21 @@ class IndexController extends ActionController
             return $result;
         }
 
+        // Check credential
+        $maxCredential = $this->config('password_max');
+        $minCredential = $this->config('password_min');
+        if (strlen($credential) > $maxCredential ||
+            strlen($credential) < $minCredential
+        ) {
+            $result['message'] = _a(sprintf(
+                'Add user failed: password should between %s to %s',
+                $minCredential,
+                $maxCredential
+            ));
+
+            return $result;
+        }
+
         $data = array(
             'identity'      => $identity,
             'name'          => $name,
