@@ -163,13 +163,14 @@
             var msg;
             var val = $.trim(this.$name.val()).toLowerCase();
             this.$name.val(val);
+            var length = val.length;
 
             if (val == '') {
                 this.isNameValid = false;
                 msg = '请输入昵称';
-            } else if (!/^[a-z][0-9a-z]{4,24}$/i.test(val)) {
+            } else if (length < this.options.NAME_MIN || length > this.options.NAME_MAX) {
                 this.isNameValid = false;
-                msg = '5-25个字符，支持字母、数字，以字母开头';
+                msg = this.options.NAME_MIN + '-' + this.options.NAME_MAX + '个字符';
             } else {
                 $.ajax({
                     async: false,
