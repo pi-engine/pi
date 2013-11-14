@@ -46,6 +46,7 @@ class  Quicklink extends AbstractApi
         );
 
         $select = $model->select()->where($where);
+        $select->order('display');
         if ($limit) {
             $select->limit($limit);
         }
