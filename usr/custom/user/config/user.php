@@ -266,7 +266,7 @@ return array(
                     ),
                 ),
                 'department'    => array(
-                    'title' => __('Department'),
+                    'title' => __('Work Department'),
                     'edit' => array(
                         'required' => true,
                     ),

@@ -22,8 +22,8 @@ $this->css(array(
 
             <?php if (!$complete) { ?>
             <div style="margin: 50px 0 100px 180px;">
-                <?php _e('已注册，未激活？'); ?>
-                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('重新发送激活邮件');?></a>
+                <?php _e('already registered,havent activited'); ?>
+                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('resend activited email');?></a>
             </div>
             <?php } ?>
         </div>
@@ -31,14 +31,14 @@ $this->css(array(
         <div class="span3 muted">
         <?php if (!$complete) { ?>
             <h4>
-                <?php _e('申领与非网通行证'); ?><br>
-                <?php _e('轻松实现“任我行”'); ?>
+                <?php _e('shenglingyufeitongxingzheng'); ?><br>
+                <?php _e('qinsongshixianrengwoxing'); ?>
             </h4>
             <ul class="unstyled">
-                <li><?php _e('去“与非网”交流技术'); ?></li>
-                <li><?php _e('去“电子电路网”下载电路图'); ?></li>
-                <li><?php _e('去“集成电路查询网”查询器件信息'); ?></li>
-                <li><?php _e('去“爱板网”选购开发板'); ?></li>
+                <li><?php _e('queefocus'); ?></li>
+                <li><?php _e('qucndzz'); ?></li>
+                <li><?php _e('qud5'); ?></li>
+                <li><?php _e('queeboard'); ?></li>
             </ul>
 
             <script src="<?php echo Pi::url('static/custom/user/register-index.js'); ?>"></script>
@@ -46,7 +46,7 @@ $this->css(array(
             <script>
                 jQuery(function($) {
                     $('[name="captcha\\[input\\]"]').closest('.control-group').css('margin-bottom', '-4px');
-                    $('[name="terms_of_service"]').filter('[type=checkbox]').after('<?php _e('我已经阅读并同意相关'); ?><a target="_blank" href="http://www.eefocus.com/passport/Tpl/index/xieyi.html"><?php _e('服务条款'); ?></a>');
+					$('[name="terms_of_service"]').filter('[type=checkbox]').after('<?php _e('我已经阅读并同意相关'); ?><a target="_blank" href="http://www.eefocus.com/passport/Tpl/index/xieyi.html"><?php _e('服务条款'); ?></a>');
 
                     <?php $configs = Pi::service('module')->config('', 'user'); ?>
                     userRegisterIndex.init({
@@ -58,16 +58,16 @@ $this->css(array(
             </script>
         <?php } else { ?>
             <h4>
-                <?php _e('告诉与非你喜欢的'); ?><br>
-                <?php _e('与非提供你想要的'); ?>
+                <?php _e('tell eefocus what you like'); ?><br>
+                <?php _e('eefocus offer what you want'); ?>
             </h4>
             <ul class="unstyled">
-                <li><?php _e('我们会根据您的兴趣打造专属服务'); ?></li>
-                <li><?php _e('我们会依据您的地址快递获奖礼品'); ?></li>
-                <li><?php _e('我们更会珍视您的这份信任'); ?></li>
+                <li><?php _e('we will provide service according to your interest'); ?></li>
+                <li><?php _e('send gift'); ?></li>
+                <li><?php _e('We will cherish your trust'); ?></li>
                 <li class="pi-dashed"></li>
-                <li><?php _e('与非网郑重承诺：'); ?></li>
-                <li><?php _e('我们一定保护您的信息资料安全'); ?></li>
+                <li><?php _e('eefocus solemnly promise:'); ?></li>
+                <li><?php _e('We will protect the security of your information'); ?></li>
             </ul>
 
             <script>
@@ -88,32 +88,32 @@ $this->css(array(
     <div class="row-fluid pi-minheight">
         <div class="span8 text-large" style="padding-top: 10px;">
             <p>
-                <?php _e('系统已经向你邮箱'); ?>
+                <?php _e('System has been to you mailbox'); ?>
                 <span class="text-error"><?php echo $result['email']; ?></span>
-                <?php _e('发送了一封电子邮件'); ?>。
+                <?php _e('Send an email'); ?>。
             </p>
-            <p><?php _e('请点击邮件中的链接，以完成注册'); ?>。</p>
+            <p><?php _e('Please click on the link in the email to complete your registration'); ?>。</p>
         </div>
 
         <div class="span4">
             <h4>
-                <?php _e('没有收到激活邮件怎么办？'); ?>
+                <?php _e('What to do when you did not receive the activation email?'); ?>
             </h4>
             <ol>
                 <li>
-                    <?php _e('Email 地址是否写错？');?>
+                    <?php _e('Email addresses are wrong?');?>
                     <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'index')); ?>" 
-                       title="<?php _e('重新注册') ?>">
-                        <?php _e('重新注册') ?>
+                       title="<?php _e('Reregister') ?>">
+                        <?php _e('Reregister') ?>
                     </a>
                 </li>
-                <li><?php _e('看看是否在垃圾箱中'); ?></li>
-                <li><?php _e('稍等几分钟再看');?></li>
+                <li><?php _e('To see is it in the trash'); ?></li>
+                <li><?php _e('Wait a few minutes to check');?></li>
                 <li>
-                    <?php _e('或者');?>
+                    <?php _e('or');?>
                     <span class="user-js-reactivate">
-                        <a class="user-js-reactivate-link" href="javascript:;" title="<?php _e('重新发送激活邮件');?>">
-                            <?php _e('重新发送激活邮件');?>
+                        <a class="user-js-reactivate-link" href="javascript:;" title="<?php _e('Resend activation email');?>">
+                            <?php _e('Resend activation email');?>
                         </a>
                         <span class="hide user-js-reactivate-tip">
                             (<span class="user-js-reactivate-message"></span><span class="user-js-reactivate-countdown"></span>)
@@ -141,7 +141,7 @@ $this->css(array(
         jQuery(function() {
             userRegisterReactivate.init({
                 reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>',
-                AlREADY_SENT: '<?php _e('邮件已发送'); ?>'
+                AlREADY_SENT: '<?php _e('Message has been sent'); ?>'
             });
         });
     </script>

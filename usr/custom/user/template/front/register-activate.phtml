@@ -14,23 +14,23 @@ $this->css(array(
 
 <div class="row-fluid pi-minheight">
     <div class="page-header">
-        <h3><?php _e('用户激活'); ?></h3>
+        <h3><?php _e('User activates'); ?></h3>
     </div>
 
     <div class="text-center text-large">
         <?php if (isset($result) && $result['status']) { ?>
             <img style="margin-right: 10px; vertical-align: middle;" src="<?php echo Pi::url('static/custom/user/icon-success-large.png'); ?>">
-            <?php _e('激活成功，请'); ?>
-            <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
+            <?php _e('Activation was successful'); ?>
+            <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('log in'); ?></a>
         <?php } else { ?>
             <p>
-                <?php _e('对不起，此链接已失效。可能您已完成激活，或者超过有效激活时间。'); ?>
+                <?php _e('Sorry, this link has expired. Maybe you have to complete the activation, or exceed the effective activation time.'); ?>
             </p>
             <p>
-                <?php _e('你可以选择'); ?>
-                <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('登录'); ?></a>
-                <?php _e('，或'); ?>
-                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('重新发送激活邮件');?></a>
+                <?php _e('You can choose'); ?>
+                <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php _e('log in'); ?></a>
+                <?php _e(',or'); ?>
+                <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('Resend activation email');?></a>
             </p>
         <?php } ?>
     </div>
