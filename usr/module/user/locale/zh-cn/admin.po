@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2013-11-14 11:16+0800\n"
-"PO-Revision-Date: 2013-11-14 14:59+0800\n"
+"PO-Revision-Date: 2013-11-15 09:27+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -140,9 +140,8 @@ msgid "Level"
 msgstr "等级"
 
 #: Z:\test\usr\module\user/config/user.php:203
-#, fuzzy
 msgid "Last modified"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/config/user.php:211
 msgid "Homepage"
@@ -338,7 +337,7 @@ msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:163
 msgid "Remember me"
-msgstr "自动登陆"
+msgstr "自动登录"
 
 #: Z:\test\usr\module\user/config/config.php:164
 msgid "Days to remember login, 0 for disable."
@@ -354,16 +353,15 @@ msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:179
 msgid "Login disable"
-msgstr "登陆关闭"
+msgstr "登录关闭"
 
 #: Z:\test\usr\module\user/config/config.php:180
 msgid "Disable user login"
-msgstr "禁止用户登陆"
+msgstr "禁止用户登录"
 
 #: Z:\test\usr\module\user/config/config.php:188
-#, fuzzy
 msgid "Register disable"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:189
 msgid "Disable user registration"
@@ -371,11 +369,11 @@ msgstr "禁止用户注册"
 
 #: Z:\test\usr\module\user/config/config.php:197
 msgid "Login CAPTCHA"
-msgstr "登陆 CAPTCHA"
+msgstr "登录验证码"
 
 #: Z:\test\usr\module\user/config/config.php:198
 msgid "Enable CAPTCHA for user login"
-msgstr "打开用户登陆验证码"
+msgstr "打开用户登录验证码"
 
 #: Z:\test\usr\module\user/config/config.php:206
 msgid "Register CAPTCHA"
@@ -589,9 +587,8 @@ msgstr "设置隐私成功。"
 
 #: Z:\test\usr\module\user/template/admin/form-profile-complete.phtml:4
 #: Z:\test\usr\module\user/template/admin/form-register.phtml:4
-#, fuzzy
 msgid "Register form"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/form-profile-complete.phtml:9
 #: Z:\test\usr\module\user/template/admin/form-register.phtml:9
@@ -620,9 +617,8 @@ msgid "Raw filed provied by the user module,you can change the display title"
 msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:29
-#, fuzzy
 msgid "Field title"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:30
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:29
@@ -791,7 +787,7 @@ msgstr "待激活"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:39
 msgid "Add new"
-msgstr "添加新"
+msgstr "添加一个"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:40
 #: Z:\test\usr\module\user/template/admin/user.phtml:106
@@ -800,9 +796,8 @@ msgstr "高级搜索"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:43
 #: Z:\test\usr\module\user/template/admin/user.phtml:89
-#, fuzzy
 msgid "Active State"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:44
 msgid "Enable State"
@@ -854,7 +849,7 @@ msgstr "邮箱已存在。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:64
 msgid "Display name is already taken."
-msgstr "昵称不存在"
+msgstr "昵称已存在。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:65
 msgid "Back to users list"
@@ -955,9 +950,8 @@ msgid "Invalid email."
 msgstr "邮箱不存在。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:103
-#, fuzzy
 msgid "Activation state"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:104
 msgid "User ID"
@@ -1008,9 +1002,8 @@ msgid ""
 msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:23
-#, fuzzy
 msgid "Activation"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:25
 msgid "Not activated"
@@ -1058,14 +1051,12 @@ msgid "History"
 msgstr "历史"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:31
-#, fuzzy
 msgid "Register num"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:32
-#, fuzzy
 msgid "Activated num"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:33
 msgid "Pending num"
@@ -1106,7 +1097,7 @@ msgstr "最后登录IP"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:46
 msgid "Login count"
-msgstr "登陆次数"
+msgstr "登录次数"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:47
 msgid "Sort by:"
@@ -1157,9 +1148,8 @@ msgid "Timeline"
 msgstr "时间线"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:23
-#, fuzzy
 msgid "Activity"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:24
 msgid "Quicklink"
@@ -1178,9 +1168,8 @@ msgid "No"
 msgstr "否"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:33
-#, fuzzy
 msgid "Activities"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:34
 msgid "Activities items repository"
