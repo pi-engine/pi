@@ -556,4 +556,12 @@ class IndexController extends AbstractController
 
         return;
     }
+    
+    /*
+     * Archive
+     */
+    public function archiveAction()
+    {
+
+    }
 }
