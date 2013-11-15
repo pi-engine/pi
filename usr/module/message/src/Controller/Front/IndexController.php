@@ -180,11 +180,11 @@ class IndexController extends AbstractController
         $userId = Pi::user()->getUser()->id;
 
         $messageTitle = sprintf(
-            __('Private message(%s) unread'),
+            __('Private message(%s unread)'),
             Service::getUnread($userId, 'message')
         );
         $notificationTitle = sprintf(
-            __('Notification(%s) unread'),
+            __('Notification(%s  unread)'),
             Service::getUnread($userId, 'notification')
         );
         $this->view()->assign('messageTitle', $messageTitle);
