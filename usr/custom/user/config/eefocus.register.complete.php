@@ -36,7 +36,7 @@ return array(
     ),
     'credential' => array(
         'element' => array(
-            'name' => 'identity',
+            'name' => 'credential',
             'type' => 'hidden',
         )
     ),
