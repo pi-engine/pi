@@ -185,9 +185,9 @@ $active = $comment['active'];
                     }
                     if ('batch-approve' == operation) {
                         location.href = url + operation + "/id/" + id.join(",") + "/flag/"
-                                      + flag + "/redirect/" + this.encodeUrl();
+                                      + flag + "?redirect=" + this.encodeUrl();
                     } else {
-                        location.href = url + operation + "/id/" + id.join(",") + "/redirect/"
+                        location.href = url + operation + "/id/" + id.join(",") + "?redirect="
                                       + this.encodeUrl();
                     }
                 };
