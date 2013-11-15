@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2013-11-15 09:29+0800\n"
-"PO-Revision-Date: 2013-11-15 09:30+0800\n"
+"PO-Revision-Date: 2013-11-15 14:32+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -394,26 +394,26 @@ msgstr "找回密码"
 #: Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:90
 #: Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:14
 msgid "Username"
-msgstr "登录用户名"
+msgstr "用户名"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/LoginForm.php:40
 #: Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:32
 #: Documents\GitHub\pi\usr\module\user/template/front/_user-side-nav.phtml:18
 msgid "Password"
-msgstr "修改密码"
+msgstr "密码"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/LoginForm.php:52
 #: Documents\GitHub\pi\usr\module\user/src/Form/LoginForm.php:56
 msgid "Remember me"
-msgstr "下次自动登录"
+msgstr "记住登录状态"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/LoginForm.php:67
 #: Documents\GitHub\pi\usr\module\user/src/Form/ResendActivateMailForm.php:39
 msgid "Please type the word."
-msgstr "请输入。"
+msgstr "验证码"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/LoginForm.php:96
@@ -439,13 +439,13 @@ msgstr "确认新密码"
 #: Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:75
 #: Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:71
 msgid "Front role"
-msgstr ""
+msgstr "前台角色"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:84
 #: Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:80
 msgid "Admin role"
-msgstr "管理员组"
+msgstr "后台角色"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:94
@@ -471,7 +471,7 @@ msgstr "名称"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/RoleForm.php:54
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:29
@@ -675,7 +675,7 @@ msgstr "上传"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:20
 msgid "Gavatar"
-msgstr ""
+msgstr "Gavatar"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:25
@@ -753,7 +753,7 @@ msgstr "上传"
 #: Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:8
 #: Documents\GitHub\pi\usr\module\user/template/front/login-success.phtml:8
 msgid "homepage"
-msgstr ""
+msgstr "主页"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:10
@@ -988,7 +988,7 @@ msgstr "快速链接"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/_user-media.phtml:46
 msgid "Setting"
-msgstr "账号设置"
+msgstr "设置"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/_user-media.phtml:72

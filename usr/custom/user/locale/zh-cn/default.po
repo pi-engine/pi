@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-custom-user\n"
 "POT-Creation-Date: 2013-11-15 09:14+0800\n"
-"PO-Revision-Date: 2013-11-15 09:24+0800\n"
+"PO-Revision-Date: 2013-11-15 14:05+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/eefocus.register.php:28
 msgid "Confirm credential"
-msgstr ""
+msgstr "确认密码"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/eefocus.register.php:60
 msgid "Please type the word."
-msgstr ""
+msgstr "验证码"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:20
@@ -179,7 +179,7 @@ msgstr "语言选择"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:99
 msgid "Country"
-msgstr "国家"
+msgstr "地区"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:109
@@ -284,12 +284,12 @@ msgstr "部门"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:275
 msgid "Industry"
-msgstr "所在的行业"
+msgstr "行业"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:282
 msgid "Sector"
-msgstr ""
+msgstr "领域"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:286
@@ -402,28 +402,28 @@ msgstr "Datasheet 5"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:10
 msgid "Change email"
-msgstr ""
+msgstr "修改邮箱"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:15
 msgid "Congratulations!"
-msgstr ""
+msgstr "恭喜！"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:16
 msgid "Your email has been changed."
-msgstr ""
+msgstr "邮箱修改成功。"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:18
 #, php-format
 msgid "<a href=\"%s\">Login right now</a>"
-msgstr ""
+msgstr "<a href=\"%s\">立即登录</a>"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:22
 msgid "Sorry, the link has expired, or maybe your email has been changed."
-msgstr ""
+msgstr "对不起，链接已过期，或邮箱已经修改成功。"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:30
@@ -480,7 +480,7 @@ msgstr "所属社区"
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:174
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:206
 msgid "No content"
-msgstr ""
+msgstr "没有内容"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:103
@@ -530,12 +530,12 @@ msgstr "关系"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-community.phtml:17
 msgid "Point"
-msgstr ""
+msgstr "积分："
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/activity-community.phtml:31
 msgid "You do not join in community"
-msgstr ""
+msgstr "尚未加入社区"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:18
@@ -772,7 +772,7 @@ msgstr "邮件已发送"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/register-profile-complete.phtml:9
 msgid "Complete profile"
-msgstr ""
+msgstr "完善资料"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/template/front/register-resend-activate-mail.phtml:10
