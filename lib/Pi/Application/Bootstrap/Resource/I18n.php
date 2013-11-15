@@ -45,6 +45,19 @@ class I18n extends AbstractResource
         // Preload translations
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->getTranslator();
+
+            // Load global translations
+            $global = !empty($this->options['translator']['global'])
+                ? $this->options['translator']['global']
+                : array();
+            if ($global) {
+                foreach ($global as $domain) {
+                    $translator->load($domain);
+                    // Custom translations
+                    $translator->load('custom/' . $domain);
+                }
+            }
+            /*
             if (!empty($this->options['translator']['global'])) {
                 foreach ((array) $this->options['translator']['global']
                          as $domain
@@ -52,6 +65,7 @@ class I18n extends AbstractResource
                     $translator->load($domain);
                 }
             }
+            */
             // Register listener to load module translation
             if (!empty($this->options['translator']['module'])) {
                 $this->application->getEventManager()->attach(
@@ -76,8 +90,10 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
+        $module = Pi::service('module')->current();
         foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
+            Pi::service('i18n')->load('custom/' . $module . '/' . $domain);
         }
     }
 }
