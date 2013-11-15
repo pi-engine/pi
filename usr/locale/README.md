@@ -49,6 +49,9 @@ Skeleton
     * ...
   * `/zh-cn`
     * ...
+  * `/_source`: placeholder for specified translations
+  * `/custom`: for custom global translations
+
 * `usr/module/system`: Module `system`
   * `/en`
     * `default.mo`: module global, loaded on every request of current module
