@@ -15,6 +15,7 @@ return array(
             'controller'    => 'index',
             'action'        => 'index',
         ),
+        /*
         'notify' => array(
             'label'         => _a('Notification'),
             'route'         => 'default',
@@ -27,5 +28,6 @@ return array(
             'controller'    => 'index',
             'action'        => 'send',
         ),
+        */
     ),
 );
