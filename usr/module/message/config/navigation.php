@@ -9,13 +9,19 @@
 
 return array(
     'front'      => array(
+        /*
         'private' => array(
             'label'         => _a('Private message'),
             'route'         => 'default',
             'controller'    => 'index',
             'action'        => 'index',
         ),
-        /*
+        'archive' => array(
+            'label'         => _a('Archive'),
+            'route'         => 'default',
+            'controller'    => 'index',
+            'action'        => 'archive'
+        ),
         'notify' => array(
             'label'         => _a('Notification'),
             'route'         => 'default',
@@ -28,6 +34,6 @@ return array(
             'controller'    => 'index',
             'action'        => 'send',
         ),
-        */
+    */
     ),
 );
