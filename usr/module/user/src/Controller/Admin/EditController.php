@@ -50,6 +50,11 @@ class EditController extends ActionController
                 // Update user
                 $values = $form->getData();
                 $values['last_modified'] = time();
+                if (isset($values['credential']) &&
+                    !$values['credential']
+                ) {
+                    unset($values['credential']);
+                }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
                 if ($status) {
                     $result['message'] = _a('Edit user info successfully');
@@ -59,6 +64,9 @@ class EditController extends ActionController
             $this->view()->assign('result', $result);
         } else {
             $fieldsData = Pi::api('user', 'user')->get($uid, $fields);
+            if ($fieldsData['credential']) {
+                unset($fieldsData['credential']);
+            }
             $form->setData($fieldsData);
         }
 
@@ -267,24 +275,29 @@ class EditController extends ActionController
         $elements = array();
         $filters  = array();
 
-        $model = $this->getModel('field');
-        $rowset = $model->select(array(
-            'is_edit'    => 1,
-            'is_display' => 1,
-            'active'     => 1,
-            'type <> ?'  => 'compound',
-        ));
+        $meta = Pi::registry('field', 'user')->read();
+        $editFields = array();
+        foreach ($meta as $row) {
+            if ($row['edit'] && !$row['compound']) {
+                $editFields[] = $row;
+            }
+        }
 
-        foreach ($rowset as $row) {
+        foreach ($editFields as $row) {
             $fields[]   = $row['name'];
             $element    = Pi::api('user', 'form')->getElement($row['name']);
+            /*
             $filter     = Pi::api('user', 'form')->getFilter($row['name']);
+            */
             if ($element) {
                 $elements[] = $element;
             }
+
+            /*
             if ($filter) {
                 $filters[] = $filter;
             }
+            */
         }
 
         return array($fields, $elements, $filters);
