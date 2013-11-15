@@ -29,13 +29,21 @@ class AccountController extends ActionController
     public function indexAction()
     {
         // Check login in
-        $uid = Pi::service('user')->getId();
-        if (!$uid) {
-            $this->redirect()->toRoute(
-                '',
-                array('controller' => 'login')
-            );
-            return;
+        Pi::service('authentication')->requireLogin();
+        $uid = Pi::user()->getId();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
 
         // Get identity, email, name

@@ -89,9 +89,21 @@ class AvatarController extends ActionController
      */
     public function indexAction()
     {
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
-        if (empty($uid)) {
-            return $this->jumpToDenied();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
 
         $config = $this->config();
