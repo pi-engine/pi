@@ -31,17 +31,22 @@ class HomeController extends ActionController
         $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
-        $isLogin = Pi::user()->hasIdentity();
-        if (!$isLogin) {
-            $this->jump(
-                array('', array('controller' => 'login', 'action' => 'index')),
-                __('Please login'),
-                5
-            );
-            return;
+        Pi::service('authentication')->requireLogin();
+        $uid = Pi::user()->getId();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
-
-        $uid  = Pi::user()->getId();
         // Get user information
         $user = $this->getUser($uid);
 

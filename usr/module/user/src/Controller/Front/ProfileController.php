@@ -32,19 +32,22 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
-        if (!$uid) {
-            $this->jump(
-                array(
-                    '',
-                    array('controller' => 'login', 'action' => 'index')
-                ),
-                __('Please login'),
-                5
-            );
-            return;
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
-
         // Get user information
         $user = $this->getUser($uid);
 
@@ -133,23 +136,28 @@ class ProfileController extends ActionController
      */
     public function editProfileAction()
     {
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
+        }
+
         $groupId   = $this->params('group', '');
         $result = array(
             'status'  => 0,
             'message' => '',
         );
-
-        // Redirect login page if not logged in
-        if (!$uid) {
-            $this->jump(
-                'user',
-                array('controller' => 'login', 'action' => 'index'),
-                __('Need login'),
-                2
-            );
-        }
-
         // Error hand
         if (!$groupId) {
             return $this->jumpTo404();
@@ -225,19 +233,24 @@ class ProfileController extends ActionController
      */
     public function editCompoundAction()
     {
-        $groupId = $this->params('group', '');
-        $uid     = Pi::service('user')->getId();
-
-        // Redirect login page if not logged in
-        if (!$uid) {
-            $this->jump(
-                'user',
-                array('controller' => 'login', 'action' => 'index'),
-                __('Need login'),
-                2
-            );
+        Pi::service('authentication')->requireLogin();
+        $uid = Pi::user()->getId();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
 
+        $groupId = $this->params('group', '');
         // Get compound name
         $rowset = $this->getModel('display_group')->find($groupId, 'id');
         $compound = $rowset ? $rowset->compound : '';
@@ -278,10 +291,11 @@ class ProfileController extends ActionController
      */
     public function compoundFormAction()
     {
+        Pi::service('authentication')->requireLogin();
+        $uid     = Pi::user()->getId();
         $groupId = _get('groupId');
         $set     = _get('set', '');d($set);
         $set     = $set !== '' ? $set : _get('order');
-        $uid     = Pi::service('user')->getId();
    
         // Get compound name
         $rowset = $this->getModel('display_group')->find($groupId, 'id');
@@ -369,13 +383,14 @@ class ProfileController extends ActionController
      */
     public function editCompoundSetAction()
     {
+        Pi::service('authentication')->requireLogin();
+        $uid        = Pi::user()->getId();
         $groupId    = _post('groupId');
         $row        = $this->getModel('display_group')->find($groupId, 'id');
         $compound   = $row ? $row->compound : '';
         $set        = _post('set');
         $set        = $set !== '' ? $set : _post('order');
-        $uid        = Pi::user()->getId();
-        $result    = array(
+        $result     = array(
             'status' => 0,
         );
 
@@ -414,11 +429,11 @@ class ProfileController extends ActionController
             'message' => ''
         );
 
-        $uid        = Pi::user()->getId();
+        Pi::service('authentication')->requireLogin();
+        $uid     = Pi::user()->getId();
         $groupId = _post('groupId', '');
-        $set        = _post('set');
-
-        $row = $this->getModel('display_group')->find($groupId, 'id');
+        $set     = _post('set');
+        $row     = $this->getModel('display_group')->find($groupId, 'id');
         if (!$row) {
             $result['message'] = 'error';
             return $result;
@@ -458,7 +473,8 @@ class ProfileController extends ActionController
      */
     public function addCompoundItemAction()
     {
-        $uid        = Pi::user()->getId();
+        Pi::service('authentication')->requireLogin();
+        $uid = Pi::user()->getId();
         $groupId = _post('group', '');
 
         if (!$uid || !$groupId) {
