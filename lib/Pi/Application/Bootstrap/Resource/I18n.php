@@ -54,18 +54,9 @@ class I18n extends AbstractResource
                 foreach ($global as $domain) {
                     $translator->load($domain);
                     // Custom translations
-                    $translator->load('custom/' . $domain);
+                    //$translator->load('custom:' . $domain);
                 }
             }
-            /*
-            if (!empty($this->options['translator']['global'])) {
-                foreach ((array) $this->options['translator']['global']
-                         as $domain
-                ) {
-                    $translator->load($domain);
-                }
-            }
-            */
             // Register listener to load module translation
             if (!empty($this->options['translator']['module'])) {
                 $this->application->getEventManager()->attach(
@@ -93,7 +84,7 @@ class I18n extends AbstractResource
         $module = Pi::service('module')->current();
         foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
-            Pi::service('i18n')->load('custom/' . $module . ':' . $domain);
+            //Pi::service('i18n')->load('custom/' . $module . ':' . $domain);
         }
     }
 }

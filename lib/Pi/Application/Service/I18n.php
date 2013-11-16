@@ -524,7 +524,7 @@ namespace Pi\Application\Service
          * @param string $rawDomain
          * @return string[] Pair of component and domain
          */
-        public function normalizeDomain($rawDomain)
+        public function canonizeDomain($rawDomain)
         {
             if (false !== strpos($rawDomain, ':')) {
                 list($component, $domain) = explode(':', $rawDomain, 2);
@@ -547,7 +547,7 @@ namespace Pi\Application\Service
         public function load($domain, $locale = null)
         {
             $domain = is_array($domain)
-                ? $domain : $this->normalizeDomain($domain);
+                ? $domain : $this->canonizeDomain($domain);
             $locale = $locale ?: $this->getLocale();
             $result = $this->getTranslator()->load($domain, $locale);
 
@@ -616,7 +616,7 @@ namespace Pi\Application\Service
                 list($component, $normalizedDomain) = $domain;
             } else {
                 list($component, $normalizedDomain) =
-                    $this->normalizeDomain($domain);
+                    $this->canonizeDomain($domain);
             }
             $locale = (null === $locale) ? $this->getLocale() : $locale;
             $path = sprintf(
@@ -661,7 +661,7 @@ namespace Pi\Application\Service
         public function translate($message, $domain = null, $locale = null)
         {
             if (null !== $domain) {
-                $domain = $this->normalizeDomain($domain);
+                $domain = $this->canonizeDomain($domain);
             }
 
             return $this->getTranslator()->translate(
@@ -868,7 +868,8 @@ namespace
      */
     function __($message, $domain = null, $locale = null)
     {
-        return Pi::service('i18n')->translator
+        //return $message;
+        return Pi::service('i18n')->getTranslator()
             ->translate($message, $domain, $locale);
     }
 
@@ -888,23 +889,29 @@ namespace
     /**
      * Translate a message for block
      *
+     *
      * @param string    $message    The string to be localized
+     * @param string    $domain     (optional) textdomain to use
+     * @param string    $locale     (optional) Locale/Language to use
      * @return string
      */
-    function _b($message)
+    function _b($message, $domain = null, $locale = null)
     {
-        return $message;
+        return __($message, $domain, $locale);
     }
 
     /**
      * Translate a message for admin
      *
+     *
      * @param string    $message    The string to be localized
+     * @param string    $domain     (optional) textdomain to use
+     * @param string    $locale     (optional) Locale/Language to use
      * @return string
      */
-    function _a($message)
+    function _a($message, $domain = null, $locale = null)
     {
-        return $message;
+        return __($message, $domain, $locale);
     }
 
     /**

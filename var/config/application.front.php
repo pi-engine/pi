@@ -38,7 +38,7 @@ return array(
             // Translations to be loaded on bootstrap
             'translator'    => array(
                 // Global available
-                'global'    => array('usr:default'),
+                'global'    => array('default'),
                 // Module wide
                 'module'    => array('default'),
             ),

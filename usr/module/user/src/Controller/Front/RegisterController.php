@@ -582,7 +582,7 @@ class RegisterController extends ActionController
                 );
             } else {
                 $file = sprintf(
-                    '%s/user/config/%s.php',
+                    '%s/module/user/config/%s.php',
                     Pi::path('custom'),
                     $fileName
                 );
@@ -592,7 +592,7 @@ class RegisterController extends ActionController
             $fileName
         ) {
             $file = sprintf(
-                '%s/user/config/%s.php',
+                '%s/module/user/config/%s.php',
                 Pi::path('custom'),
                 $fileName
             );

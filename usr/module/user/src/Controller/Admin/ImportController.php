@@ -35,8 +35,8 @@ class ImportController extends ActionController
      */
     public function doAction()
     {
-        Pi::service('i18n')->load('custom/user:default');
-        $metaFile = Pi::path('custom/user/config/user.php');
+        //Pi::service('i18n')->load('custom/user:default');
+        $metaFile = Pi::path('custom/module/user/config/user.php');
         $meta = include $metaFile;
 
         $resourceHandler = new UserInstaller($meta);

@@ -22,11 +22,11 @@ use Zend\InputFilter\InputFilter;
  *
  * Skeleton
  *
- * - Specs: usr/custom/user/config/user.php
- * - Handler: usr/custom/user/src/Field/<FieldName>.php
- * - Form/Filter: usr/custom/user/src/Form/FieldNameForm.php
- * - schema: usr/custom/user/sql/<field>.sql
- * - locale: usr/custom/user/locale/en/main.csv
+ * - Specs: usr/custom/module/user/config/user.php
+ * - Handler: usr/custom/module/user/src/Field/<FieldName>.php
+ * - Form/Filter: usr/custom/module/user/src/Form/FieldNameForm.php
+ * - schema: usr/custom/module/user/sql/<field>.sql
+ * - locale: usr/custom/module/user/locale/en/main.csv
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -135,7 +135,7 @@ abstract class AbstractCustomHandler
             $file = $this->sqlFile;
             if (!$file) {
                 $file = sprintf(
-                    '%s/user/sql/%s.sql',
+                    '%s/module/user/sql/%s.sql',
                     Pi::path('custom'),
                     $this->getName()
                 );
@@ -381,7 +381,7 @@ abstract class AbstractCustomHandler
         } else {
             $template = $this->template
                 ?: sprintf(
-                    '%s/user/template/field/%s.phtml',
+                    '%s/module/user/template/field/%s.phtml',
                     Pi::path('custom'),
                     $this->getName()
                 );

@@ -54,6 +54,9 @@ class Translator extends ZendTranslator implements ValidatorInterface
     /** @var string File extension */
     protected $extension;
 
+    /** @var array Loaded i18n files */
+    protected $loaded = array();
+
     /**
      * Set translation file extension
      *
@@ -206,7 +209,6 @@ class Translator extends ZendTranslator implements ValidatorInterface
             $textDomain = $this->getTextDomain();
         }
         //d($textDomain);
-
         return parent::translate($message, $textDomain, $locale);
     }
 
@@ -250,8 +252,10 @@ class Translator extends ZendTranslator implements ValidatorInterface
         }
 
         if (isset($this->messages[$textDomain][$locale][$message])) {
+            //d($message);
             return $this->messages[$textDomain][$locale][$message];
         }
+        //d($message);
 
         if (isset($this->messages[''][$locale][$message])) {
             return $this->messages[''][$locale][$message];
@@ -265,49 +269,93 @@ class Translator extends ZendTranslator implements ValidatorInterface
     /**
      * Load translation resource, existent data will be flushed
      *
-     * @param array|string $domain
-     * @param string|null $locale
+     * @param array|string  $rawDomain
+     * @param string|null   $locale
+     * @param bool|null     $custom
+     *
      * @return bool
      */
-    public function load($domain, $locale = null)
+    public function load($rawDomain, $locale = null, $custom = null)
     {
-        // Array of ($textDomain, $file)
-        $domain = is_array($domain)
-            ? $domain : Pi::service('i18n')->normalizeDomain($domain);
-        $this->setTextDomain($domain[0]);
-        $this->setLocale($locale);
+        // Canonize locale
+        $locale = $locale ?: Pi::service('i18n')->getLocale();
 
+        // Canonize domain
+        if (is_array($rawDomain)) {
+            if (!array_key_exists(0, $rawDomain)) {
+                extract($rawDomain);
+            } else {
+                list($domain, $file) = $rawDomain;
+            }
+        } else {
+            list($domain, $file) =
+                Pi::service('i18n')->canonizeDomain($rawDomain);
+        }
+        if ('custom/' == substr($domain, 0, 7)) {
+            $custom = true;
+            $domain = substr($domain, 7);
+        }
+
+        $this->setTextDomain($domain);
+        $this->setLocale($locale);
+        $keyLoaded = sprintf(
+            '%s-%s-%s-%d',
+            $domain,
+            $file,
+            $locale,
+            null === $custom ? -1 : (int) $custom
+        );
+        if (isset($this->loaded[$keyLoaded])) {
+            return $this->loaded[$keyLoaded];
+        }
+        $messages = Pi::registry('i18n')->read(
+            array($domain, $file),
+            $locale,
+            $custom
+        );
+        /*
         $messages = (array) Pi::registry('i18n')
             ->setGenerator(array($this, 'loadResource'))
             ->read($domain, $this->locale);
-        $this->messages[$this->textDomain][$this->locale] =
-            new TextDomain($messages);
-        //$this->messages[$this->textDomain][$this->locale] = $messages;
-        if ($this->textDomain && $messages) {
-            if (!empty($this->messages[''][$this->locale])) {
-                foreach ($messages as $key => $val) {
-                    $this->messages[''][$this->locale]->offsetSet($key, $val);
-                }
+        */
+        if (is_array($messages)) {
+            $textDomain = new TextDomain($messages);
+            if (!empty($this->messages[$this->textDomain][$this->locale])) {
+                $this->messages[$this->textDomain][$this->locale]->merge($textDomain);
             } else {
-                $this->messages[''][$this->locale] = new TextDomain($messages);
+                $this->messages[$this->textDomain][$this->locale] = $textDomain;
             }
-        }
 
-        return $messages ? true : false;
+            //$this->messages[$this->textDomain][$this->locale] = $messages;
+            if ($this->textDomain && $messages) {
+                if (!empty($this->messages[''][$this->locale])) {
+                    $this->messages[''][$this->locale]->merge($textDomain);
+                } else {
+                    $this->messages[''][$this->locale] = $textDomain;
+                }
+            }
+
+            $result = true;
+        } else {
+            $result = false;
+        }
+        $this->loaded[$keyLoaded] = $result;
+
+        return $result;
     }
 
     /**
      * Load translation resource
      *
      * @param array $options
+     *
      * @return array
      * @see Pi\Application\Registry\I18n
      */
     public function loadResource($options)
     {
         $filename = Pi::service('i18n')->getPath(
-            array($options['domain'],
-            $options['file']),
+            array($options['domain'], $options['file']),
             $options['locale']
         ) . '.' . $this->extension;
         try {

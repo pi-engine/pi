@@ -23,7 +23,7 @@ class CarouselTemplate extends Select
         );
         // Load custom templates
         $customPath = sprintf(
-            '%s/widget/template/block/carousel',
+            '%s/module/widget/template/block/carousel',
             Pi::path('custom')
         );
         $iterator = new \DirectoryIterator($customPath);

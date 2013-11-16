@@ -165,17 +165,6 @@ abstract class AbstractRegistry
     }
 
     /**
-     * Normalize value
-     *
-     * @param string $val
-     * @return string
-     */
-    protected function normalizeValue($val)
-    {
-        return str_replace(array(':', '-', '.', '/'), '_', strval($val));
-    }
-
-    /**
      * Create key according to meta
      *
      * @param array $meta
@@ -194,7 +183,7 @@ abstract class AbstractRegistry
                 if (null === $this->roles) {
                     $this->canonizeRole($meta[$var]);
                 }
-                $meta[$var] = implode('_', array_keys($this->roles));
+                $meta[$var] = $this->roles;
             }
             if (null === $meta[$var]) {
                 switch ($var) {
@@ -211,7 +200,16 @@ abstract class AbstractRegistry
                 }
             }
             if (null !== $meta[$var]) {
-                $key .= '_' . $this->normalizeValue($meta[$var]);
+                if (!is_scalar($meta[$var])) {
+                    $val = md5(json_encode($meta[$var]));
+                } else {
+                    $val = str_replace(
+                        array(':', '-', '.', '/'),
+                        '_',
+                        strval($meta[$var])
+                    );
+                }
+                $key .= '_' . $val;
             }
         }
         $key = $key ?: static::TAG;

@@ -50,7 +50,13 @@ Skeleton
   * `/zh-cn`
     * ...
   * `/_source`: placeholder for specified translations
-  * `/custom`: for custom global translations
+* `usr/custom/locale`: Global custom locale
+  * `/en`
+    * `default.mo`: Global, loaded on every request
+    * `timezone.mo`: Timezone
+    * ...
+  * `/zh-cn`
+    * ...
 
 * `usr/module/system`: Module `system`
   * `/en`
