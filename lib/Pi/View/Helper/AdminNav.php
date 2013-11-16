@@ -56,15 +56,15 @@ class AdminNav extends AbstractHelper
 
         $modes = array(
             AdminMode::MODE_ACCESS      => array(
-                'label' => __('Operation'),
+                'label' => __('Operation', 'usr'),
                 //'link'  => '',
             ),
             AdminMode::MODE_ADMIN    => array(
-                'label' => __('Setting'),
+                'label' => __('Setting', 'usr'),
                 //'link'  => '',
             ),
             AdminMode::MODE_DEPLOYMENT => array(
-                'label' => __('Deployment'),
+                'label' => __('Deployment', 'usr'),
                 'link'  => '',
             ),
         );

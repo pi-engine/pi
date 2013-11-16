@@ -208,7 +208,6 @@ class Translator extends ZendTranslator implements ValidatorInterface
         if (null === $textDomain) {
             $textDomain = $this->getTextDomain();
         }
-        //d($textDomain);
         return parent::translate($message, $textDomain, $locale);
     }
 
@@ -252,16 +251,12 @@ class Translator extends ZendTranslator implements ValidatorInterface
         }
 
         if (isset($this->messages[$textDomain][$locale][$message])) {
-            //d($message);
             return $this->messages[$textDomain][$locale][$message];
         }
-        //d($message);
 
         if (isset($this->messages[''][$locale][$message])) {
             return $this->messages[''][$locale][$message];
         }
-
-        //return parent::getTranslatedMessage($message, $locale, $textDomain);
 
         return null;
     }
@@ -326,12 +321,11 @@ class Translator extends ZendTranslator implements ValidatorInterface
                 $this->messages[$this->textDomain][$this->locale] = $textDomain;
             }
 
-            //$this->messages[$this->textDomain][$this->locale] = $messages;
             if ($this->textDomain && $messages) {
                 if (!empty($this->messages[''][$this->locale])) {
                     $this->messages[''][$this->locale]->merge($textDomain);
                 } else {
-                    $this->messages[''][$this->locale] = $textDomain;
+                    $this->messages[''][$this->locale] = clone $textDomain;
                 }
             }
 
