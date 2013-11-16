@@ -34,7 +34,7 @@ class Locale extends Select
             $iterator = new \DirectoryIterator(
                 Pi::service('i18n')->getPath('', '')
             );
-            Pi::service('i18n')->load('locale/language');
+            Pi::service('i18n')->load('language');
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                     continue;

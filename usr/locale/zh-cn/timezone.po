@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
-"POT-Creation-Date: 2013-11-10 16:25+0800\n"
-"PO-Revision-Date: 2013-11-10 16:25+0800\n"
+"POT-Creation-Date: 2013-11-16 16:54+0800\n"
+"PO-Revision-Date: 2013-11-16 17:04+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,1637 +11,1637 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\locale\\_source"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\custom\\usr\\locale\\_source"
 "\\Timezone\n"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:18
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:16
 msgid "Africa/Abidjan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:19
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:17
 msgid "Africa/Accra"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:20
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:18
 msgid "Africa/Addis_Ababa"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:21
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:19
 msgid "Africa/Algiers"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:22
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:20
 msgid "Africa/Asmara"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:23
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:21
 msgid "Africa/Bamako"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:24
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:22
 msgid "Africa/Bangui"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:25
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:23
 msgid "Africa/Banjul"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:26
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:24
 msgid "Africa/Bissau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:27
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:25
 msgid "Africa/Blantyre"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:28
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:26
 msgid "Africa/Brazzaville"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:29
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:27
 msgid "Africa/Bujumbura"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:30
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:28
 msgid "Africa/Cairo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:31
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:29
 msgid "Africa/Casablanca"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:32
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:30
 msgid "Africa/Ceuta"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:33
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:31
 msgid "Africa/Conakry"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:34
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:32
 msgid "Africa/Dakar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:35
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:33
 msgid "Africa/Dar_es_Salaam"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:36
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:34
 msgid "Africa/Djibouti"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:37
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:35
 msgid "Africa/Douala"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:38
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:36
 msgid "Africa/El_Aaiun"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:39
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:37
 msgid "Africa/Freetown"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:40
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:38
 msgid "Africa/Gaborone"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:41
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:39
 msgid "Africa/Harare"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:42
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:40
 msgid "Africa/Johannesburg"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:43
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:41
 msgid "Africa/Kampala"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:44
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:42
 msgid "Africa/Khartoum"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:45
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:43
 msgid "Africa/Kigali"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:46
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:44
 msgid "Africa/Kinshasa"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:47
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:45
 msgid "Africa/Lagos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:48
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:46
 msgid "Africa/Libreville"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:49
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:47
 msgid "Africa/Lome"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:50
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:48
 msgid "Africa/Luanda"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:51
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:49
 msgid "Africa/Lubumbashi"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:52
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:50
 msgid "Africa/Lusaka"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:53
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:51
 msgid "Africa/Malabo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:54
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:52
 msgid "Africa/Maputo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:55
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:53
 msgid "Africa/Maseru"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:56
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:54
 msgid "Africa/Mbabane"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:57
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:55
 msgid "Africa/Mogadishu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:58
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:56
 msgid "Africa/Monrovia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:59
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:57
 msgid "Africa/Nairobi"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:60
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:58
 msgid "Africa/Ndjamena"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:61
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:59
 msgid "Africa/Niamey"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:62
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:60
 msgid "Africa/Nouakchott"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:63
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:61
 msgid "Africa/Ouagadougou"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:64
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:62
 msgid "Africa/Porto-Novo-Novo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:65
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:63
 msgid "Africa/Sao_Tome"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:66
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:64
 msgid "Africa/Tripoli"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:67
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:65
 msgid "Africa/Tunis"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:68
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:66
 msgid "Africa/Windhoek"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:69
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:67
 msgid "America/Adak"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:70
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:68
 msgid "America/Anchorage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:71
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:69
 msgid "America/Anguilla"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:72
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:70
 msgid "America/Antigua"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:73
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:71
 msgid "America/Araguaina"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:74
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:72
 msgid "America/Argentina/Buenos_Aires"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:75
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:73
 msgid "America/Argentina/Catamarca"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:76
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:74
 msgid "America/Argentina/Cordoba"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:77
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:75
 msgid "America/Argentina/Jujuy"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:78
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:76
 msgid "America/Argentina/La_Rioja"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:79
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:77
 msgid "America/Argentina/Mendoza"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:80
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:78
 msgid "America/Argentina/Rio_Gallegos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:81
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:79
 msgid "America/Argentina/Salta"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:82
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:80
 msgid "America/Argentina/San_Juan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:83
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:81
 msgid "America/Argentina/San_Luis"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:84
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:82
 msgid "America/Argentina/Tucuman"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:85
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:83
 msgid "America/Argentina/Ushuaia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:86
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:84
 msgid "America/Aruba"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:87
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:85
 msgid "America/Asuncion"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:88
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:86
 msgid "America/Atikokan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:89
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:87
 msgid "America/Bahia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:90
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:88
 msgid "America/Bahia_Banderas"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:91
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:89
 msgid "America/Barbados"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:92
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:90
 msgid "America/Belem"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:93
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:91
 msgid "America/Belize"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:94
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:92
 msgid "America/Blanc-Sablon-Sablon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:95
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:93
 msgid "America/Boa_Vista"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:96
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:94
 msgid "America/Bogota"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:97
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:95
 msgid "America/Boise"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:98
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:96
 msgid "America/Cambridge_Bay"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:99
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:97
 msgid "America/Campo_Grande"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:100
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:98
 msgid "America/Cancun"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:101
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:99
 msgid "America/Caracas"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:102
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:100
 msgid "America/Cayenne"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:103
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:101
 msgid "America/Cayman"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:104
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:102
 msgid "America/Chicago"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:105
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:103
 msgid "America/Chihuahua"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:106
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:104
 msgid "America/Costa_Rica"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:107
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:105
 msgid "America/Cuiaba"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:108
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:106
 msgid "America/Curacao"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:109
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:107
 msgid "America/Danmarkshavn"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:110
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:108
 msgid "America/Dawson"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:111
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:109
 msgid "America/Dawson_Creek"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:112
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:110
 msgid "America/Denver"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:113
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:111
 msgid "America/Detroit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:114
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:112
 msgid "America/Dominica"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:115
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:113
 msgid "America/Edmonton"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:116
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:114
 msgid "America/Eirunepe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:117
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:115
 msgid "America/El_Salvador"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:118
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:116
 msgid "America/Fortaleza"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:119
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:117
 msgid "America/Glace_Bay"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:120
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:118
 msgid "America/Godthab"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:121
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:119
 msgid "America/Goose_Bay"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:122
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:120
 msgid "America/Grand_Turk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:123
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:121
 msgid "America/Grenada"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:124
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:122
 msgid "America/Guadeloupe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:125
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:123
 msgid "America/Guatemala"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:126
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:124
 msgid "America/Guayaquil"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:127
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:125
 msgid "America/Guyana"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:128
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:126
 msgid "America/Halifax"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:129
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:127
 msgid "America/Havana"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:130
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:128
 msgid "America/Hermosillo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:131
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:129
 msgid "America/Indiana/Indianapolis"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:132
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:130
 msgid "America/Indiana/Knox"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:133
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:131
 msgid "America/Indiana/Marengo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:134
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:132
 msgid "America/Indiana/Petersburg"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:135
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:133
 msgid "America/Indiana/Tell_City"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:136
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:134
 msgid "America/Indiana/Vevay"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:137
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:135
 msgid "America/Indiana/Vincennes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:138
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:136
 msgid "America/Indiana/Winamac"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:139
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:137
 msgid "America/Inuvik"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:140
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:138
 msgid "America/Iqaluit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:141
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:139
 msgid "America/Jamaica"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:142
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:140
 msgid "America/Juneau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:143
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:141
 msgid "America/Kentucky/Louisville"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:144
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:142
 msgid "America/Kentucky/Monticello"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:145
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:143
 msgid "America/La_Paz"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:146
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:144
 msgid "America/Lima"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:147
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:145
 msgid "America/Los_Angeles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:148
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:146
 msgid "America/Maceio"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:149
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:147
 msgid "America/Managua"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:150
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:148
 msgid "America/Manaus"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:151
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:149
 msgid "America/Marigot"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:152
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:150
 msgid "America/Martinique"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:153
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:151
 msgid "America/Matamoros"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:154
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:152
 msgid "America/Mazatlan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:155
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:153
 msgid "America/Menominee"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:156
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:154
 msgid "America/Merida"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:157
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:155
 msgid "America/Mexico_City"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:158
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:156
 msgid "America/Miquelon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:159
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:157
 msgid "America/Moncton"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:160
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:158
 msgid "America/Monterrey"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:161
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:159
 msgid "America/Montevideo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:162
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:160
 msgid "America/Montreal"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:163
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:161
 msgid "America/Montserrat"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:164
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:162
 msgid "America/Nassau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:165
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:163
 msgid "America/New_York"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:166
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:164
 msgid "America/Nipigon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:167
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:165
 msgid "America/Nome"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:168
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:166
 msgid "America/Noronha"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:169
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:167
 msgid "America/North_Dakota/Center"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:170
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:168
 msgid "America/North_Dakota/New_Salem"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:171
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:169
 msgid "America/Ojinaga"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:172
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:170
 msgid "America/Panama"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:173
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:171
 msgid "America/Pangnirtung"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:174
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:172
 msgid "America/Paramaribo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:175
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:173
 msgid "America/Phoenix"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:176
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:174
 msgid "America/Port-au-Prince-au-Prince"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:177
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:175
 msgid "America/Port_of_Spain"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:178
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:176
 msgid "America/Porto_Velho"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:179
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:177
 msgid "America/Puerto_Rico"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:180
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:178
 msgid "America/Rainy_River"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:181
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:179
 msgid "America/Rankin_Inlet"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:182
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:180
 msgid "America/Recife"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:183
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:181
 msgid "America/Regina"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:184
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:182
 msgid "America/Resolute"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:185
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:183
 msgid "America/Rio_Branco"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:186
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:184
 msgid "America/Santa_Isabel"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:187
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:185
 msgid "America/Santarem"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:188
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:186
 msgid "America/Santiago"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:189
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:187
 msgid "America/Santo_Domingo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:190
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:188
 msgid "America/Sao_Paulo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:191
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:189
 msgid "America/Scoresbysund"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:192
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:190
 msgid "America/Shiprock"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:193
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:191
 msgid "America/St_Barthelemy"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:194
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:192
 msgid "America/St_Johns"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:195
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:193
 msgid "America/St_Kitts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:196
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:194
 msgid "America/St_Lucia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:197
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:195
 msgid "America/St_Thomas"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:198
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:196
 msgid "America/St_Vincent"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:199
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:197
 msgid "America/Swift_Current"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:200
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:198
 msgid "America/Tegucigalpa"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:201
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:199
 msgid "America/Thule"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:202
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:200
 msgid "America/Thunder_Bay"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:203
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:201
 msgid "America/Tijuana"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:204
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:202
 msgid "America/Toronto"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:205
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:203
 msgid "America/Tortola"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:206
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:204
 msgid "America/Vancouver"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:207
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:205
 msgid "America/Whitehorse"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:208
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:206
 msgid "America/Winnipeg"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:209
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:207
 msgid "America/Yakutat"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:210
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:208
 msgid "America/Yellowknife"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:211
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:209
 msgid "Antarctica/Casey"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:212
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:210
 msgid "Antarctica/Davis"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:213
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:211
 msgid "Antarctica/DumontDUrville"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:214
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:212
 msgid "Antarctica/Macquarie"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:215
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:213
 msgid "Antarctica/Mawson"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:216
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:214
 msgid "Antarctica/McMurdo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:217
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:215
 msgid "Antarctica/Palmer"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:218
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:216
 msgid "Antarctica/Rothera"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:219
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:217
 msgid "Antarctica/South_Pole"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:220
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:218
 msgid "Antarctica/Syowa"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:221
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:219
 msgid "Antarctica/Vostok"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:222
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:220
 msgid "Arctic/Longyearbyen"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:223
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:221
 msgid "Asia/Aden"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:224
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:222
 msgid "Asia/Almaty"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:225
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:223
 msgid "Asia/Amman"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:226
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:224
 msgid "Asia/Anadyr"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:227
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:225
 msgid "Asia/Aqtau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:228
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:226
 msgid "Asia/Aqtobe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:229
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:227
 msgid "Asia/Ashgabat"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:230
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:228
 msgid "Asia/Baghdad"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:231
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:229
 msgid "Asia/Bahrain"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:232
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:230
 msgid "Asia/Baku"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:233
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:231
 msgid "Asia/Bangkok"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:234
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:232
 msgid "Asia/Beirut"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:235
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:233
 msgid "Asia/Bishkek"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:236
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:234
 msgid "Asia/Brunei"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:237
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:235
 msgid "Asia/Choibalsan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:238
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:236
 msgid "Asia/Chongqing"
-msgstr ""
+msgstr "重庆"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:239
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:237
 msgid "Asia/Colombo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:240
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:238
 msgid "Asia/Damascus"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:241
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:239
 msgid "Asia/Dhaka"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:242
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:240
 msgid "Asia/Dili"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:243
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:241
 msgid "Asia/Dubai"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:244
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:242
 msgid "Asia/Dushanbe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:245
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:243
 msgid "Asia/Gaza"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:246
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:244
 msgid "Asia/Harbin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:247
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:245
 msgid "Asia/Ho_Chi_Minh"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:248
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:246
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "香港"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:249
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:247
 msgid "Asia/Hovd"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:250
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:248
 msgid "Asia/Irkutsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:251
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:249
 msgid "Asia/Jakarta"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:252
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:250
 msgid "Asia/Jayapura"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:253
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:251
 msgid "Asia/Jerusalem"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:254
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:252
 msgid "Asia/Kabul"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:255
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:253
 msgid "Asia/Kamchatka"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:256
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:254
 msgid "Asia/Karachi"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:257
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:255
 msgid "Asia/Kashgar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:258
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:256
 msgid "Asia/Kathmandu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:259
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:257
 msgid "Asia/Kolkata"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:260
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:258
 msgid "Asia/Krasnoyarsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:261
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:259
 msgid "Asia/Kuala_Lumpur"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:262
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:260
 msgid "Asia/Kuching"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:263
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:261
 msgid "Asia/Kuwait"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:264
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:262
 msgid "Asia/Macau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:265
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:263
 msgid "Asia/Magadan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:266
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:264
 msgid "Asia/Makassar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:267
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:265
 msgid "Asia/Manila"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:268
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:266
 msgid "Asia/Muscat"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:269
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:267
 msgid "Asia/Nicosia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:270
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:268
 msgid "Asia/Novokuznetsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:271
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:269
 msgid "Asia/Novosibirsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:272
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:270
 msgid "Asia/Omsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:273
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:271
 msgid "Asia/Oral"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:274
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:272
 msgid "Asia/Phnom_Penh"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:275
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:273
 msgid "Asia/Pontianak"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:276
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:274
 msgid "Asia/Pyongyang"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:277
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:275
 msgid "Asia/Qatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:278
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:276
 msgid "Asia/Qyzylorda"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:279
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:277
 msgid "Asia/Rangoon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:280
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:278
 msgid "Asia/Riyadh"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:281
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:279
 msgid "Asia/Sakhalin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:282
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:280
 msgid "Asia/Samarkand"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:283
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:281
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "首尔"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:284
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:282
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "上海"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:285
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:283
 msgid "Asia/Singapore"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:286
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:284
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "台北"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:287
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:285
 msgid "Asia/Tashkent"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:288
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:286
 msgid "Asia/Tbilisi"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:289
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:287
 msgid "Asia/Tehran"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:290
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:288
 msgid "Asia/Thimphu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:291
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:289
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "东京"
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:292
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:290
 msgid "Asia/Ulaanbaatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:293
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:291
 msgid "Asia/Urumqi"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:294
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:292
 msgid "Asia/Vientiane"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:295
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:293
 msgid "Asia/Vladivostok"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:296
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:294
 msgid "Asia/Yakutsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:297
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:295
 msgid "Asia/Yekaterinburg"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:298
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:296
 msgid "Asia/Yerevan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:299
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:297
 msgid "Atlantic/Azores"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:300
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:298
 msgid "Atlantic/Bermuda"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:301
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:299
 msgid "Atlantic/Canary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:302
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:300
 msgid "Atlantic/Cape_Verde"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:303
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:301
 msgid "Atlantic/Faroe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:304
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:302
 msgid "Atlantic/Madeira"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:305
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:303
 msgid "Atlantic/Reykjavik"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:306
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:304
 msgid "Atlantic/South_Georgia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:307
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:305
 msgid "Atlantic/St_Helena"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:308
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:306
 msgid "Atlantic/Stanley"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:309
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:307
 msgid "Australia/Adelaide"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:310
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:308
 msgid "Australia/Brisbane"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:311
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:309
 msgid "Australia/Broken_Hill"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:312
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:310
 msgid "Australia/Currie"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:313
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:311
 msgid "Australia/Darwin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:314
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:312
 msgid "Australia/Eucla"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:315
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:313
 msgid "Australia/Hobart"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:316
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:314
 msgid "Australia/Lindeman"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:317
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:315
 msgid "Australia/Lord_Howe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:318
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:316
 msgid "Australia/Melbourne"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:319
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:317
 msgid "Australia/Perth"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:320
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:318
 msgid "Australia/Sydney"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:321
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:319
 msgid "Europe/Amsterdam"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:322
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:320
 msgid "Europe/Andorra"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:323
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:321
 msgid "Europe/Athens"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:324
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:322
 msgid "Europe/Belgrade"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:325
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:323
 msgid "Europe/Berlin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:326
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:324
 msgid "Europe/Bratislava"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:327
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:325
 msgid "Europe/Brussels"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:328
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:326
 msgid "Europe/Bucharest"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:329
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:327
 msgid "Europe/Budapest"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:330
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:328
 msgid "Europe/Chisinau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:331
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:329
 msgid "Europe/Copenhagen"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:332
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:330
 msgid "Europe/Dublin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:333
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:331
 msgid "Europe/Gibraltar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:334
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:332
 msgid "Europe/Guernsey"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:335
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:333
 msgid "Europe/Helsinki"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:336
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:334
 msgid "Europe/Isle_of_Man"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:337
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:335
 msgid "Europe/Istanbul"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:338
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:336
 msgid "Europe/Jersey"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:339
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:337
 msgid "Europe/Kaliningrad"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:340
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:338
 msgid "Europe/Kiev"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:341
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:339
 msgid "Europe/Lisbon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:342
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:340
 msgid "Europe/Ljubljana"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:343
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:341
 msgid "Europe/London"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:344
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:342
 msgid "Europe/Luxembourg"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:345
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:343
 msgid "Europe/Madrid"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:346
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:344
 msgid "Europe/Malta"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:347
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:345
 msgid "Europe/Mariehamn"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:348
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:346
 msgid "Europe/Minsk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:349
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:347
 msgid "Europe/Monaco"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:350
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:348
 msgid "Europe/Moscow"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:351
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:349
 msgid "Europe/Oslo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:352
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:350
 msgid "Europe/Paris"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:353
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:351
 msgid "Europe/Podgorica"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:354
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:352
 msgid "Europe/Prague"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:355
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:353
 msgid "Europe/Riga"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:356
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:354
 msgid "Europe/Rome"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:357
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:355
 msgid "Europe/Samara"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:358
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:356
 msgid "Europe/San_Marino"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:359
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:357
 msgid "Europe/Sarajevo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:360
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:358
 msgid "Europe/Simferopol"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:361
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:359
 msgid "Europe/Skopje"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:362
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:360
 msgid "Europe/Sofia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:363
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:361
 msgid "Europe/Stockholm"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:364
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:362
 msgid "Europe/Tallinn"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:365
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:363
 msgid "Europe/Tirane"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:366
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:364
 msgid "Europe/Uzhgorod"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:367
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:365
 msgid "Europe/Vaduz"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:368
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:366
 msgid "Europe/Vatican"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:369
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:367
 msgid "Europe/Vienna"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:370
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:368
 msgid "Europe/Vilnius"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:371
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:369
 msgid "Europe/Volgograd"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:372
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:370
 msgid "Europe/Warsaw"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:373
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:371
 msgid "Europe/Zagreb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:374
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:372
 msgid "Europe/Zaporozhye"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:375
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:373
 msgid "Europe/Zurich"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:376
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:374
 msgid "Indian/Antananarivo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:377
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:375
 msgid "Indian/Chagos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:378
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:376
 msgid "Indian/Christmas"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:379
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:377
 msgid "Indian/Cocos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:380
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:378
 msgid "Indian/Comoro"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:381
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:379
 msgid "Indian/Kerguelen"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:382
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:380
 msgid "Indian/Mahe"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:383
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:381
 msgid "Indian/Maldives"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:384
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:382
 msgid "Indian/Mauritius"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:385
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:383
 msgid "Indian/Mayotte"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:386
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:384
 msgid "Indian/Reunion"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:387
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:385
 msgid "Pacific/Apia"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:388
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:386
 msgid "Pacific/Auckland"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:389
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:387
 msgid "Pacific/Chatham"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:390
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:388
 msgid "Pacific/Chuuk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:391
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:389
 msgid "Pacific/Easter"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:392
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:390
 msgid "Pacific/Efate"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:393
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:391
 msgid "Pacific/Enderbury"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:394
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:392
 msgid "Pacific/Fakaofo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:395
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:393
 msgid "Pacific/Fiji"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:396
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:394
 msgid "Pacific/Funafuti"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:397
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:395
 msgid "Pacific/Galapagos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:398
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:396
 msgid "Pacific/Gambier"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:399
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:397
 msgid "Pacific/Guadalcanal"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:400
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:398
 msgid "Pacific/Guam"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:401
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:399
 msgid "Pacific/Honolulu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:402
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:400
 msgid "Pacific/Johnston"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:403
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:401
 msgid "Pacific/Kiritimati"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:404
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:402
 msgid "Pacific/Kosrae"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:405
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:403
 msgid "Pacific/Kwajalein"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:406
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:404
 msgid "Pacific/Majuro"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:407
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:405
 msgid "Pacific/Marquesas"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:408
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:406
 msgid "Pacific/Midway"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:409
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:407
 msgid "Pacific/Nauru"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:410
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:408
 msgid "Pacific/Niue"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:411
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:409
 msgid "Pacific/Norfolk"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:412
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:410
 msgid "Pacific/Noumea"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:413
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:411
 msgid "Pacific/Pago_Pago"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:414
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:412
 msgid "Pacific/Palau"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:415
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:413
 msgid "Pacific/Pitcairn"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:416
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:414
 msgid "Pacific/Pohnpei"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:417
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:415
 msgid "Pacific/Port_Moresby"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:418
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:416
 msgid "Pacific/Rarotonga"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:419
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:417
 msgid "Pacific/Saipan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:420
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:418
 msgid "Pacific/Tahiti"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:421
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:419
 msgid "Pacific/Tarawa"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:422
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:420
 msgid "Pacific/Tongatapu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:423
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:421
 msgid "Pacific/Wake"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:424
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:422
 msgid "Pacific/Wallis"
 msgstr ""
 
-#: C:\wamp\www\master\usr\locale\_source\Timezone/Timezone.php:425
+#: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:423
 msgid "UTC"
 msgstr ""
