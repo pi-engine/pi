@@ -41,7 +41,7 @@ class Autoloader
     /**
      * Directory for module and extra custom source code.
      * Module classes are located in `/usr/module/<module-name>/src/`
-     * and custom classes in `/usr/custom/<module-name>/src/`
+     * and custom classes in `/usr/custom/module/<module-name>/src/`
      * @var string
      */
     const MODULE_SOURCE_DIRECTORY = 'src';
