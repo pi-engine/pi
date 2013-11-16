@@ -27,15 +27,21 @@ class PrivacyController extends ActionController
      */
     public function indexAction()
     {
-        // Redirect login page if not logged in
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
-        if (!$uid) {
-            $this->jump(
-                'user',
-                array('controller' => 'login', 'action' => 'index'),
-                __('Need login'),
-                2
-            );
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
         }
 
         if ($this->request->isPost()) {

@@ -32,12 +32,11 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
-        // If already login
         if (Pi::user()->getId()) {
-            return $this->jump(array(
-                'controller'    => 'profile',
-                'action'        => 'index'
-            ));
+            $this->redirect()->toRoute(
+                'home'
+            );
+            return;
         }
 
         $result = array(
@@ -139,6 +138,13 @@ class RegisterController extends ActionController
 
     public function completeAction()
     {
+        if (Pi::user()->getId()) {
+            $this->redirect()->toRoute(
+                'home'
+            );
+            return;
+        }
+
         $registerCompleteFormConfig = $this->config('register_complete_form');
         if (!$registerCompleteFormConfig ||
             !$this->request->isPost()
@@ -477,19 +483,8 @@ class RegisterController extends ActionController
         if (!$profileCompleteFormConfig) {
             $this->jumpTo404(__('An error occur'));
         }
-
-        // Check login
-        if (!Pi::service('user')->hasIdentity()) {
-            $this->redirect()->toUrl($this->url('',
-                array(
-                    'controller' => 'login',
-                    'action'     => 'index',
-                )
-            ));
-        }
-
-        // Get uid
-        $uid = Pi::service('user')->getId();
+        Pi::service('authentication')->requireLogin();
+        $uid = Pi::user()->getId();
 
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm(

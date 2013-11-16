@@ -32,25 +32,27 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
+        // Check profile complete
+        if ($this->config('profile_complete_form')) {
+            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
+            if (!$completeProfile) {
+                $this->redirect()->toRoute(
+                    'user',
+                    array(
+                        'controller' => 'register',
+                        'action' => 'profile.complete',
+                    )
+                );
+                return;
+            }
+        }
+
         $result = array(
             'status' => 0,
             'message' => __('Reset password failed'),
         );
-
-        // Redirect login page if not logged in
-        if (!$uid) {
-            $this->jump(
-                array(
-                    '',
-                    'controller' => 'login',
-                    'action'     => 'index',
-                ),
-                __('Change password need login'),
-                3
-            );
-            return;
-        }
 
         $form = new PasswordForm('password-change');
         if ($this->request->isPost()) {
