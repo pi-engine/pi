@@ -251,7 +251,12 @@ class PostController extends ActionController
             } else {
                 $redirect = Pi::service('url')->assemble('comment');
             }
-            $this->jump($redirect, $result['message']);
+
+            if ($result['data']) {
+                $this->redirect($redirect . '#comment-' . $result['data']);
+            } else {
+                $this->jump($redirect, $result['message']);
+            }
         } else {
             return $result;
         }
