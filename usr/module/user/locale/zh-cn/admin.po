@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2013-11-15 11:26+0800\n"
-"PO-Revision-Date: 2013-11-15 11:51+0800\n"
+"PO-Revision-Date: 2013-11-17 13:51+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr ""
 #: Z:\test\usr\module\user/config/module.php:17
 #: Z:\test\usr\module\user/config/nav.php:21
 msgid "User"
-msgstr "用户管理"
+msgstr "用户"
 
 #: Z:\test\usr\module\user/config/module.php:18
 msgid "User profile and services."
-msgstr "用户信息和服务。"
+msgstr "用户资料和管理服务。"
 
 #: Z:\test\usr\module\user/config/permission.php:18
 #: Z:\test\usr\module\user/config/config.php:27
@@ -29,7 +29,7 @@ msgstr "用户账号"
 
 #: Z:\test\usr\module\user/config/permission.php:24
 msgid "User profile"
-msgstr "用户信息"
+msgstr "用户资料"
 
 #: Z:\test\usr\module\user/config/permission.php:30
 msgid "Roles"
@@ -112,7 +112,7 @@ msgstr "头像"
 #: Z:\test\usr\module\user/template/admin/user.phtml:72
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:60
 msgid "Active"
-msgstr "激活"
+msgstr "可用"
 
 #: Z:\test\usr\module\user/config/user.php:146
 #: Z:\test\usr\module\user/template/admin/user.phtml:56
@@ -184,16 +184,16 @@ msgstr "退出"
 #: Z:\test\usr\module\user/config/nav.php:41
 #: Z:\test\usr\module\user/template/admin/user.phtml:55
 msgid "Role"
-msgstr "角色管理"
+msgstr "角色"
 
 #: Z:\test\usr\module\user/config/nav.php:74
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:30
 msgid "Profile"
-msgstr "用户信息"
+msgstr "资料"
 
 #: Z:\test\usr\module\user/config/nav.php:85
 msgid "Form"
-msgstr "从"
+msgstr "表单"
 
 #: Z:\test\usr\module\user/config/nav.php:119
 msgid "Inquiry"
@@ -211,7 +211,7 @@ msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:34
 msgid "Number of items on list page."
-msgstr "页面展示数"
+msgstr "页面展示项目数"
 
 #: Z:\test\usr\module\user/config/config.php:39
 msgid "Register form config file name"
@@ -256,11 +256,11 @@ msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:74
 msgid "Minimum username"
-msgstr "最小用户名长度"
+msgstr "用户名最小长度"
 
 #: Z:\test\usr\module\user/config/config.php:75
 msgid "Minimum length of username for user registration"
-msgstr "用户注册的用户名最小长度"
+msgstr "用户注册时用户名最小长度"
 
 #: Z:\test\usr\module\user/config/config.php:82
 msgid "Maximum username"
@@ -276,7 +276,7 @@ msgstr "昵称规则"
 
 #: Z:\test\usr\module\user/config/config.php:90
 msgid "Format of display name for registration."
-msgstr "注册时昵称规则。"
+msgstr "注册昵称规则。"
 
 #: Z:\test\usr\module\user/config/config.php:107
 msgid "Minmum display name"
@@ -300,7 +300,7 @@ msgstr "密码最小长度"
 
 #: Z:\test\usr\module\user/config/config.php:124
 msgid "Minimum length of password for user registration"
-msgstr "用户注册密码最小长度"
+msgstr "用户注册时密码最小长度"
 
 #: Z:\test\usr\module\user/config/config.php:131
 msgid "Maximum password"
@@ -308,7 +308,7 @@ msgstr "密码最大长度"
 
 #: Z:\test\usr\module\user/config/config.php:132
 msgid "Maximum length of password for user registration"
-msgstr "用户注册密码最大长度"
+msgstr "用户注册时密码最大长度"
 
 #: Z:\test\usr\module\user/config/config.php:139
 msgid "Username backlist"
@@ -333,7 +333,7 @@ msgstr "邮箱黑名单"
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
-msgstr ""
+msgstr "禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
 #: Z:\test\usr\module\user/config/config.php:163
 msgid "Remember me"
@@ -341,7 +341,7 @@ msgstr "自动登录"
 
 #: Z:\test\usr\module\user/config/config.php:164
 msgid "Days to remember login, 0 for disable."
-msgstr "账号保持时间，0是关闭。"
+msgstr "账号保持登录状态时间，0是不保持。"
 
 #: Z:\test\usr\module\user/config/config.php:171
 msgid "Maximum attempts"
@@ -349,11 +349,11 @@ msgstr "最大尝试次数"
 
 #: Z:\test\usr\module\user/config/config.php:172
 msgid "Maximum attempts allowed to try for user login"
-msgstr "用户登录的最大尝试次数"
+msgstr "用户登录时的最大尝试次数"
 
 #: Z:\test\usr\module\user/config/config.php:179
 msgid "Login disable"
-msgstr "登录关闭"
+msgstr "关闭登录"
 
 #: Z:\test\usr\module\user/config/config.php:180
 msgid "Disable user login"
@@ -373,7 +373,7 @@ msgstr "登录验证码"
 
 #: Z:\test\usr\module\user/config/config.php:198
 msgid "Enable CAPTCHA for user login"
-msgstr "打开用户登录验证码"
+msgstr "启用登录验证码"
 
 #: Z:\test\usr\module\user/config/config.php:206
 msgid "Register CAPTCHA"
@@ -381,7 +381,7 @@ msgstr "注册验证码"
 
 #: Z:\test\usr\module\user/config/config.php:207
 msgid "Enable CAPTCHA for user registration"
-msgstr "打开用户注册验证码"
+msgstr "启用注册验证码"
 
 #: Z:\test\usr\module\user/config/config.php:217
 msgid "Max Avatar Width"
@@ -389,7 +389,7 @@ msgstr "头像最大宽度"
 
 #: Z:\test\usr\module\user/config/config.php:218
 msgid "Allowed image width, 0 for no limit"
-msgstr "允许的图片宽度，0到无限"
+msgstr "最大图片宽度，0代表无限制"
 
 #: Z:\test\usr\module\user/config/config.php:224
 msgid "Max Avatar Height"
@@ -397,7 +397,7 @@ msgstr "头像最大高度"
 
 #: Z:\test\usr\module\user/config/config.php:225
 msgid "Allowed image height, 0 for no limit"
-msgstr ""
+msgstr "最大图片高度，0代表无限制"
 
 #: Z:\test\usr\module\user/config/config.php:231
 msgid "Max File Size"
@@ -409,11 +409,11 @@ msgstr ""
 
 #: Z:\test\usr\module\user/config/config.php:247
 msgid "Temporary Path"
-msgstr ""
+msgstr "临时路径"
 
 #: Z:\test\usr\module\user/config/config.php:248
 msgid "For temporary storage of avatar"
-msgstr ""
+msgstr "用于临时储存头像"
 
 #: Z:\test\usr\module\user/config/register.php:28
 msgid "Confirm credential"
@@ -425,15 +425,15 @@ msgstr "验证码"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:109
 msgid "User removed from the role."
-msgstr "用户已从该角色移除。"
+msgstr "已从该角色中移除用户。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:113
 msgid "User not in the role."
-msgstr "用户不在该角色"
+msgstr "用户不在该角色内。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:122
 msgid "User added to the role."
-msgstr "用户已添加到本角色"
+msgstr "已添加用户到本角色"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/RoleController.php:133
 msgid "User already in the role."
@@ -454,7 +454,7 @@ msgstr "添加用户失败：该用户已存在。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:258
 msgid "Add user failed: invalid operation."
-msgstr "添加用户失败：操作失败。"
+msgstr "添加用户失败：不合法操作。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:278
 msgid "Add user successfully"
@@ -462,16 +462,16 @@ msgstr "添加用户成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:409
 msgid "Enable user failed: invalid uid"
-msgstr "激活用户失败：UID错误"
+msgstr "启用用户失败：UID错误"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:425
 #, php-format
 msgid "%d enable user successfully"
-msgstr "激活 %d 用户成功"
+msgstr "启用 %d 用户成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:445
 msgid "Disable user failed: invalid uid"
-msgstr "锁定用户失败：UID不存在"
+msgstr "禁用用户失败：UID不存在"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:461
 #, php-format
@@ -495,19 +495,19 @@ msgstr "用户激活失败：UID错误"
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:542
 #, php-format
 msgid "%d activated user successfully"
-msgstr "用户 %d 激活成功"
+msgstr "激活 %d 用户成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:572
 msgid "Assign role failed: invalid parameters."
-msgstr ""
+msgstr "分配角色失败：不合法参赛。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:578
 msgid "Assign role failed: invalid user ids."
-msgstr "角色分配失败：用户id不存在。"
+msgstr "分配角色失败：用户id不存在。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:583
 msgid "Assign role failed: invalid operation."
-msgstr "角色分配失败：操作错误。"
+msgstr "分配角色失败：不合法操作。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:592
 msgid "Assign role failed."
@@ -519,7 +519,7 @@ msgstr "分配角色失败"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:616
 msgid "Assign role successfully"
-msgstr "角色分配成功"
+msgstr "分配角色成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:47
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:163
@@ -529,19 +529,19 @@ msgstr "编辑用户信息失败"
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:55
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:204
 msgid "Edit user info successfully"
-msgstr "编辑用户信息成功。"
+msgstr "编辑用户信息成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:98
 msgid "Replace user avater failed"
-msgstr "设置用户头像失败"
+msgstr "替换用户头像失败"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:103
 msgid "Replace user avater successfully"
-msgstr "设置用户头像成功。"
+msgstr "替换用户头像成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:253
 msgid "Delete this group successfully"
-msgstr "成功删除该组"
+msgstr "删除组成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/EditController.php:304
 msgid "Base info"
@@ -583,7 +583,7 @@ msgstr "隐私设置失败"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/ProfileController.php:352
 msgid "Set privacy successfully"
-msgstr "设置隐私成功。"
+msgstr "隐私设置成功。"
 
 #: Z:\test\usr\module\user/template/admin/form-profile-complete.phtml:4
 #: Z:\test\usr\module\user/template/admin/form-register.phtml:4
@@ -597,15 +597,15 @@ msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:22
 msgid "Profile field"
-msgstr ""
+msgstr "资料字段"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:23
 msgid "Profile dress up"
-msgstr ""
+msgstr "资料 dress up"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:24
 msgid "Field privacy"
-msgstr ""
+msgstr "字段隐私"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:27
 #: Z:\test\usr\module\user/template/admin/profile.phtml:39
@@ -631,7 +631,7 @@ msgstr "搜索"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:32
 msgid "Editable"
-msgstr "编辑"
+msgstr "可编辑"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:33
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:28
@@ -640,7 +640,7 @@ msgstr "来源模块"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:34
 msgid "Compound"
-msgstr ""
+msgstr "组合字段"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:35
 msgid ""
@@ -661,7 +661,7 @@ msgstr "添加组"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:38
 msgid "Field display on profile page"
-msgstr ""
+msgstr "显示在资料页上的字段"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:40
 #: Z:\test\usr\module\user/template/admin/role.phtml:23
@@ -671,15 +671,15 @@ msgstr "标题"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:41
 msgid "Data will not be saved before you click save button"
-msgstr "保存信息请点击保存按钮"
+msgstr "不点击保存按钮信息将不会被保存。"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:42
 msgid "Click to select a group added in"
-msgstr "点击选择已有用户组"
+msgstr "点击选择已有组添加"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:43
 msgid "Click to added a group"
-msgstr "点击添加用户组"
+msgstr "点击添加该组"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:44
 msgid "Cancel"
@@ -695,7 +695,7 @@ msgstr "修改未保存，请确认是否离开该页面？"
 
 #: Z:\test\usr\module\user/template/admin/profile.phtml:47
 msgid "Create a group before adding"
-msgstr ""
+msgstr "添加之前先创建一个组"
 
 #: Z:\test\usr\module\user/template/admin/role.phtml:20
 msgid "Admin roles"
@@ -707,7 +707,7 @@ msgstr "前台角色"
 
 #: Z:\test\usr\module\user/template/admin/role.phtml:22
 msgid "Name"
-msgstr "姓名"
+msgstr "名称"
 
 #: Z:\test\usr\module\user/template/admin/role.phtml:24
 #: Z:\test\usr\module\user/template/admin/role.phtml:32
@@ -745,7 +745,7 @@ msgstr "Admin"
 
 #: Z:\test\usr\module\user/template/admin/role.phtml:33
 msgid "User id or name"
-msgstr "用户 id 或 名称"
+msgstr "用户 id 或 用户名"
 
 #: Z:\test\usr\module\user/template/admin/role.phtml:34
 msgid "Users"
@@ -782,16 +782,16 @@ msgstr "全部"
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:24
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:53
 msgid "Activated"
-msgstr "未锁定"
+msgstr "激活"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:38
 #: Z:\test\usr\module\user/template/admin/user.phtml:54
 msgid "Pending"
-msgstr "待激活"
+msgstr "未激活"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:39
 msgid "Add new"
-msgstr "添加一个"
+msgstr "添加新用户"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:40
 #: Z:\test\usr\module\user/template/admin/user.phtml:106
@@ -801,11 +801,11 @@ msgstr "高级搜索"
 #: Z:\test\usr\module\user/template/admin/user.phtml:43
 #: Z:\test\usr\module\user/template/admin/user.phtml:89
 msgid "Active State"
-msgstr "是否可用"
+msgstr "可用状态"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:44
 msgid "Enable State"
-msgstr "是否启用"
+msgstr "启用状态"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:45
 msgid "Select roles"
@@ -819,16 +819,16 @@ msgstr "应用"
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:26
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:31
 msgid "Enabled"
-msgstr "打开"
+msgstr "启用"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:50
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:27
 msgid "Disabled"
-msgstr "已关闭"
+msgstr "禁用"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:53
 msgid "Inactive"
-msgstr "未激活"
+msgstr "不可用"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:58
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:38
@@ -841,7 +841,7 @@ msgstr "删除"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:61
 msgid "Passwords don\\'t match."
-msgstr "密码错误"
+msgstr "密码不匹配"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:62
 msgid "Username is already taken."
@@ -849,7 +849,7 @@ msgstr "用户名已存在。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:63
 msgid "Email is already taken."
-msgstr "邮箱已存在。"
+msgstr "邮箱已占用。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:64
 msgid "Display name is already taken."
@@ -869,11 +869,11 @@ msgstr "确认密码"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:73
 msgid "Enable"
-msgstr "打开"
+msgstr "启用"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:74
 msgid "Disable"
-msgstr "关闭"
+msgstr "禁用"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:75
 #: Z:\test\usr\module\user/template/admin/user.phtml:85
@@ -902,7 +902,7 @@ msgstr "上个月"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:80
 msgid "Last three months"
-msgstr "过去3个月"
+msgstr "过去三个月"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:81
 msgid "Last six months"
@@ -914,7 +914,7 @@ msgstr "去年"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:83
 msgid "Assign role"
-msgstr "设置角色"
+msgstr "分配角色"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:84
 msgid "Remove role"
@@ -923,7 +923,7 @@ msgstr "移除角色"
 #: Z:\test\usr\module\user/template/admin/user.phtml:87
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:48
 msgid "Are you sure to delete this user?"
-msgstr "请确认是否删除该用户。"
+msgstr "请确认是否删除该用户？"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:88
 msgid "Are you sure to delete this users?"
@@ -947,15 +947,15 @@ msgstr "确认密码"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:98
 msgid "Activate"
-msgstr "未锁定"
+msgstr "激活"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:101
 msgid "Invalid email."
-msgstr "邮箱不存在。"
+msgstr "邮箱错误。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:103
 msgid "Activation state"
-msgstr "是否激活"
+msgstr "激活状态"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:104
 msgid "User ID"
@@ -998,12 +998,12 @@ msgstr "重置为默认头像。"
 
 #: Z:\test\usr\module\user/template/admin/user.phtml:115
 msgid "Are you sure to delete this group?"
-msgstr "请确认是否删除该角色。"
+msgstr "请确认是否删除该组？"
 
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:20
 msgid ""
 "Inquire of user information via his ID, username, display name or email."
-msgstr ""
+msgstr "通过用户ID，用户名，昵称或Email查询用户信息"
 
 #: Z:\test\usr\module\user/template/admin/inquiry.phtml:23
 msgid "Activation"
@@ -1036,11 +1036,11 @@ msgstr "该用户无可查看的信息"
 
 #: Z:\test\usr\module\user/template/admin/edit-user.phtml:65
 msgid "Are you sure delete this group?"
-msgstr "请确认是否删除该角色？"
+msgstr "请确认是否删除该组？"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:22
 msgid "Stats"
-msgstr ""
+msgstr "统计数据"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:23
 msgid "User log"
@@ -1056,19 +1056,19 @@ msgstr "历史"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:31
 msgid "Register num"
-msgstr ""
+msgstr "注册数量"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:32
 msgid "Activated num"
-msgstr ""
+msgstr "激活数量"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:33
 msgid "Pending num"
-msgstr ""
+msgstr "未激活数量"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:34
 msgid "Top 10 registered IP"
-msgstr "注册IP排行"
+msgstr "前十注册IP"
 
 #: Z:\test\usr\module\user/template/admin/maintenance.phtml:35
 msgid "None"
@@ -1161,11 +1161,11 @@ msgstr "快速链接"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:27
 msgid "Item name"
-msgstr ""
+msgstr "项目名称"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:30
 msgid "Items displayed on the homepage timeline"
-msgstr ""
+msgstr "显示在主页时间线上的项目"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:32
 msgid "No"
@@ -1177,7 +1177,7 @@ msgstr ""
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:34
 msgid "Activities items repository"
-msgstr ""
+msgstr "Activity资源库"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:35
 msgid ""
@@ -1191,7 +1191,7 @@ msgstr "快速链接"
 
 #: Z:\test\usr\module\user/template/admin/plugin.phtml:37
 msgid "Quicklinks items repository"
-msgstr ""
+msgstr "快速链接资源库"
 
 #, fuzzy
 #~ msgid "Register template file name"

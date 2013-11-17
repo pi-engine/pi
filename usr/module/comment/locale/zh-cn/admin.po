@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: comment\n"
 "POT-Creation-Date: 2013-11-12 09:59+0800\n"
-"PO-Revision-Date: 2013-11-12 09:59+0800\n"
+"PO-Revision-Date: 2013-11-15 17:33+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: eefocus\n"
 "MIME-Version: 1.0\n"
@@ -433,9 +433,8 @@ msgstr ""
 #: Z:\article\usr\module\comment/template/admin/comment-user.phtml:117
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:109
 #: Z:\article\usr\module\comment/template/admin/comment-module.phtml:116
-#, fuzzy
 msgid "No comments available yet."
-msgstr "评论已关闭"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-user.phtml:197
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:189
@@ -462,17 +461,15 @@ msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:5
 #: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:4
-#, fuzzy
 msgid "Action"
-msgstr "激活"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:11
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:27
 #: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:11
 #: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:20
-#, fuzzy
 msgid "View comments"
-msgstr "文章评论"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:20
 msgid "Yes"
@@ -483,9 +480,8 @@ msgid "No"
 msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:6
-#, fuzzy
 msgid "Comment stats"
-msgstr "发表评论"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:10
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:53
@@ -493,29 +489,25 @@ msgid "Amounts"
 msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:29
-#, fuzzy
 msgid "Submitters"
-msgstr "提交"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:30
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:94
-#, fuzzy
 msgid "Comments"
 msgstr "评论"
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:49
-#, fuzzy
 msgid "Active comment posts by module"
-msgstr "我发表的评论"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:76
 msgid "Links"
 msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:93
-#, fuzzy
 msgid "Article title"
-msgstr "文章评论"
+msgstr ""
 
 #: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:2
 msgid "Filter comments by a specific user."
