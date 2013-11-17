@@ -149,10 +149,13 @@ class RegisterController extends ActionController
         if (!$registerCompleteFormConfig ||
             !$this->request->isPost()
         ) {
-            return $this->jump(array(
-                'controller'    => 'register',
-                'action'        => 'index'
-            ));
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'register',
+                    'action'        => 'index'
+                )
+            );
         }
 
         $result = array(
@@ -503,14 +506,11 @@ class RegisterController extends ActionController
                 $values['level'] = 1;
                 $values['last_modified'] = time();
                 Pi::api('user', 'user')->updateUser($uid, $values);
-
-                return $this->jump(
-                    $this->url(
-                        '',
-                        array(
-                            'controller' => 'profile',
-                            'action' => 'index'
-                        )
+                return $this->redirect(
+                    '',
+                    array(
+                    'controller' => 'profile',
+                    'action'     => 'index'
                     )
                 );
             } else {
