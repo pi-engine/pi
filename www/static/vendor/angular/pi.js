@@ -64,7 +64,7 @@ angular.module('pi', [])
      */
     return {
       template: 
-        '<div ng-if="alert" style="position: fixed; z-index: 1013; width: 60%; left: 20%; text-align: center; top: 20px">' +
+        '<div ng-show="alert" style="position: fixed; z-index: 1013; width: 60%; left: 20%; text-align: center; top: 20px">' +
           '<div class="label label-{{alert.type}}" style="font-size: 16px; padding: 8px 15px; white-space: normal;">' + 
             '<i class="icon-{{alert.cls}}"></i>' +
             '<span style="margin-left: 10px;">{{alert.message}}</span>' +

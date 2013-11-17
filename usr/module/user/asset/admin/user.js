@@ -336,7 +336,7 @@
       var users = this.users
       var user = users[idx];
       server.remove(user.id).success(function (data) {
-        if (data.status) {
+        if (data.deleted_uids) {
           users.splice(idx, 1);
         }
       });
@@ -348,13 +348,15 @@
       if (!confirm(config.t.CONFIRMS)) return;
       server.remove(ids).success(function (data) {
         var ret = [];
-        if (data.status) {
-          $scope.allChecked = 0;
-          angular.forEach($scope.users, function (user) {
-            !user.checked && ret.push(user);
-          });
-          $scope.users = ret;
-        }
+        var ids = data.deleted_uids || [];
+        $scope.allChecked = 0;
+        angular.forEach($scope.users, function (user) {
+          if (ids.indexOf(user.id) == -1) {
+            ret.push(user);
+            user.checked = 0;
+          }
+        });
+        $scope.users = ret;
       });
     }
 
@@ -417,10 +419,12 @@
     setRole();
 
     $scope.submit = function () {
-      server.add($scope.entity);
-      $scope.entity = angular.copy(entity);
-      $scope.userForm.$setPristine();
-      setRole();
+      server.add($scope.entity).success(function(data) {
+        if (!data.status) return;
+        $scope.entity = angular.copy(entity);
+        $scope.userForm.$setPristine();
+        setRole();
+      });
     }
 
     $scope.$watch('roles', function () {
