@@ -155,6 +155,8 @@ class HomeController extends ActionController
             'is_owner'     => false,
             'nav'          => $nav,
         ));
+
+        $this->view()->setTemplate('home-index');
     }
 
     /**

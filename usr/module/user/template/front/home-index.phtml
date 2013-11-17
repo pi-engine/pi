@@ -2,7 +2,8 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
-<div>
+<div class="user-min-body">
+    <?php if ($timeline) { ?>
     <?php foreach ($timeline as $item) { ?>
     <div class="media user-underline-list">
         <div class="pull-left">
@@ -27,9 +28,14 @@ $this->css($this->assetModule('front/front.css'));
         </div>
     </div>
     <?php } ?>
+    <?php 
+        if ($paginator) {
+            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-left'));
+        }
+    } else { ?>
+    <div class="well">
+        <?php _e('Does not have any data'); ?>
+    </div>
+    <?php } ?>
 </div>
-<?php
-if ($paginator) {
-    echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-left'));
-}
-?>
+
