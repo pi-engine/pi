@@ -430,6 +430,7 @@ class MaintenanceController extends ActionController
             );
 
             $profile['time_activated'] = _date($profile['time_activated']);
+            $profile['time_created']   = _date($profile['time_created']);
             if (isset($userData[$uid]['last_login'])) {
                 $data['last_login'] = _date(
                     $userData[$uid]['last_login']['time']
