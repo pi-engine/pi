@@ -486,17 +486,19 @@ class IndexController extends ActionController
         $count = 0;
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->deleteUser($uid);
-            if ($status) {
+            if (!is_array($status) && $status !== false) {
                 $count++;
+                // Clear user other info: user data, role, log, privacy, timeline
+                $this->deleteUser($uid, 'user_data');
+                $this->deleteUser($uid, 'user_role');
+                $this->deleteUser($uid, 'user_log', 'user');
+                $this->deleteUser($uid, 'privacy_user', 'user');
+                $this->deleteUser($uid, 'timeline_log', 'user');
             }
-
-            // Clear user other info
-            $this->deleteUser($uid, 'user_data');
-            $this->deleteUser($uid, 'user_role');
-            $this->deleteUser($uid, 'user_log', 'user');
-            $this->deleteUser($uid, 'privacy_user', 'user');
-            $this->deleteUser($uid, 'timeline_log', 'user');
         }
+
+        $usersStatus = $this->getUserStatus($uids);
+        $result['users_status'] = $usersStatus;
         $result['status']  = 1;
         $result['message'] = sprintf(_a('%d delete user successfully'), $count);
 
