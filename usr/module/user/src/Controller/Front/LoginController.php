@@ -229,14 +229,13 @@ class LoginController extends ActionController
         if ($configs['profile_complete_form']) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
             if (!$completeProfile) {
-                $this->redirect()->toRoute(
+                return $this->redirect(
                     'user',
                     array(
                         'controller' => 'register',
-                        'action' => 'profile.complete',
+                        'action'     => 'profile.complete',
                     )
                 );
-                return;
             }
         }
 
