@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2013-11-15 09:29+0800\n"
-"PO-Revision-Date: 2013-11-15 14:32+0800\n"
+"PO-Revision-Date: 2013-11-17 15:48+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -861,7 +861,7 @@ msgstr ""
 #: Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
 #: Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:20
 msgid "Add new"
-msgstr "添加一条"
+msgstr "新增"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:29

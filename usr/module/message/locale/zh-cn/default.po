@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2013-11-15 14:38+0800\n"
-"PO-Revision-Date: 2013-11-15 14:39+0800\n"
+"POT-Creation-Date: 2013-11-17 16:05+0800\n"
+"PO-Revision-Date: 2013-11-17 16:06+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,15 +47,15 @@ msgstr "未找到"
 
 #: Z:\test\usr\module\message/src/Controller/Front/IndexController.php:293
 msgid "Sorry, you can't send message to yourself."
-msgstr "抱歉，您无法给自己发送消息。"
+msgstr "抱歉，您无法给自己发送私信。"
 
 #: Z:\test\usr\module\message/src/Controller/Front/IndexController.php:305
 msgid "An error occurred, please try again."
-msgstr "出错，请重试"
+msgstr "出错，请重试。"
 
 #: Z:\test\usr\module\message/src/Controller/Front/IndexController.php:334
 msgid "Send message"
-msgstr "发送消息"
+msgstr "发私信"
 
 #: Z:\test\usr\module\message/src/Controller/Front/NotifyController.php:45
 #, php-format
@@ -100,27 +100,32 @@ msgstr "删除"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:4
 msgid "Delete this message?"
-msgstr "确认删除这条消息？"
+msgstr "确认删除这条私信？"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:7
 msgid "Once you delete this message, it cannot be undone."
-msgstr "一旦你删除了这条消息，该操作将无法撤销。"
+msgstr "一旦确认删除，这条消息将无法找回。"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:11
 msgid "Delete message"
-msgstr "删除消息"
+msgstr "删除私信"
+
+#: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:13
+#: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:29
+msgid "Cancel"
+msgstr "取消"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:20
 msgid "Delete these messages?"
-msgstr "确认删除多条消息？"
+msgstr "确认删除这些私信？"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:23
 msgid "Once you delete these messages, they cannot be undone."
-msgstr "一旦你删除了这些消息，该操作将无法撤销。"
+msgstr "一旦确认删除，这些消息将无法找回。"
 
 #: Z:\test\usr\module\message/template/front/_confirm-modal.phtml:27
 msgid "Delete messages"
-msgstr "删除消息"
+msgstr "删除私信"
 
 #: Z:\test\usr\module\message/template/front/index-index.phtml:9
 #: Z:\test\usr\module\message/template/front/index-detail.phtml:11
@@ -144,7 +149,7 @@ msgstr "<div class=\"alert alert-info message-alert\">没有新消息</div>"
 #: Z:\test\usr\module\message/template/front/index-index.phtml:91
 #: Z:\test\usr\module\message/template/front/notify-index.phtml:99
 msgid "Checked all"
-msgstr "All Categories"
+msgstr "全部"
 
 #: Z:\test\usr\module\message/template/front/index-index.phtml:93
 #: Z:\test\usr\module\message/template/front/notify-index.phtml:101
