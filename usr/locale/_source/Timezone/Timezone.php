@@ -13,6 +13,7 @@
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
+_('Africa');
     _('Africa/Abidjan');
     _('Africa/Accra');
     _('Africa/Addis_Ababa');
@@ -64,6 +65,8 @@
     _('Africa/Tripoli');
     _('Africa/Tunis');
     _('Africa/Windhoek');
+
+_('America');
     _('America/Adak');
     _('America/Anchorage');
     _('America/Anguilla');
@@ -206,6 +209,8 @@
     _('America/Winnipeg');
     _('America/Yakutat');
     _('America/Yellowknife');
+
+_('Antarctica');
     _('Antarctica/Casey');
     _('Antarctica/Davis');
     _('Antarctica/DumontDUrville');
@@ -218,6 +223,8 @@
     _('Antarctica/Syowa');
     _('Antarctica/Vostok');
     _('Arctic/Longyearbyen');
+
+_('Asia');
     _('Asia/Aden');
     _('Asia/Almaty');
     _('Asia/Amman');
@@ -294,6 +301,8 @@
     _('Asia/Yakutsk');
     _('Asia/Yekaterinburg');
     _('Asia/Yerevan');
+
+_('Atlantic');
     _('Atlantic/Azores');
     _('Atlantic/Bermuda');
     _('Atlantic/Canary');
@@ -316,6 +325,8 @@
     _('Australia/Melbourne');
     _('Australia/Perth');
     _('Australia/Sydney');
+
+_('Europe');
     _('Europe/Amsterdam');
     _('Europe/Andorra');
     _('Europe/Athens');
@@ -371,6 +382,8 @@
     _('Europe/Zagreb');
     _('Europe/Zaporozhye');
     _('Europe/Zurich');
+
+_('Indian');
     _('Indian/Antananarivo');
     _('Indian/Chagos');
     _('Indian/Christmas');
@@ -382,6 +395,8 @@
     _('Indian/Mauritius');
     _('Indian/Mayotte');
     _('Indian/Reunion');
+
+_('Pacific');
     _('Pacific/Apia');
     _('Pacific/Auckland');
     _('Pacific/Chatham');
@@ -420,4 +435,5 @@
     _('Pacific/Tongatapu');
     _('Pacific/Wake');
     _('Pacific/Wallis');
+
     _('UTC');
