@@ -42,7 +42,7 @@ return array(
                 'var'       => '/path/to/pi/var',
                 'module'    => '/path/to/pi/usr/module',
                 'theme'     => '/path/to/pi/usr/theme',
-                'custom'    => '/path/to/pi/usr/module/custom',
+                'custom'    => '/path/to/pi/usr/custom',
 
                 'upload'    => '/path/to/pi/upload',
                 'asset'     => '/path/to/pi/asset',
