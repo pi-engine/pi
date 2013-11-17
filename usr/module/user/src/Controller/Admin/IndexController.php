@@ -488,6 +488,7 @@ class IndexController extends ActionController
             $status = Pi::api('user', 'user')->deleteUser($uid);
             if (!is_array($status) && $status !== false) {
                 $count++;
+                $result['deleted_uids'][] = $uid;
                 // Clear user other info: user data, role, log, privacy, timeline
                 $this->deleteUser($uid, 'user_data');
                 $this->deleteUser($uid, 'user_role');
