@@ -323,7 +323,7 @@ class RenderCache extends AbstractResource
         $action     = $route->getparam('action');
 
         $cacheInfo = false;
-        $info = Pi::registry('cache')->read(
+        $info = Pi::registry('page_cache')->read(
             $module,
             $this->application->getSection(),
             $type

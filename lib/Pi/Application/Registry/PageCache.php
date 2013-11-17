@@ -17,7 +17,7 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Cache extends AbstractRegistry
+class PageCache extends AbstractRegistry
 {
     /**
      * {@inheritDoc}

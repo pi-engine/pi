@@ -80,7 +80,7 @@ class Page extends AbstractRegistry
      */
     public function clear($namespace = '')
     {
-        Pi::registry('cache')->flush($namespace);
+        Pi::registry('page_cache')->flush($namespace);
         Pi::registry('block')->flush($namespace);
         Pi::registry('permission_resource')->flush($namespace);
 
