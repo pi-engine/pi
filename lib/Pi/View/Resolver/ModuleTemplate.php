@@ -158,7 +158,7 @@ class ModuleTemplate implements ResolverInterface
         }
         // Check custom template in module custom path
         $path = sprintf(
-            '%s/%s/%s/%s.%s',
+            '%s/module/%s/%s/%s.%s',
             Pi::path('custom'),
             $module,
             $this->templateDirectory,
