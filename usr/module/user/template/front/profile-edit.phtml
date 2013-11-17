@@ -6,7 +6,9 @@
 <div class="span9">
     <div class="page-header">
         <h3 style="margin: -5px 0 9px;"><?php echo $title; ?></h3>
-        <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your basic profile info'); ?></div>
+        <div class="muted" style="margin: 0 0 11px;">
+            <?php echo sprintf(__('Change your %s info'), $title); ?>
+        </div>
     </div>
     <?php
     if (isset($result)) {
