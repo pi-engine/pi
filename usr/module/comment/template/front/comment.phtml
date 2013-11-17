@@ -55,7 +55,7 @@ $uid = Pi::user()->getId();
     <div class="media comment-item">
         <?php if($uid) { ?>
         <a class="pull-left" href="<?php echo Pi::service('user')->getUrl('profile', $uid); ?>" target="_blank">
-            <img class="media-object" src="<?php echo Pi::avatar()->get($uid, 'normal', false); ?>">
+            <?php echo Pi::avatar()->get($uid, 'medium'); ?>
         </a>
         <div class="media-body">
             <?php echo $this->form()->openTag($form); ?>

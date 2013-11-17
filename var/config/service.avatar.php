@@ -21,7 +21,7 @@ return array(
         's'         => 'small',
         'small'     => 28,
         'm'         => 'medium',
-        'medium'    => 'normal', //46,
+        'medium'    => 46,
         'normal'    => 80,
         'l'         => 'large',
         'large'     => 'xlarge', //96,
