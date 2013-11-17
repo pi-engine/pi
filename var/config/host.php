@@ -53,7 +53,7 @@ return array(
         // Path to vendor library directory: default as `lib/vendor`
         'vendor'    => 'path/to/pi-framework/lib/vendor',
         // Path to module custom directory: default as `usr/custom`
-        'custom'    => 'path/to/pi-framework/usr/custom',
+        'custom'    => 'path/to/pi-framework/usr/module/custom',
 
         // Application specific paths
         // Path to uploads directory
