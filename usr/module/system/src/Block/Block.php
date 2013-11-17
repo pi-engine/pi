@@ -55,6 +55,8 @@ class Block
     /**
      * User bar
      *
+     * Render types: js, dropdown, flat
+     *
      * @param array $options
      *
      * @return array
@@ -69,9 +71,33 @@ class Block
         if (!empty($options['params'])) {
             $params = $options['params'];
         } else {
-            $params = null;
+            $params = array();
         }
-        if (Pi::service('user')->hasIdentity()) {
+        $result = array(
+            'type'  => $type,
+        );
+        if ('js' == $type) {
+            $user = array(
+                'uid'       => 0,
+                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
+                'login'     => Pi::service('authentication')->getUrl('login', $params),
+                'register'  => Pi::service('user')->getUrl('register', $params),
+            );
+            $message = array();
+            $url = Pi::service('url')->assemble('default', array_replace($params, array(
+                'module'        => 'system',
+                'controller'    => 'index',
+                'action'        => 'userbar',
+            )));
+            $result['callback'] = Pi::url($url, true);
+        } elseif (!Pi::service('user')->hasIdentity()) {
+            $user = array(
+                'uid'       => 0,
+                'login'     => Pi::service('authentication')->getUrl('login', $params),
+                'register'  => Pi::service('user')->getUrl('register', $params),
+            );
+            $message = array();
+        } else {
             $name = Pi::service('user')->getUser()->get('name');
             $user = array(
                 'uid'       => Pi::service('user')->getId(),
@@ -82,20 +108,12 @@ class Block
             $message = array(
                 'url'       => Pi::service('user')->message()->getUrl(),
             );
-        } else {
-            $user = array(
-                'uid'       => 0,
-                'login'     => Pi::service('authentication')->getUrl('login', $params),
-                'register'  => Pi::service('user')->getUrl('register', $params),
-            );
-            $message = array();
         }
 
-        return array(
-            'user'      => $user,
-            'message'   => $message,
-            'type'      => $type,
-        );
+        $result['user'] = $user;
+        $result['message'] = $message;
+
+        return $result;
     }
 
     /**

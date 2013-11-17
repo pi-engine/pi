@@ -87,4 +87,37 @@ class IndexController extends ActionController
 
         return $content;
     }
+
+    /**
+     * User bar
+     *
+     */
+    public function userbarAction()
+    {
+        $params = $this->params()->fromRoute();
+        if (Pi::service('user')->hasIdentity()) {
+            $uid  = Pi::service('user')->getId();
+            $name = Pi::service('user')->getUser()->get('name');
+            $user = array(
+                'uid'       => $uid,
+                'name'      => $name,
+                'profile'   => Pi::service('user')->getUrl('profile', $params),
+                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
+                'avatar'    => Pi::service('user')->avatar()->get($uid, 'mini'),
+            );
+            $message = array(
+                'url'       => Pi::service('user')->message()->getUrl(),
+            );
+        } else {
+            $user = array(
+                'uid'       => 0,
+            );
+            $message = array();
+        }
+
+        return array(
+            'user'      => $user,
+            'message'   => $message,
+        );
+    }
 }

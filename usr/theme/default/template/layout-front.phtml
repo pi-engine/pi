@@ -87,7 +87,7 @@ $this->css(
             <h2 class="pi-logo-tagline" title="<?php echo _escape($slogan); ?>"><?php echo _escape($slogan); ?></h2>
         </div>
         <div class="pull-right pi-user-bar">
-           <?php echo $this->widget('system-user-bar'); ?>
+           <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
         </div>
     </div>
 

@@ -1,12 +1,73 @@
+<?php if ('dropdown' == $block['type']) { ?>
+    <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <?php $this->bootstrap('js/bootstrap.min.js'); ?>
+    <div class="dropdown">
 
-<?php if (!isset($block['type']) || 'dropdown' != $block['type']) { ?>
-    <!-- Plain display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <?php
+        <?php
         if (!$block['user']['uid']) { ?>
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><i class="icon-user"></i><?php echo _b('Login'); ?></a>
+        <?php
+        } else {
+            ?>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i>
+                <?php echo _escape($block['user']['name']); ?>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
+                <li><a href="<?php echo $block['message']['url']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+                <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
+            </ul>
+        <?php
+        }
+        ?>
+    </div>
+    <script>$('.dropdown-toggle').dropdown();</script>
+<?php } elseif ('js' == $block['type']) { ?>
+    <!-- JavaScript display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <div id="user-bar-anonymous" style="display: none;">
         <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
         <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><?php echo _b('Login'); ?></a>
         <span class="pi-divider">|</span>
         <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>"><?php echo _b('Register'); ?></a>
+    </div>
+    <div id="user-bar-member" style="display: none;" >
+        <span id="member-avatar"></span>
+        <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">#</a>
+        <span class="pi-divider">|</span>
+        <a id="member-message" href="#" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+        <span class="pi-divider">|</span>
+        <a id="member-logout" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
+    </div>
+    <script>
+        $.getJSON("<?php echo $block['callback']; ?>", function (data) {
+            //alert(data.user.uid);
+            var ela = document.getElementById('user-bar-anonymous');
+            var elm = document.getElementById('user-bar-member');
+
+            if (data.user.uid > 0) {
+                ela.style.display = 'none';
+                elm.style.display = 'block';
+                var elp = document.getElementById('member-profile');
+                elp.setAttribute('href', data.user.profile);
+                elp.innerHTML = data.user.name;
+                document.getElementById('member-avatar').innerHTML = data.user.avatar;
+                document.getElementById('member-message').setAttribute('href', data.message.url);
+            } else {
+                ela.style.display = 'block';
+                elm.style.display = 'none';
+            }
+        });
+    </script>
+<?php } else { ?>
+    <!-- Flat display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <?php
+        if (!$block['user']['uid']) { ?>
+            <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><?php echo _b('Login'); ?></a>
+            <span class="pi-divider">|</span>
+            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>"><?php echo _b('Register'); ?></a>
     <?php
         } else {
     ?>
@@ -19,31 +80,4 @@
     <?php
         }
     ?>
-
-<?php } else { ?>
-    <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <?php $this->bootstrap('js/bootstrap.min.js'); ?>
-    <div class="dropdown">
-
-    <?php
-        if (!$block['user']['uid']) { ?>
-        <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><i class="icon-user"></i><?php echo _b('Login'); ?></a>
-    <?php
-        } else {
-    ?>
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-user"></i>
-            <?php echo _escape($block['user']['name']); ?>
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
-            <li><a href="<?php echo $block['message']['url']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
-            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
-        </ul>
-    <?php
-        }
-    ?>
-    </div>
-    <script>$('.dropdown-toggle').dropdown();</script>
 <?php } ?>
