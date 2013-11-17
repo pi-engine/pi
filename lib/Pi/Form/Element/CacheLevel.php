@@ -29,10 +29,11 @@ class CacheLevel extends Select
     {
         if (empty($this->valueOptions)) {
             $this->valueOptions = array(
-                'none'      => __('None'),
+                'none'      => __('No cache'),
                 'locale'    => __('Locale'),
+                'auth'      => __('Authenticated'),
                 'role'      => __('Role'),
-                'user'      => __('User'),
+                //'user'      => __('User'),
             );
         }
 
