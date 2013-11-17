@@ -321,6 +321,9 @@ class Api extends AbstractApi
             return false;
         }
 
+        // Load translations
+        Pi::service('i18n')->load('module/comment:default');
+
         $rootData = $this->getRoot($root);
 
         // Check against cache
