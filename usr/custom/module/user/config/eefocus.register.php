@@ -65,6 +65,13 @@ return array(
         'filter'  => array(),
     ),
 
+    'registered_source' => array(
+        'element' => array(
+            'name' => 'registered_source',
+            'type' => 'hidden',
+        )
+    ),
+
     'terms_of_service' => array(
         'element' => array(
             'name' => 'terms_of_service',

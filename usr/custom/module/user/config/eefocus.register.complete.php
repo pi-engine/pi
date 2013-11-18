@@ -46,4 +46,10 @@ return array(
             'type' => 'hidden',
         )
     ),
+    'registered_source' => array(
+        'element' => array(
+            'name' => 'registered_source',
+            'type' => 'hidden',
+        )
+    ),
 );
