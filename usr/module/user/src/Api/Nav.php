@@ -30,22 +30,6 @@ class Nav extends AbstractApi
 
         $route = 'user';
 
-        // Set homepage
-        $params = array(
-            'controller' => 'home',
-            'action'     => 'index',
-        );
-        if ($uid) {
-            $params['uid']    = $uid;
-        }
-        $url = Pi::service('url')->assemble($route, $params);
-        $result['items'][] = array(
-            'title' => __('Homepage'),
-            'name'  => 'homepage',
-            'url'   => $url,
-            'icon'  => '',
-        );
-
         // Set profile
         $params = array(
             'controller' => 'profile',
@@ -58,6 +42,22 @@ class Nav extends AbstractApi
         $result['items'][] = array(
             'title' => __('Profile'),
             'name'  => 'profile',
+            'url'   => $url,
+            'icon'  => '',
+        );
+
+        // Set homepage
+        $params = array(
+            'controller' => 'home',
+            'action'     => 'index',
+        );
+        if ($uid) {
+            $params['uid']    = $uid;
+        }
+        $url = Pi::service('url')->assemble($route, $params);
+        $result['items'][] = array(
+            'title' => __('Feed'),
+            'name'  => 'homepage',
             'url'   => $url,
             'icon'  => '',
         );
