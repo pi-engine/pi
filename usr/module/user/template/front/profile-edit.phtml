@@ -1,6 +1,5 @@
 <?php
     $this->css($this->assetModule('front/front.css'));
-    $this->bootstrap('js/bootstrap.min.js');
 ?>
 <?php include '_user-side-nav.phtml' ?>
 <div class="span9">
@@ -12,6 +11,7 @@
     </div>
     <?php
     if (isset($result)) {
+        $this->bootstrap('js/bootstrap.min.js');
         echo sprintf('
             <div class="alert %s">
                 <button data-dismiss="alert" class="close" type="button">&times;</button>

@@ -18,6 +18,7 @@ $this->css(array(
     </div>
     <?php
     if (isset($result)) {
+        $this->bootstrap('js/bootstrap.min.js');
         echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
              $result['status'] ? 'alert-success' : 'alert-error',
              $result['message']);

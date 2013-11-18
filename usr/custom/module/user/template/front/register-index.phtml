@@ -5,13 +5,6 @@ $this->css(array(
 ));
 ?>
 
-<!-- Subheader -->
-<div class="pi-subheader">
-    <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>" title="EEFOCUS 与非网 通行证">
-        <img src="<?php echo Pi::url('static/custom/user/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
-    </a>
-</div>
-
 <?php if (!(isset($result) && $result['status'])) { ?>
     <!-- Step -->
     <div class="pi-step-reg pi-step-reg<?php echo $complete ? '2' : '1'; ?>"></div>

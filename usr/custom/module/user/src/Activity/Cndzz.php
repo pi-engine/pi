@@ -23,7 +23,7 @@ class Cndzz
     public function get($uid, $limit, $offset = 0)
     {
 
-        $uriBBS = 'http://bbs.cndzz.com/api/bbs_api.php?uid=1';
+        $uriBBS = 'http://bbs.cndzz.com/api/bbs_api.php';
         $uriCndzz = 'http://www.cndzz.com/api/api.php';
 
         $dataBBS = json_decode(Pi::service('remote')->get($uriBBS, array(
