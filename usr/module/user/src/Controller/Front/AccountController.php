@@ -195,6 +195,13 @@ class AccountController extends ActionController
             )
         );
         Pi::user()->data()->delete($userData['uid'], 'change-email');
+        // Set log
+        $oldEmail = $userRow->email;
+        $args = array($oldEmail, $email);
+        Pi::service('audit')->attach('custom', array(
+            'file'  => Pi::path('log') . '/reset.email.csv'
+        ));
+        Pi::service('audit')->log('custom', $args);
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 

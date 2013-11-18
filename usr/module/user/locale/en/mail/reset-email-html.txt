@@ -7,7 +7,7 @@
 [body]
 <div style="margin-bottom: 5px">Dear <strong>%username%</strong>:</div>
 <div style="margin: 5px">Please click this link to complete change email</div>
-<a href="%activity_link%">%change_email_link%</a>
+<a href="%change_email_link%">%change_email_link%</a>
 <div style="margin-top: 10px">
     %site_adminname%<br />
     %site_adminmail%<br />
