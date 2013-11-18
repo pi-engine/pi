@@ -47,11 +47,9 @@ class RegisterController extends ActionController
         $registerFormConfig = $this->config('register_form');
         list($fields, $filters) = $this->canonizeForm($registerFormConfig, 'register');
         $form = $this->getRegisterForm($fields);
-        if ($this->config('register_complete_form')) {
-            $registeredSource = _get('app') ? : 16;
-            $form->setData(array('registered_source' => $registeredSource));
-        }
-        
+        $registeredSource = _get('app') ? : '';
+        $form->setData(array('registered_source' => $registeredSource));
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new RegisterFilter($filters));
