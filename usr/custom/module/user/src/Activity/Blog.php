@@ -23,37 +23,29 @@ class Blog
     public function get($uid, $limit, $offset = 0)
     {
 
-        $uri = Pi::url(Pi::service('url')->assemble(
-            'default',
-            array(
-                'module'     => 'demo',
-                'controller' => 'activity',
-                'action'     => 'get'
-            )
-        ), true);
-
         $uri = 'http://www.eefocus.com/passport/api.php';
 
         $params = array(
             'uid' => $uid,
-            'act' => 'basic'
+            'act' => 'blog'
         );
 
-        $data = Pi::service('remote')->get($uri, $params);
-        
-        $data = array(
-            'items'  =>  array(
-                array(
-                    'message' => 'message1',
-                    'time'    => time()
-                ),
-                array(
-                    'message' => 'message2',
-                    'time'    => time()
-                )
-            ),
-            'link'   =>  'test.com'
+        $data = json_decode(Pi::service('remote')->get($uri, $params), true);
+        $items = array();
+
+        foreach ($data['list'] as $item) {
+            $item['message'] = sprintf(
+                '<a href="%s" target="_blank">%s</a>',
+                $item['url'],
+                $item['message']
+            );
+
+            $items[] = $item;
+        }
+
+        return array(
+            'link'  => $data['home'],
+            'items' => $items
         );
-        return $data;
     }
 }

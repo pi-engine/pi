@@ -2,23 +2,25 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
-<div class="clearfix">
+<div class="clearfix user-min-body">
     <?php if (!empty($data['content'])) { ?>
         <?php echo  $data['content'];?>
     <?php } else { ?>
-        <?php if ($data['link']) { ?>
-            <a class="pull-right" href="<?php echo $data['link'];?>">
-                <?php _e('View all');?>
-            </a>
+    <?php if ($data['link']) { ?>
+    <a class="pull-right" href="<?php echo $data['link'];?>" target="_blank">
+        <?php _e('View all');?>
+    </a>
+    <?php } ?>
+    <h3 class="user-activity-title"><?php echo $data['title'];?></h3>
+    <?php foreach ($data['items'] as $item) { ?>
+    <div class="user-underline-list">
+        <p style="margin-bottom: 5px;">
+            <?php echo $item['message']; ?>
+        </p>
+        <?php if ($item['time']) { ?>
+        <span class="muted"><?php echo _date($item['time']); ?></span>
         <?php } ?>
-        <h3 class="user-activity-title"><?php echo $data['title'];?></h3>
-        <?php foreach ($data['items'] as $item) { ?>
-        <div class="user-underline-list">
-            <p style="margin-bottom: 5px;"><?php echo $item['message']; ?></p>
-            <?php if ($item['time']) { ?>
-            <span class="muted"><?php echo _date($item['time']); ?></span>
-            <?php } ?>
-        </div>
-        <?php } ?>
+    </div>
+    <?php } ?>
     <?php } ?>
 </div>

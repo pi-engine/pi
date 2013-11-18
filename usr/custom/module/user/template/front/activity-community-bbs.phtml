@@ -61,7 +61,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="js-topic">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>
@@ -73,14 +73,14 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($topics) {
-                        foreach($topics as $item) {
+                    if ($bbs['data']) {
+                        foreach($bbs['data'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],
                                  $item['time'],
-                                 $item['community'],
-                                 $item['communityUrl']
+                                 $item['communityUrl'],
+                                 $item['community']
                                  );
                         }
                     } else {
@@ -90,7 +90,7 @@
             </table>
         </div>
         <div class="tab-pane" id="js-reply">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>
@@ -102,14 +102,14 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($replies) {
-                        foreach($replies as $item) {
+                    if ($reply['data']) {
+                        foreach($reply['data'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],
                                  $item['time'],
-                                 $item['community'],
-                                 $item['communityUrl']
+                                 $item['communityUrl'],
+                                 $item['community']
                                  );
                         }
                     } else {
@@ -119,7 +119,7 @@
             </table>
         </div>
         <div class="tab-pane" id="js-question">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>
@@ -131,14 +131,14 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($questions) {
-                        foreach($questions as $item) {
+                    if ($question['data']) {
+                        foreach($question['data'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],
                                  $item['time'],
-                                 $item['community'],
-                                 $item['communityUrl']
+                                 $item['communityUrl'],
+                                 $item['community']
                                  );
                         }
                     } else {
@@ -148,7 +148,7 @@
             </table>
         </div>
         <div class="tab-pane" id="js-answer">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>
@@ -160,14 +160,14 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($answers) {
-                        foreach($answers as $item) {
+                    if ($answer['data']) {
+                        foreach($answer['data'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],
                                  $item['time'],
-                                 $item['community'],
-                                 $item['communityUrl']
+                                 $item['communityUrl'],
+                                 $item['community']
                                  );
                         }
                     } else {
@@ -177,7 +177,7 @@
             </table>
         </div>
         <div class="tab-pane" id="js-project">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>
@@ -191,15 +191,15 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($projects) {
-                        foreach($projects as $item) {
+                    if ($project['data']) {
+                        foreach($project['data'] as $item) {
                             echo sprintf($tabItemMoreView, 
                                  $item['url'],
                                  $item['title'],
                                  $item['createTime'],
                                  $item['updateTime'],
-                                 $item['community'],
-                                 $item['communityUrl']
+                                 $item['communityUrl'],
+                                 $item['community']
                                  );
                         }
                     } else {
@@ -221,7 +221,7 @@
             <span class="activity-icon activity-icon-cndzzbbs"><?php _e('Topic'); ?></span>
         </div>
         <ul class="activity-panel-body">
-            <?php foreach ($bbs as $item) { ?>
+            <?php foreach ($panel_bbs as $item) { ?>
             <li>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
                     <?php echo $item['count']; ?>
@@ -241,7 +241,7 @@
             <span class="activity-icon activity-icon-rel"><?php _e('Relationship'); ?></span>
         </div>
         <ul class="activity-panel-body">
-            <?php foreach ($rel as $item) { ?>
+            <?php foreach ($panel_rela as $item) { ?>
             <li>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
                     <?php echo $item['count']; ?>

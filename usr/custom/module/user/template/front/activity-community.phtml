@@ -1,10 +1,9 @@
 <?php
-    // Load activity.css
-    $this->css(array(
-        Pi::url('static/custom/user/activity.css'),
-    ));
+// Load activity.css
+$this->css(array(
+    Pi::url('static/custom/user/activity.css'),
+));
 ?>
-
 <?php if ($community) { ?>
 <ul class="unstyled">
     <?php foreach($community as $key => $item) { ?>
@@ -27,7 +26,7 @@
     <?php } ?>
 </ul>
 <?php } else { ?>
-<div>
+<div class="alert">
     <?php _e('You do not join in community'); ?>
 </div>
 <?php } ?>
