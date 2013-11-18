@@ -144,6 +144,9 @@ class UserController extends ActionController
             foreach ($query as $qKey => $qValue) {
                 $condition->like($qKey, $qValue);
             }
+            if (!isset($query['active'])) {
+                $condition->equalTo('active', 1);
+            }
         }
         $users = Pi::service('user')->getList(
             $condition,
@@ -243,6 +246,9 @@ class UserController extends ActionController
             $condition = Pi::db()->where();
             foreach ($query as $qKey => $qValue) {
                 $condition->like($qKey, $qValue);
+            }
+            if (!isset($query['active'])) {
+                $condition->equalTo('active', 1);
             }
         }
         $count  = Pi::service('user')->getCount($condition);
