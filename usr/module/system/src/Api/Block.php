@@ -195,7 +195,12 @@ class Block extends AbstractApi
 
         // Update root
         $rootRow->assign($root);
-        $status = $rootRow->save();
+        try {
+            $rootRow->save();
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         $update = array(
             'render'        => isset($block['render']) ? $block['render'] : '',
@@ -220,7 +225,12 @@ class Block extends AbstractApi
             if ($configAdd) {
                 $blockRow->config = array_merge($configAdd, $blockRow->config);
             }
-            $status = $blockRow->save();
+            try {
+                $blockRow->save();
+                $status = true;
+            } catch (\Exception $e) {
+                $status = false;
+            }
         }
 
         return array(
@@ -349,7 +359,12 @@ class Block extends AbstractApi
 
         // Update block
         $blockRow->assign($block);
-        $status = $blockRow->save();
+        try {
+            $blockRow->save();
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         return array(
             'status'    => 1,

@@ -205,8 +205,9 @@ class Event extends AbstractResource
             // Update event
             if ($row->title != $events[$row->name]['title']) {
                 $row->title = $events[$row->name]['title'];
-                $status = $row->save();
-                if (!$status) {
+                try {
+                    $row->save();
+                } catch (\Exception $e) {
                     $message = 'Event "%s" is not updated.';
                     return array(
                         'status'    => false,

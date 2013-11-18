@@ -291,7 +291,14 @@ class Navigation extends AbstractResource
         foreach ($rowset as $row) {
             // Updated existent navigation
             if (isset($navigations[$row->name])) {
-                $status = $row->assign($navigations[$row->name])->save();
+                $row->assign($navigations[$row->name]);
+                try {
+                    $row->save();
+                    $status = true;
+                } catch (\Exception $e) {
+                    $status = false;
+                }
+
                 unset($navigations[$row->name]);
                 continue;
             // Delete deprecated navigation
@@ -327,7 +334,13 @@ class Navigation extends AbstractResource
         foreach ($rowset as $row) {
             // Updated existent node
             if (isset($nodes[$row->navigation])) {
-                $status = $row->assign($nodes[$row->navigation])->save();
+                $row->assign($nodes[$row->navigation]);
+                try {
+                    $row->save();
+                    $status = true;
+                } catch (\Exception $e) {
+                    $status = false;
+                }
                 unset($nodes[$row->navigation]);
                 continue;
             // Delete deprecated node
