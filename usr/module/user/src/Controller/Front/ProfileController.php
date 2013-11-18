@@ -610,10 +610,9 @@ class ProfileController extends ActionController
      * Include
      *
      * @param $groupNname
-     * @param string $compound
      * @return array
      */
-    protected function getGroupElements($groupId, $compound = '')
+    protected function getGroupElements($groupId)
     {
         $meta        = Pi::registry('field', 'user')->read('', 'edit');
         $fieldsModel = $this->getModel('display_field');
@@ -626,37 +625,22 @@ class ProfileController extends ActionController
         $elements = array();
         $filters  = array();
 
-        if (!$compound) {
-            // Profile
-            foreach ($rowset as $row) {
-                if (!isset($meta[$row->field])) {
-                    continue;
-                }
-                $element    = Pi::api('user', 'form')->getElement($row->field);
-                $filter     = Pi::api('user', 'form')->getFilter($row->field);
-                if ($element) {
-                    $elements[] = $element;
-                }
-                if ($filter) {
-                    $filters[] = $filter;
-                }
+        foreach ($rowset as $row) {
+            if (!isset($meta[$row->field])) {
+                continue;
             }
-
-            return array($elements, $filters);
-        } else {
-            // Compound
-            if (isset($meta[$row->field])) {
-                foreach ($rowset as $row) {
-                    $element = Pi::api('user', 'form')
-                        ->getCompoundElement($compound, $row->field);
-                    $filter = Pi::api('user', 'form')
-                        ->getCompoundFilter($compound, $row->field);
-                    $elements[] = $element;
-                    $filters[]  = $filter;
-                }
-                return array($elements, $filters);
+            $element    = Pi::api('user', 'form')->getElement($row->field);
+            $filter     = Pi::api('user', 'form')->getFilter($row->field);
+            if ($element) {
+                $elements[] = $element;
+            }
+            if ($filter) {
+                $filters[] = $filter;
             }
         }
+
+        return array($elements, $filters);
+
     }
 
     /**
