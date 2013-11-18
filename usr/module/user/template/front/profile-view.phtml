@@ -17,7 +17,7 @@ $this->css($this->assetModule('front/front.css'));
                         echo sprintf(
                             '<dt>%s<dd>%s',
                             $value['title'],
-                            $value['value'] ? _escape($value['value']) : '<em class="muted">Unfiled</em>'
+                            $value['value'] ? _escape($value['value']) : '<em class="muted">' . __('Unfiled') . '</em>'
                         );
                     }
                     echo '</dl>';
