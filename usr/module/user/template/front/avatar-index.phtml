@@ -32,7 +32,6 @@
         )
     );
     $viewPreview = '<li>
-                        <p>%s</p>
                         <div class="avatar-preview-box" style="width: %spx; height: %spx;">
                             <img src="%s" class="avatar-preview-img">
                         </div>';
@@ -87,7 +86,6 @@
                 foreach ($allSize as $key => $value) {
                     echo sprintf(
                         $viewPreview,
-                        $key,
                         $value,
                         $value,
                         isset($uploads[$key]) ? $uploads[$key] : ''
@@ -114,7 +112,6 @@
             foreach ($gravatar as $key => $value) {
                 echo sprintf(
                     $viewPreview,
-                    $key,
                     $allSize[$key],
                     $allSize[$key],
                     $value
@@ -143,7 +140,6 @@
                 foreach ($selected as $key => $value) {
                     echo sprintf(
                         $viewPreview,
-                        $key,
                         $allSize[$key],
                         $allSize[$key],
                         $value
