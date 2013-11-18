@@ -205,11 +205,12 @@ class User extends AbstractUseApi
             $offset,
             $order
         );
+        $result = array();
         if ('id' == $field[0] && 1 == count($field)) {
             array_walk($uids, function ($uid) use (&$result) {
                 $result[$uid] = array('id' => $uid);
             });
-        } else {
+        } elseif ($uids) {
             $result = $this->get($uids, $field);
         }
 
