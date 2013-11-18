@@ -48,8 +48,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($myTopic) {
-                        foreach($myTopic as $item) {
+                    if ($myTopic['dataList']) {
+                        foreach($myTopic['dataList'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],
@@ -77,8 +77,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    if ($myReply) {
-                        foreach($myReply as $item) {
+                    if ($myReply['dataList']) {
+                        foreach($myReply['dataList'] as $item) {
                             echo sprintf($tabItemView, 
                                  $item['url'],
                                  $item['title'],

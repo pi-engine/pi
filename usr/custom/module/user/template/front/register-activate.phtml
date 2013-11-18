@@ -4,19 +4,10 @@ $this->css(array(
     Pi::url('static/custom/user/register.css'),
 ));
 ?>
-
-<!-- Subheader -->
-<div class="pi-subheader">
-    <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>" title="EEFOCUS 与非网 通行证">
-        <img src="<?php echo Pi::url('static/custom/user/logo-eefocus-permit.png'); ?>" alt="EEFOCUS 与非网 通行证">
-    </a>
-</div>
-
 <div class="row-fluid pi-minheight">
     <div class="page-header">
         <h3><?php _e('User activates'); ?></h3>
     </div>
-
     <div class="text-center text-large">
         <?php if (isset($result) && $result['status']) { ?>
             <img style="margin-right: 10px; vertical-align: middle;" src="<?php echo Pi::url('static/custom/user/icon-success-large.png'); ?>">

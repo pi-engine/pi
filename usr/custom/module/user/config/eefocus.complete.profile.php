@@ -18,6 +18,7 @@ return array(
     'fullname',
     'gender',
     'birthdate',
-    'country',
+    'address',
+    'postcode',
     'subscription'
 );

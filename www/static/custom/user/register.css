@@ -7,10 +7,6 @@
     line-height: 0;
 }
 
-.pi-minheight {
-    min-height: 500px;
-}
-
 /* Subheader */
 .pi-subheader {
     margin-bottom: 26px;
@@ -22,8 +18,8 @@
 
 /* Step reg */
 .pi-step-reg {
-    margin-bottom: 40px;
-    height: 45px;
+    margin: 20px 0 60px;
+    height: 63px;
     background: url(step-register.png) no-repeat;
 }
 
@@ -32,11 +28,11 @@
 }
 
 .pi-step-reg2 {
-    background-position: 0 -50px;
+    background-position: 0 -63px;
 }
 
 .pi-step-reg3 {
-    background-position: 0 -100px;
+    background-position: 0 -126px;
 }
 
 /* Adjust captcha style */
@@ -55,4 +51,10 @@ input[name="captcha[input]"] + .help-inline {
     *margin-top: -44px;
     margin-left: 150px;
     display: inline-block !important;
+}
+
+/* Profile complete */
+.register-desc {
+    font-size: 16px;
+    margin-bottom: 20px;
 }
