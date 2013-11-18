@@ -31,7 +31,7 @@ class IndexController extends ActionController
     {
         $this->redirect()->toRoute(
             '',
-            array('controller' => 'home')
+            array('controller' => 'profile')
         );
 
         return;
