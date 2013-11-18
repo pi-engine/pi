@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2013-11-15 11:26+0800\n"
-"PO-Revision-Date: 2013-11-17 13:51+0800\n"
+"PO-Revision-Date: 2013-11-18 09:55+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -499,7 +499,7 @@ msgstr "激活 %d 用户成功"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:572
 msgid "Assign role failed: invalid parameters."
-msgstr "分配角色失败：不合法参赛。"
+msgstr "分配角色失败：不合法参数。"
 
 #: Z:\test\usr\module\user/src/Controller/Admin/IndexController.php:578
 msgid "Assign role failed: invalid user ids."

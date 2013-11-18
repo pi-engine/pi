@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-uclient\n"
-"POT-Creation-Date: 2013-11-10 14:07+0800\n"
-"PO-Revision-Date: 2013-11-10 14:07+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2013-11-18 09:46+0800\n"
+"PO-Revision-Date: 2013-11-18 09:49+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,86 +11,86 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\uclient\n"
+"X-Poedit-SearchPath-0: Z:\\pi\\usr\\module\\uclient\n"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:40
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:40
 msgid "Find password failed"
-msgstr ""
+msgstr "找回密码失败"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:88
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:88
 msgid "Send email successfully. check email and reset password."
-msgstr ""
+msgstr "成功发送邮件，请查收邮件并重置密码"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:114
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:121
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:129
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:114
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:121
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:129
 msgid "Invalid information provided."
-msgstr ""
+msgstr "提供的信息不正确"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:138
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:138
 msgid "Verification link is invalid: time out."
-msgstr ""
+msgstr "验证链接已过期"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:160
+#: Z:\pi\usr\module\uclient/src/Controller/Front/PasswordController.php:160
 msgid "Reset password successfully."
-msgstr ""
+msgstr "找回密码成功"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:27
+#: Z:\pi\usr\module\uclient/src/Form/FindPasswordForm.php:27
 msgid "Email"
-msgstr ""
+msgstr "邮箱"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:37
+#: Z:\pi\usr\module\uclient/src/Form/FindPasswordForm.php:37
 msgid "Please type the word"
-msgstr ""
+msgstr "验证码"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:52
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:1
+#: Z:\pi\usr\module\uclient/src/Form/FindPasswordForm.php:52
+#: Z:\pi\usr\module\uclient/template/front/password-find.phtml:1
 msgid "Find password"
-msgstr ""
+msgstr "找回密码"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:42
+#: Z:\pi\usr\module\uclient/src/Form/ResetPasswordForm.php:42
 msgid "New password"
-msgstr ""
+msgstr "新密码"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:52
+#: Z:\pi\usr\module\uclient/src/Form/ResetPasswordForm.php:52
 msgid "Confirm password"
-msgstr ""
+msgstr "确认密码"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:68
+#: Z:\pi\usr\module\uclient/src/Form/ResetPasswordForm.php:68
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:11
+#: Z:\pi\usr\module\uclient/template/front/password-find.phtml:11
 msgid "A reset link has been sent to your email."
-msgstr ""
+msgstr "重置密码链接已发送到您的邮箱"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:12
+#: Z:\pi\usr\module\uclient/template/front/password-find.phtml:12
 msgid "Please check it to reset your password in 24 hours."
-msgstr ""
+msgstr "请在24小时内点击以重置密码"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:1
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:1
 msgid "Reset password"
-msgstr ""
+msgstr "重置密码"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:6
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:6
 msgid "Sorry, the link is expired."
-msgstr ""
+msgstr "对不起，链接已过期"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:7
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:7
 msgid "Try to find password again"
-msgstr ""
+msgstr "重新找回密码"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:12
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:12
 msgid "Congratulations!"
-msgstr ""
+msgstr "恭喜！"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:13
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:13
 msgid "Your new password has worked"
-msgstr ""
+msgstr "新密码已生效"
 
-#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:15
+#: Z:\pi\usr\module\uclient/template/front/password-process.phtml:15
 msgid "Please login"
-msgstr ""
+msgstr "请登录"
 
 #, fuzzy
 #~ msgid "Register time"
