@@ -39,7 +39,9 @@ class Deactivate extends AbstractAction
         $row = $model->select(array('name' => $this->module))->current();
         $row->active = 0;
         // save module entry into database
-        if (!$row->save()) {
+        try {
+            $row->save();
+        } catch (\Exception $e) {
             $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module deactivate failed')

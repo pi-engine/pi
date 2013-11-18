@@ -239,9 +239,9 @@ class Permission extends AbstractResource
                 if (isset($resourcesExist[$section][$name])) {
                     $row = $resourcesExist[$section][$name];
                     $row->assign($resource);
-                    $status = $row->save();
-                    $message = array();
-                    if (!$status) {
+                    try {
+                        $row->save();
+                    } catch (\Exception $e) {
                         $message[] = sprintf(
                             'Resource "%s" is not updated.',
                             $resource['name']
