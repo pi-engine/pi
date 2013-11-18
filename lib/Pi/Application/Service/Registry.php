@@ -199,7 +199,10 @@ class Registry extends AbstractService
             ) {
                 continue;
             }
-            $registryList[] = strtolower(basename($directory, '.php'));
+            $name = basename($directory, '.php');
+            $words = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
+            $registry = strtolower(implode('_', $words));
+            $registryList[] = $registry;
         }
 
         return $registryList;
