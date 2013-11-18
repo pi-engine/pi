@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     <p><?php echo $module['update']; ?></p>
-                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php echo _a('update'); ?></a>
+                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php echo _a('Update'); ?></a>
                 </td>
                 <td>
                     <p><?php echo $module['description']; ?></p>
@@ -72,7 +72,7 @@
                             } else {
                                 echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), _a('Enable'));
                             }
-                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure uninstall this module?') ,_a('Uninstall'));
+                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure to uninstall this module?') ,_a('Uninstall'));
                         } ?>
                     </div>
                 </td>

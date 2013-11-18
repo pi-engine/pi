@@ -35,6 +35,23 @@ return array(
         'description'   => _a('User profile or login bar'),
         'render'        => 'block::userbar',
         'template'      => 'user-bar',
+        'config'        => array(
+            'type'      => array(
+                'title'         => _a('Display type'),
+                'description'   => _a('Mode to render.'),
+                'value'         => 'flat',
+                'edit'          => array(
+                    'type'      => 'select',
+                    'options'   => array(
+                        'options'   => array(
+                            'flat'      => _a('Flat'),
+                            'dropdown'  => _a('Dropdown menu'),
+                            'js'        => _a('JavaScript'),
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
 
     // Login block
