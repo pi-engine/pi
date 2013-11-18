@@ -867,6 +867,10 @@ class User extends AbstractUseApi
             return false;
         }
 
+        if (Pi::service('user')->isRoot($uid)) {
+            return false;
+        }
+
         $type = 'profile';
         try {
             Pi::model($type, 'user')->delete(array('uid' => $uid));
@@ -961,6 +965,10 @@ class User extends AbstractUseApi
     public function deleteCompound($uid)
     {
         if (!$uid) {
+            return false;
+        }
+
+        if (Pi::service('user')->isRoot($uid)) {
             return false;
         }
 
