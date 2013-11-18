@@ -80,7 +80,7 @@ class SendForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'editor',
-                'placeholder'     => 'Message content',
+                'placeholder'     => __('Message content'),
             ),
         ));
 

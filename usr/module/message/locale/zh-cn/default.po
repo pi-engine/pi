@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2013-11-17 16:05+0800\n"
-"PO-Revision-Date: 2013-11-17 16:06+0800\n"
+"POT-Creation-Date: 2013-11-18 10:16+0800\n"
+"PO-Revision-Date: 2013-11-18 10:16+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,10 @@ msgstr "发送"
 #: Z:\test\usr\module\message/src/Form/SendForm.php:55
 msgid "Recipient"
 msgstr "收件人"
+
+#: Z:\test\usr\module\message/src/Form/SendForm.php:83
+msgid "Message content"
+msgstr "私信内容"
 
 #: Z:\test\usr\module\message/template/front/notify-detail.phtml:8
 msgid "Messages"

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-uclient\n"
-"POT-Creation-Date: 2013-11-10 14:08+0800\n"
-"PO-Revision-Date: 2013-11-10 14:08+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2013-11-18 09:49+0800\n"
+"PO-Revision-Date: 2013-11-18 10:05+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,258 +11,258 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\uclient\n"
+"X-Poedit-SearchPath-0: Z:\\pi\\usr\\module\\uclient\n"
 
-#: C:\wamp\www\master\usr\module\uclient/config/module.php:17
+#: Z:\pi\usr\module\uclient/config/module.php:17
 msgid "User Client"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/config/module.php:18
+#: Z:\pi\usr\module\uclient/config/module.php:18
 msgid "Client for user services."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/config/nav.php:21
-msgid "User"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\uclient/config/nav.php:31
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:26
-msgid "Role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\uclient/config/nav.php:40
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:30
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:34
-msgid "Front role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\uclient/config/nav.php:49
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:31
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:35
-msgid "Admin role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\uclient/config/permission.php:18
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:33
+#: Z:\pi\usr\module\uclient/config/permission.php:18
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:33
 msgid "Users"
-msgstr ""
+msgstr "用户"
 
-#: C:\wamp\www\master\usr\module\uclient/config/permission.php:24
+#: Z:\pi\usr\module\uclient/config/permission.php:24
 msgid "Roles"
-msgstr ""
+msgstr "角色"
 
-#: C:\wamp\www\master\usr\module\uclient/config/permission.php:30
+#: Z:\pi\usr\module\uclient/config/permission.php:30
 msgid "Maintenance"
-msgstr ""
+msgstr "维护"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:168
-msgid "Assign role failed: invalid parameters."
-msgstr ""
+#: Z:\pi\usr\module\uclient/config/nav.php:21
+msgid "User"
+msgstr "用户"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:174
-msgid "Assign role failed: invalid user ids."
-msgstr ""
+#: Z:\pi\usr\module\uclient/config/nav.php:31
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:26
+msgid "Role"
+msgstr "角色"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:179
-msgid "Assign role failed: invalid operation."
-msgstr ""
+#: Z:\pi\usr\module\uclient/config/nav.php:40
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:30
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:34
+msgid "Front role"
+msgstr "前台角色"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:188
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:199
-msgid "Assign role failed."
-msgstr ""
+#: Z:\pi\usr\module\uclient/config/nav.php:49
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:31
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:35
+msgid "Admin role"
+msgstr "后台角色"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:211
-msgid "Assign role successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:108
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:108
 msgid "User removed from the role."
-msgstr ""
+msgstr "已从该角色中移除用户。"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:112
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:112
 msgid "User not in the role."
-msgstr ""
+msgstr "用户不在该角色内。"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:121
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:121
 msgid "User added to the role."
-msgstr ""
+msgstr "已添加用户到本角色"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:132
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:132
 msgid "User already in the role."
-msgstr ""
+msgstr "用户已在本角色"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:141
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:141
 msgid "User not found."
-msgstr ""
+msgstr "未找到用户。"
 
-#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:179
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/RoleController.php:179
 #, php-format
 msgid "Users of role %s"
-msgstr ""
+msgstr "用户角色 %s"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:5
-msgid "Added a user"
-msgstr ""
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:166
+msgid "Assign role failed: invalid parameters."
+msgstr "分配角色失败：不合法参数。"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:8
-msgid "Add"
-msgstr ""
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:172
+msgid "Assign role failed: invalid user ids."
+msgstr "分配角色失败：用户id不存在。"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:23
-msgid "Profile"
-msgstr ""
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:177
+msgid "Assign role failed: invalid operation."
+msgstr "分配角色失败：不合法操作。"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:26
-msgid "Remove"
-msgstr ""
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:186
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:197
+msgid "Assign role failed."
+msgstr "分配角色失败"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:41
-msgid "No users available yet."
-msgstr ""
+#: Z:\pi\usr\module\uclient/src/Controller/Admin/IndexController.php:209
+msgid "Assign role successfully."
+msgstr "分配角色成功"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:19
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:19
 msgid "Admin roles"
-msgstr ""
+msgstr "后台角色"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:20
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:20
 msgid "Front roles"
-msgstr ""
+msgstr "前台角色"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:21
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:21
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:22
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:25
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:22
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:25
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:23
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:31
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:23
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:31
 msgid "Users in role"
-msgstr ""
+msgstr "用户数量"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:24
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:24
 msgid "Action"
-msgstr ""
+msgstr "动作"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:26
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:36
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:26
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:36
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:27
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:27
 msgid "Required"
-msgstr ""
+msgstr "必填"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:28
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:28
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:29
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:43
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:29
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:43
 msgid "Front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:30
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:44
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:30
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:44
 msgid "Admin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:32
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:32
 msgid "User id or name"
-msgstr ""
+msgstr "用户 id 或 用户名"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:34
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:34
 msgid "First"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:35
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:35
 msgid "User id"
-msgstr ""
+msgstr "用户 ID"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:36
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:24
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:36
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:24
 msgid "Username"
-msgstr ""
+msgstr "用户名"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:37
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:25
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:37
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:25
 msgid "Display name"
-msgstr ""
+msgstr "昵称"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:38
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:29
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:38
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:29
 msgid "Email"
-msgstr ""
+msgstr "邮箱"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:39
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:39
 msgid "Add user"
-msgstr ""
+msgstr "添加用户"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:40
+#: Z:\pi\usr\module\uclient/template/admin/role.phtml:40
 msgid "None user in this role."
-msgstr ""
+msgstr "该角色内无用户。"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:20
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:20
 msgid "Select roles"
-msgstr ""
+msgstr "选择角色"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:21
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:21
 msgid "Any"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:22
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:22
 msgid "None"
-msgstr ""
+msgstr "无"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:23
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:23
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:27
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:27
 #, fuzzy
 msgid "Register time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:28
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:28
 msgid "Back to users list"
-msgstr ""
+msgstr "返回用户列表"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:32
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:32
 msgid "Assign role"
-msgstr ""
+msgstr "分配角色"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:33
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:33
 msgid "Remove role"
-msgstr ""
+msgstr "移除角色"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:37
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:37
 msgid "required"
-msgstr ""
+msgstr "必填"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:38
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:38
 #, fuzzy
 msgid "Register IP"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:39
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:39
 msgid "User ID"
-msgstr ""
+msgstr "用户 ID"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:40
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:40
 msgid "No user matched your request."
-msgstr ""
+msgstr "未找到匹配用户。"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:41
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:41
 msgid "From"
-msgstr ""
+msgstr "从"
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:42
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:42
 msgid "To"
+msgstr "到"
+
+#: Z:\pi\usr\module\uclient/template/admin/user.phtml:45
+msgid "Choose at least one item before submission."
+msgstr "请至少选择一项提交。"
+
+#: Z:\pi\usr\module\uclient/template/admin/role-user.phtml:5
+msgid "Added a user"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:45
-msgid "Choose at least one item before submission."
+#: Z:\pi\usr\module\uclient/template/admin/role-user.phtml:8
+msgid "Add"
+msgstr "添加"
+
+#: Z:\pi\usr\module\uclient/template/admin/role-user.phtml:23
+msgid "Profile"
+msgstr "资料"
+
+#: Z:\pi\usr\module\uclient/template/admin/role-user.phtml:26
+msgid "Remove"
+msgstr "移除"
+
+#: Z:\pi\usr\module\uclient/template/admin/role-user.phtml:41
+msgid "No users available yet."
 msgstr ""
