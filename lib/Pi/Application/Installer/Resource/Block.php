@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Application\Model\Block\Root as RootRow;
+use Pi\Db\RowGateway\RowGateway;
 
 /**
  * Block maintenance with configuration specs
@@ -323,12 +323,12 @@ class Block extends AbstractResource
     /**
      * Updates a block and its relevant options
      *
-     * @param RootRow $rootRow
+     * @param RowGateway $rootRow
      * @param array $block
      * @param array $message
      * @return bool
      */
-    protected function updateBlock(RootRow $rootRow, $block, &$message)
+    protected function updateBlock(RowGateway $rootRow, $block, &$message)
     {
         $result = Pi::api('system', 'block')->update($rootRow, $block);
 
@@ -338,11 +338,11 @@ class Block extends AbstractResource
     /**
      * Deletes a block root and its relevant views, ACL rules
      *
-     * @param RootRow $rootRow
+     * @param RowGateway $rootRow
      * @param array $message
      * @return bool
      */
-    protected function deleteBlock(RootRow $rootRow, &$message)
+    protected function deleteBlock(RowGateway $rootRow, &$message)
     {
         $result = Pi::api('system', 'block')->delete($rootRow, true);
 
