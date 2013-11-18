@@ -205,12 +205,11 @@ class User extends AbstractUseApi
             $offset,
             $order
         );
-        $result = array();
         if ('id' == $field[0] && 1 == count($field)) {
             array_walk($uids, function ($uid) use (&$result) {
                 $result[$uid] = array('id' => $uid);
             });
-        } elseif ($uids) {
+        } else {
             $result = $this->get($uids, $field);
         }
 
@@ -867,6 +866,10 @@ class User extends AbstractUseApi
             return false;
         }
 
+        if (Pi::service('user')->isRoot($uid)) {
+            return false;
+        }
+
         $type = 'profile';
         try {
             Pi::model($type, 'user')->delete(array('uid' => $uid));
@@ -961,6 +964,9 @@ class User extends AbstractUseApi
     public function deleteCompound($uid)
     {
         if (!$uid) {
+            return false;
+        }
+        if (Pi::service('user')->isRoot($uid)) {
             return false;
         }
 
