@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-19 14:37+0800\n"
-"PO-Revision-Date: 2013-11-19 15:35+0800\n"
+"POT-Creation-Date: 2013-11-19 17:01+0800\n"
+"PO-Revision-Date: 2013-11-19 17:04+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,71 +21,80 @@ msgstr ""
 msgid "Timeline added successfully."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:134
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:135
 msgid "Allowed extensions:"
 msgstr "支持格式："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:139
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:140
 msgid "Max files ize:"
 msgstr "最大文件尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:145
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:146
 msgid "Max image size:"
 msgstr "最大图片尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:222
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:223
 msgid "Avatar Settings"
 msgstr "头像设置"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:252
-msgid "Invalid fake ID!"
-msgstr ""
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:253
+msgid "Invalid token!"
+msgstr "无效token"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:350
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:475
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:172
-msgid "Invalid email."
-msgstr "无效邮箱。"
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:357
+msgid "Invalid email for gravatar."
+msgstr "无效Gravatar邮箱"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:361
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:394
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:370
 msgid "Successful"
 msgstr "成功 "
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:378
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:389
 msgid "No image selected!"
 msgstr "没有选中图片"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:417
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:407
+msgid "Successful."
+msgstr "成功 "
+
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:427
 #, php-format
 msgid "Invalid source %s."
 msgstr "无效来源 %s。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:428
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:439
 msgid "Not image selected."
 msgstr "没有选中图片。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:439
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:450
+msgid "Image is missing."
+msgstr ""
+
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:458
 msgid "Image does not exist."
 msgstr "图片不存在。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:449
-msgid "Image width or height is needed."
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:470
+msgid "Image width or height is missing."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:484
-msgid "Invalid image file."
-msgstr "无效图片。"
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:500
+msgid "Email address is missing."
+msgstr "邮箱地址丢失"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:511
+msgid "Invalid image set name."
+msgstr "无效图片名"
+
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:542
 msgid "Avatar set successfully."
 msgstr "头像设置成功。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:526
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:559
 msgid "Image is not removed."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:541
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:575
 msgid "Image removed successfully."
 msgstr "图片已删除。"
 
@@ -131,40 +140,40 @@ msgstr "密码错误"
 msgid "Correct password"
 msgstr "密码正确"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:257
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:268
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:276
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:297
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:259
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:270
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:278
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:287
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:299
 msgid "Activate link is invalid"
 msgstr "激活链接已失效"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:309
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:311
 msgid "Activate successfully"
 msgstr "激活成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:325
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:327
 msgid "Resend activate mail failed"
 msgstr "重新发送激活邮件失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:385
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:463
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:387
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
 msgid "Resend activate mail successfully"
 msgstr "重新发送激活邮件成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:408
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:410
 msgid "Email not exist"
 msgstr "邮箱不存在"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:413
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:415
 msgid "Account has activated"
 msgstr "账号已激活"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:466
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
 msgid "Input error"
 msgstr "输入错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:490
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:492
 msgid "An error occur"
 msgstr ""
 
@@ -425,7 +434,7 @@ msgid "Please type the word."
 msgstr "验证码"
 
 #: Z:\pi\usr\module\user/src/Form/LoginForm.php:40
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:21
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:20
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:32
 msgid "Password"
 msgstr "密码"
@@ -489,12 +498,9 @@ msgid "To ensure your account security, complex password is required."
 msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
 
 #: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:11
-msgid "Change your "
-msgstr "修改您的"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:11
-msgid " info."
-msgstr " "
+#, php-format
+msgid "Change your %s"
+msgstr "修改您的%s"
 
 #: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
 #: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:20
@@ -523,7 +529,7 @@ msgstr "查看全部"
 #: Z:\pi\usr\module\user/template/front/profile-edit.phtml:9
 #, php-format
 msgid "Change your %s info"
-msgstr "修改您的 %s"
+msgstr "修改您的%s"
 
 #: Z:\pi\usr\module\user/template/front/password-find.phtml:11
 msgid "A reset link has been sent to your email."
@@ -533,36 +539,36 @@ msgstr "重置链接已发送到您的邮箱。"
 msgid "Please check to reset your password in 24 hours."
 msgstr "请在24小时内重新设置密码。"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:14
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:16
 #: Z:\pi\usr\module\user/template/front/avatar-index.phtml:42
 msgid "Change avatar"
 msgstr "修改头像"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:24
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:26
 msgid "Birthdate:"
 msgstr "出生于"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:33
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:35
 msgid "Switch to view of others"
 msgstr "切换他人视角"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:44
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:46
 msgid "Quicklinks"
 msgstr "快速链接"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:49
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:51
 msgid "Setting"
 msgstr "设置"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:75
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:77
 msgid "Back to view of own"
 msgstr "返回自己视角"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:81
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:83
 msgid "Send message"
 msgstr "私信"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:161
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:162
 msgid "More"
 msgstr "更多"
 
@@ -644,24 +650,24 @@ msgstr "新密码已生效"
 msgid "Please login"
 msgstr "请登录"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:9
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:8
 msgid "View my profile"
 msgstr "查看我的资料"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:16
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:15
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:7
 msgid "Account settings"
 msgstr "账号信息"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:26
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:25
 msgid "Avatar"
 msgstr "修改头像"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:29
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:28
 msgid "Edit profile"
 msgstr "修改资料"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:40
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:39
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:9
 msgid "Privacy"
 msgstr "隐私设置"
@@ -816,7 +822,7 @@ msgstr "保存修改"
 
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:109
 msgid "A message has been sent to you"
-msgstr ""
+msgstr "修改邮箱确认邮件已发送到您的新邮箱"
 
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:109
 msgid ""
@@ -836,6 +842,10 @@ msgstr "昵称修改已保存。"
 msgid "Sorry, display name change failed. Try it later."
 msgstr "抱歉，昵称修改失败。请重试。"
 
+#: Z:\pi\usr\module\user/template/front/account-index.phtml:172
+msgid "Invalid email."
+msgstr "无效邮箱。"
+
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:190
 msgid "Email has been used."
 msgstr "邮箱已存在。"
@@ -851,6 +861,9 @@ msgstr "昵称已使用。"
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:255
 msgid "That\\'s you !"
 msgstr "就是你！"
+
+#~ msgid " info."
+#~ msgstr " "
 
 #~ msgid "<em class=\"muted\">Unfiled</em>"
 #~ msgstr "<em class=\"muted\">尚未填写</em>"
