@@ -109,12 +109,16 @@ $uid = Pi::user()->getId();
             ); 
             ?>
             <div class="comment-operation">
-                <?php foreach ($item['operations'] as $operation => $optData) { ?>
-                <a href="<?php echo $optData['url']; ?>" class="muted"
-                    <?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
-                    <?php echo _escape($optData['title']); ?>
-                </a>
-                <?php } ?>
+                <?php
+                if ($uid == $item['uid']) {
+                    echo sprintf(
+                        '<a href="%s" onclick="return confirm(\'%s\')">%s</a>',
+                        $this->url('', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
+                        __('Are sure want to delete this comment?'),
+                        __('Delete')
+                    );
+                }
+                ?>
             </div>
         </div>
     </div>
