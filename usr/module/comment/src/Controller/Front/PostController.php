@@ -481,10 +481,12 @@ class PostController extends ActionController
         //Look http status in Response.php 
         if (!$post) {
             $status = 422;
+            $message = __('Invalid params');
         } elseif ($currentUid != $post['uid']
             && !$currentUser->isAdmin('comment')
         ) {
             $status = 403;
+            $message = __('Forbidden');
         } else {
             $status    = Pi::api('comment')->deletePost($id);
         }
@@ -494,7 +496,10 @@ class PostController extends ActionController
             Pi::service('comment')->clearCache($id);
             $this->redirect($redirect);
         } else {
-            return $this->response->setStatusCode($status);
+            $this->response->setStatusCode($status);
+            return array(
+                'message' => $message
+            );
         }
     }
 
