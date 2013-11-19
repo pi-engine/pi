@@ -7,14 +7,14 @@
       <div class="pi-widget-body" style="padding-bottom: 10px;">
         <p>
           {{'ACTIVITIES_DESC' | translate}}
-        <div id="js-plugin-sortable">
+        <div id="js-plugin-sortable" ui-sortable ng-model="displayList">
           <div class="pi-widget-item" ng-repeat="item in displayList">
             <span class="pull-right">
               <span class="muted">{{item.module}}</span>
               <i class="icon-remove pi-icon-cursor"
                  ng-click="removeDisplay($index)"></i>
             </span>
-            {{item.title}} 
+            {{item.title}}
             <span class="muted gutter">{{item.link}}</span>
           </div>
         </div>

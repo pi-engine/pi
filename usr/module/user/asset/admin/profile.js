@@ -92,51 +92,10 @@
     angular.extend($scope, data);
 
     var isSaved = 1;
-    
-    function sortGroupField() {
-        //jQuery ui sortable
-        $timeout(function() {
-          $('.js-group-widgets').sortable({
-          items: '.pi-widget-item',
-          start: function (e, ui) {
-            ui.item.data('start', ui.item.index());
-          },
-          update: function(e, ui) {
-            var start = ui.item.data('start');
-            var end = ui.item.index();
-            var title = ui.item.parent().data('display');
-            var list;
-            angular.forEach($scope.displays, function(item) {
-              if (item.title == title) {
-                list = item;
-                return false;
-              }
-            });
-            var fields = list.fields;
-            fields.splice(end, 0, fields.splice(start, 1)[0]);
-            $scope.$apply();
-          }
-        });
-      })
-    }
 
-    //jQuery ui sortable
-    $('.user-profile-groups').sortable({
-      items: '.pi-widget',
-      handle: '.pi-widget-header',
-      delay: 100,
-      start: function (e, ui) {
-        ui.item.data('start', ui.item.index());
-      },
-      update: function(e, ui) {
-        var start = ui.item.data('start');
-        var end = ui.item.index();
-        var list = $scope.displays;
-        list.splice(end, 0, list.splice(start, 1)[0]);
-        $scope.$apply();
-      }
-    });
-    sortGroupField();
+    $scope.displaysOpts = {
+      handle: '.pi-widget-header'
+    };
 
     $scope.$watch('displays', function(newValue, oldValue) {
       if (newValue !== oldValue) {
@@ -154,7 +113,6 @@
       var compound = $scope.compounds[idx];
       $scope.displays.push(compound);
       $scope.compounds.splice(idx, 1);
-      sortGroupField();
     }
 
     $scope.AddCustomDisplay = function() {
@@ -171,7 +129,6 @@
         fields: []
       });
       $scope.entity = '';
-      sortGroupField();
     }
 
     $scope.AddGroupField = function(title, idx) {

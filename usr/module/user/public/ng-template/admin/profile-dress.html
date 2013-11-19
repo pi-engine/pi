@@ -42,7 +42,7 @@
                  ng-disabled="displayForm.$invalid">
         </form>
         <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
-        <div class="user-profile-groups">
+        <div class="user-profile-groups" ui-sortable="displaysOpts" ng-model="displays">
           <div ng-repeat="display in displays" class="pi-widget" 
                ng-class="{'user-profile-group-editing': display.$isEditing}">
             <div class="clearfix pi-widget-header">
@@ -56,7 +56,7 @@
               <div pi-hover-input text="display.title">
               </div>
             </div>
-            <div class="pi-widget-body js-group-widgets" data-display="{{display.title}}">
+            <div class="pi-widget-body js-group-widgets" ui-sortable ng-model="display.fields">
               <div ng-repeat="displayField in display.fields" class="pi-widget-item">
                 <span class="pull-right" ng-if="!display.name">
                   <i class="icon-remove pi-icon-cursor"
