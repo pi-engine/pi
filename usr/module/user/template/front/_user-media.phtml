@@ -1,3 +1,6 @@
+<?php
+   $is_owner = _get('uid') ? false : true;
+?>
 <div class="user-avatar-header">
     <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
         <div class="pull-left">
@@ -82,7 +85,6 @@
         <?php } ?>
     </div>
 </div>
-
 <style>
     .user-nav-icon {
         margin-right: 3px;

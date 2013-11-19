@@ -2,8 +2,8 @@
     // Load activity.css
     $this->css(array(
         Pi::url('static/custom/user/activity.css'),
+        $this->assetModule('front/front.css', 'user')
     ));
-
     $this->bootstrap('js/bootstrap.min.js');
     $tabItemView = '
         <tr>

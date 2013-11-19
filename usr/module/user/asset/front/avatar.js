@@ -21,7 +21,7 @@
     var saveBtn = root.$('.js-save');
     var uploadImg = root.$('.avatar-upload-image');
     var emailInput = root.$('[name=email]');
-    var repositoryRadios = root.$('[name=repository-avatar]');
+    var repositoryRadios = root.$('.avatar-repository-inline li');
     var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/; 
     var ajaxCache = (function () {
       var cache = {};
@@ -44,7 +44,7 @@
       var boundx = 0;
       var boundy = 0;
       var uploadBoxSize = config.uploadBoxSize;
-      var prevImgs = $('#fromUpload .avatar-preview-img');
+      var prevImgs = $('#fromUpload .avatar-preview-img').show();
       var allSizeArr = [];
       var idx = 0;
 
@@ -183,7 +183,7 @@
     });
 
     repositoryRadios.click(function() {
-      var name = $(this).val();
+      var name = $(this).find('input').attr('checked', 'checked').val();
       var prevImgs = $('#formRepository .avatar-preview-img');
       
       ajaxCache(config.urlRoot + 'repository', {
@@ -204,10 +204,12 @@
     });
 
     if (config.source == 'select') {
-      repositoryRadios.filter('[value=' + config.filename + ']').attr('checked', 'checked');
+      repositoryRadios.find('input').filter('[value=' + config.filename + ']').attr('checked', 'checked');
     } else {
       repositoryRadios.eq(0).attr('checked', 'checked');
     }
+    //ie fixed
+    $('#fromUpload .avatar-preview-img').hide();
 
 })(jQuery)
 
