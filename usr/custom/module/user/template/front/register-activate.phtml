@@ -18,9 +18,6 @@ $this->css(array(
                 <?php _e('Sorry, this link has expired. Maybe you have to complete the activation, or exceed the effective activation time.'); ?>
             </p>
             <p>
-                <?php _e('You can'); ?>
-                <?php _e('log in'); ?>
-                <?php _e(',or'); ?>
                 <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('Resend activation email');?></a>
             </p>
         <?php } ?>

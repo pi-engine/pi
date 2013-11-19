@@ -111,12 +111,8 @@ class AvatarController extends ActionController
         $filename = Pi::user()->get($uid, 'avatar');
         $source = Pi::service('avatar')->getType($filename);
 
-        //d($filename);
-
         // Get required sizes from configuration
         $form    = $this->getAvatarForm('avatar');
-        //$allSize = Pi::service('avatar')->getSize();
-        //arsort($allSize);
 
         // Available size list
         $sizeList = array();
@@ -157,8 +153,6 @@ class AvatarController extends ActionController
                     $uploads[$key] = $uploadAdapter->getSource($uid, $value);
                 }
             }
-
-            //d($uploads);
 
             $this->view()->assign(array(
                 'limits'    => $limits,
@@ -253,8 +247,6 @@ class AvatarController extends ActionController
             $result['message'] = __('Invalid token!');
 
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
         
         $rawInfo  = $this->request->getFiles('upload');
@@ -301,8 +293,6 @@ class AvatarController extends ActionController
             $result['message'] = implode(', ', $upload->getMessages());
 
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
 
         $upload->receive();
@@ -340,8 +330,6 @@ class AvatarController extends ActionController
         $result['status'] = true;
 
         return $result;
-        //echo json_encode($result);
-        //exit;
     }
     
     /**
@@ -357,8 +345,6 @@ class AvatarController extends ActionController
             $result['message'] = __('Invalid email for gravatar.');
 
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
         
         $adapter = Pi::avatar()->getAdapter('gravatar');
@@ -371,8 +357,6 @@ class AvatarController extends ActionController
         );
 
         return $result;
-        //echo json_encode($result);
-        //exit;
     }
     
     /**
@@ -389,8 +373,6 @@ class AvatarController extends ActionController
             $result['message'] = __('No image selected!');
 
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
         
         $adapter  = Pi::avatar()->getAdapter('select');
@@ -408,8 +390,6 @@ class AvatarController extends ActionController
         );
 
         return $result;
-        //echo json_encode($result);
-        //exit;
     }
     
     /**
@@ -425,9 +405,8 @@ class AvatarController extends ActionController
         array_push($adapters, 'local');
         if (empty($source) || !in_array($source, $adapters)) {
             $result['message'] = sprintf(__('Invalid source %s.'), $source);
+
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
         
         $uid     = Pi::user()->getId();
@@ -439,8 +418,6 @@ class AvatarController extends ActionController
                 $result['message'] = __('Not image selected.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
 
             $module     = $this->getModule();
@@ -450,16 +427,12 @@ class AvatarController extends ActionController
                 $result['message'] = __('Image is missing.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
             $rawImage   = Pi::path($image['tmp_name']);
             if (!file_exists($rawImage)) {
                 $result['message'] = __('Image does not exist.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
 
             $width  = $this->params('w', 0);
@@ -470,13 +443,10 @@ class AvatarController extends ActionController
                 $result['message'] = __('Image width or height is missing.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
 
             // Crop and resize avatar
             $paths    = $adapter->getMeta($uid);
-            //$rawImage = Pi::path($image['tmp_name']);
             foreach ($paths as $path) {
                 Pi::image()->crop(
                     $rawImage,
@@ -500,8 +470,6 @@ class AvatarController extends ActionController
                 $result['message'] = __('Email address is missing.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
             
             $photo = $email;
@@ -511,8 +479,6 @@ class AvatarController extends ActionController
                 $result['message'] = __('Invalid image set name.');
 
                 return $result;
-                //echo json_encode($result);
-                //exit;
             }
             
             $photo = $name;
@@ -523,6 +489,8 @@ class AvatarController extends ActionController
         // Remove old uploaded photo
         $oldAvatar = Pi::user()->get($uid, 'avatar');
         if ($oldAvatar != $photo) {
+            /*
+            // Remove deprecated avatar
             $adapter   = Pi::avatar()->getAdapter('upload');
             if ($adapter) {
                 $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
@@ -533,6 +501,7 @@ class AvatarController extends ActionController
                     }
                 }
             }
+            */
 
             // Save avatar data into database
             Pi::user()->set($uid, 'avatar', $photo);
@@ -542,8 +511,6 @@ class AvatarController extends ActionController
         $result['message'] = __('Avatar set successfully.');
 
         return $result;
-        //echo json_encode($result);
-        //exit;
     }
     
     /**
@@ -557,9 +524,8 @@ class AvatarController extends ActionController
         $fakeId = $this->params('fake_id', 0);
         if (empty($fakeId)) {
             $result['message'] = __('Image is not removed.');
+
             return $result;
-            //echo json_encode($result);
-            //exit;
         }
         
         $module  = $this->getModule();
@@ -575,7 +541,5 @@ class AvatarController extends ActionController
         $result['message'] = __('Image removed successfully.');
 
         return $result;
-        //echo json_encode($result);
-        //exit;
     }
 }
