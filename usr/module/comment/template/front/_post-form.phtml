@@ -29,10 +29,7 @@ $uid = Pi::user()->getId();
         <?php echo Pi::avatar()->get('', 'medium'); ?>
     </div>
     <div class="media-body well well-small">
-        <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>">
-            <?php _e('Login'); ?>
-        </a>
-        <?php _e(' to leave comments.'); ?>
+        <?php echo sprintf(__('Please <a href="%s">login</a> to leave comments.'), Pi::service('authentication')->getUrl('login')); ?>
     </div>
     <?php } ?>
 </div>

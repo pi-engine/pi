@@ -30,6 +30,11 @@ $form = Pi::service('comment')->getForm($formData);
 $this->css($this->assetModule('css/front.css', 'comment'));
 $uid = Pi::user()->getId();
 ?>
+<div class="pi-comment-article-title">
+    <a class="highlight" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
+        <?php echo _escape($target['title']); ?>
+    </a>
+</div>
 <div class="comments-panel">
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $comment['count'] ?: 0; ?>)</h4>
