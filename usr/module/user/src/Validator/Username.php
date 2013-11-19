@@ -36,16 +36,27 @@ class Username extends AbstractValidator
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::INVALID   => 'Invalid user name: %formatHint%',
-        self::RESERVED  => 'User name is reserved',
-        self::TAKEN     => 'User name is already taken',
-        self::TOO_SHORT => 'User name is less than %min% characters long',
-        self::TOO_LONG  => 'User name is more than %max% characters long'
-    );
+    protected $messageTemplates;
+    protected $formatMessage;
+
+    public function __construct()
+    {
+        $this->$messageTemplates = array(
+            self::INVALID   => __('Invalid user name: %formatHint%'),
+            self::RESERVED  => __('User name is reserved'),
+            self::TAKEN     => __('User name is already taken'),
+            self::TOO_SHORT => __('User name is less than %min% characters long'),
+            self::TOO_LONG  => __('User name is more than %max% characters long')
+        );
+
+        $this->$formatMessage = array(
+            'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
+            'medium'    => __('Only ASCII characters are allowed'),
+            'loose'     => __('Multibyte characters are allowed'),
+        );
+
+        parent::__construct();
+    }
 
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
@@ -56,12 +67,6 @@ class Username extends AbstractValidator
     protected $formatHint;
     protected $max;
     protected $min;
-
-    protected $formatMessage = array(
-        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
-        'medium'    => 'Only ASCII characters are allowed',
-        'loose'     => 'Multibyte characters are allowed',
-    );
 
     protected $formatPattern = array(
         'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',

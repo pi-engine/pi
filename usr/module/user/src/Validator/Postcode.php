@@ -22,12 +22,16 @@ class Postcode extends AbstractValidator
 {
     const POSTCODE_INVALID = 'postcodeInvalid';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::POSTCODE_INVALID => 'The input is not 6 numeric',
-    );
+    protected $messageTemplates;
+
+    public function __construct()
+    {
+        $this->$messageTemplates = array(
+            self::POSTCODE_INVALID => __('The input is not 6 numeric'),
+        );
+
+        parent::__construct();
+    }
 
     public function isValid($value)
     {
