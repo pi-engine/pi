@@ -27,161 +27,63 @@ $formData = array(
     'redirect'  => $this->url()->requestUri(true),
 );
 $form = Pi::service('comment')->getForm($formData);
-
-$this->jQuery();
-$this->backbone();
 $this->css($this->assetModule('css/front.css', 'comment'));
-
 $uid = Pi::user()->getId();
-$avatar = Pi::avatar()->get($uid, 'medium', false);
-if ($uid) {
-    $url = Pi::service('user')->getUrl('profile', $uid);
-} else {
-    $url = Pi::url('www');
+?>
+<div class="comments-panel">
+    <div class="comments-header">
+        <h4><?php _e('All comments '); ?> (<?php echo $comment['count'] ?: 0; ?>)</h4>
+    </div>
+    <?php include '_post-form.phtml'; ?>
+    <?php if (count($comment['posts'])) { ?>
+    <?php foreach ($comment['posts'] as $item) { ?>
+    <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
+        <a class="pull-left" href="<?php echo $item['user']['url']; ?>" target="_blank">
+            <?php echo $item['user']['avatar']; ?>
+        </a>
+        <div class="media-body">
+            <?php
+            echo sprintf('
+                <div class="media-heading">
+                    <a href="%s" target="_blank" style="margin-right: 20px;">%s</a>
+                    <span class="muted">%s</span>
+                </div>
+                <p>%s
+                ',
+                $item['user']['url'],
+                $item['user']['name'],
+                _date($item['time']),
+                $item['content']
+            ); 
+            ?>
+            <div class="comment-operation">
+                <?php
+                if ($uid == $item['uid']) {
+                    echo sprintf(
+                        '<a href="%s" onclick="return confirm(\'%s\')">%s</a>',
+                        $this->url('', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
+                        __('Are sure want to delete this comment?'),
+                        __('Delete')
+                    );
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+    <?php } else { ?>
+    <div class="text-center comment-none">
+        <strong class="muted"><?php _e('No one has commented yet.'); ?></strong>
+    </div>
+    <?php } ?>
+</div>
+<?php
+if ($paginator) {
+    echo $this->pagination(
+    $paginator,
+    'Sliding',
+    'paginator.phtml',
+    array('class' => 'pagination-right'));
 }
 ?>
-<div class="pi-comment-article-title">
-    <a class="highlight" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>">
-        <?php echo _escape($target['title']); ?>
-    </a>
-</div>
-<div class="pi-comment">
-    <div class="pi-comment-header">
-        <span><?php _e('All comments '); ?></span>
-        <span>(<?php echo $count ?: 0; ?>)
-        </span>
-    </div>
-    <?php 
-        if ($comment['active']) {
-    ?>
-    <div class="pi-comment-form">
-        <div class="media">
-            <a class="pull-left" href="<?php echo $url; ?>">
-                <img class="media-object" src="<?php echo $avatar; ?>">
-            </a>
-            <div class="media-body">
-            <?php 
-                if (empty($uid)) {
-                    $loginUrl = Pi::service('authentication')->getUrl('login');
-            ?>
-                <div class="form-unsign">
-                    <span><a href="<?php echo $loginUrl; ?>" class="highlight"><?php _e('Login'); ?></a></span>
-                    <span><?php _e(' to leave comments.'); ?></span>
-                </div>
-            <?php
-                } else {
-                    echo $this->form()->openTag($form);
-            ?>
-                <div class="form-textarea">
-                    <textarea placeholder="<?php _e('Type your content'); ?>" name="content"></textarea>
-                </div>
-                <input class="btn form-submit pull-right hide" type="submit" value="<?php _e('Post'); ?>" name="submit">
-            <?php 
-                    foreach (array(
-                        'id', 'root', 'reply', 'module', 'category',
-                        'item', 'redirect', 'markup') as $hiddenElement) {
-                        echo $this->formElement($form->get($hiddenElement));
-                    }
-                    echo $this->form()->closeTag();
-                }
-            ?>
-            </div>
-        </div>
-    </div>
-    <?php
-        }
-        if (count($posts)) {
-    ?>
-    <div class="pi-comment-list">
-    <?php 
-        foreach ($posts as $post) {
-    ?>
-        <div class="media">
-            <a class="pull-left" href="<?php echo $post['user']['url']; ?>" target="_blank">
-                <?php echo $post['user']['avatar']; ?>
-            </a>
-            <div class="media-body">
-                <div>
-                    <span class="pi-comment-user">
-                        <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
-                            <?php echo $post['user']['name']; ?>
-                        </a>
-                    </span>
-                    <span class="muted"><?php echo _date($post['time']); ?></span>
-                </div>
-                <div class="pi-comment-content"><?php echo $post['content']; ?></div>
-                <div class="pi-comment-operation">
-                <?php 
-                    foreach ($post['operations'] as $operation => $optData) {
-                ?>
-                    <span class="operation muted">
-                        <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
-                            <?php echo _escape($optData['title']); ?>
-                        </a>
-                    </span>
-                <?php
-                    }
-                ?>
-                </div>
-            </div>
-        </div>
-    <?php 
-        }
-    ?>
-    </div>
-    <?php 
-        } else {
-    ?>
-    <div class="pi-comment-none"><?php _e('No one has commented yet.'); ?></div>
-    <?php
-        }
-    ?>
-</div>
 
-<div>
-    <?php if (count($posts)) {
-        if ($paginator) {
-            echo $this->pagination(
-            $paginator,
-            'Sliding',
-            'paginator.phtml',
-            array('class' => 'pagination-right'));
-        }
-    }
-    ?>
-</div>
-
-<script>
-(function($) {
-var page = {
-    range   : $(".pi-comment"),
-    $       : function(selector) {
-       return this.range.find(selector);
-    }
-};
-
-var CommentView = Backbone.View.extend({
-    events          : {
-        "click textarea"   :"expandTextarea"
-    },
-    initialize      : function() {
-        this.$el   = $(".pi-comment");
-    },
-    expandTextarea  : function() {
-        var text  = this.$("textarea");
-        var textForm = this.$(".form-textarea");
-        
-        text.css({
-            "height"     : "75px",
-            "min-height" : "75px",
-            "max-height" : "auto"
-        });
-        textForm.css({
-            "height"     : "75px"
-        });
-        this.$(".form-submit").removeClass("hide");
-    }
-});
-new CommentView;
-})(jQuery)
-</script>

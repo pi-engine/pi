@@ -50,43 +50,7 @@ $uid = Pi::user()->getId();
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $data['count'] ?: 0; ?>)</h4>
     </div>
-    
-    <div class="media comment-item">
-        <?php if($uid) { ?>
-        <a class="pull-left" href="<?php echo Pi::service('user')->getUrl('profile', $uid); ?>" target="_blank">
-            <?php echo Pi::avatar()->get($uid, 'medium'); ?>
-        </a>
-        <div class="media-body">
-            <?php echo $this->form()->openTag($form); ?>
-            <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="input-block-level"
-                      rows="3"></textarea>
-            <?php
-            foreach (array(
-                            'id', 'root', 'reply', 'module', 'category',
-                            'item', 'redirect', 'markup') as $hiddenElement) {
-                            echo $this->formElement($form->get($hiddenElement));
-                        }
-            ?>
-            <div class="pull-right">
-                <button class="btn btn-primary">
-                    <?php _e('Post comment'); ?>
-                </button>
-            </div>
-            <?php echo $this->form()->closeTag(); ?>
-        </div>
-        <?php } else { ?>
-        <div class="pull-left">
-            <?php echo Pi::avatar()->get('', 'medium'); ?>
-        </div>
-        <div class="media-body well well-small">
-            <a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>">
-                <?php _e('Login'); ?>
-            </a>
-            <?php _e(' to leave comments.'); ?>
-        </div>
-        <?php } ?>
-    </div>
-    
+    <?php include '_post-form.phtml'; ?>
     <?php if (count($data['posts'])) { ?>
     <?php foreach ($data['posts'] as $item) { ?>
     <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
