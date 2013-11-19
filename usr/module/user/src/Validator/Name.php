@@ -62,7 +62,7 @@ class Name extends AbstractValidator
     );
 
     protected $formatPattern = array(
-        'strict'    => '/[^a-zA-Z0-9\_\-]/',
+        'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',
         'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
         'loose'     => '/[\000-\040]/',
     );
