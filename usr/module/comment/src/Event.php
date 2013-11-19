@@ -10,6 +10,7 @@
 namespace Module\Comment;
 
 use Pi;
+use Pi\Db\RowGateway\RowGateway;
 
 /**
  * Comment Event Handler
@@ -100,12 +101,12 @@ class Event
     /**
      * Comment post delete
      *
-     * @param int|int[] $id
+     * @param int|int[] $root
      * @param string $module
      */
-    public static function postdelete($id, $module)
+    public static function postdelete($root, $module)
     {
-        Pi::service('comment')->clearCache($id);
+        Pi::service('comment')->clearCache($root, true);
 
         return;
     }

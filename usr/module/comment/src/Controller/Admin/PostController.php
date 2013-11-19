@@ -295,12 +295,17 @@ class PostController extends ActionController
         $return = _get('return');
         $redirect = _get('redirect');
 
-        $status     = Pi::api('comment')->deletePost($id);
-        $message = $status
-            ? _a('Operation succeeded.') : _a('Operation failed');
-
+        $post = Pi::api('comment')->getPost($id);
+        if (!$post) {
+            $status = -2;
+            $message = __('Invalid post parameter.');
+        } else {
+            $status         = Pi::api('comment')->deletePost($id);
+            $message        = $status
+                ? __('Operation succeeded.') : __('Operation failed');
+        }
         if (0 < $status && $id) {
-            Pi::service('event')->trigger('post_delete', $id);
+            Pi::service('event')->trigger('post_delete', $post['root']);
         }
 
         if (!$return) {
@@ -333,9 +338,14 @@ class PostController extends ActionController
         $redirect = $this->params('redirect', '');
 
         $model  = $this->getModel('post');
+        $roots = array();
+        $rowset = $model->select(array('id' => $ids));
+        foreach ($rowset as $row) {
+            $roots[] = $row['root'];
+        }
         $model->delete(array('id' => $ids));
 
-        Pi::service('event')->trigger('post_delete', $ids);
+        Pi::service('event')->trigger('post_delete', $roots);
 
         if ($redirect) {
             $redirect = urldecode($redirect);

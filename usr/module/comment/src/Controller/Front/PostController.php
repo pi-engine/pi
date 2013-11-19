@@ -326,7 +326,6 @@ class PostController extends ActionController
                     }
                 }
                 if (0 < $status) {
-                    //vd($values);
                     $id = Pi::api('comment')->addPost($values);
                     $isEnabled = empty($values['active']) ? false : true;
                     if ($id) {
@@ -342,44 +341,6 @@ class PostController extends ActionController
                 $message = __('Invalid data, please check and re-submit.');
             }
         }
-
-        /*
-        if (1 === $status && $id) {
-            $uri = Pi::service('module')
-                ->config('user_domain', $this->getModule());
-            if (empty($values['item']) and !empty($values['reply'])) {
-                $postMessage = sprintf(
-                    __('A new comment is added that reply to comment #%s'),
-                    $values['reply']
-                );
-            } elseif (!empty($values['item'])) {
-                $postMessage = sprintf(
-                    __('A new comment is added of article #%s'),
-                    $values['item']
-                );
-            } else {
-                $postMessage = __('A new comment is added');
-            }
-
-            $params = array(
-                'uid'       => Pi::user()->getId(),
-                'title'     => __('New comment'),
-                'timeline'  => 'new_comment',
-                'message'   => $postMessage,
-                'time'      => time(),
-                'module'    => 'comment',
-                'app_key'   => Pi::url(),
-                'link'      => sprintf(
-                    '%s%s',
-                    rtrim(Pi::url(), '/'), 
-                    Pi::api('comment')->getUrl('post', array(
-                        'post'      => $id,
-                    ))
-                ),
-            );
-            Pi::service('remote')->post($uri, $params);
-        }
-        */
 
         if (0 < $status && $id) {
             if ($isNew) {
@@ -475,26 +436,44 @@ class PostController extends ActionController
         $currentUid     = $currentUser->get('id');
 
         $id             = _get('id', 'int');
-        $redirect       = $this->getRequest()->getServer('HTTP_REFERER');
-        $post           = Pi::api('comment')->getPost($id);
+        $return         = _get('return');
+        $redirect       = _get('redirect');
 
-        //Look http status in Response.php 
+        $post           = Pi::api('comment')->getPost($id);
         if (!$post) {
-            $status = 422;
+            $status = -2;
+            $message = __('Invalid post parameter.');
         } elseif ($currentUid != $post['uid']
             && !$currentUser->isAdmin('comment')
         ) {
-            $status = 403;
+            $status = -1;
+            $message = __('Operation denied.');
         } else {
-            $status    = Pi::api('comment')->deletePost($id);
+            $status         = Pi::api('comment')->deletePost($id);
+            $message        = $status
+                ? __('Operation succeeded.') : __('Operation failed');
         }
 
-        if ($status == 1) {
-            Pi::service('event')->trigger('post_delete', $id);
-            Pi::service('comment')->clearCache($id);
-            $this->redirect($redirect);
+        if (0 < $status && $id) {
+            Pi::service('event')->trigger('post_delete', $post['root']);
+            //Pi::service('comment')->clearCache($id);
+        }
+
+        if (!$return) {
+            if ($redirect) {
+                $redirect = urldecode($redirect);
+            } else {
+                $redirect = Pi::api('comment')->getUrl('list');
+            }
+            $this->jump($redirect, $message);
         } else {
-            return $this->response->setStatusCode($status);
+            $result = array(
+                'status'    => (int) $status,
+                'message'   => $message,
+                'data'      => $id,
+            );
+
+            return $result;
         }
     }
 
