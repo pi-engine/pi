@@ -209,8 +209,9 @@
       repositoryRadios.eq(0).attr('checked', 'checked');
     }
     //ie fixed
-    $('#fromUpload .avatar-preview-img').hide();
-
+    if (config.source != 'upload') {
+      $('#fromUpload .avatar-preview-img').hide();
+    }
 })(jQuery)
 
 

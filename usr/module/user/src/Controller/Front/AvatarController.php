@@ -240,8 +240,7 @@ class AvatarController extends ActionController
      */
     public function uploadAction()
     {
-        Pi::service('log')->active(false);
-        
+       
         $module   = $this->getModule();
         $config   = Pi::service('module')->config('', $module);
 
