@@ -94,9 +94,17 @@ class UserController extends ActionController
         $field      = $this->params('field');
 
         $fields     = $this->splitString($field);
+        if ($fields && !in_array('active', $fields)) {
+            $fields[] = 'active';
+        }
         $fields     = array_diff($fields, $this->protectedFields);
-        $result     = Pi::service('user')->get($uid, $fields);
-        $response   = (array) $result;
+        $result     = (array) Pi::service('user')->get($uid, $fields);
+        if (empty($result['active'])) {
+            $result = array();
+        } elseif ($result) {
+            unset($result['active']);
+        }
+        $response   = $result;
 
         return $response;
     }
@@ -113,8 +121,18 @@ class UserController extends ActionController
 
         $uids       = $this->splitString($uid);
         $fields     = $this->splitString($field);
+        if ($fields && !in_array('active', $fields)) {
+            $fields[] = 'active';
+        }
         $fields     = array_diff($fields, $this->protectedFields);
         $result     = Pi::service('user')->mget($uids, $fields);
+        array_walk($result, function (&$data) {
+            if (empty($data['active'])) {
+                $data = array();
+            } elseif ($data) {
+                unset($data['active']);
+            }
+        });
         $response   = $result;
 
         return $response;
