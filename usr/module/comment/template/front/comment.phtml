@@ -15,7 +15,8 @@ if (!Pi::comment()->active()) {
 // - url_ajax
 
 $data = Pi::api('comment')->load(
-    $this->url()->routeMatch()
+    $this->url()->routeMatch(),
+    array('avatar' => 'medium')
 );
 
 if (!$data) {

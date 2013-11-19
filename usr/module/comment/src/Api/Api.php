@@ -248,11 +248,12 @@ class Api extends AbstractApi
      * - url_submit
      * - url_ajax
      *
-     * @param RouteMatch|array $routeMatch
+     * @param RouteMatch|array|string $routeMatch
+     * @param array $options
      *
      * @return array|bool
      */
-    public function load($routeMatch)
+    public function load($routeMatch, array $options = array())
     {
         if ($routeMatch instanceof $routeMatch) {
             $params = $routeMatch->getParams();
@@ -356,12 +357,17 @@ class Api extends AbstractApi
             //vd($result['count']);
             if ($result['count']) {
                 $posts = $this->getList($rootData['id'], $limit);
+                $opOption = isset($options['display_operation'])
+                    ? $options['display_operation']
+                    : Pi::service('config')->module('display_operation', 'comment');
+                $avatarOption = isset($options['avatar'])
+                    ? $options['avatar']
+                    : 'medium';
                 $renderOptions = array(
                     'target'    => false,
-                    'operation' => Pi::service('config')
-                        ->module('display_operation', 'comment'),
+                    'operation' => $opOption,
                     'user'      => array(
-                        'avatar'    => 'medium',
+                        'avatar'    => $avatarOption,
                     ),
                 );
                 $posts = $this->renderList($posts, $renderOptions);
@@ -514,7 +520,7 @@ class Api extends AbstractApi
                 );
             }
             $users[0] = array(
-                'avatar'    => Pi::service('avatar')->get(0, 'medium'),
+                'avatar'    => Pi::service('avatar')->get(0, $avatar),
                 'url'       => Pi::url('www'),
                 'name'      => __('Guest'),
             );
