@@ -15,7 +15,6 @@
 
 return array(
     // Use user module field
-    'fullname',
     'gender',
     'birthdate',
     'address',

@@ -58,13 +58,13 @@ class Username extends AbstractValidator
     protected $min;
 
     protected $formatMessage = array(
-        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
+        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic and 5-25 characters',
         'medium'    => 'Only ASCII characters are allowed',
         'loose'     => 'Multibyte characters are allowed',
     );
 
     protected $formatPattern = array(
-        'strict'    => '/[^a-zA-Z0-9\_\-]/',
+        'strict'    => '/^[a-z][0-9a-z]{4,24}$/',
         'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
         'loose'     => '/[\000-\040]/',
     );
