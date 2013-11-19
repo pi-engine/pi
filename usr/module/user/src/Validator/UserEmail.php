@@ -37,7 +37,7 @@ class UserEmail extends AbstractValidator
 
     public function __construct()
     {
-        $this->$messageTemplates = array(
+        $this->messageTemplates = array(
             self::RESERVED  => __('User email is reserved'),
             self::USED      => __('User email is already used'),
         );

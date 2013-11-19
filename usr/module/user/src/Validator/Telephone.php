@@ -26,7 +26,7 @@ class Telephone extends AbstractValidator
 
     public function __construct()
     {
-        $this->$messageTemplates = array(
+        $this->messageTemplates = array(
             self::TELEPHONE_INVALID => __('The input is not 7-20 numeric'),
         );
 

@@ -41,7 +41,7 @@ class Username extends AbstractValidator
 
     public function __construct()
     {
-        $this->$messageTemplates = array(
+        $this->messageTemplates = array(
             self::INVALID   => __('Invalid user name: %formatHint%'),
             self::RESERVED  => __('User name is reserved'),
             self::TAKEN     => __('User name is already taken'),
@@ -49,7 +49,7 @@ class Username extends AbstractValidator
             self::TOO_LONG  => __('User name is more than %max% characters long')
         );
 
-        $this->$formatMessage = array(
+        $this->formatMessage = array(
             'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
             'medium'    => __('Only ASCII characters are allowed'),
             'loose'     => __('Multibyte characters are allowed'),

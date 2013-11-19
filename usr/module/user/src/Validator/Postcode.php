@@ -26,7 +26,7 @@ class Postcode extends AbstractValidator
 
     public function __construct()
     {
-        $this->$messageTemplates = array(
+        $this->messageTemplates = array(
             self::POSTCODE_INVALID => __('The input is not 6 numeric'),
         );
 

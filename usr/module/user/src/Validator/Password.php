@@ -38,7 +38,7 @@ class Password extends AbstractValidator
 
     public function __construct()
     {
-        $this->$messageTemplates = array(
+        $this->messageTemplates = array(
             self::TOO_SHORT => __('Password is less than %min% characters long'),
             self::TOO_LONG  => __('Password is more than %max% characters long'),
         );
