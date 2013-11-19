@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-18 18:00+0800\n"
-"PO-Revision-Date: 2013-11-18 18:00+0800\n"
+"POT-Creation-Date: 2013-11-19 14:37+0800\n"
+"PO-Revision-Date: 2013-11-19 15:35+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Timeline added successfully."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:131
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:134
 msgid "Allowed extensions:"
 msgstr "支持格式："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:136
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:139
 msgid "Max files ize:"
 msgstr "最大文件尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:142
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:145
 msgid "Max image size:"
 msgstr "最大图片尺寸："
 
@@ -77,15 +77,15 @@ msgstr ""
 msgid "Invalid image file."
 msgstr "无效图片。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:509
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:511
 msgid "Avatar set successfully."
 msgstr "头像设置成功。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:524
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:526
 msgid "Image is not removed."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:539
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:541
 msgid "Image removed successfully."
 msgstr "图片已删除。"
 
@@ -101,6 +101,15 @@ msgstr "更新成功"
 #: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:198
 msgid "Data saved failed"
 msgstr "数据保持失败"
+
+#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:438
+#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:461
+msgid "Delete failed."
+msgstr "删除失败。"
+
+#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:457
+msgid "Cannot delete the last one."
+msgstr ""
 
 #: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:133
 #: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:187
@@ -122,40 +131,40 @@ msgstr "密码错误"
 msgid "Correct password"
 msgstr "密码正确"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:259
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:270
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:278
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:287
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:299
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:257
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:268
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:276
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:297
 msgid "Activate link is invalid"
 msgstr "激活链接已失效"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:311
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:309
 msgid "Activate successfully"
 msgstr "激活成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:327
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:325
 msgid "Resend activate mail failed"
 msgstr "重新发送激活邮件失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:387
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:385
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:463
 msgid "Resend activate mail successfully"
 msgstr "重新发送激活邮件成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:410
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:408
 msgid "Email not exist"
 msgstr "邮箱不存在"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:415
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:413
 msgid "Account has activated"
 msgstr "账号已激活"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:466
 msgid "Input error"
 msgstr "输入错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:492
+#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:490
 msgid "An error occur"
 msgstr ""
 
@@ -228,27 +237,27 @@ msgstr "隐私设置成功。"
 #: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:76
 #: Z:\pi\usr\module\user/src/Api/Relation.php:53
 msgid "Public"
-msgstr ""
+msgstr "所有人"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:77
 #: Z:\pi\usr\module\user/src/Api/Relation.php:57
 msgid "Member"
-msgstr "成员"
+msgstr "登录用户"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
 #: Z:\pi\usr\module\user/src/Api/Relation.php:61
 msgid "Follower"
-msgstr ""
+msgstr "关注我的人"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:79
 #: Z:\pi\usr\module\user/src/Api/Relation.php:65
 msgid "Following"
-msgstr ""
+msgstr "我关注的人"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:80
 #: Z:\pi\usr\module\user/src/Api/Relation.php:69
 msgid "Owner"
-msgstr ""
+msgstr "仅自己"
 
 #: Z:\pi\usr\module\user/src/Api/Nav.php:43
 msgid "Profile"
@@ -323,11 +332,11 @@ msgstr "打开"
 #: Z:\pi\usr\module\user/src/Form/CompoundForm.php:58
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:50
 msgid "Submit"
-msgstr "保存"
+msgstr "提交"
 
 #: Z:\pi\usr\module\user/src/Form/FindPasswordForm.php:37
 msgid "Please type the word"
-msgstr ""
+msgstr "验证码"
 
 #: Z:\pi\usr\module\user/src/Form/FindPasswordForm.php:52
 #: Z:\pi\usr\module\user/template/front/password-find.phtml:1
@@ -416,7 +425,7 @@ msgid "Please type the word."
 msgstr "验证码"
 
 #: Z:\pi\usr\module\user/src/Form/LoginForm.php:40
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:18
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:32
 msgid "Password"
 msgstr "密码"
@@ -524,36 +533,36 @@ msgstr "重置链接已发送到您的邮箱。"
 msgid "Please check to reset your password in 24 hours."
 msgstr "请在24小时内重新设置密码。"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:11
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:43
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:14
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:42
 msgid "Change avatar"
 msgstr "修改头像"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:21
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:24
 msgid "Birthdate:"
 msgstr "出生于"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:30
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:33
 msgid "Switch to view of others"
 msgstr "切换他人视角"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:41
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:44
 msgid "Quicklinks"
 msgstr "快速链接"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:46
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:49
 msgid "Setting"
 msgstr "设置"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:72
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:75
 msgid "Back to view of own"
 msgstr "返回自己视角"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:78
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:81
 msgid "Send message"
 msgstr "私信"
 
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:158
+#: Z:\pi\usr\module\user/template/front/_user-media.phtml:161
 msgid "More"
 msgstr "更多"
 
@@ -635,24 +644,24 @@ msgstr "新密码已生效"
 msgid "Please login"
 msgstr "请登录"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:6
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:9
 msgid "View my profile"
 msgstr "查看我的资料"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:13
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:16
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:7
 msgid "Account settings"
 msgstr "账号信息"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:23
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:26
 msgid "Avatar"
 msgstr "修改头像"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:26
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:29
 msgid "Edit profile"
 msgstr "修改资料"
 
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:37
+#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:40
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:9
 msgid "Privacy"
 msgstr "隐私设置"
@@ -687,8 +696,12 @@ msgid "Change your privacy settings."
 msgstr "设置您个人资料对谁可见，保障您的隐私权"
 
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
-msgid "No  available privacy setting"
-msgstr ""
+msgid "Warning! "
+msgstr "提示："
+
+#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
+msgid "No available privacy setting"
+msgstr "没有可用的隐私设置"
 
 #: Z:\pi\usr\module\user/template/front/avatar-index.phtml:15
 msgid "Upload"
@@ -706,54 +719,54 @@ msgstr "系统挑选"
 msgid "Default"
 msgstr "系统默认"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:44
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:43
 msgid "Customize your avatar anyway you like"
 msgstr "多种头像更换方案，任您选择"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:47
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:46
 msgid "Current avatar"
 msgstr "当前头像"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:51
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:50
 msgid ""
 "once switch source and saved,the avatar data from other source will be "
 "deleted."
 msgstr "一旦切换头像来源并保存生效，其他来源的头像数据将被删除"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:73
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:187
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:72
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:183
 msgid "Upload avatar"
 msgstr "上传头像"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:83
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:110
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:139
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:166
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:82
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:108
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:136
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:162
 msgid "Avatar previews"
 msgstr "头像预览"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:103
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:101
 msgid "Change from Gravatar"
 msgstr "去Gavatar修改"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:105
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:103
 msgid "Gravatar email"
 msgstr "Gravatar邮箱"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:162
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:158
 msgid "Apply system avatar as your avatar"
 msgstr "使用系统默认头像"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:177
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:173
 msgid "Save"
 msgstr "保存"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:178
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:174
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:40
 msgid "Cancel"
 msgstr "取消"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:188
+#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:184
 msgid "Uploading"
 msgstr "上传"
 
@@ -791,7 +804,7 @@ msgstr "修改您的账号信息"
 
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:26
 msgid "Save account changes"
-msgstr ""
+msgstr "保存账号修改"
 
 #: Z:\pi\usr\module\user/template/front/account-index.phtml:29
 msgid "Re-enter your password to save changes to your account."
@@ -858,10 +871,6 @@ msgstr "就是你！"
 
 #, fuzzy
 #~ msgid "Disabled time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Deleted time"
 #~ msgstr "Application Execution Time"
 
 #, fuzzy

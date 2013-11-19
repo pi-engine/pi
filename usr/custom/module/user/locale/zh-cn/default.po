@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-custom-user\n"
-"POT-Creation-Date: 2013-11-15 09:14+0800\n"
-"PO-Revision-Date: 2013-11-18 17:09+0800\n"
+"POT-Creation-Date: 2013-11-19 14:46+0800\n"
+"PO-Revision-Date: 2013-11-19 14:47+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,770 +11,618 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e;_t;_a;_b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\Documents and Settings\\bianzhuang\\My Documents"
-"\\GitHub\\pi\\usr\\custom\\user\n"
+"X-Poedit-SearchPath-0: Z:\\pi\\usr\\custom\\module\\user\n"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/eefocus.register.php:28
+#: Z:\pi\usr\custom\module\user/config/eefocus.register.php:28
 msgid "Confirm credential"
 msgstr "确认密码"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/eefocus.register.php:60
+#: Z:\pi\usr\custom\module\user/config/eefocus.register.php:60
 msgid "Please type the word."
 msgstr "验证码"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:20
+#: Z:\pi\usr\custom\module\user/config/user.php:20
 msgid "chuangan/MEMS"
 msgstr "传感/MEMS"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:21
+#: Z:\pi\usr\custom\module\user/config/user.php:21
 msgid "kongzhiqi/chuliqi/DSP"
 msgstr "控制器/处理器/DSP"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:22
+#: Z:\pi\usr\custom\module\user/config/user.php:22
 msgid "baohu/geli"
 msgstr "控制器/处理器/DSP"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:23
+#: Z:\pi\usr\custom\module\user/config/user.php:23
 msgid "kaiguan/duolufuyongqi"
 msgstr "开关/多路复用器"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:24
+#: Z:\pi\usr\custom\module\user/config/user.php:24
 msgid "fadahexianxingchanpin"
 msgstr "放大和线性产品"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:25
+#: Z:\pi\usr\custom\module\user/config/user.php:25
 msgid "cunchu"
 msgstr "存储"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:26
+#: Z:\pi\usr\custom\module\user/config/user.php:26
 msgid "lianjieqi"
 msgstr "连接器"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:27
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:57
+#: Z:\pi\usr\custom\module\user/config/user.php:27
+#: Z:\pi\usr\custom\module\user/config/user.php:57
 msgid "ceshiceliang"
 msgstr "测试测量"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:28
+#: Z:\pi\usr\custom\module\user/config/user.php:28
 msgid "shujuzhuanhuanqi"
 msgstr "测试测量"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:29
+#: Z:\pi\usr\custom\module\user/config/user.php:29
 msgid "jiekou"
 msgstr "测试测量"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:30
+#: Z:\pi\usr\custom\module\user/config/user.php:30
 msgid "guangdian/xianshi"
 msgstr "光电/显示"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:31
+#: Z:\pi\usr\custom\module\user/config/user.php:31
 msgid "qianrushikaifagongju"
 msgstr "嵌入式开发工具"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:32
+#: Z:\pi\usr\custom\module\user/config/user.php:32
 msgid "dianyuan/dianchiguanli"
 msgstr "电源/电池管理"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:33
+#: Z:\pi\usr\custom\module\user/config/user.php:33
 msgid "yin/shipin"
 msgstr "音/视频"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:34
+#: Z:\pi\usr\custom\module\user/config/user.php:34
 msgid "RF/weibo"
 msgstr "RF/微波"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:35
+#: Z:\pi\usr\custom\module\user/config/user.php:35
 msgid "EDA/IP/IC/PCBsheji"
 msgstr "EDA/IP/IC/PCB设计"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:36
+#: Z:\pi\usr\custom\module\user/config/user.php:36
 msgid "shuzi/kebianchengluoji"
 msgstr "数字/可编程逻辑"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:37
+#: Z:\pi\usr\custom\module\user/config/user.php:37
 msgid "fenli/wuyuanqijian"
 msgstr "分立/无源器件"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:38
+#: Z:\pi\usr\custom\module\user/config/user.php:38
 msgid "tongxin/wangluoIC"
 msgstr "通信/网络IC"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:39
+#: Z:\pi\usr\custom\module\user/config/user.php:39
 msgid "zhizao/fengzhuang"
 msgstr "制造/封装"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:40
+#: Z:\pi\usr\custom\module\user/config/user.php:40
 msgid "shizhong/dingshi"
 msgstr "时钟/定时"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:54
+#: Z:\pi\usr\custom\module\user/config/user.php:54
 msgid "qianrushixitongsheji"
 msgstr "嵌入式系统设计"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:55
+#: Z:\pi\usr\custom\module\user/config/user.php:55
 msgid "wuxian&shepin"
 msgstr "无线&射频"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:56
+#: Z:\pi\usr\custom\module\user/config/user.php:56
 msgid "lvsesheji"
 msgstr "绿色设计"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:58
+#: Z:\pi\usr\custom\module\user/config/user.php:58
 msgid "xiaofeidianzi"
 msgstr "消费电子"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:59
+#: Z:\pi\usr\custom\module\user/config/user.php:59
 msgid "dianzizixunjinji"
 msgstr "电子资讯集锦"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:60
+#: Z:\pi\usr\custom\module\user/config/user.php:60
 msgid "moni&dianyuan"
 msgstr "模拟&电源"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:61
+#: Z:\pi\usr\custom\module\user/config/user.php:61
 msgid "gongyedianzi"
 msgstr "工业电子"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:83
+#: Z:\pi\usr\custom\module\user/config/user.php:83
 msgid "Full name"
 msgstr "姓名"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:92
-#, fuzzy
+#: Z:\pi\usr\custom\module\user/config/user.php:92
 msgid "Language"
-msgstr "语言选择"
+msgstr "语言"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:99
+#: Z:\pi\usr\custom\module\user/config/user.php:99
 msgid "Country"
 msgstr "地区"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:109
+#: Z:\pi\usr\custom\module\user/config/user.php:109
 msgid "Province"
 msgstr "省"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:117
+#: Z:\pi\usr\custom\module\user/config/user.php:117
 msgid "City"
 msgstr "市"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:125
+#: Z:\pi\usr\custom\module\user/config/user.php:125
 msgid "Telephone"
 msgstr "电话"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:139
+#: Z:\pi\usr\custom\module\user/config/user.php:139
 msgid "Registered source"
 msgstr "注册来源"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:146
+#: Z:\pi\usr\custom\module\user/config/user.php:146
 msgid "Address"
 msgstr "详细地址"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:158
+#: Z:\pi\usr\custom\module\user/config/user.php:158
 msgid "Postcode"
 msgstr "邮编"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:171
+#: Z:\pi\usr\custom\module\user/config/user.php:171
 msgid "Interest"
 msgstr "感兴趣的产品和技术"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:184
+#: Z:\pi\usr\custom\module\user/config/user.php:184
 msgid "Subscriptions"
 msgstr "订阅信息"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:200
+#: Z:\pi\usr\custom\module\user/config/user.php:200
 msgid "Education"
 msgstr "教育经历"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:208
+#: Z:\pi\usr\custom\module\user/config/user.php:208
 msgid "School name"
 msgstr "学校"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:214
+#: Z:\pi\usr\custom\module\user/config/user.php:214
 msgid "Department"
 msgstr "院系"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:220
+#: Z:\pi\usr\custom\module\user/config/user.php:220
 msgid "Major"
 msgstr "专业"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:226
+#: Z:\pi\usr\custom\module\user/config/user.php:226
 msgid "Degree"
 msgstr "学历"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:232
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:319
-#, fuzzy
+#: Z:\pi\usr\custom\module\user/config/user.php:232
+#: Z:\pi\usr\custom\module\user/config/user.php:319
 msgid "Start time"
-msgstr "Application Execution Time"
+msgstr "开始时间"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:236
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:323
-#, fuzzy
+#: Z:\pi\usr\custom\module\user/config/user.php:236
+#: Z:\pi\usr\custom\module\user/config/user.php:323
 msgid "End time"
-msgstr "Application Execution Time"
+msgstr "结束时间"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:240
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:309
+#: Z:\pi\usr\custom\module\user/config/user.php:240
+#: Z:\pi\usr\custom\module\user/config/user.php:309
 msgid "Description"
 msgstr "描述"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:255
+#: Z:\pi\usr\custom\module\user/config/user.php:255
 msgid "Work"
 msgstr "工作经验"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:263
+#: Z:\pi\usr\custom\module\user/config/user.php:263
 msgid "Company name"
 msgstr "公司"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:269
+#: Z:\pi\usr\custom\module\user/config/user.php:269
 msgid "Work Department"
 msgstr "部门"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:275
+#: Z:\pi\usr\custom\module\user/config/user.php:275
 msgid "Industry"
 msgstr "行业"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:282
+#: Z:\pi\usr\custom\module\user/config/user.php:282
 msgid "Sector"
 msgstr "领域"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:286
+#: Z:\pi\usr\custom\module\user/config/user.php:286
 msgid "Job Position"
 msgstr "职位描述"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:291
+#: Z:\pi\usr\custom\module\user/config/user.php:291
 msgid "Select"
 msgstr "请选择"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:292
+#: Z:\pi\usr\custom\module\user/config/user.php:292
 msgid "R&D"
 msgstr "研发"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:293
+#: Z:\pi\usr\custom\module\user/config/user.php:293
 msgid "Management"
 msgstr "研发管理/项目管理"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:294
+#: Z:\pi\usr\custom\module\user/config/user.php:294
 msgid "Measurement"
 msgstr "测试测量"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:295
+#: Z:\pi\usr\custom\module\user/config/user.php:295
 msgid "QA"
 msgstr "生产管理/质量控制"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:296
+#: Z:\pi\usr\custom\module\user/config/user.php:296
 msgid "Market"
 msgstr "采购/市场/服务"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:297
+#: Z:\pi\usr\custom\module\user/config/user.php:297
 msgid "Student"
 msgstr "学生"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:303
+#: Z:\pi\usr\custom\module\user/config/user.php:303
 msgid "Job title"
 msgstr "职务职称"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:338
+#: Z:\pi\usr\custom\module\user/config/user.php:338
 msgid "Community bbs"
 msgstr "社区帖子"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:345
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:385
+#: Z:\pi\usr\custom\module\user/config/user.php:345
+#: Z:\pi\usr\custom\module\user/config/user.php:385
 msgid "CNDZZ"
 msgstr "CNDZZ"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:352
+#: Z:\pi\usr\custom\module\user/config/user.php:352
 msgid "Blog"
 msgstr "博客"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:359
+#: Z:\pi\usr\custom\module\user/config/user.php:359
 msgid "Community"
 msgstr "加入的社区"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:368
+#: Z:\pi\usr\custom\module\user/config/user.php:368
 msgid "EEFOCUS"
 msgstr "EEFOCUS"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:373
+#: Z:\pi\usr\custom\module\user/config/user.php:373
 msgid "Article channel"
 msgstr "----- 资讯频道"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:377
+#: Z:\pi\usr\custom\module\user/config/user.php:377
 msgid "Blog channel"
 msgstr "----- 博客频道"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:381
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:394
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:407
+#: Z:\pi\usr\custom\module\user/config/user.php:381
+#: Z:\pi\usr\custom\module\user/config/user.php:394
+#: Z:\pi\usr\custom\module\user/config/user.php:407
 msgid "Forum"
 msgstr "----- 论坛"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:390
+#: Z:\pi\usr\custom\module\user/config/user.php:390
 msgid "Diagram"
 msgstr "----- 电路图"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:398
+#: Z:\pi\usr\custom\module\user/config/user.php:398
 msgid "EEboard"
 msgstr "EEboard"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:403
+#: Z:\pi\usr\custom\module\user/config/user.php:403
 msgid "Kaifaban"
 msgstr "----- 开发板"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/config/user.php:411
+#: Z:\pi\usr\custom\module\user/config/user.php:411
 msgid "Datasheet 5"
 msgstr "Datasheet 5"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:10
-msgid "Change email"
-msgstr "修改邮箱"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:15
-msgid "Congratulations!"
-msgstr "恭喜！"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:16
-msgid "Your email has been changed."
-msgstr "邮箱修改成功。"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:18
-#, php-format
-msgid "<a href=\"%s\">Login right now</a>"
-msgstr "<a href=\"%s\">立即登录</a>"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/account-reset-email.phtml:22
-msgid "Sorry, the link has expired, or maybe your email has been changed."
-msgstr "对不起，链接已过期，或邮箱已经修改成功。"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:30
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:106
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:43
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:221
-msgid "Topic"
-msgstr "帖子"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:34
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:47
-msgid "Reply"
-msgstr "回复"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:43
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:72
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:68
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:97
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:126
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:155
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:184
-msgid "Title"
-msgstr "标题"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:45
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:74
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:70
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:99
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:128
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:157
-msgid "Publish time"
-msgstr "发布时间"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:47
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:76
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:72
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:101
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:130
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:159
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:190
-msgid "Belong to community"
-msgstr "所属社区"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:62
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:91
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:87
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:116
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:145
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:174
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:206
-msgid "No content"
-msgstr "没有内容"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:103
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:123
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:218
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:238
-msgid "Manage"
-msgstr "管理"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-cndzz.phtml:126
-msgid "Circuit diagram"
-msgstr "电路图"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:51
-msgid "Question"
-msgstr "提问"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:55
-msgid "Answer"
-msgstr "回答"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:59
-msgid "Project"
-msgstr "项目"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:186
-#, fuzzy
-msgid "Create time"
-msgstr "Application Execution Time"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:188
-#, fuzzy
-msgid "Update time"
-msgstr "Application Execution Time"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community-bbs.phtml:241
-msgid "Relationship"
-msgstr "关系"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community.phtml:17
-msgid "Point"
-msgstr "积分："
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/activity-community.phtml:31
-msgid "You do not join in community"
-msgstr "尚未加入社区"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:18
+#: Z:\pi\usr\custom\module\user/template/front/password-find.phtml:9
 msgid "Find password"
 msgstr "找回密码"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:32
+#: Z:\pi\usr\custom\module\user/template/front/password-find.phtml:24
 msgid "An reset password link has been sent to your email"
 msgstr "重设密码的链接已经发往您的邮箱。"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:39
-msgid "Find password proceed:"
-msgstr "找回密码流程："
+#: Z:\pi\usr\custom\module\user/template/front/register-profile-complete.phtml:9
+msgid "Complete profile"
+msgstr "完善资料"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:41
-msgid "input email address,send find password email"
-msgstr "填写 Email 地址, 发送找回密码邮件"
+#: Z:\pi\usr\custom\module\user/template/front/register-profile-complete.phtml:12
+msgid "Complete profile description"
+msgstr "完善资料"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:42
-msgid "click the link in email"
-msgstr "查收邮件，点击邮件中的修改密码链接"
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:18
+msgid "already registered,havent activited"
+msgstr "已注册，未激活？"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:43
-msgid "change password"
-msgstr "修改密码"
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:19
+msgid "resend activited email"
+msgstr "重新发送激活邮件"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-find.phtml:44
-msgid "done"
-msgstr "完成"
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:27
+msgid "shenglingyufeitongxingzheng"
+msgstr "申领与非网通行证"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-process.phtml:18
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:28
+msgid "qinsongshixianrengwoxing"
+msgstr "轻松实现“任我行”"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:31
+msgid "queefocus"
+msgstr "去“与非网”交流技术"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:32
+msgid "qucndzz"
+msgstr "去“电子电路网”下载电路图"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:33
+msgid "qud5"
+msgstr "去“集成电路查询网”查询器件信息"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:34
+msgid "queeboard"
+msgstr "去“爱板网”选购开发板"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:42
+msgid "I have read and agree to"
+msgstr "我已经阅读并同意相关"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:42
+msgid "Terms of Service"
+msgstr "服务条款"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:54
+msgid "tell eefocus what you like"
+msgstr "告诉与非你喜欢的"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:55
+msgid "eefocus offer what you want"
+msgstr "与非提供你想要的"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:58
+msgid "we will provide service according to your interest"
+msgstr "我们会根据您的兴趣打造专属服务"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:59
+msgid "send gift"
+msgstr "我们会依据您的地址快递获奖礼品"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:60
+msgid "We will cherish your trust"
+msgstr "我们更会珍视您的这份信任"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:62
+msgid "eefocus solemnly promise:"
+msgstr "与非网郑重承诺："
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:63
+msgid "We will protect the security of your information"
+msgstr "我们一定保护您的信息资料安全"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:84
+msgid "System has been to you mailbox"
+msgstr "系统已经向你邮箱"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:86
+msgid "Send an email"
+msgstr "发送了一封电子邮件"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:88
+msgid "Please click on the link in the email to complete your registration"
+msgstr "请点击邮件中的链接，以完成注册"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:93
+msgid "What to do when you did not receive the activation email?"
+msgstr "没有收到激活邮件怎么办？"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:97
+msgid "Email addresses are wrong?"
+msgstr "Email 地址是否写错？"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:99
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:100
+msgid "Reregister"
+msgstr "重新注册"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:103
+msgid "To see is it in the trash"
+msgstr "看看是否在垃圾箱中"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:104
+msgid "Wait a few minutes to check"
+msgstr "稍等几分钟再看"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:106
+msgid "or"
+msgstr "或者"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:108
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:109
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:24
+msgid "Resend activation email"
+msgstr "重新发送激活邮件"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-index.phtml:137
+msgid "Message has been sent"
+msgstr "邮件已发送"
+
+#: Z:\pi\usr\custom\module\user/template/front/password-process.phtml:18
 msgid "set password"
 msgstr "密码设置"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-process.phtml:28
+#: Z:\pi\usr\custom\module\user/template/front/password-process.phtml:28
 msgid "Password Recovery fails"
 msgstr "密码找回失败，请"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-process.phtml:30
+#: Z:\pi\usr\custom\module\user/template/front/password-process.phtml:30
 msgid "Retrieve password"
 msgstr "重新找回密码"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-process.phtml:37
+#: Z:\pi\usr\custom\module\user/template/front/password-process.phtml:37
 msgid "Password Recovery is successful"
 msgstr "密码找回成功，请"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/password-process.phtml:38
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:24
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:31
+#: Z:\pi\usr\custom\module\user/template/front/password-process.phtml:38
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:15
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:22
 msgid "log in"
 msgstr "登录"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:17
+#: Z:\pi\usr\custom\module\user/template/front/account-reset-email.phtml:10
+msgid "Change email"
+msgstr "修改邮箱"
+
+#: Z:\pi\usr\custom\module\user/template/front/account-reset-email.phtml:15
+msgid "Congratulations!"
+msgstr "恭喜！"
+
+#: Z:\pi\usr\custom\module\user/template/front/account-reset-email.phtml:16
+msgid "Your email has been changed."
+msgstr "邮箱修改成功。"
+
+#: Z:\pi\usr\custom\module\user/template/front/account-reset-email.phtml:18
+msgid "Sorry, the link has expired, or maybe your email has been changed."
+msgstr "对不起，链接已过期，或邮箱已经修改成功。"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community.phtml:16
+msgid "Point"
+msgstr "积分："
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community.phtml:30
+msgid "You do not join in community"
+msgstr "尚未加入社区"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:43
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:221
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:30
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:106
+msgid "Topic"
+msgstr "帖子"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:47
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:34
+msgid "Reply"
+msgstr "回复"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:51
+msgid "Question"
+msgstr "提问"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:55
+msgid "Answer"
+msgstr "回答"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:59
+msgid "Project"
+msgstr "项目"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:68
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:97
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:126
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:155
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:184
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:43
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:72
+msgid "Title"
+msgstr "标题"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:70
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:99
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:128
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:157
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:45
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:74
+msgid "Publish time"
+msgstr "发布时间"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:72
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:101
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:130
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:159
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:190
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:47
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:76
+msgid "Belong to community"
+msgstr "所属社区"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:87
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:116
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:145
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:174
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:206
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:62
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:91
+msgid "No content"
+msgstr "没有内容"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:186
+msgid "Create time"
+msgstr "创建时间"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:188
+msgid "Update time"
+msgstr "更新时间"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:218
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:238
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:103
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:123
+msgid "Manage"
+msgstr "管理"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:241
+msgid "Relationship"
+msgstr "关系"
+
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:9
 msgid "User activates"
 msgstr "用户激活"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:23
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:14
 msgid "Activation was successful"
 msgstr "激活成功，请"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:27
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:18
 msgid ""
 "Sorry, this link has expired. Maybe you have to complete the activation, or "
 "exceed the effective activation time."
 msgstr "对不起，此链接已失效。可能您已完成激活，或者超过有效激活时间。"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:30
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:21
 msgid "You can choose"
 msgstr "你可以选择"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:32
+#: Z:\pi\usr\custom\module\user/template/front/register-activate.phtml:23
 msgid ",or"
 msgstr "，或"
 
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-activate.phtml:33
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:115
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:116
-msgid "Resend activation email"
-msgstr "重新发送激活邮件"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:25
-msgid "already registered,havent activited"
-msgstr "已注册，未激活？"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:26
-msgid "resend activited email"
-msgstr "重新发送激活邮件"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:34
-msgid "shenglingyufeitongxingzheng"
-msgstr "申领与非网通行证"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:35
-msgid "qinsongshixianrengwoxing"
-msgstr "轻松实现“任我行”"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:38
-msgid "queefocus"
-msgstr "去“与非网”交流技术"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:39
-msgid "qucndzz"
-msgstr "去“电子电路网”下载电路图"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:40
-msgid "qud5"
-msgstr "去“集成电路查询网”查询器件信息"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:41
-msgid "queeboard"
-msgstr "去“爱板网”选购开发板"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:49
-msgid "I have read and agree to"
-msgstr "我已经阅读并同意相关"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:49
-msgid "Terms of Service"
-msgstr "服务条款"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:61
-msgid "tell eefocus what you like"
-msgstr "告诉与非你喜欢的"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:62
-msgid "eefocus offer what you want"
-msgstr "与非提供你想要的"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:65
-msgid "we will provide service according to your interest"
-msgstr "我们会根据您的兴趣打造专属服务"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:66
-msgid "send gift"
-msgstr "我们会依据您的地址快递获奖礼品"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:67
-msgid "We will cherish your trust"
-msgstr "我们更会珍视您的这份信任"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:69
-msgid "eefocus solemnly promise:"
-msgstr "与非网郑重承诺："
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:70
-msgid "We will protect the security of your information"
-msgstr "我们一定保护您的信息资料安全"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:91
-msgid "System has been to you mailbox"
-msgstr "系统已经向你邮箱"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:93
-msgid "Send an email"
-msgstr "发送了一封电子邮件"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:95
-msgid "Please click on the link in the email to complete your registration"
-msgstr "请点击邮件中的链接，以完成注册"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:100
-msgid "What to do when you did not receive the activation email?"
-msgstr "没有收到激活邮件怎么办？"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:104
-msgid "Email addresses are wrong?"
-msgstr "Email 地址是否写错？"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:106
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:107
-msgid "Reregister"
-msgstr "重新注册"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:110
-msgid "To see is it in the trash"
-msgstr "看看是否在垃圾箱中"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:111
-msgid "Wait a few minutes to check"
-msgstr "稍等几分钟再看"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:113
-msgid "or"
-msgstr "或者"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-index.phtml:144
-msgid "Message has been sent"
-msgstr "邮件已发送"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-profile-complete.phtml:9
-msgid "Complete profile"
-msgstr "完善资料"
-
-#: C:\Documents and Settings\bianzhuang\My
-#: Documents\GitHub\pi\usr\custom\user/template/front/register-resend-activate-mail.phtml:10
+#: Z:\pi\usr\custom\module\user/template/front/register-resend-activate-mail.phtml:10
 msgid "Resend activate email"
 msgstr "重新发送激活邮件"
+
+#: Z:\pi\usr\custom\module\user/template/front/activity-cndzz.phtml:126
+msgid "Circuit diagram"
+msgstr "电路图"
+
+#~ msgid "<a href=\"%s\">Login right now</a>"
+#~ msgstr "<a href=\"%s\">立即登录</a>"
+
+#~ msgid "Find password proceed:"
+#~ msgstr "找回密码流程："
+
+#~ msgid "input email address,send find password email"
+#~ msgstr "填写 Email 地址, 发送找回密码邮件"
+
+#~ msgid "click the link in email"
+#~ msgstr "查收邮件，点击邮件中的修改密码链接"
+
+#~ msgid "change password"
+#~ msgstr "修改密码"
+
+#~ msgid "done"
+#~ msgstr "完成"
