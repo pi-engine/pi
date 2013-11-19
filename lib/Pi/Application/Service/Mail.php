@@ -295,7 +295,7 @@ class Mail extends AbstractService
             $lookup = function ($file, $locale) use ($module) {
                 // Assemble module mail template
                 $path = Pi::service('i18n')->getPath(
-                    array('custom/' . $module, 'mail/' . $file),
+                    array('custom/module/' . $module, 'mail/' . $file),
                     $locale
                 );
                 // Load default template if custom template is not available

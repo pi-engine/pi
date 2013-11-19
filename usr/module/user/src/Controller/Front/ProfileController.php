@@ -435,7 +435,7 @@ class ProfileController extends ActionController
         $set     = _post('set');
         $row     = $this->getModel('display_group')->find($groupId, 'id');
         if (!$row) {
-            $result['message'] = 'error';
+            $result['message'] = __('Delete failed.');
             return $result;
         }
 
@@ -454,13 +454,12 @@ class ProfileController extends ActionController
             isset($meta[$compound]) &&
             $meta[$compound]['is_required']
         ) {
-            $status = 0;
+            $result['message'] = __('Cannot delete the last one.');
         } else {
             $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+            $result['status']  = $status;
+            $result['message'] = $status ? '' : __('Delete failed.');
         }
-
-        $result['status'] = $status ? 1 : 0;
-        $result['message'] = $status ? 'success' : 'error';
 
         return $result;
 
