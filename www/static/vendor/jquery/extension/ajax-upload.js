@@ -104,7 +104,7 @@ var ajaxUpload = (function ($) {
         response = self.iframe.contents().find('body');
         if (self.params.json) {
           try {
-            result = $.parseJSON(response.html());
+            result = $.parseJSON(response.text());
           } catch (e) {
             self.params.fail.call(self);
             ok = false;
