@@ -34,13 +34,17 @@ class Password extends AbstractValidator
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::TOO_SHORT => 'Password is less than %min% characters long',
-        self::TOO_LONG  => 'Password is more than %max% characters long'
-    );
+    protected $messageTemplates;
+
+    public function __construct()
+    {
+        $this->$messageTemplates = array(
+            self::TOO_SHORT => __('Password is less than %min% characters long'),
+            self::TOO_LONG  => __('Password is more than %max% characters long'),
+        );
+
+        parent::__construct();
+    }
 
     protected $messageVariables = array(
         'max'        => 'max',

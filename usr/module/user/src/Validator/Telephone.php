@@ -22,12 +22,16 @@ class Telephone extends AbstractValidator
 {
     const TELEPHONE_INVALID = 'telephoneInvalid';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::TELEPHONE_INVALID => 'The input is not 7-20 numeric',
-    );
+    protected $messageTemplates;
+
+    public function __construct()
+    {
+        $this->$messageTemplates = array(
+            self::TELEPHONE_INVALID => __('The input is not 7-20 numeric'),
+        );
+
+        parent::__construct();
+    }
 
     public function isValid($value)
     {

@@ -33,13 +33,17 @@ class UserEmail extends AbstractValidator
     const RESERVED  = 'userEmailReserved';
     const USED      = 'userEmailUsed';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::RESERVED  => 'User email is reserved',
-        self::USED      => 'User email is already used',
-    );
+    protected $messageTemplates;
+
+    public function __construct()
+    {
+        $this->$messageTemplates = array(
+            self::RESERVED  => __('User email is reserved'),
+            self::USED      => __('User email is already used'),
+        );
+
+        parent::__construct();
+    }
 
     protected $options = array(
         'checkDuplication' => true,
