@@ -220,8 +220,8 @@ class IndexController extends ActionController
         ) {
             $result['message'] = _a(sprintf(
                 'Add user failed: password should between %s to %s',
-                $minCredential,
-                $maxCredential
+                $configs['password_min]'],
+                $configs['password_max']
             ));
 
             return $result;
@@ -250,6 +250,7 @@ class IndexController extends ActionController
             'email'         => $email,
             'credential'    => $credential,
             'last_modified' => time(),
+            'ip_register'   => Pi::user()->getIp()
         );
 
         // Add user
