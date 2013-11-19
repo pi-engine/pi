@@ -242,14 +242,17 @@ class PostController extends ActionController
         }
 
         if (!$return) {
-            if ($redirect) {
-                $redirect = urldecode($redirect);
-            } elseif (!empty($result['data'])) {
-                $redirect = Pi::api('comment')->getUrl('post', array(
-                    'post' => $result['data']
-                ));
-            } else {
-                $redirect = Pi::service('url')->assemble('comment');
+            $redirect = $redirect
+                ? urldecode($redirect)
+                : $this->getRequest()->getServer('HTTP_REFERER');
+            if (!$redirect) {
+                if (!empty($result['data'])) {
+                    $redirect = Pi::api('comment')->getUrl('post', array(
+                        'post' => $result['data']
+                    ));
+                } else {
+                    $redirect = Pi::service('url')->assemble('comment');
+                }
             }
 
             if ($result['data']) {
@@ -352,11 +355,6 @@ class PostController extends ActionController
             } elseif ($isEnabled) {
                 Pi::service('event')->trigger('post_update', $id);
             }
-            // Clear cache for leading comments
-            //Pi::service('comment')->clearCache($id);
-
-            // Insert timeline item
-            //Pi::service('comment')->timeline($id);
         }
 
         $result = array(
@@ -406,9 +404,10 @@ class PostController extends ActionController
         }
 
         if (!$return) {
-            if ($redirect) {
-                $redirect = urldecode($redirect);
-            } else {
+            $redirect = $redirect
+                ? urldecode($redirect)
+                : $this->getRequest()->getServer('HTTP_REFERER');
+            if (!$redirect) {
                 $redirect = Pi::api('comment')->getUrl('post', array(
                     'post' => $id
                 ));
@@ -459,10 +458,11 @@ class PostController extends ActionController
         }
 
         if (!$return) {
-            if ($redirect) {
-                $redirect = urldecode($redirect);
-            } else {
-                $redirect = Pi::api('comment')->getUrl('list');
+            $redirect = $redirect
+                ? urldecode($redirect)
+                : $this->getRequest()->getServer('HTTP_REFERER');
+            if (!$redirect) {
+                $redirect = Pi::service('url')->assemble('comment');
             }
             $this->jump($redirect, $message);
         } else {
