@@ -440,13 +440,13 @@ class PostController extends ActionController
 
         $post           = Pi::api('comment')->getPost($id);
         if (!$post) {
-            $status = -2;
-            $message = __('Invalid post parameter.');
+            $status = 422;
+            $message = __('Invalid parameters.');
         } elseif ($currentUid != $post['uid']
             && !$currentUser->isAdmin('comment')
         ) {
-            $status = -1;
-            $message = __('Operation denied.');
+            $status = 403;
+            $message = __('Forbidden.');
         } else {
             $status         = Pi::api('comment')->deletePost($id);
             $message        = $status
@@ -466,13 +466,10 @@ class PostController extends ActionController
             }
             $this->jump($redirect, $message);
         } else {
-            $result = array(
-                'status'    => (int) $status,
-                'message'   => $message,
-                'data'      => $id,
+            $this->response->setStatusCode($status);
+            return array(
+                'message' => $message
             );
-
-            return $result;
         }
     }
 
