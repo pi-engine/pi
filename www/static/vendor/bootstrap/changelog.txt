@@ -74,3 +74,16 @@ May 15th, Liao Wei
             2. replace font-awesome.css font-awesome.min.css with newest file to 'bootstrap/css' folder
             3. replace font with newest file to 'bootstrap/font' folder
  
+
+ Nov 19th, Liao Wei
+
+ 1. fixed ie8 style with bootstrap.css and bootstrap.min.css files
+    note this code (101 line):
+    img {
+        /*width: auto\9;
+        height: auto;
+        max-width: 100%;*/
+        vertical-align: middle;
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+    }
