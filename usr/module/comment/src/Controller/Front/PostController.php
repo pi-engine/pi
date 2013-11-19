@@ -456,7 +456,6 @@ class PostController extends ActionController
 
         if (0 < $status && $id) {
             Pi::service('event')->trigger('post_delete', $post['root']);
-            //Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {
