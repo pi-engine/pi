@@ -500,16 +500,18 @@ class ListController extends ActionController
         $count = Pi::api('comment')->getTargetCount(array(
             'active'    => $active,
         ));
-        
-        $roots = array_keys($targets);
-        $model = $this->getModel('post');
-        $select = $model->select()
-            ->where(array('root' => $roots ?: array()))
-            ->columns(array('root', 'count' => new Expression('count(*)')))
-            ->group(array('root'));
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $targets[$row->root]['count'] = $row->count;
+
+        if ($targets) {
+            $roots = array_keys($targets);
+            $model = $this->getModel('post');
+            $select = $model->select()
+                ->where(array('root' => $roots ?: array()))
+                ->columns(array('root', 'count' => new Expression('count(*)')))
+                ->group(array('root'));
+            $rowset = $model->selectWith($select);
+            foreach ($rowset as $row) {
+                $targets[$row->root]['count'] = $row->count;
+            }
         }
 
         $params = (null === $active) ? array() : array('active' => $active);
