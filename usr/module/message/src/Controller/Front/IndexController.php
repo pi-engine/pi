@@ -162,7 +162,7 @@ class IndexController extends AbstractController
             $this->view()->assign('uid', $userId);
         } else {
             $messageList = array();
-        }vd($messageList);
+        }
         $this->renderNav();
         $this->view()->assign('messages', $messageList);
 
@@ -562,6 +562,6 @@ class IndexController extends AbstractController
      */
     public function archiveAction()
     {
-
+        $this->renderNav();
     }
 }
