@@ -58,13 +58,13 @@ class Username extends AbstractValidator
     protected $min;
 
     protected $formatMessage = array(
-        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic and 5-25 characters',
+        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
         'medium'    => 'Only ASCII characters are allowed',
         'loose'     => 'Multibyte characters are allowed',
     );
 
     protected $formatPattern = array(
-        'strict'    => '/^[a-z][0-9a-z]{4,24}$/',
+        'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',
         'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
         'loose'     => '/[\000-\040]/',
     );
@@ -142,7 +142,7 @@ class Username extends AbstractValidator
             'max'       => Pi::service('module')->config('uname_max', 'user'),
             'format'    => Pi::service('module')->config('uname_format', 'user'),
             'backlist'  => Pi::service('module')->config('uname_backlist', 'user'),
-            'format'    => Pi::service('module')->config('name_format', 'user'),
+            'format'    => Pi::service('module')->config('uname_format', 'user'),
             'checkDuplication' => true,
         );
 
