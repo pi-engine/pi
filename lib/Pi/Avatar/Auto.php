@@ -96,7 +96,7 @@ class Auto extends AbstractAvatar
                 $attrs['width'] = $this->getSizeByAdapter($size, $adapter);
             }
             $attrString = '';
-            foreach ($attributes as $key => $val) {
+            foreach ($attrs as $key => $val) {
                 $attrString .= ' ' . $key . '="' . _escape($val) . '"';
             }
 

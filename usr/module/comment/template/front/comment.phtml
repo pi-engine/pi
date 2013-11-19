@@ -22,10 +22,9 @@ if (!$data) {
     return;
 }
 
-
-
 if (isset($data['root']['active']) && empty($data['root']['active'])) :
     echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
+    return;
 else:
 if (!empty($data['root']['id'])) {
     $formData = array(
@@ -40,7 +39,6 @@ if (!empty($data['root']['id'])) {
 }
 $formData['redirect'] = $this->url()->requestUri(true);
 
-$form = Pi::service('comment')->getForm($formData);
 $form = Pi::service('comment')->getForm($formData);
 endif;
 
