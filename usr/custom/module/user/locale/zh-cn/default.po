@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-custom-user\n"
 "POT-Creation-Date: 2013-11-15 09:14+0800\n"
-"PO-Revision-Date: 2013-11-15 14:05+0800\n"
+"PO-Revision-Date: 2013-11-18 17:09+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -365,24 +365,24 @@ msgstr "EEFOCUS"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:373
 msgid "Article channel"
-msgstr "资讯频道"
+msgstr "----- 资讯频道"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:377
 msgid "Blog channel"
-msgstr "博客频道"
+msgstr "----- 博客频道"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:381
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:394
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:407
 msgid "Forum"
-msgstr "论坛"
+msgstr "----- 论坛"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:390
 msgid "Diagram"
-msgstr "电路图"
+msgstr "----- 电路图"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:398
@@ -392,7 +392,7 @@ msgstr "EEboard"
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:403
 msgid "Kaifaban"
-msgstr "开发板"
+msgstr "----- 开发板"
 
 #: C:\Documents and Settings\bianzhuang\My
 #: Documents\GitHub\pi\usr\custom\user/config/user.php:411

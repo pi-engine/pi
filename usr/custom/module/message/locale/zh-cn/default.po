@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
 "POT-Creation-Date: 2013-11-15 14:45+0800\n"
-"PO-Revision-Date: 2013-11-15 14:46+0800\n"
+"PO-Revision-Date: 2013-11-18 14:55+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "归档私信"
 
 #: Z:\test\usr\custom\message/template/front/index-archive.phtml:11
 msgid "Message system has upadtedEarly messages are still in the old system"
-msgstr "私信系统已升级，旧私信还在老系统中。"
+msgstr "私信系统已升级，历史私信还在老系统中。"
 
 #: Z:\test\usr\custom\message/template/front/index-archive.phtml:17
 msgid "Manage EEFOCUS old messages"
