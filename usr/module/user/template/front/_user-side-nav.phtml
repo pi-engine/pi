@@ -1,6 +1,9 @@
 <div class="span3">
     <a class="media user-profile-back" href="<?php echo $this->url('', array('controller' => 'profile')); ?>">
-        <img src="<?php echo Pi::user()->avatar()->get($user['id'], 'small', false); ?>" class="pull-left">
+        <!--
+        <img src="<?php echo Pi::avatar()->get($user['id'], 'small', false); ?>" class="pull-left">
+        -->
+        <div class="pull-left"><?php echo Pi::avatar()->get($user['id'], 'medium'); ?></div>
         <div class="media-body">
             <h4 class="media-heading"><?php echo _escape($user['name']); ?></h4>
             <span class="muted"><?php _e('View my profile'); ?></span>

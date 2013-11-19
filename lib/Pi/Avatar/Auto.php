@@ -18,6 +18,94 @@ use Pi;
  */
 class Auto extends AbstractAvatar
 {
+    /** @var array Adapters per user */
+    protected $adapters = array();
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get($uid, $size = '', $attributes = array())
+    {
+        $result = false;
+
+        $src = $this->getSource($uid, $size);
+        if (!$src) {
+            return $result;
+        }
+
+        if (false === $attributes) {
+            return $src;
+        }
+
+        if (is_string($attributes)) {
+            $attributes = array(
+                'alt'   => $attributes,
+            );
+        } elseif (!isset($attributes['alt'])) {
+            $attributes['alt'] = '';
+        }
+        $adapter = $this->adapters[$uid];
+        if ($size
+            && !isset($attributes['width'])
+            && !isset($attributes['height'])
+            && !$this->hasSizeByAdapter($size, $adapter)
+        ) {
+            $attributes['width'] = $this->getSizeByAdapter($size, $adapter);
+        }
+        $attrString = '';
+        foreach ($attributes as $key => $val) {
+            $attrString .= ' ' . $key . '="' . _escape($val) . '"';
+        }
+        $result = sprintf('<img src="%s"%s />', $src, $attrString);
+
+        return $result;
+    }
+
+    /**
+     * Get avatars of a list of users
+     *
+     * @param int[]  $uids
+     * @param string $size
+     * @param array  $attributes
+     *
+     * @return array
+     */
+    public function getList($uids, $size = '', $attributes = array())
+    {
+        $result = array();
+        $srcList = $this->getSourceList($uids, $size);
+        if (false === $attributes) {
+            return $srcList;
+        }
+
+        if (is_string($attributes)) {
+            $attributes = array(
+                'alt'   => $attributes,
+            );
+        } elseif (!isset($attributes['alt'])) {
+            $attributes['alt'] = '';
+        }
+        foreach ($srcList as $uid => $src) {
+            $attrs = $attributes;
+            $adapter = $this->adapters[$uid];
+            if ($size
+                && !isset($attrs['width'])
+                && !isset($attrs['height'])
+                && !$this->hasSizeByAdapter($size, $adapter)
+            ) {
+                $attrs['width'] = $this->getSizeByAdapter($size, $adapter);
+            }
+            $attrString = '';
+            foreach ($attributes as $key => $val) {
+                $attrString .= ' ' . $key . '="' . _escape($val) . '"';
+            }
+
+            $result[$uid] = sprintf('<img src="%s"%s />', $src, $attrString);
+        }
+
+        return $result;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -26,15 +114,8 @@ class Auto extends AbstractAvatar
         $src = '';
         if ($uid) {
             if ($uid == $this->user->get('id')) {
-                /*
-                $data = array(
-                    'avatar'    => $this->user->get('avatar'),
-                    'email'     => $this->user->get('email'),
-                );
-                */
                 $avatar = $this->user->get('avatar');
             } else {
-                //$data = Pi::user()->get($uid, array('avatar', 'email'));
                 $avatar = Pi::user()->get($uid, 'avatar');
             }
 
@@ -52,11 +133,10 @@ class Auto extends AbstractAvatar
     public function getSourceList($uids, $size = '')
     {
         $result = array();
-        //$list = Pi::user()->get($uids, array('avatar', 'email'));
         $list = Pi::user()->get($uids, 'avatar');
         foreach ($list as $uid => $data) {
             if ($data) {
-                $url = $this->buildUrl($data, $size);
+                $url = $this->buildUrl($data, $size, $uid);
                 if ($url) {
                     $result[$uid] = $url;
                 }
@@ -79,6 +159,7 @@ class Auto extends AbstractAvatar
      *
      * @param string  $data
      * @param string $size
+     * @param int $uid
      *
      * @return string
      */
@@ -92,19 +173,6 @@ class Auto extends AbstractAvatar
         }
         $list = array_fill_keys($allowedAdapters, '');
 
-        /*
-        if (!$data['avatar']) {
-            if (isset($list['gravatar']) && isset($data['email'])) {
-                $list['gravatar'] = $data['email'];
-            }
-        } else {
-            $type = Pi::service('avatar')->getType($data['avatar']);
-            if (isset($list[$type])) {
-                $list[$type] = $data['avatar'];
-            }
-        }
-        */
-
         if ($data) {
             $type = Pi::service('avatar')->getType($data);
             if (isset($list[$type])) {
@@ -116,10 +184,34 @@ class Auto extends AbstractAvatar
                 $src = Pi::service('avatar')->getAdapter($adapter)
                     ->setForce(false)
                     ->build($avatar, $size, $uid);
+
+                $this->adapters[$uid] = $adapter;
                 break;
             }
         }
 
         return $src;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSizeByAdapter($size, $adapter)
+    {
+        $adapter = Pi::service('avatar')->getAdapter($adapter);
+        $result = $adapter ? $adapter->getSize($size) : null;
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function hasSizeByAdapter($size, $adapter)
+    {
+        $adapter = Pi::service('avatar')->getAdapter($adapter);
+        $result = $adapter ? $adapter->hasSize($size) : false;
+
+        return $result;
     }
 }

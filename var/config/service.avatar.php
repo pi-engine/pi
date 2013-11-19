@@ -13,25 +13,28 @@ return array(
     // Auto detected
     'adapter'       => array('upload', 'select', 'gravatar'),
 
-
     // Options for named size
     'size_map'  => array(
         'mini'      => 16,
-        'xmall'     => 'small', //24,
-        's'         => 'small',
+        'xmall'     => 24,
         'small'     => 28,
-        'm'         => 'medium',
         'medium'    => 46,
         'normal'    => 80,
-        'l'         => 'large',
-        'large'     => 'xlarge', //96,
-        'x'         => 'xlarge',
+        'large'     => 96,
         'xlarge'    => 120,
-        'xx'        => 'xxlarge',
-        'xxlarge'   => 'origin', //214,
-        'max'       => 'origin',
-        'o'         => 'origin',
+        'xxlarge'   => 214,
         'origin'    => 300,
+    ),
+
+    'local' => array(
+        // Options for available size
+        'size_list'  => array(
+            'mini',
+            'small',
+            'medium',
+            'normal',
+            'xlarge',
+        ),
     ),
 
     // Options for gravatar
@@ -40,6 +43,16 @@ return array(
         'extension' => 'png',
         'rate'      => 'g',
         //'secure'    => true,
+
+        // Options for available size
+        'size_list'  => array(
+            'mini',
+            'small',
+            'medium',
+            'normal',
+            'xlarge',
+            //'origin',
+        ),
     ),
 
     // Options for selective avatars
@@ -59,6 +72,15 @@ return array(
 
             return $path;
         },
+
+        // Options for available size
+        'size_list'     => array(
+            'mini',
+            'normal',
+            'xlarge',
+            'xxlarge',
+            //'origin',
+        ),
     ),
 
     // Options for upload avatars
@@ -90,16 +112,26 @@ return array(
             $result = md5($data['uid']) .  '.' . $data['extension'];
             return $result;
         },
+
+        // Options for available size
+        'size_list'  => array(
+            'mini',
+            'small',
+            'medium',
+            'normal',
+            'xlarge',
+            'origin',
+        ),
     ),
 
     // Options for QQ avatar
     // Not implemented yet, placeholder
     'qq'    => array(
         'api'       => '',
-        'size_map'  => array(
-            'small'     => 30,
-            'normal'    => 50,
-            'large'     => 100,
+        'size_list'  => array(
+            'small',
+            'normal',
+            'large',
         ),
     ),
 

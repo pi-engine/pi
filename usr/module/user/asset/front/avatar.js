@@ -15,7 +15,7 @@
     };
     root.init();
     var config = root.config;
-    var allSize = config.allSize;
+    //var allSize = config.allSize;
     
     var uploadBtn = root.uploadBtn;
     var saveBtn = root.$('.js-save');
@@ -49,7 +49,7 @@
       var idx = 0;
 
       uploadImg.removeClass('hide').attr('src', url);
-      $.each(config.allSize, function(key, value) {
+      $.each(config.allSize.upload, function(key, value) {
         prevImgs.eq(idx++).attr({
           src: url,
           'data-size': value
@@ -176,7 +176,7 @@
         var replaceSize = function(value) {
           return url.replace(/(s=).*?(&)/,'$1' + value + '$2');
         }
-        $.each(config.allSize, function(key, value) {
+        $.each(config.allSize.gravatar, function(key, value) {
           prevImgs.eq(idx++).attr('src', replaceSize(value));
         });
       });
@@ -193,7 +193,7 @@
         if (res.status) {
           var idx = 0;
           var url;
-          $.each(config.allSize, function(key) {
+          $.each(config.allSize.select, function(key) {
             url = res.dirname + '/' + key + '.' + res.ext;
             prevImgs.eq(idx++).attr('src', url);
           });

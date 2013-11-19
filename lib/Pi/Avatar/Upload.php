@@ -186,7 +186,7 @@ class Upload extends AbstractAvatar
             $result = $getMeta($size);
         } else {
             $result = array();
-            $sizeList = Pi::service('avatar')->getSize();
+            $sizeList = $this->getSize();
             foreach (array_keys($sizeList) as $name) {
                 $result[$name] = $getMeta($name);
             }
@@ -220,7 +220,7 @@ class Upload extends AbstractAvatar
                 'source'    => $source,
             ));
         } else {
-            $result = md5(uniqid($uid)) .  '.' . $extension;
+            $result = md5($uid) .  '.' . $extension;
         }
 
         return $result;

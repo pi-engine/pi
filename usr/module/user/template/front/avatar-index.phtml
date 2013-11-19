@@ -83,7 +83,7 @@
             </div>
             <ul class="unstyled avatar-preview-inline">
                 <?php 
-                foreach ($allSize as $key => $value) {
+                foreach ($allSize['upload'] as $key => $value) {
                     echo sprintf(
                         $viewPreview,
                         $value,
@@ -112,8 +112,8 @@
             foreach ($gravatar as $key => $value) {
                 echo sprintf(
                     $viewPreview,
-                    $allSize[$key],
-                    $allSize[$key],
+                    $allSize['gravatar'][$key],
+                    $allSize['gravatar'][$key],
                     $value
                 );
             } 
@@ -140,8 +140,8 @@
                 foreach ($selected as $key => $value) {
                     echo sprintf(
                         $viewPreview,
-                        $allSize[$key],
-                        $allSize[$key],
+                        $allSize['select'][$key],
+                        $allSize['select'][$key],
                         $value
                     );
                  }
@@ -178,7 +178,7 @@
 $('#js-user-avatar').data('config', {
     source: '<?php echo $source? : 'local' ?>',
     urlRoot: '<?php echo $this->url('', array('controller' => 'avatar')); ?>',
-    fake_id: '<?php echo $form->get('fake_id')->getValue() ?>',
+    fake_id: '<?php echo $form->get('fake_id')->getValue(); ?>',
     format: '<?php echo $config['upload_extension']; ?>'.split(','),
     uploadText: '<?php _e('Upload avatar'); ?>',
     processText: '<?php _e('Uploading'); ?>',

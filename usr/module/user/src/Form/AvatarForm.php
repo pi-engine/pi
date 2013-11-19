@@ -28,6 +28,7 @@ class AvatarForm extends BaseForm
             'name'       => 'fake_id',
             'attributes' => array(
                 'type'      => 'hidden',
+                'value'     => uniqid(),
             ),
         ));
     }

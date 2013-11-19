@@ -68,7 +68,8 @@ class Avatar extends AbstractService
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
      *      Array for attributes of HTML img element of img,
-     *      string for alt of img, false to return img src
+     *      string for alt of img,
+     *      false to return img src
      *
      * @return string
      */
@@ -166,24 +167,16 @@ class Avatar extends AbstractService
      * Get size number of a specific size or a list of defined sizes
      *
      * @param string $size
-     * @param bool   $toInt
      *
      * @return array|int|bool
      */
-    public function getSize($size = '', $toInt = true)
+    public function getSize($size = '')
     {
         $sizeMap = $this->getOption('size_map');
         if ($size) {
-            $result = isset($sizeMap[$size])
-                ? $this->canonizeSize($size, $toInt)
-                : false;
+            $result = isset($sizeMap[$size]) ? $sizeMap[$size] : false;
         } else {
-            $result = array();
-            foreach ($sizeMap as $name => $size) {
-                if (is_int($size)) {
-                    $result[$name] = $size;
-                }
-            }
+            $result = $sizeMap;
         }
 
         return $result;
@@ -196,21 +189,19 @@ class Avatar extends AbstractService
      *
      * @param string|int $size
      * @param bool       $toInt
+     * @param array      $sizeMap
      *
      * @return int|string
      */
-    public function canonizeSize($size, $toInt = true)
+    public function canonizeSize($size, $toInt = true, $sizeMap = array())
     {
-        $sizeMap = $this->getOption('size_map');
+        $sizeMap = $sizeMap ?: $this->getOption('size_map');
 
-        $findSize = function ($size) use ($sizeMap, &$findSize) {
+        $findSize = function ($size) use ($sizeMap) {
             if (!isset($sizeMap[$size])) {
                 $size = $sizeMap['normal'];
             } else {
                 $size = $sizeMap[$size];
-                if (!is_numeric($size)) {
-                    $size = $findSize($size);
-                }
             }
             return $size;
         };
@@ -223,7 +214,7 @@ class Avatar extends AbstractService
             // Canonize numeric to defined numeric
             } else {
                 foreach ($sizeMap as $name => $number) {
-                    if (is_numeric($number) && $number >= $size) {
+                    if ($number >= $size) {
                         break;
                     }
                 }
@@ -237,7 +228,7 @@ class Avatar extends AbstractService
             }
 
             foreach ($sizeMap as $name => $number) {
-                if (is_numeric($number) && $number >= $size) {
+                if ($number >= $size) {
                     break;
                 }
             }
