@@ -129,11 +129,18 @@ abstract class AbstractAvatar
         } elseif (!isset($attributes['alt'])) {
             $attributes['alt'] = '';
         }
-        $attrs = '';
-        foreach ($attributes as $key => $val) {
-            $attrs .= ' ' . $key . '="' . _escape($val) . '"';
+        if ($size
+            && !isset($attributes['width'])
+            && !isset($attributes['height'])
+            && !$this->hasSize($size)
+        ) {
+            $attributes['width'] = $this->getSize($size);
         }
-        $result = sprintf('<img src="%s"%s />', $src, $attrs);
+        $attrString = '';
+        foreach ($attributes as $key => $val) {
+            $attrString .= ' ' . $key . '="' . _escape($val) . '"';
+        }
+        $result = sprintf('<img src="%s"%s />', $src, $attrString);
 
         return $result;
     }
@@ -162,12 +169,19 @@ abstract class AbstractAvatar
         } elseif (!isset($attributes['alt'])) {
             $attributes['alt'] = '';
         }
-        $attrs = '';
+        if ($size
+            && !isset($attributes['width'])
+            && !isset($attributes['height'])
+            && !$this->hasSize($size)
+        ) {
+            $attributes['width'] = $this->getSize($size);
+        }
+        $attrString = '';
         foreach ($attributes as $key => $val) {
-            $attrs .= ' ' . $key . '="' . _escape($val) . '"';
+            $attrString .= ' ' . $key . '="' . _escape($val) . '"';
         }
         foreach ($srcList as $uid => $src) {
-            $result[$uid] = sprintf('<img src="%s"%s />', $src, $attrs);
+            $result[$uid] = sprintf('<img src="%s"%s />', $src, $attrString);
         }
 
         return $result;
@@ -222,6 +236,62 @@ abstract class AbstractAvatar
      */
     public function canonizeSize($size, $toInt = true)
     {
-        return Pi::service('avatar')->canonizeSize($size, $toInt);
+        $sizeMap = array();
+        if (!empty($this->options['size_list'])) {
+            $sizeList = Pi::service('avatar')->getSize();
+            foreach ($this->options['size_list'] as $name) {
+                if (isset($sizeList[$name])) {
+                    $sizeMap[$name] = $sizeList[$name];
+                }
+            }
+        }
+
+        return Pi::service('avatar')->canonizeSize($size, $toInt, $sizeMap);
+    }
+
+    /**
+     * Get size number of a specific size or a list of defined sizes
+     *
+     * @param string $size
+     *
+     * @return array|int|bool
+     */
+    public function getSize($size = '')
+    {
+        if ($size) {
+            $result = Pi::service('avatar')->getSize($size);
+        } else {
+            $result = array();
+            $sizeList = Pi::service('avatar')->getSize();
+            if (!empty($this->options['size_list'])) {
+                foreach ($this->options['size_list'] as $name) {
+                    if (isset($sizeList[$name])) {
+                        $result[$name] = $sizeList[$name];
+                    }
+                }
+            } else {
+                $result = $sizeList;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check if a named size is available
+     *
+     * @param string $size
+     *
+     * @return bool
+     */
+    public function hasSize($size)
+    {
+        if (empty($this->options['size_list'])
+            || in_array($size, $this->options['size_list'])
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

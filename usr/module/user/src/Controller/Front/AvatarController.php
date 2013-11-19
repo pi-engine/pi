@@ -31,7 +31,7 @@ class AvatarController extends ActionController
     protected function getAvatarForm($name)
     {
         $form    = new AvatarForm($name);
-        $form->get('fake_id')->setValue(uniqid());
+        //$form->get('fake_id')->setValue(uniqid());
         
         return $form;
     }
@@ -114,8 +114,11 @@ class AvatarController extends ActionController
 
         // Get required sizes from configuration
         $form    = $this->getAvatarForm('avatar');
-        $allSize = Pi::service('avatar')->getSize();
-        arsort($allSize);
+        //$allSize = Pi::service('avatar')->getSize();
+        //arsort($allSize);
+
+        // Available size list
+        $sizeList = array();
 
         // Get allowed adapter
         $adapters = (array) Pi::avatar()->getOption('adapter');
@@ -145,6 +148,9 @@ class AvatarController extends ActionController
                 );
             }
 
+            $allSize = $uploadAdapter->getSize();
+            arsort($allSize);
+            $sizeList['upload'] = $allSize;
             if ('upload' == $source) {
                 foreach ($allSize as $key => $value) {
                     $uploads[$key] = $uploadAdapter->getSource($uid, $value);
@@ -162,7 +168,9 @@ class AvatarController extends ActionController
         // Get gravatar photo
         if (in_array('gravatar', $adapters)) {
             $gravatarAdapter  = Pi::avatar()->getAdapter('gravatar');
-
+            $allSize = $gravatarAdapter->getSize();
+            arsort($allSize);
+            $sizeList['gravatar'] = $allSize;
             foreach ($allSize as $key => $value) {
                 $gravatar[$key] = $gravatarAdapter->getSource($uid, $value);
             }
@@ -173,12 +181,15 @@ class AvatarController extends ActionController
         if (in_array('select', $adapters)) {
             $selectAdapter = Pi::avatar()->getAdapter('select');
             $selects = $selectAdapter->getMeta();
-            
+            $allSize = $selectAdapter->getSize();
+            arsort($allSize);
+            $sizeList['select'] = $allSize;
             // Get current selected repository photo
             $selected = array();
             foreach (array_keys($allSize) as $name) {
                 $metas = $selectAdapter->getMeta($name);
                 if (in_array($filename, array_keys($selects))) {
+
                     $selected[$name] = $metas[$filename];
                 } else {
                     $selected[$name] = array_shift($metas);
@@ -193,26 +204,15 @@ class AvatarController extends ActionController
         
         // Get local photo
         $localAdapter = Pi::avatar()->getAdapter('local');
+        $allSize = $localAdapter->getSize();
+        arsort($allSize);
+        $sizeList['local'] = $allSize;
         foreach ($allSize as $key => $value) {
             $local[$key] = $localAdapter->getSource($uid, $value);
         }
         
         // Get source
-
         $email  = 'gravatar' == $source ? $filename : Pi::user()->get($uid, 'email');
-        /*
-        if (false !== strpos($filename, '@')) {
-            $source = 'gravatar';
-            $email  = $filename;
-        } elseif (isset($selects[$filename])) {
-            $source = 'repository';
-        } elseif ('local' == $filename) {
-            $source = 'local';
-        } else {
-            $source = 'upload';
-            //$this->view()->assign('uploads', $uploads);
-        }
-        */
 
         // Get side nav items
         $groups = Pi::api('user', 'group')->getList();
@@ -222,7 +222,7 @@ class AvatarController extends ActionController
             'title'    => __('Avatar Settings'),
             'form'     => $form,
             'config'   => $config,
-            'allSize'  => $allSize,
+            'allSize'  => $sizeList,
             'email'    => $email,
             'source'   => $source,
             'filename' => $filename,
@@ -493,17 +493,19 @@ class AvatarController extends ActionController
         
         // Remove old photo
         $oldAvatar = Pi::user()->get($uid, 'avatar');
-        $adapter   = Pi::avatar()->getAdapter('upload');
-        $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
-        foreach ($oldPaths as $oldPath) {
-            $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
-            if (file_exists($oldFile)) {
-                @unlink($oldFile);
+        if ($oldAvatar != $photo) {
+            $adapter   = Pi::avatar()->getAdapter('upload');
+            $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
+            foreach ($oldPaths as $oldPath) {
+                $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
+                if (file_exists($oldFile)) {
+                    @unlink($oldFile);
+                }
             }
+
+            // Save avatar data into database
+            Pi::user()->set($uid, 'avatar', $photo);
         }
-        
-        // Save avatar data into database
-        Pi::user()->set($uid, 'avatar', $photo);
         
         $return['status'] = true;
         $return['message'] = __('Avatar set successfully.');
