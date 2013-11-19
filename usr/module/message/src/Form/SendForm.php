@@ -48,8 +48,8 @@ class SendForm extends BaseForm
         $this->add(array(
             'name'          => 'name',
             'attributes'    => array(
-                'type'            => 'text',
-                'placeholder'     => 'Type the name',
+                'type'      => 'text',
+                'disabled'  => 'disabled',
             ),
             'options'       => array(
                 'label' => __('Recipient'),
