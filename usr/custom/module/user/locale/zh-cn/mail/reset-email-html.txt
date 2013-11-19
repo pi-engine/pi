@@ -5,12 +5,12 @@
 [subject]与非网用户修改邮箱邮件[/subject]
 
 [body]
-<div style="margin-bottom: 5px">亲爱的与非网用户 <strong>%username%</strong>你好：</div>
+<div style="margin-bottom: 5px">亲爱的与非网用户 <strong>%username%</strong> 你好：</div>
 <div style="margin: 5px">您刚刚提交了修改邮箱请求，请点击下面的链接修改邮箱：<br />
 <a href="%change_email_link%">%change_email_link%</a><br />
-（如果您无法点击此链接，请将它复制到浏览器地址栏后访问。）<br />
-为了保证您帐号的安全，该链接有效期为24小时，并且点击一次后失效！ <br />
-此邮件自动发送，无需回复。<br />
+（如果您无法点击此链接，请将它复制到浏览器地址栏后访问。）</div>
+<div style="margin: 5px">为了保证您帐号的安全，该链接有效期为24小时，并且点击一次后失效！ </div>
+<div style="margin: 5px">此邮件自动发送，无需回复。<br />
 如有其它问题，请联系service@eefocus.com 。 <br />
 感谢您对与非网的支持！ <br />
 与非网运营团队</div>

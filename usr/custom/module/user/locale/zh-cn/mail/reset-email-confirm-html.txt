@@ -5,9 +5,10 @@
 [subject]与非网用户修改邮箱确认邮件[/subject]
 
 [body]
-<div style="margin-bottom: 5px">亲爱的与非网用户 <strong>%username%</strong>你好：</div>
-<div style="margin: 5px">你的邮箱已经成功从 %old_email% 修改为 %new_email%<br />
-此邮件自动发送，无需回复。<br />
+<div style="margin-bottom: 5px">亲爱的与非网用户 <strong>%username%</strong> 你好：</div>
+<div style="margin: 5px">您刚刚申请将登录邮箱从 %old_email% 修改为 %new_email% ，请及时点击新邮箱中的验证链接，完成修改。</div>
+<div style="margin: 5px">如果该申请不是本人发起的，请及时确保您的账号安全。</div>
+<div style="margin: 5px">此邮件自动发送，无需回复。<br />
 如有其它问题，请联系service@eefocus.com 。 <br />
 感谢您对与非网的支持！ <br />
 与非网运营团队</div>
