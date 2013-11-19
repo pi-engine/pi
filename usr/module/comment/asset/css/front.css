@@ -209,7 +209,7 @@ a.pi-comment-count:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
-  padding: 0 15px;
+  padding: 0 15px 20px;
   margin-bottom: 20px;
 }
 
@@ -226,5 +226,5 @@ a.pi-comment-count:hover {
 }
 
 .comment-btn-all {
-  margin: 20px 0;
+  margin-top: 20px;
 }
