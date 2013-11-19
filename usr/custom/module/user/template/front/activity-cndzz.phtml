@@ -108,11 +108,16 @@
         <ul class="activity-panel-body">
             <?php foreach ($bbs as $item) { ?>
             <li>
+                <?php if ($is_owner) { ?>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
                     <?php echo $item['count']; ?>
                     <br>
                     <?php echo $item['action']; ?>
                 </a>
+                <?php } else { 
+                    echo $item['count'] . '<br>' . $item['action'];
+                }
+                ?>
             <?php } ?>
         </ul>
     </div>
@@ -128,11 +133,16 @@
         <ul class="activity-panel-body">
             <?php foreach ($circuit as $item) { ?>
             <li>
+                <?php if ($is_owner) { ?>
                 <a href="<?php echo $item['url']; ?>" target="_blank">
                     <?php echo $item['count']; ?>
                     <br>
                     <?php echo $item['action']; ?>
                 </a>
+                <?php } else { 
+                    echo $item['count'] . '<br>' . $item['action'];
+                }
+                ?>
             <?php } ?>
         </ul>
     </div>
