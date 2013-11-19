@@ -53,7 +53,7 @@ class EndTime extends AbstractHelper
         $html = <<<'EOT'
         <div class="form-inline" id="%s"></div>
         <script>
-        new eefocus.EndTime("%s", %s, "%s", "%s");
+        new eefocus.EndTime("%s", %s, "%s", "%s", "%s");
         </script>
 EOT;
 
@@ -63,7 +63,8 @@ EOT;
             $id,
             $maxYear,
             $element->getName(),
-            $element->getValue()
+            $element->getValue(),
+            date('Y-m')
         );
     }
 }

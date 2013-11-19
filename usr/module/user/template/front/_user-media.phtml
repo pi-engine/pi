@@ -1,9 +1,8 @@
 <div class="user-avatar-header">
     <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
-        <!--
-        <img class="media-object" src="<?php echo Pi::user()->avatar()->get($uid, 'large', false); ?>">
-        -->
-        <div class="pull-left"><?php echo Pi::avatar()->get($uid, 'xlarge'); ?></div>
+        <div class="pull-left">
+            <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
+        </div>
         <?php if ($is_owner) { ?>
         <style>
             .user-avatar-header-left:hover .user-avatar-upload {

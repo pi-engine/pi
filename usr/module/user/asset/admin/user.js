@@ -264,7 +264,7 @@
       var status = data.users_status;
       var handleItem = function(item) {
         var ret = status[item.id];
-        item.active = item.active;
+        item.active = ret.active;
         item.time_disabled = ret.disabled;
         item.time_activated = ret.activated;
         item.checked = 0;
