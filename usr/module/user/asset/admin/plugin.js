@@ -5,12 +5,35 @@
     function tpl(name) {
       return config.assetRoot + name + '.html';
     }
+
+    function resolve(action) {
+      return {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            server[action].get().success(function (data) {
+              var ret = {};
+              ret.displayList = data.display_list;
+              ret.selectList = data.select_list;
+              ret.action = action;
+              deferred.resolve(ret);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ] 
+      }
+    }
+
     $routeProvider.when('/activity', {
       templateUrl: tpl('plugin-activity'),
-      controller: 'SortableCtrl'
+      controller: 'SortableCtrl',
+      resolve: resolve('activity')
     }).when('/quicklink', {
       templateUrl: tpl('plugin-quicklink'),
-      controller: 'SortableCtrl'
+      controller: 'SortableCtrl',
+      resolve: resolve('quicklink')
     }).otherwise({
       redirectTo: '/timeline',
       templateUrl: tpl('plugin-timeline'),
@@ -89,13 +112,9 @@
     }
 
   }
-]).controller('SortableCtrl', ['$scope', '$location', 'server',
-  function ($scope, $location, server) {
-    var action = $location.path().replace(/^\//, '');
-    server[action].get().success(function (data) {
-      $scope.displayList = data.display_list;
-      $scope.selectList = data.select_list;
-    });
+]).controller('SortableCtrl', ['$scope', 'data', 'server',
+  function ($scope, data, server) {
+    angular.extend($scope, data);
 
     function getDisplay() {
       var ids = [];
@@ -111,32 +130,17 @@
       var item = $scope.displayList[idx];
       $scope.displayList.splice(idx, 1);
       $scope.selectList.push(item);
-      server[action].put(getDisplay());
     }
 
     $scope.addDisplay = function (idx) {
       var item = $scope.selectList[idx];
       $scope.selectList.splice(idx, 1);
       $scope.displayList.push(item);
-      server[action].put(getDisplay());
     }
 
-    $('#js-plugin-sortable').sortable({
-      start: function (e, ui) {
-        ui.item.data('start', ui.item.index());
-        ui
-          .helper
-          .outerWidth(ui.item.outerWidth());
-      },
-      update: function (e, ui) {
-        var start = ui.item.data('start');
-        var end = ui.item.index();
-        var list = $scope.displayList;
-        list.splice(end, 0,
-          list.splice(start, 1)[0]);
-        $scope.$apply();
-        server[action].put(getDisplay());
-      }
-    });
+    $scope.$watch('displayList', function(newValue, oldValue) {
+      if (newValue === oldValue) return;
+      server[$scope.action].put(getDisplay());
+    }, true);
   }
 ]);
