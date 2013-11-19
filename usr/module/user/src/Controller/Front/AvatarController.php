@@ -102,6 +102,7 @@ class AvatarController extends ActionController
                         'action' => 'profile.complete',
                     )
                 );
+
                 return;
             }
         }
@@ -244,14 +245,16 @@ class AvatarController extends ActionController
         $module   = $this->getModule();
         $config   = Pi::service('module')->config('', $module);
 
-        $return   = array('status' => false);
+        $result   = array('status' => false);
         $fakeId   = $this->params('fake_id', 0);
 
         // Checking whether ID is empty
         if (empty($fakeId)) {
-            $return['message'] = __('Invalid fake ID!');
-            echo json_encode($return);
-            exit ;
+            $result['message'] = __('Invalid token!');
+
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
         
         $rawInfo  = $this->request->getFiles('upload');
@@ -295,9 +298,11 @@ class AvatarController extends ActionController
         
         // Checking whether uploaded file is valid
         if (!$upload->isValid($rawName)) {
-            $return['message'] = implode(', ', $upload->getMessages());
-            echo json_encode($return);
-            exit ;
+            $result['message'] = implode(', ', $upload->getMessages());
+
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
 
         $upload->receive();
@@ -320,7 +325,7 @@ class AvatarController extends ActionController
         $session->$fakeId = $uploadInfo;
         
         // Prepare return data
-        $return['data'] = array_merge(
+        $result['data'] = array_merge(
             array(
                 'originalName' => $rawInfo['name'],
                 'size'         => $rawInfo['size'],
@@ -332,9 +337,11 @@ class AvatarController extends ActionController
             ),
             $imageSize
         );
-        $return['status'] = true;
-        echo json_encode($return);
-        exit;
+        $result['status'] = true;
+
+        return $result;
+        //echo json_encode($result);
+        //exit;
     }
     
     /**
@@ -344,24 +351,28 @@ class AvatarController extends ActionController
     {
         Pi::service('log')->active(false);
         
-        $return  = array('status' => false);
+        $result  = array('status' => false);
         $email   = $this->params('email', '');
         if (empty($email)) {
-            $return['message'] = __('Invalid email.');
-            echo json_encode($return);
-            exit ;
+            $result['message'] = __('Invalid email for gravatar.');
+
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
         
         $adapter = Pi::avatar()->getAdapter('gravatar');
         $url     = $adapter->getUrl($email);
         
-        $return = array(
+        $result = array(
             'status'        => true,
             'preview_url'   => $url,
             'message'       => __('Successful'),
         );
-        echo json_encode($return);
-        exit;
+
+        return $result;
+        //echo json_encode($result);
+        //exit;
     }
     
     /**
@@ -371,13 +382,15 @@ class AvatarController extends ActionController
     {
         Pi::service('log')->active(false);
         
-        $return  = array('status' => false);
+        $result  = array('status' => false);
         
         $name    = $this->params('name', '');
         if (empty($name)) {
-            $return['message'] = __('No image selected!');
-            echo json_encode($return);
-            exit ;
+            $result['message'] = __('No image selected!');
+
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
         
         $adapter  = Pi::avatar()->getAdapter('select');
@@ -387,14 +400,16 @@ class AvatarController extends ActionController
         $ext      = strtolower(pathinfo($basename, PATHINFO_EXTENSION));
         $dirname  = dirname($result);
         
-        $return = array(
+        $result = array(
             'status'    => true,
             'ext'       => $ext,
             'dirname'   => $dirname,
-            'message'   => __('Successful'),
+            'message'   => __('Successful.'),
         );
-        echo json_encode($return);
-        exit;
+
+        return $result;
+        //echo json_encode($result);
+        //exit;
     }
     
     /**
@@ -402,21 +417,17 @@ class AvatarController extends ActionController
      */
     public function saveAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
-        $return = array('status' => false);
+        $result = array('status' => false);
         $source = $this->params('source', '');
         $adapters = (array) Pi::service('avatar')->getOption('adapter');
         array_push($adapters, 'local');
-        //array('upload', 'gravatar', 'repository', 'local');
-        //var_dump($source);
-        //var_dump($adapters);
-        if (empty($source) 
-            || !in_array($source, $adapters)
-        ) {
-            $return['message'] = sprintf(__('Invalid source %s.'), $source);
-            echo json_encode($return);
-            exit;
+        if (empty($source) || !in_array($source, $adapters)) {
+            $result['message'] = sprintf(__('Invalid source %s.'), $source);
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
         
         $uid     = Pi::user()->getId();
@@ -425,20 +436,30 @@ class AvatarController extends ActionController
         if ('upload' == $source) {
             $fakeId = $this->params('fake_id', 0);
             if (empty($fakeId)) {
-                $return['message'] = __('Not image selected.');
-                echo json_encode($return);
-                exit;
+                $result['message'] = __('Not image selected.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
             }
 
-            $module  = $this->getModule();
-            $session = $this->getUploadSession($module, 'avatar');
-            $image   = $session->$fakeId;
-            if (empty($image['tmp_name']) 
-                || !file_exists(Pi::path($image['tmp_name']))
-            ) {
-                $return['message'] = __('Image does not exist.');
-                echo json_encode($return);
-                exit;
+            $module     = $this->getModule();
+            $session    = $this->getUploadSession($module, 'avatar');
+            $image      = $session->$fakeId;
+            if (empty($image['tmp_name'])) {
+                $result['message'] = __('Image is missing.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
+            }
+            $rawImage   = Pi::path($image['tmp_name']);
+            if (!file_exists($rawImage)) {
+                $result['message'] = __('Image does not exist.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
             }
 
             $width  = $this->params('w', 0);
@@ -446,16 +467,19 @@ class AvatarController extends ActionController
             $x      = $this->params('x', 0);
             $y      = $this->params('y', 0);
             if (empty($width) or empty($height)) {
-                $return['message'] = __('Image width or height is needed.');
-                echo json_encode($return);
-                exit;
+                $result['message'] = __('Image width or height is missing.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
             }
 
             // Crop and resize avatar
             $paths    = $adapter->getMeta($uid);
+            //$rawImage = Pi::path($image['tmp_name']);
             foreach ($paths as $path) {
                 Pi::image()->crop(
-                    Pi::path($image['tmp_name']),
+                    $rawImage,
                     array($x, $y),
                     array($width, $height),
                     $path['path']
@@ -465,25 +489,30 @@ class AvatarController extends ActionController
                     array($path['size'], $path['size'])
                 );
             }
+            @unlink($rawImage);
 
-            $photo = basename($path['path']);
+            $meta = array_pop($paths);
+            $photo = basename($meta['path']);
 
-            @unlink(Pi::path($image['tmp_name']));
         } elseif ('gravatar' == $source) {
             $email = $this->params('email', '');
             if (empty($email)) {
-                $return['message'] = __('Invalid email.');
-                echo json_encode($return);
-                exit;
+                $result['message'] = __('Email address is missing.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
             }
             
             $photo = $email;
         } elseif ('select' == $source) {
             $name = $this->params('name', '');
             if (empty($name)) {
-                $return['message'] = __('Invalid image file.');
-                echo json_encode($return);
-                exit;
+                $result['message'] = __('Invalid image set name.');
+
+                return $result;
+                //echo json_encode($result);
+                //exit;
             }
             
             $photo = $name;
@@ -491,15 +520,17 @@ class AvatarController extends ActionController
             $photo = '';
         }
         
-        // Remove old photo
+        // Remove old uploaded photo
         $oldAvatar = Pi::user()->get($uid, 'avatar');
         if ($oldAvatar != $photo) {
             $adapter   = Pi::avatar()->getAdapter('upload');
-            $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
-            foreach ($oldPaths as $oldPath) {
-                $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
-                if (file_exists($oldFile)) {
-                    @unlink($oldFile);
+            if ($adapter) {
+                $oldPaths  = $adapter->getMeta($uid, $oldAvatar);
+                foreach ($oldPaths as $oldPath) {
+                    $oldFile = dirname($oldPath['path']) . '/' . $oldAvatar;
+                    if (file_exists($oldFile)) {
+                        @unlink($oldFile);
+                    }
                 }
             }
 
@@ -507,10 +538,12 @@ class AvatarController extends ActionController
             Pi::user()->set($uid, 'avatar', $photo);
         }
         
-        $return['status'] = true;
-        $return['message'] = __('Avatar set successfully.');
-        echo json_encode($return);
-        exit;
+        $result['status'] = true;
+        $result['message'] = __('Avatar set successfully.');
+
+        return $result;
+        //echo json_encode($result);
+        //exit;
     }
     
     /**
@@ -520,26 +553,29 @@ class AvatarController extends ActionController
     {
         Pi::service('log')->active(false);
         
-        $return = array('status' => false);
+        $result = array('status' => false);
         $fakeId = $this->params('fake_id', 0);
         if (empty($fakeId)) {
-            $return['message'] = __('Image is not removed.');
-            echo json_encode($return);
-            exit;
+            $result['message'] = __('Image is not removed.');
+            return $result;
+            //echo json_encode($result);
+            //exit;
         }
         
         $module  = $this->getModule();
         $session = $this->getUploadSession($module, 'avatar');
         $image   = $session->$fakeId;
         
-        if ($image['tmp_name']) {
+        if (!empty($image['tmp_name'])) {
             @unlink(Pi::path($image['tmp_name']));
             unset($session->$fakeId);
         }
         
-        $return['status'] = true;
-        $return['message'] = __('Image removed successfully.');
-        echo json_encode($return);
-        exit;
+        $result['status'] = true;
+        $result['message'] = __('Image removed successfully.');
+
+        return $result;
+        //echo json_encode($result);
+        //exit;
     }
 }
