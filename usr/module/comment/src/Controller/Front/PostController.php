@@ -475,44 +475,26 @@ class PostController extends ActionController
         $currentUid     = $currentUser->get('id');
 
         $id             = _get('id', 'int');
-        $return         = _get('return');
-        $redirect       = _get('redirect');
-
+        $redirect       = $this->getRequest()->getServer('HTTP_REFERER');
         $post           = Pi::api('comment')->getPost($id);
+
+        //Look http status in Response.php 
         if (!$post) {
-            $status = -2;
-            $message = __('Invalid post parameter.');
+            $status = 422;
         } elseif ($currentUid != $post['uid']
             && !$currentUser->isAdmin('comment')
         ) {
-            $status = -1;
-            $message = __('Operation denied.');
+            $status = 403;
         } else {
-            $status         = Pi::api('comment')->deletePost($id);
-            $message        = $status
-                ? __('Operation succeeded.') : __('Operation failed');
+            $status    = Pi::api('comment')->deletePost($id);
         }
 
-        if (0 < $status && $id) {
+        if ($status == 1) {
             Pi::service('event')->trigger('post_delete', $id);
-            //Pi::service('comment')->clearCache($id);
-        }
-
-        if (!$return) {
-            if ($redirect) {
-                $redirect = urldecode($redirect);
-            } else {
-                $redirect = Pi::api('comment')->getUrl('list');
-            }
-            $this->jump($redirect, $message);
+            Pi::service('comment')->clearCache($id);
+            $this->redirect($redirect);
         } else {
-            $result = array(
-                'status'    => (int) $status,
-                'message'   => $message,
-                'data'      => $id,
-            );
-
-            return $result;
+            return $this->response->setStatusCode($status);
         }
     }
 
