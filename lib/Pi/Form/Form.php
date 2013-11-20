@@ -10,6 +10,7 @@
 
 namespace Pi\Form;
 
+use Pi;
 use Zend\Form\Form as ZendForm;
 
 /**
