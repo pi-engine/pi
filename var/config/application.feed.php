@@ -21,7 +21,7 @@ $config['resource']['user'] = false;
 $config['resource']['permission'] = false;
 // Rendering cache
 $config['resource']['render_cache'] = array(
-    'page'  => true,
+    //'page'  => true,
 );
 
 // Application service configuration
