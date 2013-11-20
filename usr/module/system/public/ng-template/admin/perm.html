@@ -10,10 +10,10 @@
       <th colspan="{{cols}}">{{'GLOBAL' | translate}}
     <tr ng-repeat="item in resources.global">
       <td class="pi-indent">{{item.title}}
-      <td ng-repeat="(key, value) in item.roles" class="text-center">
-          <button class="btn btn-small" ng-class="{'btn-success': value}"
-                  ng-click="assignAction(key, item)">
-            <i class="icon-ok" ng-class="{'muted': !value}"></i>
+      <td ng-repeat="role in item.roles" class="text-center">
+          <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                  ng-click="assignAction(role, item)">
+            <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
           </button>
       <td>
         <div ng-include src="'allResource.html'"></div>
@@ -21,10 +21,10 @@
       <th colspan="{{cols}}">{{'MODULE' | translate}}
     <tr ng-repeat="item in resources.module">
       <td class="pi-indent">{{item.title}}
-      <td ng-repeat="(key, value) in item.roles" class="text-center">
-          <button class="btn btn-small" ng-class="{'btn-success': value}"
-                  ng-click="assignAction(key, item)">
-            <i class="icon-ok" ng-class="{'muted': !value}"></i>
+      <td ng-repeat="role in item.roles" class="text-center">
+          <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                  ng-click="assignAction(role, item)">
+            <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
           </button>
       <td>
           <div ng-include src="'allResource.html'"></div>
@@ -32,10 +32,10 @@
       <th colspan="{{cols}}">{{'BLOCK' | translate}}
     <tr ng-repeat="item in resources.block">
       <td class="pi-indent">{{item.title}}
-      <td ng-repeat="(key, value) in item.roles" class="text-center">
-        <button class="btn btn-small" ng-class="{'btn-success': value}"
-                ng-click="assignAction(key, item)">
-          <i class="icon-ok" ng-class="{'muted': !value}"></i>
+      <td ng-repeat="role in item.roles" class="text-center">
+        <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                ng-click="assignAction(role, item)">
+          <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
         </button>
       <td>
         <div ng-include src="'allResource.html'"></div>
