@@ -164,17 +164,35 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field = array(), $filter = false)
-    {
-        return Pi::api('system', 'user')->get($uid, $field, $filter);
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('system', 'user')->get(
+            $uid,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**
      * {@inheritDoc}
      */
-    public function mget(array $uids, $field = array(), $filter = false)
-    {
-        return Pi::api('system', 'user')->mget($uids, $field, $filter);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('system', 'user')->mget(
+            $uids,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**

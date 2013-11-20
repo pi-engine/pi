@@ -679,9 +679,9 @@ class IndexController extends ActionController
      * Get user ids according to condition
      *
      * @param $condition
-     * @param $type
      * @param int $limit
      * @param int $offset
+     *
      * @return array
      *
      */
@@ -844,7 +844,7 @@ class IndexController extends ActionController
      * Get count according to condition
      *
      * @param $condition
-     * @param $type
+     *
      * @return int
      */
     protected function getCount($condition)

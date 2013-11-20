@@ -156,16 +156,35 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field = array(), $filter = false)
-    {
-        return Pi::api('user', 'user')->get($uid, $field, $filter);
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('user', 'user')->get(
+            $uid,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
+
     /**
      * {@inheritDoc}
      */
-    public function mget(array $uids, $field = array(), $filter = false)
-    {
-        return Pi::api('user', 'user')->mget($uids, $field, $filter);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('user', 'user')->mget(
+            $uids,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**

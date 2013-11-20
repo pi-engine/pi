@@ -92,18 +92,9 @@ class UserController extends ActionController
     {
         $uid        = $this->params('id');
         $field      = $this->params('field');
-
         $fields     = $this->splitString($field);
-        if ($fields && !in_array('active', $fields)) {
-            $fields[] = 'active';
-        }
         $fields     = array_diff($fields, $this->protectedFields);
-        $result     = (array) Pi::service('user')->get($uid, $fields);
-        if (empty($result['active'])) {
-            $result = array();
-        } elseif ($result) {
-            unset($result['active']);
-        }
+        $result     = (array) Pi::service('user')->get($uid, $fields, null, true);
         $response   = $result;
 
         return $response;
@@ -118,21 +109,10 @@ class UserController extends ActionController
     {
         $uid        = $this->params('id');
         $field      = $this->params('field');
-
         $uids       = $this->splitString($uid);
         $fields     = $this->splitString($field);
-        if ($fields && !in_array('active', $fields)) {
-            $fields[] = 'active';
-        }
         $fields     = array_diff($fields, $this->protectedFields);
-        $result     = Pi::service('user')->mget($uids, $fields);
-        array_walk($result, function (&$data) {
-            if (empty($data['active'])) {
-                $data = array();
-            } elseif ($data) {
-                unset($data['active']);
-            }
-        });
+        $result     = Pi::service('user')->mget($uids, $fields, null, true);
         $response   = $result;
 
         return $response;

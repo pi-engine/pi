@@ -155,16 +155,35 @@ class Client extends System
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field = array(), $filter = false)
-    {
-        return Pi::api('uclient', 'user')->get($uid, $field, $filter);
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('uclient', 'user')->get(
+            $uid,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
+
     /**
      * {@inheritDoc}
      */
-    public function mget(array $uids, $field = array(), $filter = false)
-    {
-        return Pi::api('uclient', 'user')->mget($uids, $field, $filter);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('uclient', 'user')->mget(
+            $uids,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**

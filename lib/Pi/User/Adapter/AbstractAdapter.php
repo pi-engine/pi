@@ -510,10 +510,17 @@ abstract class AbstractAdapter implements BindInterface
      * @param int|int[]         $uid
      * @param string|string[]   $field
      * @param bool              $filter
+     * @param bool              $activeOnly
+     *
      * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($uid, $field = array(), $filter = false);
+    abstract public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    );
 
     /**
      * Get field value(s) of users per operation actions
@@ -569,10 +576,17 @@ abstract class AbstractAdapter implements BindInterface
      * @param int[]         $uids
      * @param string|string[]   $field
      * @param bool              $filter
+     * @param bool              $activeOnly
+     *
      * @return mixed[]
      * @api
      */
-    abstract public function mget(array $uids, $field = array(), $filter = false);
+    abstract public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    );
 
     /**
      * Set value of a user field

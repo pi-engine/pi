@@ -250,8 +250,12 @@ class User extends AbstractUseApi
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $field, $filter = false)
-    {
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
         if (!$uid) {
             return false;
         }
@@ -290,12 +294,18 @@ class User extends AbstractUseApi
      * @param int[]             $uids
      * @param string|string[]   $field
      * @param bool              $filter
+     * @param bool              $activeOnly
+     *
      * @return mixed[]
      * @api
      */
-    public function mget(array $uids, $field = array(), $filter = false)
-    {
-        $result = $this->get($uids, $field, $filter);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        $result = $this->get($uids, $field, $filter, $activeOnly);
 
         return $result;
     }

@@ -282,18 +282,30 @@ class User extends AbstractUseApi
      * @param int|int[]         $uid
      * @param string|string[]   $field
      * @param bool              $filter
+     * @param bool              $activeOnly
+     *
      * @return mixed|mixed[]
      * @api
      */
-    public function get($uid, $field = array(), $filter = false)
-    {
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
         if (!$uid) {
             return false;
         }
 
         $result = array();
-        $fields   = $field ? (array) $field : array_keys($this->getMeta());
         $uids   = (array) $uid;
+        $fields   = $field ? (array) $field : array_keys($this->getMeta());
+
+        $activeMarked = false;
+        if ($activeOnly && !in_array('active', $fields)) {
+            $fields[] = 'active';
+            $activeMarked = true;
+        }
 
         $meta   = $this->canonizeField($fields);
         $fields = $this->getFields($uids, $meta, $filter);
@@ -304,6 +316,17 @@ class User extends AbstractUseApi
                 $result[$id] = $data;
             }
         }
+
+        if ($activeOnly) {
+            foreach (array_keys($result) as $id) {
+                if (empty($result[$id]['active'])) {
+                    unset($result[$id]);
+                } elseif ($activeMarked) {
+                    unset($result[$id]['active']);
+                }
+            }
+        }
+
         if (is_scalar($uid)) {
             $result = isset($result[$uid]) ? $result[$uid] : array();
             if (is_scalar($field)) {
@@ -324,12 +347,18 @@ class User extends AbstractUseApi
      * @param int[]             $uids
      * @param string|string[]   $field
      * @param bool              $filter
+     * @param bool              $activeOnly
+     *
      * @return mixed[]
      * @api
      */
-    public function mget(array $uids, $field = array(), $filter = false)
-    {
-        $result = $this->get($uids, $field, $filter);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        $result = $this->get($uids, $field, $filter, $activeOnly);
 
         return $result;
     }
