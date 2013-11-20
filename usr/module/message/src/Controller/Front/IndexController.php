@@ -125,7 +125,7 @@ class IndexController extends AbstractController
                     $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
                     $v['is_read'] = $v['is_read_to'];
-                    $user = Pi::user()->getUser($v['uid_to'])
+                    $user = Pi::user()->getUser($v['uid_from'])
                         ?: Pi::user()->getUser(0);
                     //get username url
                     $v['name'] = $user->name;
