@@ -39,7 +39,7 @@ return array(
             ),
         ),
         'import'      => array(
-            'title'         => _a('Custom fields'),
+            'title'         => _a('Import'),
             'access'        => array(
                 //'admin',
             ),
@@ -65,6 +65,12 @@ return array(
         ),
         'maintenance'  => array(
             'title'         => _a('Maintenance'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        'inquiry'  => array(
+            'title'         => _a('Inquiry'),
             'access'        => array(
                 //'admin',
             ),

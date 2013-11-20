@@ -271,7 +271,7 @@ class EditController extends ActionController
         $meta = Pi::registry('field', 'user')->read();
         $editFields = array();
         foreach ($meta as $row) {
-            if ($row['edit'] && !$row['compound']) {
+            if ($row['edit'] && $row['type'] != 'compound') {
                 $editFields[] = $row;
             }
         }

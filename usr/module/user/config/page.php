@@ -42,5 +42,9 @@ return array(
             'controller'    => 'maintenance',
             'permission'    => 'maintenance',
         ),
+        array(
+            'controller'    => 'inquiry',
+            'permission'    => 'inquiry',
+        ),
     ),
 );
