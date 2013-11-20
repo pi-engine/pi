@@ -255,7 +255,7 @@ class Api extends AbstractApi
      */
     public function load($routeMatch, array $options = array())
     {
-        if ($routeMatch instanceof $routeMatch) {
+        if ($routeMatch instanceof RouteMatch) {
             $params = $routeMatch->getParams();
         } else {
             $params = (array) $routeMatch;
