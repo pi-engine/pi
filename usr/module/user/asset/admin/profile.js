@@ -203,9 +203,9 @@
   function($scope, server) {
     $scope.limits = [
       { text: 'public', value: 0 },
-      { text: 'member', value: 1 },
-      { text: 'follower', value: 2 },
-      { text: 'following', value: 4 },
+//      { text: 'member', value: 1 },
+//      { text: 'follower', value: 2 },
+//      { text: 'following', value: 4 },
       { text: 'owner', value: 255 }
     ]
 

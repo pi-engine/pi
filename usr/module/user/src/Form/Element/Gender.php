@@ -27,9 +27,8 @@ class Gender extends Radio
     public function getValueOptions()
     {
         $options = array(
-            'male' => __('Male'),
+            'male'   => __('Male'),
             'female' => __('Female'),
-            'unknown' => __('Unknown'),
         );
 
         $this->valueOptions = $options;

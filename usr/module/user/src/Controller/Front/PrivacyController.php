@@ -74,9 +74,9 @@ class PrivacyController extends ActionController
 
         $limits = array(
             0   => __('Public'),
-            1   => __('Member'),
-            2   => __('Follower'),
-            4   => __('Following'),
+//            1   => __('Member'),
+//            2   => __('Follower'),
+//            4   => __('Following'),
             255 => __('Owner'),
         );
 
