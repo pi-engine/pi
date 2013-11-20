@@ -17,14 +17,6 @@ $this->angular(array(
     <div pi-nav-tabs></div>
     <div ng-view></div>
 </div>
-<dl class="page-header">Links</dl>
-<ul>
-    <li>
-        <a href="<?php echo $this->url('', array('controller' => 'build', 'action' => 'index'));?>">
-            <?php echo _a('Build user module data');?>
-        </a>
-    </li>
-</ul>
 <script>
 angular
     .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
