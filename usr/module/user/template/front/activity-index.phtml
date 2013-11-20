@@ -6,12 +6,7 @@ $this->css($this->assetModule('front/front.css'));
     <?php if (!empty($data['content'])) { ?>
         <?php echo  $data['content'];?>
     <?php } else { ?>
-    <?php if ($data['link']) { ?>
-    <a class="pull-right" href="<?php echo $data['link'];?>" target="_blank">
-        <?php _e('View all');?>
-    </a>
-    <?php } ?>
-    <h3 class="user-activity-title"><?php echo $data['title'];?></h3>
+    <?php if ($data['items']) { ?>
     <?php foreach ($data['items'] as $item) { ?>
     <div class="user-underline-list">
         <p style="margin-bottom: 5px;">
@@ -22,5 +17,21 @@ $this->css($this->assetModule('front/front.css'));
         <?php } ?>
     </div>
     <?php } ?>
+    <?php 
+    if ($data['link']) { 
+        echo sprintf(
+            '<a class="btn btn-block" href="%s">%s</a>',
+            $data['link'],
+            __('View all')
+        );
+    }
+    ?>
+    <?php } else {
+        echo sprintf(
+            '<div class="well">%s</div>',
+            __('None blogs')
+        );
+    }
+    ?>
     <?php } ?>
 </div>

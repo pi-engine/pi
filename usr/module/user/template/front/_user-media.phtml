@@ -76,12 +76,16 @@
             <i class="icon-eye-open"></i>
             <?php _e('Back to view of own'); ?>
         </a>
-        <?php } ?>
-    
+        <button class="btn btn-small">
+            <i class="icon-envelope"></i>
+            <?php _e('Send message'); ?>
+        </button>
+        <?php } else { ?>
         <a class="btn btn-small" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
             <i class="icon-envelope"></i>
             <?php _e('Send message'); ?>
         </a>
+        <?php } ?>
         <?php } ?>
     </div>
 </div>
