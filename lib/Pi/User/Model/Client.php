@@ -28,8 +28,12 @@ class Client extends System
                 $data = (array) Pi::service('user')->get($uid);
             } else {
                 $list = Pi::service('user')->getList(array($field => $uid), 1);
-                $data = array_values($list);
-                $data = array_pop($data);
+                if ($list) {
+                    $data = array_values($list);
+                    $data = array_pop($data);
+                } else {
+                    $data = array();
+                }
             }
         } else {
             $data = $this->getGuest();
