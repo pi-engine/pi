@@ -26,30 +26,46 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
-        $id = Pi::user()->getId();
-        if (!$id) {
-            $this->jump(
-                array('controller' => 'login'),
-                __('Please log in.'),
-                5
-            );
-            return;
-        }
-        $role = Pi::model('user_role')->find($id, 'uid')->role;
-        $roleRow = Pi::model('role')->find($role, 'name');
+        Pi::service('authentication')->requireLogin();
+
         $userRow = Pi::user()->getUser();
+        $roles   = $userRow->role();
+        $roleList = Pi::registry('role')->read();
+        $userRole = array();
+        foreach ($roles as $role) {
+            $userRole[] = $roleList[$role]['title'];
+        }
+        $roleString = implode(' | ', $userRole);
+
+        $pwUrl = $this->url('', array('controller' => 'password'));
+        $pwString = sprintf(
+            '<a href="%s" title="">%s</a>',
+            $pwUrl,
+            __('Change password')
+        );
+
+        $loUrl = Pi::service('authentication')->getUrl('logout');
+        $loString = sprintf(
+            '<a href="%s" title="">%s</a>',
+            $loUrl,
+            __('Logout')
+        );
         $user = array(
             __('ID')        => $userRow->id,
             __('Username')  => $userRow->identity,
             __('Email')     => $userRow->email,
             __('Name')      => $userRow->name,
-            __('Role')      => __($roleRow->title),
+            __('Role')      => $roleString,
+            __('Password')  => $pwString,
+            __('Logout')    => $loString,
         );
 
+        $avatar = Pi::service('avatar')->get($userRow->id);
         $title = __('User profile');
         $this->view()->assign(array(
-            'title' => $title,
-            'user'  => $user,
+            'title'     => $title,
+            'user'      => $user,
+            'avatar'    => $avatar,
         ));
         $this->view()->setTemplate('profile');
     }
@@ -57,51 +73,12 @@ class ProfileController extends ActionController
     /**
      * Profile data of specified user
      *
+     * Not used
+     *
      * @return void
      */
     public function viewAction()
     {
-        $id = $this->params('uid', 0);
-        $identity = $this->params('identity', '');
-        $name = $this->params('name', '');
-        if (!$id && $identity && $name) {
-            $this->jump(
-                array('action' => 'index'),
-                __('The user does not exists.'),
-                5
-            );
-            return;
-        }
-        if ($id) {
-            $row = Pi::model('user_account')->find($id);
-        } elseif ($identity) {
-            $row = Pi::model('user_account')->find($identity, 'identity');
-        } elseif ($name) {
-            $row = Pi::model('user_account')->find($name, 'name');
-        }
-        if (!$row) {
-            $this->jump(
-                array('action' => 'index'),
-                __('The user does not exists.'),
-                5
-            );
-            return;
-        }
-        $role = Pi::model('user_role')->find($row->id, 'uid')->role;
-        $roleRow = Pi::model('role')->find($role, 'name');
-        $user = array(
-            __('ID')        => $row->id,
-            __('Username')  => $row->identity,
-            __('Email')     => $row->email,
-            __('Name')      => $row->name,
-            __('Role')      => __($roleRow->title),
-        );
-
-        $title = __('User profile');
-        $this->view()->assign(array(
-            'title' => $title,
-            'user'  => $user,
-        ));
-        $this->view()->setTemplate('profile');
+        $this->redirect('', array('action' => 'index'));
     }
 }

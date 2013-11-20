@@ -20,6 +20,34 @@ return array(
         'route'         => 'home',
 
         'pages'         => array(
+            'account'   => array(
+                'label'         => _a('Profile'),
+                'route'         => 'sysuser',
+                'controller'    => 'profile',
+
+                'pages'         => array(
+                    'login'     => array(
+                        'label'         => _a('Login'),
+                        'route'         => 'sysuser',
+                        'controller'    => 'login',
+                        'visible'       => 0,
+                    ),
+
+                    'register'     => array(
+                        'label'         => _a('Register'),
+                        'route'         => 'sysuser',
+                        'controller'    => 'register',
+                        'visible'       => 0,
+                    ),
+
+                    'password'     => array(
+                        'label'         => _a('Password'),
+                        'route'         => 'sysuser',
+                        'controller'    => 'password',
+                        'visible'       => 0,
+                    ),
+                ),
+            ),
             'admin'     => array(
                 'label'     => _a('Admin'),
                 'route'     => 'home',
@@ -32,46 +60,6 @@ return array(
         ),
     ),
 
-    // Account
-    'account'   => array(
-        'label'         => _a('Account'),
-        'route'         => 'sysuser',
-        'controller'    => 'account',
-        //'visible'       => 0,
-        'pages'         => array(
-            'profile'     => array(
-                'label'         => _a('Profile'),
-                'route'         => 'sysuser',
-                'controller'    => 'profile',
-                'visible'       => 0,
-            ),
-            'login'     => array(
-                'label'         => _a('Login'),
-                'route'         => 'sysuser',
-                'controller'    => 'login',
-                'visible'       => 0,
-            ),
-            
-            'register'     => array(
-                'label'         => _a('Register'),
-                'route'         => 'sysuser',
-                'controller'    => 'register',
-                'visible'       => 0,
-            ),
-            'password'     => array(
-                'label'         => _a('Password'),
-                'route'         => 'sysuser',
-                'controller'    => 'password',
-                'visible'       => 0,
-            ),
-            'email'     => array(
-                'label'         => _a('Email'),
-                'route'         => 'sysuser',
-                'controller'    => 'email',
-                'visible'       => 0,
-            ),
-        ),
-    ),
 
     'modules'   => array(
         'callback'  => array('navigation', 'front'),
