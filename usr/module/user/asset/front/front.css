@@ -85,6 +85,11 @@
   margin-bottom: 20px;
 }
 
+.user-legend {
+  height: 30px;
+  margin-bottom: 10px;
+}
+
 .user-legend-title {
   float: left;
   margin: 0 10px 0;
@@ -120,14 +125,6 @@
 
 .user-field-dl dd {
   line-height: 24px;
-}
-
-.user-none-fields {
-  background: #e6e6e6;
-  padding: 20px 0;
-  text-align: center;
-  margin: 20px 0;
-  display: block;
 }
 
 /* Activity */

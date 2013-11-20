@@ -10,7 +10,7 @@
 <div class="user-min-body user-profile-list">
     <?php foreach ($profile_group as $group) {?>
     <div class="user-profile-item">
-        <div class="clearfix user-legend" style="height: 30px;">
+        <div class="clearfix user-legend">
             <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
             <?php
                 if ($group['compound']) {
@@ -43,10 +43,10 @@
         ?>
         </div>
         <?php } else { ?>
-        <a href="<?php echo $addUrl; ?>" class="user-none-fields">
+        <a href="<?php echo $addUrl; ?>" class="well text-center" style="display: block;">
             <?php _e('Add'); echo ' ' . $group['name']; ?>
         </a>
         <?php } ?>
-        </div>
+    </div>
     <?php } ?>
 </div>

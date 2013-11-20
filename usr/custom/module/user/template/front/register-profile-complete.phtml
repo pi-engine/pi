@@ -15,9 +15,11 @@ $this->css(array(
 
 <script>
     jQuery(function($) {
-        $('#profileComplete input, #profileComplete select').focus(function(){
+        var root = $('#profileComplete');
+        root.find('input, select').focus(function(){
             var $controlGroupParent = $(this).closest('.control-group');
             $controlGroupParent.removeClass('error').find('.help-inline').html('');
         });
+        root.find('[name="subscription[]"]').attr('checked', 'checked');
     });
 </script>

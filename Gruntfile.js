@@ -42,6 +42,9 @@ module.exports = function(grunt) {
       }
     },
     clean: {
+      user: {
+        src: assetCwdBuild('user'),
+      },
       pi: {
         src: angularSrc + 'pi*.min.js',
       }
@@ -67,7 +70,7 @@ module.exports = function(grunt) {
  
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'clean', 'uglify']);
+  grunt.registerTask('default', ['clean', 'copy', 'uglify']);
   grunt.registerTask('clear', ['clean']);
   grunt.registerTask('screenshot', ['snapshot']);
 };
