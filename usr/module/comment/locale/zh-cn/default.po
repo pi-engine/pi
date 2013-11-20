@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: comment\n"
-"POT-Creation-Date: 2013-11-17 16:09+0800\n"
-"PO-Revision-Date: 2013-11-17 16:15+0800\n"
+"POT-Creation-Date: 2013-11-20 11:42+0800\n"
+"PO-Revision-Date: 2013-11-20 11:42+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: eefocus\n"
 "MIME-Version: 1.0\n"
@@ -12,446 +12,456 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: Z:\\test\\usr\\module\\comment\n"
+"X-Poedit-SearchPath-0: Z:\\article\\usr\\module\\comment\n"
 
-#: Z:\test\usr\module\comment/config/event.php:21
+#: Z:\article\usr\module\comment/config/event.php:21
 msgid "Post submitted"
 msgstr ""
 
-#: Z:\test\usr\module\comment/config/event.php:24
+#: Z:\article\usr\module\comment/config/event.php:24
 msgid "Post published"
 msgstr ""
 
-#: Z:\test\usr\module\comment/config/event.php:27
+#: Z:\article\usr\module\comment/config/event.php:27
 msgid "Post updated"
 msgstr ""
 
-#: Z:\test\usr\module\comment/config/event.php:30
+#: Z:\article\usr\module\comment/config/event.php:30
 msgid "Post enabled"
 msgstr ""
 
-#: Z:\test\usr\module\comment/config/event.php:33
+#: Z:\article\usr\module\comment/config/event.php:33
 msgid "Post disabled"
 msgstr ""
 
-#: Z:\test\usr\module\comment/config/event.php:36
+#: Z:\article\usr\module\comment/config/event.php:36
 msgid "Post deleted"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:67
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:301
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:134
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:187
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:322
+msgid "Invalid post parameter."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:305
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:394
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:453
+msgid "Operation succeeded."
+msgstr "操作成功"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:305
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:394
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:453
+msgid "Operation failed"
+msgstr "操作失败"
+
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:67
 msgid "All comment posts"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:69
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:69
 msgid "All inactive comment posts"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:71
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:49
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:71
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:49
 msgid "All active comment posts"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:128
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:128
 msgid "Comment posts of article"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:153
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:362
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:515
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:153
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:362
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:515
 msgid "Please login."
 msgstr "请登录。"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:197
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:204
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:197
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:204
 msgid "My comments"
 msgstr "我的评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:212
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:212
 msgid "My active comments"
 msgstr "我的激活评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:221
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:221
 msgid "My pending comments"
 msgstr "我的屏蔽评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:237
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:237
 msgid "Comment posts of user"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:308
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:308
 msgid "All"
 msgstr "全部"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:333
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:333
 msgid "Comment posts of module"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:405
-#: Z:\test\usr\module\comment/src/Api/Api.php:516
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:405
+#: Z:\article\usr\module\comment/src/Api/Api.php:525
 msgid "Guest"
 msgstr "访客"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:450
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:450
 msgid "All commented articles"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:452
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:452
 msgid "Articles with comments"
 msgstr "有评论的文章"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:465
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:465
 msgid "My articles"
 msgstr "我评论过的文章"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:473
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:473
 msgid "My articles with active comments"
 msgstr "我的有激活评论的文章"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:557
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:557
 msgid "Received comments"
 msgstr "收到的评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:564
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:564
 msgid "All Posts"
 msgstr "全部评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:572
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:572
 msgid "Active Posts"
 msgstr "激活评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:581
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:581
 msgid "Inactive Posts"
 msgstr "已屏蔽评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/ListController.php:597
+#: Z:\article\usr\module\comment/src/Controller/Front/ListController.php:597
 msgid "Comment posts on user"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:23
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:23
 #, php-format
 msgid "Comment portal for %s"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:35
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:35
 msgid "Demo article with comments"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:63
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:63
 msgid "Commented articles"
 msgstr "已评论文章"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:70
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:70
 msgid "Comment posts for module \"Comment\""
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:76
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:76
 msgid "Comment posts for module \"Comment\" with category \"Article\""
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:84
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:84
 #, php-format
 msgid "Comment posts by %s"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:94
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:94
 msgid "Comment posts by me"
 msgstr "我发表的评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/IndexController.php:100
+#: Z:\article\usr\module\comment/src/Controller/Front/IndexController.php:100
 msgid "Commented articles by me"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/CustomController.php:35
+#: Z:\article\usr\module\comment/src/Controller/Front/CustomController.php:35
 #, php-format
 msgid "Demo custom article #%d"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/DemoController.php:35
+#: Z:\article\usr\module\comment/src/Controller/Front/DemoController.php:35
 #, php-format
 msgid "Demo article #%d"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:50
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:50
 msgid "Permanent link"
 msgstr "永久链接"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:58
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:566
-#: Z:\test\usr\module\comment/src/Api/Api.php:561
-#: Z:\test\usr\module\comment/template/front/comment-reply.phtml:80
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:58
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:523
+#: Z:\article\usr\module\comment/src/Api/Api.php:570
+#: Z:\article\usr\module\comment/template/front/comment-reply.phtml:80
 msgid "Reply"
 msgstr "回复"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:68
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:85
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:552
-#: Z:\test\usr\module\comment/src/Api/Api.php:558
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:68
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:85
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:509
+#: Z:\article\usr\module\comment/src/Api/Api.php:567
 msgid "Edit"
 msgstr "编辑"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:74
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:91
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:559
-#: Z:\test\usr\module\comment/src/Api/Api.php:560
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:74
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:91
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:516
+#: Z:\article\usr\module\comment/src/Api/Api.php:569
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:71
+#: Z:\article\usr\module\comment/template/front/comment.phtml:82
 msgid "Delete"
 msgstr "删除"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:97
-#: Z:\test\usr\module\comment/src/Api/Api.php:614
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:97
+#: Z:\article\usr\module\comment/src/Api/Api.php:623
 msgid "Disable"
 msgstr "屏蔽"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:97
-#: Z:\test\usr\module\comment/src/Api/Api.php:559
-#: Z:\test\usr\module\comment/src/Api/Api.php:617
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:97
+#: Z:\article\usr\module\comment/src/Api/Api.php:568
+#: Z:\article\usr\module\comment/src/Api/Api.php:626
 msgid "Enable"
 msgstr "启用"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:107
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:107
 msgid "Comment post"
 msgstr "发表评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:134
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:187
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:319
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:484
-msgid "Invalid post parameter."
-msgstr ""
-
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:140
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:191
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:282
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:324
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:427
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:489
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:140
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:191
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:285
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:327
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:386
 msgid "Operation denied."
 msgstr "禁止操作"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:152
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:152
 msgid "Comment post edit"
 msgstr "编辑评论"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:204
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:204
 msgid "Comment post reply"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:285
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:288
 msgid "Invalid submission."
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:298
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:301
 msgid "Root not found."
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:301
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:23
-#: Z:\test\usr\module\comment/template/front/comment.phtml:28
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:304
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:23
+#: Z:\article\usr\module\comment/template/front/comment.phtml:27
 msgid "Comment is disabled."
 msgstr "评论已禁用。"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:334
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:336
 msgid "Comment post saved successfully."
 msgstr "发表评论成功"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:337
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:339
 msgid "Comment post not saved."
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:342
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:344
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:435
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:493
-msgid "Operation succeeded."
-msgstr "操作成功"
-
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:435
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:493
-msgid "Operation failed"
-msgstr "操作失败"
-
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:542
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:444
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:499
 msgid "Invalid parameters."
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:548
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:68
-#: Z:\test\usr\module\comment/template/front/comment.phtml:84
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:449
+msgid "Forbidden."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:505
 msgid "Login"
 msgstr "登录"
 
-#: Z:\test\usr\module\comment/src/Controller/Front/PostController.php:573
+#: Z:\article\usr\module\comment/src/Controller/Front/PostController.php:530
 msgid "Enable/Disable"
 msgstr "启用/禁用"
 
-#: Z:\test\usr\module\comment/src/Api/Custom.php:40
+#: Z:\article\usr\module\comment/src/Api/Custom.php:40
 #, php-format
 msgid "Custom article %d"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Api/Article.php:39
+#: Z:\article\usr\module\comment/src/Api/Article.php:39
 #, php-format
 msgid "Demo article %d"
 msgstr ""
 
-#: Z:\test\usr\module\comment/src/Form/PostForm.php:82
+#: Z:\article\usr\module\comment/src/Form/PostForm.php:82
 msgid "Comment"
 msgstr "评论"
 
-#: Z:\test\usr\module\comment/src/Form/PostForm.php:88
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:74
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:76
-#: Z:\test\usr\module\comment/template/front/comment-reply.phtml:78
-#: Z:\test\usr\module\comment/template/front/comment.phtml:62
+#: Z:\article\usr\module\comment/src/Form/PostForm.php:88
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:46
+#: Z:\article\usr\module\comment/template/front/_post-form.phtml:11
+#: Z:\article\usr\module\comment/template/front/comment-reply.phtml:78
 msgid "Type your content"
 msgstr "请发表评论……"
 
-#: Z:\test\usr\module\comment/src/Form/PostForm.php:98
+#: Z:\article\usr\module\comment/src/Form/PostForm.php:98
 msgid "Submit"
 msgstr "提交"
 
-#: Z:\test\usr\module\comment/template/front/comment-user.phtml:32
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:67
-#: Z:\test\usr\module\comment/template/front/comment-list.phtml:37
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:50
-#: Z:\test\usr\module\comment/template/front/comment-reply.phtml:68
-#: Z:\test\usr\module\comment/template/front/comment-my-post.phtml:44
+#: Z:\article\usr\module\comment/template/front/comment-user.phtml:32
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:39
+#: Z:\article\usr\module\comment/template/front/comment-list.phtml:37
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:50
+#: Z:\article\usr\module\comment/template/front/comment-reply.phtml:68
+#: Z:\article\usr\module\comment/template/front/comment-my-post.phtml:44
 msgid "Commented on "
 msgstr "评论于"
 
-#: Z:\test\usr\module\comment/template/front/comment-user.phtml:46
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:118
-#: Z:\test\usr\module\comment/template/front/comment-user-received.phtml:51
-#: Z:\test\usr\module\comment/template/front/comment-list.phtml:50
-#: Z:\test\usr\module\comment/template/front/comment-module.phtml:53
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:63
-#: Z:\test\usr\module\comment/template/front/comment-my-received.phtml:64
-#: Z:\test\usr\module\comment/template/front/comment-my-post.phtml:61
-#: Z:\test\usr\module\comment/template/front/comment.phtml:115
-#: Z:\test\usr\module\comment/template/admin/comment-user.phtml:89
-#: Z:\test\usr\module\comment/template/admin/comment-list.phtml:81
-#: Z:\test\usr\module\comment/template/admin/comment-module.phtml:88
+#: Z:\article\usr\module\comment/template/front/comment-user.phtml:46
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:70
+#: Z:\article\usr\module\comment/template/front/comment-user-received.phtml:51
+#: Z:\article\usr\module\comment/template/front/comment-list.phtml:50
+#: Z:\article\usr\module\comment/template/front/comment-module.phtml:53
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:63
+#: Z:\article\usr\module\comment/template/front/comment-my-received.phtml:64
+#: Z:\article\usr\module\comment/template/front/comment-my-post.phtml:61
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:89
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:81
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:88
 msgid "Are sure want to delete this comment?"
 msgstr "确定删除评论？"
 
-#: Z:\test\usr\module\comment/template/front/comment-user.phtml:64
-#: Z:\test\usr\module\comment/template/front/comment-user-received.phtml:69
-#: Z:\test\usr\module\comment/template/front/comment-list.phtml:68
-#: Z:\test\usr\module\comment/template/front/comment-module.phtml:71
-#: Z:\test\usr\module\comment/template/front/comment-my-received.phtml:82
-#: Z:\test\usr\module\comment/template/front/comment-my-post.phtml:79
+#: Z:\article\usr\module\comment/template/front/comment-user.phtml:64
+#: Z:\article\usr\module\comment/template/front/comment-user-received.phtml:69
+#: Z:\article\usr\module\comment/template/front/comment-list.phtml:68
+#: Z:\article\usr\module\comment/template/front/comment-module.phtml:71
+#: Z:\article\usr\module\comment/template/front/comment-my-received.phtml:82
+#: Z:\article\usr\module\comment/template/front/comment-my-post.phtml:79
 msgid "No comments available yet."
 msgstr "尚无评论。"
 
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:49
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:21
 msgid "Comment edit"
 msgstr "编辑评论"
 
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:77
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:49
 msgid "Cancel"
 msgstr "取消"
 
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:78
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:50
 msgid "Save"
 msgstr "保存"
 
-#: Z:\test\usr\module\comment/template/front/comment-edit.phtml:91
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:74
-#: Z:\test\usr\module\comment/template/front/comment-reply.phtml:92
+#: Z:\article\usr\module\comment/template/front/comment-edit.phtml:63
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:74
+#: Z:\article\usr\module\comment/template/front/comment-reply.phtml:92
 msgid "No content."
 msgstr "无内容。"
 
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:20
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:20
 msgid "Item not found."
 msgstr ""
 
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:50
-#: Z:\test\usr\module\comment/template/front/comment.phtml:52
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:40
+#: Z:\article\usr\module\comment/template/front/comment.phtml:51
 msgid "All comments "
 msgstr "全部评论"
 
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:69
-#: Z:\test\usr\module\comment/template/front/comment.phtml:86
-msgid " to leave comments."
-msgstr "来发表评论"
-
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:78
-msgid "Post"
-msgstr "评论"
-
-#: Z:\test\usr\module\comment/template/front/comment-root.phtml:135
-#: Z:\test\usr\module\comment/template/front/comment.phtml:128
+#: Z:\article\usr\module\comment/template/front/comment-root.phtml:81
+#: Z:\article\usr\module\comment/template/front/comment.phtml:95
 msgid "No one has commented yet."
 msgstr "尚无评论."
 
-#: Z:\test\usr\module\comment/template/front/comment-user-received.phtml:37
-#: Z:\test\usr\module\comment/template/front/comment-module.phtml:39
-#: Z:\test\usr\module\comment/template/front/comment-my-received.phtml:47
+#: Z:\article\usr\module\comment/template/front/comment-user-received.phtml:37
+#: Z:\article\usr\module\comment/template/front/comment-module.phtml:39
+#: Z:\article\usr\module\comment/template/front/comment-my-received.phtml:47
 msgid "commented on "
 msgstr "评论于"
 
-#: Z:\test\usr\module\comment/template/front/comment-list.phtml:19
+#: Z:\article\usr\module\comment/template/front/comment-list.phtml:19
 msgid "All active comments "
 msgstr "全部激活评论"
 
-#: Z:\test\usr\module\comment/template/front/comment-article.phtml:34
+#: Z:\article\usr\module\comment/template/front/_post-form.phtml:22
+msgid "Post comment"
+msgstr "发表评论"
+
+#: Z:\article\usr\module\comment/template/front/_post-form.phtml:32
+#, php-format
+msgid "Please <a href=\"%s\">login</a> to leave comments."
+msgstr "请<a href=\"%s\">登录</a>后发表评论"
+
+#: Z:\article\usr\module\comment/template/front/comment-article.phtml:34
 #, php-format
 msgid "%s comments"
 msgstr "%s 条评论"
 
-#: Z:\test\usr\module\comment/template/front/comment-article.phtml:49
+#: Z:\article\usr\module\comment/template/front/comment-article.phtml:49
 msgid "Last commented: "
 msgstr "最新评论："
 
-#: Z:\test\usr\module\comment/template/front/comment-article.phtml:54
+#: Z:\article\usr\module\comment/template/front/comment-article.phtml:54
 #, php-format
 msgid " at %s"
 msgstr " 于 %s"
 
-#: Z:\test\usr\module\comment/template/front/comment-article.phtml:69
+#: Z:\article\usr\module\comment/template/front/comment-article.phtml:69
 msgid "No data available yet."
 msgstr ""
 
-#: Z:\test\usr\module\comment/template/front/comment-module.phtml:19
+#: Z:\article\usr\module\comment/template/front/comment-module.phtml:19
 #, php-format
 msgid "Comments for %s module"
 msgstr "%s 模块的评论"
 
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:25
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:25
 msgid "Comment detail"
 msgstr "评论详情"
 
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:41
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:41
 msgid "In reply to:"
 msgstr "回复："
 
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:42
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:42
 msgid "Click to open"
 msgstr "打开"
 
-#: Z:\test\usr\module\comment/template/front/comment-view.phtml:43
+#: Z:\article\usr\module\comment/template/front/comment-view.phtml:43
 #, php-format
 msgid "Comment #%d"
 msgstr ""
 
-#: Z:\test\usr\module\comment/template/front/comment-my-received.phtml:53
-#: Z:\test\usr\module\comment/template/front/comment-my-post.phtml:50
+#: Z:\article\usr\module\comment/template/front/comment-my-received.phtml:53
+#: Z:\article\usr\module\comment/template/front/comment-my-post.phtml:50
 msgid "Pending"
 msgstr "屏蔽"
 
-#: Z:\test\usr\module\comment/template/front/comment-reply.phtml:50
+#: Z:\article\usr\module\comment/template/front/comment-reply.phtml:50
 #, php-format
 msgid "Comment reply to %s"
 msgstr "回复 %s 的评论"
 
-#: Z:\test\usr\module\comment/template/front/comment.phtml:73
-msgid "Post comment"
-msgstr "发表评论"
+#: Z:\article\usr\module\comment/template/front/comment.phtml:81
+msgid "Are you sure to delete this comment?"
+msgstr "确定删除评论？"
 
-#: Z:\test\usr\module\comment/template/front/comment.phtml:124
+#: Z:\article\usr\module\comment/template/front/comment.phtml:91
 msgid "View all comments"
 msgstr "查看全部评论"
+
+#~ msgid " to leave comments."
+#~ msgstr "来发表评论"
+
+#~ msgid "Post"
+#~ msgstr "评论"
 
 #~ msgid "Read more"
 #~ msgstr "更多"

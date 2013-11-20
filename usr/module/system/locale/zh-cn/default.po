@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
 "POT-Creation-Date: 2013-11-19 13:27+0800\n"
-"PO-Revision-Date: 2013-11-19 13:30+0800\n"
+"PO-Revision-Date: 2013-11-20 12:10+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -547,12 +547,12 @@ msgstr ""
 
 #: Z:\pi\usr\module\system/template/front/jump.phtml:8
 msgid "the link"
-msgstr ""
+msgstr "这里"
 
 #: Z:\pi\usr\module\system/template/front/jump.phtml:9
 #, php-format
 msgid "The page will redirected in %d seconds. Or you can click %s directly."
-msgstr ""
+msgstr "页面将在%d秒后跳转，或者直接点击%s跳转"
 
 #: Z:\pi\usr\module\system/template/front/home.phtml:9
 msgid "module name"
