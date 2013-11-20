@@ -133,12 +133,20 @@ return array(
             ),
         ),
 
-        // Profile: Province
+        // Profile:  registered source
         'registered_source'  => array(
             'name'  => 'registered_source',
             'title' => __('Registered source'),
             'is_display'    => false,
-            'is_search'     => false,
+            'is_edit'       => false,
+        ),
+
+        // Profile: phone
+        'phone'  => array(
+            'name'  => 'phone',
+            'title' => __('Phone'),
+            'is_display'    => false,
+            'is_edit'       => false,
         ),
 
         'address' => array(
