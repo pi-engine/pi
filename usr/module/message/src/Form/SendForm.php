@@ -49,7 +49,7 @@ class SendForm extends BaseForm
             'name'          => 'name',
             'attributes'    => array(
                 'type'      => 'text',
-                'disabled'  => 'disabled',
+                'readonly'  => 'true'
             ),
             'options'       => array(
                 'label' => __('Recipient'),
