@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: comment\n"
-"POT-Creation-Date: 2013-11-12 09:59+0800\n"
-"PO-Revision-Date: 2013-11-17 16:37+0800\n"
+"POT-Creation-Date: 2013-11-20 11:42+0800\n"
+"PO-Revision-Date: 2013-11-20 11:44+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: eefocus\n"
 "MIME-Version: 1.0\n"
@@ -255,9 +255,8 @@ msgid "Invalid operation."
 msgstr "无效操作"
 
 #: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:101
-#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:596
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:598
 #: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:300
 msgid "Operation succeeded."
 msgstr "操作成功"
 
@@ -320,19 +319,19 @@ msgstr "%s 模块的评论"
 msgid "Guest"
 msgstr "访客"
 
-#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:524
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:526
 msgid "All commented articles"
 msgstr ""
 
-#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:526
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:528
 msgid "All active commented articles"
 msgstr ""
 
-#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:538
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:540
 msgid "Articles with comments"
 msgstr ""
 
-#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:545
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:547
 msgid "Articles with active comments"
 msgstr ""
 
@@ -410,7 +409,6 @@ msgid "Invalid submission."
 msgstr ""
 
 #: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:300
 msgid "Operation failed"
 msgstr "操作失败"
 
@@ -428,7 +426,7 @@ msgstr "提交"
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:95
 #: Z:\article\usr\module\comment/template/admin/comment-module.phtml:102
 msgid "Pending"
-msgstr ""
+msgstr "屏蔽"
 
 #: Z:\article\usr\module\comment/template/admin/comment-user.phtml:117
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:109
@@ -440,13 +438,13 @@ msgstr ""
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:189
 #: Z:\article\usr\module\comment/template/admin/comment-module.phtml:196
 msgid "Are you sure delete these comments?"
-msgstr ""
+msgstr "确认删除这些评论？"
 
 #: Z:\article\usr\module\comment/template/admin/comment-user.phtml:243
 #: Z:\article\usr\module\comment/template/admin/comment-list.phtml:235
 #: Z:\article\usr\module\comment/template/admin/comment-module.phtml:242
 msgid "Are you sure delete this article?"
-msgstr ""
+msgstr "确认删除这篇文章？"
 
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:3
 #: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:3
@@ -477,7 +475,7 @@ msgstr "是"
 
 #: Z:\article\usr\module\comment/template/admin/comment-category.phtml:23
 msgid "No"
-msgstr ""
+msgstr "不"
 
 #: Z:\article\usr\module\comment/template/admin/comment-index.phtml:6
 msgid "Comment stats"

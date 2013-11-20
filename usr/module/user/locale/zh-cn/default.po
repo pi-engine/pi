@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-19 17:01+0800\n"
-"PO-Revision-Date: 2013-11-19 17:04+0800\n"
+"POT-Creation-Date: 2013-11-20 10:00+0800\n"
+"PO-Revision-Date: 2013-11-20 10:13+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,80 +21,80 @@ msgstr ""
 msgid "Timeline added successfully."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:135
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:131
 msgid "Allowed extensions:"
 msgstr "支持格式："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:140
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:136
 msgid "Max files ize:"
 msgstr "最大文件尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:146
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:142
 msgid "Max image size:"
 msgstr "最大图片尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:223
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:217
 msgid "Avatar Settings"
 msgstr "头像设置"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:253
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:247
 msgid "Invalid token!"
 msgstr "无效token"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:357
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:345
 msgid "Invalid email for gravatar."
 msgstr "无效Gravatar邮箱"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:370
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:356
 msgid "Successful"
 msgstr "成功 "
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:389
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
 msgid "No image selected!"
 msgstr "没有选中图片"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:407
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:389
 msgid "Successful."
 msgstr "成功 "
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:427
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:407
 #, php-format
 msgid "Invalid source %s."
 msgstr "无效来源 %s。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:439
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:418
 msgid "Not image selected."
 msgstr "没有选中图片。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:450
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:427
 msgid "Image is missing."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:458
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:433
 msgid "Image does not exist."
 msgstr "图片不存在。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:470
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:443
 msgid "Image width or height is missing."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:500
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:470
 msgid "Email address is missing."
 msgstr "邮箱地址丢失"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:511
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:479
 msgid "Invalid image set name."
 msgstr "无效图片名"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:542
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:511
 msgid "Avatar set successfully."
 msgstr "头像设置成功。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:559
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:526
 msgid "Image is not removed."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:575
+#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:541
 msgid "Image removed successfully."
 msgstr "图片已删除。"
 
@@ -109,7 +109,7 @@ msgstr "更新成功"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:198
 msgid "Data saved failed"
-msgstr "数据保持失败"
+msgstr "数据保存失败"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:438
 #: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:461
@@ -118,7 +118,7 @@ msgstr "删除失败。"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:457
 msgid "Cannot delete the last one."
-msgstr ""
+msgstr "最后一条不能删除"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:133
 #: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:187
@@ -175,7 +175,7 @@ msgstr "输入错误"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:492
 msgid "An error occur"
-msgstr ""
+msgstr "发生错误"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:34
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:92
@@ -192,7 +192,7 @@ msgstr ""
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:85
 #, php-format
 msgid "You have %d times to try."
-msgstr ""
+msgstr "还有%d次尝试机会"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:111
 msgid "You logged out successfully. Now go back to homepage."
@@ -208,11 +208,11 @@ msgstr "无效输入，请重试。"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:152
 msgid "You have tried too many times. Please try later."
-msgstr ""
+msgstr "尝试次数过多，请稍后重试"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:171
 msgid "Invalid credentials provided, please try again."
-msgstr ""
+msgstr "密码不正确，请重试。"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:242
 msgid "You have logged in successfully."
@@ -233,7 +233,7 @@ msgstr "密码输入错误"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:113
 msgid "Find password failed"
-msgstr ""
+msgstr "找回密码失败"
 
 #: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:162
 msgid "Send email successfully. check email and reset password"
@@ -275,6 +275,69 @@ msgstr "资料"
 #: Z:\pi\usr\module\user/src/Api/Nav.php:59
 msgid "Feed"
 msgstr "动态"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:45
+#: Z:\pi\usr\module\user/src/Validator/Name.php:44
+msgid "Invalid user name: %formatHint%"
+msgstr "用户名不正确：%formatHint%"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:46
+#: Z:\pi\usr\module\user/src/Validator/Name.php:45
+msgid "User name is reserved"
+msgstr "用户名已被占用"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:47
+msgid "User name is already taken"
+msgstr "用户名已被占用"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:48
+#: Z:\pi\usr\module\user/src/Validator/Name.php:46
+msgid "User name is less than %min% characters long"
+msgstr "用户名不得少于%min%个字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:49
+#: Z:\pi\usr\module\user/src/Validator/Name.php:47
+msgid "User name is more than %max% characters long"
+msgstr "用户名不得多于%max%个字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:53
+#: Z:\pi\usr\module\user/src/Validator/Name.php:51
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr "字母开头，支持字母和数字"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:54
+#: Z:\pi\usr\module\user/src/Validator/Name.php:52
+msgid "Only ASCII characters are allowed"
+msgstr "只允许输入ASCII字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Username.php:55
+#: Z:\pi\usr\module\user/src/Validator/Name.php:53
+msgid "Multibyte characters are allowed"
+msgstr "允许使用多字节字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Password.php:42
+msgid "Password is less than %min% characters long"
+msgstr "密码不得少于%min%个字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Password.php:43
+msgid "Password is more than %max% characters long"
+msgstr "密码不得多于%max%个字符"
+
+#: Z:\pi\usr\module\user/src/Validator/Postcode.php:30
+msgid "The input is not 6 numeric"
+msgstr "输入不是六位数字"
+
+#: Z:\pi\usr\module\user/src/Validator/UserEmail.php:41
+msgid "User email is reserved"
+msgstr "邮箱已被占用"
+
+#: Z:\pi\usr\module\user/src/Validator/UserEmail.php:42
+msgid "User email is already used"
+msgstr "邮箱已被占用"
+
+#: Z:\pi\usr\module\user/src/Validator/Telephone.php:30
+msgid "The input is not 7-20 numeric"
+msgstr "输入不是7-20位数字"
 
 #: Z:\pi\usr\module\user/src/Form/MemberForm.php:30
 #: Z:\pi\usr\module\user/src/Form/SearchForm.php:90
@@ -598,7 +661,7 @@ msgstr "无效输入"
 
 #: Z:\pi\usr\module\user/template/front/register-index.phtml:20
 msgid "An activation link has been sent to your email"
-msgstr ""
+msgstr "激活链接已经发送到您的邮箱"
 
 #: Z:\pi\usr\module\user/template/front/register-index.phtml:21
 msgid "Please check it to finish registration in 24 hours"
@@ -630,11 +693,11 @@ msgstr "重置密码"
 
 #: Z:\pi\usr\module\user/template/front/password-process.phtml:6
 msgid "Sorry, your link has expired."
-msgstr ""
+msgstr "对不起，链接已过期。"
 
 #: Z:\pi\usr\module\user/template/front/password-process.phtml:7
 msgid "Try to find password again"
-msgstr ""
+msgstr "请尝试重新找回密码"
 
 #: Z:\pi\usr\module\user/template/front/password-process.phtml:12
 #: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:3
@@ -687,7 +750,7 @@ msgstr "<a href=\"%s\">立即登录</a>"
 
 #: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:10
 msgid "Sorry, the link has expired, or maybe your email has been changed."
-msgstr ""
+msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
 
 #: Z:\pi\usr\module\user/template/front/profile-index.phtml:47
 msgid "Add"
@@ -702,7 +765,7 @@ msgid "Change your privacy settings."
 msgstr "设置您个人资料对谁可见，保障您的隐私权"
 
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
-msgid "Warning! "
+msgid "Warning!"
 msgstr "提示："
 
 #: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
