@@ -67,6 +67,22 @@ class Form extends ZendForm
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * Load translation for validators
+     */
+    public function isValid()
+    {
+        if ($this->hasValidated) {
+            return $this->isValid;
+        }
+
+        Pi::service('i18n')->load('validator');
+
+        return parent::isValid();
+    }
+
+    /**
      * Prepare elements for the form, optional
      *
      * @return void
