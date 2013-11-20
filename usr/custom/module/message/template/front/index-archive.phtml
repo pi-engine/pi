@@ -1,4 +1,7 @@
-<ul class="nav nav-tabs message-nav-tabs">
+<?php
+$this->css($this->assetModule('script/front.css'));
+?>
+<ul class="nav nav-tabs">
     <li class="">
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php  echo $messageTitle; ?></a>
     </li>
@@ -7,10 +10,9 @@
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
     </li>
 </ul>
-<p>
+<p class="alert alert-info">
     <?php _e('Message system has upadtedEarly messages are still in the old system');?>
 <p>
-
 <ul class="nav nav-pills">
     <li>
         <a href="http://www.eefocus.com/message/index.php?msgtype=receive">
