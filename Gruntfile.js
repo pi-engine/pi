@@ -7,6 +7,9 @@ module.exports = function(grunt) {
   function assetCwdBuild(name) {
     return 'usr/module/' + name + '/asset/_build';
   }
+
+  var vendor = 'www/static/vendor/';
+  var angularSrc = vendor + 'angular/'
   
 
   // Project configuration.
@@ -31,12 +34,27 @@ module.exports = function(grunt) {
         expand: true
       },
       pi: {
-        
+        cwd: angularSrc,
+        src: 'pi*.js',
+        expand: true,
+        dest: angularSrc,
+        ext: '.min.js'
       }
     },
     clean: {
-      user: {
-        src: assetCwdBuild('user')
+      pi: {
+        src: angularSrc + 'pi*.min.js',
+      }
+    },
+    snapshot: {
+      userTheme: {
+        options: {
+          //snapshotPath: '',
+          url: 'http://pifork.liaowei.com/user/profile/1',
+          extension: 'png',
+          filename: 'screenshot.png',
+          src: 'usr'
+        }
       }
     }
   });
@@ -45,9 +63,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-snapshot');
  
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'uglify']);
+  grunt.registerTask('default', ['copy', 'clean', 'uglify']);
   grunt.registerTask('clear', ['clean']);
+  grunt.registerTask('screenshot', ['snapshot']);
 };
