@@ -244,6 +244,7 @@ CREATE TABLE `{core.page}` (
   `controller`      varchar(64)     NOT NULL    default '',
   `action`          varchar(64)     NOT NULL    default '',
   `permission`      varchar(64)     NOT NULL    default '',
+  `cache_type`      enum('page', 'action')      NOT NULL,
   `cache_ttl`       int(10)         NOT NULL    default '0',            # positive: for cache TTL; negative: for inheritance
   `cache_level`     varchar(64)     NOT NULL    default '',
   `block`           tinyint(1)      unsigned    NOT NULL default '0',   # block inheritance: 1 - for self-setting; 0 - for inheriting form parent

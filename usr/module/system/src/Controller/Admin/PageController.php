@@ -38,7 +38,7 @@ class PageController extends ComponentController
      */
     protected $pageColumns = array(
         'id', 'section', 'module', 'controller', 'action', 'block', 'custom',
-        'cache_ttl', 'cache_level', 'title'
+        'cache_type', 'cache_ttl', 'cache_level', 'title'
     );
 
     /**
@@ -73,7 +73,7 @@ class PageController extends ComponentController
             ),
         );
 
-        // Oragnized pages by section
+        // Organized pages by section
         foreach ($rowset as $row) {
             //$sections[$row->section]['pages'][] = $row->toArray();
             if ($row->controller) {
@@ -100,15 +100,6 @@ class PageController extends ComponentController
                 //'link'      => '',
             );
         }
-
-        /*
-        // Get module list
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        foreach ($moduleSet as $row) {
-            $modules[$row->name] = $row->title;
-        }
-        $this->view()->assign('modules', $modules);
-        */
 
         $this->view()->assign('pagesBySection', $sections);
         $this->view()->assign('name', $name);
@@ -140,46 +131,6 @@ class PageController extends ComponentController
                 if ($row->id) {
                     $message = _a('Page data saved successfully.');
 
-                    /*
-                    // Add ACL resource
-                    $pageParent = null;
-                    $where = array(
-                        'section'       => $values['section'],
-                        'module'        => $values['module'],
-                        'controller'    => '',
-                        'action'        => '',
-                    );
-                    if (!empty($values['action'])) {
-                        $where['controller'] = $values['controller'];
-                        $pageParent = Pi::model('page')->select($where)
-                            ->current();
-                        if (!$pageParent) {
-                            $where['controller'] = '';
-                        }
-                    }
-                    if (!$pageParent) {
-                        $pageParent = Pi::model('page')->select($where)
-                            ->current();
-                    }
-                    $where = array(
-                        'section'       => $values['section'],
-                        'module'        => $values['module'],
-                        'name'          => $pageParent->id,
-                        'type'          => 'page',
-                    );
-                    $parent = Pi::model('acl_resource')->select($where)
-                        ->current();
-                    $resource = array(
-                        'title'         => $values['title'],
-                        'section'       => $values['section'],
-                        'module'        => $values['module'],
-                        'name'          => $row->id,
-                        'type'          => 'page',
-                    );
-                    $resourceId =
-                        Pi::model('acl_resource')->add($resource, $parent);
-                    */
-
                     Pi::registry('page')->clear($row->module);
                     $this->redirect()->toRoute(
                         '',
@@ -197,8 +148,10 @@ class PageController extends ComponentController
             }
         } else {
             $form = new AddForm('page-edit', $this->params('name'));
-            $form->setAttribute('action', $this->url('',
-                                array('action' => 'addsave')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'addsave'))
+            );
             $message = '';
         }
 
@@ -237,43 +190,6 @@ class PageController extends ComponentController
             $row->save();
             if ($row->id) {
                 $message = _a('Page data saved successfully.');
-
-                /*
-                // Add ACL resource
-                $pageParent = null;
-                $where = array(
-                    'section'       => $values['section'],
-                    'module'        => $values['module'],
-                    'controller'    => '',
-                    'action'        => '',
-                );
-                if (!empty($values['action'])) {
-                    $where['controller'] = $values['controller'];
-                    $pageParent = Pi::model('page')->select($where)->current();
-                    if (!$pageParent) {
-                        $where['controller'] = '';
-                    }
-                }
-                if (!$pageParent) {
-                    $pageParent = Pi::model('page')->select($where)->current();
-                }
-                $where = array(
-                    'section'       => $values['section'],
-                    'module'        => $values['module'],
-                    'name'          => $pageParent->id,
-                    'type'          => 'page',
-                );
-                $parent = Pi::model('acl_resource')->select($where)->current();
-                $resource = array(
-                    'title'         => $values['title'],
-                    'section'       => $values['section'],
-                    'module'        => $values['module'],
-                    'name'          => $row->id,
-                    'type'          => 'page',
-                );
-                $resourceId =
-                    Pi::model('acl_resource')->add($resource, $parent);
-                */
 
                 $id = $row->id;
                 $page = array(
@@ -420,23 +336,6 @@ class PageController extends ComponentController
         $row = Pi::model('page')->find($id);
         // Only custom pages are allowed to delete
         if ($row && $row->custom) {
-            /*
-            // Remove ACL resource
-            $modelResource = Pi::model('acl_resource');
-            $rowResource = $modelResource->select(array(
-                'section'   => $row->section,
-                'module'    => $row->module,
-                'name'      => $row->id,
-            ))->current();
-            $modelResource->remove($rowResource);
-
-            // Remove ACL rules
-            Pi::model('acl_rule')->delete(array(
-                'resource'  => $rowResource->id,
-                'section'   => $rowResource->section,
-                'module'    => $rowResource->module,
-            ));
-            */
 
             // Remove page-block links
             Pi::model('page_block')->delete(array('page' => $row->id));

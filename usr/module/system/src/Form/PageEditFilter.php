@@ -30,6 +30,11 @@ class PageEditFilter extends InputFilter
         ));
 
         $this->add(array(
+            'name'      => 'cache_type',
+            'required'  => false,
+        ));
+
+        $this->add(array(
             'name'      => 'cache_ttl',
             'required'  => false,
         ));

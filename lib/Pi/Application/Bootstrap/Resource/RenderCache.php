@@ -46,8 +46,9 @@ class RenderCache extends AbstractResource
     public function boot()
     {
         $events = $this->application->getEventManager();
+
         // Setup page cache strategy
-        if (!empty($this->options['page'])) {
+        //if ('page' == $type) {
             // Page cache check,
             // must go after access check whose priority is 9999
             $events->attach(
@@ -62,7 +63,7 @@ class RenderCache extends AbstractResource
                 array($this, 'savePage'),
                 -9000
             );
-        } elseif (!empty($this->options['action'])) {
+        //} else {
             // Setup action cache strategy
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
@@ -80,7 +81,7 @@ class RenderCache extends AbstractResource
                 array($this, 'saveAction'),
                 -91
             );
-        }
+        //}
     }
 
     /**
@@ -122,6 +123,10 @@ class RenderCache extends AbstractResource
         }
 
         $cacheMeta = $this->cacheMeta($e, 'page');
+        // Skip if not page cache
+        if ('page' != $cacheMeta['type']) {
+            return;
+        }
         // Skip cache if disabled by preference
         if (empty($cacheMeta['ttl'])) {
             return;
@@ -164,9 +169,15 @@ class RenderCache extends AbstractResource
         if ($e->isError()) {
             return;
         }
+        $cacheMeta = $this->cacheMeta($e, 'action');
+        // Skip if not page cache
+        if ('page' != $cacheMeta['type']) {
+            return;
+        }
         if (!$this->renderCache()->isOpened()) {
             return;
         }
+        $this->renderCache()->isOpened(false);
         $response = $e->getResponse();
         // Skip if response not OK
         if (!$response instanceof Response || !$response->isOk()) {
@@ -197,14 +208,19 @@ class RenderCache extends AbstractResource
         ) {
             return;
         }
+        if ($this->renderCache()->isOpened()) {
+            return;
+        }
 
         $cacheMeta = $this->cacheMeta($e, 'action');
-
+        // Skip if not action cache
+        if ('action' != $cacheMeta['type']) {
+            return;
+        }
         // Skip cache if disabled by preference
         if (empty($cacheMeta['ttl'])) {
             return;
         }
-
 
         $renderCache    = $this->renderCache('action');
         $viewModel      = $e->getTarget()->view()->getViewModel();
@@ -233,18 +249,6 @@ class RenderCache extends AbstractResource
                 }
                 $viewModel->setVariables($data['variables']);
                 $e->setResult($viewModel);
-                //vd($content);
-                //$e->setResult($content);
-                /*
-                if (is_array($content)) {
-                    $viewModel->setVariables($content);
-                } else {
-                    $e->getTarget()->view()->setTemplate(false);
-                    $viewModel->setVariable('content', $content);
-                }
-                //vd($viewModel);
-                $e->setResult($viewModel);
-                */
                 $e->getTarget()->skipExecute();
                 Pi::service('log')->info('Action cached');
             }
@@ -263,6 +267,11 @@ class RenderCache extends AbstractResource
     {
         // Skip cache if error occurred
         if ($e->isError()) {
+            return;
+        }
+        $cacheMeta = $this->cacheMeta($e, 'action');
+        // Skip if not action cache
+        if ('action' != $cacheMeta['type']) {
             return;
         }
         if (!$this->renderCache()->isOpened()) {
@@ -304,6 +313,7 @@ class RenderCache extends AbstractResource
 
         //vd($content); exit;
         $this->renderCache()->saveCache(json_encode($data));
+        $this->renderCache()->isOpened(false);
 
         return;
     }
@@ -322,7 +332,11 @@ class RenderCache extends AbstractResource
         $controller = $route->getParam('controller');
         $action     = $route->getparam('action');
 
-        $cacheInfo = false;
+        $cacheInfo = array(
+            'type'  => 'page',
+            'ttl'   => 0,
+            'level' => ''
+        );
         $info = Pi::registry('page_cache')->read(
             $module,
             $this->application->getSection(),
@@ -342,6 +356,7 @@ class RenderCache extends AbstractResource
         } else {
             return $cacheInfo;
         }
+
 
         return $cacheInfo;
     }

@@ -40,7 +40,8 @@ class PageCache extends AbstractRegistry
                 }
             }
             $caches[$key] = array(
-                'ttl' => $cache['cache_ttl'],
+                'type'  => $cache['cache_type'],
+                'ttl'   => $cache['cache_ttl'],
                 'level' => $cache['cache_level']
             );
         }
