@@ -35,17 +35,21 @@ class ImportController extends ActionController
      */
     public function doAction()
     {
-        //Pi::service('i18n')->load('custom/user:default');
         $metaFile = Pi::path('custom/module/user/config/user.php');
         $meta = include $metaFile;
 
-        $resourceHandler = new UserInstaller($meta);
-        $resourceHandler->updateAction(true);
+        try {
+            $resourceHandler = new UserInstaller($meta);
+            $resourceHandler->updateAction(true);
 
-        Pi::registry('field', 'user')->clear();
-        Pi::registry('compound_field', 'user')->clear();
+            Pi::registry('field', 'user')->clear();
+            Pi::registry('compound_field', 'user')->clear();
 
-        return $meta;
+            $message = _a('User data imported successfully.');
+        } catch (\Exception $e) {
+            $message = _a('User data import failed: ' . $e->getMessage());
+        }
 
+        $this->jump(array('action' => 'index'), $message);
     }
 }
