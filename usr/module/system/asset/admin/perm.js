@@ -66,12 +66,12 @@
       
     }
 
-    $scope.assignAction = function(key, item) {
-      var action = item.roles[key] ? 'revoke' : 'grant';
-      server.post(key, item.resource, item.section, action).success(function(data) {
-        if (data.status) {
-          item.roles[key] = !item.roles[key];
-        } 
+    $scope.assignAction = function(role, item) {
+      var name = role.name;
+      var action = item.roles[name] ? 'revoke' : 'grant';
+      server.post(name, item.resource, item.section, action).success(function(data) {
+        if (!data.status) return;
+        role.value = !role.value;
       });
     }
 
@@ -81,8 +81,12 @@
       server.post(name, '_all', role.section, op).success(function(data) {
         if (!data.status) return;
         angular.forEach($scope.resources, function(resource, key) {
-          angular.forEach(resource, function(item) {
-            item.roles[name] = action;
+          angular.forEach(resource, function(resourceItem) {
+            angular.forEach(resourceItem.roles, function(item) {
+              if (item.name == name) {
+                item.value = action;
+              }
+            });
           });
         });
       });
@@ -93,8 +97,8 @@
       server.post('_all', resource.resource, resource.section, name).success(function(data) {
         if (!data.status) return;
         var roles = resource.roles;
-        angular.forEach(roles, function(value, key) {
-          roles[key] = action;
+        angular.forEach(roles, function(item) {
+          item.value = action;
         });
       });
     }
