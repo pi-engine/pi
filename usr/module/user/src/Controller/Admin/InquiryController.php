@@ -63,8 +63,10 @@ class InquiryController extends ActionController
             )
         );
 
-        $user['time_activated'] = _date($user['time_activated']);
-        $user['time_disabled']  = _date($user['time_disabled']);
+        $user['time_activated'] = $user['time_activated']
+            ? _date($user['time_activated']) : 0;
+        $user['time_disabled']  = $user['time_disabled']
+            ? _date($user['time_disabled']) : 0;
 
         $user['link'] = $this->url(
             'user',

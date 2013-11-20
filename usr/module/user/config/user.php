@@ -144,7 +144,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_created',
             'title'     => _a('Register time'),
-            'edit'      => 'text',
+//            'edit'      => 'text',
             'filter'    => array('Int', 'DateTimeFormatter'),
 
             'is_edit'       => false,
@@ -155,7 +155,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_activated',
             'title'     => _a('Activation time'),
-            'edit'      => 'text',
+//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
@@ -166,7 +166,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_disabled',
             'title'     => _a('Disabled time'),
-            'edit'      => 'text',
+//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
@@ -178,7 +178,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_deleted',
             'title'     => _a('Deleted time'),
-            'edit'      => 'text',
+//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,

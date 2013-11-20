@@ -71,14 +71,16 @@ class MaintenanceController extends ActionController
         );
 
         // Time to string
-        $user['time_disabled']  = _date($user['time_disabled']);
-        $user['time_activated'] = _date($user['time_activated']);
-        $user['time_created']   = _date($user['time_created']);
+        $user['time_disabled']  = $user['time_disabled']
+            ? _date($user['time_disabled']) : 0;
+        $user['time_activated'] = $user['time_activated']
+            ? _date($user['time_activated']) : 0;
+        $user['time_created']   = $user['time_created']
+            ? _date($user['time_created']) : 0;
 
         // Get user data
-        $user['last_login']      = _date(
-            Pi::user()->data()->get($uid, 'last_login')
-        );
+        $last_login = Pi::user()->data()->get($uid, 'last_login');
+        $user['last_login']      = $last_login ? _date($last_login) : 0;
         $user['last_login_ip']   = Pi::user()->data()->get($uid, 'last_login_ip');
         $user['count_login']     = Pi::user()->data()->get($uid, 'count_login');
 
@@ -156,9 +158,12 @@ class MaintenanceController extends ActionController
                 'identity'       => $row->identity,
                 'name'           => $row->name,
                 'email'          => $row->email,
-                'time_activated' => _date($row->time_activated),
-                'time_created'   => _date($row->time_created),
-                'time_deleted'   => _date($row->time_deleted),
+                'time_activated' => $row->time_activated
+                        ? _date($row->time_activated) : 0,
+                'time_created'   => $row->time_created
+                        ? _date($row->time_created) : 0,
+                'time_deleted'   => $row->time_deleted
+                        ? _date($row->time_deleted) : 0,
             );
         }
 
@@ -429,12 +434,13 @@ class MaintenanceController extends ActionController
                 )
             );
 
-            $profile['time_activated'] = _date($profile['time_activated']);
-            $profile['time_created']   = _date($profile['time_created']);
+            $profile['time_activated'] = $profile['time_activated']
+                ? _date($profile['time_activated']) : 0;
+            $profile['time_created']   = $profile['time_created']
+                ? _date($profile['time_created']) : 0;
             if (isset($userData[$uid]['last_login'])) {
-                $data['last_login'] = _date(
-                    $userData[$uid]['last_login']['time']
-                );
+                $data['last_login'] = $userData[$uid]['last_login']['time']
+                    ? _date($userData[$uid]['last_login']['time']) : 0;
             }
             if (isset($userData[$uid]['last_login_ip'])) {
                 $data['last_login_ip'] = $userData[$uid]['last_login_ip']['value'];
