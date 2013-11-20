@@ -26,7 +26,7 @@ class IndexController extends ActionController
         //return $this->jumpToDenied('Demo for denied');
         //return $this->jumpToException('Demo for 503', 503);
 
-        $this->view()->setTemplate(false);
+        $this->view()->setTemplate('system-home');
     }
 
     /**
