@@ -156,7 +156,7 @@ abstract class AbstractModel extends ArrayObject
      * Set role or retrieve from DB
      *
      * @param null|array $role
-     * @return $this|string
+     * @return $this|array
      */
     public function role($role = null)
     {
