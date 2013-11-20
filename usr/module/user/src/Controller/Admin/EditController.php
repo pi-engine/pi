@@ -24,7 +24,7 @@ use Module\User\Form\CompoundFilter;
 class EditController extends ActionController
 {
 
-    function indexAction() {
+    public function indexAction() {
         $uid = _get('uid');
 
         // Get user basic information and user data
@@ -42,17 +42,24 @@ class EditController extends ActionController
         );
         $form = new EditUserForm('info', $formFields);
         if ($this->request->isPost()) {
-            $values = $this->request->getPost();
-            $values['last_modified'] = time();
-            if (isset($values['credential']) &&
-                !$values['credential']
-            ) {
-                unset($values['credential']);
-            }
-            $status = Pi::api('user', 'user')->updateUser($uid, $values);
-            if ($status) {
-                $result['message'] = _a('Edit user info successfully');
-                $result['status']  = 1;
+            $form->setData($this->request->getPost());
+            $form->setInputFilter(new EditUserFilter($formFilters));
+            $result['message'] = _a('Edit user info failed');
+            $result['status']  = 0;
+            if ($form->isValid()) {
+                // Update user
+                $values = $form->getData();
+                $values['last_modified'] = time();
+                if (isset($values['credential']) &&
+                    !$values['credential']
+                ) {
+                    unset($values['credential']);
+                }
+                $status = Pi::api('user', 'user')->updateUser($uid, $values);
+                if ($status) {
+                    $result['message'] = _a('Edit user info successfully');
+                    $result['status']  = 1;
+                }
             }
             $this->view()->assign('result', $result);
         } else {
@@ -282,6 +289,12 @@ class EditController extends ActionController
             /*
             $filter     = Pi::api('user', 'form')->getFilter($row['name']);
             */
+            if ($row['name'] !== 'birthdate') {
+                $filters[] = array(
+                    'name'     => $row['name'],
+                    'required' => false,
+                );
+            }
             if ($element) {
                 $elements[] = $element;
             }
@@ -350,7 +363,8 @@ class EditController extends ActionController
             $uid,
             array(
                 'name',
-            )
+            ),
+            true
         );
 
         if (!$user || !$user['name']) {
