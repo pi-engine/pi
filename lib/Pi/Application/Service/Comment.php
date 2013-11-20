@@ -53,6 +53,101 @@ class Comment extends AbstractService
     }
 
     /**
+     * Load leading comment posts for targets
+     *
+     * Load comment data
+     * - root[id, module, category, item, active]
+     * - count
+     * - posts[id, uid, IP, content, time, active]
+     * - users[uid, name, avatar, url]
+     * - url_list
+     * - url_submit
+     * - url_ajax
+     *
+     * @param array|string $params
+     *
+     * @return string
+     */
+    public function load($params = null)
+    {
+        if (!$this->active()) {
+            return;
+        }
+        if (is_array($params) && isset($params['options']['type'])) {
+            $type = $params['options']['type'];
+            unset($params['options']['type']);
+        } else {
+            $type = '';
+        }
+
+        if ('js' == $type) {
+            $callback = Pi::service('url')->assemble('comment', array(
+                'module'        => 'comment',
+                'controller'    => 'index',
+                'action'        => 'load',
+            ));
+            $uri = Pi::service('url')->getRequestUri();
+            $content =<<<"EOT"
+<div id="pi-comment-lead" style="display: none;"></div>
+<script>
+    $.getJSON("{$callback}", {
+        uri: "{$uri}"
+    })
+    .done(function (data) {
+        if (data.content) {
+            var el = document.getElementById('pi-comment-lead');
+            el.style.display = "block";
+            el.innerHTML = data.content;
+        }
+    });
+</script>
+EOT;
+        } else {
+            $content = $this->loadContent($params);
+            $content = '<div id="pi-comment-lead">' . $content . '</div>';
+        }
+
+        return $content;
+    }
+
+    /**
+     * Load leading comment content
+     *
+     * @param array|string $params
+     *
+     * @return string
+     */
+    public function loadContent($params = null)
+    {
+        $options = array();
+        if (is_string($params)) {
+            $uri = $params;
+            $routeMatch = Pi::service('url')->match($uri);
+            $params = array('uri' => $uri);
+        } else {
+            $routeMatch = Pi::engine()->application()->getRouteMatch();
+            $params = (array) $params;
+            if (isset($params['options'])) {
+                $options = $params['options'];
+                unset($params['options']);
+            }
+        }
+        $params = array_replace($params, $routeMatch->getParams());
+        $data = Pi::api('comment')->load($params, $options);
+        if (!$data) {
+            return;
+        }
+        $data['uri'] = isset($params['uri'])
+            ? $params['uri']
+            : Pi::service('url')->getRequestUri();
+        $data['uid'] = Pi::user()->getId();
+        $template = 'comment:front/comment-lead';
+        $result = Pi::service('view')->render($template, $data);
+
+        return $result;
+    }
+
+    /**
      * Get URLs
      *
      * For AJAX request, set `$options['return'] = 1;`

@@ -1,58 +1,32 @@
 <?php
-// Skip if comment is not available
-if (!Pi::comment()->active()) {
-    return;
-}
-
-
-// Load comment data
-// - root[id, module, category, item, active]
-// - count
-// - posts[id, uid, IP, content, time, active]
-// - users[uid, name, avatar, url]
-// - url_list
-// - url_submit
-// - url_ajax
-
-$data = Pi::api('comment')->load(
-    $this->url()->routeMatch(),
-    array('avatar' => 'medium')
-);
-
-if (!$data) {
-    return;
-}
-
-if (isset($data['root']['active']) && empty($data['root']['active'])) :
+if (isset($root['active']) && empty($root['active'])) :
     echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
     return;
 else:
-if (!empty($data['root']['id'])) {
+if (!empty($root['id'])) {
     $formData = array(
-        'root' => $data['root']['id']
+        'root' => $root['id']
     );
 } else {
     $formData = array(
-        'module'    => $data['root']['module'],
-        'category'  => $data['root']['category'],
-        'item'      => $data['root']['item'],
+        'module'    => $root['module'],
+        'category'  => $root['category'],
+        'item'      => $root['item'],
     );
 }
-$formData['redirect'] = $this->url()->requestUri(true);
-
+$formData['redirect'] = rawurlencode($uri);
 $form = Pi::service('comment')->getForm($formData);
 endif;
 
 $this->css($this->assetModule('css/front.css', 'comment'));
-$uid = Pi::user()->getId();
 ?>
 <div class="comments-panel">
     <div class="comments-header">
-        <h4><?php _e('All comments '); ?> (<?php echo $data['count'] ?: 0; ?>)</h4>
+        <h4><?php _e('All comments '); ?> (<?php echo $count ?: 0; ?>)</h4>
     </div>
     <?php include '_post-form.phtml'; ?>
-    <?php if (count($data['posts'])) { ?>
-    <?php foreach ($data['posts'] as $item) { ?>
+    <?php if (count($posts)) { ?>
+    <?php foreach ($posts as $item) { ?>
     <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
         <a class="pull-left" href="<?php echo $item['user']['url']; ?>" target="_blank">
             <?php echo $item['user']['avatar']; ?>
@@ -87,7 +61,7 @@ $uid = Pi::user()->getId();
         </div>
     </div>
     <?php } ?>
-    <a href="<?php echo $data['url_list']; ?>" class="btn btn-block comment-btn-all">
+    <a href="<?php echo $url_list; ?>" class="btn btn-block comment-btn-all">
         <?php _e('View all comments'); ?>
     </a>
     <?php } else { ?>

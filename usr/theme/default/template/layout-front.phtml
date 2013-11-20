@@ -169,11 +169,7 @@ $this->css(
             <div class="row-fluid pi-module-content">
                 <?php echo $content; ?>
             </div>
-            <?php
-                if (Pi::service('comment')->active()) {
-                    include $this->template('module/comment:front/comment');
-                }
-            ?>
+            <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
             <?php } ?>
             <!-- Bottom left zone -->
             <?php if (!empty($blocks['5'])) { ?>

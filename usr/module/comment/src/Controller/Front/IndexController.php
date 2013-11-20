@@ -111,4 +111,19 @@ class IndexController extends ActionController
         ));
         $this->view()->setTemplate('comment-index');
     }
+
+    /**
+     * Action for comment JavaScript loading
+     */
+    public function loadAction()
+    {
+        $uri = $this->params('uri');
+        $content = Pi::service('comment')->loadContent($uri);
+        $result = array(
+            'status'    => 1,
+            'content'   => $content,
+        );
+
+        return $result;
+    }
 }
