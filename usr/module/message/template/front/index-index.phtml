@@ -66,10 +66,14 @@
             </p>
         </div>
         <div class="media-body message-content">
-            <h5 class="media-heading message-head">                
-                <span><?php echo $uid == $message['uid_from']?'To':'From';?></span>
-                <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['name']; ?></a>
-            </h5>
+            <div class="media-heading">                
+                <span class="muted">
+                    <?php echo $uid == $message['uid_from'] ? __('To') : __('From'); ?>
+                </span>
+                <a href="<?php echo $message['profileUrl']; ?>" class="message-user-name">
+                    <?php echo $message['name']; ?>
+                </a>
+            </div>
             <p>
                 <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $message['id'])); ?>" class="message-content-link"><?php echo $message['content']; ?>
                 </a>
