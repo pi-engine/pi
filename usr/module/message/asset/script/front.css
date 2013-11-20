@@ -1,6 +1,6 @@
 /* Base */
 .pi-module-content {
-    min-height: 350px;
+    min-height: 450px;
 }
 
 .messages {
@@ -264,4 +264,9 @@
 /* model*/
 .message-modal-block {
     padding: 15px;
+}
+
+.message-user-name {
+    color: #333;
+    font-weight: bold;
 }
