@@ -323,72 +323,53 @@ class Cache extends AbstractService
     {
         $type = $type ?: 'all';
 
-        switch ($type) {
-            case 'apc':
-            case 'all':
-                if (function_exists('apc_clear_cache')) {
-                    apc_clear_cache();
+        if ('apc' == $type || 'all' == $type) {
+            if (function_exists('apc_clear_cache')) {
+                apc_clear_cache();
+            }
+        }
+        if ('comment' == $type || 'all' == $type) {
+            Pi::service('cache')->clearByNamespace('comment');
+        }
+        if ('file' == $type || 'all' == $type) {
+            $path = Pi::path('cache');
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($path),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
+            foreach ($iterator as $object) {
+                $filename = $object->getFilename();
+                if ($object->isFile() && 'index.html' !== $filename) {
+                    unlink($object->getPathname());
+                } elseif ($object->isDir() && '.' != $filename[0]) {
+                    rmdir($object->getPathname());
                 }
-                break;
-
-            case 'comment':
-            case 'all':
-                Pi::service('cache')->clearByNamespace('comment');
-                break;
-
-            case 'file':
-            case 'all':
-                $path = Pi::path('cache');
-                $iterator = new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($path),
-                    \RecursiveIteratorIterator::CHILD_FIRST
-                );
-                foreach ($iterator as $object) {
-                    $filename = $object->getFilename();
-                    if ($object->isFile() && 'index.html' !== $filename) {
-                        unlink($object->getPathname());
-                    } elseif ($object->isDir() && '.' != $filename[0]) {
-                        rmdir($object->getPathname());
-                    }
-                }
-                break;
-
-            case 'application':
-            case 'all':
-                Pi::service('cache')->clearByNamespace();
-            case 'module':
-                $modules = Pi::service('module')->meta();
-                foreach (array_keys($modules) as $module) {
-                    Pi::service('cache')->clearByNamespace($module);
-                }
-                break;
-
-            case 'page':
-            case 'all':
-                Pi::service('render_cache')->flushCache($item ?: null);
-                break;
-
-            case 'persist':
-            case 'all':
-                Pi::persist()->flush();
-                break;
-
-            case 'registry':
-            case 'all':
-                if (!empty($item)) {
-                    Pi::registry($item)->flush();
-                } else {
-                    Pi::service('registry')->flush();
-                }
-                break;
-
-            case 'stat':
-            case 'all':
-                clearstatcache(true);
-                break;
-
-            default:
-                break;
+            }
+        }
+        if ('application' == $type || 'all' == $type) {
+            Pi::service('cache')->clearByNamespace();
+        }
+        if ('module' == $type || 'all' == $type) {
+            $modules = Pi::service('module')->meta();
+            foreach (array_keys($modules) as $module) {
+                Pi::service('cache')->clearByNamespace($module);
+            }
+        }
+        if ('page' == $type || 'all' == $type) {
+            Pi::service('render_cache')->flushCache($item ?: null);
+        }
+        if ('persis' == $type || 'all' == $type) {
+            Pi::persist()->flush();
+        }
+        if ('registry' == $type || 'all' == $type) {
+            if (!empty($item)) {
+                Pi::registry($item)->flush();
+            } else {
+                Pi::service('registry')->flush();
+            }
+        }
+        if ('stat' == $type || 'all' == $type) {
+            clearstatcache(true);
         }
     }
 }
