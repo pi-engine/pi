@@ -53,6 +53,7 @@ class PostController extends ActionController
                     )),
                 ),
             );
+            /*
             if ($currentUid) {
                 $operations['reply'] = array(
                     'title' => __('Reply'),
@@ -102,6 +103,7 @@ class PostController extends ActionController
                     ),
                 ));
             }
+            */
             $post['operations'] = $operations;
         }
         $title = __('Comment post');
