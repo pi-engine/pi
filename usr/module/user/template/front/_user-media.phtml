@@ -1,74 +1,41 @@
 <?php
    $is_owner = _get('uid') ? false : true;
 ?>
-<div class="user-avatar-header">
-    <div class="inline user-avatar-header-col user-avatar-header-left" style="width: 120px; height: 120px;">
-        <div class="pull-left">
-            <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
-        </div>
-        <?php if ($is_owner) { ?>
-        <style>
-            .user-avatar-header-left:hover .user-avatar-upload {
-                display: block;
-            }
-        </style>
-        <a class="hide user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
-            <?php _e('Change avatar'); ?>
-        </a>
-        <?php } ?>
-    </div>
-    <div class="inline user-avatar-header-col user-avatar-header-center">
-        <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
-        <p style="margin-bottom: 5px;">
-            <?php echo _escape($user['gender']); ?>
-        <?php if($user['birthdate']) { ?>
-        <div>
-            <?php _e('Birthdate:'); ?>
-            <?php echo _escape($user['birthdate']); ?> 
-        </div>
-        <?php } ?>
-    </div>
-    <div class="inline user-avatar-header-col" style="float: right; margin-top: 90px;">
+<div class="clearfix user-avatar-header">
+    <div class="user-info-right">
         <?php if ($is_owner) { ?>
         <a style="margin-right: 15px;" class="btn btn-small pull-left" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
             <i class="icon-eye-open"></i>
             <?php _e('Switch to view of others'); ?>
         </a>
-        <div class="pull-right">
-            <style>
-                .user-dropdown-quicklinks:hover .dropdown-menu {
-                    display: block;
-                }
-            </style>
-            <div class="dropdown user-dropdown-quicklinks">
-                <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
-                    <i class="icon-sort-by-attributes"></i>
-                    <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
-                </a>
-                <ul style="margin-top: 0;" class="dropdown-menu">
-                    <li>
-                        <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
-                            <?php _e('Setting'); ?>
-                        </a>
-                    </li>
-                    <li class="divider" style="margin: 1px;"></li>
-                    <?php foreach ($quicklink as $item) { ?>
-                    <li>
-                        <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
-                            <?php 
-                            if ($item['icon']) {
-                                echo sprintf(
-                                    '<i class="%s"></i>',
-                                    $item['icon']
-                                );
-                            }
-                            ?>
-                            <?php echo $item['title']; ?>
-                        </a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
+        <div class="dropdown inline user-dropdown-quicklinks">
+            <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
+                <i class="icon-sort-by-attributes"></i>
+                <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
+            </a>
+            <ul style="margin-top: 0;" class="dropdown-menu">
+                <li>
+                    <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
+                        <?php _e('Setting'); ?>
+                    </a>
+                </li>
+                <li class="divider" style="margin: 1px;"></li>
+                <?php foreach ($quicklink as $item) { ?>
+                <li>
+                    <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
+                        <?php 
+                        if ($item['icon']) {
+                            echo sprintf(
+                                '<i class="%s"></i>',
+                                $item['icon']
+                            );
+                        }
+                        ?>
+                        <?php echo $item['title']; ?>
+                    </a>
+                </li>
+                <?php } ?>
+            </ul>
         </div>
         <?php } else { ?>
         <?php if (Pi::user()->getId() == $uid) { ?>
@@ -86,6 +53,27 @@
             <?php _e('Send message'); ?>
         </a>
         <?php } ?>
+        <?php } ?>
+    </div>
+    <div class="inline user-info-left">
+        <div class="pull-left">
+            <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
+        </div>
+        <?php if ($is_owner) { ?>
+        <a class="hide user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+            <?php _e('Change avatar'); ?>
+        </a>
+        <?php } ?>
+    </div>
+    <div class="inline user-info-center">
+        <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
+        <p style="margin-bottom: 5px;">
+            <?php echo _escape($user['gender']); ?>
+        <?php if($user['birthdate']) { ?>
+        <div>
+            <?php _e('Birthdate:'); ?>
+            <?php echo _escape($user['birthdate']); ?> 
+        </div>
         <?php } ?>
     </div>
 </div>

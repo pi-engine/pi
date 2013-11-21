@@ -78,6 +78,7 @@ class Angular extends AssetCanonize
         $appendVersion = null
     ) {
         $files = $this->canonize($files, $attributes);
+        $dev = 'development' == Pi::environment();
         if (isset($files['i18n'])) {
             unset($files['i18n']);
             if (!static::$i18nLoaded) {
@@ -92,25 +93,20 @@ class Angular extends AssetCanonize
         if (!static::$rootLoaded) {
             $autoLoad = array();
             // Required primary js
-            if ('development' == Pi::environment()) {
-                $primaryFile = 'angular.js';
-                $backupFile = 'angular.min.js';
-            } else {
-                $primaryFile = 'angular.min.js';
-                $backupFile = 'angular.js';
-            }
+            $primaryFile = 'angular.js';
             if (!isset($files[$primaryFile])) {
                 $autoLoad += array(
                     $primaryFile => $this->canonizeFile($primaryFile)
                 );
             }
-            if (!isset($files[$backupFile])) {
-                unset($files[$backupFile]);
-            }
             $files = $autoLoad + $files;
             static::$rootLoaded = true;
         }
         foreach ($files as $file => $attrs) {
+            if (!$dev) {
+                $file = preg_replace('/\.js$/', '.min.js', $file); 
+            }
+
             $file = static::DIR_ROOT . '/' . $file;
             $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])

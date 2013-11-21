@@ -31,7 +31,7 @@
             'href'   => '#formLocal'
         )
     );
-    $viewPreview = '<li>
+    $viewPreview = '<li class="inline">
                         <div class="avatar-preview-box" style="width: %spx; height: %spx;">
                             <img src="%s" class="avatar-preview-img">
                         </div>';
@@ -125,7 +125,7 @@
         <div class="tab-pane" id="formRepository">
             <ul class="unstyled avatar-repository-inline">
                 <?php foreach($selects as $key => $item) { ?>
-                <li>
+                <li class="inline">
                     <label>
                         <img src="<?php echo $item; ?>">
                         <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
@@ -163,7 +163,7 @@
             </div>
             <ul class="unstyled avatar-preview-inline">
                 <?php foreach ($local as $key => $value) { ?>
-                <li>
+                <li class="inline">
                     <img src="<?php echo $value; ?>">
                 <?php } ?>
             </ul>
