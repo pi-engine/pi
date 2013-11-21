@@ -658,7 +658,7 @@ class IndexController extends ActionController
             $users[] = $noSortUser[$uid];
         }
         array_walk($users, function (&$user) {
-            $user['link'] = Pi::service('user')->getUrl('home', array(
+            $user['link'] = Pi::service('user')->getUrl('profile', array(
                 'id'    => (int) $user['id'],
             ));
             $user['active']         = (int) $user['active'];
