@@ -77,13 +77,14 @@ class Privacy extends AbstractApi
                 }
             }
         } elseif ($type == 'user') {
+            $result['id'] = $rawData['id'];
+            unset($rawData['id']);
             foreach ($rawData as $key => $value) {
                 $allow = $privacy >= $userSetting[$key] ? 1 : 0;
                 if ($allow) {
                     $result[$key] = $value;
                 }
             }
-            $result['id'] = $rawData['id'];
         }
 
         return $result;
@@ -107,6 +108,7 @@ class Privacy extends AbstractApi
         }
 
         // User privacy setting
+        $userPrivacyFields =  array();
         $rowset     = Pi::model('privacy_user', 'user')
             ->select(array('uid' => $uid));
         foreach ($rowset as $row) {
@@ -249,6 +251,7 @@ class Privacy extends AbstractApi
             $privacyFields[] = $row['field'];
         }
 
+        $curUserPrivacyFields = array();
         $select = $userPrivacyModel->select()->where(array('uid' => $uid));
         $rowset = $userPrivacyModel->selectWith($select)->toArray();
         foreach ($rowset as $row) {
@@ -256,7 +259,10 @@ class Privacy extends AbstractApi
         }
 
         foreach ($defaultPrivacy as $row) {
-            if (!in_array($row['field'], $curUserPrivacyFields)) {
+            if (isset($row['field']) &&
+                $row['field'] &&
+                !in_array($row['field'], $curUserPrivacyFields)
+            ) {
                 // Insert default privacy field
                 if ($row['is_forced']) {
                     $privacyRow = $userPrivacyModel->createRow(array(

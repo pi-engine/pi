@@ -268,6 +268,7 @@ class ProfileController extends ActionController
         // Get side nav items
         $groups       = Pi::api('user', 'group')->getList();
         $profileGroup = $this->getProfile($uid);
+        $compounds = array();
         foreach ($profileGroup[$groupId]['fields'] as $key => $value) {
             $compounds[$key]['set']    = $key;
             $compounds[$key]['fields'] = $value;
