@@ -10,6 +10,7 @@
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "*",
     "grunt-contrib-clean": "*", 
-    "grunt-contrib-uglify": "*"
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-cssmin": "*"
   }
 }
