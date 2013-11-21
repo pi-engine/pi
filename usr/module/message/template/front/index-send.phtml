@@ -2,18 +2,7 @@
     $this->bootstrap();
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
-    $this->bootstrap('js/bootstrap.min.js');
 ?>
-<ul class="nav nav-tabs message-nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a></li>
-    <li class="">
-        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
-    </li>
-<!--    <li><a href="--><?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" title="--><?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a></li>-->
-<!--    <li class="active">-->
-<!--        <a href="--><?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--" title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?><!--</a>-->
-<!--    </li>-->
-</ul>
 <div class="messages" id="message-js">
     <?php
         if (!empty($errMessage)) {
@@ -26,7 +15,12 @@
         <?php echo $errMessage; ?>
     </div>
     <?php } ?>
-
+    <div class="page-header">
+        <a class="pull-right message-return" href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>">
+            <?php _e('Return message list page'); ?>
+        </a>
+        <h3><?php _e('Write message'); ?></h3>
+    </div>
     <?php
         $form->setAttribute('class', 'form-horizontal message-form-posi');
         echo $this->form()->openTag($form);
