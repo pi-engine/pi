@@ -55,11 +55,9 @@ class DateSelect extends ZendDateSelect
      */
     protected function getValidator()
     {
-        /*
         if (class_exists('\\DateTime')) {
             return parent::getValidator();
         }
-        */
 
         return $this->validator;
     }

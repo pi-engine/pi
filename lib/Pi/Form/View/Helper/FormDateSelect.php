@@ -27,13 +27,11 @@ class FormDateSelect extends ZendFormElement
      */
     public function __construct()
     {
-        /*
         if (extension_loaded('intl')) {
             parent::__construct();
 
             return;
         }
-        */
 
         $this->dateType = 'Y-m-d';
         $this->pattern = '';
