@@ -27,17 +27,15 @@ class DateSelect extends ZendDateSelect
      */
     public function setValue($value)
     {
-        /*
         if (class_exists('\\DateTime')) {
             return parent::setValue($value);
         }
-        */
 
         if (is_numeric($value)) {
             $value = date('Y-m-d', (int) $value);
         }
         if (is_string($value)) {
-            list($year, $month, $day) = exlode('-', $value);
+            list($year, $month, $day) = explode('-', $value);
             $value = array(
                 'year'  => $year,
                 'month' => $month,
@@ -55,11 +53,9 @@ class DateSelect extends ZendDateSelect
      */
     protected function getValidator()
     {
-        /*
         if (class_exists('\\DateTime')) {
             return parent::getValidator();
         }
-        */
 
         return $this->validator;
     }
