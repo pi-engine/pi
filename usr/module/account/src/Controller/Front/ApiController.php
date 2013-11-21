@@ -139,7 +139,7 @@ class ApiController extends ActionController
         }
 
         if ($data) {
-            pi::api('user','user')->updateUser($uid, $data);
+            Pi::api('user','user')->updateUser($uid, $data);
         }
 
         $this->sendData($uid);
@@ -215,7 +215,7 @@ class ApiController extends ActionController
     public function checkUserNameExistsAction()
     {
         $username    = $this->params('username');
-        $user   = pi::api('user','user')->getUser($username, 'identity');
+        $user   = Pi::api('user','user')->getUser($username, 'identity');
 
         $this->sendData( empty($user) ? 0 : 1 );
     }
@@ -223,7 +223,7 @@ class ApiController extends ActionController
     public function checkUserEmailExistsAction()
     {
         $email  = $this->params('email');
-        $user   = pi::api('user','user')->getUser($email, 'email');
+        $user   = Pi::api('user','user')->getUser($email, 'email');
 
         $this->sendData( empty($user) ? 0 : 1 );
     }
@@ -237,21 +237,22 @@ class ApiController extends ActionController
         $isEmail    = strpos($username, '@') !== false;
         $field      = $isEmail ? 'email' : 'identity';
 
-        $userlist       = pi::api('user','user')->getList(array($field=>$username),0,0,'', array('identity','credential','email','name'));
+        $userlist       = Pi::api('user','user')->getList(array($field=>$username),0,0,'', array('identity','credential','email','name'));
         $userinfo       = array_shift($userlist);
+        $userinfo       = Pi::model('account','user')->find($userinfo['id'],'id');
         $isAuth         = false;
         $rawpwd         = NULL;
         if ($userinfo) {
             // now
-            $result = Pi::user()->authenticate($userinfo['identity'], $password)->getData();
-            if (!empty($result)) {
+            $site_salt  = Pi::config('salt');
+            if ($userinfo['credential'] == md5($userinfo['salt'] . $password . $site_salt)) {
                 $isAuth = true;
             }
 
             // old account
             if (!isAuth) {
                 $salt   = '';
-                if ($userinfo['credential'] == md5($salt . $password)) {
+                if ($userinfo['credential'] == md5($userinfo['salt'] . $password)) {
                     $rawpwd = $password;
                     $isAuth = true;
                 }
@@ -277,7 +278,7 @@ class ApiController extends ActionController
         }
 
         if ($rawpwd) {
-            pi::api('user','user')->updateUser($userinfo['id'], array('credential'=>$rawpwd));
+            Pi::api('user','user')->updateUser($userinfo['id'], array('credential'=>$rawpwd));
         }
 
         $data   = !$isAuth ? array() : array(
@@ -294,7 +295,7 @@ class ApiController extends ActionController
     public function activeAction()
     {
         $uid    = $this->params('id');
-        $ret    = pi::api('user','user')->activateUser($uid);
+        $ret    = Pi::api('user','user')->activateUser($uid);
 
         $this->sendData( empty($ret) ? 0 : 1 );
     }
@@ -330,7 +331,7 @@ class ApiController extends ActionController
         $uid        = $this->params('id');
         $username   = $this->params('newname');
 
-        $status = pi::api('user','user')->updateUser($uid, array('identity'=>$username));
+        $status = Pi::api('user','user')->updateUser($uid, array('identity'=>$username));
         $this->sendData( $status === true ? 1 : 0 );
     }
 
@@ -365,7 +366,7 @@ class ApiController extends ActionController
 
         $status = false;
         if ($id && $password && $code == md5($id . $password . $key)) {
-            $status = pi::api('user','user')->updateUser($id, array('credential'=>$password));
+            $status = Pi::api('user','user')->updateUser($id, array('credential'=>$password));
         }
 
         $this->sendData( $status === true ? 'true' : 'false' );
@@ -423,7 +424,7 @@ class ApiController extends ActionController
         $result = array();
         $meta   = $this->getMetadata();
         if (in_array('basic', $type)) {
-            $rs_basic   = pi::api('user','user')->get($uids, array_keys($meta['basic']));
+            $rs_basic   = Pi::api('user','user')->get($uids, array_keys($meta['basic']));
             foreach ($rs_basic as $key=>$val) {
                 $tmp    = array();
                 foreach ($val as $k=>$v) {
@@ -435,7 +436,7 @@ class ApiController extends ActionController
             }
         }
         if (in_array('work', $type)) {
-            $rs_work    = pi::api('user','user')->get($uids, 'work');
+            $rs_work    = Pi::api('user','user')->get($uids, 'work');
             foreach ($rs_work as $key=>$val) {
                 $tmp    = array();
                 foreach ($val[0] as $k=>$v) {
@@ -447,8 +448,8 @@ class ApiController extends ActionController
             }
         }
         if (in_array('login', $type)) {
-            $rs_count_login    = pi::user()->data()->get($uids, 'count_login');
-            $rs_last_login    = pi::user()->data()->get($uids, 'last_login');
+            $rs_count_login    = Pi::user()->data()->get($uids, 'count_login');
+            $rs_last_login    = Pi::user()->data()->get($uids, 'last_login');
 
             $tmp    = array();
             if ($rs_count_login) {
@@ -466,7 +467,7 @@ class ApiController extends ActionController
             }
         }
         if (in_array('interest', $type)) {
-            $rs_interest    = pi::api('user','user')->get($uids, 'interest');
+            $rs_interest    = Pi::api('user','user')->get($uids, 'interest');
             foreach ($rs_interest as $key=>$val) {
                 $result[$key]   = array_merge(isset($result[$key])?$result[$key]:array(), array('interests'=>$val));
             }

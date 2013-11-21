@@ -41,6 +41,35 @@ class IndexController extends ActionController
         Pi::service('authentication')->logout(array('redirect' => $redirect));
     }
 
+    public function initAction() {
+        $has_login  = Pi::service('authentication')->getData();
+
+        if(!empty($has_login)){
+            echo '';
+        }else{
+            echo ('document.write("<iframe id=\'check-sso\' src=\'/saml/index/check\' border=\'0\' frameborder=\'0\' width=\'0\' height=\'0\' style=\'position:absolute;\'></iframe>");');
+        }
+        exit;
+    }
+
+    public function checkAction()
+    {
+        $has_login  = Pi::service('authentication')->getData();
+
+        if (empty($has_login)) {
+            $redirect   = $this->url('', array('action' => 'check', 'update'=>'yes'));
+            Pi::service('authentication')->login(array('redirect' => $redirect));
+            exit();
+        }
+
+        $update = $this->params('update');
+        if ($update == 'yes') {
+            echo '<html><head></head><body><script type="text/javascript">top.location.reload();</script></body></html>';
+        }
+        exit();
+    }
+
+
     /**
      * Endpoint for SSO ACS
      */
@@ -93,7 +122,7 @@ class IndexController extends ActionController
     public function getdataAction()
     {
         $data = Pi::service('authentication')->getData();
-        var_dump($data);
+        echo json_encode($data);
         exit;
     }
 }
