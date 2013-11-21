@@ -18,6 +18,7 @@ class ApiController extends ActionController
             'tel',
             'phone',
             'country',
+	    'province',
             'city',
             'zip',
             'address',
