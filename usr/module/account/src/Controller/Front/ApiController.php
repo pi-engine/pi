@@ -252,8 +252,8 @@ class ApiController extends ActionController
 
             // old account
             if (!isAuth) {
-                $salt   = '';
-                if ($userinfo['credential'] == md5($userinfo['salt'] . $password)) {
+                $salt   = '5b8f3a8923711a6e0a700b08fbec42e2';
+                if ($userinfo['credential'] == md5($salt . $password)) {
                     $rawpwd = $password;
                     $isAuth = true;
                 }
