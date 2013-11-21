@@ -23,16 +23,11 @@ class Client extends AbstractAvatar
      */
     public function getSource($uid, $size = 80)
     {
-        /*
-        $src = Pi::service('user')->getUrl('avatar', array(
-            'id'    => $uid,
-            'size'  => $size
-        ));
-        */
         $uri = Pi::service('user')->getUrl('avatar', 'get');
         $result = Pi::service('remote')->get($uri, array(
             'id'    => $uid,
-            'size'  => $size
+            'size'  => $size,
+            'html'  => 0,
         ));
         $src = $result['data'];
 
@@ -44,18 +39,11 @@ class Client extends AbstractAvatar
      */
     public function getSourceList($uids, $size = 80)
     {
-        //$result = array();
-        /*
-        $_this = $this;
-        array_walk($uids, function ($uid) use (&$result, $size, $_this) {
-            $result[$uid] = $_this->getSource($uid, $size);
-        });
-        */
-
         $uri = Pi::service('user')->getUrl('avatar', 'mget');
         $result = Pi::service('remote')->get($uri, array(
             'id'    => $uids,
-            'size'  => $size
+            'size'  => $size,
+            'html'  => 0,
         ));
 
         return $result;
@@ -67,5 +55,17 @@ class Client extends AbstractAvatar
     public function build($source, $size = '', $uid = null)
     {
         return $source;
+    }
+
+    /**
+     * Check if a named size is available
+     *
+     * @param string $size
+     *
+     * @return bool
+     */
+    public function hasSize($size)
+    {
+        return false;
     }
 }
