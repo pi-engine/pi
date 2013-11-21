@@ -31,7 +31,11 @@ class Category extends AbstractRegistry
         $list = array();
 
         $model = Pi::model('category', $this->module);
-        $where = array('active' => 1);
+        if (-1 != $options['active']) {
+            $where = array('active' => $options['active']);
+        } else {
+            $where = array();
+        }
         if ($options['module']) {
             $where['module'] = $options['module'];
         } else {
@@ -43,6 +47,7 @@ class Category extends AbstractRegistry
             $data = array(
                 'title'         => $row['title'],
                 'icon'          => $row['icon'],
+                'active'        => $row['active'],
                 //'category'      => $row['name'],
                 'callback'      => $row['callback'],
                 'locator'       => $row['locator'],
@@ -88,17 +93,19 @@ class Category extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $module
-     * @param string $category
-     * @param array
+     * @param string    $module
+     * @param string    $category
+     * @param bool|null $active
      */
-    public function read($module = '', $category = '')
+    public function read($module = '', $category = '', $active = true)
     {
-        $options = array('module' => $module, 'category' => $category ? 1 : 0);
-        $data = $this->loadData($options);
-        //vd($data);
-        if ($module && $category) {
-            $data = isset($data[$category]) ? $data[$category] : array();
+        $catName    = $category;
+        $category   = $catName ? 1 : 0;
+        $active     = (null === $active) ? -1 : (int) $active;
+        $options    = compact('module', 'category', 'active');
+        $data       = $this->loadData($options);
+        if ($module && $catName) {
+            $data = isset($data[$catName]) ? $data[$catName] : array();
         }
 
         return $data;
