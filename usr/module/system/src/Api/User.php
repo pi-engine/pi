@@ -21,6 +21,9 @@ use Pi\User\Model\System as UserModel;
  */
 class User extends AbstractUseApi
 {
+    /** @var string Route for user URLs */
+    protected $route = 'sysuser';
+
     /** @var string Module name */
     protected $module = 'system';
 

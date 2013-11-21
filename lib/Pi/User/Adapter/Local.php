@@ -20,7 +20,7 @@ use Pi;
 class Local extends System
 {
     /** @var string Route for user URLs */
-    protected $route = 'user';
+    //protected $route = 'user';
 
     /**#@+
      * Meta operations
@@ -236,7 +236,7 @@ class Local extends System
      */
     public function getUrl($type, $var = null)
     {
-        return parent::getUrl($type, $var);
+        return Pi::api('user', 'user')->getUrl($type, $var);
     }
 
     /**

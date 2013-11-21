@@ -21,6 +21,9 @@ use Pi\User\Model\Local as UserModel;
  */
 class User extends AbstractUseApi
 {
+    /** @var string Route for user URLs */
+    protected $route = 'user';
+
     /** @var string Module name */
     protected $module = 'user';
 

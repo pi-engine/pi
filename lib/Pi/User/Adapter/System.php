@@ -20,7 +20,7 @@ use Pi;
 class System extends AbstractAdapter
 {
     /** @var string Route for user URLs */
-    protected $route = 'sysuser';
+    //protected $route = 'sysuser';
 
     /**#@+
      * Meta operations
@@ -236,7 +236,7 @@ class System extends AbstractAdapter
      */
     public function getRoute()
     {
-        return $this->route;
+        return Pi::api('system', 'user')->getRoute();
     }
 
     /**
@@ -246,6 +246,9 @@ class System extends AbstractAdapter
      */
     public function getUrl($type, $var = null)
     {
+        return Pi::api('system', 'user')->getUrl($type, $var);
+
+        /*
         $route      = $this->getRoute();
         $redirect   = '';
         switch ($type) {
@@ -397,6 +400,7 @@ class System extends AbstractAdapter
         }
 
         return $url;
+        */
     }
 
     /**

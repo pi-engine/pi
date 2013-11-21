@@ -45,6 +45,9 @@ class Deactivate extends BasicAction
         $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
 
+        $file = Pi::config()->getPath('service.authentication.php', true);
+        @unlink($file);
+
         $file = Pi::config()->getPath('service.avatar.php', true);
         @unlink($file);
 

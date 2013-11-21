@@ -21,6 +21,9 @@ use Pi\User\Model\AbstractModel as UserModel;
  */
 abstract class AbstractUser extends AbstractApi
 {
+    /** @var string Route for user URLs */
+    protected $route = 'sysuser';
+
     /**
      * Get fields specs of specific type and action
      *
@@ -568,10 +571,183 @@ abstract class AbstractUser extends AbstractApi
     }
 
     /**
-     * Get a type of field value(s) of a list of user
+     * Get route for URL assembling
      *
-     * @return array|bool
+     * @return string
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    /**
+     * Get user URL
+     *
+     * - home: URI to user home (timeline) page
+     * - profile: URI to user profile page
+     * - login: URI to user login page
+     * - logout: URI to user logout page
+     * - register: URI to user register page
+     *
+     * @param string    $type URL type
+     * @param mixed     $var User id for profile or redirect for login
+     *
+     * @return string
+     * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
      * @api
      */
-    //abstract public function getFields();
+    public function getUrl($type, $var = null)
+    {
+        $route      = $this->getRoute();
+        $redirect   = '';
+        switch ($type) {
+            case 'profile':
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['name'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'profile';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            case 'login':
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::service('url')->getRequestUri();
+                }
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            case 'logout':
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                }
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (!isset($params['action'])) {
+                    $params['action'] = 'logout';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            case 'register':
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'register';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            case 'password':
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'password';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
+            default:
+            case 'home':
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['name'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'home';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+        }
+
+        // Append redirect with query
+        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+        if ($redirect) {
+            if (false == strpos($url, '?')) {
+                $url .= '?redirect=' . rawurlencode($redirect);
+            } else {
+                $url .= '&redirect=' . rawurlencode($redirect);
+            }
+        }
+
+        return $url;
+    }
 }

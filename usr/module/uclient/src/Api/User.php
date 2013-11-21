@@ -22,6 +22,9 @@ use Pi\User\Resource\AbstractResource;
  */
 class User extends AbstractUseApi
 {
+    /** @var string Route for user URLs */
+    protected $route = 'default';
+
     /** @var string Module name */
     protected $module = 'uclient';
 
@@ -553,20 +556,7 @@ class User extends AbstractUseApi
     }
 
     /**
-     * Get user URL
-     *
-     * - home: URI to user home (timeline) page
-     * - profile: URI to user profile page
-     * - login: URI to user login page
-     * - logout: URI to user logout page
-     * - register: URI to user register page
-     *
-     * @param string    $type URL type
-     * @param mixed     $var User id for profile or redirect for login
-     *
-     * @return string
-     * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
-     * @api
+     * {@inheritDoc}
      */
     public function getUrl($type, $var = null)
     {
