@@ -33,7 +33,7 @@ $uid = Pi::user()->getId();
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $comment['count'] ?: 0; ?>)</h4>
     </div>
-    <?php include '_post-form.phtml'; ?>
+    
     <?php if (count($comment['posts'])) { ?>
     <?php foreach ($comment['posts'] as $item) { ?>
     <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
