@@ -523,6 +523,9 @@ class RegisterController extends ActionController
                 $values['level'] = 1;
                 $values['last_modified'] = time();
                 Pi::api('user', 'user')->updateUser($uid, $values);
+
+                //@FIXME: Temporarily customized
+                //@TODO: To be refactored with event/listener
                 if ($values['source_id']) {
                     $uri = 'http://www.eefocus.com/passport/api.php';
                     $params = array(
