@@ -111,7 +111,6 @@ abstract class AbstractFieldRowGateway extends RowGateway
      */
     protected function getFilter($filters)
     {
-
         $filterChain = new FilterChain;
         foreach ($filters as $filter) {
             $filterChain->attachByName($filter);

@@ -32,8 +32,12 @@ class Compound extends AbstractFieldRowGateway
      */
     protected function getMeta($key = null)
     {
-        $key = $this['field'];
-        return parent::getMeta($key);
+        if (isset($this['field'])) {
+            $key = $this['field'];
+            return parent::getMeta($key);
+        }
+
+        return null;
     }
 
     /**
@@ -41,8 +45,12 @@ class Compound extends AbstractFieldRowGateway
      */
     public function filter($col = null)
     {
-        $col = $this['field'];
-        return parent::filter($col);
+        if (isset($this['field'])) {
+            $col = $this['field'];
+            return parent::filter($col);
+        }
+
+        return null;
     }
 
     /**
