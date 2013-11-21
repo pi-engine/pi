@@ -34,7 +34,7 @@ class RegisterController extends ActionController
     {
         if (Pi::user()->getId()) {
             $this->redirect()->toRoute(
-                'home'
+                'profile'
             );
             return;
         }
@@ -144,7 +144,7 @@ class RegisterController extends ActionController
     {
         if (Pi::user()->getId()) {
             $this->redirect()->toRoute(
-                'home'
+                'profile'
             );
             return;
         }
@@ -247,6 +247,13 @@ class RegisterController extends ActionController
      */
     public function activateAction()
     {
+        if (Pi::user()->getId()) {
+            $this->redirect()->toRoute(
+                'profile'
+            );
+            return;
+        }
+
         $result = array(
             'status'  => 0,
             'message' => '',
