@@ -1,10 +1,6 @@
 /* Base */
-.pi-module-content {
+.messages-min-body {
     min-height: 450px;
-}
-
-.messages {
-    margin-top: -5px;
 }
 
 .message-nav-tabs li.active a:hover {
