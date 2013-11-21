@@ -395,8 +395,15 @@ class User extends AbstractService
      */
     public function getIp($proxy = false, $ipv6 = false)
     {
-        $remoteAddress = new RemoteAddress;
-        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+//        $remoteAddress = new RemoteAddress;
+//        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
 
         return $ip;
     }
