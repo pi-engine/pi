@@ -234,8 +234,7 @@ class AvatarController extends ActionController
      */
     public function uploadAction()
     {
-        //Pi::service('log')->mute();
-        
+       
         $module   = $this->getModule();
         $config   = Pi::service('module')->config('', $module);
 
@@ -329,7 +328,10 @@ class AvatarController extends ActionController
         );
         $result['status'] = true;
 
-        return $result;
+        //return $result; for ie10+ bug
+        Pi::service('log')->mute();
+        echo json_encode($result);
+        exit;
     }
     
     /**
