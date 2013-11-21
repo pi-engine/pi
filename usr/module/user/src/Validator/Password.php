@@ -74,7 +74,7 @@ class Password extends AbstractValidator
             }
         }
 
-        return ture;
+        return true;
     }
 
     /**

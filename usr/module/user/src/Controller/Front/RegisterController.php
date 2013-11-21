@@ -643,7 +643,7 @@ class RegisterController extends ActionController
                 if ($value['element']) {
                     $elements[] = $value['element'];
                 }
-                if ($value['filter']) {
+                if (isset($value['filter']) && $value['filter']) {
                     $filters[] = $value['filter'];
                 }
             }

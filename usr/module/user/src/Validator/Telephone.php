@@ -39,7 +39,7 @@ class Telephone extends AbstractValidator
             strlen($value) >= 7 &&
             strlen($value) <= 20
         ) {
-            return ture;
+            return true;
         } else {
             $this->error(static::TELEPHONE_INVALID);
             return false;
