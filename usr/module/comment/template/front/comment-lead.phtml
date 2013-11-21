@@ -1,6 +1,4 @@
-<?php
-$this->css($this->assetModule('css/front.css', 'comment'));
-?>
+<link href="<?php echo $this->assetModule('css/front.css', 'comment'); ?>" rel="stylesheet" type="text/css">
 <div class="comments-panel">
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $count ?: 0; ?>)</h4>
