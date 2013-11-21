@@ -251,7 +251,7 @@ class ApiController extends ActionController
             }
 
             // old account
-            if (!isAuth) {
+            if (!$isAuth) {
                 $salt   = '5b8f3a8923711a6e0a700b08fbec42e2';
                 if ($userinfo['credential'] == md5($salt . $password)) {
                     $rawpwd = $password;
@@ -260,7 +260,7 @@ class ApiController extends ActionController
             }
 
             // old eefocus
-            if (!isAuth) {
+            if (!$isAuth) {
                 $salt   = '';
                 if ($userinfo['credential'] == md5($password)) {
                     $rawpwd = $password;
@@ -269,7 +269,7 @@ class ApiController extends ActionController
             }
 
             // old cndzz
-            if (!isAuth) {
+            if (!$isAuth) {
                 $salt   = '';
                 if ($userinfo['credential'] == substr(md5($password), 8, 16)) {
                     $rawpwd = $password;
