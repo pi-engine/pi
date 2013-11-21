@@ -47,5 +47,4 @@ angular
         roles: <?php echo json_encode($roles); ?>
     });
 </script>
-<?php $debug = 'production' == Pi::environment() ? '.min' : ''; ?>
-<script src="<?php echo $this->assetModule('admin/user' . $debug . '.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/user.js'); ?>"></script>
