@@ -301,14 +301,16 @@ class User extends AbstractUseApi
         $uids   = (array) $uid;
         $fields   = $field ? (array) $field : array_keys($this->getMeta());
 
+        /*
         $activeMarked = false;
         if ($activeOnly && !in_array('active', $fields)) {
             $fields[] = 'active';
             $activeMarked = true;
         }
+        */
 
         $meta   = $this->canonizeField($fields);
-        $fields = $this->getFields($uids, $meta, $filter);
+        $fields = $this->getFields($uids, $meta, $filter, $activeOnly);
         foreach ($fields as $id => $data) {
             if (isset($result[$id])) {
                 $result[$id] += $data;
@@ -317,6 +319,7 @@ class User extends AbstractUseApi
             }
         }
 
+        /*
         if ($activeOnly) {
             foreach (array_keys($result) as $id) {
                 if (empty($result[$id]['active'])) {
@@ -326,6 +329,7 @@ class User extends AbstractUseApi
                 }
             }
         }
+        */
 
         if (is_scalar($uid)) {
             $result = isset($result[$uid]) ? $result[$uid] : array();
@@ -554,11 +558,17 @@ class User extends AbstractUseApi
      * @param int[]|int $uid
      * @param string[]  $fields
      * @param bool      $filter     To filter for display
+     * @param bool $activeOnly
+     *
      * @return array|bool
      * @api
      */
-    public function getFields($uid, $fields = array(), $filter = false)
-    {
+    public function getFields(
+        $uid,
+        $fields = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
         if (!$uid) {
             return false;
         }
@@ -574,6 +584,9 @@ class User extends AbstractUseApi
         $primaryKey = 'id';
         $fields[] = $primaryKey;
         $where = array($primaryKey => $uids);
+        if ($activeOnly) {
+            $where['active'] = 1;
+        }
         $model = Pi::model('user_account');
         $select = $model->select()->where($where)->columns($fields);
         $rowset = $model->selectWith($select);
