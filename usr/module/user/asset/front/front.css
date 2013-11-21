@@ -44,7 +44,7 @@
   margin-bottom: 5px;
 }
 
-.user-avatar-header-col {
+.user-info-center {
   vertical-align: bottom;
 }
 
@@ -52,9 +52,10 @@
   margin-right: 5px;
 }
 
-.user-avatar-header-left {
+.user-info-left {
   position: relative;
   margin-right: 8px;
+  vertical-align: bottom;
 }
 
 .user-avatar-upload {
@@ -78,6 +79,19 @@
 
 .user-avatar-upload:hover {
   color: #fff;
+}
+
+.user-info-left:hover .user-avatar-upload {
+  display: block;
+}
+
+.user-info-right {
+  float: right;
+  margin-top: 90px;
+}
+
+.user-dropdown-quicklinks:hover .dropdown-menu {
+  display: block;
 }
 
 /* Profile */
@@ -246,7 +260,6 @@
 }
 
 .avatar-preview-inline li {
-  display: inline-block;
   vertical-align: top;
   margin-right: 10px;
 }
@@ -257,7 +270,6 @@
 }
 
 .avatar-repository-inline li {
-  display: inline-block;
   margin: 0 20px 10px 0;
   text-align: center;
 }

@@ -184,12 +184,15 @@
       $.post(config.urlRoot + 'addCompoundItem', form.serialize()).
         done(function(res) {
           res = $.parseJSON(res);
-          submit.removeAttr('disabled', 'disabled'); 
           if (res.status) {
             location.href = location.href;
           } else {
             submitTip(form, res.message);
+            submit.removeAttr('disabled', 'disabled'); 
           }
+       }).
+       fail(function() {
+        location.href = location.href;
        });
     }
   });
