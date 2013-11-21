@@ -58,7 +58,9 @@ class Privacy extends AbstractApi
         if ($type == 'group') {
             foreach ($rawData as $group) {
                 if ($group['compound']) {
-                    $allow = $privacy >= $userSetting[$group['compound']] ? 1 : 0;
+                    $allow = ($privacy >= $userSetting[$group['compound']])
+                        ? 1
+                        : 0;
                     if ($allow) {
                         $result[] = $group;
                     }
@@ -95,7 +97,6 @@ class Privacy extends AbstractApi
      * Get user privacy setting
      *
      * @param $uid
-     * @param $type
      *
      * @return array
      */
@@ -165,7 +166,7 @@ class Privacy extends AbstractApi
         $fieldsMeta    = $this->getFieldsMeta();
         // Get current privacy fields
         $privacyModel = Pi::model('privacy', $this->getModule());
-        $userPrivacyModel = Pi::model('privacy_user', $this->getModule());
+        //$userPrivacyModel = Pi::model('privacy_user', $this->getModule());
         $select       = $privacyModel->select()->where(array());
         $rowset       = $privacyModel->selectWith($select)->toArray();
         foreach ($rowset as $row) {
@@ -259,9 +260,9 @@ class Privacy extends AbstractApi
         }
 
         foreach ($defaultPrivacy as $row) {
-            if (isset($row['field']) &&
-                $row['field'] &&
-                !in_array($row['field'], $curUserPrivacyFields)
+            if (isset($row['field'])
+                && $row['field']
+                && !in_array($row['field'], $curUserPrivacyFields)
             ) {
                 // Insert default privacy field
                 if ($row['is_forced']) {
