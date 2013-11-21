@@ -215,6 +215,7 @@ a.pi-comment-count:hover {
 
 .comments-header {
   border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
 }
 
 .comment-item {

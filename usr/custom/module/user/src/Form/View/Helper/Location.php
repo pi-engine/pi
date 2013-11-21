@@ -46,7 +46,7 @@ class Location extends AbstractHelper
     {
         $this->view->jQuery();
         $this->view->plugin('js')->load(
-            Pi::url('static/custom/js/eefocus-linkage.js')
+            Pi::url('static/custom/js/eefocus-linkage.min.js')
         );
         $id = md5(uniqid());
 

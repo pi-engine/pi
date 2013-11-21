@@ -46,7 +46,7 @@ class StartTime extends AbstractHelper
     {
         $this->view->jQuery();
         $this->view->plugin('js')->load(
-            Pi::url('static/custom/js/eefocus-time.js')
+            Pi::url('static/custom/js/eefocus-time.min.js')
         );
         $id = md5(uniqid());
         $maxYear = date('Y');
