@@ -16,13 +16,13 @@ return array(
     'options'   => array(
         // For persistent user data
         'persist'   => array(
-            // Expiration
-            'ttl'   => 3600,
+            // Expiration, in seconds
+            'ttl'   => 300,
             // Fields
             'field' => array(
                 'id',
                 'identity',
-                'name',
+                //'name',
                 'email',
                 'avatar',
                 'role'

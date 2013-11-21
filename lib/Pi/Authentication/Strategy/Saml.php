@@ -60,16 +60,6 @@ class Saml extends AbstractStrategy
         } else {
             $params = (array) $params;
         }
-        /*
-        if (isset($params['section'])) {
-            $section = $params['section'];
-        } else {
-            $section = Pi::engine()->application()->getSection();
-        }
-        if ('front' != $section) {
-            return Pi::service('user')->getUrl($type, $params);
-        }
-        */
 
         if (isset($params['redirect'])) {
             $return = $params['redirect'];

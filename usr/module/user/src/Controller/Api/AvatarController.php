@@ -43,8 +43,9 @@ class AvatarController extends ActionController
     {
         $uid        = $this->params('id');
         $size       = $this->params('size');
+        $html       = $this->params('html') ?: false;
 
-        $result     = Pi::service('avatar')->get($uid, $size, false);
+        $result     = Pi::service('avatar')->get($uid, $size, $html);
         $response   = array(
             'status'    => 1,
             'data'      => $result,
@@ -62,9 +63,10 @@ class AvatarController extends ActionController
     {
         $uid        = $this->params('id');
         $size       = $this->params('size');
+        $html       = $this->params('html') ?: false;
 
         $uids       = $this->splitString($uid);
-        $result     = Pi::service('avatar')->getList($uids, $size, false);
+        $result     = Pi::service('avatar')->getList($uids, $size, $html);
 
         return $result;
     }
