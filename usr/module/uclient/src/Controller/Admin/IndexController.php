@@ -401,7 +401,7 @@ class IndexController extends ActionController
             foreach ($users as $uid => $user) {
                 $row = $model->createRow(array(
                     'id'             => $uid,
-            		'identity'       => $user->get('identity'),
+                     'identity'       => $user->get('identity'),
                     'active'         => 1,
                     'time_activated' => time(),
                     'time_created'   => time(),
