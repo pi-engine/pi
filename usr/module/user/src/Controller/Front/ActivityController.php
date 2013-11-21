@@ -45,6 +45,18 @@ class ActivityController extends ActionController
             $this->jumpTo404('An error occur');
         }
 
+        // Check user
+        $active = Pi::api('user', 'user')->get($uid, 'active');
+        if (!$active) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
+
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,

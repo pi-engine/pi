@@ -104,9 +104,20 @@ class HomeController extends ActionController
         if (!$uid) {
             return $this->jumpTo404(__('Invalid user ID!'));
         }
+
+        // Check user
+        $active = Pi::api('user', 'user')->get($uid, 'active');
+        if (!$active) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
         // Get user information
         $user = $this->getUser($uid);
-
         // Get viewer role: public member follower following owner
         $role = Pi::user()->hasIdentity() ? 'member' : 'public';
         $user = Pi::api('user', 'privacy')->filterProfile(
