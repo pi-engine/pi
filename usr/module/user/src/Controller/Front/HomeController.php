@@ -101,13 +101,10 @@ class HomeController extends ActionController
         $offset = (int) ($page -1) * $limit;
 
         $uid = $this->params('uid', '');
-        if (!$uid) {
-            return $this->jumpTo404(__('Invalid user ID!'));
-        }
 
-        // Check user
-        $active = Pi::api('user', 'user')->get($uid, 'active');
-        if (!$active) {
+        // Get user information
+        $user = $this->getUser($uid);
+        if (!$user) {
             return $this->redirect(
                 '',
                 array(
@@ -116,8 +113,7 @@ class HomeController extends ActionController
                 )
             );
         }
-        // Get user information
-        $user = $this->getUser($uid);
+
         // Get viewer role: public member follower following owner
         $role = Pi::user()->hasIdentity() ? 'member' : 'public';
         $user = Pi::api('user', 'privacy')->filterProfile(
@@ -181,6 +177,7 @@ class HomeController extends ActionController
         $result = Pi::api('user', 'user')->get(
             $uid,
             array('name', 'gender', 'birthdate'),
+            true,
             true
         );
 

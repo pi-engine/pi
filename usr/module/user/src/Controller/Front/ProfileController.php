@@ -79,13 +79,9 @@ class ProfileController extends ActionController
     public function viewAction()
     {
         $uid = $this->params('uid', '');
-        if (!$uid) {
-            return $this->jumpTo404(__('Invalid user ID!'));
-        }
-
-        // Check user
-        $active = Pi::api('user', 'user')->get($uid, 'active');
-        if (!$active) {
+        // Get user information
+        $user = $this->getUser($uid);
+        if (!$user) {
             return $this->redirect(
                 '',
                 array(
@@ -94,8 +90,6 @@ class ProfileController extends ActionController
                 )
             );
         }
-        // Get user information
-        $user = $this->getUser($uid);
 
         // Get display group
         $profileGroup = $this->getProfile($uid);
@@ -171,7 +165,13 @@ class ProfileController extends ActionController
         );
         // Error hand
         if (!$groupId) {
-            return $this->jumpTo404();
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
         }
 
         // Get fields and filters for edit
@@ -267,7 +267,13 @@ class ProfileController extends ActionController
         $compound = $rowset ? $rowset->compound : '';
 
         if (!$groupId || !$compound) {
-            return $this->jumpTo404();
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
         }
 
         // Get compound element for edit
@@ -314,7 +320,13 @@ class ProfileController extends ActionController
         $compound = $rowset ? $rowset->compound : '';
 
         if (!$groupId || !$compound) {
-            return $this->jumpTo404();
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
         }
 
         $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
@@ -685,6 +697,7 @@ class ProfileController extends ActionController
         $result = Pi::api('user', 'user')->get(
             $uid,
             array('name', 'gender', 'birthdate'),
+            true,
             true
         );
 

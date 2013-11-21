@@ -33,7 +33,13 @@ class ActivityController extends ActionController
         $isOwner  = 0;
 
         if (!$uid && !$ownerUid) {
-            return $this->jumpTo404('An error occur');
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
         }
 
         // Check is owner
@@ -42,12 +48,6 @@ class ActivityController extends ActionController
             $uid     = $ownerUid;
         }
         if (!$name) {
-            $this->jumpTo404('An error occur');
-        }
-
-        // Check user
-        $active = Pi::api('user', 'user')->get($uid, 'active');
-        if (!$active) {
             return $this->redirect(
                 '',
                 array(
@@ -61,8 +61,19 @@ class ActivityController extends ActionController
         $user = Pi::api('user', 'user')->get(
             $uid,
             array('name', 'gender', 'birthdate'),
+            true,
             true
         );
+        if (!$user) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
+
         // Get viewer role: public member follower following owner
         if ($isOwner) {
             $role = 'owner';
