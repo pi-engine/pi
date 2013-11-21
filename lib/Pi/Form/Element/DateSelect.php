@@ -27,9 +27,11 @@ class DateSelect extends ZendDateSelect
      */
     public function setValue($value)
     {
+        /*
         if (class_exists('\\DateTime')) {
             return parent::setValue($value);
         }
+        */
 
         if (is_numeric($value)) {
             $value = date('Y-m-d', (int) $value);
@@ -53,9 +55,11 @@ class DateSelect extends ZendDateSelect
      */
     protected function getValidator()
     {
+        /*
         if (class_exists('\\DateTime')) {
             return parent::getValidator();
         }
+        */
 
         return $this->validator;
     }

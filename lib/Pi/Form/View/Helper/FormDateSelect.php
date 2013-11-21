@@ -27,11 +27,13 @@ class FormDateSelect extends ZendFormElement
      */
     public function __construct()
     {
+        /*
         if (extension_loaded('intl')) {
             parent::__construct();
 
             return;
         }
+        */
 
         $this->dateType = 'Y-m-d';
         $this->pattern = '';
@@ -49,6 +51,7 @@ class FormDateSelect extends ZendFormElement
      */
     public function __invoke(ElementInterface $element = null, $dateType = null, $locale = null)
     {
+        /*
         if (extension_loaded('intl')) {
             if (null === $dateType) {
                 $dateType = IntlDateFormatter::LONG;
@@ -56,6 +59,7 @@ class FormDateSelect extends ZendFormElement
 
             return parent::__invoke($element, $dateType, $locale);
         }
+        */
 
         $this->setDateType($dateType);
 
@@ -73,9 +77,11 @@ class FormDateSelect extends ZendFormElement
      */
     protected function parsePattern($renderDelimiters = true)
     {
+        /*
         if (extension_loaded('intl')) {
             return parent::parsePattern($renderDelimiters);
         }
+        */
 
         $result = array(
             'year'  => 'year',
@@ -94,9 +100,11 @@ class FormDateSelect extends ZendFormElement
      */
     public function setDateType($dateType)
     {
+        /*
         if (extension_loaded('intl')) {
             return parent::setDateType($dateType);
         }
+        */
 
         $this->dateType = $dateType;
 
@@ -111,9 +119,11 @@ class FormDateSelect extends ZendFormElement
      */
     protected function getMonthsOptions($pattern)
     {
+        /*
         if (extension_loaded('intl')) {
             return parent::getMonthsOptions($pattern);
         }
+        */
 
         $result = array();
         for ($month = 1; $month <= 12; $month++) {
@@ -131,9 +141,11 @@ class FormDateSelect extends ZendFormElement
      */
     protected function getDaysOptions($pattern)
     {
+        /*
         if (extension_loaded('intl')) {
             return parent::getDaysOptions($pattern);
         }
+        */
 
         $result = array();
         for ($day = 1; $day <= 31; $day++) {
