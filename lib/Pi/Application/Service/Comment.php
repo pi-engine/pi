@@ -91,7 +91,8 @@ class Comment extends AbstractService
 <div id="pi-comment-lead" style="display: none;"></div>
 <script>
     $.getJSON("{$callback}", {
-        uri: "{$uri}"
+        uri: "{$uri}",
+        time: new Date().getTime()
     })
     .done(function (data) {
         if (data.content) {
