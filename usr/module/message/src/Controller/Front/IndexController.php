@@ -46,6 +46,7 @@ class IndexController extends AbstractController
         $offset = (int) ($page - 1) * $limit;
 
         //current user id
+        Pi::service('authentication')->requireLogin();
         $userId = Pi::user()->getId();
 
         // dismiss alert
@@ -177,6 +178,7 @@ class IndexController extends AbstractController
     protected function renderNav()
     {
         //current user id
+        Pi::service('authentication')->requireLogin();
         $userId = Pi::user()->getUser()->id;
 
         $messageTitle = sprintf(
@@ -333,6 +335,7 @@ class IndexController extends AbstractController
      */
     public function detailAction()
     {
+    	Pi::service('authentication')->requireLogin();
         $messageId = _get('mid', 'int');
         $messageId = $messageId ?: 0;
         //current user id
@@ -397,6 +400,7 @@ class IndexController extends AbstractController
      */
     protected function showDetail($messageId)
     {
+    	Pi::service('authentication')->requireLogin();
         //current user id
         $userId = Pi::user()->getUser()->id;
 
@@ -552,6 +556,7 @@ class IndexController extends AbstractController
      */
     public function archiveAction()
     {
+    	Pi::service('authentication')->requireLogin();
         $this->renderNav();
     }
 }
