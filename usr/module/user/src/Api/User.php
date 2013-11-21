@@ -468,25 +468,46 @@ class User extends AbstractUseApi
         $fields = $field
             ? (array) $field : array_keys($this->getMeta('', 'display'));
 
+        /*
         $activeMarked = false;
         if ($activeOnly && !in_array('active', $fields)) {
             $fields[] = 'active';
             $activeMarked = true;
         }
+        */
 
         $meta   = $this->canonizeField($fields);
-
-        foreach ($meta as $type => $fields) {
-            $fields = $this->getFields($uids, $type, $fields, $filter);
+        if ($activeOnly) {
+            $activeMarked = false;
+            if (!isset($meta['account'])) {
+                $meta['account'] = array('active');
+                $activeMarked = true;
+            }
+            $fields = $this->getFields($uids, 'account', $meta['account'], $filter, $activeOnly);
+            $uids = array();
             foreach ($fields as $id => $data) {
-                if (isset($result[$id])) {
-                    $result[$id] += $data;
-                } else {
-                    $result[$id] = $data;
+                if ($activeMarked) {
+                    unset($data['active']);
+                }
+                $result[$id] = $data;
+                $uids[] = $id;
+            }
+            unset($meta['account']);
+        }
+        if ($uids) {
+            foreach ($meta as $type => $fields) {
+                $fields = $this->getFields($uids, $type, $fields, $filter, $activeOnly);
+                foreach ($fields as $id => $data) {
+                    if (isset($result[$id])) {
+                        $result[$id] += $data;
+                    } else {
+                        $result[$id] = $data;
+                    }
                 }
             }
         }
 
+        /*
         if ($activeOnly) {
             foreach (array_keys($result) as $id) {
                 if (empty($result[$id]['active'])) {
@@ -496,6 +517,7 @@ class User extends AbstractUseApi
                 }
             }
         }
+        */
 
         if (is_scalar($uid)) {
             $result = isset($result[$uid]) ? $result[$uid] : array();
@@ -1104,11 +1126,18 @@ class User extends AbstractUseApi
      * @param string    $type
      * @param string[]  $fields
      * @param bool      $filter     To filter for display
+     * @param bool      $activeOnly
+     *
      * @return array|bool
      * @api
      */
-    public function getFields($uid, $type, $fields = array(), $filter = false)
-    {
+    public function getFields(
+        $uid,
+        $type,
+        $fields = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
         if (!$uid) {
             return false;
         }
@@ -1124,20 +1153,25 @@ class User extends AbstractUseApi
         if ('account' == $type || 'profile' == $type) {
             $meta = $this->getMeta($type);
             $pFields = array();
+            $mFields = array();
             foreach ($fields as $field) {
                 if (!isset($meta[$field])
                     || empty($meta[$field]['handler'])
                 ) {
                     $pFields[] = $field;
-                    continue;
+                    //continue;
+                } else {
+                    $mFields[] = $field;
                 }
+                /*
                 $handler = new $meta[$field]['handler']($field);
                 $data  = $handler->mget($uids, $filter);
                 foreach ($data as $id => $user) {
                     $result[$id][$field] = $user;
                 }
+                */
             }
-            if ($pFields) {
+            if ($pFields || $activeOnly) {
                 if ('account' == $type) {
                     $primaryKey = 'id';
                 } else {
@@ -1145,11 +1179,16 @@ class User extends AbstractUseApi
                 }
                 $pFields[] = $primaryKey;
                 $model = Pi::model($type, 'user');
-                $select = $model->select()->where(array($primaryKey => $uids))
-                    ->columns($pFields);
+                $where = array($primaryKey => $uids);
+                if ($activeOnly && 'account' == $type) {
+                    $where['active'] = 1;
+                }
+                $select = $model->select()->where($where)->columns($pFields);
                 $rowset = $model->selectWith($select);
+                $uids = array();
                 foreach ($rowset as $row) {
                     $id = (int) $row[$primaryKey];
+                    $uids[] = $id;
                     if ($filter) {
                         $user = $row->filter($pFields) ? : $row->toArray();
                     } else {
@@ -1160,6 +1199,16 @@ class User extends AbstractUseApi
                     } else {
                         $result[$id] = $user;
                     }
+                }
+            }
+            if ($uids) {
+                foreach ($mFields as $field) {
+                    $handler = new $meta[$field]['handler']($field);
+                    $data  = $handler->mget($uids, $filter);
+                    foreach ($data as $id => $user) {
+                        $result[$id][$field] = $user;
+                    }
+
                 }
             }
         } elseif ('compound' == $type) {

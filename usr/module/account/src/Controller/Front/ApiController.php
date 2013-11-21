@@ -239,7 +239,7 @@ class ApiController extends ActionController
 
         $userlist       = Pi::api('user','user')->getList(array($field=>$username),0,0,'', array('identity','credential','email','name'));
         $userinfo       = array_shift($userlist);
-        $userinfo       = Pi::model('account','user')->find($userinfo['id'],'id');
+        $userinfo       = Pi::model('account','user')->find($userinfo['id'], 'id');
         $isAuth         = false;
         $rawpwd         = NULL;
         if ($userinfo) {
