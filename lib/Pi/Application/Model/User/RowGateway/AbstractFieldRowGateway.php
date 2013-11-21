@@ -91,7 +91,7 @@ abstract class AbstractFieldRowGateway extends RowGateway
      */
     protected function filterField($field)
     {
-        $value = $this[$field];
+        $value = isset($this[$field]) ? $this[$field] : null;
         if (null !== $value) {
             $meta = $this->getMeta($field);
             if (isset($meta['filter'])) {
