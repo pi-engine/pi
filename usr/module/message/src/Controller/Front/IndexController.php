@@ -198,18 +198,8 @@ class IndexController extends AbstractController
      */
     public function sendAction()
     {
+    	Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
-
-        // Redirect login page if not logged in
-        if (!$uid) {
-            $this->jump(
-                'user',
-                array('controller' => 'login', 'action' => 'index'),
-                __('Need login'),
-                2
-            );
-        }
-
         $toUserId = _get('uid');
         $name     = Pi::user()->get($toUserId, 'name');
         $form     = $this->getSendForm('send');
