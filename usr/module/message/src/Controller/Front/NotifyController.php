@@ -10,6 +10,7 @@
 namespace Module\Message\Controller\Front;
 
 use Module\Message\Service;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Pi;
 
