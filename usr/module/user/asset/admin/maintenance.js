@@ -6,7 +6,29 @@
     }
     $routeProvider.when('/stats', {
       templateUrl: tpl('maintenance-stats'),
-      controller: 'statsCtrl'
+      controller: 'statsCtrl',
+      resolve: {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            server.getStats().success(function (data) {
+              var tabs = [];
+              angular.forEach(data.ip, function(value, key) {
+                tabs.push({
+                  title: config.t[key.toUpperCase()],
+                  content: value
+                });
+              });
+              delete data.ip;
+              data.tabs = tabs;
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).when('/logs', {
       templateUrl: tpl('maintenance-logs'),
       controller: 'logCtrl',
@@ -106,20 +128,9 @@
     }
   }
 ])
-.controller('statsCtrl', ['$scope', 'server', 'config',
-  function($scope, server, config) {
-    server.getStats().success(function(data) {
-      var tabs = [];
-      angular.forEach(data.ip, function(value, key) {
-        tabs.push({
-          title: config.t[key.toUpperCase()],
-          content: value
-        });
-      });
-      delete data.ip;
-      $scope.tabs = tabs;
-      angular.extend($scope, data);
-    });
+.controller('statsCtrl', ['$scope', 'data', 'server',
+  function($scope, data, server) {
+    angular.extend($scope, data);
   }
 ])
 .controller('logCtrl', ['$scope', '$location', 'data', 'server', 
