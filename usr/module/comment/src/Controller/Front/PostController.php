@@ -288,6 +288,10 @@ class PostController extends ActionController
             $message = __('Invalid submission.');
         } else {
             $data = $this->request->getPost();
+
+            // Temporarily force to text
+            $data['markup'] = 'text';
+
             $markup = $data['markup'];
             $form = new PostForm('comment-post', $markup);
             $form->setInputFilter(new PostFilter);
