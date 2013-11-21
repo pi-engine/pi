@@ -83,6 +83,17 @@ class ProfileController extends ActionController
             return $this->jumpTo404(__('Invalid user ID!'));
         }
 
+        // Check user
+        $active = Pi::api('user', 'user')->get($uid, 'active');
+        if (!$active) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
         // Get user information
         $user = $this->getUser($uid);
 
