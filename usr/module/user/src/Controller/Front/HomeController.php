@@ -105,12 +105,13 @@ class HomeController extends ActionController
         // Get user information
         $user = $this->getUser($uid);
         if (!$user) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('User not found'),
+                3
             );
         }
 

@@ -133,7 +133,7 @@ return array(
             'type'      => 'account',
             'name'      => 'active',
             'title'     => _a('Active'),
-            'edit'      => 'text',
+//            'edit'      => 'text',
             'filter'    => 'YesNo',
 
             'is_edit'       => false,

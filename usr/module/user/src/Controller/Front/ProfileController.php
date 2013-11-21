@@ -82,12 +82,13 @@ class ProfileController extends ActionController
         // Get user information
         $user = $this->getUser($uid);
         if (!$user) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('User not found'),
+                3
             );
         }
 
@@ -165,12 +166,13 @@ class ProfileController extends ActionController
         );
         // Error hand
         if (!$groupId) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('An error occur'),
+                3
             );
         }
 
@@ -267,12 +269,13 @@ class ProfileController extends ActionController
         $compound = $rowset ? $rowset->compound : '';
 
         if (!$groupId || !$compound) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('An error occur'),
+                3
             );
         }
 
@@ -320,12 +323,13 @@ class ProfileController extends ActionController
         $compound = $rowset ? $rowset->compound : '';
 
         if (!$groupId || !$compound) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('An error occur'),
+                3
             );
         }
 

@@ -33,12 +33,13 @@ class ActivityController extends ActionController
         $isOwner  = 0;
 
         if (!$uid && !$ownerUid) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('User not found'),
+                3
             );
         }
 
@@ -48,12 +49,13 @@ class ActivityController extends ActionController
             $uid     = $ownerUid;
         }
         if (!$name) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('An error occur'),
+                3
             );
         }
 
@@ -65,12 +67,13 @@ class ActivityController extends ActionController
             true
         );
         if (!$user) {
-            return $this->redirect(
-                '',
+            $this->jump(
                 array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
+                    'controller' => 'profile',
+                    'action'     => 'index'
+                ),
+                __('User not found'),
+                3
             );
         }
 
