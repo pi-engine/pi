@@ -4,7 +4,7 @@ if (isset($root['active']) && empty($root['active'])) {
     return;
 }
 
-$uid = Pi::user()->getId();
+//$uid = Pi::user()->getId();
 
 if (!empty($root['id'])) {
     $formData = array(
@@ -46,7 +46,7 @@ $form = Pi::service('comment')->getForm($formData);
         <?php echo Pi::avatar()->get('', 'medium'); ?>
     </div>
     <div class="media-body well well-small">
-        <?php echo sprintf(__('Please <a href="%s">login</a> to leave comments.'), Pi::service('authentication')->getUrl('login')); ?>
+        <?php echo sprintf(__('Please <a href="%s">login</a> to leave comments.'), Pi::service('authentication')->getUrl('login', $uri)); ?>
     </div>
     <?php } ?>
 </div>
