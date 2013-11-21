@@ -68,6 +68,7 @@ class Interest extends CustomFieldHandler
      */
     public function mget($uids, $filter = false)
     {
+        $result = array();
         $data = parent::mget($uids);
         if ($filter) {
             foreach ($data as $uid => $uData) {
