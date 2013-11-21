@@ -185,7 +185,7 @@
         done(function(res) {
           res = $.parseJSON(res);
           if (res.status) {
-            location.href = location.href;
+            location.reload();
           } else {
             submitTip(form, res.message);
             submit.removeAttr('disabled', 'disabled'); 
