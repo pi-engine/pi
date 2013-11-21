@@ -63,7 +63,7 @@ var comment = {
     events: function () {
         var self = this;
         this.textarea.focus(function () {
-            $.getJSON('<?php echo $url; ?>').done(function (data) {
+            $.getJSON('<?php echo $url; ?>?' + new Date().getTime()).done(function (data) {
                 self.textarea.hide();
                 if (data.uid) {
                     self.$('.comment-form').show();
