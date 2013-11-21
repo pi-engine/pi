@@ -69,7 +69,9 @@ class Activity extends AbstractApi
                 'offset'    => $offset,
             ));
         } else {
-            $reader = new $meta['callback']($meta['module']);
+            $reader = new $meta['callback'](
+                isset($meta['module']) ? $meta['module'] : ''
+            );
             $data = $reader->get($uid, $limit, $offset);
         }
         if ($data) {
@@ -93,7 +95,8 @@ class Activity extends AbstractApi
             } else {
                 // Render template()
                 $template = array(
-                    'module'    => $meta['module'],
+                    'module'    => isset($meta['module'])
+                            ? $meta['module'] : $this->module,
                     'file'      => $meta['template'],
                 );
                 $content = Pi::service('view')->render($template, $data);

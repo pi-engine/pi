@@ -9,7 +9,7 @@ module.exports = function(grunt) {
   }
 
   var vendor = 'www/static/vendor/';
-  var angularSrc = vendor + 'angular/'
+  var angularSrc = vendor + 'angular/';
   
 
   // Project configuration.
@@ -20,6 +20,12 @@ module.exports = function(grunt) {
         cwd: assetCwd('user'),
         src: '**',
         dest: assetCwdBuild('user'),
+        expand: true
+      },
+      system: {
+        cwd: assetCwd('system'),
+        src: '**',
+        dest: assetCwdBuild('system'),
         expand: true
       }
     },
@@ -33,6 +39,12 @@ module.exports = function(grunt) {
         dest: assetCwdBuild('user'),
         expand: true
       },
+      system: {
+        cwd: assetCwdBuild('system'),
+        src: '**/*.js',
+        dest: assetCwdBuild('system'),
+        expand: true
+      },
       pi: {
         cwd: angularSrc,
         src: 'pi*.js',
@@ -43,10 +55,33 @@ module.exports = function(grunt) {
     },
     clean: {
       user: {
-        src: assetCwdBuild('user'),
+        src: assetCwdBuild('user')
+      },
+      system: {
+        src: assetCwdBuild('system')
       },
       pi: {
-        src: angularSrc + 'pi*.min.js',
+        src: angularSrc + 'pi*.min.js'
+      },
+      //clear module asset files
+      build: {
+        src: [assetCwdBuild('user'), assetCwdBuild('system')] 
+      }
+    },
+    cssmin: {
+      user: {
+        expand: true,
+        cwd: assetCwdBuild('user'),
+        src: '**/*.css',
+        dest: assetCwdBuild('user'),
+        ext: '.css'
+      },
+      system: {
+        expand: true,
+        cwd: assetCwdBuild('system'),
+        src: '**/*.css',
+        dest: assetCwdBuild('system'),
+        ext: '.css'
       }
     },
     snapshot: {
@@ -66,11 +101,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-snapshot');
  
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'copy', 'uglify']);
-  grunt.registerTask('clear', ['clean']);
+  grunt.registerTask('default', ['clean', 'copy', 'uglify', 'cssmin']);
+  grunt.registerTask('clear', ['clean:build']);
   grunt.registerTask('screenshot', ['snapshot']);
 };
