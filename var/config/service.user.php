@@ -22,7 +22,7 @@ return array(
             'field' => array(
                 'id',
                 'identity',
-                //'name',
+                'name',
                 'email',
                 'avatar',
                 'role'

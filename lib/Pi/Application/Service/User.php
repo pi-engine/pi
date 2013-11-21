@@ -620,10 +620,12 @@ class User extends AbstractService
             return $this;
         }
 
+        $ttl    = $this->getOption('options', 'persist', 'ttl');
         $fields = $this->getOption('options', 'persist', 'field');
-        if (!$fields) {
+        if (!$fields || !$ttl) {
             return $this;
         }
+
         // Fetch whole data set from user model
         if ($name instanceof UserModel) {
             $_SESSION['PI_USER']['field'] = array();
@@ -642,7 +644,7 @@ class User extends AbstractService
         } else {
             $_SESSION['PI_USER']['field'] = $name ? (array) $name : null;
         }
-        if ($ttl = $this->getOption('persist', 'ttl')) {
+        if ($ttl) {
             $_SESSION['PI_USER']['time'] = time() + $ttl;
         } elseif (isset($_SESSION['PI_USER']['time'])) {
             unset($_SESSION['PI_USER']['time']);
