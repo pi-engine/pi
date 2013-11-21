@@ -261,6 +261,11 @@
     display: none;
 }
 
+.message-return {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 /* model*/
 .message-modal-block {
     padding: 15px;
@@ -270,3 +275,4 @@
     color: #333;
     font-weight: bold;
 }
+
