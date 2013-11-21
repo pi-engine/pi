@@ -83,11 +83,10 @@ class Block
                 'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
-            $message = array();
             $url = Pi::service('url')->assemble('default', array_replace($params, array(
                 'module'        => 'system',
                 'controller'    => 'index',
-                'action'        => 'userbar',
+                'action'        => 'user',
             )));
             $result['callback'] = Pi::url($url, true);
         } elseif (!Pi::service('user')->hasIdentity()) {
@@ -96,7 +95,6 @@ class Block
                 'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
-            $message = array();
         } else {
             $name = Pi::service('user')->getUser()->get('name');
             $user = array(
@@ -104,14 +102,11 @@ class Block
                 'name'      => $name,
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
-            );
-            $message = array(
-                'url'       => Pi::service('user')->message()->getUrl(),
+                'message'   => Pi::service('user')->message()->getUrl(),
             );
         }
 
         $result['user'] = $user;
-        $result['message'] = $message;
 
         return $result;
     }

@@ -89,10 +89,9 @@ class IndexController extends ActionController
     }
 
     /**
-     * User bar
-     *
+     * Get user data
      */
-    public function userbarAction()
+    public function userAction()
     {
         $params = $this->params()->fromRoute();
         if (Pi::service('user')->hasIdentity()) {
@@ -104,20 +103,14 @@ class IndexController extends ActionController
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
                 'avatar'    => Pi::service('user')->avatar()->get($uid, 'mini'),
-            );
-            $message = array(
-                'url'       => Pi::service('user')->message()->getUrl(),
+                'message'   => Pi::service('user')->message()->getUrl(),
             );
         } else {
             $user = array(
                 'uid'       => 0,
             );
-            $message = array();
         }
 
-        return array(
-            'user'      => $user,
-            'message'   => $message,
-        );
+        return $user;
     }
 }
