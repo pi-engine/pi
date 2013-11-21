@@ -611,7 +611,9 @@ class User extends AbstractUseApi
                     }
                     $url = Pi::service('url')->assemble($route, $params);
                 } else {
-                    $url = $this->config('url', 'login');
+                    //$url = $this->config('url', 'login');
+                    $url = Pi::service('authentication')->getUrl('login', $redirect);
+                    $redirect = '';
                 }
                 break;
 
@@ -650,7 +652,9 @@ class User extends AbstractUseApi
                     }
                     $url = Pi::service('url')->assemble($route, $params);
                 } else {
-                    $url = $this->config('url', 'logout');
+                    //$url = $this->config('url', 'logout');
+                    $url = Pi::service('authentication')->getUrl('logout');
+                    $redirect = '';
                 }
                 break;
 
