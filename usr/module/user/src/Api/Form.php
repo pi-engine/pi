@@ -33,7 +33,13 @@ class Form extends AbstractApi
     {
         $element = $data['edit']['element'];
         $element['name'] = $data['name'];
-        $element['options'] = $data['edit']['options'] ? : array();
+        if (isset($data['edit']['options']) &&
+            $data['edit']['options']
+        ) {
+            $element['options'] = $data['edit']['options'];
+        } else {
+            $element['options'] = array();
+        }
         $element['options']['label'] = $data['title'];
         if (isset($data['edit']['attributes'])) {
             $element['attributes'] = $data['edit']['attributes'];
@@ -50,6 +56,7 @@ class Form extends AbstractApi
      */
     protected function canonizeFilter($data)
     {
+        $result = array();
         if (isset($data['edit']['filters']) ||
             isset($data['edit']['validators']) ||
             isset($data['edit']['required'])
