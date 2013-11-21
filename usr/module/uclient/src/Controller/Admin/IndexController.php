@@ -163,18 +163,18 @@ class IndexController extends ActionController
         );
 
         if (!$uids || !$type || !$role) {
-            $result['message'] = _a('Assign role failed: invalid parameters.');
+            $result['message'] = _a('Role assignment failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = _a('Assign role failed: invalid user ids.');
+            $result['message'] = _a('Role assignment failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = _a('Assign role failed: invalid operation.');
+            $result['message'] = _a('Role assignment failed: invalid operation.');
             return $result;
         }
 
@@ -183,7 +183,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::service('user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = _a('Assign role failed.');
+                    $result['message'] = _a('Role assignment failed.');
                     return $result;
                 }
             }
@@ -194,7 +194,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::service('user')->revokeRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = _a('Assign role failed.');
+                    $result['message'] = _a('Role assignment failed.');
                     return $result;
                 }
             }
@@ -206,7 +206,7 @@ class IndexController extends ActionController
         $data = $this->renderRole($users);
         $result['data'] = $data;
         $result['status']  = 1;
-        $result['message'] = _a('Assign role successfully.');
+        $result['message'] = _a('Role assignment succeeded.');
 
         return $result;
 

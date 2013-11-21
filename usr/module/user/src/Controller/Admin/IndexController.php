@@ -193,7 +193,7 @@ class IndexController extends ActionController
         ) {
 
             $result['message'] = _a(sprintf(
-                'Add user failed: username should between %s to %s',
+                'Add user failed: username should between %s to %s.',
                 $configs['uname_min'],
                 $configs['uname_max']
             ));
@@ -206,7 +206,7 @@ class IndexController extends ActionController
             strlen($name) < $configs['name_min']
         ) {
             $result['message'] = _a(sprintf(
-                'Add user failed: name should between %s to %s',
+                'Add user failed: name should between %s to %s.',
                 $configs['name_min'],
                 $configs['name_max']
             ));
@@ -407,7 +407,7 @@ class IndexController extends ActionController
 
         $uids = _post('ids', '');
         if (!$uids) {
-            $result['message'] = _a('Enable user failed: invalid uid');
+            $result['message'] = _a('Enable user failed: invalid uid.');
             return $result;
         }
 
@@ -423,7 +423,7 @@ class IndexController extends ActionController
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
         $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d enable user successfully'), $count);
+        $result['message'] = sprintf(_a('%d users enabled.'), $count);
 
         return $result;
 
@@ -443,7 +443,7 @@ class IndexController extends ActionController
         $uids = _post('ids', '');
 
         if (!$uids) {
-            $result['message'] = _a('Disable user failed: invalid uid');
+            $result['message'] = _a('Disable user failed: invalid uid.');
             return $result;
         }
 
@@ -522,13 +522,13 @@ class IndexController extends ActionController
         );
 
         if (!$uids) {
-            $result['message'] = _a('Activate user failed: invalid uid');
+            $result['message'] = _a('Activate user failed: invalid uid.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (empty($uids)) {
-            $result['message'] = _a('Activate user failed: invalid uid');
+            $result['message'] = _a('Activate user failed: invalid uid.');
             return $result;
         }
 
@@ -543,7 +543,7 @@ class IndexController extends ActionController
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
         $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d activated user successfully'), $count);
+        $result['message'] = sprintf(_a('%d users activated.'), $count);
 
         return $result;
 
@@ -573,18 +573,18 @@ class IndexController extends ActionController
         );
 
         if (!$uids || !$type || !$role) {
-            $result['message'] = _a('Assign role failed: invalid parameters.');
+            $result['message'] = _a('Role assignment failed: invalid parameters.');
             return $result;
         }
 
         $uids = array_unique(explode(',', $uids));
         if (!$uids) {
-            $result['message'] = _a('Assign role failed: invalid user ids.');
+            $result['message'] = _a('Role assignment failed: invalid user ids.');
             return $result;
         }
 
         if (!in_array($type, array('add', 'remove'))) {
-            $result['message'] = _a('Assign role failed: invalid operation.');
+            $result['message'] = _a('Role assignment failed: invalid operation.');
             return $result;
         }
 
@@ -593,7 +593,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = _a('Assign role failed.');
+                    $result['message'] = _a('Role assignment failed.');
                     return $result;
                 }
             }
@@ -604,7 +604,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->revokeRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = _a('Assign role failed');
+                    $result['message'] = _a('Role assignment failed');
                     return $result;
                 }
             }
@@ -617,7 +617,7 @@ class IndexController extends ActionController
         $data = $this->renderRole($users);
         $result['data'] = $data;
         $result['status']  = 1;
-        $result['message'] = _a('Assign role successfully');
+        $result['message'] = _a('Role assignment succeeded.');
 
         return $result;
 
