@@ -206,7 +206,7 @@
     if (config.source == 'select') {
       repositoryRadios.find('input').filter('[value=' + config.filename + ']').attr('checked', 'checked');
     } else {
-      repositoryRadios.eq(0).attr('checked', 'checked');
+      repositoryRadios.find('input').eq(0).attr('checked', 'checked');
     }
     //ie fixed
     if (config.source != 'upload') {
