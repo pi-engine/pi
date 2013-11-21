@@ -222,9 +222,12 @@ class RoleController extends ActionController
             return;
         }
         $row = $model->createRow(array(
-            'id'            => $uid,
-            'identity'      => $user->get('identity'),
-            'credential'    => md5(uniqid(mt_rand(), true)),
+            'id'             => $uid,
+            'identity'       => $user->get('identity'),
+            'active'         => 1,
+            'time_activated' => time(),
+            'time_created'   => time(),
+            'credential'     => md5(uniqid(mt_rand(), true)),
         ));
         $row->prepare();
         $row->save();

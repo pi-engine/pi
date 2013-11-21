@@ -400,9 +400,12 @@ class IndexController extends ActionController
             $model = Pi::model('user_account');
             foreach ($users as $uid => $user) {
                 $row = $model->createRow(array(
-                    'id'            => $user['id'],
-                    'identity'      => $user['identity'],
-                    'credential'    => md5(uniqid(mt_rand(), true)),
+                    'id'             => $uid,
+            		'identity'       => $user->get('identity'),
+                    'active'         => 1,
+                    'time_activated' => time(),
+                    'time_created'   => time(),
+                    'credential'     => md5(uniqid(mt_rand(), true)),
                 ));
                 $row->prepare();
                 $row->save();
