@@ -36,7 +36,7 @@ class Postcode extends AbstractValidator
     public function isValid($value)
     {
         if (is_numeric($value) &&  strlen($value) == 6) {
-            return ture;
+            return true;
         } else {
             $this->error(static::POSTCODE_INVALID);
             return false;
