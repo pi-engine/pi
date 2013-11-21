@@ -96,9 +96,8 @@ class Comment extends AbstractService
     })
     .done(function (data) {
         if (data.content) {
-            var el = document.getElementById('pi-comment-lead');
-            el.style.display = "block";
-            el.innerHTML = data.content;
+            var el = $('#pi-comment-lead');
+            el.show().html(data.content);
         }
     });
 </script>
