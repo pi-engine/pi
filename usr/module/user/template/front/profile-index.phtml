@@ -44,7 +44,7 @@
         </div>
         <?php } else { ?>
         <a href="<?php echo $addUrl; ?>" class="well text-center" style="display: block;">
-            <?php _e('Add'); echo ' ' . $group['title']; ?>
+            <?php echo sprintf(__('Add %s'), $group['title']); ?>
         </a>
         <?php } ?>
     </div>

@@ -3,7 +3,7 @@
     $this->css($this->assetModule('script/front.css'));
     $this->jQuery();
 ?>
-<div class="messages" id="message-js">
+<div class="messages messages-min-body" id="message-js">
     <?php
         if (!empty($errMessage)) {
             $class = ' alert-error message-js-error';

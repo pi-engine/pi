@@ -107,6 +107,11 @@ class CategoryController extends ActionController
             }
         }
 
+        // Clear cache
+        if ($status > 0) {
+            Pi::registry('category', 'comment')->flush();
+        }
+
         if (!$return) {
             $this->jump(array('action' => 'index'), $message);
         } else {

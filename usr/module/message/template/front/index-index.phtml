@@ -22,7 +22,7 @@
 <!--        </button>-->
 <!--    </li>-->
 </ul>
-<div class="messages" id="message-js">
+<div class="messages messages-min-body" id="message-js">
     <?php if (!empty($messages)) { ?>
     <?php foreach ($messages as $message) { ?>
     <div class="media message-item<?php if(!$message['is_read']) { echo ' message-item-read'; } ?>">

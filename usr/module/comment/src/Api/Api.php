@@ -260,14 +260,14 @@ class Api extends AbstractApi
         } else {
             $params = (array) $routeMatch;
         }
+        $limit = Pi::config()->module('leading_limit', 'comment') ?: 5;
 
+        // Look up root against route data
+        $root           = array();
         $module         = $params['module'];
         $controller     = $params['controller'];
         $action         = $params['action'];
-        $categoryList   = Pi::registry('category', 'comment')->read($module);
-        $limit          = Pi::config()->module('leading_limit', 'comment')
-            ?: 5;
-
+        $categoryList   = Pi::registry('category', 'comment')->read($module, '', null);
         if (isset($categoryList['route'][$controller][$action])) {
             $lookupList = $categoryList['route'][$controller][$action];
         } elseif (isset($categoryList['locator'])) {
@@ -276,13 +276,13 @@ class Api extends AbstractApi
             return false;
         }
 
-        //vd($routeMatch);
-        // Look up root against route data
-        $lookup = function ($data) use ($params) {
+        $active = true;
+        $lookup = function ($data) use ($params, &$active) {
             // Look up via locator callback
             if (!empty($data['locator'])) {
                 $locator    = new $data['locator']($params['module']);
                 $item       = $locator->locate($params);
+                $active     = $data['active'];
 
                 return $item;
             }
@@ -299,15 +299,14 @@ class Api extends AbstractApi
                     }
                 }
             }
+            $active = $data['active'];
 
             return $item;
         };
 
-        $root = array();
         // Look up against controller-action
         foreach ($lookupList as $key => $data) {
-            //d($data);
-            $item = $lookup($data);
+            $item = $lookup($data, $active);
             if ($item) {
                 $root = array(
                     'module'    => $module,
@@ -317,7 +316,7 @@ class Api extends AbstractApi
                 break;
             }
         }
-        //d($root);
+
         if (!$root) {
             return false;
         }
@@ -326,7 +325,10 @@ class Api extends AbstractApi
         Pi::service('i18n')->load('module/comment:default');
 
         $rootData = $this->getRoot($root);
-
+        if (!$active) {
+            $root['active'] = 0;
+            $rootData['active'] = 0;
+        }
         // Check against cache
         if ($rootData['id']) {
             $result = Pi::service('comment')->loadCache($rootData['id']);
@@ -336,12 +338,13 @@ class Api extends AbstractApi
                         sprintf('Comment root %d is cached.', $rootData['id'])
                     );
                 }
-
+                if (!$active) {
+                    $result['root']['active'] = 0;
+                }
                 return $result;
             }
         }
 
-        //vd($rootData['id']);
         $result = array(
             'root'          => $rootData ?: $root,
             'count'         => 0,
@@ -749,24 +752,40 @@ class Api extends AbstractApi
      */
     public function addPost(array $data)
     {
-        //vd($data);
         $id = isset($data['id']) ? (int) $data['id'] : 0;
         if (isset($data['id'])) {
             unset($data['id']);
         }
-        //vd($id);
+
         $postData = $this->canonizePost($data);
         if (!$id) {
+            // Add root if not exist
             if (empty($postData['root'])) {
                 $rootId = $this->addRoot($data);
                 if (!$rootId) {
                     return false;
                 }
                 $postData['root'] = $rootId;
-            } elseif (empty($postData['module'])) {
-                $row = Pi::model('root', 'comment')->find($postData['root']);
-                $postData['module'] = $row['module'];
+
+            // Verify root
+            } else {
+                $root = Pi::model('root', 'comment')->find($postData['root']);
+                if (!$root) {
+                    return false;
+                }
+                $category = Pi::registry('category', 'comment')->read(
+                    $root['module'],
+                    $root['category']
+                );
+                // Exit if category is disabled or not exist
+                if (!$category) {
+                    return false;
+                }
+                if (empty($postData['module'])) {
+                    $postData['module'] = $root['module'];
+                }
             }
+
             if (!isset($postData['time'])) {
                 $postData['time'] = time();
             }
@@ -810,11 +829,16 @@ class Api extends AbstractApi
         if (isset($data['id'])) {
             unset($data['id']);
         }
+        $category = Pi::registry('category', 'comment')->read(
+            $data['module'],
+            $data['category']
+        );
+        // Exit if category is disabled or not exist
+        if (!$category) {
+            return false;
+        }
+
         if (!isset($data['author'])) {
-            $category = Pi::registry('category', 'comment')->read(
-                $data['module'],
-                $data['category']
-            );
             $callback = $category['callback'];
             $handler = new $callback($data['module']);
             $source = $handler->get($data['item']);
