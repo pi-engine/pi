@@ -48,6 +48,17 @@ $post = $comment['post'];
                 <?php echo $post['content']; ?>
             </div>
             <div class="pi-comment-operation">
+            <?php 
+                foreach ($post['operations'] as $operation => $optData) {
+            ?>
+                <span class="operation muted">
+                    <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
+                        <?php echo _escape($optData['title']); ?>
+                    </a>
+                </span>
+            <?php
+                }
+            ?>
             </div>
         <?php
             } else {
