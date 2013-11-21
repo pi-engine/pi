@@ -418,15 +418,17 @@ class ListController extends ActionController
         $count = Pi::api('comment')->getTargetCount(array(
             'active'    => $active,
         ));
-        
-        $model = $this->getModel('post');
-        $select = $model->select()
-            ->where(array('root' => array_keys($targets)))
-            ->columns(array('root', 'count' => new Expression('count(*)')))
-            ->group(array('root'));
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $targets[$row->root]['count'] = $row->count;
+
+        if ($targets) {
+            $model = $this->getModel('post');
+            $select = $model->select()
+                ->where(array('root' => array_keys($targets)))
+                ->columns(array('root', 'count' => new Expression('count(*)')))
+                ->group(array('root'));
+            $rowset = $model->selectWith($select);
+            foreach ($rowset as $row) {
+                $targets[$row->root]['count'] = $row->count;
+            }
         }
 
         //$params = (null === $active) ? array() : array('active' => $active);
@@ -451,6 +453,7 @@ class ListController extends ActionController
         } else {
             $title = __('Articles with comments');
         }
+
         $this->view()->assign('comment', array(
             'title'     => $title,
             'count'     => $count,
