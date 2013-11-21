@@ -30,6 +30,7 @@ class CategoryController extends ActionController
             $category = $row['name'];
             $categories[$row['module']][$category] = array(
                 'title'     => $row['title'],
+                'active'    => $row['active'],
                 'status'    => $row['active'] ? _a('Active') : _a('Disabled'),
                 'url'       => $this->url('', array(
                     'controller'    => 'list',

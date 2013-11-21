@@ -16,10 +16,10 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title']; ?></td>
         <td>
             <div class="btn-group">
-                <a class="btn<?php echo 'active' == strtolower($category['status']) ? ' btn-success' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
+                <a class="btn<?php echo $category['active'] ? ' btn-success' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
                     <?php echo _a('Yes'); ?>
                 </a>
-                <a class="btn<?php echo 'disabled' == strtolower($category['status']) ? ' btn-danger' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
+                <a class="btn<?php echo !$category['active'] ? ' btn-danger' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
                     <?php echo _a('No'); ?>
                 </a>
             </div>
