@@ -22,15 +22,17 @@ use Zend\Form\Element\DateSelect as ZendDateSelect;
  */
 class DateSelect extends ZendDateSelect
 {
+	protected $renderDelimiters = false;
     /**
      * {@inheritDoc}
      */
     public function setValue($value)
     {
+         /*
         if (class_exists('\\DateTime')) {
             return parent::setValue($value);
         }
-
+        */
         if (is_numeric($value)) {
             $value = date('Y-m-d', (int) $value);
         }
