@@ -495,7 +495,13 @@ class RegisterController extends ActionController
 
         $profileCompleteFormConfig = $this->config('profile_complete_form');
         if (!$profileCompleteFormConfig) {
-            $this->jumpTo404(__('An error occur'));
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
         }
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
