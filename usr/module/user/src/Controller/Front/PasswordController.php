@@ -175,6 +175,16 @@ class PasswordController extends ActionController
      */
     public function processAction()
     {
+        if (Pi::user()->getId()) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
+
         $result = array(
             'status'  => 0,
             'message' => '',

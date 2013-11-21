@@ -33,10 +33,13 @@ class RegisterController extends ActionController
     public function indexAction()
     {
         if (Pi::user()->getId()) {
-            $this->redirect()->toRoute(
-                'home'
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
             );
-            return;
         }
 
         $result = array(
@@ -142,13 +145,6 @@ class RegisterController extends ActionController
 
     public function completeAction()
     {
-        if (Pi::user()->getId()) {
-            $this->redirect()->toRoute(
-                'home'
-            );
-            return;
-        }
-
         $registerCompleteFormConfig = $this->config('register_complete_form');
         if (!$registerCompleteFormConfig ||
             !$this->request->isPost()
@@ -247,6 +243,16 @@ class RegisterController extends ActionController
      */
     public function activateAction()
     {
+        if (Pi::user()->getId()) {
+            return $this->redirect(
+                '',
+                array(
+                    'controller'    => 'profile',
+                    'action'        => 'index'
+                )
+            );
+        }
+
         $result = array(
             'status'  => 0,
             'message' => '',
