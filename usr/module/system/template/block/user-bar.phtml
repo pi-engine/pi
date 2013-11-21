@@ -41,22 +41,19 @@
         <a id="member-logout" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
     </div>
     <script>
-        $.getJSON("<?php echo $block['callback']; ?>", function (user) {
-            //alert(user.uid);
-            var ela = document.getElementById('user-bar-anonymous');
-            var elm = document.getElementById('user-bar-member');
+        $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
+            var ela = $('#user-bar-anonymous');
+            var elm = $('#user-bar-member');
 
             if (user.uid > 0) {
-                ela.style.display = 'none';
-                elm.style.display = 'block';
-                var elp = document.getElementById('member-profile');
-                elp.setAttribute('href', user.profile);
-                elp.innerHTML = user.name;
-                document.getElementById('member-avatar').innerHTML = user.avatar;
-                document.getElementById('member-message').setAttribute('href', user.message);
+                ela.hide();
+                elm.show();
+                $('#member-avatar').html(user.avatar);
+                $('#member-message').attr('href', user.message);
+                $('#member-profile').attr('href', user.profile).html(user.name);
             } else {
-                ela.style.display = 'block';
-                elm.style.display = 'none';
+                ela.show();
+                elm.hide();
             }
         });
     </script>
