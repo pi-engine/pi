@@ -105,7 +105,10 @@ class PostController extends ActionController
             }
             */
             $post['operations'] = $operations;
+        } else {
+            $this->jump(array('route' => 'home'), __('Comment post not found.'));
         }
+
         $title = __('Comment post');
         $this->view()->assign('comment', array(
             'title'     => $title,
