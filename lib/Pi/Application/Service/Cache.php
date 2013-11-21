@@ -308,4 +308,87 @@ class Cache extends AbstractService
 
         return $data;
     }
+
+    /**
+     * Flush all cached contents
+     *
+     * Be careful
+     *
+     * @param string $type
+     * @param string $item
+     *
+     * @return void
+     */
+    public function flush($type = '', $item = '')
+    {
+        $type = $type ?: 'all';
+
+        switch ($type) {
+            case 'apc':
+            case 'all':
+                if (function_exists('apc_clear_cache')) {
+                    apc_clear_cache();
+                }
+                break;
+
+            case 'comment':
+            case 'all':
+                Pi::service('cache')->clearByNamespace('comment');
+                break;
+
+            case 'file':
+            case 'all':
+                $path = Pi::path('cache');
+                $iterator = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($path),
+                    \RecursiveIteratorIterator::CHILD_FIRST
+                );
+                foreach ($iterator as $object) {
+                    $filename = $object->getFilename();
+                    if ($object->isFile() && 'index.html' !== $filename) {
+                        unlink($object->getPathname());
+                    } elseif ($object->isDir() && '.' != $filename[0]) {
+                        rmdir($object->getPathname());
+                    }
+                }
+                break;
+
+            case 'application':
+            case 'all':
+                Pi::service('cache')->clearByNamespace();
+            case 'module':
+                $modules = Pi::service('module')->meta();
+                foreach (array_keys($modules) as $module) {
+                    Pi::service('cache')->clearByNamespace($module);
+                }
+                break;
+
+            case 'page':
+            case 'all':
+                Pi::service('render_cache')->flushCache($item ?: null);
+                break;
+
+            case 'persist':
+            case 'all':
+                Pi::persist()->flush();
+                break;
+
+            case 'registry':
+            case 'all':
+                if (!empty($item)) {
+                    Pi::registry($item)->flush();
+                } else {
+                    Pi::service('registry')->flush();
+                }
+                break;
+
+            case 'stat':
+            case 'all':
+                clearstatcache(true);
+                break;
+
+            default:
+                break;
+        }
+    }
 }
