@@ -36,9 +36,9 @@ class CacheController extends ActionController
         $cacheList = array(
             'stat'          => _a('File status cache'),
             'apc'           => _a('APC file cache'),
-            'folder'        => _a('System cache file folder'),
+            'folder'        => _a('System cache files'),
             'persist'       => _a('System persistent data'),
-            'application'   => _a('Application cache'),
+            'module'        => _a('Module cache'),
             'comment'       => _a('Comment cache'),
         );
         if (!function_exists('apc_clear_cache')) {
@@ -104,6 +104,16 @@ class CacheController extends ActionController
         $type = $this->params('type');
         $item = $this->params('item');
 
+        try {
+            Pi::service('cache')->flush($type, $item);
+            $status = 1;
+            $message = _a('Cache is flushed successfully.');
+        } catch (\Exception $e) {
+            $status = 0;
+            $message = sprintf(_a('Cache flush failed: %s'), $e->getMessage());
+        }
+
+        /*
         switch (strtolower($type)) {
             case 'stat':
                 clearstatcache(true);
@@ -144,10 +154,11 @@ class CacheController extends ActionController
             default:
                 break;
         }
+        */
 
         return array(
-            'status'    => 1,
-            'message'   => _a('Cache is flushed successfully.'),
+            'status'    => $status,
+            'message'   => $message,
         );
     }
 

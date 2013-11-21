@@ -49,9 +49,6 @@ class ConfigController extends ComponentController
 
         $updateLanguage = false;
         if ($module) {
-            //$category = $this->params('category', '');
-            //Pi::service('i18n')->load('module/' . $module . ':admin');
-
             $model = Pi::model('config');
             $select = $model->select()
                 ->where(array('module' => $module, 'visible' => 1))
@@ -142,7 +139,8 @@ class ConfigController extends ComponentController
         }
 
         if ($updateLanguage) {
-            Pi::registry('navigation')->flush();
+            //Pi::registry('navigation')->flush();
+            Pi::service('cache')->flush();
         }
 
         $this->view()->assign('name', $module);
