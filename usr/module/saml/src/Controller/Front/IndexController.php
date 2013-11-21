@@ -122,7 +122,7 @@ class IndexController extends ActionController
     public function getdataAction()
     {
         $data = Pi::service('authentication')->getData();
-        var_dump($data);
+        echo json_encode($data);
         exit;
     }
 }
