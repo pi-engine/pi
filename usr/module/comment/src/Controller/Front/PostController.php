@@ -35,7 +35,7 @@ class PostController extends ActionController
         $post           = Pi::api('comment')->getPost($id);
         $target         = array();
 
-        if ($post) {
+        if ($post && $post['active']) {
             $post['content'] = Pi::api('comment')->renderPost($post);
             $target = Pi::api('comment')->getTarget($post['root']);
             $user = Pi::service('user')->get($post['uid'], array('name'));
