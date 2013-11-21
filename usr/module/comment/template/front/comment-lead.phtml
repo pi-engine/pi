@@ -1,30 +1,15 @@
 <?php
-if (isset($root['active']) && empty($root['active'])) :
-    echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
-    return;
-else:
-if (!empty($root['id'])) {
-    $formData = array(
-        'root' => $root['id']
-    );
-} else {
-    $formData = array(
-        'module'    => $root['module'],
-        'category'  => $root['category'],
-        'item'      => $root['item'],
-    );
-}
-$formData['redirect'] = rawurlencode($uri);
-$form = Pi::service('comment')->getForm($formData);
-endif;
-
 $this->css($this->assetModule('css/front.css', 'comment'));
 ?>
 <div class="comments-panel">
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $count ?: 0; ?>)</h4>
     </div>
+
+
     <?php include '_post-form.phtml'; ?>
+
+
     <?php if (count($posts)) { ?>
     <?php foreach ($posts as $item) { ?>
     <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">

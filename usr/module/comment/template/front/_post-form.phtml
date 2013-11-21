@@ -1,6 +1,26 @@
 <?php
-$uid = Pi::user()->getId(); 
+if (isset($root['active']) && empty($root['active'])) {
+    echo '<div class="alert">' . __('Comment is disabled.') . '</div>';
+    return;
+}
+
+$uid = Pi::user()->getId();
+
+if (!empty($root['id'])) {
+    $formData = array(
+        'root' => $root['id']
+    );
+} else {
+    $formData = array(
+        'module'    => $root['module'],
+        'category'  => $root['category'],
+        'item'      => $root['item'],
+    );
+}
+$formData['redirect'] = rawurlencode($uri);
+$form = Pi::service('comment')->getForm($formData);
 ?>
+
 <div class="media comment-item">
     <?php if($uid) { ?>
     <a class="pull-left" href="<?php echo Pi::service('user')->getUrl('profile', $uid); ?>" target="_blank">
@@ -8,14 +28,11 @@ $uid = Pi::user()->getId();
     </a>
     <div class="media-body">
         <?php echo $this->form()->openTag($form); ?>
-        <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="input-block-level"
-                  rows="3"></textarea>
+        <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="input-block-level" rows="3"></textarea>
         <?php
-        foreach (array(
-                        'id', 'root', 'reply', 'module', 'category',
-                        'item', 'redirect', 'markup') as $hiddenElement) {
-                        echo $this->formElement($form->get($hiddenElement));
-                    }
+        foreach (array( 'id', 'root', 'reply', 'module', 'category', 'item', 'redirect', 'markup') as $hiddenElement) {
+            echo $this->formElement($form->get($hiddenElement));
+        }
         ?>
         <div class="pull-right">
             <button class="btn btn-primary">
