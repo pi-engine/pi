@@ -45,7 +45,7 @@ class Checkbox extends AbstractHelper
     public function render(ElementInterface $element)
     {
         $this->view->plugin('js')->load(
-            Pi::url('static/custom/js/eefocus-linkage.js')
+            Pi::url('static/custom/js/eefocus-linkage.min.js')
         );
         $id = md5(uniqid());
 
