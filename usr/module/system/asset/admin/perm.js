@@ -68,7 +68,12 @@
 
     $scope.assignAction = function(role, item) {
       var name = role.name;
-      var action = item.roles[name] ? 'revoke' : 'grant';
+      var action;
+      angular.forEach(item.roles, function(role) {
+        if (role.name == name) {
+         action = role.value ? 'revoke' : 'grant';
+        }
+      });
       server.post(name, item.resource, item.section, action).success(function(data) {
         if (!data.status) return;
         role.value = !role.value;
