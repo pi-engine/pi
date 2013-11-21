@@ -546,15 +546,17 @@ EOT;
         $result = true;
         $uid = $uid ?: Pi::service('user')->getId();
 
+        $message = __('Posted a new comment.');
+        $link = Pi::url(Pi::api('comment')->getUrl('post', array(
+            'post'      => $id,
+        )), true);
         $params = array(
             'uid'       => $uid,
-            'message'   => __('Posted a new comment.'),
+            'message'   => $message,
             'timeline'  => 'new_comment',
             'time'      => time(),
             'module'    => 'comment',
-            'link'      => Pi::url(Pi::api('comment')->getUrl('post', array(
-                        'post'      => $id,
-            )), true),
+            'link'      => $link,
         );
         Pi::service('user')->timeline()->add($params);
 

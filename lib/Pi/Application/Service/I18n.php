@@ -967,16 +967,14 @@ namespace
     ) {
         $value = intval(null === $value ? time() : $value);
         // Formatted using date() in case Intl is not available
-        if (!_intl()) {
-            if (is_array($locale)) {
-                $format = isset($locale['format'])
-                    ? $locale['format'] : $format;
-            }
-            if (!$format) {
-                $format = Pi::config('date_format', 'intl');
-            }
-            $result = date($format, $value);
+        if (is_array($locale)) {
+            extract($locale);
+        }
 
+        $format = $format ?: Pi::config('date_format', 'intl');
+
+        if (!_intl() || $format) {
+            $result = date($format, $value);
             return $result;
         }
 
