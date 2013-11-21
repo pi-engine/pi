@@ -511,8 +511,8 @@ class ApiController extends ActionController
                 'department'    => 'department',
                 'title'         => 'position_title',
                 'position'      => 'position',
-                'sector'        => 'industry',
-                'industry'      => 'sphere',
+                'sector'        => 'sphere',
+                'industry'      => 'industry',
             ),
             'interest'  => array(
 
