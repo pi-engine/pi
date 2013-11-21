@@ -32,7 +32,7 @@ use Pi;
  *
  * @author Xingyu Ji <xingyu@eefocus.com>
  */
-class IndexController extends AbstractController
+class IndexController extends ActionController
 {
     /**
      * List private messages

@@ -26,7 +26,7 @@ use Pi;
  *
  * @author Xingyu Ji <xingyu@eefocus.com>
  */
-class NotifyController extends AbstractController
+class NotifyController extends ActionController
 {
     /**
      * Render new message count of tab navigation
