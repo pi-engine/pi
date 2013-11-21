@@ -110,7 +110,7 @@ class HomeController extends ActionController
                     'controller' => 'profile',
                     'action'     => 'index'
                 ),
-                __('User was not found'),
+                __('User was not found.'),
                 3
             );
         }
