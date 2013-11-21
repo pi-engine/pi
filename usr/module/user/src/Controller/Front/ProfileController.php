@@ -87,7 +87,7 @@ class ProfileController extends ActionController
                     'controller' => 'profile',
                     'action'     => 'index'
                 ),
-                __('User not found'),
+                __('User was not found'),
                 3
             );
         }
