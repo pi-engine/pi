@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-20 10:00+0800\n"
-"PO-Revision-Date: 2013-11-20 10:13+0800\n"
+"POT-Creation-Date: 2013-11-21 23:21+0800\n"
+"PO-Revision-Date: 2013-11-22 04:28+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,919 +11,934 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: Z:\\pi\\usr\\module\\user\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\user\n"
 
-#: Z:\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Nav.php:43
+msgid "Profile"
+msgstr "资料"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Nav.php:59
+msgid "Feed"
+msgstr "动态"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Relation.php:53
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PrivacyController.php:76
+msgid "Public"
+msgstr "所有人"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Relation.php:57
+msgid "Member"
+msgstr "登录用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Relation.php:61
+msgid "Follower"
+msgstr "关注我的人"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Relation.php:65
+msgid "Following"
+msgstr "我关注的人"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Api/Relation.php:69
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PrivacyController.php:80
+msgid "Owner"
+msgstr "仅自己"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Api/TimelineController.php:46
 msgid "Timeline post failed."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Api/TimelineController.php:89
 msgid "Timeline added successfully."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:131
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AccountController.php:133
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:197
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:206
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:213
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:222
+msgid "Verify link invalid"
+msgstr "验证链接无效"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AccountController.php:206
+msgid "Reset email successfully"
+msgstr "重设邮箱成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AccountController.php:220
+msgid "Incorrect password"
+msgstr "密码错误"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AccountController.php:242
+msgid "Correct password"
+msgstr "密码正确"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ActivityController.php:41
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ActivityController.php:75
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/HomeController.php:113
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:90
+msgid "User was not found."
+msgstr "未找到用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ActivityController.php:57
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:174
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:277
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:331
+msgid "An error occurred."
+msgstr "发生错误"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:131
 msgid "Allowed extensions:"
 msgstr "支持格式："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:136
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:136
 msgid "Max files ize:"
 msgstr "最大文件尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:142
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:142
 msgid "Max image size:"
 msgstr "最大图片尺寸："
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:217
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:217
 msgid "Avatar Settings"
 msgstr "头像设置"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:247
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:246
 msgid "Invalid token!"
 msgstr "无效token"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:345
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:347
 msgid "Invalid email for gravatar."
 msgstr "无效Gravatar邮箱"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:356
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:358
 msgid "Successful"
 msgstr "成功 "
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:375
 msgid "No image selected!"
 msgstr "没有选中图片"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:389
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:391
 msgid "Successful."
 msgstr "成功 "
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:407
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:409
 #, php-format
 msgid "Invalid source %s."
 msgstr "无效来源 %s。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:418
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:420
 msgid "Not image selected."
 msgstr "没有选中图片。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:427
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:429
 msgid "Image is missing."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:433
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:435
 msgid "Image does not exist."
 msgstr "图片不存在。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:443
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:445
 msgid "Image width or height is missing."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:470
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:472
 msgid "Email address is missing."
 msgstr "邮箱地址丢失"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:479
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:481
 msgid "Invalid image set name."
 msgstr "无效图片名"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:511
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:513
 msgid "Avatar set successfully."
 msgstr "头像设置成功。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:526
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:528
 msgid "Image is not removed."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/AvatarController.php:541
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/AvatarController.php:543
 msgid "Image removed successfully."
 msgstr "图片已删除。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/HomeController.php:105
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:83
-msgid "Invalid user ID!"
-msgstr "无效用户ID"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:196
-msgid "Update successfully"
-msgstr "更新成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:198
-msgid "Data saved failed"
-msgstr "数据保存失败"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:438
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:461
-msgid "Delete failed."
-msgstr "删除失败。"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/ProfileController.php:457
-msgid "Cannot delete the last one."
-msgstr "最后一条不能删除"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:133
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:187
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:203
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:212
-msgid "Verify link invalid"
-msgstr "验证链接无效"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:206
-msgid "Reset email successfully"
-msgstr "重设邮箱成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:220
-msgid "Incorrect password"
-msgstr "密码错误"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/AccountController.php:242
-msgid "Correct password"
-msgstr "密码正确"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:259
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:270
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:278
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:287
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:299
-msgid "Activate link is invalid"
-msgstr "激活链接已失效"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:311
-msgid "Activate successfully"
-msgstr "激活成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:327
-msgid "Resend activate mail failed"
-msgstr "重新发送激活邮件失败"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:387
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
-msgid "Resend activate mail successfully"
-msgstr "重新发送激活邮件成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:410
-msgid "Email not exist"
-msgstr "邮箱不存在"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:415
-msgid "Account has activated"
-msgstr "账号已激活"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
-msgid "Input error"
-msgstr "输入错误"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/RegisterController.php:492
-msgid "An error occur"
-msgstr "发生错误"
-
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:34
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:92
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:34
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:92
 msgid "User login"
 msgstr "用户登录"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:76
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:76
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
 "                            please wait for %d minutes to try again."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:85
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:85
 #, php-format
 msgid "You have %d times to try."
 msgstr "还有%d次尝试机会"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:111
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:111
 msgid "You logged out successfully. Now go back to homepage."
 msgstr "成功退出"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:123
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:123
 msgid "Invalid request."
 msgstr "无效请求。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:133
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:133
 msgid "Invalid input, please try again."
 msgstr "无效输入，请重试。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:152
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:152
 msgid "You have tried too many times. Please try later."
 msgstr "尝试次数过多，请稍后重试"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:171
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:171
 msgid "Invalid credentials provided, please try again."
 msgstr "密码不正确，请重试。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/LoginController.php:242
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/LoginController.php:242
 msgid "You have logged in successfully."
 msgstr "您已经成功登录。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:54
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:54
 msgid "Reset password failed"
 msgstr "重置密码失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:82
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:235
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:82
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:245
 msgid "Reset password successfully"
 msgstr "重置密码成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:84
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:84
 msgid "Input password error"
 msgstr "密码输入错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:113
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:113
 msgid "Find password failed"
 msgstr "找回密码失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PasswordController.php:162
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PasswordController.php:162
 msgid "Send email successfully. check email and reset password"
 msgstr "发送找回密码邮件成功。请查收邮件修改密码"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:63
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/PrivacyController.php:63
 msgid "Set privacy successfully"
 msgstr "隐私设置成功。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:76
-#: Z:\pi\usr\module\user/src/Api/Relation.php:53
-msgid "Public"
-msgstr "所有人"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:209
+msgid "Update successfully"
+msgstr "更新成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:77
-#: Z:\pi\usr\module\user/src/Api/Relation.php:57
-msgid "Member"
-msgstr "登录用户"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:211
+msgid "Data saved failed"
+msgstr "数据保存失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
-#: Z:\pi\usr\module\user/src/Api/Relation.php:61
-msgid "Follower"
-msgstr "关注我的人"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:466
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:489
+msgid "Delete failed."
+msgstr "删除失败。"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:79
-#: Z:\pi\usr\module\user/src/Api/Relation.php:65
-msgid "Following"
-msgstr "我关注的人"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/ProfileController.php:485
+msgid "Cannot delete the last one."
+msgstr "最后一条不能删除"
 
-#: Z:\pi\usr\module\user/src/Controller/Front/PrivacyController.php:80
-#: Z:\pi\usr\module\user/src/Api/Relation.php:69
-msgid "Owner"
-msgstr "仅自己"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:265
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:276
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:284
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:293
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:305
+msgid "Activate link is invalid"
+msgstr "激活链接已失效"
 
-#: Z:\pi\usr\module\user/src/Api/Nav.php:43
-msgid "Profile"
-msgstr "资料"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:317
+msgid "Activate successfully"
+msgstr "激活成功"
 
-#: Z:\pi\usr\module\user/src/Api/Nav.php:59
-msgid "Feed"
-msgstr "动态"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:333
+msgid "Resend activate mail failed"
+msgstr "重新发送激活邮件失败"
 
-#: Z:\pi\usr\module\user/src/Validator/Username.php:45
-#: Z:\pi\usr\module\user/src/Validator/Name.php:44
-msgid "Invalid user name: %formatHint%"
-msgstr "用户名不正确：%formatHint%"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:393
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:471
+msgid "Resend activate mail successfully"
+msgstr "重新发送激活邮件成功"
 
-#: Z:\pi\usr\module\user/src/Validator/Username.php:46
-#: Z:\pi\usr\module\user/src/Validator/Name.php:45
-msgid "User name is reserved"
-msgstr "用户名已被占用"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:416
+msgid "Email not exist"
+msgstr "邮箱不存在"
 
-#: Z:\pi\usr\module\user/src/Validator/Username.php:47
-msgid "User name is already taken"
-msgstr "用户名已被占用"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:421
+msgid "Account has activated"
+msgstr "账号已激活"
 
-#: Z:\pi\usr\module\user/src/Validator/Username.php:48
-#: Z:\pi\usr\module\user/src/Validator/Name.php:46
-msgid "User name is less than %min% characters long"
-msgstr "用户名不得少于%min%个字符"
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Front/RegisterController.php:474
+msgid "Input error"
+msgstr "输入错误"
 
-#: Z:\pi\usr\module\user/src/Validator/Username.php:49
-#: Z:\pi\usr\module\user/src/Validator/Name.php:47
-msgid "User name is more than %max% characters long"
-msgstr "用户名不得多于%max%个字符"
-
-#: Z:\pi\usr\module\user/src/Validator/Username.php:53
-#: Z:\pi\usr\module\user/src/Validator/Name.php:51
-msgid "Only alphabetic and digits are allowed with leading alphabetic"
-msgstr "字母开头，支持字母和数字"
-
-#: Z:\pi\usr\module\user/src/Validator/Username.php:54
-#: Z:\pi\usr\module\user/src/Validator/Name.php:52
-msgid "Only ASCII characters are allowed"
-msgstr "只允许输入ASCII字符"
-
-#: Z:\pi\usr\module\user/src/Validator/Username.php:55
-#: Z:\pi\usr\module\user/src/Validator/Name.php:53
-msgid "Multibyte characters are allowed"
-msgstr "允许使用多字节字符"
-
-#: Z:\pi\usr\module\user/src/Validator/Password.php:42
-msgid "Password is less than %min% characters long"
-msgstr "密码不得少于%min%个字符"
-
-#: Z:\pi\usr\module\user/src/Validator/Password.php:43
-msgid "Password is more than %max% characters long"
-msgstr "密码不得多于%max%个字符"
-
-#: Z:\pi\usr\module\user/src/Validator/Postcode.php:30
-msgid "The input is not 6 numeric"
-msgstr "输入不是六位数字"
-
-#: Z:\pi\usr\module\user/src/Validator/UserEmail.php:41
-msgid "User email is reserved"
-msgstr "邮箱已被占用"
-
-#: Z:\pi\usr\module\user/src/Validator/UserEmail.php:42
-msgid "User email is already used"
-msgstr "邮箱已被占用"
-
-#: Z:\pi\usr\module\user/src/Validator/Telephone.php:30
-msgid "The input is not 7-20 numeric"
-msgstr "输入不是7-20位数字"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:30
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:90
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:30
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:14
-msgid "Username"
-msgstr "用户名"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:39
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:99
-#: Z:\pi\usr\module\user/src/Form/AccountForm.php:37
-msgid "Display name"
-msgstr "昵称"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:48
-#: Z:\pi\usr\module\user/src/Form/FindPasswordForm.php:27
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:108
-#: Z:\pi\usr\module\user/src/Form/AccountForm.php:27
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/AccountForm.php:27
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/FindPasswordForm.php:27
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:48
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:108
 msgid "Email"
 msgstr "登录邮箱"
 
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:57
-#: Z:\pi\usr\module\user/src/Form/PasswordForm.php:53
-#: Z:\pi\usr\module\user/src/Form/ResetPasswordForm.php:42
-msgid "New password"
-msgstr "输入新密码"
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/AccountForm.php:37
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:39
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:99
+msgid "Display name"
+msgstr "昵称"
 
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:66
-#: Z:\pi\usr\module\user/src/Form/PasswordForm.php:63
-#: Z:\pi\usr\module\user/src/Form/ResetPasswordForm.php:52
-msgid "Confirm password"
-msgstr "确认新密码"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:75
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:71
-msgid "Front role"
-msgstr "前台角色"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:84
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:80
-msgid "Admin role"
-msgstr "后台角色"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:94
-msgid "Activate"
-msgstr ""
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:106
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:46
-msgid "Enable"
-msgstr "打开"
-
-#: Z:\pi\usr\module\user/src/Form/MemberForm.php:122
-#: Z:\pi\usr\module\user/src/Form/ProfileEditForm.php:42
-#: Z:\pi\usr\module\user/src/Form/EditUserForm.php:42
-#: Z:\pi\usr\module\user/src/Form/ProfileCompleteForm.php:42
-#: Z:\pi\usr\module\user/src/Form/RegisterForm.php:42
-#: Z:\pi\usr\module\user/src/Form/PasswordForm.php:79
-#: Z:\pi\usr\module\user/src/Form/ResetPasswordForm.php:68
-#: Z:\pi\usr\module\user/src/Form/EmailForm.php:58
-#: Z:\pi\usr\module\user/src/Form/AccountForm.php:54
-#: Z:\pi\usr\module\user/src/Form/RoleForm.php:99
-#: Z:\pi\usr\module\user/src/Form/ResendActivateMailForm.php:48
-#: Z:\pi\usr\module\user/src/Form/CompoundForm.php:58
-#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:50
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/AccountForm.php:54
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/CompoundForm.php:58
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/EditUserForm.php:42
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/EmailForm.php:58
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:122
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/PasswordForm.php:79
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ProfileCompleteForm.php:42
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ProfileEditForm.php:42
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/RegisterForm.php:42
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResendActivateMailForm.php:48
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResetPasswordForm.php:68
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/RoleForm.php:99
+#: D:\GitHub\custom-pi\usr\module\user/template/front/privacy-index.phtml:49
 msgid "Submit"
 msgstr "提交"
 
-#: Z:\pi\usr\module\user/src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "验证码"
-
-#: Z:\pi\usr\module\user/src/Form/FindPasswordForm.php:52
-#: Z:\pi\usr\module\user/template/front/password-find.phtml:1
-#: Z:\pi\usr\module\user/template/front/login.phtml:28
-msgid "Find password"
-msgstr "找回密码"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:29
-msgid "Active state"
-msgstr ""
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:31
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:45
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:59
-msgid "Any"
-msgstr ""
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:32
-msgid "Active"
-msgstr "激活"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:33
-msgid "Inactive"
-msgstr "锁定"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:43
-msgid "Enable state"
-msgstr "允许状态"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:47
-msgid "Disable"
-msgstr "关闭"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:57
-msgid "Activated state"
-msgstr "激活状态"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:60
-msgid "Pending"
-msgstr "未激活"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:61
-msgid "Activated"
-msgstr "已激活"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:117
-msgid "Register date from"
-msgstr "注册日期 从"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:126
-msgid "Register date end"
-msgstr "注册日期 止"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:135
-msgid "Register ip from"
-msgstr "注册IP 从"
-
-#: Z:\pi\usr\module\user/src/Form/SearchForm.php:143
-msgid "Search"
-msgstr "搜索"
-
-#: Z:\pi\usr\module\user/src/Form/PasswordForm.php:42
-#: Z:\pi\usr\module\user/src/Form/EmailForm.php:37
-msgid "Current password"
-msgstr "输入旧密码"
-
-#: Z:\pi\usr\module\user/src/Form/EmailForm.php:27
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/EmailForm.php:27
 msgid "New email"
 msgstr "新邮箱"
 
-#: Z:\pi\usr\module\user/src/Form/RoleForm.php:44
-msgid "Name"
-msgstr "名称"
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/EmailForm.php:37
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr "输入旧密码"
 
-#: Z:\pi\usr\module\user/src/Form/RoleForm.php:54
-msgid "Title"
-msgstr "标题"
-
-#: Z:\pi\usr\module\user/src/Form/ResendActivateMailForm.php:28
-msgid "Email address"
-msgstr "邮箱地址"
-
-#: Z:\pi\usr\module\user/src/Form/ResendActivateMailForm.php:39
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:67
-msgid "Please type the word."
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
 msgstr "验证码"
 
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:40
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:20
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:32
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/FindPasswordForm.php:52
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-find.phtml:1
+msgid "Find password"
+msgstr "找回密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:30
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:30
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:90
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:14
+msgid "Username"
+msgstr "用户名"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:40
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:32
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:20
 msgid "Password"
 msgstr "密码"
 
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:52
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:56
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:52
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:56
 msgid "Remember me"
 msgstr "记住登录状态"
 
-#: Z:\pi\usr\module\user/src/Form/LoginForm.php:96
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:17
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:67
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResendActivateMailForm.php:39
+msgid "Please type the word."
+msgstr "验证码"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/LoginForm.php:96
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:17
 msgid "Login"
 msgstr "登录"
 
-#: Z:\pi\usr\module\user/src/Form/Element/Gender.php:30
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:57
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/PasswordForm.php:53
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr "输入新密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:66
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/PasswordForm.php:63
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr "确认新密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:75
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:71
+msgid "Front role"
+msgstr "前台角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:84
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:80
+msgid "Admin role"
+msgstr "后台角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:94
+msgid "Activate"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/MemberForm.php:106
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:46
+msgid "Enable"
+msgstr "打开"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/ResendActivateMailForm.php:28
+msgid "Email address"
+msgstr "邮箱地址"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "名称"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "标题"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:31
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:45
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:59
+msgid "Any"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:32
+msgid "Active"
+msgstr "激活"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:33
+msgid "Inactive"
+msgstr "锁定"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr "允许状态"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:47
+msgid "Disable"
+msgstr "关闭"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr "激活状态"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:60
+msgid "Pending"
+msgstr "未激活"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:61
+msgid "Activated"
+msgstr "已激活"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr "注册日期 从"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr "注册日期 止"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr "注册IP 从"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/SearchForm.php:143
+msgid "Search"
+msgstr "搜索"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/Element/Gender.php:30
 msgid "Male"
 msgstr "男"
 
-#: Z:\pi\usr\module\user/src/Form/Element/Gender.php:31
+#: D:\GitHub\custom-pi\usr\module\user/src/Form/Element/Gender.php:31
 msgid "Female"
 msgstr "女"
 
-#: Z:\pi\usr\module\user/src/Form/Element/Gender.php:32
-msgid "Unknown"
-msgstr "未知"
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:44
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:45
+msgid "Invalid user name: %formatHint%"
+msgstr "用户名不正确：%formatHint%"
 
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:8
-#: Z:\pi\usr\module\user/template/front/login-success.phtml:8
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:45
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:46
+msgid "User name is reserved"
+msgstr "用户名已被占用"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:46
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:48
+msgid "User name is less than %min% characters long"
+msgstr "用户名不得少于%min%个字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:47
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:49
+msgid "User name is more than %max% characters long"
+msgstr "用户名不得多于%max%个字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:51
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:53
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr "字母开头，支持字母和数字"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:52
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:54
+msgid "Only ASCII characters are allowed"
+msgstr "只允许输入ASCII字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Name.php:53
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:55
+msgid "Multibyte characters are allowed"
+msgstr "允许使用多字节字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Password.php:42
+msgid "Password is less than %min% characters long"
+msgstr "密码不得少于%min%个字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Password.php:43
+msgid "Password is more than %max% characters long"
+msgstr "密码不得多于%max%个字符"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Postcode.php:30
+msgid "The input is not 6 numeric"
+msgstr "输入不是六位数字"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Telephone.php:30
+msgid "The input is not 7-20 numeric"
+msgstr "输入不是7-20位数字"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/UserEmail.php:41
+msgid "User email is reserved"
+msgstr "邮箱已被占用"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/UserEmail.php:42
+msgid "User email is already used"
+msgstr "邮箱已被占用"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Validator/Username.php:47
+msgid "User name is already taken"
+msgstr "用户名已被占用"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:7
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:15
+msgid "Account settings"
+msgstr "账号信息"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:8
+msgid "Basic settings"
+msgstr "修改您的账号信息"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:26
+msgid "Save account changes"
+msgstr "保存账号修改"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:29
+msgid "Re-enter your password to save changes to your account."
+msgstr "请重新输入密码保存账号修改。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:40
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:174
+msgid "Cancel"
+msgstr "取消"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:41
+msgid "Save changes"
+msgstr "保存修改"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:109
+msgid "A message has been sent to you"
+msgstr "修改邮箱确认邮件已发送到您的新邮箱"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:109
+msgid ""
+"to confirm your new email address. Check the email in 24 hours. The new "
+"email will not work until your confirm."
+msgstr "请24小时内验证新邮箱。新注册邮箱将在验证后生效。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:113
+msgid "Sorry, email change failed. Try it later."
+msgstr "修改邮箱失败，请稍后再试。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:118
+msgid "Display name change saved."
+msgstr "昵称修改已保存。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:123
+msgid "Sorry, display name change failed. Try it later."
+msgstr "抱歉，昵称修改失败。请重试。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:172
+msgid "Invalid email."
+msgstr "无效邮箱。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:190
+msgid "Email has been used."
+msgstr "邮箱已存在。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:208
+msgid "Invalid display name."
+msgstr "无效昵称。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:226
+msgid "Display name has been used."
+msgstr "昵称已使用。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-index.phtml:255
+msgid "That\\'s you !"
+msgstr "就是你！"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-reset-email.phtml:1
+msgid "Change email"
+msgstr "修改邮箱"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-reset-email.phtml:3
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:12
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:3
+msgid "Congratulations!"
+msgstr "恭喜！"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-reset-email.phtml:4
+msgid "Your email has been changed."
+msgstr "您的邮箱已修改。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-reset-email.phtml:6
+#, php-format
+msgid "<a href=\"%s\">Login right now</a>"
+msgstr "<a href=\"%s\">立即登录</a>"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/account-reset-email.phtml:10
+msgid "Sorry, the link has expired, or maybe your email has been changed."
+msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/activity-index.phtml:25
+msgid "View all"
+msgstr "查看全部"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/activity-index.phtml:32
+msgid "None blogs"
+msgstr "尚无博客"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:15
+msgid "Upload"
+msgstr "上传"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:20
+msgid "Gavatar"
+msgstr "Gavatar"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:25
+msgid "Select"
+msgstr "系统挑选"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:30
+msgid "Default"
+msgstr "系统默认"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:42
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:64
+msgid "Change avatar"
+msgstr "修改头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:43
+msgid "Customize your avatar anyway you like"
+msgstr "多种头像更换方案，任您选择"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:46
+msgid "Current avatar"
+msgstr "当前头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:50
+msgid ""
+"once switch source and saved,the avatar data from other source will be "
+"deleted."
+msgstr ""
+" 一旦切换头像来源并保存生效，其他来源的头像数据将被删除<br>如果头像没有即时生"
+"效请重新登录"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:72
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:183
+msgid "Upload avatar"
+msgstr "上传头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:82
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:108
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:136
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:162
+msgid "Avatar previews"
+msgstr "头像预览"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:101
+msgid "Change from Gravatar"
+msgstr "去Gavatar修改"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:103
+msgid "Gravatar email"
+msgstr "Gravatar邮箱"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:158
+msgid "Apply system avatar as your avatar"
+msgstr "使用系统默认头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:173
+msgid "Save"
+msgstr "保存"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/avatar-index.phtml:184
+msgid "Uploading"
+msgstr "上传"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/home-index.phtml:37
+msgid "Does not have any data"
+msgstr "暂无动态"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:8
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-success.phtml:8
 msgid "homepage"
 msgstr "主页"
 
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:10
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr "重登录"
 
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:11
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "您已退出，请前往 %s 或 %s。"
 
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:16
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:16
 msgid "Choose: "
 msgstr "选择："
 
-#: Z:\pi\usr\module\user/template/front/login-logout.phtml:18
-#: Z:\pi\usr\module\user/template/front/login.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-logout.phtml:18
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login.phtml:29
 msgid "Register"
 msgstr "注册"
 
-#: Z:\pi\usr\module\user/template/front/login-success.phtml:9
-#, php-format
-msgid "You have logged in successfully, please go to %s."
-msgstr "您已登录成功，请前往 %s。"
-
-#: Z:\pi\usr\module\user/template/front/password-index.phtml:7
-msgid "Change password"
-msgstr "修改密码"
-
-#: Z:\pi\usr\module\user/template/front/password-index.phtml:8
-msgid "To ensure your account security, complex password is required."
-msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:11
-#, php-format
-msgid "Change your %s"
-msgstr "修改您的%s"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:20
-msgid "Add new"
-msgstr "新增"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:29
-#: Z:\pi\usr\module\user/template/front/profile-index.phtml:25
-msgid "Edit"
-msgstr "编辑"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:40
-#: Z:\pi\usr\module\user/template/front/profile-view.phtml:20
-#: Z:\pi\usr\module\user/template/front/profile-index.phtml:38
-msgid "Unfiled"
-msgstr "尚未填写"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit-compound.phtml:51
-msgid "Are you sure delete this one"
-msgstr "请确认是否删除"
-
-#: Z:\pi\usr\module\user/template/front/activity-index.phtml:11
-msgid "View all"
-msgstr "查看全部"
-
-#: Z:\pi\usr\module\user/template/front/profile-edit.phtml:9
-#, php-format
-msgid "Change your %s info"
-msgstr "修改您的%s"
-
-#: Z:\pi\usr\module\user/template/front/password-find.phtml:11
-msgid "A reset link has been sent to your email."
-msgstr "重置链接已发送到您的邮箱。"
-
-#: Z:\pi\usr\module\user/template/front/password-find.phtml:12
-msgid "Please check to reset your password in 24 hours."
-msgstr "请在24小时内重新设置密码。"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:16
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:42
-msgid "Change avatar"
-msgstr "修改头像"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:26
-msgid "Birthdate:"
-msgstr "出生于"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:35
-msgid "Switch to view of others"
-msgstr "切换他人视角"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:46
-msgid "Quicklinks"
-msgstr "快速链接"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:51
-msgid "Setting"
-msgstr "设置"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:77
-msgid "Back to view of own"
-msgstr "返回自己视角"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:83
-msgid "Send message"
-msgstr "私信"
-
-#: Z:\pi\usr\module\user/template/front/_user-media.phtml:162
-msgid "More"
-msgstr "更多"
-
-#: Z:\pi\usr\module\user/template/front/login-message.phtml:8
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-message.phtml:8
 msgid "logout"
 msgstr "退出"
 
-#: Z:\pi\usr\module\user/template/front/login-message.phtml:9
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-message.phtml:9
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr "您已登录账号 <strong>%s</strong>，请重新登录 %s。"
 
-#: Z:\pi\usr\module\user/template/front/profile-view.phtml:33
-msgid "does not have any"
-msgstr "尚无"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:4
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:17
-msgid "Register sitename"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:11
-msgid "Input invalid"
-msgstr "无效输入"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:20
-msgid "An activation link has been sent to your email"
-msgstr "激活链接已经发送到您的邮箱"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:21
-msgid "Please check it to finish registration in 24 hours"
-msgstr "请在24小时内确认点击激活链接完成注册。"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:24
-msgid "Get no email"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:26
-msgid "Wait a few minutes"
-msgstr "稍等几分钟再看 "
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:27
-msgid "Check your email rubbish"
-msgstr "看看是否在垃圾箱中"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:28
-msgid "Resend a email"
-msgstr "重新发送激活邮件"
-
-#: Z:\pi\usr\module\user/template/front/register-index.phtml:63
-msgid "Alreaday sent"
-msgstr "已发送 "
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:1
-msgid "Reset password"
-msgstr "重置密码"
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:6
-msgid "Sorry, your link has expired."
-msgstr "对不起，链接已过期。"
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:7
-msgid "Try to find password again"
-msgstr "请尝试重新找回密码"
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:12
-#: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:3
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:3
-msgid "Congratulations!"
-msgstr "恭喜！"
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:13
-msgid "Your new password has worked"
-msgstr "新密码已生效"
-
-#: Z:\pi\usr\module\user/template/front/password-process.phtml:14
-msgid "Please login"
-msgstr "请登录"
-
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:8
-msgid "View my profile"
-msgstr "查看我的资料"
-
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:15
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:7
-msgid "Account settings"
-msgstr "账号信息"
-
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:25
-msgid "Avatar"
-msgstr "修改头像"
-
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:28
-msgid "Edit profile"
-msgstr "修改资料"
-
-#: Z:\pi\usr\module\user/template/front/_user-side-nav.phtml:39
-#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:9
-msgid "Privacy"
-msgstr "隐私设置"
-
-#: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:1
-msgid "Change email"
-msgstr "修改邮箱"
-
-#: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:4
-msgid "Your email has been changed."
-msgstr "您的邮箱已修改。"
-
-#: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:6
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login-success.phtml:9
 #, php-format
-msgid "<a href=\"%s\">Login right now</a>"
-msgstr "<a href=\"%s\">立即登录</a>"
+msgid "You have logged in successfully, please go to %s."
+msgstr "您已登录成功，请前往 %s。"
 
-#: Z:\pi\usr\module\user/template/front/account-reset-email.phtml:10
-msgid "Sorry, the link has expired, or maybe your email has been changed."
-msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
-
-#: Z:\pi\usr\module\user/template/front/profile-index.phtml:47
-msgid "Add"
-msgstr "添加"
-
-#: Z:\pi\usr\module\user/template/front/login.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/front/login.phtml:28
 msgid "Forget password"
 msgstr "忘记密码"
 
-#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:11
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-find.phtml:11
+msgid "A reset link has been sent to your email."
+msgstr "重置链接已发送到您的邮箱。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-find.phtml:12
+msgid "Please check to reset your password in 24 hours."
+msgstr "请在24小时内重新设置密码。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-index.phtml:7
+msgid "Change password"
+msgstr "修改密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-index.phtml:8
+msgid "To ensure your account security, complex password is required."
+msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr "重置密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:6
+msgid "Sorry, your link has expired."
+msgstr "对不起，链接已过期。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:7
+msgid "Try to find password again"
+msgstr "请尝试重新找回密码"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:13
+msgid "Your new password has worked"
+msgstr "新密码已生效"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/password-process.phtml:14
+msgid "Please login"
+msgstr "请登录"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/privacy-index.phtml:9
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:39
+msgid "Privacy"
+msgstr "隐私设置"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/privacy-index.phtml:11
 msgid "Change your privacy settings."
 msgstr "设置您个人资料对谁可见，保障您的隐私权"
 
-#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
+#: D:\GitHub\custom-pi\usr\module\user/template/front/privacy-index.phtml:14
 msgid "Warning!"
 msgstr "提示："
 
-#: Z:\pi\usr\module\user/template/front/privacy-index.phtml:15
+#: D:\GitHub\custom-pi\usr\module\user/template/front/privacy-index.phtml:14
 msgid "No available privacy setting"
 msgstr "没有可用的隐私设置"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:15
-msgid "Upload"
-msgstr "上传"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:11
+#, php-format
+msgid "Change your %s"
+msgstr "修改您的%s"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:20
-msgid "Gavatar"
-msgstr "Gavatar"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:12
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:20
+msgid "Add new"
+msgstr "新增"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:25
-msgid "Select"
-msgstr "系统挑选"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-index.phtml:25
+msgid "Edit"
+msgstr "编辑"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:30
-msgid "Default"
-msgstr "系统默认"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:40
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-index.phtml:38
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-view.phtml:20
+msgid "Unfiled"
+msgstr "尚未填写"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:43
-msgid "Customize your avatar anyway you like"
-msgstr "多种头像更换方案，任您选择"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit-compound.phtml:51
+msgid "Are you sure delete this one"
+msgstr "请确认是否删除"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:46
-msgid "Current avatar"
-msgstr "当前头像"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-edit.phtml:9
+#, php-format
+msgid "Change your %s info"
+msgstr "修改您的%s"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:50
-msgid ""
-"once switch source and saved,the avatar data from other source will be "
-"deleted."
-msgstr "一旦切换头像来源并保存生效，其他来源的头像数据将被删除"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-index.phtml:47
+#, php-format
+msgid "Add %s"
+msgstr "新增%s"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:72
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:183
-msgid "Upload avatar"
-msgstr "上传头像"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/profile-view.phtml:33
+msgid "does not have any"
+msgstr "尚无"
 
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:82
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:108
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:136
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:162
-msgid "Avatar previews"
-msgstr "头像预览"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:101
-msgid "Change from Gravatar"
-msgstr "去Gavatar修改"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:103
-msgid "Gravatar email"
-msgstr "Gravatar邮箱"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:158
-msgid "Apply system avatar as your avatar"
-msgstr "使用系统默认头像"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:173
-msgid "Save"
-msgstr "保存"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:174
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:40
-msgid "Cancel"
-msgstr "取消"
-
-#: Z:\pi\usr\module\user/template/front/avatar-index.phtml:184
-msgid "Uploading"
-msgstr "上传"
-
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:1
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:1
 msgid "Activate account"
 msgstr "激活帐号"
 
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:4
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:4
 msgid "Your account has been activated."
 msgstr "您的账号已激活。"
 
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:6
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:6
 msgid "Login right now."
 msgstr "立即登录。"
 
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:10
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:10
 msgid "Sorry, the link has expired."
 msgstr "抱歉，连接已过期"
 
-#: Z:\pi\usr\module\user/template/front/register-activate.phtml:12
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-activate.phtml:12
 msgid "resend active mail"
 msgstr "重新发送激活邮件"
 
-#: Z:\pi\usr\module\user/template/front/register-resend-activate-mail.phtml:2
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:4
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:17
+msgid "Register sitename"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:11
+msgid "Input invalid"
+msgstr "无效输入"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:20
+msgid "An activation link has been sent to your email"
+msgstr "激活链接已经发送到您的邮箱"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:21
+msgid "Please check it to finish registration in 24 hours"
+msgstr "请在24小时内确认点击激活链接完成注册。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:24
+msgid "Get no email"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:26
+msgid "Wait a few minutes"
+msgstr "稍等几分钟再看 "
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:27
+msgid "Check your email rubbish"
+msgstr "看看是否在垃圾箱中"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:28
+msgid "Resend a email"
+msgstr "重新发送激活邮件"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-index.phtml:63
+msgid "Alreaday sent"
+msgstr "已发送 "
+
+#: D:\GitHub\custom-pi\usr\module\user/template/front/register-resend-activate-mail.phtml:2
 msgid "Resend activate email"
 msgstr "重新发送激活邮件"
 
-#: Z:\pi\usr\module\user/template/front/home-index.phtml:37
-msgid "Does not have any data"
-msgstr "暂无动态"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:9
+msgid "Switch to view of others"
+msgstr "切换他人视角"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:8
-msgid "Basic settings"
-msgstr "修改您的账号信息"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:14
+msgid "Quicklinks"
+msgstr "快速链接"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Save account changes"
-msgstr "保存账号修改"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:19
+msgid "Setting"
+msgstr "设置"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:29
-msgid "Re-enter your password to save changes to your account."
-msgstr "请重新输入密码保存账号修改。"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:44
+msgid "Back to view of own"
+msgstr "返回自己视角"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:41
-msgid "Save changes"
-msgstr "保存修改"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:48
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:53
+msgid "Send message"
+msgstr "发送私信"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:109
-msgid "A message has been sent to you"
-msgstr "修改邮箱确认邮件已发送到您的新邮箱"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:74
+msgid "Birthdate:"
+msgstr "出生于"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:109
-msgid ""
-"to confirm your new email address. Check the email in 24 hours. The new "
-"email will not work until your confirm."
-msgstr "请24小时内验证新邮箱。新注册邮箱将在验证后生效。"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-media.phtml:154
+msgid "More"
+msgstr "更多"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:113
-msgid "Sorry, email change failed. Try it later."
-msgstr "修改邮箱失败，请稍后再试。"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:8
+msgid "View my profile"
+msgstr "查看我的资料"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:118
-msgid "Display name change saved."
-msgstr "昵称修改已保存。"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:25
+msgid "Avatar"
+msgstr "修改头像"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:123
-msgid "Sorry, display name change failed. Try it later."
-msgstr "抱歉，昵称修改失败。请重试。"
+#: D:\GitHub\custom-pi\usr\module\user/template/front/_user-side-nav.phtml:28
+msgid "Edit profile"
+msgstr "修改资料"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:172
-msgid "Invalid email."
-msgstr "无效邮箱。"
+#~ msgid "Invalid user ID!"
+#~ msgstr "无效用户ID"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:190
-msgid "Email has been used."
-msgstr "邮箱已存在。"
+#~ msgid "Add"
+#~ msgstr "添加"
 
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:208
-msgid "Invalid display name."
-msgstr "无效昵称。"
-
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:226
-msgid "Display name has been used."
-msgstr "昵称已使用。"
-
-#: Z:\pi\usr\module\user/template/front/account-index.phtml:255
-msgid "That\\'s you !"
-msgstr "就是你！"
+#~ msgid "Unknown"
+#~ msgstr "未知"
 
 #~ msgid " info."
 #~ msgstr " "

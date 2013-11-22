@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2013-11-10 13:57+0800\n"
-"PO-Revision-Date: 2013-11-17 14:52+0800\n"
+"POT-Creation-Date: 2013-11-21 09:46+0800\n"
+"PO-Revision-Date: 2013-11-21 09:47+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,31 +11,28 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\message\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\message\n"
 
-#: C:\wamp\www\master\usr\module\message/config/module.php:17
+#: D:\GitHub\custom-pi\usr\module\message/config/module.php:17
 msgid "Message"
 msgstr "私信"
 
-#: C:\wamp\www\master\usr\module\message/config/module.php:19
+#: D:\GitHub\custom-pi\usr\module\message/config/module.php:19
 msgid "A module to send message"
 msgstr "用于收发信息的模块。"
 
-#: C:\wamp\www\master\usr\module\message/config/navigation.php:13
-msgid "Private message"
-msgstr "私信"
-
-#: C:\wamp\www\master\usr\module\message/config/navigation.php:19
-msgid "Notification"
-msgstr "通知"
-
-#: C:\wamp\www\master\usr\module\message/config/navigation.php:25
-msgid "New message"
-msgstr "新私信"
-
-#: C:\wamp\www\master\usr\module\message/config/user.php:20
+#: D:\GitHub\custom-pi\usr\module\message/config/user.php:20
 msgid "Messages"
 msgstr "私信"
+
+#~ msgid "Private message"
+#~ msgstr "私信"
+
+#~ msgid "Notification"
+#~ msgstr "通知"
+
+#~ msgid "New message"
+#~ msgstr "新私信"
 
 #~ msgid "Checked all"
 #~ msgstr "All Categories"

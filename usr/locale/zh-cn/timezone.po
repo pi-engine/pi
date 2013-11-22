@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
 "POT-Creation-Date: 2013-11-17 12:15+0800\n"
-"PO-Revision-Date: 2013-11-17 12:20+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"PO-Revision-Date: 2013-11-21 13:42+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -855,118 +855,96 @@ msgid "Asia/Aden"
 msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:229
-#, fuzzy
 msgid "Asia/Almaty"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:230
-#, fuzzy
 msgid "Asia/Amman"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:231
-#, fuzzy
 msgid "Asia/Anadyr"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:232
-#, fuzzy
 msgid "Asia/Aqtau"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:233
-#, fuzzy
 msgid "Asia/Aqtobe"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:234
-#, fuzzy
 msgid "Asia/Ashgabat"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:235
-#, fuzzy
 msgid "Asia/Baghdad"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:236
-#, fuzzy
 msgid "Asia/Bahrain"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:237
-#, fuzzy
 msgid "Asia/Baku"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:238
-#, fuzzy
 msgid "Asia/Bangkok"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:239
-#, fuzzy
 msgid "Asia/Beirut"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:240
-#, fuzzy
 msgid "Asia/Bishkek"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:241
-#, fuzzy
 msgid "Asia/Brunei"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:242
-#, fuzzy
 msgid "Asia/Choibalsan"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:243
 msgid "Asia/Chongqing"
 msgstr "重庆"
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:244
-#, fuzzy
 msgid "Asia/Colombo"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:245
-#, fuzzy
 msgid "Asia/Damascus"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:246
-#, fuzzy
 msgid "Asia/Dhaka"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:247
-#, fuzzy
 msgid "Asia/Dili"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:248
-#, fuzzy
 msgid "Asia/Dubai"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:249
-#, fuzzy
 msgid "Asia/Dushanbe"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:250
-#, fuzzy
 msgid "Asia/Gaza"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:251
-#, fuzzy
 msgid "Asia/Harbin"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:252
 msgid "Asia/Ho_Chi_Minh"
@@ -977,174 +955,140 @@ msgid "Asia/Hong_Kong"
 msgstr "香港"
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:254
-#, fuzzy
 msgid "Asia/Hovd"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:255
-#, fuzzy
 msgid "Asia/Irkutsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:256
-#, fuzzy
 msgid "Asia/Jakarta"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:257
-#, fuzzy
 msgid "Asia/Jayapura"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:258
-#, fuzzy
 msgid "Asia/Jerusalem"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:259
-#, fuzzy
 msgid "Asia/Kabul"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:260
-#, fuzzy
 msgid "Asia/Kamchatka"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:261
-#, fuzzy
 msgid "Asia/Karachi"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:262
-#, fuzzy
 msgid "Asia/Kashgar"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:263
-#, fuzzy
 msgid "Asia/Kathmandu"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:264
-#, fuzzy
 msgid "Asia/Kolkata"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:265
-#, fuzzy
 msgid "Asia/Krasnoyarsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:266
-#, fuzzy
 msgid "Asia/Kuala_Lumpur"
-msgstr "香港"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:267
-#, fuzzy
 msgid "Asia/Kuching"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:268
-#, fuzzy
 msgid "Asia/Kuwait"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:269
-#, fuzzy
 msgid "Asia/Macau"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:270
-#, fuzzy
 msgid "Asia/Magadan"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:271
-#, fuzzy
 msgid "Asia/Makassar"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:272
-#, fuzzy
 msgid "Asia/Manila"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:273
-#, fuzzy
 msgid "Asia/Muscat"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:274
-#, fuzzy
 msgid "Asia/Nicosia"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:275
-#, fuzzy
 msgid "Asia/Novokuznetsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:276
-#, fuzzy
 msgid "Asia/Novosibirsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:277
-#, fuzzy
 msgid "Asia/Omsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:278
-#, fuzzy
 msgid "Asia/Oral"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:279
-#, fuzzy
 msgid "Asia/Phnom_Penh"
-msgstr "香港"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:280
-#, fuzzy
 msgid "Asia/Pontianak"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:281
-#, fuzzy
 msgid "Asia/Pyongyang"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:282
-#, fuzzy
 msgid "Asia/Qatar"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:283
-#, fuzzy
 msgid "Asia/Qyzylorda"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:284
-#, fuzzy
 msgid "Asia/Rangoon"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:285
-#, fuzzy
 msgid "Asia/Riyadh"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:286
-#, fuzzy
 msgid "Asia/Sakhalin"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:287
-#, fuzzy
 msgid "Asia/Samarkand"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:288
 msgid "Asia/Seoul"
@@ -1155,67 +1099,56 @@ msgid "Asia/Shanghai"
 msgstr "上海"
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:290
-#, fuzzy
 msgid "Asia/Singapore"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:291
 msgid "Asia/Taipei"
 msgstr "台北"
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:292
-#, fuzzy
 msgid "Asia/Tashkent"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:293
-#, fuzzy
 msgid "Asia/Tbilisi"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:294
-#, fuzzy
 msgid "Asia/Tehran"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:295
-#, fuzzy
 msgid "Asia/Thimphu"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:296
 msgid "Asia/Tokyo"
 msgstr "东京"
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:297
-#, fuzzy
 msgid "Asia/Ulaanbaatar"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:298
-#, fuzzy
 msgid "Asia/Urumqi"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:299
-#, fuzzy
 msgid "Asia/Vientiane"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:300
-#, fuzzy
 msgid "Asia/Vladivostok"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:301
-#, fuzzy
 msgid "Asia/Yakutsk"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:302
-#, fuzzy
 msgid "Asia/Yekaterinburg"
-msgstr "重庆"
+msgstr ""
 
 #: C:\wamp\www\custom\usr\locale\_source\Timezone/Timezone.php:303
 msgid "Asia/Yerevan"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-19 13:21+0800\n"
-"PO-Revision-Date: 2013-11-19 13:21+0800\n"
+"POT-Creation-Date: 2013-11-21 10:15+0800\n"
+"PO-Revision-Date: 2013-11-21 20:45+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,1187 +11,1189 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: Z:\\pi\\usr\\module\\user\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\user\n"
 
-#: Z:\pi\usr\module\user/config/module.php:17
-#: Z:\pi\usr\module\user/config/nav.php:21
-msgid "User"
-msgstr "用户"
-
-#: Z:\pi\usr\module\user/config/module.php:18
-msgid "User profile and services."
-msgstr "用户资料和管理服务。"
-
-#: Z:\pi\usr\module\user/config/permission.php:18
-#: Z:\pi\usr\module\user/config/config.php:27
-msgid "User account"
-msgstr "用户账号"
-
-#: Z:\pi\usr\module\user/config/permission.php:24
-msgid "User profile"
-msgstr "用户资料"
-
-#: Z:\pi\usr\module\user/config/permission.php:30
-msgid "Roles"
-msgstr "角色"
-
-#: Z:\pi\usr\module\user/config/permission.php:36
-msgid "Profile fields"
-msgstr ""
-
-#: Z:\pi\usr\module\user/config/permission.php:42
-msgid "Custom fields"
-msgstr ""
-
-#: Z:\pi\usr\module\user/config/permission.php:49
-msgid "Avatars"
-msgstr "头像"
-
-#: Z:\pi\usr\module\user/config/permission.php:55
-msgid "Forms"
-msgstr ""
-
-#: Z:\pi\usr\module\user/config/permission.php:61
-#: Z:\pi\usr\module\user/config/nav.php:97
-msgid "Plugin management"
-msgstr "插件管理"
-
-#: Z:\pi\usr\module\user/config/permission.php:67
-#: Z:\pi\usr\module\user/config/nav.php:108
-msgid "Maintenance"
-msgstr "维护"
-
-#: Z:\pi\usr\module\user/config/user.php:26
-#: Z:\pi\usr\module\user/template/admin/role.phtml:36
-#: Z:\pi\usr\module\user/template/admin/user.phtml:47
-#: Z:\pi\usr\module\user/template/admin/user.phtml:67
-#: Z:\pi\usr\module\user/template/admin/user.phtml:91
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:21
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:40
-msgid "Username"
-msgstr "用户名"
-
-#: Z:\pi\usr\module\user/config/user.php:42
-#: Z:\pi\usr\module\user/template/admin/user.phtml:70
-#: Z:\pi\usr\module\user/template/admin/user.phtml:96
-msgid "Password"
-msgstr "密码"
-
-#: Z:\pi\usr\module\user/config/user.php:58
-#: Z:\pi\usr\module\user/template/admin/role.phtml:38
-#: Z:\pi\usr\module\user/template/admin/user.phtml:68
-#: Z:\pi\usr\module\user/template/admin/user.phtml:95
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:22
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:57
-msgid "Email"
-msgstr "邮箱"
-
-#: Z:\pi\usr\module\user/config/user.php:81
-#: Z:\pi\usr\module\user/template/admin/role.phtml:37
-#: Z:\pi\usr\module\user/template/admin/user.phtml:48
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:18
-msgid "Display name"
-msgstr "昵称"
-
-#: Z:\pi\usr\module\user/config/user.php:96
-msgid "Gender"
-msgstr "性别"
-
-#: Z:\pi\usr\module\user/config/user.php:104
-msgid "Birthdate"
-msgstr "生日"
-
-#: Z:\pi\usr\module\user/config/user.php:124
-#: Z:\pi\usr\module\user/config/config.php:23
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:324
-msgid "Avatar"
-msgstr "头像"
-
-#: Z:\pi\usr\module\user/config/user.php:135
-#: Z:\pi\usr\module\user/template/admin/user.phtml:52
-#: Z:\pi\usr\module\user/template/admin/user.phtml:72
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:60
-msgid "Active"
-msgstr "可用"
-
-#: Z:\pi\usr\module\user/config/user.php:146
-#: Z:\pi\usr\module\user/template/admin/user.phtml:56
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:41
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:54
-msgid "Register time"
-msgstr "注册时间"
-
-#: Z:\pi\usr\module\user/config/user.php:157
-msgid "Activation time"
-msgstr "激活时间"
-
-#: Z:\pi\usr\module\user/config/user.php:168
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:63
-msgid "Disabled time"
-msgstr "禁用时间"
-
-#: Z:\pi\usr\module\user/config/user.php:180
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:51
-msgid "Deleted time"
-msgstr "删除时间"
-
-#: Z:\pi\usr\module\user/config/user.php:194
-msgid "Level"
-msgstr "等级"
-
-#: Z:\pi\usr\module\user/config/user.php:203
-msgid "Last modified"
-msgstr "修改时间"
-
-#: Z:\pi\usr\module\user/config/user.php:211
-msgid "Homepage"
-msgstr "首页"
-
-#: Z:\pi\usr\module\user/config/user.php:216
-msgid "Short bio"
-msgstr "个性签名"
-
-#: Z:\pi\usr\module\user/config/user.php:228
-msgid "Signature"
-msgstr "签名"
-
-#: Z:\pi\usr\module\user/config/user.php:241
-#: Z:\pi\usr\module\user/template/admin/user.phtml:102
-#: Z:\pi\usr\module\user/template/admin/user.phtml:107
-msgid "Register IP"
-msgstr "注册IP"
-
-#: Z:\pi\usr\module\user/config/user.php:252
-msgid "Social tools"
-msgstr "社交工具"
-
-#: Z:\pi\usr\module\user/config/user.php:256
-msgid "Tool name"
-msgstr "工具名称"
-
-#: Z:\pi\usr\module\user/config/user.php:259
-msgid "ID or URL"
-msgstr "ID 或 URL"
-
-#: Z:\pi\usr\module\user/config/user.php:269
-msgid "User action"
-msgstr "用户动作"
-
-#: Z:\pi\usr\module\user/config/user.php:281
-msgid "Logout"
-msgstr "退出"
-
-#: Z:\pi\usr\module\user/config/nav.php:41
-#: Z:\pi\usr\module\user/template/admin/user.phtml:55
-msgid "Role"
-msgstr "角色"
-
-#: Z:\pi\usr\module\user/config/nav.php:74
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:30
-msgid "Profile"
-msgstr "资料"
-
-#: Z:\pi\usr\module\user/config/nav.php:85
-msgid "Form"
-msgstr "表单"
-
-#: Z:\pi\usr\module\user/config/nav.php:119
-msgid "Inquiry"
-msgstr "查询"
-
-#: Z:\pi\usr\module\user/config/nav.php:127
-#: Z:\pi\usr\module\user/template/admin/import.phtml:2
-#: Z:\pi\usr\module\user/template/admin/import.phtml:4
-msgid "Import"
-msgstr "导入"
-
-#: Z:\pi\usr\module\user/config/config.php:19
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:19
 msgid "General"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:34
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:23
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:124
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:330
+msgid "Avatar"
+msgstr "头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:27
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:18
+msgid "User account"
+msgstr "用户账号"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:34
 msgid "Number of items on list page."
 msgstr "页面展示项目数"
 
-#: Z:\pi\usr\module\user/config/config.php:39
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:39
 msgid "Register form config file name"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:40
-#: Z:\pi\usr\module\user/config/config.php:45
-#: Z:\pi\usr\module\user/config/config.php:50
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:40
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:45
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:50
 msgid "Set it only if necessary."
 msgstr "仅在必要时设置。"
 
-#: Z:\pi\usr\module\user/config/config.php:44
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:44
 msgid "Register complete form config file name"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:49
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:49
 msgid "Profile complete form config file name"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:56
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:56
 msgid "Username format"
 msgstr "用户名规则"
 
-#: Z:\pi\usr\module\user/config/config.php:57
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:57
 msgid "Format of username for registration."
 msgstr "注册用户名规则。"
 
-#: Z:\pi\usr\module\user/config/config.php:62
-#: Z:\pi\usr\module\user/config/config.php:95
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:62
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:95
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:63
-#: Z:\pi\usr\module\user/config/config.php:96
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:63
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:96
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:64
-#: Z:\pi\usr\module\user/config/config.php:97
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:64
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:97
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:74
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:74
 msgid "Minimum username"
 msgstr "用户名最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:75
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:75
 msgid "Minimum length of username for user registration"
 msgstr "用户注册时用户名最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:82
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:82
 msgid "Maximum username"
 msgstr "用户名最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:83
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:83
 msgid "Maximum length of username for user registration"
 msgstr "用户注册时用户名最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:89
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:89
 msgid "Display name format"
 msgstr "昵称规则"
 
-#: Z:\pi\usr\module\user/config/config.php:90
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:90
 msgid "Format of display name for registration."
 msgstr "注册昵称规则。"
 
-#: Z:\pi\usr\module\user/config/config.php:107
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:107
 msgid "Minmum display name"
 msgstr "昵称最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:108
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:108
 msgid "Minmum length of display name for user registration"
 msgstr "注册时昵称最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:115
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:115
 msgid "Maximum display name"
 msgstr "昵称最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:116
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:116
 msgid "Maximum length of display name for user registration"
 msgstr "注册时昵称最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:123
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:123
 msgid "Minimum password"
 msgstr "密码最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:124
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:124
 msgid "Minimum length of password for user registration"
 msgstr "用户注册时密码最小长度"
 
-#: Z:\pi\usr\module\user/config/config.php:131
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:131
 msgid "Maximum password"
 msgstr "密码最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:132
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:132
 msgid "Maximum length of password for user registration"
 msgstr "用户注册时密码最大长度"
 
-#: Z:\pi\usr\module\user/config/config.php:139
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:139
 msgid "Username backlist"
 msgstr "用户名黑名单"
 
-#: Z:\pi\usr\module\user/config/config.php:140
-#: Z:\pi\usr\module\user/config/config.php:148
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:140
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:148
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr "保留及禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
-#: Z:\pi\usr\module\user/config/config.php:147
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:147
 msgid "Display backlist"
 msgstr "显示黑名单"
 
-#: Z:\pi\usr\module\user/config/config.php:155
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:155
 msgid "Email backlist"
 msgstr "邮箱黑名单"
 
-#: Z:\pi\usr\module\user/config/config.php:156
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:156
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr "禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
-#: Z:\pi\usr\module\user/config/config.php:163
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:163
 msgid "Remember me"
 msgstr "自动登录"
 
-#: Z:\pi\usr\module\user/config/config.php:164
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:164
 msgid "Days to remember login, 0 for disable."
 msgstr "账号保持登录状态时间，0是不保持。"
 
-#: Z:\pi\usr\module\user/config/config.php:171
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:171
 msgid "Maximum attempts"
 msgstr "最大尝试次数"
 
-#: Z:\pi\usr\module\user/config/config.php:172
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:172
 msgid "Maximum attempts allowed to try for user login"
 msgstr "用户登录时的最大尝试次数"
 
-#: Z:\pi\usr\module\user/config/config.php:179
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:179
 msgid "Login disable"
 msgstr "关闭登录"
 
-#: Z:\pi\usr\module\user/config/config.php:180
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:180
 msgid "Disable user login"
 msgstr "禁止用户登录"
 
-#: Z:\pi\usr\module\user/config/config.php:188
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:188
 msgid "Register disable"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:189
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:189
 msgid "Disable user registration"
 msgstr "禁止用户注册"
 
-#: Z:\pi\usr\module\user/config/config.php:197
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:197
 msgid "Login CAPTCHA"
 msgstr "登录验证码"
 
-#: Z:\pi\usr\module\user/config/config.php:198
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:198
 msgid "Enable CAPTCHA for user login"
 msgstr "启用登录验证码"
 
-#: Z:\pi\usr\module\user/config/config.php:206
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:206
 msgid "Register CAPTCHA"
 msgstr "注册验证码"
 
-#: Z:\pi\usr\module\user/config/config.php:207
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:207
 msgid "Enable CAPTCHA for user registration"
 msgstr "启用注册验证码"
 
-#: Z:\pi\usr\module\user/config/config.php:217
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:217
 msgid "Max Avatar Width"
 msgstr "头像最大宽度"
 
-#: Z:\pi\usr\module\user/config/config.php:218
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:218
 msgid "Allowed image width, 0 for no limit"
 msgstr "最大图片宽度，0代表无限制"
 
-#: Z:\pi\usr\module\user/config/config.php:224
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:224
 msgid "Max Avatar Height"
 msgstr "头像最大高度"
 
-#: Z:\pi\usr\module\user/config/config.php:225
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:225
 msgid "Allowed image height, 0 for no limit"
 msgstr "最大图片高度，0代表无限制"
 
-#: Z:\pi\usr\module\user/config/config.php:231
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:231
 msgid "Max File Size"
 msgstr "最大文件尺寸"
 
-#: Z:\pi\usr\module\user/config/config.php:232
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:232
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 
-#: Z:\pi\usr\module\user/config/config.php:247
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:247
 msgid "Temporary Path"
 msgstr "临时路径"
 
-#: Z:\pi\usr\module\user/config/config.php:248
+#: D:\GitHub\custom-pi\usr\module\user/config/config.php:248
 msgid "For temporary storage of avatar"
 msgstr "用于临时储存头像"
 
-#: Z:\pi\usr\module\user/config/register.php:28
+#: D:\GitHub\custom-pi\usr\module\user/config/module.php:17
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:21
+msgid "User"
+msgstr "用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/module.php:18
+msgid "User profile and services."
+msgstr "用户资料和管理服务。"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:41
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:47
+msgid "Role"
+msgstr "角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:74
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:30
+msgid "Profile"
+msgstr "资料"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:85
+msgid "Form"
+msgstr "表单"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:97
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:61
+msgid "Plugin management"
+msgstr "插件管理"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:108
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:67
+msgid "Maintenance"
+msgstr "维护"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:119
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:73
+msgid "Inquiry"
+msgstr "查询"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/nav.php:127
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:42
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/import.phtml:2
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/import.phtml:4
+msgid "Import"
+msgstr "导入"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:24
+msgid "User profile"
+msgstr "用户资料"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:30
+msgid "Roles"
+msgstr "角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:36
+msgid "Profile fields"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:49
+msgid "Avatars"
+msgstr "头像"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/permission.php:55
+msgid "Forms"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/config/register.php:28
 msgid "Confirm credential"
 msgstr "确认密码"
 
-#: Z:\pi\usr\module\user/config/register.php:60
+#: D:\GitHub\custom-pi\usr\module\user/config/register.php:60
 msgid "Please type the word."
 msgstr "验证码"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:109
-msgid "User removed from the role."
-msgstr "已从该角色中移除用户。"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:26
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:21
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:40
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:36
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:39
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:59
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:83
+msgid "Username"
+msgstr "用户名"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:113
-msgid "User not in the role."
-msgstr "用户不在该角色内。"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:42
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:62
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:88
+msgid "Password"
+msgstr "密码"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:122
-msgid "User added to the role."
-msgstr "已添加用户到本角色"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:58
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:22
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:57
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:38
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:60
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:87
+msgid "Email"
+msgstr "邮箱"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:133
-msgid "User already in the role."
-msgstr "用户已在本角色"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:81
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:18
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:37
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:40
+msgid "Display name"
+msgstr "昵称"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:139
-msgid "User not found."
-msgstr "未找到用户。"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:96
+msgid "Gender"
+msgstr "性别"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/RoleController.php:177
-#, php-format
-msgid "Users of role %s"
-msgstr "用户角色 %s"
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:104
+msgid "Birthdate"
+msgstr "生日"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:243
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:135
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:60
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:44
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:64
+msgid "Active"
+msgstr "可用"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:146
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:41
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:54
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:48
+msgid "Register time"
+msgstr "注册时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:157
+msgid "Activation time"
+msgstr "激活时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:168
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:63
+msgid "Disabled time"
+msgstr "禁用时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:180
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:51
+msgid "Deleted time"
+msgstr "删除时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:194
+msgid "Level"
+msgstr "等级"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:203
+msgid "Last modified"
+msgstr "修改时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:211
+msgid "Homepage"
+msgstr "首页"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:216
+msgid "Short bio"
+msgstr "自我介绍"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:228
+msgid "Signature"
+msgstr "签名"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:241
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:94
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:99
+msgid "Register IP"
+msgstr "注册IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:252
+msgid "Social tools"
+msgstr "社交工具"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:256
+msgid "Tool name"
+msgstr "工具名称"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:259
+msgid "ID or URL"
+msgstr "ID 或 URL"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:269
+msgid "User action"
+msgstr "用户动作"
+
+#: D:\GitHub\custom-pi\usr\module\user/config/user.php:281
+msgid "Logout"
+msgstr "退出"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:47
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:171
+msgid "Edit user info failed"
+msgstr "编辑用户信息失败"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:60
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:212
+msgid "Edit user info successfully"
+msgstr "编辑用户信息成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:106
+msgid "Replace user avater failed"
+msgstr "替换用户头像失败"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:111
+msgid "Replace user avater successfully"
+msgstr "替换用户头像成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:261
+msgid "Delete this group successfully"
+msgstr "删除组成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:323
+msgid "Base info"
+msgstr "基本信息"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/EditController.php:371
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
+msgid "User was not found."
+msgstr "用户不存在。"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ImportController.php:48
+msgid "User data imported successfully."
+msgstr "数据导入成功"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ImportController.php:50
+msgid "User data import failed: "
+msgstr "数据导入失败："
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:243
 msgid "Add user failed: user already exists."
 msgstr "添加用户失败：该用户已存在。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:258
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:259
 msgid "Add user failed: invalid operation."
 msgstr "添加用户失败：不合法操作。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:278
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:279
 msgid "Add user successfully"
 msgstr "添加用户成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:409
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:410
 msgid "Enable user failed: invalid uid"
 msgstr "启用用户失败：UID错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:425
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:426
 #, php-format
 msgid "%d enable user successfully"
 msgstr "启用 %d 用户成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:445
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:446
 msgid "Disable user failed: invalid uid"
 msgstr "禁用用户失败：UID不存在"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:461
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:462
 #, php-format
 msgid "%d disable user successfully"
 msgstr "锁定 %d 用户成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:481
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:482
 msgid "Delete user failed: invalid uid"
 msgstr "删除用户失败：UID错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:504
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:505
 #, php-format
 msgid "%d delete user successfully"
 msgstr "删除 %d 用户成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:524
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:530
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:525
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:531
 msgid "Activate user failed: invalid uid"
 msgstr "用户激活失败：UID错误"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:545
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:546
 #, php-format
 msgid "%d activated user successfully"
 msgstr "激活 %d 用户成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:575
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:576
 msgid "Assign role failed: invalid parameters."
 msgstr "分配角色失败：不合法参数。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:581
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:582
 msgid "Assign role failed: invalid user ids."
 msgstr "分配角色失败：用户id不存在。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:586
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:587
 msgid "Assign role failed: invalid operation."
 msgstr "分配角色失败：不合法操作。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:595
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:596
 msgid "Assign role failed."
 msgstr "分配角色失败。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:606
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:607
 msgid "Assign role failed"
 msgstr "分配角色失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/IndexController.php:619
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/IndexController.php:620
 msgid "Assign role successfully"
 msgstr "分配角色成功"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:47
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:171
-msgid "Edit user info failed"
-msgstr "编辑用户信息失败"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:60
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:212
-msgid "Edit user info successfully"
-msgstr "编辑用户信息成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:106
-msgid "Replace user avater failed"
-msgstr "替换用户头像失败"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:111
-msgid "Replace user avater successfully"
-msgstr "替换用户头像成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:261
-msgid "Delete this group successfully"
-msgstr "删除组成功"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:317
-msgid "Base info"
-msgstr "基本信息"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/EditController.php:364
-#: Z:\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
-msgid "User was not found."
-msgstr "用户不存在。"
-
-#: Z:\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:203
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:208
 msgid "Clear failed."
 msgstr "清除失败。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:213
-#: Z:\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:230
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:218
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:235
 msgid "Clear all deleted user successfully."
 msgstr "成功清除已删除用户。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:217
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:217
 msgid "Profile dressup data save successfully"
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:312
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:312
 msgid "Set privacy failed: invalid id."
 msgstr "隐私设置失败：id错误。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:317
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:317
 msgid "Set privacy failed: invalid value."
 msgstr "隐私设置失败：值错误。"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:322
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:322
 msgid "Set privacy failed: invalid force flag."
 msgstr ""
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:341
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:341
 msgid "Set privacy failed: update error."
 msgstr "隐私设置失败"
 
-#: Z:\pi\usr\module\user/src/Controller/Admin/ProfileController.php:352
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/ProfileController.php:352
 msgid "Set privacy successfully"
 msgstr "隐私设置成功。"
 
-#: Z:\pi\usr\module\user/template/admin/form-profile-complete.phtml:4
-#: Z:\pi\usr\module\user/template/admin/form-register.phtml:4
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:109
+msgid "User removed from the role."
+msgstr "已从该角色中移除用户。"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:113
+msgid "User not in the role."
+msgstr "用户不在该角色内。"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:122
+msgid "User added to the role."
+msgstr "已添加用户到本角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:133
+msgid "User already in the role."
+msgstr "用户已在本角色"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:139
+msgid "User not found."
+msgstr "未找到用户。"
+
+#: D:\GitHub\custom-pi\usr\module\user/src/Controller/Admin/RoleController.php:177
+#, php-format
+msgid "Users of role %s"
+msgstr "用户角色 %s"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/edit-user.phtml:3
+msgid "Edit user: "
+msgstr "编辑用户："
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/edit-user.phtml:34
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:106
+msgid "Replace with defalt avatar."
+msgstr "重置为默认头像。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/edit-user.phtml:40
+msgid "This user doesn't have any you can view"
+msgstr "该用户无可查看的信息"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/edit-user.phtml:65
+msgid "Are you sure delete this group?"
+msgstr "请确认是否删除该组？"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/form-profile-complete.phtml:4
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/form-register.phtml:4
 msgid "Register form"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/form-profile-complete.phtml:9
-#: Z:\pi\usr\module\user/template/admin/form-register.phtml:9
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/form-profile-complete.phtml:9
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/form-register.phtml:9
 msgid "Profile complete form"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:23
-msgid "Profile field"
-msgstr "资料字段"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:19
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:26
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:91
+msgid "Submit"
+msgstr "提交"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:24
-msgid "Profile dress up"
-msgstr "资料 dress up"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:20
+msgid ""
+"Inquire of user information via his ID, username, display name or email."
+msgstr "通过用户ID，用户名，昵称或Email查询用户信息"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:25
-msgid "Field privacy"
-msgstr "字段隐私"
-
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:28
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:40
-msgid "Basic field"
-msgstr "基本字段"
-
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:29
-msgid "Raw filed provied by the user module,you can change the display title"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:23
+msgid "Activation"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:30
-msgid "Field title"
-msgstr "字段名"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:24
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:53
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:43
+msgid "Activated"
+msgstr "激活"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:31
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:29
-msgid "Display"
-msgstr "显示"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:25
+msgid "Not activated"
+msgstr "未激活"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:32
-msgid "Search"
-msgstr "搜索"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:26
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:31
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:41
+msgid "Enabled"
+msgstr "启用"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:33
-msgid "Editable"
-msgstr "可编辑"
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:27
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:42
+msgid "Disabled"
+msgstr "禁用"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:34
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:31
+msgid "Yes"
+msgstr "是"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:29
+msgid "Account"
+msgstr "账号"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/inquiry.phtml:32
+msgid "Unavailable"
+msgstr "不可用"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:22
+msgid "Stats"
+msgstr "统计数据"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:23
+msgid "User log"
+msgstr "用户日志"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:24
+msgid "Deleted users"
+msgstr "已删除用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:27
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:69
+msgid "Today"
+msgstr "今天"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:70
+msgid "Last week"
+msgstr "上周"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:71
+msgid "Last month"
+msgstr "上个月"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:30
+msgid "History"
+msgstr "历史"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:31
+msgid "Register num"
+msgstr "注册数量"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:32
+msgid "Activated num"
+msgstr "激活数量"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:33
+msgid "Pending num"
+msgstr "未激活数量"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:34
+msgid "Top 10 registered IP"
+msgstr "前十注册IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:35
+msgid "None"
+msgstr "无"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:36
+msgid "Sort by key:"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:37
+msgid "uid"
+msgstr "uid"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:38
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:50
+msgid "Edit"
+msgstr "编辑"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:39
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:103
+msgid "View log"
+msgstr "查看日志"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:42
+msgid "Register ip"
+msgstr "注册IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:43
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:65
+msgid "Activated time"
+msgstr "激活时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:44
+msgid "Last login time"
+msgstr "最后登录时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:45
+msgid "Last loin ip"
+msgstr "最后登录IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:46
+msgid "Login count"
+msgstr "登录次数"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:47
+msgid "Sort by:"
+msgstr "排序："
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:48
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:79
+msgid "Are you sure to delete this user?"
+msgstr "请确认是否删除该用户？"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:49
+msgid "Are you sure to delete these users?"
+msgstr "请确认是否删除这些用户？"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:50
+msgid "Are you sure to delete all of these users?"
+msgstr "请确认是否删除这些用户？"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:52
+msgid "IP"
+msgstr "IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:55
+msgid "Displayname"
+msgstr "昵称"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:56
+msgid "Clear the users"
+msgstr "清除用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:58
+msgid "CLear all deleted users"
+msgstr "清除已删除用户"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:59
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:97
+msgid "No user matched your request."
+msgstr "未找到匹配用户。"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:61
+msgid "Last login ip"
+msgstr "最后登录IP"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:62
+msgid "Created time"
+msgstr "创建时间"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:64
+msgid "Last login"
+msgstr "最后登录"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/maintenance.phtml:66
+msgid "Null"
+msgstr "空"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:22
+msgid "Timeline"
+msgstr "时间线"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:23
+msgid "Activity"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:24
+msgid "Quicklink"
+msgstr "快速链接"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:27
+msgid "Item name"
+msgstr "项目名称"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:34
 msgid "From module"
 msgstr "来源模块"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:35
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:31
+msgid "Display"
+msgstr "显示"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:30
+msgid "Items displayed on the homepage timeline"
+msgstr "显示在主页时间线上的项目"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:32
+msgid "No"
+msgstr "否"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:33
+msgid "Activities"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:34
+msgid "Activities items repository"
+msgstr "Activity资源库"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:35
+msgid ""
+"Items to display on the user\\'s homepage, Drag items vertically to "
+"determine the order displays"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:36
+msgid "Quicklinks"
+msgstr "快速链接"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/plugin.phtml:37
+msgid "Quicklinks items repository"
+msgstr "快速链接资源库"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:23
+msgid "Profile field"
+msgstr "资料字段"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:24
+msgid "Profile dress up"
+msgstr "资料 dress up"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:25
+msgid "Field privacy"
+msgstr "字段隐私"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:40
+msgid "Basic field"
+msgstr "基本字段"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:29
+msgid "Raw filed provied by the user module,you can change the display title"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:30
+msgid "Field title"
+msgstr "字段名"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:32
+msgid "Search"
+msgstr "搜索"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:33
+msgid "Editable"
+msgstr "可编辑"
+
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:35
 msgid "Compound"
 msgstr "组合字段"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:36
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:36
 msgid ""
 "Compound filed :Some fileds organized initially. Sub elements in the "
 "compound is directly displayed on the page,while the compound title is for "
 "programming"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:37
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:37
 msgid ""
 "Determine the default visible objects of the profile filed and which filed "
 "can be changed by the user self"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:38
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:38
 msgid "Add group"
 msgstr "添加组"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:39
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:39
 msgid "Field display on profile page"
 msgstr "显示在资料页上的字段"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:41
-#: Z:\pi\usr\module\user/template/admin/role.phtml:22
-#: Z:\pi\usr\module\user/template/admin/role.phtml:25
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:41
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:22
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:25
 msgid "Title"
 msgstr "标题"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:42
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:42
 msgid "Data will not be saved before you click save button"
 msgstr "不点击保存按钮信息将不会被保存。"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:43
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:43
 msgid "Click to select a group added in"
 msgstr "点击选择已有组添加"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:44
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:44
 msgid "Click to added a group"
 msgstr "点击添加该组"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:45
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:45
 msgid "Cancel"
 msgstr "取消"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:46
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:46
 msgid "Save"
 msgstr "保存"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:47
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:47
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr "修改未保存，请确认是否离开该页面？"
 
-#: Z:\pi\usr\module\user/template/admin/profile.phtml:48
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/profile.phtml:48
 msgid "Create a group before adding"
 msgstr "添加之前先创建一个组"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:19
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:19
 msgid "Admin roles"
 msgstr "后台角色"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:20
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:20
 msgid "Front roles"
 msgstr "前台角色"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:21
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:21
 msgid "Name"
 msgstr "名称"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:23
-#: Z:\pi\usr\module\user/template/admin/role.phtml:31
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:23
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:31
 msgid "Users in role"
 msgstr "用户数量"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:24
-#: Z:\pi\usr\module\user/template/admin/user.phtml:57
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:24
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:49
 msgid "Action"
 msgstr "动作"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:26
-#: Z:\pi\usr\module\user/template/admin/user.phtml:99
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:19
-msgid "Submit"
-msgstr "提交"
-
-#: Z:\pi\usr\module\user/template/admin/role.phtml:27
-#: Z:\pi\usr\module\user/template/admin/user.phtml:66
-#: Z:\pi\usr\module\user/template/admin/user.phtml:100
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:27
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:58
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:92
 msgid "Required"
 msgstr "必填"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:28
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:28
 msgid "Type"
 msgstr "类型"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:29
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:29
 msgid "Front"
-msgstr ""
+msgstr "前台"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:30
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:30
 msgid "Admin"
-msgstr "Admin"
+msgstr "后台"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:32
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:32
 msgid "User id or name"
 msgstr "用户 id 或 用户名"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:33
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:33
 msgid "Users"
 msgstr "用户"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:34
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:34
 msgid "First"
 msgstr ""
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:35
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:35
 msgid "User id"
 msgstr "用户 ID"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:39
-#: Z:\pi\usr\module\user/template/admin/user.phtml:60
-#: Z:\pi\usr\module\user/template/admin/user.phtml:90
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:39
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:52
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:82
 msgid "Add user"
 msgstr "添加用户"
 
-#: Z:\pi\usr\module\user/template/admin/role.phtml:40
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/role.phtml:40
 msgid "None user in this role."
 msgstr "该角色内无用户。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:24
-msgid "Build user module data"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:36
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:28
 msgid "All"
 msgstr "全部"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:37
-#: Z:\pi\usr\module\user/template/admin/user.phtml:51
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:24
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:53
-msgid "Activated"
-msgstr "激活"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:38
-#: Z:\pi\usr\module\user/template/admin/user.phtml:54
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:30
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:46
 msgid "Pending"
 msgstr "未激活"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:39
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:31
 msgid "Add new"
 msgstr "添加新用户"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:40
-#: Z:\pi\usr\module\user/template/admin/user.phtml:106
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:32
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:98
 msgid "Advanced search"
 msgstr "高级搜索"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:43
-#: Z:\pi\usr\module\user/template/admin/user.phtml:89
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:35
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:81
 msgid "Active State"
 msgstr "可用状态"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:44
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:36
 msgid "Enable State"
 msgstr "启用状态"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:45
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:37
 msgid "Select roles"
 msgstr "选择角色"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:46
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:38
 msgid "Apply"
 msgstr "应用"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:49
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:26
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:31
-msgid "Enabled"
-msgstr "启用"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:50
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:27
-msgid "Disabled"
-msgstr "禁用"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:53
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:45
 msgid "Inactive"
 msgstr "不可用"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:58
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:38
-msgid "Edit"
-msgstr "编辑"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:59
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:51
 msgid "Delete"
 msgstr "删除"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:61
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:53
 msgid "Passwords don\\'t match."
 msgstr "密码不匹配"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:62
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:54
 msgid "Username is already taken."
 msgstr "用户名已存在。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:63
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:55
 msgid "Email is already taken."
 msgstr "邮箱已占用。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:64
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:56
 msgid "Display name is already taken."
 msgstr "昵称已存在。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:65
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:57
 msgid "Back to users list"
 msgstr "返回用户列表"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:69
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:61
 msgid "Email invalid"
 msgstr "邮箱错误"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:71
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:63
 msgid "Password confirm"
 msgstr "确认密码"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:73
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:65
 msgid "Enable"
 msgstr "启用"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:74
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:66
 msgid "Disable"
 msgstr "禁用"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:75
-#: Z:\pi\usr\module\user/template/admin/user.phtml:85
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:67
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:77
 msgid "Front role"
 msgstr "前台角色"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:76
-#: Z:\pi\usr\module\user/template/admin/user.phtml:86
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:68
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:78
 msgid "Admin role"
 msgstr "后台角色"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:77
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:27
-msgid "Today"
-msgstr "今天"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:78
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:28
-msgid "Last week"
-msgstr "上周"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:79
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:29
-msgid "Last month"
-msgstr "上个月"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:80
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:72
 msgid "Last three months"
 msgstr "过去三个月"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:81
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:73
 msgid "Last six months"
 msgstr "过去半年"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:82
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:74
 msgid "Last year"
 msgstr "去年"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:83
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:75
 msgid "Assign role"
 msgstr "分配角色"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:84
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:76
 msgid "Remove role"
 msgstr "移除角色"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:87
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:48
-msgid "Are you sure to delete this user?"
-msgstr "请确认是否删除该用户？"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:88
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:80
 msgid "Are you sure to delete this users?"
 msgstr "请确认是否删除这些用户？"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:92
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:84
 msgid "Are you sure active this account, it can not be return"
 msgstr "请确认是否激活该账号，本操作无法撤销"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:93
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:85
 msgid "Are you sure active these account, it can not be return"
 msgstr "请确认是否激活这些账号，本操作无法撤销"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:94
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:86
 msgid "Choose at least one item before submission."
 msgstr "请至少选择一项提交。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:97
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:89
 msgid "Confirm password"
 msgstr "确认密码"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:98
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:90
 msgid "Activate"
 msgstr "激活"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:101
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:93
 msgid "Invalid email."
 msgstr "邮箱错误。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:103
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:95
 msgid "Activation state"
 msgstr "激活状态"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:104
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:96
 msgid "User ID"
 msgstr "用户 ID"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:105
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:59
-msgid "No user matched your request."
-msgstr "未找到匹配用户。"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:108
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:100
 msgid "From"
 msgstr "从"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:109
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:101
 msgid "To"
 msgstr "到"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:110
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:102
 msgid "Search result"
 msgstr "搜索结果"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:111
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:39
-msgid "View log"
-msgstr "查看日志"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:112
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:104
 msgid "No pending user."
 msgstr "没有未激活用户。"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:113
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:105
 msgid "Edit user"
 msgstr "编辑用户信息"
 
-#: Z:\pi\usr\module\user/template/admin/user.phtml:114
-#: Z:\pi\usr\module\user/template/admin/edit-user.phtml:34
-msgid "Replace with defalt avatar."
-msgstr "重置为默认头像。"
-
-#: Z:\pi\usr\module\user/template/admin/user.phtml:115
+#: D:\GitHub\custom-pi\usr\module\user/template/admin/user.phtml:107
 msgid "Are you sure to delete this group?"
 msgstr "请确认是否删除该组？"
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:20
-msgid ""
-"Inquire of user information via his ID, username, display name or email."
-msgstr "通过用户ID，用户名，昵称或Email查询用户信息"
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:23
-msgid "Activation"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:25
-msgid "Not activated"
-msgstr "未激活"
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:28
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:31
-msgid "Yes"
-msgstr "是"
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:29
-msgid "Account"
-msgstr "账号"
-
-#: Z:\pi\usr\module\user/template/admin/inquiry.phtml:32
-msgid "Unavailable"
-msgstr "不可用"
-
-#: Z:\pi\usr\module\user/template/admin/edit-user.phtml:3
-msgid "Edit user: "
-msgstr "编辑用户："
-
-#: Z:\pi\usr\module\user/template/admin/edit-user.phtml:40
-msgid "This user doesn't have any you can view"
-msgstr "该用户无可查看的信息"
-
-#: Z:\pi\usr\module\user/template/admin/edit-user.phtml:65
-msgid "Are you sure delete this group?"
-msgstr "请确认是否删除该组？"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:22
-msgid "Stats"
-msgstr "统计数据"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:23
-msgid "User log"
-msgstr "用户日志"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:24
-msgid "Deleted users"
-msgstr "已删除用户"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:30
-msgid "History"
-msgstr "历史"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:31
-msgid "Register num"
-msgstr "注册数量"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:32
-msgid "Activated num"
-msgstr "激活数量"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:33
-msgid "Pending num"
-msgstr "未激活数量"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:34
-msgid "Top 10 registered IP"
-msgstr "前十注册IP"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:35
-msgid "None"
-msgstr "无"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:36
-msgid "Sort by key:"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:37
-msgid "uid"
-msgstr "uid"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:42
-msgid "Register ip"
-msgstr "注册IP"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:43
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:65
-msgid "Activated time"
-msgstr "激活时间"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:44
-msgid "Last login time"
-msgstr "最后登录时间"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:45
-msgid "Last loin ip"
-msgstr "最后登录IP"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:46
-msgid "Login count"
-msgstr "登录次数"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:47
-msgid "Sort by:"
-msgstr "排序："
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:49
-msgid "Are you sure to delete these users?"
-msgstr "请确认是否删除这些用户？"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:50
-msgid "Are you sure to delete all of these users?"
-msgstr "请确认是否删除这些用户？"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:52
-msgid "IP"
-msgstr "IP"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:55
-msgid "Displayname"
-msgstr "昵称"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:56
-msgid "Clear the users"
-msgstr "清除用户"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:58
-msgid "CLear all deleted users"
-msgstr "清除已删除用户"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:61
-msgid "Last login ip"
-msgstr "最后登录IP"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:62
-msgid "Created time"
-msgstr "创建时间"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:64
-msgid "Last login"
-msgstr "最后登录"
-
-#: Z:\pi\usr\module\user/template/admin/maintenance.phtml:66
-msgid "Null"
-msgstr "空"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:22
-msgid "Timeline"
-msgstr "时间线"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:23
-msgid "Activity"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:24
-msgid "Quicklink"
-msgstr "快速链接"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:27
-msgid "Item name"
-msgstr "项目名称"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:30
-msgid "Items displayed on the homepage timeline"
-msgstr "显示在主页时间线上的项目"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:32
-msgid "No"
-msgstr "否"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:33
-msgid "Activities"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:34
-msgid "Activities items repository"
-msgstr "Activity资源库"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:35
-msgid ""
-"Items to display on the user\\'s homepage, Drag items vertically to "
-"determine the order displays"
-msgstr ""
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:36
-msgid "Quicklinks"
-msgstr "快速链接"
-
-#: Z:\pi\usr\module\user/template/admin/plugin.phtml:37
-msgid "Quicklinks items repository"
-msgstr "快速链接资源库"
 
 #, fuzzy
 #~ msgid "Register template file name"
