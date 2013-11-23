@@ -20,7 +20,7 @@ $config = array(
         'ttl'       => 3600,
     ),
 
-    'cache'   => false,
+    //'cache'   => false,
 
     // cURL specific configs
     'curl'      => array(
