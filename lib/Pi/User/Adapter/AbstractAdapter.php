@@ -247,7 +247,7 @@ abstract class AbstractAdapter implements BindInterface
                 break;
             // User profile field
             default:
-                if ($this->model) {
+                if ($this->model && isset($this->model[$var])) {
                     $result = $this->model[$var];
                 }
                 break;

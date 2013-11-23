@@ -42,4 +42,21 @@ class Client extends System
 
         return $this;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get($name)
+    {
+        $result = parent::get($name);
+        if (null === $result && 'id' != $name) {
+            $uid = $this->get('id');
+            if ($uid) {
+                $result = Pi::api('uclient', 'user')->get($uid, $name);
+                $this->data[$name] = $result;
+            }
+        }
+
+        return $result;
+    }
 }

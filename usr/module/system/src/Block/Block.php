@@ -76,6 +76,7 @@ class Block
         $result = array(
             'type'  => $type,
         );
+
         if ('js' == $type) {
             $user = array(
                 'uid'       => 0,
@@ -96,10 +97,17 @@ class Block
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
         } else {
+            $uid = Pi::service('user')->getUser()->get('id');
             $name = Pi::service('user')->getUser()->get('name');
+            $avatar = Pi::service('user')->getPersist('avatar-mini');
+            if (!$avatar) {
+                $avatar = Pi::service('user')->avatar($uid, 'mini');
+                Pi::service('user')->setPersist('avatar-mini', $avatar);
+            }
             $user = array(
                 'uid'       => Pi::service('user')->getId(),
                 'name'      => $name,
+                'avatar'    => $avatar,
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
                 'message'   => Pi::service('user')->message()->getUrl(),

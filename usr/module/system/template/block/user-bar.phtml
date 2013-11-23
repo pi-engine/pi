@@ -68,7 +68,7 @@
     <?php
         } else {
     ?>
-            <?php echo Pi::service('user')->avatar()->get($block['user']['uid'], 'mini'); ?>
+            <?php echo $block['user']['avatar']; ?>
             <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _escape($block['user']['name']); ?></a>
             <span class="pi-divider">|</span>
             <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>

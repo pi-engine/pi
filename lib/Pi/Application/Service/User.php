@@ -201,52 +201,6 @@ class User extends AbstractService
     }
 
     /**
-     * Get resource handler or result from handler if args specified
-     *
-     * @param string $name
-     * @param array  $args
-     *
-     * @return AbstractResource|mixed
-     */
-    public function ____getResource($name, $args = array())
-    {
-        if (!isset($this->resource[$name])) {
-            $options = array();
-            $class = '';
-            $resource = $this->getOption('resource', $name);
-            if ($resource) {
-                if (is_string($resource)) {
-                    $class = $resource;
-                } else {
-                    if (!empty($resource['class'])) {
-                        $class = $resource['class'];
-                    }
-                    if (isset($this->$resource['options'])) {
-                        $options = $resource['options'];
-                    }
-                }
-            }
-            if (!$class) {
-                $class = 'Pi\User\Resource\\' . ucfirst($name);
-            }
-            $this->resource[$name] = new $class;
-            if ($options) {
-                $this->resource[$name]->setOptions($options);
-            }
-        }
-        if ($args) {
-            $result = call_user_func_array(
-                array($this->resource[$name], 'get'),
-                $args
-            );
-        } else {
-            $result = $this->resource[$name];
-        }
-
-        return $result;
-    }
-
-    /**
      * Bind a user to service
      *
      * @param UserModel|int|string|null $identity

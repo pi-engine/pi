@@ -97,12 +97,17 @@ class IndexController extends ActionController
         if (Pi::service('user')->hasIdentity()) {
             $uid  = Pi::service('user')->getId();
             $name = Pi::service('user')->getUser()->get('name');
+            $avatar = Pi::service('user')->getPersist('avatar-mini');
+            if (!$avatar) {
+                $avatar = Pi::service('user')->avatar($uid, 'mini');
+                Pi::service('user')->setPersist('avatar-mini', $avatar);
+            }
             $user = array(
                 'uid'       => $uid,
                 'name'      => $name,
+                'avatar'    => $avatar,
                 'profile'   => Pi::service('user')->getUrl('profile', $params),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
-                'avatar'    => Pi::service('user')->avatar()->get($uid, 'mini'),
                 'message'   => Pi::service('user')->message()->getUrl(),
             );
         } else {
